@@ -1,0 +1,73 @@
+
+<h1>Send Email To Member</h1>
+
+<p><font color="#FF0000">{fld_message}</font></p>
+
+<form method="POST" action="/phpmod/member_sendmail.php">
+  <table border="0" cellpadding="0">
+    <tr>
+      <td valign="top">ID</td>
+      <td valign="top">:</td>
+      <td valign="top">{fld_name}</td>
+    </tr>
+    <tr>
+      <td valign="top">Full Name</td>
+      <td valign="top">:</td>
+      <td valign="top">{fld_fullname}</td>
+    </tr>
+    <tr>
+      <td valign="top">Email</td>
+      <td valign="top">:</td>
+      <td valign="top">{fld_email}</td>
+    </tr>
+    <tr>
+      <td valign="top">From</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_from" size="48" value="{fld_from}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Reply To</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_replay" size="48" value="{fld_replay}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Subject</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_subject" size="48" value="{fld_subject}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Email Content</td>
+      <td valign="top">:</td>
+      <td valign="top">{fld_content_editor}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="submit" value="Send Email Now" class="button"> <input type="submit" value="Email Output Test" name="test" class="button"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="checkbox" name="fld_saveas_template" value="1">  Save the
+        email content as template for next email.</td>
+    </tr>
+  </table>
+
+<input type='hidden' name='rnd' value='{rnd_number}' />
+<input type='hidden' name='uid' value='{uid}' />
+<input type='hidden' name='op' value='dosend' />
+
+
+</form>
+<p><b><i>Notes:&nbsp; </i></b></p>
+
+<ul>
+  <li>You can use these macros on email content: {~hp_name}, {~hp_url}, {~hp_slogan},
+    {~member_name}, {~member_fullname}, {~member_email}</li>
+  <li>Click <b>&quot;Email Output Test&quot;</b>  to see the content of your
+    email on the end of this page.</li>
+</ul>
+
+<p>
+
+{fld_output_test}</p>
