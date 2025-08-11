@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>INSTALL</title>
+  <meta name="author" content="mike gifford">
+<style><!--
+body {   margin: 0px; padding: 3em; font-family: arial, geneva, helvetica, sans-serif; color: #000; background-color: #E4E4D2;}
+code { margin-left: 3em; display: block; }
+--></style>
+</head>
+<body>
+
+<h1>Back-End Content Management System</h1>
+
+<h2>Installation Instructions</h2>
+
+<p>Author: Peter Bojanic &amp; Mike Gifford</p>
+
+<p>Back-End version: 0.7.2.1</p>
+
+<h3>INTRODUCTION</h3>
+
+<p>Back-End 0.7.2.1 is another release of the Back-End, a CMS based on the mature phpSlash engine (version 0.7).</p>
+<p>We&#039;re always looking for more developers to help us continue with the development of Back-End as a modern, multi-lingual CMS. If you&#039;re interested, contact mike@openconcept.ca</p>
+
+<hr style="width: 100%; height: 2px;">
+<p><em>If you are setting up a Back-End system from scratch</em>, follow the <a href="#section_a">Initial Setup</a> instructions.</p>
+
+<hr style="width: 100%; height: 2px;">
+<h3>CONFIGURATION REQUIREMENTS</h3>
+
+<h4>PHP</h4>
+
+<p>PHP4.1+. Back-End has been run on PHP5, though we&#039;d still recommend caution if using BE and PHP5 on a live site.</p>
+<p>PHP can be running as a module or as a CGI by changing a configuration setting in BE_config.php.</p>
+<p>gpc_magic_quotes must be OFF and register_globals should work with it OFF.</p>
+
+<h4>PHP Magic Quotes</h4>
+
+<p>Make sure magic_quotes and magic_quote_gpc is off in your /etc/php.ini file.
+magic_quotes_gpc causes data coming from GET, POST, or COOKIE modes to be processed so that single quotes and backslashes are prefixed with a backslash (\'). This makes your email look very ugly. Turn it off.</p>
+
+<h4>Web Server</h4>
+<p>A modern web server (Apache 1.3.x or Apache 2.x (see notes)), apparently it even works on Microsoft IIS (see<a href="INSTALL-win2k.html">INSTALL-win2k.html</a>).
+It is useful (but not essential) to have .htaccess access.</p>
+
+<h4>MySQL</h4>
+
+<p>MySQL 3.23+ or 4.x</p>
+
+<h3>A. QUICK INSTALL</h3>
+<ol>
+<li>Decompress the Back-End0.7.2.1.tar.gz files into your web directory.
+It is critical that the files in public_html are in a public location on
+your web server. It is more secure to have the class directory parallel to
+the public_html directory so that the files are not visible to your visitors.
+</li>
+<li>Set the config.ini.php with write permissions, from the server enter:
+  <code>
+  cd public_html<br />
+  chmod 777 config.ini.php
+  </code>
+</li>
+<li>
+Browse to the directory where you installed the public_html files and
+follow the configure screens to set up Back-End (this assumes that you either
+have a MySQL database configured or have the permissions to set up a new database.
+</li>
+<li>
+For security delete the config_setup.php file and set the write permissions
+on the config.ini.php file:
+<code>
+  rm config_setup.php<br />
+  chmod 644 config.ini.php
+</code>
+</li>
+<li>
+Follow the <a href="#Complete_Install">login instructions</a>.
+</li>
+</ol>
+
+<h3><a name="section_a"></a>B. INITIAL SETUP</h3>
+<p>The following instructions will guide you in setting up an initial Back-End
+installation. If you are a developer or tester, and want to get your system
+in sync with the latest development version, follow the Development Upgrade
+instructions. If you are a user, and want to upgrade your system to the latest
+development version without losing everything, follow the Production Upgrade
+instructions.</p>
+<h4>1. Extract the Tarball or Zip file</h4>
+<p>Decompress the Back-End0.7.2.1.tar.gz files into your web directory.</p>
+<p>It is critical that the files in public_html are in a public location on your web server.  The other files do not need to be (and in fact it is more secure to have them in a location where they are not visible from the web).</p>
+<p>This install assumes the Red Hat default of /var/www , and Back-End is installed in this directory /var/www/back-end0.7.2.1</p>
+
+<h4>2. Configure /back-end directory in Apache</h4>
+
+<p>If possible, hide Back-End's public_html directory - we feel it is bad to let users see the public_html node in the path.</p>
+
+<p>Apache 2.0's default behavior is to attempt to resolve the extra part of the path (this is not a problem with Apache 1.3) -- the same problem would occur if your CGI script used the extra path info. You have to tell explicitly to pass the extra path info to the script:<br> http://httpd.apache.org/docs-2.0/mod/core.html#acceptpathinfo</p>
+<p>An example of a Apache 2 configuration:</p>
+  <code>
+  &lt;VirtualHost *&gt;<br>
+ServerName back-end.org<br>
+  ServerAlias www.back-end.org<br>
+  DocumentRoot /var/www/back-end0.7.x/public_html<br>
+  ErrorDocument 404 /errordocument.php<br>
+  ServerAdmin webguy@back-end.org<br>
+  DirectoryIndex index.php index.php3 index.html index.htm index.shtml<br>
+  LogLevel debug<br>
+  HostNameLookups off<br>
+  <br>
+&lt;Directory /var/www/back-end0.7.x/public_html&gt;<br>
+order allow,deny<br>
+allow from all<br>
+AcceptPathInfo on<br>
+<br>
+# Uncomment to Allow .htaccess permissions<br>
+# AllowOverride FileInfo AuthConfig Limit Options<br>
+# this directive is required as of Apache 2.0 to pass the<br>
+# additional path info after the script name to PHP<br>
+# (i.e. http://localhost/back-end/BE_article.php3/1/2)<br>
+# before, the '/1/2' part of the URI was accessible to the<br>
+# PHP script by default, but Apache 2.0 wants to resolve<br>
+# that to a literal path by default<br>
+AcceptPathInfo on<br>
+&lt;/Directory&gt;<br>
+<br>
+&lt;/VirtualHost&gt;<br>
+</code>
+<p>If you don't have write access to your httpd.conf file and are getting a 500 Server Error with any php script is followed by a slash (ie test.php/), we have a workaround for this.  We have built in a work-around in the BE_config.php file that should work.  It inserts a ? between the script and the / </p>
+
+<h4>3. Set up the database</h4>
+
+<h5>3a. Create the database</h5>
+
+<p>You can do this with phpmyadmin, but you may find it most convenient to do the
+job from the command line.</p>
+  <code>mysqladmin -u root -h host.domain.ca create be7</code>
+<h5>3b. Populate the database</h5>
+
+<p>Populate the core tables and values</p>
+<code>cd /var/www/back-end0.7.x/tables</code>
+<p>Upload EITHER the bundled SQL:</p>
+<code>mysql -u root -h host.domain.ca be7 &lt; BE_all.sql</code>
+<p>OR individual sql components:</p>
+  <!--span style="font-style: italic;">&nbsp;&nbsp;&nbsp; mysql -u root -h host.domain.ca
+be7 &lt; slash_core.sql</span><br style="font-style: italic;"-->
+  <code>
+  mysql -u root -h host.domain.ca be7 &lt; BE_core.sql<br>
+  mysql -u root -h host.domain.ca be7 &lt; extra_modules.sql
+  </code>
+<p>Include support for Actions:<br>
+  <code>
+  mysql -u root -h host.domain.ca be7 &lt; BE_actions/add_action_tables.sql<br>
+  mysql -u root -h host.domain.ca be7 &lt; BE_actions/populate_action_values.sql</code>
+  </p>
+
+<h5>3c. Create a database account</h5>
+
+<p>You can get away with specifying your root account for MySQL access, but
+I don't recommend it. Rather, you should setup and configure a separate account.</p>
+<code>
+mysql -u root -h host.domain.ca mysql -e "INSERT INTO mysql.user SET Host = 'host.domain.ca', \<br>
+User = 'user', PASSWORD = PASSWORD( '**********') , Select_priv = 'N', Insert_priv = 'N', \<br>
+Update_priv = 'N', Delete_priv = 'N', Create_priv = 'N', Drop_priv = 'N', Reload_priv = 'N', \<br>
+Shutdown_priv = 'N', Process_priv = 'N', File_priv = 'N', Grant_priv = 'N', References_priv = 'N', \<br>
+Index_priv = 'N', Alter_priv = 'N'"
+</code>
+<p>Now reload the database so we can recognize the user and assign them grants:<br>
+<code>mysqladmin -u root -h host.domain.ca reload</code>
+</p>
+
+<h5>3d. Grant privileges</h5>
+<p>We need to grant privileges to the user we set up (in this case, user). </p>
+<code>
+mysql -u root -h host.domain.ca mysql -e "GRANT SELECT, INSERT, UPDATE, DELETE ON \<br>
+\`be7\`.* TO \`user\`@\`host.domain.ca\`"
+</code>
+<p>You may also need to grant access to localhost, depending on how your MySQL
+is configured:<br>
+<code>
+mysql -u root -h host.domain.ca mysql -e "GRANT SELECT, INSERT, UPDATE, DELETE ON \<br>
+\`be7\`.* TO \`user\`@\`localhost\`"
+</code>
+</p>
+
+<p>And may want to set your password with the IDENTIFIED BY 'password' clause.</p>
+
+<p><strong>Note for MySQL 4.x Users:</strong> MySQL4 requires that users have global
+LOCK TABLES privilege. The following permissions are required - GRANT SELECT,
+INSERT, UPDATE, DELETE, LOCK</p>
+
+<p><strong>Note for MySQL 4.1 Users:</strong> MySQL version 4.1 uses a new method of
+encryption for password which is not compatible with version 4.0. Compatibility
+can be enabled. <a href="https://sourceforge.net/forum/message.php?msg_id=2961553">Description
+provided here.</a></p>
+<p>Finally, reload the database so the grants work</p>
+<code>mysqladmin -u root -h host.domain.ca reload</code>
+
+<h4>4. Configure the system</h4>
+
+<h5><a name="configure_phpslash"></a>4a. Configure Back-End&nbsp; (public_html/config.ini.php)</h5>
+
+<p>For more background, read the fuller description in the phpSlash default
+file config-dist.ini.php. Note that ';' is used for comments.</p>
+
+<p>Edit the default config.ini.php file</p>
+  <code>gvim /var/www/back-end0.7.x/public_html/config.ini.php</code>
+<p>Set the $basedir to the location of your public_html directory</p>
+  <code>basedir = "/var/www/back-end0.7.x/public_html"</code>
+<p>set the $classpath to the location of your class directory</p>
+  <code>classdir = "/var/www/back-end0.7.x/class"</code>
+
+<p>set the $rooturl to where you point the browser to get to Back-End pages</p>
+  <code>rooturl = "/back-end0.7.2.x/public_html"</code>
+<p>or you may have configured your web-server so that</p>
+  <code>rooturl = "/back-end0.7.2.x"</code>
+
+<p><em>NOTE:&nbsp; do not specify a full url
+(e.g. http://host.domain.ca/back-end0.7.2.x), because it will cause subsites
+to malfunction.</em>
+  </p>
+
+<p>Set your database configuration
+  </p>
+  <code>
+     ;;;<br>
+  ;; Database variables<br>
+  DB_Host&nbsp;&nbsp;&nbsp;&nbsp; = "localhost" ; or "host.domain.ca" or
+whatever you happen to use<br>
+  DB_Database = "be7"<br>
+  DB_User&nbsp;&nbsp;&nbsp;&nbsp; = "user"<br>
+  DB_Password = "password"<br>
+  <br>
+  Set the Back-End extension for subsites support<br>
+  rootdomain&nbsp;&nbsp;&nbsp;&nbsp; = "domain.ca"&nbsp; ; *** LANGUAGE DEPENDENT
+*** Overridden by be_domainInit()<br>
+  rootsubdomain&nbsp; = "www."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ ; NB Include trailing '.' if needed (eg 'www.')
+</code>
+<p><em>**** Note: the root domain "localhost"
+will not log in with some systems, if you are installing this on your workstation
+to test it out you may need to adjust the /etc/hosts file (Windows 95/98/Me
+c:\windows\hosts, Windows NT/2000/XP Pro c:\winnt\system32\drivers\etc\hosts,
+or Windows XP Home c:\windows\system32\drivers\etc\hosts) to point be.org
+to 127.0.0.1. You may also need to adjust your apache config to properly direct
+your domain name to your Back-End public_html directory. ****</em></p>
+
+<p>Set the Back-End extension for authorization mechanism</p>
+  <code>auth_type = 1 ; 1: MySQL (default if not specified) 2: LDAP</code>
+<p>Uncomment the Back-End extension for LDAP if auth_type has been set to
+2 </p>
+<code>
+  ;LDAP_Host&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "localhost"<br>
+  ;LDAP_Port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "389"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; default LDAP port # 389<br>
+  ;LDAP_Base_dn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "dc=localhost,dc=back-end,dc=org"<br>
+  ;LDAP_Search_detail= "cn"<br>
+  ;LDAP_BE_uid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "uid"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+; name of uid in the ldap that corresponds to BE uid<br>
+  <br>
+  ;; user and password for updating LDAP directory<br>
+  ;LDAP_edit_user&nbsp;&nbsp;&nbsp;&nbsp; = ""<br>
+  ;LDAP_edit_user_pass= "secret"<br>
+  ;LDAP_edit_user_dn&nbsp; = "cn=Manager,dc=waiter,dc=thepinecone,dc=com"
+</code>
+<h5><a name="configure_back-end"></a>4b. Configure Back-End (public_html/BE_config.php)</h5>
+
+<p>Most of the default settings should work, but you may decide you wish to
+enable or disable some of the optional modules.</p>
+
+<p>Edit the default BE_config.php</p>
+  <code>gvim /var/www/back-end0.7.x/public_html/BE_config.php</code>
+
+<p>Configure the language domain items</p>
+  <code>$_BE['languagedomains'] = array ('bojanic.ca'&nbsp;&nbsp;&nbsp;&nbsp; =&gt;'en',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+'bojanic-french.ca' =&gt; 'fr');</code>
+
+<h5>4c. Checking configuration</h5>
+<p>  At this point you should be able to view the demo site, and log in with
+the username/password combination of root/back-end.&nbsp; You can then create
+new users, edit, add and delete content from the site and explore the modules
+which are bundled with Back-End.&nbsp; If you run into any problems, please
+view the test.php file through your browser and note the values of:</p>
+<ul>
+<li>php version</li>
+<li>include_path</li>
+<li>auto_prepend</li>
+<li>gpc_magic_quotes</li>
+</ul>
+<p>Any potential errors should show up in red.</p>
+
+<h4>5. Check permissions on the upload directory (Optional)</h4>
+
+<p>Back-End makes use of public_html/updir for various features including
+file uploading, PDF rendering, and photo gallery. If the directories were
+not created for you automatically by a CVS checkout or from a tarball, you
+should create them yourself.&nbsp; Apache needs write permissions to cache
+the javascript menus, jpcache files, pdf files, as well as images and thumbnails.<br>
+  </p>
+
+<p>The following example is for a Red Hat 8.0 system with httpd running under
+the user 'apache'.</p>
+  <code>cd /var/www/back-end0.7.x/public_html<br>
+  chown apache.apache updir<br>
+  chmod g+s updir<br>
+  chmod g+r -R updir<br>
+  chmod g+w -R updir<br>
+  umask 002
+  </code>
+<h4><a name="configure_advanced_search"></a>6. Configure Advanced Search (Optional)</h4>
+
+<p>The advanced search feature uses htdig to create a search database and
+htsearch to serve search requests.&nbsp; Information about configuring these
+can be found in contrib/CUPE/htdig/README.</p>
+
+<h4><a name="configure_ldap"></a>7. Configure LDAP (Optional)<br>
+  </h4>
+  Back-End LDAP Authentication supports OpenLDAP. Detailed documentation
+on LDAP configuration can be found in <a href="contrib/CUPE/ldap/README">contrib/CUPE/ldap/README</a><br>
+  <br>
+
+<h4><a name="Complete_Install"></a>8.&nbsp; Complete the Installation</h4>
+
+<p>Once you have this set up you should be able to browse the CMS, and after you have logged in at login.php or public_html/login.php depending how you have configured your site. The default login is:<br>   Username:  root<br>   Password:  back-end</p>
+In the NavBar (the blue bar under the topic icons with all the text links on it), click on 'Authors'. <strong>Change the password for root and click on update.</strong></p>
+<p>NOTE: Do not delete the root account yet. First create an account for yourself with all Security permissions. Then, post an article to the site. <br>You can browse through the admin interface or the public web page.  Inline editing will allow you to edit, delete or insert pages as you browse the net.</p>
+
+<h4>9. Installing Additional Modules</h4>
+
+<dl>
+<dt>phpESP</dt>
+<dd>This has been tested with phpESP 1.6.1<br>   Read the phpESP INSTALL file.<br>   Copy the contents of phpESP into public_html/phpESP/<br> Modify the public_html/phpESP/admin/phpESP.ini.php config file<br>   dump the contents of mysql_create.sql &amp; mysql_populate.sql from the public_html/phpESP/scripts/db/ directory<br> Make sure that the virtual host ServerName information is correct<br>   Login at public_html/phpESP/admin/ with the default username: root, password: esp<br>  Create a new template through this interface</dd>
+</dl>
+
+<h4><a name="configure_optionfields"></a>10. Other configuration</h4>
+
+<h5>10.1 Add extra article fields (Optional)</h5>
+  <p>See the manual entry on <a href="http://manual.back-end.org/phpwiki/index.php/ArticleOptions">Article
+ Options</a> for an example and details of the required extra database table.</p>
+<h4>10. Security Notes</h4>
+<p>Back-End has a few modules which allow php to write files directly to the server.&nbsp;</p>
+<ul>
+<li>Caching of data and pages in public_html/updir/fileCache</li>
+<li>default install of jpcache</li>
+<li>Bibliography Module</li>
+<li>Gallery Module</li>
+<li>BE_Upload Module</li>
+<li>Edit Templates Module </li>
+<li>PDF ViewWe have limited the file types</li>
+</ul>
+<p>
+  We have restricted file uploads within Back-End so that only some file
+extensions can be uploaded and only template files can be edited.&nbsp; However,
+if you are concerned about this you can disable these modules.&nbsp; For
+more information on security issues with this, see:<br>
+  &nbsp;&nbsp;&nbsp; <a href="http://ca3.php.net/manual/en/security.filesystem.php">http://ca3.php.net/manual/en/security.filesystem.php</a></p>
+<p>  When your system is up and running properly, you should delete the following
+files:</p>
+<ul>
+<li>public_html/test.php</li>
+<li>public_html/config_setup.ini.php</li>
+<li>public_html/config_setup.php</li>
+</ul>
+
+<p>  After your system is installed you should also secure the write permissions
+in the public directory:</p>
+<code>chmod 644 public_html/*</code>
+<h4>11. Troubleshooting and FAQs</h4>
+
+<ul>
+    <li>Can you view the public_html/test.php page? The phpinfo data from
+this page should help with debugging also warning messages are displayed
+if changes need to be made to your environment. Note Back-End has not yet
+been thoroughly tested in php5</li>
+    <li>Can you view the index.php? Can you log in?</li>
+    <li>Have you made sure to allow write permissions to public_html/updir
+and it's sub-directories?</li>
+
+</ul>
+  If you have any problems, contact the developers via the support forum
+at <a href="http://sourceforge.net/forum/?group_id=6763">http://sourceforge.net/forum/?group_id=6763</a>
+  or the mailing list at <a href="http://sourceforge.net/mail/?group_id=6763">http://sourceforge.net/mail/?group_id=6763</a>
+ <br>
+
+<h4>12. Performance Enhancements</h4>
+  There are a few things that you can do after install to get BE running
+faster and using fewer server resources.
+<ul>
+    <li>In the config.ini.php </li>
+
+  <ul>
+      <li>Turn off modules you aren't using by setting them to false</li>
+      <li>set jpcache.enable = internal</li>
+      <li>set newconfig = false</li>
+
+  </ul>
+    <li>After logging in as root</li>
+
+  <ul>
+      <li>Optimize Database</li>
+
+  </ul>
+
+</ul>
+
+<hr>
+<h3>C. DIRECTORY STRUCTURE</h3>
+  <br>
+
+<pre>|-- class<br>|   |-- ec-client<br>|   |-- font<br>|   |   `-- makefont<br>|   |-- jpcache<br>|   |   `-- type<br>|   |-- locale<br>|   `-- phplib<br>|       `-- php<br>|-- doc<br>|-- public_html<br>|   |-- admin<br>|   |   `-- htmlarea2<br>|   |       |-- images<br>|   |       `-- popups<br>|   |-- images<br>|   |   |-- BE<br>|   |   |   `-- buttons<br>|   |   |-- layout<br>|   |   `-- topics<br>|   |-- logging_mod<br>|   |-- scripts<br>|   |   `-- htmlarea3<br>|   |       |-- examples<br>|   |       |-- images<br>|   |       |-- lang<br>|   |       |-- plugins<br>|   |       |   |-- CSS<br>|   |       |   |   `-- lang<br>|   |       |   |-- ContextMenu<br>|   |       |   |   `-- lang<br>|   |       |   |-- FullPage<br>|   |       |   |   |-- img<br>|   |       |   |   |-- lang<br>|   |       |   |   `-- popups<br>|   |       |   |-- SpellChecker<br>|   |       |   |   |-- img<br>|   |       |   |   `-- lang<br>|   |       |   `-- TableOperations<br>|   |       |       |-- img<br>|   |       |       |-- lang<br>|   |       |       `-- popups<br>|   |       `-- popups<br>|   |-- styles<br>|   |-- templates<br>|   |   `-- en<br>|   |       |-- BE_default<br>|   |       `-- default<br>|   `-- updir<br>|       |-- dynamicPDFcache<br>|       |-- fileCache<br>|       `-- images<br>|           `-- tn<br>`-- tables<br>    |-- BE_actions<br>    |-- BE_bibliography<br>    `-- PET_petition<br><br></pre>
+
+<hr size="2" width="100%">
+<h3>D. &nbsp;NOTES ON USED SOFTWARE PACKAGES</h3>
+
+<h3>phplib</h3>
+ <b>template.inc was modified</b> to add template usage loging if debug.template
+= true in config.ini.php. &nbsp;The loging in done in a seperate file. &nbsp;But
+there will be also, per outputed page, an HTML comment at the bottom of each
+page indicated which template was used for that page. &nbsp;Specificly the
+added code is:<br>
+
+<blockquote>
+  <div align="left"><code>&nbsp;&nbsp;&nbsp; if ($this-&gt;filename_comments)
+{<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $str = "&lt;!-- START FILE $filename --&gt;\n$str&lt;!--
+END FILE $filename --&gt;\n";<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writeToLogUniqueEntry($filename, $this-&gt;templateLogPath);<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; addUsedTemplate($filename);<br>
+ &nbsp;&nbsp;&nbsp; }<br>
+   </code></div>
+ </blockquote>
+
+</body></html>
