@@ -1,0 +1,44 @@
+<div align="center">
+<form method="POST">
+<table class="block">
+<tr>
+<th>Id#</th>
+<th>Title</th>
+<th>Sort order</th>
+<th>Visible</th>
+<th>Delete</th>
+</tr>
+<?foreach($html['cats'] as $root){?>
+	<tr align="center">
+		<td><?=$root['id']?></td>
+		<td><input type="text" name="title_<?=$root['id']?>" value="<?=$root['title']?>"></td>
+		<td><select name="pos_<?=$root['id']?>">
+		<?for($i=1;$i<sizeof($html['cats'])+2;$i++){?>
+			<option value="<?=$i?>" <?if($i==$root['pos'])echo 'selected'?> ><?=$i?></option>
+		<?}?>
+		</select></td>
+		<td ><input type="checkbox" name="vis_anons_<?=$root['id']?>" <?=$root['vis_anons']?>></td>
+		<td bgcolor="red"><input type="checkbox" name="del_<?=$root['id']?>"></td>
+		<input type="hidden" name="id_<?=$root['id']?>" value="<?=$root['id']?>">
+		</td></tr>
+<?}?>
+
+<tr><th colspan="5">Add new:</td></tr>
+<tr align="center">
+		<td></td>
+		<td><input type="text" name="title_new" value=""></td>
+		<td><select name="pos_new">
+		<?for($i=1;$i<sizeof($html['cats'])+2;$i++){?>
+			<option value="<?=$i?>" <?if($i==sizeof($html['cats'])+1)echo 'selected'?> ><?=$i?></option>
+		<?}?>
+</select></td>
+		<td bgcolor="#90d890"><input type="checkbox" name="vis_anons_new" checked></td>
+
+		<input type="hidden" name="id_new" value="0">
+</td></tr>
+
+<tr><td align="center" colspan="5" bgcolor="Silver"><input type="submit" value="Submit changes" class="button"> </td></tr>
+</table>
+<INPUT type="hidden" name="action" value="upd_cat_exec">
+</form>
+</div>
