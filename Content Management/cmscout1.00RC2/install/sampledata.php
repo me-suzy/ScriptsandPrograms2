@@ -1,0 +1,70 @@
+<?php
+$sql[] = "INSERT INTO `{$database['prefix']}advancements` (`ID`, `advancement`, `position`, `scheme`) VALUES (1, 'Badge 1', 1, 1);";
+$sql[] = "INSERT INTO `{$database['prefix']}advancements` (`ID`, `advancement`, `position`, `scheme`) VALUES (2, 'Badge 2', 2, 1);";
+$sql[] = "INSERT INTO `{$database['prefix']}advancements` (`ID`, `advancement`, `position`, `scheme`) VALUES (3, 'Badge 3', 3, 1);";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}allowedpages` (`page`) VALUES ('welcome');";
+$sql[] = "INSERT INTO `{$database['prefix']}allowedpages` (`page`) VALUES ('features');";
+$sql[] = "INSERT INTO `{$database['prefix']}allowedpages` (`page`) VALUES ('support');";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}awardschemes` (`id`, `name`) VALUES (1, 'Test Scheme');";
+ 
+
+$sql[] = "INSERT INTO `{$database['prefix']}forumauths` (`forum_id`, `new_topic`, `reply_topic`, `edit_post`, `delete_post`, `moderate`, `view_forum`, `read_topics`) VALUES (1, 'a:8:{s:5:\"Guest\";i:0;s:5:\"Admin\";i:1;s:8:\"New User\";i:0;s:11:\"admin_level\";i:0;s:13:\"scouter_level\";i:0;s:8:\"tl_level\";i:0;s:8:\"pl_level\";i:0;s:12:\"second_level\";i:0;}', 'a:8:{s:5:\"Guest\";i:0;s:5:\"Admin\";i:1;s:8:\"New User\";i:0;s:11:\"admin_level\";i:0;s:13:\"scouter_level\";i:0;s:8:\"tl_level\";i:0;s:8:\"pl_level\";i:0;s:12:\"second_level\";i:0;}', 'a:8:{s:5:\"Guest\";i:0;s:5:\"Admin\";i:1;s:8:\"New User\";i:0;s:11:\"admin_level\";i:0;s:13:\"scouter_level\";i:0;s:8:\"tl_level\";i:0;s:8:\"pl_level\";i:0;s:12:\"second_level\";i:0;}', 'a:8:{s:5:\"Guest\";i:0;s:5:\"Admin\";i:1;s:8:\"New User\";i:0;s:11:\"admin_level\";i:0;s:13:\"scouter_level\";i:0;s:8:\"tl_level\";i:0;s:8:\"pl_level\";i:0;s:12:\"second_level\";i:0;}', 'a:8:{s:5:\"Guest\";i:0;s:5:\"Admin\";i:1;s:8:\"New User\";i:0;s:11:\"admin_level\";i:0;s:13:\"scouter_level\";i:0;s:8:\"tl_level\";i:0;s:8:\"pl_level\";i:0;s:12:\"second_level\";i:0;}', 'a:8:{s:5:\"Guest\";i:0;s:5:\"Admin\";i:1;s:8:\"New User\";i:0;s:11:\"admin_level\";i:0;s:13:\"scouter_level\";i:0;s:8:\"tl_level\";i:0;s:8:\"pl_level\";i:0;s:12:\"second_level\";i:0;}', 'a:8:{s:5:\"Guest\";i:0;s:5:\"Admin\";i:1;s:8:\"New User\";i:0;s:11:\"admin_level\";i:0;s:13:\"scouter_level\";i:0;s:8:\"tl_level\";i:0;s:8:\"pl_level\";i:0;s:12:\"second_level\";i:0;}');";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}forumposts` (`id`, `subject`, `posttext`, `userposted`, `dateposted`, `topic`, `edittime`, `edituser`) VALUES (1, 'Test Topic', '<p>If you can see this topic while loged in, and not see it while logged out, then everything is working correctly.</p><p>&nbsp;Congratulations!!</p><p><strong><font size=\"4\" color=\"#ff0000\" style=\"background-color: #000000\">This was all a test of the forum system</font></strong>&nbsp;</p>', 'admin', 1132149736, 1, 0, '0');";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}forums` (`id`, `name`, `desc`, `lasttopic`, `lastpost`, `lastdate`, `cat`, `pos`) VALUES (1, 'Test Forum', 'If you can see this then the forums are working', 1, 'admin', 1132149736, 1, 1);";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}forumscats` (`id`, `name`, `pos`) VALUES (1, 'Test Category', 1);";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}forumtopics` (`id`, `subject`, `desc`, `numviews`, `userposted`, `dateposted`, `lastpost`, `lastdate`, `forum`) VALUES (1, 'Test Topic', 'This is but a test', 1, 'admin', 1132149736, 'admin', 1132149736, 1);";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}frontpage` (`id`, `page`, `function`, `pos`) VALUES (1, 'welcome', 'none', 1);";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}menu_cats` (`id`, `name`, `numitems`, `position`, `side`, `showhead`, `showwhen`) VALUES (1, 'Main Menu', 7, 1, 'left', 0, 0);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_cats` (`id`, `name`, `numitems`, `position`, `side`, `showhead`, `showwhen`) VALUES (2, 'Personal Menu', 3, 1, 'right', 1, 1);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_cats` (`id`, `name`, `numitems`, `position`, `side`, `showhead`, `showwhen`) VALUES (3, 'Login', 1, 2, 'right', 1, 0);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_cats` (`id`, `name`, `numitems`, `position`, `side`, `showhead`, `showwhen`) VALUES (4, 'News', 1, 3, 'right', 1, 0);";
+
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (1, 'Home', 1, NULL, 'Main Page', 1, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (2, 'Forums', 1, NULL, 'Forums', 2, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (3, 'Troop Articles', 1, NULL, 'Articles (Not Patrol Articles)', 3, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (4, 'Profile', 2, NULL, 'Profile', 1, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (5, 'Personal Messenger', 2, NULL, 'Personal Messenger', 2, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (6, 'Login', 3, NULL, 'Logon Box', 1, 3);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (8, 'Calender', 1, NULL, 'Calender', 4, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (9, 'Award Schemes', 1, NULL, 'Award Scheme Viewer', 5, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (10, 'Items', 2, NULL, 'My Things', 3, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (11, 'Feature List', 1, NULL, 'features', 6, 1);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (12, 'Get Support', 1, NULL, 'support', 7, 1);";
+$sql[] = "INSERT INTO `{$database['prefix']}menu_items` (`id`, `name`, `cat`, `url`, `item`, `pos`, `type`) VALUES (13, 'news', 4, NULL, 'News Box', 1, 3);";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}newscontent` (`id`, `title`, `news`, `event`, `owner`, `allowed`) VALUES (1, 'Successful Installation', 'This news item means that everything went ok with the installation and you can now start using CMScout.<br />', 1132152463, 'admin', 1);";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}patrol_articles` (`ID`, `patrol`, `pic`, `title`, `detail`, `date_happen`, `date_post`, `album_id`, `author`, `owner`, `allowed`) VALUES (1, 'general', NULL, 'Test Article', ' 		  This is what is known as a article.<br />  <br />  A article has a author, a title, it might have a title picture and it might even have a attached photo album.<br />  <br />  It also has content (Otherwise it wouldn''t be a article, would it?)<br />  <br />  You can choose which groups can post articles, and which ones can''t.<br />  <br /> Groups which have group pages will have all their articles placed under their own seperate article page. While all other groups will have there articles placed under the general article section (Like this one)<br />  <br />  Users can also post comments about a article (You can again choose which groups are allowed to do this).<br />  <br /> You can also choose to hold back all new articles until you have reviewed them via the Administration panel and published them to the site (Same holds true for anything that a user can post onto the website).', '2005-11-18', 1132152208, 0, 'admin', 'admin', 1);";
+
+$sql[] = "INSERT INTO `{$database['prefix']}requirements` (`ID`, `item`, `description`, `advancement`, `position`) VALUES (1, 'Install CMScout', 'Successfully install CMScout', 1, 1);";
+$sql[] = "INSERT INTO `{$database['prefix']}requirements` (`ID`, `item`, `description`, `advancement`, `position`) VALUES (2, 'Setup Website', 'You need to setup your website correctly', 1, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}requirements` (`ID`, `item`, `description`, `advancement`, `position`) VALUES (3, 'Requirement 1', 'Just a requirement', 2, 1);";
+$sql[] = "INSERT INTO `{$database['prefix']}requirements` (`ID`, `item`, `description`, `advancement`, `position`) VALUES (4, 'Requirement 2', 'Another Requirement\r\n', 2, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}requirements` (`ID`, `item`, `description`, `advancement`, `position`) VALUES (5, 'MMM, Requirements', 'A Yummy requirement', 3, 1);";
+$sql[] = "INSERT INTO `{$database['prefix']}requirements` (`ID`, `item`, `description`, `advancement`, `position`) VALUES (6, 'Complete Badge 1 and 2', 'To get this requirement signed off, you need to complete badge 1 and badge 2 first', 3, 2);";
+$sql[] = "INSERT INTO `{$database['prefix']}requirements` (`ID`, `item`, `description`, `advancement`, `position`) VALUES (7, '3rd Requirement', 'Finish badge 3 to get this', 3, 3);";
+
+
+$sql[] = "INSERT INTO `{$database['prefix']}static_content` (`id`, `name`, `content`) VALUES (1, 'welcome', '<h1>Welcome to CMScout</h1>If you see this then your installation of CMScout was successful. You can now logon as the Administrator and goto the administration panel.<br /><br />From the administration panel you can add more content, setup your menu system, setup the advancement badges that are available, add more groups, add group web pages, and alot more.<br /><br />For a in depth tutorial and help for the administration panel (Which can be very overwhelming the first time that you see it) please goto <a href=\"/cmscout1.2/www.cmscout.za.net\">www.cmscout.za.net</a><br /><br />Thats all for now.<br />The CMScout design team');";
+$sql[] = "INSERT INTO `{$database['prefix']}static_content` (`id`, `name`, `content`) VALUES (2, 'features', '<h1>CMScout Feature List</h1>The following is a nice complete list of all things that you can do with CMScout<br /> <ul><li><span style=\"font-weight: bold\">Completely customizable website content</span> - Add as many pages as you want.</li><li style=\"font-weight: bold\">Completely customizable menus<br /></li><li><span style=\"font-weight: bold\">Customizable frontpage</span> - Choose exactly what you want on the frontpage</li><li><strong>Easy to use authorization system</strong> - Let your users see and do exactly what you want them to do.</li><li><span style=\"font-weight: bold\">Easy to use download system</span> - organize your downloads into categories. You can also choose exactly which groups can download files from each category, and which groups can upload files to each category</li><li><span style=\"font-weight: bold\">Easy to use calendar</span> - Let your scouts know exactly what is happening, and when it is happening</li><li><span style=\"font-weight: bold\">Articles </span>- Each patrol can have it''s own seperate page with a list of articles written by members of that patrol.</li><li><span style=\"font-weight: bold\">Comments </span>- Allows users to post comments about a article.</li><li><span style=\"font-weight: bold\">Group Sites</span> - Certain groups can have their own small websites, this includes articles, photos and content. The group leader can add and remove content, and custimize the menu for the group''s site.</li><li style=\"font-weight: bold\">Easy to use registration</li><li><span style=\"font-weight: bold\">Online help system</span> - Each page has it''s own help page.</li><li><span style=\"font-weight: bold\">Easy to use administration panel</span> - Great care has gone into the creating of the administration panel to make sure that it is easy to use.</li><li>A simple list showing you all the users who have registered on your site and have indicated that they are part of the troop.</li><li><span style=\"font-weight: bold\">Template System</span> - Allows users to choose what they want the site to look like, there are a number of templates available on our website.</li><li><span style=\"font-weight: bold\">News system</span> - Show the latest news on the main page, and old news moves to the news archive.</li><li>Users can add the following items:</li><ul><li>Articles</li><li>Photo Albums and Photos</li><li>Event Dates <br />  </li><li>Downloads</li><li>News <br />  </li></ul><li>You can choose which groups can add which items. <br />  </li><li>You can choose which items you first want to approve before they are shown on the website. <br />  </li><li>Simple to use search function <br />  </li><li><span style=\"font-weight: bold\">Scouting records</span> - Allows your scouts to see where they are in their current advancement badge.</li><li><span style=\"font-weight: bold\">Completly customizable advancement badges</span> - You enter the advancement badges and each badge''''s requirements <br />  </li><li><span style=\"font-weight: bold\"><strong>Forum</strong> - No need for external forum software, CMScout includes it''s own high quality forum system.</span></li><li><strong>Personal Messenger</strong> - Allows users to send messages to each other</li><li><strong>HTML Editor</strong> - No need to know html thanks to the super fast html editor provided with CMScout. CMScout uses the latest version of the TinyMCE html editor.</li><li><strong>My Patrol</strong> - This allows users to see who in their patrol is also registered on the site.</li><li><strong>Easy to add sideboxes and extra features</strong> - Thanks to the easy to use plugin feature of CMScout (Which is still in devolpment to make it even easier to use) you can easily add a new feature to CMScout if you have any knowledge of PHP and MySQL.</li></ul>');";
+$sql[] = "INSERT INTO `{$database['prefix']}static_content` (`id`, `name`, `content`) VALUES (3, 'support', '<h1>Support</h1>You can get support and help for using CMScout on our website at <a href=\"http://www.cmscout.za.net\" target=\"_blank\">www.cmscout.za.net</a>');";
+
+?>
