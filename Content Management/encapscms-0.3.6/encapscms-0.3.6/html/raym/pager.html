@@ -1,0 +1,15 @@
+<?
+$prefix = "gallery.php";
+$i = 0;
+if($html['pager']['pages'] >0)
+foreach ($html['pager']['pages'] as $item){
+	$i++;
+	if($item['active']=='true'){?>
+	<a href="<?=$prefix?>?offset=<?=$item['offset']?>&cat=<?=$html['cat']['id']?>" >&nbsp;<font color="white"><?=$item['title']?></font>&nbsp;</a>
+	<?}else{?>
+		[<?='<b>'.$item['title'].'</b>'?>]
+	<?}
+	echo ($i < count($html['pager']['pages']))?' ':' ';
+
+}?>
+
