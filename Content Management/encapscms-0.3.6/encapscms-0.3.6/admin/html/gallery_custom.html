@@ -1,0 +1,49 @@
+<fieldset><legend>Gallery:</legend>
+
+<BR>
+
+<table  border="1"  cellspacing="0" class="block">  
+<form enctype="multipart/form-data" action="" method="post">
+
+<tr><td colspan="2" align="center">
+<?if($html["id"]["prev"]!=""){
+	?><a href="?page=foto&action=show_custom&id=<?=$html["id"]["prev"]?>&cat=<?=$html['cat']['id']?>">&lt;&lt;prev</a>
+	<?}else{
+		?>&lt;&lt;prev<?}?>
+|
+<?if($html["id"]["next"]!=""){
+	?><a href="?page=foto&action=show_custom&id=<?=$html["id"]["next"]?>&cat=<?=$html['cat']['id']?>">next&gt;&gt;</a>
+	<?}else{
+		?>next&gt;&gt;<?}?>
+
+</td></tr>
+
+
+<tr><td colspan="2" align="center">
+<IMG src="../rwx_gallery/<?=$html["item"]["filename_normal"]?>">
+</td></tr>
+
+<tr>
+<td >change image:</td>
+<td><INPUT name="img_file" size="30" type="file" ></td>
+</tr>
+<!--
+<tr>
+<td>title:</td>
+<td><INPUT name="title" size="30" type="text" value="<?=$html["item"]["title"]?>"></td>
+</tr>
+
+<tr>
+<td>comment:</td>
+<td><TEXTAREA name="comment"><?=$html["item"]["comment"]?></TEXTAREA></td>
+</tr>-->
+
+<tr><td colspan="2" align="center">
+<INPUT type="submit" value="Submit">
+</td></tr>
+<INPUT type="hidden" name="action" value="gallery_update_custom">
+<INPUT type="hidden" name="id" value="<?=$html["id"]["curr"]?>">
+<INPUT type="hidden" name="page" value="foto">
+</form>
+</TABLE>
+</FIELDSET>
