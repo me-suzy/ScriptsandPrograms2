@@ -1,0 +1,43 @@
+<h2>Change Member Page: {fld_fullname}</h2>
+<p>Please fill information about your self on the form below. Use your creative
+on field <b>&quot;Page Content&quot;</b>, You can promote your self on this
+field.:). You can also upload your photo here. This photo will be shown on your
+profile page, and all pages you create (by add macro <b>{~author_profile}</b> on
+these pages).&nbsp;
+</p>
+<form name=f method="POST" action="{form_action}" enctype="multipart/form-data">
+    <div align="center">
+      <center>
+
+
+  <table border="0" cellspacing="0" cellpadding="2">
+    <tr>
+      <td valign="top" align="right">Brief Profile</td>
+      <td valign="top" align="left">:</td>
+      <td valign="top" align="left"><textarea class="inputbox" rows="3" name="fld_desc" cols="80">{fld_desc}</textarea></td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">Photo</td>
+      <td valign="top" align="left">:</td>
+      <td valign="top" align="left"><input class="inputbox" type="file" name="fld_photo" size="34">
+        (JPG, 80x120, max 100 KB)</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right">Page Content</td>
+      <td valign="top" align="left">:</td>
+      <td valign="top" align="left">{fld_content_editor}</td>
+    </tr>
+    <tr>
+      <td valign="top" align="right"></td>
+      <td valign="top" align="left"></td>
+      <td valign="top" align="left"><input class="button" type="submit" value="Submit">&nbsp;<input class="button" type="reset" value="Reset"></td>
+    </tr>
+  </table>
+      </center>
+    </div>
+
+	<input type='hidden' name='rnd' value='{rnd_number}' />
+	<input type='hidden' name='uid' value='{uid}' />
+	<input type='hidden' name='op' value='save' />
+
+</form>
