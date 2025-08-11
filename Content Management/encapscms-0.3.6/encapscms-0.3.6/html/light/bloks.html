@@ -1,0 +1,32 @@
+
+       <!-- CONTENT -->
+       <table border="0" cellpadding="0" cellspacing="20" width="760">
+        <tbody><tr>
+         <td valign="top">
+         <?
+		$blocks = $block->get_blocks($cats->page_sub);
+		$count = sizeof($blocks);
+		if($cats->page_sub != 0)
+			foreach ($blocks as $item){
+		?>
+          <div class="bioTextHeading">
+		  <?if($item['title']!='')echo'<br><br>'?>
+          <?=$item['title']?>
+		  <?if($item['title']!='')echo'<br><br>'?>          
+          </div>
+          
+          
+          <div align="left"><span class="bioText">
+          <?if($item['img']!=''){?>
+          	<img src="<?='rwx_blogs/'.$item['img']?>" align="<?=$item['img_position']?>" >
+          <?}?>
+          <?=$item['text_detail']?>
+		  </span>
+		  </div>
+		  
+		  
+	<?}?>
+          
+         </td>
+        </tr>
+       </tbody></table>
