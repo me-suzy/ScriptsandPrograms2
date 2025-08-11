@@ -1,0 +1,111 @@
+<SCRIPT language="JavaScript">
+photo_loading = new Image(); 
+photo_loading.src="<?=$html['config']['path']?>/img/loading.gif"; 
+function exchange(img_,title_,comment_){
+	//text = "img_:"+img_+"\ntitle_:"+title_+"\ncomment_:"+comment_;
+	//alert(text);
+	//title.innerText="asdf";
+	//document.getElementById(photo_img).src = photo_loading.src;
+	document.photo_img.src = photo_loading.src;
+	document.photo_img.src = 'rwx_gallery/'+img_;
+	photo_title.innerHTML = title_;
+	photo_comment.innerHTML = comment_;
+	//document.form_img.elements.length;
+	//alert(text);
+}
+</SCRIPT>
+		<br>
+		<table border="0" cellpadding="0" cellspacing="30" width="760">
+		  <tbody><tr>
+		    <td valign="top">
+
+			<!-- LEFT CONTENT -->
+
+			<table border="0" cellpadding="0" cellspacing="0" width="280">
+			  <tbody><tr>
+			    <td>
+
+				<table border="0" cellpadding="0" cellspacing="8" width="280">
+				  <tbody><tr>
+				    <td>
+				    <?include($html['config']['path'].'gallery_cats_select.html');?>
+				    </td>
+				    <td align="right">
+					Pages:<?include($html['config']['path'].'pager.html');?>
+				    </td>
+				  </tr>
+				</tbody></table>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td>
+
+				<table border="1" cellpadding="0" cellspacing="8" width="280">
+				  <tbody>
+				  <tr>
+				  	<?foreach($html['items'] as $item){
+//				  		var_dump($item);
+				  		if($count++ % 3 == 0) echo '</tr><tr>';
+				  		?>
+				    <td  align="center" valign="middle" bgcolor="silver">
+<!--				    <p onmousedown="exchange('<?=$item['filename_normal']?>','<?=$item['title']?>',trim('<?=$item['comment']?>'))">-->
+<!--				    <p onmousedown="alert('')">-->
+				    <img onclick ="exchange('<?=$item['filename_normal']?>','<?=addslashes($item['title'])?>','<?=addslashes($item['comment'])?>')" src="core/gallery_resize.php?filename=../rwx_gallery/<?=$item["filename_normal"]?>&size=90"  alt="" border="1"  onmouseover="style.cursor='pointer'">
+<!--				    </p>-->
+				    </td>
+				    <?}?>
+				  </tr>
+				</tbody></table>
+
+			    </td>
+			  </tr>
+			  <tr>
+			    <td align="center">
+			    Click image for close up view
+			    </td>
+			  </tr>
+			</tbody></table>
+
+		    </td>
+		    <td>
+
+			<!-- RIGHT CONTENT -->
+
+			<table border="0" cellpadding="0" cellspacing="0" width="350">
+			  <form name="form_img"><tbody><tr>
+			    <td class="sub">
+
+				<table border="0" cellpadding="0" cellspacing="5" width="350">
+				  <tbody><tr>
+				    <td class="sub">
+					<b><div id="photo_title"><?=$html['items'][0]['title']?></div> </b>
+				    </td>
+				  </tr>
+				</tbody></table>
+
+			    </td>
+			  </tr>
+			  <tr>
+			    <td align="center">
+				<img src="rwx_gallery/<?=$html['items'][0]['filename_normal']?>" alt=""  name="big_" id="photo_img"></td>
+			  </tr>
+			  <tr>
+			    <td class="sub">
+
+				<table border="0" cellpadding="0" cellspacing="10" width="350">
+				  <tbody><tr>
+				    <td class="sub">
+					<b><div id="photo_comment"><?=$html['items'][0]['comment']?></div></b>
+
+					<img src="<?=$html['path']?>img/buy.gif" alt="" border="0" height="19" width="95">
+				    </td>
+				  </tr>
+				</tbody></table>
+
+			    </td>
+			  </tr>
+			</tbody></form></table>
+<br>
+		    </td>
+		  </tr>
+		</tbody></table>
