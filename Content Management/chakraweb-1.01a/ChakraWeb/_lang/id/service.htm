@@ -1,0 +1,47 @@
+
+<h1>Daftar Layanan Anggota</h1>
+<p>Sebagai administrator anda dapat mengubah atau menambahkan layanan email
+kepada anggota. Untuk mengubah nama/keterangan layanan yang ada, klik link yang ada pada daftar layanan di bawah ini. 
+Untuk menambahkan layanan, isi form yang tersedia di bagian bawah halaman.</p>
+<p>{fld_service_list}</p>
+<h3>Tambahkan Layanan Anggota</h3>
+<form method="POST" action="/phpmod/service.php">
+  <table border="0" cellspacing="0" cellpadding="4">
+    <tr>
+      <td valign="top">Nama Layanan</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_name" size="48" value="" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Keterangan</td>
+      <td valign="top">:</td>
+      <td><textarea rows="4" name="fld_desc" cols="60" class="inputbox"></textarea></td>
+    </tr>
+    <tr>
+      <td valign="top">Level</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_level" size="12" value="1" class="inputbox">
+        (Level anggota minimal untuk bisa bergabung pada layanan ini)</td>
+    </tr>
+    <tr>
+      <td valign="top">Urutan</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_order" size="12" value="9999" class="inputbox">
+        (Urutan layanan ini tampil di layar).</td>
+    </tr>
+    <tr>
+      <td valign="top"></td>
+      <td valign="top"></td>
+      <td><input type="checkbox" name="fld_default" value="1"> Layanan ini akan
+        ditambahkan kepada anggota baru secara otomatis.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2"><input type="submit" value="Tambahkan" class="button">&nbsp;<input type="reset" value="Reset" class="button"></td>
+    </tr>
+  </table>
+
+<input type='hidden' name='rnd' value='{rnd_number}' />
+<input type='hidden' name='op' value='add' />
+  
+</form>
