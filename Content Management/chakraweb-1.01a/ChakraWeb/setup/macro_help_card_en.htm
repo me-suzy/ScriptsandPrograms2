@@ -1,0 +1,490 @@
+<a name="top"></a>
+<h1>{page_title}</h1>
+
+<p>{page_desc}</p>
+
+<p>To add these macros on your web pages, we recommend you to read the article
+&quot;<a href="http://chakra.quick4all.com/Articles/ChakraWebSecret/php_macro.html">Macro Language To Create Dynamic Web Pages</a>&quot;.
+This article show you the concept and implementation of macro language used on <a href="http://chakra.quick4all.com/Products/ChakraWeb/index.html">ChakraWeb</a>
+environment. We welcome to receive critique and comment about these macro, or
+you may have idea about new macros to be added here. Please send your feedback
+to <a href="mailto:chakraweb@quick4all.com">chakraweb@quick4all.com</a>.&nbsp;&nbsp;</p>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="5">
+  <tr>
+    <td valign="top">Table Of Content</td>
+    <td valign="top">:</td>
+    <td valign="top"><a href="#ChakraWeb">ChakraWeb Information</a>, <a href="#Homepage">Homepage
+      Information</a>, <a href="#Halaman">Page Attribute</a>, <a href="#Pengunjung">Visitor
+      Information</a>, <a href="#Menu">Menu</a>, <a href="#Daftar">List</a>, <a href="#Gambar">Images</a>,
+      <a href="#Iklan">Advertising Text</a>, <a href="#Formulir">Form</a>, <a href="#Lain">Miscellanuous</a>.<br>
+      &nbsp;</td>
+  </tr>
+</table>
+
+<table border="1" bordercolorlight="#C0C0C0" cellspacing="0" cellpadding="4" bordercolordark="#C0C0C0" bordercolor="#C0C0C0" width="100%">
+  <tr>
+    <td id="tbl_title">MACRO</td>
+    <td id="tbl_title">DESCRIPTION</td>
+    <td id="tbl_title">EXAMPLE</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="ChakraWeb"></a>
+      ChakraWeb Information</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~powered_by_chakraweb}</td>
+    <td id="tbl_text" valign="top">Image <b>&quot;Powered by Chakraweb&quot;</b></td>
+    <td id="tbl_text" valign="top">{powered_by_chakraweb}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~made_by_chakraweb}</td>
+    <td id="tbl_text" valign="top">Quick4All Information about this product</td>
+    <td id="tbl_text" valign="top">{made_by_chakraweb}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Homepage"></a>
+      Homepage Information</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3">You can change several values of
+      the macros below from <a href="/phpmod/sysvar.php">Control Panel</a>.</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_name}</td>
+    <td id="tbl_text" valign="top">Homepage Name</td>
+    <td id="tbl_text" valign="top">{hp_name}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_url}</td>
+    <td id="tbl_text" valign="top">Homepage URL</td>
+    <td id="tbl_text" valign="top">{hp_url}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_slogan}</td>
+    <td id="tbl_text" valign="top">Homepage Slogan</td>
+    <td id="tbl_text" valign="top">{hp_slogan}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_desc}</td>
+    <td id="tbl_text" valign="top">Homepage description</td>
+    <td id="tbl_text" valign="top">{hp_desc}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_keywords}</td>
+    <td id="tbl_text" valign="top">Homepage keywords</td>
+    <td id="tbl_text" valign="top">{hp_keywords}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_visitors}</td>
+    <td id="tbl_text" valign="top">Count of total visitors of this website</td>
+    <td id="tbl_text" valign="top">{hp_visitors}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_hits}</td>
+    <td id="tbl_text" valign="top">Count of total hits of this website</td>
+    <td id="tbl_text" valign="top">{hp_hits}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_visited_since}</td>
+    <td id="tbl_text" valign="top">Visited dated</td>
+    <td id="tbl_text" valign="top">{hp_visited_since}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_intvar:keyword}</td>
+    <td id="tbl_text" valign="top">Show the content of table sysvarint with the
+      keyword</td>
+    <td id="tbl_text" valign="top"><b>{~hp_intvar:hp_hits}</b><br>
+      {hp_intvar:hp_hits}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Halaman"></a>Page
+      Attribute</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_title}</td>
+    <td id="tbl_text" valign="top">Title of page</td>
+    <td id="tbl_text" valign="top">{page_title}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_desc}</td>
+    <td id="tbl_text" valign="top">Page description</td>
+    <td id="tbl_text" valign="top">{page_desc}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_keywords}</td>
+    <td id="tbl_text" valign="top">Page keywords</td>
+    <td id="tbl_text" valign="top">{page_keywords}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_author}</td>
+    <td id="tbl_text" valign="top">Author of the page</td>
+    <td id="tbl_text" valign="top">{page_author}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_source}</td>
+    <td id="tbl_text" valign="top">Source information of the page</td>
+    <td id="tbl_text" valign="top">{page_source}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~author_profile}</td>
+    <td id="tbl_text" valign="top">Show author profile</td>
+    <td id="tbl_text" valign="top">{author_profile}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~author_profile:right}</td>
+    <td id="tbl_text" valign="top">Show author profile on the right side</td>
+    <td id="tbl_text" valign="top">{author_profile:right}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~see_also}</td>
+    <td id="tbl_text" valign="top">Show &quot;See Also&quot; section</td>
+    <td id="tbl_text" valign="top">{see_also}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~see_also:right}</td>
+    <td id="tbl_text" valign="top">Show &quot;See Also&quot; section on the
+      right side</td>
+    <td id="tbl_text" valign="top">{see_also:right}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Pengunjung"></a>Visitor
+      Information</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~member_fullname}</td>
+    <td id="tbl_text" valign="top">Full name of visitor with salutation</td>
+    <td id="tbl_text" valign="top">{member_fullname}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~member_name}</td>
+    <td id="tbl_text" valign="top">Name of visitor with salutation</td>
+    <td id="tbl_text" valign="top">{member_name}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~m_fullname}</td>
+    <td id="tbl_text" valign="top">Full name of visitor</td>
+    <td id="tbl_text" valign="top">{m_fullname}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~m_name}</td>
+    <td id="tbl_text" valign="top">Name of visitor</td>
+    <td id="tbl_text" valign="top">{m_name}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Menu"></a>Menu</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~subfolder_menu}</td>
+    <td id="tbl_text" valign="top">Show the sub-folder list as menu</td>
+    <td id="tbl_text" valign="top">{subfolder_menu}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~subfolder_menu:url_path:title}</td>
+    <td id="tbl_text" valign="top">Show the sub-folder list of url_path as menu
+      with title</td>
+    <td id="tbl_text" valign="top"><b>{~subfolder_menu:/:Example}</b><br>
+      {subfolder_menu:/:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_menu}</td>
+    <td id="tbl_text" valign="top">Show all files on the current folder as menu</td>
+    <td id="tbl_text" valign="top">{file_menu}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_menu:url_path:title}</td>
+    <td id="tbl_text" valign="top">Show all files on the folder url_path as menu</td>
+    <td id="tbl_text" valign="top"><b>{~file_menu:/:Example}</b><br>
+      {file_menu:/:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~article_menu}</td>
+    <td id="tbl_text" valign="top">Same as {~file_menu}</td>
+    <td id="tbl_text" valign="top">See the example above.</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~article_menu:url_path:title}</td>
+    <td id="tbl_text" valign="top">Same as {~file_menu:url_path:title}</td>
+    <td id="tbl_text" valign="top">See the example above.</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~mgmt_menu}</td>
+    <td id="tbl_text" valign="top">Show web management menu. (Only shown if the
+      visitor have right to write on this website).</td>
+    <td id="tbl_text" valign="top">{mgmt_menu}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Daftar"></a>List</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~subfolder_list}</td>
+    <td id="tbl_text" valign="top">Show sub-folder list of the current folder</td>
+    <td id="tbl_text" valign="top">{subfolder_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~subfolder_list:url_path:title}</td>
+    <td id="tbl_text" valign="top">Show sub-folder list of folder url_path</td>
+    <td id="tbl_text" valign="top"><b>{~subfolder_list:/:Example}</b><br>
+      {subfolder_list:/:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_list}</td>
+    <td id="tbl_text" valign="top">Show file list of this folder&nbsp;</td>
+    <td id="tbl_text" valign="top">{file_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_list:url_path:title}</td>
+    <td id="tbl_text" valign="top">Show file list from other folder&nbsp;</td>
+    <td id="tbl_text" valign="top"><b>{~file_list:/:Example}</b><br>
+      {file_list:/:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_list2}</td>
+    <td id="tbl_text" valign="top">Show file list of this folder&nbsp; (the
+      title only)</td>
+    <td id="tbl_text" valign="top">{file_list2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_list2:url_path:title}</td>
+    <td id="tbl_text" valign="top">Show file list from other folder (the title
+      only)</td>
+    <td id="tbl_text" valign="top"><b>{~file_list2:/:Example}</b><br>
+      {file_list2:/:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~article_list}</td>
+    <td id="tbl_text" valign="top">Show file list of this folder as an article
+      form.</td>
+    <td id="tbl_text" valign="top">{article_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~article_list:url_path:title}</td>
+    <td id="tbl_text" valign="top">Show file list from other folder as an
+      article form.</td>
+    <td id="tbl_text" valign="top"><b>{~article_list:/:Example}</b><br>
+      {article_list:/:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~faq_list}</td>
+    <td id="tbl_text" valign="top">Show file list of this folder as a faq. form.</td>
+    <td id="tbl_text" valign="top">{faq_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~faq_list:url_path:title}</td>
+    <td id="tbl_text" valign="top">Show file list from other folder as a faq
+      form.</td>
+    <td id="tbl_text" valign="top"><b>{~faq_list:/:Example}</b><br>
+      {faq_list:/:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~link_list}</td>
+    <td id="tbl_text" valign="top">Show link list of this folder ini.</td>
+    <td id="tbl_text" valign="top">{link_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~link_list:url_path:title}</td>
+    <td id="tbl_text" valign="top">Show link list of other folder.</td>
+    <td id="tbl_text" valign="top"><b>{~link_list:/Links/PHP/:Example}</b><br>
+      {link_list:/Links/PHP/:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">&nbsp;</td>
+    <td id="tbl_text" valign="top">&nbsp;</td>
+    <td id="tbl_text" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~comment_list:start:count:title}</td>
+    <td id="tbl_text" valign="top">Show visitor comment to this page.</td>
+    <td id="tbl_text" valign="top"><b>{~comment_list:0:2:Example}</b><br>
+      {comment_list:0:2:Example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~news_list:start:count}</td>
+    <td id="tbl_text" valign="top">Show news on this website.</td>
+    <td id="tbl_text" valign="top"><b>{~news_list:0:2}</b><br>
+      {news_list:0:2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~news_list2:start:count}</td>
+    <td id="tbl_text" valign="top">Show news on this website (title only)</td>
+    <td id="tbl_text" valign="top"><b>{~news_list2:0:2}</b><br>
+      {news_list2:0:2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~news_box:max:title:url}</td>
+    <td id="tbl_text" valign="top">Show news on this website on the box.</td>
+    <td id="tbl_text" valign="top"><b>{~news_box:2:Example:/News/index.html}</b><br>
+      {news_box:2:Example:/News/index.html}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~feedback_list:start:count}</td>
+    <td id="tbl_text" valign="top">Show visitor feedbacks.</td>
+    <td id="tbl_text" valign="top"><b>{~feedback_list:0:2}</b><br>
+      {feedback_list:0:2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~feedback_box:max:title:url}</td>
+    <td id="tbl_text" valign="top">Show visitor feedbacks on the box.</td>
+    <td id="tbl_text" valign="top"><b>{~feedback_box:2:Example:/Feedback/index.html}</b><br>
+      {feedback_box:2:Example:/Feedback/index.html}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Gambar"></a>Images</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img:image_url}</td>
+    <td id="tbl_text" valign="top">Show image on the center of the page.</td>
+    <td id="tbl_text" valign="top"><b>{~img:/images/logo.gif}</b><br>
+      {img:/images/logo.gif}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img:image_url:label:url_target}</td>
+    <td id="tbl_text" valign="top">Show image on the center of the page with
+      label and target url.</td>
+    <td id="tbl_text" valign="top"><b>{~img:/images/logo.gif:Company
+      Logo:/index.html}</b><br>
+      {img:/images/logo.gif:Company Logo:/index.html}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_center:image_url}</td>
+    <td id="tbl_text" valign="top">Show image on the center of the page.</td>
+    <td id="tbl_text" valign="top"><b>{~img_center:/images/logo.gif}<br>
+      </b>{img_center:/images/logo.gif}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_center:image_url:label:url_target}</td>
+    <td id="tbl_text" valign="top">Show image on the center of the page with
+      label and target url.</td>
+    <td id="tbl_text" valign="top"><b>{~img_center:/images/logo.gif:Company
+      Logo:/index.html}<br>
+      </b>{img_center:/images/logo.gif:Company Logo:/index.html}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_left:image_url}</td>
+    <td id="tbl_text" valign="top">Show image on the left side of the page.</td>
+    <td id="tbl_text" valign="top"><b>{~img_left:/images/logo.gif}<br>
+      </b>{img_left:/images/logo.gif}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_left:image_url:label:url_target}</td>
+    <td id="tbl_text" valign="top">Show image on the left side of the page with
+      label and target url.</td>
+    <td id="tbl_text" valign="top"><b>{~img_left:/images/logo.gif:Company
+      Logo:/index.html}<br>
+      </b>{img_left:/images/logo.gif:Company Logo:/index.html}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_right:image_url}</td>
+    <td id="tbl_text" valign="top">Show image on the left side of the page.</td>
+    <td id="tbl_text" valign="top"><b>{~img_right:/images/logo.gif}<br>
+      </b>{img_right:/images/logo.gif}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_right:image_url:label:url_target}</td>
+    <td id="tbl_text" valign="top">Show image on the left side of the page with
+      label and target url.</td>
+    <td id="tbl_text" valign="top"><b>{~img_right:/images/logo.gif:Company
+      Logo:/index.html}<br>
+      </b>{img_right:/images/logo.gif:Company Logo:/index.html}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Iklan"></a>Advertising
+      Text</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~advtext:keywords}</td>
+    <td id="tbl_text" valign="top">Show advertising text with keyword as
+      parameter. You can manage the list by <a href="/phpmod/advtext.php">Control
+      Panel</a></td>
+    <td id="tbl_text" valign="top"><b>{~advtext:example}</b><br>
+      {advtext:example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~advrnd:keywords}</td>
+    <td id="tbl_text" valign="top">Show random advertising text with keyword as
+      parameter. You can manage the list by <a href="/phpmod/advrnd.php">Control
+      Panel</a>&nbsp;</td>
+    <td id="tbl_text" valign="top"><b>{~advrnd:example}</b><br>
+      {advrnd:example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Formulir"></a>Form</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~login_form}</td>
+    <td id="tbl_text" valign="top">Show login form</td>
+    <td id="tbl_text" valign="top">{login_form}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~search_form}</td>
+    <td id="tbl_text" valign="top">Show search form</td>
+    <td id="tbl_text" valign="top">{search_form}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~redirect_form}</td>
+    <td id="tbl_text" valign="top">Show form to add redirect page</td>
+    <td id="tbl_text" valign="top">--no example--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~comment_form}</td>
+    <td id="tbl_text" valign="top">Show visitor comment form. (Only active when
+      they login to this website)</td>
+    <td id="tbl_text" valign="top">--no example--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~news_form}</td>
+    <td id="tbl_text" valign="top">Show add new news form. (For administrator
+      only)</td>
+    <td id="tbl_text" valign="top">--no example--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~feedback_form}</td>
+    <td id="tbl_text" valign="top">Show feedback form.</td>
+    <td id="tbl_text" valign="top">--no example--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~link_form}</td>
+    <td id="tbl_text" valign="top">Show add link form.&nbsp;</td>
+    <td id="tbl_text" valign="top">--no example--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~rating_form}</td>
+    <td id="tbl_text" valign="top">Show rating form.</td>
+    <td id="tbl_text" valign="top">{rating_form}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Lain"></a>Miscellanuous</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~style:style_name:text}</td>
+    <td id="tbl_text" valign="top">Show text with CSS style</td>
+    <td id="tbl_text" valign="top"><b>{~style:quote:Example Quote}</b><br>
+      {style:quote:Example Quote}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~style:style_name:$makro_lain}</td>
+    <td id="tbl_text" valign="top">Show other macro with CSS style.</td>
+    <td id="tbl_text" valign="top"><b>{~style:info:$page_desc}</b><br>
+      {style:info:$page_desc}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_include:file_name}</td>
+    <td id="tbl_text" valign="top">Include file content from&nbsp; direktori <b>/_lang/en/</b></td>
+    <td id="tbl_text" valign="top"><b>{~file_include:ztest.htm}</b><br>
+      {file_include:ztest.htm}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~redirect_table}</td>
+    <td id="tbl_text" valign="top">Show all redirect pages from current folder</td>
+    <td id="tbl_text" valign="top">--no example--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~macro:keywords}</td>
+    <td id="tbl_text" valign="top">Show macro text. You can maintain the list by
+      <a href="/phpmod/macro.php">Control Panel</a>.</td>
+    <td id="tbl_text" valign="top"><b>{~macro:feedback}</b><br>
+      {macro:feedback}</td>
+  </tr>
+</table>
+
+<p><a href="#top">Back to Top</a></p>
