@@ -1,0 +1,30 @@
+<?php
+/**
+ * Table Definition for be_action2contact
+ */
+global $_PSL;
+require_once($_PSL['classdir'] . '/BE_DataObject.class');
+
+class DO_Be_action2contact extends BE_DataObject 
+{
+    ###START_AUTOCODE
+    /* the code below is auto generated do not remove the above tag */
+
+    var $__table = 'be_action2contact';               // table name
+    var $actionID;                        // int(5)  not_null primary_key unsigned
+    var $contactID;                       // int(5)  not_null primary_key unsigned
+    var $targetID;                        // int(5)  not_null primary_key unsigned
+    var $extraContent;                    // blob(65535)  blob
+    var $customContent;                   // blob(65535)  blob
+    var $followup;                        // int(5)  unsigned
+    var $dateDelivered;                   // int(10)  unsigned
+
+    /* ZE2 compatibility trick*/
+    function __clone() { return $this;}
+
+    /* Static get */
+    function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('DO_Be_action2contact',$k,$v); }
+
+    /* the code above is auto generated do not remove the tag below */
+    ###END_AUTOCODE
+}
