@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>main</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<body bgcolor="#FFFFFF" text="#000000">
+<a name="intro"></a><h2>Introduction</h2>
+		<p>First of all, thank yo for downloading ClanWeb content management system. We hope that by using this application you will find it easy and fun to admin your clan site. We have created this application because we have seen all to many people get turned down beacause they haven't got the money to pay for a admin system. This CMS may not contain everything that perhaps your clan want to have on their site but it's a first step towards a better web site. As said, we are hoping that you will find this application useful and that you want download future updates of our CMS.</p>
+		<a name="setup"></a><h2>Setup</h2>
+		<a name="requirements"></a>
+		<h3>Requirements</h3>
+		<p>To run ClanWeb content management system you are required to have following things;</p>
+		<ul>
+			<li>A web server or a account at a web hosting provider.</li>
+			<li>PHP 4.0.5 or better (We don't know yet how CW works under PHP5. Running CW on a server with php5 is performed at own risk.)</li>
+			<li>MySQL 3.23.x or better.</li>
+			<li>A browser that supports javascript and cookies. </li>
+		</ul>
+		<h3>Additional requirements</h3>
+		<ul>
+			<li>Knowledge in HTML-coding and how to use a FTP application.</li>
+		</ul>
+		<a name="install"></a><h3>Installing ClanWeb</h3>
+		<ul>
+			<li>Unpack CW onto preferred location.</li>
+			<li>Upload all files to the web server without changing the structure.</li>
+			<li>Run install.php through your browser  (Example: http://www.yourdomain.com/admin/install.php) Follow the instructions.</li>
+			<li>Copy the code from the textbox and paste it into a new text file. Save the file as cfg.php and upload to your admin directory.</li>
+			<li>Remove install.php and make a test run by logging in with your newly set username and password.</li>
+		</ul>
+		<p>Prepare your site to be integrated with ClanWeb content management system.</p>
+		<p>This is going to get tricky, so read throught this section carefully and if you don't get it to work, read it again and make sure that you have done everything right. If it still fail to work then visit http://forum.clanadmintools.com and make a post. </p>
+		<p>In the folder you unpacked there is a folder called "code". In this folder you will find a set of files named "news", "news_front" and so on. These files contain the default code that you need to implant with your site. The easiest way to do this is to split your site into minor pages named news.php, main.php, games.php and so on. Each and every file will contain the code needed to collect the information from the database that is needed to present for example the clans members.</p>
+		<p>Don't link these files from the admin directory, that may result in that the files don't work correct or in a security breach. This is how it should be done.</li>
+
+        <table border="0" cellspacing="2" cellpadding="0" class="code" width="550px">
+            <tr class="codeheader"> 
+              <td>news.html:</td>
+            </tr>
+            <tr> 
+              <td> 
+                &lt;html&gt;<br>
+        		&lt;head&gt;<br>
+        		&lt;title&gt;Myclan newspage&lt;/title&gt;<br/>
+        		&lt;/head&gt;<br>
+        		&lt;body&gt;<br>
+        		&lt;h3&gt;Latest news&lt;/h3&gt;
+        		<p>&lt;---- HERE I WANT MY NEWS ---&gt;</p>
+        		<p>&lt;/body&gt;<br/>
+          		&lt;/html&gt;</p>
+              </td>
+            </tr>
+        </table>
+		<br/>
+        <table border="0" cellspacing="2" cellpadding="0" class="code" width="550px">
+            <tr class="codeheader"> 
+              <td>code/news_front.php:</td>
+            </tr>
+            <tr> 
+              <td> 
+                    &lt;?php<br>
+                    /* This script is going to present all news written. */<br>
+                    require(&quot;../cfg.php&quot;); // Make sure that the path to cfg.php is correct<br>
+                    @mysql_connect($dbhost, $dbuser, $dbpw);<br>
+                    @mysql_select_db ($dbname); 
+                    <p> $sql = &quot;SELECT * FROM &quot; .$db_prefix. &quot;news ORDER BY id DESC&quot;;<br>
+                      $query = mysql_query($sql);<br>
+                      while ($read=mysql_fetch_array($query))<br>
+                      {<br>
+                      $id=$read[&quot;id&quot;];<br>
+                      $name=$read[&quot;name&quot;];<br>
+                      $topic=$read[&quot;topic&quot;];<br>
+                      $newspost=$read[&quot;newspost&quot;];<br>
+                      $newstype=$read[&quot;newstype&quot;];<br>
+                      $dates=$read[&quot;dates&quot;];<br>
+                      <br>
+                      echo&quot;$topic - $dates &lt;br/&gt;\n&quot;;<br>
+                      echo&quot;$name&lt;br/&gt;\n&quot;;<br>
+                      echo&quot;$newspost\n&quot;;<br>
+                      echo&quot;&lt;br/&gt;&lt;a href=\&quot;news.php?id=$id\&quot;&gt;Read more&lt;/a&gt;&lt;br/&gt;\n&quot;;<br>
+                      }<br>
+                      ?&gt;</p>
+              </td>
+            </tr>
+          </table>
+  		  <p>Now paste the code into news.html and save it as frontnews.php. The file will now look like this.</p>
+  		  
+            <table border="0" cellspacing="2" cellpadding="0" class="code" width="550px">
+                <tr class="codeheader"> 
+                  <td>frontnews.php:</td>
+                </tr>
+                <tr> 
+                  <td> 
+                    &lt;html&gt;<br>
+                    &lt;head&gt;<br>
+                    &lt;title&gt;Myclan newspage&lt;/title&gt;<br/>
+                    &lt;/head&gt;<br>
+                    &lt;body&gt;<br>
+                    &lt;h3&gt;Latest news&lt;/h3&gt;<br/>
+                    &lt;?php<br>
+                    /* This script is going to present all news written. */<br>
+                    require(&quot;../cfg.php&quot;); // Make sure that the path to cfg.php is correct<br>
+                    @mysql_connect($dbhost, $dbuser, $dbpw);<br>
+                    @mysql_select_db ($dbname); 
+                    <p> $sql = &quot;SELECT * FROM &quot; .$db_prefix. &quot;news ORDER BY id DESC&quot;;<br>
+                      $query = mysql_query($sql);<br>
+                      while ($read=mysql_fetch_array($query))<br>
+                      {<br>
+                      $id=$read[&quot;id&quot;];<br>
+                      $name=$read[&quot;name&quot;];<br>
+                      $topic=$read[&quot;topic&quot;];<br>
+                      $newspost=$read[&quot;newspost&quot;];<br>
+                      $newstype=$read[&quot;newstype&quot;];<br>
+                      $dates=$read[&quot;dates&quot;];<br>
+                      <br>
+                      echo&quot;$topic - $dates &lt;br/&gt;\n&quot;;<br>
+                      echo&quot;$name&lt;br/&gt;\n&quot;;<br>
+                      echo&quot;$newspost\n&quot;;<br>
+                      echo&quot;&lt;br/&gt;&lt;a href=\&quot;news.php?id=$id\&quot;&gt;Read more&lt;/a&gt;&lt;br/&gt;\n&quot;;<br>
+                      }<br>
+                      ?&gt;</p>
+                    <p>&lt;/body&gt;<br/>
+                      &lt;/html&gt;</p>
+                  </td>
+                </tr>
+              </table>
+			<p>Now upload this to your site root. Not the admin root. Run a test and see if it works. If it works as it should then repeat the procedure with the other files. If this shouldn't work then look for error messages, visit our forum and make a post(first look after simlar posts made by other users) and we'll help you.</p>
+			<a name="upgrade"></a><h2>Upgrade</h2>
+			<a name="2"></a><h3>Upgrading from 1.3.x to 1.3.4</h3>
+			<p>Upgrading from older versions than 1.3.3 will force you to run a fullscale backup on your entire admin directory including your database. This is very important.</p>
+			<ul>
+				<li>Upload the files from 1.3.4 and overwrite all old files including cfg.php.</li>
+				<li>Make a data-only dump on your database and drop the old database.</li>
+				<li>Make a fresh setup of ClanWeb 1.3.3 using the install_133.php file. Follow the instuctions.</li>
+				<li>Import the sql dump and make sure that all data gets saved without errors.</li>
+				<li>When everything else is done without errors then run 133_to_134.php and follow the instructions.</li>
+			</ul>
+			<p>Use example_cfg.php and update it with your own data and upload into admin root directory.</p>
+			<a name="3"></a><h3>Upgrading from 1.3.3 and 1.3.4prX</h3>
+			<p><strong style="color: red;">NOTE</strong>: Make a backup copy of your admin directory including your database. To make a database copy, use tools like PHPMyAdmin and make a dump.</p>
+			<ul>
+				<li>Upload and overwrite all files in the directory. (Except cfg.php)</li>
+				<li>Run 133_to_134.php through your browser. Follow the instructions.</li>
+				<li>When the update is finished, remove 133_to_134.php</li>
+			</ul>
+			<p>You're now running the new version of ClanWeb.</p>
+			<a name="support"></a><h2>Support</h2>
+			<p>If you run into any problem by using ClanWeb then consult the FAQ at our site, visit <a href="http://www.clanadmintools.com?p=faq">http://www.clanadmintools.com/?p=faq</a>. You're also welcome to visit our forum at: <a href="http://forum.clanadmintools.com/">http://forum.clanadmintools.com/</a>. Please look through previous threads before you post your own thread.</p>
+			<p>Please note that it might take some time before we respond to your question. Also note that we have closed our support mail. The support mail will only be available for those who buy a support ticket. </p>
+			<a name="bugs"></a><h2>Bugs</h2>
+			<a name="report"></a><h3>Reporting bugs</h3>
+			<p>To report a bug please use our forums. Just place [BUG] in the title and we'll look at it as fast as we can. But before you do, please check your server software and ,if you have any, modifications so that we can be sure that its the script not a third-party error. Please also be as detailed as you can, if possible list the steps required to duplicate the problem. If you have a fix which you are VERY SURE works and does not introduce further problems or incompatibilities please let us know.</p>
+			<a name="report"></a><h3>Security bugs</h3>
+			<p>If it's a security related bug then DON'T post in the forums, instead mail <a href="mailto:info@clanadmintools.com">info@clanadmintools.com</a> and describe how you did to expose this bug. This because we don't want evül people to take advantage of the bug before we can fix it.</p>
+			<a name="warranty"></a><h2>NO WARRANTY</h2>
+			<p>BECAUSE THIS APPLICATION IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE APPLICATION, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE APPLICATION"AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE APPLICATION IS WITH YOU. SHOULD THE APPLICATION PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
+			<a name="credits"></a><h2>Credits</h2>
+			<h3>Big thanks to:</h3>
+			<ul>
+				<li>YOU! - For downloading this application.</li>
+				<li>Angel - For bringing the idea of using alert windows.</li>
+				<li>MAIOF - For being the first clan using ClanWeb.</li>
+				<li>nbg.se - They who give us alot of ideas to ClanWeb.</li>
+				<li><a href="http://devphp.sourceforge.net/">Dev-PHP</a> - The guys behind the excellent program Dev-PHP. It have made the programming so much easier and fun.</li>
+				<li><a href="http://www.fckeditor.com/">FCKeditor</a> - The guys behind this excellent WYSIWYG editor.</li>
+			</ul> 
+            <p style="margin: 15px;"><strong>Please consider using this button</strong><br/>
+			   <img src="powered_by_cw.png" />
+			</p>
+</body>
+</html>
