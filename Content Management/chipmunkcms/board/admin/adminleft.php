@@ -1,0 +1,39 @@
+<A href='index.php'>Main</a><br>
+<A href='addcat.php'>Add category</a><br>
+<A href='deletecat.php'>Delete/Edit Category</a><br>
+<A href='addforum.php'>Add Forum(s)</a><br>
+<A href='deleteforum.php'>Delete Forum(s)</a><br>
+<A href='edit.php'>Edit Forum(s)</a><br>
+<a href='usermn.php'>User Management</a><br>
+<A href='prune.php'>Prune Topics</a><br>
+<A href='banemail.php'>Ban E-mail</a><br>
+<A href='unbanemail.php'>Unban E-mail</a><br>
+<A href='banip.php'>Ban Ip</a><br>
+<A href='unbanip.php'>Unban IP</a><br>
+<A href='addrank.php'>Add Rank</a><br>
+<A href='delrank.php'>Delete Rank</a><br>
+</td></tr>
+<tr class='headline'><td><center>Articles</center></td></tr>
+<tr class='forumrow'><td>
+<A href='addartcat.php'>Add Article Category</a><br>
+<A href='editartcat.php'>Edit Article Categories</a><br>
+<A href='addarticle.php'>Add Article</a><br>
+<A href='../../index.php'>Article Browsing</a><br>
+<A href='validatearticles.php'>Validate Articles</a><br>
+</td></tr>
+<tr class='headline'><td><center>Page Creation</center></td></tr>
+<tr class='forumrow'><td>
+<A href='addcategory.php'>Add Category</a><br>
+<A href='catedit.php'>Edit/Delete Category</a><br>
+<A href='createpage.php'>Create Page</a><br>
+<A href='editpages.php'>Edit/Delete page</a><br>
+<A href='searchpages.php'>Search pages</a><br>
+</td></tr>
+<tr class='headline'><td><center>Catalog/Directory</td></tr>
+<tr class='forumrow'><td>
+<A href='adddircat.php'>Add Category</a><br>
+<A href='deletedircat.php'>Delete Category</a><br>
+<A href='editdircat.php'>Edit Category</a><br>
+<A href='edittut.php'>Edit/delete Entries</a><br>
+<A href='validatetutorial.php'>Validate Entries</a><br>
+<A href='tutchanges.php'>Validate Changes</a>
