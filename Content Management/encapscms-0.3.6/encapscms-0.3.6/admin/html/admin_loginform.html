@@ -1,0 +1,48 @@
+<center>
+<table cellpadding="0" cellspacing="0"  bgcolor="779DC2">
+<form action="" method="POST" name="loginform">
+<!--onsubmit="Disable_(this);"-->
+<tr><td align="center">
+
+<b><font color="white" >Àäìèíèñòðàòîð:</font></b>
+<table>
+
+<?
+//var_dump($template["user"]["uname"]);
+if(!isset($template["user"]["uname"])){?>
+<tr><td align="right"><font color="white" >èìÿ:</font></td><td><INPUT name="uname" type="text" value=""></td></tr>
+<tr><td align="right"><font color="white" >ïàðîëü:</font></td><td><INPUT name="upass" type="password" value=""></td></tr>
+</TABLE>
+<? 
+$submit_value = "Âõoä";
+$action_value = "user_login_exec";
+?>
+
+<?}else{?>
+
+<tr>
+<td align="right"><font color="white" ></font></td>
+<td><b><font color="white" >[<?=$template["user"]["uname"]?>]</font></b></td>
+</tr>
+
+</TABLE>
+<? 
+$submit_value = "Âûõoä";
+$action_value = "user_exec_logoff";
+?>
+
+<?}?>
+
+<INPUT type="submit"  value="<?=$submit_value?>" onClick="">
+<!--onClick="DisableForm(this.form);"-->
+<INPUT type="hidden" name="action" value="<?=$action_value?>">
+
+</td></tr>
+</form>
+</table>
+
+<TABLE>
+<tr><td></td></tr>
+</TABLE>
+
+</CENTER>
