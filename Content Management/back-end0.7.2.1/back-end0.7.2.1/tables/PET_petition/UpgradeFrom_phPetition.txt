@@ -1,0 +1,111 @@
+# WebSite 
+# PGP 
+# BirthNumber 
+# reject 
+
+# pet_petition2contact
+
+ALTER TABLE `pet_petition2contact` DROP `FirstName` ,
+DROP `LastName` ,
+DROP `Email` ,
+DROP `WebSite` ,
+DROP `Address` ,
+DROP `City` ,
+DROP `State` ,
+DROP `Country` ,
+DROP `PostalCode` ,
+DROP `PGP` ,
+DROP `BirthNumber` ,
+DROP `reject` ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `ID` `contactID` SMALLINT( 55 ) UNSIGNED DEFAULT '0' NOT NULL;
+
+ALTER TABLE `pet_petition2contact` ADD `petitionID` SMALLINT( 5 ) UNSIGNED DEFAULT '0' NOT NULL FIRST ;
+
+ALTER TABLE `pet_petition2contact` ADD `targetID` SMALLINT( 5 ) UNSIGNED DEFAULT '0' NOT NULL AFTER `contactID` ;
+
+ALTER TABLE `pet_petition2contact` ORDER BY `Comments` ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `Comments` `petitionComment` TEXT NOT NULL ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `Organization` `organization` VARCHAR( 50 ) DEFAULT NULL ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `Contact` `followup` TINYINT( 5 ) DEFAULT '0' NOT NULL ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `Public` `public` TINYINT( 5 ) UNSIGNED DEFAULT '0';
+
+ALTER TABLE `pet_petition2contact` CHANGE `IPAddress` `IPaddress` VARCHAR( 50 ) NOT NULL ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `Browser` `browserInfo` VARCHAR( 255 ) NOT NULL ;
+
+ALTER TABLE `pet_petition2contact` ADD `organizationalEndorsement` TINYINT( 5 ) DEFAULT '0' AFTER `organization` , ADD `organizationApproved` TINYINT( 5 ) DEFAULT '0' AFTER `organizationalEndorsement` ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `genRandPassword` `randomKey` VARCHAR( 25 ) ;
+
+ALTER TABLE `pet_petition2contact` ADD `extraAtribute1` VARCHAR( 255 ) DEFAULT NULL AFTER `randomKey` ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `Verified` `verified` TINYINT( 5 ) DEFAULT '0';
+
+ALTER TABLE `pet_petition2contact` ADD `approved` TINYINT( 5 ) DEFAULT '0' AFTER `extraAtribute1` ;
+
+ALTER TABLE `pet_petition2contact` CHANGE `verifyDate` `dateVerified ` DATETIME DEFAULT NULL ;
+
+ALTER TABLE `pet_petition2contact` ADD `dateReminded ` INT( 10 ) UNSIGNED DEFAULT '0' AFTER `dateVerified ` ;
+
+
+
+
+# be_contact
+
+ALTER TABLE `be_contact` DROP `WebSite` ,
+DROP `Verified` ,
+DROP `Public` ,
+DROP `IPAddress` ,
+DROP `Browser` ,
+DROP `verifyDate` ,
+DROP `confirmDate` ,
+DROP `genRandPassword` ,
+DROP `reject` ;
+
+ALTER TABLE `be_contact` CHANGE `ID` `contactID` SMALLINT( 5 ) UNSIGNED NOT NULL AUTO_INCREMENT ;
+
+ALTER TABLE `be_contact` ADD `contactType` SMALLINT( 5 ) UNSIGNED DEFAULT '0' NOT NULL AFTER `contactID` ;
+
+ALTER TABLE `be_contact` CHANGE `FirstName` `firstName` VARCHAR( 50 ) NOT NULL ;
+
+ALTER TABLE `be_contact` CHANGE `LastName` `lastName` VARCHAR( 50 ) NOT NULL ;
+
+ALTER TABLE `be_contact` CHANGE `Organization` `companyName` VARCHAR( 50 ) NOT NULL ;
+
+ALTER TABLE `be_contact` ADD `displayName` VARCHAR( 100 ) NOT NULL AFTER `companyName` ;
+
+ALTER TABLE `be_contact` ADD `title` VARCHAR( 50 ) AFTER `displayName` ;
+
+ALTER TABLE `be_contact` CHANGE `Email` `email` VARCHAR( 50 ) ;
+
+ALTER TABLE `be_contact` CHANGE `Address` `address` VARCHAR( 100 ) DEFAULT NULL ;
+
+ALTER TABLE `be_contact` CHANGE `City` `city` VARCHAR( 100 ) DEFAULT NULL ;
+
+ALTER TABLE `be_contact` CHANGE `State` `province` VARCHAR( 20 ) DEFAULT NULL ;
+
+ALTER TABLE `be_contact` CHANGE `Country` `country` VARCHAR( 20 ) DEFAULT NULL ;
+
+ALTER TABLE `be_contact` CHANGE `PostalCode` `postalCode` VARCHAR( 20 ) DEFAULT NULL ;
+
+ALTER TABLE `be_contact` DROP `PGP` , DROP `BirthNumber` , DROP `Comments` ;
+
+ALTER TABLE `be_contact` ADD `notes` TEXT AFTER `postalCode` ;
+
+ALTER TABLE `be_contact` ADD `target` TINYINT( 2 ) AFTER `notes` ;
+
+ALTER TABLE `be_contact` CHANGE `Date` `dateCreated` varchar(30) DEFAULT '0' NOT NULL ;
+
+ALTER TABLE `be_contact` ADD `dateModified` INT( 10 ) UNSIGNED DEFAULT '0' AFTER `dateCreated` ;
+
+ALTER TABLE `be_contact` CHANGE `Contact` `followup` TINYINT( 5 ) DEFAULT '0' NOT NULL ;
+
+update pet_petition2contact set petitionID=1;
+
+# 2Oct2003 - mg - confusion over followup column 
+ALTER TABLE `be_contact` CHANGE `followup` `followupGlobal` TINYINT( 5 ) DEFAULT '0' NOT NULL;
