@@ -1,0 +1,522 @@
+<html>
+<head>
+<title>main</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<body bgcolor="#FFFFFF" text="#000000">
+<h2>Development guide</h2>
+Here you will find information about how to develop modifications for ClanWeb, a complete table reference and translation guidelines.
+<a name="tbl"></a>
+<h2>Table Reference for CW 1.3.4</h2>
+	  <strong>Primary key fields are bold.</strong> 
+	 <h3>tbl.Users</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">username</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The username.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">password</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The password.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">admin</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(1)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px; text-align: center;">0</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">0 = normal user 1 = Head admin</td>
+	 		</tr>
+	</table>
+	 <h3>tbl.Script</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>version</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(10)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the version that is installed. Primary key.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">installdate</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The date when the CMS was installed.</td>
+	 		</tr>
+	</table>
+	<h3>tbl.motd</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">dates</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(50)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the date when the MOTD was last changed.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">username</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the user that posted the MOTD.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">motd</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">text</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the MOTD text.</td>
+	 		</tr>
+	</table>
+<h3>tbl.members</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">name</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(50)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members real name.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">nickname</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members nickname.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">picture</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the url to the picture of the member.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">age</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">char(2)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members age. Can't be longer then 2chars</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">position</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(45)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members position in the clan.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">work</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members IRL work.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">resolution</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members screen resolution.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">sex</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(5)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members gender.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">quote</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains a quote from the member.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">location</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members geographical location..</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">cpu</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members CPU info.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">mouse</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(55)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members mouse info.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">gfx</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members graphic card info.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">mousepad</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members mousepad info.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">memory</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members memory info in MB.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">os</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members OS info.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">hdd</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members hdd info.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">screen</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members screen info.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">mail</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the members mail adress.</td>
+	 		</tr>
+	</table>
+	<h3>tbl.game</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">dates</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(50)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the date when the report was added.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">team1</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the name of team1.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">team2</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the name of team2.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">point1</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the points of team1.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">point2</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the points of team2.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">type</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the type of game played.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">map</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the map(s) played.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">lineup</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the lineup who played the game.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">report</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">text</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the game report.</td>
+	 		</tr>
+	</table>
+	<h3>tbl.comments</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">pid</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(4)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px; text-align: center;">0</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the id to the commented newspost.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">names</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(100)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the name of the person that commented.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">email</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the mail of the person that commented.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">comment</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">text</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the comment.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">date</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(20)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the date.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">ip</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the IP.</td>
+	 		</tr>
+	</table>
+	<h3>tbl.reported</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">rid</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px; text-align: center;">0</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the id to the reported comment.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">names</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(100)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the name of the person that commented.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">email</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the mail of the person that commented.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">comment</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">text</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the reported comment.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">date</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(20)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the date.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">ip</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the IP of the person who made the reported comment.</td>
+	 		</tr>
+	</table>
+	<h3>tbl.news</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">dates</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(50)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the date when the newspost was created.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">nickname</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(25)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the name of the person that made the newspost.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">topic</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(50)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the newspost topic.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">newspost</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">text</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the newspost.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">newstype</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(15)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the type of newspost.</td>
+	 		</tr>
+	</table>
+	<h3>tbl.spons</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">spons_cat</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the sponsor category ID.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">spons_name</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(252)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the name of the sponsor.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">spons_info</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">text</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the info about the sponsor.</td>
+	 		</tr>
+	</table>
+		<h3>tbl.spons_cat</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>spons_cat</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">spons_type</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the sponsor category.</td>
+	 		</tr>
+	</table>
+		<h3>tbl.online</h3>
+	 <table style="width: 480px;">
+	 		<tr>
+			 	<td class="post_one"><h4 style="margin: 2px;">Field</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Type</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Default</h4></td>
+	 			<td class="post_one"><h4 style="margin: 2px;">Description</h4></td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"><strong>user_id</strong></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">int(3)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">The auto-incrementing (identity) primary key identifier for this table.</td>
+	 		</tr>
+	 		<tr>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">cookiesum</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">varchar(255)</td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;"></td>
+	 			<td style="background-color: #f1f1f1; font-size: 11px;">Contains the cookiesum of the current user.</td>
+	 		</tr>
+	</table>
+
+</body>
+</html>
