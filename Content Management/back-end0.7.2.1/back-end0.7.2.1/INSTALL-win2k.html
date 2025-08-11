@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Back-End System Configuration</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style><!--
+body {   margin: 0px; padding: 3em; font-family: arial, geneva, helvetica, sans-serif; color: #000; background-color: #E4E4D2;}
+code { margin-left: 3em; display: block; }
+--></style>
+</head>
+<body>
+<h2>Windows 2000 Server Configuration for back-end-0.7.0.x</h2>
+<h2>Pre-requisites</h2>
+<p> The following configurations have been tested. Other combinations
+of software may also work, but are not validated. </p>
+<pre> 1)    Windows 2000 server with service pack 4 installed<br>       Windows 2000 professional with service pack 4 installed<br>
+   2     PHP Version 4.3.2 (ISAPI)
+         PHP Version 4.3.4 (ISAPI)<br>
+   3) MySQL Version 3.23.53-MAX
+         MySQL Version 3.23.58-MAX<br></pre>
+<h2>Configure the server</h2>
+<h3>Manual Setup</h3>
+<p>
+Create a directory that iis has access to (example below)
+</p>
+<pre> d:\www\be7</pre>
+<p>
+Copy the Unzipped Back-end release into the directory to end up with
+the following directory structure:
+</p>
+<pre> d:\www\be7<br>    class<br>      contrib<br>    doc<br>     public_html<br>      tables<br></pre>
+<p>
+Using Start - Settings - Control Panel - Administrative Tools -
+Internet Services Manager create a new website using the web site
+wizard
+</p>
+<pre> Description -be7<br> IP address  -your ip (say 192.168.0.1)<br>   port     -80<br>  Host Header -your header (say be7 - on my intranet I set my hosts file to map my ip to be7)<br> Path     -d:\www\be7\public_html</pre>
+<p>
+Edit the file d:\www\be7\public_html\config.ini.php as follows:
+</p>
+<pre>;***********************************************************<br> <br>;;;;<br>;; Site determinant variables<br>; basedir  = "/var/www/be7/public_html"<br>; classdir = "/var/www/be7/class" <br>;; Windows versions:<br>basedir = "d:/www/be7/public_html"<br>classdir = "d:/www/be7/class"<br><br>rooturl  = ""<br><br>;;;<br>;; Database variables<br>DB_Host     = "localhost"<br>DB_Database = "be70"<br>DB_User     = "user"<br>DB_Password = "password"<br><br> <br>;***********************************************************<br></pre>
+<p>
+</p>
+<h2>Create the database</h2>
+<p>The SQL scripts have been tested on recent versions of phpMyAdmin or
+MySQL directly through the command line. MySQL-Front should also work
+(although people have reported errors).&nbsp;&nbsp; Any of these should
+allow you to create the database called "be70" and run the
+script below
+</p>
+<p>
+</p>
+<pre>        d:www/be7/tables/BE_all.sql<br><br></pre>
+<p>&nbsp;
+</p>
+<p>
+</p>
+<h2>PHP Configuration </h2>
+<p>
+Take a look at test.php through your browser (http://be7/test.php) and
+note the values of
+</p>
+<ul>
+  <p><strong>Welcome to the Back-End configurator </strong> screen
+should appear</p>
+  <p>Press 'Start' and follow the instructions</p>
+  <p>When the '<strong>Set up configuration files</strong>' screen
+appears set the following:</p>
+  <p><strong>Base Directory</strong> d:\www\be7</p>
+  <p><strong>Public Directory</strong> d:\www\be7\public_html</p>
+  <p><strong>Root Directory</strong> </p>
+  <p><strong>Root Domain</strong> localhost</p>
+  <p><strong>Root Sub-Domain</strong> </p>
+  <p><strong>Database host</strong> localhost</p>
+  <p><strong>Database name</strong> be70</p>
+  <p><strong>Database user</strong> user</p>
+  <p><strong>Database password</strong> password</p>
+  <p>Press '<strong>Set values</strong>'</p>
+  <p>The '<strong>Initialize the database screen appears</strong>' </p>
+  <p>Set username and password </p>
+  <p>I recommend set sample data checkbox</p>
+  <p>press '<strong>Set values' </strong></p>
+</ul>
+<p></p>
+<p>'<strong>Configuration complete' </strong> is the last screen and
+we're done!<br>
+</p>
+<h5>Contributor: Keith Radue, 23 December 2003 ( keith@radue.co.za )</h5>
+<br>
+<h2></h2>
+<h2>If you still have problems<br>
+</h2>
+Some people have reported having trouble logging in after BE is
+installed.&nbsp; The following is reported to work to resolve this
+problem:<br>
+<br>
+Change/Add the following to your php.ini<br>
+<br>
+<br>
+<tt>Set your session path to be set to and make sure that the directory
+exists:<br>
+session.save_path= C:\temp<br>
+<br>
+And also ensure that sessions are using cookies:<br>
+session.use_cookies = 1</tt>
+<br>
+<h5>Contributor: 30 Mar 2004, <big>(<tt>kkarski@users.sourceforge.net</tt>)</big></h5>
+<br>
+<h5></h5>
+<h5></h5>
+<h5><br>
+</h5>
+<h4>&nbsp;</h4>
+</body>
+</html>
