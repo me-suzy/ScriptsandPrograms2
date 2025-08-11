@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS `be_subsites`;
+DROP TABLE IF EXISTS `be_subsite_types`;
+DROP TABLE IF EXISTS `be_subsite_block_lut`;
+DROP TABLE IF EXISTS `be_categories`;
+DROP TABLE IF EXISTS `be_category2item`;
+DROP TABLE IF EXISTS `be_rsstool`;
+DROP TABLE IF EXISTS `be_event`;
+DROP TABLE IF EXISTS `be_eventText`;
+DROP TABLE IF EXISTS `be_feedback`;
+DROP TABLE IF EXISTS `be_blockcache`;
+DROP TABLE IF EXISTS `be_catalog`;
+DROP TABLE IF EXISTS `be_catalogText`;
+DROP TABLE IF EXISTS `be_keyword2catalog`;
