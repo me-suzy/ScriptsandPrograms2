@@ -1,0 +1,69 @@
+                <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+           <tr>
+                    <td align="left" valign="top">
+         <?
+		$blocks = $block->get_blocks($cats->page_sub);
+		$count = sizeof($blocks);
+		if($cats->page_sub != 0)
+			foreach ($blocks as $item){
+		?>                    
+           
+                    <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<?if (($item["title"] != "")){?>
+                    <tr>
+                        <td width="16" valign="top" background="<?=$html['config']['path']?><?=$html['config']['path']?>images/news1.gif"><IMG ALT="" src="<?=$html['config']['path']?>images/news1.jpg" width="16" height="28"></td>
+                        <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td bgcolor="white" width="471" background="<?=$html['config']['path']?>images/news2.gif" style="padding-top:6px" class="newstitle"><?
+ 						if(sizeof($item["block_sub"])>0){
+							?><a target="_blank" href="?action=pagectl_show_detail&block_id=<?=$item["id"]?>&page=<?=$template["page"]?>&lang=<?=$template["lang"]?>&page_sub=<?=$_GET["page_sub"]?>" class="submenu"><b><?=$item["title"]?></b></a></td>
+                              <td width="28" valign="top" background="<?=$html['config']['path']?>images/news3_1.gif" bgcolor="white"><a target="_blank" href="?action=pagectl_show_detail&block_id=<?=$item["id"]?>&page=<?=$template["page"]?>&lang=<?=$template["lang"]?>&page_sub=<?=$_GET["page_sub"]?>" class="submenu"><IMG ALT="" src="<?=$html['config']['path']?>images/news3.gif"  border="0" ></a></td>
+							<?}else{
+								?><?=$item["title"]?></td>
+                              <td width="28" valign="top" background="<?=$html['config']['path']?>images/news3_1.gif"><IMG ALT="" src="<?=$html['config']['path']?>images/news3_.gif" width="28"  border="0"></td>
+                          	<?}?>                             
+<!--                              <td width="15" valign="bottom"><IMG ALT="" src="<?=$html['config']['path']?>images/news4.gif" width="15" ></td>-->
+<!--							<td ></td>-->
+                              <td width="300" valign="bottom"><IMG ALT="" src="<?=$html['config']['path']?>images/news5.jpg" width="205" height="28"></td>
+                            </tr>
+                        </table></td>
+                      </tr>
+<?}?>                      
+                      <tr>
+                        <td width="16" height="100%" valign="top" background="<?=$html['config']['path']?>images/news7.jpg"><IMG ALT="" src="<?=$html['config']['path']?>images/news6.jpg" width="16" height="9"></td>
+                        <td align="left" valign="top" background="<?=$html['config']['path']?>images/bg_news.jpg" bgcolor="#E0E6F6" style="background-position:right; background-repeat:repeat-y"><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td align="left" valign="top"><br>								
+								<?if($item["img_visible"]=="on" && $item["img"]!=""){
+									if (isset($item["img_popup"]) && $item["img_popup"]!=""){?>
+                    					<a href="javascript:;" onClick="javascript:window.open('popup.php?filename=<?=$item["img_popup"]?>','download','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=<?=$item["img_popup_w"]+20?>,height=<?=$item["img_popup_h"]+20?>');">
+                    					<img src="rwx_blogs/<?=$item["img"]?>" alt="" align="<?=$item["img_position"]?>" class="<?if($item["img_position"]=="right")echo"images_news";else echo"images_left";?>"></A>
+                    				<?}else{?>
+                    					<img src="rwx_blogs/<?=$item["img"]?>" alt="" align="<?=$item["img_position"]?>" class="<?if($item["img_position"]=="right")echo"images_news";else echo"images_left";?>">
+                    				<?}?>                  		                    		
+                        		<?}?>
+						<?=$item["text_detail"]?>
+
+<!--                              <td width="1"><IMG ALT="" src="<?=$html['config']['path']?>images/news_img1.jpg" style="margin-top:5px; margin-right:5px"></td>-->
+							</td>
+                            </tr>
+                        </table></td>
+                      </tr>
+                      <tr>
+                        <td><IMG ALT="" src="<?=$html['config']['path']?>images/news8.jpg" width="16" height="15"></td>
+                        <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td width="100%" background="<?=$html['config']['path']?>images/news10.jpg"><IMG ALT="" src="<?=$html['config']['path']?>images/news10.jpg" width="1" height="15"></td>
+                              <td width="189"><IMG ALT="" src="<?=$html['config']['path']?>images/news12.jpg" width="189" height="15"></td>
+                            </tr>
+                        </table>
+                        </td>
+                      </tr>
+                    </table> 								
+
+<br clear="all">
+					<?}?>
+
+					</td>
+                  </tr>
+                </table>
