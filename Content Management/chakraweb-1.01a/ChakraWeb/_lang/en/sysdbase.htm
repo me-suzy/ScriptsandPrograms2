@@ -1,0 +1,54 @@
+<h1>Change Database</h1>
+
+<p><font color="#FF0000"><i><b>{fld_page_message}</b></i></font></p>
+
+<p><b><i><font color="#FF0000">This feature is dangerous!.</font></i></b>
+Contact your ISP. They will inform you all you need to fill the form below.</p>
+<p>If you change your database host or database name, ensure that the target
+database work well (contain ChakraWeb tables). If not, you website cannot access
+anymore, except you change the <b>_defgenerate.php</b> and set the database
+information to previous values by FTP. </p>
+<p>If you want to change your password, enter the password twice.</p>
+
+<form method="post" action="sysdbase.php">
+
+<table border="0">
+    <tr>
+      <td align="left" height="19">Host Name</td>
+      <td align="left" height="19">:</td>
+      <td height="19"><input class="inputbox" maxLength="80" size="30" value="{fld_host}" name="fld_host"></td>
+    </tr>
+    <tr>
+      <td align="left" height="25">User Name</td>
+      <td align="left" height="25">:</td>
+      <td height="25"><input class="inputbox" maxLength="80" size="30" value="{fld_user}" name="fld_user"></td>
+    </tr>
+    <tr>
+      <td align="left" height="25">Password</td>
+      <td align="left" height="25">:</td>
+      <td height="25"><input class="inputbox" maxLength="80" size="16" name="fld_password">
+        <input class="inputbox" maxLength="80" size="16" name="fld_password2"></td>
+    </tr>
+    <tr>
+      <td align="left" height="25">Database Name</td>
+      <td align="left" height="25">:</td>
+      <td height="25"><input class="inputbox" maxLength="80" size="30" value="{fld_name}" name="fld_name"></td>
+    </tr>
+  <tr>
+    <td align="left" height="25">Database Type</td>
+    <td align="left" height="25">:</td>
+    <td height="25"><select class="inputbox" size="1" name="fld_type">
+        <option value="mysql" selected>&nbsp;MySQL&nbsp;</option>
+      </select></td>
+  </tr>
+  <tr>
+    <td align="left" height="25"></td>
+    <td align="left" height="25"></td>
+    <td height="25"><input type="submit" value="Save " class="button"></td>
+  </tr>
+</table>
+
+<input type="hidden" name="op" value="save" />
+<input type='hidden' name='rnd' value='{rnd_number}' />
+</form>
+
