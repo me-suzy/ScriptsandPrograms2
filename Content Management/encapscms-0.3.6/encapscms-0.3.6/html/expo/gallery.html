@@ -1,0 +1,61 @@
+<center>
+<hr>
+<?include($html['config']['path'].'gallery_cats_select.html');?>
+<table border="0">
+<tr>
+<?
+$columns = 3;
+$count = sizeof($html["items"]);
+$current = 0;
+//if(sizeof($html["items"])>0))
+foreach($html["items"] as $item){
+	if($item["visible"]!="on")continue;
+	
+	if($current++ % $columns ==0)
+		echo "</tr><tr>";
+	?>
+<td valign="top" align="center" width="33%">
+<TABLE cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr >
+		<td width="1"><IMG src="<?=$html['path']?>images/gallery/r1-10000.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r1-00100.gif"><IMG src="<?=$html['path']?>images/gallery/r1-01000.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r1-00100.gif"><IMG src="<?=$html['path']?>images/gallery/r1-00100.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r1-00100.gif" align="right"><IMG src="<?=$html['path']?>images/gallery/r1-00010.gif"></td>
+		<td width="1"><IMG src="<?=$html['path']?>images/gallery/r1-00001.gif"></td>
+	</tr>
+	<tr >
+		<td background="<?=$html['path']?>images/gallery/r2-100.gif"><IMG src="<?=$html['path']?>images/gallery/r2-100.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r2-010.gif" colspan="3" align="center" height="16" ><b style="margin-left:5px;margin-right:5px"><?$key="title".$html["lang"];echo $item["$key"]?></b></td>
+		<td background="<?=$html['path']?>images/gallery/r2-001.gif"><IMG src="<?=$html['path']?>images/gallery/r2-001.gif"></td>
+	</tr>
+	<tr >
+		<td background="<?=$html['path']?>images/gallery/r3-100.gif"><IMG src="<?=$html['path']?>images/gallery/r3-100.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r3-010.gif" colspan="3" align="center" ><TABLE border="1" cellpadding="0" cellspacing="0"><tr><td height="150"><a target="_blank" href="gallery.php?page=foto&action=show_custom&id=<?=$item["id"]?>&cat=<?=$html['cat']['id']?>"><img border="0" src="./core/gallery_resize.php?filename=../rwx_gallery/<?=$item["filename_normal"]?>" ></a></td></tr></TABLE></td>
+		<td background="<?=$html['path']?>images/gallery/r3-001.gif"><IMG src="<?=$html['path']?>images/gallery/r3-001.gif"></td>
+	</tr>
+	<tr >
+		<td background="<?=$html['path']?>images/gallery/r4-100.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r4-010.gif" colspan="3" align="center" height="52"><table style="margin-left:5px;margin-right:5px" cellpadding="0" cellspacing="0"><tr><td ><DIV align="justify"><?$key="comment".$html["lang"];echo $item["$key"]?></div></td></tr></table></td>
+		<td background="<?=$html['path']?>images/gallery/r4-001.gif"></td>
+	</tr>
+	
+	<tr >
+		<td><IMG src="<?=$html['path']?>images/gallery/r5-10000.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r5-00100.gif"><IMG src="<?=$html['path']?>images/gallery/r5-01000.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r5-00100.gif"><IMG src="<?=$html['path']?>images/gallery/r5-00100.gif"></td>
+		<td background="<?=$html['path']?>images/gallery/r5-00100.gif" align="right"><IMG src="<?=$html['path']?>images/gallery/r5-00010.gif"></td>
+		<td><IMG src="<?=$html['path']?>images/gallery/r5-00001.gif"></td>
+	</tr>
+
+</TABLE>		
+
+</td>
+<?}?>
+</tr>
+
+
+</TABLE>
+
+<?include($html['config']['path'].'pager.html');?>
+</center>
+<!--</FIELDSET>-->
