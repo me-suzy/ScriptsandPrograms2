@@ -1,0 +1,25 @@
+<table border="1" width="100%" bordercolor="#C0C0C0" cellspacing="0" cellpadding="2" bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0">
+  <tr>
+    <td id="tbl_title"><b>{fld_folder_title}</b></td>
+  </tr>
+  {fld_folder_list}
+</table>
+
+<p><b>Add Sub-Folder:</b></p>
+
+<form method="POST" action="/phpmod/file_mgmt.php" target="content"">
+  <p><input type="text" name="fld_name" size="20" class="inputbox"><br>
+  <input type="submit" value="Add"></p>
+
+	<input type='hidden' name='rnd' value='{rnd_number}' />
+	<input type='hidden' name='op' value='addfolder' />
+	<input type='hidden' name='path' value='{fld_path}' />
+	
+</form>
+
+<p>
+<a href="/phpmod/file_mgmt.php?op=content&path={fld_path}" target="content">Refresh</a><br>
+<a href="/phpmod/file_mgmt.php?op=delfolder&path={fld_path}" target="content">Delete
+This Folder</a>
+</p>
+
