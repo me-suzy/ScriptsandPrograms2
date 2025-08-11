@@ -1,0 +1,36 @@
+<table width="" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="750" colspan="1" height="87" bgcolor="#CCCCCC" style="text-align:center;vertical-align:middle;font-family: Arial;font-size: 11px;">
+    <font color="#666666">
+    <h1>EncapsGallery</h1>
+    
+Category: [ <B><?=$html['cat']['title']?></B> ]
+
+    <br>
+<b><?
+		$back = "&lt;&lt;previous";
+		$forw = "next&gt;&gt;";
+		if($html["id"]["prev"]!=""){
+			?><a href="?page=foto&action=show_custom&id=<?=$html["id"]["prev"]?>&cat=<?=$html['cat']['id']?>"><?=$back?></a>
+			<?}else{
+				?><?=$back?><?}?>
+		|
+		<?if($html["id"]["next"]!=""){
+			?><a href="?page=foto&action=show_custom&id=<?=$html["id"]["next"]?>&cat=<?=$html['cat']['id']?>"><?=$forw?></a>
+			<?}else{
+				?><?=$forw?><?}?>
+		</b>
+    </font>
+    </td>
+  </tr>
+ <tr> 
+    <td bgcolor="#777777" align="center" style="font-weight:bold;color:white"><?=$html['item']["title"]?></td>
+  </tr>
+ <tr> 
+    <td bgcolor="#888888" align="center"><img border="0" src="rwx_gallery/<?=$html['item']["filename_normal"]?>" ></td>
+  </tr>
+ <tr> 
+    <td bgcolor="#555555" align="center" style="font-weight:bold;color:white"><?=$html['item']["comment"]?></td>
+  </tr>
+  
+</TABLE>
