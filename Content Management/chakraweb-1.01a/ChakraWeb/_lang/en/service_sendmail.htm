@@ -1,0 +1,63 @@
+
+<h1>Send Email Service</h1>
+<p>You can use this facility to send email to members that register the
+services. You can use macros on your email content (See below notes) . To ensure
+the email content, click <b>&quot;Email Output Test&quot;</b>, this button will
+generate example of email content on the end of this page.</p>
+
+<p><font color="#FF0000">{fld_message}</font></p>
+
+<form method="POST" action="/phpmod/service.php">
+  <table border="0" cellpadding="0">
+    <tr>
+      <td valign="top">Service</td>
+      <td valign="top">:</td>
+      <td valign="top">{fld_service_list}</td>
+    </tr>
+    <tr>
+      <td valign="top">From</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_from" size="48" value="{fld_from}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Relpay To</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_replay" size="48" value="{fld_replay}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Subject</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_subject" size="48" value="{fld_subject}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Email Content</td>
+      <td valign="top">:</td>
+      <td valign="top">{fld_content_editor}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="submit" value="Send Now" class="button"> <input type="submit" value="Email Output Test" name="test" class="button"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="checkbox" name="fld_saveas_template" value="1">  Save
+        email content as template.</td>
+    </tr>
+  </table>
+
+<input type='hidden' name='rnd' value='{rnd_number}' />
+<input type='hidden' name='op' value='dosend' />
+
+</form>
+<p><b><i>Notes:&nbsp; </i></b></p>
+
+<ul>
+  <li>The macros you can use on the email content are: {~hp_name}, {~hp_url}, {~hp_slogan},
+    {~member_name}, {~member_fullname}, {~svc_subject}, {~svc_name}, dan {~svc_desc}&nbsp;</li>
+  <li>After click <b>&quot;Send Now&quot;</b>, you can break the connection to
+    server. Email sending will continue.&nbsp;</li>
+</ul>
+
+{fld_output_test}
