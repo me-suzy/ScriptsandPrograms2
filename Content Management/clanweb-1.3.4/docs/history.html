@@ -1,0 +1,151 @@
+<html>
+<head>
+<title>main</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<body bgcolor="#FFFFFF" text="#000000">
+<a name="history"></a><h2>History</h2>
+		<p>Here we list all the changes made from version 1 to the current version.</p>
+		<strong>version 1.3.4</strong>
+		<ul type="square">
+			<li>Removed loggedout.php</li>
+            <li>Removed help.php</li>
+            <li>Recoded the auth process and the login function.</li>
+            <li>Some security fixes.</li>
+            <li>Added tbl online that will handle data about the people that're online.</li>
+        </ul>
+		<strong>version 1.3.4pr3</strong>
+		<ul type="square">             
+            <li>Made an effort to shrink the size of the script</li>
+            <li>Tried to optimize the sql queries in the entire script.</li>
+            <li>Various bugfixes.</li>
+            <li>Some translation updates.</li>
+            <li>Fixed a temporary upload script. Made by RiC]-[iE.</li>
+            <li>Updated FCKeditor. Now running v2.0 RC3</li>
+        </ul>
+		<strong>version 1.3.4pr2</strong>
+		<ul type="square">    
+            <li>Ran over all files affected by the SQL structure changes.(More info below)</li>
+            <li>New function. Clans can now add sponsors to their page. </li>
+            <li>Added title to menu links</li>
+            <li>Made some optimize queries in del_spons_cat.php. The script generates lots of overhead bytes.</li>
+            
+            <li>newspost longtext -> newspost text TBL news</li>
+            <li>report longtext -> report text TBL game</li>
+            <li>installdate longtext -> installdate varchar(15) TBL script</li>
+            <li>motd longtext -> motd text TBL motd</li>
+            <li>comment longtext -> comment text TBL comments</li>
+            <li>comment longtext -> comment text TBL reported</li>
+            <li>ip varchar(255) - > ip varchar(15) TBL comments</li>
+            <li>ip varchar(255) - > ip varchar(15) TBL reported</li>
+            <li>version varchar(50) -> version varchar(10) TBL script</li>
+            <li>username varchar(255) -> username varchar(25) TBL users</li>
+            <li>nick varchar(255) -> nickname varchar(25) TBL crew</li>
+            <li>tbl.crew -> tbl.members</li>
+            <li>name varchar(50) -> nickname varchar(25) TBL news</li>
+      </ul>
+        <strong>version 1.3.4pr1</strong>
+		<ul type="square">       
+            <li>All mysql commands are runned through one single file. </li>
+            <li>The comment script with report system is improved and should run smooth.</li>
+            <li>Cleared up code and added comments</li>
+            <li>Lots of design related fixes.</li>
+            <li>Included the FCKeditor v2.0 RC2 (http://www.fckeditor.net)</li>
+            <li>Recoded and redesigned the setup file.</li>
+        </ul>
+		<strong>version 1.3.3</strong>
+		<ul type="square">
+          	<li>Fixed login error</li>
+    		<li>Fixed error in browsedir.php</li>
+    		<li>Fixed so the script support '<strong>global_variables = OFF</strong>'</li>
+          	<li>Skipped sessions and started using cookies</li>
+    		<li>Removed the upload function for some time</li>
+		</ul>
+		
+		<strong>version 1.3.2</strong>
+		      <ul type="square">
+              	<li>Rewritten some code in news_front.txt</li>
+              	<li>Added support for browsing uploaded files</li>
+              	<li>Renamed the main language file to lang_main.php</li>
+      			<li>Rewritten most of the sql code</li>
+      			<li>Rewritten install.php</li>
+      			<li>Rewritten faq.php</li>
+      			<li>Rewritten the translations</li>
+			</ul>
+		
+		<strong>version 1.3.1</strong>
+		<ul type="square">
+  			<li>Fixed error when saving new users. Increased password field length in database to 255. Thx to <strong>oldmagic</strong></li>
+		</ul>
+		
+		<strong>version 1.3.0</strong>
+		<ul type="square">
+          <li>Deleted all <strong>or die(mysql_error));</strong>-strings</li>
+          <li>Updated english.php and swedish.php</li>
+          <li>Changed the login variabel from <strong>$logga</strong> to <strong>$login</strong></li>
+        	<li>Changed the install interface.</li>
+        	<li>Changed so that adding, editing and removing various db-information can be done via the same page.</li>
+        	<li>Changed so all passwords is md5 encrypted.</li>
+        	<li>Changed: Matchtypes can now be choosen by a dropdown menu.</li>
+        	<li>Added auth.php. The file that contains the auth-script.</li>
+        	<li>Added scriptinfo to the db. When CAT is installed the version number and installdate is saved in the db.</li>
+        	<li>Added <strong>$db_prefix</strong> to all db-strings in script. Standard is <strong>"cat_"</strong></li>
+        	<li>Added support for commenting newsposts.</li>
+        	<li>Added support for reporting and deleting comments</li>
+        	<li>Added support for uploading pictures via CAT. Orginal script by <strong><em>Telus</em></strong></li>
+        	<li>Added confirmation window that popups everytime a match,newspost,member or admin is going to be deleted. Thx to <strong>Angel</strong>.</li>
+        	<li>Fixed so that the date know will be shown when the MOTD is changed.</li>
+        	<li>Minor changes</li>
+		</ul>
+		
+		<strong>version 1.2.0</strong>
+		<ul type="square">
+              <li>Deleted help.inc and help_match.inc</li>
+              <li>Updated the language-files.</li>
+              <li>Changed the name of the config-file from variablar to cfg.</li>
+              <li>Changed the looks of CAT. sweden.css is now standard.</li>
+              <li>Added support for memberpictures in the profile.</li>
+              <li>Added support for flags in the news script.</li>
+              <li>Fixed error where nickname was deleted when you edited a newspost.</li>
+              <li>Fixed error where nickname wasen't added to the MOTD.</li>
+              <li>Fixed error where nickname was deleted when you edited a profile.</li>
+              <li>Fixed require error in reg_user.php.</li>
+              <li>Fixed a parse error in edit_news at row 28. </li>
+              <li>Fixed a parse error in the english faq.php.</li>
+             <li>Fixed so you return to the login-frame if the login information don't match.</li>
+	  	</ul>
+		
+		<strong>version 1.1.0</strong>
+		<ul type="square">
+            <li>Renamed various files</li>
+            <li>Updated install.php</li>
+            <li>Deleted more unnecessary code and optimized the remaining.</li>
+            <li>Updated the match-script so it automatically detects if it is a win or a lose.</li>
+            <li>You are now able to change admin information.</li>
+            <li>It's easier to add and remove members with login permission.</li>
+            <li>Added a MOTD function.</li>
+            <li>Added support for other languages than Swedish. (Swedish and english are standard)</li>
+            <li>Fixed erroneous code in news script.</li>
+            <li>Changed the database structure.</li>
+        </ul>		
+		<strong>version 1.0.1</strong>    
+			<ul type="square">
+                <li> Deleted unnecessary code.</li>
+                <li> Fixed erroneous links</li>
+                <li> Fixed erroneous code that existed in variablar.php</li>
+                <li> Added "or die(mysql_error());" to various database connectors.</li>
+                <li> Added two new files, select.php och select_red.php. These files contain the information to the newstype-list.</li>
+                <li> Updated install.php</li>
+                <li> Updated the login system so you can login with different users.</li>
+            </ul>
+		<strong>version 1.0.0</strong>
+      	<ul type="square">
+            <li> Added the news script ClanAdmin Tools</li>
+            <li> Added the member function ClanAdmin Tools.</li>
+            <li> Added the match register ClanAdmin Tools.</li>
+            <li> Added a simple login script.</li>
+            <li> The script is released to the public.</li>
+        </ul>
+</body>
+</html>
