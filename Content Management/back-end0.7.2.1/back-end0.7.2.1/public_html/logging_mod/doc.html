@@ -1,0 +1,66 @@
+<!--
+/*
+Zircote Web Management
+Copyright (C) 1999  Robert D. Allen<ALLENB@HOME-NETWORKING.ORG>This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+email: allenb@home-networking.org
+*/
+--><!DOCTYPE html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>PHPSlash Reporter Documentation</TITLE>
+</HEAD>
+<BODY>
+<H1><FONT color="#000080">ZIRCOTE&nbsp;Web Log and Reporting Module for PHPSlash</FONT></H1>
+<H2>Setup The SQL Table</H2>
+<H3><U>MySQL Table Schema</U></H3>
+<PRE>
+#
+# Table structure for table 'activity_log'
+#
+
+CREATE TABLE activity_log (
+   time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+   user_agent text,
+   remote_addr text,
+   remote_host text,
+   uri text,
+   os text,
+   browser text,
+   page text,
+   referer text,
+   sid text,
+   KEY time (time)
+);
+
+</PRE>
+<P>To create the MySQL Table execute commmand as such:
+<P>
+<CODE>zircote:~$ mysql --password=mypass mydatabase &lt; activity_log.sql</CODE><H2>File Setup</H2>
+<P>Place the
+<CODE>report.php</CODE><FONT face="Courier New" size="2">, 
+referrer.php </FONT>in a directory of your choice as well as the
+<CODE>logit.inc</CODE>. The
+<CODE>gif11.php</CODE>may be place in any directory but it also must have the
+<CODE>include</CODE>statement reflect the proper locations.
+<H2>Acquiring the data</H2>
+<P><H3><U>PHP Pages</U></H3>
+<P>At the end of the page to be logged inset the tag:<BR><B>
+<CODE><FONT color="#ff0000">&lt;?</FONT></B><BR><FONT color="#0000ff">include ("/your_directory_path/logit.inc");</FONT><BR><B><FONT color="#ff0000">?&gt;</FONT></CODE></B><BR>This will provide the logging of all data relevant to the reporting tool.
+<P><H3><U>Non-PHP Pages</U></H3>
+<P>For non PHP pages all data will be extracted via an image tag call. Howerver for certain sections of the data you must declair in the tag. This is the "Pagetitle" Variable. This is done via a form variable <B>?pagetitle=Web Search Engine</B><B><I> this is case sensative.</I></B><BR>
+<P><FONT color="#008000">&lt;img src="http://www.yourdomain.com/images/gif11.php?<B>pagetitle=Web Search Engine</B>" border=0 alt="" height=1 width=1&gt;</FONT><BR></P>
+</BODY>
+</HTML>
