@@ -1,0 +1,43 @@
+// Russian windows-1251 translation by Vladimir Vitkovsky
+// admin@transport.su
+// www.webgui.uanet.biz
+
+tinyMCE.addToLang('',{
+bold_desc : 'Ïîëóæèðíûé',
+italic_desc : 'Êóðñèâ',
+underline_desc : 'Ïîä÷åðêíóòûé',
+striketrough_desc : 'Ïåðå÷åðêíóòûé',
+justifyleft_desc : 'Âûðàâíèâàíèå âëåâî',
+justifycenter_desc : 'Âûðàâíèâàíèå ïî öåíòðó',
+justifyright_desc : 'Âûðàâíèâàíèå âïðàâî',
+justifyfull_desc : 'Ðàâíîìåðíîå çàïîëíåíèå',
+bullist_desc : 'Ìàðêèðîâàííûé ñïèñîê',
+numlist_desc : 'Íóìåðîâàííûé ñïèñîê',
+outdent_desc : 'Óìåíüøèòü îòñòóï',
+indent_desc : 'Óâåëè÷èòü îòñïóò',
+undo_desc : 'Îòìåíèòü',
+redo_desc : 'Âåðíóòü',
+link_desc : 'Âñòàâèòü/èçìåíèòü ññûëêó',
+unlink_desc : 'Óáðàòü ññûëêó',
+image_desc : 'Âñòàâèòü/èçìåíèòü èçîáðàæåíèå',
+cleanup_desc : 'Ïîä÷èñòèòü èçáûòî÷íûé êîä',
+focus_alert : 'Äëÿ èñïîëüçîâàíèÿ äàííîé êîìàíäû Âû äîëæíû íàõîäèòñÿ â ïîëå ðåäàêòîðà.',
+edit_confirm : 'Õîòèòå ëè Âû ðåäàêòèðîâàòü â âèçóàëüíîì (WYSIWYG) ðåæèìå?',
+insert_link_title : 'Âñòàâèòü/èçìåíèòü ññûëêó',
+insert : 'Âñòàâèòü',
+update : 'Ïðèìåíèòü',
+cancel : 'Îòìåíèòü',
+insert_link_url : 'Àäðåñ ññûëêè',
+insert_link_target : 'Îòêðûòü â...:',
+insert_link_target_same : 'òîì æå îêíå',
+insert_link_target_blank : 'íîâîì îêíå',
+insert_image_title : 'Âñòàâèòü/èçìåíèòü èçîáðàæåíèå',
+insert_image_src : 'Àäðåñ êàðòèíêè',
+insert_image_alt : 'Îïèñàíèå êàðòèíêè',
+help_desc : 'Ïîìîùü',
+bold_img : "bold_ru.gif",
+italic_img : "italic_ru.gif",
+underline_img : "underline_ru.gif",
+clipboard_msg : 'Êîïèðîâàòü/Âûðåçàòü/Âñòàâèòü íåäîñòóïíû äëÿ Mozilla è Firefox.\nÕîòèòå óçíàòü îá ýòîì ïîäðîáíåå?',
+popup_blocked : 'Èçâèíèòå, íî â Âàøåì áðàóçåðå çàáëîêèðîâàíû âñïëûâàþùèå îêíà. Äëÿ òîãî, ÷òîáû èìåòü âîçìîæíîñòü âîñïîëüçîâàòüñÿ âñåìè âîçìîæíîñòÿìè ðåäàêòîðà, íåîáõîäèìî îòêëþ÷èòü áëîêèðîâêó âñïëûâàþùèõ îêîí äëÿ ýòîãî ñàéòà.'
+});
