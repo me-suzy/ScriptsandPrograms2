@@ -1,0 +1,14 @@
+<html> <body> 
+ <?php 
+ include 'conection.php';
+$result = mysql_query('SELECT title, description FROM gs_news');
+while ( $row = mysql_fetch_array($result) ) { ?>
+<table border=1 width=50% bgcolor=\'red\'>
+<tr><td><?php echo $row['title']; ?></td></tr>
+
+<tr><td><?php echo $row['description']; ?></td></tr>
+
+<?php 
+ }
+?> 
+ </body></html>
