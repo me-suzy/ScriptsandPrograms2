@@ -1,0 +1,51 @@
+<h1>Daftar Teks Iklan Bahasa Indonesia</h1>
+
+<p>Tabel teks iklan dapat dilihat di bawah ini. Hanya Administrator yang dapat
+mengubah, menghapus, dan menambahkan teks iklan. Daftar Iklan ini berbeda tiap
+bahasa. Ubah bahasa pengantar dari bagian atas halaman ini. </p>
+<p>Untuk menampilkan iklan ini di halaman web, gunakan makro <b>{~advtext:kata_kunci}</b>.
+Anda dapat juga mereset hitungan hits dengan mengklik <a href="/phpmod/advtext.php?op=resethits">DISINI</a>.</p>
+
+<table border="1" width="80%" bordercolor="#CCCCCC" cellspacing="0" cellpadding="2" bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0">
+  <tr>
+    <td id="tbl_title">KATA KUNCI</td>
+    <td id="tbl_title">JUDUL</td>
+    <td id="tbl_title">HITS</td>
+    <td id="tbl_title">STATUS</td>
+    <td id="tbl_title">OPERASI</td>
+  </tr>
+  {fld_advtext_row}
+</table>
+
+<h2>Tambahkan Teks Iklan</h2>
+
+<p><font color="#FF0000"><b>{page_message}</b></font></p>
+<form method="POST" action="/phpmod/advtext.php">
+  <table border="0" cellspacing="0" cellpadding="4">
+    <tr>
+      <td valign="top">Kata Kunci</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_key" size="24" class="inputbox" value="{fld_key}"></td>
+    </tr>
+    <tr>
+      <td valign="top">Judul</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_title" size="48" class="inputbox" value="{fld_title}"></td>
+    </tr>
+    <tr>
+      <td valign="top">Isi</td>
+      <td valign="top">:</td>
+      <td>{fld_text_editor}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="submit" value="Tambahkan ke Daftar" class="button"> <input type="reset" value="Reset" class="button"></td>
+    </tr>
+  </table>
+
+	<input type='hidden' name='rnd' value='{rnd_number}' />
+	<input type='hidden' name='op' value='add' />
+  
+</form>
+<p>&nbsp;</p>
