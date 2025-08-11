@@ -1,0 +1,656 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  <title>INSTALACI&Oacute;N</title><meta name="author" content="Lorena Etcheverry">
+<style>
+<!--
+body {   margin: 0px; padding: 3em; font-family: arial, geneva, helvetica, sans-serif; color: #000; background-color: #E4E4D2;}
+code { margin-left: 3em; display: block; }
+/* Style Definitions */
+p.normal, li.normal, div.normal
+   {margin:0cm;
+   margin-bottom:.0001pt;
+   font-size:12.0pt;
+   font-family:"Times New Roman";}
+p.codigo
+   {margin:0cm;
+   margin-bottom:.0001pt;
+   font-size:10.0pt;
+   font-family:"Courier New";}
+h1
+   {margin-left:0cm;
+   font-size:24.0pt;
+   font-family:"Times New Roman";
+   mso-font-kerning:18.0pt;
+   font-weight:bold;}
+h2
+   {margin-left:0cm;
+   font-size:18.0pt;
+   font-family:"Times New Roman";
+   font-weight:bold;}
+h3
+   {margin-left:0cm;
+   mso-pagination:widow-orphan;
+   mso-outline-level:3;
+   font-size:13.5pt;
+   font-family:"Times New Roman";
+   font-weight:bold;}
+h4
+   {margin-right:0cm;
+   margin-left:0cm;
+   font-size:12.0pt;
+   font-family:"Times New Roman";
+   font-weight:bold;}
+h5
+   {margin-right:0cm;
+   margin-left:0cm;
+   font-size:10.0pt;
+   font-family:"Times New Roman";
+   font-weight:bold;}
+a:link, span.hyperlink
+   {color:blue;
+   text-decoration:underline;
+   text-underline:single;}
+a:visited, span.hyperlinkFollowed
+   {color:blue;
+   text-decoration:underline;
+   text-underline:single;}
+p
+   {margin-right:0cm;
+   margin-left:0cm;
+   font-size:12.0pt;
+   font-family:"Times New Roman"}
+pre
+   {margin:0cm;
+   margin-bottom:.0001pt;
+   tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+   font-size:10.0pt;
+   font-family:"Courier New";}
+div.Section1
+   {page:Section1;}
+ /* List Definitions */
+ol
+   {margin-bottom:0cm;}
+ul
+   {margin-bottom:0cm;}
+-->
+</style></head>
+
+<body style="" link="blue" lang="ES" vlink="blue">
+
+<div class="Section1">
+
+<h1>Back-End Sistema Administrador de Contenidos (CMS)</h1>
+
+<h2>Instrucciones de instalaci&oacute;n</h2>
+
+<p>Autor: Peter Bojanic &amp; Mike Gifford<br>
+&Uacute;ltima revisi&oacute;n: 2003-09-06</p>
+
+<p>Versi&oacute;n de Back-End: 0.5.4</p>
+
+<h3>INTRODUCCCI&Oacute;N</h3>
+
+<p class="normal">Back-End 0.5.4 es la tercera liberaci&oacute;n oficial de Back-End
+basado en phpSlash (phpSlash versi&oacute;n 0.7)<br></p>
+
+<p class="normal">Se buscan desarrolladores para continuar con el desarrollo
+de Back-End, un Sistema Administrador de Contenidos moderno y multi lenguaje.</p>
+
+<p class="normal">&nbsp;
+
+</p><div class="normal" style="text-align: center;" align="center">
+
+<hr align="center" size="2" width="100%">
+
+</div>
+
+
+<p><i>Si est&aacute; instalando el sistema Back-End por primera vez</i>, siga las
+instrucciones de <a href="#section_a">Instalaci&oacute;n por primera vez</a>.</p>
+
+<p><i>Si quiere migrar una instalaci&oacute;n existente de Back-End 0.5.2 </i>a la
+&uacute;ltima versi&oacute;n desarrollada, siga las instrucciones para <a href="#section_b">Migrar
+desde Back-End 0.5.2</a>.</p>
+
+<p><i>Si quiere actualizar desde una versi&oacute;n en desarrollo Back-End 0.5.x</i> a
+la &uacute;ltima versi&oacute;n bajo CVS, siga las instrucciones para <a href="#section_c">Actualizar
+Sistema de desarrollo</a>.</p>
+
+
+<div class="normal" style="text-align: center;" align="center">
+
+<hr align="center" size="2" width="100%">
+
+</div>
+
+
+<h3>REQUISITOS DE CONFIGURACI&Oacute;N</h3>
+
+<h4>PHP </h4>
+
+<p class="normal">Puede utilizarse PHP 4.1 o versiones posteriores, el cual
+puede configurarse como m&oacute;dulo o como CGI.</p>
+
+<p class="normal">La instalaci&oacute;n utilizando el CGI puede insumir m&aacute;s tiempo
+que si se utiliza el m&oacute;dulo. </p>
+
+<p class="normal">Es necesario que gpc_magic_quotes est&eacute; DESACTIVADO y
+register_globals deber&iacute;a poder trabajar con &eacute;l desactivado.</p>
+
+<h4>PHP Magic Quotes</h4>
+
+<p class="normal">Aseg&uacute;rese de que magic_quotes y magic_quote_gpc est&eacute;n
+desactivados (OFF) en el archivo /etc/php.ini. Magic_quotes_gpc procesa los
+datos que llegan en modo GET, POST o COOKIE y prefija las comillas simples (')
+y las contrabarras con una contrabarra (\'), lo que hace que sus email se vean
+mal. Por esto se aconseja desactivarlo</p>
+
+<h4>Servidor WEB</h4>
+
+<p class="normal">Utilice un servidor Web moderno (Apache 1.3.x or Apache 2.x
+(ver notas))o incluso Microsoft IIS. Es &uacute;til (aunque no esencial) tener acceso
+del tipo .htaccess.<br></p>
+
+<h4>Mysql</h4>
+
+<p class="normal">Puede utilizarse MySQL 3.23 o posterior (A&uacute;n no ha sido
+probado sobre MySQL 4.x)</p>
+
+<h3>A. INSTALACI&Oacute;N R&Aacute;PIDA</h3>
+
+<p class="normal">1. Descomprima el archivo Back-End0.5.x.tar.gz en su
+directorio web.<br>
+<br>
+Es fundamental que los archivos de la carpeta public_html est&eacute;n en una
+ubicaci&oacute;n p&uacute;blica dentro del servidor web. Por un tema de seguridad es
+importante que el directorio de clases no se encuentre en una ubicaci&oacute;n p&uacute;blica
+para que las clases no sean visibles a los visitantes.<br>
+<br>
+2. Setear los permisos de escritura sobre el archivo config.ini.php, desde el
+servidor escribir: </p><br>
+
+<p class="codigo"><span>cd public_html<br>
+chmod 777 config.ini.php</span></p>
+<br>
+<p class="normal">3. Navegar hasta el directorio donde se instalaron los
+archivos public_html y seguir las pantallas de configuraci&oacute;n para configurar
+Back-End ( esto asume que se ha configurado una base en MySql o que se tienen
+los permisos necesarios para crear una base nueva.)<br>
+<br>
+4. Por seguridad borre el archivo config_setup.php file y restaure los permisos
+de escritura sobre el archivo config.ini.php :</p><br>
+<p class="codigo"><span>rmconfig_setup.php<br>
+chmod 644 config.ini.php</span></p>
+<br>
+
+5. Siga las <a href="#Complete_Install">instrucciones de logueo</a>.<p></p>
+
+<h3><a name="section_a"></a>B. INSTALACI&Oacute;N POR PRIMERA VEZ</h3>
+
+<p class="normal">Estas instrucciones lo guiar&aacute;n en el proceso de instalaci&oacute;n
+de Back-End. Si ud. es un desarrollador o un verificador y quiere que su
+sistema se encuentre sincronizado con la &uacute;ltima versi&oacute;n en desarrollo, siga las
+instrucciones para Actualizar Sistema de Desarrollo. Si ud. es un usuario y
+desea actualizar su sistema a la &uacute;ltima versi&oacute;n en desarrollo sin perder
+informaci&oacute;n, siga las instrucciones para Actualizar Sistema en Producci&oacute;n. </p>
+
+<h4>1. Extraiga el archivo Tarball o Zip</h4>
+
+<p class="normal">Descomprima los archivos Back-End0.5.x.tar.gz a su
+directorio web.<br></p>
+
+<p class="normal">Es imprescindible que los archivos de la carpeta public_html
+est&eacute;n en una ubicaci&oacute;n p&uacute;blica dentro del servidor web.</p>
+
+<p class="normal">No es necesario que los dem&aacute;s archivos est&eacute;n en ubicaciones
+p&uacute;blicas, es incluso m&aacute;s conveniente que est&eacute;n en una ubicaci&oacute;n no visible
+desde la WEB.</p>
+
+<p class="normal">Estas instrucciones asumen el valor por defecto de Red Hat de
+/var/www y que Back-End ha sido instalado en este directorio /var/www/back-end0.5.x<br></p>
+
+<h4>2. Configuraci&oacute;n en Apache /back-end directory en Apache</h4>
+
+<p class="normal">Eleg&iacute; esconder el directorio public_html, pese a que esto es contrario al escenario de instalaci&oacute;n est&aacute;ndar
+de phpSlash, el cual es heredado por Back-End, pero no considero conveniente
+que los usuarios puedan ver el nodo public_html en la ruta.<br></p>
+
+<p class="normal">Por defecto Apache 2.0 (no sucede en Apache 1.3) intenta
+resolver la parte extra de la ruta, lo cual puede ser un problema si su script
+CGI utiliza la informaci&oacute;n extra de la ruta.</p>
+
+<p class="normal">En dicho caso es necesario forzar el pasaje de la parte
+extra de la ruta al script:<br></p>
+<br>
+<pre>http://httpd.apache.org/docs-2.0/mod/core.html#acceptpathinfo</pre>
+<br>
+<p class="normal">Un ejemplo de configuraci&oacute;n sobre Apache 2:<br>
+<br>
+
+</p><pre>&lt;VirtualHost *&gt; <br></pre>
+<pre><span>&nbsp; </span>ServerName back-end.org<br></pre>
+<pre><span>&nbsp; </span>ServerAlias www.back-end.org</pre>
+<pre>&nbsp; DocumentRoot /var/www/back-end0.5.x/public_html</pre>
+<pre>&nbsp; ErrorDocument 404 /errordocument.php</pre>
+<pre><span>&nbsp; </span>ServerAdmin webguy@back-end.org</pre>
+<pre><span>&nbsp; </span>DirectoryIndex index.php index.php3 index.html index.htm index.shtml</pre>
+<pre><span>&nbsp; </span>LogLevel debug</pre>
+<pre><span>&nbsp; </span>HostNameLookups off</pre>
+<pre>&nbsp;</pre>
+<pre> &lt;Directory /var/www/back-end0.5.x/public_html&gt;</pre>
+<pre><span>&nbsp; order allow,deny<o:p></o:p></span></pre>
+<pre><span>&nbsp; allow from all<o:p></o:p></span></pre>
+<pre>&nbsp; AcceptPathInfo on</pre>
+<pre><span>&nbsp; </span># Descomente para habilitar permisos de .htaccess </pre>
+<pre><span><span>&nbsp;&nbsp;</span># AllowOverride FileInfo AuthConfig Limit Options<o:p></o:p></span></pre>
+<pre><span>&nbsp; </span># esta directiva es necesaria para que Apache 2.0 pase</pre>
+<pre><span>&nbsp; </span># la informaci&oacute;n adicional de la ruta, luego del nombre del script, al PHP</pre>
+<pre><span>&nbsp; </span># (ej. http://localhost/back-end/BE_article.php3/1/2)</pre>
+<pre><span>&nbsp; </span># antes, la parte '/1/2'de la URI era accesible al </pre>
+<pre><span>&nbsp;&nbsp;</span># script PHP por defecto, pero Apache 2.0 intenta resolver</pre>
+<pre><span>&nbsp; </span># a una ruta "literal" por defecto</pre>
+<pre><span><span>&nbsp; </span>AcceptPathInfo on<o:p></o:p></span></pre>
+<pre><span> &lt;/Directory&gt;<o:p></o:p></span></pre>
+<pre>&lt;/VirtualHost&gt;<br>&nbsp;</pre>
+
+<p class="normal">En caso de no tener permiso de escritura sobre el archivo
+httpd.conf y obtener un error 500 Server Error para cualquier script php que
+este seguido por una barra (ej test.php/) hay una soluci&oacute;n implementada en en
+el archivo BE_config.php que consiste en insertar un ? entre el script y la / <br></p>
+
+<h4>3.Configurar la base de datos<o:p></o:p></h4>
+
+<h5>3a. Crear la base de datos<br></h5>
+
+<p class="normal">Esto se puede realizar utilizando phpmyadmin, pero me resulta mas sencillo realizarlo desde la l&iacute;nea
+de comandos.</p>
+<pre><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mysqladmin -u root -h host.domain.ca</pre>
+<pre><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>create be7</pre>
+
+<h5>3b. Cargar la base de datos</h5>
+
+<p class="normal">Cargar las tablas core y los valores</p>
+
+<pre>&nbsp;</pre>
+<pre><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>cd /var/www/back-end0.5.x/tables</pre>
+
+<p class="normal"><br>
+<span>Transfiera el archivo SQL completo:</span></p><br>
+
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysql -u root &#8211;h</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>host.domain.ca be7 &lt; slash_core.sql</span></pre>
+<br>
+<p class="normal">o los componentes SQL individuales</p><br>
+
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mysql -u root -h</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>host.domain.ca be7 &lt; slash_core.sql</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mysql -u root -h</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>host.domain.ca be7 &lt; BE_core.sql</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>mysql -u root -h</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>host.domain.ca be7 &lt; extra_modules.sql</span></pre>
+<br>
+
+<p class="normal"><span>Incluir soporte para acciones</span></p><br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysql-u root -h</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>host.domain.ca be7 &lt; BE_actions/add_action_tables.sql</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysql-u root -h</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>host.domain.ca be7 &lt; BE_actions/populate_action_values.sql</span></pre>
+<br>
+
+<h5><span>3c.Crear una cuenta de base de datos<o:p></o:p></span></h5>
+
+<p class="normal"><span>Se puede evitar este paso especificando la cuenta root para el acceso a MySQL, aunque
+no se recomienda. En lugar de esto se deber&iacute;a crear y configurar una cuenta
+para la aplicaci&oacute;n. <o:p></o:p></span></p>
+
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysql -u root -h host.domain.ca mysql -e "INSERT INTO mysql.user SET Host = 'host.domain.ca', \</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>User = 'user', PASSWORD = PASSWORD( '**********' ) , Select_priv = 'N', Insert_priv = 'N', \</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Update_priv = 'N', Delete_priv = 'N', Create_priv = 'N', Drop_priv = 'N', Reload_priv = 'N', \</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Shutdown_priv = 'N', Process_priv ='N', File_priv = 'N', Grant_priv = 'N', References_priv = 'N', \</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Index_priv = 'N', Alter_priv = 'N'"</span></pre>
+<br>
+
+<p class="normal">Luego actualice la base para que el usuario sea reconocido y as&iacute;gnele permisos </p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysqladmin -u root -h host.domain.ca reload</span></pre>
+<br>
+<h5>3d. Permisos</h5>
+
+<p class="normal">Debemos dar permisos al usuario creado (en este caso <b>user</b>).&nbsp; </p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysql -u root -h host.domain.ca mysql -e "GRANT SELECT, INSERT, UPDATE, DELETE ON \</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>\`be5\`.* TO\`user\`@\`host.domain.ca\`"</span></pre>
+<br>
+
+<p class="normal">Puede ser necesario darle permisos de acceso a localhost, dependiendo de como est&eacute;
+configurado MySQL :</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysql -u root -h host.domain.ca mysql -e "GRANT SELECT, INSERT, UPDATE, DELETE ON \</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>\`be5\`.* TO\`user\`@\`localhost\`"</span></pre>
+<br>
+
+
+<p class="normal">Y puede querer setear la contrase&ntilde;a mediante la clausula IDENTIFIED BY 'password'
+Finalmente actualice la base para que los permisos tengan efecto.</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysqladmin -u root -h host.domain.ca reload</span></pre>
+<br>
+
+
+<h4>4. Configure el sistema</h4>
+
+<p class="normal">Nota para Back-End 0.5.3</p>
+
+<p class="normal">El sistema de configuraci&oacute;n ha cambiado en gran medida.El archivo prepend.php no
+se utiliza m&aacute;s y la mayor&iacute;a de los seteos se encuentran en un archivo INI llamado config.ini.php</p>
+
+<h5 =""><a name="configure_phpslash"></a>4a.Configuraci&oacute;n de phpSlash&nbsp;(public_html/config.ini.php)</h5>
+
+<p class="normal">Para mas informaci&oacute;n lea la descripci&oacute;n en el archivo de configuraci&oacute;n por defecto de
+phpSlash config-dist.ini.php. Observese que se utiliza ';' para marcar comentarios.</p>
+
+<p class="normal">Edite el archivo por defecto config.ini.php</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>gvim /var/www/back-end0.5.x/public_html/config.ini.php</span></pre>
+<br>
+
+<p class="normal">Setee <i>$basedir</i> a la ubicaci&oacute;n del directorio public_html</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>basedir = "/var/www/back-end0.5.x/public_html"</span></pre>
+<br>
+
+<p class="normal">Setee <i>$classpath</i> a la ubicaci&oacute;n del directorio de clases</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>classdir = "/var/www/back-end0.5.x/class"</span></pre>
+<br>
+
+<p class="normal">Setee <i>$rooturl</i> al lugar donde debe apuntar el navegador para devolver las p&aacute;ginas de Back-End</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>rooturl = "/back-end0.5.3/public_html"</span></pre>
+<br>
+
+<p class="normal">o puede haberse configurado el servidor web por lo tanto</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>rooturl = "/back-end0.5.3"</span></pre>
+<br>
+
+
+<p class="normal">NOTA:&nbsp;no especifique una URL completa (ej. http://host.domain.ca/back-end0.5.3),
+porque esto hace que lossubsitios funcionene incorrectamente </p>
+
+
+<p class="normal">Setee la configuraci&oacute;n de la base de datos</p>
+
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;; Variables de la base de datos</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>DB_Host&nbsp;&nbsp;&nbsp;&nbsp; = "localhost" ; or "host.domain.ca" o lo que corresponda</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>DB_Database = "be54"</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>DB_User&nbsp;&nbsp;&nbsp;&nbsp; = "user"</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>DB_Password = "password"</span></pre>
+<br>
+<p class="normal">Setee la ruta hacia los archivos phplib (observe la / al final de la ruta)</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>phplibdir = "/var/www/back-end0.5.x/phplib/php/"</span></pre>
+
+<p class="normal">Setee las extensiones de Back-End para soporte de sitios</p>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>rootdomain= "domain.ca"&nbsp;; *** DEPENDIENTE DEL LENGUAJE *** Los seteos de be_domainInit() sobreescriben estos</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>rootsubdomain&nbsp; ="www."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; NB Include trailing '.' if needed (eg 'www.')</span></pre>
+<br>
+
+<p class="normal"><i>**** Nota: el dominio raiz "localhost" no se
+logear&aacute; en algunos sistemas.
+Si est&aacute; realizando una instalaci&oacute;n en su puesto de
+trabajo con fines de testeo
+deber&aacute; modificar el archivo /etc/hosts para que be.org apunte a
+127.0.0.1. Tambi&eacute;n deber&iacute;a ajustar la
+configuraci&oacute;n de Apache para que acepte su nombre de dominio.
+Para una instalaci&oacute;n en ambiente Windows existe un equivalente
+al archivo de
+configuraci&oacute;n de hosts en c:/windows ****</i></p>
+
+<p class="normal">Setee la extensi&oacute;n de Back-End para el mecanismo de autorizaci&oacute;n</p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>auth_type = 1 ; 1: MySQL (no se especifica valor por defecto) 2: LDAP</span></pre>
+<br>
+<p class="normal">Descomente la extension de Back-End para LDAP si auth_type se seteo en 2</p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;LDAP_Host&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "localhost" </span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;LDAP_Port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ="389"&nbsp; ; default LDAP port #389</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;LDAP_Base_dn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ="dc=localhost,dc=back-end,dc=org" </span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;LDAP_Search_detail= "cn" </span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;LDAP_BE_uid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "uid"&nbsp;; name of uid in the ldap that coresponds to BE uid</span></pre>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;; user and password for updating LDAP directory </span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;LDAP_edit_user&nbsp;&nbsp;&nbsp;&nbsp; = ""</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;LDAP_edit_user_pass= "secret"</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;LDAP_edit_user_dn&nbsp; = "cn=Manager,dc=waiter,dc=thepinecone,dc=com"</span></pre>
+<br>
+
+
+<h5><a name="configure_back-end"></a>4b.Configuraci&oacute;n de Back-End(public_html/BE_config.php)</h5>
+
+<p class="normal">En muchos casos los seteos por defecto son suficientes, pero
+puede decidir habilitar o deshabilitar alguno de los m&oacute;dulos opcionales.</p>
+
+<p class="normal">Edite el archivo de configuraci&oacute;n por defecto <i>BE_config.php</i></p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>gvim /var/www/back-end0.5.x/public_html/BE_config.php</span></pre>
+
+<p class="normal">Configure los items del lenguaje del dominio</p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>$_BE['languagedomains'] = array ('bojanic.ca'=&gt; 'en','bojanic-french.ca' =&gt; 'fr');</span></pre>
+
+<h5>4c.Revisando la configuraci&oacute;n</h5>
+
+<p class="normal">A esta altura deber&iacute;a poder ver el sitio de demostraci&oacute;n y
+poder logearse (usuario: admin., contrase&ntilde;a: password). Pueden crearse usuarios
+nuevos, editar, agregar y borrar contenidos del sitio y explorar los m&oacute;dulos
+acoplados a Back-End. </p>
+
+<p class="normal">Si encuentra alg&uacute;n problema vea el archivo test.php a trav&eacute;s
+de su navegador y revise los valores de:</p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>* php version</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>* php include_path</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>* php auto_prepend</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>* gpc_magic_quotes</span></pre>
+<br>
+<p class="normal">Cualquier error potencial deber&iacute;a aparecer en color rojo.</p>
+<br>
+<h4>5.Chequeo de permisos sobre el directorio de transferencia (Opcional)</h4>
+
+<p class="normal">Back-End utiliza el directorio <i>public_html/updir </i>para varias funciones, incluyendo la
+transferencia (upload) de archivos, el despliegue de archivos PDF y la galer&iacute;a
+de im&aacute;genes. Si los directorios no fueron creados autom&aacute;ticamente por medio de
+un checkout de CVS o al descomprimir un archivo de tipo tarball debe crearlos en forma manual.</p>
+
+<p class="normal">El siguiente ejemplo es para un sistema sobre Red Hat 8.0 con httpd
+corriendo bajo el usuario 'apache'.</p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cd /var/www/back-end0.5.x/public_html</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chown apache.apache updir</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chmod 700 updir</span></pre>
+<br>
+<p class="normal">Los archivos PDF necesitan un &aacute;rea de cach&eacute; para hacer posible la visualizaci&oacute;n con Internet Explorer </p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chown apache.apache updir/dynamicPDFcache</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chmod 700 updir/dynamicPDFcache</span></pre>
+<br>
+<p class="normal">Las galerias de imagenes necesitan un &aacute;rea de cach&eacute; para acelerar el procesamiento. </p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chown apache.apache updir/images</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chown apache.apache updir/images/tn</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chmod 700 updir/images</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chmod 700 updir/images/tn</span></pre>
+
+<h4><a name="configure_advanced_search"></a>6. Configurac&iacute;on de B&uacute;squeda Avanzada (Opcional)</h4>
+
+<p class="normal">La funci&oacute;n de b&uacute;squeda avanzada utiliza htdig para crear una base de b&uacute;squeda y
+htsearch para satisfacer los pedidos de b&uacute;squeda. Puede obtenerse informaci&oacute;n acerca de la configuraci&oacute;n de
+ los mismos en contrib/CUPE/htdig/README.</p>
+
+<h4><a name="configure_ldap"></a>7.Configuraci&oacute;n de LDAP (Opcional)</h4>
+
+<p class="normal">El esquema de autenticaci&oacute;n LDAP de Back-End soporta OpenLDAP. Puede obtenerse
+documentaci&oacute;n detallada acerca de su configuraci&oacute;n en <a href=".">contrib/CUPE/ldap/README</a>
+<a name="Complete_Install"></a></p>
+
+<h4>8.Completar la Instalaci&oacute;n</h4>
+
+<p class="normal">En este punto deber&iacute;a poder navegar el CMS una vez logueado en: <i> public_html/login.php</i></p>
+<p class="normal">El login por defecto es: <b>Usuario:</b> root, <b>Contrase&ntilde;a:</b> back-end</p>
+<p class="normal">En la barra de navegaci&oacute;n (la barra azul debajo de los
+iconos de temas que contiene v&iacute;nculos de texto) haga clic sobre &#8216;Authors&#8217;.
+Cambie la contrase&ntilde;a para el usuario <span style="font-style: italic;">root</span><i> </i>y haga clic en update
+(actualizar). </p>
+<br>
+<p class="normal">Nota: No borre a&uacute;n la cuenta root, antes util&iacute;cela para crear
+una cuenta personal con todos los permisos de seguridad. Luego, publique un
+art&iacute;culo en el sitio.</p>
+<p class="normal">Puede navegar a trav&eacute;s de la interface de administraci&oacute;n o
+de la p&aacute;gina web p&uacute;blica. </p>
+<p class="normal">Mediante la edici&oacute;n inline es posible editar, borrar o
+insertar paginas a medida que se navega.</p>
+
+<h4>9. Instalaci&oacute;n de M&oacute;dulos Adicionales</h4>
+
+<p class="normal"><b>phpESP</b><br>
+Ha sido probado con phpESP 1.6.1. Lea el archivo INSTALL de phpESP.</p>
+
+<p class="normal"><br>
+Copie los contenidos de phpESP a /phpESP/<br>
+Modifique el archivo public_html/phpESP/admin/phpESP.ini.php.</p>
+
+<p class="normal">Borre los contenidos de mysql_create.sql &amp;
+mysql_populate.sql del directorio public_html/phpESP/scripts/db/</p>
+
+<p class="normal">Aseg&uacute;rese de que la informaci&oacute;n acerca del nombre de
+servidor (ServerName) del host virtual sea correcta y log&eacute;ese en
+public_html/phpESP/admin/ con el usuario por defecto (usuario: root, password:
+esp). Por &uacute;ltimo cree una nueva plantilla por medio de esta interface</p>
+
+
+<h4>10. Notas sobre Seguridad</h4>
+
+<p class="normal">Back-End posee algunos m&oacute;dulos que permiten que php escriba
+archivos directamente al servidor.&nbsp; <br></p>
+
+<p class="normal">&nbsp;&nbsp;&nbsp; - instalaci&oacute;n por defecto de jpcache<br>
+&nbsp;&nbsp;&nbsp; - M&oacute;dulo de Bibliograf&iacute;a<br>
+&nbsp;&nbsp;&nbsp; - M&oacute;dulo Galer&iacute;a<br>
+&nbsp;&nbsp;&nbsp; - M&oacute;dulo BE_Upload<br>
+&nbsp;&nbsp;&nbsp; - M&oacute;dulo de edici&oacute;n de Plantillas<br>
+&nbsp;&nbsp;&nbsp; - PDF ViewWe ha limitado los tipos de archivos<br>
+</p>
+
+<p class="normal">Se ha restringido la transferencia de archivos dentro de
+Back-End de modo que s&oacute;lo algunos tipos de archivos puedan ser transferidos y
+s&oacute;lo las plantillas puedan ser editadas. Sin embargo, si este aspecto le parece
+cr&iacute;tico, puede deshabilitar estos m&oacute;dulos.</p>
+
+<p class="normal">Por mas informaci&oacute;n acerca de aspectos de seguridad revise:<a href="http://ca3.php.net/manual/en/features.file-upload.php"></a></p>
+
+<p class="normal">&nbsp;&nbsp;&nbsp; <a href="http://ca3.php.net/manual/en/security.filesystem.php">
+http://ca3.php.net/manual/en/security.filesystem.php</a></p>
+
+<p class="normal">Cuando su sistema este configurado y funcionando pueden
+borrarse los siguientes archivos:</p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>public_html/test.php</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>public_html/config_setup.ini.php</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>public_html/config_setup.php</span></pre>
+<br>
+<p class="normal">Una vez instalado el sistema deber&iacute;an asegurarse los permisos de escritura sobre el directorio p&uacute;blico:</p>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>chmod 644 public_html/*</span></pre>
+<br>
+<h4>11. Troubleshooting y FAQs</h4>
+
+<p class="normal">[En desarrollo]</p>
+
+<p class="normal">Si tiene problemas contacte a los desarrolladores a trav&eacute;s del foro se soporte en</p>
+
+<p class="normal"><a href="http://sourceforge.net/forum/?group_id=6763">http://sourceforge.net/forum/?group_id=6763</a><br></p>
+
+<p class="normal">o de la lista de distribuci&oacute;n <a href="http://sourceforge.net/mail/?group_id=6763">http://sourceforge.net/mail/?group_id=6763</a></p>
+
+<hr align="center" size="2" width="100%">
+
+<h3><a name="section_b"></a>C.Migrar desde Back-End 0.5.x</h3>
+
+<ol>
+ <li>Respalde la base de datos y copie los archivos a otro
+     directorio.</li>
+ <li>Instale el c&oacute;digo nuevo desde el tarball</li>
+ <li>Configure el sistema (como en la Secci&oacute;n A)</li>
+ <ol type="a">
+  <li><b>Configure phpSlash (public_html/config.ini.php)</b></li>
+
+<p class="normal">Revise las notas de configuraci&oacute;n en la secci&oacute;n <a href="#configure_phpslash">A4a:</a><a href="#configure_phpslash">Configuraci&oacute;n de phpSlash</a>
+ y edite los valores en : public_html/config.ini.php para ajustarlos a su sitio</p>
+
+<p class="normal">(la explicaci&oacute;n completa acerca
+de los valores comentados en el original se encuentra en el archivo <a href="." target="_top">config-dist.ini.php</a></p>
+
+  <li><b>Configure Back-End (public_html/BE_config.php)</b></li>
+<p class="normal">Revise las notas de configuraci&oacute;n en la secci&oacute;n<a href="#configure_back-end">A4b:</a>
+<a href="#configure_back-end"> Configuraci&oacute;n de Back-End</a> y edite los valores en
+public_html/BE_config.php para ajustarlos a su sitio.</p>
+<br>
+</ol>
+<li>Actualice la base de datos mediante el script  tables/Upgrade52_to_53.sql</li>
+<br>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>cd /var/www/back-end0.5.x/tables</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>mysql -u root -h host.domain.ca</span></pre>
+<pre><span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>be7 &lt; Upgrade52_to_53.sql</span></pre>
+<br>
+
+ <li>Configure otras funcionalidades</li>
+<p class="normal">Para configurar el soporte de B&uacute;squedas Avanzadas, revise la secci&oacute;n <a href="#configure_advanced_search">A6:</a>
+<a href="#configure_advanced_search">Configuraci&oacute;n de B&uacute;squeda Avanzada</a>.</p>
+<p class="normal">Para configurar el soporte de Autenticaci&oacute;n via LDAP, revise la secci&oacute;n <a href="#configure_ldap">A7:</a>
+<a href="#configure_ldap">Configuraci&oacute;n de LDAP&gt;</a></p>
+<br>
+ <li>Configuraci&oacute;n del bloque de administraci&oacute;n.</li>
+<p class="normal">Las tareas de administraci&oacute;n se muestran en un bloque aparte. La instalaci&oacute;n ha configurado el bloque, pero es
+necesario hacerlo visible en las pantallas apropiadas</p>
+<br>
+ <ol type="a">
+  <li><b>Agregar una secci&oacute;n de administraci&oacute;n oculta</b> </li>
+  <p class="normal">Logueese en su sitio como root. Como las funcionalidades de
+administraci&oacute;n han sido migradas desde la Barra de Navegaci&oacute;n NO ver&aacute; el
+v&iacute;nculo a la Secci&oacute;n administraci&oacute;n.</p>
+<p class="normal">Navegue en forma manual hasta la p&aacute;gina de administraci&oacute;n de
+secciones</p>
+<pre><a href="http://www.domain.ca/back-end/admin/BE_sectionAdmin.php">http://www.domain.ca/back-end/admin/BE_sectionAdmin.php</a></pre>
+<p lass="normal">Cree una nueva secci&oacute;n con URLname admin. y agr&eacute;guele un titulo</p>
+ <li><b>Edici&oacute;n del bloque de tareas</b></li>
+ <p class="normal">Navegue en forma manual hasta la p&aacute;gina de administraci&oacute;n de bloques </p><pre><a href="http://www.domain.ca/back-end/admin/blockAdmin.php">http://www.domain.ca/back-end/admin/blockAdmin.php</a></pre><p></p>
+<p class="normal"> Seleccione para editar el bloque Tasks (tareas) y copie el siguiente texto en los campos</p><br>
+<pre>menu_ary=menuadmin&amp;tpl=navbarBlockh</pre>
+<br>
+<p class="normal">Cambie la opci&oacute;n de columna de 'right'a'center'.</p>
+</ol>
+
+<hr align="center" size="2" width="100%">
+
+
+
+<h3><a name="section_c"></a>D.Actualizar sistema de Desarrollo</h3>
+
+<p class="normal">1.Instale el nuevo c&oacute;digo</p>
+
+<p class="normal">2. Actualice la base de datos, editando el script <i>tables/Upgrade52_to_53.sql</i><br>
+</p>
+
+<pre>cd /var/www/back-end0.5.x/tables<br>
+gvim Upgrade52_to_53.sql</pre>
+
+<p class="normal">Busque los segmentos de c&oacute;digo de
+migraci&oacute;n de la base que fueron agregados desde la &uacute;ltima
+vez que migr&oacute; la base de datos <br>
+</p><pre># 28Feb03<br>
+# Adding Wiki text editing by storing source <br>
+#  <br>
+ALTER TABLE `be_articleText` ADD `content_source` TEXT NOT NULL AFTER content,</pre>
+<br>
+<p class="normal">Puede copiarse el texto y pegarlo en una herramienta de
+administraci&oacute;n basada en web, por ejemplo phpMyAdmin, o puede escribir los trozos de c&oacute;digo a un
+archivo temporal y ejecutarlo desde la l&iacute;nea de comandos.</p>
+<br>
+<pre>mysql -u root -h host.domain.ca</pre>
+<pre>be7 &lt; temp_upgrade_snippets.sql</pre></ol></div>
+<br>
+</body></html>
