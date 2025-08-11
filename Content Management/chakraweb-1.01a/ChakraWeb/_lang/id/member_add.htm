@@ -1,0 +1,88 @@
+
+<h1>Tambahkan Anggota</h1>
+
+<p><font color="#FF0000">{fld_message}</font></p>
+
+<form method="POST" action="/phpmod/member_add.php">
+  <table border="0" cellpadding="0">
+    <tr>
+      <td valign="top">Nama Anggota</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_name" size="20" value="{fld_name}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Nama Lengkap</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_fullname" size="48" value="{fld_fullname}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Email</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_email" size="48" value="{fld_email}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Negara</td>
+      <td valign="top">:</td>
+      <td valign="top">{fld_country_select}</td>
+    </tr>
+    <tr>
+      <td valign="top">Password</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="password" name="fld_password" size="20" class="inputbox">
+        <input type="password" name="fld_password2" size="20" class="inputbox">
+        (Ketikkan password dua kali)</td>
+    </tr>
+    <tr>
+      <td valign="top" colspan="3" align="left"><b>Isi data di bawah ini jika anda
+        penambahan anggota ini sekaligus ada pemberitahuan melalui email.</b></td>
+    </tr>
+    <tr>
+      <td valign="top">Kirim Email</td>
+      <td valign="top">:</td>
+      <td valign="top">{chk_send_email} Ya</td>
+    </tr>
+    <tr>
+      <td valign="top">Email Dari</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_from" size="48" value="{fld_from}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Subyek</td>
+      <td valign="top">:</td>
+      <td valign="top"><input type="text" name="fld_subject" size="48" value="{fld_subject}" class="inputbox"></td>
+    </tr>
+    <tr>
+      <td valign="top">Isi Surat</td>
+      <td valign="top">:</td>
+      <td valign="top">{fld_content_editor}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="submit" value="Kirim Sekarang" class="button"> <input type="submit" value="Test Output" name="test" class="button"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="checkbox" name="fld_saveas_template" value="1"> Simpan
+        isi surat ini sebagai template untuk surat penambahan anggota berikutnya.</td>
+    </tr>
+  </table>
+
+<input type='hidden' name='rnd' value='{rnd_number}' />
+<input type='hidden' name='op' value='add' />
+
+
+</form>
+<p><b><i>Catatan:&nbsp; </i></b></p>
+
+<ul>
+  <li>Makro yang dapat anda gunakan pada isi surat {~hp_name}, {~hp_url}, {~hp_slogan},
+    {~member_name}, {~member_fullname}, {~member_email}, {~member_password}</li>
+  <li>Klik <b>&quot;Test Output&quot;</b> untuk melihat isi email yang anda
+    kirimkan di bagian bawah halaman ini.</li>
+</ul>
+
+<p>
+
+{fld_output_test}</p>
