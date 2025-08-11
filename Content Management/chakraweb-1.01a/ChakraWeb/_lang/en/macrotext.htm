@@ -1,0 +1,50 @@
+<h1>List of Macro Text in English</h1>
+
+<p>The list of macro text can be seen on the table below. Only
+administrator can edit, delete, or add the list. This list is different between
+languages. Change the language by selecting language combobox on the top of this
+page. </p>
+<p>To show the macro text on your webpages, use macro <b>{~macro:keyword}</b>.</p>
+
+<table border="1" width="80%" bordercolor="#CCCCCC" cellspacing="0" cellpadding="2" bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0">
+  <tr>
+    <td id="tbl_title">KEYWORD</td>
+    <td id="tbl_title">TITLE</td>
+    <td id="tbl_title">STATUS</td>
+    <td id="tbl_title">OPERATION</td>
+  </tr>
+  {fld_macro_row}
+</table>
+
+<h2>Add Macro Text</h2>
+
+<p><font color="#FF0000"><b>{page_message}</b></font></p>
+<form method="POST" action="/phpmod/macro.php">
+  <table border="0" cellspacing="0" cellpadding="4">
+    <tr>
+      <td valign="top">Keyword</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_key" size="24" class="inputbox" value="{fld_key}"></td>
+    </tr>
+    <tr>
+      <td valign="top">Title</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_title" size="48" class="inputbox" value="{fld_title}"></td>
+    </tr>
+    <tr>
+      <td valign="top">Content</td>
+      <td valign="top">:</td>
+      <td>{fld_content_editor}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="submit" value="Tambahkan" class="button"> <input type="reset" value="Reset" class="button"></td>
+    </tr>
+  </table>
+
+	<input type='hidden' name='rnd' value='{rnd_number}' />
+	<input type='hidden' name='op' value='add' />
+  
+</form>
+<p>&nbsp;</p>
