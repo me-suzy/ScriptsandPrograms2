@@ -1,0 +1,96 @@
+<fieldset><legend>Áëîêè :</legend>
+<?
+$block_sub = new Block_sub($config->params,$HTTP_POST_FILES,$_GET["block_id"],$_POST?$_POST:$_GET);
+$blocks = $block_sub->get_blocks_sub($_GET["block_id"],"admin");
+$count = sizeof($blocks);
+if($count>0)
+foreach ($blocks as $item){
+
+?>
+	
+<TABLE class="block" border="1"><tr><td valign="top">
+<form enctype="multipart/form-data" action="" method="post">
+<input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+<TABLE>
+<tr>
+<td>
+</td>
+<td width="400">
+<INPUT type="text" name="block_title" value="<?=$item["title"]?>" size="60">
+<TEXTAREA cols="60" rows="5" name="block_text"><?=Misc::_br2nl($item["text"])?></TEXTAREA>
+<TEXTAREA cols="60" rows="10" name="block_text_detail"><?=Misc::_br2nl($item["text_detail"])?></TEXTAREA>
+</td>
+</tr>
+</table>
+
+Ïîçèöèÿ áëîêà:
+<SELECT name="block_position">
+	<?for($i=1;$i<$count+2;$i++){?>
+	<option value="<?=$i?>" <?if($i==$item["block_position"])echo "selected";?>><?=$i?></OPTION>
+	<?}?>
+</SELECT>
+&nbsp;&nbsp;&nbsp;
+Ïîêàçûâàòü áëîê:<INPUT type="checkbox" name="block_visible" <?if($item["visible"]=="on")echo "checked";?>>
+&nbsp;&nbsp;&nbsp;
+Óäàëèòü áëîê:<input type="checkbox" name="delete_block">
+</td>
+
+<td valign="top">
+
+<TABLE border="1">
+
+<tr>
+<td>Ðèñóíîê áëîêà:<BR><BR>
+óäàëèòü<input type="checkbox" name="img_delete" >
+</td>
+<td>
+<img src="../rwx/<?=$item["img"]?>"><BR>
+
+<INPUT name="img_file" size="30" type="file" ></td>
+</tr>
+
+<tr>
+<td>Ðèñóíîê popup:<BR><BR>
+óäàëèòü<input type="checkbox" name="img_popup_delete" >
+</td>
+<td>
+<img src="../rwx/<?=$item["img_popup"]?>"><BR>
+
+<INPUT name="img_file_popup" size="30" type="file" ></td>
+</tr>
+
+<tr>
+<td>ïîçèöèÿ ðèñóíêà:</td>
+<td>
+<SELECT name="block_image_position">
+<option value="right" <?if($item["img_position"]=="right")echo "selected";?>>ñïðàâà</OPTION>
+<option value="left" <?if($item["img_position"]=="left")echo "selected";?>>ñëåâà</OPTION> 
+</SELECT></td>
+</tr>
+
+<tr>
+<td>ïîêàçûâàòü ðèñóíîê:</td>
+<td><input type="checkbox" name="img_visible" <?if($item["img_visible"]=="on")echo "checked";?>></td>
+</tr>
+
+
+</table>
+
+</td>
+</tr>
+
+<tr><td colspan="3" align="center">
+<INPUT  type="submit" value="Ïîäòâåðäèòü èçìåíåíèÿ â áëîêå"></td></tr>
+<INPUT type="hidden" name="action" value="block_sub_update">
+<INPUT type="hidden" name="block_id" value="<?=$item["id"]?>">
+<INPUT type="hidden" name="page" value="<?=$pagectl->page["link"]?>">
+<INPUT type="hidden" name="page_sub" value="<?=$pagectl->page_sub?>">
+
+</form>
+</TABLE>
+
+<table cellspacing=1 cellpadding=0><tr><td></td></tr></table>
+
+<?}?>
+</fieldset>
+<?include("html/bloks_details_add.html");?>
