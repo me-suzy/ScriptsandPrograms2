@@ -1,0 +1,105 @@
+<fieldset><legend>Text blocks:</legend>
+
+<?
+$blocks = $block->get_blocks($cats->page_sub,"admin");
+$count = sizeof($blocks);
+if($cats->page_sub != 0)
+	foreach ($blocks as $item){
+?>
+	
+<TABLE class="block" border="1" cellspacing="0">
+<form enctype="multipart/form-data" action="" method="post">
+<input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+<tr>
+<th colspan="2" align="">Id#: <?=$item['id']?></th>
+</tr>
+
+<tr>
+<td valign="top" align="center">
+
+title:
+<BR><INPUT type="text" name="title" value="<?=$item["title"]?>" size="70">
+<BR>intro:
+<BR><TEXTAREA cols="50" rows="5" name="text"><?=/*Misc::_br2nl(*/$item["text"]?></TEXTAREA>
+<BR>details:
+<BR><TEXTAREA cols="50" rows="10" name="text_detail"><?=/*Misc::_br2nl(*/$item["text_detail"]?></TEXTAREA><BR>
+<?if(sizeof($item["block_sub"])>0)$detail_title="ÏÎÄÐÎÁÍÅÅ...";else $detail_title="ïîäðîáíåå...";?>
+
+<!--<INPUT type="button" value="<?=$detail_title?>" onClick="javascript:window.open('block_details.php?action=block_details_show&block_id=<?=$item["id"]?>')">-->
+<BR>
+
+
+Sort order:
+<SELECT name="block_position">
+	<?for($i=1;$i<$count+2;$i++){?>
+	<option value="<?=$i?>" <?if($i==$item["block_position"])echo "selected";?>><?=$i?></OPTION>
+	<?}?>
+</SELECT>
+&nbsp;&nbsp;&nbsp;
+Visible:<INPUT type="checkbox" name="block_visible" <?if($item["visible"]=="on")echo "checked";?>>
+&nbsp;&nbsp;&nbsp;
+<font color="red">Delete:</font><input type="checkbox" name="delete_block">
+
+<TABLE border="1" cellspacing="0">
+
+<tr>
+<td>Image preview:<BR><BR>
+delete<input type="checkbox" name="img_delete" >
+</td>
+<td>
+<img src="../rwx_blogs/<?=$item["img"]?>"><BR>
+
+<INPUT name="img_file" size="30" type="file" ></td>
+</tr>
+
+<tr>
+<td>Image popup:<BR><BR>
+delete<input type="checkbox" name="img_popup_delete" >
+</td>
+<td>
+<img src="../rwx_blogs/<?=$item["img_popup"]?>" align=""><BR>
+
+<INPUT name="img_file_popup" size="30" type="file" ></td>
+</tr>
+
+<tr>
+<td>Image align:</td>
+<td>
+<SELECT name="img_position">
+<option value="bottom" <?if($item["img_position"]=="bottom")echo "selected";?>>bottom</OPTION> 
+<option value="left" <?if($item["img_position"]=="left")echo "selected";?>>left</OPTION> 
+<option value="middle" <?if($item["img_position"]=="middle")echo "selected";?>>middle</OPTION> 
+<option value="right" <?if($item["img_position"]=="right")echo "selected";?>>right</OPTION>
+<option value="top" <?if($item["img_position"]=="top")echo "selected";?>>top</OPTION> 
+</SELECT></td>
+</tr>
+
+<tr>
+<td>Image visible:</td>
+<td><input type="checkbox" name="img_visible" <?if($item["img_visible"]=="on")echo "checked";?>></td>
+</tr>
+
+
+</table>
+
+</td>
+
+</tr>
+
+<tr><td colspan="3" align="center" bgcolor="Silver">
+<INPUT  type="submit" value="Submit changes"></td></tr>
+<INPUT type="hidden" name="action" value="block_update">
+<INPUT type="hidden" name="block_id" value="<?=$item["id"]?>">
+<!--<INPUT type="hidden" name="page" value="<?=$pagectl->page["link"]?>">-->
+<INPUT type="hidden" name="page_id" value="<?=$cats->page_sub?>">
+
+
+</form>
+</TABLE>
+<HR>
+
+<?}?>
+
+</FIELDSET>
+
+<?include("html/bloks_add.html");?>
