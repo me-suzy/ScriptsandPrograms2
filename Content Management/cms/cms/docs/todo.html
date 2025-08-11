@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>Rama CMS</title>
+<link rel="stylesheet" type="text/css" href="media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">Rama CMS</td>
+  </tr>
+  <tr><td class="header_line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">		  [ <a href="../index.php" class="menu">Demo</a> ]
+
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu"> <b>Files:</b><br />
+	  <div class="package"> 
+<a href="index.html"> Read Me</a><br>
+<a href="features.html"> Features</a><br>
+<a href="install.html"> Installation</a><br>
+<a href="help.html"> Help</a><br>
+<a href="changelog.html"> Change Log</a><br>
+<a href="todo.html"> To Do List</a><br>
+<a href="credits.html"> Credits</a><br>
+<a href="license.html"> License</a><br>
+
+	  </div><br />
+      
+		</td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0">
+	<tr>
+	  <td valign="top"> <div align="center">
+	      <h1><b>To Do List</b></h1>
+	    </div>
+		<ul>
+	      <li>Add a news letter tool:
+		<ul>
+		  <li> Add subscribed / unsubscribed block to the main function
+		    library.</li>
+		  <li> Subscriber list import and export.</li>
+		  <li> HTML newsletter.</li>
+		  <li> Include attachments with mailings.</li>
+		  <li> Limit emails per day, week, or month.</li>
+		  <li> Adjust sending speed/quantity/delay.</li>
+		  <li> Remove duplicate entries.</li>
+		  <li> Test sends before sending a list.</li>
+		  <li> Add unsubscribed link automatically to the bottom of the
+		    newsletter.</li>
+		  <li> Automatically thank you email on user subscribes.</li>
+		  <li> Bounce management (remove bad addresses) by verifying email
+		    address using function (JS &amp; PHP).</li>
+		  <li> Unsubscribed list: all users who have unsubscribed are
+		    marked as unsubscribed users (script will not delete their
+		    email addresses).</li>
+		  <li> Use auto refresh feature to handle huge subscriber lists
+		    applying the following scenario:
+		    <ul>
+		      <li> Send newsletter to a restricted group of subscriber
+			(definition send by GET method, that contain position
+			and size).</li>
+		      <li> That page will view a progress bar calculated using
+			total count of subscriber, current position, and size.</li>
+		      <li> Set automatically the refresh tag to be called after
+			few seconds for the same page but new position (current
+			position + size).</li>
+		      <li> Pause, Resume, or stop mailings.</li>
+		    </ul>
+		  </li>
+		  <li> Track how many readers open / read your mail and who does
+		    this. To do so tool have to add automatically one pixel image
+		    call PHP script passing the user id (you can get more description
+		    by analyze log file for that requested image like country
+		    distribution and day/time of requests, etc&#8230;). that hidden
+		    image call could be some thing like this:<br>
+		    &lt;img src=&quot;track.php?id=#&quot; width=&quot;1&quot;
+		    height=&quot;1&quot;&gt;</li>
+		  <li> Suggested subscriber table structure is:<br>
+		    id (auto increment), email (as a varchar field), views (integer
+		    field), and create (as a UNIX time stamp).<br>
+		    &nbsp; </li>
+		</ul>
+	      </li>
+	      <li> Undo / Redo logic to the SQL database interface, main algorithm
+		descried here:
+		<ul>
+		  <li> We have to have 3 log files will named as the following:
+		    sql.log  undo.log  redo.log</li>
+		  <li> Steps to execute an add SQL statement:
+		    <ul>
+		      <li> Execute that SQL statement on our database.</li>
+		      <li> If we get an error, print error message then exit this
+			procedure.</li>
+		      <li> Save that SQL statement in the sql.log file.</li>
+		      <li> Get the id of the current inserted record.</li>
+		      <li> Prepare a new SQL statement to delete that exact record,
+			and save that statement in the undo.log file.</li>
+		    </ul>
+		  </li>
+		  <li> Steps to execute a delete SQL statement:
+		    <ul>
+		      <li> Save that SQL statement in the sql.log file.</li>
+		      <li> Get all information / data of the record that we are
+			going to delete (select command using same where section).</li>
+		      <li> Prepare an add SQL statement could insert that record
+			again in the database (including set the original id value).</li>
+		      <li> Execute the original SQL statement (delete statement) 
+			on our database.</li>
+		      <li> If we get an error, print error message then exit this 
+			procedure.</li>
+		      <li> Save that SQL statement in the sql.log file.</li>
+		      <li> Save that prepared add SQL statement in the undo.log 
+			file.</li>
+		    </ul>
+		  </li>
+		  <li> Steps to execute a update SQL statement: 
+		    <ul>
+		      <li> Get the original data of the fields that we are going 
+			to update (select command using same where section).</li>
+		      <li> Prepare a new update SQL statement that can return 
+			this record to its original case.</li>
+		      <li> Execute the original update SQL statement on our database.</li>
+		      <li> If we get an error, print error message then exit this 
+			procedure.</li>
+		      <li> Save that SQL statement in the sql.log file.</li>
+		      <li> Save that prepared update SQL statement in the undo.log 
+			file.</li>
+		    </ul>
+		  </li>
+		  <li> Steps to execute undo action (this function will not be 
+		    active when undo.log file is empty): 
+		    <ul>
+		      <li> Pick up the last inserted SQL statement to the undo.log 
+			file (remove it from that log file).</li>
+		      <li> Execute this SQL statement on our database.</li>
+		      <li> Pick up the last inserted SQL statement to the sql.log 
+			file (remove it from that log file also).</li>
+		      <li> Save this SQL statement into redo.log file.</li>
+		    </ul>
+		  </li>
+		  <li> Steps to execute redo action: 
+		    <ul>
+		      <li> Pick up the last inserted SQL statement to the redo.log 
+			file (remove it from that log file).</li>
+		      <li> Execute that SQL statement in the normal way throw 
+			the logic for add, edit, and delete SQL statement that 
+			explained previously in this document.</li>
+		    </ul>
+		  </li>
+		  <li> Very important notification: this explained logic is really 
+		    simple one but it is fair enough to be used in Khaled CMS 
+		    system. But I have to refer here in this document to the limitation
+		    of like this logic and how you can come over it (if you really 
+		    need that advanced feature in your database). We suppose that 
+		    delete and update SQL statement will affect one record in 
+		    the database (in our case it is page id). But in general case 
+		    one delete or update command may affect more than one record, 
+		    which meaning more than one SQL statement in the undo log 
+		    file to undo the action taken. In like that cases you have 
+		    to add an extra mechanism to grouping related SQL statements
+		    together (by adding same id number to the SQL statement line 
+		    in the log file for an example).<br>
+		    &nbsp;</li>
+		</ul>
+	      </li>
+	      <li> Convert back end code to use OOP technologies using <a href="http://phpcodegenie.sourceforge.net/" target="_blank">phpCodeGenie</a>
+		tool.<br>
+		&nbsp;</li>
+	      <li>Add kind of system wizard to create a different type of websites using
+	      restore feature and set of manual prepared structures. This can be adding
+	      as an additional page to the system documentation.<br>
+		&nbsp;</li>
+
+	      <li>Offline site generator based on XML formate of the backup/restore function.<br>
+		&nbsp;</li>
+
+	      <li> Add a JavaScript menu to the website header. That menu will
+		use some JavaScript's libraries in addition to build menu configuration
+		file automatically (just like meta script). In each page in the
+		CMS system we have to add the following inputs:
+		<ul>
+		  <li> Check box ask user if (s)he want to browse that page in
+		    the main menu bar.</li>
+		  <li> Combo box refer to the nested level of links related to
+		    that page presented in the menu structure (default = 1). </li>
+		</ul>
+	      </li>
+	    </ul>
+	    <br /> <div class="credit">
+	      <hr />
+	      Rama Content Management System, Copyright (C) 2005 by <a href="mailto:%20kshamaa@maktoob.com?subject=Rama%20CMS">Khaled
+	      Al-Shamaa</a>. </div></td>
+	</tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
