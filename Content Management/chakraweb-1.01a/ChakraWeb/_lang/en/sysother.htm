@@ -1,0 +1,121 @@
+<h1>Change Other System Parameters</h1>
+
+<p><font color="#FF0000"><i><b>{fld_page_message}</b></i></font></p>
+
+<form method="post" action="sysother.php">
+
+<table border="0">
+    <tr>
+      <td align="left" height="19" colspan="3" valign="top"><b>1. HOMEPAGE URL</b></td>
+    </tr>
+    <tr>
+      <td align="left" height="25" valign="top">URL</td>
+      <td align="left" height="25" valign="top">:</td>
+      <td height="25" valign="top"><input class="inputbox" maxLength="80" size="48" value="{fld_hp_url}" name="fld_hp_url"></td>
+    </tr>
+    <tr>
+      <td align="left" height="19" colspan="3" valign="top"><b>&nbsp;</b></td>
+    </tr>
+    <tr>
+      <td align="left" height="19" colspan="3" valign="top"><b>2. EMAIL SERVICES</b></td>
+    </tr>
+    <tr>
+      <td align="left" height="19" valign="top">Type</td>
+      <td align="left" height="19" valign="top">:</td>
+      <td height="19" valign="top">{fld_smtp_type_select}</td>
+    </tr>
+    <tr>
+      <td align="left" height="25" colspan="3" valign="top">If you select SMTP,
+        Fill te SMTP information below:</td>
+    </tr>
+    <tr>
+      <td align="left" height="25" valign="top">SMTP Host</td>
+      <td align="left" height="25" valign="top">:</td>
+      <td height="25" valign="top"><input class="inputbox" maxLength="80" size="30" value="{fld_smtp_host}" name="fld_smtp_host"></td>
+    </tr>
+    <tr>
+      <td align="left" height="25" valign="top">SMTP Helo</td>
+      <td align="left" height="25" valign="top">:</td>
+      <td height="25" valign="top"><input class="inputbox" maxLength="80" size="30" value="{fld_smtp_helo}" name="fld_smtp_helo"></td>
+    </tr>
+    <tr>
+      <td align="left" height="25" valign="top">SMTP Port</td>
+      <td align="left" height="25" valign="top">:</td>
+      <td height="25" valign="top"><input class="inputbox" maxLength="80" size="12" value="{fld_smtp_port}" name="fld_smtp_port"></td>
+    </tr>
+    <tr>
+      <td align="left" height="25" colspan="3" valign="top"><b>&nbsp;</b></td>
+    </tr>
+    <tr>
+      <td align="left" height="25" colspan="3" valign="top"><b>3. LOGGING</b></td>
+    </tr>
+    <tr>
+      <td align="left" height="25" valign="top" colspan="3">Logging information
+        is saved on direcctory <b>/logs/</b>  with the name format: <b>prefix.year-month-date.log</b></td>
+    </tr>
+    <tr>
+      <td align="left" height="25" valign="top"> Database</td>
+      <td align="left" height="25" valign="top">:</td>
+      <td height="25" valign="top">{fld_chk_logdb} Select this if you want
+        logging database activity on your website to be saved on log file with
+        prefix: <input class="inputbox" maxLength="80" size="12" value="{fld_logdb_prefix}" name="fld_logdb_prefix"></td>
+    </tr>
+  <tr>
+    <td align="left" height="25" valign="top">Visit</td>
+    <td align="left" height="25" valign="top">:</td>
+    <td height="25" valign="top">{fld_chk_logvisitor} Select this if you want
+      logging visitor activity on your website to be saved on log file with
+      prefix: <input class="inputbox" maxLength="80" size="12" value="{fld_logvisitor_prefix}" name="fld_logvisitor_prefix"></td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top" colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top" colspan="3"><b>4. DEFAULT VALUES</b> </td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top">Theme</td>
+    <td align="left" height="25" valign="top">:</td>
+    <td height="25" valign="top">{fld_theme_select}</td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top">Language</td>
+    <td align="left" height="25" valign="top">:</td>
+    <td height="25" valign="top">{fld_language_select}</td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top">Order Number</td>
+    <td align="left" height="25" valign="top">:</td>
+    <td height="25" valign="top"><input class="inputbox" maxLength="80" size="12" value="{fld_order}" name="fld_order">
+      Used as default value of the order on the list/menu.</td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top">Robots</td>
+    <td align="left" height="25" valign="top">:</td>
+    <td height="25" valign="top"><input class="inputbox" maxLength="80" size="24" value="{fld_robots}" name="fld_robots">
+      Used as default value of the folder/page robots.</td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top" colspan="3"><b>&nbsp;</b></td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top" colspan="3"><b>5. SEARCH RESULT
+      PAGE</b></td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top">Number of items per-page</td>
+    <td align="left" height="25" valign="top"></td>
+    <td height="25" valign="top"><input class="inputbox" maxLength="80" size="12" value="{fld_item_per_page}" name="fld_item_per_page"></td>
+  </tr>
+  <tr>
+    <td align="left" height="25" valign="top"></td>
+    <td align="left" height="25" valign="top"></td>
+    <td height="25" valign="top"><input type="submit" value="Save" class="button">
+      <input type="reset" value="Reset" class="button"></td>
+  </tr>
+</table>
+
+<input type="hidden" name="op" value="save" />
+<input type='hidden' name='rnd' value='{rnd_number}' />
+</form>
+
