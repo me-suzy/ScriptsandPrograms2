@@ -1,0 +1,166 @@
+The NewStandard command-execution conventions
+---------------------------------------------
+
+The NewStandard class functionality is best understood from the renderPage method. 
+That method will first extract the formAction; eg the name of the submit button. 
+(The instance variable $defaultAction is used if the formAction is null)
+This will determine which methods get called to execute the action. 
+Suppose that the action is show; then, the methods called would be:
+
+ getData_show($ary, &$data, &$errors);
+ do_show($object, &$data, &$errors);
+ baseRender($object, $data, $templates);
+ render_show($object, $data, $templates);
+
+If getData_show does not exist, the generic method getData is called instead.
+If render_show does not exist, it is simply skipped.
+If do_show does not exist, then show is not a valid command, and the $defaultAction will be used instead.
+
+The getData_XXX methods are expected to extract data from the ary, especially the main target object.
+Eg in an action page, it would return the Be_DO_action instance that corresponds to the target action row.
+Note that the generic getData will attempt to extract the target object; often the getData_XXX will call it.
+The generic getData is expecting to find such an object; if it does not (and it returns null), 
+it is assumed that the query was malformed, and we again revert to $defaultAction.
+The specific getData_XXX methods, however, can return null without aborting the command. 
+For example, getData_list always returns null, as there is no single target object.
+
+Any relevant data other than the target object should be stored in the $data associative array.
+In particular, It is possible to the getData methods to change which action will be executed, 
+if they find that the data provided is inadequate for the intended action. They can do so by setting
+$data['formAction']
+
+Error messages are appended to the $errors array, and will be output before the content of the page.
+
+The getData_XXX methods are the only ones that see the form array; it is intended that any relevant 
+information should be digested in the form of objects and stored in $data.
+
+The do_XXX methods recieve the targetObject (which may be null), and the $data and $errors arrays.
+The core of the action should be executed in the do_XXX methods.
+These methods return an array of templates (really template variable names) that will be used
+ for rendering the page. (The template files will have been bound to variables at initialization, 
+through the $templateList class variable.)
+(For convenience, it is possible to simply return a single template name as a scalar, 
+but it will be wrapped in an array before rendering.)
+Note that it is possible for the do_XXX method to again change the $data['formAction'], and thus use
+a variant rendering method.
+
+These templates are used by the various rendering methods, baseRender and render_XXX.
+An attempt has been made to only render as much as possible of the variables, according to the needs of the template.
+In general, inheritance has been used heavily in the rendering methods. For that purpose, 
+the set_block/parse template methods have been kept outside of the methods that set variables. In particular,
+the render methods themselves do not call the final parse, which is done in renderPage.
+As an example, consider render_list: since it involves a block, it calls 
+        $this->template->set_block($template, 'each_object', 'all_objects');
+and, for each of the objects represented, it will call 
+            $this->renderIndexEntry($object, $i++);
+            $this->template->parse('all_objects', 'each_object', true);
+
+The renderIndexEntry only does a series of setVars, most of which are defined in a subclass like BE_Action.class. (The renderXXX methods, unlike render_XXX methods, usually define a reusable series of template variables on an object, and use inheritance heavily.)
+
+Another subtlety of using blocks in render methods is that multiple templates could be called. 
+(See the BE_Action_participate::do_initiateAction for an example.) 
+The parse on each template will be called after all the render methods are called. This means that, on blocks which are appended, there is a possibility of name conflict if both templates use the same repeatable blocks. We can avoid this by appending the template name to the block variable name. For that reason, the render methods receive the array of template names.
+Also, it is useless to call the rendering unless the block exists in a given template; so it is a good idea to test for the set_block success. So the full form of a loop would be as follows:
+(example adapted from BE_NewStandard_admin.renderMultilingual)
+
+
+   function renderThisList($objectList, $data, $templates) {
+       foreach ($templates as $templateFile) {
+          if ($this->template->set_block($templateFile, 'block_name', 'block_varName_'.$templateFile)) {
+             foreach ($objectList as $object) {
+                $this->renderThisSpecificObject($object);
+                $this->template->parse('block_varName_'.$templateFile, 'block_name', true);
+             }
+          }
+       }
+   }
+
+   // overload at need
+   function renderThisSpecificObject($object) {
+      $this->template->set_var("prop", $object->prop);
+      ...
+   }
+
+Note that in many cases, the render methods use a much simpler form, because variable name conflict is known not to exist yet; this should evolve to use the full form above.
+
+Also note that the set_var can get tedious; It is my intent that we will eventually adapt templates to use
+ $this->template->set_var($object->objectToAry("prefix_"));
+that method simply returns an array where all of the columns of the object are defined, with the appropriate prefix. Eg for actions: $action->objectToAry("action_")) would give us the equivalent of 
+ array(
+     'action_actionID' => $action->actionID,
+     'action_URLname' => $action->URLname,
+     'action_author_id' => $action->author_id,
+     'action_subsiteID' => $action->subsiteID,
+     'action_dateCreated' => $action->dateCreated,
+     'action_dateModified' => $action->dateModified,
+     'action_dateAvailable' => $action->dateAvailable,
+     ...
+ )
+
+Subclassing NewStandard.
+------------------------
+
+Following the action example, the inheritance pattern should be understood as follows:
+
+BE_Action_participate -> BE_Action -> BE_NewStandard
+BE_Action_admin -> BE_Action -> BE_NewStandard_admin -> BE_NewStandard
+
+Except that, since that would require double inheritance, the first line of inheritance is actually
+BE_Action_participate -> BE_Action -> BE_NewStandard_admin -> BE_NewStandard
+
+(Ways to emulate multiple inheritance were considered and discarded, as adding much complexity for little benefit.)
+Because of that, we have sometimes to test whether we are in an admin page; for this we use the class variable $admin, set to false in BE_NewStandard and set to true in a concrete admin subclass like BE_Action_admin.
+
+The BE_Action shows which other variables have to be overloaded to obtain a proper subclass of BE_NewStandard.
+The most important is $tableName: The name of the main table for that page. This basic information leads us to the appropriate DataObject subclass through the use of the DB_DataObject::factory method. (See uses in getData)
+
+The $templateList gives the name of template variables, and bind them to template files;
+The $standardPageTemplates provides another layer if indirection to this info, so that New_Standard_admin can use generic names (This should be deprecated... Adds complexity for no real gain.)
+The $standardAdminButtonLabels provide button names for admin page information. (Also on the chopping block?)
+$standardPerms will remain; it is used in NewStandard::have_perm to map permission types to specific permission names.
+
+After that, it is a simple matter (!) of creating the getData_XXX, do_XXX and render_XXX command-specific methods; and probably of specializing at least
+   renderIndexEntry
+   baseRender
+   getData
+and, in the admin subclass (like BE_Action_admin), also specializing
+   function renderLanguageElement (render the text table of the object)
+   function renderEditFields (edit fields for the object)
+
+You can also override addListCriteria to add sorting criteria to the list query. (See BE_Action)
+
+Understanding DataObjects
+-------------------------
+
+The first thing to know about DataObjects is that in some way, they correspond both to a table and a row.
+When you fetch a new row, you do not create a new DataObject instance, but instead re-populate an old one.
+Of course, you can keep a copy of the old one; In PHP4. the normal variable assignment syntax itself does
+ that, but it a good idea to use the (dummy) __clone method in prevision of PHP5. So to get objects from all the rows of the be_action table, the syntax would go:
+
+ $actions = array();
+ $actionObject = DB_DataObject::factory('be_action');
+ $n = $actionObject->find();
+ while ($actionObject->fetch()) {
+   $actionObject->__clone();
+   $actions[] = $actionObject
+ }
+
+Note that, since Be_DO_action is a subclass of BE_LanguageDataObject, the fetch will actually do a join on 
+the text table by the current language, in a single fetch. Updates and Inserts are also cascaded. The method ensureLanguages is defined at the level of BE_DataObject to allow fetching all languages for admin classes.
+The text dataObject for the default language is stored in the _text variable, so you can access most text fields simply, as in $action->_text->title.
+
+Changes to the database can be done simply by changing instance variables in a dataObject, and calling update. It is a good idea to keep a copy of the original dataObject around, so that the update can compare fields and do a SQL update query on only the fields that were modified. (In NewStandard, the original object is stored in $data['original'].
+
+It is not necessary, but more efficient to define a getID() method in the DataObject subclasses.
+Also, DataObject subclasses that have a page associated should define the $displayPage and $adminPage 
+class variables appropriately. (This is used for the BE_DataObject::generateLink and ::getUrl methods.)
+
+Two of the most important methods in BE_DataObject are getFromAry and fillFromAry, which will populate an object from a html form ary. (In the first case, it expects to find the object in the database, and fetches it based on the information provided in the ary) It would be a good idea, in the future, to use prefixes (as proposed for objectToAry, which is the converse of the updateFromAry operation.)
+
+Two important caveats on that method: If a table column is not in the ary, it will not be changed.
+This is an issue for checkbox fields, which are blank if unchecked.
+So boolean fields should have a hidden field boolValue_{columnName} to signal that empty actually means clear. Also, Date fields can use the {columnName}_[year|month|day] information. Date fields are known to be such thanks to the flag information in be7.ini (q.v.)
+
+The validateVerbose still requires work.
+
+
