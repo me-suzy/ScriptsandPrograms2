@@ -1,0 +1,52 @@
+<h1>List of Random Advertising Text in English</h1>
+
+<p>The table below show the list of random advertising text in English. Only
+Administrator can edit, delete, or add the list. The list is different depend on
+the language. Change the language by selecting the combobox on the top of this
+page. </p>
+<p>To show these random advertising text use macro <b>{~advrnd:keyword}</b>. You
+can also reset the hits counter by click <a href="/phpmod/advrnd.php?op=resethits">HERE</a>.</p>
+
+<table border="1" width="80%" bordercolor="#CCCCCC" cellspacing="0" cellpadding="2" bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0">
+  <tr>
+    <td id="tbl_title">KEYWORD</td>
+    <td id="tbl_title">TITLE</td>
+    <td id="tbl_title">HITS</td>
+    <td id="tbl_title">STATUS</td>
+    <td id="tbl_title">OPERATION</td>
+  </tr>
+  {fld_advrnd_row}
+</table>
+
+<h2>Add Advertising Text</h2>
+
+<p><font color="#FF0000"><b>{page_message}</b></font></p>
+<form method="POST" action="/phpmod/advrnd.php">
+  <table border="0" cellspacing="0" cellpadding="4">
+    <tr>
+      <td valign="top">Keyword</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_key" size="24" class="inputbox" value="{fld_key}"></td>
+    </tr>
+    <tr>
+      <td valign="top">Title</td>
+      <td valign="top">:</td>
+      <td><input type="text" name="fld_title" size="48" class="inputbox" value="{fld_title}"></td>
+    </tr>
+    <tr>
+      <td valign="top">Content</td>
+      <td valign="top">:</td>
+      <td>{fld_text_editor}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><input type="submit" value="Add to The List" class="button"> <input type="reset" value="Reset" class="button"></td>
+    </tr>
+  </table>
+
+	<input type='hidden' name='rnd' value='{rnd_number}' />
+	<input type='hidden' name='op' value='add' />
+  
+</form>
+<p>&nbsp;</p>
