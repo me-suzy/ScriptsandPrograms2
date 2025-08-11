@@ -1,0 +1,44 @@
+<table width="750" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+  	<td width="242" bgcolor="white" align="center"><h1>EncapsGallery</h1></td>
+    <td width="508" colspan="1" height="87" bgcolor="#CCCCCC" style="text-align:center;vertical-align:middle;font-family: Arial;font-size: 11px;">
+    <font color="#666666">
+    
+    <?include($html['config']['path'].'gallery_cats_select.html');?>
+	
+
+    <br><BR>
+
+    <B>Pages:</B><BR>
+    <?include($html['config']['path'].'pager.html');?>
+    </font>
+    </td>
+  </tr>
+ <tr> 
+    <td bgcolor="#777777" width="242">&nbsp;</td>
+    <td bgcolor="#555555">&nbsp;</td>
+  </tr>
+<?foreach($html["items"] as $item){
+	if($item["visible"]!="on")continue;	?>
+  
+  <tr align="center"> 
+    <td bgcolor="#888888">
+    <?=$item['title']?><BR>
+<a target="_blank" href="gallery.php?page=foto&action=show_custom&id=<?=$item["id"]?>&cat=<?=$html['cat']['id']?>"><img border="0" src="./core/gallery_resize.php?filename=../rwx_gallery/<?=$item["filename_normal"]?>" ></a>    <BR>
+
+    </td>
+    <td bgcolor="#444444"><font color="White"><?=$item['comment']?></font></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#777777">&nbsp;</td>
+    <td bgcolor="#555555">&nbsp;</td>
+  </tr>
+  <?}?>
+  <tr> 
+    <td bgcolor="#888888" height="80">&nbsp;</td>
+    <td bgcolor="#444444"></td>
+  </tr>
+</table>
+
+
+
