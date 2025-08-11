@@ -1,0 +1,487 @@
+<a name="top"></a>
+<h1>{page_title}</h1>
+
+<p>{page_desc}</p>
+
+<p>Untuk menambahkan makro ke dalam website anda, kami menyarankan anda untuk
+membaca artikel &quot;<a href="http://chakra.quick4all.com/Articles/ChakraWebSecret/php_macro.html">Makro
+untuk Membuat Halaman Web Dinamis</a>&quot;.&nbsp; Artikel ini menjelaskan kosep
+dan implementasi bahasa makro yang digunakan di <a href="http://chakra.quick4all.com/Products/ChakraWeb/">ChakraWeb</a>. Dengan senang hati
+kami menerima kritik dan saran mengenai makro yang ada, atau usulan mengenai
+makro baru yang berguna bagi anda. Kirimkan tanggapan anda ke <a href="mailto:chakraweb@quick4all.com">chakraweb@quick4all.com</a>.&nbsp;</p>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="5">
+  <tr>
+    <td valign="top">Daftar Isi</td>
+    <td valign="top">:</td>
+    <td valign="top"><a href="#ChakraWeb">Informasi ChakraWeb</a>, <a href="#Homepage">Informasi
+      Homepage</a>, <a href="#Halaman">Atribut Halaman</a>, <a href="#Pengunjung">Informasi
+      Pengunjung</a>, <a href="#Menu">Menu</a>, <a href="#Daftar">Daftar</a>, <a href="#Gambar">Gambar</a>,
+      <a href="#Iklan">Teks Iklan</a>, <a href="#Formulir">Formulir</a>, <a href="#Lain">Lain-lain</a>.<br>
+      &nbsp;</td>
+  </tr>
+</table>
+
+<table border="1" bordercolorlight="#C0C0C0" cellspacing="0" cellpadding="4" bordercolordark="#C0C0C0" bordercolor="#C0C0C0" width="100%">
+  <tr>
+    <td id="tbl_title">MAKRO</td>
+    <td id="tbl_title">KETERANGAN</td>
+    <td id="tbl_title">CONTOH</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="ChakraWeb"></a>Informasi
+      ChakraWeb</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~powered_by_chakraweb}</td>
+    <td id="tbl_text" valign="top">Gambar <b>&quot;Powered by Chakraweb&quot;</b></td>
+    <td id="tbl_text" valign="top">{powered_by_chakraweb}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~made_by_chakraweb}</td>
+    <td id="tbl_text" valign="top">Keterangan dari Quick4All tentang produk ini</td>
+    <td id="tbl_text" valign="top">{made_by_chakraweb}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Homepage"></a>Informasi
+      Homepage</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3">Beberapa variabel homepage ini
+      dapat anda rubah melalui <a href="/phpmod/sysvar.php">Panel Kontrol</a>.</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_name}</td>
+    <td id="tbl_text" valign="top">Nama homepage</td>
+    <td id="tbl_text" valign="top">{hp_name}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_url}</td>
+    <td id="tbl_text" valign="top">URL homepage</td>
+    <td id="tbl_text" valign="top">{hp_url}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_slogan}</td>
+    <td id="tbl_text" valign="top">Slogan homepage</td>
+    <td id="tbl_text" valign="top">{hp_slogan}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_desc}</td>
+    <td id="tbl_text" valign="top">Keterangan singkat homepage ini.</td>
+    <td id="tbl_text" valign="top">{hp_desc}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_keywords}</td>
+    <td id="tbl_text" valign="top">Kata kunci homepage ini</td>
+    <td id="tbl_text" valign="top">{hp_keywords}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_visitors}</td>
+    <td id="tbl_text" valign="top">Jumlah pengunjung homepage ini</td>
+    <td id="tbl_text" valign="top">{hp_visitors}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_hits}</td>
+    <td id="tbl_text" valign="top">Jumlah total hit homepage ini</td>
+    <td id="tbl_text" valign="top">{hp_hits}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_visited_since}</td>
+    <td id="tbl_text" valign="top">Tanggal awal perhitungan jumlah pengunjung
+      dan total hit.</td>
+    <td id="tbl_text" valign="top">{hp_visited_since}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~hp_intvar:kata_kunci}</td>
+    <td id="tbl_text" valign="top">Tampilkan isi tabel sysvarint dengan kata
+      kunci tertentu</td>
+    <td id="tbl_text" valign="top"><b>{~hp_intvar:hp_hits}</b><br>
+      {hp_intvar:hp_hits}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~sitemap:level}</td>
+    <td id="tbl_text" valign="top">Tampilkan sitemap dari website ini.&nbsp;</td>
+    <td id="tbl_text" valign="top">--tidak ada--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Halaman"></a>Atribut
+      Halaman</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_title}</td>
+    <td id="tbl_text" valign="top">Judul Halaman</td>
+    <td id="tbl_text" valign="top">{page_title}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_desc}</td>
+    <td id="tbl_text" valign="top">Deskripsi Halaman</td>
+    <td id="tbl_text" valign="top">{page_desc}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_keywords}</td>
+    <td id="tbl_text" valign="top">Kata Kunci Halaman</td>
+    <td id="tbl_text" valign="top">{page_keywords}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_author}</td>
+    <td id="tbl_text" valign="top">Pengarang Halaman</td>
+    <td id="tbl_text" valign="top">{page_author}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~page_source}</td>
+    <td id="tbl_text" valign="top">Keterangan sumber halaman</td>
+    <td id="tbl_text" valign="top">{page_source}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~author_profile}</td>
+    <td id="tbl_text" valign="top">Tampilkan profil pengarang halaman</td>
+    <td id="tbl_text" valign="top">{author_profile}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~author_profile:right}</td>
+    <td id="tbl_text" valign="top">Tampilkan profil pengarang halaman di sebelah
+      kanan halaman</td>
+    <td id="tbl_text" valign="top">{author_profile:right}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~see_also}</td>
+    <td id="tbl_text" valign="top">Tampilkan bagian &quot;Lihat Juga&quot;</td>
+    <td id="tbl_text" valign="top">{see_also}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~see_also:right}</td>
+    <td id="tbl_text" valign="top">Tampilkan bagian &quot;Lihat Juga&quot; di
+      sebelah kanan halaman</td>
+    <td id="tbl_text" valign="top">{see_also:right}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Pengunjung"></a>Informasi
+      Pengunjung</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~member_fullname}</td>
+    <td id="tbl_text" valign="top">Nama lengkap pengunjung plus Yth.</td>
+    <td id="tbl_text" valign="top">{member_fullname}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~member_name}</td>
+    <td id="tbl_text" valign="top">Nama pendek pengunjung plus Yth.</td>
+    <td id="tbl_text" valign="top">{member_name}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~m_fullname}</td>
+    <td id="tbl_text" valign="top">Nama lengkap pengunjung</td>
+    <td id="tbl_text" valign="top">{m_fullname}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~m_name}</td>
+    <td id="tbl_text" valign="top">Nama pendek pengunjung</td>
+    <td id="tbl_text" valign="top">{m_name}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Menu"></a>Menu</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~subfolder_menu}</td>
+    <td id="tbl_text" valign="top">Tampilkan sub-folder sebagai menu</td>
+    <td id="tbl_text" valign="top">{subfolder_menu}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~subfolder_menu:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan sub-folder dari folder lain sebagai
+      menu</td>
+    <td id="tbl_text" valign="top"><b>{~subfolder_menu:/:Contoh}</b><br>
+      {subfolder_menu:/:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_menu}</td>
+    <td id="tbl_text" valign="top">Tampilkan file yang ada dalam folder ini
+      sebagai menu</td>
+    <td id="tbl_text" valign="top">{file_menu}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_menu:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan file yang ada dalam folder lain
+      sebagai menu</td>
+    <td id="tbl_text" valign="top"><b>{~file_menu:/:Contoh}</b><br>
+      {file_menu:/:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~article_menu}</td>
+    <td id="tbl_text" valign="top">Sama dengan {~file_menu}</td>
+    <td id="tbl_text" valign="top">Lihat contoh di atas.</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~article_menu:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Sama dengan {~file_menu:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Lihat contoh di atas.</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~mgmt_menu}</td>
+    <td id="tbl_text" valign="top">Menu manajemen web (Hanya ditampilkan jika
+      pemakai berhak untuk menulis halaman).</td>
+    <td id="tbl_text" valign="top">{mgmt_menu}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~mgmt_menu2}</td>
+    <td id="tbl_text" valign="top">Menu manajemen web 2. (Hanya ditampilkan jika
+      pemakai berhak untuk menulis halaman).</td>
+    <td id="tbl_text" valign="top">{mgmt_menu2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Daftar"></a>Daftar</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~subfolder_list}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar sub-folder dari folder ini</td>
+    <td id="tbl_text" valign="top">{subfolder_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~subfolder_list:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar sub-folder dari folder lain</td>
+    <td id="tbl_text" valign="top"><b>{~subfolder_list:/:Contoh}</b><br>
+      {subfolder_list:/:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_list}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar file dari folder ini.</td>
+    <td id="tbl_text" valign="top">{file_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_list:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar file dari folder lain.</td>
+    <td id="tbl_text" valign="top"><b>{~file_list:/:Contoh}</b><br>
+      {file_list:/:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_list2}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar file dari folder ini.
+      (Judulnya saja)</td>
+    <td id="tbl_text" valign="top">{file_list2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_list2:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar file dari folder lain.
+      (Judulnya saja)</td>
+    <td id="tbl_text" valign="top"><b>{~file_list2:/:Contoh}</b><br>
+      {file_list2:/:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~article_list}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar file dari folder ini dengan
+      format tampilan artikel.</td>
+    <td id="tbl_text" valign="top">{article_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~article_list:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar file dari folder lain dengan
+      format tampilan artikel.</td>
+    <td id="tbl_text" valign="top"><b>{~article_list:/:Contoh}</b><br>
+      {article_list:/:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~faq_list}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar file dari folder ini dengan
+      format tampilan faq.</td>
+    <td id="tbl_text" valign="top">{faq_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~faq_list:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar file dari folder lain dengan
+      format tampilan faq.</td>
+    <td id="tbl_text" valign="top"><b>{~faq_list:/:Contoh}</b><br>
+      {faq_list:/:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~link_list}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar link dari folder ini.</td>
+    <td id="tbl_text" valign="top">{link_list}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~link_list:url_path:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar link dari folder lain.</td>
+    <td id="tbl_text" valign="top"><b>{~link_list:/Links/:Contoh}</b><br>
+      {link_list:/Links/:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">&nbsp;</td>
+    <td id="tbl_text" valign="top">&nbsp;</td>
+    <td id="tbl_text" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~comment_list:awal:jumlah:judul}</td>
+    <td id="tbl_text" valign="top">Tampilkan komentar pengunjung atas tulisan di
+      halaman ini</td>
+    <td id="tbl_text" valign="top"><b>{~comment_list:0:2:Contoh}</b><br>
+      {comment_list:0:2:Contoh}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~news_list:awal:jumlah}</td>
+    <td id="tbl_text" valign="top">Tampilkan kabar baru website ini.</td>
+    <td id="tbl_text" valign="top"><b>{~news_list:0:2}</b><br>
+      {news_list:0:2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~news_list2:awal:jumlah}</td>
+    <td id="tbl_text" valign="top">Tampilkan kabar baru website ini. (Judulnya
+      saja)</td>
+    <td id="tbl_text" valign="top"><b>{~news_list2:0:2}</b><br>
+      {news_list2:0:2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~news_box:max:judul:url}</td>
+    <td id="tbl_text" valign="top">Tampilkan kabar baru website ini dalam
+      kotak.&nbsp;</td>
+    <td id="tbl_text" valign="top"><b>{~news_box:2:Contoh:/News/index.html}</b><br>
+      {news_box:2:Contoh:/News/index.html}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~feedback_list:awal:jumlah}</td>
+    <td id="tbl_text" valign="top">Tampilkan tanggapan pengunjung</td>
+    <td id="tbl_text" valign="top"><b>{~feedback_list:0:2}</b><br>
+      {feedback_list:0:2}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~feedback_box:max:judul:url}</td>
+    <td id="tbl_text" valign="top">Tampilkan tanggapan pengunjung dalam kotak</td>
+    <td id="tbl_text" valign="top"><b>{~feedback_box:2:Contoh:/Feedback/index.html}</b><br>
+      {feedback_box:2:Contoh:/Feedback/index.html}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~member_articles:nama_anggota:max}</td>
+    <td id="tbl_text" valign="top">Tampilkan daftar halaman yang dibuat oleh
+      anggota tertentu.</td>
+    <td id="tbl_text" valign="top">--tidak ada--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Gambar"></a>Gambar</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img:url_gambar}</td>
+    <td id="tbl_text" valign="top">Tampilkan gambar di posisi tengah. Sama
+      dengan {~img_center}</td>
+    <td id="tbl_text" valign="top"><b>{~img:/images/logo.gif}</b><br>
+      {img:/images/logo.gif}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_center:url_gambar}</td>
+    <td id="tbl_text" valign="top">Tampilkan gambar di posisi tengah.</td>
+    <td id="tbl_text" valign="top"><b>{~img_center:/images/logo.gif}<br>
+      </b>{img_center:/images/logo.gif}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_left:url_gambar}</td>
+    <td id="tbl_text" valign="top">Tampilkan gambar di posisi kiri</td>
+    <td id="tbl_text" valign="top"><b>{~img_left:/images/logo.gif}<br>
+      </b>{img_left:/images/logo.gif}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~img_right:url_gambar}</td>
+    <td id="tbl_text" valign="top">Tampilkan gambar di posisi kanan</td>
+    <td id="tbl_text" valign="top"><b>{~img_right:/images/logo.gif}<br>
+      </b>{img_right:/images/logo.gif}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Iklan"></a>Teks
+      Iklan</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~advtext:kata_kunci}</td>
+    <td id="tbl_text" valign="top">Tampilkan teks iklan dengan kata kunci
+      tertentu. Isi teks iklan dapat ditambahkan dari <a href="/phpmod/advtext.php">Panel
+      Kontrol</a>&nbsp;</td>
+    <td id="tbl_text" valign="top"><b>{~advtext:example}</b><br>
+      {advtext:example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~advrnd:kata_kunci}</td>
+    <td id="tbl_text" valign="top">Tampilkan teks iklan random dengan kata kunci
+      tertentu. Isi teks iklan dapat ditambahkan dari <a href="/phpmod/advrnd.php">Panel
+      Kontrol</a>&nbsp;</td>
+    <td id="tbl_text" valign="top"><b>{~advrnd:example}</b><br>
+      {advrnd:example}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Formulir"></a>Formulir</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~login_form}</td>
+    <td id="tbl_text" valign="top">Formulir Login</td>
+    <td id="tbl_text" valign="top">{login_form}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~search_form}</td>
+    <td id="tbl_text" valign="top">Formulir Pencarian</td>
+    <td id="tbl_text" valign="top">{search_form}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~redirect_form}</td>
+    <td id="tbl_text" valign="top">Formulir yang menampilkan penambahan file
+      redirect.</td>
+    <td id="tbl_text" valign="top">--tidak ada--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~comment_form}</td>
+    <td id="tbl_text" valign="top">Formulir untuk meminta komentar pengunjung.
+      (Hanya aktif untuk anggota)</td>
+    <td id="tbl_text" valign="top">--tidak ada--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~news_form}</td>
+    <td id="tbl_text" valign="top">Formulir penambahan kabar baru (hanya untuk
+      administrator)</td>
+    <td id="tbl_text" valign="top">--tidak ada--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~feedback_form}</td>
+    <td id="tbl_text" valign="top">Formulir untuk meminta tanggapan pengunjung.</td>
+    <td id="tbl_text" valign="top">--tidak ada--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~link_form}</td>
+    <td id="tbl_text" valign="top">Formulir untuk penambahan link.&nbsp;</td>
+    <td id="tbl_text" valign="top">--tidak ada--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~rating_form}</td>
+    <td id="tbl_text" valign="top">Formulir untuk meminta masukan rating.</td>
+    <td id="tbl_text" valign="top">{rating_form}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top" colspan="3"><b><font size="4"><a name="Lain"></a>Lain-Lain</font></b></td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~style:nama_style:text}</td>
+    <td id="tbl_text" valign="top">Tampilkan text dengan style tertentu.</td>
+    <td id="tbl_text" valign="top"><b>{~style:info:Contoh Text}</b><br>
+      {style:info:Contoh Text}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~style:nama_style:$makro_lain}</td>
+    <td id="tbl_text" valign="top">Tampilkan makro lain dengan style tertentu</td>
+    <td id="tbl_text" valign="top"><b>{~style:info:$page_desc}</b><br>
+      {style:info:$page_desc}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~file_include:nama_file}</td>
+    <td id="tbl_text" valign="top">Tampilkan isi file yang yang ada pada
+      direktori <b>/_lang/id/</b></td>
+    <td id="tbl_text" valign="top"><b>{~file_include:ztest.htm}</b><br>
+      {file_include:ztest.htm}</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~redirect_table}</td>
+    <td id="tbl_text" valign="top">Tampilkan isi tabel redirect dari folder ini</td>
+    <td id="tbl_text" valign="top">--tidak ada--</td>
+  </tr>
+  <tr>
+    <td id="tbl_text" valign="top">{~macro:kata_kunci}</td>
+    <td id="tbl_text" valign="top">Tampilkan teks makro dengan kata kunci
+      tertentu. Penambahan teks makro dapat dilakukan di <a href="/phpmod/macro.php">Kontrol
+      Panel</a>.</td>
+    <td id="tbl_text" valign="top"><b>{~macro:feedback}</b><br>
+      {macro:feedback}</td>
+  </tr>
+</table>
+
+<p><a href="#top">Kembali ke Atas</a></p>
