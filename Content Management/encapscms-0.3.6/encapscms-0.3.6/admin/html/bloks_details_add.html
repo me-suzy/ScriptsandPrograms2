@@ -1,0 +1,72 @@
+<fieldset><legend>Íîâûé áëîê:</legend>
+<TABLE class="block" border="1"><tr><td valign="top">
+
+<form enctype="multipart/form-data" action="" method="post">
+<input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+<TABLE border="0">
+
+<tr><td>íàçâàíèå ñòàòüè:</td>
+<td><INPUT type="text" name="new_text_title" size="60"></TEXTAREA></td>
+</tr>
+
+<tr><td>òåêñò:</td>
+<td><TEXTAREA cols="60" rows="5" name="new_text"></TEXTAREA></td>
+</tr>
+
+<tr><td>òåêñò:</td>
+<td><TEXTAREA cols="60" rows="10" name="new_text_detail"></TEXTAREA></td>
+</tr>
+
+<tr><td>Ïîçèöèÿ áëîêà:</td>
+<td>
+<SELECT name="new_position">
+	<?for($i=1;$i<$count+2;$i++){?>
+	<option value="<?=$i?>" <?if($i>$count)echo "selected";?>><?=$i?></OPTION>
+	<?}?>
+</SELECT>
+</td></tr>
+
+<tr><td>Ïîêàçûâàòü</td>
+<td><INPUT type="checkbox"  name="new_visible"  checked></td></tr>
+
+
+</table>
+
+</td>
+
+<td valign="top">
+
+<TABLE>
+
+<tr>
+<td>Ðèñóíîê ïðåâüþ:</td>
+<td><INPUT name="img_file" size="30" type="file" ></td>
+</tr>
+
+<tr>
+<td>Ðèñóíîê ïîï-àï:</td>
+<td><INPUT name="img_file_popup" size="30" type="file" ></td>
+</tr>
+
+<tr>
+<td>Ïîçèöèÿ ðèñóíêà:</td>
+<td><SELECT name="new_image_position"><option value="right">ñïðàâà</OPTION><option value="left">ñëåâà</OPTION> </SELECT></td>
+</tr>
+
+<tr>
+<td>Ïîêàçûâàòü ðèñóíîê:</td>
+<td><input type="checkbox" name="img_visible" checked></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+<tr><td colspan="3" align="center"><INPUT type="submit" value="Äîáàâèòü áëîê"></td></tr>
+<INPUT type="hidden" name="action" value="block_sub_add">
+<INPUT type="hidden" name="page" value="<?=$pagectl->page["link"]?>">
+<INPUT type="hidden" name="page_sub" value="<?=$pagectl->page_sub?>">
+
+
+</table>
+</fieldset>
