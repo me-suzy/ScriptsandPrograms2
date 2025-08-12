@@ -1,0 +1,133 @@
+<%tloop lng%>
+
+<!--Left column-->
+<td align="center" valign="top" class="leftColumnBg">
+
+<!--Cat menu-->
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td><img src="<%tv design_dir%>blue1.gif" width="18" height="23" border="0" alt=""></td>
+<td align="center" background="<%tv design_dir%>blue2.gif" class="BodyText03"><%tlv 10%></td>
+<td><img src="<%tv design_dir%>blue3.gif" width="18" height="23" border="0" alt=""></td>
+</tr>
+<tr>
+<td background="<%tv design_dir%>blue_left.gif"><img src="<%tv design_dir%>blue_left.gif" width="18" height="5" border="0" alt=""></td>
+<td valign="top">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+
+<table border="0" cellspacing="0" cellpadding="3">
+<%tloop categories%>
+<tr>
+<td>
+<a href="index.php?cat_id=<%tlv cat_id%>" class="menu"><%tlv category%></a><br>
+</td>
+</tr>
+<%tendloop categories%>
+</table>
+
+</td>
+<td background="<%tv design_dir%>blue_right.gif"><img src="<%tv design_dir%>blue_right.gif" width="18" height="5" border="0" alt=""></td>
+</tr>
+<tr>
+<td><img src="<%tv design_dir%>blue4.gif" width="18" height="23" border="0" alt=""></td>
+<td background="<%tv design_dir%>blue5.gif"><img src="<%tv design_dir%>blue5.gif" width="139" height="23" border="0" alt=""></td>
+<td><img src="<%tv design_dir%>blue6.gif" width="18" height="23" border="0" alt=""></td>
+</tr>
+</table>
+<!--/Car menu-->
+
+<br>
+
+<!--Stats-->
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td><img src="<%tv design_dir%>blue1.gif" width="18" height="23" border="0" alt=""></td>
+<td align="center" background="<%tv design_dir%>blue2.gif" class="BodyText03"><%tlv 12%></td>
+<td><img src="<%tv design_dir%>blue3.gif" width="18" height="23" border="0" alt=""></td>
+</tr>
+<tr>
+<td background="<%tv design_dir%>blue_left.gif"><img src="<%tv design_dir%>blue_left.gif" width="18" height="5" border="0" alt=""></td>
+<td valign="top">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+
+<table border="0" cellspacing="5" cellpadding="0">
+<tr><td><font class="BodyText02"><%tlv 14%>: <%tlv total_cat%></font></td></tr>
+<tr><td><font class="BodyText02"><%tlv 13%>: <%tlv total_prod%></font></td></tr>
+<tr><td><font class="BodyText02"><%tlv 16%>: <%tlv currency_desc%></font></td></tr>
+<tr><td><font class="BodyText02"><%tlv 15%>: <%tlv quan_hits%></font></td></tr>
+</table>
+
+</td>
+<td background="<%tv design_dir%>blue_right.gif"><img src="<%tv design_dir%>blue_right.gif" width="18" height="5" border="0" alt=""></td>
+</tr>
+<tr>
+<td><img src="<%tv design_dir%>blue4.gif" width="18" height="23" border="0" alt=""></td>
+<td background="<%tv design_dir%>blue5.gif"><img src="<%tv design_dir%>blue5.gif" width="139" height="23" border="0" alt=""></td>
+<td><img src="<%tv design_dir%>blue6.gif" width="18" height="23" border="0" alt=""></td>
+</tr>
+</table>
+<!--/Stats-->
+
+<br>
+
+<!--Status-->
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td><img src="<%tv design_dir%>bb1.gif" width="18" height="23" border="0" alt=""></td>
+<td background="<%tv design_dir%>bb2.gif"><img src="<%tv design_dir%>bb2.gif" width="139" height="23" border="0" alt=""></td>
+<td><img src="<%tv design_dir%>bb3.gif" width="18" height="23" border="0" alt=""></td>
+</tr>
+<tr>
+<td background="<%tv design_dir%>bb_left.gif"><img src="<%tv design_dir%>bb_left.gif" width="18" height="5" border="0" alt=""></td>
+<td valign="top"  background="<%tv design_dir%>bb_bg.gif">
+
+<div align="center" class="chapter02"><%tlv title%><%tif user_name%>, <b><%tlv user_name%></b><%tendif user_name%></div>
+<br>
+
+<table border="0" cellspacing="5" cellpadding="0" width="100%">
+<%tif error%>
+<tr><td align="center">
+<font class="errorMessage"><b><%tlv 18%></b></font>
+</td></tr>
+<%tendif error%>
+<%tif valid_user%>
+<tr><td><a href="account.php<%tif session%>?session=<%tlv session%><%tendif session%>" class="menu02"><%tlv 21%></a></td></tr>
+<tr><td><a href="view_cart.php<%tif session%>?session=<%tlv session%><%tendif session%>" class="menu02"><%tlv 23%></a></td></tr>
+<tr><td><a href="orders.php<%tif session%>?session=<%tlv session%><%tendif session%>" class="menu02"><%tlv 22%></a></td></tr>
+<tr><td><a href="logout.php<%tif session%>?session=<%tlv session%><%tendif session%>" class="menu02"><%tlv 25%></a></td></tr>
+<%tendif valid_user%>
+<%tif novalid_user%>
+<tr><td>
+<form method="post" action="index.php" target="_self" class="BodyText03">
+<div align="center">
+<%tlv 26%>:<br>
+<input name="email" class="textbox" type="text" size="15" maxlength="40">
+<br><%tlv 27%>:<br>
+<input name="password" class="textbox" type="password"name="password" size="15" maxlength="40"><br>
+<br>
+<input type="submit" class="submit" name="submit_login" value="<%tlv 28%>">
+<p>
+<a href="password.php" target="_self" class="menu02"><%tlv 29%>?</a><br>
+</td></tr>
+<%tendif novalid_user%>
+</form>
+</table>
+
+</td>
+<td background="<%tv design_dir%>bb_right.gif"><img src="<%tv design_dir%>bb_right.gif" width="18" height="5" border="0" alt=""></td>
+</tr>
+<tr>
+<td><img src="<%tv design_dir%>bb4.gif" width="18" height="23" border="0" alt=""></td>
+<td background="<%tv design_dir%>bb5.gif"><img src="<%tv design_dir%>bb5.gif" width="139" height="23" border="0" alt=""></td>
+<td><img src="<%tv design_dir%>bb6.gif" width="18" height="23" border="0" alt=""></td>
+</tr>
+</table>
+<!--/Status-->
+
+</td>
+
+<!--/Left column-->
+
+<td><img src="<%tv design_dir%>spacer.gif" width="10" height="1" border="0"></td>
+
+<%tendloop lng%>
