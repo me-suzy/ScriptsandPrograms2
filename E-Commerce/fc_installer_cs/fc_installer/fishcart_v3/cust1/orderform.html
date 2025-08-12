@@ -1,0 +1,569 @@
+<?php 
+include('flags.inc');
+error_reporting(0);
+// round a floating point number to 2 decimals
+function rnd ($n) {
+	$t1=(int)($n*1000);
+	$t2=$t1+5;
+	$t=(int)($t2/10)*10;
+	return((double)($t)/1000);
+}
+
+if($cartid==""){?>
+<h2 align=center>Initialization Error</h2>
+The current order appears to either be invalid or has been successfully
+completed.  You will receive this message if you clicked the &quot;Back&quot;
+button on your browser after completing your order.  If you placed an order
+online, you will know that it was successfully completed because a detailed
+order confirmation will be sent to the email address you gave in the order. 
+No confirming e-mail is sent on offline orders.
+<p>
+To continue browsing the COMPANY Web site, or to make further purchases, please
+click here to <a href="HOMEURL/">return to the home page.</a>  Thank you!
+<?php exit;}
+
+$sd=odbc_connect("TCP/IP PORTNUM","USERID","USERPW");
+$wr=odbc_exec($sd,"select * from WEBTABLE where webzid=$zid and weblid=$lid"); 
+$wc=odbc_fetch_row($wr);
+
+$lr=odbc_exec($sd,"select langgeo,langshow,langproc from LANGTABLE ".
+	"where langid=$lid");
+if($lr==""){ echo "Error getting the language zone record.<br>"; exit; }
+$lc=odbc_fetch_row($lr);
+$geo=odbc_result($lr,"langgeo");
+$show=odbc_result($lr,"langshow");
+$proc=odbc_result($lr,"langproc");
+odbc_free_result($lr);
+
+$zr=odbc_exec($sd,"select zonecurrsym from ZONETABLE where zoneid=$zid"); 
+$zc=odbc_fetch_row($zr);
+if($zc){
+	$csym=odbc_result($zr,"zonecurrsym");
+	$csym=stripslashes($csym);
+}else{
+	$csym="";
+}
+odbc_free_result($zr);
+
+$sr=odbc_exec($sd,"select * from SUBZONETABLE ".
+	"where subzid=$zid and subzsid=$subz");
+$sc=odbc_fetch_row($sr);
+if(!$sc){
+	odbc_exec($sd,"update ORDERHEAD set subz=0 where orderid='$cartid'");
+	odbc_exec($sd,"commit work");
+	header("Location: HOMEURL/DIRECTORY/$geo?cartid=$cartid&zid=$zid&lid=$lid");
+	exit;
+}
+$or=odbc_exec($sd,"select * from ORDERHEAD where orderid='$cartid'"); 
+$oc=(int)odbc_fetch_row($or);
+if($oc==0){?>
+<h2 align=center>Initialization Error</h2>
+The current order appears to either be invalid or has been successfully
+completed.  You will receive this message if you clicked the &quot;Back&quot;
+button on your browser after completing your order.  If you placed an order
+online, you will know that it was successfully completed because a detailed
+order confirmation will be sent to the email address you gave in the order. 
+No confirming e-mail is sent on offline orders.
+<p>
+To continue browsing the COMPANY Web site, or to make further purchases, please
+click here to <a href="HOMEURL/">return to the home page.</a>  Thank you!
+<?php exit;}
+$lr=odbc_exec($sd,"select * from ORDERLINE where orderid='$cartid'"); 
+$lc=odbc_fetch_row($lr);
+if($lc==0){
+  echo "<p align=center>Your shopping basket is empty!<p align=center>";
+  echo "<a href=\"HOMEURL/DIRECTORY/index.php?cartid=$cartid&zid=$zid&lid=$lid\">";
+  echo "<b>Back to Shopping</b></a></center>";
+  exit;
+}
+?>
+<html>
+<head>
+<title>
+</title>
+</head>
+
+<?php 
+echo "<body";
+$tmp=odbc_result($wr,"webback");
+if(strlen($tmp)>0){echo " background=\"$tmp\"";}
+$tmp=odbc_result($wr,"webtext");
+if(strlen($tmp)>0){echo " text=\"$tmp\"";}
+$tmp=odbc_result($wr,"weblink");
+if(strlen($tmp)>0){echo " link=\"$tmp\"";}
+$tmp=odbc_result($wr,"webvlink");
+if(strlen($tmp)>0){echo " vlink=\"$tmp\"";}
+$tmp=odbc_result($wr,"webalink");
+if(strlen($tmp)>0){echo " alink=\"$tmp\"";}
+$tmp=odbc_result($wr,"webbg");
+if(strlen($tmp)>0){echo " bgcolor=\"$tmp\"";}
+echo ">\n";
+?>
+
+<h2 align=center>COMPANY</h2>
+<h3 align=center>Customer Ordering Information</h3>
+
+<center>
+<form method=post action="SECUREURL/DIRECTORY/<?php echo $proc?>">
+
+<table border=3 cellpadding=5 width=550>
+<tr><td align=center valign=top colspan=4>
+<font size="+1">
+Product Purchases
+</font>
+</td></tr>
+<tr><td align=center valign=top>
+<b>Product</b>
+</td><td align=center valign=top>
+<b>Quantity</b>
+</td><td align=center valign=top>
+<b>Unit Price</b>
+</td><td align=center valign=top>
+<b>Total</b>
+</td><tr>
+
+<?php 
+$i=0;
+while($lc){
+ $sku=odbc_result($lr,"sku");
+ $ar=odbc_exec($sd,"select prodsdescr from PRODLANG ".
+	 "where prodlzid=$zid and prodlid=$lid and prodlsku='$sku'");
+ $ac=odbc_fetch_row($ar);
+ if(!$ac){
+	 echo "Product not found<br>\n";
+	 exit;
+ }
+ $prodsdescr=stripslashes(odbc_result($ar,"prodsdescr"));
+ odbc_free_result($ar);
+ 
+ $qty=odbc_result($lr,"qty");?>
+
+<tr><td align=left valign=top>
+	
+	<?php echo "$prodsdescr<br>"?>
+
+</td><td align=center valign=top>
+
+	<?php echo "$qty<br>"?>
+
+</td><td align=right valign=top>
+
+	<?php 
+	$now=time();
+    $pr=odbc_exec($sd,"select prodprice,prodsaleprice,prodsalebeg,prodsaleend".
+        ",prodflag1 from PRODTABLE where prodzid=$zid and prodsku='$sku'");
+	$pc=odbc_fetch_row($pr);
+    if($pc==0){echo "<b>pc=0</b>";};
+    $slb=(int)odbc_result($pr,"prodsalebeg");
+    $sle=(int)odbc_result($pr,"prodsaleend");
+    $flag1=(int)odbc_result($pr,"prodflag1");
+    if($slb<$now&&$now<$sle){
+      $price=(double)odbc_result($pr,"prodsaleprice");
+      $slprc=1;
+    }else{
+      $price=(double)odbc_result($pr,"prodprice");
+    }
+	odbc_free_result($pr);
+	// nmb $tmp=sprintf("%s%.2f<br>",$csym,(double)$price);
+	// nmb echo $tmp;
+	printf("%s%.2f<br>",$csym,$price);
+	?>
+
+</td><td align=right valign=top>
+
+	<?php 
+	$tpr=rnd((double)$price*$qty);
+	// nmb $tmp=sprintf("%s%.2f<br>",$csym,$tpr);
+	// nmb echo $tmp;
+	printf("%s%.2f<br>",$csym,$tpr);
+	$stotal=rnd((double)$tpr+$stotal);
+	$ototal=rnd((double)$tpr+$ototal);
+	$ttotal=rnd((double)$tpr+$ttotal);
+	if(!($flag1 & $flag_noship)){
+	 $shipsubtotal=round(doubleval($tpr)+$shipsubtotal);
+	}?>
+
+</td></tr>
+
+	<?php 
+	$lc=odbc_fetch_row($lr);
+  $i++;
+} // end of product display while loop
+
+$taxship=(int)odbc_result($sr,"subztaxship");
+if(($taxship==1) && ($ttotal>0)){ // taxable shipping
+?>
+
+<tr><td colspan=1></td>
+<?php 
+$tr=odbc_exec($sd,"select shipid,shipcalc,shipdescr from SHIPTABLE ".
+	"where shipzid=$zid and shipszid=$subz and shiplid=$lid");
+$tc=(int)odbc_fetch_row($tr);
+if($tc==0){
+ echo "Internal error: shipcalc not found ".
+	"shipid:\nshipzid:$zid shipszid:$subz shiplid:$lid<br>\n";
+ exit;
+} // tc==0
+$shipdescr=odbc_result($tr,"shipdescr");
+?>
+<td colspan=2 align=left valign=top>
+<b>Shipping Charges:</b><br>
+<i><?php echo $shipdescr?></i><br>
+</td><td colspan=1 align=right valign=top>
+<?php 
+$shipmethod=odbc_result($tr,"shipcalc");
+// calculate shipping charges into $shamt
+include($shipmethod);
+odbc_free_result($tr);
+$shiptotal=rnd((double)$stotal+$shamt);
+$ototal=rnd((double)$ototal+$shamt);
+$ttotal=rnd((double)$ttotal+$shamt);
+// nmb $tmp=sprintf("%s%.2f<br>",$csym,$shamt);
+// nmb echo $tmp;
+printf("%s%.2f<br>",$csym,$shamt);
+?>
+
+</td></tr>
+
+<?php 
+$taxper=(double)odbc_result($sr,"subztaxper");
+if($taxper>0){?>
+<tr><td colspan=1></td><td colspan=2 align=left valign=top>
+<b>Sales Tax:</b><br>
+</td><td colspan=1 align=right valign=top>
+<?php 
+$stax=rnd((double)$taxper*$shiptotal);
+$ototal=rnd((double)$ototal+$stax);
+$ttotal=rnd((double)$ttotal+$stax);
+// nmb $tmp=sprintf("%s%.2f<br>",$csym,$tp);
+// nmb echo $tmp;
+printf("%s%.2f<br>",$csym,$tp);?>
+</td></tr>
+<?php } // taxper>0
+
+}elseif(($taxship!=1) && ($ttotal>0)){ // non taxable shipping
+
+$taxper=(double)odbc_result($sr,"subztaxper");
+if($taxper>0){?>
+<tr><td colspan=1></td><td colspan=2 align=left valign=top>
+<b>Sales Tax:</b><br>
+</td><td colspan=1 align=right valign=top>
+<?php 
+$stax=rnd((double)$taxper*$stotal);
+$ototal=rnd((double)$ototal+$stax);
+$ttotal=rnd((double)$ttotal+$stax);
+// nmb $tmp=sprintf("%s%.2f<br>",$csym,$tp);
+// nmb echo $tmp;
+printf("%s%.2f<br>",$csym,$stax);
+?>
+</td></tr>
+<?php }?>
+
+<tr><td colspan=1></td>
+<?php 
+$tr=odbc_exec($sd,"select shipid,shipcalc,shipdescr from SHIPTABLE ".
+	"where shipzid=$zid and shipszid=$subz and shiplid=$lid");
+$tc=(int)odbc_fetch_row($tr);
+if($tc==0){
+ echo "Internal error: shipcalc not found ".
+	"shipid:\nshipzid:$zid shipszid:$subz shiplid:$lid<br>\n";
+ exit;
+}
+$shipdescr=odbc_result($tr,"shipdescr");
+?>
+<td colspan=2 align=left valign=top>
+<b>Shipping Charges:</b><br>
+<i><?php echo "$shipdescr"?></i><br>
+</td><td colspan=1 align=right valign=top>
+<?php 
+$shipmethod=odbc_result($tr,"shipcalc");
+// calculate shipping charges into $shamt
+include($shipmethod);
+odbc_free_result($tr);
+$ototal=rnd((double)$ototal+$shamt);
+$ttotal=rnd((double)$ttotal+$shamt);
+// nmb $tmp=sprintf("%s%10.2f<br>",$csym,$shamt);
+// nmb echo $tmp;
+printf("%s%.2f<br>",$csym,$shamt);
+?>
+</td></tr>
+
+<?php } // end tax and shipping
+
+$contamt=(double)odbc_result($or,"contrib");
+if($contamt>0){?>
+<tr><td colspan=1></td>
+<td colspan=2 align=left valign=top>
+
+<b>Contribution:</b><br>
+
+</td><td colspan=1 align=right valign=top>
+
+<?php 
+// nmb $tmp=sprintf("%s%5.2f<br>",$csym,$contamt);
+// nmb echo $tmp;
+printf("%s%.2f<br>",$csym,$contamt);
+// don't add to ototal
+$ttotal=rnd((double)$contamt+$ttotal);
+?>
+
+</td></tr>
+<?php }?>
+<tr><td colspan=1></td>
+<td colspan=2 align=left valign=top>
+
+<b>Total:</b><br>
+
+</td><td colspan=1 align=right valign=top>
+
+<?php 
+// nmb $tmp=sprintf("%s%.2f<br>",$csym,$ttotal);
+// nmb echo $tmp;
+printf("%s%.2f<br>",$csym,$ttotal);
+?>
+
+</td></tr>
+<tr><td colspan=4 align=center>
+<font size="+1">
+Billing Information:
+</font>
+
+</td></tr>
+<tr><td colspan=4>
+
+E-Mail Address: <i>required</i><br>
+<input type=text name=billing_email size=40 maxsize=30><br>
+
+<table border=0 cellpadding=0>
+<tr><td>
+Mr/Mrs/Ms <i>optional</i>
+</td><td>
+First Name: <i>required</i><br>
+</td><td>
+M.I.: <i>optional</i>
+</td><td>
+Last Name: <i>required</i><br>
+</td></tr>
+<tr><td>
+<select name=billing_sal size=1>
+<option value="">[select one]
+<option value="Mr">Mr.
+<option value="Mrs">Mrs.
+<option value="Ms">Ms.
+</select>
+</td><td>
+<input type=text name=billing_first size=15 maxsize=15>
+</td><td>
+<input type=text name=billing_mi size=2 maxsize=1>
+</td><td>
+<input type=text name=billing_last size=20 maxsize=20><br>
+</td></tr>
+</table>
+
+Attention: <i>optional</i><br>
+<input type=text name=billing_address1 size=40 maxsize=30><br>
+Address: <i>as least first line required</i><br>
+<input type=text name=billing_address2 size=40 maxsize=30><br>
+<input type=text name=billing_address3 size=40 maxsize=30><br>
+
+<table border=0 cellpadding=0>
+<tr><td>
+City <i>all required</i>
+</td><td>
+State
+</td><td>
+ZIP
+</td><td>
+Country<br>
+</td></tr>
+<tr><td>
+<input type=text name=billing_city size=30 maxsize=30>
+</td><td>
+<input type=text name=billing_state size=3 maxsize=2>
+</td><td>
+<input type=text name=billing_zip size=11 maxsize=10>
+</td><td>
+<input type=text name=billing_country size=3 maxsize=2><br>
+</td></tr>
+</table>
+
+<table border=0 cellpadding=0>
+<tr><td>
+Daytime Phone #: <i>required</i><br>
+<input type=text name=billing_phone size=20><br>
+</td><td>
+Ext:<br>
+<input type=text name=billing_ext size=5><br>
+</td></tr>
+</table>
+
+</td></tr>
+<tr><td colspan=4 align=center>
+
+<font size="+1">
+Credit Card Information:<br>
+</font>
+<i>required for online ordering</i><br>
+
+</td></tr>
+<tr><td align=left valign=middle colspan=4>
+
+Customer Name As It Appears On Credit Card: <i>required</i><br>
+<input type=text name=cc_name size=40 maxsize=30><br>
+
+</td></tr>
+<tr><td align=left valign=middle colspan=1>
+
+<?php // ADD ALL CREDIT CARD TYPES HERE ?>
+Credit Card Type:<br>
+<input type=radio name=cctype value="VISA">VISA<br>
+<input type=radio name=cctype value="Mastercard">Mastercard<br>
+<input type=radio name=cctype value="Discover">Discover<br>
+
+</td><td align=center valign=middle colspan=1>
+
+Credit Card Expiration<br>
+<font color="#ff0000">(numeric values)</font>
+<table border=0>
+<tr><td align=center valign=top>
+Month
+</td><td align=center valign=top>
+Year<br><font color="#ff0000">(4 digits)</font><br>
+</td></tr><tr><td align=center valign=top>
+<input type=text name=ccexp_month size=3 maxsize=2><br>
+</td><td align=center valign=top>
+<input type=text name=ccexp_year size=5 maxsize=4><br><br>
+</td></tr>
+</table>
+
+</td><td colspan=2 valign=middle align=center>
+
+Credit Card Number: <i>required</i><br>
+<input type=text name=cc_number size=21 maxsize=19><br>
+
+</td></tr>
+<tr><td colspan=4 align=center>
+
+<font size="+1">Shipping Information:</font><br>
+<b><i>(if different than Billing Information)</i></b><br>
+
+</td></tr>
+<tr><td colspan=4>
+
+<table border=0 cellpadding=0>
+<tr><td>
+First Name:<br>
+</td><td>
+Last Name:<br>
+</td></tr>
+<tr><td>
+<input type=text name=shipping_first size=15 maxsize=15>
+</td><td>
+<input type=text name=shipping_last  size=20 maxsize=20><br>
+</td></tr>
+</table>
+
+Attention <i>optional</i><br>
+<input type=text name=shipping_address1 size=40 maxsize=30><br>
+
+Shipping Address:<br>
+<input type=text name=shipping_address2 size=40 maxsize=30><br>
+<input type=text name=shipping_address3 size=40 maxsize=30><br>
+
+<table border=0 cellpadding=0>
+<tr><td>
+City <i>all required</i>
+</td><td>
+State
+</td><td>
+ZIP
+</td><td>
+Country<br>
+</td></tr>
+<tr><td>
+<input type=text name=shipping_city size=30 maxsize=30>
+</td><td>
+<input type=text name=shipping_state size=3 maxsize=2>
+</td><td>
+<input type=text name=shipping_zip size=11 maxsize=10>
+</td><td>
+<input type=text name=shipping_country size=3 maxsize=2><br>
+</td></tr>
+</table>
+
+<input type=hidden name=shipping_phone value="" size=20 maxsize=20><br>
+
+</td></tr>
+<tr><td align=center colspan=4>
+
+<font size="+1">
+Order Method:
+</font><br>
+
+</td></tr>
+<tr><td align=center valign=middle colspan=4>
+
+<table border=0 cellpadding=3>
+<tr><td align=left valign=middle colspan=1 width="25%">
+<input type=radio  name=onoff value="on">
+<b>Online</b><br>
+
+</td><td align=left valign=top colspan=1 width="25%">
+
+Online orders are placed using your credit card.  The order is strongly
+encrypted to secure your financial information.
+
+</td><td align=left valign=middle colspan=1 width="25%">
+<input type=radio  name=onoff value="off">
+<b>Offline</b><br>
+
+</td><td align=left valign=top colspan=1 width="25%">
+
+You can place offline orders by fax or postal mail.  You can pay by
+credit card with a faxed order or mail payment with your order.
+
+</td></tr>
+</table>
+
+</td></tr>
+<tr><td align=center colspan=2>
+
+<input type="hidden" name="stotal" value="<?php echo $stotal?>">
+<input type="hidden" name="shamt" value="<?php echo $shamt?>">
+<input type="hidden" name="stax" value="<?php echo $stax?>">
+<input type="hidden" name="ototal" value="<?php echo $ototal?>">
+<input type="hidden" name="contamt" value="<?php echo $contamt?>">
+<input type="hidden" name="ttotal" value="<?php echo $ttotal?>">
+
+<input type="hidden" name="itot" value="<?php echo $itot?>">
+<input type="hidden" name="cartid" value="<?php echo $cartid?>">
+<input type="hidden" name="zid" value="<?php echo $zid?>">
+<input type="hidden" name="lid" value="<?php echo $lid?>">
+
+<input type=hidden name=referer value="<?php echo $REMOTE_ADDR?>">
+<input type=submit value="Send the order">
+
+</td><td align=center colspan=2>
+
+<input type=reset  value="Clear the form">
+
+</td></tr>
+</table>
+</form>
+
+<p align=center>
+
+<a href="HOMEURL/DIRECTORY/index.php?cartid=<?php echo $cartid?>&zid=<?php echo $zid?>&lid=<?php echo $lid?>">
+<b>Back to Shopping</b></a>
+
+</center>
+
+<hr>
+<address>
+
+<a href="mailto:marketing@DOMAIN.ORG">marketing@DOMAIN.ORG</a><br>
+
+</address>
+
+</body>
+</html>
