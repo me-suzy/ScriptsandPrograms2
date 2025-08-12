@@ -1,0 +1,36 @@
+Internet Radio Song Request Service
+Version 1.0
+By Dan Brown
+Www.gmtt.co.uk
+13/09/05
+
+~~~~~~~~~~~
+Background:
+~~~~~~~~~~~
+I've been asked many times for an addition to my shoutcast stats script that will allow visitors to the stats to also request songs. Well here's that very system.
+I presume most people who use Internet Radio use playlists, so setup is very simple.
+
+~~~~~~
+Setup:
+~~~~~~
+Open config.php and add the name of your playlist (playlists must be in .m3u format and you must include this) to the variable $playlist
+Example:
+
+$playlist = "all.m3u";
+
+Now just upload the playlist with this script, and that's it, your done.
+
+~~~~~~~~~~~~
+How It Works:
+~~~~~~~~~~~~
+We filter out all the information in the .m3u file that we don't need such as song path and tags
+Then we load this into a text file, so we have a text version of your playlist including html select tags, this is called playlist.txt
+
+Playlist.txt is then loaded inbetween form and listbox tags, creating the form full of songs you should see on the page.
+Selected songs are then submitted to another text file named chosen.txt that is then displayed on the screen.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+What you may want in the future:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Intergtation into shoutcast stats to delete songs from the list once they have been played
+
