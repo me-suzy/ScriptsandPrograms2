@@ -1,0 +1,141 @@
+       ___________________________________________________________
+
+                  PHP Web Commander - Version 0.2 README
+                               July 2004
+       ___________________________________________________________
+
+                Copyright (C) 2004 Dragos Protung
+
+
+_______________________
+
+CONTENTS
+_______________________
+
+1. Description
+2. Requirements
+3. Install
+4. To do
+5. Version history
+6. Contact
+
+_______________________
+
+1. Product Description
+_______________________
+
+PHP Web Commander is an application designed for web server usage.
+The basic idea of the program concerns the possibility to manage files, ftp accounts, database, etc.
+Similarly to the populars Windows files managers, the utility is endowed with an user-friendly interface, ensuring the same level of functional procedures.
+Supporting a wide range of plugins, the application allows the user to configure his own Web Commander system, through miscellaneous commands.
+
+
+Plugins:
+
+   File Browsing
+      - gives you an attractive look for managing file on the server
+      - you can view, edit, copy, move, delete, CHMOD, rename multiple files or directories all at the same time
+      - you can create new folders and download files
+      - you have an option for multi CHMOD. Just select as many files / folders you want.
+        You'll be asked for every file / folder the CHMOD value. If you want at a certain point to use the same value just enter %all% and all the other files will have the CHMOD value from the last value entered
+      - you can do multi rename. Select the files / folders you want to rename. You'll be asked the new name for every file. you can enter it or use multi rename.
+        Just type %multirename% and the last value will be taken for the rest of the files. For now you can use only a counter.
+        Syntax is: some_text[CC...CC]some_text. Every 'C' will be replaced with a number starting from 0.
+        For example: file_[C] will produce: file_0, file_1, file_2, etc
+                     file_[CC] will produce: file_00, file_01, file_02, ..., file_09, file_10, file_11, etc
+      - on copy and move you'll be asked if you want to overwrite the existing files even if they do not exist. If you click 'OK' all files will be overwritten. If you click 'Cancel' the existing files will be skipped. (this is used to speed it up, will be change in the future)
+      - on view, you can view almost any text file, images and flashes.
+      - on edit you can edit as many files you want. and make a back-up only for the ones you want
+      - you can add as many icons for file types you want. Just name the icons like this: < file_extension >.gif and put it in < path_to_the_script >/templates/files/images/icons/
+      - you have some shortcut keys to use for fast commands
+
+
+   FTP Browsing
+      - only browsing capabilities
+      - only one server (see configuration) for now
+      - more to be added soon
+_______________________
+
+2. System Requirements
+_______________________
+
+- For running the script:
+     - PHP 4.3+ (will not work on PHP 5)
+     - MySQL server version 3+
+     - CHMOD will work only if server permits
+- User must have :
+     - IE 6, Mozilla, Opera (on this browsers was tested)
+
+* Please test the script on diferent browsers and diferent versions and send feedback to improve the script
+* More support will be added soon
+
+______________
+
+3. Install
+______________
+
+- Copy all the files on the server
+- Just point you browser to where are the files located on your server and fallow the instructions (remember to CHMOD "includes/config.php" to 0777)
+- To configure each plugin open each configuration file for every plugin (path_to_script/plugins/<name_of_the_plugin>/<name_of_the_plugin>.cfg.php)
+- Each config file has his own details how to configure.
+- To login use: the username and password from install
+	
+______________
+
+4. To do
+______________
+
+- Restrict users to one folder (and subfolders)
+- Control panel to configure each plugin
+- ZIP / UnZIP function
+- Add multilangage support
+- Optimize the code
+- Add more plugins
+- And many, many more to include here
+
+___________________
+
+5. Version history
+___________________
+
+v 0.3.8 - 11.10.2004
+   [+] small function for uploading files (will be improved soon)
+   [+] added menu that works with frames (thanks for the menu to Ger Versluis [www.burmees.nl/menu])
+   [+] shortcut keys (see help)
+   [+] made default plugin the File plugin
+   [+] added logout / quit
+   [*] small fix in right click menu
+   [*] small fixes
+v 0.3.1 - 1.09.2004
+   [+] added installer
+   [+] new logo (thanks to Didy [didy[_at_]protung.ro])
+   [+] added right click menu in File plugin
+
+v 0.2.6 - 26.08.2004
+   [+] now it fully works in Mozilla and Opera (hope so)
+   [&] update of new version alert
+   [+] implemented access levels for actions in the File Browsing plugin
+   [*] fixed some bugs with copy/move/delete
+   [*] fixed bug with editing in Mozilla
+
+v 0.2.5 - 24.08.2004
+   [+] added username / password protection
+   [+] added new version alert
+
+v 0.2.2 - 16.08.2004
+   [*] fixed file name and extension wrong display bug
+   [+] added ftp browsing. More to come soon.
+
+v 0.2.1 - 30.07.2004
+   [*] fixed edit file bug
+
+v 0.2b  - 29.07.2004
+   [+] first public release
+
+______________
+
+6. Contact
+______________
+
+Please send your suggestions, bug reports and general feedback to dragos@protung.ro
+Also visit http://www.protung.ro for updates and informations
