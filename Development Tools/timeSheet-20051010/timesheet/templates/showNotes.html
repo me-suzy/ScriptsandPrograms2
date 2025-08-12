@@ -1,0 +1,19 @@
+<tr>
+	<th colspan="9">Notes</th>
+</tr>
+	{if $notes}
+	{foreach from=$notes item=note}
+	<tr>
+		<td colspan="9">{if $note.user_id == $smarty.session.id OR $smarty.session.id == 1}<a href="javascript:confirmDel('note','index.php?action=delNote&id={$note.id}','{$note.datePosted} - {$note.email|escape:"quotes"}\n{$note.notes|escape:"quotes"|truncate:70:" ... "}')"><img src="img/trash.gif" border="0" align="middle"></a>{else}<img src="img/shared.gif" align="middle">{/if} 
+		<b>On {$note.datePosted} {$note.email} wrote:</b>
+		<p>{$note.notes|nl2br}</p>
+	</tr>
+	{/foreach}
+	{/if}
+	<form action="index.php" method="POST">
+	<input type="hidden" name="action" value="postNote">
+	<input type="hidden" name="job_id" value="{$job.id}">
+	<tr>
+		<td colspan="5"><textarea name="note" style="width:100%" rows="2"></textarea></td><td><input class="btn" type="submit" value="Add Note"></td>
+	</tr>
+	</form>
