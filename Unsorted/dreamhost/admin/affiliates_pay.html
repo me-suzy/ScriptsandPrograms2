@@ -1,0 +1,127 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td width="230" valign="middle"> <font class="form_text"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333">AFFILIATE 
+      PAYOUTS DUE:</font></b></font> </td>
+    <td valign="middle">&nbsp; </td>
+  </tr>
+</table>
+<form method="post" action="" >
+  <font face="Verdana, Arial, Helvetica, sans-serif"> 
+  <? 
+  
+  if ($action == "payed") { affiliate_payed(); }
+  
+    $today=date("Y-m-d");
+    $today_date=strtotime($today);
+	$i="0";	
+	$db = new ps_DB;
+	$q  = "SELECT * FROM affiliate WHERE affiliate_type='2'";
+	$db->query($q);
+		while ($db->next_record()) {
+		$affiliate_id = $db->f("affiliate_id");
+		if (get_affiliate_payout($affiliate_id) > 0) {
+?>
+  </font><font face="Verdana, Arial, Helvetica, sans-serif"> </font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC" vspace="1" hspace="1">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#E4E4E4" height="10">
+          <tr> 
+            <td width="27" height="5"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <font color="#990000"> <font color="#000000"> 
+              <?  $db->p("affiliate_id");  ?>
+              </font> </font> </font></font></b></font></td>
+            <td height="5" width="640"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><i><font color="#003399"> 
+              </font></i><font color="#003399"> </font><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <?  $db->p("affiliate_name");  ?>
+              </font></font></b></font></td>
+            <td width="257" height="5"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#990000" size="2"><b>AMOUNT 
+                DUE:</b></font></font></font></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+                </font></font></div>
+            </td>
+            <td width="143" height="5"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <? 
+			$referrals = show_affiliate_referrals($db->f("affiliate_id")); 
+			if ($referrals == 0) {
+			echo " No referrals";
+			} else {
+?>
+              </font><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><font color="#660000">Referrals</font></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"><font color="#000000"> 
+              (</font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#000000"> 
+              <? 
+			echo $referrals;
+			?>
+              ) </font> 
+              <? 
+			   }
+			   ?>
+            </td>
+            <td width="35" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?page=affiliates_admin&affiliate_id=<? $db->p("affiliate_id"); ?>">details</a></font></td>
+          </tr>
+          <tr> 
+            <td width="27" height="5">&nbsp;</td>
+            <td height="5" width="640"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <?  $db->p("affiliate_address");  ?>
+              <br>
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <?  $db->p("affiliate_city");  ?>
+              </font></font></b></font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              , 
+              <?  $db->p("affiliate_state");  ?>
+              <?  $db->p("affiliate_zip");  ?>
+              <br>
+              </font></font></b></font></b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#990000" size="2"></font><b><font face="Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+              </font></b><font face="Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+              </font></font></font></font></td>
+            <td width="257" height="5"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><b><font face="Arial, Helvetica, sans-serif" size="2" color="#000066">
+                <?
+			  echo setup("currency");
+			  $affiliate_id=$db->f("affiliate_id");
+printf("%.2f", get_affiliate_payout($affiliate_id));
+?>
+                </font><font face="Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+                </font></b></font></font></font></div>
+            </td>
+            <td width="143" height="5" valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <? 
+$orders = show_affiliate_orders($db->f("affiliate_id"));
+if ($orders == 0) {
+echo " No Orders";
+} else {
+?>
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><font color="#660000">Orders 
+              </font></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"><font color="#000000">(</font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#000000"> 
+              <? 
+echo $orders;
+?>
+              )</font><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <?  } ?>
+              </font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              </font></font></td>
+            <td width="35" height="5">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font face="Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+    </font></font></font></font><font face="Verdana, Arial, Helvetica, sans-serif"> 
+    <?   
+$i++;
+ } 
+}
+if ($i=="0") { echo "<BR>NO RESULTS FOR THIS SEARCH"; } else { ?>
+    </font> <br>
+  </p>
+  <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2">After you have 
+    mailed each affiliate their payout,<br>
+    <a href="?page=affiliates_pay&action=payed">please click here to update the 
+    database.</a> </font><font face="Verdana, Arial, Helvetica, sans-serif">
+    <?
+}
+?>
+    </font></p>
+</form>
