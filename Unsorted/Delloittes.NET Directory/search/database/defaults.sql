@@ -1,0 +1,3 @@
+INSERT INTO del_Directory_Configuration (DirectoryName,NavigationSeperator,ShowSubCategoryCount,EmailObjectToUse,SendEmailAfterLinkAddition,SendEmailAfterReviewSubmission,SendEmailAfterErrorSubmission,EmailAddress,HowManyNewLinksToShow,HowManyPopularLinksToShow,HowManyResourcesInNewsletter,HowManyFavoritesToShow,LinksPerPage,SearchResultsPerPage,MailServer) VALUES ('deloittes.NET',':',6,'CDONTS',1,1,1,'you@yourdomain.com',10,5,15,15,10,10,'mail.yourdomain.com')
+
+INSERT INTO del_Directory_Users (FullName,UserName,UPassword,Admin,LoginCount) VALUES ('Administrator','admin','admin',1,0)
