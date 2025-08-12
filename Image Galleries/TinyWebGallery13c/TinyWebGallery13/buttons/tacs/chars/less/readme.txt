@@ -1,0 +1,1 @@
+If you want to make the images harder to read - copy this folder into the chars folder!
