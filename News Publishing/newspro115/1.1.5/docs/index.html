@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Utopia News Pro Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="header">Utopia News Pro Documentation</div>
+
+<p>Utopia News Pro is designed to work on virtually any server running both PHP and MySQL database backend. The installer was designed to be as simple as possible to work with. Just follow the instructions and you should not run into any problems. If you do, send an email to <a href="mailto:utopiasupport@gmail.com">utopiasupport@gmail.com</a>.</p>
+<p>The first step is to unzip the .ZIP archive, ensuring to retain the directory/file structure.</p>
+
+
+<div class="section">Editing The Configuration</div>
+<p>Locate the file config.inc.php in the <tt>/upload/</tt> directory. Open this file in a text editor such as Notepad and you will see a file like this:</p>
+
+<div class="configimg"><img src="config.php.gif" alt="config.inc.php" /></div>
+
+<p>You will need to make basic changes in this file. Fill in the appropriate values on the <strong><em>right</em></strong> side of the =&gt; between the single quotes. If the MySQL database is not located on the same server as the Utopia News Pro script, you must change the '<tt>hostname</tt>' setting. Enter the hostname or IP address of the server that you are using. Enter the username and password of a MySQL account that has access to this database. Finally, fill in the name of the database that Utopia News Pro will be installed in.</p>
+
+
+<div class="section">Uploading The Files</div>
+<p>Once all appropriate changes have been made to the config file, you are ready to upload the files to the server. Upload the files in the <tt>/upload/</tt> directory, <em>ensuring to keep proper directory structure</em>. Upload the main directory files in ASCII mode, and the images directory in BINARY. If you plan on using the avatar feature, ensure that your <tt>/images/avatars/</tt> directory is writable (CHMOD 777).</p>
+
+
+<div class="section">Running The Installer</div>
+<p>Once all files have been uploaded to the server, open your web browser and navigate to <code>http://www.yourdomain.com/unpdirectory/install.php</code>, replacing <tt>www.yourdomain.com</tt> and <tt>unpdirectory</tt> with the correct values for your site.<br /><br />The installation spans 8 steps. During each step, you will be told exactly what is happening.</p>
+
+
+<div class="section">Step 1 - System Check</div>
+<p>Step 1 of the install checks your server's configuration and your config.inc.php file to ensure that everything is set up correctly for the UNP installation. It checks whether or not MySQL is installed and whether or not it can connect to the server and database provided the details in config.inc.php. Once connected, it checks that the MySQL database is empty and, if not, gives you the option of emptying it. (Only empty the database if you are <em><strong>absolutely positive</strong></em> that you are not losing important information. UtopiaSoftware disclaims <em>all</em> responsibility in regards to the loss of data.)</p>
+
+
+<div class="section">Step 2 - Table Creation</div>
+<p>Step 2 of the installation creates the database tables that will be used by Utopia News Pro. If you do not encounter any errors, proceed to the next step.</p>
+
+
+<div class="section">Step 3 - Table Population</div>
+<p>Step 3 of the installation fills the previously created tables with default information. It populates the settings table with all default settings and it creates a `<tt>root</tt>' user with no password. Later steps in the installation will update these default settings and will allow you to make changes to the default `<tt>root</tt>' user.</p>
+
+
+<div class="section">Step 4 - Settings Update Selection</div>
+<p>Step 4 of the installation is your chance to update the settings. You can usually leave all of the settings at default except for the Main Site Title, which will need to be updated. All other settings <em>can</em> be left at the default.</p>
+
+
+<div class="section">Step 5 - Updated Settings Insertion</div>
+<p>Step 5 of the installation inserts the newly updated settings into the database. If you do not encounter any errors, proceed to the next step.</p>
+
+
+<div class="section">Step 6 - Administrative User Selection</div>
+<p>Step 6 of the installation is where you modify the originally created `<tt>root</tt>' account. You may change the username if you wish, and you must enter a new password (twice - for verification), as well as an email address.</p>
+
+
+<div class="section">Step 7 - Updating Administrative User</div>
+<p>Step 7 of the installation inserts the newly updated administrative user into the database, overwriting the originally created `<tt>root</tt>' account. If you do not encounter any errors, proceed to the next step.</p>
+
+
+<div class="section">Step 8 - Completed</div>
+<p>Congratulations, once you've reached this step, Utopia News Pro has been installed. Delete the install.php file immediately after completing the install. All documentation provided on the page of Step 8 is also available in this document.</p>
+
+
+<div class="section">News Inclusion</div>
+<p>There are two methods of including news: SSI and PHP includes. If the page in which you want to include your news is a standard HTML page, you will use SSI. If the page is PHP, you can use the more efficient PHP includes. If your page is HTML, rename the page with a *.shtml extension (unless your host allows SSI on *.html or *.htm pages). To include the news, place the following code wherever you want in the page:<br /><br />
+<tt>&lt;!--#include virtual="/unp/news.php"--&gt;</tt> - If you are <strong>NOT</strong> using the news cache<br /><br />
+OR<br /><br />
+<tt>&lt;!--#include virtual="/unp/news.txt"--&gt;</tt> - If you <strong>ARE</strong> using the news cache.<br /><br />
+
+If your page is PHP, there is no need to rename any files. Just place the following code wherever you want the news in the page:<br /><br />
+
+<tt>include('/unp/news.php');</tt> - If you are <strong>NOT</strong> using the news cache<br /><br />
+OR<br /><br /><tt>include('/unp/news.txt');</tt> - If you <strong>ARE</strong> using the news cache.<br /><br />
+
+Please note that in all of the preceding examples, <tt>/unp/</tt> must be replaced with the directory in which UNP is installed. You may need to surround the PHP statement with <tt>&lt;?php</tt> and <tt>?&gt;</tt> if PHP is not being parsed in the region you want the news inclusion. Please note that all 4 examples assume that the page the news is to be included in is one directory higher than UNP in directory structure. (ie. news page is in <tt>/</tt>, UNP is <tt>/unp</tt>)</p>
+
+
+<div class="section">Headlines Inclusion</div>
+<p>There are two methods of including headlines: SSI and PHP includes. If the page in which you want to include your news is a standard HTML page, you	will use SSI. If the page is PHP, you can use the more efficient PHP includes. If your page is HTML, rename the page with a *.shtml extension (unless your host allows SSI on *.html or *.htm pages). To include the headlines, place the following code wherever you want in the page:<br /><br />
+
+<tt>&lt;!--#include virtual="/unp/headlines.php"--&gt;</tt><br /><br />
+
+If your page is PHP, there is no need to rename any files. Just place the following code wherever you want the news in the page:<br /><br />
+
+<tt>include('/unp/headlines.php');</tt><br /><br />
+
+Please note that in all of the preceding examples, <tt>/unp/</tt> must be replaced with the directory in which UNP is installed. You may need to surround the PHP statement with <tt>&lt;?php</tt> and <tt>?&gt;</tt> if PHP is not being parsed in the region you want the headlines inclusion. Please note that all 4 examples assume that the page the headlines is to be included in is one directory higher than UNP in directory structure. (ie. headlines page is in <tt>/</tt>, UNP is <tt>/unp</tt>)</p>
+
+
+<div class="section">News Cache</div>
+<p>The news cache is a static file that is generated to represent the dynamic news.php file. Its use is to greatly increase the speed of displaying news (especially on high-traffic sites). As it does not have to be extracted from the database and dynamically altered, it can be generated <em>very</em> quickly.<br /><br />In order to use the news cache, you must CHMOD the UNP directory to <strong>777</strong>.</p>
+
+
+<div class="section">UNP Codes</div>
+<p>
+<strong>What are UNP codes?</strong> - UNP codes are replacements for certain basic HTML codes. They are as follows:</p>
+<table class="unpc" border="1" align="center">
+	<tr>
+	   <td>[b]This text is bold.[/b]</td>
+	   <td><strong>This text is bold.</strong></td>
+	</tr>
+	<tr>
+       <td>[i]This text is italicized.[/i]</td>
+	   <td><em>This text is italicized.</em></td>
+	</tr>
+	<tr>
+		<td>[u]This text is underlined.[/u]</td>
+		<td><u>This text is underlined.</u></td>
+	</tr>
+	<tr>
+		<td>[url]http://www.utopiasoftware.net[/url]</td>
+		<td><a href="http://www.utopiasoftware.net/" target="_blank">http://www.utopiasoftware.net</a></td>
+	</tr>
+	<tr>
+		<td>[url=http://www.utopiasoftware.net]UtopiaSoftware[/url]</td>
+		<td><a href="http://www.utopiasoftware.net/" target="_blank">UtopiaSoftware</a></td>
+	</tr>
+	<tr>
+		<td>[email]support@utopiasoftware.net[/email]</td>
+		<td><a href="mailto:support@utopiasoftware.net">support@utopiasoftware.net</a></td>
+	</tr>
+	<tr>
+		<td>[email=support@utopiasoftware.net]Email Us[/email]</td>
+		<td><a href="mailto:support@utopiasoftware.net">Email Us</a></td>
+	</tr>
+	<tr>
+		<td>[color=red]This text is red.[/color]</td>
+		<td><span style="color: #FF0000">This text is red.</span></td>
+	</tr>
+	<tr>
+		<td>[size=3]This text is size 3.[/size]</td>
+		<td><span style="font-size: 15px">This text is size 3.</span></td>
+	</tr>
+	<tr>
+		<td>[font=Courier]This text is in Courier.[/font]</td>
+		<td><span style="font-family: Courier, monospace">This text is in Courier.</span></td>
+	</tr>
+	<tr>
+		<td>[blockquote]This text is blockquoted.[/blockquote]</td>
+		<td><blockquote>This text is blockquoted.</blockquote></td>
+	</tr>
+	<tr>
+		<td>[img]http://www.utopiasoftware.net/images/icon_ok.gif[/img]</td>
+		<td><img src="../upload/images/icon_ok.gif" alt="Image" /></td>
+	</tr>
+	<tr>
+		<td>[hr] - Horizontal Ruler:</td>
+		<td><hr /></td>
+	</tr>
+</table>
+
+<div class="section">Technical FAQ</div>
+<p>
+<strong>Headers already sent (output started at /config.inc.php:xx) in /index.php on line xx)</strong> - If you are receiving this problem, it is likely that you have added an extra space at the end of the config.inc.php file. Ensure that there are <em>no</em> spaces before <tt>&lt;php</tt> and <em>no</em> spaces after <tt>?&gt;</tt>.</p>
+
+
+<div id="footer">Copyright &copy; 2003-2005, UtopiaSoft, UtopiaSoftware.net</div>
+
+
+</body>
+</html>
