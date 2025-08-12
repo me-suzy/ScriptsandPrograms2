@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Webcards Installation Guide</title>
+<style type="text/css">
+body , td {font-family : verdana; color : #000000; font-size : 14px; background-color : #eeeeee; } .sub_header {font-size : 17px;} .main_header {font-size : 18px;font-weight: bold;} a:link , a:visited , a:active {text-decoration : underline; color : #000000; font-weight : normal; } a:hover {text-decoration : none; color : #808080; font-weight : normal; text-decoration : underline; } .title {font-size : 14px; font-weight : bold; text-decoration : none; } input , select , textarea {background-color : #FFFFFF; border-color : #000000; border-style : inset; font-family : verdana; color : #000000; font-size : 11px; } input.clear {border: 0;}hr {color : #000000; width : 100%; } table {border: 1px solid black;}.theader{background-color : #d2d0d0; border: 1;border-color: white;font-weight: bold;}.tbody{background-color : #e6e4e4; border: 1;border-color: white;}.stats {background-color : #cecaca; border: 0;}.noborder {border: 0;}.warning {color: #ff0000;font-size: 12px;font-weight: bold;}
+</style>
+</head>
+<body>
+<span class="main_header">WebCards Installation Guide</span>
+<br><br>
+Thank you for downloading and installing WebCards, an e-card script that will keep visitors returning to your site time and time again. This is the first stable WebCards release, version 1.0. This version is stable and fully supported.
+<br /><br />
+This guide will aid you in installing WebCards onto your system.
+<br /><br />
+This guide is divided into 3 chapters:
+<ul>
+<li>Requirements</li>
+<li>Upgrading</li>
+<li>Installation</li>
+</ul>
+<span class="sub_header">Requirements</span>
+<br /><br />
+The following are <i>all</i> required to be installed on your web server before installation can take place:
+<ul>
+<li><a href="http://www.php.net" target="_blank">PHP</a> version 4.0.2 or greater is required</li>
+<li><a href="http://www.mysql.com" target="_blank">MySQL</a> version 3.22 or higher is required.</li>
+<li>A method of sending mail. WebCards supports the standard PHP mail() function as well as SMTP. You must be able to send mail to use WebCards.</li>
+<li><b>Please note:</b> Webcards will work in a restricted way on systems with safe mode switched on</li>
+<li><b>Please note:</b> WebCards <i>does not</i> require its own database. It can share a database happily with any other applications you have</li>
+</ul>
+If you have met all the requirements please proceed to Installation or Upgrading.
+<br /><br />
+<span class="sub_header">Upgrading</span>
+<br /><br />
+No database changes have been made since the final beta version. You should upload all of the files in the /upload/ directory <i>except</i> config.php. Overwriting this file will result in you losing your configuration data.
+<br /><br />
+<span class="sub_header">Installation</span>
+<br /><br />
+Please follow the steps below to install Webcards:
+<br /><br />
+<span class="sub_header"><b>Uploading</b></span>
+<ol>
+<li>Choose a directory where you want to install Webcards. It is recommended that you install in a folder not more than 1 directory deep, however it will not affect your installtion if you do so. A choice would be <i>/webcards</i></li>
+<li>Upload the contents of the <i>upload</i> directory on your local system to the folder you created in the last step. All files must stay in their original directories. If your FTP client will not allow you to upload folders, create them manually and then upload the contents.</li>
+<li>Once the directories and files are in place, you will need to chmod some files and folders to allow the script to edit them. Follow the chmod guide below:
+<ul>
+<li><i>/export</i> - chmod 0775</li>
+<li><i>/images</i> - chmod 0775</li>
+<li><i>/images/thumbs</i> - chmod 0775</li>
+<li><i>/lang</i> - chmod 0775</li>
+<li><i>/templates</i> - chmod 0775</li>
+<li><i>/config.php</i> - chmod 0666</li>
+<li><i>/templates/webcards.css</i> - chmod 0666</li>
+<li><i>/templates/template.html</i> - chmod 0666</li>
+<li>You may also need to chmod the directory WebCards is installed in to 0775</li>
+</ul>
+If you get permission errors when you run the program, try changing the CHMOD values to 0777. This may be necessary if you are running a Windows server.
+</li>
+</ol>
+
+<span class="sub_header"><b>Running the Installation Program</b></span>
+
+<ol>
+<li>You are now ready to use the installer. Point your web browser to <i>http://www.domain.com/webcards/install.php</i> or wherever you have your WebCards installation set up.</li>
+<li>The script will perform an integrity check to ensure all the necessary files and folders are present. If any errors are you found you will be instructed on how to fix them. If no errors are found just click on "Start Installation" to begin.</li>
+<li>The script will now check the files you have uploaded to ensure all the correct files are present and have sufficient permissions for the script to write to them.</li>
+<li>The next stage asks you to confirm the installation path and URL. The path (or base directory) is the absolute path to the WebCards installation. It must have a trailing slash. In most cases the default value is correct.<br />The base URL should contain a trailing slash and is the URL to your WebCards installation. The default value is usually correct.</li>
+<li>The next step asks for your database information. Choose your database driver (MySQL). Then enter the host your database is on. "localhost" (without the quotes) is usually correct.
+<br />The database table prefix allows you to add a prefix to all the tables in your WebCards installation to prevent conflicts with other tables. This is highly recommended if there are already tables present in your database.
+<br />
+You must know your database username and password. Enter them next in the appropriate boxes.
+<br />
+Enter the name of the databse you wish to install into. This databse must already exist.
+</li>
+<li>The final step is where you set up your Admin Centre username and password. The email address you enter will be the "reply-to" address attached to all notification emails and can be changed at any time.</li>
+<li>Finally, click "continue" and the script will check all the information you entered.</li>
+<li>If you are presented with any errors, go back and correct them. If all is OK, click the link at the bottom of the page to go to the Administration Centre.</li>
+</ul>
+<br />
+If you are having trouble installing the program you can visit the <a href="http://webcards.sourceforge.net/" target="_blank">WebCards Website</a> for support.
+</body>
+</html>
