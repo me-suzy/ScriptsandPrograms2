@@ -1,0 +1,76 @@
+<?php
+/***************************************************************************
+ * (c)2001-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+$sql = "INSERT INTO ".$tableprefix."_layout (headingbg, bgcolor1, bgcolor2, bgcolor3, pagebg, tablewidth, fontface, ";
+$sql.= "fontsize1, fontsize2, fontsize3, fontsize4, fontcolor, stylesheet, headingfontcolor, subheadingfontcolor, ";
+$sql.= "linkcolor, vlinkcolor, alinkcolor, groupfontcolor, tabledescfontcolor, fontsize5, dateformat, newtime, newpic, searchpic, ";
+$sql.= "printpic, backpic, listpic, pageheader, pagefooter, usecustomheader, usecustomfooter, ";
+$sql.= "emailpic, questionpic, ";
+$sql.= "usercommentpic, allowlists, allowsearch, ";
+$sql.= "searchcomments, searchquestions, showsummary, summarylength, progrestrict, footerfile, headerfile, printheader, ";
+$sql.= "printfooter, mincommentlength, minquestionlength, proginfopic, proginfowidth, proginfoheight, textareawidth, ";
+$sql.= "textareaheight, proginfoleft, proginfotop, helpwindowwidth, helpwindowheight, helpwindowleft, helpwindowtop, helppic, ";
+$sql.= "closepic, kbmode, defsearchmethod, enablekeywordsearch, enablelanguageselector, faqsortmethod, kbsortmethod, ";
+$sql.= "copyrightpos, copyrightbgcolor, subheadingbgcolor, actionbgcolor, headerfilepos, footerfilepos, ";
+$sql.= "newinfobgcolor, ascheader, useascheader, asclinelength, ascforcewrap, addbodytags, asclistmimetype, asclistcharset, ";
+$sql.= "keywordsearchmode, questionrequireos, ";
+$sql.= "questionrequireversion, enablefaqnewdisplay, newfaqdisplaymethod, faqnewdisplaybgcolor, faqnewdisplayfontcolor, listallfaqmethod, ";
+$sql.= "enableshortcutbar, enablejumpboxes, subcatbgcolor, subcatfontcolor, displayrelated, htmllisttype, pagetoppic, attachpic, ";
+$sql.= "summaryintotallist, summarychars, maxentries, hovercells, activcellcolor, ";
+$sql.= "ratingspublic, ratingcommentpublic, qesautopub, ns4style, ns6style, operastyle, geckostyle,";
+$sql.= "konquerorstyle, ascheaderfile, ascheaderfilepos, numlatest, tabledescfontsize, langselectfontsize, faqnewfontsize, ";
+$sql.= "jumpboxfontsize, actionlinefontsize, newinfofontsize, newinfofontcolor, shortbarfontsize, jumpboxsorting, disableasclist, ";
+$sql.= "disablehtmlemail, contentcopy, colorscrollbars, ";
+$sql.= "sb3dlightcolor, sbarrowcolor, sbdarkshadowcolor, sbfacecolor, sbhighlightcolor, sbshadowcolor, sbtrackcolor, pagebgpic, ";
+$sql.= "pagebgrepeat, pagebgposition, pagebgattach, subcatfontsize, questionshorting, ";
+$sql.= "cc_font, cc_fontsize, cc_fontcolor, subscriptionpic, ";
+$sql.= "irow_fontcolor, irow_fontsize, irow_bgcolor, pagenavfontcolor, pagenavfontsize, subcatfontstyle, ";
+$sql.= "linkoptions, listoptions, clist_linkcolor, clist_alinkcolor, clist_vlinkcolor, shownextprev, nextprevmode, ";
+$sql.= "kbsearchoptions, searchoptions, displayoptions, usepagenavicons, ";
+$sql.= "nextpagepic, prevpagepic, firstpagepic, lastpagepic, displayvotesinline, tablealign, ";
+$sql.= "votesinlinedisplaymode, navbarwidth, navsync, navpic_progclosed, navpic_progopen, navpic_proglocked, ";
+$sql.= "navpic_catclosed, navpic_catopen, navpic_catlocked, navpic_subcatclosed, navpic_subcatopen, navpic_subcatlocked, ";
+$sql.= "navpic_faq, navpic_question, searchhighlight, searchhighlightcolor, navpic_kbarticle, kbnavoptions, navpic_kbwizard, ";
+$sql.= "navpic_kbsearch, navtreepos, search_inputfieldwidth, faqnavoptions, id, deflayout, tablespacing, tablepadding, extdateformat, ";
+$sql.= "srchtoolpic, donltrans, displayattachinfo";
+$sql.= ") VALUES (";
+$sql.= "'$headingbg', '$bgcolor1', '$bgcolor2', '$bgcolor3', '$pagebg', '$tablewidth', '$fontface', '$fontsize1', '$fontsize2', ";
+$sql.= "'$fontsize3', '$fontsize4', '$fontcolor', '$stylesheet', '$headingfontcolor', '$subheadingfontcolor', '$linkcolor', ";
+$sql.= "'$vlinkcolor', '$alinkcolor', '$groupfontcolor', '$tabledescfontcolor', '$fontsize5', '$new_dateformat', $newtime, '$newpic', ";
+$sql.= "'$searchpic', '$printpic', '$backpic', '$listpic', '$pageheader', '$pagefooter', $usecustomheader, ";
+$sql.= "$usecustomfooter, '$emailpic', '$questionpic', ";
+$sql.= "'$usercommentpic', $allowlists, $allowsearch, ";
+$sql.= "$searchcomments, $searchquestions, $showsummary, $summarylength, $progrestrict, ";
+$sql.= "'$footerfile', '$headerfile', $printheader, $printfooter, $input_mincomment, $input_minquestion, ";
+$sql.= "'$proginfopic', $proginfowidth, $proginfoheight, $textareawidth, $textareaheight, $proginfoleft, $proginfotop, $helpwindowwidth, ";
+$sql.= "$helpwindowheight, $helpwindowleft, $helpwindowtop, '$helppic', '$closepic', '$kbmode', $defsearchmethod, ";
+$sql.= "$enablekeywordsearch, $enablelanguageselector, $faqsortmethod, $kbsortmethod, $copyrightpos, ";
+$sql.= "'$copyrightbgcolor', '$subheadingbgcolor', '$actionbgcolor', $headerfilepos, $footerfilepos, '$newinfobgcolor', '$ascheader', ";
+$sql.= "$useascheader, $asclinelength, $ascforcewrap, '$addbodytags', '$asclistmimetype', '$asclistcharset', ";
+$sql.= "$keywordsearchmode, $questionrequireos, ";
+$sql.= "$questionrequireversion, $enablefaqnewdisplay, $newfaqdisplaymethod, '$faqnewdisplaybgcolor', '$faqnewdisplayfontcolor', ";
+$sql.= "$listallfaqmethod, $enableshortcutbar, $enablejumpboxes, '$subcatbgcolor', '$subcatfontcolor', $displayrelated, $htmllisttype, ";
+$sql.= "'$pagetoppic', '$attachpic', $summaryintotallist, $summarychars, ";
+$sql.= "$maxentries, $hovercells, '$activcellcolor', $ratingspublic, $ratingcommentpublic, $qesautopub, ";
+$sql.= "'$ns4style', '$ns6style', '$operastyle', '$geckostyle', '$konquerorstyle', '$ascheaderfile', $ascheaderfilepos, ";
+$sql.= "$numlatest, '$tabledescfontsize', '$langselectfontsize', '$faqnewfontsize', '$jumpboxfontsize', '$actionlinefontsize', ";
+$sql.= "'$newinfofontsize', '$newinfofontcolor', '$shortbarfontsize', $jumpboxsorting, $disableasclist, $disablehtmlemail, ";
+$sql.= "'$contentcopy', $colorscrollbars, ";
+$sql.= "'$sb3dlightcolor', '$sbarrowcolor', '$sbdarkshadowcolor', '$sbfacecolor', '$sbhighlightcolor', '$sbshadowcolor', '$sbtrackcolor', ";
+$sql.= "'$pagebgpic', '$pagebgrepeat', '$pagebgposition', '$pagebgattach', '$subcatfontsize', ";
+$sql.= "$questionshorting, '$cc_font', '$cc_fontsize', '$cc_fontcolor', ";
+$sql.= "'$subscriptionpic', '$irow_fontcolor', '$irow_fontsize', '$irow_bgcolor', '$pagenavfontcolor', '$pagenavfontsize', ";
+$sql.= "$subcatfontstyle, $linkoptions, $listoptions, '$clist_linkcolor', '$clist_vlinkcolor', '$clist_alinkcolor', ";
+$sql.= "$shownextprev, $nextprevmode, $kbsearchoptions, ";
+$sql.= "$searchoptions, $displayoptions, $usepagenavicons, '$nextpagepic', '$prevpagepic', '$lastpagepic', '$firstpagepic', ";
+$sql.= "$displayvotesinline, $tablealign, $votesinlinedisplaymode, $navbarwidth, $navsync, '$navpic_progclosed', '$navpic_progopen', '$navpic_proglocked', ";
+$sql.= "'$navpic_catclosed', '$navpic_catopen', '$navpic_catlocked', '$navpic_subcatclosed', '$navpic_subcatopen', '$navpic_subcatlocked', ";
+$sql.= "'$navpic_faq', '$navpic_question', $searchhighlight, '$searchhighlightcolor', '$navpic_kbarticle', $kbnavoptions, '$navpic_kbwizard', ";
+$sql.= "'$navpic_kbsearch', $navtreepos, '$search_inputfieldwidth', $faqnavoptions, '$layoutid', 0, $tablespacing, $tablepadding, '$new_extdateformat', ";
+$sql.= "'$srchtoolpic', $donltrans, $displayattachinfo";
+$sql.= ")";
+if(!$result = faqe_db_query($sql, $db))
+	die("<tr class=\"errorrow\"><td>Unable to add layout to database.".faqe_db_error());
+
+?>
