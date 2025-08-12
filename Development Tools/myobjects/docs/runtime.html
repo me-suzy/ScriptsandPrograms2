@@ -1,0 +1,648 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
+  <head>
+
+    <title>myobjects:city_example [MyObjects]</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+
+    <meta name="generator" content="DokuWiki" />
+
+    <link rel="stylesheet" media="screen" type="text/css" href="./style.css" />
+
+    <link rel="stylesheet" media="print" type="text/css" href="./print.css" />
+
+    <link rel="shortcut icon" href="./images/favicon.ico" />
+
+    <link rel="start" href="./doku.php?id=" />
+
+    <link rel="contents" href="city_example&amp;do=index.html" title="" />
+
+    <link rel="alternate" type="application/rss+xml" title="Recent Changes" href="./feed.php" />
+
+    <link rel="alternate" type="application/rss+xml" title="Current Namespace" href="./feed.php?mode=list&amp;ns=" />
+
+    <link rel="alternate" type="text/html" title="Plain HTML" href="city_example&amp;do=export_html.html" />
+
+    <link rel="alternate" type="text/plain" title="Wiki Markup" href="city_example&amp;do=export_raw.html" />
+
+        <meta name="robots" content="noindex,nofollow" />
+
+
+    <script language="JavaScript" type="text/javascript" src="./script.js"></script>
+
+
+
+    <script language="JavaScript" type="text/javascript">
+
+    var alertText   = 'Please enter the text you want to format.\nIt will be appended to the end of the document.';
+
+    var notSavedYet = 'There are unsaved changes that will be lost.\nReally continue?';
+
+    var baseURL     = './';
+
+    </script>
+
+
+
+    <!--[if gte IE 5]>
+
+    <style type="text/css">
+
+      /* that IE 5+ conditional comment makes this only visible in IE 5+ */
+
+      img { behavior: url("./pngbehavior.htc"); } /* IE bugfix for transparent PNGs */
+
+    </style>
+
+    <![endif]-->
+
+	</head><body>
+<div class="toc"><div class="tocheader">Table of Contents <script type="text/javascript">showTocToggle("+","-")</script></div><div id="tocinside">
+<ul class="toc">
+<li class="level1"><span class="li"><a href="#myobjects_runtime" class="toc">MyObjects Runtime</a></span></li>
+<li class="level1"><span class="li"><a href="#core.php_file" class="toc">Core.php File</a></span>
+<ul class="toc">
+<li class="level2"><span class="li"><a href="#mapable_interface" class="toc">Mapable Interface</a></span>
+<ul class="toc">
+<li class="level3"><span class="li"><a href="#method_summary_for_the_mapable_interface" class="toc">Method Summary For the Mapable Interface</a></span></li>
+</ul>
+</li>
+<li class="level2"><span class="li"><a href="#dbmodel_class" class="toc">DbModel Class</a></span>
+<ul class="toc">
+<li class="level3"><span class="li"><a href="#method_summary_for_the_dbmodel_class" class="toc">Method Summary For the DbModel Class</a></span></li>
+</ul>
+</li>
+<li class="level2"><span class="li"><a href="#xmlmodel_class" class="toc">XmlModel Class</a></span>
+<ul class="toc">
+<li class="level3"><span class="li"><a href="#method_summary_for_the_xmlmodel_class" class="toc">Method Summary For the XmlModel Class</a></span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><span class="li"><a href="#base.php_file" class="toc">Base.php File</a></span>
+<ul class="toc">
+<li class="level2"><span class="li"><a href="#myobjectsbase_class" class="toc">MyObjectsBase Class</a></span>
+<ul class="toc">
+<li class="level3"><span class="li"><a href="#method_summary_for_the_myobjectsbase_class" class="toc">Method Summary For the MyObjectsBase Class</a></span></li>
+</ul>
+</li>
+<li class="level2"><span class="li"><a href="#databaseconnection_class" class="toc">DatabaseConnection Class</a></span></li>
+</ul>
+</li>
+<li class="level1"><span class="li"><a href="#exceptions.php_file" class="toc">Exceptions.php File</a></span></li>
+<li class="level1"><span class="li"><a href="#stringvalidator.php_file" class="toc">StringValidator.php File</a></span>
+<ul class="toc">
+<li class="level2"><span class="li"><a href="#stringvalidator_class" class="toc">StringValidator Class</a></span>
+<ul class="toc">
+<li class="level3"><span class="li"><a href="#method_summary_for_the_myobjectsbase_class2" class="toc">Method Summary For the MyObjectsBase Class</a></span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><span class="li"><a href="#view.php_file" class="toc">View.php File</a></span>
+<ul class="toc">
+<li class="level2"><span class="li"><a href="#view_interface" class="toc">View Interface</a></span></li>
+<li class="level2"><span class="li"><a href="#defaultmapableview_class" class="toc">DefaultMapableView Class</a></span></li>
+<li class="level2"><span class="li"><a href="#xmlview_class" class="toc">XmlView Class</a></span></li></ul>
+</li></ul>
+</div></div>
+
+<a name="myobjects_runtime"></a><h1>MyObjects Runtime</h1><div class="level1">
+<p>
+MyObjects defines a set of classes for the developers to use with the generated classes. The runtime classes provide database operations and xml operations smoothly.
+</p>
+<p>
+<!-- SECTION [0-2] --></p>
+</div><a name="core.php_file"></a><h1>Core.php File</h1><div class="level1">
+
+</div><a name="mapable_interface"></a><h2>Mapable Interface</h2><div class="level2">
+<p>
+MyObjects <a href="code_generator.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">code generator</a> generates classes which implement the <strong>Mapable</strong> interface. Most of the runtime classes work with the objects which implement the Mapable interface. For detailed documentation of the methods that are defined in Mapable interface see the <a href="api/MyObjectsRuntime/Mapable.html" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">Api Documentation</a>.
+</p>
+<p>
+<!-- SECTION [3-6] --></p>
+</div><a name="method_summary_for_the_mapable_interface"></a><h3>Method Summary For the Mapable Interface</h3><div class="level3">
+
+<table class="inline">
+  <tr>
+    <th class="inline" >Return type</th>
+    <th class="inline" >Method Name</th>
+    <th class="inline" >Method Description</th>
+  </tr>
+  <tr>
+    <td class="inline" >void</td>
+    <td class="inline" >addInstance()</td>
+    <td class="inline" >Adds the passed Mapable object to the classes data structure that holds the instances</td>
+  </tr>
+  <tr>
+    <td class="inline" >object</td>
+    <td class="inline" >get()</td>
+    <td class="inline" >Factory method for creating a Mapable object using the supplied unique values</td>
+  </tr>
+  <tr>
+    <td class="inline" >mixed</td>
+    <td class="inline" >getInstance()</td>
+    <td class="inline" >Returns the Mapable object instance for this class which has the specified unique values</td>
+  </tr>
+  <tr>
+    <td class="inline" >mixed</td>
+    <td class="inline" >getKeyValue()</td>
+    <td class="inline" >Returns value of the specified primary key</td>
+  </tr>
+  <tr>
+    <td class="inline" >string</td>
+    <td class="inline" >getTableName()</td>
+    <td class="inline" >Returns the database table name for this type of object</td>
+  </tr>
+  <tr>
+    <td class="inline" >string</td>
+    <td class="inline" >getView()</td>
+    <td class="inline" >Returns the string representation of the Mapable object using the supplied View.</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isValid()</td>
+    <td class="inline" >Checks if the current state of the object is valid</td>
+  </tr>
+  <tr>
+    <td class="inline" >Mapable</td>
+    <td class="inline" >normalizedGet()</td>
+    <td class="inline" >Returns the object instance with the specified unique values, but uses a normalized query for selecting the foreign objects.</td>
+  </tr>
+  <tr>
+    <td class="inline" >array</td>
+    <td class="inline" >primaryKeys()</td>
+    <td class="inline" >Returns the database tables primary key field names</td>
+  </tr>
+  <tr>
+    <td class="inline" >string</td>
+    <td class="inline" >propertyType()</td>
+    <td class="inline" >Returns the data type of specified property name</td>
+  </tr>
+  <tr>
+    <td class="inline" >void</td>
+    <td class="inline" >removeInstance()</td>
+    <td class="inline" >Removes tha passed Mapable object from the classes data structure that holds the instances</td>
+  </tr>
+  <tr>
+    <td class="inline" >mysqli_result</td>
+    <td class="inline" >select()</td>
+    <td class="inline" >Makes a selection query based on the given unique fields and selects the specified</td>
+  </tr>
+</table>
+
+<p>
+<!-- SECTION [7-21] --></p>
+</div><a name="dbmodel_class"></a><h2>DbModel Class</h2><div class="level2">
+<p>
+<strong>DbModel</strong> Class defines some methods for inserting, updating the object data in MySql server, retreiving data from MySql server to your Objects and removing object records from the database. Inorder to use your generated classes with MySql server, you need to get used to the methods of this class. The <a href="api/MyObjectsRuntime/DbModel.html" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">Api Documentation</a> for the <strong>DbModel</strong> class will guide you in the development phase.
+</p>
+<p>
+The methods of <strong>DbModel</strong> class work with the objects of these classes which are instances of <em>Mapable</em>.
+</p>
+<p>
+<!-- SECTION [22-26] --></p>
+</div><a name="method_summary_for_the_dbmodel_class"></a><h3>Method Summary For the DbModel Class</h3><div class="level3">
+
+<table class="inline">
+  <tr>
+    <th class="inline" >Return type</th>
+    <th class="inline" >Method Name</th>
+    <th class="inline" >Method Description</th>
+  </tr>
+  <tr>
+    <td class="inline" >boolean/null</td>
+    <td class="inline" >bind()</td>
+    <td class="inline" >Binds the supplied Mapable object to the supplied prepared statement</td>
+  </tr>
+  <tr>
+    <td class="inline" >int</td>
+    <td class="inline" >countSimilar()</td>
+    <td class="inline" >Counts the number of similar objects in the database that have the same properties with the specified object</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >delete()</td>
+    <td class="inline" >Removes the object from the database</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >deleteSimilar()</td>
+    <td class="inline" >Deletes the similar objects which have the same properties as the specified object</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >exists()</td>
+    <td class="inline" >Checks the database for the existance of the object</td>
+  </tr>
+  <tr>
+    <td class="inline" >mixed</td>
+    <td class="inline" >get()</td>
+    <td class="inline" >Converts the mysqli_result to the Mapable objects</td>
+  </tr>
+  <tr>
+    <td class="inline" >mixed</td>
+    <td class="inline" >getInstance()</td>
+    <td class="inline" >Searchs the static array for the object with specified unique values</td>
+  </tr>
+  <tr>
+    <td class="inline" >mixed</td>
+    <td class="inline" >getSimilar()</td>
+    <td class="inline" >Returns the similar objects that share the same properties</td>
+  </tr>
+  <tr>
+    <td class="inline" >mixed</td>
+    <td class="inline" >insert()</td>
+    <td class="inline" >Inserts the passed Mapable object to the database</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isEqual()</td>
+    <td class="inline" >Checks the equality of the two Mapable objects</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >load()</td>
+    <td class="inline" >Loads the values stored in the mysqli_result to the specified Mapable object</td>
+  </tr>
+  <tr>
+    <td class="inline" >mysqli_stmt</td>
+    <td class="inline" >prepare()</td>
+    <td class="inline" >Prepares a Mysqli_stmt object using the supplied sql query</td>
+  </tr>
+  <tr>
+    <td class="inline" >mysqli_stmt</td>
+    <td class="inline" >prepareSelect()</td>
+    <td class="inline" >Prepares a selection query</td>
+  </tr>
+  <tr>
+    <td class="inline" >mysqli_result</td>
+    <td class="inline" >select()</td>
+    <td class="inline" >Makes a selection query.</td>
+  </tr>
+  <tr>
+    <td class="inline" >mysqi_result</td>
+    <td class="inline" >selectDifferent()</td>
+    <td class="inline" >Selects the objects that have different properties than the supplied object</td>
+  </tr>
+  <tr>
+    <td class="inline" >mysqli_result</td>
+    <td class="inline" >selectSimilar()</td>
+    <td class="inline" >Selects similar records on the database based on the specified objects properties</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >store()</td>
+    <td class="inline" >Stores the passed Mapable object in the database.</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >update()</td>
+    <td class="inline" >Updates the database record of the object.</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >updateSimilar()</td>
+    <td class="inline" >Updates records in the database that are similar to reference object to the values stored in target object.</td>
+  </tr>
+</table>
+
+<p>
+<strong>For the detailed descriptions of the methods and for example codes, please refer to the <a href="api/MyObjectsRuntime/DbModel.html" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">Api Documentation</a></strong>
+</p>
+<p>
+<!-- SECTION [27-50] --></p>
+</div><a name="xmlmodel_class"></a><h2>XmlModel Class</h2><div class="level2">
+<p>
+<strong>XmlModel</strong> class defines some methods for serializing the <em>Mapable</em> objects into <acronym title="Extensible Markup Language">XML</acronym> files, <acronym title="Extensible Markup Language">XML</acronym> strings, <acronym title="Document Object Model">DOM</acronym> objects and creating <em>Mapable</em> objects from the same resources.
+</p>
+<p>
+The <a href="api/MyObjectsRuntime/XmlModel.html" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">Api Documentation</a> for the <strong>XmlModel</strong> class will guide you in the development phase.
+</p>
+<p>
+The methods of <strong>XmlModel</strong> class work with the objects of these classes which are instances of <em>Mapable</em>.
+</p>
+<p>
+The created <acronym title="Extensible Markup Language">XML</acronym> files are in the format that is defined in <a href="mapable.html" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">mapable.xsd</a> Xml Schema file.
+</p>
+<p>
+<!-- SECTION [51-59] --></p>
+</div><a name="method_summary_for_the_xmlmodel_class"></a><h3>Method Summary For the XmlModel Class</h3><div class="level3">
+
+<table class="inline">
+  <tr>
+    <th class="inline" >Return type</th>
+    <th class="inline" >Method Name</th>
+    <th class="inline" >Method Description</th>
+  </tr>
+  <tr>
+    <td class="inline" >DOMDocument</td>
+    <td class="inline" >createDoc()</td>
+    <td class="inline" >Creates a DOMDocument object and initializes it in Mapable format</td>
+  </tr>
+  <tr>
+    <td class="inline" >Mapable</td>
+    <td class="inline" >getObject()</td>
+    <td class="inline" >Retreives data from a DOMElement with the &lt;object&gt; tag and creates the object that is defined.</td>
+  </tr>
+  <tr>
+    <td class="inline" >array</td>
+    <td class="inline" >load()</td>
+    <td class="inline" >Loads the specified Xml File and creates the objects referenced in the file</td>
+  </tr>
+  <tr>
+    <td class="inline" >array</td>
+    <td class="inline" >loadXml()</td>
+    <td class="inline" >Loads the supplied Xml String and creates the objects referenced in the string</td>
+  </tr>
+  <tr>
+    <td class="inline" >array</td>
+    <td class="inline" >loadXmlDoc()</td>
+    <td class="inline" >Generates objects specified in the DOMDocument object</td>
+  </tr>
+  <tr>
+    <td class="inline" >mixed</td>
+    <td class="inline" >store()</td>
+    <td class="inline" >Dumps the object to xml</td>
+  </tr>
+  <tr>
+    <td class="inline" >void</td>
+    <td class="inline" >storeFile()</td>
+    <td class="inline" >Saves the supplied object in the specified filefields</td>
+  </tr>
+</table>
+
+<p>
+<!-- SECTION [60-69] --></p>
+</div><a name="base.php_file"></a><h1>Base.php File</h1><div class="level1">
+<p>
+Base.php file should be included by the scripts that will use MyObjects. Here is a header that you can use in your Php scripts:
+</p>
+<pre class="code"><span class="kw2">&lt;?php</span>
+<span class="co1">// Include the settings file which contains database access information</span>
+<span class="kw1">require_once</span><span class="br0">&#40;</span><span class="st0">'MyObjectsSettings.php'</span><span class="br0">&#41;</span>;
+<span class="co1">// Include MyObjects base</span>
+<span class="kw1">require_once</span><span class="br0">&#40;</span>MyObjectsRuntimePath . <span class="st0">'/Base.php'</span><span class="br0">&#41;</span>;
+<span class="kw2">?&gt;</span></pre>
+<p>
+<!-- SECTION [70-79] --></p>
+</div><a name="myobjectsbase_class"></a><h2>MyObjectsBase Class</h2><div class="level2">
+<p>
+<strong>MyObjectsBase</strong> class implements the <em>Singleton</em> design pattern and can only have one instance. This object instance opens database connections when needed by <em>DbModel</em> class or it can return the <em>DatabaseConnection</em> instance if there is a database connection available.
+</p>
+<p>
+<!-- SECTION [80-82] --></p>
+</div><a name="method_summary_for_the_myobjectsbase_class"></a><h3>Method Summary For the MyObjectsBase Class</h3><div class="level3">
+
+<table class="inline">
+  <tr>
+    <th class="inline" >Return type</th>
+    <th class="inline" >Method Name</th>
+    <th class="inline" >Method Description</th>
+  </tr>
+  <tr>
+    <td class="inline" >void</td>
+    <td class="inline" ><u>destruct()</td>
+    <td class="inline" >Closes the database connections</td>
+  </tr>
+  <tr>
+    <td class="inline" >void</td>
+    <td class="inline" >dbConnect()</td>
+    <td class="inline" >Establishes a database connection</td>
+  </tr>
+  <tr>
+    <td class="inline" >DatabaseConnection</td>
+    <td class="inline" >getDbConnection()</td>
+    <td class="inline" >Returns the available database connection</td>
+  </tr>
+  <tr>
+    <td class="inline" >float</td>
+    <td class="inline" >getElapsedTime()</td>
+    <td class="inline" >Returns the elapsed time since the MyObjectsBase object was created</td>
+  </tr>
+  <tr>
+    <td class="inline" >MyObjectsBase</td>
+    <td class="inline" >getInstance()</td>
+    <td class="inline" >Returns the MyObjectsBase instance</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isConnected()</td>
+    <td class="inline" >Checks whether there is a valid database connection</td>
+  </tr>
+</table>
+
+<p>
+To create or get a MyObjectsBase instance simply call the MyObjectsBasee::getInstance() method. If there is already a MyObjectsBase object created, it will be returned, otherwise a new instance will be created and will be returned. Becase the constructor for MyObjectsBase is private you can not write <code>$base = new MyObjectsBase();</code> in your php scripts. 
+</p>
+
+<pre class="code"><span class="re0">$base</span> = MyObjectsBase::getInstance<span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+<p>
+If you don&#8217;t pass a parameter for the getInstance method and if it is called for the first time, the method will attempt to connect to the database server with the parameters that are defined in the <em>MyObjectsSettings.php</em> file. If you want to override these values, you can create a <em>MyObjectsConfig</em> instance and pass it as the first parameter to the getInstance() method.
+</p>
+<pre class="code"><span class="co1">//MyObjectsDefaultConfig class implements the MyObjectsConfig interface</span>
+<span class="re0">$config</span> = <span class="kw2">new</span> MyObjectsDefaultConfig<span class="br0">&#40;</span><span class="st0">'localhost'</span>,<span class="st0">'username'</span>, <span class="st0">'password'</span>, <span class="st0">'database name'</span><span class="br0">&#41;</span>;
+<span class="co1">// Use the created config instance</span>
+<span class="re0">$base</span> = MyObjectsBase::getInstance<span class="br0">&#40;</span><span class="re0">$config</span><span class="br0">&#41;</span>;</pre>
+
+<p>
+If you want to get a MyObjectsBase instance, but you don&#8217;t want it to create a database connection, then pass the second parameter of getInstance() method false.
+</p>
+<pre class="code"><span class="re0">$base</span> = MyObjectsBase::getInstance<span class="br0">&#40;</span><span class="kw2">null</span>, <span class="kw2">false</span><span class="br0">&#41;</span>;</pre>
+
+<p>
+When you need a <em>mysqli</em> object for database access you can call the getDbConnection() method from the MyObjectsBase instance.
+</p>
+<pre class="code"><span class="co1">// Get MyObjectsBase instance</span>
+<span class="re0">$base</span> = MyObjectsBase::getInstance<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$db</span> = <span class="re0">$base</span>-&gt;<span class="me0">getDbConnection</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$result</span> = <span class="re0">$db</span>-&gt;<span class="me0">query</span><span class="br0">&#40;</span><span class="st0">"Select * from books limit 5"</span><span class="br0">&#41;</span>;</pre>
+<p>
+<!-- SECTION [83-116] --></p>
+</div><a name="databaseconnection_class"></a><h2>DatabaseConnection Class</h2><div class="level2">
+<p>
+<strong>DatabaseConnection</strong> class extends the <em>mysqli</em> class and it is used in entire database operations. This class can be replaced by some other classes which implement the <em>ext/mysqli</em> api to support other databases but it is currently not supported nor encouraged.
+</p>
+<p>
+<!-- SECTION [117-119] --></p>
+</div><a name="exceptions.php_file"></a><h1>Exceptions.php File</h1><div class="level1">
+<p>
+Exceptions that can occur when you are using the generated classes are defined in Exceptions.php file.
+</p>
+
+<table class="inline">
+  <tr>
+    <th class="inline" >Exception Name</th>
+    <th class="inline" >Description</th>
+  </tr>
+  <tr>
+    <td class="inline" >InvalidValueException</td>
+    <td class="inline" >Thrown when a parameter of a Mapable object is tried to be set to an invalid value</td>
+  </tr>
+  <tr>
+    <td class="inline" >DatabaseConnectionException</td>
+    <td class="inline" >Thrown when a database connection cannot be establised</td>
+  </tr>
+  <tr>
+    <td class="inline" >QueryException</td>
+    <td class="inline" >Thrown when an invalid query is tried to be maid</td>
+  </tr>
+  <tr>
+    <td class="inline" >IllegalArgumentException</td>
+    <td class="inline" >Thrown when an invalid argument is passed to a method</td>
+  </tr>
+  <tr>
+    <td class="inline" >MapableNotValidException</td>
+    <td class="inline" >Thrown when some of the required fields in the Mapable object are not set</td>
+  </tr>
+  <tr>
+    <td class="inline" >UniqueKeyExistsException</td>
+    <td class="inline" >Thrown when some of the required fields in the Mapable object are not set</td>
+  </tr>
+  <tr>
+    <td class="inline" >ObjectNotFoundException</td>
+    <td class="inline" >Thrown when the requested object was not found</td>
+  </tr>
+  <tr>
+    <td class="inline" >NoPrimaryKeyException</td>
+    <td class="inline" >Thrown when an object with no primary key field is tried to be updated</td>
+  </tr>
+  <tr>
+    <td class="inline" >MapableFileNotValidException</td>
+    <td class="inline" >Thrown when the xml file that the Mapable object maps to is not valid</td>
+  </tr>
+  <tr>
+    <td class="inline" >ModelNotValidException</td>
+    <td class="inline" >Throws when the supplied model to the view object is null</td>
+  </tr>
+</table>
+
+<p>
+<!-- SECTION [120-134] --></p>
+</div><a name="stringvalidator.php_file"></a><h1>StringValidator.php File</h1><div class="level1">
+
+</div><a name="stringvalidator_class"></a><h2>StringValidator Class</h2><div class="level2">
+<p>
+<strong>StringValidator</strong> class which defines some methods for checking strings against some patterns are is in StringValidator.php file.
+</p>
+<p>
+<!-- SECTION [135-138] --></p>
+</div><a name="method_summary_for_the_myobjectsbase_class2"></a><h3>Method Summary For the MyObjectsBase Class</h3><div class="level3">
+
+<table class="inline">
+  <tr>
+    <th class="inline" >Return type</th>
+    <th class="inline" >Method Name</th>
+    <th class="inline" >Method Description</th>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isAlpha()</td>
+    <td class="inline" >Checks if the given text is formed of alphabetic characters</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isCleanText()</td>
+    <td class="inline" >Returns if the given text is a text of alpha characters and space.</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isDate()</td>
+    <td class="inline" >Checks if the specified string is a valid date</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isDateTime()</td>
+    <td class="inline" >Checks if the specified string is a valid datetime</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isEmail()</td>
+    <td class="inline" >Checks if the specified string is a valid email address</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isLengthValid()</td>
+    <td class="inline" >Checks the length of the string</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isNumeric()</td>
+    <td class="inline" >Checks if the given text is formed of numeric characters</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isTime()</td>
+    <td class="inline" >Checks if the specified string is a valid time</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isWord()</td>
+    <td class="inline" >Returns if the given text is is formed of word charachters and fits in the required length</td>
+  </tr>
+  <tr>
+    <td class="inline" >boolean</td>
+    <td class="inline" >isYear()</td>
+    <td class="inline" >Checks if the specified string is a valid yea</td>
+  </tr>
+</table>
+
+<p>
+<!-- SECTION [139-151] --></p>
+</div><a name="view.php_file"></a><h1>View.php File</h1><div class="level1">
+
+</div><a name="view_interface"></a><h2>View Interface</h2><div class="level2">
+<p>
+The View interface should be implemented by the classes that will provide views for Mapable objects. A view is simply the representation of a portion of data that is stored in a <em>Mapable</em> object. Every <em>Mapable</em> object defines a method named <code>getView(View $view)</code> that you can use. 
+</p>
+<p>
+The methods defined in View interface are:
+</p>
+
+<ul>
+<li class="level1"><span class="li">void setModel(Mapable $model)</span></li>
+<li class="level1"><span class="li">string </u>toString()</span></li>
+</ul>
+
+
+<p>
+<!-- SECTION [152-159] --></p>
+</div><a name="defaultmapableview_class"></a><h2>DefaultMapableView Class</h2><div class="level2">
+<p>
+Default view Class that demonstrates how a View class can be implemented. This class simply shows every object property in an <acronym title="HyperText Markup Language">HTML</acronym> table.
+</p>
+<p>
+Example Usage:
+</p>
+<pre class="code"><span class="re0">$user</span> = <span class="kw2">new</span> User<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$user</span>-&gt;<span class="me0">setName</span><span class="br0">&#40;</span><span class="st0">'Erdinc Yilmazel'</span><span class="br0">&#41;</span>;
+<span class="re0">$user</span>-&gt;<span class="me0">setEmail</span><span class="br0">&#40;</span><span class="st0">'erdinc@yilmazel.com'</span><span class="br0">&#41;</span>;
+<span class="re0">$view</span> = <span class="kw2">new</span> DefaultMapableView<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">// Echoes an Html table</span>
+<a target="_blank"  href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$user</span>-&gt;<span class="me0">getView</span><span class="br0">&#40;</span><span class="re0">$view</span><span class="br0">&#41;</span>;</pre>
+<p>
+<!-- SECTION [160-172] --></p>
+</div><a name="xmlview_class"></a><h2>XmlView Class</h2><div class="level2">
+<p>
+XmlView class is another class that implements the <em>View</em> interface. It simply returns an Xml string that is generated by the XmlModel class.
+</p>
+<p>
+Example Usage:
+</p>
+<pre class="code"><span class="re0">$user</span> = <span class="kw2">new</span> User<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$user</span>-&gt;<span class="me0">setName</span><span class="br0">&#40;</span><span class="st0">'Erdinc Yilmazel'</span><span class="br0">&#41;</span>;
+<span class="re0">$user</span>-&gt;<span class="me0">setEmail</span><span class="br0">&#40;</span><span class="st0">'erdinc@yilmazel.com'</span><span class="br0">&#41;</span>;
+<span class="re0">$view</span> = <span class="kw2">new</span> XmlView<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="co1">// Echoes the generated xml string</span>
+<a target="_blank"  href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">'&lt;pre&gt;'</span> . <span class="re0">$user</span>-&gt;<span class="me0">getView</span><span class="br0">&#40;</span><span class="re0">$view</span><span class="br0">&#41;</span> . <span class="st0">'&lt;/pre&gt;'</span>;</pre>
+
+<!-- SECTION [173-] --></div>
+<!-- cachefile ./data/.cache/0f550bcfe606f86d2438662d9de69b29 used -->
+</body>
+</html>
