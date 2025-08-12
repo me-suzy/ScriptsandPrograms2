@@ -1,0 +1,71 @@
+--------------------------------------------------------------
+SNIPE GALLERY V3.1.4  (11/1/2005):
+--------------------------------------------------------------
+For more information, support forums, bug reporting, patches, and 
+new releases, please visit our website at 
+www.snipegallery.com.
+
+If the forums or the website are down, email snipe@snipe.net to let
+us know and we will get them back up ASAP.  
+
+Please DO NOT email help requests to this email address.  If you
+do, it is unlikely you will get a reply.  (Not because we're
+bastards, just because we're very busy.)
+
+--------------------------------------------------------------
+INSTALLING SNIPE GALLERY:
+--------------------------------------------------------------
+
+1. Upload and unzip files to a directory on your webserver
+
+2. Change the directory permissions on the following 
+  directories to be writeable by your webserver:
+
+  - <galleryurl>/pics/
+  - <galleryurl>/thumbs/
+  - <galleryurl>/frame_imgs/
+  - <galleryurl>/admin/cache/
+  - <galleryurl>/admin/import/files/
+
+3.  Change the settings in the /inc/config.php file to match your database 
+    settings and personal preferences.
+
+4. Run the .sql file located in /docs/ to create the database tables for snipe gallery. 
+    If you don't know how to do this, ask your webserver if you have phpMyAdmin
+    installed.  If you do, you can run the .sql file from there.
+
+5.  Point your browser to <galleryurl>/admin to begin creating galleries and 
+    uploading images.  If you run into any difficulties or error messages, be sure 
+    to check the settings page at <galleryurl>/admin/settings/ to check for any 
+    problems that snipe gallery can detect for you.
+
+
+--------------------------------------------------------------
+CONFIGURING THE RSS FEED:
+--------------------------------------------------------------
+- Open rss.php and change the text settings to reflect what you wish yourr RSS
+  feed to be labeled.
+
+--------------------------------------------------------------
+CHANGELOG 3.1.3 to 3.1.4:
+--------------------------------------------------------------
+
+1. /inc/config.php
+	a. Added variable $cfg_orig_filenames - option to keep the original filename
+	b. Added variables to set maximum height, and another to enable it
+
+2. /admin/import/local.php
+	a. Fixed IPTC location import bug (was appending location for every iteration of a file)
+	b. Added functionality to decide to keep the original filename based on config.php setting
+	c. Added functionality to correctly handle maximum height based on config.php
+
+3. /admin/images/header.gif - somehow, the typo'd version of the header seems to have found its 
+    way back to some of the 3.1.3 files, so this time we double checked it. :)
+
+
+--------------------------------------------------------------
+TODO:
+--------------------------------------------------------------
+1. Continue working on image abstraction
+2. Improve documentation and support for RSS
+3. Implement max height and IPTC changes to zip import tool
