@@ -1,0 +1,3 @@
+<%AUTHORS%> : <%AUTHORCOUNT%><br>
+<%FICTION%> : <%FICTIONCOUNT%><br>
+<%REVIEWS%> : <%REVIEWCOUNT%>
