@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE d_schema SYSTEM "my_tables.dtd">
+
+<d_schema caption="webXlinks">
+
+	<d_table name="link" caption="Links" group_by="theme_id">
+
+		<d_field name="title" caption="Title" must_be="1" lst_order="3" lst_link_frm="1"/>
+
+<d_field name="date_edition" caption="Insert Date" type="date" must_be="1" lst_order="3" lst_row_order="desc"/>
+
+<d_field name="email" caption="Email" type="email" lst_order="3"/>
+
+		<d_field name="category_id" caption="Main category" type="select" frm_new_line="1">
+
+			<table_ref d_table="category" caption_field="title"/>
+
+		</d_field>
+
+		<d_field name="other_categories" caption="Other categories" type="select_multiple" frm_new_line="1">
+
+			<table_ref d_table="category" caption_field="title"/>
+
+		</d_field>
+
+		<d_field name="url" type_mode="href" caption="Url"/>
+
+		<d_field name="description" caption="Description" type="textarea" cols="60" frm_colspan="2" frm_new_line="1"/>
+
+		<d_field name="keywords" caption="Keywords" frm_colspan="2" frm_new_line="1"/>
+
+		<d_field name="note" caption="Note" type="textarea" frm_colspan="2" frm_new_line="1"/>
+
+		<d_field name="stat_id" caption="Status" type="select" lst_order="5">
+
+			<item value="0">Offline</item>
+
+			<item value="1">Online</item>
+
+		</d_field>
+
+		<d_field name="postcode" caption="Postcode"/>
+
+		<d_field name="town" caption="Town"/>
+
+		<d_field name="state" caption="State"/>
+
+		<d_field name="country" caption="Country" type="select" frm_new_line="1">
+
+			<table_ref d_table="country" caption_field="country_name"/>
+
+		</d_field>
+
+		<d_field name="languages" caption="Languages" type="select_multiple" >
+			<table_ref d_table="language" caption_field="language"/>
+		</d_field>	
+	<d_field name="url_rss" type="textarea" caption="Url Rss"/>
+		<d_field name="image" caption="Image" type="image"/>
+
+	</d_table>
+
+	<d_table name="category" parent_id_ref="parent_id" caption="Categories">
+
+		<d_field name="title" caption="Category" lst_order="1" lst_link_frm="1" must_be="1"/>
+
+		<d_field name="introduction" caption="Introduction" frm_new_line="1" type="textarea"/>
+
+		<d_field name="image" caption="Illustration" type="image"/>
+
+	</d_table>
+
+	<d_table name="comment" caption="Comments">
+
+	<d_field name="pseudo" caption="Name / Pseudo" lst_order="1" must_be="1"/>
+
+	<d_field name="article_id" caption="Article"  type="select" lst_order="5" frm_new_line="1" frm_colspan="2" >
+
+			<table_ref d_table="link" caption_field="title"/>
+
+	</d_field>
+
+	<d_field name="email" caption="Email" frm_new_line="1"/>
+
+	<d_field name="comment_date" caption="date" type="date" lst_order="3" must_be="1"  lst_row_order="desc"/>
+
+	<d_field name="ip" caption="IP" lst_order="3" frm_new_line="1"/>
+
+	<d_field name="location" caption="Location" type="textarea"	frm_new_line="1" must_be="1"/>
+
+	<d_field name="comment" caption="Your Comment" type="textarea"	frm_new_line="1" must_be="1"/>
+
+	</d_table>
+
+	<d_table name="country" caption="Countries">
+	<d_field name="country_code" caption="Code" lst_order="1"/>
+	<d_field name="country_name" caption="Country" lst_order="2"/>
+	</d_table>
+	
+	<d_table name="language" caption="Languages">
+
+	<d_field name="language" caption="Language" lst_order="1"/>
+
+
+	</d_table>
+</d_schema>
+
