@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tsep3docs.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>TSEP</title>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="TSEP is an open source (free) website PHP search engine. Easy to install, fast, supports logging and user defined stopwords. It uses CSS formating, is localized (multiple languages)" />
+<meta name="keywords" content="TSEP full text PHP search engine searchengine opensource free boolean mysql php stopword logging crawl spider open source" />
+<link href="css/general.css" rel="stylesheet" type="text/css" />
+<link href="css/medium.css" rel="stylesheet" type="text/css" />
+<!-- InstanceParam name="notes" type="text" value="notcurrent" --><!-- InstanceParam name="install" type="text" value="notcurrent" --><!-- InstanceParam name="usage" type="text" value="current" --><!-- InstanceParam name="advconf" type="text" value="notcurrent" --><!-- InstanceParam name="extensions" type="text" value="notcurrent" --><!-- InstanceParam name="faq" type="text" value="notcurrent" --><!-- InstanceParam name="errors" type="text" value="notcurrent" --><!-- InstanceParam name="links" type="text" value="notcurrent" --><!-- InstanceParam name="help" type="text" value="notcurrent" --><!-- InstanceParam name="contents" type="text" value="notcurrent" -->
+<link href="css/docs.css" rel="stylesheet" type="text/css" />
+<link href="css/links.css" rel="stylesheet" type="text/css" />
+<link href="css/urlimg.css" rel="stylesheet" type="text/css" />
+</head>
+<body><a name="topofpage" id="topofpage"></a> 
+<div id="container"> 
+  <div id="header"> 
+    <div class="HeaderLogo"><img src="graphics/tsep-glow.gif" alt="TSEP - The Search Engine Project" width="310" height="70" /></div> 
+    <div class="HeaderText">
+      <h1>Documentation</h1>
+    </div> 
+  </div> 
+  <div id="sidebar-a"> 
+    <div id="navcontainer"> 
+      <ul id="navlist-verti"> 
+        <li><a href="index.htm" class="notcurrent">Contents</a></li> 
+        <li><a href="note.htm" class="notcurrent">Notes</a></li>
+        <li><a href="install.htm" class="notcurrent">Install &amp; Upgrade</a></li> 
+        <li><a href="usage.htm" class="current">Usage</a></li> 
+      <li><a href="advanced.htm" class="notcurrent">Advanced Configuration</a></li>
+      <li><a href="extensions.htm" class="notcurrent">Extensions &amp; Plug-ins</a></li>
+      <li><a href="help.htm" class="notcurrent">Help TSEP </a></li>
+      <li><a href="faq.htm" class="notcurrent">FAQ</a></li>
+      <li><a href="error.htm" class="notcurrent">Problems &amp; Errors</a></li>
+      <li><a href="links.htm" class="notcurrent">Links</a></li>
+      </ul> 	  
+    </div> 
+  </div> 
+  <div id="sidebar-b">      
+  </div> 
+  <div id="content"><!-- InstanceBeginEditable name="middle" --><div id="navcontainer-hori" title="on this page"> 
+      <ul id="navlist-hori"> 
+        <li><a href="#search">Searching</a></li> 
+        <li><a href="#stopwords">Stopwords</a></li> 
+      <li><a href="#log">Logging</a></li>    
+      <li><a href="#edit">Edit and delete an index</a></li>
+      </ul> 	  
+    </div>
+<h1>Usage</h1>
+<ul>
+  <li><a href="#search">Searching</a>
+    <ul>
+      <li><a href="#suggestsearch">Suggest Search
+      </a>        <ul>
+          <li><a href="#suggestsearchintegrate">Integrating search suggest into your own page design</a> </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#stopwords">Stopwords</a>    <ul>
+      <li><a href="#stopwordsmanual">Manual creation</a></li>
+    <li><a href="#stopwordsauto">Automatic creation</a>
+      <ul>
+        <li><a href="#stopnew">Add N new</a></li>
+      <li><a href="#stoptop">Add top N</a></li>
+      </ul>
+    </li>
+    </ul>
+  </li>
+  <li><a href="#log">Logging</a>    <ul>
+      <li><a href="#logview">Log view
+      </a>        <ul>
+          <li><a href="#logfilter">Log filter</a></li>
+        </ul>
+      </li>
+    <li><a href="#logstatistics">Log statistics</a>   </li>
+    </ul>
+  </li>
+  <li><a href="#edit">Edit and delete an index </a></li>
+</ul>
+<h1><a name="search" id="search"></a>Searching</h1>
+<p>To run a search, open your search page or the page we prepared for you called '<span class="filename">tsepsearch.php</span>' in your browser and input the words to be searched. The search words are <span class="importantNote">not</span> case sensitive.</p>
+<p><span class="tsep">TSEP</span> supports boolean search if you have a MySQL version equal or higher than 4. Below are <span class="importantNote">some</span> the boolean search features. Important: Your tables <span class="importantNote">must</span> be MyISAM tables if the boolean search should work. (they should be MyISAM when we created them)</p>
+<h4>Search for the words</h4>
+<dl>
+  <dt>apple banana</dt>
+  <dd>...find page that contain at least one of these words. </dd>
+  <dt>+apple +juice</dt>
+  <dd>...both words </dd>
+  <dt>+apple macintosh</dt>
+  <dd>...word &quot;apple&quot;, but rank it higher if it also contain &quot;macintosh&quot;</dd>
+  <dt>+apple -macintosh</dt>
+  <dd>...word &quot;apple&quot; but not &quot;macintosh&quot;
+  </dd>
+  <dt>+apple +(&gt;pie &lt;strudel)</dt>
+  <dd>...&quot;apple&quot; and &quot;pie&quot;, or &quot;apple&quot; and &quot;strudel&quot; (in any order), but rank &quot;apple pie&quot; higher than &quot;apple strudel&quot;. </dd>
+  <dt>apple*</dt>
+  <dd>...&quot;apple&quot;, &quot;apples&quot;, &quot;applesauce&quot;, and &quot;applet&quot; </dd>
+</dl>
+<p>    This will be familiar to you if you know MySQL Full text search. There is also help available directly on the search page, next to the search button. </p>
+<p>Here are some general boolean search operators:</p>
+<ul>
+  <li>+ The word is mandatory in all rows returned. </li>
+  <li> - The word cannot appear in any row returned.</li>
+  <li>&lt; The word that follows has a lower relevance than other words, although rows containing it will still match</li>
+  <li>&gt; The word that follows has a higher relevance than other words. </li>
+  <li> ( ) Used to group words into subexpressions. </li>
+  <li> ~ The word following contributes negatively to the relevance of the row (which is different to the '-' operator, which specifically excludes the word, or the '&lt;' operator, which still causes the word to contribute positively to the relevance of the row. </li>
+  <li> * The wildcard, indicating zero or more characters. It can only appear at the end of a word.</li>
+  <li>&quot; Anything enclosed in the double quotes is taken as a whole (so you can match phrases, for example). </li>
+</ul>
+<p>The minimum length of a search term is 4, see <a href="faq.htm#restrictions">MySQL restrictions</a> below for details and a work around! (User defined) <a href="#Stopwords">stopwords</a> are not marked in the results and not used in the database query.</p>
+<h2><a name="suggestsearch" id="suggestsearch"></a>Suggest Search (not yet implemented!) </h2>
+<p>In version 0942 we have introduced a feature called suggest search. This grabs the user input as he types in his search term(s) and suggests words which have been searched before by users. The user can use a suggested search term for his search. He also sees how many results these search terms produced and how many people used the search terms. </p>
+<p>How it works - technical but important for you to understand the differences in the configuration options you can choose from: </p>
+<p>Table <span class="tablename">log</span> is not changed. It stores the <span class="tableFields">idlog</span>, <span class="tableFields">logstring</span>, etc. A single logstring (e.g. &quot;Olaf Nöhring&quot;) will be stored as many times as it's used.<br />
+    <br />
+  Table <span class="tablename">loghits</span> stores <span class="tableFields">idlog</span>, number of times a query is executed (<span class="tableFields">nr_hits</span>) and the number of pages returned (<span class="tableFields">returned_pages</span>). The field &quot;<span class="tableFields">idlog</span>&quot; contains the id of first record of a logstring. So if the <span class="tablename">log</span> table contains:</p>
+<table  border="1" cellspacing="2" cellpadding="0" class="databaseTable">
+  <tr>
+    <td><span class="tableFields">IDLOG</span></td>
+    <td><span class="tableFields">LOGSTRING</span></td>
+  </tr>
+  <tr class="tableData">
+    <td>1</td>
+    <td>Olaf</td>
+  </tr>
+  <tr class="tableData">
+    <td>2</td>
+    <td>Toon</td>
+  </tr>
+  <tr class="tableData">
+    <td>3</td>
+    <td>Olaf</td>
+  </tr>
+</table>
+<p> Then table <span class="tablename">loghits</span> contains:</p>
+<table border="1" cellspacing="2" cellpadding="0" class="databaseTable">
+  <tr>
+    <td><span class="tableFields">IDLOG</span></td>
+    <td><span class="tableFields">NR_HITS</span></td>
+    <td><span class="tableFields">RETURNED_PAGES</span></td>
+  </tr>
+  <tr class="tableData">
+    <td>1</td>
+    <td>2</td>
+    <td>x</td>
+  </tr>
+  <tr class="tableData">
+    <td>2</td>
+    <td>1</td>
+    <td>x</td>
+  </tr>
+</table>
+<p> In <span class="filename">log.php</span> the &quot;<span class="tableFields">nr_hits</span>&quot; field is updated for each query.<br />
+    <br />
+  In <span class="filename">search.php</span> the &quot;<span class="tableFields">returned_pages</span>&quot; is updated for each query. There are 4 different ways of calculating &quot;<span class="tableFields">returned_pages</span>&quot;:</p>
+<ol>
+  <li> The actual number of pages returned for the query that was executed just a couple of milliseconds ago is stored as is.</li>
+  <li> The actual number of pages returned just now is averaged with the already stored number: <br />
+&quot;<span class="tableFields">returned_pages</span>&quot; = round( ( (&quot;<span class="tableFields">returned_pages</span>&quot; * (&quot;<span class="tableFields">nr_hits</span>&quot;-1) ) + &quot;actual number of pages returned&quot;) / &quot;<span class="tableFields">nr_hits</span>&quot; )</li>
+  <li>The minimum number of returned pages is stored: <br />
+&quot;<span class="tableFields">returned_pages</span>&quot; = min( &quot;<span class="tableFields">returned_pages</span>&quot;, &quot;actual number of pages returned&quot; )</li>
+  <li>The maximum number of returned pages is stored: <br />
+&quot;<span class="tableFields">returned_pages</span>&quot; = max( &quot;<span class="tableFields">returned_pages</span>&quot;, &quot;actual number of pages returned&quot; )</li>
+</ol>
+<p> So in conclusion:</p>
+<ul>
+  <li>each query is stored in <span class="tablename">log</span>.</li>
+  <li> each unique logstring is stored in <span class="tablename">loghits</span>.</li>
+  <li>&quot;<span class="tableFields">returned_pages</span>&quot; in <span class="tablename">loghits</span> is updated with or without regard to previous queries depending on the admins settings.</li>
+</ul>
+<h3><a name="suggestsearchintegrate" id="suggestsearchintegrate"></a>Integrating search suggest into your own page design</h3>
+<p> The easiest way to incorporate the TSEP search suggest feature into your website is to use the <span class="filename">tsepsearch.php</span> script. By changing a few lines in the CSS file you can make the colors, etc. fit the design of your website.</p>
+<p> If this won't do you can tweak the <span class="filename">search.php</span> script to exactly display as you want it to. It's a bit technical but don't let that scare you off.</p>
+<p> The search suggest is displayed with one or two lines of PHP code, depending on what you want. First you have to display the search form by calling the class method <span class="HTMLcode">SearchSuggest::SearchForm()</span>. It needs a whole bunch of parameters that you need to forget about. For you the only important one is right at the very end: <span class="variablename">$includeSuggestTable</span><br />
+    <br />
+  The <span class="HTMLcode">SearchSuggest::SearchForm()</span> method creates the searchform and the JavaScript code needed for search suggest. The <span class="variablename">$includeSuggestTable</span> parameter can be set to <span class="variablevalue">TRUE</span> or <span class="variablevalue">FALSE</span>.</p>
+<p> If you set it to <span class="variablevalue">TRUE</span> the method creates the HTML code (a set of DIV's and SPAN's that look like a table structure) to display the suggestions. If you use <span class="variablevalue">TRUE</span> you don't need any more PHP code to get it to work.</p>
+<p> If you set it to <span class="variablevalue">FALSE</span> this code isn't created and you need to call <span class="HTMLcode">SearchSuggest::echoSearchTable()</span> somewhere it fits you best to include the display HTML code. You could call this method from inside a table cell or whatever you want.</p>
+<h1><a name="stopwords" id="stopwords"></a>Stopwords</h1>
+<p>Stopwords are words which will not be searched on your pages. This means that when using a stopword as a searchterm, it will not be marked as a searchterm in the results.</p>
+<p>Stopwords are <span class="importantNote">not</span> case sensitive. This means that if you enter &quot;Apple&quot; in the stopwords section and the users searches for &quot;apple&quot; this word will be treated as a stopword.</p>
+<p>At this time you can easily add stopwords by entering severel words at once into the &quot;add new stopwords&quot; field on the <span class="filename">stopwords.php</span> page. </p>
+<p>We provide lists of stopwords for several languages. Please take a look into the language folder (<span class="directoryname">/language</span>), and in the folder of the language you desire stopwords for (for english: <span class="directoryname">/language/en</span>). You will find a file called <span class="filename">stopword.txt</span>. This is a simple text file which can be opened using any texteditor/-viewer. The file contains some meta information (lines beginning with the &quot;;&quot; character) and a list of stopwords which looks much like this: <span class="searchWord">a,a's,able,about,above</span> As you see, the stopwords are seperated by coma. You can simply copy and paste all the stopwords into the &quot;add new stopwords&quot;-field and click the submit button. <span class="tsep">TSEP</span> will automatically add all the stopwords to your stopword list! </p>
+<p>Please note that there are <a href="faq.htm#restrictions">MySQL restrictions</a> on <a href="faq.htm#mysqlreststopwords">stopwords</a> as well!</p>
+<p>You can add, update and delete your own stopwords. </p>
+<h3><a name="stopwordsmanual" id="stopwordsmanual"></a>Manual</h3>
+<p>Simply enter a stopword in the form field and press the &quot;add&quot; button. You can also enter more than once stopword at once, seperating them by comma. </p>
+<p>Example: <span class="fieldvalue">this,is,a,stopword,list </span></p>
+<h3><a name="stopwordsauto" id="stopwordsauto"></a>Automatic</h3>
+<p>Stopwords can be automatically generated based on the occurrences of a typical word included in a website. All stopwords that are added are displayed above the stopword list after a search is conducted. </p>
+<p>We have implemented two, slightly different working methods. </p>
+<h4><a name="stopnew" id="stopnew"></a>Add N new</h4>
+<p>The administrator has the ability to enter an integer value of stopwords. The value entered will be the number of stopwords searched for. The most frequently found words will then be added to the stopwords database. By default stopwords that are already in the database are overwritten.</p>
+<h4> <a name="stoptop" id="stoptop"></a>Add top N</h4>
+In the case that the administrator only wants new stopwords, he or she may check the option &quot;Retrieve new stopwords only&quot;. 
+<h1><a name="log" id="log"></a>Logging</h1>
+<p>This was introduced in version 0.911. The administrator can define in the setup file whether and what search activity should be logged. All log entries are accompanied by a timestamp. The admin can decide to log the following: IP address, search term and clicks on the results.</p>
+<p>The administrator may want to analyse what users are searching for on his site and make navigation to those points easier.</p>
+<p>The administrator can also log the IP address of the person searching. Be aware that people might not like the idea of you &quot;spying&quot; on them. But we thought this might be a useful feature - maybe especially for Intranets. In those, if someone is totally lost the administrator can take him by his hand and help directly. </p>
+<p>The administrator may want / need to notify the users if their actions are being loged, especially when logging their IP address.</p>
+<p>For sorting the log entries by IP adddress, MySQL v3.23 or higher is required. (<a href="faq.htm#mysqlrestsortip">MySQL restriction on IP sorting</a>) </p>
+<p><span class="importantNote">Note</span>: When you search from the search field in the '<span class="filename">indexer.php</span>, this search will not be logged! </p>
+<h2><a name="logview" id="logview"></a>Log view</h2>
+<p>The logged data can be seen in the file <span class="directoryname">/admin/</span><span class="filename">logview.php</span></p>
+<p>You need a pretty wide screen (preferably 1280x1024 or wider) to see all log entries nicely side by side. If the are to long they are not completely displayed to prevent overlapping. You can move (and hold) your mouse over the entries to see the complete entry in the <span class="HTMLcode">title</span> tag. </p>
+<h3><a name="logfilter" id="logfilter"></a>Log filter</h3>
+<p>In version 0.941 we introduced a filter function for the log. <span class="importantNote">The log display is always filtered!</span> The administrator can change the following parameters:</p>
+<ul>
+  <li>logview type </li>
+  <li> searchterm </li>
+  <li> date/time. You can click into the fields to open a calendar. (formats for date: YYYY-[M]M-[D]D, YYYY/[M]M/[D]D, YYYYMMDD and HH:MM:SS for time) </li>
+  <li> IP address (Only format accepted are variations on: 999.999.999.999, limits: 000.000.000.000 through 255.255.255.255)</li>
+  <li>resolved IP </li>
+  <li>stopwords in search terms </li>
+</ul>
+<p>You can move your mouse over some of the fields to see example values. </p>
+<h2><a name="logstatistics" id="logstatistics"></a>Log statistics </h2>
+<p>In version 0.941 we started statistics for the log. The statistics show for example:</p>
+<ul>
+  <li>Totals: Log records, search queries, clicked URLs</li>
+  <li> Details: Unique search words / stopwords / IP addresses / domains</li>
+  <li> Top N: Search queries, clicked URLs </li>
+</ul>
+<h1><a name="edit" id="edit"></a>Edit and delete an index</h1>
+<p>Some people asked how they can delete a word from the index or correct a word. In version 0.910 we introduced the possibility to do this right from <span class="tsep">TSEP</span>. </p>
+<p>Open the <span class="filename">indexoverview.php</span> page either directly or from any page in the <span class="directoryname">admin</span> folder (<span class="filename">indexer.php</span> for example). Look for the page you want to edit. Click in the <span class="importantNote">title column on the link</span> (title of the page). This takes you to the editing. <span class="importantNote">Be aware</span>: This behaviour has changed in 0.938 - if you click on the URL (in the URL column) you will open the page itself!</p>
+<p>In version 0942 we introduced new fields in the indexedit:</p>
+<dl>
+  <dt class="formfieldlabel">Additional Information</dt>
+  <dd>This is for additional information the administrator want's to attach to a page. The contents of this can be shown to the searching user in the results - in a future version of <span class="tsep">TSEP</span>. </dd>
+  <dt class="formfieldlabel">Last Indexing date</dt>
+  <dd>This specifies when the page was indexed the last time</dd>
+  <dt class="formfieldlabel">Last Edit date </dt>
+  <dd>this specifies when the indexentry of the page was edited the last time </dd>
+</dl>
+<p><span class="importantNote">Tipp</span>: You can still call the <span class="filename">indexedit.php</span> directly (with no parameters). This will show you more page details at once and you can still <span class="importantNote">add completly new pages</span> to the index! The number of pages you see there is defined in the <span class="filename">configuration.php</span> by this value in the <span class="ConfigGroupHeader">Limits</span> group:</p>
+<p class="fieldDescription">How many index entries in the show complete index page in one html document? Be careful not to set a too high number as the page might get very big!</p>
+<p>&nbsp;</p>
+  <!-- InstanceEndEditable --></div>
+  <div id="footer">
+  <p>This file is part of <span class="tsep">TSEP</span> (<span class="tsep">The Search Engine Project</span>), Version: TSEP 0.9nnn</p>
+<p>This file has been last modified (SubVersion Data):<br />
+    $LastChangedDate: 2005-09-04 15:08:44 +0200 (So, 04 Sep 2005) $<br />
+    $LastChangedBy: olaf $<br />
+    $LastChangedRevision: 313 $</p>
+<p><a href="http://www.tsep.info" title="TSEP Website" class="copyright">&copy; 2002-2005 by TSEP - The Search Engine Project</a></p>
+  </div>
+</div> 
+</body>
+<!-- InstanceEnd --></html>
