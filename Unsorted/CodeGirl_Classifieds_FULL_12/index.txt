@@ -1,0 +1,139 @@
+=addon
+=cut
+my $configfile = "classifieds.cgi";
+my $update = 1200;
+my $desclength = 250;
+my $phraselength = 75;
+=head
+=cut
+use strict;
+my %config;
+my %category = ();
+open(DAT, $configfile)||logerr("index.txt: Cannot open $configfile");
+my $file = join '', <DAT>;
+close(DAT);
+eval("\%category = ($1);") if($file=~/\%category\s*\=\s*\((.*?)\)\s*;/s);
+eval("\$config{basepath} = $1") if($file=~/\$config\{["']?basepath["']?\}\s*=\s*([^;]*?)\s*;/s);
+logerr("index.txt: Cannot extract \%category from $configfile.") unless scalar(@{[keys %category]});
+logerr("index.txt: Cannot extract basepath from $configfile.") if $config{basepath} eq '';
+update_index();
+sub logerr{
+	open ERR, ">INDEX_ERROR";
+	print ERR "[".scalar(localtime(time))."] $_[0]\n";
+	close ERR;
+	exit
+}
+sub update_index{
+	open(RESUME, "$config{basepath}resume.dat");
+	$_ = <RESUME>;
+	chomp;
+	my($resumetime,$resumedir,$resumefile,$resumedbsize) = split /\t/;
+	close(RESUME);
+	$resumedir = '' if $category{$resumedir} eq '';
+	$resumefile = '' if $resumedir eq '';
+	$resumefile = '' if !-e "$config{basepath}$resumedir/$resumefile.dat";
+	exit if $resumedir eq '' && time < $resumetime; # No new update
+	exit if time < $resumetime+15; 
+	my $dbsize = abs $resumedbsize;
+	my $starttime = time;
+	my $thistime;
+	my $counter = 0;
+	unlink "./core" if -e "./core";
+	IDXCAT: foreach my $dir (sort keys %category){
+		my $resumethis = 0;
+		if($resumedir ne ''){
+			next if $dir ne $resumedir;
+			$resumedir = '';
+			$resumethis = 1;
+			open(IDX, ">>$config{basepath}tmp_$dir.dat");
+		}else{
+			open(IDX, ">$config{basepath}tmp_$dir.dat");
+		}
+
+		opendir(DIR, "$config{basepath}$dir");
+		readdir(DIR);readdir(DIR);
+		my @files = sort {int($a) <=> int($b)} readdir(DIR);
+		IDXFILE: foreach my $file(@files){
+			$file = int $file;
+			if($resumethis){
+				if($resumefile ne ''){
+					next if $file ne $resumefile;
+					$resumefile = '';
+					next;
+				}
+			}
+
+			open(DAT, "$config{basepath}$dir/$file.dat") || next IDXFILE;
+			my ($title, $rgt, $rht, $desc, $image, $url, $firstrft, @rfts) = <DAT>;
+			close DAT;
+			$dbsize += -s "$config{basepath}$dir/$file.dat";
+			chomp $title;
+			chomp $desc;
+			$title=~s|\s+| |og;
+			$firstrft =~s|\[.*$||;
+			if($#rfts>=20){ @rfts = @rfts[($#rfts-19)..$#rfts] }
+			my $users;
+			foreach(@rfts){
+				$_=~s|\[.*$||;
+				$users .= " $_";
+			}
+			$desc=~s|<style.*/style>||oig; # <style>
+			$desc=~s|<script.*/script>||oig; # <script>
+			$desc=~s|<!--.*-->||oig; # <!---->
+			$desc=~s|<[^>]*>||og; # </?tag>
+			$desc=~s|\s{2,}| |og; # \s\S*$
+			my $line = substr($desc, 0, $phraselength);
+			$line=~s|\s\S*$||o;
+			$desc = substr($desc, length($line));
+			# unique words only
+			my $pos = 1;
+			my %desc = map {($pos<$desclength)?($_, $pos++):()} split /\s+/, $desc;
+			$desc = $line . ' ' . join ' ', sort {$desc{$a} <=> $desc{$b}} keys %desc;
+			$desc = substr($desc, 0, $desclength) if(length($desc)>$desclength);
+			print IDX "\t$file\t$firstrft\t$users\t$title\t$desc\t$image\n";
+			$counter++;
+			if($thistime ne time){
+				open(RESUME, ">$config{basepath}resume.dat");
+				print RESUME time,"\t$dir\t$file\t$dbsize\n";
+				print RESUME "[$counter Items in ", time-$starttime, " seconds]";
+				close(RESUME);
+				$thistime = time;
+			}
+		}
+		closedir(DIR);
+		close(IDX);
+		open(IDX2, ">$config{basepath}idx_$dir.dat");
+		open(IDX, "$config{basepath}tmp_$dir.dat");
+		while(<IDX>){
+			print IDX2 $_;
+		}
+		close(IDX);
+		close(IDX2);
+		open(IDX, ">$config{basepath}tmp_$dir.dat");
+		close(IDX);
+		unlink "$config{basepath}tmp_$dir.dat";
+	}
+
+	open(RESUME, ">$config{basepath}resume.dat");
+	print RESUME time+$update; # Set next update time
+	close(RESUME);
+	my $isize = 0;
+	my $tcount = 0;
+	foreach my $key (sort keys %category) {
+		$isize += -s "$config{basepath}idx_$key.dat";
+		if(opendir(DIR, "$config{basepath}$key")){
+			readdir DIR;readdir DIR;
+			$tcount += my $numfiles = scalar @{[readdir DIR]};
+		}
+	}
+	open(DAT, ">$config{basepath}dbsize.dat");
+	print DAT 1 * $dbsize, "\n";
+	print DAT "$isize\n";
+	print DAT "$tcount\n";
+	print DAT time, "\n";
+	print DAT "Database Size: $dbsize\n";
+	print DAT "Index Size: $isize\n";
+	print DAT "Total Items: $tcount\n";
+	print DAT "Last Updated: ", scalar(localtime(time)), "\n";
+	close(DAT);
+}
