@@ -1,0 +1,213 @@
+<?php
+// Copyright (c) MetaClass, 2003, 2004
+// Licensed under the Academic Free License version 2.0
+
+includeClass('PntTestCase', 'pnt/unit');
+includeClass('TestDbObject', 'pnt/test/db');
+
+class CaseDbObject extends PntTestCase {
+	
+	var $incremental = true;  	
+	var $obj1;
+	var $childObj1;
+	
+	function setUp() {
+		$this->clsDes =& PntClassDescriptor::getInstance('TestDbObject');
+		
+		if (!$this->obj1)
+			$this->obj1 =& new TestDbObject();
+	}
+	
+	function test_CreateTables() {
+		//utilize the undocumented order of the TestSuite run to 
+		//have this initialization only run once for all the tests
+		//in the testcase. 
+		
+		$qh =& TestDBObject::newQueryHandler();
+		$qh->query = 'DROP TABLE testdbobjects';
+		$qh->_runQuery();
+		
+		$qh->query = "CREATE TABLE testdbobjects(
+			id int(6) NOT NULL auto_increment,
+			clsId varchar(80) default NULL,
+			stringField varchar(80) default NULL,
+			dateField date NOT NULL default '0000-00-00',
+			timestampField datetime NOT NULL default '0000-00-00 00:00',
+			doubleField double(5,2) NOT NULL default 0.00,
+			memoField mediumtext,
+			testDbObjectId int(6) NOT NULL default 0,
+			anotherDbObjectId int(6) NOT NULL default 0,
+			PRIMARY KEY  (id),
+			UNIQUE KEY id (id)
+			) TYPE=MyISAM";
+		$qh->_runQuery();
+		$this->assertNull($qh->getError(),'create table testdbobjects');	
+	}
+
+	function test_getSingleValuePropertyDescriptors() {
+		$props =& $this->clsDes->getSingleValuePropertyDescriptors();
+		$this->assertEquals(
+			explode(' ', $this->obj1->singleValuePropNames)
+			, array_keys($props)
+		);
+	}
+
+	function test_getMultiValuePropertyDescriptors() {
+		$props =& $this->clsDes->getMultiValuePropertyDescriptors();
+		$nameString = $this->obj1->multiValuePropNames;
+		$this->assertEquals(
+			($nameString ? explode(' ', $nameString) : array())
+			, array_keys($props)
+		);
+	}
+
+	function test_getPersistentFieldPropertyDescriptors() {
+		$props =& $this->clsDes->getPersistentFieldPropertyDescriptors();
+		$this->assertEquals(
+			explode(' ', $this->obj1->persistentFieldPropNames)
+			, array_keys($props)
+		);
+	}
+
+	function test_insert_retrieve() {
+		// setUp sets id to 1 to retrieve obj1 if it has been saved.
+		// right now we need to insert obj1 and therefore we need id to be 0
+		$this->obj1->set('id', 0);
+		
+		$this->obj1->set('stringField', 'zomaar een String ~!@#$%^&*()_+-={}[]:;"<,>.?/|\~`'."'");
+		//date and timestamp are actually represented as strings
+		$this->obj1->set('dateField', date('Y-m-d', time()) );
+		$this->obj1->set('timestampField', date('Y-m-d H:i:s', time()) );
+		$this->obj1->set('doubleField', 12345.67);
+		$this->obj1->set('memoField', 'memo' );
+
+		$this->obj1->save();
+		$this->assertTrue($this->obj1->get('id'), 'obj1 id after save');
+		
+		$this->retrieveObjAssertEqual($this->obj1, $this->clsDes);
+	}
+	
+	function test_update_retrieve() {
+		$this->obj1->set('stringField', 'een andere string 1234567890');
+		$this->obj1->set('dateField', date('Y-m-d', time()) );
+		$this->obj1->set('timestampField', date('Y-m-d H:i:s', time()) );
+		$this->obj1->set('doubleField', 76543.21);
+		$this->obj1->set('memoField', 'Websites met Nanotubes Content Management Systeem
+Dit product bestaat wederom uit een vormgeving, echter dit maal kan de inhoud van de website op zeer eenvoudige wijze door u zelf geschreven en gewijzigd worden.
+Het grote voordeel hiervan is dat u kosten bespaart wanneer u de website wilt wijzigen. U kunt het namelijk nu zelf doen, er hoeft niet meer iemand met kennis van HTML, het internetformaat, ingehuurd te worden om de teksten aan te passen.
+Bij de website wordt het door Metaclass ontwikkelde unieke Nanotubes content management systeem geleverd. Dit is een afgeschermd deel van de site dat geschreven is om uw site te beheren.
+Het Nanotubes content management systeem is ook leverbaar met een WYSIWYG- (what you see is what you get) editor. Dit is een klein tekstverwerkertje dat vrijwel gelijk aan de standaard Windows tekstverwerkers werkt. Dit maakt het bewerken van teksten op de website voor de ondernemer een vertrouwde bezigheid.
+Klik hier voor een demonstratie van het CMS.');
+
+		$this->obj1->save();
+
+		$this->assertNull($this->obj1->get('testDbObject'), 'obj1 testDbObject');
+		
+		$this->retrieveObjAssertEqual($this->obj1, $this->clsDes);
+	}
+
+	function testSqlDateTimeFormat()
+	{
+		$result = mysql_query("SELECT * FROM testdbobjects where id = 1 ");
+		$row = mysql_fetch_assoc($result);
+
+		$this->assertTrue(is_string($row['timestampField']));
+		$this->assertSame( date('Y-m-d H:i:s', time()), $row['timestampField']);
+		
+//		print is_string($row['timestampField']) ? 'true' : 'false';
+//		print " ";
+//		print $row['timestampField'];
+// true 2004-10-24 23:43:17
+
+		$this->assertTrue(is_string($row['dateField']));
+		$this->assertSame( date('Y-m-d', time()), $row['dateField']);
+		
+//		print is_string($row['dateField']) ? 'true' : 'false';
+//		print " ";
+//		print $row['dateField'];
+// true 2004-10-24
+
+
+	}
+
+	function test_insertChild() {
+		$this->childObj1 =& new TestDbObject();
+		
+		$this->childObj1->set('stringField', 'this is the child');
+		$this->childObj1->set('dateField', date('Y-m-d', time()) );
+		$this->childObj1->set('timestampField', date('Y-m-d H:i:s', time()) );
+		$this->childObj1->set('doubleField', 9999.99);
+		$this->childObj1->set('memoField', 'memo of the child' );
+
+		//print "<BR>$this->obj1->get('id') ".$this->obj1->get('id');
+		
+		$this->childObj1->set('testDbObject', $this->obj1);
+		$this->assertEquals(
+			$this->obj1->get('id')
+			, $this->childObj1->get('testDbObjectId')
+			, 'testDbObjectId before save'
+			);
+
+		$this->childObj1->save();
+		$this->assertTrue($this->childObj1->get('id'), 'childObj1 id after save');
+
+		$this->retrieveObjAssertEqual($this->childObj1, $this->clsDes);
+		
+		$children =& $this->obj1->get('children');
+		reset($children);
+		$this->assertTrue(
+			$this->childObj1 == $children[key($children)] //assertEquals too strict
+			, 'childObj1 == child'
+			);
+		$this->assertFalse(
+			$this->obj1 == $children[key($children)] 
+			, 'obj1 == child'
+			);
+		
+	}
+	
+	function testIsIdProperty()
+	{
+		$prop =& $this->clsDes->getPropertyDescriptor('id');
+		$this->assertTrue($prop->isIdProperty(), "id");
+		
+		$prop =& $this->clsDes->getPropertyDescriptor('testDbObjectId');
+		$this->assertTrue($prop->isIdProperty(), "testDbObjectId");
+		
+		$prop =& $this->clsDes->getPropertyDescriptor('stringField');
+		$this->assertFalse($prop->isIdProperty(), "stringField");
+	}
+
+	function testDeleteObj1 () {
+		$this->assertTrue($this->obj1->get('id'));
+		$this->obj1->delete();
+		
+		$this->assertNull(
+			$this->clsDes->_getPeanutWithId('1')
+			, 'retrieve after delete'
+		);
+	}
+
+	function test_dropTables() {
+		//utilize the undocumented order of the TestSuite run to 
+		//have this finalization only run once for all the tests
+		//in the testcase. 
+		$qh =& TestDBObject::newQueryHandler();
+		$qh->query = 'DROP TABLE testdbobjects'; 
+		$qh->_runQuery();
+		$this->assertNull($qh->getError(),'drop table testdbobjects');	
+	}
+
+	function retrieveObjAssertEqual(&$obj1, &$clsDes) {
+
+		$obj1ClsDes =& $obj1->getClassDescriptor();
+		unSet($obj1ClsDes->peanutsById[$obj1->get('id')]);
+		
+		$obj2 =& $clsDes->_getPeanutWithId($obj1->get('id'));
+		Assert::propertiesEqual($obj1, $obj2, 'retrieved object');
+	}
+
+}
+
+return 'CaseDbObject';
+?>
