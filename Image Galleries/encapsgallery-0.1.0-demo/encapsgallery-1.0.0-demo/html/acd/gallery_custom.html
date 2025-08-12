@@ -1,0 +1,52 @@
+<div align="center">
+<TABLE cellpadding="0" cellspacing="0" border="0" width="">
+	<tr>
+	<td  align="center">
+		<b>
+		<?
+		$back = "&lt;&lt;previous";
+		$forw = "next&gt;&gt;";
+		if($html["id"]["prev"]!=""){
+			?><a href="?page=foto&action=show_custom&id=<?=$html["id"]["prev"]?>&cat=<?=$html['cat']['id']?>"><?=$back?></a>
+			<?}else{
+				?><?=$back?><?}?>
+		|
+		<?if($html["id"]["next"]!=""){
+			?><a href="?page=foto&action=show_custom&id=<?=$html["id"]["next"]?>&cat=<?=$html['cat']['id']?>"><?=$forw?></a>
+			<?}else{
+				?><?=$forw?><?}?>
+		</b>
+	</td>
+	</tr>
+	<tr >
+		<td align="center" >
+<?=$html['item']['title']?>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><img src="<?=$html['path']?>img/gallery/r1c1.gif"></td>
+<td background="<?=$html['path']?>img/gallery/r1c2.gif"></td>
+<td><img src="<?=$html['path']?>img/gallery/r1c3.gif"></td>
+</tr>
+<tr>
+<td background="<?=$html['path']?>img/gallery/r2c1.gif"></td>
+<td background="<img src="<?=$html['item']['path']?>img/gallery/r2c1.gif"><img 
+	border="0" src="./rwx_gallery/<?=$html['item']["filename_normal"]?>" ></td>
+<td background="<?=$html['path']?>img/gallery/r2c3.gif"></td>
+</tr>
+<tr>
+<td><img src="<?=$html['path']?>img/gallery/r3c1.gif"></td>
+<td background="<?=$html['path']?>img/gallery/r3c2.gif"></td>
+<td><img src="<?=$html['path']?>img/gallery/r3c3.gif"></td>
+</tr>
+</table>
+
+
+<?=$html['item']['comment']?>
+</td></tr></table>
+
+</td>
+	</tr>
+
+</TABLE>		
+
+</div>
