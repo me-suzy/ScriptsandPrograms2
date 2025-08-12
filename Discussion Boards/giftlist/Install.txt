@@ -1,0 +1,85 @@
+**Family Gift List V1.0**
+
+(c) 2004 R.Reason. 
+Contact: rich@family-website.co.uk
+Website: http://www.nil.clan-hosts.net/cycsoftware/
+
+
+PLEASE NOTE:
+This was the first attempt of mine at writing anything in PHP (or any other language). I know there
+is a lot of bad programing in this script, I was using it as a test project. I have only released
+it as it works fine (on my host anyway) and could be of use to other people. It was also somewhat rushed,
+so several files were never tidied as they should have been (but they still work). Many parts are taken from internet tutorials (these will be the bits that are written well!)
+Use this script at your own risk !
+
+I would also like to mention several ideas for this program came from 'Giftlist' by Erich G Bratton.
+You can visit his website at: http://www.brattonbrothers.com/
+
+**************************************************************************
+
+Requirements:
+PHP (written with version 4.3.9 but should work with most)
+MySQL Database (written with 4.0.20 but should work with most)
+
+**************************************************************************
+
+INSTALLATION:
+
+Insure all files are unzipped
+
+Create a MySQL database (call it whatever you like, 'giftlist' would do) using phpmyAdmin or similar method.
+
+Add the required tables to the database by running the included giftlist.sql file. Again this can be done in phpMyAdmin. (go the the database you created, then select 'SQL' from the top menu, then in `Loacation of textfile:' click browse and point to the giftlist.sql file on your hard drive. Click 'GO' and the tables will be created.
+
+Open file db_connect in your text editor (notepad will do) and change the 
+'enter username';
+'enter password';
+'enter database name';
+To match your database settings. Localhost should normally be left as it is.
+
+Upload all files within the 'install' folder to a folder on your web site.
+If the folder was called 'giftlist' then point your browser to the login.php file like:
+http://www.yourdomain.com/giftlist/login.php
+
+From there create an account and use.....
+
+
+**************************************************************************
+
+
+CUSTOMIZING YOUR SITE:
+
+The following changes should be made to customize your site:
+
+LOGO:
+The logo displayed at the top of each page is gift.jpg. If you want your own logo, simply create your image, name it gift.jpg and upload overwriting the original file.
+
+
+
+
+PASSWORD PROTECTION:
+By default, the program requires a 'general' password to be entered when users try viewing 'other users giftlists'.
+This was put in to prevent children from viewing each others bought lists, to determine what gifts have been purchased for them.
+This is a 'very' simple prtotection, but may still help prtevent children checking their lists (and ruining the fun for them!). The idea is to set a password here, then give this out to adults using the site, but not to children. (as it tends to be the adults doing the buying !!)
+The password by default is 'password'. You should do the following to change this password:
+
+open the file:
+
+showfiles.php
+
+Search for the line:
+
+$access = "password";
+
+change the 'password' to any pass you like, save the file and upload overwriting the original file.
+
+If you would prefer not to have a password on this screen, change this line to:
+$access = "";
+
+In other words, have no word or space between the two ""
+
+
+CURRENCY SYMBOL
+
+By default all currency is displayed in British Pounds (£) if you want to replace this with Dollars ($) then upload all the files in the 'US Symbol' folder overwriting the existing files. (this was just a quick fix I added at the last minute)
+
