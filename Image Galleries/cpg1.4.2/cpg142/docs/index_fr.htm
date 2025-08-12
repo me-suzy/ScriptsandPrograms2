@@ -1,0 +1,1904 @@
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Coppermine Photo Gallery - Documentation et Manuel d'aide en FranÃ§ais</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="language"    content="fr">
+<meta name="author"      content="Coppermine dev team">
+<meta name="translator" content="Frantz">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site.">
+<meta name="keywords"    content="photo,gallery,galery,image,coppermine,php,mysql,easy,feature,phpnuke,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta name="page-topic"    content="photo,gallery,galery,image,coppermine,php,mysql,easy,feature,phpnuke,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<!-- CVS version info: $Id: index_fr.htm,v 1.3 2005/11/23 20:07:55 gaugau Exp $ -->
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+  <tbody>
+  <tr>
+    <td>
+                        <p><img src="pics/fr_coppermine_logo_french.jpg" alt="Galerie Photo Coppermine - Votre Galerie Photo en ligne" />
+<h1>Galerie Photo Coppermine v1.4.1: Documentation et Manuel d'aide</h1>
+<h1>A propos de Coppermine</h1>
+<p>Coppermine Photo Gallery est un script de gestion de galerie photo. les utilisateures peuvent tÃ©lÃ©charger des images depuis leur navigateur Internet (Les vigenttes sont crÃ©es automatiquement), noter les images, ajouter des commentaires et envoyer des cartes Ã©lectroniques. Les administrateurs peuvent gÃ©rer les galeries et ajouter par lot les images tÃ©lÃ©chargÃ©es sur le serveur par le FTP. Les fichiers multimÃ©dias sont aussi supportÃ©s.</p>
+<p>Les images sont placÃ©es dans des albums, ces albums pouvant Ãªtre regroupÃ©s dans des catÃ©gories. Le scipt supporte les utilisateurs multiples et chaque utilisateur Ã  la possibilitÃ© d'avoir ses propres albums.</p>
+<p>Le script est multi langage et possÃ¨de un systÃ¨me de thÃ¨mes. Il utilise PHP, une base de donnÃ©e MySQL ainsi que la librairie graphique GD (version 1.x or 2.x) ou ImageMagick pour gÃ©nÃ©rer les vignettes. Un programme d'installation permet une mise ne place simple et rapide.</p>
+
+      <a name="top"></a>
+<div id="toc">
+      <h1>Table des MatiÃ¨res</h1>
+      <ul class="level1">
+        <li class="level1"><a href="testing.php#testVersion" class="menu1">0. Version Beta (Test)</a></li>
+          </ul>
+<ul class="level1">
+        <li class="level1"><a href="#what" class="menu1">1. Configuration nÃ©cÃ©ssaire au fonctionnement</a></li>
+</ul>
+<ul class="level1">
+
+        <li class="level1"><a href="#installation" class="menu1">2. Installation et configuration</a></li>
+</ul>
+        <ul class="level2">
+                <li class="level2"><a href="#how" class="menu2">2.1 Comment installer le script</a></li>
+                <li class="level2"><a href="#getting" class="menu2">2.2 DÃ©marrage</a></li>
+                <li class="level2"><a href="#xp" class="menu2">2.3 Utiliser l'assitant de publication Web de Windows XP</a></li>
+                <li class="level2"><a href="#creating" class="menu2">2.4 CrÃ©er ou mettre Ã  jour vos propres thÃ¨mes</a></li>
+
+                <li class="level2"><a href="#safe" class="menu2">2.5 ProblÃ¨mes liÃ©s au Safe mode</a></li>
+                <li class="level2"><a href="#smtp" class="menu2">2.6 Utiliser SMTP pour envoyer des courriels</a></li>
+        </ul>
+<ul class="level1">
+        <li class="level1"><a href="#upgrade" class="menu1">3. Mise Ã  jour</a></li>
+</ul>
+        <ul class="level2">
+                <li class="level2"><a href="#10" class="menu2">3.1 Mise Ã  jour depuis la version 1.0</a></li>
+
+                <li class="level2"><a href="#11" class="menu2">3.2 Mise Ã  jour depuis la mise Ã  disposition de la version 1.1</a></li>
+                <li class="level2"><a href="#12" class="menu2">3.3 Mise Ã  jour depuis cpg1.2.0rc2 ou cpg1.2.0final vers la version cpg1.2.1</a></li>
+                <li class="level2"><a href="#13" class="menu2">3.4 Mise Ã  jour depuis cpg1.2.0 (ou plus rÃ©cent) vers la version cpg1.4.1</a></li>
+                <li class="level2"><a href="#versioncheck" class="menu2">3.5 L'outil de vÃ©rification de version</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#versioncheck_description_start">3.5.1 Que fait'il</a></li>
+
+                        <li class="level3"><a href="#versioncheck_options_start">3.5.2 Options</a></li>
+                        <li class="level3"><a href="#versioncheck_comparison_start">3.5.3 Comparaison de version</a></li>
+                </ul>
+<ul class="level1">
+        <li class="level1"><a href="#administration" class="menu1">4. Configuration et Administration</a></li>
+</ul>
+        <ul class="level2">
+
+                <li class="level2"><a href="#cat_alb_pic" class="menu2">4.1 Categories, albums et fichiers</a></li>
+                <li class="level2"><a href="#admin_user_mode" class="menu2">4.2 Mode administrateur et Mode utilisateur</a></li>
+                <li class="level2"><a href="#group_cp" class="menu2">4.3 Le panneau de gestion des groupes</a></li>
+                <li class="level2"><a href="#user_cp" class="menu2">4.4 Le panneau de gestion des utilisateurs</a></li>
+        </ul>
+                <ul class="level3">
+
+                        <li class="level3"><a href="#user_cp_page">4.4.1 Commandes de la page</a></li>
+                        <li class="level3"><a href="#user_cp_search">4.4.2 Rechercher un(des) utilisateur(s)</a></li>
+                        <li class="level3"><a href="#user_cp_new">4.4.3 CrÃ©er de nouveaux utilisateurs</a></li>
+                </ul>
+        <ul class="level2">
+                <li class="level2"><a href="#cat_cp" class="menu2">4.5 Le panneau de gestion des catÃ©gories</a></li>
+                <li class="level2"><a href="#albmgr" class="menu2">4.6 Le gestionnaire d'albums</a></li>
+
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#albmgr_create">4.6.1 CrÃ©er des albums</a></li>
+                        <li class="level3"><a href="#albmgr_rename">4.6.2 Renommer les albums</a></li>
+                        <li class="level3"><a href="#albmgr_order">4.6.3 Changer l'ordre des albums</a></li>
+                        <li class="level3"><a href="#albmgr_delete">4.6.4 Effacer un(des) album(s)</a></li>
+                </ul>
+
+        <ul class="level2">
+                <li class="level2"><a href="#modif_alb_pics" class="menu2">4.7 Modifier les albums/les fichiers/files</a></li>
+                <li class="level2"><a href="#album_prop" class="menu2">4.8 PropriÃ©tÃ©s des albums</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#album_prop_reset_start">4.8.1 Remise aux valeurs par dÃ©faut des propriÃ©tÃ©s des albums</a></li>
+                </ul>
+
+        <ul class="level2">
+                <li class="level2"><a href="#edit_pics" class="menu2">4.9 Editer les fichiers</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#edit_vids">4.9.1 Editer les vidÃ©eos</a></li>
+                        <li class="level3"><a href="#cust_thmb">4.9.2 Vignettes personnalisÃ©es</a></li>
+                </ul>
+
+        <ul class="level2">
+                <li class="level2"><a href="#bbcode" class="menu2">4.10 Utilisation des bbcodes pour inserer des liens et formater les descriptions</a></li>
+                <li class="level2"><a href="#batch_add_pics" class="menu2">4.11 TÃ©lÃ©chargement des fichiers par FTP / Ajout d'images par lot</a></li>
+                <li class="level2"><a href="#admin" class="menu2">4.12 La page de configuration de la galerie</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#admin_general">4.12.1 ParamÃ¨tres gÃ©nÃ©raux</a></li>
+
+                        <li class="level3"><a href="#admin_language">4.12.2 Langage et jeux de caractÃ¨res (encodage des caractÃ¨res)</a></li>
+                        <li class="level3"><a href="#admin_theme">4.12.3 ParamÃ¨tres des thÃ¨mes</a></li>
+                        <li class="level3"><a href="#admin_album_list">4.12.4 Affichage de la liste des albums</a></li>
+                        <li class="level3"><a href="#admin_thumbnail_view">4.12.5 Affichage des vignettes</a></li>
+                        <li class="level3"><a href="#admin_image_comment">4.12.6 Affichage des images</a></li>
+                        <li class="level3"><a href="#admin_comment_start">4.12.7 ParamÃ¨tres des commentaires</a></li>
+
+                        <li class="level3"><a href="#admin_picture_thumbnail">4.12.8 ParamÃ¨tres des fichiers et des vignettes</a></li>
+                        <li class="level3"><a href="#admin_picture_thumb_advanced">4.12.9 ParamÃ¨tres avancÃ©e des fichiers et des vignettes</a></li>
+                        <li class="level3"><a href="#admin_user">4.12.10 ParamÃ¨tres des utilisateurs</a></li>
+                        <li class="level3"><a href="#admin_custom">4.12.11 Champs personnalisÃ©s pour le profil des utilisateurs</a></li>
+                        <li class="level3"><a href="#admin_custom_image">4.12.12 Champs personnalisÃ©s pour la description de l'images</a></li>
+
+                        <li class="level3"><a href="#admin_cookie">4.12.13 ParamÃ¨tres du Cookie</a></li>
+                        <li class="level3"><a href="#admin_email">4.12.14 ParamÃ¨tres des courriels</a></li>
+                        <li class="level3"><a href="#admin_logging">4.12.15 Enregistrement et statistiques</a></li>
+                        <li class="level3"><a href="#admin_misc">4.12.16 ParamÃ¨tres divers</a></li>
+                </ul>
+            <ul class="level2">
+            <li class="level2"><a href="#exif" class="menu2">4.13 DonnÃ©es EXIF</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#exif_manager">4.13.1 Le gestionnaire de donnÃ©es EXIF</a></li>
+                </ul>    
+<ul class="level1">
+
+        <li class="level1"><a href="#integrating" class="menu1">5. IntÃ©grer le script avec votre forum</a></li>
+</ul>
+        <ul class="level2">
+                 <li class="level2"><a href="#integrating_bridge_start" class="menu2">5.1 Fichiers d'intÃ©gration (bridges) disponibles</a></li>
+                 <li class="level2"><a href="#integrating_prerequisites_start" class="menu2">5.2 Pre-requis</a></li>
+        </ul>
+                <ul class="level3">
+                         <li class="level3"><a href="#integrating_cookie_start">5.2.1 Authentification par cookie</a></li>
+                         <li class="level3"><a href="#integrating_standalone_start">5.2.2 Version autonome d'abord</a></li>
+                         <li class="level3"><a href="#integrating_users_start">5.2.3 Les utilisateur, groupes et images tÃ©lÃ©chargÃ©es par les utilisateurs de Coppermine ont Ã©tÃ© perdues lors de l'intÃ©gration</a></li>
+                         <li class="level3"><a href="#integrating_backup_start">5.2.4 Sauvegarde</a></li>
+                  </ul>
+        <ul class="level2">
+                 <li class="level2"><a href="#integrating_steps_start" class="menu2">5.3 Etapes de l'intÃ©gration</a></li>
+
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#bridge_manager_start">5.3.1 Utilisation du gestionnaire d'intÃ©gration (bridge)</a></li>
+                </ul>
+                         <ul class="level4">
+                                 <li class="level4"><a href="#bridge_manager_app_start">5.3.1.1 Choisir une application Ã  intÃ©grer avec Coppermine</a></li>
+                                 <li class="level4"><a href="#bridge_manager_path_start">5.3.1.2 Chemin(s) utilisÃ© par votre forum</a></li>
+                                 <li class="level4"><a href="#bridge_manager_specific_start">5.3.1.3 ParamÃ¨tres spÃ©cifiques de votre forum</a></li>
+                                 <li class="level4"><a href="#bridge_manager_enable_start">5.3.1.4 activer/dÃ©sactiver l'intÃ©gration du forum</a></li>
+                         </ul>
+
+                 <ul class="level3">
+                                 <li class="level3"><a href="#bridge_manager_recover_start">5.3.2 Restauration aprÃ¨s une erreur d'intÃ©gration</a></li>
+                                                                 <li class="level3"><a href="#integrating_steps_sync_start">5.3.3 Syncroniser les groupes du forum avec ceux de Coppermine</a></li>
+                 </ul>
+<ul class="level1">
+        <li class="level1"><a href="#translating" class="menu1">6. Traduire Coppermine dans d'autres langues</a></li>
+
+</ul>
+<ul class="level1">
+        <li class="level1"><a href="#known_issues" class="menu1">7. ProblÃ¨mes connus</a></li>
+</ul>
+<ul class="level1">
+        <li class="level1"><a href="#credits" class="menu1">8. Credits</a></li>
+</ul>
+        <ul class="level2">
+                <li class="level2"><a href="#developers" class="menu2">8.1 L'Ã©quipe de Coppermine</a></li>
+                <li class="level2"><a href="#contributors" class="menu2">8.2 Contributeurs</a></li>
+
+                <li class="level2"><a href="#codebase" class="menu2">8.3 Code utilisÃ© par Coppermine</a></li>
+                <li class="level2"><a href="#copyright" class="menu2">8.4 License</a> (Copyright &amp; disclaimer)</li>
+        </ul>
+</div><!-- end toc -->
+      <hr />
+
+<a name="testVersion"></a>
+<h1>0. Version beta (Test)</h1>
+<p>Cher Testeur,</p>
+<p>Merci de prendre du temps pour tester Coppermine Photo Gallery. Soyez brisques avec ce programme afin que nous puissions dÃ©busquer et Ã©liminerles bugs de la version 1.4 mise Ã  disposition du public</p>
+<p>Merci de comprendre que cette version est une version bÃ©ta, destinÃ©e Ã  faire des test et qui ne doit pas Ãªtre utilisÃ©e en production, Donc, il n'y a pas de support d'aide pour la version 1.4.1 actuellement.</p>
+
+<p>En testant CPG 1.4, merci de noter tous les comportements bizarres rencontrÃ©s.  Cela inclue les erreurs typographiques, les instructions erronÃ©es ou trompeuses, ou toute autre erreur.  Si vous rencontrez une erreur grave, placez le mode de dÃ©buggage sur &quot;actif&quot; dans le panneau de configuration et copiez le texte le la fenÃªtre de dÃ©buggage.  Cela aidera beaucoup l'Ã©qupe de dÃ©veloppement Ã  rÃ©soudre le problÃ¨me.</p>
+
+<p><b>Domaines ou il faut Ãªtre particuliÃ¨rement attentif:</b></p>
+<ul>
+<li>Testez toutes les facettes de, depuis l'installation en passant par toutes les actions possibles (et dans le plus grand nombre de langue et de thÃ¨mes possible).</li>
+<li>Si vous avez la possibilitÃ© de tester GD, GD2 et ImageMagick, merci de toutes les tester.</li>
+<li>Merci de tenter d'utiliser diffÃ©rents types de fichiers graphiques comme les fichiers JPEG, PNG and GIF (pour les utilisateurs d'ImageMagick et GD 2.0.28+ ).</li>
+</ul>
+<p>Merci de rapporter le rÃ©sultat de vos tests sur le <a href="http://coppermine.sourceforge.net/board/index.php?board=29.0">forum de test</a>, mais vÃ©rifiez, avant de commencer un nouveau sujet, que le problÃ¨me que vous rapportez n'a pas dÃ©jÃ  Ã©tÃ© Ã©voquÃ© avant.</p>
+
+<p><b>Votre rapport doit inclure:</b></p>
+<ul>
+<li>Le systÃ¨me d'exploitation du serveur</li>
+<li>Le logiciel Web du serveur</li>
+<li>La biblioteque GD, GD2 ou ImageMagick testÃ©e</li>
+<li>la version de votre PHP </li>
+<li>Le forum integrÃ© (si c'est le cas)</li>
+<li>Les Themes entiÃ¨rement testÃ©s (par entiÃ¨rement testÃ©s, nous voulons dire, en ayant utilisÃ© le maximum de fonctions avec les thÃ¨mes)</li>
+<li>Les erreurs graves</li>
+<li>Votre systÃ¨me d'exploitation et votre navigateur internet</li>
+<li>S'il s'agit d'une nouvelle installation ou d'une mise Ã  jour (en cas de mise Ã  jour, depusi quelle version de cpg)</li>
+</ul>
+
+<p>Les rÃ©sultats de vos test ne serviront pas seulement Ã  rÃ©soudre les problÃ¨mes,mais aussi Ã  vÃ©rifier la compatibilitÃ© de CPG avec le plus grand nombre de navigateurs et de systÃ¨mes d'exploitattion.  C'est pour cela que ces informations sont importantes MEME SI VOUS NE TROUVEZ PAS D'ERREURS.</p>
+
+<p>Merci pour votre participation et le temps que vous avez consacrÃ© pour permettre Ã  CPG de devenir la galerie photo  open-source la plus utilisÃ©e!</p>
+
+<p>L'Ã©quipe de dÃ©veloppement de Coppermine</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+
+
+<a name="what"></a>
+<h1>1. Configuration nÃ©cÃ©ssaire au fonctionnement</h1>
+<ul>
+  <li>Un seveur Web supportant Php</li>
+  <li>Une base de donnÃ©e MySQL<br />
+  Au minimum la version 3.23.23 ou mieux (4.x recommandÃ©)est requise.  Votre base MySql doit vous permettre d'avoir les droits pour: CREER, MODIFIER, SELECTIONNER, METTRE A JOUR, EFFACER (La plupart des utilisateurs utilisant un serveur Web ont ces droits; si vous ne les aviez pas, vous ne seriez en mesure d'utiliser aucun script).<br />
+  Une base de donnÃ©e doit Ãªtre disponible pour l'utilisation de Coppermine - Le programme d'installation ne crÃ©era pas la base de donnÃ©e pour vous. Sur la plupars des serveurs Web, une base de donnÃ©e est mise Ã  disposition par votre hÃ©bergeur.</li>
+  <li>PHP (version 4.1.0 ou plu srÃ©cente), soit intÃ©grant la librairie graphique GD ou permettant d'utiliser la fonction exec()  pour le  &quot;convertisseur&quot ImageMagick; necessaires pour gÃ©nÃ©rer les vignettes et pour rÃ©duire la taille des images.</li>
+  <li>Une librairie graphique: soit GD (PHP doit Ãªtre compilÃ© pour la supporter) ou ImageMagick.<br />
+  (voir <a href="faq.htm#whatIsImageMagick"> Qu'est ce qu'ImageMagick </a> et<a href="faq.htm#WhatIsGD"> Qu'est ce que GD</a>)</li>
+</ul>
+
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="installation"></a>
+<h1>2. Installation et configuration</h1>
+<a name="how"></a>
+<h2>2.1 Comment installer le script</h2>
+<ul>
+  <li><b>DÃ©compressez l'archive tout en prÃ©servant la structure des rÃ©pertoires</b><br />(vous pouvez renommer le rÃ©pertoire de Coppermine mais pas les fichiers ou les rÃ©pertoires inclus).</li>
+  <li><b>Placer tous les fichiers sur votre serveur Web</b> (assurez vous d'utiliser le bon mode FTP)</li>
+  <li><b>Mettez le CHMOD des rÃ©pertoires <i>albums</i> et <i>include</i> Ã  755 (ou 777, en fonction de la configuration de votre serveur)</b> - cette Ã©tape est rÃ©ellement trÃ¨s importante, ne l'ommetez pas!<p>Il y a une multitude de didactitiels pour dÃ©butants expliquant comment utiliser le CHMOD disponibles: <a href="http://www.google.com/search?q=chmod+tutorial" class="external">chercher un didactitiel sur le CHMOD avec Google</a>. Si vous Ãªtes sur un serveur Windows, vous devez Ã©tablir les permissions comme il faut (habituellement le serveur Web sur  IIS fonctionne avec le nom d'utilisateur &quot;IUSR_hostname&quot; - Vous devez mettre les droits en RWX pour cet utilisateur). </p><p>La raison pour laquelle ces droits sont necessaires est de permettre Ã  Coppermine de stocker les fichiers dans le rÃ©pertoire albums (les fichiers tÃ©lÃ©chargÃ©s dans la galerie) et de configurer un fichier dans le rÃ©pertoire "include" contenant vos informations de connection Ã  la base de donnÃ©e. (Ce fichier <i>config.inc.php</i> est celui qu evous devrez modifier si les informations concernant votre base de donnÃ©e changent aprÃ¨s l'installation). Si vous hÃ©sitez entre 777 ou 755 essayez d'abord 777 et vÃ©rifiez si celÃ  fonctionne. Si Ã§a ne marche pas, essayez 755, en cas d'Ã©chec, consultez l'administrateur de votre serveur Web.</p></li>
+  <li><b>VÃ©rifiez d'avoir les bonnes informations concernant les paramÃ¨tres de connexion Ã  votre base de donnÃ©e</b> - vous devez connaitre le nom de votre base de donnÃ©e ainsi que les informations concernant l'utilisateur afin que Coppermine puisse se connecter Ã  la base de donnÃ©e. La base de donnÃ©e et le nom d'utilisateur doit exister, et l'utilisateur doit avoir accÃ¨s Ã  la base de donnÃ©e appropriÃ©e. Coppermine va crÃ©er les tables necessaires durant l'installation, Il ne sera pas necessaire que vous ajoutiez vous mÃªme de tables.</li>
+  <li><b>Lancer le programme d'installation sur votre serveur</b> (en allant Ã  l'adresse http://votre_site/rÃ©pertoire_coppermine/install.php depusi votre navigateur internet)
+  et suivez les instructions</li>
+</ul>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+
+<a name="getting"></a>
+<h2>2.2 DÃ©marrage</h2>
+<p>Identifiez vous avec le nom d'administrateur et le mot de passe que vous avez dÃ©fini lors de l'installation, cliquez sur le lien &quot;mode administrateur&quot; si il est visible, aller Ã  la page <b>Configuration</b> et commencez Ã  configurer votre galerie. Notez que mÃªme si vous Ãªtes membre du groupe administrateur, vous devez Ãªtre en &quot;mode administrateur&quot; pour configurer votre galerie.</p>
+<p>Certains paramÃ¨tres de la configuration ne peuvent pas Ãªtre changÃ©s par la suite (si il y a dÃ©jÃ  des images dans la base de donnÃ©e) - VÃ©rifiez d'effectuer vos parametrages correctement au dÃ©marrage. Bien que vous voulliez certainement commencer Ã  utiliser Coppermine imÃ©diatement, il est recommandÃ© de configurer correctement ces paramÃ¨tres (signalÃ©s par un astÃ©risque &quot;*&quot;)en tout premier.</p>
+<p>Utilisez le lien du &quot;<b><a href="#albmgr">Gestionnaire d'albums</a></b>&quot; (&quot;Albums&quot; dans le menu administrateur) pour crÃ©er et organiser vos albums. Vous avez besoin d'au moins un album pour placer vos images.</p>
+<p>Utilisez le groupe <b>anonymous</b> pour dÃ©finir ce que les utilisateurs son enregistrÃ©s peuvent ou ne peuvent pas faire (dans la page <a href="#group_cp">groupes</a>).</p>
+<p>Utilisez l'option <b><a href="#modif_alb_pics">propriÃ©tÃ©s</a></b> d'un album pour modifier la description et les droits.
+</p>
+<p>Pour qu'un utilisateur puisse Ãªtre en mesure de tÃ©lÃ©charger des fichiers dans les albums, deux conditions doivent Ãªtre rÃ©unies:</p>
+<ul>
+  <li> L'utilisateur doit Ãªtre membre d'un <a href="#group_cp">groupe</a> qui peut tÃ©lÃ©charger des fichiers.</li>
+  <li>Il doit y avoir au moins un album oÃ¹ l'option ;<b>les visiteurs peuvent tÃ©lÃ©charger des fichiers</b>&quot; doit Ãªtre dÃ©finie sur  &quot;<b>Oui</b>&quot;,<br /> <b>OU</b> <br />l'utilisateur a crÃ©e un album dans les 'galerie des utilisateurs' (user galleries), si cela lui est permis.</li>
+</ul>
+<p>Il en est de mÃªme pour <b>noter les images</b> et <b>poster un commenatire</b>.</p>
+<p>Si vous avez installÃ© le script avec succÃ¨s mais is vous avez des difficultÃ©s Ã  le faire fonctionner correctement, Vous pouvez activer le &quot;<b><a href="#debug_mode">mode de dÃ©buggage</a></b>&quot; sur la <b>page de configuration</b>. Dans ce mode, le script affiche la majoritÃ© des messages d'avertissements/erreurs produits par PHP en plus de certaines informations de dÃ©boggage .Cela peut fournir de prÃ©cieuses pour comprendre ce qui ne fonctionne pas.</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="xp"></a>
+<h2>2.3 Utiliser l'assitant de publication Web de Windows XP</h2>
+<p>Si vous utilisez Windows XP, vous pouvez utiliser son assitant intÃ©grÃ© de publication Web pour tÃ©lÃ©charger vos photos dans votre galerie.</p>
+<p>Une fois le script correctement installÃ© sur votre serveur, appelez le fichier xp_publish.php a partir de votre navigateur Internet (http://votre_site.com/votre_repertoire_coppermine/xp_publish.php).</p>
+<p>Le script affichera certaines informations sur l'installation et la maniÃ¨re d'utiliser l'assistant. Fondamentallement, vosu serez amenÃ© Ã  tÃ©lÃ©charger un petit fichier crÃ©e par le script, qui doit Ãªtre chargÃ© dans votre base de registre Windows.</p>
+<p>Si vosu souhaitez permettre Ã  vos visiteurs d'utiliser l'assistant de publication Web de Windows XP, il est recommandÃ© de placer un lien vers le fichier depuis votre site.</p>
+<p class="small">[cpg1.1.1 ou postÃ©rieur necessaire]</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="creating"></a>
+<h2>2.4 CrÃ©er ou mettre Ã  jour vos propres thÃ¨mes</h2>
+<p>Pour mettre Ã  jour un thÃ¨me personnalisÃ© existant vers la version 1.4.x, lisez la <a href="theme/index.html">documentation pour la mise Ã  jour des thÃ¨mes</a>.</p>
+<p>Les thÃ¨mes de Coppermine sont placÃ©s dans le rÃ©pertoire &quot;<b>themes</b>&quot;, ils se composent de 3 fichiers : </p>
+<ul>
+  <li>&quot;<b>template.html</b>&quot; le gabarit principal en HTML.</li>
+  <li>&quot;<b>style.css</b>&quot; la feuille de style associÃ©e avec le thÃ¨me</li>
+  <li>&quot;<b>theme.php</b>&quot; le fichier PHP du thÃ¨me</li>
+  </ul>
+<p>Le thÃ¨me nommÃ© &quot;sample&quot; comprends un exemple pour chacun de ces fichiers mais n'est pas visible aux utilisateurs dans la liste de sÃ©lection des thÃ¨mes. le fichier theme.php du thÃ¨me Sample comprends la liste de toutes le fonctions utilisables dans les thÃ¨mes et les gabarits comme rÃ©fÃ©rence pour vous. Si vous optez pour l'utilisation  du thÃ¨me &quot;sample&quot; pour commencer la crÃ©ation de votre propre thÃ¨me, vous devez, pour le fichier theme.php suivre les instructions dans la &quot;<a href="theme/index.html">documentation pour la mise Ã  jour des thÃ¨mes</a>&quot; et commencer par un fichier theme.php vide.</p>
+<p>Pour crÃ©er un nouveau gabarit, la meilleure solution est d'utiliser un gabarit existant comme base. Pour ce faire, faites une copie du rÃ©pertoire du thÃ¨me que vous voulez utiliser comme base. Puis Ã©ditez les fichiers &quot;<b>template.html</b>&quot; et &quot;<b>theme.php</b>&quot; et remplacez toutes les occurences de &quot;<b>themes/repertoire_ancien_theme</b>&quot; par &quot;<b>themes/repertoire_nouveau_theme</b>&quot; afin de faire pointer les liens vers le bon endroit.</p>
+<p>Lors de l'Ã©dition du fichier &quot;<b>template.html</b>&quot; n'effacez pas les Ã©lÃ©ments entre <b>{}</b> ce sont les balises utilisÃ©es par le script. Gardez aussi en mÃ©moire que mÃªme si ces fichiers sont palcÃ©s dans le rÃ©pertoire &quot;<b>themes/repertoire_de_votre_theme</b>&quot;, il faut construire votre thÃ¨me comme si il Ã©tait placÃ© dans le rÃ©pertoire principal du script. En pratique, pour charger une image, vous devez utiliser <i>&lt;img src=&quot;themes/repertoire_de_votre_theme/images/image.gif&quot; alt=&quot;&quot;/&gt;</i> et non <i>&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</i> Il en va de mÃªm pour le fichier &quot;<b>theme.php</b>&quot;.</p>
+<p>Faites aussi attention de ne pas Ã©ffacer la ligne <i>&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</i> necessaire Ã  l'ouverture de la fenÃªtre pour les images originales et pour d'autres fonctions utilisant le JavaScript.</p>
+<p>Si vous utilisez un Ã©diteur HTML pour faire votre gabarit, la meilleure solution est de copier le fichier &quot;<b>template.html</b>&quot; dans le rÃ©pertoire principal du script et de l'editer depuis cet emplacement. Si le script trouve un fichier nommÃ© &quot;<b>template.html</b>&quot; dans le rÃ©pertoire principal il le chargera Ã  la place de celui placÃ© dans le rÃ©pertoire du thÃ¨me. Une fois les modifications terminÃ©es, redÃ©placez le fichier dans le rÃ©pertoire de votre thÃ¨me.</p>
+<p>Pour modifier les couleurs, les polices, la hauteur des lettres etc... utilisÃ©s par le script, ouvrez la feuille de style &quot;<b>style.css</b>&quot; . Si vous voulez augmenter ou diminuer la taille de la police vous pouvea simpement modifier la ligne avec : <i>table { font-size: 12px; }</i>. La plupart des tailles utilisÃ©e sont dÃ©finies par des pourcentages de cette taille.</p>
+<p>Le fichier &quot;<b>theme.php</b>&quot; contient tous les gabarits HTML utilisÃ©s par le script. Vous pouvez aussi les modifier. Si vous faites des modifications de ces gabarits, ne touchez pas aux lignes avec <i>&lt;!-- BEGIN xxx --&gt;</i> et <i>&lt;!-- END xxx --&gt;</i>.</p>
+<p>Si vous n'Ãªtes pas sur de savoir comment crÃ©er votre propre thÃ¨me pour Coppermine, jettez un coup d'oeil Ã  la page de tÃ©lÃ©chargement du site de Coppermine: il y a beaucoup de <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98541">thÃ¨mes apportÃ©s par les utilisateurs</a> disponibles au tÃ©lÃ©chargement et que vous pouvez visualiser sur la <a href="http://coppermine.sourceforge.net/demo/">page de dÃ©monstration de Coppermine</a>.</p>
+<p>Pendant le processus de crÃ©ation d'un nouveau thÃ¨me, il est possible que vous ne vouliez pas montre ce thÃ¨me Ã  vos visiteurs, mais que vous (en tant qu'administrateur de coppermine) souez en mesure de visualiser votre thÃ¨me. pour faire celÃ , ajoutez simplement <tt class="code">theme=nom_de_votre_theme</tt> dans la barre d'adresse de votre navigateur.</p>
+<b>Exemples:</b>
+<ul>
+<li><tt class="code">http://votre_site.com/coppermine/index.php?theme=nom_de_votre_theme</tt> va afficher la page d'index de votre galerie Coppermine en utilisant votre thÃ¨me</li>
+<li><tt class="code">http://votre_site.com/coppermine/thumbnails.php?album=1&amp;theme=nom_de_votre_theme</tt> va afficher les vignettes de l'album 1 en utilisant votre thÃ¨me</li>
+<li><tt class="code">http://votre_site.com/coppermine/?theme=xxx</tt> va restaurer l'affichage en utilisant le thÃ¨me choisi par dÃ©faut dans la page de configuration de Coppermine</li>
+</ul>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="safe"></a>
+<h2>2.5 ProblÃ¨mes liÃ©s au Safe mode</h2>
+<p>Un nombre important d'hÃ©bergeurs utilisent PHP en safe mode. Coppermine fonctionne sans problÃ¨mes en safe mode et avec &quot;open basedir restriction&quot; actif, a condition que le safe mode soit configurÃ© correctement. Malheureusement, chez de nombreux hÃ©bergeurs, le safe mode n'est pas configurÃ© correctement.</p>
+<p>si votre hÃ©bergeur utilise PHP en self mode et est mal configurÃ©, vous devez faire ce qui suit :</p>
+<ul>
+  <li>Depuis un client FTP, changez le mode du rÃ©pertoire &quot;<b>include</b>&quot; de Coppermine sur votre serveur Ã  <b>0777</b>.</li>
+  <li>Faites de mÃªme pour les rÃ©pertoires &quot;<b>albums</b>&quot; et &quot;<b>userpics</b>&quot;.</li>
+  <li>VÃ©rifiez qu'au dÃ©but du fichier &quot;<b>include/config.inc.php</b>&quot;, vous avez une ligne avec : &quot;<b>define('SILLY_SAFE_MODE', 1);</b>&quot;</li>
+</ul>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="smtp"></a>
+<h2>2.6 Utiliser SMTP pour envoyer des courriels</h2>
+<p>Par dÃ©faut, le script utilise la fonction <b>mail</b> integrÃ©e Ã  PHP pour envoyer des courriels. Dans certains cas, cette fonction ne peut pas Ãªtre utilisÃ©e.</p>
+<p> Pour pouvoir Ãªtre en mesure d'envoyer des courriels avec PHP vous devez fournir un <b>serveur SMTP</b>, un <b>nom d'utilisateur</b> et un <b>mot de passe</b>, vous devez editer  &quot;paramÃ¨tres pour l'envoie de courriels&quot; dans la page de configuration et y mettre les bonnes valeurs. Si vous n'avez pas besoins de nom d'utilisateur et de mot de passe pour vous connecter Ã  votre serveur SMTP, laissez les champs vides. Si vous ne savez pas quels paramÃ¨tres saisir, contactez votre hÃ©bergeur.</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="upgrade"></a>
+<h1>3. Mise Ã  jour</h1>
+<a name="10"></a>
+<h2>3.1 Mise Ã  jour depuis la version 1.0</h2>
+
+<p>Si vous avez installÃ© la version 1.0 et que vous voulez transferer vos albums vers la version 1.3.2 faites comme suit:</p>
+<ul>
+  <li>PremiÃ¨rement faites une sauvegarde de votre base de donnÃ©e (dump).</li>
+  <li> Installez normallement la 1.3.2 dans un rÃ©pertoire diffÃ©rent de celui ou vous avez installÃ© la version. Attention, pour pouvoir utiliser le script de mise Ã  jour, les <b>tables for version 1.0 and 1.3.2 doivent Ãªtre placÃ©es dans la mÃªme base de donnÃ©e</b>.</li>
+  <li>Copiez le rÃ©pertoire &quot;<b>albums</b>&quot; de la version 1.0 dans le rÃ©pertoire ou vous avez installÃ© la version 1.3.2</li>
+  <li>Le script de mise Ã  jour prÃ©sume que vous utilisez le prÃ©fixe &quot;<b>CPG_</b>&quot; pour les les tables (valeurs par defaut) lorsque vous avez installÃ© la version 1.0, si ce n'est pas le cas, editez upgrade-1.0-to-1.2.php et modifiez la variable $prefix10.</li>
+  <li>Identifiez vous dans votre galerie Coppermine 1.3.2, passez en mode administrateur</li>
+  <li>Appelez le script de mise Ã  jour, http://votresite.com/repertoire_coppermine/upgrade-1.0-to-1.2.php</li>
+  <li><b>La mise Ã  jour de la version 1.0 vers la version 1.3.2 se fait en deux Ã©tapes.</b> Vous devez cliquer sur le lien qui apparait au pied de la page pour achever la mise Ã  jour!.</li>
+        <li><b>Effaceez upgrade-1.0-to-1.2.php de votre serveur</b>.</li>
+        <li>Si vous rencontrez une erreur, allez Ã  la page de configuration de Coppermine 1.3.2, activez le <a href="#debug_mode">mode de debbugage</a>, essayez d'appeler le script de mise Ã  jour encore une fois et regardez quelle erreur se produit.</li>
+</ul>
+<p> <b>Ce processus de mise Ã  jour ne modifie pas votre galerie en version 1.0 gallery</b></p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="11"></a>
+<h2>3.2 Mise Ã  jour depuis la mise Ã  disposition de la version 1.1</h2>
+  <ul>
+            <li>PremiÃ¨rement, faite une sauvegarde de votre base de donnÃ©e (dump).</li>
+      <li>Sauvegardez votre fichier <b>include/config.inc.php</b>, votre fichier <b>anycontent.php</b> et votyre rÃ©pertoire <b>albums</b>.</li>
+      <li>DÃ©compressez l'archive</li>
+      <li>Si le fichier <b>install.php</b> existe dans le rÃ©pertoire principal, effacez le.</li>
+      <li>TÃ©lÃ©chargez tous les nouveaux fichiers et rÃ©pertoires sur votre serveur</li>
+      <li>Mettez le CHMOD du rÃ©pertoire <b>albums</b> et de tous les sous-rÃ©pertoires au minimum sur 755 ou 777 (en fonction de la configuration de votre serveur)</li>
+      <li>Appelez le script de mise Ã  jour http://votresite.com/repertoire_coppermine/update.php</li>
+      <li>La mise Ã  jour devrait Ãªtre achevÃ©e.</li>
+  </ul>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="12"></a>
+<h2>3.3 Mise Ã  jour depuis cpg1.2.0rc2 ou cpg1.2.0final vers la version cpg1.2.1</h2>
+    <ul>
+                <li>PremiÃ¨rement, faite une sauvegarde de votre base de donnÃ©e (dump).</li>
+        <li>Sauvegardez votre fichier <b>include/config.inc.php</b>, votre fichier <b>anycontent.php</b> et votyre rÃ©pertoire <b>albums</b>.</li>
+      <li>DÃ©compressez l'archive</li>
+      <li>Si le fichier <b>install.php</b> existe dans le rÃ©pertoire principal, effacez le.</li>
+        <li><b>ExceptÃ© pour le rÃ©pertoire "albums" </b>, tÃ©lÃ©chargez sur votre serveur l'ensemble des nouveaux fichiers et rÃ©pertoires en vous assurant de <b>ne pas remplacer le fichier <i>include/config.inc.php</i>, votre fichier <i>anycontent.php</i> ou le rÃ©pertoire <i>albums</i></b>.</li>
+        <li>CrÃ©ez un rÃ©pertoire nommÃ© &quot;edit&quot; dans votre rÃ©pertoire &quot;albums&quot; - Ce rÃ©pertoire servira  de rÃ©pertoire temporaire Ã  Coppermine, n'y placez pas de fichiers par FTP. Assurez vous que le nouveau rÃ©pertoire &quot;edit&quot; a le mÃªme CHMOD que votre rÃ©pertoire albums (755 ou 777, en fonction de la configuration devotre serveur)</li>
+        <li>Il n'y a pas de mise Ã  jour de la base donnÃ©e necessaire, vous Ãªtes prÃªts a continuer</li>
+    </ul>
+
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="13"></a>
+<h2>3.4 Mise Ã  jour de cpg1.2.x ou cpg1.3.x  vers la version cpg1.4.1</h2>
+    <ul>
+                <li>PremiÃ¨rement, faite une sauvegarde de votre base de donnÃ©e (dump).</li>
+        <li>Sauvegardez votre fichier <b>include/config.inc.php</b>, votre fichier <b>anycontent.php</b> et votyre rÃ©pertoire <b>albums</b>.</li>
+      <li>DÃ©compressez l'archive</li>
+      <li>Si le fichier <b>install.php</b> existe dans le rÃ©pertoire principal, effacez le.</li>
+        <li><b>ExceptÃ© pour le rÃ©pertoire "albums" </b>, tÃ©lÃ©chargez sur votre serveur l'ensemble des nouveaux fichiers et rÃ©pertoires en vous assurant de <b>ne pas remplacer le fichier <i>include/config.inc.php</i>, votre fichier <i>anycontent.php</i> ou le rÃ©pertoire <i>albums</i></b>.</li>
+        <li>Si vous ne l'avez pas dÃ©jÃ  fait, crÃ©ez un rÃ©pertoire nommÃ© &quot;edit&quot; Ã  l'intÃ©rieur de votre rÃ©pertoire &quot;albums&quot; - Ce rÃ©pertoire servira  de rÃ©pertoire temporaire Ã  Coppermine, n'y placez pas de fichiers par FTP. Assurez vous que le nouveau rÃ©pertoire &quot;edit&quot; a le mÃªme CHMOD que votre rÃ©pertoire albums (755 ou 777, en fonction de la configuration devotre serveur)</li>
+        <li>Lancez le fichier &quot;update.php&quot; dans le rÃ©pertoire de Coppermine depuis votre navigateur internet (exemple: http://votresite.com/coppermine/update.php). Cela va mettre Ã  jour votre installation de Coppermine en faisant les changement necessaires dans la base de donnÃ©e.</li>
+        <li>Si vous avez fait un thÃ¨me personnalisÃ©, appliquez les changements apportÃ©s dans la structure des thÃ¨mes Ã  votre thÃ¨me personnalisÃ© - rÃ©fÃ©rez vous au <a href="theme/index.html">guide de mise Ã  jour des thÃ¨mes</a>.</li>
+        <li>Vous ne pouvez pas utiliser les fichiers langues des anciennes versions de Coppermine - Assurez vous de n'avoir que des fichiers langages livrÃ©s avec ce pack dans votre rÃ©pertoire <b>lang</b>(effacez ou renommez tous les fichiers des versions antÃ©rieures prÃ©sents dans le rÃ©pertoire <b>lang</b>)</li>
+    </ul>
+<p>Merci de noter: comme il y des changements aussi bien dans les fichiers de Coppermine que dans la base de donnÃ©e entre cpg1.3.0beta vers cpg1.3.0 (final), les utilisateur de la version bÃ©ta doivent appliquer toute les Ã©tapes mentionnÃ©es ci-dessus:  les fichiers doivent Ãªtre remplacÃ©s et le script update.php doit Ãªtre lancÃ© ensuite.</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="versioncheck"></a>
+<h2>3.5 L'outil de vÃ©rification de version</h2>
+<p>Depuis cpg1.3.2 Coppermine inclue un outil de vÃ©rification de version pour vous permettre de rÃ©soudre facilement les problÃ¨mes lors des mises Ã  jour. Contrairement Ã  d'autres parties de Coppermine qui ne fonctionnent que pour la version pour laquelle elles on Ã©tÃ© Ã©crites, l'outil de vÃ©rification de version peut Ãªtre utilisÃ© avec toutes les versions depuis cpg1.2.1. Pour lancher le vÃ©rificateur de version, ajoutez simplement <tt>versioncheck.php</tt> dans la barre d'adresse de votre navigateur aprÃ¨s vous Ãªtre identifiÃ© comme administrateur dans Coppermine (exemple: <tt>http://votresite.com/repertoire_coppermine/versioncheck.php</tt>).</p>
+<a name="versioncheck_description_start"></a>
+<h3>3.5.1 Que fait'il</h3>
+<p>le script &quot;versioncheck&quot; est destinÃ© pour les utilisateurs qui ont mis Ã  jour leur installation de Coppermineis. Le script passe en revue les fichiers de votre serveur et essaye de dÃ©terminer si la version des fichiers sur votre serveur est la mÃªme que celle des fichiers placÃ©s sur http://coppermine.sourceforge.net, de cette maniÃ¨re vous pouvez voir les fichiers que vous devriez mettre Ã  jour.</p>
+<p>Il va montrer en <span style="color:red;font-weight:bold">rouge</span> tout ce qui doit Ãªtre changÃ©. Les entrÃ©es en <span style="color:#FFBE00;font-weight:bold">jaune</span> doivent Ãªtre vÃ©rifiÃ©es. Les entrÃ©es en <span style="color:green;font-weight:bold">vert</span> (ou dans la couleur par dÃ©faut de votre thÃ¨me) sont justes et doivent Ãªtre laissÃ©es. Quand une entrÃ©e est <span style="color:red;font-weight:bold">rouge</span> ou <span style="color:#FFBE00;font-weight:bold">jaune</span>, une icone d'aide apparait Ã  proximitÃ©. Cliquez dessus pour plus de dÃ©tails. En s'attardant avec la souris sur un Ã©lÃ©ment vous afficherez des informations complÃ©mentaires (bulles d'aide).</p>
+<p>L'Ã©cran de l'outil de vÃ©rification de versioncomporte plusieures sections:</p>
+<ul>
+<li><b>Section 1:</b> explications sur l'utilisation de l'outil de vÃ©rification de version</li>
+<li><b>Section 2:</b>(&quot;<a href="#versioncheck_options_start">Options</a>&quot;) affiche les options que vous pouvez choisir</li>
+<li><b>Section 3:</b> affiche une alerte si Coppermine ne peut pas se connecter Ã  l'emplacement du rÃ©fÃ©rentiel en ligne de Coppermine  (lÃ  ou sont placÃ©es les versions des fichiers les plus rÃ©centes). Le script ira par dÃ©faut Ã  la copie locale des fichiers. En cas de connection rÃ©ussie, il n'y aura bien sur pas de message d'erreur (pas de section 3).</li>
+<li><b>Section 4:</b> affiche la version de Coppermine que vous utilisez actuellement. Le script de vÃ©rification de version extrait ces donnÃ©es du fichier <i>include/init.inc.php</i> - Si vous n'avez pas remplacÃ© votre copie de ce fichier par la nouvelle version lors de la mise Ã  jour de votre installation, votre ancienne (dÃ©passÃ©e) version apparaitra dans cette section.</li>
+<li><b>Section 5:</b> affiche le coeur des informations vÃ©rifiÃ©es: la comparaison des versions. Le fichier va passer en revue tous les fichiers censÃ©s exister (en se basant sur les donnÃ©es du rÃ©pertoire d'archivage en ligne (le site de Coppermine)) et les compare avec ceux qui se trouvent sur votre serveur.</li>
+<li><b>Section 6:</b> affiche un rÃ©capitulatif des fichier et rÃ©pertoires vÃ©rifiÃ©s</li>
+</ul>
+<a name="versioncheck_description_end"></a>
+
+<a name="versioncheck_options_start"></a>
+<h3>3.5.2 Options</h3>
+<p>L'Ã©cran d'option vous permets de configurer le vÃ©rificateur de version, ou plutÃ´t ce qui doit Ãªtre affichÃ©. Les options ne sont pas sauvegardÃ©es, vous devrez donc ajuster vos paramÃ¨tres Ã  chaque utilisation du vÃ©rificateur de version. Les options par dÃ©faut devraient convenir Ã  la majoritÃ© des utilisateurs - ne les changez que si vous avez de bonnes raisons de le faire.</p>
+<img src="pics/fr_versioncheck_options.gif" width="760" height="264" border="0" alt="" title="options" />
+<ul>
+<li><i>montrer les fichiers/rÃ©pertoires optionnels</i><br />DÃ©cochez cette option pour cacher les fichiers Ã©tiquetÃ©s comme &quot;optionel&quot; (n'affiche que les fichiers necessaires)</li>
+<li><i>Montrer les fichiers necessaires</i><br />DÃ©cochez cette option pour cacher les fichiers Ã©tiquetÃ©s comme &quot;necessaires&quot; (Attention ! dÃ©cocher les deux options (fichiers optionnels et fichiers necessaires) va bien sur faire en sorte qu'aucun fichiers ne sera affichÃ©)</li>
+<li><i>Montrer les informations complÃ©mentaires</i><br />SÃ©letcionne quelles informations afficher entre celles concernant votre installation de Coppermine et celles du rÃ©fÃ©rentiel en ligne. dÃ©selectionnez si vous faites une capture d'Ã©cran pour gagner de la place et rÃ©duire la dimension.</li>
+<li><i>Montrer la version des fichiers</i><br />SÃ©lectionne quelles informations complÃ©mentaires d'un fichier concernant la version mise en circulation dont vous disposez doivent Ãªtre affichÃ©es. Lorsque vosu regardez le code source d'un fichier coppermine, la version du fichier est le nombre qui se prÃ©sente ainsi: <tt>Id: index.htm,v 1.66 2004/08/26 04:42:19 gaugau Exp</tt> (dans cet exemple, la version du fichier est 1.66)</li>
+<li><i>Montrer uniquementles rÃ©pertoires/fichier avec des erreurs</i><br />SÃ©lectionne l'affichage des fichiers qui ont des erreurs (option cochÃ©e). Activez cette option si vous voulez faire une capture d'Ã©cran et demander de l'aide sur le forum de Coppermine.</li>
+<li><i>Coppermine est installÃ© Ã  la racine du site</i><br />Experimental: si tous vos fichiers sont affichÃ©s comme &quot;non-existant&quot;, vous avez probablement installÃ© Coppermine Ã  la racine de votre site, ou vous utilisez un sous-domaine. Cochez cette option uniquement si vous rencontrez ce problÃ¨me. Cette option n'a pas Ã©tÃ© testÃ©e complÃªtement, Il n'est pas garanti qu'elle fonctionne sur votre installation.</li>
+<li><i>Essayer de se connecter au rÃ©fÃ©rentiel en ligne</i><br />DÃ©termine si le vÃ©rificateur de version doit essayer de se connecter sur le rÃ©fÃ©rentiel en ligne (cochÃ© par dÃ©faut). DÃ©cochez cette option uniquement si vous Ãªtes sur de ne pas pouvoir acceder au rÃ©fÃ©rentiel en ligne Ã  cause du paramÃªtrage de votre serveur et que vous voullez accÃ©lerer un peu le temps d'execution du script.</li>
+<li><i>Montrer les droits des rÃ©pertoires</i><br />DÃ©termine s'il faut montrer/cacher les droits en Ã©criture/lecture des rÃ©pertoires.</li>
+<li><i>Ne pas montrer le lien vers les webcvs</i> / <i>Montrer le lien webcvs vers la branche stable</i> / <i>Montrer le lien webcvs vers la branche de dÃ©veloppement</i><br />DÃ©termine quelle colonne supplÃ©mentaire montrer avec un lien vers le webcvs. N'utiliser que si votre version de Coppermine est correcte (<span style="color:green;font-weight:bold">vert</span>), mais que la version de vos fichiers apparait dÃ©passÃ©e. Vous pouvez vous connecter au webcvs pour trouver une version plus rÃ©cente de votre fichier. Ne faire que si vous savez ce que vous faites (ou si celÃ  vous a Ã©tÃ© demandÃ© par un membre de l'Ã©quipe de support du forum d'aide de Coppermine).</li>
+<li><i>Montrer une sortie condensÃ©e (pour faciliter les captures d'Ã©cran)</i><br />Lorsqu'elle est activÃ©e, cette option rÃ©duit la largeur des colonnes de comparaison de de version. Cela vous permettra de faire une capture d'Ã©cran de taille rÃ©duite.</li>
+</ul>
+<a name="versioncheck_options_end"></a>
+
+<a name="versioncheck_comparison_start"></a>
+<h3>3.5.3 Comparaison de version</h3>
+<p>Il y a une multitude d'informations donnÃ©es dans un minimum d'espace. Voici un exemple des possibilitÃ©s de sorties et leur significations:</p>
+<img src="pics/versioncheck_comparison.gif" width="411" height="279" border="0" alt="" title="comparaison de version" />
+<ul>
+<li>Colonne &quot;icone&quot; montre si l'entrÃ©e est un rÃ©pertoire ou un fichier. Cliquer sur l'icone vous conduira vers une page, exemple: en cliquant sur util.php vous sere conduit vers la page &quot;outils d'administration&quot; (bien que tous les fichiers Coppermine ne peuvent pas Ãªtre ouverts  en les executants directement depuis votre navigateur).<p>Dans l'exemple ci-dessus, les lignes &quot;A&quot; Ã  &quot;E&quot; sont des rÃ©pertoires, les lignes &quot;F&quot; Ã  &quot;K&quot; sont des fichiers.</p></li>
+<li>Colonne &quot;RÃ©pertoire/fichier&quot; montre le chemin relatif de la racine de votre galerie Coppermine vers le rÃ©pertoire/fichier en question.<br />
+<p>Si une entrÃ©e est dans la couleur de police par dÃ©fau, elle existe (dans l'exemple ci-dessus, toutes les lignes sauf &quot;G&quot; et &quot;H&quot;).<br />
+<p>Si l'entrÃ©e est en <span style="color:#FFBE00;font-weight:bold">jaune</span> (ligne &quot;G&quot;), le rÃ©pertoire/fichier correspondant n'existe pas sur votre serveur, mais il est considÃ©rÃ© comme optionnel (par exemple un fichier langage livrÃ© avec le pack Coppermine, que vous ne voulez pas utiliser peut Ãªtre effacÃ© de votre serveur. Il sera montrÃ© en <span style="color:#FFBE00;font-weight:bold">jaune</span>, mais il n'est pas necessaire au bon fonctionnement de la galerie). C'est a vous de voir si vous en avez besoin.</p>
+<p>Si l'entrÃ©e est en <span style="color:red;font-weight:bold">rouge</span> (row &quot;H&quot;), le rÃ©pertoire/fichier en question n'existe pas sur votre serveur, mais il est necessaire au fonctionnement de Coppermine. Il faut que vous tÃ©lÃ©chargiez ce fichier depuis votre package Coppermine vers votre serveur. Ne laisser votre configuration telle quelle uniquement si vous savez ce que vous faites.</p></li>
+<li>La colonne &quot;incriptible&quot; montre si le rÃ©pertoire en question est inscriptible, et aussi si c'est correct. les droits en Ã©criture pour les fichiers ne sont pas affichÃ©s, cela ralentirais Ã©normÃ©ment le script. GÃ©nÃ©ralement, il y a une icone qui montre le statut 'inscriptible' pour les rÃ©pertoires (Ã  condition que l'image de l'icone soit prÃ©sente sur votre serveur). Sinon, un texte entre parentÃ¨ses ets visible (si vous n'avez pas l'image de l'icone).
+<ul>
+<li>Un crayon blanc avec un &quot;x&quot <span style="color:green;font-weight:bold">vert</span> ; indique quele le rÃ©pertoire n'est inscriptible et n'est pas supposÃ© l'Ãªtre - tout est bon (ligne &quot;A&quot;)</li>
+<li>Un crayon <span style="color:green;font-weight:bold">vert</span> indique que le rÃ©pertoire est inscriptible et qu'il est bien supposÃ© l'Ãªtre - tout est bon (ligne &quot;D&quot;</li>
+<li>Un crayon blanc avec un &quot;x&quot <span style="color:red;font-weight:bold">rouge</span> ; indique que le rÃ©pertoire n'est pas inscriptible, mais devrait l'Ãªtre (ligne &quot;C&quot;). Vous devriez changer les droits en Ã©criture (CHMOD) pour ce rÃ©pertoire et tout ce qu'il contient, habituellement en utilisant votre client <acronym title="File Transfer Protocol">FTP</acronym> .</li>
+<li>Un crayon <span style="color:red;font-weight:bold">rouge</span> indique que le rÃ©pertoire est inscriptible, mais ne devrait pas l'Ãªtre (ligne &quot;E&quot;). Avoir des fichiers inscriptibles peut Ãªtre un risque pour la sÃ©curitÃ©. Si possible, vous devez changer les droits de ce rÃ©pertoire et de tout ce qu'il contient en Ã©criture/execution uniquement.</li>
+</ul>
+</li>
+<li>Un point d'intÃ©rrogation dans une boite jaune (icone d'aide) indique que des informations complÃ©mentaires sont disponibles. Cliquez sur cette icone pour ouvrir une fenÃªtre avec ces informations.</li>
+<li>La colonne &quot;cpg version&quot; affiche de quelle version de Coppermine est issu le fichier sur votre serveur, et quelle devrait Ãªtre sa version. L'information est extraite de l'entÃªte du fichier, c'est la raison pourquoi les rÃ©pertoires sont marquÃ©s comme &quot;n/a&quot; - il n'y a pas d'entÃªte contenant d'informations concernant la version de coppermine (lignes &quot;A&quot; Ã  &quot;E&quot;).
+<p>Les fichiers contenant des informations dans leur entÃªte sont affichÃ©s avec leur version sur votre serveur et avec la version du fichier du rÃ©fÃ©rentiel Coppermine, sÃ©parÃ©s par un slash ('/'). Il est possible que la version d'un fichier diffÃ¨re de celle de votre pack Coppermine - Cela ne pose pas de problÃ¨me aussi longtemps que les deux versions (la votre et celle du rÃ©fÃ©rentiel) sont compatibles (Elles s'affichent en  <span style="color:green;font-weight:bold">vert</span>) - dans l'exemple ci dessus: lignes &quot;F&quot;, &quot;J&quot; et &quot;K&quot;.</p>
+<p>Bien sur, le numÃ©ro de version qui n'existe pas dans un fichier ne peut pas Ãªtre extrait, les lignes &quot;G&quot; et &quot;H&quot; ont un tiret Ã  la place du N&Acirc;° de version de Coppermine. Si votre version de Coppermine est plus ancienne que celle du rÃ©fÃ©rentiel, votre version est affichÃ©e en <span style="color:red;font-weight:bold">rouge</span>: Si c'est cas, vous n'avez probablement pas tÃ©lÃ©chargÃ© le bon fichier depuis votre pack Coppermine vers votre serveur (remplacez le fichier existant sur votre serveur) - vous devriez faire ainsi lÃ : (ligne &quot;I&quot;).</p>
+<p>Si votre version locale est affichÃ©e en <span style="color:#FFBE00;font-weight:bold">jaune</span>, vous utilisez un fichier dont la version est plus rÃ©cente que le reste de vos fichiers - vous avez probablement tÃ©lÃ©chargÃ© le fichier depuis la branche en dÃ©veloppement: rappelez vous qu'il n'y a pas de support pour les fichiers en cours de dÃ©veloppement, faites ainsi Ã  vos risques et pÃ©rils (si vous savez ce que vous faites). Si la majoritÃ© de vos fichiers sont affichÃ©s en <span style="color:#FFBE00;font-weight:bold">jaune</span>, vous avez probablement mis Ã  jour plusieurs fichiers, mais vous avez oubliÃ© de mettre Ã  jour le fichier &quot;include/init.inc.php&quot; (qui contient les informations de version pour votre installation de Coppermine). assurez vous de tÃ©lÃ©charger <b>tous</b> les fichier depuis le pack vers votre serveur.</p>
+</li>
+<li>
+<p>La colonne &quot;Version de fichier&quot; contient la version individuelle de chaque fichier qui augmenteras au fur et a mesure du dÃ©veloppement d'une nouvelle version de Coppermine (Ã  chaque fois qu'un dÃ©veloppeur modifie un fichier, le numÃ©ro de version augmente d'une unitÃ©). Comme les rÃ©pertoires ne contiennent pas de numeros de version similaires, ils sont Ã  nouveau Ã©tiquetÃ©s comme &quot;n/a&quot; (lignes &quot;A&quot; Ã  &quot;E&quot;); Il en est de mÃªme pour les fichiers qui n'existent pas, c'est pourquoi le N&Acirc;° de version est reprÃ©sentÃ© par un tiret (lignes &quot;G&quot; et &quot;H&quot;). Aussi le N&Acirc;° de version de fichier est hors de propos lors de la comparaison de fichiers provenant de packs Coppermine diffÃ©rents, c'est pourquoi la ligne &quot;I&quot; est contient un tiret.</p>
+<p>Le systÃ¨me de couleur est le mÃªme que pour la version de Coppermine: <span style="color:green;font-weight:bold">vert</span> signifie que &quot;tout est OK&quot;, <span style="color:red;font-weight:bold">rouge</span> signifie que &quot;vous utilisez une version dÃ©passÃ©e&quot; et <span style="color:#FFBE00;font-weight:bold">jaune</span> signifie que &quot;vous utilisez une version plus rÃ©cente que celle supposÃ©e.</p>
+<p>La diffÃ©rence entre les colonnes 'version de Coppermine' et 'version de fichier' est la maniÃ¨res de trouver quel fichier est supposÃ© remplacer l'existant sur votre serveur: <span style="color:red;font-weight:bold">rouge</span> pour la colonne de version de Coppermine signifie que le fichier sur votre serveur n'a pas Ã©tÃ© remplacÃ© par le fichier du pack Coppermine;  <span style="color:red;font-weight:bold">rouge</span> pour la colonne de version de fichier (ligne &quot;J&quot;) signifie gÃ©nÃ©ralement qu'il y a eu une mise Ã  jour de certains fichiers dans le pack depuis sa mise Ã  disposition - Vous devriez vÃ©ridier qi il n'y a pas un nouveau pack disponible ou charger le fichier le plus rÃ©cent depuis le <acronym title="Concurrent version system">CVS</acronym> (activez le lien vers le webcvs dans les <a href="#versioncheck_options_start">options</a> du vÃ©rificateur de version ).</p>
+</li>
+<li>La colonne &quot;web cvs&quot; (dÃ©sactivÃ©e par dÃ©faut) conduit vers le fichier correspondant dans le <acronym title="Concurrent version system">CVS</acronym>. Il est recommendÃ© d'utiliser celÃ  uniquement si il apparait qu'il y a une nouvelle version du fichier dans le cvs que celle de votre pack Coppermine et si vous savez ce que vous faites.</li>
+</ul>
+<a name="versioncheck_comparison_end"></a>
+<a name="versioncheck_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="administration"></a>
+<h1>4. Configuration et Administration</h1>
+
+<h2>4.1 Categories, albums et fichiers<a name="cat_alb_pic"></a></h2>
+<p>La Galerie Photo Coppermine (CPG) fonctionne de cette maniÃ¨re:</p>
+<ul>
+  <li>Le fichiers sont placÃ©s dans des albums</li>
+  <li>Les albums sont organisÃ©s en catÃ©gories</li>
+  <li>Les catÃ©gories peuvent Ãªtre imbriquÃ©es (sous-categories)</li>
+</ul>
+<p>Si vous n'avez pas beaucoup d'albums, vous n'avez pas besoin d'utiliser de catÃ©gories. Dans ce cas, vous ne crÃ©ez aucune catÃ©gorie et tous les albums apparaitrons sur la page principale.</p>
+<p>Il y a une catÃ©gorie spÃ©ciale nommÃ©e &quot;<b>User galleries</b>&quot;. Cette catÃ©gorie ne peut pas Ãªtre effacÃ©e. Si un utilisateur appartiens Ã  un groupe oÃ¹ &quot;peut avoir une galerie personnelle&quot; est parametrÃ© sur OUI, il a le droit de crÃ©er ses propres albums et sa galerie sera une sous-catÃ©gorie de &quot;User galleries&quot;.</p>
+<p>L'administrateur peut crÃ©er des albums dans n'importe quelle catÃ©gorie. Les utilisateurs rÃ©guliers peuvent uniquement crÃ©er leurs albums dans &quot;User galleries/Leur_nom_utilisateur&quot;.</p>
+<p>Pour renommer la catÃ©gorie &quot;<b>User galleries</b>&quot; et sa description, allez simplement vers le <a href="#cat_cp">panneau de gestion des catÃ©gories</a> et changez les (par exemple pour traduire les mots &quot;User galleries&quot; dans votre langue).</p>
+
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<h2>4.2 Mode Administrateur et mode Utilisateur<a name="admin_user_mode"></a></h2>
+<p>Lorsque vous Ãªtes identifiÃ© en tant qu'administrateur, le script a deux mode de fonctionnement : Le mode Administrateur et le mode Utilisateur. Vous basculez entre le mode Administrateur et le mode Utilisateur en cliquant sur le lien correspondant dans le menu en haut de page.</p>
+<p>Lorsque vous Ãªtes en mode administrateur, vous pouvea gÃ©rer votre galerie et le menu suivant apparait:</p>
+<p><a name="admin_menu"></a><img src="pics/fr_admin_menu.gif" border="0" alt="Admin menu" /></p>
+<p>Si vous Ãªtes en mode utilisateur et vous gardez le status d'administrateur, mais les controles d'administration (la barre de menu administrateur etc...) sont cachÃ©s de maniÃ¨re Ã  donner l'impression que la page est similaire Ã  celle que verrait un "utilisateur normal". Toutefois (tant que vous Ãªtes identifiÃ©s en tant qu'administrateur), vos droits en mode utilisateur sont les mÃªmes qu'en mode administrateur; vous ne pouvez <b>pas</b> utiliser le "<i>Mode Utilisateur</i>" pour vÃ©rifierce qu'un non administrateur verra; pour cela, crÃ©ez un  compte utilisateur test (non-administrateur) et identifiez vous avec cet utilisateur particulier (il est recommendÃ© d'utiliser deux navigateurs diffÃ©rents, afin de pouvoir vous identifier en tant qu'utilisateur "normal" et administrateur en mÃªme temps).</p>
+<p>Les onglets du menu administrateur s'expliquent par eux mÃªmes:</p>
+<ul>
+  <li><b>Approbation de tÃ©lÃ©chargement</b><br />Visualise toutes les images attendant l'approbation de l'administrateur (suivant le parametrage dans &quot;<a href="#group_cp">groupes</a> du &quot; panneau de configuration)</li>
+  <li><b>Configuration</b><br />GÃ¨re l'ensemble de l'apparence de la galerie et les paramÃ¨tres utilisÃ©s dans panneau de configuration du menu administrateur &quot;<a href="#admin">Configuration</a>&quot; (Avertissement: vous ne pouvez pas acceder Ã  la configuration en entrant manuellement l'adresse du fichier de configuration)</li>
+  <li><b>Categories</b><br />CrÃ©er/Modifier/Effacer les <a href="#cat_cp">categories</a></li>
+  <li><b>Albums</b><br />CrÃ©er/Modifier/Effacer les <a href="#albmgr">albums</a></li>
+  <li><b>Groups</b><br />CrÃ©er/Modifier/Effacer les <a href="#group_cp">groupes</a></li>
+  <li><b>Users</b><br />CrÃ©er/Modifier/Effacer les <a href="#user_cp">utilisateurs</a></li>
+  <li><b>Bannir des Utilisateurs</b><br />Bannir des utilisateurs en se servant du nom d'utilisateur ou de l'adresse IP. Attention de ne pas vous bannir vous mÃªme! Utilisez cette possibilitÃ© avec beaucoup de prÃ©caussions, depuis que la majoritÃ© des utilisateurs ont une adresse IP statique, cette fonction doit Ãªtre utilisÃ©e uniquement si vous savez vraiment ce que vous faites.<br />
+  <span class="small">[cpg1.3.0 ou supÃ©rieur requis]</span>
+  </li>
+  <li><b>Examiner les commentaires</b><br />modifie/efface le commentaires de sutilisateurs/li>
+  <li><a name="ecard_log"></a><b>Afficher les E Cartes</b><p>Visualiser les cartes Ã©lectroniques envoyÃ©es par les utilisateurs.</p>
+  <p>Vous devez activer d'abord l'enregistrement des Cartes (ecard-logging) dans la configuration (par dÃ©faut, logging est dÃ©sactivÃ©). Lorsque l'option est activÃ©e, toutes les E cartes envoyÃ©es sont stockÃ©es dans la base de donnÃ©e, ou l'administrateur de coppermine peut les visualiser.</p>
+  <img src="pics/fr_ecard_log.gif" border="0" alt="" /><br />
+  Vous pouvez trier les enregistrements en cliquant sur les icones en forme de flÃ¨ches dans chaque entÃªte de colonne, et vous pouvez effacer un oÃ¹ plusieurs enregistrements (effacer les enregistrement n'empechera pas le destinataire de la carte de la visualiser).<br />
+  <p>Avant de cocher cette option, vÃ©rifiez que l'enregistrement de ces donnÃ©es est autorisÃ©e dans votre pays. Il est recommandÃ© de signaler aux utilisateurs que toutes les cartes Ã©lectroniques seront enregistrÃ©es (de prÃ©fÃ©rence sur la page d'enregistrement).</p>
+  <span class="small">[cpg1.3.0 ou supÃ©rieur requis]</span>
+  <a name="ecard_log_end"></a>
+  </li>
+  <li><b>Trier mes images</b><p>Le gestionnaire d'images peut servir Ã  trier de faÃ§on parsonnalisÃ© les images Ã  l'intÃ©rieur des albums. Par dÃ©faut, les vignettes sur la page de l'album sont triÃ©es suivant l'ordre dÃ©fini dans  &quot;<a href="#admin_thumbnail_view">Tri par dÃ©faut pour les fichiers</a>&quot; sur la page de configuration. L'option "Trier mes images" prends le dessus sur cette option par dÃ©faut et affiche les vignettes suivant l'ordre que vous aurez spÃ©cifiÃ©. Comme celÃ  suppose un travail supplÃ©mentaire lors de la maintenance de chaque album, il est recommandÃ© d'utiliser l'ordre de tri par dÃ©faut et(au lieu de spÃ©cifier un ortre de tri presonnalisÃ©) de nommer les fichiers judicieusement avant de les placer dans votre galerie.</p>
+  <p>Note: Chaque utilisateur (y compris l'administrateur) peut utiliser le controle de l'odre de tri sur les vignettes des albums pour remplacer manuellement l'ordre dÃ©fini dans la configuration de Coppermine avec l'option "Trier mes images"; la derniÃ¨re mÃ©thode de tri sera stockÃ©e localement dans un cookie chez le client.</p></li>
+  <li><b>Ajouts de fichiers en traitement par lot</b><br /><a href="#batch_add_pics">Ajouter par lot</a> dans la base de donnÃ©e de coppermine les fichiers tÃ©lÃ©chargÃ©s via le FTP.</li>
+  <li><a name="admin_tools"></a><b>Outils d'administration (redimenstionnement des images)</b><br />Collection d'utiliatires pour:
+        <dl>
+      <dt>Reconstruire ou redimentionner les images intermÃ©diaires ou les vignettes.</dt>
+      <img src="pics/fr_util_re-size.gif" alt="" border="0" /><br /><p>Utilisez cette fonction si vous avez changÃ© le paramÃ¨trage pour les images intermÃ©diaires ou les vignettes dans la configuration, ou si vous avez remplacÃ© une version corrompue.</p><p>Delectionnez le bouton radio pour cette action, puis choisissez de reconstruire les vignettes, les images intermÃ©diaires, ou les deux.</p><p>Cette fonction utilise beaucoup de ressources serveur, si vous rencontrez des problÃ¨mes de 'timeout', essayez de traiter de plus petits lots d'images.</p>
+      <dt>Effacer les images originales (grande taille).</dt>
+      <dd><p>Utilisez cette fonction pour gagner de la place sur votre serveur.</p><p>Si cette option est sÃ©lectionnÃ©e, Coppermine vÃ©rifie si il existe une image intermÃ©diaire, et si c'est le cas, efface l'image originale, puis renomme l'image intermÃ©diaire. Si l'image intermÃ©diaire n'existe pas, Coppermine laisse l'original en place.</p></dd>
+      <dt>Effacer les commentaires orphelins.</dt>
+      <dd>Parfois, si des images ont Ã©tÃ© effacÃ©es, certains commentaires associÃ©s restent dans la base de donnÃ©e.  Utilisez cette fonction pour les effacer entiÃ¨rement de la base de donnÃ©e.</dd>
+      <dt>Renommer le titre des fichiers.</dt>
+      <dd>Utilisez cette fonction pour renommer l'intitulÃ© de tous le fichiers dans les albums, en utilisant les informations du nom de fichier.</dd>
+      <dt>Effacer les titres des fichiers.</dt>
+      <dd>Utilisez cette fonction pour effacer les titres des fichiers d'un ou de plusieurs albums.</dd>
+      <dt>affichez le php info de votre serveur.</dt>
+      <dd>Si vous rencontrez des problÃ¨mes, c'est parfois Ã  cause du parametrage de votre serveur.  Ciquer sur ce lien vous fournira toutes les indications sur le parametrage de votre Php et mySQL, ainsiq eu sur votre libarire GD (si elle est installÃ©e).  Cela peut Ãªtre utilse Ã  l'Ã©quipe de support, si vous n'Ãªtes pas en mesure de rÃ©soudre vous mÃªme le problÃ¨me.<br />Il n'est pas possible pour les visiteurs de votre site de visualiser ces informations, donc, si on vous le demande, faites un copier/coller des ces informaations sur le forum d'aide.</dd>
+      <dt>Lancez la mise Ã  jour de la base de donnÃ©e (update.php).</dt>
+      <dd>AprÃ¨s une mise Ã  jour, il est gÃ©nÃ©ralement necessaire de lancer update.php.  Cela peut Ãªtre fait en entrant directement l'adresse dans votre navigateur, ou en cliquant sur ce lien.<a name="admin_tools_end"></a></dd>
+          </dl>
+  </li>
+  <li><b>Mon Profil</b><br />Modifiez votre propre profil utilisateur</li>
+</ul>
+<p>Il y avait un mode administrateur et un mode utilisateur pour les utilisateurs &quot;normaux&quot; dans les versions antÃ©rieures Ã   cpg1.4.x, qui a Ã©tÃ© suppimÃ©e car il Ã©tait "embrouillant" pour des utilisateurs et n'a pas atteint son objectif.</p>
+<p>L'utilisateur enregistrÃ© a ces options:</p>
+<ul>
+  <li><b>CrÃ©er/Trier mes albums</b><br /> similaire au gestionnaire d'albums du mode administrateur, l'utilisateur peut crÃ©er des albums dans sa galerie utilisateur</li>
+  <li><b>Modifier mes albums</b><br />L'utilisateur peut modifierles titre  et la description de ses albums  (similaire Ã  &quot;<a href="#album_prop">propriÃ©tÃ©s de l'album</a>&quot; pour l'administrateur, mais l'utilisateur ne peut pas dÃ©placer ses albums vers d'autres catÃ©gories)</li>
+  <li><b>Mon profil</b><br />L'utilisateur peut modifier son profil (changer de mot de passe, sa localisation, ses centres d'intÃ©rÃªts, l'adresse de sont site et sa profession, voir son quota d'utilisation du disque). Si vous avez intÃ©grÃ© Cpg avec un forum, le lien &quot;Mon profil&quot; vous dirigera vers la page des profils utilisateur du forum. </li>
+</ul>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="group_cp"></a><h2>4.3 Le panneau de gestion des groupes</h2>
+<p><img src="pics/fr_group_cp.gif"  border="1" alt=""/></p>
+<p>C'est lÃ  que vous pouvez dÃ©finir ce que les membres des groupes peuvent ou ne peuvent pas faire.</p>
+<p>Le quota disque ne s'applique que pour les groupes oÃ¹ &quot;<i>Galerie pesrsonnelle</i>&quot; a Ã©tÃ© paramÃ©trÃ© sur &quot;<b>AutorisÃ©</b>&quot;. L'ensemble des fichiers tÃ©lÃ©chargÃ©s dans sa galerie personnelle par un utilisateur ainsi qu eles fichiers tÃ©lÃ©chargÃ©s dans les galeries publiques sont pris en compte dans ce quota.</p>
+<p>Utilisez le groupe <b>anonymous</b> pour dÃ©terminer ce que les utilisateurs non enregistrÃ©s peuvent ou ne peuvent pas faire. Quota et &quot;<i>Galerie personnelle</i>&quot; n'ont pas de sens pour les utilisateurs non enregistrÃ©s.</p>
+<a name="group_cp_permissions"></a>
+<p><i>Droits</i> contrÃ´le ce que l'utilisateur est autorisÃ© Ã  faire dans la galerie (Voter/Envoyer des Cartes/Poster des commentaires).</p>
+<p>Rappelez vous que si un utilisateur est membre d'un groupe oÃ¹ &quot;<i>Voter</i>&quot;, &quot;<i>Commentairess</i>&quot; ou &quot;<i>TÃ©lÃ©charger dans les albums publics</i>&quot; est parametrÃ© sur &quot;<i>OUI</i>&quot;, il n'aura le droit d'effectuer ces opÃ©rations que dans les albums ou cela est autorisÃ©, Par exemple: tÃ©lÃ©charger des fichiers ne sera possible que dans des albums ou &quot;<i>Les visiteurs peuvent tÃ©lÃ©charger des fichiers</i>&quot; est parametrÃ© sur <i>OUI</i>.</p>
+<a name="group_cp_permissions_end"></a>
+<a name="group_cp_personal"></a>
+<p>Si &quot;<i>Galerie personnelle</i>&quot; est parametrÃ© sur <i>AutorisÃ©</i>, le membre du groupe pourra avoir sa propre galerie dans la catÃ©gorie &quot;<i>User galleries</i>&quot; et dans laquelle il aura la possibilitÃ© de crÃ©er ses propres albums.</p>
+<p>Si &quot;<i>Approbation</i>&quot; est parametrÃ© Ã  <i>NON</i>, les fichiers tÃ©lÃ©chargÃ©s par le membre du groupe dans les albums crÃ©es dans sa propre galerie n'ont pas besoin de l'approbation de l'administrateur. If &quot;<i>Approval</i>&quot; si parametrÃ© Ã  <i>OUI</i>, l'utilisateur de ce groupe particulier pourra tÃ©lÃ©charger des fichiers, mais ceux ci ne pourront Ãªtre vus qu'aprÃ¨s approbation de l'administrateur.</p>
+<a name="group_cp_personal_end"></a>
+<p>Le panneau de contrÃ´le des groupes vous permets de controler les possibilitÃ©s de tÃ©lÃ©chargements de chaque groupe.</p>
+<a name="group_cp_upload_method"></a>
+<p><i>Methode de tÃ©lÃ©chargement</i> vous permets de sÃ©lectionner le type de tÃ©lÃ©chargement qu'un groupe peut utiliser. Quatres possibilitÃ©s sont offertes.</p>
+<ul>
+<li><b>TÃ©lÃ©chargement d'un seul fichier</b> - Le groupe ne peut pas utiliser les possibilitÃ©s avancÃ©es de tÃ©lÃ©chargement. Ils ne peuvent tÃ©lÃ©charger qu'un seul fichier Ã  la fois. Pour activer le mode de tÃ©lÃ©chargement d'un seul fichier, parametrez  <i>champs d'upload</i> sur &quot;1&quot;, <i>champs d'upload URI</i> sur &quot;0&quot; et <i>Nombres de champs</i> sur &quot;fixe&quot;</li>
+<li><b>Multiple tÃ©lÃ©chargements</b> - le groupe peut tÃ©lÃ©charger plusieurs fichiers en mÃªme temps. Pour activer le tÃ©lÃ©chargement multiple, mettez <i>champs d'upload</i> sur un nombre suppÃ©rieur Ã  &quot;1&quot;, <i>champs d'upload URI</i> Ã  &quot;0&quot; - libre Ã  vous de laisser l'utilisateur fixer lui mÃªme le <i>Nombre de champs</i>, mais il est recommandÃ© de le parametrer Ã  &quot;fixe&quot; pour Ã©viter une confusion.</li>
+<li><b>URI upload seulement</b> - Le groupe ne peut tÃ©lÃ©charger des fichiers qu'en utilisant les URIs. les URIs doivent commencer par 'http://' ou 'ftp://'. Pour activer  URI uploads seulement, mettez <i>Champs d'upload </i> to &quot;0&quot;, <i>Champs d'upload URI</i> to &quot;1&quot; ou plus.</li>
+<li><b>Fichiers-URI</b> - Le groupe peut utiliser les fichiers ou les URIs pour le tÃ©lÃ©chargement. Pour activer les deux options, mettez <i>Champs d'upload</i> sur &quot;1&quot; ou plus, <i>Champs d'upload URI</i> sur &quot;1&quot; ou plus</li>
+</ul>
+<p><i>Nombre de champs </i> sÃ©lectionnÃ© sur &quot;variable&quot; permet Ã  l'utilisateur de choisir le nombre de champs d'upload pour un tÃ©lÃ©chargement. gÃ©nÃ©ralement, vous laisserez cette option sur &quot;fixe&quot;, du fait qu'il propose Ã  l'utilisateur une Ã©tape supplÃ©mentaire dans l'assistant de tÃ©lÃ©chargement qui n'est pas obligatoirement necessaire.</p>
+<p><i>Champs d'upload</i> controle le nombre de champs d'upload prÃ©sentÃ©s Ã  l'utilisateur. Si l'utilisateur peut personnaliser le nombre de champs (<i>Nombre de chamsp </i> mis sur &quot;variable&quot;), ce parametrage donne le nombre maximum de champs que pourra choisir l'utilisateur. Sinon, ce parametrage dÃ©termine le nombre de champs d'upload apparents.</p>
+<p><i>Champs d'upload URI </i> propose le mÃªme type de contrÃ´les que <i>Champs d'upload</i>, mais il controles l'affichage des champs de'ulpoad URI.</p>
+<a name="group_cp_upload_method_end"></a>
+<p><b>Notez bien</b>: pour une installation non bridgÃ©e (Coppermine autonome), le groupe "banned" n'a aucun effet. Un utilisateur qui est membre de ce groupe peut s'identifier et voir les images, il lui est seulement impossible de tÃ©lÃ©charger, voter, envoyer des cartes Ã©lectroniques ou poster des commentaires. Si vous voullez faire un vrai bannissement pour certains utilisateurs, vous devrez utiliser la fonction "bannir un utilisateur" Ã  la place (non reliÃ© avec le groupe "banned").</p>
+<a name="group_cp_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="user_cp"></a><h2>4.4 Le panneau de gestion des utilisateurs</h2>
+<p>Le panneau de gestion des utilisateurs est accessible en cliquant sur le boutton "utilisateurs" du menu administrateur. C'est l'endroit ou vous pouvez crÃ©er et gÃ©rer les utilisateurs.</p>
+<p><span class="important">Si vous aves activÃ© l'intÃ©gration (bridge) de Coppermine avec une autre application (votre forum par exemple), Coppermine utilisera la tables des membres de cette application, et donc, la gestion d'utilisateurs intÃ©grÃ© Ã  Coppermine sera dÃ©sactivÃ©e en faveur de celle de l'application bridgÃ©e avec Coppermine.</span></p><p>Vous n'aurez donc pas cette page de gestion des utilisateurs; en cliquant sur le lien "utilisateurs" vous serez dirigÃ© vers la page de gestion des utilisateurs de votre application bridgÃ©e avec Coppermine.</p>
+<img src="pics/fr_usermgr.gif"  border="0" alt="" title="page de gestion des utilisateurs" /><br />
+<a name="user_cp_page"></a><h3>4.4.1 Commandes de la page</h3>
+<ul>
+<li>Vous pouvez choisir l'ordre de tri sur l'affichage de la page  en cliquant sur les icÃ´nes en forme de flÃ¨che (<img src="../images/ascending.gif" width="9" height="9" border="0" alt="" title="croissant" /><img src="../images/descending.gif" width="9" height="9" border="0" alt="" title="dÃ©croissant" />) Ã  cÃ´tÃ© de chaque entÃªte de colonne ou en choississant l'ordre de tri dans le menu dÃ©roulant en haut Ã  droite de la page.</li>
+<li>Si vous avez plus de 25 utilisateurs, des liens de navigation apparaitrons en bas Ã  droite de la page, vous permettant d'acceder aux autres pages de la liste de vos membres</li>
+<li>Cliquer sur le nom d'utilisateur <b>affichera</b> la page de profil de l'utilisateur sÃ©lectionnÃ© (lercture seulement)</li>
+<li>L'icone d'Ã©dition (<img src="../images/edit.gif" width="16" height="16" border="0" alt="" title="Ã©dition" />) vous conduira vers la page de profil de l'utilisateur en mode <b>Ã©dition</b>  - vous pouvez modifier le mot de passe, l'adresse Email et d'autres parametrages concernant l'utilisateur ici</li>
+<li>Si l'utilisateur a tÃ©lÃ©chargÃ© des fichiers, un lien "TÃ©lÃ©chargements rÃ©cents" sera visible Ã  cÃ´tÃ© de son nom, permettant de visualiser les fichiers tÃ©lÃ©chargÃ©s par cet utilisateur en particulier</li>
+<li>La colonne groupe affiche le groupe initial dont l'utilisateur est membre</li>
+<li>La colonne "EnregistrÃ© le" montre la date ou l'inscription de cet utilisateur Ã  eu lieu</li>
+<li>La colonne "derniÃ¨re visite" affiche la date de la derniÃ¨re connection de l'utilisateur. <br />Attention: si l'utilisateur Ã  cochÃ© la case "Se souvenir de moi" sur la page d'identification, il n'aura pas besoin de s'identifier Ã  chaque visite sur la galerie.</li>
+<li>La colonne "Fichiers" affiche combien de fichiers l'utilisateur Ã  tÃ©lÃ©chargÃ© pour l'instant (y compris ceux attendant l'approbation de l'administrateur)</li>
+<li>La colonne "Espace utilisÃ©" affiche combien d'espace alouÃ© Ã  l'utilisateur est dÃ©jÃ  utilisÃ©. L'espace total allouÃ© Ã  l'utilisateur ("Quota d'espace") dÃ©pend des groupes d'utilisateurs - vous les parametrez dans le <a href="#group_cp">Gestionnaire de groupes</a>.</li>
+<li>Vous pouvez changer certains parametrages pour diffÃ©rents utilisateurs immÃ©diatement en cochant la boite de sÃ©lection devant la ligne de l'utilisateur (utilisez la boite de sÃ©lection tout en haut de la page pour sÃ©lectionner/dÃ©selectionner tous les utilisateurs sur la page) et choisissez l'action Ã  lancer depuis le menu dÃ©roulant "sÃ©lectionner" en bas Ã  gauche de la page. Les actions possibles sont: "Effacer", "DÃ©sactiver", "Activer", "Changer le mot de passe", "Changer le groupe principal" et "Ajouter un groupe secondaire". L'utilisateur actuellement connectÃ© (vous en tant qu'administrateur) n'a pas de boite de sÃ©lection devant sa ligne afin d'Ã©viter un effacement accidentel de votre compte administrateur.</li>
+</ul>
+<a name="user_cp_page_end"></a>
+<a name="user_cp_search"></a><h3>4.4.2 Chercher un(des)utilisateur(s)</h3>
+<p>Vous pouvez utiliser les jokers <tt class="code">*</tt> (toutes les chaines) and <tt class="code">?</tt> (tout caractÃ¨re simple) ou mÃªme <tt class="code">%expression%</tt>.<br />Exemple: une recherche sur <tt class="code">j*</tt> retournera les deux: <tt class="code">Jack</tt> et <tt class="code">Jill</tt></p>
+<a name="user_cp_search_end"></a>
+<a name="user_cp_new"></a><h3>4.4.3 CrÃ©er de nouveaux utilisateurs</h3>
+<p>Pour crÃ©er un nouvel utilisateur, cliquez simplement sur le bouton  "CrÃ©er un n ouvel utilisateur" au bas de la page et completez le formulaire qui apparaitra.</p>
+<a name="user_cp_new_end"></a>
+<a name="user_cp_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="cat_cp"></a><h2>4.5 Le panneau de gestion des catÃ©gories</h2>
+<p><img src="pics/fr_category_cp.gif" border="1" alt="Gestion des catÃ©gories" /></p>
+<p>C'est la que vous pouvez Ã©diter vos catÃ©gories.</p>
+<ul>
+<li>Le bouton <img src="pics/edit.gif" border="0" width="16" height="16" alt="" /> 
+vous permets de modifier le titre, la description et la catÃ©gorie parents d'une catÃ©gorie existante.</li>
+<li>Le bouton <img src="pics/delete.gif" width="16" height="16" alt="" /> 
+vous permets d'effacer une catÃ©gorie. Effacer une catÃ©gorie n'efface pas les albums et les fichiers contenus. Ils sont simplement dÃ©placÃ©s dans la catÃ©gorie &quot;Racine&quot;.</li>
+<li>Les boutons <img src="pics/up.gif" width="16" height="16" alt="" /> et <img
+src="pics/down.gif" width="16" height="16" alt="" /> permettent de changer l'ordre des catÃ©gories.</li>
+<li>La liste dÃ©roulante &quot;<b>DÃ©placer dans</b>&quot; vous permets de changer la catÃ©gorie parente d'une catÃ©gorie spÃ©cifique. </li></ul>
+<p>&quot;<b>User galleries</b>&quot; est une catÃ©gorie spÃ©ciale. Elle n'est pas visible sauf si certains utilisateurs ont crÃ©er leur propre galerie. Elle ne peut pas Ãªtre effacÃ©e mais vous pouvez modifier son titre et sa description en utilisant le bouton <img src="pics/edit.gif" width="16" height="16" alt="" /> . </p>
+<p>Vous pouvez spÃ©cifier Ã  Coppermine de trier toutes les catÃ©gories par ordre alphabÃ©tique (au lieu d'un ordre personnalisÃ©) en parametrant &quot;Classement des catÃ©gories par ordre alphabÃ©tique&quot; sur &quot;OUI&quot;. Ce parametrage est disponible dans la page de configuration de Coppermine et dans le gestionnaire de catÃ©gories. Si vous activez le classement par ordre alphabÃ©tique, les flÃ¨ches "hau" et "bas" qui vous permettent normalement de dÃ©placer les catÃ©gories ne sont plus affichÃ©es.</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="albmgr"></a><h2>4.6 Le gestionnaire d'Albums</h2>
+<p><img src="pics/fr_albmgr.gif"  border="0" alt="" title="Gestionnaire d'album" /></p>
+<p>Coppermine stocke les fichiers dans des albums, vous avez donc besoin d'au moins un album pour y placer vos fichiers/photos. Les albums peuvent Ãªtre regroupÃ©s dans des catÃ©gories (mais vous n'avez pas <i>besoin</i> de catÃ©gorie, ils peuvent aussi Ãªtre placÃ©s Ã  la &quot;racine&quot; de Coppermine).</p>
+<p>Lorsque cous cliquez sur &quot;Albums&quot; dans le menu Administrateur, vous accÃ©dez au <i>gestionnaire d'album</i>.</p>
+<h3><a name="albmgr_create"></a>4.6.1 CrÃ©er des albums</h3>
+<ul>
+<li><b>Choisissez depuis la liste dÃ©roulante</b> &quot;SÃ©lectionner une catÃ©gorie category&quot; la catÃ©gorie dans laquelle placer l'album (ou choisissez &quot;* Pas de CatÃ©gorie *&quot; si l'album doit Ãªtre placÃ© Ã  la &quot;racine&quot; de Coppermine). Si vous n'avez pas encore crÃ©e de catÃ©gorie, allez au <a href="#cat_cp">panneau de gestion des catÃ©gories</a> d'abord, mais vous pouvez dÃ©placer par la suite l'album en utilisant la page <a href="#album_prop">propriÃ©tÃ©s de l'album</a>.</li>
+<li><b>Cliquez sur le bouton &quot;Nouveau&quot;</b> - votre nouvel album apparaitdans la listet, avec par dÃ©faut le nom &quot;Nouvel album&quot;</li>
+<li><b>Cliquez sur le champ texte au bas de l'Ã©cran</b>, sÃ©lectionnez le nom par dÃ©faut &quot;Nouvel Album&quot;</li>
+<li><b>Entrez le nom que vous voulez lui donner</b></li>
+<li>(rÃ©petez les Ã©tapes  2 Ã  4 pour ajouter plus d'un album)</li>
+<li><b>Cliquez sur &quot;Appliquer les modifications&quot;</b> pour soumettre vos changements Ã  la base de donnÃ©e (si vous ne le faites pas, toutes vos modifications seront perdues)</li>
+<li><b>Confirmer en cliquant sur &quot;OK&quot; dans la fenÃªtre d'alerte</b> (<i>Etes vous sur de vouloir faire ces modifications ?</i>)</li>
+</ul>
+<h3><a name="albmgr_rename"></a>4.6.2 Renommer les albums</h3>
+<ul>
+<li><b>Choisissez une catÃ©gorie dans la liste dÃ©roulante</b></li>
+<li><b>Cliquez sur l'album Ã  modifier</b></li>
+<li><b>Cliquez sur le champ teste au bas de l'Ã©cran</b>, sÃ©lectionnez le nom de l'album</li>
+<li><b>Entrez le nouveau nom de l'album</b></li>
+<li><b>Cliquez sur &quot;Appliquer les modifications&quot;</b></li>
+<li><b>Confirmer en cliquant sur &quot;OK&quot; dans la fenÃªtre d'alerte</b> (<i>Etes vous sur de vouloir faire ces modifications ?</i>)</li>
+</ul>
+<h3><a name="albmgr_order"></a>4.6.3 Changer l'ordre des albums</h3>
+<ul>
+<li><b>Choisissez une catÃ©gorie dans la liste dÃ©roulante</b></li>
+<li><b>Cliquez sur l'album que vous voulez monter ou descendre dans la liste</b></li>
+<li><b>Utilisez les flÃ¨ches pour dÃ©placer l'album vers le haut<img src="../images/move_up.gif" width="26" height="21" border="0" alt="" title="monter" /> ou vers le bas <img src="../images/move_down.gif" width="26" height="21" border="0" alt="" title="descendre" /></b></li>
+<li><b>Cliquez sur &quot;Appliquer les modifications&quot;</b></li>
+<li><b>Confirmer en cliquant sur &quot;OK&quot; dans la fenÃªtre d'alerte</b> (<i>Etes vous sur de vouloir faire ces modifications ?</i>)</li>
+</ul>
+<h3><a name="albmgr_delete"></a>4.3.4 Effacer des albums</h3>
+<ul>
+<li><b>Choisissez une catÃ©gorie dans la liste dÃ©roulante</b></li>
+<li><b>Cliquez sur l'album que vous voulez effacer</b></li>
+<li><b>Cliquez sur le bouton &quot;Supprimer&quot; </b></li>
+<li><b>Confirmee en cliquant sur &quot;OK&quot; dans la fenÃªtre d'alerte</b> (<i>Etes vous sur de vouloir effacer cet album ? Tous les fichier et commentaires qu'il contenait seront perdus !</i>)</li>
+<li><b>Cliquez sur &quot;Appliquer les modifications&quot;</b></li>
+<li><b>Confirmer en cliquant sur &quot;OK&quot; dans la fenÃªtre d'alerte</b> (<i>Etes vous sur de vouloir faire ces modifications ?</i>)</li>
+</ul>
+<a name="albmgr_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<h2>4.7 Modifier les albums/fichiers<a name="modif_alb_pics"></a></h2>
+<p>Si vous Ãªtes en mode administrateur, un menu est affichÃ© Ã  cÃ´tÃ© de chaque album</p>
+<p></p>
+<p><img src="pics/fr_album_menu.gif" border="1" alt="" /></p>
+<p><b>Supprimer</b> permets de supprimer l'album ainsi que tous les fichiers qu'il contient.</p>
+<p><b><a href="#album_prop">PropriÃ©tÃ©s</a></b> vous permets de modifier le nom, la description et les droitsde l'album</p>
+<p><b><a href="#edit_pics">Modifier les photos</a></b> vous permets de modofoer les titres/lÃ©gendes/mots-clÃ©s etc... des fichiers dans l'album</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="album_prop"></a><h2>4.8 PropriÃ©tÃ©s de l'album</h2>
+<p><img src="pics/fr_edit_album.gif" border="0" alt="" /></p>
+<p>La liste dÃ©roulante "CatÃ©gorie de l'album"  vous permets de dÃ©placer l'album entre les catÃ©gories. Si vous le mettez sur &quot;* Pas de catÃ©gorie *&quot; l'album apparaitra sur votre page principale.</p>
+<p>Utilisez les <a href="#bbcode">bbcode</a> pour ajouter des liens ou pour formater la description.</p>
+<p>La vignette est l'image qui reprÃ©sentera cet album dans la liste des albums.</p>
+<p>Si vous avez parametrÃ©  &quot;Les utilisateurs peuvent avoir des albums privÃ©s&quot; sur OUI dans la <a href="#admin">page de configuration</a>, vous pouvez dÃ©finir qui peut voir les fichiers de cet album.</p>
+<p>Si &quot;les visiteurs peuvent mettre des photos en ligne&quot; est parametrÃ© sur OUI, il est possible de tÃ©lÃ©charger des fichiers dans cet album.</p>
+<a name="album_prop_visitor_start"></a>
+<p><b>Attention: Un visiteur peut avoir le droit de tÃ©lÃ©charger des fichiers dans cet album ou cette option est parametrÃ©e sur OUI uniquement si il est membre d'un groupe oÃ¹ &quot;peut tÃ©lÃ©charger des images&quot; est parametrÃ© sur OUI.</b> Les utilisateurs non enregistrÃ©s sont membres du groupe &quot;Anonymous&quot;.</p>
+<p>Les mÃªmes rÃ¨gles s'appliquent pour &quot;Les visiteurs peuvent poster des commentaires&quot; et &quot;les visiteurs peuvent noter ce fichier&quot;.</p>
+<a name="album_prop_visitor_end"></a>
+<a name="album_prop_keyword_start"></a>
+<p>Le <b>Mot-clÃ© de l'album</b> n'est <i>pas</i> utilisÃ© dans un but de recherche, mais pour afficher des images d'autres albums dans celui-ci. En utilisant cette mÃ©tode, les fichiers/images peuvent Ãªtre dans plusieurs albums alors qu le fichier lui mÃªme nexiste qu'une seule fois sur votre serveur: vous tÃ©lÃ©chargez le fichier dans un album et lui assignez un ou plusieurs mots-clÃ©. Puis allez dans les propriÃ©tÃ©s de l'autre album et ajoutez les mots-clÃ© assignÃ©s au fichier dans le champ  &quot;mots clÃ© de l'album&quot; du deuxiÃ¨me album. Pour le visiteur de cet album, ce sera comme si les fichiers/images Ã©taien prÃ©sents dans les deux albums. </p>
+<a name="album_prop_keyword_end"></a>
+<a name="album_prop_password_start"></a>
+<p><b>Mot de passe de l'album</b>: vous pouvez proteger l'accÃ¨s Ã  un album par mot de passe (au lieu de se baser sur les droits "normaux" des groupes). Par ce moyen, vous pouvez permettre l'accÃ¨s Ã  des utilisateurs non enregistrÃ©s (invitÃ©s) qui connaissent le mot de passe. Utilisez cette option pour paramÃªtre un album pour les membres de votre famille en dÃ©terminant un mot de passe qu'eux seuls peuvent connaÃ®tre grace Ã  une question pense bÃªte suggÃ©rant la rÃ©ponse  (par exemple "<i>Quel est le nom de jeune fille de tante Ursule?</i>"), ou vous pouvez dÃ©cider d'envoyer le mot de passe particulier par Email uniquement Ã  vos amis. La question opptionnelle <b>pense bÃªte</b> est affichÃ©e Ã  cÃ´tÃ© du champ demandant le mot de passe, si elle est dÃ©finie.<br />
+Attention: en dÃ©finissant un mot de passe pour un album, le champ de la liste dÃ©roulante "<i>L'album peut Ãªtre vu par</i>" sera placÃ© automatiquement sur "<i>seulement moi</i>" - C'est le comportement normal. Si vous changez  "<i>l'album peut Ãªtre vu par</i>" par quelque chose d'autre, vous devrez bien sur dÃ©sactiver le mot de passe de l'album.</p>
+<a name="album_prop_password_end"></a>
+
+<a name="album_prop_reset_start"></a>
+<h3>4.8.1 RÃ©initialisation des propriÃ©tÃ©s de l'album</h3>
+<img src="pics/fr_modifyalb_reset.gif"  border="0" alt="" />
+<p>Vous pouvez rÃ©initialiser le compteur de vue et de votes dans l'album et mÃªme effacer toutes les images en mÃªme temps, dans la sous-section &quot;RÃ©initialiser l'album&quot; en cochant les options et en soumettant le formulaire. Pour Ã©viter les rÃ©initialisations accidentelles, vous devez d'abord cocher l'option &quot;Je suis sur&quot; avant de pouvoir soumettre les changements (Le bouton est grisÃ© si vous ne le faites pas).</p>
+<p>Utilisez cette option avec prudence: La suppression de fichiers est irreversible, de mÃªme que les compteurs de vue et de votes (vous pouvez uniquement restaurer le compteur de vues et de notes manuellement en Ã©ditant les entrÃ©es de la base de donnÃ©e de Coppermine avec un outil extÃ©rieur tel que <a href="http://www.phpmyadmin.net/" class="external" rel="external">phpMyAdmin</a> - non recommandÃ©).</p>
+<a name="album_prop_reset_end"></a>
+<a name="album_prop_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="edit_pics"></a><h2>4.9 Edition des fichiers</h2>
+<p><img src="pics/fr_edit_picture.gif" border="0" alt="" /></p>
+<p>C'est lÃ  que vous pouvez modifier le titre, la description, les mots clÃ© et les champs personnalisÃ©s(si ils sont utilisÃ©s) d'un fichier.</p>
+<p>Utilisez le menu dÃ©roulant pour dÃ©placer le fichier vers un autre album.</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<h3>4.9.1 Editing videos<a name="edit_vids"></a></h3>
+<p><img src="pics/edit_video.gif" border="0" alt="" /></p>
+<p>C'est lÃ  que vous pouvez modifier le titre, la description, les mots clÃ© et les champs personnalisÃ©s(si ils sont utilisÃ©s) d'un fichier.</p>
+<p>Utilisez le menu dÃ©roulant pour dÃ©placer le fichier vers un autre album.</p>
+<p>Utilisez les champs hauteur et largeur pour parametrer la taille des vidÃ©eos.</p>
+<p>La mise en ligne de vidÃ©eos est possible depuis cpg1.3.0 (ou suppÃ©rieur) et comme ajout pout cpg1.2.1 sous forme de modification.</p>
+<p class="small">[cpg 1.3.0 ou supÃ©rieur requis]</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<h3>4.9.2 Vignettes personnalisÃ©es<a name="cust_thmb"></a></h3>
+<p><img src="pics/cust_thmb.gif" border="1" alt="" /></p>
+<p><b>Orde des vignettes:</b><br />
+<b class="important">Les vignettes sont sÃ©lectionnÃ©es par niveau (dÃ©fini par l'utilisateur, dÃ©finies par le thÃ¨me, global) puis par type (Type de fichier, extention de fichier, type de mÃ©dia) dans l'ordre.</b> Les vignettes dÃ©finies par l'utilisateur sont stockÃ©es dans le rÃ©pertoire ou se trouve le fichier. Les vignettes dÃ©finies par le thÃ¨me sont stockÃ©es dans le rÃ©pertoire 'images' du thÃ¨me. Les vignettes globales sont stockÃ©es dans le rÃ©pertoire 'images' de la racine de Coppermine. <b class="important">les vignettes peuvent Ãªtre soit des 'gif', 'png', ou 'jpg'.</b></p>
+<p><b>Types de vignettes:</b><br />
+<b class="important">Les vignettes spÃ©cifiques Ã  un fichier doivent avoir le mÃªme nom de base que le fichier.</b> dans l'exemple utilisÃ© dans la capture d'Ã©cran, la vignettes pourrait Ãªtre 'thumb_<b>thailand_waterfall</b>.gif', 'thumb_<b>thailand_waterfall</b>.png', ou 'thumb_<b>thailand_waterfall</b>.jpg', dans cet ordre.</p>
+<p><b class="important">Les vignettes spÃ©cifiques Ã  une extention de fichier sont nommÃ©es aprÃ¨s l'extention du fichier.</b> (Exemples: 'thumb_wmv.jpg', 'thumb_wav.jpg'.)</p>
+<p><b class="important">Les vignettes spÃ©cifiques Ã  un type de mÃ©dia sont 'thumb_movie', 'thumb_document', and 'thumb_audio'.</b> Les photos utilisent par dÃ©faut les vignettes spÃ©cifiques au fichier.</p>
+<p><b>Mise en ligne:</b><br />
+Il y a 2 maniÃ¨res de mettre en ligne les vignettes personnalisÃ©es:</p>
+<p>1. Ayez une image dÃ©jÃ  en ligne puis tÃ©lÃ©chargez une vidÃ©o via la page de tÃ©lÃ©chargement. (ou vice versa) La vidÃ©o partagera la vignette de l'image.<br />
+</p><br /><br />
+<p><img src="pics/cust_thmb_3.gif" border="1" alt="" /></p>
+<p>2. TÃ©lÃ©chargez par FTP les deux: vidÃ©o et vignette/image puis mettez les en ligne par lot. Si vous tÃ©lÃ©chargez par FTP la vignette, elle sera montrÃ©e Ã  la place de celle par dÃ©faut de Coppermine dans la page de traitement par lot. Si vous tÃ©lÃ©chargez une image, elle aura l'air d'une capture d'Ã©cran. De mÃªme, si les deux fichiers sont ajoutÃ©s, la vignette de l'imagesera utilisÃ©e par la vidÃ©e.</p>
+<br /><br />
+<p><img src="pics/cust_thmb_final.gif" border="1" alt="" /></p>
+<p>RÃ©sultat final.</p>
+<p>Attention: Si la methode 1 est utilisÃ©e et l'image effacÃ©e, la vignette sera elle aussi effacÃ©e, et la vignette par dÃ©faut de Coppermine sera utilisÃ©e.<br />
+Si une vidÃ©o a Ã©tÃ© prÃ©cÃ©demment mise en ligne via le FTP, la vignette doit Ãªtre tÃ©lÃ©chargÃ©e par le FTP dans le mÃªme rÃ©pertoire.</p>
+<p>La mise en ligne de vidÃ©eos est possible depuis cpg1.3.0 (ou suppÃ©rieur) et comme ajout pout cpg1.2.1 sous forme de modification. Les vignettes personnalisÃ©e ne sont pas supportÃ©es par les versions antÃ©rieures Ã  1.3.0. <b class="important"> En suivant ces instructions, une vignette personnalisÃ©e peut Ãªtre dÃ©finie pour ous les fichiers, pas uniquement pour les vidÃ©os.</b>
+</p>
+<p><b>FAQS:</b></p>
+<ul>
+<li><b>Quote</b><br /><div class="quote">J'ai une vidÃ©o nommÃ©e <b>'movie.wmv'</b>, quand je tÃ©lÃ©charge une vignette pour elle nommÃ©e <b>'thumb_movie.jpg'</b> elle remplace plusieurs vidÃ©os!!!!</div>
+OulÃ !!!. <b>'thumb_movie.jpg'</b> est une vignette spÃ©cifique Ã  un type de mÃ©dia. Renommez la vidÃ©o et sa vignette autrement que juste <b>'movie'</b>.</li>
+<li><b>Quote</b><br /><div class="quote">Je ne trouve pas les rÃ©pertoires de mes utilisateurs!</div>
+Depuis Coppermine, recherchez l'album utilisateur. Regardez l'adresse de la page dans la barre d'adresse de votre navigateur et vousverrez le nom du rÃ©pertoire. (Voyez la capture d'Ã©cran pour l'exemple.)<br />
+<img src="pics/user_folder_link.gif" alt=""/><br />
+Vos utilisateurs peuvent tÃ©lÃ©charger leurs propres vignettes en utilisant cette astuce: CrÃ©ez un album. Changez les droits afin que personne d'autre que luine puisse le voir. Puis tÃ©lÃ©chargez les images grandeur rÃ©elle des vignettes dans ce rÃ©pertoire. Les fichiers hors de cet album sont en mesure d'utiliser les vignettes de ces images. (Regardez plus haut pour le nom.)</li>
+<li><b>Quote</b><br /><div class="quote">Comment puis-je faire pour empÃªcher mes utilisateurs de crÃ©er leurs propres vignettes ?</div>
+Pour l'instant, vous ne pouvez pas.</li>
+</ul>
+<p class="small">[cpg 1.3.0 ou supÃ©rieur requis]</p>
+<a name="edit_pics_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+
+<a name="bbcode"></a>
+<h2>4.10 Utilisation des "bbcode" pour inserer des liens et pour formater les textes des descriptions</h2>
+<p>Coppermine peut utiliser les bbCodes suivants (les mÃªmessbbCodes sont utilisÃ©es par phpBB ainsiq eu d'autres applications de type forums) dans les descriptions d'images ou d'albums</p>
+<ul>
+  <li><tt class="code">[b]Gras[/b]</tt> =&gt; <b>Gras</b></li>
+  <li><tt class="code">[i]Italique[/i]</tt> =&gt; <i>Italique</i></li>
+  <li><tt class="code">[url=http://votresite.com/]Texte du lien[/url]</tt> =&gt; <a href="http://votresite.com">Texte du lien</a></li>
+  <li><tt class="code">[email]utilisateur@votrehebergeur.com[/email]</tt> =&gt; <a href="mailto:utilisateur@votrehebergeur.com">utilisateur@votrehebergeur.com</a></li>
+  <li><tt class="code">[color=red]du texte[/color]</tt> =&gt; <span style="color:red">du texte</span></li>
+  <li><tt class="code">[img]http://coppermine.sf.net/demo/images/red.gif[/img]</tt> => <img src="../images/red.gif" border="0" alt="" /></li>
+</ul>
+<a name="bbcode_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="ftp"></a><a name="batch_add_pics"></a>
+<h2>4.11 TÃ©lÃ©chargement des fichiers par FTP / Ajout d'images par lot</h2>
+<p>Il est recommandÃ© aux administrateurs de galeries Coppermine d'utiliser le FTP pour mettre en ligne beaucoups d'images en une seule fois. Utilisez votre logiciel FTP pour crÃ©er des sous-rÃ©pertoires dans <i>votre_repertoirecoppermine/albums/</i>, ou les tÃ©lÃ©chargements par FTP pourront Ãªtre placÃ©s. C'est une bonne idÃ©e d'avoir une structure de rÃ©pertoires dans le rÃ©pertoire <i>albums</i> reflettant la structure de vos catÃ©gories et de vos albums dans la galerie Coppemrine, mais ce n'est pas obligatoire.</p><p><span class="important">Important</span>: do not create folders or upload to the <i>userpics</i>- nor the <i>edit</i>-folder by ftp: these folders are used by coppermine internally and mustn't be used for any other purpose! Folder names mustn't contain dots and it's even recommended not to use any special chars - only use a-z, numbers and maybe <tt class="code">-</tt> or <tt class="code">_</tt>. Make sure to upload in binary or auto-mode.</p>
+<p>AprÃ¨s avoir tÃ©lÃ©chargÃ© vos photos par FTP, cliquez sur le bouton FTP du menu administrateur. L'ajout par lot se fera en trois Ã©tapes:</p>
+<ul>
+<li>Trouvez le rÃ©pertoire dans lequel vous avez tÃ©lÃ©chargÃ© vos photos. Selectionnez le en cliquant dessus.
+<br /><img src="pics/fr_searchnew_1.gif" border="0" alt="" /><a name="ftp_select_dir_end"></a></li>
+<li><a name="ftp_select_file"></a>SÃ©lectionnez les photos que vous voulez mettre en ligne (en cochant la case Ã  cÃ´tÃ© d'elles, les nouvelles images sont prÃ©-sÃ©lectionnÃ©es, celles qui sont dÃ©jÃ  dans la base de donnÃ©e de Coppermine ne le sont pas) et l'album dans lequel vous voullez les insÃ©rer. Cliquez sur &quot;Placer les images sÃ©lectionnÃ©es&quot; pour commencer le traitement par lot.<br />
+<img src="pics/fr_searchnew_2.gif" border="0" alt="" /><a name="ftp_select_file_end"></a></li>
+<li><a name="ftp_show_result"></a>Coppermine va afficher le rÃ©sulta du traitement d'ajout par lot(patientez un peu avant que tous les rÃ©sultats soient affichÃ©s).<br />
+Si les 'signes' OK, DP, PB n'apparaissent pas cliquez sur le lien cassÃ© pour voir les messages d'erreur de PHP.<br />
+Si vous rencontrez un problÃ¨me de 'timeout', rechargez la page depuis votre navigateur.
+<ul>
+<li>OK : signifie que le fichier a Ã©tÃ© placÃ© avec succÃ¨s</li>
+<li>DP : signifie que le fichier est un double et est dÃ©jÃ  placÃ© dans la base de donnÃ©e</li>
+<li>PB : signifie que le fichier n'a pas pu Ãªtre ajoutÃ©, vÃ©rifiez votre configuration et les droits des rÃ©pertoires ou les fichiers sont placÃ©s</li>
+<li>NA : signifie que vous n'avez pas sÃ©lectionnÃ© d'album oÃ¹ placer les fichiers, retournez en arriÃ¨re et sÃ©lectionnez un album. Si vou sn'avez pas d'album, crÃ©ez en un d'abord</li>
+</ul>
+<a name="ftp_show_result_end"></a>
+</li>
+</ul>
+<p>Donner l'accÃ¨s FTP Ã  d'autres utilisateurs est un sÃ©rieux danger pour la sÃ©curitÃ©, c'est&Acirc;&sup2;la raison pour laquelle le traitement d'ajout par lots est uniquement possible pour l'administrateur de la galerie Coppermine.</p>
+<p>Une fois que les fichiers ont Ã©tÃ© ajoutÃ©s dans la base de donnÃ©e de Coppermine, assurez vous de ne pas les renommer ou les effacer par le FTP - utilisez plutÃ´t le menu administrateur de coppermine pour supprimer des fichiers, par ce biais, ils seront supprimÃ©s Ã  la fois de la base de donnÃ©e <b>et</b> du systÃ¨me de fichiers.</p>
+<a name="ftp_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<h2>4.12 Page de configuration de la galerie<a name="admin"></a></h2>
+<p>C'est l'emplacement oÃ¹ vous pourrez configurer la plus grande part de votre galerie Coppemine. Certains paramÃ¨tres ont un impact sur les fichiers que vous avez mise en ligne - changer ces options si vous avez dÃ©jÃ  un grand nombre de fichiers en ligne peut Ãªtre problÃ©matique, c'est pourquoi vous devriez rÃ©flÃ©chir Ã  ces paramÃ©trages juste aprÃ¨ sl'installation de votre galerie Coppermine, avant que vous ne mettiez en lignes des images ou que vous ne montriez votre galerie au public.</p>
+<a name="admin_general"></a>
+<h3>4.12.1 ParamÃ¨tres gÃ©nÃ©raux</h3>
+<a name="admin_general_name"></a><h4>Nom de la galerie</h4>
+<p>Il s'agit du nom de votre galerie. Il apparaitra dans le titre de vos pages et est affichÃ© dans certains gabarits.</p>
+<a name="admin_general_name_end"></a>
+<a name="admin_general_description"></a><h4>Description de la galerie</h4>
+<p>C'est une courte description de votre galerie. Cette description est montrÃ©e dans certains thÃ¨mes Ã  cÃ´tÃ© du nom de votre galerie.</p>
+<a name="admin_general_description_end"></a>
+<a name="admin_general_email"></a><h4>Courriel de l'administrateur de la galerie</h4>
+<p>Tous les courriels envoyÃ©s par la galerie sont envoyÃ©s Ã  cette adresse. VÃ©rifiez que vous avez bien entrÃ© une adresse valide.</p>
+<a name="admin_general_email_end"></a>
+<a name="admin_general_coppermine-url"></a><h4>URL du rÃ©pertoire de votre galerie Coppermine</h4>
+<p>C'est l'adresse URL vers laquelle sera dirigÃ© le visiteur qui clique sur le lien &quot;Voir plus de photos&quot; sur une carte postale Ã©lectronique. Ce <i>doit</i> Ãªtre l'adresse URL de votre galerie (juste le chemin vers votre rÃ©pertoire Coppermine, par exemple: <i>http://votresite.com/coppermine/</i>). Ne prÃ©cisez pas de fichier prÃ©cis (comme index.php) dans ce champ.</p><p>Dans les versions antÃ©rieures de coppermine, ce champ Ã©tait appelÃ© &quot;adresse cible pour le lien 'Voir plus de Photos' des cartes Ã©lectroniques&quot;, mais depuis que cette URL est utilisÃ©e ailleur par Coppermine, son nom a changÃ©.</p>
+<a name="admin_general_coppermine-url_end"></a>
+<a name="admin_general_home-url"></a><h4>URL de votre page d'accueil</h4>
+<p>C'est l'adresse URL vers laquelle le visiteur sera dirigÃ© lorsqu'il cliqueras sur le bouton &quot;Accueil&quot; du menu principal.</p>
+<p>Vous pouvez utiliser &quot;/&quot; pour la racine de votre site, &quot;index.php&quot; pour votre galerie, ou toute adresse URL valide.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_home-url_end"></a>
+<a name="admin_general_zip-download"></a><h4>Permettre le tÃ©lÃ©chargement-ZIP des favorits</h4>
+<p>Si cette option est activÃ©e, l'utilisateur peut tÃ©lÃ©charger un fichier ZIP contenant les fichiers qu'il a placÃ© dans la page &quot;Mes favorits&quot;. Cette otpion requiÃ¨re que la librairie zlib soit instÃ©llÃ©e sur votre serveur (lancez <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> pour vÃ©rifier si cette librairie existe sur votre serveur).</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_zip-download_end"></a>
+<a name="admin_general_time-offset"></a><h4>DiffÃ©rence d'heure par rapport Ã  l'heure GMT</h4>
+<p>SpÃ©cifiez la diffÃ©rence entre votre heure locale et l'heure de la zone ou se situe votre serveur. Cette valeur est utilisÃ©e pour corriger le cachet d'heure dans les cartes Ã©lÃ©ctroniques et Ã  d'autres endroits.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_time-offset_end"></a>
+<a name="admin_general_encrypt_password_start"></a><h4>Autoriser les mots de passe cryptÃ©s</h4>
+<p>Cette option est uniquement valable si les mots de passe utilisateurs sont stockÃ©s en textes entiers dans la base de donnÃ©e (habituellement c'est le cas si vous mettez a jour depuis une ancienne version de Coppermine qui n'avait pas cette option). Cela va crypter tous les mots de passe dans la base de donnÃ©, et tous les futurs mots de passe seront stockÃ©s cryptÃ©s eux aussi. Ce processus est irrÃ©versible: une fois que le cryptage est en place, il est impossible de le dÃ©sactiver, utilisez cette option en connaisance de cause.</p>
+<p>Cette option augmente la sÃ©curitÃ© de Coppermine, mais il y a un inconvÃ©nient Ã  cette methode: mÃªme l'administrateur ne peut pas retrouver un mot de passe perdu pour un utilisateur (ou le sien), le mot de passe peut seulement Ãªtre rÃ©initialiser Ã  une autre valeur, mais l'administrateur ne peut pas lire l'actuel mot de passe d'un utilisateur.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_encrypt_password_end"></a>
+<a name="admin_general_help"></a><h4>Activer les icÃ´nes d'aide</h4>
+<p>Active l'affichage des icÃ´nes d'aide dans divers endroits des pages d'administration de Coppermine. Si vous activez cette option, assurez vous d'avoir tÃ©lÃ©chargÃ© le rÃ©pertoire "docs" dans le rÃ©pertoire Coppermine sur votre serveur Web.</p>
+<p>Si vous choissisez ce parametrage sur &quot;Oui: Tout le monde&quot;, les utilisateurs enregistrÃ©s pourront voir les icÃ´nes d'aide Ã  certains endroitsl, par exemple lors de la crÃ©ation d'une galerie utilisateur.</p>
+<p>Comme le texte d'aide est basÃ© sur la documentation livrÃ©e avec Coppermine, elle est disponible en Anglais (et ici en FranÃ§ais, peut Ãªtre dans d'autres langues). Si la langue manternelle de vos visiteurs n'est pas la mÃªme que celle de la documentation que vous avez placÃ© sur votre serveur, il est conseillÃ© de mettre cette option sur &quot;OUI: Uniquement l'administrateur&quot; afin d'Ã©viter les confusions chez vos visiteurs.</p>
+<p>Il est fortement dÃ©conssÃ©illÃ© de dÃ©sactiver totalement les icÃ´nes d'aide: mÃªme si vous pensez savoir tout ce qui se passe dans votre galerie Coppermine, Les icÃ´nes d'aides peuvent vous donnez des indications sur les actions d'une option spÃ©cifique.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_help_end"></a>
+<a name="admin_general_keywords_start"></a><h4>Activer les mots-clÃ© cliquables dans la recherche</h4>
+<p>Lorsque cetteoption est activÃ©e, une liste de tous les mots clÃ© entrÃ©s dans la  page &quot;<a href="#edit_pics">Editer les fichiers</a>&quot; sera affichÃ©e au bas de la page de recherche, chaque mot clÃ©  etant cliquable. L'activation de cette option est recommandÃ©e si vou sn'avez pas un trop grand nombre de mots clÃ© (par exemple moins de 100) - celÃ  donnera aux visiteurs une idÃ©e des recherches qu'il peut faire (en complÃ©ment de la recherche depuis une phrase). Notez que l'activation de cette option pour une grande liste de mots clÃ© (par exemple plusieurs centaines) va ralentir la page de recherche et risque d'embrouiller l'utilisateur dÃ©butant.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_keywords_end"></a>
+<a name="admin_general_enable-plugins"></a><h4>Activer les plugins</h4>
+<p>Activer les plugins. Cette fonction est toute neuve, il n'y a pas encore de documentation pour cette fonction.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_enable-plugins_end"></a>
+
+<a name="admin_general_private-ip"></a><h4> Autoriser le bannissement d'adresse IP non routable (privÃ©)</h4>
+<p>Habituellement, la plupart des utilisateurs de l'internet ont une adresse IP dynamique qui leur est assignÃ©e par leur fournisseur d'accÃ¨s au moment de la connection. Cette adresse IP change Ã  chaque fois que l'utilisateur se connecte Ã  l'internet, mais, pendant une session internet, cette adresse IP est &quot;visible&quot; par les sites web sur lesquels l'utilisateur surfe. Dans l'Ã©tendue de tous les adresse IP (0.0.0.0 Ã  255.255.255.255), certaines plages sont rÃ©servÃ©es dans un but prÃ©cis (essentiellement pour une utilisation en rÃ©seaux privÃ©s). La fonction de banissement n'accepte pas les adresses IP provenant de cette plage d'adresses privÃ©es (exemple: 192.168.0.1) afin d'Ã©viter Ã  des administrateurs de galeries Coppermine innexpÃ©rimentÃ©s de bannir des adresses IP de leurs propres rÃ©seaux. Si vous utilisez actuellement  Coppermine sur votre LAN/WAN utilisant des adresse IP privÃ©es (par exemple l'intranet de votre entreprise) et que vous souhaitiez pouvoir bannir des utilisateurs, basculez cette option sur &quot;OUI&quot;. Si vous utilisez coppermine depuis un serveur web sur l'internet(par exemple si vous avez un hÃ©bergeur), vous devriez placer cette option sur &quot;Non&quot;.<br />
+Si vous n'utilisez pas le systÃ¨me de banissement, vou spouvez sans risque ignorer ce parametrage.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_private-ip_end"></a>
+
+<a name="admin_general_browsable_batch_add"></a><h4> Interface de tÃ©lÃ©chargement par lot</h4>
+<p>Pour <a href="#batch_add_pics">mettre en ligne par lot</a> des fichiers (Que vous avez placÃ©s par <acronym title="File Transfer Protocol">FTP</acronym> avant) dans votre galerie, vous devez choisir entre l'option d'une liste Ã  parcourir, ou vous pourrez explorer la structure de votre rÃ©pertoire <tt class="code">albums</tt>, et d'afficher la structure complÃªte de vos rÃ©pertoires. Activez cette option si vous avez une structure complexe de rÃ©pertoires et sous rÃ©pertoires que vous voulez explorer (Votre navigateur doit Ãªtre capable d'afficher les <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Parametrez cette option sur &quot;Non&quot; (dÃ©sacticÃ©) si vous voulez utiliser l'interface &quot;classique&quot; de coppermine qui montre en une fois l'ensemble de la structure.<br />
+Vous pouvez aussi basculer cette option sur la page de <a href="#batch_add_pics">TÃ©lÃ©chargement par lot</a> .</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_browsable_batch_add_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_language"></a>
+<h3>4.12.2 Langue et jeu de caractÃ¨res</h3>
+<p><img src="pics/fr_config_language.gif"  border="1" alt="parametrage de la langue" /></p>
+<a name="admin_language_language"></a><h4>Langue</h4>
+<p>C'est la langue par dÃ©faut de votre galerie. Tous les fichiers langues sont stockÃ©s dans le rÃ©pertoire <b>lang</b> sur votre serveur.</p>
+<p>Les fichiers langues avec un suffixe "<b>-utf8</b>" sont des fichiers unicode . Si vous sÃ©lectionnez un fichier -utf8 comme language par dÃ©faut et que vous parametrez "encodage des caractÃ¨res " sur "Unicode (utf-8)" le script dÃ©tectera automatiquement la langue prÃ©fÃ©rÃ©e du visiteur en se basant sur la configuration de son navigateur. Si le language correspondant existe, il sera utilisÃ© sinon, c'est le language par dÃ©faut qui sera utilisÃ©.</p>
+<p>Si le script dÃ©tecte automatiquement la langue prÃ©fÃ©rÃ©e du visiteur, il stocke ce rÃ©sultat dans un cookie dans l'ordinateur du visiteur. pour rÃ©initialiser ce cookie (et pour forcer le script Ã  faire une nouvelle auto dÃ©tection) appelez le avec quelque chose comme: <a href="#">http://votresite.com/coppermine_dir/index.php?lang=xxx</a></p>
+<p>Si vous aviez dÃ©jÃ  ajoutÃ© des commentaires ou des fichiers dans votre galerie, vous ne devriez pas changer le jeu de caractÃ¨res de votre galerie. Si vou sle faites, les caractÃ¨res  non-ASCII risquent de ne pas s'afficher correctement.</p>
+<a name="admin_language_language_end"></a>
+<a name="admin_language_fallback"></a><h4>Remplacement par l'Anglais si la traduction de la phrase n'est pas trouvÃ©e ?</h4>
+<p>Activez cette option si vous utilisez une langue diffÃ©rente de l'anglais. Si certaines phrases n'existent pas dans votre fichier langage, coppermine affichera la phrase en anglais Ã  la place.</p><p>Cette fonction a Ã©tÃ© introduite afin de permettre l'utilisation d'anciens fichiers langage, Pendant le dÃ©veloppement d'une nouvelle version de Coppermine seul le fichier langage Anglais est mis Ã  jour. Pour compenser les traductions soumises plus tard, vous pouvez utiliser cette option. La plupars des traductions affectent seulement la partie administration de Coppermine, donc, c'est principalement l'administrateur qui verra des phrases en Anglais Ã  la place de sa langue si elle n'existe pas dans son fichier langage. Actuellement cette option de remplacement ne fonctionne que pour 95% des phrases, donc il se peut qu'il y ait encore des traductions manquantes.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_language_fallback_end"></a>
+<a name="admin_language_charset"></a><h4>Encodage des caractÃ¨res</h4>
+<p>Il devrait normallement Ãªtre sur "Unicode (utf-8)" (ou "Default (language file)"). Reportez vous au chapitre sur la &quot;<b><a href="#admin_language">langue</a></b>&quot; dans cette page.</p>
+<a name="admin_language_list"></a><h4>Affiche la liste des langues</h4>
+<p>Activez cette option si vous voulez que vos visiteurs puissent choisir leur propre langue avec une liste dÃ©roulante (vous pouvez choisir de montrer uniquementla liste elle mÃªme ou une lÃ©gende disant &quot;<b>Choisissez votre langage:</b>&quot; avant la liste). Editez votre fichier "template" (/themes/votretheme/template.html) pour dÃ©terminer oÃ¹ vous voulez voir apparaitre la liste dÃ©roulante dans votre galerie (cherchez <b>{LANGUAGE_SELECT_LIST}</b>).</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_language_list_end"></a>
+<a name="admin_language_flags"></a><h4>Affichez les drapeaux de langues</h4>
+<p>Activez cette option si vous voulez que vos visiteurs puissent sÃ©lectionner leur propre langue en cliquantsur le drapeau reprÃ©sentant leur langage (vous pouvez choisir de ne montrer que les drapeux eux mÃªme ou une lÃ©gende disant &quot;<b>Choisissez votre langue:</b>&quot; devant les drapeaux). Editez votre fichier "template" (/themes/votretheme/template.html) pour dÃ©terminer ou vous souhaitez voir apparaitre les drapeaux dans votre galerie (cherchez <b>{LANGUAGE_SELECT_FLAGS}</b>).</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_language_flags_end"></a>
+<a name="admin_language_reset"></a><h4>Affichez &quot;reset&quot; dans la sÃ©lection des langues</h4>
+<p>Cette option s'applique uniquement si vous avez activÃ© la sÃ©lection de langue - il montrera une icÃ´ne &quot;default&quot; ou une entrÃ©e dans la liste pour permettre au visiteur de retourner au langage initial de la galerie.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_language_reset_end"></a>
+<a name="admin_language_charset_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_theme"></a>
+<h3>4.12.3 ParamÃ©trage des thÃ¨mes</h3>
+<a name="admin_theme_theme"></a><h4>ThÃ¨me</h4>
+<p>Utilisez cette ligne pour sÃ©lectionner le thÃ¨me de votre galerie. Les thÃ¨mes sont stockÃ©s dans des sous-rÃ©pertoires du rÃ©pertoire <b>themes</b>.</p>
+<a name="admin_theme_theme_end"></a>
+<a name="admin_theme_theme_list"></a><h4>Afficher la liste des thÃ¨mes</h4>
+<p>Activez cette option si vous voulez permettre Ã  vos utilisateurs de sÃ©lectionner un autre thÃ¨me depuis une liste dÃ©roulante (vous pouvez choisir de montrer uniquement la liste elle mÃªme ou une lÃ©gende disant &quot;<b>Choisissez votre thÃ¨me:</b>&quot; devant la liste). Editez votre fichier "template" (/themes/votretheme/template.html) pour dÃ©terminer ou la liste dÃ©roulante des thÃ¨mes sera affichÃ©e dans votre galerie (cherchez <b>{THEME_SELECT_LIST}</b>).</p>
+<p>Cette option n'a de sens que si vous avez au moins un autre thÃ¨me dans votre rÃ©pertoire /themes/ folder en plus de votre thÃ¨me par dÃ©faut. Il est recommandÃ© de n'offrir cette possibilitÃ© que si elle apporte un bÃ©nÃ©fice Ã  l'utilisateur (par exemple un thÃ¨me moins "graphique" qui se chargera plus rapidement pour les visiteurs ayant une connection RTC, ou un thÃ¨me avec moins de couleurs et avec un bon contraste).</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_theme_theme_list_end"></a>
+<a name="admin_theme_theme_reset"></a><h4>Affiche &quot;reset&quot; dans la sÃ©lection du thÃ¨me</h4>
+<p>Cette ne s'applique que si vous avez activÃ© la sÃ©lection des thÃ¨mes - il montrera une entrÃ©e &quot;default&quot; dans la liste permettant au visiteur de retourner au thÃ¨me par dÃ©faut de votre galerie.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_theme_theme_reset_end"></a>
+<a name="admin_theme_faq"></a><h4>Afficher la FAQ</h4>
+<p>Cette option ajoute &quot;FAQ&quot; dans la barre de menu si elle est activÃ©e. Si un visiteur clique dessus, il s'affichera une liste de &quot;Questions FrÃ©quemment PosÃ©es (FAQ)&quot; sur l'utilisation de Coppermine. Pour changer le contenu de cette FAQ, Ã©ditez le fichier /votre_coppermine/lang/votre_langue.php (par exemple french.php) et cherchez</p>
+<pre>// ------------------------------------------------------------------------- //
+// File faq.php
+// ------------------------------------------------------------------------- //</pre>
+<p>Modifiez ce qui vient aprÃ¨s.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_theme_faq_end"></a>
+<a name="admin_theme_custom_lnk_name"></a><h4>Nom du lien de menu personnalisÃ©</h4>
+<p>C'est le nom qui apparaitra dans le menu pour votre lien personnalisÃ©.  Laissez le vide si vous ne l'utilisez pas.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_theme_custom_lnk_name_end"></a>
+<a name="admin_language_custom_lnk_url"></a><h4>Adresse URL de votre lien personnalisÃ©</h4>
+<p>C'est l'adresse URL vers laquelle l'utilisateur sera dirigÃ© en cliquant sur le boutton &quot;Lien PersonnalisÃ©&quot; de votre menu principal.</p>
+<p>Vous pouvez utiliser une adresse URL valide.</p>
+<p>Il est important de lasser ce chanp vide si vous ne voulez pas de lien personnalisÃ©.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_language_custom_lnk_url_end"></a>
+<a name="admin_theme_bbcode"></a><h4>Afficher l'aide pour les bbcode help</h4>
+<p>Si elle est activÃ©e, cette option affiche les <a href="#bbcode">bbcodes</a> qui peuvent Ãªtre employÃ©s dans les champs de description, Ã  cÃ´tÃ© de ce champ.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_theme_bbcode_end"></a>
+<a name="vanity_block"></a><h4> Afficher les boutons indiquant le respect des standards XHTML et CSS pour les thÃ¨mes conformes</h4>
+<p>Si activÃ©, et si le thÃ¨me utilisÃ© respecte les standards XHTML et CSS, les icÃ´nes sont affichÃ©es. Le bloc comporte les icÃ´nes et liens  pour les soumissions HTML et CSS vers w3.org, ainsi que des liens vers les projets PHP, et MySQL.</p>
+<p class="small">[cpg1.4.1 ou supÃ©rieur requis]</p>
+<a name="vanity_block_end"></a>
+<a name="admin_theme_include_path_start"></a>
+<h4> Chemin pour inclure un en-tÃªte de page personnalisÃ©</h4>
+<p>Chemin relatif vers un fichier optionnel d'en-tÃªte personnalisÃ©. En utilisant cette option, vous pouvez inclure des Ã©lÃ©ments de code non-coppermine afin de les insÃ©rer Ã  votre thÃ¨me, par exemple une barre de navigation qui est utilisÃ©e dans l'ensemble de votre site. Vous pouvez uniquement ajouter un chemin relatif (vu depuis la racine de votre installation Coppermine) - pas de chemin absolu ni de lien http d'un autre site. Cette option est destinÃ©e aux utilisateurs expÃ©rimentÃ©s ayant des connaissances en PHP. <br />
+<span class="important">Attention: vous ne devez pas inclure des pages complÃ¨tes contenant un entÃªte ou un pied de page html (balises de type <tt class="code">&lt;head&gt;</tt> ou <tt class="code">&lt;body&gt;</tt>), ni des fichiers inclus faisant des manipulations d'entÃªte, par exemple lisant un autre cookie (non-coppermine).</span></p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<h4> Chemin pour inclure un pied de page personnalisÃ©</h4>
+<p>Chemin relatif vers un fichier optionnel de pied de page personnalisÃ©. Les mÃªmes remarques que pour l'entÃªte personnalisÃ© s'appliquent.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_theme_include_path_end"></a>
+<a name="admin_theme_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_album_list"></a>
+<h3>4.12.4 Affichage de la liste des Albums</h3>
+<a name="admin_album_table-width"></a>
+<h4>Largeur du tableau principal (pixels or %)</h4>
+<p>C'est la largeur du tableau utilisÃ© dans la page principale ou quand vous affichez les vignettes d'un album. Vous pouvez entrer une largeur en pixels ou en pourcentage. La valeur par dÃ©faut est 100%.</p>
+<a name="admin_album_table-width_end"></a>
+<a name="admin_album_category-levels"></a>
+<h4> Nombre de niveaux de catÃ©gories Ã  afficher</h4>
+<p>La valeur par dÃ©faut est 2. Avec cette valeur, le script va afficher la catÃ©gorie actuelle plus un niveau de sous-catÃ©gories.</p>
+<a name="admin_album_category-levels_end"></a>
+<a name="admin_album_number"></a>
+<h4> Nombre d'albums Ã  afficher</h4>
+<p>C'est le nombre d'albums Ã  afficher sur une pagee. Si la catÃ©gorie contiens plus d'albums, ils seront affichÃ©s sur plusieurs pages.</p>
+<a name="admin_album_number_end"></a>
+<a name="admin_album_columns"></a>
+<h4> Nombre de colonnes pour la liste des albums</h4>
+<p>Parle de lui mÃªme. La valeur par dÃ©faut est 2.</p>
+<a name="admin_album_columns_end"></a>
+<a name="admin_album_thumbnail-size"></a>
+<h4> Taille des vignettes en pixels</h4>
+<p>C'est la taille des vignettes qui sont affichÃ©es pour chaque album. 50 veut dire que la vignette s'inscrira dans un carrÃ© de 50x50 pixels.</p>
+<p>Si la taille que vous spÃ©cifiez est plus grande que dans &quot;ParamÃ¨tres des images et des vignettes/Largeur maximum ou hauteur des vignettes&quot;, la vignette sera Ã©tirÃ©e.</p>
+<a name="admin_album_thumbnail-size_end"></a>
+<a name="admin_album_list_content"></a><a name="changing"></a><h4> Le contenu de la page principale</h4>
+<p>Cette option vous permets de changer le contenu de la page principale affichÃ©e par le script.</p>
+<p>La valeur par dÃ©faut est &quot;<b>catlist/alblist/random,2/lastup,2</b>&quot;</p>
+<p>Vous pouves utiliser les "codes" suivants</p>
+<ul>
+  <li>'<b>breadcrumb</b>': navigation dans la galerie (par exemple &quot;accueil &gt; categories &gt; sous-catÃ©gories &gt; album&quot;)</li>
+  <li>'<b>catlist</b>': Liste des catÃ©gories</li>
+  <li>'<b>alblist</b>': Liste des Albums</li>
+  <li>'<b>random</b>': Fichiers alÃ©atoires (laisser &quot;random files&quot; pour les galeries Ã©normes avec plus de 10,000 images peut poser les problÃ¨mes de performances; enlevez  &quot;random&quot; dans ce cas)</li>
+  <li>'<b>lastup</b>': Derniers ajouts</li>
+  <li>'<b>topn</b>': Les plus populaires</li>
+  <li>'<b>toprated</b>': Les mieix notÃ©es</li>
+  <li>'<b>lastcom</b>': Derniers commentaires </li>
+  <li>'<b>lasthits</b>': Derniers visualisÃ©s </li>
+  <li>'<b>anycontent</b>': insÃ¨re du contenu gÃ©nÃ©rÃ© par PHP qui doit se trouver dans le fichier 'anycontent.php' sur la page d'accueil. Peut Ãªtre utilisÃ© pour inclure une banniÃ¨re ou d'autres scripts (compteur...).</li>
+  <li>'<b>lastalb</b>': Derniers albums crÃ©es</li>
+  </ul>
+<p>Sauf si vous savez rÃ©ellement ce que vous faites laissez 'catlist' et "alblist" dans le &quot;<i>contenu de la page principale</i>&quot;, ce sont les parties de base de la page d'accueil.</p>
+<p>Le <b>,2</b> signifie 2 lignes de vignettes.</p>
+<a name="admin_album_list_content_end"></a>
+<a name="admin_album_first-level_thumbs"></a>
+<h4> Afficher les vignettes de l'album du premier niveau avec la catÃ©gorie</h4>
+<p>Utilisez ce paramÃ¨tre pour choisir de montrer ou pas les vignettes du premier album dans la catÃ©gorie.</p>
+<a name="admin_album_first-level_thumbs_end"></a>
+<a name="admin_album_list_alphasort_start"></a>
+<h4> Classer les catÃ©gories par ordre alphabÃ©tique (au lieu du classement par ajout)</h4>
+<p>Vous pouvez spÃ©cifier Ã  Coppermine de trier toutes les catÃ©gories par ordre alphabÃ©tique (au lieu d'un ordre personnalisÃ©) en parametrant &quot;Trier les catÃ©gories par ordre alphabÃ©tique&quot; sur &quot;OUI&quot;. Ce paramÃ©trage est disponible dans la page de configuration de Coppermine et dans le gestionnaire de catÃ©gories. Si vous activez le tri alphabÃ©tique, les flÃ¨ches de montÃ©e et de descente permettant de dÃ©placer les catÃ©gories n'apparaitrons plus.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_album_list_alphasort_end"></a>
+<a name="admin_album_linked_files_start"></a><h4> Afficher le nombre de fichiers liÃ©s</h4>
+<p>Si vous utilisez les mots clÃ© des albums pour afficher des images/fichiers dans plus d'un album, l'activation de cette fonction affichera des informations complÃ©mentaires dans les tatistiques de l'album: si un album ne contient pas uniquement des fichiers &quot;normaux&quot;, mais des fichiers liÃ©s via l'option "<a href="#album_prop_keyword_start">mots clÃ© de l'album</a>", le nombre de fichiers liÃ©s sera affichÃ© sÃ©parÃ©ment comme ceci "3 fichiers, les dernier ajoutÃ© le 07 octobre, 2004<i>, 3 fichiers liÃ©s, 6 fichiers au total</i>".</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_album_linked_files_end"></a>
+<a name="admin_album_list_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_thumbnail_view"></a>
+<h3>4.12.5 Affichage des vignettes</h3>
+<a name="admin_thumbnail_columns"></a>
+<h4> Nombre de colonnes sur la page des vignettes</h4>
+<p>La valeur par dÃ©faut est 4, cela signifie que chaque ligne affichera 4 vignettes.</p>
+<a name="admin_thumbnail_columns_end"></a>
+<a name="admin_thumbnail_rows"></a>
+<h4> Nombre de lignes sur la page des vignettes</h4>
+<p>La valeur par dÃ©faut est 3.</p>
+<a name="admin_thumbnail_rows_end"></a>
+<a name="admin_thumbnail_tabs"></a>
+<h4> Nombre maximal d'onglets Ã  afficher</h4>
+<p>Si les vignettes sont affichÃ©es sur plusieures pages, des onglets sont affichÃ©s en bas de page. Cette valeur dÃ©finie combien d'onglets doivent Ãªtre affichÃ©s.</p>
+<a name="admin_thumbnail_tabs_end"></a>
+<a name="admin_thumbnail_display_caption"></a>
+<h4> Afficher la lÃ©gende de l'image (en plus de son titre) sous la vignette </h4>
+<p>SÃ©lectionne quelles lÃ©gendes sont affichÃ©es sous chaque vignette lorsque le visiteur visualise (normalement) les vignettes.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_thumbnail_display_caption_end"></a>
+<a name="admin_thumbnail_display_views"></a>
+<h4> Afficher le nombre de vues sous la vignette</h4>
+<p>SÃ©lectionne l'affichage du nombre de vues sous chaque vignette lorsque le visiteur les visualise.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_thumbnail_display_views_end"></a>
+<a name="admin_thumbnail_display_comments"></a>
+<h4> Afficher le nombre de commentaires sous les vignettes</h4>
+<p>SÃ©lectionne l'affichage du nombre de commentaire sous les vignettes.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_thumbnail_display_comments_end"></a>
+<a name="admin_thumbnail_display_uploader"></a>
+<h4> Afficher le nom de l'utilisateur sous la vignette</h4>
+<p>SÃ©lectionne l'affichage du "tÃ©lÃ©chargeur" non administrateur de l'image/fichier sous la vignette.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_thumbnail_display_uploader_end"></a>
+<a name="admin_thumbnail_display_admin_uploader"></a>
+<h4>Afficher le nom de l'administrateur sous la vignette de ses images</h4>
+<p>SÃ©lectionne l'affichage du nom du "tÃ©lÃ©chargeur" de l'image qui appartient au groupe "administrateur".</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_thumbnail_display_admin_uploader_end"></a>
+<a name="admin_thumbnail_display_filename"></a>
+<h4> Afficher le nom du fichier sous la vignette</h4>
+<p>SÃ©lÃ©ectionne l'affichage du nom< du fichier sous chaque vignette.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_thumbnail_display_filename_end"></a>
+<a name="admin_thumbnail_display_description"></a>
+<h4> Afficher la description des albums</h4>
+<p>SÃ©lÃ©ctionne l'affichage de la description de l'album sous chaque vignette d'album.</p>
+<a name="admin_thumbnail_display_description_end"></a>
+<a name="admin_thumbnail_default_sortorder"></a>
+<h4> Classement par dÃ©faut des fichiers</h4>
+<p>Cette option dÃ©termine l'ordre d'affichage des vignettes lorsque l'utilisateur les visualise.</p>
+<a name="admin_thumbnail_default_sortorder_end"></a>
+<a name="admin_thumbnail_minimum_votes"></a>
+<h4> Nombre minimun de vote pour apparaÃ®tre dans la liste 'les mieux notÃ©s'</h4>
+<p>UtilisÃ© pour dÃ©terminer combien de vote un fichier doit recevoir avant d'apparaitre dans &quot;Les mieux notÃ©es.&quot;  Si un fichier reÃ§ois moins de votes que &quot;cette valeur&quot;, il ne sera pas affichÃ© dans la page "les mieux notÃ©es".</p>
+<a name="admin_thumbnail_minimum_votes_end"></a>
+<a name="admin_thumbnail_view_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_image_comment"></a>
+<h3>4.12.6 Affichage des images</h3>
+<a name="admin_image_comment_table-width"></a>
+<h4>Largeur du tableau pour l'affichage des images (pixels ou %)</h4>
+<p>La largeur du tableau utilisÃ© pour l'affichage des images intÃ©rmÃ©diaires.</p>
+<p>Exemples:<br /><tt class="code">600</tt> = Le tableau autour de l'images aura une largeur de 600 pixels (mÃªme si l'image a une plus grande largeur).<br />
+<tt class="code">100%</tt> = Utilise la place disponible (DÃ©pends de la dimension horizontale de l'image).</p>
+<a name="admin_image_comment_table-width_end"></a>
+<a name="admin_image_comment_info_visible"></a>
+<h4>Les informations sur l'image sont visibles par dÃ©faut</h4>
+<p>DÃ©finit si les informations sur le fichier (celles qui apparaissent lorsque vous cliquez sur le bouton (i)) sont visibles par dÃ©faut.</p>
+<a name="admin_image_comment_info_visible_end"></a>
+<a name="admin_image_comment_descr_length"></a>
+<h4> Nombre maximun de caractÃ¨res pour la description des fichiers</h4>
+<p> Nombre maximun de caractÃ¨res que la description des fichiers peut avoir.</p>
+<a name="admin_image_comment_descr_length_end"></a>
+<a name="admin_image_comment_filmstrip_toggle"></a>
+<h4> Afficher le nÃ©gatif</h4>
+<p>SÃ©lÃ©ctionne l'affichage du nÃ©gatif outour des vignettes des images prÃ©cÃ©dentes et suivantes dans l'album (affichage des images intermÃ©diaires).</p>
+<p class="small">[cpg1.2.0 ou supÃ©rieur requis]</p>
+<a name="admin_image_comment_filmstrip_toggle_end"></a>
+<a name="admin_image_comment_display_film_strip_filename"></a>
+<h4> Afficher le nom du fichier en dessous du nÃ©gatif</h4>
+<p>SÃ©lectionne l'affichage du nom des fichiers sous chaque vignette dans le nÃ©gatif.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_image_comment_display_film_strip_filename_end"></a>
+<a name="admin_image_comment_filmstrip_number"></a>
+<h4> Nombre de vignettes dans le nÃ©gatif</h4>
+<p>Parametre le nombre de vignettes a afficher dans le nÃ©gatif.</p>
+<p class="small">[cpg1.2.0 ou supÃ©rieur requis]</p>
+<a name="admin_image_comment_filmstrip_number_end"></a>
+<a name="admin_image_comment_slideshow_interval"></a>
+<h4>Intervalle du diaporama en millisecondes (1 seconde = 1000 millisecondes)</h4>
+<p>Cela paramÃ¨tre le temps d'affichage de chaque image (intervalle de transition) lorsque le visiteur regarde un diaporama (L'image suivante est chargÃ©e/cachÃ©e pendant que l'image en cours est affichÃ©e). Cet intervalle doit Ãªtre en millisecondes (1 seconde = 1000 millisecondes).<br />Rappelez vous que donner trÃ¨s petite valeur a ce paramÃ¨tre value n'a pas de sens pour pous les utilisateurs, spÃ©cialement pour ceux qui ont une connection lente ou si vous avez de gros fichiers.</p>
+<a name="admin_image_comment_slideshow_interval_end"></a>
+<a name="admin_image_comment_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_comment_start"></a>
+<h3>4.12.7 ParamÃ¨tres des commentaires</h3>
+<a name="admin_image_comment_bad_words"></a>
+<h4> Filtrer les mots interdits dans les commentaires</h4>
+<p>Efface les "mots interdits" des commentaires. La liste des "mots interdits" est dans le fichier langage .</p>
+<a name="admin_image_comment_bad_words_end"></a>
+<a name="admin_image_comment_smilies"></a>
+<h4> Autoriser les smileys dans les commentaires</h4>
+<p>SÃ©lectionne l'usage des smileys dans les commentaires.</p>
+<a name="admin_image_comment_smilies_end"></a>
+<a name="admin_image_comment_flood"></a>
+<h4>Autoriser plusieurs commentaires consÃ©cutifs pour une images par un mÃªme utilisateur (dÃ©sactive la protection anti-flood)</h4>
+<p>Ce paramÃ¨trage sÃ©lectionne une protection contre l'afflu de commentaires. Si le paramÃ©trage est OUI, un visiteur peut poster un commentaire, mÃªme si il vient d'en poster un. Il est recommandÃ© de paramÃ©trer sur NON.</p>
+<a name="admin_image_comment_flood_end"></a>
+<a name="admin_image_comment_chars_per_word"></a>
+<h4>  Nombre maximun de caractÃ¨res dans un mot</h4>
+<p>Afin d'aviter que quelqu'un ne casse la disposition de la galerie en postant un long commentaire sans espace. Avec le paramÃ©trage par dÃ©faut, les mots de plus de 38 caractÃ¨res sont censurÃ©s.</p>
+<a name="admin_image_comment_chars_per_word_end"></a>
+<a name="admin_image_comment_lines"></a>
+<h4> Nombre maximun de lignes dans un commentaire</h4>
+<p>Evite d'avoir des commentaires trop longs.</p>
+<a name="admin_image_comment_lines_end"></a>
+<a name="admin_image_comment_length"></a>
+<h4> Longueur maximum d'un commentaire</h4>
+<p>Nombre maximum de caractÃ¨res que peut contenir un commentaire.</p>
+<a name="admin_image_comment_length_end"></a>
+<a name="admin_image_comment_admin_notify"></a>
+<h4> Informer l'administrateur de nouveaux commentaires par courriel</h4>
+<p>SÃ©lectionne si vous voulez recevoir un courriel Ã  chaque fois qu'un commentaire est postÃ©. Attention: n'activez cette option que si votre site a un faible trafic, ou vous serez submergÃ©s de courriels de notification.</p>
+<a name="admin_image_comment_admin_notify_end"></a>
+<a name="admin_comment_sort_start"></a>
+<h4> Ordre de tri des commentaires</h4>
+<p>Change l'ordre des commentaires faits pour un seul fichier.<br />
+Ascendant: Le commentaire le plus rÃ©cent en pied de page, le plus vieux en haut de page<br />
+Descendant: Le commentaire de plus rÃ©cent en haut de page, le plus ancien en bas de page</p>
+<a name="admin_comment_sort_end"></a>
+<a name="comments_anon_pfx"></a>
+<h4> PrÃ©fixe pour les commentaires d'utilisateurs anonymes</h4>
+<p>Si vous avez autorisÃ© les viviteurs anonymes Ã  poster des commenatires (droits paramÃ©trÃ©s dans le panneau de configuration des <a href="#group_cp">groupes</a> ), Ce prÃ©fixe sera utilisÃ© Ã  gauches des commentaires des visiteurs anonymes. Cela peut Ãªtre utile pour Ã©viter que des utilisateurs non-enregistrÃ©s ne se fassent passer pour un utilisateur enregistrÃ© (ou un administrateur) en postant un commentaire. Laissez vide si vous ne voulez pas de prÃ©fixe devant les commentaires des "invitÃ©s".</p>
+<a name="comments_anon_pfx_end"></a>
+<a name="admin_comment_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_picture_thumbnail"></a>
+<h3>4.12.8 ParamÃ¨tres des images et vignettes</h3>
+<a name="admin_picture_thumbnail_jpeg_quality"></a>
+<h4> QualitÃ© pour les fichiers JPG</h4>
+<p>La qualitÃ© utilisÃ©e pour la compression JPEG lorsque le script redimentionne les images. Cette valeur peut aller de 0 (Le plus mauvais) to 100 (Le meilleur). Cette valeur peut Ãªtre mise Ã  75 si vous utilisez ImageMagick.<br />Vous ne devez pas changer ce paramÃ©trage si vous ne savez pas ce que vous faites, les autres options sur les vignettes ou images intermÃ©diaires (dimensions) ont un plus grand impact sur la taille des fichiers que le taux de compression.</p>
+<a name="admin_picture_thumbnail_jpeg_quality_end"></a>
+<a name="admin_picture_thumbnail_max-dimension"></a>
+<h4> Dimension maximale pour les vignettes **</h4>
+<p>DdÃ©fini la taille maximale en pixels pour la dimension spÃ©cifique des vignettes.</p><div class="important">Si vous changez ce paramÃ©trage, seul les fichiers ajoutÃ©s Ã  partir de ce moment sont concernÃ©s, Il est donc prÃ©fÃ©rable de ne pas changer ce paramÃ¨tre si il y a dÃ©jÃ  des images dans la galerie. Vous pouvez malgrÃ© tout appliquer ces changements aux fichiers existants avec &quot;l'utilitaire d'administration (redimentionner les images)&quot; du menu administrateur.</div>
+<a name="admin_picture_thumbnail_max-dimension_end"></a>
+<a name="admin_picture_thumbnail_use-dimension"></a>
+<h4> Utiliser la dimension (largeur ou hauteur ou aspect max pour la vignette)</h4>
+<p>DÃ©fini la dimension qui sera utilisÃ©e pour dÃ©terminer la taille maximum en pixels qui sera utilisÃ©e.</p><div class="important">Si vous changez ce paramÃ©trage, seul les fichiers ajoutÃ©s Ã  partir de ce moment sont concernÃ©s, Il est donc prÃ©fÃ©rable de ne pas changer ce paramÃ¨tre si il y a dÃ©jÃ  des images dans la galerie. Vous pouvez malgrÃ© tout appliquer ces changements aux fichiers existants avec &quot;l'utilitaire d'administration (redimentionner les images)&quot; du menu administrateur.</div>
+<a name="admin_picture_thumbnail_use-dimension_end"></a>
+<a name="admin_picture_thumbnail_intermediate_toggle"></a>
+<h4> CrÃ©er des images intermÃ©diaires</h4>
+<p>Par dÃ©faut, lorsque vous tÃ©lÃ©chargez des fichiers, le script crÃ©e une vignette du fichier (avec un nom ayant pour prÃ©fixe thumb_) plus une version intÃ©rmÃ©diaire (Fichier avec un nom ayant pour prÃ©fixe normal_). Si vous placez cette option sur NON, L'image intermÃ©diaire n'est pas crÃ©e.</p>
+<a name="admin_picture_thumbnail_intermediate_toggle_end"></a>
+<a name="admin_picture_thumbnail_intermediate_dimension"></a>
+<h4> Largeur ou hauteur maximale pour une image/vidÃ©o intermÃ©diaire</h4>
+<p>Les images intermÃ©diaires sont celles qui sont affichÃ©es lorsque vous cliquez sur les vignettes. La valeur par dÃ©faut est 400, cela signifie que l'image intermÃ©diaire sera inscrite dans un carrÃ© de 400x400 pixels.</p>
+<a name="admin_picture_thumbnail_intermediate_dimension_end"></a>
+<a name="admin_picture_thumbnail_max_upload_size"></a>
+<h4> Poids maximal des images Ã  uploader (Ko)</h4>
+<p>Chaque fichier dont la taille est supÃ©rieure Ã  cette valeur sera rejetÃ©e par le script. Parametrer cette option sur une valeur supÃ©rieure Ã  celle supportÃ©e par votre serveur gÃ©nÃ©rera un "magnifique" message d'erreur de la part du serveur Ã  la place des messages d'erreurs "normaux" de Coppermine - Il est recommandÃ© de placer cette valeur au moins un peu plus bas ou Ã©gale Ã  la valeur maximale acceptÃ©e par votre serveur. La taille autorisÃ©e par votre serveur est difficile Ã  dÃ©terminer par Coppermine (ou par tout autre script PHP)- Si vous ne la connaissez pas et avez un doute, contactez votre hÃ©bergeur.</p>
+<a name="admin_picture_thumbnail_max_upload_size_end"></a>
+<a name="admin_picture_thumbnail_max_upload_dimension"></a>
+<h4> Longueur ou hauteur maximale pour les images/vidÃ©os uploadÃ©es (en pixels)</h4>
+<p>Limite les dimensions des images tÃ©lÃ©chargÃ©es. Redimentionner de grandes images demande beaucoup de ressources mÃ©moire et processeur. Il y a habituellement une limite en place sur votre serveur - Vous ne pouvez pas mettre ce parametrage de Coppermine Ã  une valeur supÃ©rieure que celle supportÃ©e par votre serveur.</p>
+<a name="admin_picture_thumbnail_max_upload_dimension_end"></a>
+<a name="admin_picture_thumbnail_auto-resize"></a>
+<h4> Redimensionner automatiquement les images qui dÃ©passent la hauteur et/ou la largeur maximale</h4>
+<p>Pendant le processus de tÃ©lÃ©chargement, si les images sont plus grandes (en largeur ou en hauteur) que la largeur maximale sont automatiquement redimensionnÃ©es Ã  la taille maximum autorisÃ©e.</p>
+<p><b>Note:</b> La maniÃ¨re dont les images sont redimensionnÃ©es (largeur/hauteurt/aspect maximum) est dÃ©terminÃ© dans l'option d'administration &quot;<a href="#admin_picture_thumbnail_use-dimension">Utilise la dimension (largeur ou hauteur ou aspect maximum pour les vignettes)</a>&quot;</p>
+<p>Il y a trois options:</p>
+<ul><li>Non - DÃ©sactivÃ©</li><li>Oui: Tous - ActivÃ© pour tous les visiteurs, y compris l'administrateur pendant le processus d'ajout par lot.</li>
+<li>Oui: Utilisateurs seulement - AvtivÃ© pour les utilisateurs "normaux"</li></ul>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_picture_thumbnail_auto-resize_end"></a>
+<a name="admin_picture_thumbnail_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_picture_thumb_advanced"></a>
+<h3>4.12.9 ParamÃ¨tres avancÃ©s des images et vignettes</h3>
+<a name="admin_picture_thumb_advanced_private_toggle"></a>
+<h4>Les albums peuvent Ãªtre privÃ©s </h4>
+<p>Si placÃ© sur OUI Votr egalerie pourra contenir des albums visibles uniquement par les utilisateurs membres de groupes particuliers.</p>
+<p>Si un utilisateur est memebre d'un groupe qui peut avoir des albums privÃ©s et que cette otpion est activÃ©e, l'utilisateur aura la possibilitÃ© de cacher certains de ses albums Ã  d'autres visiteurs.</p>
+<p>Cette option ne dÃ©finit <b>pas</b> quels utilisateurs peuvent avoir une galerie privÃ©e, <b>ni</b> ne dÃ©finit qui peut tÃ©lÃ©charger (ces paramÃ¨tres sont accessibles dans le <a href="#group_cp">gestionnaire de groupe</a>). Vous ne devez mettre cette optio sur NON que si vous savez ce que vous faites (par dÃ©faut elle est placÃ©e sur OUI).</p>
+<p class="important">Note: Note: si vous commutez de 'Oui' Ã  'Non' les albums privÃ©s actuels deviendront publics!</p>
+<a name="admin_picture_thumb_advanced_private_toggle_end"></a>
+<a name="admin_picture_thumb_advanced_private_icon_show"></a>
+<h4> Montrer les vignettes des albums privÃ©s aux utilisateurs anonymes </h4>
+<p>SÃ©lectionne l'affichage des vignettes des albums privÃ©s pour les utilisateurs anonymes.<br />placÃ© sur 'NON', l'album sera cachÃ© aux utilisateurs non autorisÃ©s.<br />PlacÃ© sur 'OUI', le nom de l'album, sa description et ses statistiques sont montrÃ©s, mais pas les vignettes ou les fichiers.</p>
+<a name="admin_picture_thumb_advanced_private_icon_show_end"></a>
+<a name="admin_picture_thumb_advanced_filename_forbidden_chars"></a>
+<h4> CaractÃ¨res interdits dans les noms de fichiers</h4>
+<p>Lorsque le nom de fichier d'un fichier tÃ©lÃ©chargÃ© contient un de ces caractÃ¨res, il sera remplacÃ© par un "_".</p>
+<p>Ne changez rien si vous ne savez pas exactement ce que vous faites.</p>
+<a name="admin_picture_thumb_advanced_filename_forbidden_chars_end"></a>
+<a name="admin_picture_thumb_advanced_pic_extensions"></a>
+<h4> Types d'images autorisÃ©s</h4>
+<p>&quot;<i>ALL</i>&quot; autorisera tous les types de fichiers image supportÃ©s par votre librairie graphique (GD ou ImageMagick) . Si vous voulez restreindre l'autorisation Ã  seulement certains types de fichiers, entrez la liste des extensions de fichier que vous autorisez, sÃ©parÃ©s par un "/", par exemple <tt class="code">jpg/bmp/tif</tt></p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_picture_thumb_advanced_pic_extensions_end"></a>
+<a name="admin_thumbs_advanced_movie"></a>
+<h4> Types de vidÃ©os autorisÃ©s</h4>
+<p>&quot;<i>ALL</i>&quot; autorisera TOUS les types de fichiers vidÃ©o au tÃ©lÃ©chargement. Si vous voulez restreindre l'autorisation Ã  seulement certains types de fichiers, entrez la liste des extensions de fichier que vous autorisez, sÃ©parÃ©s par un "/", par exemple <tt class="code">wmv/avi/mov</tt>.</p>
+<p>Nottez bien que pour pouvoir visionner les vidÃ©os, il faudra que l'utilisateur de Coppermine dispose des codecs appropriÃ©s et configurÃ©s correctement sur son ordinateur, par exemple: si vous autorisez le type de fichier <tt class="faq">mov</tt>, l'utilisateur qui va vouloir visonner cette vidÃ©o devra avoirle plug-in Quick-Time d'Apple installÃ©. Donc notez que <tt class="code">avi</tt> est juste un conteneur pour diffÃ©rents codecs - ce qui veut dire que si un ordinateur est capable de lire video1.avi il est possible qu'il ne puisse pas lire video2.avi si ces deux fichiers ont Ã©tÃ© encodÃ©s avec diffÃ©rents codecs.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_thumbs_advanced_movie_end"></a>
+<a name="admin_movie_autoplay"></a>
+<h4> DÃ©marrage automatique des vidÃ©os</h4>
+<p>Si placÃ© sur OUI, les vidÃ©os seront lancÃ©es imÃ©diatement lorsquelles sont chargÃ©es (ne s'applique pas aux fichiers Flash).</p>
+<a name="admin_movie_autoplay_end"></a>
+<a name="admin_picture_thumb_advanced_audio_extensions"></a>
+<h4> Types de fichiers sons autorisÃ©s</h4>
+<p>&quot;<i>ALL</i>&quot; autorisera les tÃ©lÃ©charegment de TOUS les types de fichiers audio. Si vous voulez restreindre l'autorisation de tÃ©lÃ©chargement Ã  certains types de fichier, entrez la liste des extentions sÃ©parÃ©s par un "/", par exemple: <tt class="code">wav/mp3/wma</tt>.</p>
+<p>Notez que pour pouvoir Ã©couter un fichier audio, l'utilisateur de Coppermine devra avoir les codecs installÃ©s et configurÃ©s correctement sur son ordinateur, par exemple: si vous autorisez les fichiers <tt class="code">mp3</tt>, l'utilisateur qui voudra les Ã©couter devra avoir un lecteur mp3 installÃ©.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
+<a name="admin_picture_thumb_advanced_doc_extensions"></a>
+<h4> Types de fichiers textes autorisÃ©s</h4>
+<p>&quot;<i>ALL</i>&quot; autorisera le tÃ©lÃ©chargement de TOUS les types de fichiers "documents". Si vous voulez restreindre l'autorisation de tÃ©lÃ©chargement Ã  certains types de fichiers, entrez la liste des extentions sÃ©parÃ©s par un "/", par exemple: <tt class="code">txt/pdf</tt>.</p>
+<p>Notez que pour pouvoir ouvrir les documenst, l'utilisateur de Coppermine devra avoir installÃ© sur son ordinateur, le logiciel capable de le lire, par exemple: si vous autorisez les fichiers <tt class="code">xls</tt>, l'utilisateur qui voudra ouvrir ces fichiers devra posseder une application capable d'ourir et de lire les fichiers MS-Excel . Soyez vigilant avec certains types de fichiers (en particulier si vous autorisez le tÃ©lÃ©chargement sans l'approbation de l'administrateur), ils peuvent contenir des macro-virus.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
+<a name="admin_picture_thumb_advanced_resize_method"></a>
+<h4> MÃ©thode de redimensionnement des images</h4>
+<p>ParamÃ©trez avec le type de librairie Images prÃ©sente sur votre serveur (soit GD1, GD2 ou ImageMagick).</p>
+<p>Si vous utilisez GD 1.x et que les couleurs de vos vignettes et de vos images intermÃ©diaires ne sont pas bonnes, vous avez probablement GD2 sur votr eserveur - basculez cette option sur GD 2.x</p>
+<p>La plupars des distributions rÃ©centes de PHP sont livrÃ©es avec GD - Si vous ne savez pas ce que vous avez, mettez cette option sur GD2 et regardez votre paramÃ©trage dans <a href="http://www.php.net/phpinfo" rel="external" class="external">phpinfo</a>.</p>
+<a name="admin_picture_thumb_advanced_resize_method_end"></a>
+<a name="admin_picture_thumb_advanced_im_path"></a>
+<h4> Chemin vers l'utilitaire 'convert' d'ImageMagick (exemple /usr/bin/X11/)</h4>
+<p>Si vous utilisez l'utilitaire de conversion ImageMagick pour redimentionner vos images, vous devez entrer le nom du rÃ©pertoirelans lequel se trouve le programme de conversion. N'oubliez pas le "<tt class="code">/</tt>"final.</p>
+<p>Si votre serveur fonctionne sous Windows, utilisez / et non \ pour sÃ©parer les Ã©lÃ©ments du chemin (exemple: utlisez C:/ImageMagick/ et non C:\ImageMagick\). Ce chemin ne doit pas contenir d'espaces, donc sous ne placez pas ImageMagick dans le rÃ©pertoire "Program files".</p>
+<p><b>ImageMagick fonctionnera avec difficultÃ©s si PHP, sur votre serveur, fonctionne en  SAFE mode et c'est un vÃ©ritable challenge de le faire fonctionner sous Windows. Utilisez  GD dans ces cas et ne perdez pas votre temps Ã  demander de l'aide sur le forum Ã  ce sujet. Il y a trop de choses qui peuvent empÃªcher ImageMagick de fonctionner correctement, et sans un accÃ¨s physique Ã  votre serveur il est difficiles d'estimer ce qui ne va pas.</b></p>
+<a name="admin_picture_thumb_advanced_im_path_end"></a>
+<a name="admin_picture_thumb_advanced_allowed_imagetypes"></a>
+<h4>Types d'images autorisÃ©s (uniquement pour ImageMagick)</h4>
+<p>C'est la liste des types d'images que le script va accepter si vous utilisez ImageMagick. La dÃ©tection du type d'image se fait en lisant les informations de l'entÃªte du fichier et non en regardant l'extention du fichier.</p>
+<a name="admin_picture_thumb_advanced_allowed_imagetypes_end"></a>
+<a name="admin_picture_thumb_advanced_im_commandline"></a>
+<h4> Options de ligne de commande pour ImageMagick</h4>
+<p>Ici vou spouvez ajouter des options qui vont se joindre Ã  la ligne de commande lors de l'exÃ©cution de ImageMagick. Lisez le manuel d'ImageMagick pour voir ce qui est possible.</p>
+<a name="admin_picture_thumb_advanced_im_commandline_end"></a>
+<a name="admin_picture_thumb_advanced_exif"></a>
+<h4> Lire les informations EXIF dans les fichiers JPEG</h4>
+<p>Avec cette option sur Oui, le programme va lire les informations EXIF  placÃ©es par les appareils photos numÃ©riques dans les fichiers JPEG. Pour cpg1.x Ã  cpg1.2.1, cette option ne fonctionnera que si PHP a Ã©tÃ© compilÃ© avec l'extention EXIF. Coppermine 1.3.0 (ou supÃ©rieur) intÃ¨gre les ressources EXIF mÃªme si le serveur lui mÃªme ne les a pas, puisqu'il utilise une <a href="http://www.offsky.com/software/exif/index.php" class="external">classe EXIF sÃ©parÃ©e</a>.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_picture_thumb_advanced_exif_end"></a>
+<a name="admin_picture_thumb_advanced_iptc"></a>
+<h4> Lire les informations IPTC dans les fichiers JPEG</h4>
+<p>Avec cette option sur OUI, le script va lire les informations <a href="http://www.iptc.org/" class="external">IPTC</a> placÃ©es par les appareils photos numÃ©riques dans les fichiers images.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_picture_thumb_advanced_iptc_end"></a>
+<a name="admin_picture_thumb_advanced_albums_dir"></a>
+<h4> RÃ©pertoire des albums</h4>
+<p>C'est le rÃ©pertoire de base pour votre "Stock d'Images". C'est le chemin relatif depuis le rÃ©pertoire principal du programme. </p>
+<p>Vous pouvez utiliser ../ dans le chemin pour monter d'un niveau dans l'arborescence.</p>
+<p>Vous ne pouvez <b>past</b> utiliser un chemin absolu ici ("/var/mes_images/" ne fonctionnera pas) et le rÃ©pertoire album doit Ãªtre visible par votre serveur.</p>
+<p>Ce paramÃ¨tre ne doit pas Ãªtre changÃ© si vous avez dÃ©jÃ  des fichiers dans votre base de donnÃ©e. Si vous le faites, toutes les liens vers vos fichiers existants seront brisÃ©s.</p>
+<a name="admin_picture_thumb_advanced_albums_dir_end"></a>
+<a name="admin_picture_thumb_advanced_userpics_dir"></a>
+<h4> RÃ©pertoire pour les fichiers des utilisateurs</h4>
+<p>C'est le rÃ©pertoire ou sont stockÃ©s les fichiers tÃ©lÃ©chargÃ©s depuis l'interface Web. Ce rÃ©pertoire est un sous-rÃ©pertoire su rÃ©pertoire the album.</p>
+<p>Les mÃªmes remarques que prÃ©cÃ©demment s'appliquent.</p>
+<p>Si vous tÃ©lÃ©chargez des fichiers par le FTP, placez les dans un sous-rÃ©pertoire du rÃ©pertoire "album" et non dans le &quot;rÃ©pertoire pour les fichiers utilisateurs&quot;. </p>
+<p>Ce paramÃ¨tre ne doit pas Ãªtre changÃ© si vous avez dÃ©jÃ  des fichiers dans votre base de donnÃ©e. Si vous le faites, toutes les liens vers vos fichiers existants seront brisÃ©s.</p>
+<a name="admin_picture_thumb_advanced_userpics_dir_end"></a>
+<a name="admin_picture_thumb_advanced_intermediate_prefix"></a>
+<h4> PrÃ©fixe pour les images intermÃ©diaires</h4>
+<p>Ce prÃ©fixe est ajoutÃ© au nom de fichier lors de la crÃ©ation des images intermÃ©diaires.</p>
+<p>Ce paramÃ¨tre ne doit pas Ãªtre changÃ© si vous avez dÃ©jÃ  des fichiers dans votre base de donnÃ©e. Si vous le faites, toutes les liens vers vos fichiers existants seront brisÃ©s.</p>
+<a name="admin_picture_thumb_advanced_intermediate_prefix_end"></a>
+<a name="admin_picture_thumb_advanced_thumbs_prefix"></a>
+<h4> PrÃ©fixe pour les vignettes</h4>
+<p>Ce prÃ©fixe est ajoutÃ© au nom de fichier lors de la crÃ©ation des vignettes.</p>
+<p>Ce paramÃ¨tre ne doit pas Ãªtre changÃ© si vous avez dÃ©jÃ  des fichiers dans votre base de donnÃ©e. Si vous le faites, toutes les liens vers vos fichiers existants seront brisÃ©s.</p>
+<a name="admin_picture_thumb_advanced_thumbs_prefix_end"></a>
+<a name="admin_picture_thumb_advanced_chmod_folder"></a>
+<h4> Mode par dÃ©faut des rÃ©pertoires</h4>
+<p>Si pendant l'installation, l'installeur vous signale qu'un rÃ©pertoire n'a pas ces droits demandÃ©s, placez le sur <b>0777</b> sinon vous n'aurez pas la possibilitÃ© d'effacer les rÃ©pertoires crÃ©es par le programme avec votre client FTP le jour ou vous dÃ©ciderez de dÃ©sinstaller le programme.</p>
+<p><span class="important">Attention</span>: paramÃ©trer cette option ne fait pas de CHMOD sur vos fichiers ou rÃ©pertoires imÃ©diatement; au lieu de celÃ , Coppermine en tient compte en crÃ©ant de nouveaux rÃ©pertoires pour le tÃ©lÃ©chargement des utilisateurs (a l'intÃ©rieur du rÃ©pertoire "userpics"). Si vous rencontrez des problÃ¨mes  concernant les droits pendant la configuration initiale de Coppermine, cette option n'est <b>pas</b> ce qu'il faut regarder ou changer.</p>
+<a name="admin_picture_thumb_advanced_chmod_folder_end"></a>
+<a name="admin_picture_thumb_advanced_chmod_files"></a>
+<h4> Mode par dÃ©faut des fichiers</h4>
+<p>Si pendant l'installation, l'installeur vous signale qu'un rÃ©pertoire n'a pas ces droits demandÃ©s, placez le sur <b>0666</b>.</p>
+<p><span class="important">Attention</span>: paramÃ©trer cette option ne fait pas de CHMOD sur vos fichiers ou rÃ©pertoires imÃ©diatement; au lieu de celÃ , Coppermine en tient compte lors du tÃ©lÃ©chargement d'images dans la galerie ou de la crÃ©ation des vignettes et des images intermÃ©diaires. Si vous rencontrez des problÃ¨mes  concernant les droits pendant la configuration initiale de Coppermine, cette option n'est <b>pas</b> ce qu'il faut regarder ou changer.</p>
+<a name="admin_picture_thumb_advanced_chmod_files_end"></a>
+<a name="admin_picture_thumb_advanced_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_user"></a>
+<h3>4.12.10 ParamÃ¨tres Utilisateurs</h3>
+<a name="admin_allow_registration"></a>
+<h4> Autoriser de nouvelles inscriptions</h4>
+<p>DÃ©fini si les nouveaux visiteurs peuvent s'enregistrer eux mÃªme ou non. Si vous parametrez sur NON, seul l'administrateur pourra crÃ©e de nouveaux utilisateurset le lien &quot;s'identifier&quot; ne s'affichera plus dans le menu de navigation.</p>
+<a name="admin_allow_unlogged_access"></a>
+<h4> Autoriser l'accÃ¨s aux visiteurs non authentifiÃ©s (visiteur ou anonyme)</h4>
+<p>Si placÃ© sur &quot;Non&quot;, les utilisateurs non identifiÃ©s (exemples: visiteurs ou utilisateurs anonymes) ne peuvent pas acceder Ã  votre galerie sauf Ã  la page d'identification (et la page d'inscription si vous avez autorisÃ© les inscriptions). Soyez attentifs au fait que de dÃ©sactiver totalement l'accÃ¨s anonyme affaiblira la popularitÃ© de votre site. N'utilisez celÃ  que si vous souhaitez que votr egalerie soit totalement privÃ©e. Il est recommandÃ© de laisser l'accÃ¨s anonyme et d'utiliser les droits d'accÃ¨s des groupes et d'albums pour filtrer vos utilisateurs.</p>
+<a name="admin_allow_unlogged_access_end"></a>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_allow_registration_end"></a>
+<a name="admin_registration_verify"></a>
+<h4> L'inscription d'un nouvel utilisateur doit Ãªtre validÃ©e</h4>
+<p>Si placÃ© sur OUI un email contenant un code d'activation sera envoyÃ© Ã  l'utilisateur. Si placÃ© sur NON, le compte utilisateur sera immÃ©diatement actif.</p>
+<a name="admin_registration_verify_end"></a>
+<a name="admin_registration_notify"></a>
+<h4> Notifier l'administrateur des nouvelles inscriptions par courriel</h4>
+<p>Si placÃ© sur OUI un courriel sera envoyÃ© Ã  l'administrateur de la galerie lorsqu'un nouvelutilisateur s'est enregistrÃ©.</p>
+<a name="admin_registration_notify_end"></a>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_activation"></a>
+<h4> L'administrateur doit activer les enregistrements</h4>
+<p>Demande l'activation par l'administrateur. ParamÃ©trÃ© sur OUI, celÃ  permets Ã  l'administrateur d'activer les nouvelles isncriptions.</p>
+<p>Par dÃ©faut, cette ce paramÃ¨tre est placÃ© sur NON, ainsi les utilisateurs peuvent activer eux mÃªme leur compte aprÃ¨s l'inscription.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_activation_end"></a>
+<a name="admin_allow_duplicate_emails_addr"></a>
+<h4> Autoriser deux utilisateurs Ã  avoir la mÃªme adresse courriel</h4>
+<p>Autorise ou empÃ¨che deux utilisateurs de s'enregistrer avec la mÃªme adresse Email. Il est recommendÃ© de placer cette option sur NON. Cette option a Ã©tÃ© dÃ©saprouvÃ©e et sera peut Ãªtre suprimÃ©e dans une prochaine version de Coppemrine.</p>
+<a name="admin_allow_duplicate_emails_addr_end"></a>
+<a name="admin_approval_notify"></a>
+<h4> Notifier l'administrateur lorsque des uploads nÃ©cessitent son approbation</h4>
+<p>Si activÃ©, l'administrateur de la galerie recevra un courriel le prÃ©venant de toutes le images attendant son approbation (depends du paramÃ©trage concernant l'approbation dans &quot;<a href="#group_cp">groups</a>&quot;). Le courriel est envoyÃ© Ã  l'adresse spÃ©cifiÃ©e dans &quot;<a href="#admin_general">parametres gÃ©nÃ©raux</a>&quot;.</p><p>Cette option n'est recommendÃ©e que pour les sites avec peu de trafic (si les utilisateurs tÃ©lÃ©chargent uniquement de temps en temps).</p>
+<a name="admin_approval_notify_end"></a>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_user_memberlist"></a>
+<h4> Autoriser les utilisateurs authentifiÃ©s Ã  visualiser la liste des membres</h4>
+<p>Si activÃ©, un Ã©lÃ©ment de menu complÃ©mentaire &quot;liste des membres&quot; est affichÃ© dans le menu principal de Coppermine si un utilisateur s'est autentifiÃ©, lui permettant de voir la liste de tous les utilisateurs, avec les statistiques concernat leur derniÃ¨re visite, tÃ©lÃ©chargements et utilisation de leur quota disque.</p><p>C'est une nouvelle fonction dans  cpg1.3.0 (contribution de l'utilisateur <a href="#contributors">Jason</a>) - elle est disponible comme <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98542">mod</a> (pas dans la distribution normale de Coppermine) pour les versions antÃ©rieures Ã  cpg1.3.0.</p>
+<a name="admin_user_memberlist_end"></a>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_user_allow_email_change"></a>
+<h4> Autoriser les utilisateurs Ã  changer leur adresse courriel dans leur profil</h4>
+<p>Cette option Ã  un impact sur la page profil de l'utilisateur, il dÃ©termine si l'utilisateur peut changer sa propre adresse Email.<br />Utilisez cette option prudemment, comme l'adresse Email de l'utilisateur n'est pas enregistrÃ©e: si vous laisse les utilisateurs changer leu adresse mail, ils peuvent la changer en une adresse non valide (par exemple aprÃ¨s avoir mise en ligne des images enfreignant les rÃ¨gles de votre galerie) - vous n'aurez aucune chance de les retrouver.</p>
+<p>Cette option ne peut Ãªtre prise en compte que si vous utilisez une version autonome de Coppermine; si vous utilisez Coppermine intÃ©grÃ© Ã  un forum, cette option ne sera tout simplement pas prise en compte, comme le profil utilisateur de votre forum sera utilisÃ© pour gÃ©rer votre profil utilisateur dans Coppermine.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_user_allow_email_change_end"></a>
+<a name="admin_user_editpics_public_start"></a>
+<h4> Autoriser les utilisateurs Ã  garder le controle de leurs images dans les galeries publiques</h4>
+<p>si activÃ©, l'administrateur ne sera plus le seul Ã  pouvoir Ã©diter les images et les fichiers tÃ©lÃ©chargÃ©s dans les galeries publiques, les utilisateurs autentifiÃ©s pourront aussi le faire. Bien sur, en premier lieu, l'utilisateur devra avoir le droit de tÃ©lÃ©charger des images dans les gaelries publiques (paramÃ©trable dans  le <a href="#group_cp">panneau de gestion des groupes</a>) pour qu ecette option ait un effet.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_user_editpics_public_end"></a>
+<a name="admin_user_login_start"></a>
+<a name="admin_user_login_threshold_start"></a>
+<h4>Nombre d'Ã©chec d'authentification avant bannissement temporaire (pour parer Ã  une attaque brutale)</h4>
+<p>Pour parrer Ã  une attaque brutale (si un programme hostile essaye de s'identifier dans Coppermine comme administrateur en passant automatiquement en revue toutes les combinaisons possibles de mots de passe et de noms d'utilisateurs) Coppermine bannis temporairement l'adresse IP d'un possible attaquant aprÃ¨s un certain nombre de tentatives d'autentification infructueuses. De cette maniÃ¨reThis way, l'attaque massive prendra beaucoup plus de temps pour essayer toutes les combinaisons possibles.</p>
+<p>Avec ce paramÃ©trage, vous dpÃ©cifiez le nombre de tentatives infructueuse d'autentification aprÃ¨s laquelle l'adresse IP sera bannie temporairement.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_user_login_threshold_end"></a>
+<a name="admin_user_login_expiry_start"></a>
+<h4> DurÃ©e du bannissement temporaire aprÃ¨s un Ã©chec d'authentification</h4>
+<p>Cette valeur spÃ©cifie la durÃ©e du bannissement temporaire (en minutes) aprÃ¨s le nombre de tentatives infructueuses d'autentification spÃ©cifiÃ© par <a href="#admin_user_login_threshold_start">Nombre d'Ã©chec d'authentification avant bannissement temporaire </a>.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_user_login_expiry_end"></a>
+<a name="admin_user_login_end"></a>
+<a name="admin_user_enable_report"></a>
+<h4> Activer les rapports Ã  l'administrateur</h4>
+<p>Active les rapports. Si placÃ© sur OUI, celÃ  permets aux utilisateurs de rapporter des fichiers tÃ©lÃ©chargÃ©s ou des commentaires Ã  l'administrateur de la galerie.</p>
+<p>Ce paramÃ¨tre est dÃ©pendant du fait que les cartes postales Ã©lectroniques sont activÃ©es.  Seuls les utilisateurs ayant le droit d'envoyer des cartes postales Ã©lectroniques dans le paramÃ©trage de leur 'groupe' ont la possibilitÃ© d'envoyer ces rapports. L'icone d'envoie des rapports est cachÃ©e Ã  ceux qui n'ont pas ce droit.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_user_enable_report_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_custom"></a>
+<h4>4.12.11 Champs personnalisÃ©s pour le profil utilisateur (laisser vide si inutilisÃ©s). Utilisez le profil 6 pour les longs textes, comme les biographies </h4>
+<p>Ces champs sont affichÃ©s dans l'espace du &quot;profil utilisateuruser profile&quot;. Ils n'apparaÃ®trons que si vous leur donnez un nom. Comme le dit le titre du chapitre, utilisez le champ 6 pour les textes longs, comme les biographies, ou si vous voulez utiliser les bb code.</p>
+<p>Vous pouvez ausii utiliser le champ 6 pour les avatars.  Pour montrer un avatar dans le profil, il devra Ãªtre entrÃ© en bbcode, par exemple pour montrer 'avatar.gif', qui se trouve dans votre rÃ©pertoire image, utilisez le [img]http://www.votresite.com/images/avatar.gif[/img]</p>
+<a name="admin_custom_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_custom_image"></a>
+<h4>4.12.12 Champs personnalisÃ©s pour les descriptions d'images (laisser vide si inutilisÃ©s)</h4>
+<p>Ces champs sont affichÃ©s dans l'espace &quot;informations du fichier&quot; . Ils n'apparaÃ®trons que si vous leur donnez un nom.</p>
+<a name="admin_custom_image_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+<a name="admin_cookie"></a>
+<h4>4.12.13 ParamÃ¨tres des Cookies</h4>
+<a name="admin_cookie_name"></a>
+<h4>Nom du cookie utilisÃ© par le script (si vous utilisez l'intÃ©gration avec un forum, vÃ©rifiez que les cookies sont diffÃ©rents)</h4>
+<p>La valeur par dÃ©faut est &quot;cpg140&quot;. MÃªme si vous avez diffÃ©rentes versions du script tournant sur le mÃªm serveur vous pouvez laisser la valeur par dÃ©faut.<br /><span class="important">Si vous utilisez une intÃ©gration avec un forum, vÃ©rifiez qu'elle <b>diffÃ¨re</b> du nom du cookie du forum</span></p>
+<a name="admin_cookie_name_end"></a>
+<a name="admin_cookie_path"></a>
+<h4> Chemin du cookie utilisÃ© par le script</h4>
+<p>La valeur pa dÃ©faut est "/". Ne changez pas cette valeur si vous ne savez pas ce que vous faites. Il vous permettra de vous idendifier.</p>
+<p>Si vous avez endomagÃ© votre galerie en modifiant cette valeur, utilisez phpMyAdmin pour Ã©diter la table xxxx_config dans votre base de donnÃ©e et restaurez la valeur par dÃ©faut. </p>
+<p>Si vous utilisez une intÃ©gration de forum avec Coppermine, assurez vous d'utiliser <b>diffÃ©rents</b> noms de cookies pour Coppermine et pour votre forum! Le chemin dans les deux applications doivent Ãªtre dÃ©finis afin que Coppermine puisse lire les deux. Habituellement la valeur par dÃ©faut &quot;<tt class="code">/</tt>&quot; devrait Ãªtre paramÃ©trÃ© de maniÃ¨re identique pour Coppermine et pour le forum avec lequel il est intÃ©grÃ©.</p>
+<a name="admin_cookie_path_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+<a name="admin_email"></a>
+<h4>4.12.14 ParamÃ¨tres Pour les Courriels</h4>
+<p>Habituellement rien n'a a Ãªtre changÃ©; laissez tous les champs vides si vous n'Ãªtes pas sur. Vous ne devez changer ces paramÃ¨tres que si vous rencontrez des problÃ¨mes (par exemple si les cartes postales Ã©lectroniques, les informations d'enregistrement ou les notifications ne sont pas envoyÃ©s). Coppermine lui-mÃªme n'inclue pas de moteur d'envoie de mails, il passe le relais au serveur qui est capable de le faire (en utilisant un mÃ©chanismes inclu dans PHP). Si vous ne savez pas ce qu'il faut entrer, contactez votre hÃ©bergeur pour de l'aide.</p>
+<h4> Serveur SMTP</h4>
+<p>Le nom de serveur <acronym title="Simple Mail Transfer Protocol">SMTP</acronym><br />
+Si vous laissez le champ vide, sendmail (ou equivalent) sera utilisÃ© pour envoyerles courriels depuis votre serveur. Sendmail existe sur la plupars des serveurs Unix/Linux. Si vous spÃ©cifiez un serveur SMTP, Coppermine essayera d'envoyer le courriel en utilisant SMTP (C'est habituellement necessaire sur les serveurs Windows).</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<h4> Nom utilisateur SMTP</h4>
+<p>C'est nom d'utilisateur qui vous authentifie sur le serveur SMTP (Ce n'est <b>pas</b> votre nom dutilisateur administrateur de Coppermine.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<h4> Mot de passe SMTP</h4>
+<p>C'est le mot de passe qui va avec le nom d'utilisateur mentionnÃ© ci-dessus, ce n'est (<b>pas</b> le mÃªme que votre mot de passe administarteur de Coppermine).</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_email_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+<a name="admin_logging"></a>
+<h3>4.12.15 Logs et statistiques</h3>
+<p>Comme tous les logs (ces donnÃ©es seront Ã©ffacÃ©es si l'option d'enregistrement est dÃ©sactivÃ©e), la fonction d'enregistrement de Coppremine impacte  les performances, l'espace de stockage des donnÃ©es et la base de donnÃ©e. Vous devriez rÃ©flÃ©chir si vous avez rÃ©ellement besoin de ces enregistrements avant d'activer cette fonction. Ces enregistrements ne sont utiles que si un administrateur les regarde.</p>
+<a name="admin_logging_log_mode"></a>
+<h4> Mode d'enregistrement </h4>
+<p>DÃ©fini, quelle sortes d'enregistrements vous voulez activer. Cette fonction enregistre tous les changements qui ont lieu dans la base de donnÃ©e de Coppermine, ce qui est trÃ¨s utile si vous Ãªtes en train d'essayer de dÃ©bbuger ou si il y a plusieurs administrateurs pour la galerie.<br />
+Tous les fichiers log sont en Anglais</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="admin_logging_log_mode_end"></a>
+<a name="admin_general_log_ecards"></a>
+<h4> Enregistrer les envois de cartes Ã©lectroniques</h4>
+<p>Si activÃ©, toutes les cartes postales Ã©lectroniques envoyÃ©es sont aussi Ã©crites dans la base de donnÃ©e, et l'administrateur de Coppermine pourra les visualiser. Avant de basculer cette option sur OUI, assurez vous que l'enregistrement de ces donnÃ©es est lÃ©gal dans votre pays. Il est conseillÃ© de prÃ©venir vos utilisateurs que toutes les cartes postales Ã©lectroniques sont enregistrÃ©es (de prÃ©fÃ©rence sur la page d'inscription).</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_log_ecards_end"></a>
+<a name="admin_logging_votedetails"></a>
+<h4> Enregistrer le dÃ©tails des statistiques de vote</h4>
+<p>
+  Activer cette option enregistre:</p>
+  <ol>
+    <li>Chaque vote sÃ©parÃ©ment</li>
+    <li>L'adresse IP</li>
+    <li>La provenance</li>
+    <li>Le navigateur</li>
+    <li>Le systÃ¨me d'exploitation</li>
+  </ol>
+   <p>du "voteur".</p>
+   <p>Comme les statistiques sont gardÃ©es par le biais de fichiers, Le lien vers les statistiques peut Ãªtre accessible individuellement sur la page du fichier (displayimage.php). En cliquant sur le lien dans la section information sur le fichier une fenÃªtre affichant les statistiques du fichier.</p>
+<p>
+  <span class="important">Important: Le total des votes peut ne pas Ãªtre correct si vous activez dÃ©tails et que vous ne rÃ©initialisez pas les votes prÃ©cÃ©dents.</span>
+</p>
+<a name="admin_logging_votedetails_end"></a>
+<a name="admin_logging_hitdetails"></a>
+<h4>Enregistre les statistiques dÃ©taillÃ©es d'accÃ¨s</h4>
+<p>
+  Activer ces otpions enregistre:</p>
+  <ol>
+    <li>Chaque vote sÃ©parÃ©ment</li>
+    <li>L'adresse IP</li>
+    <li>Le mot clÃ© de recherche, si l'afluent est Google, Yahoo! or Lycos</li>
+    <li>l'afluent</li>
+    <li>Le navigateur</li>
+    <li>Le systÃ¨me d'exploitation</li>
+  </ol>
+   <p>du visiteur.</p>
+   <p>Comme les statistiques sont gardÃ©es par le biais de fichiers, Le lien vers les statistiques peut Ãªtre accessible individuellement sur la page du fichier (displayimage.php). En cliquant sur le lien dans la section information sur le fichier une fenÃªtre affichant les statistiques du fichier.</p>
+<p>
+  <span class="important">Important: Le total des votes peut ne pas Ãªtre correct si vous activez dÃ©tails et que vous ne rÃ©initialisez pas les votes prÃ©cÃ©dents.</span>
+</p>
+<a name="admin_logging_hitdetails_end"></a>
+<a name="admin_logging_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="admin_misc"></a>
+<h3>4.12.16 ParamÃ¨tres de la maintenance</h3>
+<a name="debug_mode"></a>
+<h4> Activer le mode dÃ©bogage</h4>
+<p>CPG montrera les messages d'erreur qui sont normalement supprimÃ©s.  CelÃ  aide Ã  la rÃ©soultion des problÃ¨mes de votre galerie lorsque vous demandez de l'aide sur le <a href="http://coppermine.sourceforge.net/board/">Forum d'aide de Coppermine</a>. Laissez cette option sur Non si vous n'avez pas de problÃ¨me.</p>
+<p>Mettez la sur OUI (option &quot;Tout le monde&quot;) si vous demandez de l'aide sur le <a href="http://coppermine.sourceforge.net/board/">forum d'aide de Coppermine</a>, afin que ceux qui veulent vous aider puissent voir les informations de dÃ©bogage. Choisissez l'option &quot;seulement l'administrateur&quot; si vous voulez localiser l'incident vous mÃªme - les informations de dÃ©bogage ne seront visible que si vous vous identifiez comme administrateur, les autres utilisateurs ou visiteurs ne les verront pas.</p>
+<a name="admin_misc_debug_notices"></a>
+<h4> Afficher les avertissements dans le mode dÃ©bogage</h4>
+<p>Peut Ãªtre utile pour localiser les incidents avec votre installation de Coppermine - Uniquement recommendÃ© si vous connaissez un peu PHP pour comprendre les messages d'erreur additionnels affichÃ©s par cette option. Cette option ne s'applique que si le mode de dÃ©bogage est activÃ©.</p>
+<a name="admin_misc_debug_notices_end"></a>
+<a name="debug_mode_end"></a>
+
+<a name="admin_general_offline"></a>
+<h4> La galerie est hors ligne</h4>
+<p>Si vous devez faire des travaux de maintenance sur votre galerie, basculez en mode hors ligne. Seuls les membres du groupe administrateur pourrons s'identifier, tous les autres utilisateurs ne verrons que &quot;La galerie est hors ligne&quot;. Pensez Ã  rebasculer cette option lorsque la maintenance est terminÃ©e.</p>
+<p class="small">[cpg1.3.0 ou supÃ©rieur requis]</p>
+<a name="admin_general_offline_end"></a>
+
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+<a name="exif"></a>
+<h2>4.12 DonnÃ©es EXIF</h2>
+<p>Les format "Exchangeable image file" (Exif) est une spÃ©cificitÃ© pour les fichiers au format image utilisÃ©s par les appareils photos numÃ©riques par l'addition de
+"mÃ©ta datas" spÃ©cifiques. Ces "mÃ©ta datas" sont Ã©crites par l'appareil photo et peuvent
+Ãªtre utilisÃ©es par certaines applications ensuite. Coppermine est
+capable d'afficher certaines de ces donnÃ©es EXIF dans la section d'information des images
+, comme des informations concernant la date et l'heure, les rÃ¨glages de l'appareil photo, des informations sur la localisation
+, des descriptions et des informations sur le copyright .<br>
+<img src="pics/fr_exif_data_cpg1.jpg" alt="Exif data in pic info section" border="0" height="202" width="400">
+</p>
+
+<a name="exif_manager"></a>
+<h2>4.12.1 Gestionnaire d'EXIF </h2>
+<p><img src="pics/fr_exifmanager_cpg1.gif" alt="" align="right" border="0" height="439" width="600">CPG1.4.x
+(ou supÃ©rieur) est livrÃ© avec un gestionnaire de donnÃ©es EXIF permettant Ã  l'administrateur de la galerie Coppermine
+de dÃ©cider quelles donnÃ©es EXIF seront montrÃ©es par Coppermine.
+Notez: Si les donnÃ©es EXIF n'existent pas dans certaines images,
+coppermine ne sera bien entendu pas capable de les montrer. Coppermine n'est pas
+un Ã©diteur de donnÃ©es EXIF - il affiche seulement celles qui existent dans vos images
+.<br>
+Pour acceder au gestionnaire d'EXIF, allez dans la page de configuration de Coppermine et cliquez sur le lien de la section <a href="#admin_picture_thumb_advanced">ParamÃ¨tres avancÃ©s des images et vignettes</a>  "Administrer l'affichafe des EXIFS" Ã  cÃ´tÃ© de la ligne "<a href="#admin_picture_thumb_advanced_exif">Lire les donnÃ©es EXIF dans les fichiers JPEG</a>". Vous pouvez aussi entre directement http://votresite.com/votre_repertoire_coppermine/exifmgr.php dans la barre d'adresse de votre navigateur.</p>
+<p>Cochez les cases dans le gestionnaire d'EXIF devant les informations que vous voulez montrer dans 
+la section d'informations sur l'image de Coppermine(si le fichier image contient ces informations).</p>
+<br clear="all">
+
+<p><a class="back" href="#top">Haut de page</a></p><hr>
+<a name="integrating"></a>
+<h1>5. IntÃ©gration du script avec votre forum</h1>
+<a name="integrating_bridge_start"></a>
+<h2>5.1 Fichiers d'intÃ©gration disponibles</h2>
+<p>Coppermine peut s'intÃ©grer avec les forums suivant (Coppermine et votre forum vont partager la mÃªme base de donnÃ©e utilisateurs).</p>
+<ul>
+  <li>eBlah</li>
+  <li>Invision Power Board</li>
+  <li>Mambo</li>
+  <li>MyBB</li>
+  <li>phpBB 2</li>
+  <li>PunBB</li>
+  <li>SMF</li>
+  <li>vBulletin</li>
+  <li>XMB</li>
+  <li>Xoops2</li>
+</ul>
+
+<a name="integrating_bridge_end"></a>
+
+<a name="integrating_prerequisites_start"></a>
+<h2>5.2 Pre-requis</h2>
+
+<a name="integrating_cookie_start"></a>
+<h3>5.2.1 Autentification par cookie</h3>
+<p>Le loggin d'intÃ©gration utilise le cookie de votre forum, donc il ne pourra pas fonctionner si le cookie de votre forum n'est pas visible par  Coppermine. Donc, sauf si vous Ãªtes un espert, faites les choses simplement et installez Coppermine et votre forum sur le mÃªme domaine. Exemples :</p>
+<table border="0" cellspacing="5" cellpadding="5" class="border1">
+<tr>
+<td>Cela <b>va</b> fonctionner:</td>
+<td>Cela <b class="important">ne va pas</b> fonctionner</td>
+</tr>
+<tr>
+<td class="code">Forum: http://votresite.com/forum/<br />
+Coppermine: http://votresite.com/galerie/</td>
+<td class="code">Forum: http://forum.votresite.com/<br />
+Coppermine: http://galerie.votresite.com/</td>
+</tr>
+</table>
+<p>Le chemin du cookie dans la page de configuration du forum devrait Ãªtre parametrÃ© Ã   '/' la ou cette option est disponible.</p>
+<p><span class="important">Important</span>: Le nom du cookie de votre forum et de Coppermine ne doivent <b>pas</b> Ãªtre les mÃªmes - ils <b>doivent</b> Ãªtre diffÃ©rents!</p>
+<a name="integrating_cookie_end"></a>
+
+<a name="integrating_standalone_start"></a>
+<h3>5.2.2 Version autonome d'abord</h3>
+<p>Pour Ã©viter les confusions, assurez vous de configurer Coppermine et votre forum en fonctionnement autonome en premier. VÃ©rifiez que les deux fonctionnent correctement sans intÃ©gration. Testez toutes les fonctions de coppermine (comme les tÃ©lÃ©chargements, l'enregistrement etc.) lorsque  Coppermine est installÃ©, avant mÃªme de commencer l'intÃ©gration.</p>
+<a name="integrating_standalone_end"></a>
+
+<a name="integrating_users_start"></a>
+<h3>5.2.3 Les utilisateur, groupes et images tÃ©lÃ©chargÃ©es par les utilisateurs de Coppermine sont perdues lors de l'intÃ©gration</h3>
+<p><span class="important">Attention:</span> Si vous avez dÃ©jÃ  des utilisateurs et des groupes personnalisÃ©s dans votre base de donnÃ©e Coppermine lorsque vous activez l'intÃ©gration avec votre forum, soyez concients qu'ils vont Ãªtre perdus. Si vos utilisateurs ont dÃ©jÃ  crÃ©e des albums privÃ©s et tÃ©lÃ©chargÃ© des images, elles vont Ãªtre perdues Ã©galement!</p>
+<a name="integrating_users_end"></a>
+
+<a name="integrating_backup_start"></a>
+<h3>5.2.4 Sauvegarde</h3>
+<p><span class="important">Sauvegardez</span>: Il est trÃ¨s important de faire uen sauvegarde de votre base de donnÃ©e Coppermine et de vos fichiers avant d'activer l'intÃ©gration, vous pourrez ainsi revenir en arriÃ¨re si elle Ã©choue.</p>
+<p>De toute faÃ§on vous Ãªtes encouragÃ©s Ã  faire une sauvegarde rÃ©guliÃ¨re de votre base de donnÃ©e, spÃ©cialement avant d'appliquer des changements dans le code (installation de mod/hack par exemple).</p>
+<a name="integrating_backup_end"></a>
+
+<a name="integrating_prerequisites_end"></a>
+
+<a name="integrating_steps_start"></a>
+<h2>5.3 Etapes de l'intÃ©gration</h2>
+<p>Depuis cpg1.4.x vous pouvez utiliser le <a href="#bridge_manager_start">Gestionnaire d'intÃ©gration</a> qui vous permettra d'activer/dÃ©sactiver l'intÃ©gration par le biais d'un assistant.</p>
+
+<a name="bridge_manager_start"></a>
+<h3>5.3.1 Utilisation du gestionnaire d'intÃ©gration (bridge)</h3>
+<p>Le gestionnaire d'intÃ©gration est une nouvelle fonction dans cpg1.4, il n'est pas disponible dans les versions antÃ©rieures. A la place d'Ã©diter manuellement les fichiers codes de Coppermine, vous pouvez activer/dÃ©sactiver l'intÃ©gration depuis votre navigateur, en utilisant un assitant. pour dÃ©marer le gestionnaire d'intÃ©gration, identifiez vous comme administrateur, Choisissez &quot;Utiliatires&quot; dans le menu et le  &quot;gestionnaire d'intÃ©gration&quot;</p>
+<p><img src="pics/fr_bridge_01_start.gif"  border="0" alt=""  /></p>
+<p>Si vous lancez le gestionnaire d'intÃ©gration pour la premiÃ¨re fois, il n'y aura qu'un seul bouton qui vous permettra de dÃ©marer l'assistant</p>
+<p>(Si vous retournez dans le gestionnaire d'intÃ©gration plus tard, vous aurez des cases de choix permettant d'activer/dÃ©sactiver l'intÃ©gration) cliquez dessus.</p>
+<p class="important">Notez: a chaque Ã©tape de l'assistant d'intÃ©gration, des informations sont Ã©crites dans la base de donnÃ©e de Coppermine. Contrairement Ã  d'autre assistants (la plupars sur votre ordinateur), le gestionnaire d'intÃ©gration n'a pas de bouton&quot;&quot;annuler&quot;! Une fois que vous avez activÃ© l'intÃ©gration et que tout fonctionne bien, vous ne devriez changer aucune valeur juste par curiositÃ©, comme elles seront Ã©crites dans la base de donnÃ©e, il se pourrait que l'intÃ©gration, qui fonctionnait jusque lÃ , ne fonctionne plus du tout aprÃ¨s avoir &quot;jouÃ©&quot; avec elles.<br clear="all" /></p>
+<p><img src="pics/fr_bridge_02_app.gif"  border="0" alt=""  /></p>
+<p>Dans la premiÃ¨re Ã©tape de l'assistant &quot;choisissez l'application avec laquelle vous souhaitez intÃ©grer Coppermine&quot;, vous devez choisir l'application Ã  brideger avec Coppermine. Notez que vous <b>devez</b> avoir cette application dÃ©jÃ  installÃ©e sur votre serveur, elle doit Ãªtre correctement configurÃ©e et doit fonctionner. N'utilisez pas le gestionnaire d'intÃ©gration si vous avez <i>projetÃ©</i> de la faire plus tard .</p>
+<p>Si vous avec un fichier personnalisÃ© d'intÃ©gration qui n'est pas disponible dans l'assistant, choisissez le bouton radio Ã  cÃ´tÃ© du champ texte et entrez le nom de votre fichier ici, sans l'extention &quot;.inc.php&quot; (le fichier d'intÃ©gration doit Ãªtre placÃ© dans le sous-rÃ©pertoire &quot;bridge&quot;) de Coppermine.<br />
+Cliquez sur &quot;suivant&quot;</p>
+<p>L'Ã©tape suivante dÃ©pends de l'application que vous avez choisi : certaines applications ont besoin que des <acronym title="Uniform Resource Locator">URL</acronym>s soient entrÃ©es, ou des chemine d'accÃ¨s. Certaines ont besoins que l'on entre desinformations sur les tables mySQL ou sur les cookies, d'autres pas. L'assistant ne vous &quot;demandera&quot; que les parapÃ¨tres appropriÃ©s pour votre application - si l'un ou l'autre point des explications suivantes ne s'appliquent pas Ã  votre application, ne vous affolez pas - ne suivez que les informations adÃ©quates et cliquez sur &quot;suivant&quot;. Toutefois, vous devez comprendre que Coppermine ne peut vÃ©rifier que certaines entrÃ©es - certaines entrÃ©es seront invalidÃ©es.</p>
+<p>Si un bouton d'annulation (<img src="../images/flags/reset.gif" width="16" height="11" border="0" alt="" />) est affichÃ© prÃ¨s d'un champ de formulaire, ce champ n'a pas de valeur par dÃ©faut. Il est peut Ãªtre normal qu'il n'y en ait pas dans un champ, toutefois, rappelez vous que si vous avez &quot;jouÃ©&quot; avec le gestionnaire de bridge auparavant, les paramÃ¨tres prÃ©cÃ©dents qui apparaissent dans un champ ne sont pas corrects - ne sautez pas une Ã©tape rapidement sans faire attention Ã  celÃ . Utilisez le bouton de rÃ©initialisation pour remettre la valeur par dÃ©faut (par necessairement  &quot;la bonne&quot; valeur par dÃ©faut).<br clear="all" /></p>
+<a name="bridge_manager_app_start"></a>
+<h4>5.3.1.1 Choisir une application Ã  intÃ©grer avec Coppermine</h4>
+<ul>
+<ul>
+  <li>eBlah</li>
+  <li>Invision Power Board</li>
+  <li>Mambo</li>
+  <li>MyBB</li>
+  <li>phpBB 2</li>
+  <li>PunBB</li>
+  <li>SMF</li>
+  <li>vBulletin</li>
+  <li>XMB</li>
+  <li>Xoops2</li>
+</ul>
+</ul>
+<a name="bridge_manager_app_end"></a>
+<a name="bridge_manager_path_start"></a>
+<h4>5.3.1.2 Chemin(s) utilisÃ© par votre forum</h4>
+<ul>
+<li><b>URL du forum</b><br />
+L'adresse URL complÃ¨te de votre forum (incluant http://, exemple: http://www.votresite.com/forum/)</li>
+<li><b>Chemin relatif du forum</b><br />
+Le chemin relatif d'accÃ¨s au forum depuis la racine de votre site (Exemple: si votre l'adresse de votre forum est http://www.votresite.com/forum/, entrez "/forum/" dans ce champ)</li>
+<li><b>Chemin relatif du fichier de configuration de votre forum</b><br />
+Chemin relatif vers votre forum, vu depuis le rÃ©pertoire de Coppermine (exemple: "../forum/" si votre forum se trouve Ã   http://www.votresite.com/forum/ et Coppermine Ã  http://www.votresite.com/gallery/)</li>
+</ul>
+<a name="bridge_manager_path_end"></a>
+<a name="bridge_manager_specific_start"></a>
+<h4>5.3.1.3 ParamÃ¨tres spÃ©cifiques de votre forum</h4>
+<ul>
+<li><b> Utiliser les groupes basÃ©s sur le nombre de messages ?</b><br />
+Est ce que Coppermine doit importer les groupes spÃ©ciaux existant dans le forum ? Si vous dÃ©lectionnez NON, alors Coppermine utilisera les groupes standards (Administrateur, EnregistrÃ©s and Anonymes) ce qui permets une administration plus facile ce qui est recommandÃ©. Vous pourrez changer ces parametres plus tard.</li>
+</ul>
+<a name="bridge_manager_specific_end"></a>
+<a name="bridge_manager_enable_start"></a>
+<h4>5.3.1.4 activer/dÃ©sactiver l'intÃ©gration du forum</h4>
+<p>C'est la derniÃ¨re Ã©tape du gestionnaire d'intÃ©gration - il rÃ©capiltule les paramÃ©trages que vous avez faits dans les Ã©tapes prÃ©cÃ©dentes - vous pouvez activer ou dÃ©sactiver l'intÃ©gration ici. Par dÃ©faut, l'intÃ©gration est paramÃ©trÃ©e Ã   &quot;dÃ©sactivÃ©&quot; aprÃ¨s que le gestionnaire d'intÃ©gration a Ã©tÃ© lancÃ© pour la premiÃ¨re fois. Vous devrez activer l'intÃ©gration avec votre forum uniquement si vous Ãªtes surque votre forum est parametrÃ© correctement. Cliquez sur le bouton &quot;Terminer&quot; dans tous les cas pour enfin Ã©crire dans la base de donnÃ©e, mÃªme si vous laissez le paramÃ©trage actuel (laisser l'intÃ©gration sur &quot;dÃ©sactivÃ©&quot;).</p>
+<ul>
+<li><b>Active l'intÃ©gration avec XXX</b></li>
+</ul>
+<a name="bridge_manager_enable_end"></a>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="bridge_manager_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="bridge_manager_recover_start"></a>
+<h3>5.3.2 Restauration aprÃ¨s une erreur d'intÃ©gration</h3>
+<p>Si vous avez dÃ©fini de mauvais paramÃ¨tres dans le gestionnaire d'intÃ©gration, votre integration peut Ã©chouer, avec pour rÃ©sultat (dans le pire des cas) une situation l'intÃ©gration est activÃ©e, mais vous ne pouvez plus vous identifier comme administrateur pour la dÃ©sactiver Ã  nouveau (par exemple si vous avez dÃ©fini de mauvais paramÃ©trage de cookie ce qui arrÃ¨te l'autentification). Pour ces situation le gestionnaire d'intÃ©gration comprends une fonction de restauration: si vous n'Ãªtes pas identifiÃ© comme administrateur de Coppermine (en fait vous n'Ãªtes pas du tout identifiÃ©s) vous pouvez acceder Ã  l'URL de votre gestionnaire d'intÃ©gration (http://votresite.com/votre_repertoire_coppermine/bridgemgr.php) en l'entrant manuellement dans la barre d'adresse de votre navigateur, il vous est demandÃ© d'entre vos identifiants administrateur - utilisez les identifiants que vous avez dÃ©finis lors de l'installation de Coppermine (les identifiants de la version autonome). CelÃ  ne vous identifieras pas, mais dÃ©sactiveras l'intÃ©gration, de sorte que vous puissiez modifier les mauvais paramÃ¨tres d'intÃ©gration. Pour Ã©viter que d'autres essayent de deviner vos identifiants administrateurs, il y a un seuil maximum d'essai inffructueux qui s'incrÃ©mente Ã  chaque fois que vous entrez de mauvais identifiants, saisissez donc vos identifiants avec soin.</p>
+<p class="small">[cpg1.4.0 ou supÃ©rieur requis]</p>
+<a name="bridge_manager_recover_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+
+<a name="integrating_steps_sync_start"></a>
+<h3>5.3.3 Syncroniser les groupes du forum avec ceux de Coppermine</h3>
+<p>Identifiez vous comme administrateur sur votre forum. Allez dans la galerie, passez en mode administrateur et cliquez sur le bouton &quot;Groupes&quot;. Cela va syncroniser le groupes Coppermine avec ceux de votre forum. Les droits que vous verrez pour chaque groupe seront complÃªtement dÃ©sordonnÃ©s, prenez le temps de les reparametre correctement.</p>
+<p>Chaque fois que vous ajoutez ou supprimez un groupe de votre forum vous devez refaire cette opÃ©ration afin de maintenir la syncronisation des groupes.</p>
+<p>Si vous essayez de vous inden ou de gÃ©rer les utilisateurs de Coppermine, vous serez redirigÃ© vers la page correspondante de votre forum. Par contre lorsque l'identification ou la sortie du mode administrateur est faite depuis le forum, vous ne serez pas redirigÃ© automatiquement vers la galerie, le forum n'ayant pas de fonction pour cela. Il vous appartient d'ajouter un lien vers votre galerie sur votre forum.</p>
+<a name="integrating_steps_sync_end"></a>
+<a name="integrating_steps_end"></a>
+<a name="integrating_end"></a>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="translating"></a>
+<h1>6. Traduction de Coppermine dans d'autres langues</h1>
+<p>Coppermine a des fichiers language sÃ©parÃ©s ce qui facilite grandement la traduction du programme. Les fichiers languages sont palcÃ©s dans le rÃ©pertoire <b>lang </b>. Les fichiers avec le suffixe <b>utf-8</b> sont des fichiers unicode. Ils sont gÃ©nÃ©rÃ©s automatiquement par le programme <a href="http://www.iconv.com/iconv.htm" class="external">iconv</a>, donc vous n'avez pas besoin de faire de version unicode de votre traduction.</p>
+<p>Si vous sÃ©lectinnez un fichier language utf-8 comme lague par dÃ©faut, le programme pourra sÃ©lectionner automatiquement le language en fonction du paramÃ©trage du navigateur de votre visiteur. Par exemple si le fichier language par dÃ©faut est danish-utf-8 et qu'un visiteur anglais accÃ¨de Ã  la galerie, c'est le fichier language english-utf-8 qui sera utilisÃ© par le script.</p>
+<p> Si vous avez traduit  Coppermine dans une langue pas encore existante, lisez le <a href="translation.htm">guide du traducteur</a> et visitez le <a href="http://coppermine.sourceforge.net/board/index.php?topic=4623.0">site web Coppermine</a> sur Sourceforge et suivez les instructions pour soumettre votre fichier langue.</p>
+<p></p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="known_issues"></a>
+<h1>7. ProblÃ¨mes connus</h1>
+<p>Les petites bizzareries et minuscules problÃ¨mes suivants sont connus et seront fixÃ©s dans les futures versions.</p>
+<ul>
+        <li>Certains petits textes ne sont disponibles qu'ne anglais, exemple: picEditor. (ProblÃ¨me de langue)</li>
+        <li>La documentation (ce document) et la <a href="faq.htm">FAQ</a> sont incomplets.</li>
+        <li>Les <a href="http://coppermine.sourceforge.net/board/index.php?topic=1866.0">flÃªches utilisÃ©es pour la navigation</a> d'une image Ã  une autre sont inversÃ©s dans les fichiers language rtl</li>
+                <li class="important">Comme vous Ãªtes en train d'utiliser une version bÃ©ta de coppermine 1.4, il y a d'autres problÃ¨mes connus en discussion sur le forum <a href="http://coppermine.sourceforge.net/board/index.php?board=29.0">CPG 1.4 Testing/Bugs</a>. S'il vous plais, rÃ©fÃ©rez vous Ã  ce forum pour plus d'informations.</li>
+</ul>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="credits"></a>
+<h1>8. Credits</h1>
+<a name="developers"></a>
+<h2>8.1 L'equipe Coppermine </h2>
+<!-- Team Member sort order: GROUP BY 'status' ORDER BY 'position' IN THIS ORDER (Proj Mgr,Lead dev,Developer,Supporter,tester,other), 'username' ASC -->
+<table border="0" cellspacing="6" cellpadding="4">
+  <tr>
+    <td><strong>Developeur</strong></td>
+    <td><strong>Pseudo</strong></td>
+    <td><strong>Role/Position</strong></td>
+    <td><strong>Status</strong></td>
+  </tr>
+  <tr>
+    <td>Joachim M&uuml;ller</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=2">gaugau</a></td>
+    <td>Chef de Projet</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Dr Tarique Sani</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=4">tarique</a></td>
+    <td>DÃ©veloppeur principal </td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Abbas Ali</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=11737">abbas</a></td>
+    <td>Developeur</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Aditya Mooley</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=5957">Aditya</a></td>
+    <td>Developeur</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Maarten Hagoort</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=404">DJ Maze</a></td>
+    <td>Developeur (nuke team)</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Donovan Bray</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=10059">donnoman</a></td>
+    <td>Developeur</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Eyal Zvi</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=94">EZ</a></td>
+    <td>Developeur</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Tommy Atkinson</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=941">Nibbler</a></td>
+    <td>Developeur</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Christopher Brown-Floyd</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=1874">omniscientdeveloper</a></td>
+    <td>Developeur</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Clive Leech</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=56">casper</a></td>
+    <td>Supporter</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Dave Kazebeer</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=7">kegobeer</a></td>
+    <td>Supporter</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Thu Tu</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=7792">TranzNDance</a></td>
+    <td>Supporter</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td>Andreas Ellsel</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=898">Andi</a></td>
+    <td>Testeur</td>
+    <td>actif</td>
+  </tr>
+  <tr>
+    <td><strong>Developeur</strong></td>
+    <td><strong>Pseudo</strong></td>
+    <td><strong>Role/Position</strong></td>
+    <td><strong>Status</strong></td>
+  </tr>
+  <tr>
+    <td>Gr&eacute;gory Demar</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=259">Greg</a></td>
+    <td>CrÃ©ateur originel de Coppermine</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>Jack</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=6">datajack</a></td>
+    <td>Developeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>DJ Axion</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=9">djaxion</a></td>
+    <td>Developeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>Scott Gahres</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=66">gtroll</a></td>
+    <td>Developeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>Hyperion</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=125">hyperion01</a></td>
+    <td>Developeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>John Asendorf</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=30">jasendorf</a></td>
+    <td>Developeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>Jay Hao-En Liu</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=59">Oasis</a></td>
+    <td>Developeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>Timothy</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=6949">skybax</a></td>
+    <td>Developeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>David Holm</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=14">wormie_dk</a></td>
+    <td>Developeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>Mark Zerr</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=11">zarsky99</a></td>
+    <td>Testeur</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>mitirapa</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=133">mitirapa</a></td>
+    <td>Porter (Cross Platform Devel.)</td>
+    <td>retirÃ©</td>
+  </tr>
+  <tr>
+    <td>Moorey</td>
+    <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=13">moorey</a></td>
+    <td>Web Designer</td>
+    <td>retirÃ©</td>
+  </tr>
+</table>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="contributors"></a>
+<h2>8.2 Contributeurs</h2>
+<table border="0" cellspacing="6" cellpadding="4">
+<tr>
+  <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=101">DaMysterious</a></td>
+  <td>DaMysterious a crÃ©e beaucoups de thÃ¨mes fantastiques pour Coppermine</td>
+</tr>
+<tr>
+  <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=1399">Nanobot</a></td>
+  <td>Doug a rÃ©alisÃ© le fichier d'intÃ©gration pour vBulletin v3</td>
+</tr>
+<tr>
+  <td><a href="http://www.sanisoft.com/aboutus.php3">Girish Nair</a></td>
+  <td>Girish a contribuÃ© Ã  la fonctione film strip</td>
+</tr>
+<tr>
+  <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=378">Jason Kawaja</a></td>
+  <td>Jason a rÃ©alisÃ© le hack <a href="http://coppermine.sourceforge.net/board/index.php?topic=1985.0">memberlist</a></td>
+</tr>
+</table>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="codebase"></a>
+<h2>8.3 Coppermine utilise le code des logiciels libres suivant :</h2>
+<p><b>phpBB</b><br />
+  Auteur: phpBBGroup <br />
+  URL: <a href="http://www.phpbb.com/">http://www.phpbb.com/</a><br />
+</p>
+<p><b>phpMyAdmin</b><br />
+  Auteur: phpMyAdmin devel team<br />
+  URL: <a href="http://www.phpmyadmin.net/">http://www.phpmyadmin.net/</a><br />
+</p>
+<p><b>phpPhotoAlbum</b><br />
+  Auteur: Henning St&oslash;verud<br />
+  E-mail: henning AT stoverud DOT com<br />
+  URL: <a href="http://www.stoverud.com/PHPhotoalbum/">http://www.stoverud.com/PHPhotoalbum/</a><br />
+</p>
+<p><b>DOM Tooltip 0.6.0</b><br />
+  Auteur: Dan Allen<br />
+  E-mail: dan AT mojavelinux DOT com<br />
+  URL: <a href="http://www.mojavelinux.com/forum/viewtopic.php?t=127">http://www.mojavelinux.com/forum/viewtopic.php?t=127</a><br />
+  Note: DOM Tooltip, which is being used with the theme &quot;styleguide&quot; only, is released under <a href="http://www.gnu.org/copyleft/lesser.html">LGPL</a><br />
+</p>
+<p><b>TAR/GZIP/ZIP Archive Classes</b><br />
+  Auteur: Devin Doucette<br />
+  E-mail: darksnoopy AT shaw DOT ca<br />
+</p>
+
+<p><b>Exifixer</b><br />
+  Auteur: Jake Olefsky<br />
+  URL: <a href="http://www.offsky.com/software/exif/index.php">http://www.offsky.com/software/exif/index.php</a><br />
+</p>
+<p><b>Codelifter Slideshow</b><br />
+  URL: <a href="http://www.codelifter.com/">http://www.codelifter.com</a><br />
+</p>
+<p><b>PHPMailer</b><br />
+  Auteur: <a href="http://sourceforge.net/project/memberlist.php?group_id=26031">PHPMailer Team</a><br />
+  URL: <a href="http://phpmailer.sourceforge.net/">http://phpmailer.sourceforge.net/</a><br />
+</p>
+<p><b>PHP Calendar Class Version 1.4</b><br />
+  Auteur: David Wilkinson<br />
+  E-mail: davidw AT cascade DOT org DOT uk<br />
+  URL: <a href="http://www.cascade.org.uk/software/php/calendar/">http://www.cascade.org.uk/software/php/calendar/</a><br />
+</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+<a name="copyright"></a>
+<h2>8.4 Copyright et dÃ©charge de responsabilitÃ©</h2>
+<p>Cette application est un logiciel opensource publiÃ© sous licence <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
+</p>
+<p> Parce que l'utilisation de ce Programme est libre et gratuite, aucune garantie n'est fournie, comme le permet la loi. Sauf mention Ã©crite, les dÃ©tenteurs du copyright et/ou les tiers fournissent le Programme en l'Ã©tat, sans aucune sorte de garantie explicite ou implicite, y compris les garanties de commercialisation ou d'adaptation dans un but particulier. Vous assumez tous les risques quant Ã  la qualitÃ© et aux effets du Programme. Si le Programme est dÃ©fectueux, Vous assumez le coÃ»t de tous les services, corrections ou rÃ©parations nÃ©cessaires. </p>
+<p>Coppermine Photo Galleryest sous Copyright &copy; 2002 - 2005 Gr&eacute;gory  DEMAR et de l'Ã©quipe de dÃ©veloppement de Coppermine, Tous droits rÃ©servÃ©s.<br />
+</p>
+<p><a class="back" href="#top">Haut de page</a></p><hr />
+
+
+      </td></tr></tbody></table>
+</body>
+</html>
