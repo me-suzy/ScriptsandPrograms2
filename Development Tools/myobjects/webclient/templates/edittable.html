@@ -1,0 +1,171 @@
+<?php
+$tabIndex = 1;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>MyObjects Web Client</title>
+<link rel="stylesheet" type="text/css" href="webclient/scripts/myobjects.css" />
+<link rel="stylesheet" type="text/css" href="webclient/scripts/DatabaseTree.css" />
+<script type="text/javascript" src="webclient/scripts/ie5.js"></script>
+<script type="text/javascript" src="webclient/scripts/XulMenu.js"></script>
+<script type="text/javascript" src="webclient/scripts/DynamicTree.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+function validateForm(form) {
+	var valid = true;
+	var errorMessage = '';
+	// Check the table name
+	var namePattern = /^[A-Za-z0-9_$]{1,64}$/;
+	
+	if(!namePattern.test(form.tableName.value)) {
+		valid = false;
+		errorMessage += ' * Please enter a valid table name.\n';
+	}
+	
+	if(!isValidName(false, 'className')) {
+		valid = false;
+		errorMessage += ' * Please enter a valid class name.\n';
+	}
+	
+	if(!valid) {
+		alert('There are some problems in the form:\n\n' + errorMessage);
+	}
+	return valid;
+}
+
+function isValidName(required, id) {
+	var phpNamePattern = /^[A-Za-z_]+[A-Za-z0-9_]+$/;
+	
+	if(required && document.getElementById(id).value == '') {
+		return false;
+	}
+	
+	if(document.getElementById(id).value != '' && !phpNamePattern.test(document.getElementById(id).value)) {
+		return false;
+	}
+	return true;
+}
+
+function showTooltip(name, e) {
+	document.getElementById(name + 'Tooltip').style.visibility = 'visible';
+
+	if(e.clientX + 300 > screen.width - 50) {
+		var x = screen.width - 350;
+		document.getElementById(name + 'Tooltip').style.left = x + 'px';
+	} else {
+		document.getElementById(name + 'Tooltip').style.left = e.clientX + 'px';
+	}
+	var y = e.clientY + 20;
+	document.getElementById(name + 'Tooltip').style.top = y + 'px';
+}
+
+function hideTooltip(name) {
+	document.getElementById(name + 'Tooltip').style.visibility = 'hidden';
+}
+
+-->
+</script>
+</head>
+<body>
+<div id="tableNameTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Table name should be a name consisting of alphabetic characters, digits and _ character. The length of table name
+must be between 1 and 64 characters. May not consist solely of digits.
+</div>
+<div id="classNameTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+The name of the class that will be generated. This must be a valid php class name. It can contain digits, alphabetic
+characters and _ charachter.
+</div>
+<div id="superClassNameTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If you want the generated class to extend another class write the name of Super Class name here. Note that the
+super class must have a default constructor (With no parameters).
+</div>
+<div id="descriptionTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Description for the table. This description text will be embedded in the generated class as a comment.
+</div>
+<div id="logo"><a href="http://www.myobjects.org" target="_blank" title="MyObjects"><img src="webclient/images/logo.gif" width="90" height="29" alt="MyObjects" border="0" /></a></div>
+<script type="text/javscript">
+/* preload images */
+var arrow1 = new Image(4, 7);
+arrow1.src = "webclient/images/arrow1.gif";
+var arrow2 = new Image(4, 7);
+arrow2.src = "webclient/images/arrow2.gif";
+</script>
+<div id="toolbar"><?php echo $this->toolBar?></div>
+<script type="text/javascript">
+    var menu1 = new XulMenu("menu1");
+    menu1.arrow1 = "webclient/images/arrow1.gif";
+    menu1.arrow2 = "webclient/images/arrow2.gif";
+    menu1.init();
+</script>
+<table width="100%"  border="0" cellspacing="0" cellpadding="25" id="main">
+  <tr>
+    <td width="300" valign="top" style="border-right:1px dashed #000000;"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td class="tableHeader">Current Database Schema </td>
+        </tr>
+        <tr>
+          <td><?php echo $this->schemaGraph?></td>
+        </tr>
+      </table></td>
+    <td valign="top"><form name="tableEditor" id="tableEditor" action="index.php" method="post" onsubmit="return validateForm(this);">
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="tableHeader">Table Editor : Editing (Database : <a href="?editDatabase&amp;database=<?php echo $this->databaseName?>"><?php echo $this->databaseName?></a> : Table : <?php echo $this->tableName?>)</td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('tableName', event);" onmouseout="hideTooltip('tableName');">Table Name :</a></td>
+            <td class="row1" width="300"><input name="tableName" type="text" id="tableName" value="<?php echo $this->tableName?>" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('className', event);" onmouseout="hideTooltip('className');">Class Name :</a></td>
+            <td class="row2" width="300"><input name="className" type="text" id="className" value="<?php echo $this->className?>" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('superClassName', event);" onmouseout="hideTooltip('superClassName');">Super Class Name :</a></td>
+            <td class="row1" width="300"><input name="superClassName" type="text" id="superClassName" value="<?php echo $this->superClassName?>" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('description', event);" onmouseout="hideTooltip('description');">Description :</a></td>
+            <td class="row2"><textarea name="description" id="description" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"><?php echo $this->description?></textarea></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5" style="margin-top:20px;">
+          <tr>
+            <td class="tableHeader">Table Fields </td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="row1" width="40" align="center"><strong>Delete </strong></td>
+            <td class="row1"><strong>Field Name </strong></td>
+            <td class="row1" style="font-size:12px; ">[ <a href="?addField&database=<?php echo $this->databaseName?>&table=<?php echo $this->tableName?>&index=0">Add New Field At Top</a> ] </td>
+            <td class="row1"><strong>Field Type </strong></td>
+            <td class="row1"><strong>Field Description </strong></td>
+          </tr>
+          <?php echo $this->fieldRows?>
+          <tr>
+            <td colspan="5"><input type="submit" name="Submit" value="Update The Table" tabindex="<?php echo $tabIndex++ ?>"/>
+            <input name="database" type="hidden" id="database" value="<?php echo $this->databaseName?>"/>
+            <input name="table" type="hidden" id="table" value="<?php echo $this->tableName?>"/>
+            <input name="action" type="hidden" id="action" value="editTable" /></td>
+          </tr>
+        </table>
+      </form>
+      <table width="100%"  border="0" cellspacing="0" cellpadding="5" style="margin-top: 20px;">
+        <tr>
+          <td class="tableHeader">Export</td>
+        </tr>
+      </table>
+     <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td colspan="2"><input type="button" name="export" value="Export This Table" onclick="self.location='?export&amp;database=<?php echo $this->databaseName ?>&amp;table=<?php echo $this->tableName ?>'" /></td>
+        </tr>
+     </table></td>
+  </tr>
+</table>
+</body>
+</html>
