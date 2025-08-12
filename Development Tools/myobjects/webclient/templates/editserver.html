@@ -1,0 +1,110 @@
+<?php
+$tabIndex = 1;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>MyObjects Web Client</title>
+<link rel="stylesheet" type="text/css" href="webclient/scripts/myobjects.css" />
+<link rel="stylesheet" type="text/css" href="webclient/scripts/DatabaseTree.css" />
+<script type="text/javascript" src="webclient/scripts/ie5.js"></script>
+<script type="text/javascript" src="webclient/scripts/XulMenu.js"></script>
+<script type="text/javascript" src="webclient/scripts/DynamicTree.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+function showTooltip(name, e) {
+	document.getElementById(name + 'Tooltip').style.visibility = 'visible';
+
+	if(e.clientX + 300 > screen.width - 50) {
+		var x = screen.width - 350;
+		document.getElementById(name + 'Tooltip').style.left = x + 'px';
+	} else {
+		document.getElementById(name + 'Tooltip').style.left = e.clientX + 'px';
+	}
+	var y = e.clientY + 20;
+	document.getElementById(name + 'Tooltip').style.top = y + 'px';
+}
+
+function hideTooltip(name) {
+	document.getElementById(name + 'Tooltip').style.visibility = 'hidden';
+}
+-->
+</script>
+</head>
+<body>
+<div id="importTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+You can import databases from another schema file to this schema. All the databases defined in the loaded schema file
+will be imported to the current schema. Note that importing corrupted schema files can break your schema design.
+</div>
+<div id="logo"><a href="http://www.myobjects.org" target="_blank" title="MyObjects"><img src="webclient/images/logo.gif" width="90" height="29" alt="MyObjects" border="0" /></a></div>
+<script type="text/javscript">
+/* preload images */
+var arrow1 = new Image(4, 7);
+arrow1.src = "webclient/images/arrow1.gif";
+var arrow2 = new Image(4, 7);
+arrow2.src = "webclient/images/arrow2.gif";
+</script>
+<div id="toolbar"><?php echo $this->toolBar?></div>
+<script type="text/javascript">
+    var menu1 = new XulMenu("menu1");
+    menu1.arrow1 = "webclient/images/arrow1.gif";
+    menu1.arrow2 = "webclient/images/arrow2.gif";
+    menu1.init();
+</script>
+<table width="100%"  border="0" cellspacing="0" cellpadding="25" id="main">
+  <tr>
+    <td width="300" valign="top" style="border-right:1px dashed #000000;"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td class="tableHeader">Current Database Schema </td>
+        </tr>
+        <tr>
+          <td><?php echo $this->schemaGraph?></td>
+        </tr>
+      </table></td>
+    <td valign="top"><form name="serverEditor" id="serverEditor" action="index.php" method="post">
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="tableHeader">Databases on Server </td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="row1" width="40" align="center"><strong>Select</strong></td>
+            <td class="row1"><strong>Database Name</strong></td>
+            <td class="row1" style="font-size:12px; ">[ <a href="?addDatabase">Add New Database</a> ] </td>
+          </tr>
+          <?php echo $this->databaseRows?>
+          <tr>
+            <td colspan="5">
+            <input type="submit" name="remove" value="Remove Selected Databases" tabindex="<?php echo $tabIndex++ ?>"/>
+            <input type="submit" name="export" value="Export Selected Databases" tabindex="<?php echo $tabIndex++ ?>"/>
+            <input name="action" type="hidden" id="action" value="editServer" /></td>
+          </tr>
+        </table>
+      </form>
+			<table width="100%"  border="0" cellspacing="0" cellpadding="5" style="margin-top:20px; ">
+	      <tr>
+	        <td class="tableHeader">Import Database(s)</td>
+	      </tr>
+	    </table>
+			<form name="importTable" id="importDatabase" enctype="multipart/form-data" method="post" action="index.php">
+			  <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+				<tr>
+				  <td class="row1"><a href="javascript:;" onmouseover="showTooltip('import', event);" onmouseout="hideTooltip('import');">Schema File That Contains Databases</a> :</td>
+				  <td width="300" class="row1"><input name="schemaFile" type="file" id="schemaFile" tabindex="<?php echo $tabIndex++ ?>"/></td>
+				</tr>
+				<tr>
+				  <td class="row2">&nbsp;</td>
+				  <td class="row2"><input type="submit" name="Submit" value="Import" tabindex="<?php echo $tabIndex++ ?>"/>
+				    <input name="action" type="hidden" id="action" value="import" />
+				    <input name="importing" type="hidden" id="importing" value="database" />
+				  </td>
+				  </tr>
+			  </table>
+			</form>
+      </td>
+  </tr>
+</table>
+</body>
+</html>
