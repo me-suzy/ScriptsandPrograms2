@@ -1,0 +1,281 @@
+<html><head><title>Amazing Little Picture Poll - Readme</title></head>
+	
+<style type="text/css">
+	
+<!--
+body {font-family: verdana, non-serif; font-size: 10pt; color: 0A2FA1;}
+.banner {
+	font-family: verdana, non-serif;
+	font-size: medium;
+	color: 0A2FA1;
+	background: EDEDED;
+	margin-bottom: 10px;
+	padding: 2,4,2,4 }
+
+.text {
+	margin-bottom: 8px;
+	margin-left: 20px;
+	font-size: 12px;
+}
+
+.subhead {
+	margin-left: 20px;
+	font-size: 12px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	margin-top: 15px;
+	color: 818181;
+}
+
+.pic {
+	 margin-left: 50px;
+ }
+ 
+ a {
+	 text-decoration: none;
+	 font-size: 12px;
+	 color: 0F48ED;
+ }
+ 
+ a:hover {
+	 text-decoration: underline;
+ }
+ 
+ -->
+</style>
+
+<body>
+	
+<center>
+
+<br>
+<table width="600" border="0"><tr><td align=right>
+<img class="pic" src="lp_logo.gif" >
+</td></tr><tr><td align=right>	
+
+<a href="http://www.mr-corner.com/LittlePoll/index.html">little poll home</a>
+
+</td><tr><td>
+
+
+<div class="subhead">amazing little picture poll readme </div>
+
+<div class="text">
+	Hi there. This readme file will give some background information on 
+	The Amazing Little Picture Poll and, most importantly, will tell you 
+	how to set it up on your site!</div>
+
+<div class="subhead">about </div>
+
+<div class="text">
+	The Amazing Little Picture Poll v1.0 is a sweet little
+	php application. It is a simple picture poll which uses
+	a flat file to store voting scores. It's easy to set up
+	and configure to your own needs.</div>
+
+<div class="text">
+	The Amazing Little Picture Poll can be freely 
+	distributed, manipulated, stolen, abused,
+	used for any kind of activities.</div>
+
+<div class="text">
+	In case of any problems with the original
+	code, I'll be glad to help out. Mail
+	to: <a href="mailto:littlepoll2@mr-corner.com">littlepoll</a></div>
+	
+<div class="text">
+	Any suggestions for improvement are also 
+	always very welcome!</div>
+
+<div class="text">
+	I can not be held responsible or liable for 
+	anything.</div>
+
+<div class="subhead">version history </div>
+
+<div class="text">
+	v1.0: First full version with installation instructions
+	to be freely distributed.
+	</div>
+
+<div class="text">
+	v0.2: Some minor improvements.</div>
+
+<div class="text">
+	v0.1: First beta version, created on request 
+	based on the code of The Amazing Little Poll.</div>
+
+<div class="subhead">requirements</div>
+
+<div class="text">
+	Besides the REALLY obvious:
+
+	A php-enabled webserver, and access to it
+	to set a file's attibutes.</div>
+
+<div class="subhead">installation steps</div>
+
+<div class="text"><b>Step 1:Copying files</b></div>
+
+<div class="text">
+	Copy the following files to your home
+	directory on the webserver:<br>
+	- lp_settings.php<br>
+	- lp_source.php<br>
+	- lp_admin.php<br>
+	- lp_test.php<br>
+	- lp_silly.php<br>
+	- lp_recookie.php<br>
+	- lplist.txt<br>
+	- lp_log.dat<br>
+	- lp_0.gif<br>
+	- lp_1.gif<br>
+	- all files in the "images" subdirectory, make sure
+	  they are in the same subdirectory in your server</div>
+
+<div class="text">
+	I would recommend <a href="http://www.smartftp.com/">SmartFTP</a> 
+	as an FTP client. It's free for personal use and works pretty good.
+</div>
+
+<div class="text"><b>Step 2: Setting file attributes</b></div>
+
+<div class="text">
+	Set the attributes of the file "lppiclist.txt"
+	and "lp_log.dat" so all parties (owner, group, public) have read and 
+	write access. That's CHMOD to 666 for the techies out there.</div>
+
+<div class="text">
+	If you use  <a href="http://www.smartftp.com/">SmartFTP</a>, then select
+	the file you want to change attributes of, select Commands - 
+	Properties / CHMOD. Then type 666 in the permissions box.</div>
+
+<div class="text"><b>Step 3: Set-up</b></div>
+
+<div class="text">
+	Open lp_admin.php in your browser, and set
+	up your poll. (Initial password = 
+	"elephant")</div>
+
+<div class="text">
+	For the pictures that you want for voting, use full links to
+	both thumbnails and the full size pictures.
+</div>
+
+<div class="text"><b>Step 4: Testing</b></div>
+
+<div class="text">
+	Test your poll using the Amazing Little Poll
+	Test Facility. Open lp_test.php for this
+	in your browser.</div>
+
+<div class="text"><b>Step 5: Implementing source code</b></div>
+<div class="text">
+	Now that the poll itself is working, it's 
+	time to implement it into your site. Paste 
+	the following code above the &lt;html&gt; tag in 
+	your site (so really above everything else):</div>
+
+<div class="text">
+	&lt;?php include("lp_source.php"); ?&gt;</div>
+
+<div class="text">
+	(if you get an error message like "cannot 
+	add header information, headers already
+	sent by...", then please make sure that the 
+	&lt;?php tag is really at the beginning of the
+	file)</div>
+
+<div class="text"><b>Step 6: Implementing poll</b></div>
+
+<div class="text">
+
+	Where you want the poll to be in your page,
+	add the following lines of code:</div>
+
+<div class="text">
+	&lt;?php if($votingstep==1) { echo($step1str); }<br> 
+	if($votingstep==2) { echo($step2str); }<br> 
+	if($votingstep==3) { echo($step3str); } ?&gt;</div>
+	
+<div class="text">
+	Where you want the question to be in the
+	page, add the following line of code:</div>
+
+<div class="text">
+	&lt;?php echo($question); ?&gt;</div>
+
+<div class="text">
+	If you want to show the total number
+	of votes, add the following line:</div>
+
+<div class="text">
+	&lt;?php echo($totalvotes); ?&gt;</div>
+
+<div class="text"><b>Step 7: Implementating dynamic title</b></div>
+
+<div class="text">
+	You can add a 'dynamic' title for the Poll,
+	which reads something like "your votes 
+	please" or "thanks for your vote", 
+	depending on the situation. Put the 
+	following code where you want the title to 
+	be:</div>	
+
+<div class="text">
+	&lt;?php echo($mainstr); ?&gt;</div>
+
+<div class="text"><b>Step 8: Customizing general</b></div>
+
+<div class="text">
+Open the file 'lp_settings.php' in a text
+editor and set it up according to your 
+wishes.</div>
+
+<div class="text">
+IMPORTANT: make sure you set the filename
+of your page (for example, index.php) 
+correctly!</div>
+
+<div class="text">
+IMPORTANT: change the initial admincenter
+password for better security!</div>
+
+<div class="text"><b>Step 9: Customizing the graphs</b></div>
+
+<div class="text">
+	The graph is drawn using two little .gif
+	files. They should be 1 pixel in width. You
+	can change them to change the appearance and color of
+	the graphs. </div>
+
+<div class="text"><b>Step 10: Customizing the vote button</b></div>
+
+<div class="text">
+	You can change the style of the vote button
+	to fit the style of your page. To do this, 
+	enter the CSS code in the $buttonstyle 
+	variable in lp_settings.inc. For
+	example, to get a black button with a white 
+	border and white text:</div>
+
+<div class="text">
+	$buttonstyle="border:1px solid white; 
+	background:black;color:white;";</div>
+
+<div class="text">
+	For more information on CSS (cascading style
+	sheets), visit <a href=http://www.webmonkey.com">Webmonkey</a></div>
+
+<div class="text"><b>Step 11: Logging</b></div>
+
+<div class="text">
+	Open lp_log.dat to get an overview of 
+	events of the poll, when a new one was 
+	created, hack attempts, votings, etc.</div>
+
+</td></tr>
+
+
+</table></center>
+</body></html>
