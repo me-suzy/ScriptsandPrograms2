@@ -1,0 +1,640 @@
+<HTML>
+<HEAD>
+<TITLE>CNCat 2.0</TITLE>
+<STYLE>
+<!--
+pre {color:#0000C0;}
+.t0 {background-color:#C0C0C0;}
+.t1 {background-color:#F0F0F0;}
+.t2 {background-color:#E0E0E0;}
+//-->
+</STYLE>
+</HEAD>
+<BODY>
+
+<h1>CNCat 2.0</h1>
+
+<UL>
+<LI><a href="#installation">Installation</a>
+<LI><a href="#update">Update to Version 2.0</a>
+<LI><a href="#config">Edit Configuration File</a>
+<LI><a href="#templates">Editing Templates</a>
+<LI><B>What's New</B>
+<UL>
+<LI><a href="#new20">What's New in Version 2.0</a>
+<LI><a href="#new14">What's New in Version 1.4</a>
+<LI><a href="#new131">What's New in Version 1.3.1</a>
+<LI><a href="#new13">What's New in Version 1.3</a>
+<LI><a href="#new12">What's New in Version 1.2</a>
+<LI><a href="#new11">What's New in Version 1.1</a>
+</UL>
+<LI><a href="#plugin">How to Create Your Own Plugin.</a>
+<LI><a href="#license">License</a>
+</UL>
+
+<hr size=1><a name=installation> </a><h2>Installation</h2>
+
+<P>The downloaded archive must be unpacked to the directory where you want to run CNCat. 
+<P>If you have downloaded ZIP archive: 
+<P>Unzip it with pkunzip supporting long file names (pkzip25 or WinZIP). Additional information about ZIP archivers is available at <a href="http://www.pkware.com/">www.pkware.com</a>. </P>
+<PRE>
+pkzip25 -extract -dir cncat-2.0.zip
+</PRE>
+<p>After unpacking and copying files to the server, you'll be able to run installation script  <b>"install.php"</b>, for example <a
+href="http://www.server.com/cncat/install.php">http://www.server.com/cncat/install.php</a>, which will help you to create a database and configuration files.
+
+
+<p>The installation script will try to create files config.php, _top.php, and _bottom.php, by itself. If it fails, you will be shown sample files and will create these files manually.
+
+
+<p>When installation is over, you will need to delete the installation script "install.php". Moreover, we strongly recommend to set up the rights disallowing the web-server writing to this file. </P>
+ 
+<hr size=1><a name=update> </a><h2>Updating to Version 2.0</h2>
+
+<P>Starting with version 2.0 we have changed the installation procedure for new versions. Now, it is completed in three steps:
+
+<OL>
+<LI>CNCat 2.0 installation independently from previous versions (to different database).
+<LI>Exporting old data to a file with the plugin "Export to XML file"
+<LI>Importing old data from the file to the new database with the plugin "Import from XML file"
+</OL>
+
+<hr size=1><a name=config> </a><H2>Edit Configuration File</H2>
+ 
+
+<p>The configuration file consists of three parts
+ 
+
+<ol start=1 type=1>
+ <li>CNCat settings</li>
+ <li>CNCat design</li>
+ <li>Services</li>
+</ol>
+ 
+
+<p>In the first part, the CNCat settings are stored.</P>
+ 
+
+<table cellspacing=1 cellpadding=5 border=0>
+ <tr class=t1>
+ <td valign=top>
+ $db[&quot;host&quot;]
+ </td>
+ <td valign=top>
+ MySql host
+ </td>
+ </tr>
+ <tr class=t2>
+ <td valign=top>
+ $db[&quot;user&quot;]
+ </td>
+ <td valign=top>
+ MySql connection login
+ </td>
+ </tr>
+ <tr class=t1>
+ <td valign=top>
+ $db[&quot;password&quot;]
+ </td>
+ <td valign=top>
+ MySql connection password
+ </td>
+ </tr>
+ <tr class=t2>
+ <td valign=top>
+ $db[&quot;name&quot;]
+ </td>
+ <td valign=top>
+ Database name
+ </td>
+ </tr>
+ <tr class=t1>
+ <td valign=top>
+ $db[&quot;alogin&quot;]
+ </td>
+ <td valign=top>
+ Administrator's login for access to administrative interface at http://www.server.com/cncat/admin/
+ </td>
+ </tr>
+ <tr class=t2>
+ <td valign=top>
+ $db[&quot;apassword&quot;]
+ </td>
+ <td valign=top>
+ MD5 of administrator's password
+ </td>
+ </tr>
+ <tr class=t1>
+ <td valign=top>
+ $cat[&quot;mailifnewlink&quot;]
+ </td>
+ <td valign=top>
+ Yes - send new link notifications via e-mail
+ No - do not send
+ </td>
+ </tr>
+ <tr class=t2>
+ <td valign=top>
+ $cat[&quot;mailifnewlinkto&quot;]
+ </td>
+ <td valign=top>
+ E-mail address where notifications will be sent
+ </td>
+ </tr>
+ <tr class=t1>
+ <td valign=top>
+ $cat[&quot;mailifnewlinksubject&quot;]
+ </td>
+ <td valign=top>
+ Message subject.
+ </td>
+ </tr>
+ <tr class=t2>
+ <td valign=top>
+ $cat[&quot;duptestcount&quot;]
+ </td>
+ <td valign=top>
+ Number of links automatically checked for reduplications in "New" section of the administrative interface. (value 1 is recommended if the server is slow).
+ 
+ </td>
+ </tr>
+ <tr class=t1>
+ <td valign=top>
+ $cat[&quot;shownew&quot;]
+ </td>
+ <td valign=top>
+ 1 - display "New Links" sections on main page<br>
+ 0 - do not display
+ </td>
+ </tr>
+ <tr class=t2>
+ <td valign=top>
+ $cat[&quot;shownewcount&quot;]
+ </td>
+ <td valign=top>
+ Number of links to be displayed in "New Links" section
+ </td>
+ </tr>
+ <tr class=t1>
+ <td valign=top>
+ $cat[&quot;linksatmain&quot;]
+ </td>
+ <td valign=top>
+ 1 - display links on main page<br>
+ 0 - do not (only category is displayed)
+ </td>
+ </tr>
+
+ <tr class=t2>
+ <td valign=top>
+ $cat[&quot;defaultorder&quot;]
+ </td>
+ <td valign=top>
+ Default sorting<br>
+ 0 - by popularity<br>
+ 1 - by name<br>
+ 2 - by moderator's grade<br>
+ 3 - by date of entry (new at the top)<br>
+ </td>
+ </tr>
+
+ <tr class=t1>
+ <td valign=top>
+ $cat[&quot;resfield1&quot;]<br>
+ $cat[&quot;resfield2&quot;]<br>
+ $cat[&quot;resfield3&quot;]
+ </td>
+ <td valign=top>
+ Optional fields. If standard fields (URL, name, description, E-Mail) are not enough, you may add your own fields.
+ </td>
+ </tr>
+
+ <tr class=t1>
+ <td valign=top>
+ $cat[&quot;robotsdeny&quot;]
+ </td>
+ <td valign=top>
+ Use protection from automatic links submission with the help of code on the picture.
+ </td>
+ </tr>
+
+
+ <tr class=t2>
+ <td valign=top>
+ $cat[&quot;rows&quot;]
+ </td>
+ <td valign=top>
+ Number of columns to display directory sections
+ </td>
+ </tr>
+ <tr class=t1>
+ <td valign=top>
+ $CATNAME
+ </td>
+ <td valign=top>
+ Name of directory
+ </td>
+ </tr>
+ <tr class=t2>
+ <td valign=top>
+ $LANGFILE
+ </td>
+ <td valign=top>
+ Language file. Files for Russian and English are shipped with the software. Additional language files may be downloaded from <a href="http://www.cn-software.com/">http://www.cn-software.com/download.xhtm</a>
+ </td>
+ </tr>
+</table>
+
+<P>You may change $COPY variable or even delete it. But, license agreement requires logo and name of software be displayed on each page of the directory.</P>
+
+
+<hr size=1><a name=templates> </a><H2>Templates configuration</H2>
+
+<P>To set directory appearance you need to configure the templates. It can be done with the administrative interface (section "Miscelanneous -&gt; Templates"). You may also edit files _top.php and _bottom.php.
+</P>
+
+
+<table cellspacing=1 cellpadding=5 border=0>
+<tr class=t0>
+<td align=center><b>Name</b></td>
+<td align=center><b>Template description</b></td>
+<td align=center><b>Replaceble lines</b></td>
+</tr>
+
+<tr class=t0><td colspan=3 valign=top align=center><b>Link list</b></td></tr>
+
+<tr class=t2><td valign=top>linkstop</td><td valign=top>Part of the document before the link list</td><td valign=top>No</td></tr>
+<tr class=t1><td valign=top>linksmiddle</td><td valign=top>Part of the document between the best and regular links</td>
+<td valign=top>
+<UL>
+<LI><B>%NUM</B> - sequence number of the first link on the main page.
+</UL>
+</td></tr>
+<tr class=t2><td valign=top>linksbottom</td><td valign=top>Part of the document after link list</td><td valign=top>No</td></tr>
+<tr class=t1><td valign=top>linksbit</td><td valign=top>One link</td><td valign=top>
+<UL>
+<LI><B>%ID</B> - site identifier
+<LI><B>%TITLE</B> - site name
+<LI><B>%DESC</B> - link description
+<LI><B>%URL</B> - site address 
+<LI><B>%DURL</B> - site address (is not highlighted with red during the search)
+<LI><B>%ADMINIFACE</B> - administrative section (available for administrator only)
+<LI><B>%GIN</B> - number of jumps from site to directory
+<LI><B>%GOUT</B> - number of jumps from directory to site
+<LI><B>%MODERVOTE</B> - moderator's grade
+<LI><B>%BROKENTEXT</B> - text "Broken Link"
+<LI><B>%RESFIELD1</B> - optional field 1
+<LI><B>%RESFIELD2</B> - optional field 2
+<LI><B>%RESFIELD3</B> - optional field 3
+</UL>
+</td></tr>
+<tr class=t2><td valign=top>bestlinksbit</td><td valign=top>One best link</td><td valign=top>
+<UL>
+<LI><B>%ID</B> - site identifier
+<LI><B>%DESC</B> - link description
+<LI><B>%TITLE</B> - site name
+<LI><B>%URL</B> - site address
+<LI><B>%ADMINIFACE</B> - administrative section (available for administrator only)
+<LI><B>%GIN</B> - number of jumps from site to directory
+<LI><B>%GOUT</B> - number of jumps from directory to site
+<LI><B>%MODERVOTE</B> - moderator's grade
+<LI><B>%BROKENTEXT</B> - text "Broken Link"
+<LI><B>%RESFIELD1</B> - optional field 1
+<LI><B>%RESFIELD2</B> - optional field 2
+<LI><B>%RESFIELD3</B> - optional field 3
+</UL>
+</td></tr>
+<tr class=t0><td colspan=3 valign=top align=center><b>Section "New Links"</b></td></tr>
+<tr class=t1><td valign=top>newlinkstop</td><td valign=top>Upper part of "New Links" section</td><td valign=top>
+<UL>
+<LI><B>%NEWLINKSTEXT</B> - text "New Links"
+</UL>
+</td></tr>
+<tr class=t2><td valign=top>newlinkstbottom</td><td valign=top>Bottom part of "New Links" section</td><td valign=top>No</td></tr>
+<tr class=t1><td valign=top>newlinkstbit</td><td valign=top>New link</td><td valign=top>
+<UL>
+<LI><B>%ID</B> - site identifier
+<LI><B>%TITLE</B> - site name
+<LI><B>%URL</B> - site address
+<LI><B>%DESC</B> - link description
+<LI><B>%DESC75</B> - short description
+<LI><B>%ADMINIFACE</B> - administrative section (available for administrator only)
+<LI><B>%GIN</B> - number of jumps from site to directory
+<LI><B>%GOUT</B> - number of jumps from directory to site
+<LI><B>%MODERVOTE</B> - moderator's grade
+<LI><B>%RESFIELD1</B> - optional field 1
+<LI><B>%RESFIELD2</B> - optional field 2
+<LI><B>%RESFIELD3</B> - optional field 3
+</UL>
+</td>
+</tr>
+<tr class=t0>
+<td colspan=3 valign=top align=center><b>List of categories</b></td></tr>
+<tr class=t1><td valign=top>partstop</td><td valign=top>Upper part of categories section</td><td valign=top>No</td></tr>
+<tr class=t2><td valign=top>partsdelimtop</td><td valign=top>Start of new line of categories section</td><td valign=top>No</td></tr>
+<tr class=t1><td valign=top>partsdelimbottom</td><td valign=top>End of new line of categories section</td><td valign=top>No</td></tr>
+<tr class=t2><td valign=top>partsbottom</td><td valign=top>Bottom part of categories section</td><td valign=top>No</td></tr>
+<tr class=t1><td valign=top>partsbit</td><td valign=top>Name of the category</td><td valign=top>
+<UL>
+<LI><B>%CID</B> - category identifier
+<LI><B>%CTITLE</B> - category name
+<LI><B>%CCOUNT</B> - number of links in the category
+</UL>
+</td></tr>
+<tr class=t0><td colspan=3 valign=top align=center><b>Search</b></td></tr>
+<tr class=t1><td valign=top>searchform</td><td valign=top>Search form</td><td valign=top>
+<UL>
+<LI><B>%QUERYTEXT</B> - search request
+<LI><B>%SEARCHTEXT</B> - text "Perform search"
+</UL>
+</td></tr>
+<tr class=t2><td valign=top>searchtop</td><td valign=top>Part of document before list of links</td><td valign=top>
+<UL>
+<LI><B>%STARTNUM</B> - sequence number of the first link on page.
+</UL>
+</td></tr>
+<tr class=t1><td valign=top>searchbottom</td><td valign=top>Part of the document after link list</td><td valign=top>No</td></tr>
+<tr class=t0><td colspan=3 valign=top align=center><b>Miscellaneuos</b></td></tr>
+<tr class=t1><td valign=top>catname</td><td valign=top>Category name section</td><td valign=top>
+<UL>
+<LI><B>%MAINTEXT</B> - Name of directory
+<LI><B>%OTHERTEXT</B> - Section name
+</UL>
+</td></tr>
+<tr class=t2><td valign=top>sortby</td><td valign=top>Sorting section</td><td valign=top>
+<UL>
+<LI><B>%SORTBYTEXT</B> - Text &quot;Sort by&quot;
+<LI><B>%SORTBYPOP</B> - popularity
+<LI><B>%SORTBYTITLE</B> - name
+<LI><B>%SORTBYMODER</B> - moderator's grade
+<LI><B>%SORTBYIN</B> - by date of entry
+</UL>
+</td></tr>
+<tr class=t1><td valign=top>brokenscript</td><td valign=top>Broken links information script</td><td valign=top>
+<UL>
+<LI><B>%YESTEXT - Text "Yes"
+<LI><B>%NOTEXT - Text "No"
+<LI><B>%BROKENSURETEXT - Sending notification confirmation text
+</UL>
+</td></tr></table>
+ 
+<hr size=1><a name=plugin> </a><h2>How to Create Your Own Plugin.</h2>
+
+<P>Plugins are software modules allowing quick and simple extention of program functions.
+CNCat plugins are found in ./admin/plugins/. directory. Standard distribution includes four plugins:
+
+<UL>
+<LI>Import of links from the PHPNuke directory (import_nuke.php)
+<LI>Export of links to XML files (export_xml.php)
+<LI>Import of links from XML files (import_xml.php)
+<LI>Simultaneous confirmation of multiple links (multi_add.php)
+</UL>
+
+<P>Below is an example of the simple plugin. The plugin displays links according to moderator's rating.</P>
+<P>Let's have a look at the code by lines:</P>
+
+<UL>
+<LI><B>line 1</B> - name of the plugin. Used to build list of plugins.
+<LI><B>lines 3-4</B> - change directory for the parent one. Is necessary for the plugin correct function.
+<LI><B>line 7</B> - authorization. All code after this line will be processed only after administrator's password is entered.
+<LI><B>lines 9-18</B> - database query. Display of result.
+<LI><B>line 20</B> - number of links in categories synchronization. It must be used only if you have changed contents of the database.
+<LI><B>line 22</B> - synchronization of full names of categories. It must be used only if you have changed contents of the database.
+<LI><B>lines 27-28</B> - upper part of the HTML page and menu display.
+<LI><B>lines 32-37</B> - data input form display.
+<LI><B>line 41</B> - bottom part of the HTML page display.
+</UL>
+
+<code><font color="#000000">
+<font color="#0000CC">&lt;?
+<br /><font color=black>01:</font> </font><font color="#FF9900">/* PLUGIN: This is title of example plugin; */
+<br /><font color=black>02:</font>
+<br /><font color=black>03:</font> </font><font color="#0000CC">chdir</font><font color="#006600">(</font><font color="#CC0000">".."</font><font color="#006600">);
+<br /><font color=black>04:</font> </font><font color="#0000CC">$ADLINK</font><font color="#006600">=</font><font color="#CC0000">"../"</font><font color="#006600">;
+<br /><font color=black>05:</font>
+<br /><font color=black>06:</font> </font><font color="#FF9900">/* Authorization */
+<br /><font color=black>07:</font> </font><font color="#006600">include </font><font color="#CC0000">"auth.php"</font><font color="#006600">;
+<br /><font color=black>08:</font>
+<br /><font color=black>09:</font> if (isset(</font><font color="#0000CC">$_GET</font><font color="#006600">[</font><font color="#CC0000">"max"</font><font color="#006600">])) {
+<br /><font color=black>10:</font> &nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000CC">$max</font><font color="#006600">=</font><font color="#0000CC">intval</font><font color="#006600">(</font><font color="#0000CC">$_GET</font><font color="#006600">[</font><font color="#CC0000">"max"</font><font color="#006600">]);
+<br /><font color=black>11:</font> &nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000CC">$min</font><font color="#006600">=</font><font color="#0000CC">intval</font><font color="#006600">(</font><font color="#0000CC">$_GET</font><font color="#006600">[</font><font color="#CC0000">"min"</font><font color="#006600">]);
+<br /><font color=black>12:</font> &nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000CC">$r</font><font color="#006600">=</font><font color="#0000CC">mysql_query</font><font color="#006600">(</font><font color="#CC0000">"SELECT url FROM "</font><font color="#006600">.</font><font color="#0000CC">$db</font><font color="#006600">[</font><font color="#CC0000">"prefix"</font><font color="#006600">].</font><font color="#CC0000">"main WHERE moder_vote&lt;="</font><font color="#006600">.</font><font color="#0000CC">$max</font><font color="#006600">.</font><font color="#CC0000">" AND moder_vote&gt;='"</font><font color="#006600">.</font><font color="#0000CC">$min</font><font color="#006600">.</font><font color="#CC0000">"' LIMIT 1000;"</font><font color="#006600">) or die(</font><font color="#0000CC">mysql_error</font><font color="#006600">());
+<br /><font color=black>13:</font> &nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#CC0000">"&lt;html&gt;&lt;body&gt;"</font><font color="#006600">;
+<br /><font color=black>14:</font> &nbsp;&nbsp;&nbsp;&nbsp;while (</font><font color="#0000CC">$a</font><font color="#006600">=</font><font color="#0000CC">mysql_fetch_array</font><font color="#006600">(</font><font color="#0000CC">$r</font><font color="#006600">)) {
+<br /><font color=black>15:</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#CC0000">"&lt;a href='"</font><font color="#006600">.</font><font color="#0000CC">$a</font><font color="#006600">[</font><font color="#CC0000">"url"</font><font color="#006600">].</font><font color="#CC0000">"'&gt;"</font><font color="#006600">.</font><font color="#0000CC">$a</font><font color="#006600">[</font><font color="#CC0000">"url"</font><font color="#006600">].</font><font color="#CC0000">"&lt;/a&gt;&lt;br&gt;\n"</font><font color="#006600">;
+<br /><font color=black>16:</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<br /><font color=black>17:</font> &nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#CC0000">"&lt;/body&gt;&lt;/html&gt;"</font><font color="#006600">;
+<br /><font color=black>18:</font>
+<br /><font color=black>19:</font> &nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF9900">/* Synchronization of number of links in categories */
+<br /><font color=black>20:</font> &nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000CC">sync</font><font color="#006600">();
+<br /><font color=black>21:</font> &nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF9900">/* Synchronization of full names in categories */
+<br /><font color=black>22:</font> &nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000CC">sync_names</font><font color="#006600">();
+<br /><font color=black>23:</font> &nbsp;&nbsp;&nbsp;&nbsp;exit;
+<br /><font color=black>24:</font> &nbsp;&nbsp;&nbsp;&nbsp;}
+<br /><font color=black>25:</font>
+<br /><font color=black>26:</font> </font><font color="#FF9900">/* Administrative interface - upper part of the page */
+<br /><font color=black>27:</font> </font><font color="#006600">include </font><font color="#CC0000">"_top.php"</font><font color="#006600">;
+<br /><font color=black>28:</font> include </font><font color="#CC0000">"menu.php"</font><font color="#006600">;
+<br /><font color=black>29:</font>
+<br /><font color=black>30:</font> </font><font color="#FF9900">/* Main form */
+<br /><font color=black>31:</font> </font><font color="#0000CC">?&gt;
+<br /><font color=black>32:</font> </font>&lt;table align=center cellspacing=1 cellpadding=6 border=0&gt;&lt;form action=example.php method=get&gt;
+<br /><font color=black>33:</font> &lt;th colspan=2 background=../../cat/tablebg.gif&gt;Plugin example&lt;/th&gt;&lt;/tr&gt;
+<br /><font color=black>34:</font> &lt;tr class=t1&gt;&lt;td&gt;Minimum moderator vote&lt;td&gt;&lt;input type=text name=min value='8'&gt;&lt;/td&gt;&lt;/tr&gt;
+<br /><font color=black>35:</font> &lt;tr class=t1&gt;&lt;td&gt;Maximum moderator vote&lt;td&gt;&lt;input type=text name=max value='10'&gt;&lt;/td&gt;&lt;/tr&gt;
+<br /><font color=black>36:</font> &lt;tr class=t2&gt;&lt;td colspan=2 align=right&gt;&lt;input type=submit value='Show'&gt;&lt;/td&gt;&lt;/tr&gt;
+<br /><font color=black>37:</font> &lt;/form&gt;&lt;/table&gt;
+<br /><font color=black>39:</font> <font color="#0000CC">&lt;?
+<br /><font color=black>40:</font> </font><font color="#FF9900">/* Administrative interface - bottom part of the page */
+<br /><font color=black>41:</font> </font><font color="#006600">include </font><font color="#CC0000">"_bottom.php"</font><font color="#006600">;
+<br /><font color=black>42:</font> </font><font color="#0000CC">?&gt;
+</font></font>
+</code>
+
+
+<P><B>Database structure: </B>
+
+<P>Table <B>"cncat_main"</B> - contains information about links </P>
+<table cellspacing=1 cellpadding=5 border=0 width=100%>
+<tr class=t0><th width=10%>Field</th><th width=10%>Type</th><th width=10%>Null</th><th width=10%>Key</th><th width=10%>Default</th><th width=50%>Description</th></td>
+<tr class=t1><td>lid         </td><td>int(11)  </td><td>     </td><td>PRI </td><td>NULL    </td><td>link ID                                      </td></tr>
+<tr class=t2><td>title       </td><td>text     </td><td>YES  </td><td>    </td><td>NULL    </td><td>site name                               </td></tr>
+<tr class=t1><td>description </td><td>text     </td><td>YES  </td><td>    </td><td>NULL    </td><td>site description                               </td></tr>
+<tr class=t2><td>url         </td><td>text     </td><td>YES  </td><td>    </td><td>NULL    </td><td>site URL                                    </td></tr>
+<tr class=t1><td>cat1        </td><td>int(11)  </td><td>YES  </td><td>    </td><td>NULL    </td><td>category ID                                  </td></tr>
+<tr class=t2><td>gin         </td><td>int(11)  </td><td>YES  </td><td>    </td><td>NULL    </td><td>number of jumps from site                 </td></tr>
+<tr class=t1><td>gout        </td><td>int(11)  </td><td>YES  </td><td>    </td><td>NULL    </td><td>number of jumps to site                 </td></tr>
+<tr class=t2><td>moder_vote  </td><td>int(11)  </td><td>YES  </td><td>    </td><td>NULL    </td><td>moderator's rating                            </td></tr>
+<tr class=t1><td>email       </td><td>text     </td><td>YES  </td><td>    </td><td>NULL    </td><td>E-Mail                                       </td></tr>
+<tr class=t2><td>type        </td><td>int(11)  </td><td>YES  </td><td>    </td><td>NULL    </td><td>0 - new link, 1 - working, 2 - deleted </td></tr>
+<tr class=t1><td>broken      </td><td>int(11)  </td><td>YES  </td><td>    </td><td>0       </td><td>votes for broken link                </td></tr>
+<tr class=t2><td>insert_date </td><td>datetime </td><td>YES  </td><td>    </td><td>NULL    </td><td>date of submission                              </td></tr>
+<tr class=t1><td>resfield1   </td><td>text     </td><td>YES  </td><td>    </td><td>NULL    </td><td>additional field #1                                  </td></tr>
+<tr class=t2><td>resfield2   </td><td>text     </td><td>YES  </td><td>    </td><td>NULL    </td><td>additional field #2                                  </td></tr>
+<tr class=t1><td>resfield3   </td><td>text     </td><td>YES  </td><td>    </td><td>NULL    </td><td>additional field #3                                  </td></tr>
+<tr class=t1><td>mail_sended </td><td>tinyint  </td><td>YES  </td><td>    </td><td>0       </td><td>1 - if status mail has been sent to link owner       </td></tr>
+</table>
+
+<P>Table <B>"cncat_cat"</B> - contains information about categories</P>
+<table cellspacing=1 cellpadding=5 border=0 width=100%>
+<tr class=t0><th width=10%>Field</th><th width=10%>Type</th><th width=10%>Null</th><th width=10%>Key</th><th width=10%>Default</th><th width=50%>Description</th></td>
+<tr class=t1><td>cid    </td><td>int(11) </td><td>     </td><td>PRI </td><td>NULL    </td><td>category ID                                       </td></tr>
+<tr class=t2><td>name   </td><td>text    </td><td>YES  </td><td>    </td><td>NULL    </td><td>name                                           </td></tr>
+<tr class=t1><td>parent </td><td>int(11) </td><td>YES  </td><td>    </td><td>NULL    </td><td>parent category ID                          </td></tr>
+<tr class=t2><td>count  </td><td>int(11) </td><td>YES  </td><td>    </td><td>0       </td><td>number of links in category and sub-categories      </td></tr>
+</table>
+
+<P>Table <B>"cncat_cat_linear"</B> - contains full names of categories</P>
+<table cellspacing=1 cellpadding=5 border=0 width=100%>
+<tr class=t0><th width=10%>Field</th><th width=10%>Type</th><th width=10%>Null</th><th width=10%>Key</th><th width=10%>Default</th><th width=50%>Description</th></td>
+<tr class=t1><td>cid   </td><td>int(11) </td><td>YES  </td><td>    </td><td>NULL    </td><td>category ID                                        </td></tr>
+<tr class=t2><td>name  </td><td>text    </td><td>YES  </td><td>    </td><td>NULL    </td><td>full name of category                           </td></tr>
+</table>
+
+<P>Table <B>"cncat_mail"</B> - contains mail templates</P>
+<P>Table <B>"cncat_templates"</B> - contains design templates</P>
+
+
+<a name=whatsnew> </a>
+<hr size=1><a name=new20> </a><h2>What's New in Version 2.0</h2>
+
+<P>1. Upgrading procedure changed.
+<P>2. Templates are stored in the database.
+<P>3. E-mail are sent to link owners.
+<P>4. Replaceble line added in the template 'linksbit'. (Necessary to install direct link to the search results).
+<P>5. Authorisation procedure changed.
+<P>6. Administrative interface changed.
+
+<a name=whatsnew> </a>
+<hr size=1><a name=new14> </a><h2>What's New in Version 1.4</h2>
+
+<P>1. <a href=#plugins>Plugins</a> support added.
+<P>2. Administrative interface access form changed.
+<P>3. Sort by submission date error fixed.
+<P>4. Simultaneous confirmation of multiple links plugin added.
+<P>5. Plugins for XML format import/export added. </P>
+
+<hr size=1><a name=new131> </a><h2>What's New in Version 1.3.1</h2>
+
+<P>1. Multiple links edition added.
+<P>2. Database reset option added.
+<P>3. Number of jumps reset added.
+<P>4. Images paths fixed. </P>
+
+<hr size=1><a name=new13> </a><h2>What's New in Version 1.3</h2>
+
+<P>1. News search capabilities. ID search (for example: "id:102") and URL search added (for example: "URL:www.yahoo.com"). 
+Besides, it is now possible to search by exact word-form, just use the search phrase with quatation marks.
+<P>2. Links editing form changed. "Garbage" has been removed.
+<P>3. Links can be removed from directory pages at once, without entering administration interface. 
+<P>4. Prefixes for tables have been added. Now it is possible to use CNCat even if you have only one database.
+<P>5. Three optional fields have been added, in case, standard fields (URL, name, description, E-Mail) are not enough. 
+Optional fields are set in file <i>config.php</i>, for example:
+<PRE>
+$cat["resfield1"]="Second Name";
+$cat["resfield2"]="First Name";
+$cat["resfield3"]="";
+</PRE>
+<P>6. Sorting by entry date has been added.
+<P>7. Setting default sorting method is now possible. It can be done with hel of the directive "defaultorder" in file <i>config.php</i>:
+<PRE>
+$cat["defaultorder"]=3;
+</PRE>
+
+<UL>
+<LI>0 - by popularity
+<LI>1 - by name
+<LI>2 - by moderator's grade
+<LI>3 - by date of entry (new at the top)
+</UL>
+
+<hr size=1><a name=new12> </a><h2>What's New in Version 1.2</h2>
+
+<P>1. Added use of $HTTP_POST_VARS when new link had been added.
+<P>2. Added option of editing links on results page.
+<P>3. Optional display of link list on the main page.
+<P>4. Appearance may be set up how you want it.
+(Do not change this file, if you want to easily upgrate 
+to newer versions of CNCat. To change appearance set up files: <I>_top.php</I>, 
+<I>_bottom.php</I> and <I>config.php</I>)
+
+<P>5. Added installation script, which will help you to install CNCat or upgrade it from any version. </P>
+ 
+<hr size=1><a name=new11> </a><h2>What's New in Version 1.1</h2>
+
+<P>1. Directory sections editing and synchronisation option added.
+<P>2. Broken links notification added.
+<P>3. New link notification added. The notification is e-mailed to site administrator. To enable it, the following changes to the configuration file should be performed:
+<PRE>
+$cat["mailifnewlink"]="yes";
+</PRE>
+<UL>
+<LI>yes - notify via E-Mail
+<LI>no - do not notify
+</UL>
+<PRE>
+$cat["mailifnewlinkto"]="support@cn-software.com";
+</PRE>
+<P>E-Mail, where notification will be sent.
+<PRE>
+$cat["mailifnewlinksubject"]="New Link";
+</PRE>
+<P>E-Mail subject.
+<P>This option is very useful, if links are not added to your directory very often - there is no need to visit administrator's page and look for new links.
+<P>4. More flexible design added. The following style table has been added: (see _top.php)
+<PRE>
+&lt;STYLE&gt;
+&lt;!--
+.tbl0 {background-color:#D0D0D0;color:white;}
+.tbl1 {background-color:#F0F0F0;}
+.tbl2 {background-color:#D0D0D0;}
+--&gt;
+&lt;/STYLE&gt;
+</PRE>
+<P>5. New links may be displayed on the main page:
+<PRE>
+$cat["newlinksbordercolor"]="#896819";
+$cat["newlinksbgcolor"]="#FFEEB3";
+</PRE>
+<P>Table and border colors for new links.
+<PRE>
+$cat["shownew"]=1;
+</PRE>
+<UL>
+<LI>1 - show new links block
+<LI>0 - do not show new links block
+</UL>
+<PRE>
+$cat["shownewcount"]=4;
+</PRE>
+<P>Number of new links to display.
+<P>6. Double link automatic checking added. First N links in "New" section will be automatically checked for doubling.
+<PRE>
+$cat["duptestcount"]=1;
+</PRE>
+<P>Sets number of links to check (N). Every check calls for a separate SQL query. Set to 10 if you have a powerful server. </P>
+
+
+<hr size=1><a name=license> </a><H2>License</H2>
+
+<P>Installing CNCat you agree to the following terms:
+
+<P>You may use CNCat at your site regardless of its type - commercial or non-commercial. CN-Software copyrights must be present in system code, CN-Software graphical or text link must be present on EVERY page, created by CNCat. The link must be:
+
+<UL>
+<LI>noticeable,
+<LI>lead to URL: <a href=http://www.cn-software.com/>http://www.cn-software.com/</a>,
+<LI>link text may be arbitrary, presence of script name - CNCat - is obligatory.
+</UL>
+
+<P>You are allowed to modify CNCat code, leaving our copyrights inside the code, as well as on pages created by the script. You are NOT ALLOWED to distribute modified CNCat code.
+
+<P>You are not allowed to: 
+
+<UL>
+<LI>distribute CNCat and its modifications for any fee 
+<LI>delete/replace our copyrights (inside the code or pages created by CNCat)
+</UL>
+
+<P>If you want to remove CNCat logos or links, you must contact CN-Software Support Team for details and terms via e-mail <a href=mailto:support@cn-software.com>support@cn-software.com</a>
+<P>Script CNCat is distributed "AS IS", you are using it at your own risk and the script authors do not bear responsibility for any damage (mental, financial, circumstantial or any other) caused by script performance.</P>
