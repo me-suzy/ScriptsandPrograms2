@@ -1,0 +1,141 @@
+<form method="post" action="">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr valign="top"> 
+      <td width="74%"> 
+        <table width="250" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="210" valign="middle" height="51"> <font class="form_text"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333">DOMAIN 
+              SEARCH:</font></b></font> <br>
+              <input type="text" name="keyword" maxlength="30" size="15" style="border: 1 solid #666666" value="<?php echo $keyword ?>">
+              <input type="image" border="0" name="submit2" value="submit" src="images/button_go.gif" width="21" height="20" onClick="verify(this.form);">
+              <input type="hidden" name="page2" value="<? echo $page ?>">
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td width="26%"> 
+        <table width="250" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#CCCCCC">
+                <tr> 
+                  <td width="161" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=domains"><font color="#990033">All</font></a> 
+                    domains:</font></td>
+                  <td width="68" height="5" align="right"> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"> 
+                    <?
+$domains = get_total_domains();
+echo $domains;
+?>
+                    </span></span></span></span></font></b></td>
+                  <td width="7" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="161" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=domains&amp;today=Y"><font color="#990033">Today's</font></a> 
+                    new domains:</font></td>
+                  <td width="68" height="5" align="right"> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"> 
+                    <?
+$orders_t = get_total_domains_today();
+echo $orders_t;
+?>
+                    </span></span></span></span></font></b></td>
+                  <td width="7" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="161" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=domains_due">Due/Overdue</a> 
+                    domains:</font></td>
+                  <td width="68" height="5" align="right"> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><font color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"> 
+                    <?
+$orders_o = get_total_overdue_domains();
+echo $orders_o;
+?>
+                    </span></span></span></span></font></font></b></td>
+                  <td width="7" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="161" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=domains_exp&period=30">Expiring</a> 
+                    soon:</font></td>
+                  <td width="68" height="5" align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><font color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"> 
+                    <?echo count_domains_expiring("30");
+
+?>
+                    </span></span></span></span></font></font></b></td>
+                  <td width="7" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form method="post" action="" onSubmit="validate();return returnVal;">
+  <font face="Verdana, Arial, Helvetica, sans-serif"> </font> <font face="Verdana, Arial, Helvetica, sans-serif"> 
+  <? 
+    $today=date("Y-m-d");
+
+	$i="0";	
+	$db = new ps_DB;
+	if($keyword) {
+	$q  = "SELECT * FROM domains WHERE domain_name LIKE '%$keyword%' ORDER BY domain_host_id, domain_name";
+	} elseif ($account_id) {
+	$q  = "SELECT * FROM domains WHERE domain_account_id LIKE '$account_id' ORDER BY domain_host_id, domain_name";
+	} else {
+	$q  = "SELECT * FROM domains ORDER BY domain_host_id, domain_name";
+	}
+	$db->query($q);
+
+
+		while ($db->next_record()) {
+		$status = quick_billing_status($db->f("domain_id"));
+				if ($status =="Y") {
+?>
+  </font> <font face="Verdana, Arial, Helvetica, sans-serif"> </font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#E4E4E4" height="10">
+    <tr> 
+      <td width="18%" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#333333"><font color="#003399"><b> 
+        <?
+$db->p("domain_name");  
+?>
+        </b></font> </font></font></td>
+      <td width="41%" height="5"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+        <? 
+$host_name = show_hosting_option($db->f("domain_host_id"));
+echo $host_name; 
+ ?>
+        </font></td>
+      <td width="21%" height="5"><font color="#0033CC"></font><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+        <? 
+$status = get_billing_status($db->f("domain_id"));
+echo $status; 
+ ?>
+        </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1"></font></td>
+      <td width="14%" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?page=domains_billing&account_id=<? $db->p("domain_account_id") ?>&domain_id=<? $db->p("domain_id") ?>">bill 
+        manually </a></font></td>
+      <td width="6%" height="5"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?page=orders_view&amp;set_action=client_update&amp;order_id=<? echo $db->p("domain_order_id"); ?>">details</a> 
+          </font></div>
+      </td>
+    </tr>
+  </table>
+  <font face="Verdana, Arial, Helvetica, sans-serif"> 
+  <?
+$i++;
+}   
+} 
+if ($i=="0") { echo "<BR><B>NO ACCOUNTS ARE DUE FOR BLLING AT THIS TIME</B>"; } else { ?>
+  <br>
+  </font> 
+</form>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="?page=domains_due&action=bill_all_now"><br>
+  <br>
+  BILL ALL THE ABOVE ACCOUNTS NOW</a></font></b><b><font face="Verdana, Arial, Helvetica, sans-serif"> 
+  <?}?>
+  </font></b></p>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>
+  <a href="?page=domains_billing"><br>
+  ENTER A MANUAL PAYMENT</a></font></b></p>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="?page=credits">VIEW 
+  ALL CREDITS</a></font></b></p>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="?page=credits_edit">ENTER 
+  A CREDIT</a></font></b></p>
