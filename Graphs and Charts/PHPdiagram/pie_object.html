@@ -1,0 +1,37 @@
+<HTML><HEAD></HEAD>
+<BODY bgcolor="#eeeeee">
+<table border=1><tr><td><IMG src="pie_object.png" usemap="#map1" border=0></td></tr></table>
+<map name="map1"> 
+<area shape=polygon coords='100,100,147,165,125,176,100,180,75,176,53,165,35,147,24,125,20,100,24,75,35,53,53,35,75,24,100,20'  title='60%' alt='60%' href='javascript:alert("Bananas 60%")'>
+<area shape=polygon coords='100,100,147,35,165,53,176,75,180,100,176,125,165,147,147,165'  title='30%' alt='30%' href='javascript:alert("Oranges 30%")'>
+<area shape=polygon coords='103,90,103,10,120,12,136,17,150,26'  title='10%' alt='10%' href='javascript:alert("Apples 10%")'>
+</map>
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">include (</font><font color="#DD0000">"diagram.php"</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">=new </font><font color="#0000BB">Diagram</font><font color="#007700">();
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">=@</font><font color="#0000BB">ImageCreate</font><font color="#007700">(</font><font color="#0000BB">300</font><font color="#007700">, </font><font color="#0000BB">200</font><font color="#007700">) or die(</font><font color="#DD0000">"Cannot create a new GD image."</font><font color="#007700">); 
+<br /></font><font color="#0000BB">ImageColorAllocate</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">); </font><font color="#FF8000">//background color
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Pie</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">,</font><font color="#0000BB">100</font><font color="#007700">,</font><font color="#0000BB">10</font><font color="#007700">,</font><font color="#0000BB">80</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">*</font><font color="#0000BB">3.6</font><font color="#007700">,</font><font color="#0000BB">10</font><font color="#007700">*</font><font color="#0000BB">3.6</font><font color="#007700">,</font><font color="#DD0000">"#ff6060"</font><font color="#007700">,</font><font color="#DD0000">"10%"</font><font color="#007700">,</font><font color="#DD0000">"alert(\"Apples 10%\")"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Pie</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">,</font><font color="#0000BB">100</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">80</font><font color="#007700">,</font><font color="#0000BB">10</font><font color="#007700">*</font><font color="#0000BB">3.6</font><font color="#007700">,</font><font color="#0000BB">40</font><font color="#007700">*</font><font color="#0000BB">3.6</font><font color="#007700">,</font><font color="#DD0000">"#ffa000"</font><font color="#007700">,</font><font color="#DD0000">"30%"</font><font color="#007700">,</font><font color="#DD0000">"alert(\"Oranges 30%\")"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Pie</font><font color="#007700">(</font><font color="#0000BB">100</font><font color="#007700">,</font><font color="#0000BB">100</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">80</font><font color="#007700">,</font><font color="#0000BB">40</font><font color="#007700">*</font><font color="#0000BB">3.6</font><font color="#007700">,</font><font color="#0000BB">100</font><font color="#007700">*</font><font color="#0000BB">3.6</font><font color="#007700">,</font><font color="#DD0000">"#f6f600"</font><font color="#007700">,</font><font color="#DD0000">"60%"</font><font color="#007700">,</font><font color="#DD0000">"alert(\"Bananas 60%\")"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">(</font><font color="#0000BB">200</font><font color="#007700">,</font><font color="#0000BB">40</font><font color="#007700">,</font><font color="#0000BB">280</font><font color="#007700">,</font><font color="#0000BB">60</font><font color="#007700">,</font><font color="#DD0000">"#ff6060"</font><font color="#007700">,</font><font color="#DD0000">"Apples"</font><font color="#007700">,</font><font color="#DD0000">"#000000"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">(</font><font color="#0000BB">200</font><font color="#007700">,</font><font color="#0000BB">80</font><font color="#007700">,</font><font color="#0000BB">280</font><font color="#007700">,</font><font color="#0000BB">100</font><font color="#007700">,</font><font color="#DD0000">"#ffa000"</font><font color="#007700">,</font><font color="#DD0000">"Oranges"</font><font color="#007700">,</font><font color="#DD0000">"#000000"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">(</font><font color="#0000BB">200</font><font color="#007700">,</font><font color="#0000BB">120</font><font color="#007700">,</font><font color="#0000BB">280</font><font color="#007700">,</font><font color="#0000BB">140</font><font color="#007700">,</font><font color="#DD0000">"#f6f600"</font><font color="#007700">,</font><font color="#DD0000">"Bananas"</font><font color="#007700">,</font><font color="#DD0000">"#000000"</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">ImagePng</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#DD0000">"pie_object.png"</font><font color="#007700">);
+<br /></font><font color="#0000BB">ImageDestroy</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">);
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;HTML&gt;&lt;HEAD&gt;&lt;/HEAD&gt;
+<br />&lt;BODY bgcolor="#eeeeee"&gt;
+<br />&lt;table border=1&gt;&lt;tr&gt;&lt;td&gt;&lt;IMG src="pie_object.png" usemap="#map1" border=0&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+<br />&lt;map name="map1"&gt; 
+<br /><font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ImgMapData?&gt;
+<br /></font>&lt;/map&gt;
+<br />&lt;/BODY&gt;
+<br />&lt;/HTML&gt;</font>
+</code>
+</BODY>
+</HTML>
