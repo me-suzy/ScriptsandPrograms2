@@ -1,0 +1,265 @@
+<html>
+<head>
+	<title>Cheat Protection & Definitions</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<div align="center">
+
+<font face="Verdana,Arial" size="4">
+
+<b>
+Cheat Protection & Definitions
+</b>
+
+<br><br>
+
+<table width="650" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Cheat Protection</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+<font face="Arial" size="2">
+
+AutoRank Pro has several methods of cheat protection including complete IP tracking, double CGI, gateway sessions, and cookies.  Here
+we will discuss how they work, and what type of cheating they prevent.  We will also discuss the cheat log so you can understand how
+to interpret it.
+
+<br><br>
+
+<b>Complete IP Tracking</b>
+
+<br><br>
+
+The first method of cheat protection is complete IP tracking.  Put simply, a log of IP addresses is kept for each member.  Each time
+a new click is sent, the script checks the IP logs to see if that IP has clicked through before.  If it has, the click is not counted
+and a cheat is (optionally) recorded in the cheat log.  In setup.cgi you can tell the software how often it should clear the IP logs.
+If you only want one hit per IP per day, set that value to 86400.  To keep the software execution times and sever load low, we recommend
+that you clear the IP logs at least once each day.
+
+<br><br>
+
+The IP tracking used by AutoRank Pro is different than that used by most competing software.  Most
+other scripts keep a single IP log which is then used for all members.  What this means is that once an IP clicks through for one account,
+it will not be able to click through for any other accounts.  Does that sound fair?  Well it didn't to us, so with AutoRank Pro it is possible for
+a single IP address to give a hit to each account.
+
+<br><br>
+
+<b>Double CGI</b>
+
+<br><br>
+
+The next method is double CGI.  What this does is to create a gateway page on your server that surfers must click through in order for a
+hit to be processed.  Using this will protect you from &lt;img&gt; tag cheaters.  For example, some cheaters will attempt to insert a link
+to rankem.cgi in an image tag:
+
+</font>
+
+<pre>
+&lt;img src="http://www.yoursite.com/cgi-bin/top100/rankem.cgi?id=username"
+height="1" width="1"&gt;
+</pre>
+
+<font face="Arial" size="2">
+
+This will create an invisible image on the cheater's page, which will load the hit tracking script each time someone visits that page.
+Without double CGI, the hits would be counted, and this account would go up in the rankings without even sending visitors to your site.
+This type of cheat can be done with other type of HTML tags, so we highly recommend that all users enable double CGI.
+
+<br><br>
+
+<b>Gateway Sessions</b>
+
+<br><br>
+
+If you have double CGI enabled, the gateway page will keep track of sessions.  Each time the gateway page is displayed, a new, unique, session
+will be generated.  You will be able to set the amount of time that session is
+valid for.  Once a surfer has clicked on a link to your site, they will have x number of seconds to click on the gateway page link before
+the session expires.  If the session expires before they click, the hit will not be counted.  If the session does not expire before
+they click, the hit will be counted and the session will be deleted - no one else will be able to use that session.  We recommend that you
+keep the expire time under 30 seconds.
+
+<br><br>
+
+Sessions assist double CGI to make sure that no HTML tag cheats are being used, and also make it more difficult for automated programs
+to fool the system.  In previous versions, and most other top sites scripts, the HTTP_REFERER information is used to check that the surfer
+is coming from a valid URL.  The problem with this is that the HTTP_REFERER value can be very easily spoofed, and the server will be tricked
+into thinking the surfer came from a URL which they really did not.  This allows an automated program to circumvent the gateway page - with
+sessions this is not possible.  A valid session must be created, and that can only be done by visiting the gateway page.
+
+<br><br>
+
+<b>Cookies</b>
+
+<br><br>
+
+Cookies are very similar to the IP tracking, but are not as reliable.  When someone clicks on a link to your site through rankem.cgi, a 
+cookie will be set in their browser.  You will tell the software how long this cookie should last.  If the same browser is used to click
+through again for the same account, the hit will not be counted.
+
+<br><br>
+
+Some of the drawbacks of cookies are the fact that they can be easily spoofed, they can be deleted easily, and not all browsers have cookies
+enabled.  While this is the weakest of the cheat protection, it will still assist you in getting the most accurate hit count possible.  It 
+is very quick to set and check cookies, so we recommend all users enable them.  Generally, expire times will be set to one day.
+
+<br><br>
+
+<b>Proxy Checking</b>
+
+<br><br>
+
+The first proxy checking method was added in v3.0.3p.  What this does is look at the HTTP headers sent with a request to determine if the
+surfer is using a proxy to make the request.  If the headers are there, the hit is ignored.  Please note that this is not 100% effective
+against proxy servers.  In our research we found that only about 60% of proxy servers send the extra HTTP headers that are required to determine
+if it is a proxy server.  We will be continuing the effort to eliminate proxy cheating with further improvements in future versions.
+
+<br><br>
+
+Why block proxy servers?  Using proxy servers is a way that many automated hitbots will use to increase their hit count.  Using a different proxy
+server for each hit will change the IP address of the hitbot, and the software will think that it is coming from a new user.  Because there are many
+publicly accessible proxy servers, obtaining a large number of unique IP addresses is possible - hitbots can theoretically produce several thousand
+false hits per day using public proxy servers.
+
+<br><br>
+
+What about valid proxy requests?  Some ISPs today do use proxy servers, which means that if you enable the proxy filtering some valid hits will
+not be counted.  This is a side effect of the proxy filtering, but we feel that you would rather block out a few valid hits in order to protect
+yourself from hundreds or thousands of invalid hits.  This may lower your overall total in hit count, but the distribution should be fairly even
+over all of your members, thus giving a fair ranking result.
+
+<br><br>
+
+<b>JavaScript</b>
+
+<br><br>
+
+Another method of cheat prevention is a small piece of javascript on the gateway page.  If your copy of rankem.cgi is loaded into a frameset
+on someones site, the code will immediately break out of the frameset and your gateway page will be the only thing visible.  In order for this
+to work, you must have the gateway (double CGI) enabled.  If you create a custom version of the gateway, be sure to include the following body
+tag in place of the one you would be using:
+
+</font>
+
+<pre>
+&lt;body onLoad="if (self != top) top.location = self.location"&gt;
+</pre>
+
+<font face="Arial,Verdana" size="2">
+
+You can add other attributes to this body tag, but make sure that the onLoad statement remains.
+
+<br><br>
+
+<font face="Arial,Verdana" size="2">
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Cheat Definitions</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+In this section we will discuss the entries you will find in the cheat log.
+
+<br><br>
+
+<b>Multiple Click - IP Add</b>
+
+<br><br>
+
+This cheat message indicates someone with the indicated IP clicked through more than one time for an account.  These cheat messages
+will be reported when an IP address is found to have already clicked through for the specified account.
+
+<br><br>
+
+<b>Multiple Click - Cookie</b>
+
+<br><br>
+
+This cheat message indicates someone used the same browser to click through more than one time for an account.
+
+<br><br>
+
+<b>Using Proxy Server</b>
+
+<br><br>
+
+This message indicates that the user trying to send a hit was using a proxy server to make their request.  These cheat messages will
+only appear if you have the proxy filtering option enabled.  In some of these messages you will find 2 IP addresses, with one in parenthesis.
+The first IP address is the IP address of the proxy server, and the second one in parenthesis is the IP address that this request was
+forwarded for.  This allows you to see the real IP address of the person making the request.  Please note that not all proxy servers will
+provide the second IP, so some of these cheat messages will only contain the IP of the proxy server.
+
+<br><br>
+
+<b>Expired Gateway Session</b>
+
+<br><br>
+
+This message indicates that the surfer clicked on the gateway page link after the session had expired.  This is probably not something
+to be worried about unless you see it happening many times for the same account.
+
+<br><br>
+
+<b>No Cookie Support</b>
+
+<br><br>
+
+If you are only allowing hits from cookie enabled browsers, this message indicates a browser was used which did not support cookies.
+
+<br><br>
+
+<b>Unsupported Browser</b>
+
+<br><br>
+
+This message indicates that the surfer is using a browser which is not supported by the software.  99% of todays browsers are supported, so
+this will mostly filter out hitbots trying to send you bogus hits.
+
+</font>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
