@@ -1,0 +1,170 @@
+<!--
+#####################################################################
+#                                                                   #
+#    Copyright © 1999-2000 localhost - All Rights Reserved     #
+#                                                                   #
+#####################################################################
+#                                                                   #
+#          THIS COPYRIGHT INFORMATION MUST REMAIN INTACT            #
+#                AND MAY NOT BE MODIFIED IN ANY WAY                 #
+#                                                                   #
+#####################################################################
+#
+# When you downloaded this script you agreed to accept the terms
+# of this Agreement. This Agreement is a legal contract, which
+# specifies the terms of the license and warranty limitation between
+# you and localhost. You should carefully read the following
+# terms and conditions before installing or using this software.
+# Unless you have a different license agreement obtained from
+# localhost, installation or use of this software indicates
+# your acceptance of the license and warranty limitation terms
+# contained in this Agreement. If you do not agree to the terms of this
+# Agreement, promptly delete and destroy all copies of the Software.
+#
+# Versions of the Software
+# Only one copy of the registered version of localhost
+# may used on one web site.
+#
+# License to Redistribute
+# Distributing the software and/or documentation with other products
+# (commercial or otherwise) or by other than electronic means without
+# localhost's prior written permission is forbidden.
+# All rights to the localhost software and documentation not expressly
+# granted under this Agreement are reserved to localhost.
+#
+# Disclaimer of Warranty
+# THIS SOFTWARE AND ACCOMPANYING DOCUMENTATION ARE PROVIDED "AS IS" AND
+# WITHOUT WARRANTIES AS TO PERFORMANCE OF MERCHANTABILITY OR ANY OTHER
+# WARRANTIES WHETHER EXPRESSED OR IMPLIED.   BECAUSE OF THE VARIOUS HARDWARE
+# AND SOFTWARE ENVIRONMENTS INTO WHICH localhost MAY BE USED, NO WARRANTY
+# OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED.  THE USER MUST ASSUME THE
+# ENTIRE RISK OF USING THIS PROGRAM.  ANY LIABILITY OF localhost WILL BE
+# LIMITED EXCLUSIVELY TO PRODUCT REPLACEMENT OR REFUND OF PURCHASE PRICE.
+# IN NO CASE SHALL localhost BE LIABLE FOR ANY INCIDENTAL, SPECIAL OR
+# CONSEQUENTIAL DAMAGES OR LOSS, INCLUDING, WITHOUT LIMITATION, LOST PROFITS
+# OR THE INABILITY TO USE EQUIPMENT OR ACCESS DATA, WHETHER SUCH DAMAGES ARE
+# BASED UPON A BREACH OF EXPRESS OR IMPLIED WARRANTIES, BREACH OF CONTRACT,
+# NEGLIGENCE, STRICT TORT, OR ANY OTHER LEGAL THEORY. THIS IS TRUE EVEN IF
+# localhost IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO CASE WILL
+# localhost' LIABILITY EXCEED THE AMOUNT OF THE LICENSE FEE ACTUALLY PAID
+# BY LICENSEE TO localhost.
+#
+# Credits:
+# Andy Angrick - Programmer - angrick@localhost
+# Mike Barone - Design - mbarone@localhost
+#
+# For information about this script or other scripts see
+# http://www.localhost
+#
+# Thank you for trying out our script.
+# If you have any suggestions or ideas for a new innovative script
+# please direct them to suggest@localhost.  Thanks.
+#
+-->
+<html>
+
+<head>
+<title>Search Results</title>
+
+<style type="text/css"><!--
+
+a{color:#in(TitleText);text-decoration:none;font-weight:bold}
+a:active{color:#in(c2headingcolortxt);font-weight:bold}
+a:hover{color:#in(c3headingcolortxt);text-decoration:underline;font-weight:bold}
+
+.hilite {
+        FONT-SIZE: 10pt;
+        COLOR: #in(highlightcolortxt);
+        FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        TEXT-DECORATION: none;
+        background: #in(highlightbgcolortxt);
+   font-weight:bold;
+   padding : 3px 3px 3px 3px;
+}
+   INPUT.button { background-color:#eeeeee;font:verdana;font-weight:bold;color:#000080;font-size:10pt; }
+
+--></style>
+
+</head>
+
+<body bgcolor="#in(BackgroundColorText)" background="in(BackgroundImage)">
+
+<form method=POST action="in(cgiurl)" name=form1 onSubmit="return CheckTerm();">
+<input type=hidden name=command value=dosearch>
+<input type=hidden name=database value="in(database)">
+<div align="center">
+  <center>
+<table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0">
+  <tr>
+    <td width="100%" valign="middle" align="center">
+      <table border="0" width="100%" cellspacing="0" cellpadding="3">
+        <tr>
+          <td width="100%" valign="middle" align="center">
+            <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+              <tr>
+                <td width="100%" valign="middle" align="center">
+                   <p align="center"><b><font face="Verdana" size="5">Search</font></b></p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%" valign="middle" align="center">
+            <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+              <tr>
+                <td width="100%" valign="middle" align="center">
+                  <div align="center">
+                    <center>
+                    <table border="0" cellspacing="0" cellpadding="2">
+                      <tr>
+                        <td><font face="Verdana" size="1"> <b> Search For:</b></font></td>
+                        <td><font face="Verdana" size="1"><b><input type=text name="query" size=45></b></font></td>
+                      </tr>
+                    </table>
+                    </center>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%" valign="middle" align="center">
+            <input type="submit" value="Search" name="B1">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+  </center>
+</div>
+</form>
+
+  <table border="0" width="100%" cellspacing="0" cellpadding="5">
+    <tr>
+      <td width="100%"><font face="Tahoma" size="2">in(count) in(searchresults)</font>
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr>
+            <td valign="middle" align="center"><center><font color="#in(ResultText)" face="Tahoma" size="2">in(link)</font></center></td>
+          </tr>
+          <tr>
+            <td valign="middle" align="center"><font size="1" face="Tahoma">in(clink)</font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <center><form><input type=button value="-=Close=-" onClick="window.close();"></form></center>
+ <script language=javascript>
+ function CheckTerm(){
+ if(!document.form1.query.value){
+ alert("Error. Please enter something to search for");
+ return false;
+ }
+ return true;
+ }
+ </script>
+
+</html>
