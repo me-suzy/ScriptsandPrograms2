@@ -1,0 +1,43 @@
+// Russian translation by Roman Filippov
+// romanf@terrahost.ca
+// www.hunox.ca
+
+tinyMCE.addToLang('',{
+bold_desc : 'Ïîëóæèðíûé',
+italic_desc : 'Êóðñèâ',
+underline_desc : 'Ïî&auml;÷&aring;ðêèâàíè&aring;',
+striketrough_desc : 'Ï&aring;ð&aring;÷&aring;ðêèâàíè&aring;',
+justifyleft_desc : 'Âûðâíèâàíè&aring; âë&aring;âî',
+justifycenter_desc : 'Âûðâíèâàíè&aring; ïî &ouml;&aring;íòðó',
+justifyright_desc : 'Âûðâíèâàíè&aring; âïðàâî',
+justifyfull_desc : 'Âûðâíèâàíè&aring; ðàâíîì&aring;ðíî',
+bullist_desc : 'Ìàðêèðîâàííûé ñïèñîê',
+numlist_desc : 'Íóì&aring;ðîâàííûé ñïèñîê',
+outdent_desc : 'Óì&aring;íüøèòü îòñòóï',
+indent_desc : 'Óâ&aring;ëè÷èòü îòñïóò',
+undo_desc : 'Îòì&aring;íèòü',
+redo_desc : 'Â&aring;ðíóòü',
+link_desc : 'Âñòàâèòü/èçì&aring;íèòü ññûëêó',
+unlink_desc : 'Óáðàòü ññûëêó',
+image_desc : 'Âñòàâèòü/èçì&aring;íèòü èçîáðàæ&aring;íè&aring;',
+cleanup_desc : 'Âû÷èñòèòü ãðÿçíûé êî&auml;',
+focus_alert : 'Âû &auml;îëæíû íàõî&auml;èòñÿ â ïîë&aring; ð&aring;&auml;àêòîðà ï&aring;ð&aring;&auml; èñïîëüçîâàíè&aring;ì &auml;àííîé êîìàí&auml;û.',
+edit_confirm : 'Õîòèò&aring; ëè Âû âîñïîëüçîâàòüñÿ WYSIWYG ð&aring;&auml;àêòîðîì &auml;ëÿ ýòîãî ïîëÿ ââî&auml;à?',
+insert_link_title : 'Âñòàâèòü/èçì&aring;íèòü ññûëêó',
+insert : 'Âñòàâèòü',
+update : 'Âñòàâèòü',
+cancel : 'Îòì&aring;íèòü',
+insert_link_url : 'À&auml;ð&aring;ñ',
+insert_link_target : 'Îòêðûòü â...:',
+insert_link_target_same : 'òîì æ&aring; îêí&aring;',
+insert_link_target_blank : 'íîâîì îêí&aring;',
+insert_image_title : 'Âñòàâèòü/èçì&aring;íèòü èçîáðàæ&aring;íè&aring;',
+insert_image_src : 'À&auml;ð&aring;ñ',
+insert_image_alt : 'Îïèñàíè&aring;',
+help_desc : 'Ïîìîùü',
+bold_img : "bold_ru.gif",
+italic_img : "italic_ru.gif",
+underline_img : "underline_ru.gif",
+clipboard_msg : 'Copy/Cut/Paste is not available in Mozilla and Firefox.\nDo you want more information about this issue?',
+popup_blocked : 'Sorry, but we have noticed that your popup-blocker has disabled a window that provides application functionality. You will need to disable popup blocking on this site in order to fully utilize this tool.'
+});
