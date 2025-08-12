@@ -1,0 +1,16 @@
+<?php
+/***************************************************************************
+ * (c)2002-2004 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+?>
+<script type="text/javascript" language="javascript">
+function enable_datesels(enable)
+{
+	document.searchform.startday.disabled=!enable;
+	document.searchform.startmonth.disabled=!enable;
+	document.searchform.startyear.disabled=!enable;
+	document.searchform.endday.disabled=!enable;
+	document.searchform.endmonth.disabled=!enable;
+	document.searchform.endyear.disabled=!enable;
+}
+</script>
