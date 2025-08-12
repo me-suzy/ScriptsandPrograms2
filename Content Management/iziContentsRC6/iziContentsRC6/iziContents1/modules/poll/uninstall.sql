@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS poll;
+DROP TABLE IF EXISTS polloptions;
+DROP TABLE IF EXISTS pollcategories;
+DROP TABLE IF EXISTS pollresults;
+
