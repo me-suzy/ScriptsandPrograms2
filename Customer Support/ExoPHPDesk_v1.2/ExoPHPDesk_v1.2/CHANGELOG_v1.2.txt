@@ -1,0 +1,428 @@
+// ---------------------------------------------------//
+/**** CHANGES MADE TO ExoPHPDesk Since Version 0.1 ****/
+/****     BUGS AVAILABLE IN ANY OF THE VERSION     ****/
+// ---------------------------------------------------//
+
+// ---------------------------------------------------//
+          .:: Release v1.2 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 1.2 Releases
+1.2 Final Released : November 05, 2004.
+1.2 Beta 1 Released: July 15, 2004.
+
+NEW FEATURES :
+
+- mySQL ToolBox feature which allows to browse tables/records and let you run queries.
+- mySQL Dump feature to backup your HelpDesk database. ( SIGNIFICANT FEATURE )
+- Search Members ( For Administrators ).
+- Ability to put helpdesk offline. 
+- Calender for Admins / Staff / Members. ( public and private events adding/editing/deleting supported )
+
+OTHER CHANGES :
+
+- A lot functions of mySQL class were edited including the following:
+  = Query Function   : Edited to identify the last query & count the time taken for execution of the query
+  = Fetch Function   : Edited to identify the last query
+  = Fetch_R Function : Edited to identify the last query
+- More options available when adding/editing staff, that means now you can disallow or allow staff from:
+  = Editing everyones tickets.
+  = Editing responses that arent owned by them.
+- Mail Piping and Mail fetching libraries edited to mail all staff on a new ticket and on a new reply.
+- Template Parser edited to allow PHP codes in it now. 
+  = New Support of <PHP> ** </PHP> which allows to run php code in the tpl file itself.
+    Example:
+    <PHP>
+      echo 'foo bar';
+    </PHP>
+- Mail.TPL file edited to include the message on a new response.
+- ADMIN CP :: Blue Template edited and drop down menus removed for faster and easy navgiation link. The drop down menus 
+  are now replaced with normal links now which are hidden onload, but are visible after clicking the appropriate 
+  main navigation button. Table Border has been changed to solid and color set to dark gray.
+
+++ Final Version Changes:
+  - admin.php: Edited to save 9 queries! Query count has been decreased from 22 to 13.
+  - common.php : Removed the delete session query because deleting a query is no more required.
+		 Sessions doesn't expire ANYMORE! 
+  - conf.php : 
+	+ Edited the email regex to allow `-` char in emails.
+	+ List online query edited to reflect latest session changes.
+	+ mail_it function now sends mail using the name of Site instead of `Support`.
+  - ticket.php: 
+	+ Edited to save open tickets, closed tickets, and high priority tickets records. ( this saves a heavy query )
+	+ Fixed a small link error which prevented collection of Group var from $_GET.
+  - pipe.php: It will now mail back user informing him or her about the ticket creation.
+  - class.php: Logic statement parser edited for performance gain and better parsing.
+  - tpl/*/login.tpl : Some amendments made to focus the username field on page load.
+
+  - A lot of Template files and PHP files edited to change all date() functions to exo_date().
+    It'll allow you to set your desired timezone and make helpdesk work accoding to the timezone
+    you specified. That means, you'll NO MORE be required to change the server time! ;-)
+
+   + libs/ - ticket.php, statistics.php, servers.php, calender.php, announce.php
+   + tpl/* - add.tpl, list.tpl, profile.tpl, view.tpl, statistics.tpl
+   + ./    - admin.php, conf.php, member.php, staff.php
+  
+
+BUG FIXES :
+
+= Final :
+- Fixed a lot of mail piping and mail fetching bugs including garbled text bug. (pipe.php, class/imap.php)
+- Wrong event type used to get selected when editing a calender event. (calender.php)
+- Add FAQ form was displayed even when no KB Groups existed in the database. (class/kb.php)
+- Pressing next button at troubleshooter, when logged in as staff, used to give permissions error. (common.php)
+- Group permissions where not checked for staff area and all groups were listed. (staff.php)
+- Fixed ex_strip function which resulted in weird errors when magic_quotes_gpc was disabled. (conf.php)
+- Session id wasn't included in the url at the Run Query form (tpl/*/list.tpl)
+- Create -> Messages link was mispelled and had the wrong link (tpl/Blue/admin_head.tpl)
+- Tickets used to contain HTML because of an error in the strip function (conf.php)
+
+
+= Beta 1 :
+- Staff / Admins were not able to edit responses as it returned an empty textarea.
+- A bug in the troubleshooter didn't allow t.shooters to be deleted, due to a missing session id.
+
+// ---------------------------------------------------//
+
+
+
+// ---------------------------------------------------//
+          .:: Release v1.1 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 1.1 Releases
+1.1 Final Released: July 03 , 2004.
+1.1 Beta 1 Released: June 10, 2004.
+
+NEW FEATURES :
+
+This release has a new template named LightBlue, includes some icons and buttons contributed by a user.
+
+- "Remember Me" feature to login automatically.
+- F.A.Q. searching for members/staff/admins.
+- Custom Registration Fields, viewable at profile for members.
+- Open Ticket on a reply. ( This has to be done to prevent issues that happen when a user replies in 
+a closed ticket and expects to get a reply )
+- Detailed Statistics Available Now.
+- Mass Mail to administrators/members/staff in ACP.
+
+OTHER CHANGES :
+
+- Users using cookies are now added in active users list.
+- Profile page edited to display the custom fields.
+- A new function added for the logout.
+- Administrators can now assign tickets to admins as well.
+- Closed/Open tickets view links available at ACP/SCP now.
+- Execution time is decreased after some efforts to make ExoPHPDesk fast.
+- Spaces are now allowed to be used in the custom fields names.
+- Edited ACP & SCP to list all open assignments on the main page from all groups with Waiting: Mem/Staff.
+- Department change for piped tickets available now. ( ON SPECIAL REQUEST )
+- Mail sent to all staff/admin on a response made to a ticket. 
+
+BUG FIXES :
+
+= Final :
+- Fixed the bug with Sessions in the troubleshooter.
+- Fixed a minor css bug which made the border look big on Netscape.
+
+= Beta 1 :
+- Huge Ticket parsing was slow due to a bug with the logic statements parser.
+- Tickets with special characters were not editable.
+- Parsing of tickets was a memory hog when tickets had special characters due to variable being overused in tpl file.
+- Knowledge base group editing lead to logging out when using sessions due to SID not available.
+- Addition of extra slashes when magic_quotes enabled.
+- Unknown column for rating due to a field missing in staff table.
+- View 'Closed Tickets' link was missing in ADMIN CP.
+- Admins not listed in assign to feature.
+- On the main page of ACP, under open assignments only tickets assigned in the last group were listed.
+- Admins were not able to delete FAQ. 
+
+// ---------------------------------------------------//
+
+
+
+// ---------------------------------------------------//
+          .:: Release v1.0 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 1.0 Releases
+1.0 Final Released: March 06, 2004.
+
+NEW FEATURES :
+
+This release includes an edited version of Blue template named as Classic template. 
+It doesn't have much changes except the header and the colors. The OLD Template is no more 
+supported by ExoPHPDesk and is removed from this release, though it may be made compatible 
+and available with later releases.
+
+- Create/Edit/Delete Announcements ( Admins or Staff { If allowed } )
+- File Attachments For Tickets.
+- Sessions Based Login Available.
+- Personal Diary For Staff/Admin.
+- Admins able to assign tickets to staff a.k.a. Internal Ticket Assignment.
+- View online users.
+- Ability to ban ip addresses by editing the file conf.php
+- Script to Track Downtimes Of Server Ports ( With CronJob / Scheduled Task ).
+- View Profile Of Users / Staff.
+- View Printable version of tickets.
+
+OTHER CHANGES :
+
+- List of Members/Staff/Admins when sending pm.
+- New Icons available for some areas.
+- Most of the files structure changed.
+- Member Area is now member.php.
+- Admin Area Cleaned Up A Bit and 2 Queries Saved.
+- Many files moved from main directory to libs and edited to save space.
+- Troubleshooter have new option of view auth. ( Registered, All )
+- L_TYPE Var is no more compulsory. Automatic Identification through cookies.
+- Per Group Ticket View for Admin/Staff.
+
+- Template Parser/Files Improvements ::
+  Template parser is a lot improved and now works in a more efficient and flexible way.
+
+  - Custom <if*>**</if> statements available in templates.
+   ex :
+   <if1>
+   if( "{Example}" == "example" )
+   {
+     <p>Example is equal to example</p>
+   }
+   </if1>
+
+ - PHP Functions Support as <#FUNC(***)/#>
+   ex:
+   <#date('d-m-y',time())/#>
+
+ - Blocks for Templates Available.
+   ex:
+   <!-EXAMPLE_BLOCK-!>
+     [#oldTPL
+           HTML HERE
+     /#oldTPL]
+   </!-EXAMPLE_BLOCK-!>
+
+ - Many Template Files Merged to Decrease the Files.
+ - New Ticket Notification Mail Now Contains Title And Message of New ticket.
+
+- Tickets table now stores the number of replies made to a ticket and thus saving 1 query per ticket.
+- Admin/Staff Main Pages changed and a seperate page created for ticket views.
+  Main Page includes : 
+  - Open Tickets Count.
+  - Private Messages Count ( Unread only ).
+  - Announcements.
+- Members Main Page now includes announcements which aren't expired yet.
+
+
+BUG FIXES :
+
+= Beta 1 :
+- Fetch Mail Configurations Not being updated in v0.4-0.5*
+- If fields count more than the no. of fields in the ticket being edited, all the fields had value of NULL
+- Notes.PHP template broken while adding a Note.
+- Waiting For error when responses added through email.
+- Missing TPL Vars Fixed.
+- Some mySQL queries errors resolved.
+- L_TYPE missing in the member area file.
+
+// ---------------------------------------------------//
+
+
+
+// ---------------------------------------------------//
+          .:: Release v0.6 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 0.6 Releases
+0.6 Final Released : February 23, 2004
+0.6 Beta 2 Released: January 26, 2004.
+0.6 Beta 1 Released: January 20, 2004.
+
+NEW FEATURES :
+
+- Saved Responses.
+- Create/Edit/Delete Knowledge Base Groups.
+- Mail piping (Very Beta Stage)
+- F.A.Q. And STAFF Rating Available : 0 - 5
+- TroubleShooter Available
+- Suspend Members
+
+OTHER CHANGES :
+
+- Staff are now forbidden to edit all FAQ except the one that belongs to the particular staff.
+- Table extensions can be changed while installation, the default is phpdesk_*.
+- Ticket Editing/Deleting/Creating excluded from the admin.php,index.php,staff.php and put in one file named
+  ticket.php and thus saving space and easy editing.
+- Some files are better commented now.
+
+BUG FIXES :
+
+= Final :
+- Mail -> Ticket SQL query error fixed.
+
+= Beta 2 :
+- 'rating' Field Missing Where Upgraded.
+- Search results having Wrong Links to ticket view.
+
+= Beta 1 :
+- Fetch Mail Configurations Not being updated in v0.4-0.5*
+- If fields count more than the no. of fields in the ticket being edited, all the fields had value of NULL
+- Notes.PHP template broken while adding a Note.
+- Waiting For error when responses added through email.
+- Missing TPL Vars Fixed.
+
+// ---------------------------------------------------//
+
+
+
+// ---------------------------------------------------//
+          .:: Release v0.5 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 0.5 Releases
+0.5 Beta 2 Released: January 02, 2004.
+0.5 Beta 1 Released: January 01, 2004.
+
+NEW FEATURES :
+
+- Set Signatures.
+- Multiple Templates Choice.
+- Members Can Search Tickets Of their Own.
+- Search by Member Name Available.
+- Search responses.
+- Ability to Suspend Members.
+- Add/Edit/View Servers for Status Viewing.
+
+OTHER CHANGES :
+
+- Staff signature viewable in all tickets.
+- Template Text Set in lang_en.php in form of variables. i.e. $tpl['***'] 
+
+BUG FIXES :
+
+= Final :
+- While Installation, the tpl_dir path being the full while it have to be the mini-path.
+- Table doesn't exists error for responses created through email piping.
+
+= Beta 2 :
+- Function missing on all the files which doesnt includes the file named common.php.
+
+= Beta 1 :
+- Mail not deleted from inbox if its a reply.
+- mySQL Error when a response added from email.
+- PMs fields not filled while replying.
+
+// ---------------------------------------------------//
+
+
+
+// ---------------------------------------------------//
+          .:: Release v0.4 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 0.4 Releases
+0.4 Final Released: December 24, 2003.
+0.4 Beta 1 Released: December 13, 2003.
+
+NEW FEATURES :
+
+- Search Tickets
+- Add/Edit/Delete Staff Notes
+
+OTHER CHANGES :
+
+- Disabled users from opening tickets in EMAIL group as it is just for Fetched Mails.
+- A common file created to allow more files just than one, i.e. modules can be created easily now.
+- Templates are well documented now.
+
+BUG FIXES :
+
+= Beta 1 :
+- Response mails weren't send due to a problem with code.
+
+// ---------------------------------------------------//
+
+
+
+// ---------------------------------------------------//
+          .:: Release v0.3 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 0.3 Releases
+0.3 Final Released: December 10,2003.
+0.3 Beta 1 Released: December 5, 2003.
+
+NEW FEATURES :
+
+- Knowledge Base added.
+- Custom Fields for tickets can be added now.
+
+OTHER CHANGES :
+
+- Version Information specified along with copyright.
+
+BUG FIXES :
+
+= Beta 1 :
+- mySQL error while installation for most of the systems using cPanel.
+
+// ---------------------------------------------------//
+
+
+
+// ---------------------------------------------------//
+          .:: Release v0.2 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 0.2 Releases
+0.2 Final Released: December 2, 2003.
+0.2 Beta 2 Released: November 28, 2003.
+0.2 Beta 1 Released: November 27, 2003.
+
+NEW FEATURES :
+
+- Fetching of mail through IMAP/POP3 and conversion to tickets available.
+
+OTHER CHANGES :
+
+- Added validation for most of the editing/adding stuff.
+
+BUG FIXES :
+
+= Beta 1 :
+
+- A user could set his tickets/page to 0 and then get unexpected errors.
+
+// ---------------------------------------------------//
+
+
+
+// ---------------------------------------------------//
+          .:: Release v0.1 Beta - Final ::.
+// ---------------------------------------------------//
+
+--- 0.1 Releases
+0.1 Final Released: November 22, 2003.
+0.1 Beta 2 Released: November 20, 2003.
+0.1 Beta Released: November 18, 2003.
+
+NEW FEATURES :
+
+- ALL THE FEATURES AVAILABLE IN EXOPHPDESK, FIRST RELEASE.
+
+OTHER CHANGES :
+
+- Created some variables with query commands which are used abundantly throughout the script operations, so as to lessen the size.
+- Changed the layout of the admin CP categorizing the tickets in departments, as it was in Staff CP ago.
+
+BUG FIXES :
+
+= Final :
+
+- Anyone could use Lost Password retrieval and reset password for anyone, though it would be only viewable by the user it was changed for, bug no more exists.
+- In staff CP, the footer of each group was missing, bug solved. 
+
+// ---------------------------------------------------//
+
+
+// Project Start Date: November 10, 2003.
