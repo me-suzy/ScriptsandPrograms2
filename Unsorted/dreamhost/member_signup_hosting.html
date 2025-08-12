@@ -1,0 +1,92 @@
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><b><br>
+  </b><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+  Available Hosting Options</font></b></font></font> 
+  
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">Below is a list of 
+      the hosting plans we currently offer.<br>
+      </font> </td>
+  </tr>
+</table>
+<p> 
+  <?
+$i=0;
+$db = new ps_DB;
+$q="SELECT * FROM membership WHERE membership_active='Y' ORDER BY 'membership_id'";
+$db->query($q);
+         while($db->next_record()) {
+?>
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#003366"> 
+  </font></p>
+<table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+  <tr> 
+    <td> 
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr bgcolor="#CCCCCC"> 
+          <td> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="3">
+              <tr> 
+                <td><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#003366"><font face="Arial, Helvetica, sans-serif" size="2"><b> 
+                  <?
+$db->p("membership_name");
+?>
+                  </b></font></font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td height="25"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+              <tr> 
+                <td><font size="2" face="Arial, Helvetica, sans-serif"><i><font color="#003366">Cost: 
+                  </font></i></font><font color="#003366"><i><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><font face="Arial, Helvetica, sans-serif" size="2"> 
+                  <?
+$price=$db->f("membership_price");
+$freq=$db->f("membership_frequency");
+
+if ($db->f("membership_recurring")=="N") {
+	$period = " Billed Only Once"; 
+	$cost = $price;
+		} else {
+			if ($freq=="30")      { $period = " Billed Monthly"; }
+			elseif ($freq=="60")  { $period = " Billed Bi-Monthly"; }
+			elseif ($freq=="90")  { $period = " Billed Quarterly"; }
+			elseif ($freq=="180") { $period = " Billed Twice a Year"; } 
+			elseif ($freq=="360") { $period = " Billed Yearly"; }
+			elseif ($freq=="720") { $period = " Billed Bi-Yearly"; }
+			else { $period = " Billed Every $freq Days."; }
+		}
+
+
+if ($price <= "0") {
+$period = " This is a FREE account";
+echo "$period";
+	} else {
+echo setup("currency"); 
+printf("%.2f",$price);
+echo "$period";
+	}
+
+?>
+                  </font></font></font></i></font><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#003366"><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#003366"><font face="Arial, Helvetica, sans-serif" size="2"><br>
+                  <?
+$db->p("membership_desc");
+?>
+                  </font></font></font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p> 
+  <?
+}
+?>
+</p>
