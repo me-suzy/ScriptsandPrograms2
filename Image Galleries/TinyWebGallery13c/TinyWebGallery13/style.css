@@ -1,0 +1,553 @@
+/*******************
+  Copyright (c) 2004-2005 TinyWebGallery
+  written by Michael Dempfle
+  TWG version: 1.3c
+********************/
+/*
+This css has all the default settings for twg. If you want to edit the style please  
+overwrite the settings here by using the mystyle.css - this makes it much easier to update TWG
+*/
+
+/* Needed for IE to resizes tables to the full height  */
+html, body.twg {
+  height:100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* font settings for tables - border is set because on the 1.st page the border otherwise does look bad ;) - */
+table.twg {
+  border: 1px #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	text-align: center;
+}
+
+/* font settings for the body - if you change the color of the background you have to change the color as well in the 
+config.php for the background of the slideshow, If you want to change the color of the text adapt the link colors at the bottom as well */
+body.twg {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+  color: #000000;
+}
+
+/* font settings for cells */
+td.twg {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+/* to make text look nicer */
+td.twg_info {
+	border-top: 2px inset;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+/* settings for images in a cell - some duplocate settings does exists - be carefull with changing this could be overwritten somewhere */
+td.twg_image {
+	 border: none; 
+	 height: 200px;
+	 text-align: center;
+	 vertical-align: top;
+	 padding: 9px 4px 4px 4px;
+   font-family: Verdana, Arial, Helvetica, sans-serif;
+   font-size: 10pt;
+}
+
+/* settings for centering the navigation table */
+table.twg_nav {
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+}
+
+/* the settings for the details image (border ...)   */
+.twg_imageview {
+  border : 1px inset Gray;
+	vertical-align: middle;
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+}
+
+/* does the drop shadow  - if you want a different one: adapt this settings - image-view does still a nice boarder  */
+div.twg_img-shadow table {
+    display: block;
+	  position: relative;
+	  background-color: #fff;
+	  border: 1px solid #a9a9a9;
+	  margin: -6px 6px 6px -6px;
+} 
+ 
+/* does the drop shadow  - if you don't like it - clear this settings - image-view does still a nice boarder  */
+/* does not look nice if ie and a background image is used - therefore I removed it from the default - if you use white background this looks really good */
+ /*
+  background: url(buttons/shadowalpha.png) no-repeat bottom right !important;
+  background: url(buttons/shadow.gif) no-repeat bottom right;
+  margin: 10px 0px 0px 5px !important;
+  */
+div.twg_img-shadow {
+  }
+
+/* settings for the top middle cell where the navigation buttons are - everything can be set individuall in the top! 
+   if you want to change the color of the top row change the color at topnav, topnavleft, topnavright
+   
+   if you want to change the color of the whole border you have to edit sideframe and framestyle.css as well!
+*/
+td.topnav {
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  border-top: 2px none; 
+  border-bottom: 2px none; 
+  font-size: 10px;
+  width: auto;
+  background-color: #EAEAEA;
+  
+}
+
+/* settings for the top left cell where the galleries -> ... ->  buttons are */
+td.topnavleft {
+   height: 30px;
+	 vertical-align: middle;
+	 border-top: 2px none; 
+   border-bottom: 2px none; 
+   font-size: 10px;
+	 text-align: left;
+	 width: 35%;
+   padding-left: 5px;
+   background-color: #EAEAEA;
+}
+
+/* settings for the top right cell where the menu buttons are */
+td.topnavright {
+   height: 30px;
+	 width: 35%;
+	 text-align: right;
+	 vertical-align: middle;
+	 border-top: 2px none; 
+   border-bottom: 2px none; 
+   font-size: 10px;
+   padding-right: 5px;
+   background-color: #EAEAEA;
+}
+
+/* left and right border color */
+td.sideframe {
+	width:0px;
+  background-color: transparent;
+	vertical-align: top;
+}
+
+.twg_bottom {
+   height: 17px;
+}
+/* this is the cell where the powered by Tinywebgallery is in - the color is overwritten in frameset.css !! */
+td.bottomtable {
+   height: 17px;
+	 width: auto;
+	 vertical-align: middle;
+	 text-align: center;
+   background-color: transparent;
+   font-size: 10px;
+   color:#555555;
+}
+
+td.bottomtable a:link { color:#555555; text-decoration: none; }
+td.bottomtable a:visited { color:#555555; text-decoration:none; }
+td.bottomtable a:hover { color:#999999; text-decoration:none; }
+
+/* this is the cell where the help is in - the color is overwritten in frameset.css !! */
+td.bottomtableside {
+ height: 17px;
+ vertical-align: middle;
+ text-align: right;
+ background-color: transparent;
+ font-size: 10px;
+ padding-right: 5px;
+ width:35%;
+ color:#555555;
+}
+
+td.bottomtableside a:link { color:#555555; text-decoration: none; }
+td.bottomtableside a:visited { color:#555555; text-decoration:none; }
+td.bottomtableside a:hover { color:#999999; text-decoration:none; }
+
+
+/* this is the cell where the counter is in - the color is overwritten in frameset.css !! */
+td.bottomtablesideleft {
+ height: 17px;
+ vertical-align: middle;
+ text-align: left;
+ background-color: transparent;
+ font-size: 10px;
+ padding-left: 5px;
+ width:35%;
+ color:#555555;
+ cursor: pointer;
+}
+
+/* settings for the tumbnails table */ 
+table.thumbnails {
+	margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  text-align: center;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+	
+/* orientation of the thumbnails in a cell */
+td.thumbnails {
+   text-align: center;
+   vertical-align: top;
+   font-family: Verdana, Arial, Helvetica, sans-serif;
+	 font-size: 10pt;
+}
+
+/* table settings for the top 10 table */
+table.thumbnails_top10 {
+  margin-left: auto;
+  margin-right: auto;
+	text-align: left;
+  vertical-align: middle;
+  width:90%;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+/* cell settings for the top10 */
+td.thumbnails_top10 {
+text-align: left;
+vertical-align: middle;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10pt;
+}
+
+/* left alignment for the topx */
+.left_top10 {
+text-align: left;
+width:50%;
+}
+
+/* some elements are bold - if you dont'l like this - change this - e.g.  Galleries in the left top corner */
+.twg_bold {
+	font-weight: bold;
+}
+
+.twg_title {
+	font-weight: bold;
+}
+
+/* underline some elements */
+.twg_underlineb {
+    font-weight: bold;
+  	text-decoration: underline;
+    padding-top: 5px; 
+    padding-bottom: 5px; 
+    vertical-align: middle;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+	  font-size: 10pt;  
+}
+
+/* this is the cell of the big navigation on the details page */ 
+td.navbar {
+	text-align: center;
+	vertical-align: top;
+}
+
+/* this is the cell where the prieview images of the galleries are shown - makes only sure that the galleriey are displayed centered  */
+td.mainnav {
+	text-align: center;
+	vertical-align: top;
+	padding: 15px 10px 0px 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	width: 140px;
+}
+
+/* default width of the big navigation icons below the pictures on the details view */
+td.navicon {
+	text-align: center;
+	width: 75px;
+	vertical-align: middle;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+/* global settings for images - therfore they don't get any borders an are almost everywhere automatically centered (some fixes for the IE does exist in the code!) */
+img {
+  text-align: center;
+  border: none;
+}
+
+/* this is the font and size the comments are show below the pictures */
+td.twg_kommentar {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 11px;
+}
+
+/* this is the font and size the comments date is show below the pictures */
+.twg_kommentar_date {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 9px;
+}
+
+/* is used for the flags for the language selection - otherwise they don't look that good in mozilla */
+img.twg_lock {
+vertical-align: bottom;
+}
+
+/* on the thumbnail view there is a hover effect when moving over the images - this is the color on mouseover */
+.twg_hoverthumbnail {
+background-color: #555555;
+
+}
+
+/* on the thumbnail view there is a hover effect when moving over the images - this is the color an mouseout */
+.twg_unhoverthumbnail {
+background-color: transparent;
+}
+
+/* font settings for the caption text */
+.twg_Caption {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 12px;
+height:15px; // because of the smilies!
+}
+
+/* This is how the display for the text Javascript (error if not pressent) is handled  */
+.twg_nojs {
+  color:red;
+	text-decoration: line-through;
+}
+
+/* settings for the counter div */
+#twg_counterdiv{
+position:absolute;
+top:40px;
+left:35px;
+width:150px;
+height:90px;
+z-index:5;
+visibility:hidden;
+border: 1px solid #000000;
+background-color: #FFFFFF;
+}
+
+/* settings for the language div */
+.twg_langdiv{
+position:absolute;
+top:22px;
+width:22px;
+z-index:2;
+background-color: #EAEAEA;
+border: 1px solid #AAAAAA;
+visibility:hidden;
+text-align: center;
+vertical-align: middle;
+margin: 0px;
+padding: 0px;
+}
+
+
+/* on the languageselection view there is a hover effect when moving over the images - this is the color on mouseover */
+.twg_hoverflag {
+background-color: #000000;
+
+}
+
+/* on the languageselection view there is a hover effect when moving over the images - this is the color an mouseout */
+.twg_unhoverflag {
+background-color: #EAEAEA;
+}
+
+/* font settings for the counterdiv */
+.twg_counterdivtext {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 9px;
+color:#555555;
+text-align: center;
+vertical-align: middle;
+width:150px;
+}
+
+/* Nothing special yet - but if someone wants to change the folder description ;) */
+.twg_folderdescription {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10pt;
+}
+
+/* The style for the header.html  - read howto 3 */
+.twg_headerhtml {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10pt;
+}
+
+/* The style for the overview.html  - read howto 3 */
+.twg_overviewhtml {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10pt;
+text-align: center;
+}
+
+/* The style for the overview.html  - read howto 3 */
+.twg_thumbhtml {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10pt;
+text-align: center;
+}
+
+/* The style for the overview.html  - read howto 3 */
+.twg_imagehtml {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10pt;
+text-align: center;
+}
+
+/* The style for the footer.html  - read howto 3 */
+.twg_footerhtml {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10pt;
+}
+
+/* color of the text of the sppedtest */
+.twg_speedtest {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+  color: #CCCCCC;
+}
+
+/* The settings for the tips */
+.twg_user_help_td {
+text-align: center;
+vertical-align: bottom;
+font-size: 9px;
+color:#555555;
+padding: 1px;
+}
+
+/* Setting for the rating include */
+.twg_rating {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 11px;
+color:#000000;
+text-align: center;
+vertical-align: middle;
+padding-top: 3px;
+width:200px;
+padding-bottom: 2px;
+}
+
+/* inactive elments at the top x - the dividor */
+.twg_topx_sel {
+  font-size: 10pt;
+  color: #a5a5a5; 
+}
+
+/* settings for the top x text  views | downloads | rating |  .... */
+.twg_topx_sel a:link    { color: #a5a5a5; }
+.twg_topx_sel a:visited { color: #a5a5a5; }
+.twg_topx_sel a:hover   { color: #eecc00; }
+.twg_topx_selected { color: #000000; }
+
+/* settings for the fullscreen mode */
+.twg_fullscreen {
+display: block;
+}
+
+/*
+layer for fullscreen - you can use bottom instead of top but sometimes the layer then disapears because of an error in js!
+*/
+.twg_fullscreencontrol {
+   position:absolute;
+    top:2px;
+  left:2px;
+   width:160px;
+   height:50px;
+   text-align: center;
+   vertical-align: middle;
+   z-index:20;
+   visibility:visible;
+   border: 1px solid #777777;
+   background-image: url(buttons/alpha.png);
+   cursor: move;
+}
+
+/* The caption in the fullscreen mode  */
+.twg_fullscreencaption {
+  position:absolute;
+  bottom:5px;
+  width:100%;
+  left:0px;
+  text-align: center;
+  vertical-align: top;
+  z-index:19;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color:#ffffff;
+}
+
+/* the text on the fullscreen control layer */
+.twg_contol_text {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 11px;
+color:#000000;
+text-align: center;
+}
+
+/* centers the table of the fullscreen control layer */
+.twg_centertable {
+text-align: center;
+vertical-align: middle;
+}
+
+/* Hand layer for the fullscreen contol layer */
+.twg_hand {
+ cursor: pointer;
+}
+
+/* Body for the fullscreen modus - mainly background! */
+.twg_body_fullscreen {
+  background-color:#000000;
+  overflow: hidden;  
+  height:100%;
+	margin: 0px;
+  padding: 0px;
+}
+
+.twg_background {
+  position:fixed;
+  left:0;
+  top:0;
+  z-index=1;
+  overflow: hidden;
+}
+
+.twg_bodydiv {
+position:absolute;
+top:0;
+left:0;
+height:100%;
+z-index:3;
+}
+
+.twg_rating_text {
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+/* the colors of the links */
+a:link { color:#000000; text-decoration: none; }
+a:visited { color:#000000; text-decoration:none; }
+a:hover { color:#eecc00; text-decoration:none; }
+a:active { color:#eecc00; text-decoration:none; }
+a:focus { color:#eecc00; text-decoration:none; }
+
+
+
+
+
+
