@@ -1,0 +1,13 @@
+#  Options +FollowSymlinks
+RewriteEngine on
+RewriteBase 
+RewriteCond %{REQUEST_URI} /ezc/([A-Za-z0-9_]*)/([A-Za-z0-9_]*)/([A-Za-z0-9_]*)/([A-Za-z0-9_]*)$
+RewriteRule ^(.*) vscms.php?p1=%1&p2=%2&p3=%3&p4=%4 [L]
+RewriteCond %{REQUEST_URI} /ezc/([A-Za-z0-9_]*)/([A-Za-z0-9_]*)/([A-Za-z0-9_]*)$
+RewriteRule ^(.*) vscms.php?p1=%1&p2=%2&p3=%3 [L]
+RewriteCond %{REQUEST_URI} /ezc/([A-Za-z0-9_]*)/([A-Za-z0-9_]*)$
+RewriteRule ^(.*) vscms.php?p1=%1&p2=%2 [L]
+RewriteCond %{REQUEST_URI} /ezc/([A-Za-z0-9_]*)$
+RewriteRule ^(.*) vscms.php?p1=%1 [L]
+RewriteCond %{REQUEST_URI} /ezc$
+RewriteRule ^(.*) index.php
