@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Webcards Upgrade Guide</title>
+<style type="text/css">
+body , td {font-family : verdana; color : #000000; font-size : 14px; background-color : #eeeeee; } .sub_header {font-size : 17px;} .main_header {font-size : 18px;font-weight: bold;} a:link , a:visited , a:active {text-decoration : underline; color : #000000; font-weight : normal; } a:hover {text-decoration : none; color : #808080; font-weight : normal; text-decoration : underline; } .title {font-size : 14px; font-weight : bold; text-decoration : none; } input , select , textarea {background-color : #FFFFFF; border-color : #000000; border-style : inset; font-family : verdana; color : #000000; font-size : 11px; } input.clear {border: 0;}hr {color : #000000; width : 100%; } table {border: 1px solid black;}.theader{background-color : #d2d0d0; border: 1;border-color: white;font-weight: bold;}.tbody{background-color : #e6e4e4; border: 1;border-color: white;}.stats {background-color : #cecaca; border: 0;}.noborder {border: 0;}.warning {color: #ff0000;font-size: 12px;font-weight: bold;}
+</style>
+</head>
+<body>
+
+<span class="main_header">WebCards Upgrade Guide - Upgrade to version 1.0 final</span>
+<br /><br />
+<span class="sub_header">Introduction</span>
+<br /><br />
+<b>Please note:</b> If you are upgrading from beta 4 to version 1 final you do not need to run an upgrade script.<br />
+Simply upload all of the files inside the /upload/ folder <i>excluding</i> the config.php file.
+<br /><br />
+
+The upgrade files are located inside this (./upgrade) directory <b>but you must ensure you use the correct one</b>. They are not uploaded by default to your server as a security precaution.
+<br />
+Using the wrong upgrade script is likely to damage your database, rendering your WebCards installation unusable so always ensure you use the correct one.
+<br /><br />
+This release sees the "gold" release of WebCards version 1. It includes 3 upgrade scripts to upgrade sequentially from previous versions. Read the note at the top of the page if you are upgrading from beta 4.
+<br /><br />
+If you wish to upgrade you must do so sequentially. If you currently have beta 1 installed and would like to upgrade to this version you must upgrade to beta 2, then upgrade that to beta 3 and finally upgrade to beta 4. This ensures that all changes are made to your installation.
+<br /><br />
+<span class="sub_header">Upgrade process</span>
+<br /><br />
+Upgrading is a very simple process.
+<ul>
+<li>First of all you should backup your database in case anything goes wrong. You can do this with a program such as PHPMyAdmin. Most hosts supply such software but it can be downloaded free from <a href="http://www.phpmyadmin.net" target="_blank">the website</a>.</li>
+<li>All of the files used in WebCards have been heavily modified. You will not be able to reuse any of your old templates or language files.</li>
+<li><span style="color:red;">IMPORTANT:</span> you should not overwrite your config.php file or else you will lose all of your settings.</li>
+<li>Now you should run the upgrade script <b>upgrade_beta3_to_beta4.php</b> to upgrade from beta 3 to beta 4.</li>
+<li>You should then upload all of the files that came with the new version <b>except config.php</b>. This file contains important information that should not be overwritten during the upgrade process.</li>
+<li>Finally, you should log into the administration centre and check the configuration section to ensure all the information is still correct. You should also send a test WebCard to ensure the process went smoothly.</li>
+<li><span style="color:red;">VERY IMPORTANT:</span> you should remove the upgrade_beta3_to_beta4.php file from your server as it can damage your system if somebody accesses it after you have upgraded.</li>
+</ul>
+
+If you are having trouble upgrading you can visit the <a href="http://webcards.sourceforge.net/" target="_blank">WebCards Website</a> for support.
+
+</body>
+</html>
