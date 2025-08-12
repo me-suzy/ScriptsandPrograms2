@@ -1,0 +1,2 @@
+<%RCOUNT%><br>
+<%RESULTS%>
