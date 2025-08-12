@@ -1,0 +1,1 @@
+<?include("gallery_cfg.php")?>
