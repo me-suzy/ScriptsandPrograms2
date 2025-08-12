@@ -1,0 +1,208 @@
+<body bgcolor="#FFFFFF" text="#000000">
+<?
+$pass = is_logged($session_id);
+	if ($pass == "N") {
+		include("member_login_1.html");
+	} elseif($pass =="Y") {  
+
+
+if ($action=="activate_affiliate") { add_affiliate($form); }
+
+$account_id  = get_account_id($session_id);
+$affiliate_id    = get_affiliate_id($account_id);
+$account_id  = get_account_id($session_id);
+
+$dbf = new ps_DB;
+$q  = "SELECT * FROM affiliate WHERE affiliate_id='$affiliate_id'";
+$dbf->query($q);
+$dbf->next_record();
+
+
+
+	
+	?>
+<font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+<font size="3" face="Arial, Helvetica, sans-serif">AFFILIATE ADMINSTRATION AREA:</font><br>
+</font></b></font></font></font> 
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000">Payout 
+      History:</font></b></font></td>
+  </tr>
+  <tr> 
+    <td> 
+      <table width="450" border="0" cellspacing="0" cellpadding="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td width="45"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            No.</font></b></font></font></font></b></font></font></font></td>
+          <td width="108"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            Amount:</font></b></font></font></font></b></font></font></font></td>
+          <td width="150"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            Date:</font></b></font></font></font></b></font></font></font></td>
+          <td width="147"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2">Status:</font></b></font></font></font></b></font></font></font></td>
+        </tr>
+      </table>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      <?$account_id =$dbf->f(affiliate_account_id);
+	$db = new ps_DB;
+	$q  = "SELECT * FROM credit WHERE credit_account_id='$account_id' AND credit_type='2';";
+	$db->query($q);
+		while ($db->next_record()) { ?>
+      </font></b></font></font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      </font></b></font></font></font></b></font></font></font> 
+      <table width="450" border="0" cellspacing="0" cellpadding="0" <? if ($db->f("credit_status") != 1) { echo "bgcolor=\"#C8DBDB\""; } else { echo "bgcolor=\"#E2E9E9\""; } ?>>
+        <tr> 
+          <td width="45"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            <?echo $db->f("credit_id");?>
+            </font></b></font></font></font></b></font></font></font></td>
+          <td width="108"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            <?echo setup("currency");
+printf("%.2f", $db->f("credit_amount"));?>
+            </font></font></font></font></font></font></font></font></font></font></font></font></font></td>
+          <td width="150"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            <?echo $db->f("credit_date_added");?>
+            </font></font></font></font></font></font></font></td>
+          <td width="147"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+            <?
+			$status = $db->f("credit_status");
+			if($status==0) $amount = "0";
+			if($status==1) $amount = $db->f("credit_amount");
+			if($status==2) $amount = $db->f("credit_amount_applied");
+			echo setup("currency");
+			printf("%.2f", $amount);
+			
+			?>
+            </font></td>
+        </tr>
+      </table>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      </font></b></font></font></font><font size="2"> 
+      <? } if ($db->num_rows() < 1) echo "No payouts have been issued at this time."; ?>
+      </font></b></font></font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000">Referrals 
+      Resulting in Sales:</font></b></font></td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      </font></b></font></font></font> 
+      <table width="450" border="0" cellspacing="0" cellpadding="0" bgcolor="#CCCCCC">
+        <tr> 
+          <td width="44"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            No.</font></b></font></font></font></b></font></font></font></td>
+          <td width="82"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            Amount:</font></b></font></font></font></b></font></font></font></td>
+          <td width="103"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            Date:</font></b></font></font></font></b></font></font></font></td>
+          <td width="96"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            Status: </font></b></font></font></font></b></font></font></font></td>
+          <td width="125"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2">Your 
+            Fee</font><font size="2">: </font></b></font></font></font></b></font></font></font></td>
+        </tr>
+      </table>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      <?
+$db = new ps_DB;
+$q  = "SELECT * FROM orders WHERE order_affiliate_id='$affiliate_id'";
+$db->query($q);
+while ($db->next_record()) { ?>
+      </font></b></font></font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      </font></b></font></font></font></b></font></font></font> 
+      <table width="450" border="0" cellspacing="0" cellpadding="0" bgcolor="#E2E9E9">
+        <tr> 
+          <td width="43"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+            <?echo $db->f("order_id");?>
+            </font></b></font></font></font></b></font></font></font></td>
+          <td width="83"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            <?echo setup("currency");
+printf("%.2f",$db->f("order_amount"));?>
+            </font></font></font></font></font></font></font></font></font></font></font></font></font></td>
+          <td width="104"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            <?echo $db->f("order_date");?>
+            </font></font></font></font></font></font></font></td>
+          <td width="94"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            <? $s = $db->f("order_status");
+if ($s == 0)  echo "Pending";
+if ($s == 1)  echo "Complete";
+if ($s == 2)  echo "Voided";
+if ($s == 3)  echo "Canceled";
+if ($s == 4)  echo "Declined";?>
+            </font></font></font></font></font></font></font></td>
+          <td width="126"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+            <?
+$t = $dbf->f("affiliate_type");
+if ($t == 1)  {
+	$s = setup("aff_pay_1");
+	if ($s==0) { $amount = setup("aff_pay_1a") * $db->f("order_amount"); }
+	if ($s==1) { $amount = setup("aff_pay_1a"); }
+	echo setup("currency");
+	printf("%.2f",$amount);
+	}
+	
+	if ($t == 2)  {
+	$s = setup("aff_pay_2");
+	if ($s==0) { $amount = setup("aff_pay_2a") * $db->f("order_amount"); }
+	if ($s==1) { $amount = setup("aff_pay_2a"); }
+	echo setup("currency");
+	printf("%.2f",$amount);
+	}
+?>
+            </font></font></font></font></font></font></font></font></font></font></font></font></font></td>
+        </tr>
+      </table>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+      </font></b></font></font></font><font size="2"> 
+      <? } if ($db->num_rows() < 1) echo "No referrals have resulted in sales at this time."; ?>
+      </font></b></font></font></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><b><font size="2" color="#990000">Total 
+      Referrals to Date: </font><font color="#666666"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+      <font color="#000066"> 
+      <? echo show_affiliate_referrals($affiliate_id); ?>
+      </font></font></b></font></b></font></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif"><b><font size="2" color="#990000">Linking 
+      Instructions :</font></b></font></td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">To 
+        start referring customers to 
+        <? echo setup("company"); ?>
+        , you must use the link below. You can send it in emails, use the url 
+        with banners or other images, or as a standard link on your website.</font></p>
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666">URL:</font><br>
+        <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"> 
+        <?echo  setup("url") . "members.php?aid=" . $affiliate_id; ?>
+        <br>
+        </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><a href="<? echo  setup("url") . "members.php?aid=" . $affiliate_id; ?>"><b>Test 
+        It Here!</b></a><br>
+        </font></p>
+      </td>
+  </tr>
+</table>
+<p> 
+  <? } ?>
+</p>
+</body>
+</html>
