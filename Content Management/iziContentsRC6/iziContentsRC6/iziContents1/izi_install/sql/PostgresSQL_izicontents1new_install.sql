@@ -1,0 +1,870 @@
+
+-- phpMyAdmin SQL Dump
+-- version 2.6.3-pl1
+-- http://www.phpmyadmin.net
+-- 
+-- Host: mysql08.powweb.com
+-- Generation Time: Sep 18, 2005 at 01:03 PM
+-- Server version: 4.1.9
+-- PHP Version: 4.4.0
+-- 
+-- Database: `rickwtest`
+-- 
+
+-- 
+-- Dumping data for table `authors`
+-- 
+
+INSERT INTO authors VALUES (1, 'admin', '43ebb2af95f93fff28e9922e0d5421bd', 'iziContents Administrator', 'admin.email@yourdomain.com', '2002-11-07 00:00:00', 'administrator', '', '', '', '', '', '', '', '', '', '', 'N', 'N', 'N');
+
+-- 
+-- Dumping data for table `banners`
+-- 
+
+
+-- 
+-- Dumping data for table `contents`
+-- 
+
+INSERT INTO contents VALUES (1, 'Welcome', 'Congratulations', 'You have successfully installed iziContents CMS Version 1.0 RC5', '2003-03-11 00:00:00', '2007-03-11 00:00:00', '1', '', 1, 1, '2003-03-11 09:58:14', '', 'L', '', 'Y', '', '', '', '', 'L', 'L', 'Welcome', 'en', '', '', 0, 0, 'You have successfully installed iziContents CMS Version 1.0 RC5', '', '', 'N', 'N', 'Y', 'N');
+INSERT INTO contents VALUES (2, 'Welcome', 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in et iusto odio dignissim iriure qui blandit.', '2003-03-11 00:00:00', '2007-03-11 00:00:00', '1', '', 1, 1, '2003-03-11 09:58:14', '', 'L', '', 'Y', '', '', '', '', 'L', 'L', 'Lipsum', 'en', '', '', 0, 0, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in et iusto odio dignissim iriure qui blandit.', '', '', 'N', 'N', 'Y', 'N');
+
+-- 
+-- Dumping data for table `continents`
+-- 
+
+INSERT INTO continents VALUES ('01', 'Africa');
+INSERT INTO continents VALUES ('0101', 'Eastern Africa');
+INSERT INTO continents VALUES ('0102', 'Middle Africa');
+INSERT INTO continents VALUES ('0103', 'Northern Africa');
+INSERT INTO continents VALUES ('0104', 'Southern Africa');
+INSERT INTO continents VALUES ('0105', 'Western Africa');
+INSERT INTO continents VALUES ('02', 'Americas');
+INSERT INTO continents VALUES ('0201', 'Caribbean');
+INSERT INTO continents VALUES ('0202', 'Central America');
+INSERT INTO continents VALUES ('0203', 'South America');
+INSERT INTO continents VALUES ('0204', 'Northern America');
+INSERT INTO continents VALUES ('03', 'Asia');
+INSERT INTO continents VALUES ('0301', 'Eastern Asia');
+INSERT INTO continents VALUES ('0302', 'South-central Asia');
+INSERT INTO continents VALUES ('0304', 'South-eastern Asia');
+INSERT INTO continents VALUES ('0305', 'Western Asia');
+INSERT INTO continents VALUES ('04', 'Europe');
+INSERT INTO continents VALUES ('0401', 'Eastern Europe');
+INSERT INTO continents VALUES ('0402', 'Northern Europe');
+INSERT INTO continents VALUES ('0403', 'Southern Europe');
+INSERT INTO continents VALUES ('0404', 'Western Europe');
+INSERT INTO continents VALUES ('05', 'Oceania');
+INSERT INTO continents VALUES ('0501', 'Australia and New Zealand');
+INSERT INTO continents VALUES ('0502', 'Melanesia');
+INSERT INTO continents VALUES ('0503', 'Micronesia');
+INSERT INTO continents VALUES ('0504', 'Polynesia');
+INSERT INTO continents VALUES ('06', 'Antartica');
+
+-- 
+-- Dumping data for table `countries`
+-- 
+
+INSERT INTO countries VALUES ('af', 'Afghanistan', '0302', 'afghanistan');
+INSERT INTO countries VALUES ('al', 'Albania', '0403', 'albania');
+INSERT INTO countries VALUES ('dz', 'Algeria', '0103', 'algeria');
+INSERT INTO countries VALUES ('as', 'American Samoa', '0504', NULL);
+INSERT INTO countries VALUES ('ad', 'Andorra', '0403', 'andorra');
+INSERT INTO countries VALUES ('ao', 'Angola', '0104', 'angola');
+INSERT INTO countries VALUES ('ai', 'Anguilla', '0201', NULL);
+INSERT INTO countries VALUES ('aq', 'Antarctica', '06', NULL);
+INSERT INTO countries VALUES ('ag', 'Antigua & Barbuda', '0201', 'antiguabarbuda');
+INSERT INTO countries VALUES ('ar', 'Argentina', '0203', 'argentina');
+INSERT INTO countries VALUES ('am', 'Armenia', '0305', 'armenia');
+INSERT INTO countries VALUES ('aw', 'Aruba', '0201', NULL);
+INSERT INTO countries VALUES ('au', 'Australia', '0501', 'australia');
+INSERT INTO countries VALUES ('at', 'Austria', '0404', 'austria');
+INSERT INTO countries VALUES ('az', 'Azerbaijan', '0305', 'azerbaijan');
+INSERT INTO countries VALUES ('bs', 'Bahamas', '0201', 'bahamas');
+INSERT INTO countries VALUES ('bh', 'Bahrain', '0305', 'bahrain');
+INSERT INTO countries VALUES ('bd', 'Bangladesh', '0302', 'bangladesh');
+INSERT INTO countries VALUES ('bb', 'Barbados', '0201', NULL);
+INSERT INTO countries VALUES ('by', 'Belarus', '0401', 'belarus');
+INSERT INTO countries VALUES ('be', 'Belgium', '0404', 'belgium');
+INSERT INTO countries VALUES ('bz', 'Belize', '0202', 'belize');
+INSERT INTO countries VALUES ('bj', 'Benin', '0105', 'benin');
+INSERT INTO countries VALUES ('bm', 'Bermuda', '0204', NULL);
+INSERT INTO countries VALUES ('bt', 'Bhutan', '0302', 'bhutan');
+INSERT INTO countries VALUES ('bo', 'Bolivia', '0203', 'bolivia');
+INSERT INTO countries VALUES ('ba', 'Bosnia and Herzegovina', '0403', 'bosnia_herzegovina');
+INSERT INTO countries VALUES ('bw', 'Botswana', '0104', 'botswana');
+INSERT INTO countries VALUES ('bv', 'Bouvet Island', '0104', NULL);
+INSERT INTO countries VALUES ('br', 'Brazil', '0203', 'brazil');
+INSERT INTO countries VALUES ('io', 'British Indian Ocean Territory', '0302', NULL);
+INSERT INTO countries VALUES ('bn', 'Brunei Darussalam', '0304', 'brunei');
+INSERT INTO countries VALUES ('bg', 'Bulgaria', '0401', 'bulgaria');
+INSERT INTO countries VALUES ('bf', 'Burkina Faso', '0105', 'burkinafaso');
+INSERT INTO countries VALUES ('bi', 'Burundi', '0101', 'burundi');
+INSERT INTO countries VALUES ('kh', 'Cambodia', '0304', 'cambodia');
+INSERT INTO countries VALUES ('cm', 'Cameroon', '0102', 'cameroon');
+INSERT INTO countries VALUES ('ca', 'Canada', '0204', 'canada');
+INSERT INTO countries VALUES ('cv', 'Cape Verde', '0105', NULL);
+INSERT INTO countries VALUES ('ky', 'Cayman Islands', '0201', NULL);
+INSERT INTO countries VALUES ('cf', 'Central African Republic', '0102', 'centralafricanrep');
+INSERT INTO countries VALUES ('td', 'Chad', '0102', 'chad');
+INSERT INTO countries VALUES ('cl', 'Chile', '0203', 'chile');
+INSERT INTO countries VALUES ('cn', 'China', '0301', 'china');
+INSERT INTO countries VALUES ('cx', 'Christmas Island', '0304', NULL);
+INSERT INTO countries VALUES ('cc', 'Cocos (Keeling) Island', '0304', NULL);
+INSERT INTO countries VALUES ('co', 'Columbia', '0203', 'columbia');
+INSERT INTO countries VALUES ('km', 'Comoros', '0101', 'comoros');
+INSERT INTO countries VALUES ('ck', 'Cook Islands', '0504', NULL);
+INSERT INTO countries VALUES ('cr', 'Costa Rica', '0202', 'costarica');
+INSERT INTO countries VALUES ('ci', 'Cote d''Ivoire', '0105', 'ivorycoast');
+INSERT INTO countries VALUES ('hr', 'Croatia', '0403', 'croatia');
+INSERT INTO countries VALUES ('cu', 'Cuba', '0201', 'cuba');
+INSERT INTO countries VALUES ('cy', 'Cyprus', '0305', 'cyprus');
+INSERT INTO countries VALUES ('cz', 'Czech Republic', '0401', 'czechrepublic');
+INSERT INTO countries VALUES ('cg', 'Democratic Republic of Congo', '0102', 'demrepcongo');
+INSERT INTO countries VALUES ('dk', 'Denmark', '0402', 'denmark');
+INSERT INTO countries VALUES ('dj', 'Djibouti', '0101', 'djibouti');
+INSERT INTO countries VALUES ('dm', 'Dominica', '0201', 'dominica');
+INSERT INTO countries VALUES ('do', 'Dominican Republic', '0201', 'dominicanrep');
+INSERT INTO countries VALUES ('tp', 'East Timor', '0304', NULL);
+INSERT INTO countries VALUES ('ec', 'Ecuador', '0203', 'ecuador');
+INSERT INTO countries VALUES ('eg', 'Egypt', '0103', 'egypt');
+INSERT INTO countries VALUES ('sv', 'El Salvador', '0202', 'elsalvador');
+INSERT INTO countries VALUES ('gq', 'Equatorial Guinea', '0102', 'eq_guinea');
+INSERT INTO countries VALUES ('er', 'Eritrea', '0101', 'eritrea');
+INSERT INTO countries VALUES ('ee', 'Estonia', '0402', 'estonia');
+INSERT INTO countries VALUES ('et', 'Ethiopia', '0101', 'ethiopia');
+INSERT INTO countries VALUES ('fk', 'Falkland Islands', '0203', NULL);
+INSERT INTO countries VALUES ('fo', 'Faroe Islands', '0402', NULL);
+INSERT INTO countries VALUES ('fm', 'Federated States of Micronesia', '0503', 'micronesia');
+INSERT INTO countries VALUES ('fj', 'Fiji', '0502', 'fiji');
+INSERT INTO countries VALUES ('fi', 'Finland', '0402', 'finland');
+INSERT INTO countries VALUES ('fr', 'France', '0404', 'france');
+INSERT INTO countries VALUES ('fx', 'France, Metropolitan', '0404', NULL);
+INSERT INTO countries VALUES ('gf', 'French Guiana', '0203', NULL);
+INSERT INTO countries VALUES ('pf', 'French Polynesia', '0504', NULL);
+INSERT INTO countries VALUES ('tf', 'French Southern Territories', '0104', NULL);
+INSERT INTO countries VALUES ('ga', 'Gabon', '0102', 'gabon');
+INSERT INTO countries VALUES ('gm', 'Gambia', '0105', 'gambia');
+INSERT INTO countries VALUES ('ge', 'Georgia', '0305', 'georgia');
+INSERT INTO countries VALUES ('de', 'Germany', '0404', 'germany');
+INSERT INTO countries VALUES ('gh', 'Ghana', '0105', 'ghana');
+INSERT INTO countries VALUES ('gi', 'Gibraltar', '0403', NULL);
+INSERT INTO countries VALUES ('gr', 'Greece', '0403', 'greece');
+INSERT INTO countries VALUES ('gl', 'Greenland', '0204', NULL);
+INSERT INTO countries VALUES ('gd', 'Grenada', '0201', 'grenada');
+INSERT INTO countries VALUES ('gp', 'Guadeloupe', '0201', NULL);
+INSERT INTO countries VALUES ('gt', 'Guatemala', '0202', 'guatemala');
+INSERT INTO countries VALUES ('gn', 'Guinea', '0105', 'guinea');
+INSERT INTO countries VALUES ('gw', 'Guinea Bissau', '0105', 'guineabissau');
+INSERT INTO countries VALUES ('gy', 'Guyana', '0203', 'guyana');
+INSERT INTO countries VALUES ('ht', 'Haiti', '0201', 'haiti');
+INSERT INTO countries VALUES ('hm', 'Heard & McDonald Isles', '0104', NULL);
+INSERT INTO countries VALUES ('hn', 'Honduras', '0202', 'honduras');
+INSERT INTO countries VALUES ('hk', 'Hong Kong', '0301', 'hong_kong');
+INSERT INTO countries VALUES ('hu', 'Hungary', '0401', 'hungary');
+INSERT INTO countries VALUES ('is', 'Iceland', '0402', 'iceland');
+INSERT INTO countries VALUES ('in', 'India', '0302', 'india');
+INSERT INTO countries VALUES ('id', 'Indonesia', '0304', 'indonesia');
+INSERT INTO countries VALUES ('ir', 'Iran', '0302', 'iran');
+INSERT INTO countries VALUES ('iq', 'Iraq', '0305', 'iraq');
+INSERT INTO countries VALUES ('ie', 'Ireland', '0402', 'ireland');
+INSERT INTO countries VALUES ('il', 'Israel', '0305', 'israel');
+INSERT INTO countries VALUES ('it', 'Italy', '0403', 'italy');
+INSERT INTO countries VALUES ('jm', 'Jamaica', '0201', 'jamaica');
+INSERT INTO countries VALUES ('jp', 'Japan', '0301', 'japan');
+INSERT INTO countries VALUES ('jo', 'Jordan', '0305', 'jordan');
+INSERT INTO countries VALUES ('kz', 'Kazakhstan', '0302', 'kazakhstan');
+INSERT INTO countries VALUES ('ke', 'Kenya', '0101', 'kenya');
+INSERT INTO countries VALUES ('ki', 'Kiribati', '0503', 'kiribati');
+INSERT INTO countries VALUES ('kp', 'Korea (Democratic People''s Republic)', '0301', 'north_korea');
+INSERT INTO countries VALUES ('kr', 'Korea (Republic of)', '0301', 'south_korea');
+INSERT INTO countries VALUES ('kw', 'Kuwait', '0305', 'kuwait');
+INSERT INTO countries VALUES ('kg', 'Kyrgyzstan', '0302', 'kyrgyzstan');
+INSERT INTO countries VALUES ('la', 'Laos', '0304', 'laos');
+INSERT INTO countries VALUES ('lv', 'Latvia', '0402', 'latvia');
+INSERT INTO countries VALUES ('lb', 'Lebanon', '0305', 'lebanon');
+INSERT INTO countries VALUES ('ls', 'Lesotho', '0104', NULL);
+INSERT INTO countries VALUES ('lr', 'Liberia', '0105', 'liberia');
+INSERT INTO countries VALUES ('ly', 'Libya', '0103', 'libya');
+INSERT INTO countries VALUES ('li', 'Liechtenstein', '0404', 'liechtenstein');
+INSERT INTO countries VALUES ('lt', 'Lithuania', '0402', 'lithuania');
+INSERT INTO countries VALUES ('lu', 'Luxembourg', '0404', 'luxembourg');
+INSERT INTO countries VALUES ('mo', 'Macao', '0301', 'macau');
+INSERT INTO countries VALUES ('mk', 'Macedonia', '0403', 'macedonia');
+INSERT INTO countries VALUES ('mg', 'Madagascar', '0101', 'madagascar');
+INSERT INTO countries VALUES ('mw', 'Malawi', '0101', 'malawi');
+INSERT INTO countries VALUES ('my', 'Malaysia', '0304', 'malaysia');
+INSERT INTO countries VALUES ('mv', 'Maldives', '0302', 'maldives');
+INSERT INTO countries VALUES ('ml', 'Mali', '0105', 'mali');
+INSERT INTO countries VALUES ('mt', 'Malta', '0403', 'malta');
+INSERT INTO countries VALUES ('mh', 'Marshall Islands', '0503', NULL);
+INSERT INTO countries VALUES ('mq', 'Martinique', '0201', NULL);
+INSERT INTO countries VALUES ('mr', 'Mauritania', '0105', 'mauritania');
+INSERT INTO countries VALUES ('mu', 'Mauritius', '0101', 'mauritius');
+INSERT INTO countries VALUES ('mx', 'Mexico', '0202', 'mexico');
+INSERT INTO countries VALUES ('md', 'Moldova', '0401', 'moldova');
+INSERT INTO countries VALUES ('mc', 'Monaco', '0404', 'monaco');
+INSERT INTO countries VALUES ('mn', 'Mongolia', '0301', 'mongolia');
+INSERT INTO countries VALUES ('ms', 'Montserrat', '0201', NULL);
+INSERT INTO countries VALUES ('ma', 'Morocco', '0103', 'morocco');
+INSERT INTO countries VALUES ('mz', 'Mozambique', '0101', 'mozambique');
+INSERT INTO countries VALUES ('mm', 'Myanmar', '0304', 'burma');
+INSERT INTO countries VALUES ('na', 'Namibia', '0104', 'namibia');
+INSERT INTO countries VALUES ('nr', 'Nauru', '0503', 'nauru');
+INSERT INTO countries VALUES ('np', 'Nepal', '0302', 'nepal');
+INSERT INTO countries VALUES ('nl', 'Netherlands', '0404', 'netherlands');
+INSERT INTO countries VALUES ('an', 'Netherlands Antilles', '0201', 'neth_antilles');
+INSERT INTO countries VALUES ('nc', 'New Caledonia', '0502', NULL);
+INSERT INTO countries VALUES ('nz', 'New Zealand', '0501', 'newzealand');
+INSERT INTO countries VALUES ('ni', 'Nicaragua', '0202', 'nicaragua');
+INSERT INTO countries VALUES ('ne', 'Niger', '0105', 'niger');
+INSERT INTO countries VALUES ('ng', 'Nigeria', '0105', 'nigeria');
+INSERT INTO countries VALUES ('nu', 'Niue', '0504', NULL);
+INSERT INTO countries VALUES ('nf', 'Norfolk Island', '0501', NULL);
+INSERT INTO countries VALUES ('mp', 'Northern Mariana Islands', '0503', NULL);
+INSERT INTO countries VALUES ('no', 'Norway', '0402', 'norway');
+INSERT INTO countries VALUES ('om', 'Oman', '0305', 'oman');
+INSERT INTO countries VALUES ('pk', 'Pakistan', '0302', 'pakistan');
+INSERT INTO countries VALUES ('pw', 'Palau', '0503', NULL);
+INSERT INTO countries VALUES ('pa', 'Panama', '0202', 'panama');
+INSERT INTO countries VALUES ('pg', 'Papua New Guinea', '0502', 'papuanewguinea');
+INSERT INTO countries VALUES ('py', 'Paraguay', '0203', 'paraguay');
+INSERT INTO countries VALUES ('pe', 'Peru', '0203', 'peru');
+INSERT INTO countries VALUES ('ph', 'Philippines', '0304', 'philippines');
+INSERT INTO countries VALUES ('pn', 'Pitcairn', '0504', NULL);
+INSERT INTO countries VALUES ('pl', 'Poland', '0401', 'poland');
+INSERT INTO countries VALUES ('pt', 'Portugal', '0403', 'portugal');
+INSERT INTO countries VALUES ('pr', 'Puerto Rico', '0201', 'puertorico');
+INSERT INTO countries VALUES ('qa', 'Qatar', '0305', 'qatar');
+INSERT INTO countries VALUES ('re', 'Reunion', '0101', NULL);
+INSERT INTO countries VALUES ('ro', 'Romania', '0401', 'romania');
+INSERT INTO countries VALUES ('ru', 'Russian Federation', '0401', 'russia');
+INSERT INTO countries VALUES ('rw', 'Rwanda', '0101', 'rwanda');
+INSERT INTO countries VALUES ('kn', 'Saint Kitts & Nevis', '0201', 'stkitts_nevis');
+INSERT INTO countries VALUES ('lc', 'Saint Lucia', '0201', 'stlucia');
+INSERT INTO countries VALUES ('vc', 'Saint Vincent & the Grenadines', '0201', 'grenadines');
+INSERT INTO countries VALUES ('sm', 'San Marino', '0403', NULL);
+INSERT INTO countries VALUES ('st', 'Sao Tome e Principe', '0102', 'sao_tome');
+INSERT INTO countries VALUES ('sa', 'Saudi Arabia', '0305', 'saudiarabia');
+INSERT INTO countries VALUES ('sn', 'Senegal', '0105', 'senegal');
+INSERT INTO countries VALUES ('sc', 'Seychelles', '0101', 'seychelles');
+INSERT INTO countries VALUES ('sl', 'Sierra Leone', '0105', 'sierraleone');
+INSERT INTO countries VALUES ('sg', 'Singapore', '0304', 'singapore');
+INSERT INTO countries VALUES ('sk', 'Slovakia', '0401', 'slovakia');
+INSERT INTO countries VALUES ('si', 'Slovenia', '0403', 'slovenia');
+INSERT INTO countries VALUES ('sb', 'Solomon Islands', '0502', 'solomon_islands');
+INSERT INTO countries VALUES ('so', 'Somalia', '0101', 'somalia');
+INSERT INTO countries VALUES ('za', 'South Africa', '0104', 'southafrica');
+INSERT INTO countries VALUES ('es', 'Spain', '0403', 'spain');
+INSERT INTO countries VALUES ('lk', 'Sri Lanka', '0302', 'srilanka');
+INSERT INTO countries VALUES ('sh', 'St. Helena', '0104', NULL);
+INSERT INTO countries VALUES ('pm', 'St. Pierre and Miquelon', '0204', NULL);
+INSERT INTO countries VALUES ('sd', 'Sudan', '0103', 'sudan');
+INSERT INTO countries VALUES ('sr', 'Suriname', '0203', 'suriname');
+INSERT INTO countries VALUES ('sj', 'Svalbard and Jan Mayen Islands', '0402', NULL);
+INSERT INTO countries VALUES ('sz', 'Swaziland', '0104', NULL);
+INSERT INTO countries VALUES ('se', 'Sweden', '0402', 'sweden');
+INSERT INTO countries VALUES ('ch', 'Switzerland', '0404', 'switzerland');
+INSERT INTO countries VALUES ('sy', 'Syria', '0305', 'syria');
+INSERT INTO countries VALUES ('tw', 'Taiwan', '0301', 'taiwan');
+INSERT INTO countries VALUES ('tj', 'Tajikistan', '0302', 'tajikistan');
+INSERT INTO countries VALUES ('tz', 'Tanzania', '0101', 'tanzania');
+INSERT INTO countries VALUES ('th', 'Thailand', '0304', 'thailand');
+INSERT INTO countries VALUES ('tg', 'Togo', '0105', 'togo');
+INSERT INTO countries VALUES ('tk', 'Tokelau', '0504', NULL);
+INSERT INTO countries VALUES ('to', 'Tonga', '0504', 'tonga');
+INSERT INTO countries VALUES ('tt', 'Trinidad & Tobago', '0201', 'trinidadandtobago');
+INSERT INTO countries VALUES ('tn', 'Tunisia', '0103', 'tunisia');
+INSERT INTO countries VALUES ('tr', 'Turkey', '0305', 'turkey');
+INSERT INTO countries VALUES ('tm', 'Turkmenistan', '0302', 'turkmenistan');
+INSERT INTO countries VALUES ('tc', 'Turks and Caicos Islands', '0201', NULL);
+INSERT INTO countries VALUES ('tv', 'Tuvala', '0504', 'tuvala');
+INSERT INTO countries VALUES ('ug', 'Uganda', '0101', 'uganda');
+INSERT INTO countries VALUES ('ua', 'Ukraine', '0401', 'ukraine');
+INSERT INTO countries VALUES ('ae', 'United Arab Emirates', '0305', 'uae');
+INSERT INTO countries VALUES ('uk', 'United Kingdom', '0402', 'uk');
+INSERT INTO countries VALUES ('us', 'USA', '0204', 'usa');
+INSERT INTO countries VALUES ('uy', 'Uruguay', '0203', 'uruguay');
+INSERT INTO countries VALUES ('uz', 'Uzbekistan', '0302', 'uzbekistan');
+INSERT INTO countries VALUES ('vu', 'Vanuatu', '0502', 'vanuatu');
+INSERT INTO countries VALUES ('va', 'Vatican City State', '0403', NULL);
+INSERT INTO countries VALUES ('ve', 'Venezuela', '0203', NULL);
+INSERT INTO countries VALUES ('vn', 'Vietnam', '0304', NULL);
+INSERT INTO countries VALUES ('vg', 'Virgin Islands (British)', '0201', NULL);
+INSERT INTO countries VALUES ('vi', 'Virgin Islands (US)', '0201', NULL);
+INSERT INTO countries VALUES ('wf', 'Wallis and Fortuna Islands', '0504', NULL);
+INSERT INTO countries VALUES ('ws', 'Western Samoa', '0504', 'western_samoa');
+INSERT INTO countries VALUES ('eh', 'Western Sahara', '0103', NULL);
+INSERT INTO countries VALUES ('ye', 'Yemen', '0305', NULL);
+INSERT INTO countries VALUES ('yu', 'Yugoslavia', '0403', NULL);
+INSERT INTO countries VALUES ('zr', 'Zaire', '0102', NULL);
+INSERT INTO countries VALUES ('zm', 'Zambia', '0101', NULL);
+INSERT INTO countries VALUES ('zw', 'Zimbabwe', '0101', NULL);
+
+-- 
+-- Dumping data for table `filetypes`
+-- 
+
+INSERT INTO filetypes VALUES (1, 'gif', 'image/gif', 1, 'Image', '');
+INSERT INTO filetypes VALUES (2, 'jpg', 'image/jpeg;image/pjpeg', 1, 'Image', '');
+INSERT INTO filetypes VALUES (3, 'jpeg', 'image/jpeg;image/pjpeg', 1, 'Image', '');
+INSERT INTO filetypes VALUES (4, 'png', 'image/x-png', 1, 'Image', '');
+INSERT INTO filetypes VALUES (5, 'swf', 'application/x-shockwave-flash', 1, 'Image', '');
+INSERT INTO filetypes VALUES (6, 'zip', 'application/zip', 1, 'Download', 'icons/filetypes/zip.gif');
+INSERT INTO filetypes VALUES (7, 'gz', 'application/x-gzip-compressed', 1, 'Download', 'icons/filetypes/zip.gif');
+INSERT INTO filetypes VALUES (8, 'txt', 'text/plain', 1, 'Download', 'icons/filetypes/text.gif');
+INSERT INTO filetypes VALUES (9, 'pdf', 'application/pdf', 1, 'Download', 'icons/filetypes/pdf.gif');
+INSERT INTO filetypes VALUES (10, 'doc', 'application/msword', 1, 'Download', 'icons/filetypes/doc.gif');
+INSERT INTO filetypes VALUES (11, 'xls', 'application/msexcel;application/vnd.ms-excel', 1, 'Download', 'icons/filetypes/xls.gif');
+INSERT INTO filetypes VALUES (12, 'ppt', 'application/mspowerpoint', 1, 'Download', 'icons/filetypes/ppt.gif');
+INSERT INTO filetypes VALUES (13, 'gz', 'application/x-gzip-compressed', 1, 'Backup', 'icons/filetypes/zip.gif');
+INSERT INTO filetypes VALUES (14, 'sql', 'text/plain', 1, 'Backup', 'icons/filetypes/text.gif');
+INSERT INTO filetypes VALUES (15, 'php', 'application/octet-stream', 1, 'Script', 'icons/filetypes/php.gif');
+INSERT INTO filetypes VALUES (16, 'php3', 'application/octet-stream', 1, 'Script', 'icons/filetypes/php.gif');
+INSERT INTO filetypes VALUES (17, 'js', 'text/html', 1, 'Script', '');
+INSERT INTO filetypes VALUES (18, 'zip', 'application/zip', 1, 'Modules', '');
+
+-- 
+-- Dumping data for table `functiongroups`
+-- 
+
+INSERT INTO functiongroups VALUES ('access', 1, NULL, '', '');
+INSERT INTO functiongroups VALUES ('menus', 2, NULL, '', '');
+INSERT INTO functiongroups VALUES ('templates', 3, NULL, '', '');
+INSERT INTO functiongroups VALUES ('contents', 4, NULL, '', '');
+INSERT INTO functiongroups VALUES ('languages', 5, 'gsMultiLanguage', '==', 'Y');
+INSERT INTO functiongroups VALUES ('styles', 6, NULL, '', '');
+INSERT INTO functiongroups VALUES ('statistics', 7, 'gsVisitorStats', '==', 'Y');
+INSERT INTO functiongroups VALUES ('banners', 8, 'gsShowBanners', '!=', 'N');
+
+-- 
+-- Dumping data for table `functions`
+-- 
+
+INSERT INTO functions VALUES ('privileges', 'access', 1, '', NULL, NULL);
+INSERT INTO functions VALUES ('authors', 'access', 2, '', NULL, NULL);
+INSERT INTO functions VALUES ('setregister', 'access', 3, '', NULL, NULL);
+INSERT INTO functions VALUES ('backup', 'access', 4, '', NULL, NULL);
+INSERT INTO functions VALUES ('sites', 'access', 5, 'gsMultiSite', '==', 'Y');
+INSERT INTO functions VALUES ('filetypes', 'access', 6, '', NULL, NULL);
+INSERT INTO functions VALUES ('menusettings', 'menus', 1, '', NULL, NULL);
+INSERT INTO functions VALUES ('topgroups', 'menus', 2, 'gsShowTopMenu', '==', 'Y');
+INSERT INTO functions VALUES ('groups', 'menus', 3, '', NULL, NULL);
+INSERT INTO functions VALUES ('subgroups', 'menus', 4, '', NULL, NULL);
+INSERT INTO functions VALUES ('tags', 'templates', 1, '', NULL, NULL);
+INSERT INTO functions VALUES ('sidebars', 'templates', 2, '', NULL, NULL);
+INSERT INTO functions VALUES ('imageformats', 'templates', 3, '', NULL, NULL);
+INSERT INTO functions VALUES ('ratings', 'contents', 1, '', NULL, NULL);
+INSERT INTO functions VALUES ('content', 'contents', 2, '', NULL, NULL);
+INSERT INTO functions VALUES ('subcontent', 'contents', 3, '', NULL, NULL);
+INSERT INTO functions VALUES ('images', 'contents', 4, '', NULL, NULL);
+INSERT INTO functions VALUES ('scripts', 'contents', 5, '', NULL, NULL);
+INSERT INTO functions VALUES ('downloads', 'contents', 6, '', NULL, NULL);
+INSERT INTO functions VALUES ('languages', 'languages', 1, 'gsMultiLanguage', '==', 'Y');
+INSERT INTO functions VALUES ('tusergroups', 'languages', 2, 'gsMultiLanguage', '==', 'Y');
+INSERT INTO functions VALUES ('ttagcategories', 'languages', 3, 'gsMultiLanguage', '==', 'Y');
+INSERT INTO functions VALUES ('serversettings', 'styles', 1, NULL, NULL, NULL);
+INSERT INTO functions VALUES ('sitesettings', 'styles', 2, '', NULL, NULL);
+INSERT INTO functions VALUES ('themes', 'styles', 3, 'gsMultiTheme', '==', 'Y');
+INSERT INTO functions VALUES ('colorsform', 'styles', 4, '', NULL, NULL);
+INSERT INTO functions VALUES ('setgraphics', 'styles', 5, '', NULL, NULL);
+INSERT INTO functions VALUES ('userdata', 'styles', 6, 'gsUserdataFrame', '!=', 'N');
+INSERT INTO functions VALUES ('viewstatistics', 'statistics', 1, 'gsVisitorStats', '==', 'Y');
+INSERT INTO functions VALUES ('prunestatistics', 'statistics', 2, 'gsVisitorStats', '==', 'Y');
+INSERT INTO functions VALUES ('banners', 'banners', 1, 'gsShowBanners', '!=', 'N');
+INSERT INTO functions VALUES ('excelexport', 'access', 3, '', NULL, NULL);
+
+-- 
+-- Dumping data for table `groups`
+-- 
+
+INSERT INTO groups VALUES (1, 'Welcome', '', 1, '', '', 'Y', '1', 'A', 'Welcome to iziContents', '', '', '', '', 'Welcome', 'en', '', '', 1, 0);
+
+-- 
+-- Dumping data for table `imageformattemplates`
+-- 
+
+INSERT INTO imageformattemplates VALUES (1, 'centreborder', 'C', 2, 'White', 1);
+INSERT INTO imageformattemplates VALUES (2, 'leftborder', 'L', 2, 'White', 1);
+INSERT INTO imageformattemplates VALUES (3, 'rightborder', 'R', 2, 'White', 1);
+INSERT INTO imageformattemplates VALUES (4, 'centrenoborder', 'C', 0, 'Black', 1);
+INSERT INTO imageformattemplates VALUES (5, 'leftnoborder', 'L', 0, 'Black', 1);
+INSERT INTO imageformattemplates VALUES (6, 'rightnoborder', 'R', 0, 'Black', 1);
+
+-- 
+-- Dumping data for table `languages`
+-- 
+
+INSERT INTO languages VALUES ('en', 'English', 'iso-8859-1, windows-1252', 'Y', 'ltr', 'Mark Baker');
+
+-- 
+-- Dumping data for table `modules`
+-- 
+
+
+-- 
+-- Dumping data for table `modulesettings`
+-- 
+
+
+-- 
+-- Dumping data for table `ratings`
+-- 
+
+
+-- 
+-- Dumping data for table `sessions`
+-- 
+
+
+-- 
+-- Dumping data for table `settings`
+-- 
+
+INSERT INTO settings VALUES ('bgcolor_main', 'Y', 'White');
+INSERT INTO settings VALUES ('bgcolor_cnttbl', 'Y', 'White');
+INSERT INTO settings VALUES ('bgcolor_headercnt', 'Y', 'White');
+INSERT INTO settings VALUES ('bgcolor_header', 'Y', 'Black');
+INSERT INTO settings VALUES ('bgcolor_footer', 'Y', 'Black');
+INSERT INTO settings VALUES ('bgcolor_menu', 'Y', 'White');
+INSERT INTO settings VALUES ('color_header', 'Y', 'Black');
+INSERT INTO settings VALUES ('color_ahref', 'Y', 'Red');
+INSERT INTO settings VALUES ('color_ahref_hover', 'Y', 'Green');
+INSERT INTO settings VALUES ('color_ahref_visited', 'Y', 'Red');
+INSERT INTO settings VALUES ('menu_color_ahref', 'Y', 'Red');
+INSERT INTO settings VALUES ('menu_color_ahref_hover', 'Y', 'Green');
+INSERT INTO settings VALUES ('menu_color_ahref_visited', 'Y', 'Red');
+INSERT INTO settings VALUES ('topmenu_color_ahref', 'Y', 'Red');
+INSERT INTO settings VALUES ('topmenu_color_ahref_hover', 'Y', 'Green');
+INSERT INTO settings VALUES ('topmenu_color_ahref_visited', 'Y', 'Red');
+INSERT INTO settings VALUES ('color_ahref_small', 'Y', 'Red');
+INSERT INTO settings VALUES ('color_ahref_small_hover', 'Y', 'Green');
+INSERT INTO settings VALUES ('color_ahref_small_visited', 'Y', 'Red');
+INSERT INTO settings VALUES ('color_td', 'Y', 'Black');
+INSERT INTO settings VALUES ('color_h1', 'Y', 'FFFFFF');
+INSERT INTO settings VALUES ('homepagelogo', '', 'bgtop.jpg');
+INSERT INTO settings VALUES ('headerbg', 'Y', '');
+INSERT INTO settings VALUES ('menubg', 'Y', '');
+INSERT INTO settings VALUES ('topbg', 'Y', '');
+INSERT INTO settings VALUES ('mainbg', 'Y', '');
+INSERT INTO settings VALUES ('topmenuborder', '', '0');
+INSERT INTO settings VALUES ('topmenualign', '', 'L');
+INSERT INTO settings VALUES ('topmenuseparator', '', '[ ? | ? ]');
+INSERT INTO settings VALUES ('menuborder', '', '0');
+INSERT INTO settings VALUES ('menudistance1', '', '8');
+INSERT INTO settings VALUES ('menudistance2', '', '8');
+INSERT INTO settings VALUES ('menudistance3', '', '4');
+INSERT INTO settings VALUES ('menudistance4', '', '12');
+INSERT INTO settings VALUES ('privatemenus', '', 'L');
+INSERT INTO settings VALUES ('useframes', '', 'Y');
+INSERT INTO settings VALUES ('font1', 'Y', 'Verdana');
+INSERT INTO settings VALUES ('fontsize1', 'Y', '12px');
+INSERT INTO settings VALUES ('fontsize2', 'Y', '24px');
+INSERT INTO settings VALUES ('sitetitle', '', 'iziContents - Developers Resource');
+INSERT INTO settings VALUES ('sitedesc', '', 'iziContents is an easy website content management system. You can maintain menus and submenus, add authors and maintain the entire contents of a website.');
+INSERT INTO settings VALUES ('sitekeywords', '', 'CMS, izicontents, content management system, php, mysql, apache');
+INSERT INTO settings VALUES ('headerbgrep', 'Y', '');
+INSERT INTO settings VALUES ('menubgrep', 'Y', '');
+INSERT INTO settings VALUES ('topbgrep', 'Y', '');
+INSERT INTO settings VALUES ('mainbgrep', 'Y', '');
+INSERT INTO settings VALUES ('fontsize3', 'Y', '11px');
+INSERT INTO settings VALUES ('fontstyle1', 'Y', 'None');
+INSERT INTO settings VALUES ('fontstyle3', 'Y', 'None');
+INSERT INTO settings VALUES ('topframe_height', '', '107');
+INSERT INTO settings VALUES ('leftframe_width', '', '180');
+INSERT INTO settings VALUES ('expandmenus', '', 'Y');
+INSERT INTO settings VALUES ('showbanners', '', 'N');
+INSERT INTO settings VALUES ('use_compression', '', 'N');
+INSERT INTO settings VALUES ('timegen_display', '', 'N');
+INSERT INTO settings VALUES ('default_language', 'Y', 'en');
+INSERT INTO settings VALUES ('timezone', '', '');
+INSERT INTO settings VALUES ('tophtml', '', '');
+INSERT INTO settings VALUES ('showtopmenu', '', 'Y');
+INSERT INTO settings VALUES ('topmenuframe_height', '', '46');
+INSERT INTO settings VALUES ('bgcolor_topmenu', 'Y', 'LightBlue');
+INSERT INTO settings VALUES ('topmenu_fontsize', 'Y', '13px');
+INSERT INTO settings VALUES ('topmenu_fontstyle', 'Y', 'None');
+INSERT INTO settings VALUES ('userdataframe', '', 'M');
+INSERT INTO settings VALUES ('userdataframewidth', '', '350');
+INSERT INTO settings VALUES ('hoverdisplay', '', 'Y');
+INSERT INTO settings VALUES ('lrcontentframe', '', 'Y');
+INSERT INTO settings VALUES ('rightcolumnwidth', '', '250');
+INSERT INTO settings VALUES ('imagecolumnbreak', '', '');
+INSERT INTO settings VALUES ('bgcolor_tsrtbl', 'Y', 'White');
+INSERT INTO settings VALUES ('bgcolor_headertsr', 'Y', 'White');
+INSERT INTO settings VALUES ('color_tsrheader', 'Y', 'Black');
+INSERT INTO settings VALUES ('color_tsrtd', 'Y', 'Black');
+INSERT INTO settings VALUES ('smallfontsize', 'Y', '9px');
+INSERT INTO settings VALUES ('bottomframe', '', 'Y');
+INSERT INTO settings VALUES ('bottomframe_height', '', '32');
+INSERT INTO settings VALUES ('footer', '', '<center><font color="#ffff00">iziContents CMS Version 1.0 RC5</font></center>');
+INSERT INTO settings VALUES ('homepagetopgroup', '', '');
+INSERT INTO settings VALUES ('visitorstats', '', '');
+INSERT INTO settings VALUES ('secureserver', '', '');
+INSERT INTO settings VALUES ('topmenurows', '', '3');
+INSERT INTO settings VALUES ('menuframealign', '', 'L');
+INSERT INTO settings VALUES ('allowratings', '', 'Y');
+INSERT INTO settings VALUES ('allowcomments', '', 'Y');
+INSERT INTO settings VALUES ('ratingmin', '', '1');
+INSERT INTO settings VALUES ('ratingmax', '', '5');
+INSERT INTO settings VALUES ('ratingimage1', '', 'icons/star.gif');
+INSERT INTO settings VALUES ('ratingimage2', '', 'icons/nostar.gif');
+INSERT INTO settings VALUES ('vetcomments', '', 'Y');
+INSERT INTO settings VALUES ('dateformat', '', '%A %B %d, %Y');
+INSERT INTO settings VALUES ('ratingicon', '', 'icons/rateicon.gif');
+INSERT INTO settings VALUES ('printicon', '', 'icons/printer.gif');
+INSERT INTO settings VALUES ('commenticon', '', 'icons/commenticon2.gif');
+INSERT INTO settings VALUES ('secureicon', '', 'icons/private.gif');
+INSERT INTO settings VALUES ('homepagegroup', '', 'Welcome');
+INSERT INTO settings VALUES ('privdefault', '', 'probationer');
+INSERT INTO settings VALUES ('printerfriendly', '', 'Y');
+INSERT INTO settings VALUES ('rcol_color_ahref', 'Y', 'Red');
+INSERT INTO settings VALUES ('rcolfontsize', 'Y', '10px');
+INSERT INTO settings VALUES ('rcol_color_ahref_hover', 'Y', 'Green');
+INSERT INTO settings VALUES ('rcol_color_ahref_visited', 'Y', 'Red');
+INSERT INTO settings VALUES ('rcol_headerfontsize', 'Y', '18px');
+INSERT INTO settings VALUES ('rcol_fontstyle', 'Y', 'Underline');
+INSERT INTO settings VALUES ('rcol_bgcolor_headercnt', 'Y', 'LightBlue');
+INSERT INTO settings VALUES ('rcol_bgcolor_cnttbl', 'Y', 'White');
+INSERT INTO settings VALUES ('rcol_color_header', 'Y', 'Black');
+INSERT INTO settings VALUES ('rcol_color_td', 'Y', 'Black');
+INSERT INTO settings VALUES ('serveruseremail', '', '');
+INSERT INTO settings VALUES ('phone_status', '', 'N');
+INSERT INTO settings VALUES ('fax_status', '', 'N');
+INSERT INTO settings VALUES ('address_status', '', 'N');
+INSERT INTO settings VALUES ('city_status', '', 'N');
+INSERT INTO settings VALUES ('state_status', '', 'N');
+INSERT INTO settings VALUES ('zip_status', '', 'N');
+INSERT INTO settings VALUES ('website_status', '', 'O');
+INSERT INTO settings VALUES ('comments_status', '', 'N');
+INSERT INTO settings VALUES ('errform_font_color', 'Y', 'blue');
+INSERT INTO settings VALUES ('newsletter_status', '', 'N');
+INSERT INTO settings VALUES ('show_helptexts', '', 'Y');
+INSERT INTO settings VALUES ('country_status', '', 'O');
+INSERT INTO settings VALUES ('topmenu_bgimage', '', '');
+INSERT INTO settings VALUES ('sendconfirmationmail', '', 'N');
+INSERT INTO settings VALUES ('helptext_fontsize', 'Y', '10px');
+INSERT INTO settings VALUES ('language_status', '', 'O');
+INSERT INTO settings VALUES ('helptext_color', 'Y', 'Gray');
+INSERT INTO settings VALUES ('firstpageicon', '', 'first_button.gif');
+INSERT INTO settings VALUES ('prevpageicon', '', 'prev_button.gif');
+INSERT INTO settings VALUES ('nextpageicon', '', 'next_button.gif');
+INSERT INTO settings VALUES ('lastpageicon', '', 'last_button.gif');
+INSERT INTO settings VALUES ('sectionsecurity', '', 'N');
+INSERT INTO settings VALUES ('sitewidth', '', '800');
+INSERT INTO settings VALUES ('siteheight', '', '600');
+INSERT INTO settings VALUES ('adminprivgroup', '', 'administrator');
+INSERT INTO settings VALUES ('collapsemenus', '', 'Y');
+INSERT INTO settings VALUES ('expandicon', '', 'icons/plus.gif');
+INSERT INTO settings VALUES ('collapseicon', '', 'icons/minus.gif');
+INSERT INTO settings VALUES ('noexpandicon', '', 'icons/blank.gif');
+INSERT INTO settings VALUES ('multisite', '', 'N');
+INSERT INTO settings VALUES ('multilanguage', '', 'Y');
+INSERT INTO settings VALUES ('multisiteauthors', '', 'N');
+INSERT INTO settings VALUES ('multitheme', '', 'Y');
+INSERT INTO settings VALUES ('teaserwithdetails', '', 'Y');
+INSERT INTO settings VALUES ('breadcrumb', '', 'Y');
+INSERT INTO settings VALUES ('breadcrumbseparator', '', '&nbsp;>&nbsp;');
+INSERT INTO settings VALUES ('bookmark', '', 'N');
+INSERT INTO settings VALUES ('mainbgfix', 'Y', '');
+INSERT INTO settings VALUES ('menubgfix', 'Y', '');
+INSERT INTO settings VALUES ('topbgfix', 'Y', '');
+INSERT INTO settings VALUES ('topmenubg', 'Y', '');
+INSERT INTO settings VALUES ('topmenubgrep', 'Y', '');
+INSERT INTO settings VALUES ('topmenubgfix', 'Y', '');
+INSERT INTO settings VALUES ('footerbg', 'Y', '');
+INSERT INTO settings VALUES ('footerbgrep', 'Y', '');
+INSERT INTO settings VALUES ('footerbgfix', 'Y', '');
+INSERT INTO settings VALUES ('PoweredByEZC', '', 'M');
+INSERT INTO settings VALUES ('favicon', '', '');
+INSERT INTO settings VALUES ('borderbg', 'Y', '');
+INSERT INTO settings VALUES ('borderbgrep', 'Y', 'Y');
+INSERT INTO settings VALUES ('borderbgfix', 'Y', '');
+INSERT INTO settings VALUES ('bgcolor_border', 'Y', '#999999');
+INSERT INTO settings VALUES ('liststyleicon', 'Y', '');
+INSERT INTO settings VALUES ('mainbgpos', 'Y', 'top left');
+INSERT INTO settings VALUES ('headerbgpos', 'Y', 'top left');
+INSERT INTO settings VALUES ('menubgpos', 'Y', 'top left');
+INSERT INTO settings VALUES ('topmenubgpos', 'Y', 'top left');
+INSERT INTO settings VALUES ('topbgpos', 'Y', 'top left');
+INSERT INTO settings VALUES ('footerbgpos', 'Y', 'top left');
+INSERT INTO settings VALUES ('borderbgpos', 'Y', 'top left');
+INSERT INTO settings VALUES ('showdhtml', '', 'Y');
+INSERT INTO settings VALUES ('PDFIcon', NULL, 'icons/filetypes/pdf.gif');
+INSERT INTO settings VALUES ('tellfriendicon', NULL, 'icons/email.gif');
+
+-- 
+-- Dumping data for table `sidebartemplates`
+-- 
+
+INSERT INTO sidebartemplates VALUES (1, 'sbcentre50', 'C', 2, 'White', '50%', 1);
+INSERT INTO sidebartemplates VALUES (2, 'sbleft50', 'L', 2, 'White', '50%', 1);
+INSERT INTO sidebartemplates VALUES (3, 'sbright50', 'R', 2, 'White', '50%', 1);
+INSERT INTO sidebartemplates VALUES (4, 'sb100', 'L', 2, 'White', '100%', 1);
+
+-- 
+-- Dumping data for table `sites`
+-- 
+
+
+-- 
+-- Dumping data for table `specialcontents`
+-- 
+
+
+-- 
+-- Dumping data for table `subgroups`
+-- 
+
+
+-- 
+-- Dumping data for table `tagcategories`
+-- 
+
+
+-- 
+-- Dumping data for table `tags`
+-- 
+
+INSERT INTO tags VALUES (1, 'line', 'Y', NULL, '<HR>', 1, 'other');
+INSERT INTO tags VALUES (2, 'b', NULL, NULL, '<B>', 1, 'text');
+INSERT INTO tags VALUES (3, '/b', NULL, NULL, '</B>', 1, 'text');
+INSERT INTO tags VALUES (4, '/i', NULL, NULL, '</I>', 1, 'text');
+INSERT INTO tags VALUES (5, 'i', NULL, NULL, '<I>', 1, 'text');
+INSERT INTO tags VALUES (6, 'u', NULL, NULL, '<U>', 1, 'text');
+INSERT INTO tags VALUES (7, '/u', NULL, NULL, '</U>', 1, 'text');
+INSERT INTO tags VALUES (8, 'ul', NULL, NULL, '<UL>', 1, 'list');
+INSERT INTO tags VALUES (9, '/ul', NULL, NULL, '</UL>', 1, 'list');
+INSERT INTO tags VALUES (10, '/ol', NULL, NULL, '</OL>', 1, 'list');
+INSERT INTO tags VALUES (11, 'ol', NULL, NULL, '<OL>', 1, 'list');
+INSERT INTO tags VALUES (12, 'li', NULL, NULL, '<LI>', 1, 'list');
+INSERT INTO tags VALUES (13, '/li', NULL, NULL, '</LI>', 1, 'list');
+INSERT INTO tags VALUES (14, 'h2', NULL, NULL, '<H2>', 1, 'title');
+INSERT INTO tags VALUES (15, '/h2', NULL, NULL, '</H2>', 1, 'title');
+INSERT INTO tags VALUES (16, '/h3', NULL, NULL, '</H3>', 1, 'title');
+INSERT INTO tags VALUES (17, 'h3', NULL, NULL, '<H3>', 1, 'title');
+INSERT INTO tags VALUES (18, 'h4', NULL, NULL, '<H4>', 1, 'title');
+INSERT INTO tags VALUES (19, '/h4', NULL, NULL, '</H4>', 1, 'title');
+INSERT INTO tags VALUES (20, '/table', 'Y', 'Y', '</TABLE>', 1, 'table');
+INSERT INTO tags VALUES (21, 'row', 'Y', 'Y', '<TR>', 1, 'table');
+INSERT INTO tags VALUES (22, '/row', 'Y', 'Y', '</TR>', 1, 'table');
+INSERT INTO tags VALUES (23, 'cell_lt', 'Y', 'Y', '<TD ALIGN="LEFT" VALIGN="TOP">', 1, 'table');
+INSERT INTO tags VALUES (24, 'cell_ct', 'Y', 'Y', '<TD ALIGN="CENTER" VALIGN="TOP">', 1, 'table');
+INSERT INTO tags VALUES (25, 'cell_rt', 'Y', 'Y', '<TD ALIGN="RIGHT" VALIGN="TOP">', 1, 'table');
+INSERT INTO tags VALUES (26, 'cell_lc', 'Y', 'Y', '<TD ALIGN="LEFT" VALIGN="CENTER">', 1, 'table');
+INSERT INTO tags VALUES (27, 'cell_cc', 'Y', 'Y', '<TD ALIGN="CENTER" VALIGN="CENTER">', 1, 'table');
+INSERT INTO tags VALUES (28, 'cell_rc', 'Y', 'Y', '<TD ALIGN="RIGHT" VALIGN="CENTER">', 1, 'table');
+INSERT INTO tags VALUES (29, 'cell_lb', 'Y', 'Y', '<TD ALIGN="LEFT" VALIGN="BOTTOM">', 1, 'table');
+INSERT INTO tags VALUES (30, 'cell_cb', 'Y', 'Y', '<TD ALIGN="CENTER" VALIGN="BOTTOM">', 1, 'table');
+INSERT INTO tags VALUES (31, 'cell_rb', 'Y', 'Y', '<TD ALIGN="RIGHT" VALIGN="BOTTOM">', 1, 'table');
+INSERT INTO tags VALUES (32, '/cell', 'Y', 'Y', '</TD>', 1, 'table');
+INSERT INTO tags VALUES (33, 'dot', 'Y', 'Y', '&#149;', 1, 'other');
+INSERT INTO tags VALUES (34, 'table', 'Y', 'Y', '<TABLE BORDER="1" WIDTH="100%">', 1, 'table');
+INSERT INTO tags VALUES (35, 'top', 'Y', 'Y', '<A HREF="#TOP">Top of page</A>', 1, 'other');
+
+-- 
+-- Dumping data for table `themes`
+-- 
+
+
+-- 
+-- Dumping data for table `topgroups`
+-- 
+
+
+-- 
+-- Dumping data for table `userdata`
+-- 
+
+INSERT INTO userdata VALUES ('loginmessage', '1', 1, '', '', '');
+INSERT INTO userdata VALUES ('loginlogout', '1', 2, '', '', '');
+INSERT INTO userdata VALUES ('adminfunctions', '1', 3, '', '', '');
+INSERT INTO userdata VALUES ('preferences', '1', 4, '', '', '');
+INSERT INTO userdata VALUES ('memberlist', '1', 5, '', '', '');
+INSERT INTO userdata VALUES ('language', '0', 6, 'gsMultiLanguage', '==', 'Y');
+INSERT INTO userdata VALUES ('selectlanguage', '1', 7, 'gsMultiLanguage', '==', 'Y');
+INSERT INTO userdata VALUES ('selectsite', '0', 9, 'gsMultiSite', '==', 'Y');
+INSERT INTO userdata VALUES ('site', '0', 8, 'gsMultiSite', '==', 'Y');
+INSERT INTO userdata VALUES ('selecttheme', '1', 11, 'gsMultiSite', '==', 'Y');
+INSERT INTO userdata VALUES ('theme', '0', 10, 'gsMultiTheme', '==', 'Y');
+INSERT INTO userdata VALUES ('homesite', '0', 12, 'gsMultiSite', '==', 'Y');
+
+-- 
+-- Dumping data for table `usergroups`
+-- 
+INSERT INTO `usergroups` VALUES (1, 'Administrators', 'administrator', 'en', 1);
+INSERT INTO `usergroups` VALUES (2, 'Contributors', 'contributor', 'en', 1);
+INSERT INTO `usergroups` VALUES (3, 'Translators', 'translator', 'en', 1);
+INSERT INTO `usergroups` VALUES (4, 'Members', 'member', 'en', 1);
+INSERT INTO `usergroups` VALUES (5, 'Probationary Members', 'probationer', 'en', 1);
+
+
+-- 
+-- Dumping data for table `userprivileges`
+-- 
+
+INSERT INTO userprivileges VALUES (1, 'administrator', 'privileges', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (2, 'administrator', 'authors', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (3, 'administrator', 'setregister', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (4, 'administrator', 'backup', 'Y', 'X', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (5, 'administrator', 'sites', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (6, 'administrator', 'filetypes', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (7, 'administrator', 'menusettings', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (8, 'administrator', 'topgroups', 'Y', 'Y', 'Y', 'Y', 'Y');
+INSERT INTO userprivileges VALUES (9, 'administrator', 'groups', 'Y', 'Y', 'Y', 'Y', 'Y');
+INSERT INTO userprivileges VALUES (10, 'administrator', 'subgroups', 'Y', 'Y', 'Y', 'Y', 'Y');
+INSERT INTO userprivileges VALUES (11, 'administrator', 'tags', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (12, 'administrator', 'sidebars', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (13, 'administrator', 'imageformats', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (14, 'administrator', 'ratings', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (15, 'administrator', 'content', 'Y', 'Y', 'Y', 'Y', 'Y');
+INSERT INTO userprivileges VALUES (16, 'administrator', 'subcontent', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (17, 'administrator', 'images', 'Y', 'X', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (18, 'administrator', 'scripts', 'Y', 'X', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (19, 'administrator', 'downloads', 'Y', 'X', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (20, 'administrator', 'languages', 'Y', 'Y', 'Y', 'X', 'X');
+INSERT INTO userprivileges VALUES (21, 'administrator', 'tusergroups', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (22, 'administrator', 'ttagcategories', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (23, 'administrator', 'serversettings', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (24, 'administrator', 'sitesettings', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (25, 'administrator', 'themes', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (26, 'administrator', 'colorsform', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (27, 'administrator', 'setgraphics', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (28, 'administrator', 'userdata', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (29, 'administrator', 'viewstatistics', 'Y', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (30, 'administrator', 'prunestatistics', 'X', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (31, 'administrator', 'banners', 'Y', 'Y', 'Y', 'Y', 'X');
+INSERT INTO userprivileges VALUES (32, 'contributor', 'privileges', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (33, 'contributor', 'authors', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (34, 'contributor', 'setregister', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (35, 'contributor', 'backup', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (36, 'contributor', 'sites', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (37, 'contributor', 'filetypes', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (38, 'contributor', 'menusettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (39, 'contributor', 'topgroups', 'Y', '', '', '', '');
+INSERT INTO userprivileges VALUES (40, 'contributor', 'groups', 'Y', '', 'Y', '', '');
+INSERT INTO userprivileges VALUES (41, 'contributor', 'subgroups', 'Y', '', 'Y', '', '');
+INSERT INTO userprivileges VALUES (42, 'contributor', 'tags', 'Y', '', 'Y', '', 'X');
+INSERT INTO userprivileges VALUES (43, 'contributor', 'sidebars', 'Y', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (44, 'contributor', 'imageformats', 'Y', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (45, 'contributor', 'ratings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (46, 'contributor', 'content', 'Y', '', 'Y', '', 'Y');
+INSERT INTO userprivileges VALUES (47, 'contributor', 'subcontent', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (48, 'contributor', 'images', 'Y', 'X', 'Y', '', 'X');
+INSERT INTO userprivileges VALUES (49, 'contributor', 'scripts', 'Y', 'X', 'Y', '', 'X');
+INSERT INTO userprivileges VALUES (50, 'contributor', 'downloads', 'Y', 'X', 'Y', '', 'X');
+INSERT INTO userprivileges VALUES (51, 'contributor', 'languages', 'Y', '', '', 'X', 'X');
+INSERT INTO userprivileges VALUES (52, 'contributor', 'tusergroups', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (53, 'contributor', 'ttagcategories', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (54, 'contributor', 'serversettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (55, 'contributor', 'sitesettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (56, 'contributor', 'themes', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (57, 'contributor', 'colorsform', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (58, 'contributor', 'setgraphics', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (59, 'contributor', 'userdata', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (60, 'contributor', 'viewstatistics', 'Y', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (61, 'contributor', 'prunestatistics', 'X', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (62, 'contributor', 'banners', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (63, 'translator', 'privileges', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (64, 'translator', 'authors', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (65, 'translator', 'setregister', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (66, 'translator', 'backup', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (67, 'translator', 'sites', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (68, 'translator', 'filetypes', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (69, 'translator', 'menusettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (70, 'translator', 'topgroups', 'Y', '', '', '', 'Y');
+INSERT INTO userprivileges VALUES (71, 'translator', 'groups', 'Y', '', '', '', 'Y');
+INSERT INTO userprivileges VALUES (72, 'translator', 'subgroups', 'Y', '', '', '', 'Y');
+INSERT INTO userprivileges VALUES (73, 'translator', 'tags', 'Y', '', 'Y', '', 'X');
+INSERT INTO userprivileges VALUES (74, 'translator', 'sidebars', 'Y', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (75, 'translator', 'imageformats', 'Y', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (76, 'translator', 'ratings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (77, 'translator', 'content', 'Y', '', '', '', 'Y');
+INSERT INTO userprivileges VALUES (78, 'translator', 'subcontent', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (79, 'translator', 'images', 'Y', 'X', 'Y', '', 'X');
+INSERT INTO userprivileges VALUES (80, 'translator', 'scripts', 'Y', 'X', 'Y', '', 'X');
+INSERT INTO userprivileges VALUES (81, 'translator', 'downloads', 'Y', 'X', 'Y', '', 'X');
+INSERT INTO userprivileges VALUES (82, 'translator', 'languages', 'Y', 'Y', 'Y', 'X', 'X');
+INSERT INTO userprivileges VALUES (83, 'translator', 'tusergroups', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (84, 'translator', 'ttagcategories', 'Y', 'Y', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (85, 'translator', 'serversettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (86, 'translator', 'sitesettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (87, 'translator', 'themes', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (88, 'translator', 'colorsform', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (89, 'translator', 'setgraphics', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (90, 'translator', 'userdata', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (91, 'translator', 'viewstatistics', '', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (92, 'translator', 'prunestatistics', 'X', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (93, 'translator', 'banners', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (94, 'member', 'privileges', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (95, 'member', 'authors', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (96, 'member', 'setregister', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (97, 'member', 'backup', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (98, 'member', 'sites', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (99, 'member', 'filetypes', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (100, 'member', 'menusettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (101, 'member', 'topgroups', '', '', '', '', '');
+INSERT INTO userprivileges VALUES (102, 'member', 'groups', '', '', '', '', '');
+INSERT INTO userprivileges VALUES (103, 'member', 'subgroups', '', '', '', '', '');
+INSERT INTO userprivileges VALUES (104, 'member', 'tags', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (105, 'member', 'sidebars', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (106, 'member', 'imageformats', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (107, 'member', 'ratings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (108, 'member', 'content', '', '', '', '', '');
+INSERT INTO userprivileges VALUES (109, 'member', 'subcontent', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (110, 'member', 'images', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (111, 'member', 'scripts', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (112, 'member', 'downloads', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (113, 'member', 'languages', '', '', '', 'X', 'X');
+INSERT INTO userprivileges VALUES (114, 'member', 'tusergroups', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (115, 'member', 'ttagcategories', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (116, 'member', 'serversettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (117, 'member', 'sitesettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (118, 'member', 'themes', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (119, 'member', 'colorsform', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (120, 'member', 'setgraphics', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (121, 'member', 'userdata', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (122, 'member', 'viewstatistics', 'Y', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (123, 'member', 'prunestatistics', 'X', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (124, 'member', 'banners', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (125, 'probationer', 'privileges', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (126, 'probationer', 'authors', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (127, 'probationer', 'setregister', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (128, 'probationer', 'backup', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (129, 'probationer', 'sites', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (130, 'probationer', 'filetypes', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (131, 'probationer', 'menusettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (132, 'probationer', 'topgroups', '', '', '', '', '');
+INSERT INTO userprivileges VALUES (133, 'probationer', 'groups', '', '', '', '', '');
+INSERT INTO userprivileges VALUES (134, 'probationer', 'subgroups', '', '', '', '', '');
+INSERT INTO userprivileges VALUES (135, 'probationer', 'tags', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (136, 'probationer', 'sidebars', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (137, 'probationer', 'imageformats', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (138, 'probationer', 'ratings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (139, 'probationer', 'content', '', '', '', '', '');
+INSERT INTO userprivileges VALUES (140, 'probationer', 'subcontent', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (141, 'probationer', 'images', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (142, 'probationer', 'scripts', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (143, 'probationer', 'downloads', '', 'X', '', '', 'X');
+INSERT INTO userprivileges VALUES (144, 'probationer', 'languages', '', '', '', 'X', 'X');
+INSERT INTO userprivileges VALUES (145, 'probationer', 'tusergroups', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (146, 'probationer', 'ttagcategories', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (147, 'probationer', 'serversettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (148, 'probationer', 'sitesettings', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (149, 'probationer', 'themes', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (150, 'probationer', 'colorsform', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (151, 'probationer', 'setgraphics', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (152, 'probationer', 'userdata', '', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (153, 'probationer', 'viewstatistics', '', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (154, 'probationer', 'prunestatistics', 'X', '', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (155, 'probationer', 'banners', '', '', '', '', 'X');
+INSERT INTO userprivileges VALUES (156, 'administrator', 'excelexport', 'Y', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (157, 'probationer', 'excelexport', '', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (158, 'contributor', 'excelexport', '', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (159, 'translator', 'excelexport', '', 'X', 'X', 'X', 'X');
+INSERT INTO userprivileges VALUES (160, 'member', 'excelexport', '', 'X', 'X', 'X', 'X');
+
+-- 
+-- Dumping data for table `visitorstats`
+-- 
+
