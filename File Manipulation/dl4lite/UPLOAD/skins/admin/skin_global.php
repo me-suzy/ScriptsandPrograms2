@@ -1,0 +1,55 @@
+<?php
+
+class skin_global
+{
+	function error($data)
+	{
+		global $rwdInfo;
+		$SHTML = "<div class='tableborder'>
+				<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
+			  <tr>
+			    <td class='error1'>{$rwdInfo->lang['error']} !!</td>
+			  </tr>
+			  <tr>
+			    <td class='error2'>{$data['message']}</td>
+					  </tr>
+					</table></div>";
+		
+		return $SHTML;
+	}
+	
+	function info($data)
+	{
+		global $rwdInfo;
+		$SHTML = "<div class='tableborder'>
+				<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
+			  <tr>
+			    <td class='info1'>{$rwdInfo->lang['info']}</td>
+			  </tr>
+			  <tr>
+			    <td class='info2'>{$data['message']}</td>
+					  </tr>
+					</table></div>";
+		
+		return $SHTML;
+	}
+	
+	function warning($data)
+	{
+		global $rwdInfo;
+		$SHTML = "<div class='tableborder'>
+				<table width='100%' border='0' cellspacing='0' cellpadding='0' align='center'>
+			  <tr>
+			    <td class='warn1'>{$rwdInfo->lang['warning']} !</td>
+			  </tr>
+			  <tr>
+			    <td class='warn2'>{$data['message']}</td>
+					  </tr>
+					</table></div>";
+		
+		return $SHTML;
+	}
+
+}
+
+?>
