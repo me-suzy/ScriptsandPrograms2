@@ -1,0 +1,3 @@
+<?php
+echo '<h1>Login</h1><form action="login.php?act=login" method="post"><table border=0><tr><td align="left">'; if ($err==2) { echo '<font class="red">Invalid username/password</font><br>'; } elseif ($err==5) { echo '<font class="red">Time out.</font><br>'; } elseif ($err==6) { echo '<font class="red">Your IP address has changed</font><br>'; } echo '<font class="boldtitle">Username:</font><br><input type="text" name="usr" size=20></b></td></tr><tr><td align="left"><font class="boldtitle">Password:</font><br><input type="password" name="pwd" size=20></b></td></tr><tr><td align="right"><input type="submit" class="button" value="Login"></td></tr></table><br><font size="1">Don\'t have an account? <a href="setup.php"><b>Sign Up!</b></a></font></form>';
+?>
