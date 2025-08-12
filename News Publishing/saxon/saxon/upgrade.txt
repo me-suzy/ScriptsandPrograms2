@@ -1,0 +1,50 @@
+SAXON : Simple Accessible XHTML Online News
+===================================
+
+Copyright (c) 2004 by Black Widow
+http://www.blackwidows.co.uk
+
+Upgrading from SAXON4.1 to SAXON4.5
+23 September 2005
+
+OBSOLETE SCRIPTS:
+Delete newsperuser.php
+
+CHANGES TO CONFIG.PHP:
+
+New variable: $prefix
+This will be used as a MySQL table prefix. 
+Handy if you want to run multiple implementations of SAXON from the one db
+Just make the table prefix unique for each implementation.
+Default setting: $prefix = "SX_";
+
+New variable: $server_email
+Your server's 'email address'. 
+You can set this to the same address as $admin_email but some spam filters trip on identical To and From addresses, so if you hit this problem, use a different e-mail address for your server.
+Default setting: "server@domain.INVALID"";
+
+NEW FILES:
+fake-cron.php
+Edit fake-cron.php so that $lastrun equals today's date in the format YYYY-MM-DD (eg: 2005-09-23)
+If you don't want the fake cron function to run, set $lastrun to equal "never'".
+Chmod the file to 777 (-rwxrwxrx) following upload.
+
+
+AMENDED SCRIPTS:
+Pretty much everything!
+If you have created your own templates, back them up NOW!
+Open each of your own template files and change the entry:
+
+function format(
+
+to
+
+function Template(
+
+Upload all .php files to your SAXON and SAXON/admin and SAXON/templates directories.
+
+USAGE CHANGES:
+Add <?php  $user="user_name"; include "relative_path_to/saxon_directory/news.php";?> to any page where you want to display news on a 'per user' basis  (where user_name = one of your SAXON posters). Please note that user_name is case-sensitive. You need to enter it EXACTLY as it  appears in your SAXON users table or on the List All Users option of the Admin section. If you try to reference and non existent user, you will simply end up with a page displaying the message "No news to display". Ensure that this page ends with the extension '.php'. 
+
+END
+===============================
