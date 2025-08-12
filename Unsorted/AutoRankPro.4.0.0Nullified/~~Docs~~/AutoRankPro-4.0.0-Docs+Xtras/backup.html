@@ -1,0 +1,208 @@
+<html>
+<head>
+	<title>Backup/Restore Databases</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<div align="center">
+
+<font face="Verdana,Arial" size="4">
+
+<b>
+Backup/Restore Databases
+</b>
+
+<br><br>
+
+<table width="650" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Backup Instructions</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+<font face="Arial" size="2">
+
+To backup your data follow the steps listed below.  It is recommended that you backup your data at least
+once every 3 days.  v4.0.x supports automatic backups via cron, which are also covered below.
+
+<br><br>
+
+<b>Without Cron</b>
+
+<br>
+
+<ol>
+
+<li> In the administrative interface select the Backup/Restore Databases function, then press the execute function button.  You
+     will be taken to a page where you can select the backup file name.  Enter the filename you want your data backed up to, or
+     you can just leave it as the default.
+
+     <br><br>     
+     
+<li> Once you have decided on a filename, make sure the Backup Data function is selected in the dropdown menu.  Press the execute function
+     button, and you will then be returned to the main administrative page.  The backup function will run in the background, so you should allow
+     at least 60 seconds for it to complete before you move on to the next step.
+
+     <br><br>
+
+<li> FTP into your server and change into the data directory of your installation.  You will find the backup file in this directory
+     and it will have the filename you selected when you did the backup.  Download this file to your local computer in ASCII mode for
+     safe keeping.
+
+</ol>
+
+<br>
+
+<b>With Cron</b>
+
+<br>
+
+<ol>
+
+<li> Read the cron.html documentation file to setup all of your other cron jobs.  An example of the backup command can be found in the
+     cronfile included with the software distribution.
+
+     <br><br>
+
+<li> There are two options for naming your backup files.  You can either have the data backed up to the same file all the time, or you can
+     create a seperate backup file for each day that the backup function is run.
+
+     <br><br>
+
+     <ul>
+
+     <li> cron.cgi --mode=backupData data.txt
+
+          <br><br>
+
+          Using this command will always backup your data to the data.txt file.  You can choose whatever filename you want, just
+          replace data.txt with the file you want the data stored in.
+
+          <br><br>
+
+     <li> cron.cgi --mode=backupData
+
+          <br><br>
+
+          If you leave the filename off the end, each time the backup function is run it will create a filename based on the current date.
+          For example, it will create a file named 10-01-2001.txt for the backup that was run on October 1st of 2001.
+
+     </ul>
+
+</ol>
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Restore Instructions</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+To restore your data, follow the steps listed below.
+
+<br>
+
+<ol>
+
+<li> Locate the last known good backup datafile.  Upload this file in ASCII mode to the data directory of the AutoRank Pro installation on your
+     server.
+
+     <br><br>
+
+<li> Log in to your administrative interface and select the Backup/Restore Databases function.  Once on that page, type in the filename of the
+     backup file which you just uploaded to the server.
+
+     <br><br>
+
+<li> Select Restore Data from the drop down menu and press the execute function button.  You will be returned to the main administrative page and
+     the data restoration will run in the background.  Allow at least 60 seconds for the data to be imported, and do not continue on to the next step
+     until you have allowed that amount of time to pass.
+
+     <br><br>
+
+<li> Run the rerank function in the administrative interface to make sure all of the good data is being displayed on your ranking page.
+
+</ol>
+
+<br>
+
+It is also possible to restore your data from the command line of your server.  This can be used if you have a large amount of data and using the
+administrative interface restore function is timing out.
+
+<ol>
+
+<li> Locate the last known good backup datafile.  Upload this file in ASCII mode to the data directory of the AutoRank Pro installation on your
+     server.
+
+     <br><br>
+
+<li> Make sure the cron.cgi file has been uploaded to your server and that it's permissions are 755.  You also need to edit the $CDIR setting
+     in this file before you upload it to your server.  That value needs to point to the AutoRank Pro directory on your server.
+
+     <br><br>
+
+<li> Login to your server via telnet or SSH and change into the directory where AutoRank Pro is installed.  Execute the following command:
+
+     <br><br>
+
+     ./cron.cgi --mode=restoreData data.txt
+
+     <br><br>
+
+     Where data.txt is the name of the file in your data directory that you want to restore from.
+
+     <br><br>
+
+<li> Allow a few moments for the data to be restored.  You will be returned to the command prompt when it is completed.  You can then login to 
+     your administrative interface to make sure all data has been imported.  Finally, you can rerank the list to make sure all of the good data
+     is being used on your ranking pages.
+
+</ol>
+
+</font>
+
+</tr>
+</td>
+</table>
+
+
+</body>
+</html>
