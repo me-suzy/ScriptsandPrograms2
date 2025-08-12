@@ -1,0 +1,81 @@
+<HTML><HEAD></HEAD>
+<BODY bgcolor="#eeeeee">
+<table border=1><tr><td><IMG src="logarithmic_scale.png" usemap="#map1" border=0></td></tr></table>
+<map name="map1"> 
+<area shape=circle coords='570,40,5'  title='2002: 147344723 hosts' alt='2002: 147344723 hosts'>
+<area shape=circle coords='535,51,5'  title='2001: 109574429 hosts' alt='2001: 109574429 hosts'>
+<area shape=circle coords='500,67,5'  title='2000: 72398092 hosts' alt='2000: 72398092 hosts'>
+<area shape=circle coords='465,86,5'  title='1999: 43230000 hosts' alt='1999: 43230000 hosts'>
+<area shape=circle coords='430,100,5'  title='1998: 29670000 hosts' alt='1998: 29670000 hosts'>
+<area shape=circle coords='395,123,5'  title='1997: 16146000 hosts' alt='1997: 16146000 hosts'>
+<area shape=circle coords='360,143,5'  title='1996: 9472000 hosts' alt='1996: 9472000 hosts'>
+<area shape=circle coords='325,168,5'  title='1995: 4852000 hosts' alt='1995: 4852000 hosts'>
+<area shape=circle coords='290,197,5'  title='1994: 2217000 hosts' alt='1994: 2217000 hosts'>
+<area shape=circle coords='255,220,5'  title='1993: 1200000 hosts' alt='1993: 1200000 hosts'>
+<area shape=circle coords='220,239,5'  title='1992: 727000 hosts' alt='1992: 727000 hosts'>
+<area shape=circle coords='185,253,5'  title='1991: 500000 hosts' alt='1991: 500000 hosts'>
+<area shape=circle coords='150,273,5'  title='1990: 290000 hosts' alt='1990: 290000 hosts'>
+<area shape=circle coords='115,321,5'  title='1989: 80000 hosts' alt='1989: 80000 hosts'>
+<area shape=polygon coords='534,48,569,37,571,43,536,54'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='499,64,534,48,536,54,501,70'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='464,83,499,64,501,70,466,89'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='429,97,464,83,466,89,431,103'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='393,120,428,97,432,103,397,126'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='359,140,394,120,396,126,361,146'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='323,166,358,141,362,145,327,170'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='288,195,323,166,327,170,292,199'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='253,217,288,194,292,200,257,223'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='219,236,254,217,256,223,221,242'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='184,250,219,236,221,242,186,256'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='149,270,184,250,186,256,151,276'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='113,319,148,271,152,275,117,323'  title='internet hosts' alt='internet hosts'>
+<area shape=polygon coords='78,358,113,319,117,323,82,362'  title='internet hosts' alt='internet hosts'>
+</map>
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">include (</font><font color="#DD0000">"diagram.php"</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">$Hosts</font><font color="#007700">=array(</font><font color="#0000BB">28174</font><font color="#007700">, </font><font color="#0000BB">80000</font><font color="#007700">, </font><font color="#0000BB">290000</font><font color="#007700">, </font><font color="#0000BB">500000</font><font color="#007700">, </font><font color="#0000BB">727000</font><font color="#007700">, </font><font color="#0000BB">1200000</font><font color="#007700">, </font><font color="#0000BB">2217000</font><font color="#007700">, </font><font color="#0000BB">4852000</font><font color="#007700">, </font><font color="#0000BB">9472000</font><font color="#007700">, </font><font color="#0000BB">16146000</font><font color="#007700">, </font><font color="#0000BB">29670000</font><font color="#007700">, </font><font color="#0000BB">43230000</font><font color="#007700">, </font><font color="#0000BB">72398092</font><font color="#007700">, </font><font color="#0000BB">109574429</font><font color="#007700">, </font><font color="#0000BB">147344723</font><font color="#007700">);
+<br /></font><font color="#0000BB">$log10</font><font color="#007700">=</font><font color="#0000BB">log</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">);
+<br />
+<br />function </font><font color="#0000BB">LogScale</font><font color="#007700">(</font><font color="#0000BB">$vv</font><font color="#007700">)
+<br />{ if ((</font><font color="#0000BB">$vv</font><font color="#007700">&gt;</font><font color="#0000BB">3</font><font color="#007700">)||(</font><font color="#0000BB">$vv</font><font color="#007700">&lt;-</font><font color="#0000BB">3</font><font color="#007700">)) return(</font><font color="#DD0000">"10^"</font><font color="#007700">.</font><font color="#0000BB">$vv</font><font color="#007700">);
+<br />&nbsp;&nbsp;if (</font><font color="#0000BB">$vv</font><font color="#007700">&gt;=</font><font color="#0000BB">0</font><font color="#007700">) return(</font><font color="#0000BB">round</font><font color="#007700">(</font><font color="#0000BB">exp</font><font color="#007700">(</font><font color="#0000BB">$vv</font><font color="#007700">*</font><font color="#0000BB">log</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">))));
+<br />&nbsp;&nbsp;else return(</font><font color="#0000BB">1</font><font color="#007700">/</font><font color="#0000BB">round</font><font color="#007700">(</font><font color="#0000BB">exp</font><font color="#007700">(-</font><font color="#0000BB">$vv</font><font color="#007700">*</font><font color="#0000BB">log</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">))));
+<br />}
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">=new </font><font color="#0000BB">Diagram</font><font color="#007700">();
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">=@</font><font color="#0000BB">ImageCreate</font><font color="#007700">(</font><font color="#0000BB">600</font><font color="#007700">, </font><font color="#0000BB">400</font><font color="#007700">) or die(</font><font color="#DD0000">"Cannot create a new GD image."</font><font color="#007700">);
+<br /></font><font color="#0000BB">ImageColorAllocate</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">); </font><font color="#FF8000">//background color
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetFrame</font><font color="#007700">(</font><font color="#0000BB">80</font><font color="#007700">, </font><font color="#0000BB">40</font><font color="#007700">, </font><font color="#0000BB">570</font><font color="#007700">, </font><font color="#0000BB">360</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetBorder</font><font color="#007700">(</font><font color="#0000BB">1988</font><font color="#007700">, </font><font color="#0000BB">2002</font><font color="#007700">, </font><font color="#0000BB">log10</font><font color="#007700">(</font><font color="#0000BB">$Hosts</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">]), </font><font color="#0000BB">log10</font><font color="#007700">(</font><font color="#0000BB">$Hosts</font><font color="#007700">[</font><font color="#0000BB">14</font><font color="#007700">]));
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetText</font><font color="#007700">(</font><font color="#DD0000">"Year"</font><font color="#007700">, </font><font color="#DD0000">"Hosts"</font><font color="#007700">, </font><font color="#DD0000">"Internet growth"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">XGridDelta</font><font color="#007700">=</font><font color="#0000BB">2</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">XSubGrids</font><font color="#007700">=</font><font color="#0000BB">2</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">YGridDelta</font><font color="#007700">=</font><font color="#0000BB">1</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">YSubGrids</font><font color="#007700">=-</font><font color="#0000BB">1</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">YScale</font><font color="#007700">=</font><font color="#DD0000">"function LogScale"</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetGridColor</font><font color="#007700">(</font><font color="#DD0000">"#FFFFFF"</font><font color="#007700">, </font><font color="#DD0000">"#EEEEEE"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Draw</font><font color="#007700">(</font><font color="#DD0000">"#DDDDDD"</font><font color="#007700">, </font><font color="#DD0000">"#000000"</font><font color="#007700">, </font><font color="#0000BB">true</font><font color="#007700">);
+<br />
+<br />for (</font><font color="#0000BB">$n</font><font color="#007700">=</font><font color="#0000BB">1</font><font color="#007700">; </font><font color="#0000BB">$n</font><font color="#007700">&lt;</font><font color="#0000BB">count</font><font color="#007700">(</font><font color="#0000BB">$Hosts</font><font color="#007700">); </font><font color="#0000BB">$n</font><font color="#007700">++)
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Line</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenX</font><font color="#007700">(</font><font color="#0000BB">1987</font><font color="#007700">+</font><font color="#0000BB">$n</font><font color="#007700">), </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">log10</font><font color="#007700">(</font><font color="#0000BB">$Hosts</font><font color="#007700">[</font><font color="#0000BB">$n</font><font color="#007700">-</font><font color="#0000BB">1</font><font color="#007700">])), </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenX</font><font color="#007700">(</font><font color="#0000BB">1988</font><font color="#007700">+</font><font color="#0000BB">$n</font><font color="#007700">), </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">log10</font><font color="#007700">(</font><font color="#0000BB">$Hosts</font><font color="#007700">[</font><font color="#0000BB">$n</font><font color="#007700">])), </font><font color="#DD0000">"#0000ff"</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#DD0000">"internet hosts"</font><font color="#007700">);
+<br />
+<br />for (</font><font color="#0000BB">$n</font><font color="#007700">=</font><font color="#0000BB">1</font><font color="#007700">; </font><font color="#0000BB">$n</font><font color="#007700">&lt;</font><font color="#0000BB">count</font><font color="#007700">(</font><font color="#0000BB">$Hosts</font><font color="#007700">); </font><font color="#0000BB">$n</font><font color="#007700">++)
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Dot</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenX</font><font color="#007700">(</font><font color="#0000BB">1988</font><font color="#007700">+</font><font color="#0000BB">$n</font><font color="#007700">), </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">log10</font><font color="#007700">(</font><font color="#0000BB">$Hosts</font><font color="#007700">[</font><font color="#0000BB">$n</font><font color="#007700">])), </font><font color="#0000BB">10</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#DD0000">"#ff0000"</font><font color="#007700">, (</font><font color="#0000BB">1988</font><font color="#007700">+</font><font color="#0000BB">$n</font><font color="#007700">).</font><font color="#DD0000">": "</font><font color="#007700">.</font><font color="#0000BB">$Hosts</font><font color="#007700">[</font><font color="#0000BB">$n</font><font color="#007700">].</font><font color="#DD0000">" hosts"</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">ImagePng</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#DD0000">"logarithmic_scale.png"</font><font color="#007700">);
+<br /></font><font color="#0000BB">ImageDestroy</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">);
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;HTML&gt;&lt;HEAD&gt;&lt;/HEAD&gt;
+<br />&lt;BODY bgcolor="#eeeeee"&gt;
+<br />&lt;table border=1&gt;&lt;tr&gt;&lt;td&gt;&lt;IMG src="logarithmic_scale.png" usemap="#map1" border=0&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+<br />&lt;map name="map1"&gt; 
+<br /><font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ImgMapData?&gt;
+<br /></font>&lt;/map&gt;
+<br />&lt;/BODY&gt;
+<br />&lt;/HTML&gt;</font>
+</code>
+</BODY>
+</HTML>
