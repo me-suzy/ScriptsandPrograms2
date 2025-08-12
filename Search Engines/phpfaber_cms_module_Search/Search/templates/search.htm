@@ -1,0 +1,47 @@
+<form name="search_frm" action="##URL_PG_MOD##">
+<table border="0" cellpadding="0" cellspacing="0" align="center">
+ <tr><td class="txt10">
+  <input type="hidden" name="mod" value="Search" />
+  <input name="query" value="##QUERY##" />
+  <input type="submit" name="go" value="##LNG['_BTN_SEARCH']##" /><br />
+  <b>##LNG['_IND_SEARCH_WORDS']##:</b>
+  <!-- IF ##STYPE##=='AND' -->
+   <input type="radio" name="stype" value="OR" /><b>##LNG['_IND_ANY']##</b>
+   <input type="radio" name="stype" value="AND" checked /><b>##LNG['_IND_ALL']##</b>
+  <!-- ELSE -->
+   <input type="radio" name="stype" value="OR" checked /><b>##LNG['_IND_ANY']##</b>
+   <input type="radio" name="stype" value="AND" /><b>##LNG['_IND_ALL']##</b>
+  <!-- ENDIF -->
+ </td></tr>
+</table>
+</form>
+
+<!-- IF ##IS_QUERY## -->
+  <!-- IF ##NUM_RESULTS## -->
+    ##LNG['_IND_QUERY']##: ##QUERY##<br />
+    ##LNG['_IND_SEARCH_TIME']##: ##SEARCH_TIME## sec<br />
+    ##LNG['_IND_FOUND']## ##NUM_RESULTS## ##LNG['_IND_PAGES']##, ##LNG['_IND_WORDS']##:<br />
+    <blockquote style="margin-left:10px;margin-top:5px;">##QUERY_STATISTICS##</blockquote><br />
+    <blockquote>
+    <OL START="##STPOS##">
+
+    <!-- LOOP RESULTS -->
+    <LI><A HREF="##RESULTS['url']##">##RESULTS['url']##</A>&nbsp;&nbsp;<B>##RESULTS['title']##</B>&nbsp;<small>(##RESULTS['size']## b)
+    <br />##RESULTS['description']##</small>
+    <!-- /LOOP -->
+
+    </OL>
+    <br /><center><small>##NAV##</small></center>
+    </blockquote>
+  <!-- ELSE -->
+    ##LNG['_IND_QUERY']##: ##QUERY##<br />
+    ##LNG['_IND_SEARCH_TIME']##: ##SEARCH_TIME##<br />
+    ##LNG['_IND_FOUND']## 0 ##LNG['_IND_PAGES']##<br />
+  <!-- ENDIF -->
+<!-- ENDIF -->
+
+<script language="JavaScript" type="text/javascript">
+<!--
+document.search_frm.query.focus();
+// -->
+</script>
