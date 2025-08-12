@@ -1,0 +1,33 @@
+<?php
+/***************************************************************************
+ * (c)2002-2004 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+require_once('./config.php');
+require_once('./functions.php');
+if(!isset($$langvar) || !$$langvar)
+	$act_lang=$default_lang;
+else
+	$act_lang=$$langvar;
+include_once('language/lang_'.$act_lang.'.php');
+require_once('./includes/get_settings.inc');
+require_once('./includes/block_leacher.inc');
+if($heading)
+	$pageheading=$heading;
+else
+	$pageheading=$l_news;
+if(isset($mode))
+{
+	if($mode=="listsubs")
+	{
+		include_once("./includes/nlm_list.inc");
+	}
+	if($mode=="unsubscribe")
+	{
+		include_once("./includes/nlm_unsub.inc");
+	}
+}
+else
+{
+	include_once("./includes/nlm_main.inc");
+}
+?>
