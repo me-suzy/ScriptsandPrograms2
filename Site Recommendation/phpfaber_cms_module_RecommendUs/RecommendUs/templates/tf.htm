@@ -1,0 +1,46 @@
+<!-- TITLE: ##LNG['_HEADER_RU_FORM']## -->
+
+<form name="frm" method="post" action="##REQUEST_URI##">
+<!-- IF ##ERR_MSG## --><center><span class="error">##ERR_MSG##</span></center><br /><!-- ENDIF -->
+
+<table class="txt12" width="50%" border="0" cellspacing="1" cellpadding="3" bgcolor="#999999" align="center">
+  <tr class="row##[row-1-2]##">
+    <th>&nbsp;</th>
+    <th>##LNG['_FLD_RU_NAME']##</th>
+    <th>##LNG['_FLD_RU_EMAIL']##</th>
+  </tr>
+
+  <tr class="row##[row-1-2]##">
+    <td>##LNG['_FLD_RU_YOU']##</td>
+    <td><input size="20" name="name" value="##name##"></td>
+    <td><input size="20" name="email" value="##email##"></td>
+  </tr>
+
+  <!-- LOOP fr -->
+  <tr class="row##[row-1-2]##">
+    <td nowrap>##LNG['_FLD_RU_FRIEND']## ##fr['num']##</td>
+    <td><input size="20" name="f_name[##fr['num']##]" value="##fr['name']##"></td>
+    <td><input size="20" name="f_email[##fr['num']##]" value="##fr['email']##"></td>
+  </tr>
+  <!-- /LOOP -->
+
+  <tr class="row##[row-1-2]##">
+    <td colspan="3" align="center">
+        ##LNG['_FLD_RU_MSG']##:<br />
+        <textarea name="msg" cols="40" rows="3">##msg##</textarea>
+    </td>
+  </tr>
+
+  <tr class="row##[row-1-2]##">
+    <td colspan="3">&nbsp;</td>
+  </tr>
+
+  <tr class="row##[row-1-2]##">
+    <td colspan="3" align="center">
+      <input type="submit" value="##LNG['_BTN_SEND']##">
+      <input type="button" value="##LNG['_BTN_BACK']##" onclick="window.location='##return##';">
+      <input type="hidden" name="return" value="##return##">
+    </td>
+  </tr>
+</table>
+</form>
