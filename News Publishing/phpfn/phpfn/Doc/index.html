@@ -1,0 +1,320 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<TITLE>Untitled Document</TITLE>
+		<LINK rel="stylesheet" type="text/css" href="../Inc/Styles.css">
+	</HEAD>
+	<BODY>
+		<TABLE width="700">
+			<TR>
+				<TD><A href="#Introduction">Introduction</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#Requirements">Requirements</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#Installation">Installation</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#IncludingOnSite">Including News On Your Site</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#Examples">Examples</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#Templates">Templates</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#UserDef">User-Defined Codes</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#Terminology">Terminology</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#Help">Help and Support</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#Donations">Donations</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#Credits">Credits</A></TD>
+			</TR>
+			<TR>
+				<TD><A href="#License">License</A></TD>
+			</TR>
+		</TABLE>
+		<TABLE width="700">
+			<TR>
+				<TD><P class="ErrorText">
+						<A name="Introduction"></A><STRONG>Introduction</STRONG>
+					</P>
+					<P>
+						PHPFreeNews is a free PHP script which allows you to display "news" articles on your own website. This allows you (or your friends or colleagues) to easily update new articles without having to naually edit the web page HTML. The script allows you to control the content and layout of the news articles, and allows full maintenance and audit of the news items. Features include:
+					</P>
+					<UL>
+						<LI>Creation, Editing and Posting of news articles</LI>
+						<LI>Associate an image with each article</LI>
+						<LI>Allow users to provide comments on articles</LI>
+						<LI>Allows user to rate articles</LI>
+						<LI>Full back-office maintenance and control facilities.</LI>
+						<LI>Highly configurable</LI>
+						<LI>Frequent upgrades and new features</LI>
+						<LI>Free!</LI>
+					</UL>
+					<P>
+						The latest version of the script can be downloaded from the <A href="http://www.phpfreenews.co.uk" target="_blank">PHPFreeNews website</A>, and you should ensure that you are using the latest version before you install this script.
+					</P>
+					<P class="ErrorText">
+						<A name="Requirements"></A><STRONG>Requirements</STRONG>
+					</P>
+					<P>
+						PHPFreeNews has very few system requirements:
+					</P>
+					<UL>
+						<LI>A webserver. The script has been developed on Apache 2.x running on Linux, but it should work with any PHP/MySql compatible server</LI>
+						<LI>PHP support. The script has been developed on PHP4 but it should work happily with other versions</LI>
+						<LI>MySql. The script has been developed on MySql 4 and requires MySql 4 or later to function.</LI>
+					</UL>
+					<P class="ErrorText">
+						<A name="Installation"></A><STRONG>Installation</STRONG>
+					</P>
+					<P>
+						1. Get hold of the script from the Downloads page at <A href="http://www.phpfreenews.co.uk" target="_blank">www.phpfreenews.co.uk</A>. This is a ZIP archive with pathnames.
+					</P>
+					<P>
+						2. Extract the zip file contents (retaining the folder structure), and upload this to your website. The suggested location is www.yourservername.com/phpfn (or www.yourservername.com/News), and the rest of this page assumes that is where you have placed the script.
+					</P>
+					<P>
+						3. Edit the configuration file Config.php in the /phpfn/Config folder. In here you should specify your MySql details and also the name of your news database (which you must create yourself). The first section in the configuration file is mandatory; the remainder can be changed if you wish to alter the default behaviour.
+					</P>
+					<P>
+						4. Point your browser at www.yourservername.com/phpfn/Install.php (e.g. www.yourservername.com/phpfn/Install.php) and follow the prompts. This will now set up your database structure and will populate the tables with some very basic sample data. If you see any errors then you must correct these and then try again.
+					</P>
+					<P>
+						5. Edit the Config.php file again (the copy on the webserver) and set the &quot;AllowInstall&quot; value to false - this will prevent anybody else from re-running your installation script!!!
+					</P>
+					<P>
+						6. Err....there's no step 6, you've finished! Point your browser at www.yourservername.com/phpfn/Admin.php and login with user=<I>Admin</I>, password=<I>Admin</I>.<BR>
+					</P>
+					<P>
+						If you are <STRONG>upgrading</STRONG> an existing installation then please point your browser at the appropriate 
+ file	within	the	Upgrade	subfolder. This will upgrade your database structure, so be sure to take a backup of your data first! You must upgrade
+					from the previously released database structure, e.g. work your way through the Upgrade scripts. However, it's much better to keep &quot;on top&quot; of upgrades, so that you only need to apply a single upgrade.
+					</P>
+					<P>
+					Once you have installed the software, either as a clean install or as an upgrade, then please 
+					delete the entire <EM>Upgrade</EM> subfolder.
+					</P>
+					<P class="ErrorText">
+						<A name="IncludingOnSite"></A><STRONG>Including News On Your Site</STRONG>
+					</P>
+					<P>
+						Once you've configured your script and setup your templates etc, you'll probably want to display the news on your site! This is actually very easy to do - though there's lots of ways to do it. The simplest option is to add the following line to your existing PHP page:
+					</P>
+					<BLOCKQUOTE>
+						<P>
+							<STRONG>&lt;?php include &quot;phpfn/News.php&quot; ?&gt;</STRONG>
+						</P>
+					</BLOCKQUOTE>
+					<P>
+						This will display the news on your site. If nothing shows, or if you see an error, then now would be a good time to resolve it. But everything should run smoothly.
+					</P>
+					<P>
+						HOWEVER...the chances are
+ that	you	saw	nothing	on your site. Why? Well, because articles have to	
+					be assigned to categories, and you need to say which news-category you want to show. Therefore 
+					the following examples are better:
+					</P>
+					<BLOCKQUOTE>
+						<P>
+							<STRONG>&lt;?php $CatID='1'; include 'phpfn/News.php' ?&gt;</STRONG>
+						</P>
+					</BLOCKQUOTE>
+					<BLOCKQUOTE>
+						<P>
+							<STRONG>&lt;?php $CatID='1,2,3'; include 'phpfn/News.php' ?&gt;</STRONG>
+						</P>
+					</BLOCKQUOTE>
+					<P>
+						The exception to this is if you change the $ShowIfNoCat value in the Config file, as this will display articles even if they have been assigned no categories.
+					</P>
+					<P>
+						Note that the values set up in the Configuration file will take effect each time you display the news. If you want to override these on a per-page basis (e.g. display the news twice on one page, with each listing showing different news items) then you <STRONG>MUST</STRONG> include the file <STRONG>Override.php</STRONG>. So for example, let's say your default &quot;news mode&quot; in the config file says &quot;<STRONG>$NewsMode = 2</STRONG>&quot;, but you want to change this to &quot;<STRONG>$NewsMode = 1</STRONG>&quot; for one page, then you would do this:
+					</P>
+					<BLOCKQUOTE>
+						<P>
+							<STRONG>&lt;?php include &quot;phpfn/Override.php&quot;; $NewsMode=1; include &quot;phpfn/News.php&quot; ?&gt; </STRONG>
+						</P>
+					</BLOCKQUOTE>
+					<P>
+						The same logic can be applied to override <EM>any</EM> of the config-file values, on an ad-hoc basis. Note that any values you override will remain overridden for all calls to News.php on that page. Therefore if you override a value for a one-off instance you might then have to override it back again, depending upon your requirements.
+						<EM>If you don't include Override.php then your &quot;extra values&quot; 
+					will be ignored.</EM> 
+					</P>
+					<P>
+						If you want to just display news headlines instead of news then you should use &quot;<STRONG>phpfn/NewsHeadlines.php</STRONG>&quot;instead of &quot;<STRONG>phpfn/News.php</STRONG>&quot;
+					</P>
+					<P class="ErrorText">
+						<A name="Examples"></A><STRONG>Examples</STRONG>
+					</P>
+					<P>
+						Display simple news:<BR>
+						<STRONG>&lt;?php include &quot;phpfn/News.php&quot; ?&gt;</STRONG>
+					</P>
+					<P>
+						Display news, overriding the display-mode<BR>
+						<STRONG>&lt;?php include &quot;phpfn/Override.php&quot;; $NewsMode=1; include &quot;phpfn/News.php&quot; ?&gt;</STRONG>
+					</P>
+					<P>
+						Display news, displaying one specific article (Article IDs 17, 23 and 46)<BR>
+						<STRONG>&lt;?php include &quot;phpfn/Override.php&quot;; $ArticleList='17, 23, 46'; include &quot;phpfn/News.php&quot; ?&gt;</STRONG>
+					</P>
+					<P>
+						Display news, displaying archived-items as well as normal items: <BR>
+						<STRONG>&lt;?php include &quot;phpfn/Override.php&quot;; include &quot;phpfn/News.php&quot; ?&gt;</STRONG>
+					</P>
+					<P>
+						Display news, displaying only live posts, and only displaying one category:<BR>
+						<STRONG>&lt;?php include &quot;phpfn/Override.php&quot;; $ExcludeArchivedPosts=1; $CatID='1'; include &quot;phpfn/News.php&quot; ?&gt;</STRONG>
+					</P>
+					<P>
+						Display news, displaying only live posts, but also displaying Archived posts if a search is underway:<BR>
+						<STRONG>&lt;?php include &quot;phpfn/Override.php&quot;; $ExcludeArchivedPosts=(isset($_POST['Match']) ? 0 : 1); include &quot;phpfn/News.php&quot; ?&gt;</STRONG>
+					</P>
+					<P>
+						Display the search form above the news:<BR>
+						<STRONG>&lt;?php include &quot;phpfn/NewsSearchForm.php&quot;; include &quot;phpfn/NewsHeadlines.php&quot; ?&gt;</STRONG>
+					</P>
+					<P>
+						Display news, but allow the user to filter the category themselves:<BR>
+						<STRONG>&lt;?php include &quot;phpfn/NewsCategoryForm.php&quot;; include &quot;phpfn/News.php&quot; ?&gt;</STRONG>
+					</P>
+					<P class="ErrorText">
+						<A name="Templates"></A><STRONG>Templates</STRONG>
+					</P>
+					<P>
+						Templates
+					allow you to apply a fixed but flexibly design to your news article. You can set up as many templates as you like, and then associate a single template with each article.
+					</P>
+					<P>
+						Templates are designed using standard HTML tags, such as &lt;TABLE&gt;, &lt;TR&gt; etc. But in addition, there are certain &quot;special words&quot; you can use in these templates to show your news. For example, if your template 
+					consists of the following:
+					</P>
+					<P>
+						&lt;TABLE&gt;&lt;TR&gt;&lt;TD&gt;Posted on {newsdate} at {newstime}
+					&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;
+					</P>
+					<P>
+						Then your news will show the date and time the article was published.
+					</P>
+					<P>
+						Several tags are available, and they are shown within the Template Maintenance page.
+					</P>
+					<P>
+						Note that Templates are made up from three parts, each one controlling the display of Headlines, Short Posts and Long Posts. You can customise them all however you wish, and PHPFreeNews will apply the appropriate formatting according to the type of listing being displayed. For
+					example, if you are displaying only news headlines then only the &quot;Headline&quot; element of the Template will be applied.
+					</P>
+					<P>
+						The exact template codes are as follows:
+					</P>
+					<UL>
+						<LI>							{headline} - the news headline;						</LI>
+						<LI> {author} - the name of the person writing the news;						</LI>
+						<LI> {newsdate} - the datestamp on the news article; </LI>
+						<LI> {newstime} - the timestamp on the news article; </LI>
+						<LI> {timesread} - the number of times the article has been read; </LI>
+						<LI> {image} - the image associated with the article, if any;
+						There are three variants on this - {imagel}, {imagec} and (imager} and these will give your image Left, Centre or Right alignment respectively. </LI>
+						<LI> {id} - the internal ID of the article - useful for creating your own links;						</LI>
+						<LI> {news} - the actual news (short or long); </LI>
+						<LI> {rating} - the number of votes, if you have enabled the voting system; </LI>
+						<LI> {comments} - a link to Comments functionality, if you have enabled it; </LI>
+						<LI> {readmore} - a link to the long-post, if there is one . </LI>
+					</UL>
+					<P>
+						Most of these are optional, and will be replaced with blanks if applicable (e.g. the {image} tag will be replaced with blanks if an article has no associated image)
+					</P>
+					<P class="ErrorText">&nbsp;
+						<A name="UserDef"></A><STRONG>User-Defined Codes</STRONG>
+					</P>
+					<P>
+						User-Defined Codes allow you to create your own &quot;meta-tags&quot; which will be used 
+						when news is displayed.
+					</P>
+					<P>
+						So for example, if you always write the words &quot;Smith and Sons - Your Online Partner&quot; in your articles you could setup a user-defined code called &quot;{tagline}&quot; and just use &quot;{tagline} in your articles. When the article is published it will show your actual tagline instead.
+					</P>
+					<P>
+						This is a great way of maintaining 
+					consistency across your articles. Change the user-defined code, and all your articles are immediately updated!					
+					</P>
+					<P class="ErrorText">
+						<A name="Terminology"></A><STRONG>Terminology</STRONG>
+					</P>
+					<P>
+						PHPFreeNews uses a few terms which you may or may not be familiar with. Here's brief explanation of them:
+					<P>
+						<STRONG>Archive</STRONG>: Push articles into the Archives so that they are removed from display. This can be done on a per-article basis or by the age of the article. Useful if you want to remove articles from display but still retain them for reference.
+					<P>
+					<STRONG>News Feed</STRONG>: An RSS feed, similar to the feeds appearing on lots of websites. This allows users to &quot;subscribe&quot; to your news articles.					
+					<P>
+						<STRONG>Locked</STRONG>: A Locked article is one which cannot be changed. It cannot be edited, made Sticky, etc. Locked articles are also explicity excluded from the Archive and Purge routines.	Only	users	with	the	correct privileges 
+					can lock and unlock 
+					articles.
+					<P>
+						<STRONG>Purge</STRONG>: Allow you to permanently delete articles from your database. This is a simply feature, useful only for having a spring-clean.
+					<P>
+						<STRONG>Sticky</STRONG>: An article which is to appear as though it is &quot;stuck&quot; at the top of the list. Useful for displaying long-running news articles which you don't want to get &quot;bumped&quot; down the list by more recent articles.
+					<P>
+						<STRONG>Template</STRONG>: A default layout for your new articles. 
+					<P>
+						<STRONG>Visible</STRONG>: 
+						Only Visible articles will be displayed. This cannot be overridden.
+					<P class="ErrorText">
+						<STRONG><A name="Help" id="Help"></A>Help and Support</STRONG>
+					</P>
+					<P>
+						PHPFreeNews is well-supported, both by the author and by a growing community of supporters. If you experience a problem or you need some assistance, your first port of call should be the <A href="http://www.phpfreenews.co.uk/forums/" target="_blank">Forums</A>. Here you will find answers to many questions, or you can raise a new question. Please search for answers before posting a new question!
+					</P>
+					<P>
+						If you find that you are unable to login to the site, i.e. you forget the Admin password, then there's a Rewrite Password facility. Point your browser at http://website/InstallDir/RewritePassword.php. You will be prompted to enter a username - this is the MySql Username which you have in your Config file. If you supply the correct credentials then the master administrator (User ID 1) will have its password reset to the same as your Config-file password. 
+					</P>
+					<P>
+						If you can't get a satisfactory solution from the forum (which is highly unlikely) then please get in touch with me via the <A href="http://www.phpfreenews.co.uk/Contact.php" target="_blank">website</A>.
+					</P>
+					<P class="ErrorText">
+						<A name="Donations"></A><STRONG>Donations</STRONG>
+					</P>
+					<P>
+						Okay, begging-bowl time! Software development, hosting and distribution costs money. If you like this software and you use it on a website, then please consider making a donation. It doesn't have to be much, but everything helps! You can donate via PayPal on the PHPFreeNews website.
+					</P>
+					<P class="ErrorText">
+						<A name="Credits" id="Credits"></A>Credits
+					</P>
+					<P>
+						The original concept for this site was taken from <A href="http://www.atomicpenguin.com" target="_blank">Atomic Penguin</A> news. This news script fell into disrepair many months ago (even the website has been hacked and left unfixed for months!) and the script has clearly died. I liked the concepts behind Atomic Penguin so I decided to write my own script.
+					</P>
+					<P>
+						All the coding is my own, but much of the testing and ideas have come form the user community. Two people in particular have been instrumental to the current functionality, and they are Daf and Duvien. The script wouldn't be nearly as good if it wasn't for their ideas and support!
+					</P>
+					<P class="ErrorText">
+						<A name="License" id="License"></A>License
+					</P>
+					<P>
+						This software 
+					is released into the public domain and has no licensing requirements. All I ask is that you don't tweak it
+					and then pass it off as your own work! You are free to modify it as you wish, but please leave the original copyright notices (in each PHP file) intact. 
+					</P>
+					<P>&nbsp;
+					</P>
+					<P>
+						<STRONG>Copyright Jim Willsher 2005						</STRONG>
+					</P>				</TD>
+			</TR>
+			<TR>
+				<TD>&nbsp;</TD>
+			</TR>
+		</TABLE>
+	</BODY>
+</HTML>
