@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="styles/contenido.css" />
+</head>
+<body style="margin:10px">
+
+{TEMPNOTIFICATION}
+
+<p class="text_medium">
+<b>i18n("Bugreport"):</br>
+</p>
+
+<form method="post" action="{ACTION}">
+
+<table width="50%" cellspacing="0" cellpadding="2" border="0">
+    <tr class="textw_medium" style="background-color: #a9aec2">
+        <td colspan="2" class="textw_medium" style="border:1px; border-color:#747488; border-style:solid" nowrap="nowrap">i18n("Bugreport")</td>
+    </tr>
+
+    <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" >
+        <td colspan="2" class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" align="left" valign="top"><b>i18n("Important"):</b><br>
+    <ul>
+	<li>i18n("Please don't send 'test' bug reports.")</li>
+	<li>i18n("Make sure you enter your correct eMail-Address.")</li>
+	<li>i18n("If you want to determinate if your bug has already been fixed, visit the following locations"):<br><br>
+	i18n("Contenido Forum"):<a href="http://www.contenido.de/forum/" target="_blank">http://www.contenido.de/forum/</a><br>
+	i18n("Contenido Bug-Tracker"):<a href="http://bugs.contenido.de" target="_blank">http://bugs.contenido.de</a>.<br>
+	</li>
+	</ul><br>
+	</td>
+    </tr>
+
+    <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" >
+        <td width="40%" class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap" align="left" valign="top">i18n("Your E-Mail-Address"): *</td>
+        <td class="text_medium" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap"><input type="text" name="sender" value="{SENDER}" class="txt"></td>
+    </tr>
+    
+     <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" >
+        <td class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap" align="left" valign="top">i18n("First Name") *</td>
+        <td class="text_medium" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap"><input type="text" name="forename" value="{FORENAME}" class="txt"></td>
+    </tr>
+    
+    <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" >
+        <td class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap" align="left" valign="top">i18n("Last Name") *</td>
+        <td class="text_medium" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap"><input type="text" name="surname" value="{SURNAME}" class="txt"></td>
+    </tr>
+    
+    <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" >
+        <td class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap" align="left" valign="top">i18n("Area")</td>
+        <td class="text_medium" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap"><select name="selectarea">{SELAREA}</select></td>
+    </tr>
+    
+    <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" >
+        <td colspan="2" class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap" align="left" valign="top">i18n("Your bugreport") *<br><textarea name="bugreport" class="txt" style="width:100%;height:200px;" wrap="virtual">{BUGREPORT}</textarea></td>
+    </tr>
+    
+    <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" >
+        <td colspan="2" class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap" align="left" valign="top">i18n("<b><i>Fields marked with a "*" are mandatory fields")</i></b></td>
+    </tr>
+    <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" >
+        <td colspan="2" class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap" align="left" valign="top">i18n("<b><i>declaration of consent:")</i></b><br><br>
+	i18n("In order to ensure the best support, this bugreport mail will contain several files as attachement.<br>Please remove the check marks from the checkboxes which informations you don't want to send!")<br><br>
+	<input type="checkbox" name="errorlog" checked> i18n("errorlog.txt (contains error messages arose during run time)")<br>
+	<input type="checkbox" name="upgradeerrorlog" checked> i18n("install.log.txt (contains error messages arose during upgrading to a newer version)")<br>
+	<input type="checkbox" name="sysvalues" checked> i18n("systemvariables.html (contains contains several Contenido settings)")<br>
+	<input type="checkbox" name="phpinfo" checked> i18n("phpinfo.html (contains output generated through the phpinfo() function)")<br><br>
+	<input type="checkbox" name="agreement">i18n("By checking this box I agree that four for business AG receives and processes the bug report data.<br>I also agree that the submitted data is used for bug processing and that the bug will be made public using the Contenido Bug-Tracker.")</td>
+    </tr>
+
+    <tr><td colspan="2"><img src="images/spacer.gif" width="1" height="10"></td> </tr>
+    <tr><td colspan="2" class="text_medium" align="right"><input type="image" src="images/but_ok.gif"></td></tr>
+</table>
+</form>
+
+</body>
+</html>
