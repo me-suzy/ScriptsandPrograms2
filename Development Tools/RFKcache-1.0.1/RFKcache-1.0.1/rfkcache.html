@@ -1,0 +1,248 @@
+<HTML>
+	<HEAD>
+		<TITLE>RFKcache 1.0.1 - A PHP caching engine</TITLE>
+	</HEAD>
+<BODY>
+<!-- INDEX BEGIN -->
+<UL>
+	<LI><A HREF="#NAME">NAME</A>
+	<LI><A HREF="#SYNOPSIS">SYNOPSIS</A>
+	<LI><A HREF="#DESCRIPTION">DESCRIPTION</A>
+	<LI><A HREF="#METHODS">METHODS</A>
+	<UL>
+		<LI><A HREF="#newconstructor">new( unique_identifier, [cache_path] )</A>
+		<LI><A HREF="#cache_read">Cache_Read( )</A>
+		<LI><A HREF="#cache_write">Cache_Write( $content )</A>
+		<LI><A HREF="#cache_eval_yesterday">Cache_Eval_Yesterday( )</A>
+		<LI><A HREF="#cache_eval_expireif">Cache_Eval_ExpireIf( expression )</A>
+		<LI><A HREF="#cache_fetch">Cache_Fetch( )</A>
+		<LI><A HREF="#cache_output">Cache_Output( )</A>
+		<LI><A HREF="#cache_outputhtml">Cache_OutputHTML( )</A>
+		<LI><A HREF="#cache_delete">Cache_Delete( )</A>
+	</UL>
+	<LI><A HREF="#DOCUMENTATION">DOCUMENTATION</A>
+	<LI><A HREF="#VERSION">VERSION</A>
+	<LI><A HREF="#HISTORY">HISTORY</A>
+	<LI><A HREF="#AUTHOR">AUTHOR</A>
+	<LI><A HREF="#SEEALSO">SEE ALSO</A>
+</UL>
+<!-- INDEX END -->
+
+<HR>
+<P>
+<H1><A NAME="NAME">NAME</A></H1>
+RFKcache 1.0.1 - A PHP caching engine
+<P>
+
+
+<HR>
+<P>
+<H1><A NAME="SYNOPSIS">SYNOPSIS</A></H1>
+<P>
+<PRE>
+    include( &quot;class.rfkcache.php&quot; );
+
+    $pagcache = new Cache( &quot;mainpage&quot;, &quot;cache/&quot;);
+    if (!$pagcache-&gt;Cache_Eval_Yesterday()) {
+        $pagcache-&gt;Cache_Read();
+        $pagcache-&gt;Cache_OutputHTML();
+        exit;
+    }
+
+    // ... example 1:
+    $contents = &quot;&quot;;
+    $contents.= &quot;My personal page&quot;;
+    $contents.= &quot;Caching in &quot;. date(&quot;m-d-Y&quot;);
+
+    // ... example 2:
+    include &quot;class.FastTemplate.php3&quot;;
+    $tpl = new FastTemplate( &quot;templates/&quot; );
+    $tpl-&gt;define( array( &quot;main&quot; => &quot;main_page.tpl&quot;) );
+    ...
+    $tpl-&gt;parse( CONTENTS, &quot;main&quot; );
+    $contents = $tpl-&gt;fetch(&quot;CONTENTS&quot;) );
+
+    // ...
+
+    $pagcache-&gt;Cache_Write( $contents );
+</PRE>
+<P>
+
+<HR>
+<P>
+<H1><A NAME="DESCRIPTION">DESCRIPTION</A></H1>
+<P>
+RFKcache is a easy, efficient and simple class which implements a cache system for use in PHP3/4 programs.
+<P>
+
+<HR>
+<P>
+<H1><A NAME="METHODS">METHODS</A></H1>
+<P>
+
+<HR>
+<P>
+<H2><A NAME="newconstructor">new( unique_identifier, [cache_path] )</A></H2>
+<P>
+This is a constructor's class method. Requires an <I>unique_identifier</I> to identify cache blocks of
+code in a cache-directory <I>cache_path</I>.
+<P>
+<PRE>
+    $pagcache = new Cache( &quot;mainpage&quot;, &quot;cache/&quot;);
+
+-- Example: dynamic pages --
+    URL: www.somewhere.com/list.php?section=2&language=en
+    URL: www.somewhere.com/list.php?section=5&language=en
+
+    $pagcache = new Cache( &quot;listsection_&quot;.$section.&quot;_&quot;.$language, &quot;cache&quot;);
+</PRE>
+<P>
+
+<HR>
+<P>
+<H2><A NAME="cache_read">Cache_Read( )</A></H2>
+<P>
+The function <CODE>Cache_Read()</CODE> reads the stored data from cached-file.
+<P>
+<PRE>
+    if (!$pagcache-&gt;Cache_Eval_Yesterday()) {
+        $pagcache-&gt;Cache_Read();
+        $pagcache-&gt;Cache_Output();
+        exit;
+    }
+</PRE>
+<P>
+
+<HR>
+<P>
+<H2><A NAME="cache_write">Cache_Write( $content )</A></H2>
+<P>
+The function <CODE>Cache_Write()</CODE> writes the content of variable <CODE>$content</CODE> in a cached-file.
+This is the primary function to storage all cached data.
+<P>
+<PRE>
+    $pagcache-&gt;Cache_Write( $contents );
+</PRE>
+
+<HR>
+<P>
+<H2><A NAME="cache_eval_yesterday">Cache_Eval_Yesterday( )</A></H2>
+<P>
+The funcion <CODE>Cache_Eval_Yesterday()</CODE> checks if a new data must been stored from yesterday.
+<P>
+<PRE>
+    if (!$pagcache-&gt;Cache_Eval_Yesterday()) {
+        $pagcache-&gt;Cache_Read();
+        echo $pagcache-&gt;Cache_Fetch();
+        exit;
+    }
+</PRE>
+<P>
+
+<HR>
+<P>
+<H2><A NAME="cache_eval_expireif">Cache_Eval_ExpireIf( expression )</A></H2>
+<P>
+The funcion <CODE>Cache_Eval_ExpireIf()</CODE> checks if a new data must been stored from time-<CODE>expression</CODE>.
+<P>
+<PRE>
+    if (!$pagcache-&gt;Cache_Eval_ExpireIf( /*cachetime: 1 hour*/ 3600 )) {
+        $pagcache-&gt;Cache_Read();
+        $pagcache-&gt;Cache_OutputHTML();
+        exit;
+    }
+</PRE>
+<P>
+
+<HR>
+<P>
+<H2><A NAME="cache_fetch">Cache_Fetch( )</A></H2>
+<P>
+The method <CODE>Cache_Fetch()</CODE> returns the raw data from a cached script.
+<P>
+<PRE>
+    $rawdata = $pagcache-&gt;Cache_Fetch();
+
+    fwrite($fd, $rawdata);   // save to a file
+    echo $rawdata            // print
+</PRE>
+<P>
+
+<HR>
+<P>
+<H2><A NAME="cache_output">Cache_Output( )</A></H2>
+<P>
+The method <CODE>Cache_Output()</CODE> prints the raw data stored in cached-file from executed script.
+<P>
+<PRE>
+    $pagcache-&gt;Cache_Output();
+</PRE>
+<P>
+
+<HR>
+<P>
+<H2><A NAME="cache_outputhtml">Cache_OutputHTML( )</A></H2>
+<P>
+The method <CODE>Cache_OutputHTML()</CODE> prints the contents of cached script from file stored in HTML format.
+<P>
+<PRE>
+    $pagcache-&gt;Cache_OutputHTML();
+</PRE>
+<P>
+
+<HR>
+<P>
+<H2><A NAME="cache_delete">Cache_Delete( )</A></H2>
+<P>
+The method <CODE>Cache_Delete()</CODE> deletes the cached-file that store data cached.
+<P>
+<PRE>
+    $pagcache-&gt;Cache_Delete();
+</PRE>
+<P>
+
+<HR>
+<P>
+<H1><A NAME="DOCUMENTATION">DOCUMENTATION</A></H1>
+<P>
+You're reading it.
+<P>
+
+<HR>
+<P>
+<H1><A NAME="VERSION">VERSION</A></H1>
+<P>
+Revision 1.0.1 - Aug 11, 2002 &copy RFK Solutions &lt;<A HREF="mailto:rfksolutions@users.sourceforge.net">rfksolutions@users.sourceforge.net</A>&gt;
+<P>
+
+
+<HR>
+<P>
+<H1><A NAME="HISTORY">HISTORY</A></H1>
+<P>
+<P>1.0.1  Added <CODE>Cache_Delete()</CODE> and <CODE>Cache_Eval_ExpireIf()</CODE>. Version released Aug 11, 2002.
+<P>1.0.0  Initial public release
+<P>
+
+
+<HR>
+<P>
+<H1><A NAME="AUTHOR">AUTHOR</A></H1>
+CopyRight (c) 2002 RFK Solutions, <A HREF="mailto:rfksolutions@users.sourceforge.net">rfksolutions@users.sourceforge.net</A>. All Rights Reserved.
+<P>This program is free software; you can redistribute it and/or modify it under the GNU General Artistic License, with the following stipulations; 
+<P>Changes or modifications must retain these Copyright statements. Changes or modifications <B>must</B> be submitted to the author.
+<P>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the Artistic License for more details. This software is distributed AS-IS. 
+<P>Address Bug Reports or Comments to RFK Solutions, <A HREF="mailto:rfksolutions@users.sourceforge.net">rfksolutions@users.sourceforge.net</A>. 
+<P>The latest version of this class should be available from the following locations: 
+<P><A HREF="http://rfkmap.sourceforge.net">http://rfkmap.sourceforge.net</A>
+<P>
+<HR>
+<P>
+<H1><A NAME="SEEALSO">SEE ALSO</A></H1>
+FastTemplate PHP3 module, available from CDI - <A HREF="http://www.thewebmasters.net/">http://www.thewebmasters.net</A>
+<P>RFKmap module, available in <A HREF="http://www.hotscripts.com/Detailed/11382.html">http://www.hotscripts.com/Detailed/11382.html</A>
+<P>
+
+</DL>
+</BODY>
+</HTML>
