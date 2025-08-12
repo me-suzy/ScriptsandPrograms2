@@ -1,0 +1,261 @@
+<font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font color="#333333"> 
+CUSTOMER ACCOUNT INFORMATION:</font></b></font> <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+<?php
+
+echo $error;
+
+
+
+if ($set_action=="client_update") {
+
+echo "<BR>Change the information below that you wish to update.";
+	$db = new ps_DB;
+	$q  = "SELECT * FROM account WHERE account_id='$account_id'";
+	$db->query($q);
+	$db->next_record();
+	
+    $membership=	$db->f("account_membership_id");
+    $password=		$db->f("account_password");
+    $email=			$db->f("account_email");
+    $phone=			$db->f("account_phone");
+    $fax=			$db->f("account_fax");
+    $name=			$db->f("account_name");
+    $company=		$db->f("account_company");
+    $address=		$db->f("account_address");
+    $city=			$db->f("account_city");
+    $state=			$db->f("account_state");
+    $zip=			$db->f("account_zip");
+    $country=		$db->f("account_country");
+    $pmt_type=		$db->f("account_pmt_type");
+    $acct_no=		$db->f("account_acct_no");
+    $acct_exp=		$db->f("account_acct_exp");
+    $check_no=		$db->f("account_check_no");
+    $check_rt=		$db->f("account_check_rt");
+    $acct_status=	$db->f("account_status");
+    $country=		$db->f("account_country");
+} else {
+$acct_status="1";
+$country_op="<option value=840 selected>UNITED STATES</option>";
+$pmt_type="1";
+}
+
+?>
+</font> 
+<form method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="2" class="form_text">
+    <tr> 
+      <td width="22%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Name:</font></div>
+      </td>
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_name" maxlength="50" size="20" style="border: 1 solid #666666" value="<?php echo $name ?>">
+        </font></td>
+      <td width="78%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Phone:</font></div>
+      </td>
+      <td width="78%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_phone" maxlength="50" size="10" style="border: 1 solid #666666" value="<? echo $phone ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="22%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Company:</font></div>
+      </td>
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_company" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $company ?>">
+        </font></td>
+      <td width="78%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Fax:</font></div>
+      </td>
+      <td width="78%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_fax" maxlength="50" size="10" style="border: 1 solid #666666" value="<? echo $fax ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="22%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Address:</font></div>
+      </td>
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_address" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $address ?>">
+        </font></td>
+      <td width="78%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Email:</font></div>
+      </td>
+      <td width="78%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_email" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $email ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="22%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">City:</font></div>
+      </td>
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_city" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $city ?>">
+        </font></td>
+      <td width="78%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Password:</font></div>
+      </td>
+      <td width="78%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_password" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $password ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="22%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">State:</font></div>
+      </td>
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_state" maxlength="50" size="10" style="border: 1 solid #666666" value="<? echo $state ?>">
+        </font></td>
+      <td width="78%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Country:</font></div>
+      </td>
+      <td width="78%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        </font><font color="#666666"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <? show_country_menu(); ?>
+        </font></b></font></td>
+    </tr>
+    <tr> 
+      <td width="22%"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Zip:</font></div>
+      </td>
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        <input type="text" name="account_zip" maxlength="50" size="10" style="border: 1 solid #666666" value="<? echo $zip ?>">
+        </font></td>
+      <td width="78%"> 
+        <div align="right"></div>
+      </td>
+      <td width="78%"> 
+        <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23" ">
+        <input type="hidden" name="page" value="clients">
+        <input type="hidden" name="action" value="<? echo $set_action ?>">
+        <input type="hidden" name="account_id" value="<? echo $account_id ?>">
+        <input type="hidden" name="account_id3" value="<? if ($set_action=="client_update--") { ?>">
+        <img src="images/button_delete.gif" width="80" height="23" border="0"> 
+        <input type="hidden" name="account_id3" value="<? } ?>">
+      </td>
+    </tr>
+    <tr> 
+      <td width="22%"> 
+        <div align="right"></div>
+      </td>
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        </font></td>
+      <td width="78%"> 
+        <div align="right"></div>
+      </td>
+      <td width="78%">&nbsp;</td>
+    </tr>
+  </table>
+</form>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <?
+if (check_domain_list($account_id)<>0) {
+  ?>
+  </font></b> </p>
+<form name="form1" method="post" action="">
+  <b><font face="Verdana, Arial, Helvetica, sans-serif">Customer Order History:</font></b><br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+
+  echo show_order_list($account_id,"1");
+  ?>
+  <input type="submit" name="Submit2" value="View -&gt;">
+  <input type="hidden" name="page" value="orders_view">
+  </font></b> 
+</form>
+<form name="form1" method="post" action="">
+  <b><font face="Verdana, Arial, Helvetica, sans-serif">Customer Billing History</font></b><font face="Verdana, Arial, Helvetica, sans-serif"><b>:</b></font> 
+  <br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+
+  echo show_billing_list($account_id,"1");
+  ?>
+  <input type="submit" name="Submit3" value="Details -&gt;">
+  <input type="hidden" name="page" value="billing_history">
+  </font></b> 
+</form>
+<form name="form1" method="post" action="">
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b>Customers Domains:</b></font> 
+  <br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+
+  echo show_domain_list($account_id,"1");
+  ?>
+  <input type="submit" name="Submit22" value="View -&gt;">
+  <input type="hidden" name="page" value="domains_edit">
+  </font></b> 
+</form>
+<b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+</font></b> 
+<form name="form1" method="post" action="">
+  <b><font face="Verdana, Arial, Helvetica, sans-serif">Customers Domains Expiring 
+  Soon (30 days)</font></b><font face="Verdana, Arial, Helvetica, sans-serif"><b>:</b></font> 
+  <br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+
+  echo show_domain_exp_list($account_id,"1");
+  ?>
+  <input type="submit" name="Submit223" value="Renew -&gt;">
+  <input type="hidden" name="page" value="domain_renew">
+  </font></b> 
+</form>
+<b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+</font></b><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+</font></b> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+<? }  ?>
+</font></b><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+<? 
+if (check_cc_list($account_id)<>0) {
+  ?>
+</font></b> 
+<form name="form1" method="post" action="">
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b>Customers Credit Cards 
+  On File:</b></font> <br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+
+  echo show_cc_list($account_id,"1");
+  ?>
+  <input type="submit" name="Submit222" value="Edit -&gt;">
+  <input type="hidden" name="page" value="billing_edit">
+  </font></b> 
+</form>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? }  ?>
+  </font></b></p>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? note_showform("1",$account_id); ?>
+  <br>
+  </font></b> </p>
+<form action="" name="" onSubmit="return runVerification(this);">
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b> </b></font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <p align="center"><font size="-1" face="ARIAL,HELVETICA"> 
+                <input type="submit" name="submit2" value="Delete This Account -&gt;">
+                </font> 
+                <input type="hidden" name="page" value="clients">
+                <input type="hidden" name="account_id" value="<? echo $account_id; ?>">
+                <input type="hidden" name="action" value="delete_account">
+                <br>
+                <font face="Verdana, Arial, Helvetica, sans-serif" size="2">Note: 
+                The delete action will delete all records linked to this order 
+                (orders, domains, billing, credits, etc)<br>
+                <font color="#990000"><b>THIS IS FINAL AND CAN NOT BE UNDONE!</b></font></font> 
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+</font></b> 
