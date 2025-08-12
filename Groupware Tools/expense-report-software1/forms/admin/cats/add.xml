@@ -1,0 +1,38 @@
+<form>
+	<title>Add / Edit Expense Category</title>
+	<action>index.php?sub=cats&action=store</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="return" >
+			<location>index.php?sub=cats</location>
+		</return>
+
+		<save onclick="" button="saveall">
+			<location>javascript:document.forms[0].submit();</location>
+		</save>
+
+	</buttons>
+
+	<redirect>index.php?sub=cats</redirect>
+
+	<fields>
+
+		<cat_id type="hidden" hidden="true"/>
+
+		<cat_name type="textbox" size="40:100" unique="true" required="true" validate="A:1:100">
+			<title>Category Name</title>
+			<description>Enter an unique name for this task category.</description>
+		</cat_name>
+
+	</fields>
+</form>
