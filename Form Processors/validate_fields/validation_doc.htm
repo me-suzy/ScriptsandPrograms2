@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Validation class documentation</title>
+<style type="text/css">
+<!--
+.code {
+	font:14px 'Courier New', Courier, mono;
+	color:#0000FF;
+}
+.style1 {
+	color: #CC9900
+}
+-->
+</style>
+</head>
+
+<body>
+<h1>Validate_fields class <span style="font-size:14px;font-weight:normal;"> version 1.30</span></h1>
+<h2>Description</h2>
+<p>This class is made to use for a standard form check before submitting by mail or to a database.</p>
+<ul><b>Validation types</b>
+  <li>Text (default) </li>
+  <li>Numbers</li>
+  <li>Decimals</li>
+  <li>Date</li>
+  <li>E-mail</li>
+  <li>URL</li>
+</ul>
+<h2>How to use?</h2>
+<p>There are lot of classes, functions and scripts on the internet. Some of them are really hard to use. I tried with this class to make it so simple as possible.</p>
+<p><b>Case:</b><br>
+You have to validate two text fields, one with the name and one with the e-mail address. The e-mail address is required and you have room for 30 characters in the text field.</p>
+<p><b>Example:</b></p>
+<ul style="list-style-type:none;">
+  <li class="code">$example = new Validate_fields; <span class="style1">// create a new instance of the class</span></li>
+  <li class="code">$example->add_text_field("name", "Peter Morris", "text", "n", 30); <span class="style1">// define value for the name field</span></li>
+  <li class="code">$example->add_link_field("email", "info@hotmail.com", "email", "y"); <span class="style1">// and for the email field</span></li>
+  <li class="code">$example->validation(); <span class="style1">// call the validation method</span></li>
+  <li class="code">$example->create_msg(); <span class="style1">// this will show you the errors</span></li>
+</ul>
+<p><i>Note: Use the values from your field variables ($_POST or $_GET) like:</i></p>
+<p class="code">$example->add_text_field("Name", $_POST['compl_name'], "text", "n", 30);</p>
+<p><i>and use regular names (according the rules for variable names) for optimal screen messages (f. e. Name or Email, the same like the field label).</i></p>
+<h2>Variables</h2>
+<ul>
+  <li><b>$fields</b> <i>(array)</i> This array holds all your form information.</li>
+  <li><b>$messages</b> <i>(array)</i> The class will store error information in this array.</li>
+  <li><b>$check_4html</b> <i>(boolean)</i> Use this boolean if you want check all fields fot html tags. </li>
+  <li><b>$language</b> <i>(string)</i> Change this variable to use an other language then English for all messages.</li>
+</ul>
+<h2>Methods</h2>
+<ul>
+  <li><b>Validate_fields()</b> This is the constructor (at the moment with not so much function)</li>
+  <li><b>validation()</b> The method which will do the whole validation</li>
+  <li><b>add_text_field($name, $val, $type = &quot;text&quot;, $required = &quot;y&quot;, $length = 0) <br>
+  add_num_field($name, $val, $type = &quot;number&quot;, $required = &quot;y&quot;, $decimals = 0, $length = 0)<br>
+  add_link_field($name, $val, $type = &quot;email&quot;, $required = &quot;y&quot;)<br>
+  add_date_field($name, $val, $type = &quot;date&quot;, $version = &quot;us&quot;, $required = &quot;y&quot;)</b>    <br>
+    <i>Use these method' to add a differnt kind of fields to the obbject.</i><br>
+    $name <i>(string)</i> = Fieldname for the messages (all) <br>
+    $val <i>(string)</i> = Form field value (all) <br>
+    $type <i>(string)</i> = validation type, see also at the begin of the document (all) <br>
+    $required <i>(string)</i> = the information if a field is required or not, default = y (all) <br>
+	$decimals<i> (float)</i> = how many decimals after the dot (deafault = 2) (number and decimail)<br>
+	$version = <i>(string)</i> = use value to do a different date check (date only)<br>
+    $length <i>(integer)</i> = The length to validate of a text or number field, use a &quot;0&quot; to disable this check (text and number)</li>
+  <li><b>check_url($url_val, $field, $req = &quot;y&quot;)</b> This method is used for the URL check</li>
+  <li><b>check_text($text_val, $field, $text_len = 0, $req = &quot;y&quot;)</b> This method checks the text if required or about a valid string length</li>
+  <li> <b>check_num_val($num_val, $field, $num_len = 0, $req = &quot;n&quot;)</b> Number checking, validation of number of digits, if required and for numbers only. </li>
+  <li><b>check_decimal($dec_val, $field, $decimals = 2, $req = &quot;n&quot;)</b> Checks a valid number with agiven number of decimals. </li>
+  <li><b>check_date($date, $field, $req = &quot;n&quot;) </b>The method validates a US-styled date notation and if a date is required or not. </li>
+  <li><b>check_email($mail_address, $field, $req = &quot;y&quot;)</b> E-mail validation and checking if required or not. </li>
+  <li><b>check_html_tags($value, $field)</b> If the variable $check_4html is set to true, all fields are check for the existens of HTML tags.</li>
+  <li><b>create_msg()</b> This method is used to create a string from the messages array.</li>
+  <li><b>error_text($num, $fieldname = "")</b> This method is a library of messages. Add your own translations here. The variable fieldname is needed to identify for which field the error exist.</li>
+</ul>
+</body>
+</html>
