@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>WebCards Administration Centre</title>
+<link rel="stylesheet" type="text/css" href="./templates/admin/ad_style.css">
+<script language="javascript" type="text/javascript">
+
+function CUA(ch) {
+var v = ch.checked;
+var f = ch.form;
+for(var i=0;i<f.elements.length;i++) {
+    if(f.elements[i].type=="checkbox") {
+       f.elements[i].checked = v; 
+     }
+}
+}
+
+function hideDiv(id)
+{
+	  var itm = null;
+	  if (document.getElementById) {
+		itm = document.getElementById(id);
+	  } else if (document.all){
+		itm = document.all[id];
+	  } else if (document.layers){
+		itm = document.layers[id];
+	  }
+	
+	  if (!itm) {
+	   // do nothing
+	  }
+	  else if (itm.style) {
+		itm.style.display = "none"; 
+	  }
+}
+
+function showDiv(id)
+{
+	  var itm = null;
+	  if (document.getElementById) {
+		itm = document.getElementById(id);
+	  } else if (document.all){
+		itm = document.all[id];
+	  } else if (document.layers){
+		itm = document.layers[id];
+	  }
+	
+	  if (!itm) {
+	   // do nothing
+	  }
+	  else if (itm.style) {
+		 itm.style.display = "block";
+	  }
+}
+
+
+function popHelp(file, sess)
+{
+	window.open('admin.php?act=help&file='+file+'&s='+sess+'','helpWin','width=600,height=500,resizable=yes,scrollbars=yes');
+}
+
+function popImage(id, type, sess)
+{
+	window.open('admin.php?act=toolbox&what=view_image&img_id='+id+'&img_type='+type+'&s='+sess+'','imgWin','width=600,height=500,resizable=yes,scrollbars=yes');
+}
+
+</script>
+</head>
+<body>
+<b>Administration Centre</b><br /><br />
+{{admin_content}}
+<br /><br />
+{{admin_stats}}
+</body>
+</html>
