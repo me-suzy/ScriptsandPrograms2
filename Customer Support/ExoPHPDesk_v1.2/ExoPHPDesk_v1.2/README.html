@@ -1,0 +1,395 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link rel="stylesheet" href="tpl/Blue/style.css" type="text/css">
+<title>README :: EXO PHPDesk</title>
+</head>
+
+<body>
+
+<div align="center">
+  <center>
+  <table>
+    <tr>
+      <td width="100%" background="tpl/Old/images/bg_desk.jpg">
+      <IMG height=157 src="tpl/Blue/images/head.jpg" width=750 align=top></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<div align="center">
+  <center>
+  <table border="1" cellpadding="0" style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-COLLAPSE: collapse; BORDER-RIGHT-WIDTH: 0px" bordercolor="#111111" width="100%" id="AutoNumber2" height="26" cellspacing="0">
+    <tr>
+      <td width="100%" background="tpl/Blue/images/bg_td.jpg" height="26">
+      <p align="center"><b><font color="#ffffff" face="Verdana">[
+      <a href="http://exocrew.com"><font color="#ffffff" face="Verdana">ExoCrew 
+      Home</font></a> ]&nbsp;&nbsp;&nbsp;&nbsp; [
+      <a href="http://forums.exocrew.com/"><font color="#ffffff" face="Verdana">
+      Forums</font></a> ]&nbsp;&nbsp;&nbsp;&nbsp; [
+      <a href="http://php.exocrew.com/"><font color="#ffffff" face="Verdana">PHP 
+      Scripts</font></a> ]&nbsp;&nbsp;&nbsp;&nbsp; [
+      <a href="http://exocrew.com/contact.php">
+      <font color="#ffffff" face="Verdana">Contact Us</font></a> ]</font></b></p></td>
+    </tr>
+  </table>
+  <table border="1" cellpadding="2" cellspacing="3" style="BORDER-COLLAPSE: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+    <tr>
+      <td width="100%"><br>
+          Congratulations on getting <b>EXO PHPDesk!</b>, 
+          <p>The setup is really very simple, with all automated steps.<br>
+            <br>
+            Current Version : 1.2 Final<u><i><br>
+            <br>
+            REQUIREMENTS:</i></u><br>
+            <br>
+            Operating Systems Tested : Linux And Windows<i>®</i><br>
+            <br>
+            - PHP 4.2.2 ( Tested with PHP 4.2.2 and PHP 4.3.{1, 4, 6, 8, 9} ) <i>
+          It should work on PHP5 as well...</i><br>
+            - mySQL 3 or 4 (Tested with 3.23.* and 4.0.*)<br>
+            - Apache 1.3.*<br>
+            <br>
+            - PHP compiled with IMAP support if you want to use mail fetching 
+            feature<br>
+            - Linux if you want to use the mail piping feature.<br>
+            - If on Windows with IIS:<br>
+            &nbsp; º IIS 5 or Higher with PHP SAPI module<br>
+            &nbsp; º All Verbs enabled for PHP extension.<br>
+            <br>
+            <i> <u>INSTALLATION:<br>
+            <br>
+            </u>Note: You don't need to chmod on Windows ®. <u><br>
+            <br>
+            </u></i>Upload all files using your FTP. Chmod the main directory 
+            in which EXO PhpDesk exists, the Chat Logs directory( default "logs") 
+            and the attachment directory ( default "attachments" ) to 
+            0777.<br>
+            <br>
+            Go to yourdomain.com/directory/install.php where yourdomain.com is 
+            your domain and directory is the directory in which EXO PhpDesk exists 
+            in. <br>
+            <br>
+            If you are installing the ExoPhpDesk in the main directory of your 
+            site, then you may not be able to Chmod the main directory, in that 
+            case the automated script wont be able to make the required files. 
+            The workout for it is to move the db_conf.php from the extras directory 
+            to the main directory and change the mySQL configurations in it.<br>
+            <br>
+            Delete the install.php file after installation is completed.<br>
+            <br>
+            <i><b>Configuring Email Piping With Sendmail :</b></i><br>
+            <br>
+            ------------------------------------------------<br>
+            Linux RedHat (Default) :<br>
+            ------------------------------------------------<br>
+            <br>
+            - Open /etc/aliases<br>
+            - Move to bottom of the file and add a line :<br>
+            <br>
+            support: "|/path/to/exophpdesk/pipe.php"<br>
+            <br>
+            Replace support with the mail you want piped, for example you want 
+            any mail sent to support@yourdomain.com 
+            to be converted into a ticket, then use support.<br>
+            <br>
+            - Run a command :<br>
+            <br>
+            #newaliases<br>
+            <br>
+            Completed.<br>
+            <br>
+            ------------------------------------------------<br>
+            Linux RedHat&nbsp; ( ENSIM Installed ) :<br>
+            ------------------------------------------------<br>
+            <br>
+            - Type in the following commands:<br>
+            <br>
+            cd /home/virtual/<b>yoursite.com/</b>etc/smrsh/<b><br>
+            </b><br>
+            ln -s /usr/bin/php php<b><br>
+            </b><br>
+            ln -s /var/www/html/<b>exophpdesk</b>/pipe.php pipe.php<br>
+            <b><br>
+            </b>- Open /home/virtual/<b>yoursite.com</b>/etc/aliases<br>
+            - Move to bottom of the file and add a line :<br>
+            <br>
+            support: "|/etc/smrsh/php /var/www/html/<b>exophpdesk</b>/pipe.php"<br>
+            <br>
+            Replace support with the mail you want piped, for example you want 
+            any mail sent to support@yourdomain.com 
+            to be converted into a ticket, then use support.<br>
+            <br>
+            - Run a command :<br>
+            <br>
+            #newaliases<br>
+            <br>
+            Completed.<br>
+            ------------------------------------------------<br>
+            Linux Redhat ( cPanel Installed ):<br>
+            ------------------------------------------------<br>
+            <br>
+            - Login to cPanel.<br>
+            - Go to Mail Settings.<br>
+            - Create a mail forwarder with forwarding path as :<br>
+            |
+            /home/<b>USERNAME</b>/public_html/<b>exophpdesk</b>/pipe.php<br>
+            - Chmod the file pipe.php to 0777.<br>
+            <br>
+            Completed.<br>
+            <br>
+            Now test the email piping feature by sending an email to the address 
+            you setup mail piping for.<br>
+            ----------------------<br>
+          <br>
+          <u><i>Multiple Department Mail Piping:</u> ( New in v1.2 Final)<u><br>
+          </u></i>If you need to pipe different emails to different departments, 
+          then you can set it up in this way:<br>
+          <br>
+          email@email.com: | /home/USERNAME/public_html/support/pipe.php -g <b>
+          DepartmentNameHere<br>
+          </b>Where DepartmentNameHere is the name of the department, you would 
+          like this address's tickets to be forwarded to..<br>
+          <br>
+          Example:<br>
+          support@domain.com: | /home/support/public_html/pipe.php -g Support<br>
+          sales@domain.com: | /home/support/public_html/pipe.php -g Sales<br>
+          <br>
+          If you need to apply this on any of the above, you just need to add 
+          the -g <i>departmentname </i>in the forwarder path..<br>
+            <br>
+            <i><b>Running the Server Status Script:</b></i><br>
+            <br>
+            ------------------------------------------------<br>
+            Linux RedHat:<br>
+            ------------------------------------------------<br>
+            <br>
+            You should create a cronjob to run the script every 5 mins ( or as 
+            you desire to check the server status, keep it high on low end servers 
+            ). You must define the full path to file 'server.php' to run it and 
+            in some case it may require chmoding the file server.php to 0777.<br>
+            <br>
+            ------------------------------------------------<br>
+            Windows:<br>
+            ------------------------------------------------ <br>
+            <br>
+            Under windows environment you must create a scheduled task to run 
+            the script.<br>
+            <br>
+            Follow the instructions below:<br>
+            1. Start -&gt; Programs -&gt; Accessories -&gt; System Tools -&gt; 
+            Scheduled Tasks -&gt; Add Scheduled Task.<br>
+            2. Next -&gt; Browse -&gt; Select php.exe ( php executable binary 
+            ) -&gt; Daily -&gt; Next -&gt; Next -&gt; Enter your account password 
+            -&gt; Check "Open Advanced Properties for this task when I click 
+            Finish" -&gt; Finish.<br>
+            3. Replace <br>
+            C:\php\php.exe ( path to php.exe file ) <br>
+            With<br>
+            C:\php\php.exe C:\WEB_FOLDER\exophpdesk\server.php<br>
+            You must edit the paths to suit your environment.<br>
+            4. Schedule ( TAB ) -&gt; Advanced -&gt; Check "Repeat Task" 
+            -&gt; Every : ( select 5 or as you desire ) -&gt; Check "If the 
+            task is still running, stop it at this time" -&gt; OK -&gt; Apply 
+            -&gt; OK.<br>
+            <br>
+            --------------------------------------------<br>
+            <br>
+            Just go through all the steps and it will be installed. Look at bottom 
+            for contact information, incase you run into a problem.<br>
+            <br>
+            <u><i>UPGRADING<br>
+            <br>
+            <br>
+            </i></u>v1.2* -&gt; 1.2 Final Upgrade<br>
+          Upload/Replace the following files:<br>
+          <i>conf.php, common.php, admin.php, pipe.php, libs/ticket.php, tpl/*/login.tpl, 
+          class/imap.php, class/class.php, class/kb.php<br>
+          <br>
+          </i>Move the file upgrade9.php in the main directory and run it from 
+          the browser.</p>
+             
+          <p>v1.1* -&gt; 1.2 Beta 1 
+      Upgrade<U><I><BR></I></U>Upload/Replace the following files:<BR><EM><FONT 
+      color=black style="WORD-SPACING: 2px">admin.php, common.php, conf.php, footer.php, index.php, 
+      member.php, pipe.php, staff.php<BR>tpl/*/add.tpl, tpl/*/admin_head.tpl, 
+      tpl/*/configs.tpl, tpl/*/footer.tpl, tpl/*/kb.tpl, tpl/*/list.tpl, 
+      tpl/*/lost_pass.tpl, tpl/*/mail.tpl, tpl/*/member_head.tpl, 
+      tpl/*/search.tpl, tpl/*/staff_head.tpl, tpl/*/view.tpl, 
+      tpl/*/style.css<BR>libs/search.php, libs/ticket.php, libs/troubles.php, 
+      libs/calender.php, lang/lang_en.php<BR>class/class.php, class/imap.php, 
+      class/kb.php</FONT></EM><BR>Move the file upgrade8.php to the main 
+      directory an run it from your browser.<U><I><BR></I></U><BR>v1.0 -&gt; 1.1 Beta 1 Upgrade<u><i><br>
+            </i></u>Upload/Replace all system files. Upload following template 
+          files ( tpl/* ):<br>
+          <i>add.tpl, search.tpl, member_head.tpl, staff_head.tpl, 
+          admin_head.tpl, profile.tpl, tickets.tpl, login.tpl, login_admin.tpl, 
+          view.tpl, statistics.tpl<br>
+          </i>Move the file upgrade7.php to the main directory an run it from 
+          your browser.<u><i><br>
+            <br>
+            </i></u>v1.0* -&gt; 1.0 Beta 2 Upgrade<br>
+            Replace following files:<br>
+            class/kb.php, class/class.php, conf.php<br>
+            <br>
+            Run the following SQL query to fix a bug existing in the v1.0 beta.<br>
+            <font size="2" color="#0000f0">ALTER TABLE `phpdesk_staff` ADD `rating` 
+            VARCHAR(255) NOT NULL</font><u><i></i></u> <br>
+            <br>
+            v0.6* -&gt; 1.0 Beta 1 Upgrade<br>
+            Delete all the old files/directories except the logs directory and 
+            the db_conf.php file. Upload all the extracted files, move the file 
+            upgrades/upgrade6.php to main directory and run the file using browser.<br>
+            <br>
+            Login to administration area and edit the configs.<br>
+            <br>
+            v0.6* -&gt; 0.6 Beta 2 Upgrade<br>
+            Execute this query:<font SIZE="2" COLOR="#0000f0"><br>
+            ALTER TABLE `phpdesk_staff` ADD `rating` VARCHAR(255) NOT NULL</font><u><i><br>
+            <br>
+            </i></u>Replace Files : <i><u><br>
+            </u></i>tpl/****/search_results.tpl<i><u><br>
+            <br>
+            </u></i>v0.5* -&gt; 0.6 Beta 1 Upgrade<br>
+            Upload / Replace all the files.<br>
+            Move the upgrade5.php file from upgrades directory to main directory 
+            and run the script upgrade5.php to upgrade.<br>
+            Changed Skin Files: <i>admin_head.tpl, member_head.tpl, staff_head.tpl, 
+            login.tpl, add.tpl, list.tpl, kb.tpl, kb_view.tpl, login.tpl, view_ticket.tpl, 
+            style.css<br>
+            </i><u><i><br>
+            </i></u>v0.5* -&gt; 0.5 Beta 2 Upgrade<br>
+            Replace Files:<br>
+            'conf.php', 'common.php'<u><i><br>
+            <br>
+            </i></u>v0.4* -&gt; 0.5 Beta 1 Upgrade<br>
+            Upload/Replace all files.<br>
+            Move the upgrade5.php file from upgrades directory to main directory 
+            and run the script upgrade4.php to upgrade to version 0.5 Beta1.<br>
+            <br>
+            v0.4* -&gt; 0.4 Final Upgrade<br>
+            Replace files:<br>
+            <i>'index.php' , 'admin.php' , 'staff.php', 'class/imap.php', 'conf.php'<br>
+            </i><br>
+            v0.3* -&gt; 0.4 Beta 1 Upgrade<br>
+            Upload/Replace all the files.<br>
+            Move the upgrade5.php file from upgrades directory to main directory 
+            and run the script upgrade3.php to upgrade to version 0.4 beta1.<br>
+            <br>
+            v0.2* -&gt; 0.3 Final Upgrade<br>
+            Upload/Replace all the files.<br>
+            Move the upgrade5.php file from upgrades directory to main directory 
+            and run the script upgrade2.php to upgrade to version 0.3 Final.<br>
+            <br>
+            v0.1* -&gt; 0.2 Final Upgrade<br>
+            Upload/Replace all the files.<br>
+            Move the upgrade5.php file from upgrades directory to main directory 
+            and run the script upgrade1.php to upgrade to version 0.2 Final.<br>
+            <br>
+            <u><i>FEATURES:<br>
+            </i></u><br>
+            - Easy customization, by editing the templates to suit your site<br>
+            - Easy Installation through Automated steps<br>
+            - Administrator, Staff, Member Area<br>
+            - Fast And Easy Live Chat<br>
+            - Specify the viewable Tickets / Page<br>
+            - Fetch mail through IMAP/POP3 and convert to tickets (For Windows)<br>
+            - Knowledge Base<br>
+            - Live Server Status<br>
+            - Unlimited Trouble Shooters<br>
+            - Mail Piping ( For 
+      Linux Users ) <BR>
+                 - Built-in Calender <br>
+            <br>
+            <u>Admin Area</u><br>
+            - View/Add/Edit/Delete/Email/Suspend Members<br>
+            - View/Add/Edit/Delete/Email Staff<br>
+            - View/Add/Edit/Delete/Email Administrators<br>
+            - Change Configurations<br>
+            - Edit Own Profile<br>
+            - Add/Edit/Delete Groups (a.k.a. Departments)<br>
+            - View tickets statistics<br>
+            - Send/View Private Messages<br>
+            - Open Close Registrations<br>
+            - Open/Close/Edit Tickets<br>
+            - Edit/Add/Delete Responses<br>
+            - Live Chat Responder<br>
+            - Add/Edit Custom Fields for Tickets<br>
+            - Add/Edit/Delete F.A.Q. in knowledge base<br>
+            - Add/Edit/Delete Staff Notes<br>
+            - Add/Edit/Delete Servers<br>
+            - Add/Edit/Delete TroubleShooters<br>
+            - Add/Edit/Delete KB Groups<br>
+            - Add/Edit/Use Saved Responses<br>
+            - Add/Edit/Delete Announcements<br>
+            - Assign Tickets To Staff<br>
+            - Add/Edit Text in Personal Diary.<BR>- 
+      Add/Edit/Delete Calender Events.<BR>
+               - Backup Database.<br>
+            <br>
+            <u>Staff Area</u><br>
+            - Edit/Open/Close Tickets<br>
+            - Create New Tickets<br>
+            - Add/Edit Responses<br>
+            - Take Ownership of Tickets<br>
+            - Send/View Private Messages<br>
+            - Live Chat Responder<br>
+            - Edit Own Profile<br>
+            - Add/Edit F.A.Q.<br>
+            - Delete Own F.A.Q.<br>
+            - Add/Edit/Delete Own Notes.<br>
+            - View Server Status<br>
+            - Use Troubleshooters<br>
+            - Add/Edit Saved Responses<br>
+            - Use Saved Responses ( Where Allowed )<br>
+            - Add/Edit/Delete Announcements ( If Allowed )<br>
+            - Add/Edit Text in Personal Diary. <BR>
+              - Add/Edit/Delete Calender Events. <br>
+            <br>
+            <u>Member Area<br>
+            </u>- Edit/Open/Close Own Tickets<br>
+            - Create New Tickets<br>
+            - Add/Edit Responses<br>
+            - Send/View Private Messages<br>
+            - Live Chat with Staff/Admin<br>
+            - Edit Own Profile<br>
+            - Search Tickets<br>
+            - View Server Status (If Allowed)<br>
+            - Use Troubleshooters<br>
+            - Rate Staff and F.A.Q.( 0 - 5 )<br>
+            - View Announcements ( Where Allowed )<br>
+            - Attach Files with Tickets ( If 
+      Allowed )<BR>
+                 - Add/Edit/Delete Calender Events.<br>
+            <br>
+            If you think a feature required is missing, please post at the wish 
+            list at our <a href="http://forums.exocrew.com/">Community Forums</a>.<br>
+            <br>
+            <u><i>Credits<br>
+            <br>
+            </i></u>Coder, Designer And Idea : Mike Ramsey<br>
+            Supporters: Mike Gormley and Daniel Sink<br>
+            Beta Testing: <a href="http://transparenthosting.com"> TransparentHosting.com</a> <br>
+            <br>
+            <u><i>Contact Us<br>
+            </i></u><br>
+            The preferred way to contact us is through our Community Forums. Contact 
+            through email only if you want to discuss something like partnership, 
+            hosting etc.<br>
+            <br>
+            Forums: <a href="http://forums.exocrew.com">http://forums.exocrew.com</a><br>
+            E-Mail : <A href="mailto:mike@exocrew.com">Mike@ExoCrew.com</A><br>&nbsp;</p>
+             
+        </td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+</body>
+
+</html>
