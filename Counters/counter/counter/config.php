@@ -1,0 +1,1 @@
+<? $filename='counter.txt';  $imgdir='numbers';  $image=1;?>
