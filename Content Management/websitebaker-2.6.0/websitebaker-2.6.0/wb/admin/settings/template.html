@@ -1,0 +1,606 @@
+</div><!-- BEGIN main_block -->
+
+<script language="javascript" type="text/javascript">
+function change_os(type) {
+	if(type == 'linux') {
+		document.getElementById('file_perms_box1').style.display = 'block';
+		document.getElementById('file_perms_box2').style.display = 'block';
+		document.getElementById('file_perms_box3').style.display = 'block';
+	} else if(type == 'windows') {
+		document.getElementById('file_perms_box1').style.display = 'none';
+		document.getElementById('file_perms_box2').style.display = 'none';
+		document.getElementById('file_perms_box3').style.display = 'none';
+	}
+}
+</script>
+
+<style>
+.settings_table td {
+	vertical-align: top;
+	text-align: left;
+}
+.setting_name {
+	width: 180px;
+}
+.setting_value input, .setting_value select, .setting_value textarea {
+	width: 100%;
+}
+.setting_value textarea {
+	height: 50px;
+}
+#file_mode input {
+	width: 12px;
+	height: 12px;
+}
+#dir_mode input {
+	width: 12px;
+	height: 12px;
+}
+.advanced {
+	display: {DISPLAY_ADVANCED};
+}
+.save, .reset {
+	width: 100px;
+}
+#hide2 {
+	display: none;
+}
+</style>
+
+<form name="settings" action="save.php" method="post">
+<input type="hidden" name="advanced" value="{ADVANCED}" />
+
+<table cellpadding="3" cellspacing="0" border="0" align="center" width="100%" class="settings_table">
+<tr>
+	<td colspan="3">
+		<h2>{HEADING_GENERAL_SETTINGS}</h2>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_WEBSITE_TITLE}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="website_title" value="{WEBSITE_TITLE}" />
+	</td>
+	<script language="javascript" type="text/javascript">
+	document.settings.title.focus();
+	</script>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_WEBSITE_DESCRIPTION}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="website_description">{WEBSITE_DESCRIPTION}</textarea>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_WEBSITE_KEYWORDS}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="website_keywords">{WEBSITE_KEYWORDS}</textarea>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_WEBSITE_HEADER}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="website_header">{WEBSITE_HEADER}</textarea>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_WEBSITE_FOOTER}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="website_footer">{WEBSITE_FOOTER}</textarea>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_PAGE_LEVEL_LIMIT}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="page_level_limit">
+		<!-- BEGIN page_level_limit_list_block -->
+			<option value="{NUMBER}"{SELECTED}>{NUMBER}</option>
+		<!-- END page_level_limit_list_block -->
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_PAGE_TRASH}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="page_trash" id="page_trash_disabled" style="width: 14px; height: 14px;" value="disabled"{PAGE_TRASH_DISABLED} />
+		<label for="page_trash_disabled">{TEXT_DISABLED}</label>
+		<input type="radio" name="page_trash" id="page_trash_inline" style="width: 14px; height: 14px;" value="inline"{PAGE_TRASH_INLINE} />
+		<label for="page_trash_inline">{TEXT_INLINE}</label>
+		<div style="margin: 0; padding: 0;{DISPLAY_PAGE_TRASH_SEPARATE}">
+			<input type="radio" name="page_trash" id="page_trash_separate" style="width: 14px; height: 14px;" value="separate"{PAGE_TRASH_SEPARATE} />
+			<label for="page_trash_separate">{TEXT_SEPARATE}</label>
+		</div>
+	</td>
+</tr>
+<input type="hidden" name="page_languages" value="{PAGE_LANGUAGES}" />
+<tr class="advanced">
+	<td class="setting_name">{TEXT_MULTIPLE_MENUS}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="multiple_menus" id="multiple_menus_true" style="width: 14px; height: 14px;" value="true"{MULTIPLE_MENUS_ENABLED} />
+		<label for="multiple_menus_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="multiple_menus" id="multiple_menus_false" style="width: 14px; height: 14px;" value="false"{MULTIPLE_MENUS_DISABLED} />
+		<label for="multiple_menus_false">{TEXT_DISABLED}</label>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_HOME_FOLDERS}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="home_folders" id="home_folders_true" style="width: 14px; height: 14px;" value="true"{HOME_FOLDERS_ENABLED} />
+		<label for="home_folders_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="home_folders" id="home_folders_false" style="width: 14px; height: 14px;" value="false"{HOME_FOLDERS_DISABLED} />
+		<label for="home_folders_false">{TEXT_DISABLED}</label>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_MANAGE_SECTIONS}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="manage_sections" id="manage_sections_true" style="width: 14px; height: 14px;" value="true"{MANAGE_SECTIONS_ENABLED} />
+		<label for="manage_sections_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="manage_sections" id="manage_sections_false" style="width: 14px; height: 14px;" value="false"{MANAGE_SECTIONS_DISABLED} />
+		<label for="manage_sections_false">{TEXT_DISABLED}</label>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_SECTION_BLOCKS}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="section_blocks" id="section_blocks_true" style="width: 14px; height: 14px;" value="true"{SECTION_BLOCKS_ENABLED} />
+		<label for="section_blocks_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="section_blocks" id="section_blocks_false" style="width: 14px; height: 14px;" value="false"{SECTION_BLOCKS_DISABLED} />
+		<label for="section_blocks_false">{TEXT_DISABLED}</label>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_INTRO_PAGE}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="intro_page" id="intro_page_true" style="width: 14px; height: 14px;" value="true"{INTRO_PAGE_ENABLED} />
+		<label for="intro_page_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="intro_page" id="intro_page_false" style="width: 14px; height: 14px;" value="false"{INTRO_PAGE_DISABLED} />
+		<label for="intro_page_false">{TEXT_DISABLED}</label>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_HOMEPAGE_REDIRECTION}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="homepage_redirection" id="homepage_redirection_true" style="width: 14px; height: 14px;" value="true"{HOMEPAGE_REDIRECTION_ENABLED} />
+		<label for="homepage_redirection_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="homepage_redirection" id="homepage_redirection_false" style="width: 14px; height: 14px;" value="false"{HOMEPAGE_REDIRECTION_DISABLED} />
+		<label for="homepage_redirection_false">{TEXT_DISABLED}</font>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_SMART_LOGIN}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="smart_login" id="smart_login_true" style="width: 14px; height: 14px;" value="true"{SMART_LOGIN_ENABLED} />
+		<label for="smart_login_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="smart_login" id="smart_login_false" style="width: 14px; height: 14px;" value="false"{SMART_LOGIN_DISABLED} />
+		<label for="smart_login_false">{TEXT_DISABLED}</label>
+	</td>
+</tr>
+<tr class="advanced" style="display: {GD_EXTENSION_LOADED};">
+	<td class="setting_name">{TEXT_CAPTCHA_VERIFICATION}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="captcha_verification" id="captcha_verification_true" style="width: 14px; height: 14px;" value="true"{CAPTCHA_VERIFICATION_ENABLED} />
+		<label for="captcha_verification_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="captcha_verification" id="captcha_verification_false" style="width: 14px; height: 14px;" value="false"{CAPTCHA_VERIFICATION_DISABLED} />
+		<label for="captcha_verification_false">{TEXT_DISABLED}</label>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_LOGIN}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="frontend_login" id="frontend_login_true" style="width: 14px; height: 14px;" value="true"{PRIVATE_ENABLED} />
+		<label for="frontend_login_true">{TEXT_ENABLED}</label>
+		<input type="radio" name="frontend_login" id="frontend_login_false" style="width: 14px; height: 14px;" value="false"{PRIVATE_DISABLED} />
+		<label for="frontend_login_false">{TEXT_DISABLED}</label>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_SIGNUP}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="frontend_signup">
+			<option value="false">{TEXT_DISABLED}</option>
+			<!-- BEGIN group_list_block -->
+				<option value="{ID}" {SELECTED}>{NAME}</option>
+			<!-- END group_list_block -->
+		</select>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_PHP_ERROR_LEVEL}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="er_level">
+			<option value="">{TEXT_PLEASE_SELECT}...</option>
+			<!-- BEGIN error_reporting_list_block -->
+				<option value="{VALUE}"{SELECTED}>{NAME}</option>
+			<!-- END error_reporting_list_block -->
+		</select>
+	</td>
+</tr>
+<tr class="advancedfont">
+	<td class="setting_name">{TEXT_WYSIWYG_STYLE}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="wysiwyg_style" value="{WYSIWYG_STYLE}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_SERVER_EMAIL}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="server_email" value="{SERVER_EMAIL}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_WYSIWYG_EDITOR}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="wysiwyg_editor">
+		<!-- BEGIN editor_list_block -->
+			<option value="{FILE}"{SELECTED}>{NAME}</option>
+		<!-- END editor_list_block -->
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>
+		<input type="submit" name="submit" value="{TEXT_SAVE}" class="save" />
+		<input type="reset" name="reset" value="{TEXT_RESET}" class="reset" />
+	</td>
+	<td style="text-align: right;">
+		<button onclick="window.location = '{ADVANCED_LINK}'; return false;" class="{DISPLAY_ADVANCED_BUTTON}">{ADVANCED_BUTTON}</button>
+	</td>
+</tr>
+<tr>
+	<td colspan="3" style="padding-top: 10px;">
+		<h2>{HEADING_DEFAULT_SETTINGS}</h2>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_LANGUAGE}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="default_language">
+			<!-- BEGIN language_list_block -->
+			<option value="{CODE}"{SELECTED}>{NAME} ({CODE})</option>
+			<!-- END language_list_block -->
+		</select>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_CHARSET}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="default_charset">
+			<option value="">{TEXT_PLEASE_SELECT}...</option>
+			<!-- BEGIN charset_list_block -->
+				<option value="{VALUE}" {SELECTED}>{NAME}</option>
+			<!-- END charset_list_block -->
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_TIMEZONE}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="default_timezone">
+			<option value="0">{TEXT_PLEASE_SELECT}...</option>
+			<!-- BEGIN timezone_list_block -->
+				<option value="{VALUE}" {SELECTED}>{NAME}</option>
+			<!-- END timezone_list_block -->
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_DATE_FORMAT}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="default_date_format">
+			<option value="M d Y">{TEXT_PLEASE_SELECT}...</option>
+			<!-- BEGIN date_format_list_block -->
+				<option value="{VALUE}" {SELECTED}>{NAME}</option>
+			<!-- END date_format_list_block -->
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_TIME_FORMAT}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="default_time_format">
+			<option value="g:i A">{TEXT_PLEASE_SELECT}...</option>
+			<!-- BEGIN time_format_list_block -->
+				<option value="{VALUE}" {SELECTED}>{NAME}</option>
+			<!-- END time_format_list_block -->
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_TEMPLATE}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="default_template">
+		<!-- BEGIN template_list_block -->
+			<option value="{FILE}"{SELECTED}>{NAME}</option>
+		<!-- END template_list_block -->
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>
+		<input type="submit" name="submit" value="{TEXT_SAVE}" class="save" />
+		<input type="reset" name="reset" value="{TEXT_RESET}" class="reset" />
+	</td>
+	<td style="text-align: right;">
+		<button onclick="window.location = '{ADVANCED_LINK}'; return false;" class="{DISPLAY_ADVANCED_BUTTON}">{ADVANCED_BUTTON}</button>
+	</td>
+</tr>
+<tr>
+	<td colspan="3" style="padding-top: 10px;">
+		<h2>{HEADING_SEARCH_SETTINGS}</h2>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_VISIBILITY}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="search">
+			<option value="public">{TEXT_PUBLIC}</option>
+			<option value="private" {PRIVATE_SEARCH}>{TEXT_PRIVATE}</option>
+			<option value="registered" {REGISTERED_SEARCH}>{TEXT_REGISTERED}</option>
+			<option value="none" {NONE_SEARCH}>{TEXT_NONE}</option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_TEMPLATE}:</td>
+	<td class="setting_value" colspan="2">
+		<select name="search_template">
+		<!-- BEGIN search_template_list_block -->
+			<option value="{FILE}"{SELECTED}>{NAME}</option>
+		<!-- END search_template_list_block -->
+		</select>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_HEADER}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="search_header" style="height: 100px;">{SEARCH_HEADER}</textarea>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_RESULTS_HEADER}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="search_results_header">{SEARCH_RESULTS_HEADER}</textarea>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_RESULTS_LOOP}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="search_results_loop">{SEARCH_RESULTS_LOOP}</textarea>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_RESULTS_FOOTER}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="search_results_footer">{SEARCH_RESULTS_FOOTER}</textarea>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_NO_RESULTS}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="search_no_results" value="{SEARCH_NO_RESULTS}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_FOOTER}:</td>
+	<td class="setting_value" colspan="2">
+		<textarea name="search_footer">{SEARCH_FOOTER}</textarea>
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>
+		<input type="submit" name="submit" value="{TEXT_SAVE}" class="save" />
+		<input type="reset" name="reset" value="{TEXT_RESET}" class="reset" />
+	</td>
+	<td style="text-align: right;">
+		<button onclick="window.location = '{ADVANCED_LINK}'; return false;" class="{DISPLAY_ADVANCED_BUTTON}">{ADVANCED_BUTTON}</button>
+	</td>
+</tr>
+<tr>
+	<td colspan="3" style="padding-top: 10px;">
+		<h2>{HEADING_SERVER_SETTINGS}</h2>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name">{TEXT_SERVER_OPERATING_SYSTEM}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="radio" name="operating_system" id="operating_system_linux" onclick="javascript: change_os('linux');" style="width: 14px; height: 14px;" value="linux"{LINUX_SELECTED} />
+		<label for="operating_system_linux" onclick="javascript: change_os('linux');">{TEXT_LINUX_UNIX_BASED}</label>
+		<input type="radio" name="operating_system" id="operating_system_windows" onclick="javascript: change_os('windows');"" style="width: 14px; height: 14px;" value="windows"{WINDOWS_SELECTED} />
+		<label for="operating_system_windows" onclick="javascript: change_os('windows');">{TEXT_WINDOWS}</label>
+	</td>
+</tr>
+<tr>
+	<td class="setting_name"><div id="{BASIC_FILE_PERMS_ID}1" style="margin: 0; padding: 0;">&nbsp;</div></td>
+	<td class="setting_value" colspan="3">
+		<div id="{BASIC_FILE_PERMS_ID}2" style="margin: 0; padding: 0;">
+			<input type="checkbox" name="world_writeable" id="world_writeable" style="width: 14px; height: 14px;" value="true"{WORLD_WRITEABLE_SELECTED} />
+			<label for="world_writeable">
+				{TEXT_WORLD_WRITEABLE_FILE_PERMISSIONS} (777)
+			</label>
+			<br />
+			<font class="note">({WORLD_WRITEABLE_WARNING})</font>
+		</div>
+		<div id="{BASIC_FILE_PERMS_ID}3" style="margin: 0; padding: 0;"></div>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name"><div id="{ADVANCED_FILE_PERMS_ID}1" style="margin: 0; padding: 0;">{TEXT_FILESYSTEM_PERMISSIONS}:</div></td>
+	<td class="setting_value" id="file_mode" align="left">
+		<table cellpadding="2" cellspacing="0" border="0" width="100%" style="border-right: 1px solid #DDDDDD;" id="{ADVANCED_FILE_PERMS_ID}2">
+		<tr>
+			<td colspan="3" style="text-align: center; font-weight: bold;">
+				{TEXT_FILES}:
+			</td>
+		</tr>
+		<tr>
+			<td>{TEXT_USER}:</td>
+			<td>{TEXT_GROUP}:</td>
+			<td>{TEXT_OTHERS}:</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" name="file_u_r" id="file_u_r" value="true"{FILE_U_R_CHECKED} />
+				<label for="file_u_r">{TEXT_READ}</label>
+				<br />
+				<input type="checkbox" name="file_u_w" id="file_u_w" value="true"{FILE_U_W_CHECKED} />
+				<label for="file_u_w">{TEXT_WRITE}</label>
+				<br />
+				<input type="checkbox" name="file_u_e" id="file_u_e" value="true"{FILE_U_E_CHECKED} />
+				<label for="file_u_e">{TEXT_EXECUTE}</label>
+			</td>
+			<td>
+				<input type="checkbox" name="file_g_r" id="file_g_r" value="true"{FILE_G_R_CHECKED} />
+				<label for="file_g_r">{TEXT_READ}</label>
+				<br />
+				<input type="checkbox" name="file_g_w" id="file_g_w" value="true"{FILE_G_W_CHECKED} />
+				<label for="file_g_w">{TEXT_WRITE}</label>
+				<br />
+				<input type="checkbox" name="file_g_e" id="file_g_e" value="true"{FILE_G_E_CHECKED} />
+				<label for="file_g_e">{TEXT_EXECUTE}</label>
+			</td>
+			<td>
+				<input type="checkbox" name="file_o_r" id="file_o_r" value="true"{FILE_O_R_CHECKED} />
+				<label for="file_o_r">{TEXT_READ}</label>
+				<br />
+				<input type="checkbox" name="file_o_w" id="file_o_w" value="true"{FILE_O_W_CHECKED} />
+				<label for="file_o_w">{TEXT_WRITE}</label>
+				<br />
+				<input type="checkbox" name="file_o_e" id="file_o_e" value="true"{FILE_O_E_CHECKED} />
+				<label for="file_o_e">{TEXT_EXECUTE}</label>
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td class="setting_value" id="dir_mode" style="text-align: right;">
+		<table cellpadding="2" cellspacing="0" border="0" width="100%" id="{ADVANCED_FILE_PERMS_ID}3">
+		<tr>
+			<td colspan="3" style="text-align: center; font-weight: bold;">
+				{TEXT_DIRECTORIES}:
+			</td>
+		</tr>
+		<tr>
+			<td>{TEXT_USER}:</td>
+			<td>{TEXT_GROUP}:</td>
+			<td>{TEXT_OTHERS}:</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" name="dir_u_r" id="dir_u_r" value="true"{DIR_U_R_CHECKED} />
+				<label for="dir_u_r">{TEXT_READ}</label>
+				<br />
+				<input type="checkbox" name="dir_u_w" id="dir_u_w" value="true"{DIR_U_W_CHECKED} />
+				<label for="dir_u_w">{TEXT_WRITE}</label>
+				<br />
+				<input type="checkbox" name="dir_u_e" id="dir_u_e" value="true"{DIR_U_E_CHECKED} />
+				<label for="dir_u_e">{TEXT_EXECUTE}</label>
+			</td>
+			<td>
+				<input type="checkbox" name="dir_g_r" id="dir_g_r" value="true"{DIR_G_R_CHECKED} />
+				<label for="dir_g_r">{TEXT_READ}</label>
+				<br />
+				<input type="checkbox" name="dir_g_w" id="dir_g_w" value="true"{DIR_G_W_CHECKED} />
+				<label for="dir_g_w">{TEXT_WRITE}</label>
+				<br />
+				<input type="checkbox" name="dir_g_e" id="dir_g_e" value="true"{DIR_G_E_CHECKED} />
+				<label for="dir_g_e">{TEXT_EXECUTE}</label>
+			</td>
+			<td>
+				<input type="checkbox" name="dir_o_r" id="dir_o_r" value="true"{DIR_O_R_CHECKED} />
+				<label for="dir_o_r">{TEXT_READ}</label>
+				<br />
+				<input type="checkbox" name="dir_o_w" id="dir_o_w" value="true"{DIR_O_W_CHECKED} />
+				<label for="dir_o_w">{TEXT_WRITE}</label>
+				<br />
+				<input type="checkbox" name="dir_o_e" id="dir_o_e" value="true"{DIR_O_E_CHECKED} />
+				<label for="dir_o_e">{TEXT_EXECUTE}</label>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_PAGES_DIRECTORY}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="pages_directory" value="{PAGES_DIRECTORY}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_MEDIA_DIRECTORY}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="media_directory" value="{MEDIA_DIRECTORY}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_PAGE_EXTENSION}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="page_extension" value="{PAGE_EXTENSION}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_PAGE_SPACER}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="page_spacer" value="{PAGE_SPACER}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_RENAME_FILES_ON_UPLOAD}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="rename_files_on_upload" value="{RENAME_FILES_ON_UPLOAD}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td class="setting_name">{TEXT_SESSION_IDENTIFIER}:</td>
+	<td class="setting_value" colspan="2">
+		<input type="text" name="app_name" value="{APP_NAME}" />
+	</td>
+</tr>
+<tr class="advanced">
+	<td colspan="3" style="padding-top: 10px;">
+		<a name="administration_tools"></a>
+		<h2>{HEADING_ADMINISTRATION_TOOLS}</h2>
+	</td>
+</tr>
+<tr class="advanced">
+	<td colspan="3">
+		<ul style="margin: 0; padding: 0; margin-left: 20px; margin-bottom: 10px;">
+		<!-- BEGIN tool_list_block -->
+		<li style="padding-bottom: 5px;">
+		<a href="{ADMIN_URL}/settings/tool.php?tool={TOOL_DIR}">{TOOL_NAME}</a>
+		<br />{TOOL_DESCRIPTION}
+		</li>
+		<!-- END tool_list_block -->
+		</ul>
+		{TOOL_LIST}
+	</td>
+	<td>
+		&nbsp;
+	</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>
+		<input type="submit" name="submit" value="{TEXT_SAVE}" class="save" />
+		<input type="reset" name="reset" value="{TEXT_RESET}" class="reset" />
+	</td>
+	<td style="text-align: right;">
+		<button onclick="window.location = '{ADVANCED_LINK}'; return false;" class="{DISPLAY_ADVANCED_BUTTON}">{ADVANCED_BUTTON}</button>
+	</td>
+</tr>
+</table>
+
+</form>
+
+<hr />
+
+<button onclick="window.location = '{ADVANCED_LINK}'; return false;" class="{DISPLAY_ADVANCED_BUTTON}">{ADVANCED_BUTTON}</button>
+
+<font class="{DISPLAY_ADVANCED_BUTTON}">
+&nbsp; {MODE_SWITCH_WARNING}
+</font>
+
+<!-- END main_block -->
