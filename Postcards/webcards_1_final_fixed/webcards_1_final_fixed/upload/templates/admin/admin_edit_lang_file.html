@@ -1,0 +1,59 @@
+<span class="title">||edit_lang||</span><br /><br />
+<table width="100%" cellpadding="15" cellspacing="2" class="config">
+
+<tr>
+<td class="theader" colspan="2">
+||choose_lang_option|| {{lang_to_edit}}
+</td>
+</tr>
+<tr>
+<td class="theader" colspan="2">
+<form action="{{admin_script}}?act=lang&amp;what=show_edit_file&amp;s={{sess}}" method="post">
+||edit_user_area||
+</td>
+</tr>
+<tr>
+<td class="ad_row" width="50%">
+||select_file_to_edit||:
+</td>
+<td class="ad_row" width="50%">
+<select name="file_select">
+<option value="">||select_a_file||</option>
+{{lang_select_public}}
+</select>
+</td>
+</tr>
+<tr>
+<td class="ad_row" colspan="2">
+<input type="hidden" name="type" value="public" />
+<input type="hidden" name="lang_to_edit" value="{{lang_to_edit}}" />
+<input type="submit" value="||edit_lang||" />
+</td>
+</tr>
+</form>
+
+<tr>
+<td class="theader" colspan="2">
+<form action="{{admin_script}}?act=lang&amp;what=show_edit_file&amp;s={{sess}}" method="post">
+||edit_admin_area||
+</td>
+</tr>
+<tr>
+<td class="ad_row" width="50%">
+||select_file_to_edit||:</td>
+<td class="ad_row" width="50%">
+<select name="file_select">
+<option value="">||select_a_file||</option>
+{{lang_select_admin}}
+</select>
+</td>
+</tr>
+<tr>
+<td class="ad_row" colspan="2">
+<input type="hidden" name="type" value="admin" />
+<input type="hidden" name="lang_to_edit" value="{{lang_to_edit}}" />
+<input type="submit" value="||edit_lang||" />
+</td>
+</tr>
+</form>
+</table>
