@@ -1,0 +1,97 @@
+<?php
+
+// This file intentionally called explorer.txt, to make sure people cannot run it
+// without being logged in to the Pivot interface..
+
+$basepath = $Pivot_Vars["basepath"];
+
+
+
+$myurl =sprintf("index.php?session=%s&menu=admin&func=admin&do=fileexplore", $Pivot_Vars['session']);
+
+
+if ( isset($basepath) && (!preg_match("/^\.\//i", $basepath)) && ($basepath!=".") ) {
+	die("lamer");
+}
+
+if (isset($Pivot_Vars["view"])) {
+
+	$view = $Pivot_Vars["view"];
+	echo "<h3>$view</h3>";
+
+	if ($file = load_serialize($view)) {
+
+		echo "<pre>";
+		print_r($file);
+		echo "</pre>";
+
+	} else {
+
+		$file = implode('', file($view));
+		
+		$file = str_replace("</textarea>", "[/textarea]", $file);
+
+		echo "<textarea name='' rows='20' cols='80' style='width:98%'>";
+		echo($file);
+		echo "</textarea>";
+		
+	}
+
+} else {
+
+	echo "<table border='1' cellspacing='0' cellpadding='3'>";
+
+	if ($basepath == "") { $basepath="."; }
+
+	$d= dir($basepath);
+	while ($entry=$d->read()) {
+		$dir[]=$entry;
+	}
+	$d->close();
+
+	arsort($dir);
+
+	$dir= array_reverse ($dir);
+
+	echo "<tr><td class='title' colspan='2'><b>directories</b></tr>";
+	echo "<tr><td class='name'><a href='$myurl&basepath=".urlencode( dirname($basepath))."'>..</a></td><td class='go'><a href='$myurl&basepath=".urlencode( dirname($basepath))."'>&gt;</a></td>";
+	foreach ($dir as $f) {
+
+		if (is_writable($basepath."/".$f)) {
+			$wri = " <small style='color: #999;'>[writable]</small>";
+		} else {
+			$wri = " <small style='color: #666;'>[<b>Not</b> writable]</small>";
+		}
+
+		if (substr($f, 0, 1) == ".") {
+			// nothing
+		} else if (is_dir($basepath."/".$f)) {
+			echo "<tr><td class='name'><a href='$basepath/$f'>./$f/</a></td><td class='go'><a href='$myurl&basepath=".urlencode($basepath."/".$f)."'>&gt;</a>$wri</td>";
+		}
+	}
+
+	echo "<tr><td class='space' colspan='3'>&nbsp;</tr>";
+	echo "<tr><td class='title' colspan='3'><b>files</b></tr>";
+
+	foreach ($dir as $f) {
+		if (in_array( getextension(strtolower($f)) , array("php", "js", "txt", "html", "css"))) {
+
+			if (is_writable($basepath."/".$f)) {
+				$wri = " <small style='color: #999;'>[writable]</small>";
+			} else {
+				$wri = " <small style='color: #666;'>[<b>Not</b> writable]</small>";
+			}
+			echo "<tr><td class='name'><a href='$basepath/$f'>$f</a></td>";
+			echo "<td class='name'><a href='$myurl&view=".urlencode($basepath.'/'.$f)."'>&gt;</a>$wri</tr>";
+		} else if (is_dir($basepath."/".$f)) {
+			// nothing
+		} else {
+			echo "<tr><td class='name' colspan='2'>$f</td></tr>";
+		}
+	}
+	echo "</table>";
+
+}
+
+
+?>
