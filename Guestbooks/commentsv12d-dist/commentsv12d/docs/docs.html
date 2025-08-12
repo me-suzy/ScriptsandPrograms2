@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Comment-Guestbook Documentation</title>
+<style type="text/css">
+<!--
+body {
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	color: #333333;
+	width: 85%;
+	margin-left: 20px;
+}
+
+.title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	line-height: 30px;
+	background-color: #FFFFFF;
+	color: #336633;
+	width: 100%;
+}
+
+.header {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	background-color: #006666;
+	color: #DCDCDC;
+	height: 24px;
+}
+
+.footer {
+  font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 22px;
+	color: #333333;
+	background-color: #CCCCCC;
+}
+
+.titlebar {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 9px;
+	color: #FFFFFF;
+  background-color: #336699;
+}
+
+h2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #CCCCCC;
+	background-color: #554499;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	width: 400px;
+	height: 20px;
+}
+
+
+a:hover {
+	text-decoration: underline;
+}
+
+.style4 {font-size: 10px}
+-->
+</style>
+</head>
+
+<body>
+<p class="header"><strong>Comment-Guestbook Script Version 1.2</strong> </p>
+<p align="center"><img src="comm-intro.gif" width="531" height="151"></p>
+<p>Thank you for trying out my little script. This project was born when I was looking for something in between a guestbook and a shoutbox, and couldn't find one quite like I wanted. The original version was hard-coded to my site, and administration was done through phpMyAdmin. One day, someone asked if they could borrow my script, and many hours later I came up with this version. This can be used on any site that has PHP and a MySQL database of any recent versions. </p>
+<p class="header"><strong>Features:</strong></p>
+<ul><li>Easy to install - modify a few configuration variables, upload to your server, and run the supplied installer script</li>
+  <li>Displays country flag of the poster, flag display can be easily turned on or off </li>
+  <li>MouseOver a comment to display the time/date/ip of the posting </li>
+  <li>Bad word filter, user modifiable </li>
+  <li>Flexible implementation - can run in an iframe, or as it's own page, or in a new window. Easily modifiable CSS</li>
+  <li>Easy to implement multiple instances of the script, allowing 'topic-specific' comment areas for different pages on your site </li>
+  <li>All functionality is contained in only 2 script files </li>
+  <li>Administration Panel - easily modify or delete posts. If you have multiple guestbooks, all of them will use the single administration script</li>
+</ul>
+<p class="header"><strong>Configuration and Installation:</strong></p>
+<p class="header"><strong>1.</strong></p>
+<p>Download the zipped package name 'commentsv12-dist.zip' and extract its contents (you might have done that already). You should have folder named 'commentsv12' containing:</p>
+<ul>
+  <li> readme.txt - a readme telling you to read the readme contained in the main file </li>
+    <li> comments.php - the main script file</li>
+   <li>  commadmin.php - an administration module that allows simple editing and deleting of posts</li>
+   <li>  comminstall.php - An installer that creates the table needed to run your script</li>
+</ul>
+  In the docs folder - No need to upload this to your server: 
+  <ul>
+  <li> docs.html - The documentation that you are reading right now.</li>
+  <li>a few gif images used by this documentation </li>
+</ul>
+<p class="header"><strong>2.</strong></p>
+<p>Before uploading the files to your server you need to modify some values in the main script, 'comments.php'. They are contained in a section labelled
+  **SET THE VARIABLES BELOW**
+  . The following instructions are repeated within the script file itself. It is clearly marked in the script when you should stop editing. You will need to use a text editor like Notepad, or similar. Don't use a word processor, as it will introduce formatting codes into the script that will make it not function. Here's the information you need to supply:</p>
+<p>The first 4 items are database connection details:</p>
+<ul>
+  <li> <strong>$dbserver -</strong> the name of your database server. 'localhost' is a common value for 
+    many webhosts, but some use named servers, so put that value here. 
+    Ask your webhost if you don't know.</li>
+  <li><strong>$dbuser -</strong> the user name for your database. Ask your webhost if you don't know.</li>
+  <li><strong>$dbpassword -</strong> the password for your database. Ask your webhost if you don't know.</li>
+  <li><strong>$dbname -</strong> the database available to you, must exist already. Check with your  
+    web host if you don't know what this is.</li>
+</ul>
+<p> The next 2 items are specific to your running of this comment script. It's kind 
+    of important to understand the relationship between these 2 items, which becomes clearer if you read this entire document: </p>
+<ul>
+  <li> <strong>$admin_name -</strong> this is your administrator PASSWORD for this script ONLY - It is 
+        not related to your database or webserver passwords and SHOULD be set to  
+        something completely unrelated to any other passwords you use - keep this 
+        PRIVATE. You will post comments to your guestbook using this name, and also use 
+        this to access the administration window (see Administration below). </li>
+</ul>
+<p>That said, as an example, if your name is Bob, you might set your<strong> $admin_name</strong> to 
+    'Bob_xyz' (or whatever), <strong>then....</strong></p>
+<ul>
+  <li><strong>$display_name -</strong> Set this to 'Bob' in this example. When you, as admin, post 
+    a comment, use the <strong>admin_name</strong> you created above, 'Bob_xyz', it will display in  
+    the comments as 'Bob', and have a distinguishing highlight. Other posters will 
+    be unable to use the name 'Bob' to post. </li>
+</ul>
+<p>This next item sets the table name that will be created when you run the  
+  installer script. Comments posted to your guestbook will be saved in this database table:</p>
+<ul>
+  <li><strong>$tablename -</strong> default is 'comments', change to whatever you like if you need to. It might make your life simpler if the tablename was the same as the script name, especially if you plan to implement multiple copies, ie, script name 'comments2.php', tablename 'comments2'. <em>If you have a table named 'comments' in your database used by by some other script, you <strong>must</strong> change this name. The installer will not overwrite an existing table of the same name, but it will warn you that one exists. </em></li>
+</ul>
+<p>That is the end of required edits. The last item is optional. To change the  
+  display of flags on or off:</p>
+<ul>
+  <li><strong>$flags -</strong> set to 1 to turn on, 0 (zero) to turn off</li>
+</ul>
+<p>No further edits are needed for your script to run. If you want to modify the CSS styles or the bad word filter, you can move on further down the script, taking care to not disrupt any of the other coding. </p>
+<p>You can save the script with the default name 'comments.php', or rename it to anything you like (must end with .php). The installer will ask you for the new name. DO NOT rename or modify the administration script, 'commadmin.php', or the installer, 'comminstall.php'.</p>
+<p class="header"><strong>3.</strong></p>
+<p>Upload these files to your webserver:</p>
+<ul>
+  <li>comments.php (or your renamed copy of it)</li>
+  <li>commadmin.php</li>
+  <li>comminstall.php</li>
+</ul>
+<p> They need to be in the same directory, but can be in a sub-directory. Then you use your web browser to open the installer script, eg:</p>
+<p>http://www.yourwebsite.com/comments/comminstall.php</p>
+<p>Enter the name of the script if you have renamed it, and press 'Create Table'. If you have entered all the information correctly, a table will be created and you will go to a success screen where you can visit and test your new guestbook directly. If there is a problem, there will be some suggestions as to how to correct them.</p>
+<p>It's probably a good idea to remove the installer script from your server. If you need to install additional guestbooks at a later date, you can upload it again. <strong>While on the topic of multiple guestbooks, if it requires further explanation, here's an overview</strong>: </p>
+<p>Configure you first script with all the required variables. The only things that will change for additional scripts will be the script name and <strong>$tablename</strong> in the variables section. So, for example, if want 3 comment areas:</p>
+<ul>
+  <li> start with <strong>comments1.php</strong> with <strong>$tablename</strong> set to <strong>comments1</strong> </li>
+  <li>save comments1.php as <strong>comments2.php</strong>, change <strong>$tablename</strong> to <strong>comments2 </strong></li>
+  <li>save comments2.php as <strong>comments3.ph</strong>p, change <strong>$tablename</strong> to <strong>comments3</strong> </li>
+  <li>upload the three 3 comment scripts, the installer, and <strong>one</strong> unmodified commadmin.php to your server. Open the installer, eg. http://www.yoursite.net/comments/comminstall.php</li>
+  <li>first run of the installer, change the script name to comments1.php, click Create Table, press the back button to get back to the first installer screen (if successful, otherwise, you have a problem with your configuration values) </li>
+  <li>second run of the installer, change script name  to comments2.php, Create Table, go back again</li>
+  <li>third run of the installer, change name to comments3.php, Create Table, done - you now have 3 database tables , each responsible for its respective comment script.</li>
+  <li>you only need one administration script, commadmin.php, but it <strong>must be in the same directory</strong> as the 3 comment scripts </li>
+</ul>
+<p class="header"><strong>Website Integration :</strong> </p>
+<p>The simplest method of showing the guestbook on your site is with an iframe. On the page you wish to show it, insert this HTML code:</p>
+<p>&lt;iframe src=&quot;comments.php&quot; width=520 height=140 border=0 vspace=3&gt;&lt;/iframe&gt;&lt;br /&gt;</p>
+<p>This would display your guestbook as you see it illustrated in this document. You can freely modify these values, google for more information on iframe. You could also have it open in it's own window:</p>
+<p>&lt;a href=&quot;comments.php&quot; target=&quot;_blank&quot;&gt;Open My Guest Book!&lt;/a&gt;</p>
+<p>In fact this method is useful if just for your own purposes in seeing how the script works at different widths - you will find that it currently doesn't work too well in narrower displays with out some hacking of the input areas. If you want it to run on it's own page, you probably want to modify the 'body' section of the CSS to control the margins and width. See CSS customization section below. </p>
+<p class="header"><strong>Interface Description and Usage </strong></p>
+<p align="center"><img src="comm-desc.gif" width="640" height="240"> </p>
+<p>Some of these areas might seem to be self explanatory, but here's a few notes:</p>
+<ul>
+  <li><strong>Name Input</strong> - This is where a poster would enter their name (duh). Not so obvious is that if you, the site owner, post a comment, you will enter your <strong>$admin_name</strong> defined in the configuration setup. Your name will display as your<strong> $display_name. </strong>In the example above, the site owners <strong>$admin_name</strong> is 'admin' , her <strong>$display_name</strong> is 'Administrator'. No other poster can enter 'Administrator' as a name - they will be prompted to use another name in the <strong>Status Bar</strong>.</li>
+  <li><strong>Comment Input</strong> - Enter a comment here. Entry is limited to 250 characters. Any characters can be entered, they will stripped of HTML or otherwise illegal SQL or PHP commands before insertion in the database - in other words, weblinks, formatting, or code will not be active and will display 'as is'. A limited form of tagging is in the works for the next version.</li>
+  <li><strong>Text Counter</strong> - As a comment is entered, this will dynamically count down to the maximum 250 character limit.</li>
+  <li><strong>Submit</strong> - Sends the comment. As noted next in<strong> Status Bar</strong>, checks are made for blank or invalid entries.</li>
+  <li><strong>Status Bar</strong> - Displays useful messages for both your visitors and you: </li>
+</ul>
+
+  <blockquote>
+      <p>This status will be displayed when a visitor first enters your site, or attempts to send with a blank name or comment, or simply presses the send button, or attempts to use the 'admin' comment when they are not the administrator (no comment will be entered):</p>
+      <h2> Enter your name and a comment. Thanks!</h2>
+      <p>This status will be displayed if a visitor attempts to enter a comment with a name matching <strong>$display_name</strong> (your name) : </p>
+      <h2>The name you used is reserved by the site owner. Please use another name.</h2>
+      <p>This status is displayed when you enter your <strong>$admin_name</strong> (your administrator password) and the word '<strong>admin</strong>' in the comment box (without quote marks) and you press SEND. <strong>This is your gateway to the administration panel</strong>: </p>
+      <h2><u>Click Here To Open The Admin Window </u></h2>
+      <p>This status will be displayed after you or a visitor post a valid comment:</p>
+    <h2>Your comment has been added, (poster name). Thank You! </h2>
+  </blockquote>
+<ul>
+  <li><strong>Comments</strong> - All posted comments are displayed here, most recent first. Bad words are filtered and replaced, in this example with 'xxxxxx', you can change that in the script if you wish. Your <strong>$display_name</strong> is shown in red, with no flag, visitors in blue. Flag display can be turned off in the initial configuration described above.</li>
+  <li><strong>Scrollbars</strong> - Note that no scrollbars appear in your initial installation, and won't until there are enough entries to fill the window. They are customizable in the CSS section, but CSS scrollbars only have effect in Internet Explorer. They will display as standard scrollbars in other browsers.</li>
+</ul>
+<p class="header"><strong>Administration</strong></p>
+<p>Your gateway to the administration panel is to enter your administration password as a name, enter the word 'admin' in the comment box (without quotes), and press SEND. The <strong>Status Bar</strong> will display a link:</p>
+
+ 
+   <h2 align="center"><u>Click Here To Open The Admin Window</u></h2>
+    <p align="left"><strong>Security Note</strong> - the script has been engineered so that you (or any user) cannot directly open the commadmin.php script; it <strong>must be opened from the status bar link</strong>. <em>(during a browser session, if you have previously accessed the admin panel through the status bar link, you may find that you can in fact access commadmin.php directly, but it probably won't function correctly. If you quit your browser then try again to access commadmin.php directly, you should see a 'You are not authorized...' message)</em></p>
+    <p>Clicking this link will open the Administration Window as a popup:</p>
+  
+  <p align="center"><img src="admin.gif" width="409" height="299"></p>
+  <ul>
+    <li>Click the <strong>X</strong> symbol to delete a comment. A javascript alert box will ask for confirmation. If you press OK, the comment will be forever deleted and the list will refresh. </li>
+    <li>If you have deleted or edited any comments, clicking 'Close Window and Refresh List' will close the admin panel and refresh the guestbook listing in your browser. <em>(most browsers will warn you that you are resending POST data, just OK the message)</em></li>
+    <li>Click the <span class="title">&bull; </span>symbol to edit a comment. This screen will appear:</li>
+  
+    
+  </ul>
+        <div align="center"><img src="admin-edit.gif" width="408" height="298"> </div>
+
+        <ul>
+          <li>Edit the comment as desired, click 'Save Changes' to save the changes and return to the previous screen, or, to abort your changes, press your browsers 'back' button or close the window.</li>
+        </ul>
+  <p class="header"><strong>CSS Customization </strong></p>
+  <p>The image below points to the relevant CSS sections you might like to modify in the script, and represents the way your script will look on initial installation. After fairly extensive testing on several browser/platform combinations the 'stock' CSS setup displays quite consistently (it looks quite awful on some older browsers, but my care factor is zero for outdated browsers). There are plenty of good resources on the web for help on CSS if it's new to you:</p>
+  <p align="center"><img src="comm-css.gif" width="640" height="240"> </p>
+  <p align="left">CSS Notes:</p>
+  <ul>
+    <li>I deliberately chose to use an internal style sheet, to minimize file management. If you are experienced with CSS and are using multiple guestbooks, I don't have to explain how to remove the style sheet and link it externally.</li>
+
+    <li>If you want to run the guestbook in it's own page, you might want to look at the 'body' section for setting width and margins</li>
+    <li>The horizontal line between the comments is simply the margin between comment tables (each comment is in it's own table). Thus, the line will be the color of the body background. To control it's thickness, change the top or bottom margins in the 'table' CSS. </li>
+    <li>The input area is pretty fragile. Forms don't like to be inline with no margins it seems. To rearrange the order of the fields, you will have to find the form element in the script and fool around, as inline styles were the only way I could find to achieve this effect. Modify carefully. This is the area most likely to go screwy across browsers (ie might look fine in IE but whacked in Opera) </li>
+    <li>The scrollbar CSS is valid only in Internet Explorer, other browsers use there own scrollbars</li>
+    <li>The colors of the poster names in the comments are inline in the php functions that display the comments, you'll have to dig to find those and be careful to not disrupt the surrounding code. </li>
+    <li>A wordwrap function is in the script limiting a single word to 40 characters before breaking. This prevents the comment tables from mucking up in CSS layouts where veryveryvery long words stretch a table beyond it's intended bounds. </li>
+  </ul>
+  <p>Here's an example of a simple 5 minute hack, just playing with colors, fonts, and turning flags off:</p>
+  <p align="center"><img src="comm-css-exmpl.gif" width="445" height="180"> </p>
+  <p align="center">&nbsp;</p>
+<p class="header"><strong>Support</strong></p>
+<p>I'm just a regular guy with a job and other obligations, so I don't have a lot of time to help you with this if you have problems and you haven't already done some homework. Please don't ask me questions like 'how do I set up a database', or 'how do I upload the files', or you used a word processor for editing php files, or you didn't read the readme. Otherwise, feel free to write <a href="mailto:bryhal@rogers.com?subject=Comment Script">bryhal@rogers.com</a>. </p>
+<p align="center" class="footer style4">July 2005 - by bryan h. - bryhal@rogers.com - www.bryancentral.com - please leave credits intact</p>
+</body>
+</html>
