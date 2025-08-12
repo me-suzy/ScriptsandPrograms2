@@ -1,0 +1,458 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Openbiz Chart Configuration Document</title>
+<link rel="stylesheet" href="doc.css" type="text/css">
+<style>
+body { font-family: Tahoma;Verdana;Arial; font-size: 12px;}
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="100%" height="55" bgcolor="#0B326B"><a href="index.html"><img border="0" src="openbiz.gif" width="476" height="58"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFCC00"> &nbsp; </td>
+  </tr>
+</table>
+
+<h2>
+      Chart Service XML metadata Configuration</h2>
+
+<h3>How does openbiz draw chart?</h3> 
+<p><font face="Courier New" size="2"><font color="#0000FF">BizForm::CallService</font>(chartService,render)</font></p>
+<p><font face="Courier New" size="2">---&gt; <font color="#0000FF">chartService::render</font>($bizformName)</font></p>
+<p><font face="Courier New" size="2">&nbsp;&nbsp;&nbsp;&nbsp; ---&gt; read chart  
+xml file &quot;bizform_chart.xml&quot;</font></p> 
+<p><font face="Courier New" size="2">&nbsp;&nbsp;&nbsp;&nbsp; ---&gt; get the  
+chart data from bizform-&gt;bizobj</font></p> 
+<p><font face="Courier New" size="2">&nbsp;&nbsp;&nbsp;&nbsp; ---&gt; draw chart  
+by calling jpgraph APIs</font></p> 
+<hr>
+<h3>Draw X-Y Chart</h3> 
+<p>X-Y chart has X axis and Y axis. The GraphType  
+attribute is &quot;XY&quot; &lt;Chart  
+Name=&quot;AAA&quot; <b>GraphType=&quot;<font color="#FF0000">XY</font>&quot;</b>  
+...&gt;.&nbsp;</p> 
+<h4><b>General Elements of X-Y charts</b></h4> 
+<ul>
+  <li>Title - specify the title</li>
+  <li>Xaxis - specify the x-axis</li>
+  <li>Yaxis - specify the y-axis</li>
+  <li>Legend - specify the legend</li>
+  <li>DataSet - specify the data that generate the chart</li>
+</ul>
+<h4><b>Special Elements and Attributes of different 
+chart types</b></h4>
+<ul>
+  <li>Line chart 
+    <ul>
+      <li><font size="2">&lt;Data ID="bar1" Field=&quot;...&quot; <b>ChartType=&quot;Line&quot;</b>  
+        ...<b>Visible=&quot;1&quot;</b>&gt;</font></li> 
+      <li><font size="2">&lt;PointMark .../&gt;</font></li> 
+    </ul>
+  </li>
+  <li>Bar chart 
+    <ul>
+      <li><font size="2">&lt;Data ID="bar1" Field=&quot;...&quot; <b>ChartType=&quot;Bar&quot;</b>  
+        ...<b>Visible=&quot;1&quot;</b>&gt;</font></li> 
+    </ul>
+  </li>
+  <li>Group Bar chart 
+    <ul>
+      <li><font size="2">&lt;Data ID=<b>&quot;bar1&quot; </b>Field=&quot;...&quot;  
+        <b>ChartType=&quot;Bar&quot;</b> ...<b>Visible=&quot;0&quot;</b>&gt;<br> 
+        &lt;Data ID=<b>&quot;bar2&quot;</b> Field=&quot;...&quot; <b>ChartType=&quot;Bar&quot;</b>  
+        ...<b>Visible=&quot;0&quot;</b>&gt;<br> 
+        &lt;Data ID=<b>&quot;grpbar&quot;</b> Field=&quot;...&quot; <b>ChartType=&quot;GroupBar&quot;</b>  
+        <b>Children="bar1,bar2" Visible=&quot;1&quot;</b>/&gt;</font></li> 
+    </ul>
+  </li>
+  <li>Accumulated Bar chart 
+    <ul>
+      <li><font size="2">&lt;Data ID=<b>&quot;bar1&quot; </b>Field=&quot;...&quot;  
+        <b>ChartType=&quot;Bar&quot;</b> ...<b>Visible=&quot;0&quot;</b>&gt;<br> 
+        &lt;Data ID=<b>&quot;bar2&quot;</b> Field=&quot;...&quot; <b>ChartType=&quot;Bar&quot;</b>  
+        ...<b>Visible=&quot;0&quot;</b>&gt;<br> 
+        &lt;Data ID=<b>&quot;accbar&quot;</b> Field=&quot;...&quot; <b>ChartType=&quot;AccBar&quot;</b>  
+        <b>Children="bar1,bar2" Visible=&quot;1&quot;</b>/&gt;</font></li> 
+    </ul>
+  </li>
+  <li>Combination chart 
+    <ul>
+      <li><font size="2">&lt;Data ID="bar1" Field=&quot;...&quot; <b>ChartType=&quot;Bar&quot;</b>  
+        ...<b>Visible=&quot;1&quot;</b>&gt;</font></li> 
+      <li><font size="2">&lt;Data ID=&quot;line1&quot;  
+        Field=&quot;...&quot; <b>ChartType=&quot;Line&quot;</b> ...<b>Visible=&quot;1&quot;</b>&gt;</font></li> 
+    </ul>
+  </li>
+</ul>
+<hr>
+<h3>Draw Pie Chart</h3> 
+<p>Pie chart does not have X axis and Y axis. The  
+GraphType attribute is &quot;Pie&quot; &lt;Chart  
+Name=&quot;AAA&quot; <b>GraphType=&quot;<font color="#FF0000">Pie</font>&quot;</b>  
+...&gt;.&nbsp;</p> 
+<h4><b>General Elements of Pie charts</b></h4> 
+<ul>
+  <li>Title - specify the title</li>
+  <li>Legend - specify the legend</li>
+  <li>DataSet - specify the data that generate the chart</li>
+</ul>
+<h4><b>Special Elements and Attributes of different 
+chart types</b></h4>
+<ul>
+  <li>2D Pie chart 
+    <ul>
+      <li><font size="2">&lt;Data ID=&quot;pie1&quot;  
+        Field=&quot;...&quot; <b>ChartType=&quot;Pie&quot;</b> ...<b>Visible=&quot;1&quot;</b>&gt;</font></li> 
+    </ul>
+  </li>
+  <li>3D Pie chart 
+    <ul>
+      <li><font size="2">&lt;Data ID=&quot;pie2&quot;  
+        Field=&quot;...&quot; <b>ChartType=&quot;Pie3D&quot;</b> ...<b>Visible=&quot;1&quot;</b>&gt;</font></li> 
+    </ul>
+  </li>
+</ul>
+<hr>
+<h3>Explanation of attributes</h3>
+<p>Many elements and attributes are easy to understand, but others need some
+explanation as shown in the table below.</p>
+<table border="1" width="800" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="162" bgcolor="#C0C0C0" align="left" height="19"><b>Attribute(s)</b></td>
+    <td width="435" bgcolor="#C0C0C0" height="19"><b>Description</b></td>
+    <td width="181" bgcolor="#C0C0C0" height="19"><b>Sample</b></td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;Chart  
+      <b>Margin</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Define  
+      the margin (left, right,top,bottom) of a chart</td> 
+    <td width="181" valign="top" height="19">Margin=&quot;60,30,30,80&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;Xaxis  
+      <b>LabelField</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Define  
+      which BizObj field to provide labels of x-axis&nbsp;</td> 
+    <td width="181" valign="top" height="19">LabelField=&quot;Donation&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;Xaxis  
+      <b>LabelAngle</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Define  
+      the angle of labels of x-axis</td> 
+    <td width="181" valign="top" height="19">LabelAngle=&quot;30&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="38">&lt;...  
+      <b>Font</b>=&quot;&quot;&gt;</td>
+    <td width="435" valign="top" height="38">Define  
+      the font, font style and font size. Now support<br> 
+      Arial, Courier, Times, Verdana, Comic, Geogia</td> 
+    <td width="181" valign="top" height="38">Font="Arial,Bold,16"</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="38">&lt;...  
+      <b>Color</b>=&quot;&quot;/&gt;<b><br>
+      </b>&lt;... <b>FillColor</b>=&quot;&quot;/&gt;</td> 
+    <td width="435" valign="top" height="38">Define  
+      the color and fill color with <a href="http://www.w3schools.com/html/html_colornames.asp">Named  
+      color</a> or HEX color code&nbsp;</td> 
+    <td width="181" valign="top" height="38">Color=&quot;blue&quot;<br>
+      FillColor=&quot;#A16BFF&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="76">&lt;Legend  
+      <b>Position</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="76">Define  
+      the position of legend box. Format as aX,aY,aHAlign,aVAlign. aX is the  
+      fraction of graph width, aY is the fraction of graph height, aHAlign  
+      ('left','right','center') is the horizontal legend alignment, aVAlign ('bottom','top','center')  
+      is the vertical legend alignment</td> 
+    <td width="181" valign="top" height="76">Position="0.05,0.1,right,top"</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="18">&lt;Legend  
+      <b>Layout</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="18">Define  
+      the layout of the legend items. HOR or VERT</td> 
+    <td width="181" valign="top" height="18">Layout=&quot;VERT&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;Data  
+      <b>ChartType</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Define  
+      the chart type. Line, Bar, GroupBar, AccBar, Pie, Pie3D</td> 
+    <td width="181" valign="top" height="19">ChartType=&quot;Line&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;Data  
+      <b>Field</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Define  
+      the field name of the BizObj. The chart data is from this field</td> 
+    <td width="181" valign="top" height="19">Field=&quot;Donation&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;Data  
+      <b>LegendField</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Define  
+      which BizObj field to provide legend strings&nbsp;</td> 
+    <td width="181" valign="top" height="19">LegendField=&quot;Name&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;Data  
+      <b>Visible</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Define  
+      whether this chart is displayed or not. Value is 0 or 1</td> 
+    <td width="181" valign="top" height="19">Visible=&quot;1&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="38">&lt;Data  
+      <b>Children</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="38">Define  
+      the child chart ids. Format is Children=&quot;id1,id2&quot;. GroupBar and  
+      AccBar can have this attribute</td> 
+    <td width="181" valign="top" height="38">Children=&quot;bar1,bar2&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;DataPie  
+      <b>Size</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">If the  
+      value specified is between 0 and 1 then it is interpreted as a a fraction  
+      of either height or width, whatever is smallest, of the graph.<br> 
+      If the value is &gt;1 then it is interpreted as an absolute size in  
+      pixels.</td>
+    <td width="181" valign="top" height="19">Size=&quot;0.3&quot;<br>
+      Size=&quot;200&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;Data  
+      <b>Weight</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Specify  
+      the thickness of the chart in pixels&nbsp;</td> 
+    <td width="181" valign="top" height="19">Center=&quot;0.4,0.5&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;DataPie  
+      <b>Center</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Set  
+      the center point for the Pie chart</td> 
+    <td width="181" valign="top" height="19">Center=&quot;0.4,0.5&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;DataPie  
+      <b>Height</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Specify  
+      thickness of 3D pie plot</td> 
+    <td width="181" valign="top" height="19">Height=&quot;15&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;DataPie  
+      <b>Angle</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Specify  
+      projection angle for 3D in degrees</td> 
+    <td width="181" valign="top" height="19">Angle=&quot;30&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="19">&lt;DataPie  
+      <b>LabelPos</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="19">Specify  
+      the position of the labels for each slice as a fraction of the radius</td> 
+    <td width="181" valign="top" height="19">LabelPos=&quot;0.6&quot;</td>
+  </tr>
+  <tr>
+    <td width="162" valign="top" align="left" height="38">&lt;PointMark  
+      <b>Type</b>=&quot;&quot;/&gt;</td>
+    <td width="435" valign="top" height="38">Define  
+      the Line Point Marks types. Now support Square, Utriangle, Dtriangle,  
+      Diamond, Circle, FilledCircle, Cross, Star, X</td>  
+    <td width="181" valign="top" height="38">Type=&quot;Circle&quot;</td>
+  </tr>
+</table>
+
+<h3>DTD of BizForm_Chart xml file</h3>
+<table border="1" cellspacing="0" cellpadding="2" width="612">
+  <tr>
+    <td width="604"><font face="Courier New" size="2">&lt;!ELEMENT BizFormChart
+      (ChartList) &gt;<br>
+      &lt;!ATTLIST BizFormChart&nbsp;
+      Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST BizFormChart&nbsp; BizForm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      <br>
+      &lt;!ELEMENT ChartList&nbsp; (Chart+) &gt;<br>
+      &lt;!ELEMENT Chart (Title, Xaxis?, Yaxis?, DataSet, Legend) &gt;<br>
+      &lt;!ATTLIST Chart&nbsp;&nbsp;&nbsp;
+      Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST Chart&nbsp;&nbsp;&nbsp; GraphType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST Chart&nbsp;&nbsp;&nbsp;
+      Width&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST Chart&nbsp;&nbsp;&nbsp;
+      Height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST Chart&nbsp;&nbsp;&nbsp;
+      Margin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      <br>
+      &lt;!ELEMENT Title EMPTY &gt;<br>
+      &lt;!ATTLIST Title&nbsp;&nbsp;&nbsp;
+      Caption&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST Title&nbsp;&nbsp;&nbsp;
+      Font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Title&nbsp;&nbsp;&nbsp;
+      Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;</font>
+      <p><font face="Courier New" size="2">&lt;!ELEMENT Xaxis EMPTY &gt;<br>
+      &lt;!ATTLIST Xaxis&nbsp;&nbsp;&nbsp;
+      Font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Xaxis&nbsp;&nbsp;&nbsp;
+      Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Xaxis&nbsp;&nbsp;&nbsp; LabelField&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Xaxis&nbsp;&nbsp;&nbsp; LabelAngle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Xaxis&nbsp;&nbsp;&nbsp;
+      Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Xaxis&nbsp;&nbsp;&nbsp; TitleFont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Xaxis&nbsp;&nbsp;&nbsp; TitleMargin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      <br>
+      &lt;!ELEMENT Yaxis EMPTY &gt;<br>
+      &lt;!ATTLIST Yaxis&nbsp;&nbsp;&nbsp;
+      Font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Yaxis&nbsp;&nbsp;&nbsp;
+      Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Yaxis&nbsp;&nbsp;&nbsp; LabelField&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Yaxis&nbsp;&nbsp;&nbsp; LabelAngle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Yaxis&nbsp;&nbsp;&nbsp;
+      Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Yaxis&nbsp;&nbsp;&nbsp; TitleFont&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Yaxis&nbsp;&nbsp;&nbsp; TitleMargin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      <br>
+      &lt;!ELEMENT DataSet (Data?, DataPie?) &gt;<br>
+      &lt;!ELEMENT Data (Value?, PointMark?)&gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp;
+      ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp;
+      Field&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp; ChartType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp;
+      Weight&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp;
+      Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp; FillColor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp; ShowValue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp; LegendField&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp;
+      Children&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Data&nbsp;&nbsp;&nbsp;&nbsp;
+      Visible&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      <br>
+      &lt;!ELEMENT DataPie (Value?)&gt;<br>
+      &lt;!ATTLIST DataPie&nbsp;
+      ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp;
+      Field&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp; ChartType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #REQUIRED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp; LegendField&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp;
+      Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp;
+      Center&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp;
+      Height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp;
+      Angle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp; LabelPos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST DataPie&nbsp;
+      Visible&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;</font></p>
+      <p><font face="Courier New" size="2">&lt;!ELEMENT Value EMPTY &gt;<br>
+      &lt;!ATTLIST Value&nbsp;&nbsp;&nbsp;
+      Font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Value&nbsp;&nbsp;&nbsp;
+      Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      <br>
+      &lt;!ELEMENT PointMark EMPTY &gt;<br>
+      &lt;!ATTLIST PointMark&nbsp;
+      Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST PointMark&nbsp;
+      Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST PointMark&nbsp; FillColor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST PointMark&nbsp;
+      Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      <br>
+      &lt;!ELEMENT Legend EMPTY &gt;<br>
+      &lt;!ATTLIST Legend&nbsp;&nbsp;&nbsp; Position&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Legend&nbsp;&nbsp;&nbsp; Position&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Legend&nbsp;&nbsp;&nbsp;
+      Layout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Legend&nbsp;&nbsp;&nbsp;
+      Font&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Legend&nbsp;&nbsp;&nbsp;
+      Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;<br>
+      &lt;!ATTLIST Legend&nbsp;&nbsp;&nbsp; FillColor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      CDATA&nbsp; #IMPLIED &gt;</font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>
