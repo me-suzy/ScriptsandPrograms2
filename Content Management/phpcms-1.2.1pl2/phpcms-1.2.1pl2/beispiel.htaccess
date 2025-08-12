@@ -1,0 +1,123 @@
+# $Id: beispiel.htaccess,v 1.1.2.4 2003/08/01 11:40:04 bjmg Exp $ 
+#
+#   +----------------------------------------------------------------------+
+#   | phpCMS Content Management System - Version 1.2.0
+#   +----------------------------------------------------------------------+
+#   | phpCMS is Copyright (c) 2001-2003 by Michael Brauchl
+#   | and Contributing phpCMS Team Members
+#   +----------------------------------------------------------------------+
+#   | This program is free software; you can redistribute it and/or modify
+#   | it under the terms of the GNU General Public License as published by
+#   | the Free Software Foundation; either version 2 of the License, or
+#   | (at your option) any later version.
+#   |
+#   | This program is distributed in the hope that it will be useful, but
+#   | WITHOUT ANY WARRANTY; without even the implied warranty of
+#   | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#   | General Public License for more details.
+#   |
+#   | You should have received a copy of the GNU General Public License
+#   | along with this program; if not, write to the Free Software
+#   | Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+#   | MA  02111-1307, USA.
+#   +----------------------------------------------------------------------+
+#   | Original Author: Michael Brauchl (mcyra)
+#   | Contributors:
+#   |    Henning Poerschke (hpoe)
+#   +----------------------------------------------------------------------+
+#
+
+
+##########################
+#  Beispiel .htaccess
+##########################
+
+##########################
+# Zweck
+################
+# Diese .htaccess Datei wird auf Apache Servern verwendet, um
+# phpCMS in den "Stealth-Mode" zu versetzen, wodurch der "?file="
+# Teil der URL unterdrückt wird. Hierdurch wird Ihre Site 
+# suchmaschinenfreundlicher.
+#
+# Wenn Sie den Stealth-Mode verwenden möchten, passen Sie diese
+# Datei an und speichern Sie sie als ".htaccess" im Document Root.
+# Danach schalten Sie im GUI den Stealth-Mode - und am besten auch
+# den "Secure Stealth-Mode" - ein.
+#
+# Wenn Sie phpCMS in einem anderen Verzeichnis als /parser installiert 
+# haben, denken Sie bitte daran, die Apache-Direktiven in dieser
+# Datei anzupassen.
+#
+# Achtung: Mit dem Windows-Explorer ist es (zumindest in bestimmten
+# Windows-Versionen) nicht möglich Dateien umzubenennen wenn der neue
+# Dateiname einen '.' am Beginn enthält.
+
+##########################
+# Stealth-Mode
+##########################
+# Es gibt derzeit drei Möglichkeiten, phpCMS in den
+# Stealth Mode zu versetzen:
+#
+# Zwei benötigen Apaches mod_actions und mod_mime Module, 
+# eines benötigt mod_rewrite.
+
+##########################
+# ...mit AddType und Action Direktiven
+#################
+# entfernen Sie hierfür *nur* den Kommentar am Anfang der
+# nächsten zwei Zeilen:
+
+#AddType application/x-httpd-parse .htm
+#Action application/x-httpd-parse "/parser/parser.php?file="
+
+# "AddType" weist Apache an, die Dateiendung ".htm" mit dem
+# Dateityp "application/x-httpd-parse" zu verknüpfen.
+# Sodann wird Apache angewiesen, immer dann, wenn es eine
+# Datei diesen Typs antrifft, eine bestimmte Aktion auszuführen.
+# Diese Aktion besteht darin, die Datei an "/parser/parser.php?file="
+# weiter zu reichen.
+# Auf diese Weise wird jede Datei mit der Endung ".htm" an den
+# phpCMS Parser weiter gereicht.
+#
+# Natürlich können Sie hier anstatt ".htm" auch z.B. ".html"  (oder 
+# jede andere Endung mit der Ausnahme von .php) verwenden
+
+
+##########################
+# ...mit AddHandler und Action Direktiven
+#################
+# Dies ist ähnlich der oben beschriebenen Methode und kann im
+# (seltenen) Fall verwendet werden, dass zwar AddHandler funktioniert
+# nicht aber AddType.
+#
+# Entfernen Sie hierfür *nur* den Kommentar am Anfang der nächsten
+# zwei Zeilen:
+
+#AddHandler application/x-httpd-parse .htm
+#Action application/x-httpd-parse "/parser/parser.php?file="
+
+##########################
+# ...mit mod_rewrite
+#################
+# Wenn Sie mod_rewrite installiert haben, nicht aber mod_actions,
+# oder wenn Sie URL Rewriting schick finden...
+#
+# ...entfernen Sie den Kommentar am Anfang der nächsten
+# drei Zeilen:
+
+#RewriteEngine on
+#RewriteBase /
+#RewriteRule (.*)\.htm$ /parser/parser.php?file=/$1.htm [PT,QSA]
+
+
+##########################
+# Andere Dinge, die Sie tun können...
+##########################
+# Weisen Sie Apache an, immer eine bestimmte Datei anzuzeigen,
+# wenn eine URL auf ein Verzeichnis weist anstatt auf eine Datei.
+# Sie können mehr als eine Datei als DirectoryIndex angeben. Apache
+# arbeitet die Liste der Dateien ab, wenn die vorherige Datei nicht
+# gefunden wurde.
+
+#DirectoryIndex index.htm meinalterindex.html listingdenied.htm
