@@ -1,0 +1,10 @@
+{* language selection form *}
+
+<form name=lang_form method=post>
+<select name=lang onChange="window.location='index.php?new_language='+lang_form.lang.value;">
+
+  {section name=i loop=$lang_list}
+	<option value={$smarty.section.i.index} {if $current_language == $smarty.section.i.index}selected{/if}>{$lang_list[i]->description}</option>
+  {/section}
+</select>
+</form>
