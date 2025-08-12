@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+	<meta name="Keywords" content="PWP, PHP, Wiki, WikiWiki, Community, Edit, Download, Software, Content Management, Documentation, CMS">
+	<meta name="Description" content="PWP Wiki Processor, a GPL based PHP software.">
+	<meta name="Language" content="en">
+	<meta name="Generator" content="PWP Wiki Processor">
+	<meta name="robots" content="index,follow">
+	<title>PWP Wiki Processor &raquo; Installation</title>
+	<style type="text/css">@import url(../css/standard.css);</style>
+</head>
+<body>
+	<div id='uppermenu'>
+		<img src='../img/wiki.jpg' align='right' alt='PWP wiki processor' border='0'>
+		<h1>Installation</h1>
+		<p> <a href='TextRules.html'>TextRules</a> .   <a href='SimpleTextRules.html'>SimpleTextRules</a> .   <a href='Installation.html'>Installation</a> .   <a href='Configuration.html'>Configuration</a>   <br>   <a href='UserManual.html'>UserManual</a> .   <a href='FAQ.html'>FAQ</a> .   <a href='http://www.lars-ackermann.de/wiki/static/index.html'>&raquo;find more online</a> </p>
+	</div>
+	<div id='contents'><div id='textcolumn'>
+&nbsp;&middot;&nbsp;<a href="#Quick install">Quick install</a><br>&nbsp;&middot;&nbsp;<a href="#System requirements">System requirements</a><br>&nbsp;&middot;&nbsp;<a href="#Access rights and security considerations">Access rights and security considerations</a><br>&nbsp;&middot;&nbsp;<a href="#Data handling">Data handling</a><br>&nbsp;&middot;&nbsp;<a href="#Directory structure">Directory structure</a><br><hr size="1" noshade><!--content begin-->
+<p>
+<strong><em>Don't panic.</strong></em> For a quick glance at PWP you have to read just the first section. You are ready to run in a few minutes.
+<p>
+<a name="Quick install"><h2>Quick install</h2></a>
+<ol><li>Just unzip everything into the web pages root directory (or any subdirectory) of a PHP enabled web server. You do not have to adapt path names, etc. Just start through! If PWP resides in the web pages root directory, you may use: <em>/</em> or <em>/wiki</em> to start PWP. <em>/static</em> will call the static directory index file, <em>/help</em> contains this manual.
+<li>Unix OS, MAC OSX: Adjust the directory rights if needed. PWP should be able to write within the directory <em>/wiki</em> and its subdirs, and of course in <em>/static</em>.
+<li><em>/wiki/conf/Config.inc</em> and other config files could to be edited later for changing HTML keywords, InterWiki link targets, etc.</ol>
+<p>
+<a name="System requirements"><h2>System requirements</h2></a>
+<strong>PHP 4.2</strong> is required - that's all.
+<p>
+PWP has been tested with PHP 5.0, having the PHP  4 compatibility mode enabled. Due to the new object/class syntax in PHP 5.0, it will not run without the compatibility mode.
+<p>
+<em>register_globals=off</em> is supported; all variables are fetched from $_REQUEST, etc. 
+<p>
+The application itself requires less than 0.5 MB, you will need sufficient web space for your Wiki pages and especially the uploaded files.
+<p>
+<a name="Access rights and security considerations"><h2>Access rights and security considerations</h2></a>
+<p>
+PWP basically supports two scenarios described in the following paragraphs. The first one is to run a completely <strong>open Wiki</strong> where everyone is allowed to do everything. The second one is to grant everyone access to the static pages but restrict access to the Wiki itself for a <strong>closed group of editors</strong>.
+<p>
+What PWP does <em>not</em> support is an ownership based rights management, e.g. only the 'owner' of a page can erase it. Such a feature is beyond the concept of PWP. If you rely on ownership based rights, you should consider using a 'real' content management system (CMS). Some can be found starting from the <a href='Links.html'>Links</a> page.
+<p>
+<a name="Open Wiki"><h3>Open Wiki</h3></a>
+<p>
+An open Wiki supports the original idea: Collaboration and information exchange in a group or community. Everyone can join and amend data. It is recommended to configure the <em>MinFileAge</em> of files in the history and in the trash to be at least 7 days. This means a file has to be  in the trash or in the history for 7 days before it can become erased physically.
+<p>
+Another danger for open Wikis are search engine spiders, also known as search robots. Such a robot follows every link on a page stupidly - even the 'erase' links. You have two choices for handling this issue:-
+<p>
+<ul><li>Deny any robot the access to your dynamic Wiki pages and register only the static URL in the search engines. To achieve this, you should put a 'robots.txt' file in the root directory of your webserver or webspace which disallows access for any robot. More information about this magic file can be found at <a href="http://www.robotstxt.org">&raquo;http://www.robotstxt.org</a>.
+<li>Most communities want their information to be indexed by search engines. In this case you can define PWP to use JavaScript based links for sensitive actions. A robot will see an ordinary link pointing to the current page; robots do not execute JavaScript. Unfortunately you will exclude all users who's user agent does not support (or allow) JavaScript. The corresponding config entry is <em>UseJSLinks</em>.</ul>
+<p>
+You should consider to disallow HTML input, which is actually the default setting in your config, or to restrict HTML input to a few safe tags. Visitors might include JavsScript calls on the DHTML attributes like 'onclick' or 'onfocus'.
+<p>
+The last recommendation is to disable the web configuration of variables (AllowEditConfig).
+<p>
+<a name="Closed group of editors"><h3>Closed group of editors</h3></a>
+<p>
+In this scenario, a thrustworthy group of editors maintains the content. Public access is granted via exported static pages.
+<p>
+PWP itself does not implement any user rights management. The reason is simple: Your webserver already does - I didn't want to re-implement such a feature for the n<sup>th</sup> time. There is the danger of coding new bugs and, further, PWP would force the user to memorize one more password. Using the web server's access management an user can work with several applications having <em>one</em> centrally managed password.
+<p>
+The principle for a closed group of editors is simple. You have to restrict the access to the  /wiki/  directory and all its subdirectories. Do so by applying the mechanism your web server or web provider offers.
+<p>
+The access restriction to directories solves the &quot;search robots problem&quot; described above under 'Open Wiki', too.
+<p>
+<em>New in 1.5.0</em> PWP offers a simple access management for some sensitive operations like exporting a static snapshot. The config setting 'Admins' is supposed to enumerate the users with admin privileges. Like explained above, the web server access mechanism has to provide the username for PWP in the environment variable 'REMOTE_USER'. (Most web servers will do so automatically.)
+<p>
+A recommendation for (local) Windows environments is the Sambar web server <a href="http://www.sambar.com">&raquo;http://www.sambar.com</a>. There is a free and a professional version. The first one has a nice web based user management function, the latter one also supports the user managament based on an NT domain controller.
+<p>
+<a name="Data handling"><h2>Data handling</h2></a>
+<p>
+<a name="Creating a backup of your Wiki pages"><h3>Creating a backup of your Wiki pages</h3></a>
+All your Wiki pages reside in the directory <em>/wiki/data</em>. Every Wiki page is in its own file. The file name matches the Wiki page name. The uploaded files are stored in the directory <em>/wiki/upload</em>. It would be sufficient to backup these two directories.
+<p>
+The older revisions of your pages are in the directory <em>/wiki/history</em>. Every file name corresponds to the name of a Wiki page or an uploaded file. All files in this directory have an unique numeric file name extension. Decide for yourself if it is worth keeping older revisions in your backup.
+<p>
+In the directory <em>/wiki/trash</em> are the deleted files; both Wiki pages and uploaded files. Make a backup if you are running an open Wiki.
+<p>
+In any case: Ignore the cache in <em>/wiki/cache</em>.
+<p>
+<a name="Getting a copy of the static pages"><h3>Getting a copy of the static pages</h3></a>
+<p>
+Simply generate static web pages using the menu item 'Extra'. You will need to copy these directories for a backup:-
+<ul><li><em>/img</em> - which contains the images (logo) used by PWP
+<li><em>/css</em> - containing the style sheet
+<li><em>/static</em> - where all static HTML files are
+<li><em>/static/upload</em> - which contains a snap shot of all uploaded files</ul>
+<p>
+Static pages do not contain Wiki mark-up. They consist of 100% static HTML. The static pages can be copied on CD-ROM or every other medium. All path entries inside the static pages are relative (Unless you did link images using an absolute path, see <a href='FAQ.html'>FAQ</a>).
+<p>
+<a name="File time and FTP backup"><h3>File time and FTP backup</h3></a>
+PWP features like RecentChanges, etc. are based on the file attributes created and last modified. An FTP based file transfer exchanges only the file contents itself - not the file attributes. If you backup your Wiki data using FTP, all time based file attributes will we set to the current time, i.e. all files have been created and modified recently.
+<p>
+A workaround might be to store your data files in a zip archive and transport the zip file via FTP.
+<p>
+<a name="Directory structure"><h2>Directory structure</h2></a>
+<ul><li><em>/static</em> contains the static files
+<li><em>/img</em> and <em>/css</em> contain the style sheet and images used by PWP.
+<li><em>/help</em> provides this manual again
+<li><em>/wiki</em> contains the application. There should be an .htaccess file and run.php
+<ul><li><em>/wiki/conf</em> is the home of configuration files you should have a look at.
+<li><em>/wiki/data</em> stores the Wiki pages.
+<li><em>/wiki/lock</em> hosts page lock files.
+<li><em>/wiki/cache</em> contains cached Wiki pages.
+<li><em>/wiki/upload</em> stores the uploaded files.
+<li><em>/wiki/trash</em> is the trash bin for both, uploaded files and Wiki pages.
+<li><em>/wiki/history</em> contains the older revisions of uploaded files and Wiki pages.
+<li><em>/wiki/core</em> is the place where the base classes of the application are to be found.
+<li><em>/wiki/resp</em> stores all responses of PWP in sub directories<!--content end--></ul></ul>
+
+</div>	</div>
+	<p>&nbsp;&nbsp;&nbsp;<small>(Powered by <a href='http://www.lars-ackermann.de/wiki/static'>PWP Version 1-5-0</a>)</small></p>
+</body>
+</html>
