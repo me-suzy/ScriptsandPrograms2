@@ -1,0 +1,801 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- Generated with PHPDoc, http://www.phpdoc.de -->
+<html>
+<head>
+	<title>PHPDoc -  - Class: Uploader</title>
+	<link href="phpdoc.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<table width="100%" border="0">
+	<tr>
+		<td align="left" valign="top" bgcolor="#B0BAFF">			
+			<table width="100%">
+				<tr>
+					<td align="left" valign="top"><a href="phpdoc_packagelist.html">Packageindex</a></td>
+					<td align="left" valign="top"><a href="phpdoc_classtree.html">Classtrees</a></td>
+					<td align="left" valign="top"><a href="phpdoc_modulegroup.html">Modulegroups</a></td>
+					<td align="left" valign="top"><a href="phpdoc_elementlist.html">Elementlist</a></td>
+					<td align="left" valign="top"><a href="phpdoc_warnings.html">Report</a></td>
+					<td align="left" valign="top"><a href="phpdoc_xmlfiles.html">XML Files</a></td>
+				</tr>
+			</table>	
+		</td>
+	</tr>
+	<tr>	
+		<td height="20" align="left" valign="top"><hr></td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">			
+			File: <a href="file://../../projects/4phpdoc/Uploader.php" target="_new">../../projects/4phpdoc/Uploader.php</a>
+			<h5>PHPDoc - </h5>
+			<h1>Uploader</h1>
+			Uploader<br>
+			<p>
+			
+			<p>
+			&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">
+			<h4>public    class Uploader </h4>
+			
+			<br>
+			
+			<p>
+			<table>
+				
+				
+				
+				
+				
+				
+				
+				
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="10" align="left" valign="top">&nbsp;</td>
+	</tr>
+	
+	<tr>
+		<td height="20" align="left" valign="top"><hr></td>
+	</tr>
+	
+	
+	<tr>
+		<td align="left" valign="top">		
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Public Method Summary</h2></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">void</td>
+					<td align="left" valign="top" width="100%"><a href="#function_Uploader()"><h4>Uploader()</h4></a>Constructor</td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">String</td>
+					<td align="left" valign="top" width="100%"><a href="#function_debug()"><h4>debug()</h4></a>Returns debug information</td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">String</td>
+					<td align="left" valign="top" width="100%"><a href="#function_openForm()"><h4>openForm(String $action, [ String $add_on ])</h4></a>Returns open form tag</td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">String</td>
+					<td align="left" valign="top" width="100%"><a href="#function_fileField()"><h4>fileField([ Integer $fileSize, Integer $size, String $accept, String $add_on ])</h4></a>Returns input file field tag</td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">String</td>
+					<td align="left" valign="top" width="100%"><a href="#function_closeForm()"><h4>closeForm([ Boolean $addSubmitButton ])</h4></a>Returns close form tag and internal tags</td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">Array</td>
+					<td align="left" valign="top" width="100%"><a href="#function_uploadTo()"><h4>uploadTo(String $path, [ Boolean $overwrite, string $allowedTypeArray ])</h4></a>Uploads files</td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">boolean</td>
+					<td align="left" valign="top" width="100%"><a href="#function_wasSubmitted()"><h4>wasSubmitted()</h4></a>Checks if an upload was made</td>
+				</tr>
+				
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">		
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Private Method Summary</h2></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">String</td>
+					<td align="left" valign="top" width="100%"><a href="#function__error()"><h4>_error(String $msg)</h4></a>Generates error message</td>
+				</tr>
+				
+			</table>
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="left" valign="top">		
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Public Field Summary</h2></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">string</td>
+					<td align="left" valign="top" width="100%"><a href="#variable_$error"><h4>$error</h4></a>errors</td>
+				</tr>
+				
+			</table>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">		
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Private Field Summary</h2></td>
+				</tr>
+				
+				<tr>
+					<td align="right" valign="top">integer</td>
+					<td align="left" valign="top" width="100%"><a href="#variable_$_size"><h4>$_size</h4></a>maximum file size</td>
+				</tr>
+				
+			</table>
+		</td>
+	</tr>
+	
+	
+	
+	
+	
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Public Method Details</h2></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="function_Uploader()"><h4>Uploader</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    void Uploader(  )</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						Constructor
+						<br>
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>void <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="function_debug()"><h4>debug</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    String debug(  )</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						Returns debug information
+						<br>
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>String <p>debug information</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="function_openForm()"><h4>openForm</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    String openForm( String $action, [ String $add_on ] )</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						Returns open form tag
+						<br>
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">String</td>
+								<td align="left" valign="top">$action</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">the target page</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">String</td>
+								<td align="left" valign="top">$add_on</td>
+								<td align="left" valign="top"><code>= >>''<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">add on for the tag</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>String <p>form tag</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="function_fileField()"><h4>fileField</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    String fileField( [ Integer $fileSize, Integer $size, String $accept, String $add_on ] )</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						Returns input file field tag
+						<br>
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">Integer</td>
+								<td align="left" valign="top">$fileSize</td>
+								<td align="left" valign="top"><code>= >>1048576<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">Integer</td>
+								<td align="left" valign="top">$size</td>
+								<td align="left" valign="top"><code>= >>-1<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">String</td>
+								<td align="left" valign="top">$accept</td>
+								<td align="left" valign="top"><code>= >>'text/*'<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">String</td>
+								<td align="left" valign="top">$add_on</td>
+								<td align="left" valign="top"><code>= >>''<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>String <p>input file tag</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="function_closeForm()"><h4>closeForm</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    String closeForm( [ Boolean $addSubmitButton ] )</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						Returns close form tag and internal tags
+						<br>
+						MUST BE CALLED!
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">Boolean</td>
+								<td align="left" valign="top">$addSubmitButton</td>
+								<td align="left" valign="top"><code>= >>true<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>String <p>closing form tags</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="function_uploadTo()"><h4>uploadTo</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    Array uploadTo( String $path, [ Boolean $overwrite, string $allowedTypeArray ] )</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						Uploads files
+						<br>
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">String</td>
+								<td align="left" valign="top">$path</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">dir to move files to</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">Boolean</td>
+								<td align="left" valign="top">$overwrite</td>
+								<td align="left" valign="top"><code>= >>false<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">overwrite existing file?</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">string</td>
+								<td align="left" valign="top">$allowedTypeArray</td>
+								<td align="left" valign="top"><code>= >>null<<</code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top">array of allowed file types, if empty all files are allowed</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>Array <p>array with file information</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="function_wasSubmitted()"><h4>wasSubmitted</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public    boolean wasSubmitted(  )</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						Checks if an upload was made
+						<br>
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>boolean <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+			</table>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Private Method Details</h2></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="function__error()"><h4>_error</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private    String _error( String $msg )</b><p>
+					</td>
+				</tr>
+				<tr>
+					<td width="10" align="left" valign="top">&nbsp;</td>
+					<td align="left" valign="top">
+						Generates error message
+						<br>
+						
+						<p>
+						
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="left" valign="top">Parameter</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td align="left" valign="top">						
+						<table>
+							<tr>
+								<td align="left" valign="top">String</td>
+								<td align="left" valign="top">$msg</td>
+								<td align="left" valign="top"><code></code></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="2" align="left" valign="top"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				
+				
+				<tr>
+					<td align="left" valign="top">Returns</td>
+					<td>String <p></td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+			</table>
+	</tr>
+		
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Public Field Details</h2></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="variable_$error"><h4>$error</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>public   string $error</b>
+						<p>
+						>><code>''</code><<
+						<p>
+						errors
+						<br>
+						
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+			</table>
+	</tr>
+	
+	<tr>
+		<td align="left" valign="top">
+			<table width="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" valign="top"><h2>Private Field Details</h2></td>
+				</tr>
+				
+				<tr><td colspan="2" align="left" valign="top"><a name="variable_$_size"><h4>$_size</h4></a></td></tr>
+				<tr>
+					<td colspan="2" align="left" valign="top">
+						<b>private   integer $_size</b>
+						<p>
+						>><code>1048576</code><<
+						<p>
+						maximum file size
+						<br>
+						
+					</td>
+				</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<tr>
+					<td colspan="2" align="left" valign="top"><hr></td>
+				</tr>
+				
+			</table>
+	</tr>
+		
+	
+	
+	<tr>
+		<td height="10" align="left" valign="top"><hr></td>
+	</tr>
+	<tr>
+		<td align="left" valign="top" bgcolor="#C0C0C0">			
+			<table>
+				<tr>
+					<td align="left" valign="top"><a href="phpdoc_packagelist.html">Packageindex</a></td>
+					<td align="left" valign="top"><a href="phpdoc_classtree.html">Classtrees</a></td>
+					<td align="left" valign="top"><a href="phpdoc_modulegroup.html">Modulegroups</a></td>
+					<td align="left" valign="top"><a href="phpdoc_elementlist.html">Elementlist</a></td>
+					<td align="left" valign="top"><a href="phpdoc_warnings.html">Report</a></td>
+					<td align="left" valign="top"><a href="phpdoc_xmlfiles.html">XML Files</a></td>
+				</tr>
+			</table>	
+		</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top">PHPDoc 1.0beta</td>
+	</tr>
+</table>
+
+</body>
+</html>
