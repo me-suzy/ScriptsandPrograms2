@@ -1,0 +1,62 @@
+<div style="margin:auto;text-align:center">
+<h2>Task List for &quot;{$jobDesc}&quot;</h2>
+<a href="index.php?page=index">Home</a> :: <a href="index.php?page=editJobs&client_id={$client_id}">Back to {$client_name} job list</a>
+</div>
+
+<br />
+<br />
+
+<table cellpadding="3" width="100%" align="center">
+	<Tr>
+		<th colspan="3">Add a new task</th>
+	</tr>
+	<form action="index.php" method="POST">
+	<input type="hidden" name="action" value="newTask">
+	<input type="hidden" name="job_id" value="{$smarty.get.id}">
+	<tr>
+		<td colspan="2"><input type="Text" style="width:400px" name="punchDesc"></td>
+		<td><input type="submit" value="New Task" class="btn"></td>
+	</tr>
+	</form>
+</table>
+
+<br />
+
+{if $tasks}
+<table cellpadding="3" align="center" width="100%">
+	<form action="index.php" method="POST">
+	<input type="hidden" name="action" value="renTask">
+	<tr>
+		<th></th>
+		<th>Worker</th>
+		<th>Task Description</th>
+		<th>hh:mm:ss</th>
+		<th></th>
+	</tr>
+	{foreach from=$tasks item=task}
+	<tr {if $task.isRunning}class="runningJobs"{/if}>
+		<td>{if $task.user_id == $smarty.session.id OR $smarty.session.id == 1}<a href="javascript:confirmDel('task','index.php?action=delTask&id={$task.id}&job_id={$smarty.get.id}','{$task.punchDesc|escape:"quotes"}')"><img src="img/trash.gif" border="0" align="middle"></a>{else}<img src="img/shared.gif">{/if}
+		</td>
+		<td>{$task.ownerInfo.firstname} {$task.ownerInfo.lastname}
+		</td>
+		<td><input type="text" name="task[{$task.id}]" class="editMe" style="width:400px" value="{$task.punchDesc|default:"No description"}"></td>
+		<td align="center">{if $task.punchIn}<input type="text" name="taskTime[{$task.id}]" size="12" value="{if $task.time.days}{$task.time.days}D {/if}{$task.time.hours}:{$task.time.minutes}:{$task.time.seconds}" class="editMe" style="text-align:right">{/if}</td>
+		{if $task.punchOut && $task.punchIn}
+		<td align="center"><a href="index.php?action=resumeTask&id={$task.id}"><img src="img/resume.gif" border="0" align="middle"></a></td>
+		{else}
+		<td align="center"><a href="index.php?action=punchIn&id={$task.id}"><img src="img/hitclock.gif" border="0" align="middle"></a></td>
+		{/if}
+	</tr>
+	{/foreach}
+	<tr style="background:#EDEDED">
+		<td colspan="4" align="right"><b><i>Totals</i>: {if {$totals.time.days > 0}{$totals.time.days}D {/if}{$totals.time.hours}:{$totals.time.minutes}:{$totals.time.seconds} = ${$totals.revenue|number_format:2}</b></td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td colspan="4" align="right"><input class="btn" type="submit" value="Update"></td>
+	</tr>
+	</form>
+</table>
+{else}
+	<h3 align="center">No tasks added yet.</h3>
+{/if}
