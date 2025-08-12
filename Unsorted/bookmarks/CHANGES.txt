@@ -1,0 +1,180 @@
+######################################################################
+Active PHP Bookmarks - lbstone.com/apb/
+
+Filename:   CHANGES.txt
+Authors:    L. Brandon Stone (lbstone.com)
+            Nathanial P. Hendler (retards.org)
+
+2001-05-02  File Created. [LBS]
+######################################################################
+
+---------------------------Revision History---------------------------
+
+v1.1.02 2003-03-31 [LBS]
+-   Fixed security hole where external variables could set path within
+    "include" statements.
+
+v1.1.01 2002-03-07 [LBS]
+-   Fixed automatic addition of "http://" so that it won't be added
+    to internal site links, such as "/documents/foo.txt".  (If you
+    want to just do a quick patch from version 1.1.00, you only have
+    to copy the apb_bookmark_class.php and apb_common.php files.  If
+    you have an older version than 1.1.00, you should do the full
+    install.)
+
+v1.1.00 2002-03-06 [LBS & NPH]
+-   Created "Daily Browser" feature. [NPH 20020301]
+-   Created "Check for Latest Version" feature. [LBS 20020303]
+-   "http://" automatically added to URLs that don't have it.
+    [LBS 20020301]
+-   Added pop-up tooltips to bookmarks and groups.  Also cleaned up
+    this code to avoid duplication. [LBS 20020301]
+-   Private bookmarks now show a private icon when in edit mode.
+    [LBS 20020301]
+-   Made the group path show up when a bookmark is added or edited.
+    [LBS 20020303]
+-   Remove "p" tag so that there's no extra space above the title
+    in the "top in" boxes on Mozilla. [LBS 20020301]
+-   Templates (head.php, foot.php, head_design.php, foot_design.php)
+    changed slightly to allow for easier upgrading. [LBS 20020301]
+-   Text under icons was made smaller. [LBS 20020301]
+-   Changed "Setup" to be "Tools". [LBS 20020301]
+-   Changed this text: "When you log in, you should choose
+    the 'Permanent' option to avoid this in the future."
+    [LBS 20020301]
+-   Changed the setup section to reflect "Tools" and to link to the
+    Daily Browser. [LBS 20020303]
+-   Made the parenthesized groups on the search results smaller.
+    [LBS 20020303]
+-   Rearranged the icon order.  Got an "Add Group" icon (that is
+    commented out until the next version). [LBS 20020303]
+-   Fixed "html, head, body tag bug". [LBS 20020303]
+-   Fixed double-quote and single-quote bugs by using htmlentities
+    in a cleaner way. [LBS 20020303]
+-   Cleanded up most of the *.txt files. [LBS 20020304]
+
+v1.0.01 2002-02-12 [LBS]
+-   Cleaned-up/commented apb.php file a little more. [LBS]
+-   Fixed "setup link goes to labs.retards.org" bug. [LBS]
+-   Fixed wording in setup to be more clear. [LBS]
+-   Made body tag bgcolor="FFFFFF". [LBS]
+-   Fixed "double //" bug in templates directory string. [LBS]
+-   Made wording for QuickAdd (onclick = false). [LBS]
+-   Changed get_number_of_bookmarks() to check for deleted
+    bookmarks. [LBS]
+-   Fixed "no form close tag" bug on account_setup.php page. [LBS]
+-   Fixed "QuickAdd doesn't have login protection" bug. [LBS]
+-   Added double password entry on setup. [LBS]
+-   Changed login cookie to say "Remember Me" rather than "Session
+    and Permenant". [LBS]
+-   Fixed "backslash" bug in search. [LBS]
+-   Fixed "extra padding" bug in search. [LBS]
+-   Changed parent group says "[top level]" rather than "None" on
+    Add page. [LBS]
+-   Fixed "blank bookmark" bug. [LBS]
+-   Changed the "back" link to say "Back to Editing". [LBS]
+-   Added "Back to Editing" link on "deleted" page. [LBS]
+-   Put "li" tags within "ul" tags, so that they're really
+    lists. [LBS]
+-   Fixed "groups show up when they have deleted bookmarks in
+    them" bug. [LBS]
+-   Fixed "counter counts deleted bookarks" bug. [LBS]
+-   Fixed "Group creation date shows as 00-00-0000 00:00:00"
+    bug. [LBS]
+-   Added: If there is no "Existing Group" don't display the
+    dropdown on the Add page. [LBS]
+
+v1.0.00 2002-01-30 [LBS & NPH]
+-   Remove + from dropdown. [NPH 20020129]
+-   Fix bookmark/group count in DMOZ view. [NPH 20020129]
+-   Fix bookmark_id security bug [NPH 20020129].
+-   "Edit group" functionality. [LBS 20020130]
+-   Ability to delete bookmarks. [NPH 20020129]
+-   Clean up setup pages. (Use h2 in header.) [LBS 20020129]
+-   Return group links in search results. [NPH 20020129]
+-   Document "this is a single user version for now". [NPH 20020130]
+-   BIG RED thing letting you know that you're in edit mode. [LBS 20020129]
+-   Ability to set up account after install... enter password, etc. [LBS NPH]
+-   Many cosmetic changes [LBS]
+
+v0.6.01 2001-08-27 [NPH]
+-   Search now splits search strings on spaces and searches for each keyword.
+-   Search now ranks its results.
+-   Fixed bug in directory view that caused some group bm totals to be wrong.
+-   Added 'edit' icon to directory view.  This aspect of the software needs to
+    be refined by Brandon.
+
+v0.6.00 2001-08-16 [NPH]
+-   Added subgroup support.
+-   DMOZ directory view.
+-   Reorganized Homepage view.
+-   Removed 'Recently Hidden'.
+-   Changed the way the group boxes on homepage work.
+
+v0.5.00 2001-06-06 [NPH & LBS]
+-   Added bm_hits table and code to make use of it.  This keeps us from loosing our
+    browsing history, and cumulative hit totals.  It also lets us track bookmark
+    usage per user.
+-   Added basic seach capabilities
+-   Started Directory View
+-   Chopping Recently Hidden Dropdown
+-   Private bookmarks are now private with $where_public code.
+
+v0.4.00  2001-04-26 [LBS]
+-   Added Gnome(ish) icons... (had to create a couple that didn't exist
+    before).
+-   Changed "Least Used" category to "Recently Hidden", because
+    that dropdown got way too big.
+-   Fixed "fat border" and "thin column" table bugs for Linux browsers.
+-   Added JavaScript hovers over links to show "real" URL.
+-   Changed wording from "Edit a Group" to "Edit Group".
+-   Changed text for "Logout User" to "Logout <actual username>".
+-   Fixed "bg_color" bug.
+-   Added a "help" link... (There still is no help, though, heh.)
+-   Added ability to use a "bookmarklet" to add bookmarks, which really
+    makes the program more useful.
+-   Program name is now called "Active PHP Bookmarks".
+-   Fixed "stripslashes" bug when adding new bookmark.
+-   Added "Are you sure?" on delete bookmark.
+-   Fixed "javascript escape" bug on netscape bookmarklet.
+-   Added ability to change the group of a bookmark.
+-   Fixed "Least Used carriage return" bug on Linux.
+
+v0.3.00  2001-03-27 [LBS]
+-   Added an Edit Group icon and added limited edit/delete
+    functionality from there.
+-   Added multiple user functionality.
+-   Added config variables for color scheme.
+-   Tried to get the database as close to finalized as possible.
+
+v0.2.00  2001-03-25 [LBS]
+-   Reformatted code so that it can be more easily expanded upon.
+-   Finalized PHP templating versus using FastTemplate.
+-   The program is now called "PHP Dynamic Bookmarks".
+-   Added link to PDB website.
+-   Added several comments.
+
+v0.1.01  2001-03-10 [NPH]
+-   Removed fast template code completely.
+-   Minor modifications to improve config.php.
+-   Added columns to database in anticipation of sub-groups and
+    multiple users.
+
+v0.1.00  2001-01-31 [LBS]
+-   Program was created.
+
+--------------------------Programming Credits-------------------------
+LBS = L. Brandon Stone (lbstone.com)
+NPH = Nathan Hendler (retards.org)
+
+-------------------------Versioning Standards-------------------------
+This program uses the major.minor.patch versioning method.
+
+major = Entire rewrite, platform change, technology change, database
+        schema changes/deletions.  (Major changes are not backwards-
+        compatible.)
+minor = Obvious visual differences, obvious feature additions or
+        changes, non-obvious database schema additions.  (Minor
+        changes are backwards-compatible.)
+patch = Bug fixes, very minor aesthetic changes, simple code rewrites
+        such as comment additions or code cleanup.
