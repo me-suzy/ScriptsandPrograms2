@@ -1,0 +1,240 @@
+<html>
+<head>
+<title>{head_title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={lang_code}">
+<link href="{css_folder}/css.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <center>
+  {header} 
+  <table width="778" border="0" cellspacing="0" cellpadding="0" class="tableline">
+    <tr> 
+      <td align="right" class="head"> 
+        <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top"><a href="{bb_url}"><img src="{pic_folder}/logo.gif" border="0"></a></td>
+            <td align="right"> <b>{my_name}:</b>
+              <!-- BEGIN login -->
+              <a href="?action=members">{login}</a> | <a href="?action=user_reg" target="_blank">{register}</a> 
+              <!-- END login -->
+              <!-- BEGIN blog -->
+              <a href="blog.php?bid={bid}">{my_blog}</a> | 
+              <!-- END blog -->
+              <!-- BEGIN logout -->
+              <a href="?action=user_pm&step=view" target="_blank">{view_pm}</a> 
+              | <a href="?action=user_modify" target="_blank">{modify_info}</a> 
+              | <a href="?action=logout">{logout}</a> 
+              <!-- END logout -->
+              | <a href="{web_url}" target="_blank">{web_name}</a> </td>
+            <td align="right" valign="bottom" class="head_right">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table border="0" cellspacing="0" cellpadding="8" class="tableline">
+    <tr> 
+      <td> <table border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr> 
+            <td><img src="{pic_folder}/folder.gif"> <a href="{bb_url}">{bb_name}</a><b> 
+              </b>&gt;<b> </b><a href="?action=view_forum&forum_id={forum_id}">{forum_name}</a> 
+              &gt; <a href="?action=view_forum&forum_id={forum_id}&folder={folder}">{folder_name}</a> 
+              &gt; <strong>{title}</strong> </td>
+          </tr>
+        </table> 
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr> 
+            <td valign="bottom"> <table border="0" cellspacing="1" cellpadding="3" class="forumline">
+                <tr align="center"> 
+                  <td class="{t_style}"><a href="?action=view_forum&forum_id={forum_id}">{topic_name}({t_folder_num})</a></td>
+                  <td class="{f_style}"><a href="?action=view_forum&folder=faq&forum_id={forum_id}">{faq_name}({f_folder_num})</a></td>
+                  <td class="{c_style}"><a href="?action=view_forum&folder=cream&forum_id={forum_id}">{cream_name}({c_folder_num})</a></td>
+                  <td class="{r_style}"><a href="?action=view_forum&folder=recovery&forum_id={forum_id}">{recovery_name}({r_folder_num})</a></td>
+                </tr>
+              </table></td>
+            <td align="right" valign="bottom"><a href="?action=add_post&folder={folder}&thread_id={thread_id}"><img src="{pic_folder}/reply.gif" alt="{new_post}" border="0"></a><a href="?action=add_thread&forum_id={forum_id}"><img src="{pic_folder}/newthread.gif" alt="{new_thread}" border="0"></a> 
+            </td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="1" cellpadding="3" class="forumline">
+          <th colspan="2" height="5"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <form name="form" method="post" action="forum.php">
+                  <tr> 
+                    <td> <b><font color="#DFEFF7">{search}</font></b> 
+                      <input type="text" name="keywords" size="20">
+                      <select name="attribute">
+                        <option value="1" selected>{subject_}</option>
+                        <option value="2">{author_}</option>
+                      </select>
+                      <input type="submit" name="searchthread" value=" &gt;&gt; " class="catbutton">
+                      <input type="hidden" name="forum_id" value="{forum_id}">
+                      <input name="folder" type="hidden" id="folder" value="{folder}">
+                      <input name="action" type="hidden" id="action" value="search_file">
+                    </td>
+                  </tr>
+                </form>
+              </table>
+            </th>
+		  <tr> 
+            <td width="21%" class="cat">{author_}
+            <td width="79%" class="cat">{content}
+          </tr>
+          <!-- BEGIN post_tr -->
+          <tr class="{rowclass}"> 
+            <td width="21%" rowspan="2" valign="top"><a href="?action=view_user&user_id={author_id}" target="_blank">{author}</a>{honor}<br>
+              {medal} <br>
+              <center>
+                {headpic} 
+              </center>
+              {post_num_}:{post_num}<br>
+              {score_}:{score}<br>
+              {reg_time_}:{reg_time}{ip}<br>
+            </td>
+            <td width="79%" class="row3" height="5"> <font class="topictitle">{subject}</font> 
+              <i>:: {postdate}</i><b> </b></td>
+          </tr>
+          <tr class="{rowclass}"> 
+            <td width="79%" height="100%" valign="bottom"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tr>
+                  <td valign="top"> 
+                    <p>{poll}{message}</p>
+                    <p>{attachment}</p>
+                    <p>&nbsp;</p>
+              </td>
+                </tr>
+                <tr>
+                  <td valign="bottom">{sig}<br>
+                    [<a href="?action=add_post&thread_id={tid}&folder={pfolder}&author_id={author_id}">{reply}</a>][<a href="?action=edit_post&folder={pfolder}&post_id={post_id}">{edit}</a>][<a href="?action=user_pm&step=sendform&pm_user_id={author_id}" target="_blank">{pm}</a>] 
+                    [{blog}] </td>
+                </tr>
+              </table>
+              
+            </td>
+          </tr>
+          <!-- END post_tr -->
+          <tr class=row3> 
+            <td colspan="2" align="center" height="5">&nbsp;</td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td><a href="?action=add_thread&forum_id={forum_id}"> 
+              <!-- BEGIN cutpage -->
+              </a> 
+              <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                <form name="form1" method="get" action="">
+                  <tr> 
+                    <td valign="bottom"> <table border="0" cellspacing="1" cellpadding="3" class="forumline">
+                        <tr> 
+                          <td class="row2" height="24"><img src="{page_pic_folder}/icons/pages.gif">{page_info}</td>
+                          <td class="row1" height="24">{cutpage} &nbsp; &nbsp; 
+                            &nbsp;{page_jump} 
+                            <input type="text" name="page" size="6">
+                            {get} 
+                            <input type="submit" name="submit" value=" &gt;&gt; " class="catbutton"> 
+                          </td>
+                        </tr>
+                      </table></td>
+                  </tr>
+                </form>
+              </table>
+              <!-- END cutpage -->
+            </td>
+            <td align="right"><a href="?action=add_post&folder={folder}&thread_id={thread_id}"><img src="{pic_folder}/reply.gif" alt="{new_post}" border="0"></a><a href="?action=add_thread&forum_id={forum_id}"><img src="{pic_folder}/newthread.gif" alt="{new_thread}" border="0"></a></td>
+          </tr>
+        </table>
+        <!-- BEGIN fast_reply -->
+        <br>
+        <table width="100%" border="0" cellpadding="3" cellspacing="1" class="forumline">
+          <form enctype="multipart/form-data" method="post" action="forum.php" name="post" onSubmit="return checkForm(this)">
+            <tr> 
+              <th colspan="2"> {fast_reply} 
+                <script language="JavaScript" type="text/javascript" src="bbs/js/post.js"></script>
+              </th>
+            </tr>
+            <tr class="row1"> 
+              <td width="35%">{r_subject}</td>
+              <td> <span class="gen"> 
+                <input name="subject" type="text" class="post" style="width:450px" tabindex="2" value="RE:{r_topic}" size="30" maxlength="60" />
+                </span> </td>
+            </tr>
+            <!-- BEGIN attach -->
+            <!-- END attach -->
+            <tr class="row1"> 
+              <td width="35%" valign="top"> {post_option}<br> <input name="emote_off" type="checkbox" id="emote_off" value="1">
+                {disable_emote}<br> <input name="bbcode_off" type="checkbox" id="bbcode_off" value="1">
+                {disable_bbcode}<br> <input name="parseurl_off" type="checkbox" id="parseurl_off" value="1">
+                {disable_url}</td>
+              <td> 
+                <span class="genmed"> 
+                      <textarea name="message" rows="5" cols="30" wrap="virtual" style="width:450px" tabindex="3" class="post"  onSelect="storeCaret(this);" onClick="storeCaret(this);" onKeyUp="storeCaret(this);" onKeyDown="javascript: ctlent();"></textarea>
+                      </span> </td>
+            </tr>
+            <!-- BEGIN confirm -->
+            <tr class="row2"> 
+              <td width="35%" align="right">{confirm_}</td>
+              <td><img src="{img_src}"> {confirm_ex} 
+                <input type="text" name="confirm_code" size="10"> </td>
+            </tr>
+            <!-- END confirm -->
+            <tr class="row2"> 
+              <td width="35%" align="right">&nbsp;</td>
+              <td align="center"> 
+                <input type="submit" name="Submit" value="Submit"> 
+                <input name="action" type="hidden" id="action" value="add_post"> 
+                <input type="hidden" name="step" value="2"> <input name="thread_id" type="hidden" id="thread_id" value="{r_thread_id}"> 
+                <input name="folder" type="hidden" id="folder" value="{r_folder}">
+                <input name="fast_reply" type="hidden" id="fast_reply" value="1"></td>
+            </tr>
+          </form>
+        </table>
+		<!-- END fast_reply -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="3">
+          <form name="move" method="get" action="forum.php">
+            <tr> 
+              <td align="right"> 
+                <input type="hidden" name="action" value="view_forum">
+                <input type="hidden" name="folder" value="{folder}">
+                {forum_jump}{forum_jumps}</td>
+            </tr>
+          </form>
+        </table>
+        <table border="0" cellspacing="0" cellpadding="0" width="100%" >
+          <form name="move" method="post" action="forum.php">
+            <tr> 
+              <td valign="top"> 
+                <p><br>
+                  {this_t_m} 
+                  <select name="move_type">
+                    <option value="0" selected>MOVE TO...</option>
+                    {move_options}
+                  </select>
+                  <input type="submit" name="submit2" value=" &gt;&gt; " class="catbutton">
+                  <input type="hidden" name="action" value="move_thread">
+                  <input type="hidden" name="thread_id" value="{thread_id}">
+                  <input type="hidden" name="thread_from" value="{thread_table}">
+                  <input type="hidden" name="folder" value="{folder}">
+                  {set_top} {set_lock} {set_stress} </p>
+              </td>
+            </tr>
+          </form>
+        </table>
+         
+      </td>
+    </tr>
+  </table>
+  <table width="778" border="0" cellspacing="0" cellpadding="0" class="tableline">
+    <tr> 
+      <td align="center">
+        <p>&nbsp;</p>
+        <p><a href="?action=copyright"><img src="{pic_folder}/powered.gif" border="0"></a><br>
+          {footer} </p>
+      </td>
+    </tr>
+  </table>
+</center>
+</body>
+</html>
