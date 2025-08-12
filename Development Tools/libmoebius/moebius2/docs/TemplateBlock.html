@@ -1,0 +1,193 @@
+<html>
+	<head>
+		<title>TemplateBlock</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">TemplateBlock Class</h1>
+		<br />
+		<span class="name">Name: TemplateBlock</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* Class represents a block document, for creating and parsing Block document files.</li>
+			<li>*</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.template</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza <aespinoza@structum.com.mx></span>
+		<br />
+		<span class="version">Version: 1.0</span>
+		<br />
+		<span class="extends">Extends: XMLDocument</span>
+		<br />
+		<span class="requires">Requires: ObjectManager, XMLDocument</span>
+		<br />
+		<span class="see">See: XMLDocument</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#TemplateManager">TemplateManager</a>
+			<br />
+			<a href="#SetBlockContent">SetBlockContent</a>
+			<br />
+			<a href="#SetVars">SetVars</a>
+			<br />
+			<a href="#AssignValue">AssignValue</a>
+			<br />
+			<a href="#Generate">Generate</a>
+			<br />
+			<a href="#GetXhtml">GetXhtml</a>
+			<br />
+			<a href="#GetStringXhtml">GetStringXhtml</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="TemplateManager">
+				<span class="methodName">TemplateManager</span>
+				<span> ( variant blockContent )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the template block.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">variant blockContent</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetBlockContent">
+				<span class="methodName">SetBlockContent</span>
+				<span> ( variant content )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Sets the the content for the block. The contents can only be of type xml, xmlbranch or string.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">variant content</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetVars">
+				<span class="methodName">SetVars</span>
+				<span> ( array variables )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Sets the variables and values to the block.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">array variables</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="AssignValue">
+				<span class="methodName">AssignValue</span>
+				<span> ( string var, string value )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Assigns a value to a variable in the block.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string var</li>
+				<li class="param">string value</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="Generate">
+				<span class="methodName">Generate</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Replaces the variables in the template, for their corresponding value, and generates the actual xhtml content.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if success, false otherwise.</p>
+		<hr />
+		<p>
+			<a name="GetXhtml">
+				<span class="methodName">GetXhtml</span>
+				<span> ( optional bool autoGenerate )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the xhtml code; it can also build the Xhtml code if autoGenerate is set to true (Default).</li>
+		</ul>
+		<p class="returns">Returns: object of type XMLBranch containing the xhtml code.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool autoGenerate</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetStringXhtml">
+				<span class="methodName">GetStringXhtml</span>
+				<span> ( optional bool autoGenerate, optional bool formatString )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the xhtml code in a string; it can also build the Xhtml code for the document if autoGenerate is set to true (Default).</li>
+			<li>* It can also format the string, depending on if 'formatString' is set to true.</li>
+			<li>* This method also adds the document type.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: string containing the xhtml document.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool autoGenerate</li>
+				<li class="param">optional bool formatString</li>
+			</ul>
+		</p>
+	</body>
+</html>
