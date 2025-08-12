@@ -1,0 +1,24 @@
+create table mailList (
+id int(6) not null auto_increment,
+name varchar(70) not null,
+emailAddress varchar(63) not null,
+IPaddress char(30) not null,
+subTime varchar(15) not null,
+tstamp timestamp,
+primary key(id)
+);
+create table temp (
+id int(6) not null auto_increment,
+name varchar(70) not null,
+emailAddress varchar(63) not null,
+verifyKey int(10) not null,
+primary key(id)
+);
+create table admin (
+id int(1) not null auto_increment,
+userName varchar(20) not null,
+passWord varchar(35) not null,
+adminEmail varchar(63) not null,
+primary key(id)
+);
+insert into admin(userName, passWord, adminEmail) values("admin", "admin", "admin@example.com")
