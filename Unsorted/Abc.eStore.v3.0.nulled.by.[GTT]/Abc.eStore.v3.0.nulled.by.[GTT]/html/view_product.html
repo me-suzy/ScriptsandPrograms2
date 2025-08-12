@@ -1,0 +1,123 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box05_center.gif" class="BodyText05" align="left"><%tlv 222%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+<br>
+
+<%tif product%>
+
+<%tlv searchlink%>
+
+<!-- Navigation -->
+<%tif catnav%>
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+<tr><td width="100%"><a href="index.php" class="menu"><b><%tlv 11%></b></a>
+<%tloop catnav%>
+ > <a href="index.php?cat_id=<%tlv cat_id%>" class="menu"><b><%tlv category%></b></a>
+<%tendloop catnav%>
+</td></tr></table>
+<%tendif catnav%>
+<!-- /Navigation -->
+
+<%tloop product%>
+
+<br><FORM ACTION="view_cart.php?add=<%tlv product%>" method="post">
+
+<table cellpadding="3" border="0" cellspacing="2" width="100%">
+<tr>
+<td valign="top"><img src="images/product/<%tlv image%>"></td>
+<td>
+
+<table cellpadding="3" border="0" cellspacing="0" width="100%">
+<tr >	
+<td align="left" valign="top" colspan="3">
+
+<font class="chapter02"><b><%tlv title%></b></font>
+
+<%tendloop product%>
+<p><b><%tlv 225%></b></p>
+<%tloop product%>
+<%tlv description%>
+
+<%tif quantity%>
+<p><b><%tlv 226%>:</b> <%tlv quantity%></p>
+<%tendif quantity%>
+
+<%tlv new_price%>
+
+</td>
+</tr>
+
+<!-- Attributes -->
+
+<%tif attributes%>
+
+<tr><td>&nbsp;</td></tr>
+
+<tr class="headBg6">
+<td valign="top"><b><%tlv 230%>:</b></td>
+<td valign="top" colspan="2">
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
+<%tloop attributes%>
+<tr><td align="right"><%tlv name%>:&nbsp;&nbsp;</td>
+<td align="left"><select name="atributes[<%tlv name%>]"><option value=""></option>
+<%tloop atr%>
+<option value="<%tlv name%>"><%tlv name%></option>
+<%tendloop atr%>
+</select></td></tr>
+<%tendloop attributes%>
+</table>
+
+</td>
+</tr>
+
+<!-- /Attributes -->
+
+<%tendif attributes%>
+			
+<tr>
+<td width="33%"><br><b><%tlv 231%></b>: <%tlv product%></td>
+<td align="right" valign="baseline"><br><%tlv 232%>: <INPUT TYPE="text" class="textbox" size="3" value="1" name="quan"></td>
+<td align="center" align="right" valign="baseline"><br><input type="image" src="<%tv design_dir%>add_to_cart.gif" border="0" name="submit"></td>
+</form>
+</tr>
+
+<tr>
+<td align="left" colspan="3">
+<br><p><a href="tellafriend.php?product=<%tlv product%><%tif session%>?session=<%tlv session%><%tendif session%>"><%tlv 233%></a></p>
+</td>
+</tr>
+</table>
+
+
+</td>
+</td>
+</table>
+
+
+
+
+<br><br>
+
+
+<%tendloop product%>
+<%tendif product%>
+
+<%tif noproduct%>
+<div align="center"><%tlv 223%></div>
+<%tendif noproduct%>
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
