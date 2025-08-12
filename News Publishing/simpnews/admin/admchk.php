@@ -1,0 +1,12 @@
+<?php
+if(isset($$langvar))
+{
+	if(strlen($$langvar)>4)
+		unset($$langvar);
+}
+if(isset($$langvar))
+{
+	if(!preg_match('/^[a-zA-Z0-9]{1,4}$/',$$langvar))
+		unset($$langvar);
+}
+?>
