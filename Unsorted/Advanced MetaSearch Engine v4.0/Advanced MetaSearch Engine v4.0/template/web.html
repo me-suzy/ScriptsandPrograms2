@@ -1,0 +1,322 @@
+<HTML>
+<HEAD>
+<TITLE>MetaSearch Results for: ##keywords##</TITLE>
+</HEAD>
+<BODY BGCOLOR=FFFFFF LINK=004080 VLINK=808080>
+<p>
+
+<table border=0 cellpadding=0 cellspacing=0 width="100%"><tr><td><p><font face="verdana,geneva" size=3 color=ff0000>&nbsp;<big><b>Advanced MetaSearch Engine</b></big><i><font color=004080> &nbsp; version 4.0 (standard)</font></i></font></td></tr>
+<tr><td height=1 bgcolor=cccccc>
+<spacer type="block" width=1 height=1>
+</td></tr>
+<tr><td align=right valign=bottom>
+<font face="verdana,geneva" size=2 color=0000ff>affordable metasearching with style and pride &nbsp;</i></font></td></tr>
+<tr><td><font face="arial,helvetica" size=2 color=000000>&nbsp;Example Template: <font color=0000ff><b>Web-Search</b></font></font>
+</td></tr></table>
+<blockquote>
+<p><font face="arial,helvetica" size=2>You can design your own Template or simply modify this example Template to customize it with your own site design... <br>&nbsp;<br></font>
+</blockquote>
+
+
+<!------ Example Search Box-1 HTML Starts ------>
+
+<form action="##scripturl##" method="get">
+<input type="hidden" name="category" value="##category##">
+<input type="hidden" name="where" value="##where##">
+<input type="hidden" name="ss" value="##ss##">
+
+<center>
+<table border=0 cellspacing=0 cellpadding=4 width="100%">
+<tr><td><font face="arial,helvetica" size=2 color=000000><b>&nbsp; Make another search ... refine your Keywords and try...</b></font></td></tr>
+<tr bgcolor=eeeeee>
+<td align=center nowrap>
+<font face="arial,helvetica" size=2>
+<input type="text" name="query" value="##keywords##" size="55" maxlength="150">
+ &nbsp; <input type=submit value="  Go ...  "></font></td>
+</tr>
+</table></center>
+</form>
+
+<!------- Example Search Box-1 HTML Ends ------->
+
+
+<!-- Top part of Template HTML output is DONE.
+	 Now, Show the Dynamically generated results -->
+
+<!-- Dynamic Layout MAP Starts at the following comment tag
+	 DO NOT REMOVE IT. YOU MUST KEEP THE FOLLOWING TAG AS IS -->
+
+<!--CG_DATA_OUTPUT_MAP--> <!--start-->
+
+
+<center>
+<table border=0 cellpadding=2 cellspacing=0 width="100%">
+<tr>
+<td colspan=2>
+<p><font face="verdana,geneva" size=2 color=000000>&nbsp;<br>&nbsp; Your search for <font color=000099><b>##keywords##</b></font> found following Resources:<br>&nbsp;</font>
+</td>
+</tr>
+
+
+<!-- Show Matching Keyword Search Links if found --> <!--start-->
+<show_kw_match>
+<tr bgcolor=eeeeee>
+<td colspan=2>
+<p><font face="arial,helvetica" size=2><b>&nbsp; More results with relevant or similar Keywords:</b></font>
+
+</td>
+</tr>
+<tr bgcolor=eeeeee>
+<td colspan=2>
+
+
+##kw_match##  <!-- This is the actual TAG with-in container.
+                   See above and below where the container Starts and Ends-->
+
+
+</td>
+</tr>
+<tr>
+<td colspan=2>
+&nbsp;
+</td>
+</tr>
+</show_kw_match>
+
+<!-- DONE with Matching Keyword Search Links if found --> <!--end-->
+
+<tr bgcolor=ffcc00>
+<td>
+
+<!-- Show Sorted Link Total and Raw Link Total --> <!--start-->
+
+<p><font face="arial,helvetica" size=2 color=000000><b>&nbsp;
+Resources:</b> ##link_total## unique results (total: ##rawtotal##)
+&nbsp;</font>
+
+<!-- DONE with Sorted Link Total and Raw Link Total --> <!--end-->
+
+</td>
+<td align=right>
+
+<!-- Show Start Link-Number and End Link-Number --> <!--start-->
+
+<p align=right><font face="arial,helvetica" size=2 color=000000>
+Showing: ##start_linknum## to ##end_linknum## &nbsp;
+</font>
+
+<!-- DONE with Start Link-Number and End Link-Number --> <!--end-->
+
+</td>
+</tr>
+
+<tr>
+<td>
+<p><font face="arial,helvetica" size=2 color=cccccc>&nbsp;<b>
+
+<!-- Show Tool-Box --> <!--start-->
+<show_toolbox>
+&nbsp;##toolbox##&nbsp;
+</show_toolbox>
+<!-- DONE with Tool-Box --> <!--end-->
+
+</b></font></td>
+<td align=right>
+
+<!-- Show Result/Link Page Number --> <!--start-->
+
+<p align=right><font face="arial,helvetica" size=2 color=0000ff>
+Page: ##link_pagenum## &nbsp;
+</font>
+
+<!-- DONE with Result/Link Page Number --> <!--end-->
+
+</td>
+</tr>
+
+<tr><td colspan="2" height="5"><spacer type="block" width="1" height="5"></td></tr>
+
+
+
+<tr><td colspan=2 align=right>
+<p align=right><font face="verdana,geneva,arial,helvetica" size=1 color=000000>
+
+<!-- Show Link-Bar --> <!--start-->
+<show_linkbar>
+
+&nbsp; ##linkbar## &nbsp;     <!-- This is the actual Link-Bar TAG with-in container.
+                                   See how the Link-Bar container Starts and Ends-->
+</show_linkbar>
+<!-- DONE with Link-Bar --> <!--end-->
+
+</font>
+</td>
+</tr>
+<tr><td colspan="2" height="4"><spacer type="block" width="1" height="4"></td></tr>
+
+<tr><td colspan=2>
+
+##links##  <!-- This is where Search Results/Links would appear -->
+
+</td>
+</tr>
+<tr>
+<td colspan=2>
+
+<!-- Link-Bar output Starts. Note, Link-Bar container is
+     actually within the links container  -->
+
+<show_linkbar>
+<p><font face="arial,helvetica" size=2 color=000000>&nbsp;<b>More Results:</b> ##linkbar##</font>
+</show_linkbar>   <!-- Link-Bar output Ends.  -->
+</td></tr>
+
+
+<tr>
+<td colspan=2 height=6>
+&nbsp;
+</td>
+</tr>
+
+<tr>
+<td colspan=2>
+<!-- Result output Ends; provided that the search was successful and results found -->
+
+<!-- On Failed search the folowing block generates Appropriate Message-->
+
+<show_error_msg> <!--start-->
+
+##error_msg##
+
+</show_error_msg> <!--end-->
+
+</td>
+</tr>
+
+</table></center>
+
+
+<!--CG_DATA_OUTPUT_MAP--> <!--end-->
+
+<!-- Dynamic Layout HTML-MAP Ends at the above comment tag
+	 DO NOT REMOVE IT. YOU MUST KEEP IT. -->
+
+
+
+<!------ Example Search Box-2 HTML Starts ------>
+
+<form action="##scripturl##" method="get">
+<input type="hidden" name="category" value="##category##">
+<center>
+<table border=0 cellspacing=0 cellpadding=4 width="100%">
+<tr bgcolor=ffcc00><td>
+
+<center>
+<table border=0 cellspacing=0 cellpadding=4 width=500>
+<tr>
+<td colspan=5 nowrap>
+<font face="arial,helvetica" size=2>
+<input type="text" name="query" value="##keywords##" size="52" maxlength="150"> &nbsp; <input type=submit value=" Search "></font></td>
+</tr>
+
+<tr>
+<td nowrap><font face="arial,helvetica" size=2>Match&nbsp;&#187;</font></td>
+<td colspan=4 nowrap><font face="arial,helvetica" color="#800000" size=2>
+<input type="radio" name="match" value="all" checked>-All words
+<input type="radio" name="match" value="any">-Any word
+<input type="radio" name="match" value="phrase">-Exact text</font></td>
+</tr>
+
+<tr><td nowrap>
+<font face="arial,helvetica" size=2>Where&nbsp;&#187;</font>
+</td>
+<td nowrap>
+<font face="arial,helvetica" size=2>
+<select name="where">
+<option value="dir">-----------------------
+<option value="dir">&nbsp; Advanced Directory
+<option value="dir">-----------------------
+<option value="web" selected>&nbsp; Metasearch
+<option value="web">-----------------------
+<option value="news">&nbsp; News &nbsp;
+<option value="job">&nbsp; Jobs &nbsp;
+<option value="auction">&nbsp; Auction &nbsp;
+<option value="mp3">&nbsp; MP3 &nbsp;
+<option value="ftp">&nbsp; FTP &nbsp;
+<option value="book">&nbsp; Books &nbsp;
+</select>
+</font>
+</td>
+<td width="20" nowrap>&nbsp;</td>
+<td nowrap>
+<font face="arial,helvetica" size=2>Ranking&nbsp;&#187;</font>
+</td>
+<td nowrap>
+<font face="arial,helvetica" size=2>
+<select name="sd">
+<option value="" selected>&nbsp; On  (no duplicate)
+<option value="y">&nbsp; Off (allow duplicate)
+</select>
+</font>
+</td>
+</tr>
+<tr>
+<td nowrap><font face="arial,helvetica" size=2>Per-Page&nbsp;&#187;</font></td>
+<td>
+<font face="arial,helvetica" size=2>
+<select name="pp">
+<option value="">------------------------ &nbsp;
+<option value="" selected>&nbsp; default
+<option value="">------------------------ &nbsp;
+<option value="8">&nbsp; 8 &nbsp;
+<option value="10">&nbsp; 10 &nbsp;
+<option value="16">&nbsp; 16 &nbsp;
+<option value="20">&nbsp; 20 &nbsp;
+<option value="all">&nbsp; All Results
+</select>
+</font>
+</td>
+<td width="20" nowrap>&nbsp;</td>
+<td nowrap>
+<font face="arial,helvetica" size=2>Timeout&nbsp;&#187;</font>
+</td>
+<td nowrap>
+<font face="arial,helvetica" size=2>
+<select name="to">
+<option value="">------------------------- &nbsp;
+<option value="" selected>&nbsp; default
+<option value="">------------------------- &nbsp;
+<option value="1">&nbsp; 1 second
+<option value="2">&nbsp; 2 seconds
+<option value="3">&nbsp; 3 seconds
+<option value="4">&nbsp; 4 seconds
+<option value="5">&nbsp; 5 seconds
+<option value="6">&nbsp; 6 seconds
+<option value="7">&nbsp; 7 seconds
+<option value="8">&nbsp; 8 seconds
+<option value="9">&nbsp; 9 seconds
+<option value="10">&nbsp; 10 seconds
+<option value="12">&nbsp; 12 seconds
+<option value="15">&nbsp; 15 seconds
+<option value="20">&nbsp; 20 seconds&nbsp;&nbsp;
+</select>
+</font>
+</td>
+</tr>
+</table></center>
+
+</td></tr>
+</table></center>
+</form>
+<!------- Example Search Box-2 HTML Ends ------->
+
+
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+<table border=0 cellpadding=0 cellspacing=0 width="100%"><tr><td height=7><spacer type="block" width=1 height=7></td></tr><tr><td height=3 bgcolor=eeeeee><spacer type="block" width=1 height=3></td></tr><tr><td align=right><p align=right><tt><font face="arial,helvetica" size=1 color=808080><a href="http://services.curryguide.com/meta_prog/">Advanced MetaSearch</a> &nbsp; <a href="http://services.curryguide.com/meta_prog/userarea.html">User_Area</a> . . . . . . . . . A <a href="http://www.curryguide.com/" target="_top"><b><font color="ff0000">Curry</font><font color=004080><i>Guide</i></font></b></a> Product</font></tt></td></tr></table>
+</FORM>
+<p>&nbsp;
+</BODY>
+</HTML>
