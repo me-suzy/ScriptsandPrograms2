@@ -1,0 +1,104 @@
+<?php
+/***************************************************************************
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ ***************************************************************************/
+/***************************************************************************
+ * Created by: Boesch IT-Consulting (info@boesch-it.de)
+ * (c)2002-2005 Boesch IT-Consulting
+ * *************************************************************************/
+$cookieexpire=time()+(365*24*60*60);
+$cookiermtime=time()-(365*24*60*60);
+if($page=="changelog")
+{
+	if(isset($prognr))
+		setcookie($admcookiename."[chlog_prognr]",$prognr,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[chlog_prognr]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($beta))
+		setcookie($admcookiename."[chlog_beta]",$beta,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[chlog_beta]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="bugtraq")
+{
+	if(isset($prognr))
+		setcookie($admcookiename."[bugs_prognr]",$prognr,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[bugs_prognr]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterstate))
+		setcookie($admcookiename."[bugs_state]",$filterstate,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[bugs_state]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="todo")
+{
+	if(isset($prognr))
+		setcookie($admcookiename."[todo_prognr]",$prognr,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[todo_prognr]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterstate))
+		setcookie($admcookiename."[todo_state]",$filterstate,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[todo_state]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="requests")
+{
+	if(isset($prognr))
+		setcookie($admcookiename."[req_prognr]",$prognr,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[req_prognr]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="reference")
+{
+	if(isset($prognr))
+		setcookie($admcookiename."[ref_prognr]",$prognr,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[ref_prognr]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterstat))
+		setcookie($admcookiename."[ref_state]",$filterstat,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[ref_state]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="subscribers")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[sub_prognr]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[sub_prognr]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterstate))
+		setcookie($admcookiename."[sub_state]",$filterstate,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[sub_state]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="downloadfiles")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[df_prognr]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[df_prognr]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterstate))
+		setcookie($admcookiename."[df_state]",$filterstate,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[df_state]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filtermirror))
+		setcookie($admcookiename."[df_mirror]",$filtermirror,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[df_mirror]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="downloadstats")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[ds_prognr]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[ds_prognr]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filtermirror))
+		setcookie($admcookiename."[ds_mirror]",$filtermirror,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[ds_mirror]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+?>
