@@ -1,0 +1,160 @@
+*** Outdated need a new one ***
+
+PHPDBFORM & PHPFORM MANUAL
+==========================
+
+Now phpdbform can be used without a database access, so creating any kind of forms is easier now!
+
+First let's discuss PHPFORM, that's is the base of PHPDBFORM.
+
+For use it at your scripts, you need to include this line at the begging:
+
+include("phpdbform/phpdbform_form.php");
+
+The we need to create a object of the kind phpform, using its constructor:
+
+$form = new phpform( $name, $action );
+
+Where $name is any name to your form, and it must be used mainly when using more than one phpform at the same script.
+$action is an url for sending the results of the form, if empty, the same page will be the target.
+
+After creating the form, we need to add fields:
+
+$form->add_textbox( "name", "Name:", 20, 20 );
+$form->add_password( "passwd", "Password:", 20, 20 );
+$form->add_static_listbox( "option", "Option:", " ,car,airplane,bycicle,sp2" );
+
+Every field is added into the form object, inside phpform, every field is a separate object using phpdbform_field as a base class. With this approach now is easier to add more feaatures into it and to control how it works, like adding a default value for a field:
+
+$form->fields["name"]->value = "Paulo Assis";
+
+The field name is used to distinguish every field of the form, and accessing the fields array is possible to do whatever you want with them.
+
+If you wish, you can even set an onblur event for a field:
+$form->fields["name"]->onblur = "alert(this.value);";
+
+and/or add any other property for the filed using tag_extra:
+$form->fields["name"]->tag_extra = "class=\"pretty\"";
+
+even the cssclass we can change for a field:
+$form->fields["name"]->cssclass = "mycssclass";
+
+Selection forms and filter boxes also have the cssclass property.
+
+Then we need to process the form and draw:
+
+$form->process();
+$form->draw();
+
+The process() method return true if the form was processed, (it was posted), so you can decide to draw it or not.
+The draw() method draws the form into your page without any formatting, just including a <br> after eache field, so if you want to take control over the form, just use the field's draw method instead of the form's one:
+
+$form->fields["name"]->draw();
+and so on...
+
+Using the second approach makes easy to a cool desing for your forms with being stuck at phpform themes and so on. But then you need to insert <form></form> into your script or phpform will only draw the fields.
+
+
+If the form was processed, you can access it's value using the value property of the fields:
+
+echo $form->fields["name"]->value; // will print the value filled at the name field.
+
+.
+
+
+PHPDBFORM
+=========
+
+phpDBform extends phpform including database access, then every field from phpform works at phpdbform linked with a database field. Now the name of the field must be the same from the field at the table being acessed.
+
+To use phpdbform you need to include these lines at the *very beggining* of your script:
+
+include_once("phpdbform/phpdbform_mysql.php");
+include_once("phpdbform/phpdbform_db.php");
+
+You need to include them as the firsts lines of your script, because phpdbform uses sessions, and if any data was sent to the browser, phpdbform won't create its session.
+
+$db = new phpdbform_db( "phpdbform", "localhost", "root", "" );
+$db->connect();
+$form = new phpdbform( $db, "contact", "cod", "name,email", "name" );
+
+$form->add_textbox( "name", "Name:", 30 );
+$form->add_textbox( "email", "E-mail:", 50 );
+$form->add_static_listbox( "sex", "Male", "male,female" );
+
+Now you need to create a database object to be used by phpdbform, connect it and create the form.
+
+phpdbform_db( $database_name, $database_host, $user_name, $user_passwd );
+phpdbform( $db, $table, $keys, $sel_fields, $sel_order )
+
+the constructor for the database object is self-explanatory, but for phpdbform follows:
+
+db - database object linking into the db server
+table - table name
+keys - fields separeted by comma that select an unique row
+sel_fields - fields shown at the selection box
+sel_order - order used to sort the list at the selection box
+
+Then you will need to process it and draw:
+
+$form->process();
+$form->draw();
+
+Note that you can draw your form using the draw methods of every field.
+
+There is the function get_string for each field that only returns a string instead of submitting
+the html code to the browser.
+
+
+REFERENCE:
+
+PHPFORM:
+function add_textbox( $field, $title, $size, $maxlength=0 )
+$field - name of the field to be used as the name property of the input tag, and for phpdbform, the name of the field that this field links to.
+$title - Prints a title just above the field, set to none ("") to tell to phpdbform don't draw it.
+$size - Size property for the input tag (width)
+$maxlenght - Maximum number of characters accepted by this field, if not set, phpform will use the size value.
+
+function add_textarea( $field, $title, $cols, $rows )
+$cols and $rows - the same used by the textarea tag. (widht & height)
+
+function add_password( $field, $title, $size, $maxlength=0 )
+Works just like add_textbox, but will show * instead of the value. The value from the password field can be seen looking at the source html!! Take care when retrieving this value into phpform.
+
+function add_static_listbox( $field, $title, $options )
+$options: the values separated by commas. Every value will be a row for the select tag, if you want to use key value pairs instead of only values, separate them using ;, then options will look like: "B:Business,P:Personal".
+
+function add_hidden( $field )
+Just adds a hidden field for your form. Set its value using the value property of the field.
+
+function add_checkbox( $field, $title, $checked_value, $unchecked_value )
+$checked_value - value sent when the checkbox was selected.
+$unchecked_value - value sent when the checkbox was not selected.
+
+function add_listbox( $field, $title, $db, $table, $key, $value, $order )
+Works like static_listbox, but the list is populated by the database.
+$db - the database object (already connected) for listbox get its values
+$table - the table where listbox will get its values
+$key - the field from the table to be used as the value of the item
+$value - the field from the table that will be used as the caption fo the item
+$order - this will be prepended to an "ORDER BY" to sort the list.
+
+function add_static_radiobox( $field, $title, $options )
+Works like static_listbox, but instead of a select tag, several radio will be used, if you want to use key value pairs instead of only values, separate them using ;, then options will look like: "B:Business,P:Personal".
+
+function add_date( $field, $title, $dateformat )
+Used to work with date fields.
+$dateformat - "fmtUS" - mm/dd/yyyy
+            - "fmtEUR" - dd/mm/yyyy
+            - "fmtSQL" - yyyy-mm-dd
+
+function add_image( $field, $title, $size )
+Manages saving a image into the database. $size is the maximum file size allowable in bytes.
+			
+function draw_submit( $button_text )
+Draw the button for subimitting the form
+
+I hope that you have the same fun that I had creating it.
+
+Paulo Assis
+paulo@phpdbform.com
