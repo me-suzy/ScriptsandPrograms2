@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0053)http://www.jmbsoft.com/owners/ags/bdocs/analyzer.html -->
+<HTML><HEAD><TITLE>Gallery Analyzer</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff>
+<DIV align=center><FONT face=Verdana,Arial size=4><B>AutoGallery SQL - Gallery 
+Analyzer</B> <BR><BR>
+<TABLE cellSpacing=0 cellPadding=2 width=650 border=0>
+  <TBODY>
+  <TR>
+    <TD><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Quick Overview</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><FONT 
+      face=Arial size=2><BR>The gallery analyzer was added in the 2.1.0 release 
+      of AutoGallery SQL. It features support for counting the number of 
+      thumbnails and other links on a gallery, taking a sample of the gallery 
+      content to determine it's byte size and download speed, and a page ID 
+      generator to uniquely identify gallery pages. The analyzer is used when 
+      galleries are submitted and by the linkcheck utility. This document will 
+      give an overview of the analyzer, and let you know how the setup.cgi 
+      settings affect what it does. <BR><BR><B>Note:</B> Do not confuse this 
+      with the linkcheck utility. The gallery analyzer is a built in feature of 
+      the software that allows it to retrieve galleries and examine them. This 
+      software feature is used by the linkcheck utility, but is also used by the 
+      submission script so that galleries can be examined when they are 
+      submitted. For information on using the linkcheck utility, see the 
+      utilities.html documentation file. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Features</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR><B>Thumbnail 
+      Counter</B> <BR><BR>This function of the gallery analyzer will look at the 
+      HTML of the gallery page to determine how many thumbnails are on the page. 
+      The analyzer requires that all thumbnails be linked directly to the larger 
+      image or movie file. Any thumbnails not linked directly to the content 
+      will be counted as regular links instead of thumbnails. <BR><BR><B>Link 
+      Counter</B> <BR><BR>The gallery anzlyzer can count the number of links it 
+      finds on the gallery page. This count does not include the thumbnail links 
+      to the gallery content, it only counts the other links on the page. Every 
+      &lt;a href&gt; tag is counted as one link. Even if there are multiple 
+      links pointing to the same URL, each one is counted separately. 
+      <BR><BR><B>Content Sampling</B> <BR><BR>The content sampler will check at 
+      most 5 of the images or movies that the gallery links to. A random 
+      selection of the gallery content is taken to create this sample. Each of 
+      the 5 items will be downloaded from the gallery. Once downloaded, the 
+      total byte size of the content is calculated and the download speed from 
+      the gallery is recorded. <BR><BR><B>Page IDs</B> <BR><BR>Page IDs are 
+      generated for every gallery in your database. The software uses the HTML 
+      on the gallery to generate an ID value to identify it. It can then use 
+      that ID to determine if there is another gallery in the database that has 
+      the same HTML, and also to check if the page has changed since it was 
+      submitted. To see if a page has changed, you can click on the Verify URL 
+      link when displaying your posts through the administrative interface. 
+      <BR><BR><B>Banned HTML</B> <BR><BR>The software allows you to setup HTML 
+      that you do not want to appear on the gallery pages. This is useful to 
+      block galleries that have pop-up consoles or certain text that you don't 
+      want. The software will check the gallery page for each of the Banned HTML 
+      items you have setup through the administrative interface. 
+      <BR><BR><B>Reciprocal Link</B> <BR><BR>Getting galleries to link back to 
+      you is an important part of running a TGP. The software allows you to 
+      setup any number of valid reciprocal links that your submitters can use. 
+      It can then check the gallery page to see if any one of those reciprocal 
+      links appear. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Setup.cgi Options</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR><B>Have 
+      the software determine the number of pics on the gallery?</B> <BR><BR>With 
+      this option enabled, the software will override whatever value the 
+      submitter provides for the number of images on their gallery. The software 
+      will automatically determine how many there are, and fill in the number of 
+      images with that value. <BR><BR><B>Reject gallery URLs that forward (30x 
+      status codes)?</B> <BR><BR>With this option enabled, the software will 
+      reject any gallery URLs that produce a 300 level HTTP response code. 300 
+      level response codes indicate that the page has moved to a new location, 
+      and can potentially indicate that the submitter is trying to forward 
+      traffic to some other page on their site. <BR><BR><B>Take sample of 
+      gallery content to check speed and size?</B> <BR><BR>With this option 
+      enabled, the software will take a sample of the gallery content. The 
+      gallery will be rejected if any of the following hold true: <BR><BR>1. The 
+      content that is sampled does not meet the minimum byte size 
+      requirement.<BR>2. The download speed from the server does not meet the 
+      minimum requirement.<BR>3. The URLs pointing to the content generate a 
+      HTTP status code of 300+ <BR><BR><B>Check the number of links on the 
+      gallery page?</B> <BR><BR>With this option enabled, the software will 
+      reject a gallery if it has more than the allowed number of links, as 
+      defined by the Maximum Links setup.cgi field. The software will always 
+      count the number of links, but it will only reject galleries with 
+      excessive links if this option is enabled. <BR><BR><B>Check for duplicate 
+      gallery content?</B> <BR><BR>This option will check the database for a 
+      duplicate page ID. If a page ID is duplicated, it will almost always mean 
+      that a gallery with the same content is already in the database. 
+      <BR><BR><B>Check for banned HTML on the gallery?</B> <BR><BR>This is 
+      fairly self-explanatory. The software will check the gallery HTML to see 
+      if any of it matches the HTML that you have banned. Galleries with banned 
+      HTML will be rejected. <BR><BR><B>Check for a reciprocal link to your 
+      site?</B> <BR><BR>This is fairly self-explanatory. The software will check 
+      the gallery HTML to see if any of your defined reciprocal links can be 
+      found. The results of the check will be entered in the database. 
+      <BR><BR><B>Reciprocal link must be located on their gallery page?</B> 
+      <BR><BR>This is basically a legacy function which most TGP administrators 
+      have enabled. If it is not enabled, the reciprocal link can be on any 
+      page. If it is enabled, the gallery URL is automatically filled in as the 
+      reciprocal link URL by the software, and that is where it will look for 
+      the reciprocal link. <BR><BR><B>Reject submissions that do not have a 
+      reciprocal link?</B> <BR><BR>This is fairly self-explanatory. The software 
+      will automatically reject any galleries which do not have one of your 
+      defined reciprocal links on their page. <BR><BR><B>Give a +1 rating boost 
+      to galleries that have a reciprocal link?</B> <BR><BR>This is fairly 
+      self-explanatory. Standard submissions are given a rating of 1. With this 
+      option enabled, galleries that have one of your defined reciprocal links 
+      on their page will be given a rating of 2. <BR><BR><B>Valid Image/Movie 
+      File Extensions</B> <BR><BR>When the gallery analyzer is looking for 
+      thumbnails, it will use these file extensions to determine what type of 
+      content the thumbnail should be linked to. Take the following example: 
+      <BR><BR>&lt;a href="/images/fullsize.jpg"&gt;&lt;img 
+      src="/images/thumbnail.jpg"&gt;&lt;/a&gt; <BR><BR>In this case the 
+      software will examine the /images/fullsize.jpg link to make sure that jpg 
+      is one of the allowed file extensions. Note that this does not affect the 
+      thumbnail itself, only the content that the thumbnail is linked to. 
+      <BR><BR></FONT></TD></TR></TBODY></TABLE></FONT></DIV></BODY></HTML>
