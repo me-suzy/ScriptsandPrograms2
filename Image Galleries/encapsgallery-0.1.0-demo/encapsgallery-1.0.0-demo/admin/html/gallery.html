@@ -1,0 +1,85 @@
+<?include($config['theme'].'gallery_cats_select.html');?>
+<!--fieldset><legend>�����������:</legend-->
+<script language="JavaScript" type="text/javascript">
+var visible_ = true;
+var delete_ = true;
+function CheckAllINBOX(title_) {
+  for (var i = 0; i < document.form1.elements.length; i++) {
+    if(document.form1.elements[i].type == 'checkbox'
+    	&& document.form1.elements[i].name.indexOf(title_)==0){
+    		if(title_ == "visible_")
+	      		document.form1.elements[i].checked = visible_;   
+    		if(title_ == "delete_")
+	      		document.form1.elements[i].checked = delete_;   
+    	
+	}
+  }
+  	if(title_ == "visible_")
+  		visible_ = !visible_; 
+	if(title_ == "delete_")  	
+	  delete_ = !delete_; 
+}
+</script>
+<table class="block" cellspacing="0" cellpadding="0" border="1">
+<tr>
+	<th>Image</th>
+	<th>Title</th>
+	<th>Comment</th>
+	<th>Position</th>
+	<th>Category</th>
+	<th>Visible<br><a href="javascript:;" onclick="CheckAllINBOX('visible_');" style="background-color:#90d890;font-weight: normal;">un/select</a></th>
+	<th>Delete<br><a href="javascript:;" onclick="CheckAllINBOX('delete_');" style="background-color:#90d890;font-weight: normal;">un/select</a></th>
+</tr>
+<form enctype="multipart/form-data" action="" method="post" name="form1">
+<?
+$count = sizeof($html["items"]);
+$current = 0;
+foreach($html["items"] as $item){
+	//if($current++ %4 ==0)
+		//echo "</tr><tr>";
+	?> 
+<tr align="center" >
+<td ><a href="?action=show_custom&id=<?=$item["id"]?>&cat=<?=$html["cat"]['id']?>"><img border="1" src="../core/gallery_resize.php?filename=../rwx_gallery/<?=$item["filename_normal"]?>" ></a></td>
+<td ><INPUT type="text" name="title_<?=$item["id"]?>" value="<?=stripcslashes($item["title"])?>" size="27"></td>
+<td>
+<!--<INPUT type="text" name="comment_<?=$item["id"]?>" value="<?=$item["comment"]?>">-->
+<textarea rows="5" name="comment_<?=$item["id"]?>"><?=stripslashes($item["comment"])?></textarea>
+</td>
+<td>
+<SELECT name="position_<?=$item["id"]?>" >
+<? 
+for($i=1;$i<$html["count_total"]+1;$i++){?>
+<option value="<?=$i?>" <?if($i==$item["position"])echo "selected"?>><?=$i?></OPTION>
+<?}?>
+</SELECT>
+</td>
+<td>
+<select name="cat_<?=$item['id']?>" >
+<?foreach($html['cats'] as $cat){?>
+<option value="<?=$cat['id']?>" <?if($item['cat']==$cat['id'])echo "selected"?>><?=$cat['title']?></option>
+<?}?>
+</select>
+</td>
+
+<td><input type="checkbox" name="visible_<?=$item["id"]?>" <?if($item["visible"]=="on")echo "checked";?>></td>
+<td><input type="checkbox" name="delete_<?=$item["id"]?>"></td>
+<input type="hidden" name="id_<?=$item["id"]?>" value="<?=$item["id"]?>">
+<?}?>
+</tr>
+
+<tr><td colspan="7" bgcolor="Silver" align="center">
+<?if($count>0){
+	?><INPUT type="submit" value="Submit changes"><?}?>
+</td></tr>
+<INPUT type="hidden" name="action" value="gallery_update">
+<INPUT type="hidden" name="cat" value="<?=$html["cat"]['id']?>">
+<INPUT type="hidden" name="page" value="<?=$html["page"]?>">
+<INPUT type="hidden" name="offset" value="<?=$html['pager']['offset']?>">
+</form>
+</TABLE>
+<?include($html['path'].'pager.html');?>
+<BR>
+<br>
+<?include("html/admin_foto_add.html");?>
+
+<!--/FIELDSET-->
