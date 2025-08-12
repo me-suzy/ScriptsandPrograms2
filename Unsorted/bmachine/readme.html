@@ -1,0 +1,248 @@
+<html>
+
+<head>
+<title>BN Soft Boast Machine 1.0 - User manual</title>
+<meta name="generator" content="Namo WebEditor v4.0">
+<style>
+<!--
+body { font-family:Verdana; font-size:10; }
+p { font-family:Verdana; font-size:10; }
+li { font-family:Verdana; font-size:10; }
+a { color:rgb(104,89,151); }
+-->
+</style>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="558">
+<tr>
+<td width="558">
+<p align="center"><font size="4" face="Verdana">BN Soft Boast Machine v2.7</font></p>
+<p align="center">[bMachine v2.7] [ Released: 28/12/2003 ]<br></p>
+<p align="center">Previous release 
+: bMachine v2.6  ( 16/12/2003 )&nbsp;</p>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<p>Developed by Kailash Nadh, India<br><a href="http://bnsoft.net">http://bnsoft.net</a>&nbsp;&nbsp;, 
+&nbsp;<a href="mailto:kailash@bnsoft.net">kailash@bnsoft.net</a></p>
+<p>Boast Machine - <a href="http://boastology.com">http://boastology.com</a></p>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<p>The Simplest way to publish your articles/journals/blogs online!<br>Wheter 
+you run a small personal homepage or some big<br>website and what you like is 
+a simple yet powerful thing,<br>this is the one for you!<a name="home"></a></p>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#template">Template &amp; misc Configuration</a></li>
+<li><a href="#contact">Contact details</a></li>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#changes">Changes</a></li>
+</ul>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<p><font size="4">Features<a name="features"></a> </font><font size="1"><b><a href="#home">Top</a></b></font></p>
+<p>There is no other software on the internet which can<br>defeat BoastMachine's 
+SIMPLICITY and performance.</p>
+<ul>
+<li>Publish Articles/blogs/journals with just one click!</li>
+<li>SUPPORTS both Flat Files and MySQL !</li>
+<li>Supports attachment with each article</li>
+<li>Fully customizable using css and templates</li>
+<li>Users can comment on articles</li>
+<li>Allow users to send articles to their friends!</li>
+<li>UBB Code Support</li>
+<li>Supports SMILIES! :)</li>
+<li>HAS A Cool Calendar!</li>
+<li>Event display system</li>
+<li>RSS/XML Feed</li>
+<li>Powerful Search [ Search for Author, Articles, Titles ]</li>
+<li>Voting/Rating feature!</li>
+<li>X articles / page feature</li>
+<li>FAST, POWERFUL BACKUP system. Don't fear losing your articles<br>while doing 
+a host change!</li>
+<li>Generates printer friendly pages for printing</li>
+<li>Create/Edit/Manage all posts from the single admin page</li>
+<li>All the options can be disabled by Admin [Commenting,voting,Send to friend..]</li>
+<li>Hide/Unhide articles from readers when necessary, without deleting them!</li>
+<li>META tag support for search engine friendliness</li>
+<li>Very secure.</li>
+<li>and the BEST OF ALL, its FREE!!</li>
+</ul>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<p><font size="4">INSTALLATION<a name="installation"></a> </font><font size="1"><b><a href="readme.htm#home">Top</a></b></font></p>
+<ul>
+<li>Unpack all the files from the zip into a directory.</li>
+<li>Open config.php, change the necessary variables</li>
+<li>Open mail.txt , change the message<br>( In this file, use the following 
+keywords where ever necessary.<br>They will be automatically replaced with real 
+values by the script.<br>[NAME] - The name of the sender [the one who's sending 
+the article]<br>[EMAIL] - The email of the sender<br>[TITLE] - Title of the 
+article which is being sent<br>[AUTHOR] - The author of the article being sent<br>[AUTHOR_EMAIL] 
+- Email of the author of the article<br>[URL] - The url to the article being 
+sent<br>[COMMENTS] - Comments by the sender<br>[DATE] - The date of sending</li>
+<li>Edit header.php and footer.php if necessary [ inc/templates ]</li>
+<li>Edit events.php to add custom events</li>
+<li>Edit links.template.php [ inc/templates ]</li>
+<li>Edit the mail.friends.php [ inc/templates ]<br>Not necessary usually.</li>
+<li>Upload all the scripts to your webserver.<br>[ Its better to keep the existing 
+directory structure ]</li>
+</ul>
+<ul>
+<li>CHMOD the 'files' directory or whatever directory you have specified to 
+777</li>
+<li>CHMOD the maillog data file which you have specified to 777</li>
+<li>CHMOD the 'backup' directory to 777</li>
+</ul>
+<p>Installation for FlatFile mode</p>
+<ul>
+<li>CHMOD the 'data' directory or whatever directory you have specified to 777</li>
+<li>CHMOD the 'comments' directory or whatever directory you have specified 
+to 777</li>
+<li>CHMOD the vote data file which you have specified to 777</li>
+</ul>
+<p>Installation for MySQL&nbsp;mode</p>
+<ul>
+<li>goto http://yoursite.com/bmachine/install.php and install the MySQL tables.<br>After 
+installation, delete it manually if its not deleted automatically.</li>
+</ul>
+<ul>
+<li>Thats all! goto http://yoursite.com/bmachine/admin.php , login and start 
+publishing!!</li>
+</ul>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<p><font size="4">Template Configuration<a name="template"></a> </font><font size="1"><b><a href="readme.htm#home">Top</a></b></font></p>
+<ul>
+<li>Open and edit header.php and footer.php in the /inc/templates directory<br>Here are some functions that 
+you can use in the template files.</li>
+<li>This will print the site's title defined in config.php<br>&lt;? echo sout(&quot;site_title&quot;); 
+?&gt;</li>
+<li>This will print the author's name defined in config.php<br>&lt;? echo sout(&quot;author_name&quot;); 
+?&gt;</li>
+<li>This will print the author's email defined in config.php<br>&lt;? echo sout(&quot;author_email&quot;); 
+?&gt;</li>
+<li>This will print the site's URL defined in config.php<br>&lt;? echo sout(&quot;site_url&quot;); 
+?&gt;</li>
+<li>This will print out the latest X topics where x is the number of topics<br>to 
+be displayed and &lt;start&gt; and &lt;end&gt; are the tags which separate each<br>Post's 
+title when printed out<br>&lt;? echo getPosts(x,&quot;&lt;start&gt;&quot;,&quot;&lt;end&gt;&quot;); 
+?&gt;<br>eg:<br>The output will be if there are 3 latest posts<br>&lt;start&gt;&lt;a 
+href=&quot;index.php?id=1&quot;&gt;Post title 1!&lt;/a&gt;&lt;end&gt;<br>&lt;start&gt;&lt;a 
+href=&quot;index.php?id=1&quot;&gt;Post title 2!&lt;/a&gt;&lt;end&gt;<br>&lt;start&gt;&lt;a 
+href=&quot;index.php?id=1&quot;&gt;Post title 3!&lt;/a&gt;&lt;end&gt;<br>[ NOTE: 
+The Post titles are formatted using CSS by the script itself ]<br><br>&nbsp;</li>
+<li>This will work only in header.php It will print out the keywords of an article. 
+[if there is any]<br>&lt;? echo $keys; ?&gt;</li>
+<li>This will work only in header.php<br>It will print out the TITLE of an article. 
+[if there is any]<br>&lt;? echo $title; ?&gt;</li>
+<li>To include the calendar, use this code in some page.<br>include &quot;calendar.php&quot;<br>calendar(); 
+// prints the calendar</li>
+<li>To cusomize the Calendar style, edit calendar.css</li>
+<li>To include Event display, use:<br>include &quot;events.php&quot;;&nbsp;</li>
+</ul>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<p><font size="4">NOTES</font>:<a name="notes"></a><font size="4"> </font><font size="1"><b><a href="readme.htm#home">Top</a></b></font><br>Please take care not to place any foreign 
+file, even the script's log files<br>in the 'data' directory or whatever name 
+you have given.</p>
+<p>Also, if you want to convert all your articles from FlatFile to MySQL mode,<br>use 
+the backup feature. Backup the article in FlatFile mode, and upload/restore<br>it 
+while in mysql mode and vice versa.</p>
+<p>A link-back to Boastology.com is appreciated on the script pages.<br>Use 
+this code to place a small link the Boast Machine template.<br>----------------------------------------------------------</p>
+<p>&lt;font size=&quot;1&quot; face=&quot;Verdana&quot;&gt;Powered by&lt;a href=&quot;http://bnsoft.net&quot; 
+target=&quot;_blank&quot; title=&quot;Powered by BoastMachine [boastology.com] 
+. BN Soft [bnsoft.net]&quot;&gt;&lt;u&gt;BN Soft&lt;/u&gt;&lt;/font&gt;&lt;/a&gt;<br></p>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<p><font size="4">Contact Details<a name="contact"></a> </font><font size="1"><b><a href="readme.htm#home">Top</a></b></font></p>
+<p>If you experience any difficulties with this script, mail to<br><a href="mailto:kailash@bnsoft.net">kailash@bnsoft.net</a> 
+or <a href="mailto:kailash@boastology.com">kailash@boastology.com</a></p>
+<p>bMachine website - <a href="http://boastology.com">http://boastology.com</a></p>
+<p>Good Luck,<br>Kailash Nadh<br><a href="http://bnsoft.net">http://bnsoft.net</a></p>
+<hr size="1" width="100%" align="left" color="#CCCCCC">
+<p><font size="4" face="Verdana">Changes<a name="changes"></a></font><font size="4"> 
+</font><font size="1"><b><a href="readme.htm#home">Top</a></b></font></p>
+<p><b>Changes in bMachine v2.7 </b> ( Released 28/12/2003 )</p>
+<ul>
+<li>Some minor text formatting errors fixed</li>
+<li>A major security hole, the HTML injection vulnerability in<br>the comments 
+page fixed.<br>Bug report: <a href="http://www.securiteam.com/unixfocus/6Y00N1595U.html">http://www.securiteam.com/unixfocus/6Y00N1595U.html</a></li>
+</ul>
+<p><b>Changes in bMachine v2.6 </b> ( Released 16/12/2003 )</p>
+<ul>
+<li>Fixed all the text formatting problems</li>
+<li>BB Code feature added.</li>
+<li>Comment/Summary errors fixed</li>
+<li>Smaller File id's for the posts in flatfile mode</li>
+</ul>
+<p><b>Changes in bMachine v2.5 mod #2 </b> ( Released 14/12/2003 )</p>
+<ul>
+<li>Fixed a lot of formatting bugs in both MySQL &amp; text mode</li>
+<li>Fixed the &quot;X last posts&quot; formatting problem</li>
+</ul>
+<p><b>Changes in bMachine v2.5 mod</b> ( Released 12/12/2003 )</p>
+<ul>
+<li>Fixed the 1969 date bug</li>
+<li>Fixed the &quot;Send to friend&quot; bug</li>
+</ul>
+<p><b>Changes in bMachine v2.5</b> ( Released 09/12/2003 )</p>
+<ul>
+<li>Added a Cool Calander!</li>
+<li>Event display system [display special messages on specific dates]</li>
+<li>Optimized MySQL code and FlatFile code</li>
+<li>&nbsp;&nbsp;&nbsp;[FlatFile code is now 5 times faster than the beta version!]</li>
+<li>Changed the template to a better one :)</li>
+<li>Modified the Admin pages. Now they look cool</li>
+<li>FIXED THE MAJOR &quot;COMMENT&quot; system bug</li>
+<li>FIXED the &quot;ERROR Display&quot; function bug</li>
+<li>Disabled some common Error possibilities</li>
+<li>FULLY REWROTE THE DATE/TIME system</li>
+<li>&nbsp;&nbsp;&nbsp;[ Now you can format your own date in the config ]</li>
+<li>Commented a lot of uncommented code</li>
+<li>Added a &quot;Show posts on date&quot; function</li>
+<li>Fully re-designed the ADMIN!</li>
+</ul>
+<p><b>Changes in bMachine v2.0 beta</b> ( Released 05/12/2003 )</p>
+<ul>
+<li>ADDED MYSQL SUPPORT!</li>
+<li>A web based installation for MySQL system created</li>
+<li>Fully re-wrote Search algorithms.<br>The search is now faster and better</li>
+<li>Made the template system DYNAMIC</li>
+<li>Fixed the &quot;no-separator&quot; bug in &quot;get the latest x posts&quot; 
+function</li>
+<li>Added Weblogs.com Pinging ability</li>
+<li>Added XML/RSS syndication</li>
+<li>Fixed some Major bugs in admin.php</li>
+</ul>
+<p><b>Changes in bMachine 1.0 </b>( Released: 26/11/2003 )</p>
+<ul>
+<li>ADDED a &quot;COMMENTING SYSTEM&quot;<br>[ Now users can write comments 
+on articles! ]<br>[ Admin can add/edit/remove comments ]</li>
+<li>Dynamic template system</li>
+<li>Added a new function, &quot;Smilify&quot; for better smiley support</li>
+<li>Fixed a number of minor and major bugs</li>
+<li>Better administration system</li>
+<li>Better look for the admin page</li>
+<li>Closed a number of securiy loop holes</li>
+<li>New smilies added</li>
+<li>Default template changed to a better one</li>
+</ul>
+<p><b>Changes in EZ-Articles V 1.01 </b>&nbsp;( 12/10/2003 )</p>
+<ul>
+<li>Increased the speed of search script<br>[re-wrote the whole array system!]</li>
+<li>Fixed &quot;Hidden article&quot; visibility in mail.php and search</li>
+<li>Blocked all methods to access a hidden article</li>
+<li>Fixed the &quot;invisible&quot; author name in search.php</li>
+<li>Fixed the &quot;accumulating&quot; slash \ problem</li>
+<li>Added stripslashes() where ever necessary</li>
+<li>Fixed the &quot;PRINTER FRIENDLY&quot; system</li>
+<li>Fixed the &quot;hdr() 2nd argument&quot; error</li>
+<li>And fixed many other minor bugs</li>
+</ul>
+<p>&nbsp;</p>
+<p>Special thanks to Mark Sorensen &lt;<a href="mailto:marksor@pacific.net.au">marksor@pacific.net.au</a>&gt;<br>for 
+pointing out the bugs in EZ-Articles v1.01</p>
+</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+</body>
+
+</html>
