@@ -1,0 +1,99 @@
+==== Module ====
+
+All FuseLogic module located in the directory inside **FuseLogic_Root/modules** directory. 
+
+{{fuselogic:fuselogic.directory.png}}
+
+For example:
+
+**FuseLogic_Root/modules/init**  (module init, becarefull with this module)
+
+**FuseLogic_Root/modules/display** (module display)
+
+**FuseLogic_Root/modules/test1** (test module)
+
+The name of the module is not related with the name of module directory. You define the name of inside file module_setting.php
+
+there are only two type of setting inside module_setting.php which is
+
+1. Module Name (example $FL_MODULE_SETTING['module_name'] = 'display';)
+
+2. Sub Module Name and The File for sub Module (example $FL_MODULE_SETTING['sub_module']['_replace'] = 'replace';)
+
+
+==== Fuse ====
+**Fuse = moduleX/subMmoduleY**
+
+In FuseLogic you can not run "module" only or run "sub module" only. You can only run Fuse.
+
+For example run fuse "init/home", run fuse "display/_replace", run fuse "test1/default". Always run **"Fuse"**;
+
+
+==== How to Run Fuse ====
+Fuse can be run from browser (externally) and run from inside scripts (internally).
+For example when you use browser to run "http://localhost/fuselogic_root/index.php/**test3/test**"
+FuseLogic will do the following Thing.
+
+Phase I:
+
+Run fuse "init/_modules" => run fuse "init/_prepend"
+
+Phase II:
+
+Run fuse "**test3/test**"
+
+Phase III:
+
+Run fuse "init/_append"
+
+
+
+To run fuse from inside php scripts you can use command **Queue('test3/test')** or **Queue('test3/test','test_layout')**.
+
+{{fuselogic:fuselogic.way.png}}
+
+==== How To Create Module====
+Let us prettending that we need to create module name "simple". Inside this module there is sub module name "word" that will print "Hello World". In other word we need to create fuse "simple/word" that will print "Hello World".
+
+Here is what we have to do to.
+    * Create directory inside "FUSELOGIC_ROOT/modules". For example director "example1"
+Now we have directory "FUSELOGIC_ROOT/modules/**example1**"
+    * Create file **module_setting.php** inside **example1** directory with the following contents:
+<code>
+<?php
+
+$FL_MODULE_SETTING['module_name'] = 'simple';
+
+$FL_MODULE_SETTING['sub_module']['word'] = hello_world.php;
+
+?>
+</code>
+    * Create file **hello_world.php** inside **example1** directory with the following contents:
+<code>
+<?php
+
+echo 'Hello World";
+
+?>
+
+</code>
+That's all, easy isn't it.
+
+
+{{fuselogic:example1.png}}
+
+
+==== Module Directory Name ====
+FuseLogic have the following behaviour regarding to the module directory:
+  - When the name of module directory start with  character "_" (under score) FuseLogic will ignore it. This feature is usefull for "module upgrading process".
+  - When you change the module directory name, the module will works as  usual. Including other module that using it.
+  - Wherever you put FUSELOGIC_ROOT directory as long as still inside apache DOCUMENT_ROOT the FuseLogic will work as usual.
+  - A Module doen't need to know the others module directory location to be able to use it.  What the module need to know is the name of the module. //(ehemm... I must be crazy, creating Framework like this)//
+
+We can have all this feature because of function **Real_Path()**, function **index()** and function **WebPath()** 
+
+
+
+
+----
+//Credit List: Eko Budi Setiyo//
