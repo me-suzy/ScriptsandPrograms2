@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="no"?>
+
+<BizForm Name="FMEvent" Package="demo" Class="BizForm" jsClass="jbForm" Title="Sports Events" SearchRule="" Description="Event BizForm" BizDataObj="BOEvent" PageSize="3">
+   <DisplayModes>
+      <Mode Name="QUERY" TemplateFile="edit_c2.tpl" InitMode="" DataFormat="array" FormatStyle=""/>
+      <Mode Name="EDIT" TemplateFile="edit_c2.tpl" InitMode="" DataFormat="array" FormatStyle=""/>
+      <Mode Name="NEW" TemplateFile="edit_c2.tpl" InitMode="" DataFormat="array" FormatStyle=""/>
+      <Mode Name="READ" TemplateFile="list.tpl" InitMode="" DataFormat="block" FormatStyle="tbl,tbl_head,tbl_rowodd,tbl_roweven,tbl_rowsel,tbl_cell"/>
+   </DisplayModes>
+   <BizCtrlList>
+   <BizCtrl Name="evt_desc" FieldName="Description" DisplayName="Description" Type="Textarea" Width="250" Height="100" HTMLAttr="" Function="" Hidden="" Enabled="" Order="8" Style="" SelectBizForm="" SelectFrom="" DisplayMode="EDIT|NEW|QUERY"/>
+   <BizCtrl Name="_evt_end" FieldName="_End" DisplayName="End" Type="Datetime" Width="" Height="" HTMLAttr="" Function="" Hidden="" Enabled="" Order="6.1" Style="" SelectBizForm="" SelectFrom="" DisplayMode="READ"/>
+   <BizCtrl Name="evt_end" FieldName="End" DisplayName="End" Type="Datetime" Width="" Height="" HTMLAttr="" Function="" Hidden="" Enabled="" Order="6" Style="" SelectBizForm="" SelectFrom="" DisplayMode="QUERY|EDIT|NEW"/>
+   <BizCtrl Name="evt_start" FieldName="Start" DisplayName="Start" Type="Datetime" Width="" Height="" HTMLAttr="" Function="" Hidden="" Enabled="" Order="5" Style="" SelectBizForm="" SelectFrom="" DisplayMode=""/>
+   <BizCtrl Name="evt_loc" FieldName="Location" DisplayName="Location" Type="Textarea" Width="250" Height="50" HTMLAttr="" Function="" Hidden="" Enabled="" Order="4" Style="" SelectBizForm="" SelectFrom="" DisplayMode=""/>
+   <BizCtrl Name="evt_host" FieldName="Host" DisplayName="Host" Type="" Width="" Height="" HTMLAttr="" Function="" Hidden="" Enabled="" Order="3" Style="" SelectBizForm="" SelectFrom="" DisplayMode=""/>
+   <BizCtrl Name="evt_name" FieldName="Name" DisplayName="Name" Type="" Width="250" Height="" HTMLAttr="" Function="" Image="" Hidden="" Enabled="" Sortable="Y" Order="2" Style="" SelectBizForm="" SelectFrom="" DisplayMode=""/>
+   <!--<BizCtrl Name="evt_sysid" FieldName="SysId" DisplayName="Event SysId" Type="" Width="" Height="" HTMLAttr="" Function="" Hidden="" Enabled="Y" Order="1" Style="" SelectBizForm="" SelectFrom="" DisplayMode=""/>-->
+   <BizCtrl Name="evt_id" FieldName="Id" DisplayName="Event Id" Type="" Width="" Height="" HTMLAttr="" Function="" Hidden="" Enabled="N" Order="1" Style="" SelectBizForm="" SelectFrom="" DisplayMode=""/>
+   </BizCtrlList>
+   <Toolbar>
+      <Control Name="btn_search" Image="search.gif" Caption="Search" Type="Button" Width="" Height="" HTMLAttr="" Function="SearchRecord()" Style="" Enabled="" DisplayMode="READ" Access="READ"/>
+      <Control Name="btn_dosearch" Image="" Caption="Search" Type="button" Width="" Height="" HTMLAttr="" Function="RunSearch()" Style="" Enabled="" DisplayMode="QUERY" Access=""/>
+      <Control Name="btn_edit" Image="edit.gif" Caption="Edit" Type="Button" Width="" Height="" HTMLAttr="" Function="EditRecord()" Style="" Enabled="" DisplayMode="READ" Access="WRITE"/>
+      <Control Name="btn_new" Image="new.gif" Caption="New" Type="Button" Width="" Height="" HTMLAttr="" Function="NewRecord()" Style="" Enabled="" DisplayMode="READ" Access="WRITE"/>
+      <Control Name="btn_save" Image="" Caption="Save" Type="Button" Width="" Height="" HTMLAttr="" Function="SaveRecord()" Style="" Enabled="" DisplayMode="EDIT|NEW" Access="WRITE"/>
+      <Control Name="btn_copy" Image="copy.gif" Caption="Copy" Type="button" Style="" Function="CopyRecord()" DisplayMode="READ" Access="WRITE"/>
+      <Control Name="btn_delete" Image="delete.gif" Caption="Delete" Type="button" Style="" Function="DeleteRecord()" DisplayMode="READ" Access="WRITE"/>
+      <Control Name="btn_cancel" Image="" Caption="Cancel" Type="Button" Width="" Height="" HTMLAttr="" Function="Cancel()" Style="" Enabled="" DisplayMode="EDIT|NEW|QUERY" Access="READ"/>
+      <Control Name="btn_refresh" Image="refresh.gif" Caption="Default Query" Type="Button" Width="" Height="" HTMLAttr="" Function="RefreshQuery()" Style="" Enabled="" DisplayMode="READ" Access="READ"/>
+      <Control Name="btn_excel" Image="excel.gif" Caption="Excel Export" Type="Button" Width="" Height="" HTMLAttr="target=_blank" Function="CallService(excelService,renderCSV)" FunctionType="Popup" Style="" Enabled="" DisplayMode="READ" Access=""/>
+   </Toolbar> 
+   <Navbar>
+   <Control Name="btn_next" Image="next.gif" Caption="Next" Type="Button" Width="" Height="" HTMLAttr="" Function="MoveNext()" Style="" Enabled="" DisplayMode="" Access=""/><Control Name="btn_prev" Image="prev.gif" Caption="Previous" Type="Button" Width="" Height="" HTMLAttr="" Function="MovePrev()" Style="" Enabled="" DisplayMode="" Access=""/></Navbar> 
+</BizForm>
