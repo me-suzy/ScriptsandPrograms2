@@ -1,0 +1,89 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box05_center.gif" class="BodyText05" align="left"><%tlv 161%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+<br>
+
+<a href="index.php" target="_self" class="menu"><%tlv 11%></a> > <font class="BodyText03"><%tlv 162%></font><br>
+
+<!-- Products -->
+
+<%tif search%>
+<br><p><b><%tlv totalrows%></b> <%tlv 164%>: "<%tlv search%>"</p>
+<%tendif search%>
+
+<%tif products%>
+
+<!-- Navigation -->
+
+<table width="100%" border="0" cellspacing="3" cellpadding="3">
+<form action="search.php" method="post" name="select_kol_form">
+<tr><td align="left">
+<%tlv 8%>: <%tag sn%>
+</td><td align="right"><%tlv 165%>: <%tlv cnt_navigator%>&nbsp;</td></tr>
+<input type="hidden" name="search" value="<%tlv search%>">
+</form>
+</table>
+
+<!-- /Navigation -->
+
+<br>
+
+<table cellpadding="2" border="0" cellspacing="1" cellpadding="1" width="100%">
+
+<%tloop products%>
+<tr valign="top">
+<td align="center" valign="top">
+<a href="view_product.php?product=<%tlv product%>&searchlink=yes&search=<%tlv search%>&page=<%tlv page%>"><img src="images/product/<%tlv small_image%>" border="0"></a></td>
+<td>&nbsp;&nbsp;&nbsp;
+</td>
+<td valign="top" width="100%">
+<a href="view_product.php?product=<%tlv product%>&searchlink=yes&search=<%tlv search%>&page=<%tlv page%>" class="menu04"><%tlv title%></a><br><br>
+
+<%tif description%>
+<%tlv description%><br><br>
+<%tendif description%>
+
+<%tlv 33%>:&nbsp;&nbsp;<%tlv new_price%><br>
+
+<a href="view_cart.php?add=<%tlv product%>&quan=1"><br>
+<img src="<%tv design_dir%>add_to_cart.gif" border="0"></a>
+
+</td>
+</tr>
+<tr>
+<td colspan"5"><img src="<%tv design_dir%>spicer.gif" width="1" height="30" border="0"></td>
+</tr>
+<%tendloop products%>
+
+</td>
+</tr>
+</table>
+<br>
+
+<div align="center">
+<%tag nav%><br>
+<font class="BodyText02">( <%tag nav pageno%> <%tlv 9%> <%tag nav pages%> )</font>
+</div>
+<br>
+
+<%tendif products%>
+<!-- /Products -->
+
+<%tif nosearch%>
+<p align="center"><br><%tlv 163%></p>
+<%tendif nosearch%>
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
