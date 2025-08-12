@@ -1,0 +1,883 @@
+<html>
+<head>
+<TITLE>2D/3D Pie Chart Software for PHP by JPowered.com</TITLE>
+<META NAME="description" content="JPowered is a leading provider of Java & Javascript Software. With our Java & Javascript software you will be quickly adding great looking components to your web pages and applications.">
+<META NAME="keywords" content="bar,graph,graphs,chart,charts,pie chart,pie charts,pie chart,pie charts,php,php graph,php chart,php script,pie chart graph,pie chart chart">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK REL=STYLESHEET TYPE="text/css" HREF="../../images/jpowered_style.css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<BR>
+
+<!-- One big table contain only one cell -->
+<table width="730" border="0" cellspacing="0" cellpadding="1" bgcolor="#FFAA00" align="center">
+<tr>
+<td>
+<table width="730" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center">
+<tr>
+<td> <!-- Heading section that includes Logo, Title and Links -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td class="heading_cell" rowspan="2" bgcolor="#FFCC00"><img src="../../images/jpowered.gif" width="270" height="60" align="left" alt="pie chart"></td>
+<td class="heading_cell" bgcolor="#FFCC00">
+<h1 class="heading"> 2D/3D Pie Chart for PHP</h1>
+</td>
+</tr>
+<tr>
+<td class="menu_cell" bgcolor="#F0F0B0" valign="top"> <img src="../../images/curve.gif" width="22" height="18" vspace="0" hspace="0" align="left" alt="pie chart">
+[<a href="http://www.jpowered.com"> Home </a>]
+[<a href="http://www.jpowered.com/products.htm"> Products </a>]
+[<a href="http://www.jpowered.com/downloads.htm"> Downloads </a>]
+[<a href="http://www.jpowered.com/purchase.htm"> Purchase </a>]
+[<a href="http://www.jpowered.com/free_java_applet/index.htm"> Free Applets </a>]
+[<a href="http://www.jpowered.com/support.htm"> Support </a>]<br>
+[<a href="http://www.jpowered.com/aboutus.htm"> About Us </a>]
+[<a href="http://www.jpowered.com/java_sitemap.htm"> Site Map </a>]
+[<a href="http://www.jpowered.com/java_resources.htm"> Java Resources </a>]
+</td>
+</tr>
+</table>
+<!-- Content section that includes Main left hand column 430 pixels wide with right hand column taking remaining 200 pixels. -->
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td width="560" valign="top"> <!-- begin content -->
+<table width="100%" border="0" cellpadding="5">
+<tr valign="top" align="left" bgcolor="#99CCFF">
+<td colspan="4"> [ <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/index.htm">
+Chart Home</a> ] [ <a href="../../quick-set-up.htm">Set-Up</a>
+] [ <a href="../../tutorials/index.htm">Tutorials</a> ] [
+<a href="../../documentation/index.htm"> Documentation</a>
+] [ <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/buy-now.htm">
+Buy Now</a> ] [ <a href="http://www.jpowered.com/support.htm">
+Support</a> ] </td>
+</tr>
+<tr align="left" valign="top">
+<td colspan="4">
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td colspan="2">
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+<tr>
+<td width="87%">
+<h2><font color="#009900"><b><font face="Arial, Helvetica, sans-serif" color="#FF9933">2D/3D
+Pie Chart for PHP  </font></b></font></h2>
+<p><font color="#009900"><b><font color="#666666">Documentation
+- Full Parameter Reference</font></b></font></p>
+</td>
+<td width="60" valign="middle" align="center"><img src="../../images/pie-chart-icon.gif" width="50" height="50"></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr valign="top" align="center">
+<td colspan="2">
+<p align="left">There are many configurable options
+for the graphing software. This section describes
+each parameter and it's effect in detail. </p>
+<p align="left">With the exception of 2 parameters,
+all of the following are optional and if not supplied
+the graph will automatically calculate the values.</p>
+<p align="left"><font color="#CC0000">The only 2
+parameters which must be supplied in all cases
+are <b>width</b> and <b>height</b>.</font></p>
+                              <ul>
+                                <li>
+                                  <div align="left"><a href="#general">General Graph properties &raquo;</a></div>
+                                </li>
+                                <li>
+                                  <div align="left"><a href="#segmentlabel">Segment Label properties &raquo;</a></div>
+                                </li>
+                                <li>
+                                  <div align="left"><a href="#pies">Pie Properties&raquo;</a></div>
+                                </li>
+                                <li>
+                                  <div align="left"><a href="#segments">Segment Properties&raquo;</a></div>
+                                </li>
+                                <li>
+                                  <div align="left"><a href="#3d">3D properties &raquo;</a></div>
+                                </li>
+                                <li>
+                                  <div align="left"><a href="#legend">Legend properties &raquo;</a></div>
+                                </li>
+                                <li>
+                                  <div align="left"><a href="#titles">Graph Title &raquo;</a></div>
+                                </li>
+                                <li>
+                                  <div align="left"><a href="#freetext">Free Form Text &raquo;</a></div>
+                                </li>
+                                <li>
+                                  <div align="left"><a href="#images">Free Form Images &raquo;</a></div>
+                                </li>
+                              </ul>
+</td>
+</tr>
+<tr valign="top" align="center">
+<td colspan="2"> <a name="general"></a>
+<table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr bgcolor="#CCCCAA">
+<td><b><font color="#555500">General Graph
+Properties </font></b></td>
+</tr>
+<tr bgcolor="#EEEEDD">
+<td>
+<p>&nbsp;</p>
+                                          <table width="95%" border="0" cellspacing="0" cellpadding="5" align="center">
+                                            <tr bgcolor="#AAFFAA"> 
+                                              <td width="25%"><font color="#006600"><b>Parameter Name</b></font></td>
+                                              <td width="42%"><font color="#006600"><b>Range of Values</b></font></td>
+                                              <td width="33%"><b><font color="#006600">Example</font></b></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE"> 
+                                              <td width="25%"><font color="#990000"><b>width</b></font></td>
+                                              <td width="42%">integer value<br>
+                                                Specifies the width in pixels</td>
+                                              <td width="33%"><font face="Arial, Helvetica, sans-serif" size="2" color="#0000FF">width: 300</font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD"> 
+                                              <td width="25%"><font color="#990000"><b>height</b></font></td>
+                                              <td bgcolor="#DDEEDD" width="42%">integer value<br>
+                                                Specifies the height in pixels</td>
+                                              <td width="33%"><font face="Arial, Helvetica, sans-serif" size="2" color="#0000FF">height: 400</font></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE"> 
+                                              <td width="25%"><font color="#000099">ndecplaces</font></td>
+                                              <td width="42%">integer value<br>
+                                                Specifies the number of decimal places to use when displaying values</td>
+                                              <td width="33%"><font face="Arial, Helvetica, sans-serif" size="2" color="#0000FF">ndecplaces: 2</font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD"> 
+                                              <td width="25%"><font color="#000099">thousandseparator</font></td>
+                                              <td width="42%">Any character symbol. </td>
+                                              <td width="33%"><font face="Arial, Helvetica, sans-serif" size="2" color="#0000FF">thousandseparator: ,</font></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE"> 
+                                              <td width="25%"><font color="#000099">pecentndecplaces</font></td>
+                                              <td width="42%">integer value<br>
+                                                Specifies the number of decimal places to use when displaying percentage values</td>
+                                              <td width="33%"><font face="Arial, Helvetica, sans-serif" size="2" color="#0000FF">percentndecplaces: 0</font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD"> 
+                                              <td width="25%" bgcolor="#DDEEDD"> <font color="#000099">backgroundcolor</font></td>
+                                              <td width="42%">Color definition (<a href="piechart-colors.htm">see Colors&raquo;</a>)<br>
+                                                general background color of the graph image</td>
+                                              <td width="33%"><font face="Arial, Helvetica, sans-serif" size="2" color="#0000FF"> backgroundcolor: white</font></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE"> 
+                                              <td width="25%"><font color="#000099">displayvalues</font></td>
+                                              <td width="42%">True or False<br>
+                                                specifies whether actual values should be displayed at the top of each point</td>
+                                              <td width="33%" bgcolor="#EEFFEE"><font face="Arial, Helvetica, sans-serif" size="2" color="#0000FF">displayvalues: 
+                                                false</font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD"> 
+                                              <td width="25%"><font color="#000099">quality</font></td>
+                                              <td width="42%"> 
+                                                <p>Valid values are:-</p>
+                                                <p>low<br>
+                                                  medium<br>
+                                                  high<br>
+                                                  very high</p>
+                                                <p>The specifies how much image processing is to be applied in order to 'smooth-out' the pie segments.<br>
+                                                  ( only available if the PHP environment is running with GD 2 or higher)<br>
+                                                  <a href="piechart-quality.htm">more info&raquo;</a></p>
+                                              </td>
+                                              <td width="33%"><font color="#0000FF">quality: medium</font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD"> 
+                                              <td width="22%"><font color="#000099">bgimage</font></td>
+                                              <td width="40%">URL to an Image file<br>
+                                                specifies an image to used as the background</td>
+                                              <td width="38%"><font color="#0000FF">bgimage: brimage.gif </font></td>
+                                            </tr>
+                                          </table>
+<p><br>
+<br>
+</p>
+<p><a href="#top">&laquo;back to top</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+                              <p><a name="segmentlabel"></a> </p>
+<table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr bgcolor="#CCCCAA">
+                                        <td><b><font color="#555500">Segment Label Properties</font></b></td>
+</tr>
+<tr bgcolor="#EEEEDD">
+<td>
+                                          <table width="95%" border="0" cellspacing="0" cellpadding="5" align="center">
+                                            <tr bgcolor="#CCFFCC">
+                                              <td bgcolor="#CCFFCC" width="22%"><font color="#006600"><b>Parameter Name</b></font></td>
+                                              <td bgcolor="#CCFFCC" width="40%"><font color="#006600"><b>Range of Values</b></font></td>
+                                              <td width="38%"><b><font color="#006600">Example</font></b></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE">
+                                              <td width="22%"><font color="#000099">segmentlabels</font></td>
+                                              <td width="40%">True or False <br>
+                                                specifies whether to segment labels or not</td>
+                                              <td width="38%"><font color="#0000FF">segmentlabels: true </font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD">
+                                              <td width="22%"><font color="#000099">segmentlabelfont</font></td>
+                                              <td width="40%">
+                                                <p>Font Definition :-</p>
+                                                <p>small<br>
+                                                  medium<br>
+                                                  medium bold<br>
+                                                  large<br>
+                                                  large bold</p>
+                                              </td>
+                                              <td width="38%"><font color="#0000FF">segmentlabelfont: medium</font></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE">
+                                              <td width="22%"><font color="#000099">segmentlabelcolor</font></td>
+                                              <td width="40%">Color definition (<a href="piechart-colors.htm">see Colors&raquo;</a>)<br>
+                                                label text color</td>
+                                              <td width="38%"><font color="#0000FF">segmentlabelcolor: blue </font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD">
+                                              <td width="22%" bgcolor="#DDEEDD"><font color="#000099">displaypercentages</font></td>
+                                              <td width="40%">True or False <br>
+                                                specifies whether to add percentage figures to the segment labels or not</td>
+                                              <td width="38%"><font color="#0000FF">displaypercentages: true</font></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE">
+                                              <td width="22%"><font color="#000099">labellines</font></td>
+                                              <td width="40%">True or False <br>
+                                                specifies whether to draw a line from the segment to the label or not</td>
+                                              <td width="38%"><font color="#0000FF">labellines: true</font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD">
+                                              <td width="22%"><font color="#000099">valuepresym</font></td>
+                                              <td width="40%">
+                                                <p>Character or Text<br>
+                                                  leading character or text for each segment label</p>
+                                              </td>
+                                              <td width="38%"><font color="#0000FF">valuepresym: $</font></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE">
+                                              <td width="22%"><font color="#000099">valuepostsym</font></td>
+                                              <td width="40%">Character or Text<br>
+                                                trailing character or text for each segment label</td>
+                                              <td width="38%"><font color="#0000FF">valuepostsym: Kg</font></td>
+                                            </tr>
+                                          </table>
+<p>&nbsp; </p>
+<p><a href="#top">&laquo;back to top</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+                              <p><a name="pies"></a> </p>
+                              <table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+                                <tr>
+                                  <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                      <tr bgcolor="#CCCCAA">
+                                        <td><b><font color="#555500">Pie Properties</font></b></td>
+                                      </tr>
+                                      <tr bgcolor="#EEEEDD">
+                                        <td>
+                                          <p>Three parameters may be supplied for each pie on the chart. These are: </p>
+                                          <p><b>Center Position</b> - x,y pixel co-ordinate of the pie center</p>
+                                          <p><b>Pie Size </b>-diameter in pixels of the pie</p>
+                                          <p><b>Segment Seperation</b> - if an exploded pie is required then this value represents the seperation in pixels
+                                            of the segments.</p>
+                                          <p>The format of the pie parameter is:-</p>
+                                          <table width="487" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+                                            <tr>
+                                              <td><font face="Courier New, Courier, mono" color="#005500">pieN: position | size | seperation |</font></td>
+                                            </tr>
+                                          </table>
+                                          <p>where <font color="#006600"><b>N</b></font> represents the pie / series number<br>
+                                          </p>
+                                          <p>For example if there are 2 series of data (ie 2 pies) the pie parameters would be:-</p>
+                                          <table width="480" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+                                            <tr>
+                                              <td><font face="Courier New, Courier, mono" color="#006600">pie1: 100,100|100|0|<br>
+                                                pie2: 300,100|75|20||</font></td>
+                                            </tr>
+                                          </table>
+                                          <p>&nbsp;</p>
+                                          <p><a href="#top">&laquo;back to top</a></p>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                              <p><a name="segments"></a> </p>
+                              <table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+                                <tr>
+                                  <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                      <tr bgcolor="#CCCCAA">
+                                        <td><b><font color="#555500">Segment Properties</font></b></td>
+                                      </tr>
+                                      <tr bgcolor="#EEEEDD">
+                                        <td>
+                                          <p>Two parameters may be supplied for each pie segment. These are: </p>
+                                          <p><b>Segment Color</b> - x,y pixel co-ordinate of the pie center</p>
+                                          <p><b>Legend Label</b> -diameter in pixels of the pie</p>
+                                          <p>Segment definitions are common to all pies on the chart.</p>
+                                          <p>The format of the segment parameter is:-</p>
+                                          <table width="487" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+                                            <tr>
+                                              <td><font face="Courier New, Courier, mono" color="#005500">segmentM: color | legend label |</font></td>
+                                            </tr>
+                                          </table>
+                                          <p>where <font color="#006600"><b>M</b></font> represents the segment number<br>
+                                          </p>
+                                          <p>For example if there are 5 segements on each pie (ie 5 data values in each series) the segment parameters would
+                                            be:-</p>
+                                          <table width="480" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+                                            <tr>
+                                              <td><font face="Courier New, Courier, mono" color="#006600">segment1: red|label 1|<br>
+                                                segment2: red|label 2|<br>
+                                                segment3: red|label 3|<br>
+                                                segment4: red|label 4|<br>
+                                                segment5: red|label 5| </font></td>
+                                            </tr>
+                                          </table>
+                                          <p>&nbsp;</p>
+                                          <p><a href="#top">&laquo;back to top</a></p>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                              <p><a name="3d"></a> </p>
+<table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr bgcolor="#CCCCAA">
+<td><b><font color="#555500">3D Properties</font></b></td>
+</tr>
+<tr bgcolor="#EEEEDD">
+<td>
+                                          <table width="95%" border="0" cellspacing="0" cellpadding="5" align="center">
+                                            <tr bgcolor="#CCFFCC">
+                                              <td bgcolor="#CCFFCC"><font color="#006600"><b>Parameter Name</b></font></td>
+                                              <td bgcolor="#CCFFCC"><font color="#006600"><b>Range of Values</b></font></td>
+                                              <td><b><font color="#006600">Example</font></b></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE">
+                                              <td bgcolor="#EEFFEE"><font color="#000099">3d</font></td>
+                                              <td>True or False <br>
+                                                determines whether 2D or 3D pies should be drawn.</td>
+                                              <td><font color="#0000FF">3d: true</font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD">
+                                              <td bgcolor="#DDEEDD"><font color="#000099">depth3d</font></td>
+                                              <td>Integer Value<br>
+                                                specifies the depth in pixels of the 3D effect</td>
+                                              <td><font color="#0000FF">depth3d: 20 </font></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE">
+                                              <td><font color="#000099">3dangle</font></td>
+                                              <td>Integer value between 0 and 90<br>
+                                                Specifies the angle (in degrees) in the z-plane of the 3d effect. A value of 40 generally produces good
+                                                results. </td>
+                                              <td><font color="#0000FF">3dangle: 40</font></td>
+                                            </tr>
+                                          </table>
+                                          <p><br>
+                                          </p>
+<p><a href="#top">&laquo;back to top</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p><a name="legend"></a> </p>
+<table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr bgcolor="#CCCCAA">
+<td><b><font color="#555500">Legend Properties</font></b></td>
+</tr>
+<tr bgcolor="#EEEEDD">
+<td>
+<table width="95%" border="0" cellspacing="0" cellpadding="5" align="center">
+<tr bgcolor="#CCFFCC">
+  <td bgcolor="#CCFFCC" width="26%"><font color="#006600"><b>Parameter
+	Name</b></font></td>
+  <td bgcolor="#CCFFCC" width="38%"><font color="#006600"><b>Range
+	of Values</b></font></td>
+  <td width="36%"><b><font color="#006600">Example</font></b></td>
+</tr>
+<tr bgcolor="#EEFFEE">
+  <td width="26%"><font color="#000099">legend</font></td>
+  <td width="38%">True or False <br>
+	determines whether the graph legend
+	should be drawn or not</td>
+  <td width="36%"><font color="#0000FF">legend:
+	true </font></td>
+</tr>
+<tr bgcolor="#DDEEDD">
+  <td width="26%"><font color="#000099">legendstyle</font></td>
+  <td width="38%">horizontal or vertical<br>
+	specifies whether the legend should
+	be horizontal or vertical</td>
+  <td width="36%"><font color="#0000FF">legendstyle:
+	horizontal </font></td>
+</tr>
+<tr bgcolor="#EEFFEE">
+  <td width="26%"><font color="#000099">legendbgcolor</font></td>
+  <td width="38%">Color definition
+	(<a href="piechart-colors.htm">see
+	Colors&raquo;</a>)<br>
+	background color of the legend
+	area </td>
+  <td width="36%"><font color="#0000FF">legendbgcolor:
+	white </font></td>
+</tr>
+<tr bgcolor="#DDEEDD">
+  <td width="26%"><font color="#000099">legendbordercolor</font></td>
+  <td width="38%">Color definition
+	(<a href="piechart-colors.htm">see
+	Colors&raquo;</a>)<br>
+	border color of the legend</td>
+  <td width="36%"><font color="#0000FF">legendbordercolor:
+	light blue</font></td>
+</tr>
+<tr bgcolor="#EEFFEE">
+  <td width="26%"><font color="#000099">legendtextcolor</font></td>
+  <td width="38%">Color definition
+	(<a href="piechart-colors.htm">see
+	Colors&raquo;</a>)<br>
+	text color of the legend</td>
+  <td width="36%"><font color="#0000FF">legendtextcolor:
+	black </font></td>
+</tr>
+<tr bgcolor="#DDEEDD">
+  <td width="26%"><font color="#000099">legendtitle</font></td>
+  <td width="38%">Text<br>
+	legend title. leave blank if no
+	title required.</td>
+  <td width="36%"><font color="#0000FF">legendtitle:
+	The Legned</font></td>
+</tr>
+<tr bgcolor="#EEFFEE">
+  <td width="26%"><font color="#000099">legendposition</font></td>
+  <td width="38%">X,Y position<br>
+	position of the legend.</td>
+  <td width="36%"><font color="#0000FF">legendposition:
+	50,50 </font></td>
+</tr>
+<tr bgcolor="#DDEEDD">
+  <td width="26%"><font color="#000099">legendfont</font></td>
+  <td width="38%">
+	<p>Font Definition :-</p>
+	<p>small<br>
+	  medium<br>
+	  medium bold<br>
+	  large<br>
+	  large bold</p>
+	<p>&nbsp;</p>
+  </td>
+  <td width="36%"><font color="#0000FF">legendfont:
+	medium </font></td>
+</tr>
+</table>
+<p>&nbsp; </p>
+<p><a href="#top">&laquo;back to top</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p><a name="titles"></a> </p>
+<table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr bgcolor="#CCCCAA">
+                                        <td><b><font color="#555500">Graph Title</font></b></td>
+</tr>
+<tr bgcolor="#EEEEDD">
+<td>
+<p>&nbsp;</p>
+                                          <table width="95%" border="0" cellspacing="0" cellpadding="5" align="center">
+                                            <tr bgcolor="#CCFFCC">
+                                              <td bgcolor="#CCFFCC" width="22%"><font color="#006600"><b>Parameter Name</b></font></td>
+                                              <td bgcolor="#CCFFCC" width="46%"><font color="#006600"><b>Range of Values</b></font></td>
+                                              <td width="32%"><b><font color="#006600">Example</font></b></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE">
+                                              <td width="22%"><font color="#000099">titletext</font></td>
+                                              <td width="46%">Text<br>
+                                                Main graph title</td>
+                                              <td width="32%"><font color="#0000FF">titletext: Graph Title</font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD">
+                                              <td width="22%"><font color="#000099">titlefont</font></td>
+                                              <td width="46%">
+                                                <p>Font Definition :-</p>
+                                                <p>small<br>
+                                                  medium<br>
+                                                  medium bold<br>
+                                                  large<br>
+                                                  large bold</p>
+                                              </td>
+                                              <td width="32%"><font color="#0000FF">titlefont: large bold</font></td>
+                                            </tr>
+                                            <tr bgcolor="#EEFFEE">
+                                              <td width="22%"><font color="#000099">titlecolor</font></td>
+                                              <td width="46%">Color definition (<a href="piechart-colors.htm">see Colors&raquo;</a>)<br>
+                                                text color</td>
+                                              <td width="32%"><font color="#0000FF">titlecolor: purple </font></td>
+                                            </tr>
+                                            <tr bgcolor="#DDEEDD">
+                                              <td width="22%"><font color="#000099">titleposition </font></td>
+                                              <td width="46%">X,Y Position<br>
+                                                position of the title</td>
+                                              <td width="32%"><font color="#0000FF">titleposition: 100,20 </font></td>
+                                            </tr>
+                                          </table>
+                                          <p>&nbsp;</p>
+                                          <p>Additional Text may be added to the graph image using the &quot;<a href="#freetext">Free Form Text</a>&quot;
+                                            parameters.</p>
+<p><a href="#top">&laquo;back to top</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+                              <p>&nbsp; </p>
+                              <p><a name="freetext"></a> </p>
+<table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr bgcolor="#CCCCAA">
+<td><b><font color="#555500">Free Form
+Text </font></b></td>
+</tr>
+<tr bgcolor="#EEEEDD">
+<td>
+<p>In addition to the standard titles,
+any number of lines of text may be
+added to the graph using the &quot;text&quot;
+parameter.</p>
+<p>The text parameter is consists of
+4 elements:-</p>
+<blockquote>
+<p><font color="#000099">text<br>
+  font<br>
+  color<br>
+  position</font></p>
+</blockquote>
+<p>The format of the text parameter
+is:-</p>
+<table width="450" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+<tr>
+  <td><font face="Courier New, Courier, mono" color="#005500">text:
+	text | font | color | position
+	|</font></td>
+</tr>
+</table>
+<p>For more on color defintions see
+<a href="piechart-colors.htm">Colors&raquo;</a></p>
+<p>The font defintion can be one of:-
+</p>
+<blockquote>
+<p><font color="#000099">small<br>
+  medium<br>
+  medium bold<br>
+  large<br>
+  large bold</font></p>
+</blockquote>
+<p>For example if 3 lines of text were
+to be added the following parameters
+would be included in the configuration:-</p>
+<table width="450" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+<tr>
+  <td><font face="Courier New, Courier, mono" color="#005500">text:
+	line one of text|medium|#000000|50,50|<br>
+	text: line two of text|medium|#000000|50,65|<br>
+	text: line three of text|medium|#000000|50,80|
+	</font></td>
+</tr>
+</table>
+<p>&nbsp;</p>
+<p><a href="#top">&laquo;back to top</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p><a name="images"></a> </p>
+<table width="500" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr bgcolor="#CCCCAA">
+<td><b><font color="#555500">Free Form
+Images </font></b></td>
+</tr>
+<tr bgcolor="#EEEEDD">
+<td>
+<p>Any number of images may be added
+to the graph using the &quot;image&quot;
+parameter.</p>
+<p>The image parameter is consists of
+2 elements:-</p>
+<blockquote>
+<p><font color="#000099">URL or Filename
+  of an image file <br>
+  position</font></p>
+</blockquote>
+<p>The format of the image parameter
+is:-</p>
+<table width="450" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+<tr>
+  <td><font face="Courier New, Courier, mono" color="#005500">image:
+	URL or filename | position |</font></td>
+</tr>
+</table>
+<p>For example if an image &quot;logo.png&quot;
+was to be drawn on the graph image
+then the following parameter would
+be included in the configuration:-</p>
+<table width="450" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+<tr>
+  <td><font face="Courier New, Courier, mono" color="#005500">image:
+	logo.png|5,5| </font></td>
+</tr>
+</table>
+<p>&nbsp;</p>
+<p><a href="#top">&laquo;back to top</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+<tr valign="top" align="center">
+<td colspan="2">
+<table width="95%" border="0" cellspacing="0" cellpadding="3" align="center" bgcolor="#EEEECC">
+<tr>
+<td><a href="../../GettingStarted.htm">&laquo;
+back to Getting Started</a></td>
+<td>
+<div align="right"><b><a href="../../quick-set-up.htm">
+</a><a href="index.htm">Documentation
+Index &raquo;</a></b></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr valign="top" align="left" bgcolor="#99CCFF">
+<td colspan="4"> [ <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/index.htm">
+Chart Home</a> ] [ <a href="../../quick-set-up.htm">Set-Up</a>
+] [ <a href="../../tutorials/index.htm">Tutorials</a> ] [
+<a href="../../documentation/index.htm"> Documentation</a>
+] [ <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/buy-now.htm">
+Buy Now</a> ] [ <a href="http://www.jpowered.com/support.htm">
+Support</a> ] </td>
+</tr>
+</table>
+<blockquote>
+<p> <!-- end content --> </p>
+</blockquote>
+</td>
+<td valign="top" align="right">
+<table width="182" border="0" cellspacing="0" cellpadding="3">
+<tr>
+<td>
+<table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+<tr bgcolor="#CCCCAA">
+<td><b><a href="../../how-it-works.htm">How it Works
+&raquo;</a></b></td>
+</tr>
+<tr valign="top" bgcolor="#EEEEDD">
+<td>
+<p>How the graphing software works. </p>
+<p align="right"><a href="../../how-it-works.htm"><img src="../../images/arrow-green.gif" width="24" height="21" border="0"></a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+<tr bgcolor="#CCCCAA" valign="middle">
+<td><b><a href="../../quick-set-up.htm">Quick Set-Up
+and Install &raquo; </a></b></td>
+</tr>
+<tr valign="top" bgcolor="#EEEEDD">
+<td>
+<p>step-by- step guide to add graphing for
+your site. </p>
+<p align="right"><a href="../../quick-set-up.htm"><img src="../../images/arrow-green.gif" width="24" height="21" border="0"></a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+<tr bgcolor="#CCCCAA">
+<td><b><a href="../../tutorials/index.htm">Tutorials
+&raquo;</a></b></td>
+</tr>
+<tr valign="top" bgcolor="#EEEEDD">
+<td>
+<p>Introducing many powerful features.</p>
+<p align="right"><a href="../../tutorials/index.htm"><img src="../../images/arrow-green.gif" width="24" height="21" border="0"></a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+<tr bgcolor="#CCCCAA">
+<td><b><a href="http://www.jpowered.com/php-scripts/adv-graph-chart/buy-now.htm">Licensing
+and Purchase Options &raquo;</a></b></td>
+</tr>
+<tr valign="top" bgcolor="#EEEEDD">
+<td>
+<p>Click the 'Buy &amp; Download' button to
+review options.</p>
+<p align="right"> <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/buy-now.htm"><img src="../../images/buy-download.gif" width="141" height="30" border="0" alt="buy and download pie chart graph for php"></a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+<tr bgcolor="#CCCCAA">
+<td><b><a href="../../documentation/index.htm">Documentation
+&raquo;</a></b></td>
+</tr>
+<tr valign="top" bgcolor="#EEEEDD">
+<td>
+<p>Full documentation </p>
+<p align="right"><a href="../../documentation/index.htm"><img src="../../images/arrow-green.gif" width="24" height="21" border="0"></a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+<tr bgcolor="#CCCCAA">
+<td><a href="http://www.jpowered.com/support.htm">Help
+and Support &raquo;</a></td>
+</tr>
+<tr valign="top" bgcolor="#EEEEDD">
+<td>
+<p>If at any stage you require help or advice
+then please feel free to ask.</p>
+<p align="right"><a href="http://www.jpowered.com/support.htm">Contact
+us here &raquo;</a></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+<!-- Footer section that includes Links, Horizontal Rule and Copyright image -->
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td class="menu_cell" bgcolor="#FFCC00">
+<p class="bottom_menu">
+[<a href="http://www.jpowered.com"> Home </a>]
+[<a href="http://www.jpowered.com/products.htm"> Products </a>]
+[<a href="http://www.jpowered.com/downloads.htm"> Downloads </a>]
+[<a href="http://www.jpowered.com/purchase.htm"> Purchase </a>]
+[<a href="http://www.jpowered.com/free_java_applet/index.htm"> Free Applets </a>]
+[<a href="http://www.jpowered.com/support.htm"> Support </a>]<br>
+[<a href="http://www.jpowered.com/aboutus.htm"> About Us </a>]
+[<a href="http://www.jpowered.com/java_sitemap.htm"> Site Map </a>]
+[<a href="http://www.jpowered.com/java_resources.htm"> Java Resources </a>]
+<p>
+</td>
+</tr>
+<tr bgcolor="#FFCC00">
+<td class="heading_cell">
+<div align="center"><img src="../../images/copyright.gif" width="450" height="25"></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
