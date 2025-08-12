@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<title>phpJobScheduler - Management of Scheduled Jobs </title>
+<link rel="stylesheet" type="text/css" href="pjs.css">
+</head>
+
+<body>
+<div align="center"><center>
+
+<table cellSpacing="3" cellPadding="0" border="0" width="490">
+<TBODY>
+  <tr bgColor="#000000">
+    <td height="1" bgcolor="#808080" width="481" colspan="4"></td>
+  </tr>
+  <tr bgColor="#334873">
+    <td align="middle" bgcolor="#FFFFFF" width="5"></td>
+    <td align="middle" bgcolor="#FFFFFF"><p align="center"><a href="http://www.dwalker.co.uk/"><img
+    src="pjslogo.gif" width="165" height="75" alt="phpJobScheduler" border="0"></a><strong><br>
+    </strong></td>
+    <td align="middle" bgcolor="#FFFFFF" width="153"><strong><font color="#008000">Management
+    of Scheduled Jobs</font><font color="#400040"> </font></strong></td>
+    <td align="middle" bgcolor="#FFFFFF" width="5"></td>
+  </tr>
+  <tr bgColor="#000000">
+    <td height="1" bgcolor="#808080" width="481" colspan="4"></td>
+  </tr>
+</TBODY>
+</table>
+</center></div>
+
+<p align="center"><big><a href="add-modify.html"><strong>Add a NEW schedule</strong></a></big></p>
+
+<form name="ff" method="post">
+  <input type="hidden" name="id" value="0"><div align="center"><center><table
+  cellSpacing="1" bgcolor="#008000" cellpadding="4" width="740">
+    <tr align="center">
+      <th align="center" bgcolor="#FFFFFF" colSpan="3" width="804"><strong>Details of jobs
+      already on the system</strong></th>
+    </tr>
+    <tr>
+      <th align="center" bgcolor="#FFFFFF" width="160"><small>Job Name </small><br>
+      <small>and script path</small></th>
+      <th align="center" bgcolor="#FFFFFF" width="140"><small>Time/Date of next execution:<font
+      color="#FF8000">*</font></small></th>
+      <th align="center" bgcolor="#FFFFFF" width="90"><small>Interval</small><br>
+      <small>fire every:</small></th>
+    </tr>
+    <tr align="center">
+      <th align="left" bgcolor="#FFFFFF" width="160"></th>
+      <th align="center" bgcolor="#FFFFFF" width="140"></th>
+      <th align="center" bgcolor="#FFFFFF" width="90"></th>
+    </tr>
+<? echo $table_rows;?>
+  </table>
+  </center></div>
+</form>
+
+<p align="center"><font color="#FF8000">* execution time will be within a time frame of: <strong><? echo (TIME_WINDOW/60)." "; ?>
+minutes</strong>. </font>To change the time frame window <a
+href="readme.html#timeframewindow">please see the readme file</a></p>
+
+<hr width="85%" color="#808080" align="center">
+<script language="JavaScript"><!--
+function deletepjs(id,title)
+{
+ if (confirm("Are you sure you want to delete:\n\n\""+title+"\" ?")) 
+ {
+  document.ff.action="delete.php";
+  document.ff.id.value=id;
+  document.ff.submit();
+ }
+}
+function modify(id)
+{
+  document.ff.action="modify.php";
+  document.ff.id.value=id;
+  document.ff.submit();
+}
+
+// --></script>
+
+</body>
+</html>
