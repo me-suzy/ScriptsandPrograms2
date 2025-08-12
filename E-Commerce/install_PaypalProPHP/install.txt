@@ -1,0 +1,83 @@
+******  This install does not require the Paypal Pro SDK at all ************
+Requirements: 
+	PHP Version 4.3.11 +
+	Apache/1.3.31 + (Unix) 
+	OpenSSL/0.9.6b +
+	CURL support enabled - libcurl/7.10.4 OpenSSL/0.9.6b zlib/1.1.4  
+	SQL Server Database
+
+The above are only estimates - these are what I used to install on and I know they work - older versions may work as well.
+
+
+SETUP SANDBOX:
+1. Login to developer.paypal.com
+2. click Create Sandbox account.
+3. Setup a Business Account (type in all your business info - doesnt matter what emails you use since emails will not go to actual account - they go to your sandbox email account in developer.paypal.com)
+4. Go back to developer.paypal.com -> Email -> Activate your Paypal Account from the email sent to the email you just setup.
+5. Click the link in the email to activate and enter the password you just created. Click Continue.
+6. Add a credit card. Leave generated info in fields and click add.
+7. Add bank account: Enter anything in Bank name -> Click Add -> Continue
+8. Confirm Bank Account: Submit->Continue
+9. Then signup for Paypal Pro in the sandbox account: Merchant Account Tab ->Websites Payments Pro->Submit Application
+	- Enter all required fields on first page - doesnt really mater.
+	- On second page Enter a social Security Number starting with 111 that has not already been used and accept agreement.
+	- Continue
+10. Wait for application to be approved (on sandbox this is minutes, on live account this can take 2 days).
+11. Once approved you must log into your account and Approve Billing Agreement->Approve
+12. Go to Profile->API Access-> click second link and get a certificate (make note of account name)
+13. Download certificate (sandbox_cert_key_pem.txt) to local drive and wherever you will put it on your server.
+14. Go to Profile->API Access-> click first link and add access for account name just generated.
+
+NOW YOU ARE READY TO INSTALL AND TEST:
+1. Extract all files from PayPalProDemo.ZIP to a testing directory.
+2. Create a database on your SQL server.  (Note the server address, username, password and database name)
+3. Use the database.txt file to create the tables you need.
+4. Populate the ITEM table with all the items you are supporting or selling on your site. (You don't need to use this table, but it will require a little work to hook up your existing products table to the code - email me and I can help)
+5. Modify the config.php file with your specifics
+	- Database Specifics
+	- Site Specs (primarily the URLs, directory locations, account name of API, password, and location of certificate)
+6. You may want to modify some other files as well including (demo.css, logo.gif, payment.jpg)
+7. Upload all files to your server. (including the certificate)
+8. Hook in to your shopping cart or order page by viewing the (index.htm or test.html) file as an example - test is if you are using the built in shopping cart...index is if you are using your own. You can use the demo index.htm page just to test.
+
+*** If you are testing the Express Checkout  - you must be logged into developer.paypal.com for it to work.
+
+HOW TO HOOKUP UPS SHIPPING CHARGES:
+	There are 3 types of shipping permitted currently - UPS, FLAT and NONE
+		FLAT is simple - there is a charge for the first item and a separate amount for each additional.
+		NONE is self explanitory
+		UPS - 
+1. You must have a UPS account and register for a UPS XML Access Key - checkout:http://www.ups.com/content/us/en/bussol/offering/technology/automated_shipping/online_tools.html
+2. Load these into Config.php
+3. Turn on UPS and make sure you have your Zip code set.
+4. Max weight is so that you do not try to ship 1 box that weighs 1000 lbs or something.
+5. Additional Weight is incase you are shipping smaller items and you want to account for the weight of the box and packing. (this is only added once per package - not per item)
+
+HOW TO HOOKUP TO THE BUILT IN CART:
+	In the event you are not already using a shopping cart and/or do not want to mess with digging through the code to hook
+	it up to your existing cart, I have provided a very simple shopping cart that you can use.  Check it out.
+1. All you really need to do is look at the test.htm file - it is very simple.  You simply send a paramater to cart.php with the ID of the product you are adding (like: cart.php?ItemID=3&Action=add) - Action=add is important. The ID corrisponds to the ID in the ITEM table of the database - you will have needed to populate this table with all your products.
+2. Once you have it hooked up all you need to do to test it is start clicking on the links that will add items to the cart.  Items will stay in the cart for 4 hours - it uses a session cookie (you can modifiy this time in the Functions.php file if you like) 
+
+
+Once you are ready to go live
+LIVE INSTRUCTIONS:
+1. Signup for a Paypal Pro Payment through the merchant tools of your live business account. (wait a few days for approval and aggre to billing agreement)
+2. Go to PAYPAL->Profile->API Access-> click second link and get a certificate (make note of account name)
+3. Download certificate (cert_key_pem.txt) to local drive and wherever you will put it on your server.
+4. Go to PAYPAL->Profile->API Access-> click first link and add access for account name just generated.
+5. Insure that your paypal account is all verified and you have a bank account registered and confirmed address.
+6. Modify the config.php file with your specifics (new account name, password, certificate file, paypal_site, paypal url etc. - changes for live)
+7. Upload all changed files to your server.
+
+One thing to note:
+If you use an Invoice ID: you must make sure it is unique each time or it will not work -otherwise leave it blank and it works.
+
+
+Example Sandbox Account:
+email: info@paypalprodemo.com
+password: paypalpropass
+example cc: Visa 4983599115150124  CVV2-000  EXP 01/2006
+
+
+
