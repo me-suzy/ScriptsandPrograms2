@@ -1,0 +1,207 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+<!-- Again -->
+<%tif again%>
+
+<p align="center"><font class="errorMessage"><b><%tlv err%></b></font>
+<p align="center"><a href = "customer.php?do=new&submit=submit<%tif session%>&session=<%tlv session%><%tendif session%>&county=<%tlv county%>&email=<%tlv email%>&name=<%tlv name%>&add_1=<%tlv add_1%>&add_2=<%tlv add_2%>&town=<%tlv town%>&postcode=<%tlv postcode%>&site_country=<%tlv country%>&phone=<%tlv phone%>"><%tlv 130%></a></p>
+<br>&nbsp;
+</td></tr>
+
+<%tendif again%>
+<!-- /Again -->
+
+
+<%tif new_add%>
+<form method="post" action="order.php<%tif session%>?session=<%tlv session%><%tendif session%>">
+<table cellpadding="3" border="0" cellspacing="2" width="70%" align="center">
+<tr> 
+<td width="100%" colspan="2" class="tableHeadBg"><b><%tlv 133%>:</b> <%tlv email%></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 134%>: <font class="errorMessage">*</font></td>
+<td width="60%"><input name="name_d" class="textbox" value="<%tlv name_d%>" type="text"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 135%>: <font class="errorMessage">*</font></td>
+<td width="60%"><input name="add_1_d" class="textbox" value="<%tlv add_1_d%>" type="text"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 135%>: </td>
+<td width="60%"><input name="add_2_d" class="textbox" value="<%tlv add_2_d%>" type="text"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 136%>: <font class="errorMessage">*</font></td>
+<td width="60%"><input name="town_d" class="textbox" type="text" value="<%tlv town_d%>"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 137%>: <font class="errorMessage">*</font></td>
+<td width="60%"><input name="county_d" class="textbox" type="text" value="<%tlv county_d%>"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 138%>: <font class="errorMessage">*</font></td>
+<td width="60%"><input name="postcode_d" class="textbox" type="text" value="<%tlv postcode_d%>"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 139%>: <font class="errorMessage">*</font></td>
+<td width="60%">
+<%tag country_d%>
+</td>
+</tr> 
+<tr>
+<td width="40%">&nbsp;</td>
+<td width="60%">
+<input type="hidden" name="diff" value="diff">
+<input type="hidden" name="add" value="same_add">
+<input type="hidden" name="submit" value="submit">
+<input type="hidden" name="name" value="<%tlv name%>">
+<input type="hidden" name="email" value="<%tlv email%>">
+<input type="hidden" name="add_1" value="<%tlv add_1%>">
+<input type="hidden" name="add_2" value="<%tlv add_2%>">
+<input type="hidden" name="town" value="<%tlv town%>">
+<input type="hidden" name="county" value="<%tlv county%>">
+<input type="hidden" name="postcode" value="<%tlv postcode%>">
+<input type="hidden" name="country" value="<%tlv country%>">
+<input type="hidden" name="country_id" value="<%tlv country_id%>">
+<input type="hidden" name="phone" value="<%tlv phone%>">
+<br>
+<INPUT type="submit" name="submit" class="submit" value="<%tlv 931%>">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+<INPUT type="button" name="modify" class="submit" value="<%tlv 929%>" onclick="javascript:window.location='index.php<%tif session%>?session=<%tlv session%><%tendif session%>';">
+</td>
+</tr>
+</table>
+<div align="center"><br><font class="errorMessage">*</font> <%tlv 140%></div>
+</form>
+<%tendif new_add%>
+
+
+<%tif again2%>
+<p align="center"><font class="errorMessage"><b><%tlv err%></b></font>
+<br><br><a href = "order.php?add=new_add<%tif session%>&session=<%tlv session%><%tendif session%>&county_d=<%tlv county_d%>&email=<%tlv email%>&name_d=<%tlv name_d%>&add_1_d=<%tlv add_1_d%>&add_2_d=<%tlv add_2_d%>&town_d=<%tlv town_d%>&postcode_d=<%tlv postcode_d%>&country_d=<%tlv country_d%>"><%tlv 130%></a></p>
+<br>&nbsp;
+</td></tr>
+<%tendif again2%>
+
+<%tif secure%>
+
+<table width="50%" border="0" cellspacing="0" cellpadding="3" align="center">
+<tr>
+<td width="50%" class="tableHeadBg"><b><%tlv 142%>:</b></td>
+<td class="tableHeadBg">&nbsp;&nbsp;</td>
+<td width="50%" class="tableHeadBg"><b><%tlv 143%>:</b></td>
+</tr>
+<tr>
+<td width="50%" ><%tlv name%><br><%tlv add_1%><br><%tlv add_2%><br><%tlv town%><br><%tlv county%><br><%tlv postcode%><br><%tlv country%></td>
+<td>&nbsp;&nbsp;</td>
+<td width="50%" ><%tlv name_d%><br><%tlv add_1_d%><br><%tlv add_2_d%><br><%tlv town_d%><br><%tlv county_d%><br><%tlv postcode_d%><br><%tlv country_d%>
+<br><a href="order.php?add=new_add<%tif session%>&session=<%tlv session%><%tendif session%>&county=<%tlv county%>&email=<%tlv email%>&name=<%tlv name%>&add_1=<%tlv add_1%>&add_2=<%tlv add_2%>&town=<%tlv town%>&postcode=<%tlv postcode%>&country=<%tlv country%>&county_d=<%tlv county_d%>&name_d=<%tlv name_d%>&add_1_d=<%tlv add_1_d%>&add_2_d=<%tlv add_2_d%>&town_d=<%tlv town_d%>&postcode_d=<%tlv postcode_d%>&country_d=<%tlv country_d%>&country_id=<%tlv country_id%>&country_id_d=<%tlv country_id_d%>" target="_self"><%tlv 144%></td>
+</tr>
+</table><br>
+
+<%tendif secure%>
+
+<%tif products%>
+<%tif noerr%>
+
+<form action="secure.php<%tif session%>?session=<%tlv session%><%tendif session%>" method="post">
+<a name="top"></a>
+<table width="50%" align=center border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td><%tlv 145%></td>
+</tr>
+</table>
+
+<table cellpadding="3" border="0" cellspacing="2" width="50%" align="center">
+<tr>	
+<td class="tableHeadBg" align="left"><b><%tlv 146%></b></TD>
+<td class="tableHeadBg" align="left"><b><%tlv 147%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 148%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 149%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 150%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 151%></b></td></TR>
+
+<%tloop products%>
+<TR><TD><%tlv title_strip%></TD>
+<TD><%tlv atributes%></TD>
+<TD><%tlv currency%><%tlv price%>(<%tlv price_no_discount%>)</TD>
+<TD><%tlv quantity%></TD>
+<TD><%tlv cat_discount%>%</TD>
+<TD><%tlv currency%><%tlv form_prod_total%></TD>
+</TR>
+<%tendloop products%>
+
+<tr>
+<td colspan="4" align="right"><%tlv 152%>:</td>
+<td colspan="2"><%tlv currency%><%tlv cart_total_undiscounted%></td></tr>
+<tr>
+<td colspan="4" align="right"><%tlv 153%>:</td>
+<td colspan="2"><%tlv pers_discount%>%</td>
+</tr>
+<tr>
+<td colspan="4" align="right"><%tlv 154%>:</td>
+<td colspan="2"><%tlv currency%><%tlv cart_total%></td>
+</tr>
+
+<tr><td colspan="4" align="right"><%tlv 155%>:</td>
+<td colspan="2"><%tlv currency%><%tlv total_tax%></td></tr>
+<tr><td colspan="4" align="right"><%tlv 156%>:</td>
+<td><%tlv currency%><%tlv total_ship%></td></tr>
+<tr>
+<td colspan="4" align="right"><%tlv 157%>:</td>
+<td colspan="2"><%tlv currency%><%tlv payable%>
+</td></tr>
+<tr>
+<td colspan="6" align="center"><b><%tlv 158%>:</b><br><textarea name="customercomments" rows="5" cols="70"></textarea></td>
+</tr>
+</table>
+
+<input type="hidden" name="name" value="<%tlv name%>">
+<input type="hidden" name="email" value="<%tlv email%>">
+<input type="hidden" name="add_1" value="<%tlv add_1%>">
+<input type="hidden" name="add_2" value="<%tlv add_2%>">
+<input type="hidden" name="town" value="<%tlv town%>">
+<input type="hidden" name="county" value="<%tlv county%>">
+<input type="hidden" name="postcode" value="<%tlv postcode%>">
+<input type="hidden" name="country" value="<%tlv country%>">
+<input type="hidden" name="country_id" value="<%tlv country_id%>">
+<input type="hidden" name="phone" value="<%tlv phone%>">
+<input type="hidden" name="name_d" value="<%tlv name_d%>">
+<input type="hidden" name="add_1_d" value="<%tlv add_1_d%>">
+<input type="hidden" name="add_2_d" value="<%tlv add_2_d%>">
+<input type="hidden" name="town_d" value="<%tlv town_d%>">
+<input type="hidden" name="county_d" value="<%tlv county_d%>">
+<input type="hidden" name="postcode_d" value="<%tlv postcode_d%>">
+<input type="hidden" name="country_d" value="<%tlv country_d%>">
+<input type="hidden" name="country_id_d" value="<%tlv country_id_d%>">
+<input type="hidden" name="cart_total" value="<%tlv cart_total%>">
+<input type="hidden" name="payable" value="<%tlv payable%>">
+<input type="hidden" name="total_tax" value="<%tlv total_tax%>">
+<input type="hidden" name="total_ship" value="<%tlv total_ship%>">
+<input type="hidden" name="cart_order_id" value="<%tlv cart_order_id%>">
+<input type="hidden" name="user_discount" value="<%tlv pers_discount%>">
+
+<table align="center" width="50%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="right">
+<br><br>
+<input type="hidden" value="submit" name="submit">
+<input type="submit" name="submit" class="submit" value="<%tlv 931%>">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+<INPUT type="button" name="modify" class="submit" value="<%tlv 929%>" onclick="javascript:window.location='index.php<%tif session%>?session=<%tlv session%><%tendif session%>';">
+</td></tr></table></form>
+
+<%tendif noerr%>
+<%tendif products%>
+
+<%tif noproducts%>
+<p align=center><a href=index.php><%tlv 160%></a></p>
+<%tendif noproducts%>
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
