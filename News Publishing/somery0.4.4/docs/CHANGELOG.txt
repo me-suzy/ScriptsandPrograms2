@@ -1,0 +1,299 @@
+RECENT CHANGELOG (x.y.z types)
+
+	v0.4.5	   articles.php > back to top added
+
+	v0.4.4	   NOTICE Some errors were found in the script previously used for RSS
+			  syndication. This script has been removed and a new script has
+			  been written that should fix all the errors found in the latest
+			  version. Apologies for any discomfort - Feeds should now work
+			  correctly again. Also, about 10k of data was stripped from the
+			  project's size - which is good.
+
+			  ALSO! Some users might be used to adding a trailing slash to
+			  the $websiteurl variable in config.php. DO NOT DO THIS. No slash
+			  should follow the URL itself (http://www.domain.ext, not ext/)
+
+		affected: /admin/articles.php
+		  reason: New RSS feed script - removed all links to RSS20.php.
+
+		affected: /admin/system/functions.php
+		  reason: New RSS feed script - removed all links to RSS20.php.
+
+		affected: /admin/system/engine.php
+		  reason: New RSS feed script - removed all links to RSS20.php.
+
+		   added: /feed.php
+		  reason: This is the new RSS 2.0-compliant feed script. Simply
+			  upload this and the RSS/XML will be generated dynamically.
+			  Date and time per post is now correctly outputted.
+
+ 		 removed: /admin/system/RSS20.php
+		  reason: Replaced this file with smaller and simpler feed.php.
+
+	v0.4.3	affected: All files
+		  reason: The license has changed from "whatever" to the Artistic License.
+			  All files conainted in the somery package now contain a header
+			  containing information about when it was last edited as well as
+			  what license it uses. Also, specific parts of the standard design
+			  were taken out of the admin files and left for the skin to handle,
+			  dividing coding even more from the layout.
+
+		affected: /admin/articles.php in specific has been fixed - there was an error to
+			  do with low-level users being able to alter/delete posts by other
+			  users and those higher in level than them.
+
+		   files: README.txt, LICENSE.txt, CHANGELOG.txt
+		  reason: The license is provided in the LICENSE.txt file. The readme now 
+			  no longer houses the changelog, as this has been moved to this 
+   			  file, CHANGELOG.txt. 106-update.php has been moved to a folder 
+			  called /tools and should not be used unless explicitly needed.
+
+		 changed: Version numbers no longer follow the hard to follow 0.x-build
+			  type, but now follow the major.minor.trivial formula.
+
+		 folders: all uploadables are placed in /upload/
+			  all documentation is placed in /docs/
+			  all additional tools are placed in /tools/		
+
+LEGACY CHANGELOG (x.y-build types)
+
+	v0.4-200: RSS function!
+
+		  affected: /admin/articles.php > additional code for RSS feed
+		  affected: /admin/system/engine.php > additional code for RSS feed
+		  affected: /admin/system/functions.php > additional code for RSS feed
+		  affected: /admin/cookies.php > cookie code fixed, uses $cookiesite
+
+		  new file: /admin/system/rss20.php > RSS feed script
+		  new file: /feed.xml > it's empty, but CHMOD it to 666 and RSS should function
+
+		  affected: /config.php > Okay, listen up. This is the FIRST change to config.php in AGES.
+					  Do NOT just upload this new config.php over your old one - you
+					  will lose your settings! Open up your old config.php and copy your
+					  settings over to the new config.php found in this package. Then
+					  upload and everything should work :)
+
+		  additional: you might want to know this, but for the RSS icon to show up, making
+			      it easier for people to subscribe to your feed, add the following to your
+			      <head></head> tags:
+
+			      <link rel="alternate" title="somery RSS feed" type="application/rss+xml" href="http://www.yoursite.net/feed.xml">
+
+			      and make the data the same as your site. happy feeding!
+
+		  additional: A NEW SKIN! Yayaaaaay! The Peach Blossom skin has been added to this archive.
+			      either just upload it and set it, or don't, or replace your standard skin
+			      but it looks so sweeeeet ^_^
+
+	v0.4-108: STUFF FIXED MORE
+
+		  affected: /admin/register.php > registration allowance bug fixed
+		  affected: /admin/team.php > code cleanup
+		  affected: /admin/system/authorization.php > bug fixed thanks to Jarod
+		  affected: /admin/system/authorization.php > bug fixed thanks to Jarod
+		  affected: /admin/system/functions.php > code cleanup
+
+	v0.4-107: STUFF FIXED
+
+		  affected: /admin/team.php > promotion bug fixed thanks to glossy
+			    /admin/profile.php > month/day null bug fixed
+			    /admin/system/functions.php > comment date&time are now timezone adjusted too
+			    /install.php > fixed it for the umpteenth time. should work without bitching now.
+
+	v0.4-106: STUFF FIXED
+		   UPDATE SCRIPT PROVIDED! 106-update.php. Upload this to your root (where your
+		   config.php file is) and run it. If it succeeds, proceed to the following list
+		   and update these files. IF YOU DO NOT RUN THE UPDATE SCRIPT, YOUR SETTINGS
+		   WILL NO LONGER WORK. RUN IT! :D
+
+		   You do not need to run the update script if you're doing a new install :)
+
+		   affected: /admin/login.php > fixed a logging out bug
+			     /admin/system/functions.php > new archive functionality
+			     /admin/system/functions.php > <p></p> block code
+			     /admin/system/functions.php &
+			     /admin/settings.php > timezone differences
+
+	v0.4-105: STUFF FIXED
+		   affected: /admin/*.*
+			     /admin/system/*.*
+			     /admin/skins/*.*
+
+	v0.4-104: GLOBALS FIXED & PREVNEXT RE-INTRODUCED & B2 to SOM CONVERTER
+		   prevnext(); is a function to display links to older/new posts. this can
+		   be used in combination with the archive function so people can browse the
+		   older posts instead of going by a list of them. this function used to be
+		   in somery.2, but it got removed due to reasons unknown to even me ;)
+
+		   i've added my old B2>somery converter, which you can use to transfer B2
+		   posts to a somery database. open the file in notepad and read the comments.
+		   
+		   affected: /admin/system/functions.php > prevnext function added (see above)
+		      	     /admin/system/engine.php > prevnext functionality
+			     /install.php > fixed for global compatibility, only for new
+						    installs
+
+		   new file: /b2converter.php > read the file's contents to read the info
+			     /admin/skins/somery/*.* > new skin, standard skin
+
+		   removed : /admin/system/ver.php > finally integrated this into functions.php,
+							 	 so you don't have to update this file to
+								 update your version number. from now on
+								 updating your functions.php will upgrade
+								 the system's local version as well. so
+								 ALWAYS update functions.php (which is never
+								 a bad idea ;)
+			     /admin/skins/standard/*.* > i hate this skin
+
+		   update all the mentioned directories. all kinds of stuff fixed, mostly
+		   pertaining skins and sizes, as well as stupid little errors which weren't
+		   so much bugs, but just annoying. fixed :)
+
+	v0.4-103: ARCHIVE FUNCTION!
+
+		   affected: /admin/system/functions.php > archive function added
+		  	     /admin/system/ver.php
+
+		   removed : somery-site like skin, to cut down on size. a new, easier to
+			     use and smaller version will be made, but the 30k size cut
+			     was too big to not make. those of you who want the skin,
+			     check the somery site for the newspost about it, and download
+			     it seperately.
+
+			     default-skin removed, remaining: plain & standard.
+
+	v0.4-102: STUPID ERRORS, GO AWAY
+
+		   affected: /admin/system/engine.php > stupid typo fixed (com should've 
+			       				    been c)
+		   	     /admin/system/functions.php > com should've been c typos fixed
+			     /admin/system/ver.php > always update this file
+
+	v0.4-101: this is just an interim release, so that the major issues are fixed.
+		   the long-awaited archive functionality will be added withing the next
+		   two releases!
+
+		   Most important update is the comments fix. When you set a post not to
+		   allow comments, it used to still show the comments when you clicked the
+		   permalink - now it's not supposed to do that anymore ;)
+
+		   affected: /admin/articles.php > user changes when editing
+			     /admin/login.php
+			     /admin/register.php
+			     /admin/system/ver.php
+			     /admin/system/engine.php > XHTML compliant output added
+			     /admin/system/functions.php > fixed newline shit for <more>								 /admin/system/functions.php > fixed comments (wouldnt work)
+			     /admin/system/functions.php > fixed the [center] BB code
+			     /admin/system/functions.php > added category();
+			     /admin/system/functions.php > XHTML compliant output added
+			     /comments.php > fixed issue with no comments on single posts
+
+	v0.4-100:  major changes are coming, and this is one of the first. improved the
+		   skinning system for the admin section - and the default skin is now
+		   'called default'. There's some files affected you wouldnt expect, so
+		   just overwrite all files mentioned below.
+
+		   the new file (/admin/skins/default/*.*) means that all files in that
+		   directory AS WELL AS the directory itself should be uploaded.
+
+		   the removed file was the 'standard' skin. if you still have it, you
+		   don't have to remove it, and you might prefer it over this one, but
+		   it won't be put into the archive anymore.
+
+		   affected: /comments.php
+			     /admin/profile.php
+			     /admin/team.php
+			     /admin/settings.php
+			     /admin/articles.php
+			     /admin/system/engine.php
+			     /admin/system/ver.php
+		   new file: /admin/skins/default/*.*
+		   removed : /admin/skins/standard/*.*
+
+	v0.4-017:  hopefully fixed the commenter's cookie code. the cookies disappeared
+		   way too fast. i replaced the code completely, and it should function
+		   as it should now.
+
+		   affected: /admin/cookies.php
+			     /admin/system/ver.php
+			     /admin/system/engine.php
+
+	v0.4-016:  some people complained about the cookies timing out too fast -
+		   thus losing entries because somery had logged them out after 
+		   trying to submit an entry. also, the cookies set for the commenter's
+		   information were too short. they are lengthened, so they should
+		   stick a fair while longer.
+
+		   added name/email/website to the comments file
+
+		   affected: /admin/cookies.php 
+			     /admin/system/engine.php
+			     /admin/system/ver.php
+			     /comments.php
+
+	v0.4-015:  there was a problem with registering a new user. the nickname
+		   field would remain empty unless filled in manually and/or by
+		   simply pressing 'submit' on the profile page. This is, of course,
+		   completely silly and therefore I chose to fix it. When registering,
+		   your nickname is set to your username.
+
+		   NOTE: This solves the problem with NEW users and the not displaying
+		   of their names! Yeah! :D
+
+		   ALSO! The somv2 skin was removed to make the archive smaller
+
+		   affected: /admin/register.php 
+			     /admin/system/engine.php
+		   new file: /admin/system/ver.php
+
+	v0.4-014:  somery now has a function which saves commenter's data and
+		   puts it in the comments boxes, saving time for those who
+		   comment often.
+
+		   WARNING! Because the system now sets cookies through engine.php,
+		   you're not allowed to call the engine.php from ANYWHERE anymore.
+		   You need to call  <?include("admin/system/engine.php");?> BEFORE
+		   any HTML is put out to the screen!  Put it on TOP of your index,
+		   otherwise you'll get errors and the code won't work!   /WARNING!
+
+		   affected: /comments.php 
+			     /admin/system/engine.php
+
+
+	v0.4-013:  fixed comments.php. it wasn't reading the commenter's url
+
+		   affected: /comments.php
+
+	v0.4-012:  fixed the articles.php. it was set to 'get' when supposed to
+		   'post', which fucked up posting of long articles.
+
+		   affected: /admin/articles.php
+
+	v0.4-011:  fixed the cookies library, so it works with IE6 and the new 
+		   requirements set for cookie setting.
+
+	v0.4-010:  fixed a small error in the admin section, in the categories.php
+		   section, which said 'delete this post' instead of 'delete cat' ;D
+
+	v0.4-009:  added [center] bbcode
+
+	v0.4-008:  comments.php didnt output poster's url correctly
+
+	v0.4-007:  see &r004, but now for the more link.
+
+	v0.4-006:  fixed a small layout glitch in articles.php which made the 
+		   tables for the article links too small.
+
+	v0.4-005:  fixed an error in articles.php which basically made the entire
+		   order go fucked.
+
+	v0.4-004:  fixed an error in functions.php which made the comment link
+		   mess up in Opera versions before 6.01.
+
+	v0.4-003:  fixed an mysql error in articles.php.
+
+	v0.4-002:  fixed an error in articles.php which made the articles go old
+	           to new.
+
+	v0.4-001:  fixed an error in the html-strip function which fucked up
+	           bb code.
