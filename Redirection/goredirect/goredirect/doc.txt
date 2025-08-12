@@ -1,0 +1,53 @@
+Go! redirector Documentation v0.4
+Created by the Edvisors Network
+Copyright 2003-2004, The Edvisors Network, Inc.
+
+Provided under BSD license located at http://www.studentplatinum.com/scripts/license.php
+It is a violation of the license to distribute this file without the accompanying license and copyright information.
+You may obtain the latest version of this software at http://www.studentplatinum.com/scripts/
+Please visit our corporate page at: http://www.edvisorsnetwork.com/
+See the accompanying changelog for changes since version 0.3
+
+DOCUMENTATION
+
+You will find the following files in the archive.
+
+   1. go.php - the actual redirector script
+   2. goredirect.sql - the MySQL script to configure the database
+   3. license.txt - a copy of the BSD license
+   4. doc.txt - this page
+   5. goconfig.php - variables specific to your installation of MySQL
+
+Plus a folder named admin containing:
+
+   1. index.php - the basic statistics page
+   2. add.php - add a link page
+   3. delete.php - remove a link page
+   4. report.php - detailed link statistics on a month/day breakdown
+
+Installation Instructions
+
+Step 1: Uncompress the archive anywhere you like.
+
+Step 2: In your MySQL server, run the goredirect.sql script. You can also copy and paste into phpMyAdmin, SQLyog, or your choice of front end.
+
+Step 3: Edit the database connection variables in goconfig.php as appropriate for your MySQL installation.
+
+Step 4: Place the go.php and a copy of the goconfig.php scripts at the document root in your web server. (i.e. /var/www/html/ or c:\apache\htdocs)
+
+Step 5: Place the admin folder wherever you like. You may wish to use authentication to protect it if it contains important information.
+
+That's it for install.
+
+Directions for Use
+
+Step 1: Use the admin/index.php script to add and remove URLs as well as view statistics.
+
+Step 2: In your web site, follow this basic format to create trackable links:
+
+/go.php?id=xxx
+
+where xxx is a number corresponding to the row in MySQL.
+
+Step 3: Use the MySQL tool of choice to do detailed reporting beyond what the current link manager provides.
+
