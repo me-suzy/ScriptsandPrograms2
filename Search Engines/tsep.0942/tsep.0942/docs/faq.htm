@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tsep3docs.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>TSEP</title>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="TSEP is an open source (free) website PHP search engine. Easy to install, fast, supports logging and user defined stopwords. It uses CSS formating, is localized (multiple languages)" />
+<meta name="keywords" content="TSEP full text PHP search engine searchengine opensource free boolean mysql php stopword logging crawl spider open source" />
+<link href="css/general.css" rel="stylesheet" type="text/css" />
+<link href="css/medium.css" rel="stylesheet" type="text/css" />
+<!-- InstanceParam name="notes" type="text" value="notcurrent" --><!-- InstanceParam name="install" type="text" value="notcurrent" --><!-- InstanceParam name="usage" type="text" value="notcurrent" --><!-- InstanceParam name="advconf" type="text" value="notcurrent" --><!-- InstanceParam name="extensions" type="text" value="notcurrent" --><!-- InstanceParam name="faq" type="text" value="current" --><!-- InstanceParam name="errors" type="text" value="notcurrent" --><!-- InstanceParam name="links" type="text" value="notcurrent" --><!-- InstanceParam name="help" type="text" value="notcurrent" --><!-- InstanceParam name="contents" type="text" value="notcurrent" -->
+<link href="css/docs.css" rel="stylesheet" type="text/css" />
+<link href="css/links.css" rel="stylesheet" type="text/css" />
+<link href="css/urlimg.css" rel="stylesheet" type="text/css" />
+</head>
+<body><a name="topofpage" id="topofpage"></a> 
+<div id="container"> 
+  <div id="header"> 
+    <div class="HeaderLogo"><img src="graphics/tsep-glow.gif" alt="TSEP - The Search Engine Project" width="310" height="70" /></div> 
+    <div class="HeaderText">
+      <h1>Documentation</h1>
+    </div> 
+  </div> 
+  <div id="sidebar-a"> 
+    <div id="navcontainer"> 
+      <ul id="navlist-verti"> 
+        <li><a href="index.htm" class="notcurrent">Contents</a></li> 
+        <li><a href="note.htm" class="notcurrent">Notes</a></li>
+        <li><a href="install.htm" class="notcurrent">Install &amp; Upgrade</a></li> 
+        <li><a href="usage.htm" class="notcurrent">Usage</a></li> 
+      <li><a href="advanced.htm" class="notcurrent">Advanced Configuration</a></li>
+      <li><a href="extensions.htm" class="notcurrent">Extensions &amp; Plug-ins</a></li>
+      <li><a href="help.htm" class="notcurrent">Help TSEP </a></li>
+      <li><a href="faq.htm" class="current">FAQ</a></li>
+      <li><a href="error.htm" class="notcurrent">Problems &amp; Errors</a></li>
+      <li><a href="links.htm" class="notcurrent">Links</a></li>
+      </ul> 	  
+    </div> 
+  </div> 
+  <div id="sidebar-b">      
+  </div> 
+  <div id="content"><!-- InstanceBeginEditable name="middle" --><div id="navcontainer-hori"> 
+      <ul id="navlist-hori"> 
+        <li><a href="#index">Indexing</a></li> 
+        <li><a href="#search">Searching</a></li> 
+      <li><a href="#other">Other</a></li>    
+      <li><a href="#info">Information</a></li>
+      <li><a href="#rest">Restrictions</a></li>
+      </ul> 	  
+    </div>
+	<h1>FAQ</h1>
+	<ul>
+	  <li><a href="#index">Indexing</a>	    <ul>
+	      <li><a href="#utfcheckapache">Some characters (ä,ö,ü,à,â) aren't displayed properly</a></li>
+        <li><a href="#dynamicsites">How to index dynamic sites</a></li>
+	    <li><a href="#contentnotresult">When trying to index a (php) script the contents, not the result of the script is indexed - why?</a></li>
+	    <li><a href="#cron">Scheduling: cron / at</a></li>
+	    <li><a href="#otherfiletypes">How can I change the filetypes <span class="tsep">TSEP</span> indexes?</a> </li>
+	    </ul>
+	  </li>
+	  <li><a href="#search">Searching</a>	    <ul>
+	      <li><a href="#rank">What Does the &quot;rank&quot; of the pages mean</a></li>
+        </ul>
+	  </li>
+    <li><a href="#other">Other</a>      <ul>
+        <li><a href="#howlook">How can I change the look of <span class="tsep">TSEP</span> to fit it best in my own layout?</a> </li>
+      <li><a href="#language">Creating a new language</a></li>
+      <li><a href="#indexhtmfor">What are the index.htm (size 0k) for anyways?</a></li>
+      </ul>
+    </li>
+	<li><a href="#info">Information</a>	  <ul>
+	    <li><a href="#codedocs"><span class="tsep">TSEP</span> code documentation</a></li>
+	    <li>Versions
+	      <ul>
+	        <li> <a href="#whatversion">'What version am I running ?'</a></li>
+	        <li> <a href="#phpinfo">How do I get information about my server environment? (PHP Info)</a></li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+	<li><a href="#rest">Restrictions</a>	  <ul>
+	    <li><a href="#whatfilescanbeindexed">What files can <span class="tsep">TSEP</span> index </a></li>
+	    <li> <a href="#restrictions">MySQL</a>
+	      <ul>
+	        <li> <a href="#mysqlrestsortip">sorting log by IP</a></li>
+	        <li> <a href="#mysqlrestutf8">UTF-8 handling</a></li>
+	      <li>	            <a href="#mysqlfulltextrestrictions">Fulltextsearch</a>
+	        <ul>
+	          <li><a href="#mysqlreststopwords">Stopwords</a></li>
+	          <li><a href="#minlength">minimum searchword length</a></li>
+	        </ul>
+	      </li>
+	      </ul>
+	    </li>
+	  </ul>
+	</li>
+	</ul>
+	<h1><a name="index" id="index"></a>Indexing </h1>
+	<h2><a name="utfcheckapache" id="utfcheckapache"></a>Some characters (ä,ö,ü,à,â) aren't displayed properly</h2>
+	<ol>
+      <li>heck your browser supports UTF-8 encoding. Internet Explorer ,<br />
+    Firefox, Mozilla/Netscape, Safari and Opera do - though some do have problems! Go to<br />
+    <a href="http://www.macchiato.com/unicode/Unicode_transcriptions.html" target="_blank">http://www.macchiato.com/unicode/Unicode_transcriptions.html</a> to test it.</li>
+      <li>If you're running the Apache webserver check the value of '<span class="fieldDescription">AddDefaultCharset</span>' in your <span class="filename">httpd.conf</span>. It must be set to '<span class="fieldvalue">utf-8</span>'. See<br />
+          <a href="http://httpd.apache.org/docs-2.0/mod/core.html#adddefaultcharset" target="_blank">http://httpd.apache.org/docs-2.0/mod/core.html#adddefaultcharset</a> for details</li>
+    </ol>
+	<h2><a name="dynamicsites" id="dynamicsites"></a>How to index dynamic sites</h2>
+	<p>In general you will need at least version 0.940 for this.</p>
+	<p>Use the &quot;<span class="formfieldlabel">Force parsing via HTTP</span>&quot; option, described in the quick start. (Read <a href="install.htm#index">Indexing your Site</a> -&gt; <a href="install.htm#indexingyoursitenotes">Notes</a> -&gt; <a href="install.htm#forcehttp">&quot;Force parsing via HTTP&quot;</a>  and <a href="#contentnotresult">When trying to index a (php) script the contents, not the result of the script is indexed - why?</a> (below))</p>
+	<p>Some specific problem: </p>
+	<p>Question:</p>
+	<div class="question">
+      <p> I have a site where I have information in a database. The user gets shown a list, where the links are pagename.php?id=n. <br />
+          <br />
+    I'm hoping to write a script that will feed data to <span class="tsep">TSEP</span>, where I concatenate all of the data fields and return them as the text, and construct the the full url including the id. <br />
+    <br />
+    My question is will the full url (with parameters) with the id be preserved by tsep, or will it only store the pagename? </p>
+    </div>
+	<p>So this user want to feed content to <span class="tsep">TSEP</span> and also save the full URL, including ?id=n to <span class="tsep">TSEP</span> as page address. </p>
+	<p>Our answer was: </p>
+	<div class="answer">
+      <p>You will need at least version 0.940 to do this!</p>
+      <p><span class="filename">fillwithcontent.php</span> (<span class="directoryname">/admin/examples/</span><span class="filename">fillwithcontent.php</span>) is the key to this question. It will deliver filenames and content - <span class="filename">phpcrawl4tsep.php</span> would deliver only filenames.</p>
+    </div>
+	<p>But the user was still having problems: </p>
+	<div class="question">
+      <p>Tried it, and I seem to be running into a problem with the 'fileextensions to be included' list. It thinks my files have an extension of '<span class="fileextension">.php</span>?<span class="urlparameter">id=6</span>'. Here are the errors I get: <br />
+          <br />
+    2 pages NOT to be indexed (type: ExtDisAllowed) <br />
+    type directory/filename filter <br />
+    ExtDisAllowed http://www.website.com//FAKE.txt \.(htm|html|php)$ <br />
+    ExtDisAllowed http://www.website.com//View.php?id=6 \.(htm|html|php)$ <br />
+    <br />
+    The first entry is a test. When I add <span class="fileextension">txt</span> to the fileextensions, both of these errors go away - the call to add the <span class="filename">FAKE.txt</span> works, but the calls to add 'file.php?id=x' does not cause any visible error, and don't give any indexed entries. </p>
+    </div>
+	<p>This was answered as follows. Pay close attention to the regular expression used - as you might also use this for other purpose:</p>
+	<div class="answer">
+      <p>use as '<span class="formfieldlabel">fileextension to be included</span>': <br />
+          <br />
+          <span class="fieldvalue">htm,html,php,txt[^ ]* </span><br />
+          <br />
+    The fileextension-definition is a comma separated list of regular expressions. Each comma is replaced by a pipe-sign and the complete string is embedded in &quot;.(&quot; and &quot;)$&quot;. <br />
+    Example: &quot;htm,php&quot; becomes &quot;.(htm|php)$&quot; <br />
+    <br />
+    <span class="importantNote">Note:</span> Dots are removed from the string, given as fileextension-definition. <br />
+    Therefore, for your request, you can not define &quot;<span class="fileextension">txt.*</span>&quot;, this would result in &quot;<span class="fileextension">txt*</span>&quot;. <br />
+    If you use &quot;<span class="fileextension">txt[^ ]*</span>&quot;, this works fine. </p>
+    </div>
+	<p>Related topics: </p>
+	<ul>
+      <li><a href="#whatfilescanbeindexed">What files can <span class="tsep">TSEP</span> index </a></li>
+      <li><a href="extensions.htm#ext">Extensions, Plug-ins</a></li>
+      <li><a href="#contentnotresult">When trying to index a (php) script the contents, not the result of the script is indexed - why?</a> </li>
+      <li><a href="advanced.htm#external">Using external data supply (like a web spider/crawler)</a></li>
+    </ul>
+	<h2><a name="contentnotresult" id="contentnotresult"></a>When trying to index a (php) script the contents, not the result of the script is indexed - why?</h2>
+	<p>Question:</p>
+	<p class="question">I'm confused about indexing a site. I instructed TSEP to index .php files (via the &quot;Fileextensions to be included&quot; parameter) expecting it to index the <span class="importantNote">result</span> of the php-script, not the <span class="importantNote">content</span>. For your information: I let it index a Mambo driven CMS site.Is this the designed behaviour or am I missing something?</p>
+	<p>Answer:</p>
+	<p class="answer">If you want the <span class="importantNote">result</span> of the php (or any other) script, use the force-http option in the indexer (&quot;<span class="formfieldlabel">Force parsing via HTTP</span>&quot;) (introduced in version 0.940)<br />
+  Otherwise <span class="tsep">TSEP</span> should return the contents of the.</p>
+	<p>Related topics: </p>
+	<ul>
+      <li><a href="#dynamicsites">How to index dynamic sites</a> </li>
+      <li><a href="extensions.htm#ext">Extensions, Plug-ins</a></li>
+      <li><a href="advanced.htm#external">Using external data supply (like a web spider/crawler)</a></li>
+    </ul>
+	<h2><a name="cron" id="cron"></a>Scheduling: cron / at </h2>
+	<p>Please see <a href="advanced.htm#cron">&quot;Scheduling: cron / at&quot;</a> in <a href="advanced.htm">Advanced Configuration</a> for this extensive topic.</p>
+	<h2><a name="otherfiletypes" id="otherfiletypes"></a>How can I change the filetypes <span class="tsep">TSEP</span> indexes? </h2>
+	<p>This has been changed in 0.934 - now you can simply enter the filetypes (extensions) you want <span class="tsep">TSEP</span> to index on the indexer page. Please seperate different types by comma only (no spaces etc). Also make sure that you pay attention to the case of the extenstions: &quot;php&quot; is not equal &quot;PHP&quot; on Unix/Linux systems!</p>
+	<p>Example: <span class="fieldvalue">html,htm,php</span></p>
+	<h1><a name="search" id="search"></a>Searching</h1>
+	<div class="importantNote">
+	  <h2><a name="rank" id="rank"></a>What Does the &quot;rank&quot; of the pages mean?</h2>
+    </div>
+	<p>Rank means that all pages are shown ordered by the number of hits they received by all search words. Example: You get 2 results after a search, on the page with rank 1 the search words were found more often than on the page with the rank 2 - simple but very useful if you have many pages on your site and the user might face lots of results.</p>
+	<h1><a name="other" id="other"></a>Other</h1>
+	<h2><a name="howlook" id="howlook"></a>How can I change the look of <span class="tsep">TSEP</span> to fit it best into my own layout?</h2>
+	<p>This is simple but takes a little while. To make things as easy as we can, we will take a look on the result page step by step. The formating we show you here is from version 0.911. It might change in future but still be pretty much the same. </p>
+	<p><span class="importantNote">Please note</span> that there are additional div-blocks in the search page. Those are only shown when errors occur (stopword was searched, MySQL version to low...) Therefore we leave it up to you for now to look deeply into these formattings and for the general users sake we stick with something most people will see. </p>
+	<p>If you have done some nice formating we would appreciate it if you could <a href="note.htm#credit">contact us</a> and send us your CSS file so that we could include it in a new <span class="tsep">TSEP</span> version. </p>
+	<p>All of <span class="tsep">TSEP</span> - on all <span class="tsep">TSEP</span> pages is in the following div container to provide a global area for <span class="tsep">TSEP</span>.</p>
+	<p><img src="graphics/cssused/tsepproject.png" width="334" height="28" class="cssIMG" /></p>
+	<p>With this knowledge already you can change the look very much, for example setting the <span class="cssClass">.tsepProject</span> class in the tsep.css file to another font. This will change all fonts in the <span class="tsep">TSEP</span> area to whatever you define.</p>
+	<p>Now that you know the header, let's look on the next part of the search page: The <span class="cssClass">.SearchBlock</span> which contains the search form fields and the help - which as you can see has it's extra div container <span class="cssClass">.SearchHintsHelp</span> . </p>
+	<p><img src="graphics/cssused/searchblock.png" alt="searchblock with div tags" width="553" height="214" class="cssIMG" /></p>
+	<p>This SearchBlock is being followed by another <span class="cssClass">.SearchBlock</span> which provides status information. This whole block is repeated at the bottom of all search results. If you know a little about CSS you should be able to format this block to fit your needs. </p>
+	<p><img src="graphics/cssused/searchblockstatus.png" alt="search status output with div tags" width="546" height="733" class="cssIMG" /></p>
+	<p>This first container of this type is followed by our search results. Here we use the following classes:</p>
+	<p><span class="cssClass">.SearchResultAllPagesBlock</span> - this is the block of all the results.</p>
+	<p><span class="cssClass">.SearchResultOnePageBlock</span> - this is a block of one resulting page.</p>
+	<p><span class="cssClass">.SearchResultOnePageTitle</span> - this is the title of the webpage we found in the database.</p>
+	<p><span class="cssClass">.resultnumber</span> - this is the rank of the page. (<a href="#rank">details: rank</a>).</p>
+	<p><span class="cssClass">.SearchResultPageRank</span> - displays how many times the page had a hit from the searchwords.</p>
+	<p><span class="cssClass">.SearchResultOutput</span> - these are the words which we indexed - until we encounter the first &quot;explode&quot; character (a . (dot) right now).</p>
+	<p><span class="cssClass">.foundSearchWord</span> - this is one of the words the user has searched. We can mark it special so that the user sees it faster.</p>
+	<p><span class="cssClass">.SearchResultOutputMore </span>- these are the little dots which show the user there is more on the page.</p>
+	<p><span class="cssClass">.SearchResultURL</span> - is the URL of the page we have found, extended by the size of the page (as written in the database).</p>
+	<h2><img src="graphics/cssused/searchresults.png" alt="search results and div tags used" width="548" height="717" class="cssIMG" /></h2>
+	<h2><a name="language" id="language"></a>Creating a new language</h2>
+	<p>Please note that since version 0.940 we have changed the way of translation. </p>
+	<p>If you want to translate <span class="tsep">TSEP</span> to a new language or you want to help with translation (for example when updating a language is required), please <a href="note.htm#credit">contact us</a>. We will arrange that you will be listed as translator for a language. </p>
+	<p>The translation itself is done online. This ensures that several translators can work together on a single translation.</p>
+	<h2><a name="indexhtmfor" id="indexhtmfor"></a>What are the index.htm (size 0k) for anyways?</h2>
+	<p>The <span class="filename">index.htm</span> files you find in some directories are for security only. If at the webserver the directory listing is enabled the user would see the complete contents of the directory if there would be no <span class="filename">index.htm</span>. With the (empty) <span class="filename">index.htm</span> he will see nothing in his browser when he tries to access the directory directly.</p>
+	<h1><a name="info" id="info"></a>Information</h1>
+	<h2><a name="codedocs" id="codedocs"></a><span class="tsep">TSEP</span> code documentation</h2>
+	<p><span class="tsep">TSEP</span> has been documented with <span class="filename">phpxref</span>. You can download this from Sourceforge as well: <a href="http://sourceforge.net/projects/phpxref/"><span class="completeurl">http://sourceforge.net/projects/phpxref/</span></a></p>
+	<h2><a name="whatversion" id="whatversion"></a>'What Version am I running?'</h2>
+	<p>The version of <span class="tsep">TSEP</span> is included in the 'title' tag of the copyright notice. This means that you can move your cursor over the copyright notice (on the bottom of the search page for example) and after a little while your browser should display the version number.</p>
+	<p>The version number is read from a textfile in the <span class="directoryname">include</span> directory named <span class="filename">tsepversion.txt</span>. There is no need to change anything in this file: It is maintained by the programmers.</p>
+	<h2><a name="phpinfo" id="phpinfo"></a>How do I get information about my server environment? (PHP Info)</h2>
+	<p>It has come to our attention that especially new users to PHP might have problems getting some information about their server. This information though might be needed if there are any problems.</p>
+	<p>For this reason we include a file called <span class="filename">tsepinfo.php</span> in the <span class="directoryname">admin</span> directory. Assuming you have installed <span class="tsep">TSEP</span> in <span class="completeurl">www.yourdomain.com/</span><span class="directoryname">tsep</span> simply point your browser to</p>
+	<p class="completeurl">http://www.yourdomain.com/<span class="directoryname">tsep/admin</span>/<span class="filename">tsepinfo.php</span></p>
+	<p>to receive information about <span class="tsep">TSEP</span> and your server.</p>
+	<h1><a name="rest" id="rest"></a>Restrictions</h1>
+	<h2><a name="whatfilescanbeindexed" id="whatfilescanbeindexed"></a>What files can <span class="tsep">TSEP</span> index </h2>
+	<p><span class="tsep">TSEP</span> can index text files (ASCI, UTF-8) only. Text files are usually (examples) <span class="fileextension">TXT</span>, <span class="fileextension">ASC</span>, <span class="fileextension">NFO</span>, <span class="fileextension">HTM</span>, <span class="fileextension">HTML</span>, <span class="fileextension">PHP</span>, <span class="fileextension">PHP3</span></p>
+	<p>You can <span class="importantNote">not index any binary files</span>! Binary files are (examples) <span class="fileextension">ZIP</span>, <span class="fileextension">PDF</span>, <span class="fileextension">DOC</span>, <span class="fileextension">XLS</span>, <span class="fileextension">EXE</span>, <span class="fileextension">GIF</span>, <span class="fileextension">JPG</span>, <span class="fileextension">JPEG</span>, <span class="fileextension">PNG</span> </p>
+	<h2><a name="restrictions" id="restrictions"></a>MySQL restrictions</h2>
+	<ol>
+      <li><a name="mysqlrestsortip" id="mysqlrestsortip"></a>When you want to order the results in your <span class="filename">logview.php</span> by IP address, MySQL v3.23 or higher is needed.</li>
+      <li><a name="mysqlrestutf8" id="mysqlrestutf8"></a>UTF-8 handling: <br />
+    TSEP (&gt;=0.940) uses Unicode (UTF-8). MySQL versions before 4.1 do not calculate the length of 'special' unicode-charactes (e.g. é,Â,...) correctly - we have created a workaround for this though! <br />
+    MySQL does (in principle) not find words with length &lt;= 4. Words containing such 'special' unicode-characters may not be found, because the word-length is computed incorrectly.<br />
+    You might want to read this page for details of UTF-8 handling in MySQL: <a href="http://www.akadia.com/services/mysql_survival.html">http://www.akadia.com/services/mysql_survival.html</a></li>
+      <li><a name="mysqlfulltextrestrictions" id="mysqlfulltextrestrictions"></a>There are certain MySQL restrictions to a full text search:</li>
+    </ol>
+	<p>Quote:</p>
+	<div class="quotedtext">
+      <p><a name="minlength" id="minlength"></a>Any word that is too short is ignored. The default minimum length of words that will be found by full-text searches is four characters.</p>
+    </div>
+	<p>But: There is a workaround! While the search for &quot;<span class="searchWord">a</span>&quot; (without the quotes) will not work because the length is only 1 character, the search for &quot;<span class="searchWord">a***</span>&quot; (without the quotes) will work! This should return all pages where the letter &quot;a&quot; shows up. </p>
+	<p>Quote:</p>
+	<div class="quotedtext">
+      <p><a name="mysqlreststopwords" id="mysqlreststopwords"></a>Words in the stopword list are ignored. A stopword is a word such as ``the'' or ``some'' that is so common that it is considered to have zero semantic value. There is a built-in stopword list.</p>
+    </div>
+	<p>Also there is a 50% threshold. This means, that <span class="importantNote">if a (searched) word occurs in at least 50% of the rows searched, it will not be returned by MySQL</span>. This applies to full text search only. We are using full text search in <span class="tsep">TSEP</span>! To get around this behaviour which is explained in <a href="http://dev.mysql.com/doc/mysql/en/Fulltext_Search.html" target="_blank">13.6 Full-Text Search Functions</a> we recommend you put those words into your stopword list. This will at least show the user who searched that the word has not been searched for.</p>
+	<p>For more details you might read on the source page of these quotes: <a href="http://dev.mysql.com/doc/mysql/en/Fulltext_Search.html" target="_blank">13.6 Full-Text Search Functions</a></p>
+	<p>The restrictions are covered on <a href="http://dev.mysql.com/doc/mysql/en/Fulltext_Restrictions.html" target="_blank">13.6.3 Full-Text Restrictions</a></p>
+	<p>People with access to the MySQL server though can fine-tune their MySQL to overcome these restrictions. You find information about this on <a href="http://dev.mysql.com/doc/mysql/en/Fulltext_Fine-tuning.html" target="_blank">13.6.4 Fine-Tuning MySQL Full-Text Search</a></p>
+	<p>More on built-in MySQL stopwords you will find when you search the MySQL page for &quot;stopword list&quot;. A list of words which we think are compiled into MySQL is in the docs directory: <a href="stopword-mysql.txt">stopword-mysql.txt</a></p>
+	<p class="personalNote">Personally I do not see the big problem about the built-in stopwords because they are so general that probably no one really trying to find something will enter &quot;you&quot; as a search word. Searching is nothing new to people so that they will enter words which they think match what they need best. This also comes down to that they will enter words which are probably long enough not to fall under the length restriction. Also those are English words and TSEP is now ready for other languages as well. (Olaf)</p>
+	<!-- InstanceEndEditable --></div>
+  <div id="footer">
+  <p>This file is part of <span class="tsep">TSEP</span> (<span class="tsep">The Search Engine Project</span>), Version: TSEP 0.9nnn</p>
+<p>This file has been last modified (SubVersion Data):<br />
+    $LastChangedDate: 2005-09-01 22:04:39 +0200 (Do, 01 Sep 2005) $<br />
+    $LastChangedBy: olaf $<br />
+    $LastChangedRevision: 307 $</p>
+<p><a href="http://www.tsep.info" title="TSEP Website" class="copyright">&copy; 2002-2005 by TSEP - The Search Engine Project</a></p>
+  </div>
+</div> 
+</body>
+<!-- InstanceEnd --></html>
