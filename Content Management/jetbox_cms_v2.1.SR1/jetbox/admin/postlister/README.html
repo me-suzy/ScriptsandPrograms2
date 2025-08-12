@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>Postlister | readme</title>
+<style type=text/css><!--
+body { background: white; color: black; font-family: Georgia, "Times New Roman", Times, serif; font-size: 10pt }
+a:link { color: silver }
+a:active { color: silver }
+a:visited { color: silver }
+--></style>
+</head>
+
+
+
+<body>
+
+
+
+<h1>Postlister</h1>
+
+<a href=#about>About</a><br>
+<a href=#features>Features</a><br>
+<a href=#requirements>Requirements</a><br>
+<a href=#change+log>Change log</a><br>
+<a href=#download>Download</a><br>
+<a href=#install>Install</a><br>
+<a href=#faq>FAQ</a><br>
+
+<hr>
+
+
+
+<a name=about></a><h3>About</h3>
+Postlister is a mailing list script written in PHP. It allows you to send out news letters to the subscribers to your list(s). Check the <a href=#features>features</a> section for more information.<br>
+Postlister is free (free as in "free speech" <b>as well as</b> in "free beer" :-)). It is released under the terms of <a href=http://www.gnu.org/copyleft/gpl.html>the GNU General Public License</a> (also known as "GPL").
+<br>
+<br>
+
+
+
+<a name=features></a><h3>Features</h3>
+
+<ul>
+
+<li>Unlimited number of mailing lists.
+
+<li>No browser time-out. Some mailing list scripts attempt to send all messages at once, often causing the browser to time out before all messages have been sent. Postlister does not have that problem.
+
+<li>Subscription confirmation: When users subscribe to a list, they will receive an email telling them to go to a certain URL in order to confirm their subscription request.
+
+<li>The web-based administration area allows you to:
+
+<ul>
+
+<li>Create and delete mailings lists.
+
+<li>Add subscribers.
+
+<li>Find subscribers through the advanced search form and delete them if necessary.
+
+<li>Edit the lists: Write a signature, write a customized subscription message, etc.
+
+<li>Compose and send messages to the lists.
+
+<li>Create the main table that Postlister needs in order to work.
+
+</ul>
+
+<li>Preview function: You can preview messages before sending them to the lists.
+
+<li>Includes a form that enables the visitors to your web site to subscribe to the lists.
+
+<li>A different signature for each list.
+
+<li>Automatic line wrapping at 72 characters (the email standard). This feature does not work perfectly yet. Please tell me if you know a better way of doing it than the way I've done it.
+
+<li>Import/export email addresses.
+
+<li>Language files.
+
+</ul>
+
+<a name=requirements></a>
+<h3>Requirements</h3>
+
+<ul>
+
+<li><a href=http://php.net>PHP</a> (version 3.0.8 or later).
+
+<li><a href=http://mysql.com>MySQL</a>.
+
+<li>A browser that supports JavaScript. This is required for sending mail to the lists. You can use all of Postlister's other functions without JavaScript, but for sending mail you absolutely need a browser that supports JavaScript (i.e. <a href=http://mozilla.org>Mozilla</a>).<br>
+<b>Please note that sending mail with Postlister may not work in <a href=http://opera.no>Opera</a>. The problem seems to be caused by the fact that Opera ignores the HTTP no-cache headers sent by send.php. I ran the test in Opera 3.62 for Windows. I don't know if the situation is different in older and later versions.</b><br>
+Postlister has been successfully tested with the following browsers (among others): Netscape Communicator 4.7 (Linux version), Netscape Communicator 4.7 (Windows version), Netscape 6 Preview Release 1 (Windows version), Microsoft Internet Explorer 5 (Windows version).
+
+</ul>
+
+<a name="change+log"></a>
+<h3>Change log</h3>
+<b>1,14 ==&gt; 1,15</b><br>
+Spanish language file. Thanks, <a href='mailto:arahn@yahoo.com'>Alfredo Rahn</a>.
+<p>
+
+<b>1,13 ==&gt; 1,14</b><br>
+Updated the French language file.
+<p>
+
+<b>1,12 ==&gt; 1,13</b><br>
+Fixed a bug that made it impossible to subscribe email addresses with domains that include a hyphen (i.e. <i>name@example-website.com</i>).
+<p>
+
+German language file updated.
+<p>
+
+<b>1,11 ==&gt; 1,12</b><br>
+Added a French language file. Thanks to <a href='mailto:mikhael.janson@wanadoo.fr'>Mikhael Janson</a> for the translation.
+<p>
+
+<b>1,10 ==&gt; 1,11</b><br>
+Serbian language file added -- thanks, <a href='mailto:bracans@EUnet.yu'>Miroslav Stefanovic</a>.
+<p>
+
+<b>1,04 ==&gt; 1,10</b><br>
+New functions: Import/export email addresses from/to text files. If you have a file with a bunch of email addresses in it, you can import
+all of the addresses into one of your Postlister mailing lists. You can also export the addresses in one of your Postlister mailing lists to a text file. Thanks to <a href='mailto:sonny@intercode.dk'>Sonny</a> for testing the new functions.<p>
+
+The table formats have not changed since the first version of Postlister, so updating is a breeze: Just overwrite the old Postlister files and directories with the new ones.
+<p>
+
+<b>1,03 ==&gt; 1,04</b><br>
+Fixed a bug that caused the [RCPT_EMAIL] variable to be the same no matter what the recipient's email address was.<br>
+Added a German language file by <a href=mailto:dietmar.winkler@webtweaker.com>Dietmar Winkler</a>.
+<p>
+
+<b>1,02 ==&gt; 1,03</b><br>
+<a href=mailto:m.danieli@sisgeinformatica.it>Massimo Danieli</a> fixed some bugs in the Italian language file.
+<p>
+
+<b>1,01 ==&gt; 1,02</b><br>
+Added the Italian translation by <a href=mailto:m.danieli@sisgeinformatica.it>Massimo Danieli</a>.
+<p>
+
+<b>1,00 ==&gt; 1,01</b><br>
+Added some crucial information in the README file that was missing.
+<br><br>
+  <br>
+
+
+
+<a name=install></a><h3>Install</h3>
+
+<ol>
+
+<li>Load <i>settings.php</i> into a plain text editor such as KEdit (Linux) or Notepad (Windows) and edit the variables.<p>
+
+<li>Upload the entire <i>postlister</i> directory (including all files and directories in it) to your server.<p>
+
+<li>Point your browser to <i>example.com/postlister/table.php</i> and push the button to create the main table.<p>
+
+<li>Create one or more mailing lists.<p>
+
+<li>Subscribe one or more persons to the mailing list(s) by pointing your browser to <i>example.com/postlister/subscribe.php</i> and filling out the form.
+
+</ol>
+
+<a name=faq></a>
+<h3>FAQ</h3>
+
+<b>When I enter http://example.com/postlister, I get this error: <i>Warning: 0 is not a MySQL result index...</i>. What does that mean?</b><br>
+The problem is probably caused by the fact that you forgot to create the main table. See the <a href=#install>install</a> instructions.
+<p>
+
+<b>How well does Postlister handle large mailing lists?</b><br>
+Well, first of all let me say that Postlister unlike a lot of other mailing list scripts <b>is</b> capable of sending mail to large lists.
+Some mailing list scripts can only be used for small lists because they try to send out all messages in one run, but Postlister does not work that way.
+Having said that, you should realize that if you need to send out mail to <b>large</b> lists (anything above 2000 recipients) you shouldn't be
+using Postlister or any other script for the task -- you should use a real mailing list server such as <a href="http://greatcircle.com/majordomo">Majordomo</a> or <a href="http://cr.yp.to/ezmlm.html">ezmlm</a>. Website accounts that provide
+access to mailing list servers are usually more expensive than those that don't, and mailing list servers are more difficult to use than Postlister, but if you want really large mailing lists, you're asking for it :-).<p>
+
+When using Postlister to send mail to large lists you should be aware of the time factor. It does take some time to send out a large number of messages.
+At one point I tried to send out a very short message to 500 recipients, and it took approximately 5 minutes. Actually, it wasn't 500 different email addresses -- all 500 messages was sent to the same address. When sending larger messages to 500 <b>different</b> addresses it will probably take more than 5 minutes.
+Anyhow, that should give you an idea as to how long it takes to send out a large number of messages.
+<p>
+
+<b>Where do the visitors to my website go to subscribe to my mailing list(s)?</b><br>
+They can either use the form at <i>example.com/postlister/subscribe.php</i> or they can use your own custom-made form (provided that you have made one...).<p>
+
+<b>The form at <i>example.com/postlister/subscribe.php</i> is ugly!... How do I make my own subscription form?</b><br>
+Well, take a look at the HTML codes at <i>example.com/postlister/subscribe.php</i>. The <i>&lt;form&gt;</i> code should look something like this: <i>&lt;form action="/postlister/subscribe.php" method=post&gt;</i>. The variables that need to be included in the form are the following:<p>
+
+<ul>
+
+<li><b>email</b> (i.e. <i>&lt;input type="text" name="email" size="20"&gt;</i>).
+
+<li><b>list</b> (i.e. <i>&lt;input type="hidden" name="list" value="thenameofyourlist"&gt;</i>).
+
+<li><b>action</b> (can be either <b>subscribe</b> or <b>unsubscribe</b>. I.e. <i>&lt;input type="radio" name="action" value="subscribe"&gt;</i>).
+
+</ul>
+
+<b>What does Postlister mean?</b><br>
+It's a Danish word that simply means "mailing lists". 
+</body></html>
