@@ -1,0 +1,323 @@
+
+<font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b>
+<?
+if ($cart <> 0) {
+?>
+</b></font><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+Your Shopping Cart:</font></b></font></font> 
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">Below are the domains 
+      and hosting plans you currenly have in your cart. If you wish to update 
+      the information, use the menus to select the changes you wish to make. Then 
+      click 'Update Changes' to update the changes. If you wish to remove one 
+      of the items, just click the 'delete' button. When you are satisfied with 
+      your selections, click the &quot;Checkout Now' button below to continue 
+      to the next step of the checkout process.</font></td>
+  </tr>
+</table>
+<form method="post" action="members<? echo $ext ?>">
+  <?
+$i=0;
+$db = new ps_DB;
+$q="SELECT * FROM sessions WHERE session_ip = '$REMOTE_ADDR' ";
+$q.="ORDER BY session_domain";
+$db->query($q);
+         while($db->next_record()) {
+?>
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC">
+    <tr> 
+      <td align="right"> 
+        <table border="0" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" width="100%">
+          <tr> 
+            <td width="6"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#333333"> 
+              <font color="#FFFFFF"> <font size="1"> </font> </font></font></b></font> 
+            </td>
+            <td width="167" valign="middle"> <font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?page=signup_3&amp;action=remove_domain&amp;domain=<? $db->p("session_id"); ?>&amp;session_id=<? echo $session_id ?>"></a></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#333333"><font color="#FFFFFF"><font size="1"> 
+              <font color="#000066"> 
+              <?
+			  $domain =  $db->f("session_domain"); 
+			  $domain = ereg_replace("a","A",$domain);
+			  $domain = ereg_replace("b","B",$domain);
+			  $domain = ereg_replace("c","C",$domain);
+			  $domain = ereg_replace("d","D",$domain);
+			  $domain = ereg_replace("e","E",$domain);
+			  $domain = ereg_replace("f","F",$domain);
+			  $domain = ereg_replace("g","G",$domain);
+			  $domain = ereg_replace("h","H",$domain);
+			  $domain = ereg_replace("i","I",$domain);
+			  $domain = ereg_replace("j","J",$domain);
+			  $domain = ereg_replace("k","K",$domain);
+			  $domain = ereg_replace("l","L",$domain);
+			  $domain = ereg_replace("m","M",$domain);
+			  $domain = ereg_replace("n","N",$domain);
+			  $domain = ereg_replace("o","O",$domain);
+			  $domain = ereg_replace("p","P",$domain);
+			  $domain = ereg_replace("q","Q",$domain);
+			  $domain = ereg_replace("r","R",$domain);
+			  $domain = ereg_replace("s","S",$domain);
+			  $domain = ereg_replace("t","T",$domain);
+			  $domain = ereg_replace("u","U",$domain);
+			  $domain = ereg_replace("v","V",$domain);
+			  $domain = ereg_replace("w","W",$domain);
+			  $domain = ereg_replace("x","X",$domain);
+			  $domain = ereg_replace("y","Y",$domain);
+			  $domain = ereg_replace("z","Z",$domain);
+			  echo $domain;
+?>
+              </font></font></font></font></b></font></td>
+            <td width="26" align="right" valign="middle"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?page=signup_3&amp;action=remove_domain&amp;domain=<? $db->p("session_id"); ?>&amp;session_id=<? echo $session_id ?>"><font color="#666666">delete</font></a></font></td>
+            <td width="249" align="right" valign="middle"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font color="#E6E6E6" size="1"><b><font color="#666666">Registration 
+              Fees:</font></b></font> 
+              <input type="hidden" name="d_id[<? echo $i ?>]" value="<? $db->p("session_id"); ?>">
+              <?
+if($db->f("session_1") == "0") {
+echo "Hosting Only";
+} else {
+show_domain_menu($db->f("session_domain"),$i,$db->f("session_id"));
+}
+?>
+              </font></td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#F2F2F2">
+          <tr> 
+            <td align="right" bgcolor="#F5F5F5"> <font size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Hosting:</b></font> 
+              <? show_hosting_menu($db->f("session_domain"),$i++,$db->f("session_id")); ?>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <?
+}
+?>
+  <input type="hidden" name="page" value="signup_3">
+  <input type="hidden" name="action" value="update_domain">
+  <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+  <br>
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td width="246">&nbsp;</td>
+      <td align="right" width="404"> 
+        <table width="200" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC">
+          <tr> 
+            <td bgcolor="#E6E6E6"> 
+              <table width="200" border="0" cellpadding="1" cellspacing="0" bgcolor="#CCCCCC">
+                <tr bgcolor="#E6E6E6"> 
+                  <td width="126"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>Domain 
+                    Fees:</b></font></td>
+                  <td width="60"> 
+                    <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+                      <?
+$domain_cost = show_registration_cost($REMOTE_ADDR);
+echo $currency;
+printf("%.2f",$domain_cost);
+?>
+                      </b></font></div>
+                  </td>
+                </tr>
+                <tr bgcolor="#F5F5F5"> 
+                  <td width="126"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>Hosting 
+                    Fees:</b></font></td>
+                  <td width="60"> 
+                    <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+                      <?
+$hosting_cost = show_hosting_cost($REMOTE_ADDR);
+echo $currency;
+printf("%.2f",$hosting_cost);
+?>
+                      </b></font></div>
+                  </td>
+                </tr>
+                <tr bgcolor="#E6E6E6"> 
+                  <td width="126"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>Setup 
+                    Fees: </b></font></td>
+                  <td width="60"> 
+                    <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+                      <?
+$setup_cost =  show_setup_cost($REMOTE_ADDR);
+echo $currency;
+printf("%.2f",$setup_cost);
+?>
+                      </b></font></div>
+                  </td>
+                </tr>
+                <tr bgcolor="#F5F5F5"> 
+                  <td width="126"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>Tax 
+                    ( 
+                    <?
+				$tax_rate=setup("tax_rate");
+				echo $tax_rate;
+?>
+                    )</b></font><font color="#000000" size="1" face="Verdana, Arial, Helvetica, sans-serif"></font></td>
+                  <td width="60"> 
+                    <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+                      <?
+					  $tax = setup("tax");
+$subtotal = $hosting_cost + $domain_cost + $setup_cost;
+if ($tax=="Y") { $tax = $subtotal*$tax_rate; }
+echo $currency;
+printf("%.2f",$tax);
+$total = $subtotal + $tax;
+
+?>
+                      </b></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#000000"><b> 
+                      </b></font></div>
+                  </td>
+                </tr>
+                <tr bgcolor="#E6E6E6"> 
+                  <td width="126"><font color="#000099" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>GRAND 
+                    TOTAL:</b></font></td>
+                  <td width="60"> 
+                    <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#000099"><b> 
+                      <?
+echo $currency;
+printf("%.2f",$total);
+?>
+                      </b></font></div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table width="450" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td width="439">&nbsp; </td>
+      <td width="203"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><a href="?page=signup_4&amp;session_id=<? echo $session_id ?>"><font color="#990000"> 
+          <input type="submit" name="Submit" value="Update Changes -&gt;" class="menu">
+          </font></a></b></font></div>
+      </td>
+    </tr>
+  </table>
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td width="457">&nbsp;</td>
+      <td width="185"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><a href="?page=signup_4&amp;session_id=<? echo $session_id ?>"><font color="#990000"> 
+          <input type="hidden" name="page" value="signup_4">
+          </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b></b></font></a><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><a href="?page=signup_4&amp;session_id=<? echo $session_id ?>"><font color="#990000"> 
+          <input type="hidden" name="next_page" value="signup_4">
+          </font></a></b></font><font color="#990000"> 
+          <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+          <input type="submit" name="Submit3" value="Checkout Now -&gt;"  class="menu">
+          </font></b></font></div>
+      </td>
+    </tr>
+  </table>
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td width="457">&nbsp;</td>
+      <td width="185"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><a href="?page=signup_4&amp;session_id=<? echo $session_id ?>"><font color="#990000"> 
+          <input type="hidden" name="page" value="signup_1">
+          </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b></b></font></a><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><a href="?page=signup_4&amp;session_id=<? echo $session_id ?>"><font color="#990000"> 
+          </font></a></b></font><font color="#990000"> 
+          <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+          <input type="submit" name="Submit32" value="Search Again -&gt;"  class="menu">
+          </font></b></font></div>
+      </td>
+    </tr>
+  </table>
+</form>
+<p><font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font color="#666666"> 
+  <?
+} else {
+?>
+  </font></b></font> <font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+  Your Shopping Cart Is Empty</font></b></font></font></b></font> </p>
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">It appears that your 
+      shopping cart is presenly empty. Please use one of the options below to 
+      continue... </font></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><font color="#999999"><font size="3" face="Verdana, Arial, Helvetica, sans-serif"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3">&gt; 
+  Search For Available Domains:</font></b></font></font></font> 
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">Need to find the perfect 
+      domain for your business or personal interest? <br>
+      Use the form below to search for available domains. You may enter the full 
+      domain name (example: domain.com) and we will check its status. Also, you 
+      can simply type a word (example: domain), and we will check all the extensions 
+      that we currently register. </font></td>
+  </tr>
+</table>
+<form method="post" action="members<? echo $ext ?>">
+  <table width="450" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b> 
+        Domain Search:</b></font></td>
+      <td> 
+        <?
+$f = show_input_text("desired_domain","15","NONE","NONE");
+echo $f;
+?>
+        <input type="hidden" name="page" value="signup_2">
+        <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+      </td>
+      <td width="90"> 
+        <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23">
+      </td>
+    </tr>
+  </table>
+</form>
+<p>&nbsp; </p>
+<p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#999999">&gt; 
+  Purchase Hosting Only:</font></b></font></font> 
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">Already have a domain 
+      name, but you wish to host it with us? No problem, we will transfer it to 
+      our servers and supply you with hosting. Just enter the full domain name 
+      below to get started. (example: domain.com)</font></td>
+  </tr>
+</table>
+<form method="post" action="members<? echo $ext ?>">
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b> </b></font> 
+  <table width="450" border="0" cellpadding="5" cellspacing="0">
+    <tr> 
+      <td width="200"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Domain 
+        Transfer:</b></font> </td>
+      <td> 
+        <?
+$f = show_input_text("transfer_domain","15","NONE","NONE");
+echo $f;
+?>
+        <input type="hidden" name="page" value="signup_3">
+        <input type="hidden" name="action" value="transfer_domain">
+        <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+      </td>
+      <td width="90"> 
+        <input type="image" border="0" name="submit2" value="submit" src="images/button_continue.gif" width="80" height="23">
+      </td>
+    </tr>
+  </table>
+</form>
+<p><font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font color="#666666"> 
+  <?
+}
+?>
+  </font></b></font> <br>
+  <br>
+</p>
+</body>
