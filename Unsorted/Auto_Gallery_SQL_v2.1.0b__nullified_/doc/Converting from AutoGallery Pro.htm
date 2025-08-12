@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://www.jmbsoft.com/owners/ags/bdocs/autogallerypro.html -->
+<HTML><HEAD><TITLE>Converting from AutoGallery Pro</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY><FONT face=Verdana,Arial size=4>
+<DIV align=center><B>Converting from AutoGallery Pro v2.0.x </B><BR><BR>
+<TABLE cellSpacing=0 cellPadding=0 width=650>
+  <TBODY>
+  <TR>
+    <TD><FONT face=Arial size=2><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Conversion Instructions</B> 
+            </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>The 
+      following steps will guide you through the process of converting from 
+      AutoGallery Pro to AutoGallery SQL. You should allow at least 30 minutes 
+      for this conversion process. The instructions below apply only to 
+      AutoGallery Pro v2.0.x. Your TGP page HTML can be imported, however all 
+      templates for post.cgi, partner.cgi and report.cgi will need to be redone. 
+
+      <OL>
+        <LI>The first thing you should do is login to your AutoGallery Pro 
+        administrative interface and run the database backup function. This will 
+        create a backup file which you can use to get AutoGallery Pro running 
+        again if you encounter any problems with the conversion. Make sure you 
+        download the backup file to your local computer in ASCII mode before 
+        continuing to the next step. <BR><BR>
+        <LI>You now need to upload the autogallerypro.cgi file from the 
+        AutoGallery SQL distribution. Upload this file to the directory where 
+        AutoGallery Pro is currently installed - the same directory where agp.pl 
+        is located. Set the permissions on this file to 755, then bring it up in 
+        your browser. You will be presented with a series of messages indicating 
+        that your data is being imported. Once all of the lines have printed, it 
+        will tell you to continue with the next step. <BR><BR>
+        <LI>After running the autogallerypro.cgi script, two files will be 
+        created in your data directory. They will be named agp-html.txt and 
+        agp-sql.txt. Download both of these files to your local computer in 
+        ASCII mode - they will be used later to complete the data import 
+        process. <BR><BR>
+        <LI>If you will be installing AutoGallery SQL in a new directory, you 
+        can skip this step. Otherwise, if you are installing in the same 
+        directory where AutoGallery Pro is currently located, continue with this 
+        step. <BR><BR>You should now completely delete your AutoGallery Pro 
+        installation from your server. Delete all of the files and folders from 
+        your server - if you miss any files it can cause the conversion to not 
+        work properly. Be sure to get the .htaccess and .htpasswd files from the 
+        admin directory, all the files and directories in the data directory, 
+        and all templates in the templates directory. <BR><BR>
+        <LI>Follow the instructions in the install.html documentation file to 
+        install a clean copy of AutoGallery SQL on your server. <BR><BR>
+        <LI>Once the installation has been completed, upload the agp-html.txt 
+        and agp-sql.txt files to your AutoGallery SQL data directory. Both of 
+        these files must be uploaded in ASCII mode. <BR><BR>
+        <LI>The final step is to run the database restore function from the 
+        administrative interface. When you do, be sure to enter agp-html.txt as 
+        the HTML backup filename and agp-sql.txt as the SQL backup filename. 
+        Once you have run this function, your upgrade is complete. You will now 
+        need to setup your post.cgi, partner.cgi, and report.cgi template files 
+        - remember you cannot use the template files from AutoGallery Pro. 
+      </LI></OL></FONT></TD></TR></TBODY></TABLE></DIV></FONT></BODY></HTML>
