@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>alumni_list</title>
+<link rel="stylesheet" type="text/css" href="Themes/Multipads/Style.css">
+</head>
+<body bgcolor="#ffffff" text="#000000" link="#800000" vlink="#800000">
+<p align="center">{Header}
+<!-- BEGIN Record alm_alumniSearch1 --></p>
+<div align="center">
+  <form name="alm_alumniSearch1" action="{Action}" method="post">
+    <font class="MultipadsFormHeaderFont">Search Alumni</font>
+    <table class="MultipadsFormTABLE" cellspacing="2" cellpadding="2">
+      <!-- BEGIN Error -->
+      <tr>
+        <td class="MultipadsDataTD" colspan="2">{Error}</td>
+      </tr>
+      <!-- END Error -->
+      <tr>
+        <td class="MultipadsFieldCaptionTD" nowrap>Year graduated&nbsp;</td>
+        <td class="MultipadsDataTD"><input class="MultipadsInput" maxlength="4" size="4" value="{s_keyword}" name="s_keyword">&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="MultipadsFooterTD" nowrap align="right" colspan="2">
+          <!-- BEGIN Button DoSearch --><input class="MultipadsButton" type="submit" value="Search" name="DoSearch"><!-- END Button DoSearch -->&nbsp;</td>
+      </tr>
+    </table>
+  </form>
+</div>
+<p align="center"><!-- END Record alm_alumniSearch1 -->
+<!-- BEGIN Grid alm_alumni --><font class="MultipadsFormHeaderFont">List
+of&nbsp;Alumni</font></p>
+<div align="center">
+  <table cellpadding="2" cellspacing="2" class="MultipadsFormTABLE" align="center">
+    <tr>
+      <td nowrap class="MultipadsColumnTD">
+        <!-- BEGIN Sorter Sorter_RecordNum -->Click here to&nbsp;View
+        <!-- BEGIN Asc_On --><img src="Themes/Multipads/AscOn.gif" border="0"><!-- END Asc_On -->
+        <!-- BEGIN Asc_Off --><a href="{Asc_URL}"><img src="Themes/Multipads/AscOff.gif" border="0"></a><!-- END Asc_Off -->
+        <!-- BEGIN Desc_On --><img src="Themes/Multipads/DescOn.gif" border="0"><!-- END Desc_On -->
+        <!-- BEGIN Desc_Off --><a href="{Desc_URL}"><img src="Themes/Multipads/DescOff.gif" border="0"></a><!-- END Desc_Off --><!-- END Sorter Sorter_RecordNum -->&nbsp;</td>
+      <td nowrap class="MultipadsColumnTD">
+        <!-- BEGIN Sorter Sorter_YearGrad -->Year Graduated
+        <!-- BEGIN Asc_On --><img src="Themes/Multipads/AscOn.gif" border="0"><!-- END Asc_On -->
+        <!-- BEGIN Asc_Off --><a href="{Asc_URL}"><img src="Themes/Multipads/AscOff.gif" border="0"></a><!-- END Asc_Off -->
+        <!-- BEGIN Desc_On --><img src="Themes/Multipads/DescOn.gif" border="0"><!-- END Desc_On -->
+        <!-- BEGIN Desc_Off --><a href="{Desc_URL}"><img src="Themes/Multipads/DescOff.gif" border="0"></a><!-- END Desc_Off --><!-- END Sorter Sorter_YearGrad -->&nbsp;</td>
+      <td nowrap class="MultipadsColumnTD">
+        <!-- BEGIN Sorter Sorter_FirstName -->First Name
+        <!-- BEGIN Asc_On --><img src="Themes/Multipads/AscOn.gif" border="0"><!-- END Asc_On -->
+        <!-- BEGIN Asc_Off --><a href="{Asc_URL}"><img src="Themes/Multipads/AscOff.gif" border="0"></a><!-- END Asc_Off -->
+        <!-- BEGIN Desc_On --><img src="Themes/Multipads/DescOn.gif" border="0"><!-- END Desc_On -->
+        <!-- BEGIN Desc_Off --><a href="{Desc_URL}"><img src="Themes/Multipads/DescOff.gif" border="0"></a><!-- END Desc_Off --><!-- END Sorter Sorter_FirstName -->&nbsp;</td>
+      <td nowrap class="MultipadsColumnTD">
+        <!-- BEGIN Sorter Sorter_LastName -->Last Name
+        <!-- BEGIN Asc_On --><img src="Themes/Multipads/AscOn.gif" border="0"><!-- END Asc_On -->
+        <!-- BEGIN Asc_Off --><a href="{Asc_URL}"><img src="Themes/Multipads/AscOff.gif" border="0"></a><!-- END Asc_Off -->
+        <!-- BEGIN Desc_On --><img src="Themes/Multipads/DescOn.gif" border="0"><!-- END Desc_On -->
+        <!-- BEGIN Desc_Off --><a href="{Desc_URL}"><img src="Themes/Multipads/DescOff.gif" border="0"></a><!-- END Desc_Off --><!-- END Sorter Sorter_LastName -->&nbsp;</td>
+      <td nowrap class="MultipadsColumnTD">
+        <!-- BEGIN Sorter Sorter_MaidenName -->Maiden Name
+        <!-- BEGIN Asc_On --><img src="Themes/Multipads/AscOn.gif" border="0"><!-- END Asc_On -->
+        <!-- BEGIN Asc_Off --><a href="{Asc_URL}"><img src="Themes/Multipads/AscOff.gif" border="0"></a><!-- END Asc_Off -->
+        <!-- BEGIN Desc_On --><img src="Themes/Multipads/DescOn.gif" border="0"><!-- END Desc_On -->
+        <!-- BEGIN Desc_Off --><a href="{Desc_URL}"><img src="Themes/Multipads/DescOff.gif" border="0"></a><!-- END Desc_Off --><!-- END Sorter Sorter_MaidenName -->&nbsp;</td>
+    </tr>
+    <!-- BEGIN Row -->
+    <tr>
+      <td class="MultipadsDataTD"><a class="MultipadsDataLink" href="{RecordNum_Src}">{RecordNum}</a>&nbsp;</td>
+      <td class="MultipadsDataTD">{YearGrad}&nbsp;</td>
+      <td class="MultipadsDataTD">{FirstName}&nbsp;</td>
+      <td class="MultipadsDataTD">{LastName}&nbsp;</td>
+      <td class="MultipadsDataTD">{MaidenName}&nbsp;</td>
+    </tr>
+    <!-- END Row -->
+    <!-- BEGIN NoRecords -->
+    <tr>
+      <td colspan="5" class="MultipadsDataTD">No records&nbsp;</td>
+    </tr>
+    <!-- END NoRecords -->
+    <tr>
+      <td colspan="5" nowrap class="MultipadsFooterTD"><a class="MultipadsDataLink" href="{alm_alumni_Insert_Src}">Add
+        New</a>&nbsp;
+        <!-- BEGIN Navigator Navigator -->
+        <!-- BEGIN Prev_On --><a class="MultipadsNavigatorLink" href="{Prev_URL}"><img src="Themes/Multipads/PrevOn.gif" border="0"></a><!-- END Prev_On -->
+        <!-- BEGIN Next_On --><a class="MultipadsNavigatorLink" href="{Next_URL}"><img src="Themes/Multipads/NextOn.gif" border="0"></a><!-- END Next_On --><!-- END Navigator Navigator -->&nbsp;</td>
+    </tr>
+  </table>
+</div>
+<p align="center"><!-- END Grid alm_alumni --><a href="{Logout_Src}">Logout</a></p>
+<p align="center">{Footer}</p>
+</body>
+</html>
