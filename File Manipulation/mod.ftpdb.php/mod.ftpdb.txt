@@ -1,0 +1,73 @@
+ ______________________________________________
+
+ mod.ftpdb - a lan party ftp server list system
+ ______________________________________________
+
+
+   1. purpose
+   2. installation
+   3. usage
+   4. contact
+   5. history
+
+
+
+1. purpose
+
+  since i'm a lan party orga, i wrote this for our intranet system. participants can use it
+  to announce their ftp service. note: this does not intend to support spreading of illegal
+  content like warez, copyrighted mp3s, divx etc. but there are also other things which are
+  legal, i.e. game patches, free music, demoscene products, linux etc.
+  this code is just basic usage of php and mysql to store and recall data that was inserted
+  via html forms. it is covered by the gpl - a copy should be included in this archive - so
+  you can use it for free and modify it to your needs. read the gpl for more information on
+  that.
+
+
+2. installation
+
+  first of all, you need a server system to run it on. i myself prefer LAMP (linux, apache,
+  mysql, php). it requires php4 (http://www.php.net/) and mysql 3.x (http://www.mysql.org/)
+  to work. i recommend you to use phpMyAdmin (http://phpwizard.net/projects/phpMyAdmin/) to
+  manage your mysql database content with a webbrowser. please don't bother me with getting
+  it all up and running, there are lots of good sources on the net to help you with that.
+  if you got it running, you just have to extract the .php files to your favorite directory
+  and import the .sql file into your database (using phpMyAdmin). of course, you might want
+  to create some fake entries either via phpMyAdmin or the add form to test it out.
+  if you want to check the server states periodically (and i'm sure you want to), you have
+  to create an entry in your crontab which runs the refresh script i.e. every 30 minutes.
+
+
+3. usage
+
+  there should be 4 example files included in this archive which demonstrate the use of the
+  different functions definded in the mod. file. feel free to change the design by adapting
+  the example files' html/css tags (if given) to fit it to your existing website. you might
+  also want to change the labels to your language which can be done in the mod. file, along
+  with some color settings. you also have to change your links here if you rename the files
+  (which you should do). the files and their function are:
+     mod.ftpdb-example-add.php     - let people add their server with this form
+     mod.ftpdb-example-list.php    - print a list of submitted servers and their state
+     mod.ftpdb-example-refresh.php - refreshes the server states (run this from crontab)
+     mod.ftpdb-example-status.php  - how to read server states to include in your site
+  there is no form to change or delete entries yet, firstly for security reasons (or do you
+  want your guests to delete entries by guessing the parameters?). but since you're already
+  familiar with phpMyAdmin, you should be able to change or remove entries using this tool.
+
+
+4. contact
+
+  contact me at <jochen@kupperschmidt.de> if you have feedback, suggestions, find bugs etc.
+
+
+5. history
+
+  version 27/jan/2002 - first official release
+  version 23/oct/2001 - successfully tested on different lan parties
+  version ??/jul/2001 - firstly used with our intranet
+
+  (for new versions check http://homework.nwsnet.de/)
+
+
+
+(c) 2001-2002 jochen kupperschmidt aka Y0Gi
