@@ -1,0 +1,80 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+<%tif basket%>
+
+<!--
+<table cellpadding="2" border="0" cellspacing="1" cellpadding="1" width="90%" align="center">
+<tr><td><font class="chapter01"><%tlv 35%></font></td></td></tr>
+<tr><td class="tableHeadBg"></td></td></tr>
+</table>
+--->
+
+<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box05_center.gif" class="BodyText05" align="left"><%tlv 35%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+
+<table cellpadding="4" border="0" cellspacing="1" width="90%" align="center">
+<FORM ACTION="<%tlv url%>" method="post">
+
+<TR class="tableHeadBg"><TD class="tableHeadBg" align="left"><b><%tlv 192%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 194%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 193%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 195%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 196%></b></TD>
+<TD class="tableHeadBg"><b><%tlv 197%></b></TD>
+<TD class="tableHeadBg">&nbsp;</TD></TR>
+
+<%tloop basket%>
+<TR><TD><%tlv title_strip%></TD>
+<TD><%tlv atributes%></TD>
+<TD><%tlv currency%><%tlv price%> (<%tlv price_no_discount%>)</TD>
+<TD><INPUT TYPE=text class=\"textbox\" size=3 name="quantity[<%tlv id%>]" value="<%tlv quantity%>">
+<%tif outofstock%>
+&nbsp;&nbsp;&nbsp;<font class="errorMessage"><%tlv 933%></font>
+<%tendif outofstock%>
+</TD>
+<TD><%tlv cat_discount%>%</TD>
+<TD><%tlv currency%><%tlv form_prod_total%></TD>
+<TD><A HREF="view_cart.php?remove=<%tlv remove%>"><%tlv 198%></A></TD></TR>
+<%tendloop basket%>
+
+<tr><td colspan="5" align="right"><font class="Chapter02"><%tlv 197%>:</td><td colspan="2"><font class="Chapter02"><%tlv currency%><%tlv cart_total%></font></td></tr>
+</table>
+
+<br>
+<table align="center" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td height="40" align="center">
+<INPUT type="button" name="modify" class="submit" value="<%tlv 931%>" onclick="javascript:window.location='customer.php<%tif session%>?session=<%tlv session%><%tendif session%>';">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+<INPUT type="hidden" name="modify" value="modify">
+<INPUT type="submit" name="modify" class="submit" value="<%tlv 928%>">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+<INPUT type="button" name="modify" class="submit" value="<%tlv 930%>" onclick="javascript:window.location='view_cart.php?remove=all<%tif session%>&session=<%tlv session%><%tendif session%>';">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+<INPUT type="button" name="modify" class="submit" value="<%tlv 929%>" onclick="javascript:window.location='index.php<%tif session%>?session=<%tlv session%><%tendif session%>';">
+</td>
+</tr>
+</table>
+
+</td></tr>
+</FORM>
+</table>
+
+<%tendif basket%>
+
+<%tif nobasket%>
+<div align=center><p><%tlv 199%></p><a href=index.php><%tlv 160%></a></div>
+<%tendif nobasket%>
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
