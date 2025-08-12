@@ -1,0 +1,73 @@
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="scripts/rowMark.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/contenido.css" />
+    <script type="text/javascript" src="scripts/messageBox.js.php?contenido={SID}"></script>
+    <script type="text/javascript">
+
+        /* Session-ID */
+        var sid = "{SID}";
+
+        /* Create messageBox
+           instance */
+        box = new messageBox("", "", "", 0, 0);
+
+        /* Function for deleting
+           templates */
+        function deleteStr(idcat, idparent) {
+
+            url  = 'main.php?area=str';
+            url += '&action=str_deletecat';
+            url += '&frame=4';
+            url += '&idcat=' + idcat;
+            url += '&parentid=' + idparent;
+            url += '&contenido=' + sid;
+
+            window.location.href = url;
+
+        }
+        </script>
+</head>
+<body style="margin:10px">
+
+<table cellspacing="0" cellpadding="2" border="0">
+
+    <tr valign="middle" >
+        <td  class="text_medium">{NEWTREE}</td>
+    </tr>
+
+    <tr>
+        <td colspan="8"><img src="images/spacer.gif" width="1" height="10"></td>
+    </tr>
+</table>
+
+<table cellspacing="0" cellpadding="2" border="0" style="border:0px; border-left:1px; border-bottom: 1px;border-color: #747488; border-style: solid;">
+     <tr class="text_medium" style="font-weight:bold; background-color: #a9aec2;">
+        <td class="textw_medium" style="border: 0px; border-top:1px; border-right:1px;border-color: #747488; border-style: solid" colspan="2">i18n("Category")</td>
+        <td colspan=2" class="textw_medium" style="border:0px; border-top:1px; border-right:1px; border-color: #747488; border-style: solid" nowrap="nowrap">i18n("Template")</td>
+        <td colspan="7" class="textw_medium" style="border: 0px; border-top:1px; border-right:1px; border-color: #747488; border-style: solid" nowwrap="nowrap">i18n("Actions")</td>
+    </tr>
+
+
+    <!-- BEGIN:BLOCK -->
+    <tr class="text_medium" style="background-color: {BGCOLOR};" onmouseover="row.over(this)" onmouseout="row.out(this)" onclick="row.click(this)">
+		<td width="1" valign="middle" style="border: 0px; border-top:1px; border-right:0px;border-color: #747488; border-style: solid; padding-right: 0px;">&nbsp;</td>
+        <td valign="middle" style="border: 0px; border-top:1px; border-right:1px;border-color: #747488; border-style: solid; padding-left: {INDENT};">{COLLAPSE}&nbsp;{CATEGORY}</td>
+        <td width="30" class="text_medium" style="border:0px; border-top:1px; border-color: #747488; border-style: solid" nowrap="nowrap">{TEMPLATEBUTTON}</td>
+        <td width="100" style="border: 0px; border-top:1px; border-color: #747488; border-right: 1px; border-style: solid;" nowwrap="nowrap">{TPLNAME}</td>
+        <td width="30" style="border: 0px; border-top:1px; border-color: #747488; border-style: solid;" nowwrap="nowrap">{NEWCATEGORYBUTTON}</td>
+        <td width="30" style="border: 0px; border-top:1px; border-color: #747488; border-style: solid;" nowwrap="nowrap">{RENAMEBUTTON}</td>
+        <td width="30" style="border: 0px; border-top:1px; border-color: #747488; border-style: solid;" nowwrap="nowrap">{VISIBLEBUTTON}</td>
+        <td width="30" style="border: 0px; border-top:1px; border-color: #747488; border-style: solid;" nowwrap="nowrap">{PUBLICBUTTON}</td>
+        <td width="30" style="border: 0px; border-top:1px; border-color: #747488; border-style: solid;" nowwrap="nowrap">{UPBUTTON}</td>
+        <td width="30" style="border: 0px; border-top:1px; border-color: #747488; border-style: solid;" nowwrap="nowrap">{MOVEBUTTON}</td>
+        <td width="30" style="border: 0px; border-top:1px; border-right:1px; border-color: #747488; border-style: solid;" nowwrap="nowrap">{DELETEBUTTON}</td>
+    </tr>
+    <!-- END:BLOCK -->
+
+
+</table>
+
+</body>
+</html>
