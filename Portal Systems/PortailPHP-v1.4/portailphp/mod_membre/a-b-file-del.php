@@ -1,0 +1,70 @@
+<?php
+/*******************************************************************************
+ * Copyright (C) 2002 CLAIRE Cédric claced@m6net.fr
+ * http://www.yoopla.net/portailphp/
+ *
+ * Modifié par Martineau Emeric Copyright (C) 2004
+ *
+ * Ce programme est un logiciel libre ; vous pouvez le redistribuer et/ou le
+ * modifier conformément aux dispositions de la Licence Publique Générale GNU,
+ * telle que publiée par la Free Software Foundation ; version 2 de la licence,
+ * ou encore (à votre choix) toute version ultérieure.
+ *
+ * Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE
+ * GARANTIE ; sans même la garantie implicite de COMMERCIALISATION ou
+ * D'ADAPTATION A UN OBJET PARTICULIER. Pour plus de détail, voir la Licence
+ * Publique Générale GNU .
+ *
+ * Vous devez avoir reçu un exemplaire de la Licence Publique Générale GNU en
+ * même temps que ce programme ; si ce n'est pas le cas, écrivez à la Free
+ * Software Foundation Inc., 675 Mass Ave, Cambridge, MA 02139, Etats-Unis.
+ *
+ * Portail PHP
+ * La présente Licence Publique Générale n'autorise pas le concessionnaire à
+ * incorporer son programme dans des programmes propriétaires. Si votre programme
+ * est une bibliothèque de sous-programmes, vous pouvez considérer comme plus
+ * intéressant d'autoriser une édition de liens des applications propriétaires
+ * avec la bibliothèque. Si c'est ce que vous souhaitez, vous devrez utiliser non
+ * pas la présente licence, mais la Licence Publique Générale pour Bibliothèques GNU.
+ ***********************************************************************************/
+if (!$_SESSION["Admin"]) die("<strong>INTERDIT</strong>") ;
+
+echo "<img border='0' src='themes/" . $_SESSION["App_Theme"] . "/ico-puce01.gif' />&nbsp;<strong>$Mod_Membres_Rub_File_Del</strong><br /><br />" ;
+
+
+if (isset($_GET["id"]) && ($action == "File-Del"))
+{
+    if (isset($_POST["deletefile"]))
+    {
+        $q = mysql_query("SELECT FI_nom FROM $BD_Tab_file WHERE FI_uid ='" . $_GET["id"] . "'") ;
+        $row = mysql_fetch_object($q) ;
+
+        $res_res2 = sql_query("DELETE FROM $BD_Tab_file WHERE FI_uid ='" . $_GET["id"] . "'", $sql_id) or die("$Err_Supp") ;
+
+        if (file_exists($chemin . "/mod_file/upload/" . $row->FI_nom))
+        {
+            if (@unlink("$chemin/mod_file/upload/" . $row->FI_nom))
+            {
+                echo "<strong>OK</strong>" ;
+            }
+            else
+            {
+                echo "<strong>Failed</strong>" ;
+            }
+        }
+        else
+        {
+            echo $Mod_Membres_Rub_File_DelDataBase ;
+        }
+    }
+    else
+    {
+        echo "Êtes-vous sûr de vouloir supprimer le fichier " . $_GET["name"] . "<br />" ;
+        echo "<form method='post' action='index.php?" . $sid . "affiche=Admin&admin=File-Del&action=File-Del&id=" . $_GET["id"] . "'><input type='submit' name='deletefile' value='" . $Mod_Membres_Rub_News_Del2 . "' /></form>" ;
+    }
+}    
+else
+{
+    echo $Mod_Membres_Rub_News  ;
+}
+?>
