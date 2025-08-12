@@ -1,0 +1,72 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box05_center.gif" class="BodyText05" align="left"><%tlv 234%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+<br>
+
+<a href="index.php" target="_self" class="menu"><%tlv 11%></a> > <font class="BodyText03"><%tlv 234%></font><br>
+
+<%tif orders%>
+<br><div align="center"><font class="Chapter02"><%tlv 237%></font></div><br>
+
+<table cellpadding="2" border="0" cellspacing="1" valign="top" width="100%" align="center">
+<tr>
+<td class="tableHeadBg"><b><font class="BodyText"><%tlv 238%></font></b></td>
+<td class="tableHeadBg"><b><font class="BodyText"><%tlv 239%></font></b></td>
+<td class="tableHeadBg"><b><font class="BodyText"><%tlv 240%></font></b></td>
+<td class="tableHeadBg"><b><font class="BodyText"><%tlv 241%></font></b></td>
+<td class="tableHeadBg">&nbsp;</td>
+</tr>
+
+<%tloop orders%>
+<tr>
+<td><%tlv order_id%></td>
+<td><%tlv status%></td>
+<td><%tlv datetime%></td>
+<td><%tlv prodtotal%></td>
+<td><a href="view_order.php?order_id=<%tlv order_id%>" target="_self"><%tlv 246%></a></td>
+</tr>
+<%tendloop orders%>
+</table>
+<%tendif orders%>
+
+
+<%tif noorders%>
+<br><br><br><p align="center"><%tlv 236%></p>
+<%tendif noorders%>
+
+<%tif nologin%>
+<br>
+<form method="post" action="orders.php">
+<table cellpadding="2" border="0" cellspacing="1" width="50%" align="center">
+<tr> 
+<td width="100%" colspan="2" class="tableHeadBg"><b><%tlv 247%></b></td>
+</tr>
+<tr> 
+<td width="45%"><%tlv 248%>:</td>
+<td width="55%"><input name="email" class="textbox" type="text" size="25" maxlength="40"></td>
+</tr>
+<tr> 
+<td width="45%"><%tlv 249%>:</td>
+<td width="55%"><input name="password" class="textbox" type="password"name="password" size="25" maxlength="40"></td>
+</tr>
+<tr> 
+<td width="45%">&nbsp;</td>
+<td width="55%"><a href="password.php" target="_self"><%tlv 250%></a><br><br><input class="submit" type="submit" name="submit" value="<%tlv 251%>"></td>
+</tr>
+</table>
+</form>
+<%tendif nologin%>
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
