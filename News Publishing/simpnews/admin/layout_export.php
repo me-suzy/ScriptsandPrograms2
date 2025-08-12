@@ -1,0 +1,726 @@
+<?php
+/***************************************************************************
+ * (c)2002-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+$layoutfileversion="2.28";
+$minsnversion="2.28";
+@set_time_limit(600);
+require_once('../config.php');
+require_once('./admchk.php');
+if($admoldhdr)
+{
+	header('Pragma: no-cache');
+	header('Expires: 0');
+}
+else
+{
+	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . "GMT");
+	header("Cache-Control: no-cache, must-revalidate");
+	header("Pragma: no-cache");
+}
+require_once('./functions.php');
+require_once('../functions.php');
+if(!isset($$langvar) || !$$langvar)
+	$act_lang=$admin_lang;
+else
+	$act_lang=$$langvar;
+include_once('./language/lang_'.$act_lang.'.php');
+require_once('./auth.php');
+$backupprefix=$tableprefix."_";
+$crlf="\n";
+$user_loggedin=0;
+$userdata=Array();
+if($enable_htaccess)
+{
+	if(isbanned(get_userip(),$db))
+	{
+?>
+<html>
+<head>
+<meta name="generator" content="SimpNews v<?php echo $version?>, <?php echo $copyright_asc?>">
+<title>SimpNews - Administration</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $contentcharset?>">
+<?php
+	if(is_ns4())
+		echo "<link rel=stylesheet href=./css/snadm_ns4.css type=text/css>\n";
+	else if(is_ns6())
+		echo "<link rel=stylesheet href=./css/snadm_ns6.css type=text/css>\n";
+	else if(is_opera())
+		echo "<link rel=stylesheet href=./css/snadm_opera.css type=text/css>\n";
+	else if(is_konqueror())
+		echo "<link rel=stylesheet href=./css/snadm_konqueror.css type=text/css>\n";
+	else if(is_gecko())
+		echo "<link rel=stylesheet href=./css/snadm_gecko.css type=text/css>\n";
+	else
+		echo "<link rel=stylesheet href=./css/snadm.css type=text/css>\n";
+?>
+</head>
+<body>
+<table width="80%" align="CENTER" calign="MIDDLE" border="0" cellspacing="0" cellpadding="0">
+<tr><td align="CENTER" class="prognamerow"><h1>SimpNews v<?php echo $version?></h1></td></tr>
+</table>
+<table align="center" width="80%" CELLPADDING="1" CELLSPACING="0" border="0" valign="top">
+<tr><TD BGCOLOR="#000000">
+<table align="center" width="100%" border="0" cellspacing="1" cellpadding="1">
+<tr class="displayrow"><td colspan="2" align="center"><b><?php echo $l_ipbanned?></b></td></tr>
+<tr class="displayrow"><td align="right" width="20%"><?php echo $l_reason?>:</td>
+<td align="left" width="80%"><?php echo $banreason?></td></tr>
+</table></td></tr></table></body></html>
+<?php
+		exit;
+	}
+	$username=$REMOTE_USER;
+	$myusername=addslashes(strtolower($username));
+	$sql = "select * from ".$tableprefix."_users where username='$myusername'";
+	if(!$result = mysql_query($sql, $db))
+	    die("<tr class=\"errorrow\"><td>Unable to connect to database");
+	if (!$myrow = mysql_fetch_array($result))
+	{
+	    die("<tr class=\"errorrow\"><td>User not defined for SimpNews");
+	}
+	$userid=$myrow["usernr"];
+	$user_loggedin=1;
+    $userdata = get_userdata_by_id($userid, $db);
+}
+else if($sessid_url)
+{
+	if(isset($$sesscookiename))
+	{
+		$url_sessid=$$sesscookiename;
+		$userid = get_userid_from_session($url_sessid, $sesscookietime, get_userip(), $db);
+		if ($userid) {
+		   $user_loggedin = 1;
+		   update_session($url_sessid, $db);
+		   $userdata = get_userdata_by_id($userid, $db);
+		   $userdata["lastlogin"]=get_lastlogin_from_session($url_sessid, $sesscookietime, get_userip(), $db);
+		}
+	}
+}
+else
+{
+	$userid="";
+	if($new_global_handling)
+	{
+		if(isset($_COOKIE[$sesscookiename]))
+		{
+			$sessid = $_COOKIE[$sesscookiename];
+			$userid = get_userid_from_session($sessid, $sesscookietime, get_userip(), $db);
+		}
+	}
+	else
+	{
+		if(isset($_COOKIE[$sesscookiename])) {
+			$sessid = $_COOKIE[$sesscookiename];
+			$userid = get_userid_from_session($sessid, $sesscookietime, get_userip(), $db);
+		}
+	}
+	if ($userid) {
+	   $user_loggedin = 1;
+	   update_session($sessid, $db);
+	   $userdata = get_userdata_by_id($userid, $db);
+	   $userdata["lastlogin"]=get_lastlogin_from_session($sessid, $sesscookietime, get_userip(), $db);
+	}
+}
+if($user_loggedin==0)
+{
+	echo "<div align=\"center\">$l_notloggedin</div>";
+	echo "<div align=\"center\">";
+	echo "<a href=\"login.php?$langvar=$act_lang\">$l_loginpage</a>";
+	die ("</div>");
+}
+else
+{
+	$admin_rights=$userdata["rights"];
+}
+if($admin_rights < 3)
+{
+	die("$l_functionnotallowed");
+}
+$crlf="\r\n";
+$dump_buffer="{simpnewslayout}".$crlf;
+$dump_buffer.="{fileversion}".$crlf;
+$dump_buffer.=$layoutfileversion.$crlf;
+$dump_buffer.=$minsnversion.$crlf;
+$dump_buffer.="{/fileversion}".$crlf;
+$dump_buffer.="{layoutid}".$crlf;
+$dump_buffer.=$layoutid.$crlf;
+$dump_buffer.="{/layoutid}".$crlf;
+$languages=language_list("../language");
+for($i=0;$i<count($languages);$i++)
+{
+	$sql="select * from ".$tableprefix."_layout where id='$layoutid' and lang='".$languages[$i]."'";
+	if(!$result = mysql_query($sql, $db))
+	    die("Could not connect to the database.".mysql_error());
+	if($myrow=mysql_fetch_array($result))
+	{
+		$dump_buffer.="{layout}".$crlf;
+		$dump_buffer.=$languages[$i].$crlf;
+		$dump_buffer.=export_encode($myrow["heading"]).$crlf;
+		$dump_buffer.=export_encode($myrow["headingbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["headingfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["headingfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["headingfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bordercolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["contentbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["contentfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["contentfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["contentfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["TableWidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["timestampfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["timestampfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["timestampfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["showcurrtime"]).$crlf;
+		$dump_buffer.=export_encode($myrow["customheader"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagebgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["stylesheet"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsheadingbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsheadingfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsheadingstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["displayposter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["posterbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["posterfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["posterfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["posterfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["posterstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsheadingfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsheadingfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["timestampbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["timestampstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["defsignature"]).$crlf;
+		$dump_buffer.=export_encode($myrow["displaysubscriptionbox"]).$crlf;
+		$dump_buffer.=export_encode($myrow["subscriptionbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["subscriptionfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["subscriptionfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["subscriptionfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["copyrightbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["copyrightfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["copyrightfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["copyrightfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["emailremark"]).$crlf;
+		$dump_buffer.=export_encode($myrow["deflayout"]).$crlf;
+		$dump_buffer.=export_encode($myrow["layoutnr"]).$crlf;
+		$dump_buffer.=export_encode($myrow["customfooter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["searchpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["backpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagetoppic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagepic_back"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagepic_first"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagepic_next"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagepic_last"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newssignal_on"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newssignal_off"]).$crlf;
+		$dump_buffer.=export_encode($myrow["helppic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["attachpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["prevpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["fwdpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventheading"]).$crlf;
+		$dump_buffer.=export_encode($myrow["event_dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerhighlightcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerheight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerscrollspeed"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickerscrolldelay"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickermaxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickermaxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerheight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerscrollspeed"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerscrolldelay"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerscrollpause"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollermaxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollermaxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollertype"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerbgimage"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerfgimage"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollermousestop"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollermaxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstickertarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollertarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerxoffset"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrolleryoffset"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerdisplaydate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerwordwrap"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerdateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newentrypic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperheight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstypermaxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstypermaxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperbgimage"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperxoffset"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperyoffset"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperdisplaydate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperdateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperfontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyperscroll"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstypermaxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2maxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollernolinking"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2maxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2displaydate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2newscreen"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2waitentry"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2indent"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2linespace"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2maxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2width"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2height"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2bgimage"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2sound"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2charpause"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2linepause"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newstyper2screenpause"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventscrolleractdate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["separatebylang"]).$crlf;
+		$dump_buffer.=export_encode($myrow["headerfile"]).$crlf;
+		$dump_buffer.=export_encode($myrow["footerfile"]).$crlf;
+		$dump_buffer.=export_encode($myrow["headerfilepos"]).$crlf;
+		$dump_buffer.=export_encode($myrow["footerfilepos"]).$crlf;
+		$dump_buffer.=export_encode($myrow["usecustomheader"]).$crlf;
+		$dump_buffer.=export_encode($myrow["usecustomfooter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["copyrightpos"]).$crlf;
+		$dump_buffer.=export_encode($myrow["categorybgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["categoryfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["categoryfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["categoryfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["categorystyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnews2target"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news2target"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollermaxlines"]).$crlf;
+		$dump_buffer.=export_encode($myrow["linkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["vlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["alinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["morelinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["morevlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["morealinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catvlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catalinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["commentlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["commentvlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["commentalinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["attachlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["attachvlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["attachalinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagenavlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagenavvlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagenavalinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["colorscrollbars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sbfacecolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sbhighlightcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sbshadowcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sb3dlightcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sbarrowcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sbtrackcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sbdarkshadowcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_fontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_fontweight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_borderstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_borderwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snsel_bordercolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["morelinkfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_fontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_fontweight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_borderstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_borderwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sninput_bordercolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snisb_facecolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snisb_highlightcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snisb_shadowcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snisb_3dlightcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snisb_arrowcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snisb_trackcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snisb_darkshadowcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_fontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_fontweight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_borderstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_borderwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snbutton_bordercolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventvlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventalinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventlinkfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["actionlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["actionvlinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["actionalinkcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagebgpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventcalshortnews"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventcalshortlength"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventcalshortnum"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventcalshortonlyheadings"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnewstarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnewsdisplayposter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnewsnohtmlformatting"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnewsicons"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ns4style"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ns6style"]).$crlf;
+		$dump_buffer.=export_encode($myrow["operastyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["geckostyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["konquerorstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_maxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_maxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_displaydate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_maxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_nolinking"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_delay"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_width"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_height"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_linktarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsnf_dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news3dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news3useddlink"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news3linktarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news3maxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news4dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news4useddlink"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news4linktarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news4maxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_fontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_stars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_speed"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_dir"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_shadow"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_targetframe"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_width"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_height"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_maxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_maxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ss_nolinking"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_nolinking"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_displaydate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_linktarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_direction"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_maxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_maxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_maxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_height"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_width"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_speed"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_step"]).$crlf;
+		$dump_buffer.=export_encode($myrow["tablealign"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clheadingbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clheadingfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clheadingfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clheadingfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clcontentbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clcontentfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clcontentfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clcontentfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["enablecatlist"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catframenewslist"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clcontenthighlight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clactdontlink"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clleftwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clrightwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["clnowrap"]).$crlf;
+		$dump_buffer.=export_encode($myrow["contentcopy"]).$crlf;
+		$dump_buffer.=export_encode($myrow["addbodytags"]).$crlf;
+		$dump_buffer.=export_encode($myrow["proposepic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["proposereq"]).$crlf;
+		$dump_buffer.=export_encode($myrow["caltabpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["caljumpbox"]).$crlf;
+		$dump_buffer.=export_encode($myrow["cjminyear"]).$crlf;
+		$dump_buffer.=export_encode($myrow["cjmaxyear"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotevmaxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotevmaxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotevtarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["displayevnum"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotevmaxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotevnohtmlformatting"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotevdisplayposter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotevicons"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotscriptsnoheading"]).$crlf;
+		$dump_buffer.=export_encode($myrow["evproposemaxyears"]).$crlf;
+		$dump_buffer.=export_encode($myrow["printheader"]).$crlf;
+		$dump_buffer.=export_encode($myrow["printpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["TableWidth2"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5enddate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5startdate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5monthbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5monthfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5monthfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5monthfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5monthfontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5yearbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5yearfontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5yearfont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5yearfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5yearfontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5monthdisplayyear"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5maxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5useddlink"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5linktarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5displayposter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5displayicons"]).$crlf;
+		$dump_buffer.=export_encode($myrow["csvexportpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["csvexportdateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["csvexportfields"]).$crlf;
+		$dump_buffer.=export_encode($myrow["asclistpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbchelp_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbchelp_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbchelp_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbchelp_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbchelp_fontweight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbchelp_fontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["el_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["el_fontweight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["el_fontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["el_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["el_hovercolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sb_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sb_bordercolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbc_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbc_bordercolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_borderstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_borderwidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_bordercolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_fontstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["bbcsel_fontweight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["or_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["or_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["or_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["or_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sep_char"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hn_newsheadingfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nbindent"]).$crlf;
+		$dump_buffer.=export_encode($myrow["evbindent"]).$crlf;
+		$dump_buffer.=export_encode($myrow["morepic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["announcepic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["gannouncepic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["announceoptions"]).$crlf;
+		$dump_buffer.=export_encode($myrow["maxevcannounce"]).$crlf;
+		$dump_buffer.=export_encode($myrow["noprinticon"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nogotopicon"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5headingdateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news5noglobalprint"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news4fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news3fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["n5_newsheadingfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["n5_timestampfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["n5_timestampstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev2onlyheadings"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev2_newsheadingfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev2_newsheadingstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev2_timestampstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev2_timestampfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev2_contentfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev2_posterfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev2_posterstyle"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerheadingsep"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollerheadingsepchar"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsscrollernumsepchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jsns_sepheading"]).$crlf;
+		$dump_buffer.=export_encode($myrow["highlightmarker"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catinfobgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catinfofont"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catinfofontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catinfofontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["catinfoindent"]).$crlf;
+		$dump_buffer.=export_encode($myrow["searchonlyheadings"]).$crlf;
+		$dump_buffer.=export_encode($myrow["searchdetailtarget"]).$crlf;
+		$dump_buffer.=export_encode($myrow["searchshortchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sshort_timestampfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sshort_headingfontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nofileinfo"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sn_hideallnewslink"]).$crlf;
+		$dump_buffer.=export_encode($myrow["pagenavdetails"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsletterbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newslettercustomheader"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newslettercustomfooter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["subredirecturl"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsletteralign"]).$crlf;
+		$dump_buffer.=export_encode($myrow["linkposter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["weekstart"]).$crlf;
+		$dump_buffer.=export_encode($myrow["evshowcalweek"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nlsend_heading"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nlsend_dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nlsend_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nlsend_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nlsend_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nlsend_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nfheight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["emailpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sncatlink"]).$crlf;
+		$dump_buffer.=export_encode($myrow["textareanoscroll"]).$crlf;
+		$dump_buffer.=export_encode($myrow["emailcustomheader"]).$crlf;
+		$dump_buffer.=export_encode($myrow["emailcustomfooter"]).$crlf;
+		$dump_buffer.=export_encode($myrow["emailbgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["emailpageremark"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hn6_numentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["anhn6numentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnews6target"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnews7useddlink"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ratingprelude"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sns_tablewidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["sns_options"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hnlinkdest"]).$crlf;
+		$dump_buffer.=export_encode($myrow["usehnlinkdest"]).$crlf;
+		$dump_buffer.=export_encode($myrow["aninc_options"]).$crlf;
+		$dump_buffer.=export_encode($myrow["aninc_tablewidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hnlinkdestan"]).$crlf;
+		$dump_buffer.=export_encode($myrow["evinc_tablewidth"]).$crlf;
+		$dump_buffer.=export_encode($myrow["evinc_options"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hnlinkdestev"]).$crlf;
+		$dump_buffer.=export_encode($myrow["useappletlinkdest"]).$crlf;
+		$dump_buffer.=export_encode($myrow["appletlinkdest"]).$crlf;
+		$dump_buffer.=export_encode($myrow["appletlinkdestan"]).$crlf;
+		$dump_buffer.=export_encode($myrow["appletlinkdestev"]).$crlf;
+		$dump_buffer.=export_encode($myrow["usejslinkdest"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jslinkdest"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jslinkdestan"]).$crlf;
+		$dump_buffer.=export_encode($myrow["jslinkdestev"]).$crlf;
+		$dump_buffer.=export_encode($myrow["evscrollevcal2"]).$crlf;
+		$dump_buffer.=export_encode($myrow["evscrollcal2dest"]).$crlf;
+		$dump_buffer.=export_encode($myrow["applet_ganmark"]).$crlf;
+		$dump_buffer.=export_encode($myrow["applet_anmark"]).$crlf;
+		$dump_buffer.=export_encode($myrow["attachpos"]).$crlf;
+		$dump_buffer.=export_encode($myrow["searchhighlightcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["searchhighlight"]).$crlf;
+		$dump_buffer.=export_encode($myrow["searchmaxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["activcellcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news4showcat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["showproposer"]).$crlf;
+		$dump_buffer.=export_encode($myrow["event_dateformat2"]).$crlf;
+		$dump_buffer.=export_encode($myrow["commentsinline"]).$crlf;
+		$dump_buffer.=export_encode($myrow["icdisplayemail"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_heading_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_heading_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_heading_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_heading_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_body_bgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_body_fontcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_body_font"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_body_fontsize"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_heading_style"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ic_body_style"]).$crlf;
+		$dump_buffer.=export_encode($myrow["commentspic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnewscommentslink"]).$crlf;
+		$dump_buffer.=export_encode($myrow["writecommentpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["ev3_dateformat"]).$crlf;
+		$dump_buffer.=export_encode($myrow["masssuboptions"]).$crlf;
+		$dump_buffer.=export_encode($myrow["tablebgcolor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hn_catlinking"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hn_linklayout"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_channel_title"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_channel_description"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_channel_link"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_auto_title"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_auto_short"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_channel_copyright"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_maxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_channel_editor"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rss_channel_webmaster"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_title"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_description"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_copyright"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_auto_title"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_auto_short"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_options"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_maxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_ev_maxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_ev_title"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_ev_description"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_ev_maxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_an_maxentries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_an_title"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_an_description"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_an_maxdays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_evs_maxldays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_evs_dayrange"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_catlist_epp"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_evlist2_epp"]).$crlf;
+		$dump_buffer.=export_encode($myrow["printpic_small"]).$crlf;
+		$dump_buffer.=export_encode($myrow["expandpic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["collapsepic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_cl_title"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_cl_description"]).$crlf;
+		$dump_buffer.=export_encode($myrow["wap_cl_logo"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsnodate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["rsspic"]).$crlf;
+		$dump_buffer.=export_encode($myrow["eventcalonlymarkers"]).$crlf;
+		$dump_buffer.=export_encode($myrow["evmarkcolgeneral"]).$crlf;
+		$dump_buffer.=export_encode($myrow["n4nodate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["n4tbmargin"]).$crlf;
+		$dump_buffer.=export_encode($myrow["n4leftmargin"]).$crlf;
+		$dump_buffer.=export_encode($myrow["srchnolimit"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsnoicons"]).$crlf;
+		$dump_buffer.=export_encode($myrow["snnodate"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hotnewsmaxchars"]).$crlf;
+		$dump_buffer.=export_encode($myrow["entriesperpage"]).$crlf;
+		$dump_buffer.=export_encode($myrow["numhotnews"]).$crlf;
+		$dump_buffer.=export_encode($myrow["newsnotifydays"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news2entries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news3entries"]).$crlf;
+		$dump_buffer.=export_encode($myrow["srchaddoptions"]).$crlf;
+		$dump_buffer.=export_encode($myrow["cheadnobr"]).$crlf;
+		$dump_buffer.=export_encode($myrow["cfootnobr"]).$crlf;
+		$dump_buffer.=export_encode($myrow["news4addoptions"]).$crlf;
+		$dump_buffer.=export_encode($myrow["subemailtype"]).$crlf;
+		$dump_buffer.=export_encode($myrow["showfuturenews"]).$crlf;
+		$dump_buffer.=export_encode($myrow["nonltrans"]).$crlf;
+		$dump_buffer.=export_encode($myrow["hnnolinking"]).$crlf;
+		$dump_buffer.="{/layout}".$crlf;
+	}
+}
+$dump_buffer.="{/simpnewslayout}".$crlf;
+header('Content-Type: application/octetstream');
+header('Content-Disposition: filename="simpnews_'.$layoutid.'.lay"');
+header("Content-Transfer-Encoding: binary\n");
+header("Content-length: ".strlen($dump_buffer)."\n");
+echo $dump_buffer;
+function export_encode($text)
+{
+	$text=addslashes($text);
+	$text=str_replace("\n","\\n",$text);
+	$text=str_replace("\r","",$text);
+	return $text;
+}
+?>
