@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML dir=ltr><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=Windows-1252">
+<META content=True name=InChm>
+
+<head>
+<LINK href="style.css" type=text/css rel=STYLESHEET>
+<SCRIPT src="script/main.js"></SCRIPT>
+</head>
+
+<BODY bgcolor='#ffffff' class=dtBODY id=bodyID topMargin=0>
+
+<SCRIPT language=JavaScript>
+write_header("Users' Guide - Configuration File");
+</SCRIPT>
+
+<DIV id=scrtext valign="bottom">
+
+<H2 class=dtH2>The Configuration File</H2>
+
+<p>The configuration file within the root of the directory installation contains important information that you will need to modify before the directory will work correctly on your server. To begin, open the "configuration_file.asp" within your favourite ASP/Text editor. You will see a list of configuration variables. These variables are listed below with an explanation for each.<br><br>
+
+The first thing you will notice within "configuration_file.asp" is the Option Explicit declaration at the very top of the document. Option Explicit forces you to declare all variables before using them. The main reason to use the Option Explicit statement at the top of all modules is to minimise the amount of bugs or errors in calculation and coding due to misspelled variables. When using Option Explicit you will get an error if any variable is misspelled or not declared. Option Explicit also provides a slight performance increase.<br><br>
+
+<H2 class=dtH2>Configuration Variables</H2>
+
+<b>DatabaseType</b> (Required)<br><br>
+
+Datatype: String<br><br>
+
+The DatabaseType variable allows you to switch between Microsoft Access and SQL Server databases. 
+
+This variable accepts two values:<br><br>
+
+<ul>
+<li>Access</li>
+<li>SQLServer</li>
+</ul>
+
+<br>The DatabaseType variable is case-sensitive.<br><br>
+
+<b>MyConnStr</b> (Required)<br><br>
+
+Datatype: String<br><br>
+
+The MyConnStr variable is the global connection string for the deloittes.NET Directory database. This variable comes pre-populated with connection strings for both Microsoft Access and SQL Server. You can replace these connection strings with your DSNs if you wish. For easy reference, connection strings for both Access and SQL Server are provided below.<br><br>
+
+<ul>
+<li>Connection String for Microsoft Access<br>
+"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" & Server.MapPath("\dam_directory\database\directory.mdb") & ";"<br></li>
+<li>Connection String for Microsoft SQL Server<br>
+"PROVIDER=MSDASQL;DSN=directory;DATABASE=database_full;UID=username;PWD=password"</li>
+</ul>
+
+The MS Access connection string must be a direct psychical path to your database. This connection string is used in a number of folders within the deloittes.NET Directory application. A relative path would fail when switching between the administration and front-end pages.<br>
+
+<br><b>Path2Directory</b> (Required)<br><br>
+
+Datatype: String<br><br>
+
+This variable contains the full virtual directory to the front-page of your directory. For example <i>http://&lt;your domain name&gt;/&lt;your directory folder&gt;/</i><br><br>
+
+<b>Path2Admin</b> (Required)<br><br>
+
+Datatype: String<br><br>
+
+This variable contains the full virtual directory to the backend administration page of your directory. For example <i>http://&lt;your domain name&gt;/&lt;your directory folder&gt;/admin/</i><br><br>
+
+<b>Debug</b> (Required)<br><br>
+
+Datatype: Boolean<br><br>
+
+This variable allows you to debug the application. Setting this to true will display all database SQL statements.<br><br>
+
+<b>ShortDate</b> (Required)<br><br>
+
+Datatype: Date<br><br>
+
+Shortdate is the global date stamp used throughout the application when working with Access databases. The default date format is VBShortDate (MM/DD/YYYY).<br><br>
+
+<b>ShortDateISO</b> (Required)<br><br>
+
+Datatype: Date<br><br>
+
+ShortdateISO is the global ISO format date stamp used throughout the application when working with SQL Server databases. The default date ISO format is YYYYMMDD.<br><br>
+
+<b>intPGCount</b> (Required)<br><br>
+
+Datatype: Integer<br><br>
+
+intPGCount is used to determine how many individual page links are shown in the centre of the "Next" and "Previous" link within the paging navigation at the bottom of each category or search page. This ensures if a category or search returns thousands of results, the paging navigation will not render all the individual page links returned.<br><br>
+
+For example if intPGCount = 3 then the paging links will look like 1 2 3 ... / ... 4 5 6 ... / ... 7 8 9 ...<br>
+For example if intPGCount = 7 then the paging links will look like 1 2 3 4 5 6 7 ... / ... 8 9 10 11 12 13 14 ...<br><br> 
+
+<H2 class=dtH2>Appearance Settings</H2>
+
+The appearance settings section contain a number of variables for defining table layout for the directory. These variables apply to the directory table and listing pages. The variables are self-explanatory so a detailed explanation is not needed. Please experiment with the values until you are happy with the directory layout.
+
+<SCRIPT language=JavaScript>
+write_footer();
+</SCRIPT>
+
+</DIV>
+</BODY>
+</HTML>
