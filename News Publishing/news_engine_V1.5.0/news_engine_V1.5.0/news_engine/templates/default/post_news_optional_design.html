@@ -1,0 +1,201 @@
+            <br /> 
+            <table width="100%"  border="0" cellspacing="0" cellpadding="0"> 
+                <tr> 
+                    <td class="catrow"><img src="../guest_engine/images/img_arrow_right.gif" width="14" height="14" border="0" align="absmiddle" /> <a href="../guest_engine/index.html" class="catrow">Home</a> &raquo;&nbsp;<a href="../guest_engine/index.html" class="catrow">News&uuml;bersicht</a> &raquo;&nbsp;<b>Neuer Newsbeitrag </b> </td> 
+                </tr> 
+            </table> 
+            <br /> 
+            <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+                <tr> 
+                    <td valign="top" width="80%"> <table width="100%" cellspacing="2" cellpadding="2" border="0"> 
+                            <tr> 
+                                <td> <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+                                        <tr> 
+                                            <td width="60%" class="cat_main_headline" valign="top"><img src="../guest_engine/images/spacer.gif" width="1" height="55" align="top" />&nbsp;Neuer Newsbeitrag </td> 
+                                        </tr> 
+                                    </table></td> 
+                            </tr> 
+                            <tr> 
+                                <td valign="top"> <!-- Zeile Kategorie 2 --> 
+                                <form method="post" action="{MAINURL}/post_news.php" name="{form_post}" {wysiwyg_on_submit}> 
+                                <input type="hidden" name="news" value="send" />
+                                <input type="hidden" name="poster" value="{post_user_id}" />
+                                <input type="hidden" name="{SESS_NAME}" value="{SESS_ID}" />	
+                                        <fieldset> 
+                                        <legend>Allgemeine Angaben </legend> 
+                                        <label>Bitte geben Sie nachfolgend die &Uuml;berschrift Ihres Beitrags ein und w&auml;hlen Sie die entsprechende Kategorie aus: <br /> 
+                                        <br /> 
+                                        &Uuml;berschrift Ihres Beitrags:<br /> 
+                                        <input name="username" type="text" class="input" size="100" /> 
+                                        <br /> 
+                                        <br /> 
+                                        Kategorie in der Ihr Beitrag erscheinen soll:<br /> 
+                                        <select name="select" class="input"> 
+                                            <option value="1" selected="selected">Alarmstufe Rot 2</option> 
+                                            <option value="2">Command &amp; Conquer Generals</option> 
+                                        </select> 
+                                        </label> 
+                                        </fieldset> 
+                                        <br /> 
+                                        <fieldset> 
+                                        <legend>Beitragstext</legend> 
+                                        <label>Nachfolgend können Sie den Text zu Ihrem Beitrag eingeben. Der unter Kopftext eingegebene Text wird auf der Startseite und auf der Seite f&uuml;r Kommentare ver&ouml;ffentlicht. Der Langtext wird erst sichtbar, wenn der Benutzer auf einen <em>mehr lesen</em>-Link klickt. In beiden F&auml;llen sind HTML-Tags nicht erlaubt, bitte nehmen Sie Textformatierungen durch BB-Codes vor. <br /> 
+                                        <br /> 
+                                        Kopftext<br /> 
+                                        </label> 
+                                        <table width="100%"  border="0" align="center" cellpadding="5" cellspacing="0" style="border: 2px groove; background: #ECE9D8;"> 
+                                            <tr> 
+                                                <td><input class="input" type="button" name="button" value=" B " onclick="bbcodeh(this.form,'B','')" /> 
+                                                    <input class="input" type="button" name="button" value=" I " onclick="bbcodeh(this.form,'I','')" /> 
+                                                    <input class="input" type="button" name="button" value=" U " onclick="bbcodeh(this.form,'U','')" /> 
+                                                    <input class="input" type="button" name="button" value=" IMG " onclick="bbcodeh(this.form,'IMG','http://')" /> 
+                                                    <input class="input" type="button" name="button" value=" http:// " onclick="namedlinkh(this.form,'URL')" /> 
+                                                    <input class="input" type="button" name="button" value=" Quote " onclick="bbcodeh(this.form,'QUOTE','')" /></td> 
+                                            </tr> 
+                                            <tr> 
+                                                <td><textarea name="textarea2" rows="6" wrap="VIRTUAL" style="width: 100%; border: 2px inset; overflow: auto;"></textarea></td> 
+                                            </tr> 
+                                        </table> 
+                                        <label><br /> 
+                                        Langtext<br /> 
+                                        </label> 
+                                        <table width="100%"  border="0" align="center" cellpadding="5" cellspacing="0" style="border: 2px groove; background: #ECE9D8;"> 
+                                            <tr> 
+                                                <td> <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0" style="padding: 2px;"> 
+                                                        <tr> 
+                                                            <td valign="top" nowrap> <label> 
+                                                                <input class="input" type="radio" name="mode" value="0" title="Normal Mode: (alt+n)" accesskey="n" onclick="setmode(this.value)" onmouseover="stat('norm')" checked> 
+                                                                einfach</label> 
+                                                                <br /> 
+                                                                <label> 
+                                                                <input class="input" type="radio" name="mode" value="1" title="Normal Mode: (alt+e)" accesskey="e" onclick="setmode(this.value)" onmouseover="stat('enha')"> 
+                                                                erweitert</label> </td> 
+                                                            <td nowrap valign="top"> <select class="select" onchange="fontformat(this.form,this.options[this.selectedIndex].value,'size')" onmouseover="stat('size')"> 
+                                                                    <option value="0">SIZE</option> 
+                                                                    <option value="1">klein</option> 
+                                                                    <option value="2">medium</option> 
+                                                                    <option value="3">groß</option> 
+                                                                    <option value="4">riesig</option> 
+                                                                </select> 
+                                                                <select class="select" onchange="fontformat(this.form,this.options[this.selectedIndex].value,'font')" onmouseover="stat('font')"> 
+                                                                    <option value="0">FONT</option> 
+                                                                    <option value="arial">Arial</option> 
+                                                                    <option value="comic sans ms">Comic</option> 
+                                                                    <option value="courier">Courier</option> 
+                                                                    <option value="courier new">Courier New</option> 
+                                                                    <option value="tahoma">Tahoma</option> 
+                                                                    <option value="times new roman">Times New Roman</option> 
+                                                                    <option value="verdana">Verdana</option> 
+                                                                </select> 
+                                                                <select class="select" onchange="fontformat(this.form,this.options[this.selectedIndex].value,'color')" onmouseover="stat('color')"> 
+                                                                    <option value="0">COLOR</option> 
+                                                                    <option value="#87CEEB" style="color:skyblue">sky blue</option> 
+                                                                    <option value="#4169E1" style="color:royalblue">royal blue</option> 
+                                                                    <option value="#0000FF" style="color:blue">blue</option> 
+                                                                    <option value="#00008B" style="color:darkblue">dark-blue</option> 
+                                                                    <option value="#FFA500" style="color:orange">orange</option> 
+                                                                    <option value="#FF4500" style="color:orangered">orange-red</option> 
+                                                                    <option value="#DC143C" style="color:crimson">crimson</option> 
+                                                                    <option value="#FF0000" style="color:red">red</option> 
+                                                                    <option value="#B22222" style="color:firebrick">firebrick</option> 
+                                                                    <option value="#8B0000" style="color:darkred">dark red</option> 
+                                                                    <option value="#00FF00" style="color:green">green</option> 
+                                                                    <option value="#32CD32" style="color:limegreen">limegreen</option> 
+                                                                    <option value="#2E8B57" style="color:seagreen">sea-green</option> 
+                                                                    <option value="#FF1493" style="color:deeppink">deeppink</option> 
+                                                                    <option value="#FF6347" style="color:tomato">tomato</option> 
+                                                                    <option value="#FF7F50" style="color:coral">coral</option> 
+                                                                    <option value="#800080" style="color:purple">purple</option> 
+                                                                    <option value="#4B0082" style="color:indigo">indigo</option> 
+                                                                    <option value="#DEB887" style="color:burlywood">burlywood</option> 
+                                                                    <option value="#F4A460" style="color:sandybrown">sandy brown</option> 
+                                                                    <option value="#A0522D" style="color:sienna">sienna</option> 
+                                                                    <option value="#D2691E" style="color:chocolate">chocolate</option> 
+                                                                    <option value="#008080" style="color:teal">teal</option> 
+                                                                    <option value="#C0C0C0" style="color:silver">silver</option> 
+                                                                </select> 
+                                                                <input class="input" type="button" value=" B " onclick="bbcode(this.form,'B','')" onmouseover="stat('b')" title="BOLD (alt+b)" accesskey="b" /> 
+                                                                <input class="input" type="button" value=" I " onclick="bbcode(this.form,'I','')" onmouseover="stat('i')" title="ITALIC (alt+i)" accesskey="i" /> 
+                                                                <input class="input" type="button" value=" U " onclick="bbcode(this.form,'U','')" onmouseover="stat('u')" title="UNDERLINE (alt+u)" accesskey="u" /> 
+                                                                <input class="input" type="button" value="hoch" onclick="bbcode(this.form,'sup','')" onmouseover="stat('sup')" title="hochgestellter Text" /> 
+                                                                <input class="input" type="button" value="tief" onclick="bbcode(this.form,'sub','')" onmouseover="stat('sub')" title="tiefgestellter Text" /> 
+                                                                <br /> 
+                                                                <input class="input" type="button" value="Hyperlink" title="Hyperlink einfügen" onclick="namedlink(this.form,'url')" onmouseover="stat('url')" /> 
+                                                                <input class="input" type="button" value="EMail" title="EMail Adresse einfügen" onclick="namedlink(this.form,'EMAIL')" onmouseover="stat('email')" /> 
+                                                                <input class="input" type="button" value="Code" title="Quelltext einfügen" onclick="bbco(this.form,'code','')" onmouseover="stat('code')" /> 
+                                                                <input class="input" type="button" value="Linie" onclick="standard('[hr]')" onmouseover="stat('hr')" title="$lang[post_news_hr_desc]" /> 
+                                                                <input class="input" type="button" value="Liste" title="Liste einfügen" accesskey="l" onclick="dolist(this.form)" onmouseover="stat('list')" /> 
+                                                                <input class="input" type="button" value="Zitat" title="Zitat einfügen" onclick="bbco(this.form,'quote','')" onmouseover="stat('quote')" /> 
+                                                                <input class="input" type="button" value="IMG" title="Bild einfügen" onclick="bbco(this.form,'IMG','http://')" onmouseover="stat('img')" /> 
+                                                                <br /> 
+                                                                <input name="status" type="text" class="input" style="font-size:7pt; width: 100%" size="50" /> </td> 
+                                                            <td nowrap valign="top"> <label> 
+                                                                <input class="input" type="button" value=" x " accesskey="c" title="aktuellen Tag schließen (alt+c)" style="color:red; font-weight:bold" onclick="closetag(this.form)" onmouseover="stat('closecurrent')" /> 
+                                                                aktuellen Tag schließen</label> 
+                                                                <br /> 
+                                                                <label> 
+                                                                <input class="input" type="button" value=" x " accesskey="x" title="alle Tags schließen (alt+x)" style="color:red; font-weight:bold" onclick="closeall(this.form)" onmouseover="stat('closeall')" /> 
+                                                                alle Tags schließen </label> </td> 
+                                                        </tr> 
+                                                    </table></td> 
+                                            </tr> 
+                                            <tr> 
+                                                <td> <table width="100%"  border="0" cellspacing="0" cellpadding="2"> 
+                                                        <tr> 
+                                                            <td width="100%" valign="top"><textarea name="textarea" cols="" rows="11" wrap="virtual" style="width: 100%; border: 2px inset; overflow: auto;"></textarea></td> 
+                                                            <td valign="top"><fieldset> 
+                                                                <legend>Click-Smilies</legend> 
+                                                                <table border="0" align="center" cellpadding="4" cellspacing="0"> 
+                                                                    <tr> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':D')"><img src="smilie/biggrin.gif" width="15" height="15" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(';-(')"><img src="smilie/sly.gif" width="15" height="15" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':-(')"><img src="smilie/confused.gif" width="15" height="15" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':-O')"><img src="smilie/cry.gif" width="15" height="15" border="0" align="absmiddle" /></a></div></td> 
+                                                                    </tr> 
+                                                                    <tr> 
+                                                                        <td><div align="center"><a href="javascript:smilie('(?)')"><img src="smilie/sneaky2.gif" width="15" height="15" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie('(!)')"><img src="smilie/notify.gif" width="15" height="21" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':baaa:')"><img src="smilie/baaa.gif" width="40" height="45" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':stupid:')"><img src="smilie/withstupid.gif" width="40" height="45" border="0" align="absmiddle" /></a></div></td> 
+                                                                    </tr> 
+                                                                    <tr> 
+                                                                        <td><div align="center"><a href="javascript:smilie('8-)')"><img src="smilie/music.gif" width="21" height="22" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':O')"><img src="smilie/wow.gif" width="15" height="15" border="0" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':zzz:')"><img src="smilie/sleepy.gif" width="15" height="20" border="0" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':xmas:')"><img src="smilie/xmas.gif" width="21" height="22" border="0" /></a></div></td> 
+                                                                    </tr> 
+                                                                    <tr> 
+                                                                        <td><div align="center"><a href="javascript:smilie(';-)')"><img src="smilie/wink.gif" width="15" height="15" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':-)')"><img src="smilie/smile.gif" width="15" height="15" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':!')"><img src="smilie/thumbs-up.gif" width="23" height="18" border="0" align="absmiddle" /></a></div></td> 
+                                                                        <td><div align="center"><a href="javascript:smilie(':inlove:')"><img src="smilie/inlove.gif" width="16" height="27" border="0" align="absmiddle" /></a></div></td> 
+                                                                    </tr> 
+                                                                </table> 
+                                                                </fieldset></td> 
+                                                        </tr> 
+                                                    </table></td> 
+                                            </tr> 
+                                        </table> 
+                                        <label> </label> 
+                                        </fieldset> 
+                                        <br /> 
+                                        <fieldset> 
+                                        <legend>Optionen</legend> 
+                                        <label><input name="converturl" type="checkbox" value="1" checked="checked" /> 
+                                        Sollen Kommentare zu diesem Beitrag erlaubt sein</label><br /> 
+                                        <label><input type="checkbox" name="checkbox" value="checkbox" /> 
+                                        Sollen evtl. geschriebene Links auf der Startseite (News&uuml;bersicht) mit dargestellt werden</label>
+                                        </fieldset> 
+                                         
+                                        <table width="100%" border="0" cellspacing="2" cellpadding="2"> 
+                                            <tr> 
+                                                <td align="center"> <input type="submit" class="input" value="  Datei speichern  " /> 
+                                                    &nbsp;&nbsp; 
+                                                    <input name="Submit" type="reset" class="input" value="  Zur&uuml;cksetzen  " /></td> 
+                                            </tr> 
+                                        </table> 
+                                    </form></td> 
+                            </tr> 
+                        </table></td> 
+                </tr> 
+            </table> 
