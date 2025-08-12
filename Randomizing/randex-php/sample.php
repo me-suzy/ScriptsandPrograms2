@@ -1,0 +1,4 @@
+
+
+<? require("randex.php"); ?>
+
