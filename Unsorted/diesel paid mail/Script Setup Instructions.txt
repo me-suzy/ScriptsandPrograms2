@@ -1,0 +1,53 @@
+DieselMail v1.2 by www.dieselscripts.com
+
+-----------------------------------------------------------------------------------
+
+WDYL Release
+
+-----------------------------------------------------------------------------------
+
+Script Requirements
+
+1) Php
+2) MySQL
+3) MySQL Dump
+4) Control Panel is preferred
+
+**************
+
+Installation Instructions
+
+1) Change all instances of the word YourSiteName with your actual site name.
+
+2) Set up the MySQL database. The MySQL tables that you need to use are found in a file called sqltable.sql. 
+
+3) Modify the following files:
+
+A. gold_vars.php - change the physical path of the gold membership folder to your actual path. Currently it is set as /home/netprofi/public_html/dieselmail/gold_membership 
+B. global.php - This file is found in the Includes folder. Change the path of the vars.php and vars_arrays.php files, which are found in the Includes folder. The 2 lines that you need to modify are:
+include("/home/netprofi/public_html/dieselmail/includes/vars.php");      include("/home/netprofi/public_html/dieselmail/includes/vars_arrays.php");
+C. vars.php - This is the file where you set your database name, database username and database password. 
+
+!! Remember that you will have to edit the files from dieselmail/site/html so that they will match your website.
+
+
+4) Set the permssions to all the PHP files to 755. With the following exceptions:
+
+includes/vars_misc.php - this file should be set to 777
+includes/vars_commission.php - this file should be set to 777
+
+Also set the following files to 777:
+
+** site/html/email/ - all files in this folder should be set to 777
+** admin/backup.sql file
+** site/html/header.html and site/html/footer.html
+** admin/temp.txt
+** gold_membership/random.txt
+
+=====================
+
+Your admin area URL is http://www.YourSiteName.com/dieselmail/admin/admin.php
+
+You can password protect your admin area by visiting  http://www.YourSiteName.com/dieselmail/admin/protect.php
+
+Enjoy, WDYL
