@@ -1,0 +1,102 @@
+<div class="dbgDump">$a = int(112311213)</div>
+<p>
+<div class="dbgDump">$b = bool(true)</div>
+<p>
+<div class="dbgDump">$c = string[5]('peter')</div>
+<p>
+<div class="dbgDump">$d = <strong>array[3] <a name="open1"> {</a></strong><a href="#close1">&darr;</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;0 => int(2)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;1 => int(25)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;2 => int(42)<br />
+<strong><a name="close1">} </a></strong><a href="#open1">&uarr;</a></div>
+<p>
+<table border=1>
+<tr>
+<th>example</th><td>2</td><td>25</td><td>42</td>
+</tr>
+</table>
+
+<p>
+<table border=1>
+<tr>
+<th>example</th>
+</tr>
+<tr>
+<td>2</td>
+</tr>
+<tr>
+<td>25</td>
+</tr>
+<tr>
+<td>42</td>
+</tr>
+</table>
+
+<p>
+Hello World!<p>
+<em> [debugHelper.php : 270]</em><em> [exampleDebug.php : 45]</em><p><em> [exampleDebug.php : 28]</em><em> [exampleDebug.php : 23]</em><em> [exampleDebug.php : 47]</em><hr>Timing: 0.009279<hr><div class="dbgSource"><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">1</span><code><font color="#000000">
+<font color="#0000BB">&lt;?php
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">2</span></font><font color="#FF8000">////////////////////////////////////////////////////////////////////////
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">3</span>/**
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">4</span>*
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">5</span>* example for debugHelper.php
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">6</span>* shows the different options of the class
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">7</span>*
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">8</span>* For the lastest version go to:
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">9</span>* http://www.phpclasses.org/browse.html/package/879.html
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">10</span>*
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">11</span>* @author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lennart Groetzbach &lt;lennartg@web.de&gt;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">12</span>* @copyright&nbsp;&nbsp;&nbsp;&nbsp;Lennart Groetzbach &lt;lennartg@web.de&gt; - distributed under the LGPL
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">13</span>*/
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">14</span>////////////////////////////////////////////////////////////////
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">15</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">16</span></font><font color="#0000BB">$dir </font><font color="#007700">= </font><font color="#0000BB">dirname</font><font color="#007700">(</font><font color="#0000BB">__FILE__</font><font color="#007700">);
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">17</span>require_once </font><font color="#0000BB">$dir </font><font color="#007700">. </font><font color="#DD0000">"/../debugHelper.php"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">18</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">19</span></font><font color="#FF8000">///////////////////////////////////////////////////////////////////////
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">20</span></font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">startTimer</font><font color="#007700">();
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">21</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">22</span>function </font><font color="#0000BB">a</font><font color="#007700">() {
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">23</span>&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">b</font><font color="#007700">();
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">24</span>}
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">25</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">26</span>function </font><font color="#0000BB">b</font><font color="#007700">() {
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">27</span>&nbsp;&nbsp;&nbsp;global </font><font color="#0000BB">$debug</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">28</span>&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">trace</font><font color="#007700">();
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">29</span>}
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">30</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">31</span></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">112311213</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">32</span></font><font color="#0000BB">$b </font><font color="#007700">= </font><font color="#0000BB">true</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">33</span></font><font color="#0000BB">$c </font><font color="#007700">= </font><font color="#DD0000">"peter"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">34</span></font><font color="#0000BB">$d </font><font color="#007700">= array(</font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#0000BB">25</font><font color="#007700">, </font><font color="#0000BB">42</font><font color="#007700">);
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">35</span></font><font color="#0000BB">$e </font><font color="#007700">= array(</font><font color="#DD0000">"a" </font><font color="#007700">=&gt; </font><font color="#DD0000">"1"</font><font color="#007700">,</font><font color="#DD0000">"3" </font><font color="#007700">=&gt; </font><font color="#DD0000">"c"</font><font color="#007700">, </font><font color="#DD0000">"b" </font><font color="#007700">=&gt; </font><font color="#0000BB">$d</font><font color="#007700">);
+</div><br /><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">36</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">37</span>echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">dump</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">) . </font><font color="#DD0000">"\n&lt;p&gt;\n"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">38</span>echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">dump</font><font color="#007700">(</font><font color="#0000BB">$b</font><font color="#007700">) . </font><font color="#DD0000">"\n&lt;p&gt;\n"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">39</span>echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">dump</font><font color="#007700">(</font><font color="#0000BB">$c</font><font color="#007700">) . </font><font color="#DD0000">"\n&lt;p&gt;\n"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">40</span>echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">dump</font><font color="#007700">(</font><font color="#0000BB">$d</font><font color="#007700">) . </font><font color="#DD0000">"\n&lt;p&gt;\n"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">41</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">42</span>echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">toTable</font><font color="#007700">(</font><font color="#0000BB">$d</font><font color="#007700">, </font><font color="#DD0000">'example'</font><font color="#007700">) . </font><font color="#DD0000">"\n&lt;p&gt;\n"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">43</span>echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">toTable</font><font color="#007700">(</font><font color="#0000BB">$d</font><font color="#007700">, </font><font color="#DD0000">'example'</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">) . </font><font color="#DD0000">"\n&lt;p&gt;\n"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">44</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">45</span>echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">message</font><font color="#007700">(</font><font color="#DD0000">"Hello World!&lt;p&gt;\n"</font><font color="#007700">);
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">46</span>echo </font><font color="#DD0000">"&lt;p&gt;"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">47</span></font><font color="#0000BB">a</font><font color="#007700">();
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">48</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">49</span></font><font color="#FF8000">///////////////////////////////////////////////////////////////////////
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">50</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">51</span></font><font color="#007700">echo </font><font color="#DD0000">"&lt;hr&gt;"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">52</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">53</span>echo </font><font color="#DD0000">"Timing: " </font><font color="#007700">. </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">stopTimer</font><font color="#007700">();
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">54</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">55</span></font><font color="#FF8000">///////////////////////////////////////////////////////////////////////
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">56</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">57</span></font><font color="#007700">echo </font><font color="#DD0000">"&lt;hr&gt;"</font><font color="#007700">;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">58</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">59</span>echo </font><font color="#0000BB">$debug</font><font color="#007700">-&gt;</font><font color="#0000BB">highlightFile</font><font color="#007700">(</font><font color="#0000BB">__FILE__</font><font color="#007700">);
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">60</span>
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">61</span></font><font color="#FF8000">///////////////////////////////////////////////////////////////////////
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">62</span></font><font color="#0000BB">?&gt;
+</div><div style="white-space: nowrap;"><span style="width:45px; color:#0000BB;">63</span></font>
+</font>
+</code></div></div>
