@@ -1,0 +1,94 @@
+
+<body>
+<font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+Domain Search Results:</font></b></font></font> 
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">Below are the results 
+      of your domain search. If the domain(s) you searched for are available, 
+      you will be able to add them to your cart and review pricing.</font></td>
+  </tr>
+</table>
+<form method="post" action="members<? echo $ext ?>">
+  <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> <b> 
+    <?
+  	if ($desired_domain=="") {
+		echo "Invalid Domain Entered!";
+		} else {
+	$f = return_domain_status($desired_domain,$session_id);
+	echo $f;
+	}
+?>
+    <input type="hidden" name="page" value="signup_3">
+    <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+    </b></font></p>
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b> </b></font> 
+</form>
+<font color="#999999"><br>
+<font size="3" face="Verdana, Arial, Helvetica, sans-serif"> <font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3">&gt; 
+Search For Available Domains:</font></b></font></font></font> 
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">Need to find the perfect 
+      domain for your business or personal interest? <br>
+      Use the form below to search for available domains. You may enter the full 
+      domain name (example: domain.com) and we will check its status. Also, you 
+      can simply type a word (example: domain), and we will check all the extensions 
+      that we currently register. </font></td>
+  </tr>
+</table>
+<form method="post" action="members<? echo $ext ?>">
+  <table width="450" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b> 
+        Domain Search:</b></font></td>
+      <td> 
+        <?
+$f = show_input_text("desired_domain","15","NONE","NONE");
+echo $f;
+?>
+        <input type="hidden" name="page" value="signup_2">
+        <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+      </td>
+      <td width="90"> 
+        <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23">
+      </td>
+    </tr>
+  </table>
+</form>
+<p>&nbsp; </p>
+<p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#999999">&gt; 
+  Purchase Hosting Only:</font></b></font></font> 
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">Already have a domain 
+      name, but you wish to host it with us? No problem, we will transfer it to 
+      our servers and supply you with hosting. Just enter the full domain name 
+      below to get started. (example: domain.com)</font></td>
+  </tr>
+</table>
+<form method="post" action="members<? echo $ext ?>">
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b> </b></font> 
+  <table width="450" border="0" cellpadding="5" cellspacing="0">
+    <tr> 
+      <td width="200"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Domain 
+        Transfer:</b></font> </td>
+      <td> 
+        <?
+$f = show_input_text("transfer_domain","15","NONE","NONE");
+echo $f;
+?>
+        <input type="hidden" name="page" value="signup_3">
+        <input type="hidden" name="action" value="transfer_domain">
+        <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+      </td>
+      <td width="90"> 
+        <input type="image" border="0" name="submit2" value="submit" src="images/button_continue.gif" width="80" height="23">
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
