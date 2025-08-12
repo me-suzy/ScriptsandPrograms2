@@ -1,0 +1,60 @@
+
+Destiney.com Scripts v0.3 Install:
+
+1. Upload and uncompress files on server.
+
+2. Edit admin/config.php, enter valid system paths, database info, etc.
+	
+	* Windows user will need to use backslashes(\) not forward
+	slashes(/) and as such all backslashes will need to be escaped
+	with backslashes.  For example your $base_path will look
+	something like this:  $base_path = "C:\\Inetpub\\wwwroot";
+
+3. Create a new DB named `destiney`.
+
+	mysql> create database `destiney`;
+
+4. Install MySQL tables from admin/sql/install.sql.
+	
+	mysql destiney < admin/sql/install.sql
+
+		or
+
+	mysql> source admin/sql/install.sql
+
+5. Delete the `admin/sql` directory if desired.
+
+6. Chmod 777 include/cache.
+
+	* Windows users will need to uncheck the `read-only` checkbox
+	for the directory in the directory's property dialogue.
+
+7. Chmod 777 images
+
+	* Windows users will need to uncheck the `read-only` checkbox
+	for the directory in the directory's property dialogue.
+
+8. Upload your favorite font to the fonts directory.  `arial.ttf` is
+   recommended.
+
+	Note: You can use any other font you wish, but you will almost
+	certainly have to tweek images.php as it is coded for arial.ttf
+	specifically.
+
+9. Rename faq.php-new as faq.php.
+
+	This is so future releases will not overwrite your changes.
+
+10. Rename include/image_rules.php-new as include/image_rules.php.
+
+	This is so future releases will not overwrite your changes.
+
+11. Login to your admin interface http://$base_url/admin/ with:
+
+	admin : changeme
+
+	$base_url being whatever you defined it as in config.php.
+
+12. Inside admin configure user types, image types, and web forums.
+
+13. Done.
