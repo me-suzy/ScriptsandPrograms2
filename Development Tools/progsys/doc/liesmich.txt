@@ -1,0 +1,151 @@
+Kopieren Sie config.dist.php nach config.php und editieren Sie diese so, dass die Einstellungen für Ihren Server stimmen.
+Anmerkung: Sie können mehrere Instanzen von ProgSys in einer Datenbank haben.
+Benutzen Sie dabei nur bei jeder Installation verschiedene Werte für tableprefix in der config.php.
+Dies muss gemacht werden bevor Sie install.php aufrufen.
+
+Kopieren Sie alle Dateien (.php, .inc ...) auf den Webhost.
+Bitte unbedingt die Unterverzeichnisstruktur beibehalten.
+
+Wichtiger Installationshinweis: Die in config.php definierte Datenbank muss bereits existieren.
+Aus Sicherheitsgründen legt das Skript nur Tabellen und keine Datenbanken an.
+
+Erstinstallation:
+Rufen Sie nun http://ihr.host.de/installationsverzeichnis/admin/install.php
+auf, um die Tabellen in der Datenbank zu erzuegen und den ersten Administrator zu definieren.
+
+Updates:
+IM AKTUELLEN ARCHIV SIND NUR UPDATE-SKRIPTS FÜR UPDATES AB >=0.130 VORHANDEN !!!
+UM DAS UPDATE ÄLTERER SKRIPTS DURCHZUFÜHREN LADEN SIE BITTE NOCH DAS UPDATE-PAKET AUF 0.130 HERUNTER !! 
+Alle .php-Dateien auf dem Server durch die neuen ersetzen.
+So bestimmen Sie das benötigte Updateskript: Nehmen Sie die aktuell installierte Version
+(z.B. 0.20) und entfernen den Punkt innerhalb der Versionnummer (im Beispiel wird das dann 020)
+und schon haben Sie die benötigt Updateversion. Benutzen Sie nun alle Updateskripts von
+dieser Version an bis zur aktuellen Version (in der richtigen Reihenfolge). Angenommen im
+Beispiel wäre die aktuelle Version 0.23 (kurz 023), dann benutzen Sie upgrade_020_to_021.php,
+danach upgrade_021_to_22.php usw, bis upgrade_22_to_23.php.
+Existiert eines der Zwischenskripte nicht, so war bei den entsprechenden Versionen kein
+Update der DB nötig. Fahren sie in diesem Fall einfach mit dem nächsten, passenden Skript
+in der Reihe fort.
+
+Nach der Installation entfernen Sie bitte das Upgrade-, bzw. Installationsskript vom Server,
+da sonst jeder, der das Programm kennt, ihre Datenbestände löschen kann.
+
+Nun können Sie sich bei der Administrationsoberfläche unter
+http://ihr.host.de/installionsverzeichnis/admin/index.php
+anmelden.
+
+Um das Changelog für ein Programm anzuzeigen geben Sie folgendes ein:
+http://your.host.com/installdir/changelog.php?prog=<progid>&lang=<language>&list=all
+
+Um die ToDo Liste anzuzeigen:
+http://your.host.com/installdir/todo.php?prog=<progid>&lang=<language>
+
+Um die Referenzsites anzuzeigen:
+http://your.host.com/installdir/references.php?prog=<progid>&lang=<language>&display=1
+
+Um die Bugliste anzuzeigen:
+http://your.host.com/installdir/bugtraq.php?prog=<progid>&lang=<language>
+
+Um einen Download zu zählen:
+http://your.host.com/installdir/download.php??url=<url zum download file>
+oder
+http://your.host.com/installdir/download.php??filenr=<nr des Eintrages für das download file>
+
+Geben Sie keine Sprache an, so wird die in config.php als Voreinstellung definierte Sprache genommen.
+
+Beispiel für die Verwendung von downutil.php um "abschaltbare" Downloadlinks in eigenen Seiten zu
+erzeugen:
+1) Das Skript in die eigene PHP-Datei einbinden:
+<?php
+require(getenv("DOCUMENT_ROOT")."/progsys/downutil.php");
+?>
+2) showdownloadlink(<filenr>,<linktext>,<languagecode>) aufrufen, um den Link auszugeben. Dieser
+Link wird automatisch deaktiviert, wenn der Download der entspr. Datei per Administrationsoberfläche
+deaktiviert wird:
+<?php showdownloadlink(10,"Hauptserver",de)?>
+
+
+
+Dieses Programm ist Open Source (siehe copying)
+Sie können es im Rahmen der GPL verändern, müssen aber den Copyrightvermerk
+('genereated by ...' und meta-tag) unangetastet lassen.
+
+Sollten Sie das Programm auf Ihrer Website einseitzen, so tragen Sie diese doch
+bitte als Referenz auf unserer Website ein.
+
+Sollten Sie das Programm im kommerziellen Umfeld einsetzen, so fänden wir es
+toll, wenn Sie unsere Arbeit evtl. auch finanziell unterstützen würden.
+
+Die neueste Version gibt es immer auf
+http://www.boesch-it.de
+
+
+Authentifizierung von Administratoren
+-------------------------------------
+Es gibt 2 Authentifizierungsmethoden für die Administrationsoberfläche:
+1) Sessionhandling per Cookie
+2) Session-ID wird per GET und POST übermittelt.
+
+Methode #1
+----------
+Sie müssen $sessid_url in der config.php auf false setzen.
+Bitte prüfen Sie, ob die folgenden Variablen in der config.php richtig gesetzt sind:
+$url_progsys
+$cookiedomain
+$cookiename
+$cookiepath
+$cookiesecure
+$sesscookiename
+$sesscookietime
+
+Methode #2
+----------
+Setzen Sie $sessid_url auf true in der config.php.
+Diese Methode benutzt kein Cookie, sondern die Session-ID wird bei jedem GET und POST
+mitgeschickt.
+Aus diesem Grund kann jeder, der Blickkontakt mit Ihrem Bildschirm hat, die Sessionid aus
+der im Browser angezeigten URL auslesen. Wir erachten diese Methode als nicht besonders sicher
+(im Intranet evtl. nicht so tragisch) und empfehlen Ihnen eher Methode 1 einzusetzen.
+Bitte prüfen Sie, dass auch $sesscookiename sinnvoll belegt ist. Am Besten ist es hier den
+voreingestellten Namen beizubehalten, da die entsprechende HTTP-Variable von ProgSys
+nicht anderweitig verwendet werden darf, da es das Programm sonst nicht funktioniert.
+
+Newsletter
+==========
+
+Beispiel, wie man die Anmledung zum Newsletter auf einer eigenen Seite platzieren kann:
+<!-- --------- Start of subscription code --------- -->
+<table width="80%" align="center">
+<form method="post" action="/progsys/subscription.php">
+<input type="hidden" name="lang" value="de">
+<input type="hidden" name="mode" value="subscribe">
+<input type="hidden" name="prog" value="<progid>">
+<tr><td align="right" width="30%">E-Mail:</td>
+<td><input type="text" name="email" size="40" maxlength="240"></td></tr>
+<tr><td align="right" valign="top">E-Mail Art:</td><td>
+<input type="radio" name="emailtype" value="0" checked> HTML<br>
+<input type="radio" name="emailtype" value="1"> nur Text</td></tr>
+<td align="center" colspan="2"><input type="submit" value="abonnieren"></td></tr></form></table>
+<!-- --------- End of subscription code --------- -->
+
+Beispiel, wie man die Abmeldung vom Abo auf einer eigenen Seite platzieren kann:
+<!-- --------- Start of unsubscription code --------- -->
+<table width="80%" align="center">
+<form method="post" action="/progsys/subscription.php">
+<input type="hidden" name="lang" value="de">
+<input type="hidden" name="prog" value="<progid>">
+<input type="hidden" name="mode" value="unsubscribe">
+<tr><td align="right" width="30%">E-Mail:</td>
+<td><input type="text" name="email" size="40" maxlength="240"></td></tr>
+<td align="center" colspan="2"><input type="submit" value="abo entfernen"></td></tr></form></table>
+<!-- --------- End of unsubscription code --------- -->
+
+Anmerkung zum Feld "Vermerk (wird in E-Mails mitgeschickt)" bei den Programmen:
+Bitte irgendwo im Text "{unsubscribeurl}" (ohne Anführungszeichen) platzieren.
+Dies wird beim versenden der Mails durch die für den jeweiligen Empfänger passende URL zum
+Abmelden ersetzt.
+"{progname}" wird durch den Namen des Programms ersetzt, mit dem der Newsletter verknüpft ist.
+"{homepagelink}" wird durch einen Link auf die für die Homepage in der Administrationsoberfläche 
+definierte URL ersetzt.
+
+(Uses HTML Mime Mail class by Richard Heyes <richard@phpguru.org>)
