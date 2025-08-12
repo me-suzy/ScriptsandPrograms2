@@ -1,0 +1,77 @@
+<html>
+<head>
+  <title>Bid Search Engine</title>
+</head>
+
+<center>
+<font face="verdana"><B>Bid Search Engine</B> - <font color="#000099">Bulk Upload</font></font><P><BR>
+<FORM METHOD="POST" action="members.[ext]?tab=addsubmit&user=[user]&pass=[pass]&bulk=1">
+<a href="members.[ext]?tab=login&user=[user]&pass=[pass]">Main</a> | 
+<a href="members.[ext]?tab=stats&user=[user]&pass=[pass]">Statistics</a> | 
+<a href="members.[ext]?tab=profile&user=[user]&pass=[pass]">Modify Profile</a> | 
+<a href="members.[ext]?tab=manage&user=[user]&pass=[pass]">Manage Listings</a> | 
+<a href="members.[ext]?tab=balance&user=[user]&pass=[pass]">Update Balance</a> | 
+<a href="members.[ext]?tab=bids&user=[user]&pass=[pass]">Update Bids</a>
+</font></B><BR>
+<B><font face="verdana" size="-1" color="red"><!-- [error] --></font></B>
+<table width=60% border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <center>
+      <table border="0" width=100% cellspacing="1" cellpadding="1" bgcolor="#000000">
+        <tr>
+          <td>
+            <table border="0" width=100% cellspacing="0" cellpadding="3" bgcolor=#E0DCC0>
+              <tr>
+                <td colspan=2>
+                  <B><font face="verdana" size="-1">Bulk Text Upload</B><BR>
+                  Use the following form if you have a large amount of listings to submit and wish to make the process faster.  Separate each listing by a new line and separate each item by a | character.  The listings must follow this order:<BR>
+                  <font size=-2 color="#000099" face="verdana"><B>SEARCH TERM 1|URL 1|TITLE 1|DESCRIPTION 1|BID 1<BR>
+                  SEARCH TERM 2|URL 2|TITLE 2|DESCRIPTION 2|BID 2
+                  </font><BR>
+                  <TEXTAREA name="bulktext" maxlength="190" ROWS=10 COLS=70></TEXTAREA>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <BR>
+      </center><input type=submit value="Submit">
+    </td>
+  </tr>
+</table></form><BR>
+<FORM METHOD="POST" action="excel.[ext]" ENCTYPE="multipart/form-data">
+<INPUT TYPE="hidden" NAME="tab" value="addsubmit">
+<INPUT TYPE="hidden" NAME="user" value="[user]">
+<INPUT TYPE="hidden" NAME="pass" value="[pass]">
+<table width=60% border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <center>
+      <table border="0" width=100% cellspacing="1" cellpadding="1" bgcolor="#000000">
+        <tr>
+          <td>
+            <table border="0" width=100% cellspacing="0" cellpadding="3" bgcolor=#E0DCC0>
+              <tr>
+                <td colspan=2>
+                  <B><font face="verdana" size="-1">Excel Upload</B><BR>
+If you have a large amount of listings to submit, you may choose to upload an excel spreadsheet to make this process faster.  In order to do this, you must first download the <a href="http://www.yoururl.com/bulksubmission.xls">Excel Spreadsheet</a>.  Once downloaded, fill in the table and upload the file via the form below.<BR>
+                  <INPUT TYPE="file" NAME="file" SIZE=20 MAXLENGTH=40>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <BR>
+      </center><input type=submit value="Upload">
+    </td>
+  </tr>
+</table>
+
+</form>
+</center>
+
+</BODY>
+</HTML>
