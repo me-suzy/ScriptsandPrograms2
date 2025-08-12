@@ -1,0 +1,146 @@
+{header}    
+      <br /> <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td class="catrow"><img src="{GRAFURL}/img_arrow_right.gif" alt="" width="14" height="14" border="0" align="middle" /> 
+            {breadcrumb}
+          </td>
+        </tr>
+      </table>
+      <br /> <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr> 
+          <IF NAME="show_additionally_fields">
+          <td valign="top"> 
+            <!-- Zeile f&uuml;r Statistik, Neue Kommentare etc. -->
+            <IF NAME="show_categorie_overview">
+            <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="{CONTENT_BORDER_COLOR}">
+              <tr> 
+                <td> <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+                    <tr> 
+                      <td> <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                          <tr> 
+                            <td valign="top" class="left_box_headline"><img src="{GRAFURL}/img_news_categories.gif" alt="" width="16" height="16" border="0" align="middle" />&nbsp;<b>{index_categories}</b></td>
+                          </tr>
+                          <tr> 
+                            <td valign="top" class="left_box_content"> 
+                              {categorie_links} 
+                              <hr class="left_box_content" width="95%" size="1" noshade="noshade" /> 
+                              &raquo;&nbsp;<a href="{MAINURL}/index.php?{SESS_NAME}={SESS_ID}" class="left_box_content"><b>{index_newspage}</b></a> </td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+            <br /> 
+            </IF NAME="show_categorie_overview">
+            <IF NAME="show_newsletter_field">
+            <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="{CONTENT_BORDER_COLOR}">
+              <tr> 
+                <td> <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+                    <tr> 
+                      <td valign="top"> <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                          <tr> 
+                            <td class="left_box_headline"><img src="{GRAFURL}/img_mail.gif" alt="" width="16" height="16" border="0" align="middle" />&nbsp;<b>{index_newsletter}</b></td>
+                          </tr>
+                          <tr> 
+                            <td valign="top" class="left_box_content"> 
+                              <form action="{MAINURL}/index.php" method="get">
+							  <input type="hidden" name="action" value="newsletter" />
+							  <input type="hidden" name="{SESS_NAME}" value="{SESS_ID}" />
+                                <p class="left_box_content">{index_sign_on_for_newsletter} 
+                                  <input name="abouser" type="text" class="input" id="abouser" size="30" value="{index_your_name}" onblur="if (value =='') {value = '{index_your_name}'}" onfocus="if (value == '{index_your_name}') {value =''}" />
+                                  <input name="abomail" type="text" class="input" id="abomail" size="30" value="{index_your_email}" onfocus="if (value == '{index_your_email}') {value =''}" />
+                                  <select name="option" size="1" class="input">
+                                    <option value="1">{index_sign_on}</option>
+                                    <option value="0">{index_sign_off}</option>
+                                  </select><br />
+                                  <input name="Submit" type="submit" class="input" value="{index_send}" />
+                                  &nbsp; 
+                                  <input name="Submit2" type="reset" class="input" value="  {index_reset}  " />
+                                </p>
+                              </form></td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+            <br /> 
+            </IF NAME="show_newsletter_field">
+            <IF NAME="show_rss_hint">
+            <table width="100%"  border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="{CONTENT_BORDER_COLOR}">
+              <tr> 
+                <td> <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+                    <tr> 
+                      <td valign="top"> <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                          <tr> 
+                            <td class="left_box_headline"><img src="{GRAFURL}/img_rss.gif" alt="" width="28" height="16" border="0" align="middle" />&nbsp;<b>{index_news_feed}</b></td>
+                          </tr>
+                          <tr> 
+                            <td valign="top" class="left_box_content"> 
+                            <p class="left_box_content">{index_we_allow_to_use_our_headlines}</p>
+                            <p>&raquo;&nbsp;<a class="left_box_content" href="{MAINURL}/rss.php" target="_blank">{index_show_rss}</a></p>
+                            <p class="left_box_content" align="center"><a href="http://feedvalidator.org/check.cgi?url={MAINURL}/rss.php"><img src="{GRAFURL}/valid-rss.png" alt="[Valid RSS]" title="Validate my RSS feed" width="88" height="31" border="0" /></a></p>
+                            </td>
+                          </tr>
+                        </table></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table>
+            </IF NAME="show_rss_hint">            
+            <!-- Zeile Kommentare Ende -->
+          </td>
+          </IF NAME="show_additionally_fields">
+          <td valign="top" width="{width2}"> <table width="100%" cellspacing="2" cellpadding="2" border="0">
+              <tr> 
+                <td valign="top"> <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr> 
+                      <td width="100%" class="cat_main_headline" valign="top">{site_headline}</td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr> 
+                <td> 
+                  <!-- Zeile Kategorie 1 -->
+				  <IF NAME="parse_news_headlines">
+				  <p style="line-height: 20px;">
+				  <LOOP NAME="headline_loop">
+				  &nbsp;&nbsp;<b>&raquo;&nbsp;<a href="{headline_link}">{headline_title}</a></b> <span class="cat_subcat_info">{headline_date}</span><br />
+				  </LOOP NAME="headline_loop">
+				  </p>
+				  </IF NAME="parse_news_headlines">
+				  
+                  <LOOP NAME="news_loop">
+				  <a name="{newsid}"></a>
+                  <table width="99%" cellspacing="2" cellpadding="2" border="0">
+                    <tr> 
+                      <td>
+					  	{image_headline} <span class="cat_subcat_info">{fulldate}</span><br />{newshead}</td>
+                    </tr>
+                    <tr>
+                      <td class="cat_content" style="text-align : justify;">
+					  	{image_text} {hometext}
+						{morenews}
+						{linkshow}
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td class="cat_content">
+					  	{writerlink}
+						{recommend_link}
+						{commentlink}
+					  </td>
+                    </tr>
+                  </table>
+				  <hr />
+                  <br /> 
+                  </LOOP NAME="news_loop">
+				  <div align="right">{pagecount}</div>
+                  </td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+      <br /> 
+{footer}    
