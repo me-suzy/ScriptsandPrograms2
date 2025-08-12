@@ -1,0 +1,133 @@
+<?php
+/***************************************************************************
+ * (c)2002-2004 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+require_once('./config.php');
+require_once('./functions.php');
+if(!isset($$langvar) || !$$langvar)
+	$act_lang=$default_lang;
+else
+	$act_lang=$$langvar;
+include_once('language/lang_'.$act_lang.'.php');
+require_once('./includes/get_settings.inc');
+require_once('./includes/block_leacher.inc');
+if(!isset($category))
+	$category=0;
+$heading="";
+if($eventheading)
+{
+	$heading=$eventheading;
+	$pageheading=$eventheading;
+}
+else
+	$pageheading=$l_events;
+if(($enableevpropose==1) && ($maxpropose>0))
+{
+	$sql="select count(entrynr) as numpropose from ".$tableprefix."_tmpevents";
+	if(!$result = mysql_query($sql, $db))
+		die("Unable to connect to database.".mysql_error());
+	if($myrow=mysql_fetch_array($result))
+		if($myrow["numpropose"]>=$maxpropose)
+			$enableevpropose=0;
+}
+if($category>0)
+{
+	$sql = "select * from ".$tableprefix."_categories where catnr='$category'";
+	if(!$result = mysql_query($sql, $db))
+		die("Unable to connect to database.".mysql_error());
+	if($myrow=mysql_fetch_array($result))
+		$enableevpropose=$myrow["enablepropose"];
+	else
+		$enablepropose=0;
+}
+if($enableevpropose==0)
+	die("$l_functiondisabled");
+if(isset($mode))
+{
+	if($mode=="upduser")
+	{
+		$page="propose";
+		include_once("./includes/evpropose_upduser.inc");
+	}
+	if($mode=="eduser")
+	{
+		$page="propose";
+		include_once("./includes/evpropose_eduser.inc");
+	}
+	if($mode=="refpost")
+	{
+		$page="evpropose";
+		include_once("./includes/evprop_post1c.inc");
+	}
+	if($mode=="refed")
+	{
+		$page="evpropose";
+		include_once("./includes/evprop_edit1c.inc");
+	}
+	if($mode=="directpost")
+	{
+		$page="evpropose";
+		if($submode=="event")
+			include_once("./includes/evprop_post1.inc");
+		else
+			include_once("./includes/evprop_post1b.inc");
+	}
+	if($mode=="directed")
+	{
+		$page="evpropose";
+		if($submode=="event")
+			include_once("./includes/evprop_edit1.inc");
+		else
+			include_once("./includes/evprop_edit1b.inc");
+	}
+	if($mode=="proped")
+	{
+		$page="evpropose";
+		if($type=="delete")
+			include_once("./includes/evprop_del.inc");
+		else
+			include_once("./includes/evprop_ed.inc");
+	}
+	if($mode=="login")
+	{
+		$page="prop_edlst";
+		include_once("./includes/evprop_list1.inc");
+	}
+	if($mode=="edlst")
+	{
+		$page="prop_edlst";
+		include_once("./includes/evprop_list1.inc");
+	}
+	if($mode=="proplst")
+	{
+		$page="proplist";
+		include_once("./includes/evprop_list2.inc");
+	}
+	if($mode=="logout")
+	{
+		$backmsg=$l_back2events;
+		include_once("./includes/prop_logout.inc");
+	}
+	if($mode=="confirmpw")
+	{
+		include_once("./includes/prop_confirmpw.inc");
+	}
+	if($mode=="postpw")
+	{
+		$backmsg=$l_back2events;
+		$basescript="evpropose.php";
+		include_once("./includes/prop_postpw.inc");
+	}
+	if($mode=="new")
+	{
+		$page="evpropose";
+		include_once("./includes/evpropose_new.inc");
+	}
+	if($mode=="add")
+	{
+		include_once("./includes/evpropose_add.inc");
+	}
+}
+echo "</td></tr></table></td></tr></table></div>";
+include_once("./includes/footer.inc");
+?>
