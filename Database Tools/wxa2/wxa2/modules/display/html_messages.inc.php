@@ -1,0 +1,1 @@
+<?if (count($arr_notice_messages)>0) echo "<div id=messages>" .  join("", $arr_notice_messages). "</div>";
