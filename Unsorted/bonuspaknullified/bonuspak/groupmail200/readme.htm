@@ -1,0 +1,536 @@
+<html><head><title>Admin help</title></head>
+<body> <basefont face="arial,verdana,helvetica" size=2>
+
+			<center><h2>GroupMail Version 2.00 (Secure)</h2></center><p>
+<a name=top>
+<table width=80% cellpadding=5><tr><td><font face="arial,verdana,helvetica" size=2>
+<h3>Table of contents</h3><p>
+<DL>
+<DT><a href="#1.">1. Introduction</a>
+<DD>    <a href="#1.1">1.1 Description</a>
+<DD>    <a href="#1.2">1.2 New features</a>
+<DD>    <a href="#1.3">1.3 System requirements</a>
+<DD>    <a href="#1.4">1.4 Package contents</a>
+<DT><a href="#2.">2. Initial configuration</a>
+<DT><a href="#3.">3. Installation</a>
+<DD>    <a href="#3.1">3.1 Decompress and transfer files</a>
+<DD>    <a href="#3.2">3.2 Set permissions</a>
+<DD>    <a href="#3.3">3.3 Security configuration</a>
+<DT><a href="#4.">4. Upgrading from a previous version</a>
+<DT><a href="#5.">5. Operation</a>
+<DD>    <a href="#5.1">5.1 Administration</a>
+<DD>    <a href="#5.2">5.2 User operation</a>
+<DT><a href="#6.">6. Maintenance and upgrades</a>
+</DL><hr><p>
+<a name=1.>
+<DL>
+<DT><h3>1. Introduction</h3>
+<a name=1.1>
+<DT><h4>1.1 Description</h4>
+<DD>1.1.1 GroupMail is a full-featured web-based email client capable of serving
+many users simultaneously. Its main advantage over a PC-based email client
+is the ability to access email from any computer which can connect to the
+internet. Computer terminals are freely available in many public and private
+locations and, if one has a computer but not an ISP dial-up or cable account
+there are free internet connection services available.<p> 
+
+<DD>1.1.2 GroupMail is ideal for people who are connected in some fashion such
+as within an office environment, a business, school, church, social or 
+cultural group, family group etc. For this purpose, an optional inter-communication
+facility is built-in, with which members are known to one another via a posted list,
+can publish other personal details and can communicate using a private Intercom 
+facility.<p>
+
+<DD>1.1.3 This secure version 2.00 has been implemented to address several
+important privacy issues and also to help combat the more serious security 
+risks inherent to the world wide web.<p>
+
+<DD>1.1.4 The following features are basic to GroupMail:
+<UL>
+  <LI> simple registration process and individual accounts with ID and
+    password authentication.
+  <LI> send and receive regular email and attachments.
+  <LI> email address book
+  <LI> send and receive private intercom messages and attachments.
+    Messages remain on the server and are immediately deposited 
+    into members' inboxes.
+  <LI> individual folders for inbox, trash and sent messages.
+  <LI> members can publish their identity etc. in a Profile file if 
+    desired.
+  <LI> member list from which messages can be sent and profiles read.
+  <LI> password change facility and retrieval of lost passwords.
+  <LI> web page help file
+  <LI> an administration module for managing user accounts, address books, backups and broadcasting 
+    messages to members.
+  <LI> control of the unix '.redirect' file (set in $redirect) to
+    automate the process of forwarding email to member inboxes.
+    Member names are added/removed during the processes of account
+    activation, deactivation and deletion.
+  <LI> page style i.e. banners, fonts, colors is  fully configurable.
+</UL><center><a href="#top">[top]</a></center><p>	
+
+<a name=1.2>
+<DT><h4>1.2 New features</h4>
+<DD>1.2.1 New with this secure version (2.00):<p>
+<UL>
+  <LI> the ability for admin to switch the group intercommunication 
+    facility on or off. This is done from the configuration file
+    with parameter $nointercom.
+  <LI> a modest debug feature which may be set on/off with the 
+	configuration parameter $debug. Trace information is printed to
+	the browser.
+  <LI> a 'chessboard' style for the Inbox message table may be set
+    on/off with the '$chessboard' configuration parameter. It 
+    allows for two contrasting colors which are set in '@chessbg'
+    for the backgrounds of alternating rows.
+  <LI> if $other_use is set on, email arriving in the GroupMail POP
+    account which is not addressed to members can be saved for the
+    admin. This is controlled by parameters $save_other and 
+    $other_email.
+  <LI> full MIME support for sending and receiving attachments
+
+  <LI> received messages can be forwarded with attachments intact
+
+  <LI> separate menu button and compose page for each of Reply and Forward
+
+  <LI> more useful information on the Inbox message page
+
+  <LI> GroupMail will accept email that is forwarded via third-party 
+    services such as bigfoot.com, hotmail.com, everyone.net etc.
+
+  <LI> passwords are stored in encrypted form using the unix one-way
+    encryption facility. There is no known method of recovering 
+    the original password from this.
+
+  <LI> easy upgrading from previous versions.
+
+  <LI> a new configuration setting which enables login
+    security. After a specified number of unsuccessful login 
+    attempts the account is temporarily deactivated, the owner
+    and administrator notified and all attempts are logged with
+    the remote host name.
+
+  <LI> new functions in the administration module to manage information security and
+    privacy of personal and sensitive information.
+
+  <LI> sensitive data such as the administrator's password and POP
+    account login data is no longer stored in groupmail.cfg. A
+    new configuration file, 'secure.cfg' which can be accessed
+    only by the server, is created during the installation and
+    setup process. 
+
+  <LI> If the administrator is not registered and logs into the 
+    administration module with the username specified during configuration 
+    and a password, that account is automatically registered.
+
+  <LI> there is now a button in the administration module for the admin to login
+    automatically to GroupMail in a new window.
+
+  <LI> If Intercom is enabled ($nointercom=0) the list of members
+    which is activated by the 'Members' button now appears in a
+    scrollable list instead of a long page. The new parameter
+    $selectsize controls the window size and there are buttons
+    for reading member profiles and sending messages.
+
+  <LI> when the administrator activates, deactivates or kills an account, email
+    notification is sent to the user.
+
+  <LI> temporary attachment files are stored in the user's mail folder in a directory
+    specified by $temp. For email the uploaded files are deleted immediately after the
+    message is sent. For Intercom they remain on the server for the user to manage and 
+    the space used counts toward $maxdisk quota.
+</UL><center><a href="#top">[top]</a></center><p>	
+
+<a name=1.3>
+<DT><h4>1.3 System requirements</h4>
+
+<DD>1.3.1 This version has been tested on Linux 2.0.27 with Apache 1.3.2, 1.3.6
+and 1.3.12 servers, Perl 5.004+ and 5.006. Netscape 4+ and MSIE 4+ browsers
+were used as clients.<p>
+
+<DD>1.3.2 The Perl modules CGI, Net::POP3 and Mime::Base64 are required.
+It is very likely that these are already installed on your host system 
+however you should inquire.<p>
+
+<DD>1.3.3 GroupMail requires use of the unix 'redirect' file to forward
+email to individual mailboxes. If you do not currently forward email 
+arriving in your unix account (or don't have a 'redirect') then GroupMail
+will create this file during the admin setup process. <p>
+
+<DD>1.3.4 If your unix/linux server has the 'qmail' system installed (a secure
+replacement for the native 'sendmail') GroupMail will function in all respects
+except one: qmail does not recognize a 'redirect' file. Therefore forwarding of
+email (username@your-domain) to the GroupMail POP account must be done through
+http://www.qmail.org qmail files. Consult your unix/linux
+administrator concerning this. Some hosting services have set up a control panel
+where you can manually forward usernames prior to activating accounts.<p>
+<center><a href="#top">[top]</a></center>
+
+<a name=1.4>
+<DT><h4>1.4 Package contents</h4>
+
+<DD>1.4.1 The compressed file <b>groupmail200.zip</b> contains the files listed
+below. Also shown are the content of each, where they should be located
+in your server cgi-bin (or equivalent) and the permissions to be set
+(unix chmod). IF YOU ARE UPGRADING DO NOT SET PERMISSIONS until told 
+to do so. It is assumed that you will create a main directory e.g.
+'groupmail' for the installation.<p>
+
+<font face="courier new" size=3><B><PRE>
+FILE           CONTENTS               LOCATION        CHMOD
+</PRE></B><PRE>
+convert.cgi    password encryption    main directory  0755
+admin.cgi      account admin          main directory  0755
+attach.cgi     attachment processing    "      "        "
+groupmail.cgi  main script              "      "        "
+
+groupmail.cfg  configuration file     main directory  0644
+address.lib    address book subs        "      "        "
+groupmail.lib  main subroutines         "      "        "
+profile.lib    profile subroutines      "      "        "
+groupmail.gif  banner image             "      "        "
+paperclip.gif  attachment icon          "      "        "
+cookie.lib     Matt Wright's            "      "        "
+
+convert.htm    encryption guide       main directory  0755
+groupmail.htm  sample login page        "      "        "
+help.htm       help page              configured      0755
+login.htm      default login form       "               "
+main.htm       default page             "               "
+password.htm   password change          "               "
+register.htm   registration form        "               "
+readme.htm     user manual              "               "
+index.html     stop directory access    "               " 
+licence.txt    legal issues
+</PRE></font>
+
+<DD>1.4.2 Those files marked 'configured' can be placed in any location of
+your choice which path you must specify in groupmail.cfg.<p>
+
+<DD>1.4.3 Unless they already exist create the following sub-directories 
+(presumably under the main directory) and specify their paths in 
+groupmail.cfg:<p>
+
+<font face="courier new" size=3><B><PRE>
+DIR NAME    CONTENTS            CHMOD 
+</PRE></B><PRE>
+(for example)
+register    registration files  0777
+mail        all mail              "
+address     address books         "
+profile     user profiles         "
+backup      backup files          "
+</PRE></font>
+
+<DD>1.4.4 'groupmail.htm' is a sample web page where visitors to your web
+site can read about, register with and login to GroupMail. Configure it and
+place it to suit your requirements and DON'T FORGET TO CHANGE THE HYPERLINKS to
+point to your own server!<p>
+
+<DD>1.4.5 If you want to prevent surfers from reading the contents of your
+directories (especially cgi-bin) then edit 'index.html' to reflect your
+own home (or other) page and upload it to the main directory.<p>
+
+<DD>1.4.6 There should be 26 files and directories in the .zip archive.<p>
+<center><a href="#top">[top]</a></center>
+
+<a name=2.>
+<DT><h3>2. Initial configuration</h3>
+
+<DT><h4>2.1 Groupmail.cfg</h4>
+
+<DD>2.1.1 Edit the configuration file in accordance with the comments which
+accompany each parameter. Examples of values used at the author's website
+are included. <p>
+
+<DD>2.1.2 The administrator (admin) must identify him/herself in order to register 
+and activate that account through <b>admin.cgi</b>. Set $admin_id to the username of
+your choice (e.g. Admin, Postmaster, Mailman, Overlord etc.).<p>
+
+<DD>2.1.3 Pay close attention to easily-missed detail such as leading or
+trailing slashes in pathnames and URLs. If you are uncertain of what
+pathnames should be try using those found in the location bar of your 
+FTP client (e.g. WS_FTP LE). Also note that for some parameters you are
+cautioned not to include a path.<p>
+
+<DD>2.1.4 $redirect, the unix 'redirect' (or hidden '.redirect') file, is 
+required for the purpose of forwarding incoming email to the proper POP 
+account. Entries consist of two fields separated by one or more spaces:
+GroupMail 'username' and '$pop_address' - the email address of the POP account
+assigned to GroupMail. This can be any POP3 account that you own or have access
+to. These are inserted by the administration module admin.cgi when registered 
+members are activated. If you create this file under your ownership then before 
+each member activation you will have to chmod it 0666 (world-readable and 
+writable) so the unix server can update it, then set it back to 0644 where it 
+normally should remain. If you do not already have a 'redirect' file you should 
+allow admin.cgi (and thus the server) to create and own it. Then you won't need 
+to set write permission on and off for each member activation. Also, as commented
+in the configuration file, you may find it useful to let the script create a dummy
+'$redirect' in your GroupMail folder during initial testing.<p>
+
+<DD>2.1.5 @reserved contains samples of usernames you don't want members to 
+use. When the administrator registers make sure that it does not contain the 
+username set in $admin_id and should be first to register!<p>
+
+<DT><h4>2.2 Admin.cgi</h4>
+<DD>2.2.1 If you want to place the admin module in a directory other than the
+main GroupMail directory then you must edit the script to change the path to
+groupmail.cfg. Doing this will permit you to provide strong security for the 
+script using your unix/linux <b>.htaccess</b> and <b>.htpasswd</b> files.
+Consult your unix/linux user manual for details. Otherwise no change to the
+script is required.<p>
+
+<DD>2.2.2 To make the changes follow the instructions provided at the top of the
+script. Basically you must provide the full path to groupmail.cfg in the 'require'
+statement. This will be the same value you provided for <b>$basepath</b> in 
+groupmail.cfg.<p>
+
+<center><a href="#top">[top]</a></center>
+
+<a name=3.>
+<DT><h3>3. Installation</h3>
+
+<a name=3.1>
+<DT><h4>3.1 Decompress and edit files</h4>
+
+<DD>3.1.1 Decompress the .zip file. Edit groupmail.cfg and groupmail.htm as noted
+above and any other html files you wish to change. Do not disturb the names or
+positions of substitution parameters (they begin with '$'). Discard 'convert.cgi'
+UNLESS you are upgrading (see 4. below).<p>
+
+<DD>3.1.2 If you prepared the files on your Windows (Mac etc.) computer then
+create the main directory on your server and upload all files to the 
+locations on your server which you specified in the configuration file,
+groupmail.cfg. If you use an FTP client such as WS_FTP then simply select
+all files except '.gif' and transfer them in ASCII mode. Then transfer 
+the images in BINARY mode. The client will create the required subdirectories
+while it is uploading.<p>
+
+<DD>3.1.2 If you prepared the files from your unix terminal then create the
+main directory and sub-directories and copy files to the required locations.<p>
+
+<a name=3.2>
+<DT><h4>3.2 Set permissions</h4>
+
+<DD>3.2.1 Unless you are upgrading from a previous version set file and directory
+permissions on everything in accordance with the instructions in 1. above.<p>
+<center><a href="#top">[top]</a></center>
+
+<a name=3.3>
+<DT><h4>3.3 Security configuration</h4>
+
+<DD>3.3.1 Using the URL <b>http://www.your-domain/path-to-groupmail/admin.cgi</b>, run 
+<b>admin.cgi</b> from your browser and enter the values of $admin_id and your chosen 
+password using the authentication form.<p>
+
+<DD>3.3.2 If the initial configuration was set correctly you should receive confirmation
+of registration and access to the admin functions. If you have enabled POP email by setting
+'$nopop=0' you will be instructed to proceed to the security menu, submit the POP account
+login information and then activate your account. The POP3 account which acts as a 'post 
+office' must be one which admin owns or has access to and should be used exclusively for 
+this purpose.<p>
+
+<DD>3.3.3 After you receive confirmation that the security configuration has been set 
+proceed to the record displayed for $admin_id and press <b>Activate</b>. After confirmation
+has been received you are ready to begin operations. As the 'superuser' admin can never be
+locked out of admin.cgi or groupmail.cgi. If you lose your password simply assign a new value
+to $admin_id in groupmail.cfg and login to admin.cgi with that username and a password then
+'Kill' your old record.<p>
+
+<DD>3.3.4 Using the button provided in admin.cgi login to GroupMail and become familiar
+with all its features.<p>
+<center><a href="#top">[top]</a></center>
+
+<a name=4.>
+<DT><h4>4. Upgrading from a previous version</h4>
+
+<center><table width=90% border=1 cellpadding=5><tr><td>
+<font face="arial,verdana,helvetica" size=2>
+
+<DD>4.1 To upgrade from any previous version of GroupMail follow these ten 
+easy steps:<p>
+<UL>
+<LI>Backup your existing installation and decompress the .zip file.
+
+<p><LI>It is strongly recommended that you use the new <b>groupmail.cfg</b>. Edit it in accordance 
+with your current configuration and the following changes: <b>OMIT</b> the POP account login data (3 
+parameters); <b>INCLUDE</b> '$admin_password' which is required for the conversion process then
+removed. It is not necessary to edit any other files.
+
+<p><LI>Copy files from the zip package to your GroupMail directory. This 
+must include only groupmail.cfg, scripts (.cgi) libraries (.lib), 'readme.htm'
+'help.htm' and any other web pages (.htm) you wish to update. Note that 'intercom.htm'
+is no longer required and may be removed. All existing directories and data
+files such as registration, mail, address books, profiles etc. will remain 
+intact. DO NOT SET EXECUTE permissions yet on the scripts!
+
+<p><LI>Set execute permission (0755) on <b>convert.cgi</b>, run it and login
+as $admin_id with password $admin_password. You should now have access
+to a few of the old admin functions and some new ones.
+
+<p><LI>If you have not backed up the registration files do this now.
+Read the HELP page provided and, when ready, press "Encrypt passwords'.
+When you receive confirmation of encryption (Previous action: etc.) 
+you may review the summary report using the 'View log' button.
+
+<p><LI>This completes the password conversion process. The new admin module
+contains all the functions necessary to maintain your new configuration. You
+should now disable 'convert.cgi' or better, remove it from the server (read
+the caution regarding encrypting passwords). The module must never be used 
+with passwords which are already encrypted.
+
+<p><LI><b>REMOVE</b> $admin_password from groupmail.cfg and re-install the file.
+
+<p><LI>Set execute permission (chmod 0755) on the remainder of the scripts
+(.cgi) and login to the admin module <b>admin.cgi</b> with the username $admin_id
+and $admin_password (which was removed from groupmail.cfg). If you were not
+previously registered with Groupmail you will be automatically registered and
+activated. You should now be logged in to admin.cgi.
+
+<p><LI>If you have POP email enabled ($nopop=0) enter the <b>POP account login</b>
+data using the form provided and the 'Save login data' button. You should receive 
+confirmation in 'Previous action:'. A new file <b>secure.cfg</b> is created which 
+contains your security configuration. It is accessible only by the server and is 
+required by GroupMail.
+
+<p><LI>Become acquainted with the new functions and read the on-line help. 
+Logon to GroupMail using the button provided to verify your registration.
+</UL>
+</td></tr></table></center>
+<center><a href="#top">[top]</a></center>
+<a name=5.>
+<DT><h3>5. Operation</h3>
+
+<a name=5.1>
+<DT><h4>5.1 Administration</h4>
+<DD>5.1.1 The administrator (or admin) is the person responsible for 
+operations such as:
+<UL>
+  <p><LI>validating, approving, editing and deleting member registrations
+  <p><LI>activating and deactivating members
+  <p><LI>acting as primary point of contact for members/potential members
+  <p><LI>enforcing regulations
+  <p><LI>notifying members of changes, upgrades, schedules etc.
+  <p><LI>backup and restore of data
+  <p><LI>password and login security
+  <p><LI>maintaing a POP3 account for use as an email 'post office'
+</UL><p>
+
+<DD>5.1.2 It is highly recommended that the admin gain some proficiency with
+admin.cgi before commencing regular operations. Register 2 or more 
+fictitious members and test the following features:<p>
+<UL>
+  <p><LI>display and inspect registration records.
+  <p><LI>ensure redirect is writable (chmod 666 if you own it) then Activate
+    and Deactivate members.
+  <p><LI>check to ensure that user email addresses are in fact added to 
+    redirect after activation and removed after deactivation.
+  <p><LI>test the Edit and Kill member functions. Kill should erase all
+    traces of the member including the entry in $redirect.
+  <p><LI>test the Backup and Restore of registration files.
+  <p><LI>test the Backup and Restore feature for address books.
+  <p><LI>send an Intercom message to all members and also Email to all. Try
+    the Test option which sends only to you.
+  <p><LI>test the login security feature by attempting to login with an
+    incorrect password $maxlogintries number of times. Run admin.cgi,
+    examine the $loginlog file and then clear it. Do not forget to
+    re-activate your account!
+  <p><LI>change the POP account login data then press 'Verify config' to see
+    the result
+  <p><LI>login to GroupMail to verify your registration
+</UL><p>
+<center><a href="#top">[top]</a></center>
+<a name=5.2>
+<DT><h4>5.2 User operation</h4>
+<DD>5.2.1 The sample web page groupmail.htm illustrates the normal course
+of operation:<p>
+<UL>
+  <p><LI>the login form contains a link at the bottom which loads the 
+	registration page. After a member registers the admin receives an email.
+    He/she first validates the registrant then inspects the registration 
+    record using admin.cgi to verify the data entered. At this point 
+    admin will either activate the member, perform a follow-up or delete
+    (kill) the record.<p>
+
+  <p><LI>after activation you can login from the same web page using the
+    approved username (ID) and assigned password. The first thing you
+    should do is to select the Password command from the menu, change
+    the initial password and save the new one in a safe place.<p>
+
+  <p><LI>if $securelogin has been set, each password failure is logged in 
+    the $loginlog file with: date-time; username; no-of-attempts; and
+    remote-host (domain name of ISP used). If the number of failures 
+    reaches the value of $maxlogintries the account is de-activated and
+    both the account owner and admin are notified. This is an important
+    safeguard against a common threat to security and to privacy of 
+    personal information. The password failure count is reset after a
+    successful login.<p>
+
+  <p><LI>during registration you are asked to provide a question together 
+    with an answer that only you will know. In the event that you lose
+    your password you should login with just your username and leave
+    the password field blank. You will be presented with a form  
+    containing the question and the IP address of your internet host. Enter and 
+    submit the answer. Once verified you will receive a response page with a
+    new password (which is stored in encrypted form). If desired, you can change
+    this using the Password menu option. An email message is sent to your address
+    on file confirming this action and containing the IP address from which the
+    request was made. If it is not your IP address you should immediately inform
+    the administrator. You will note that at no time does GroupMail send passwords
+    using email. Also note that retrieving lost passwords is protected in the same
+    manner as login attempts: after $maxlogintries attempts you are locked out and
+    the account is temporarily de-activated.<p>
+
+  <p><LI>once you have successfully logged in to GroupMail you will find that
+    it has a very simple menu which appears at the bottom of every page.
+    The menu contains a Help button which should provide answers to most 
+    user questions and if you have configured $menutips to 1 (=ON), the
+    onMouseover stylesheet popups should appeal to new users.<p>
+</UL>
+
+<DD>5.2.2 You may note that GroupMail uses an internal naming convention 
+for usernames and message filenames. The first letter of a username is
+changed to uppercase and all message filenames begin with the username.
+This is done simply to avoid the remote possibility of name conflicts 
+within Unix. When entering a username it is case insensitive.<p>
+
+<DD>5.2.3 Since GroupMail is web-based all screens are displayed using HTML.
+Consequently, all text which appears to contain HTML tags is converted
+to form hyperlinks. Email addresses point to the Email compose page etc.
+Another feature is that many of these will open a new browser window so
+as to not disturb the main page.<p>
+
+<DD>5.2.4 With the exception of the points noted above GroupMail functions
+much like any standard email client i.e. compose, send, receive and view messages; 
+ reply to and forward messages; send and receive full MIME attachments; folders for 
+inbox, sent mail, deleted mail (trash) and for temporary storage of attachments; 
+address book with auto-entry feature; view full email headers; and auto-quote of 
+message text in replies.<p>
+<center><a href="#top">[top]</a></center>
+<a name=6.>
+<DT><h3>6. Maintenance & Upgrades</h3>
+
+<DT><h4>6.1 General</h4>
+
+<DD>6.1.1 GroupMail is currently in use on the author's website in more 
+than one form with this distribution version being the most up-to-date.
+Consequently it undergoes regular scrutiny and maintenance. Nevertheless,
+bugs happen! Please post your documented reports on our 
+ Support Forum. You
+will also find links to the forum at the Download Area and 
+Home Page. This version of GroupMail is fully supported by Chez Surette Art 
+and receives priority maintenance.<p>
+
+<DD>6.1.2 Upgrades and fixes are announced through our download mailing list to which 
+you are added during the purchasing process.<p>
+
+<DT><h4>6.2 Future enhancements (wish list)</h4>
+<DD><UL>
+  <p><LI>Storage management for uploaded and received files.<p>
+
+  <p><LI>For those who do not want to implement the 'group' or 'membership'
+    concept: no intercommunication and immediate activation after registration.<p>
+
+  <p><LI>User provides own password at registration.
+</UL></DL><center><a href="#top">[top]</a></center>
+</td></tr></table></body></html>
