@@ -1,0 +1,1 @@
+<?php $dbservername="192.168.0.5" ;$dbusername="root" ;$dbpassword="slammer" ;$dbname="Baal" ; ?>
