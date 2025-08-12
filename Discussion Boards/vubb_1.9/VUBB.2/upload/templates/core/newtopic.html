@@ -1,0 +1,62 @@
+<script language='JavaScript'>
+var ico;function smile(ico) {document.text.body1.value=document.text.body1.value+ico;}
+</script>
+<form name='text' method='post' action='index.php?act=newtopic&action=addtopic&f={$_GET['f']}'>
+<table width="100%" cellspacing="1" cellpadding="4" class="outborder">
+	<tr>
+		<td class="breadcrumb"><img src='templates/{$site_config['template']}/images/nav.gif' width='18px' height='9px' alt='current location' title='current location'><a href="index.php">Index</a> &gt;&gt; <a href="index.php?act=newtopic&f={$_GET['f']}">{$lang['title']['post_new']} {$forum_name['name']}</a></td>
+	</tr>
+</table>
+
+<br /><br />
+
+<table width="100%" cellspacing="1" cellpadding="4" class="outborder">
+	<tr>
+		<td class='row2' colspan='2'>{$lang['title']['post_new_topic']} {$forum_name['name']}</td>
+	</tr>
+	<tr> 
+		<td class='head_block' colspan='2'>&nbsp;</td>
+	</tr>
+	<tr>
+		<td class='contentbox' width='50%'><strong>{$lang['text']['topic_title']}</strong></td>
+		<td class='contentbox' width='50%'><input name='title2' type='text' size='50' maxlength="40"></td>
+	</tr>
+	<tr>
+		<td class='contentbox' width='50%'><strong>{$lang['text']['enter_post']}</strong>
+		</td>
+		<td class='contentbox' width='50%' align='right'>
+<a href="#" onClick="var body1=document.text.body1; body1.rows=body1.rows+5"><strong>{$lang['text']['more']} space</strong></a> - <a href="#" onClick="var body1=document.text.body1; body1.rows=body1.rows-5"><strong>{$lang['text']['less']} space</strong></a>
+		</td>
+	</tr>
+	<tr>
+		<td width='100%' colspan='2' class='blockend'><img src='templates/{$site_config['template']}/images/spacer.gif' width='2px' height='1px' alt="" title="" /></td>
+	</tr>
+	<tr>
+		<td class='contentbox' colspan='2' align='center'>	
+<strong>{$lang['title']['bbcode']}</strong><br />
+<strong>{$bbcode}</strong>
+		</td>
+	</tr>
+<tr> 
+<td class='contentbox1' colspan='2' align='center'>
+<textarea name='body1' cols='60' rows='5'></textarea>
+	</td>
+	</tr>
+	<tr>
+		<td class='contentbox' colspan='2' align='center'>	
+<strong>{$lang['title']['smilies']}</strong><br />
+{$smilies}
+		</td>
+	</tr>
+	<tr>
+		<td width='100%' colspan='2' class='blockend'><img src='templates/{$site_config['template']}/images/spacer.gif' width='2px' height='1px' alt="" title="" /></td>
+	</tr>
+	<tr>
+		<td class='contentbox' align='center' colspan='2'><input name='submit' type='submit' value='{$lang['submit']['add_topic']}'></td>
+	</tr>
+	<tr>
+		<td width='100%' colspan='2' class='blockend'><img src='templates/{$site_config['template']}/images/spacer.gif' width='2px' height='1px' alt="" title="" /></td>
+	</tr>
+</table>
+</div>
+</form>
