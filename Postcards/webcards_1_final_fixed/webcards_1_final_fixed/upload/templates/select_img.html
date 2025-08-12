@@ -1,0 +1,51 @@
+<table width="100%" class="noborder">
+  <tr>
+    <td valign="middle" align="left">
+      <span class="page_header">||choose_img||</span>
+      <span class="warning">{{warnings}}</span><br />
+    </td>
+    <td align="right" valign="bottom">
+      <form action="{{action}}?act=search" method="post">
+				||search|| {{search_select_box}} ||for||: <input type="text" name="search_text" title="||enter_terms|| (||accesskey|| S)" value="" accesskey="s" size="30" /> <input type="submit" value="Go!" />
+				<br />[ <a href="{{action}}?act=adv_search">||adv_img_search||</a> ]
+			</form>
+    </td>
+  </tr></table><table width="100%" border="0" class="noborder" cellpadding="3">
+  <tr>
+    <td width="150" valign="top">
+      <table width="100%" class="noborder" cellspacing="5">
+        <tr>
+          <td colspan="2">
+            <b>||browse_cats||:</b>
+          </td>
+        </tr>
+            {{cat_jump}}
+      </table>
+    </td>
+    <td align="left" valign="top">
+      <table border="0" width="100%" class="noborder" cellpading="0">
+        <tr>
+          <td align="left" valign="bottom">
+            {{start_prev_next}}
+            {{prev_next_link}}
+          </td>
+          <td align="right" valign="bottom">
+            <form action="{{action}}" method="get">
+            <input type="hidden" name="act" value="browse_cat">
+            <input type="hidden" name="cat" value="{{cat_id}}">
+            ||viewing|| {{limit_box}} ||per_page|| <input type="submit" value="||go||">
+            </form>
+            {{end_prev_next}}
+          </td>
+        </tr>
+      </table>
+      <fieldset>
+      <legend>||curr_browsing||: {{cat_name}}</legend>
+      <table border="0" width="100%" class="noborder">
+            {{choose_pic}}
+      </table>
+      </fieldset>
+    </td>
+  </tr>
+</table>
+</form>
