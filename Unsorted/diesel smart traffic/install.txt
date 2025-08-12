@@ -1,0 +1,72 @@
+Smart Traffic v2.0 by www.dieselscripts.com 
+
+-----------------------------------------------------------------------------------
+
+WDYL Release
+
+-----------------------------------------------------------------------------------
+
++edit conf/sys.conf
+ run displaypath.php to see the absolute path of the files on the server to set $pear_location
+
++set write permission for :
+	style.css
+	clients/tools
+	/conf/*.*
+	/src/default
+	/tpl/*.*
+
++run install/install.php (a mysql warning at the begining because the mysql tables are not set)
+
++login as admin: backdoor/
+
+-------------
+
+More Details :
+
++ EDITING conf/sys.conf (the configuration file)
+
+First you must set the access details for your MySQL database :
+   $db_host = "localhost";
+   $db_name = "mysqldatabasename";
+   $db_login ="mysqluser";
+   $db_pswd = "mysqlpassword";
+
+
+Then the path to your website (with "/" in the end):
+    $ROOT_HOST = "http://www.yourwebsite.com/";
+
+The absolute path to lib/pear folder where the mass email libraries are stored:
+    $pear_location="/home...lib/pear";
+Run displaypath.php that will display the absolute path of displaypath.php script if you don't know where the files are stored.
+
+The "from" email for sending messages and paid emails:
+    $ADMIN_MAIL = "webmaster@your-website.com";
+    $PAID_MAIL = "webmaster@your-website.com";
+
+The payment details for predefined paypal and egold payment gateways (you can add payment modes in the admin): 
+    $ADMIN_PAYPAL = "webmaster@your-website.com";
+    $ADMIN_EGOLDN = "ntm3k";
+    $ADMIN_EGOLD = "853366";
+Set buy_paypal.php and buy_egold.php as payment links in packages to use these.
+For links that start with http:\\ the script does not pass the package variables (in case you define the packages in 2checkout or other processor).
+
+The details for accessing the admin area:
+    $ADMIN_LOGIN = "admin";
+    $ADMIN_PSWD = "admin";
+
+Enable modules (1=enabled, 2=disabled) :
+    $exchange["banner"]=1;
+    $exchange["exit"]=1;
+    $exchange["start"]=1;
+    $exchange["popunder"]=1;
+    $exchange["popup"]=1;
+    $exchange["ppc"]=1;
+
++ Setting WRITE PERMISSIONS
+
+The php scripts require write permissions for editing those files. Use CHMOD 777 to be sure it works.
+It's only needed from editing templates and some settings from the admin area.
+
+
+Enjoy, WDYL
