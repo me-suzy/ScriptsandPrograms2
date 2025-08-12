@@ -1,0 +1,294 @@
+
+<MySource_SET name="bodycopy_styles" value_type="set">
+	<MySource_OPTION value="h1"     >Main Heading</MySource>
+	<MySource_OPTION value="h2"     >Heading</MySource>
+	<MySource_OPTION value="h3"     >Sub Heading</MySource>
+	<MySource_OPTION value="pre"    >Monospaced</MySource>
+</MySource>
+
+
+<MySource_SET name="colour_a" VALUE="#113262" value_type="colour" description="Used for the top and side menu text, the heading arrow and text, the line leading to the logo and in the line immediately below the top menu"/>
+<MySource_SET name="colour_b" VALUE="#164FA1" value_type="colour" description="Used for the side menu arrows and as the major colour box that borders the bottom of the page"/>
+<MySource_SET name="colour_c" VALUE="#6BB431" value_type="colour" description="The darkest colour in the 'fern' backgrounds of the top and side menus"/>
+<MySource_SET name="colour_d" VALUE="#8DD93B" value_type="colour" description="The light colour in the 'fern' backgrounds of the top and side menus, and used in the key lines surrounding the body"/>
+
+<html>
+<head>
+	<title><MySource_PRINT name="site_name" /> - <MySource_PRINT name="page_name" /></title>
+	<link rel="stylesheet" href="images/styles.css" type="text/css">
+	<!--- Dynamically set the colours --->
+	<STYLE type="text/css">
+		.topnav, .sidenav, .mainheading, .heading, .subheading {
+			color: #<MySource_PRINT name='colour_a' />;
+		}
+		.topnav, .topnav-current {
+			background-color: #<MySource_PRINT name='colour_d' />;
+		}
+		.topnav-current, .sidenav-current {
+			color: #<MySource_PRINT name='colour_b' />;
+		}
+	</STYLE>
+
+</head>
+<body bgcolor="#ffffff" marginwidth="0" marginheight="0" leftmargin="0" topmargin="0">
+<div>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td class="topnav"><MySource_AREA name="colourise_image">
+								<MySource_SET name="image_name"    value="Top Nav Ferns" />
+								<MySource_SET name="image"		   value="images/topnav_image.png" />
+								<MySource_SET name="black_colour"  value="colour_c" value_type="variable" />
+								<MySource_SET name="white_colour"  value="colour_d" value_type="variable" />
+								<MySource_SET name="extra"         value='width="288" height="25" border="0"' />
+							</MySource></td>
+		<td class="topnav" align="right">
+			<MySource_AREA name="menu" type="constant_button">
+				<MySource_SET name="button_name"  value="company profile" />
+				<MySource_SET name="text"		  value="company profile" />
+				<MySource_SET name="class"		  value="topnav" />
+			</MySource>&nbsp;|&nbsp;
+			<MySource_AREA name="menu" type="constant_button">
+				<MySource_SET name="button_name"  value="contact us" />
+				<MySource_SET name="text"		  value="contact us" />
+				<MySource_SET name="class"		  value="topnav" />
+			</MySource>&nbsp;|&nbsp;
+			<MySource_AREA name="menu" type="constant_button">
+				<MySource_SET name="button_name"  value="home" />
+				<MySource_SET name="link_to"	  value="home" />
+				<MySource_SET name="text"		  value="home" />
+				<MySource_SET name="class"		  value="topnav" />
+			</MySource>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" background='<MySource_AREA name="colourise_image">
+										<MySource_SET name="image_name"    value="Border Top" />
+										<MySource_SET name="image"		   value="images/border_top.png" />
+										<MySource_SET name="type"		   value="multiple_colours" />
+										<MySource_SET name="filename_only" value="yes" />
+										<MySource_SET name="tolerance"     value="0" />
+										<MySource_SET name="from_colour_1" value="#113262" />
+										<MySource_SET name="to_colour_1"   value="colour_a" value_type="variable" />
+										<MySource_SET name="from_colour_2" value="#164FA1" />
+										<MySource_SET name="to_colour_2"   value="colour_b" value_type="variable" />
+										<MySource_SET name="from_colour_3" value="#8DD93B" />
+										<MySource_SET name="to_colour_3"   value="colour_d" value_type="variable" />
+									</MySource>'><img src="images/blank.png" width="1" height="21" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2" height="100%" valign="top">
+			<table border="0" bordercolor=red cellspacing="0" cellpadding="0" valign="top">
+				<tr>
+					<td background='<MySource_AREA name="colourise_image">
+										<MySource_SET name="image_name"    value="Side Nav Ferns" />
+										<MySource_SET name="image"		   value="images/sidenav_image.png" />
+										<MySource_SET name="filename_only" value="yes" />
+										<MySource_SET name="black_colour"  value="colour_c" value_type="variable" />
+										<MySource_SET name="white_colour"  value="colour_d" value_type="variable" />
+									</MySource>' valign="top">
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td background="" valign="bottom" align="right">
+									<table border="0" cellspacing="0" cellpadding="0" background="">
+										<tr>
+											<td class="search" align="right">
+												&nbsp;
+											</td>
+											<td><img src="images/blank.png" width="4" height="36" border="0"></td>
+											<td rowspan="2" background="" bgcolor="#<MySource_PRINT name='colour_d' />" align="right"><img src="images/blank.png" width="4" height="40" border="0"></td>
+										</tr>
+										<tr>
+											<td colspan="2" background="" bgcolor="" align="right"><img src="images/blank.png" width="139" height="4" border="0"></td>
+										</tr>
+										<tr>
+											<td background="" bgcolor="#<MySource_PRINT name='colour_a' />" colspan=3><img src="images/blank.png" width="1" height="4" border="0"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td background="" valign="top" height="100%">
+									<table border="0" cellspacing="0" cellpadding="0" width="143" background="">
+										<tr>
+											<td class="sidenav" align="right">
+												<MySource_AREA name="login" section="form" >
+													<MySource_SET name="log_in_text"  value="Member Login" />
+													<MySource_SET name="log_out_text" value="Member Logout" />
+													<MySource_SET name="class"        value="sidenav" />
+												</MySource>
+											</td>
+											<td><img src="images/blank.png" width="1" height="25"></td>
+										</tr>
+							<MySource_AREA NAME="menu" level="top" type="normal">
+								<MySource section="page">
+									<MySource_SET name='CLASS'         value='sidenav'/>
+									<MySource_SET name='CLASS_CURRENT' value='sidenav-current' />
+									<MySource_SET NAME='BULLET_IMAGE'>
+										<MySource_AREA name="colourise_image">
+											<MySource_SET name="image_name"    value="Menu Bullet" />
+											<MySource_SET name="image"		   value="images/arrowblu_grn.png" />
+											<MySource_SET name="black_colour"  value="colour_a" value_type="variable" />
+											<MySource_SET name="white_colour"  value="colour_d" value_type="variable" />
+										</MySource>
+									</MySource>
+									<MySource_SET NAME='BULLET_IMAGE_CURRENT'>
+										<MySource_AREA name="colourise_image">
+											<MySource_SET name="image_name"    value="Menu Bullet Current" />
+											<MySource_SET name="image"		   value="images/arrowblu_grn.png" />
+											<MySource_SET name="black_colour"  value="colour_b" value_type="variable" />
+											<MySource_SET name="white_colour"  value="colour_d" value_type="variable" />
+										</MySource>
+									</MySource>
+										<tr>
+											<td colspan="2">&nbsp;</td>
+										</tr>
+										<tr>
+											<td class="<MySource_PRINT name='CLASS' />" align="right"><a href="<MySource_PRINT name='page_link' />" class="<MySource_PRINT name='class' />" onmouseover="window.status='<MySource_PRINT name='page_name' escape='yes' />';return true;" onmouseout="window.status='';return true;" ALIGN=right><MySource_PRINT name='page_short_name' /></a></td>
+											<td valign="top"><img src="<MySource_PRINT name='BULLET_IMAGE' />" width="22" height="17" border="0"></td>
+										</tr>
+										<MySource_AREA type="stalks">
+										<tr>
+											<td class="<MySource_PRINT name='CLASS' />" align="right">
+												<MySource section="page">
+													<MySource_SET NAME='show_stalks'      value='yes' />
+													<MySource_SET NAME='stalk_image_type' value='png' />
+													<MySource_SET NAME='stalk_colour'     value='colour_a' value_type='variable' />
+													<MySource_SET NAME='alignment'        value='right'   />
+													<MySource_SET NAME='CLASS'            value='sidenav' />
+													<MySource_SET NAME='CLASS_CURRENT'    value='sidenav-current' />
+												</MySource>
+											</td>
+											<td valign="top"><img src="images/blank.png" width="22" height="17" border="0"></td>
+										</tr>
+										</MySource>
+									</MySource>
+								</MySource>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td valign="top" width="100%">
+						<table border="0" cellspacing="0" cellpadding="0" width="100%">
+							<tr>
+								<td width="100%" valign="top">
+									<table border="0" cellspacing="0" cellpadding="0" width="100%">
+										<tr>
+											<td><img src="images/blank.png" width="1" height="40" border="0"></td>
+											<td width="100%">
+											 &nbsp;
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" bgcolor="#<MySource_PRINT name='colour_a' />"><img src="images/blank.png" width="1" height="4" border="0"></td>
+										</tr>
+									</table>
+								</td>
+								<td align="right">
+									<MySource_AREA name="custom_image">
+										<MySource_SET name="image_name" value="logo" />
+										<MySource_SET name="max_width"  value="300" />
+										<MySource_SET name="max_height" value="75" />
+									</MySource>
+								</td>
+							</tr>
+						</table>
+						<table border="0" cellspacing="5" cellpadding="5" width="100%">
+							<tr>
+								<td class="mainheading">
+									<MySource_AREA name="colourise_image">
+										<MySource_SET name="image_name"    value="Heading Bullet" />
+										<MySource_SET name="image"		   value="images/arrowblu_wte.png" />
+										<MySource_SET name="black_colour"  value="colour_a" value_type="variable" />
+										<MySource_SET name="white_colour"  value="#FFFFFF" />
+										<MySource_SET name="extra"         value='width="9" height="17" border="0"' />
+									</MySource>
+									&nbsp;&nbsp;<MySource_PRINT name='page_title' />
+								</td>
+							</tr>
+							<tr>
+								<td><MySource_AREA name="body" /></td>
+							</tr>
+						<MySource_AREA name="pagefile_list">
+						<tr>
+							<td>
+								<hr noshade size=0>
+								<table cellpadding=3 cellspacing=0 border=0>
+								<MySource section="file">
+									<tr>
+										<td align=top rowspan=2><a href="<MySource_PRINT name='link' />"><MySource_PRINT name='thumb' /></a></td>
+										<td align=top rowspan=2 align=center valign=top><MySource_PRINT name="icon" /><br><nobr><MySource_PRINT name="size" /></nobr></td>
+										<td align=top colspan=2><a href="<MySource_PRINT name='link' />" class=subheading><MySource_PRINT name='name' /></a><br><span class=smallprint><b>Updated <MySource_PRINT name="updated" /></b></span></td>
+									</tr>
+									<tr>
+										<td align=top width=11>&nbsp;</td>
+										<td align=top class=smallprint><MySource_PRINT name="description" /></td>
+									</tr>
+									<tr>
+										<td align=top class=smallprint>&nbsp;</td>
+									</tr>
+								</MySource>
+								</table>
+							</td>
+						</tr>
+						</MySource>
+						<MySource_AREA name="subpage_list">
+						<tr>
+							<td>
+								<hr noshade size=0>
+								<table cellpadding=3 cellspacing=0 border=0>
+								<MySource section="subpage">
+									<tr>
+										<td align=top rowspan=2><a href="<MySource_PRINT name='link' />"><MySource_PRINT name='thumb' /></a></td>
+										<td align=top colspan=2><a class=subheading href="<MySource_PRINT name='link' />"><MySource_PRINT name='name' /></a></td>
+									</tr>
+									<tr>
+										<td align=top width=11>&nbsp;</td>
+										<td align=top class=smallprint><MySource_PRINT name="description" /></td>
+									</tr>
+								</MySource>
+								</table>
+							</td>
+						</tr>
+						</MySource>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<MySource_AREA name="colourise_image">
+		<MySource_SET name="image_name"    value="Border Bottom" />
+		<MySource_SET name="print"         value="NO" />
+		<MySource_SET name="image"		   value="images/border_btm.png" />
+		<MySource_SET name="type"		   value="multiple_colours" />
+		<MySource_SET name="filename_only" value="yes" />
+		<MySource_SET name="tolerance"     value="0" />
+		<MySource_SET name="from_colour_1" value="#113262" />
+		<MySource_SET name="to_colour_1"   value="colour_a" value_type="variable" />
+		<MySource_SET name="from_colour_2" value="#164FA1" />
+		<MySource_SET name="to_colour_2"   value="colour_b" value_type="variable" />
+		<MySource_SET name="from_colour_3" value="#8DD93B" />
+		<MySource_SET name="to_colour_3"   value="colour_d" value_type="variable" />
+	</MySource>
+	<tr>
+		<td background='<MySource_AREA name="colourise_image" image_name="Border Bottom" print="Yes" />' align="right"><img src="images/blank.png" width="1" height="36" border="0"></td>
+		<td background='<MySource_AREA name="colourise_image" image_name="Border Bottom" print="Yes" />' 
+			valign="baseline" 
+			align="right">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<MySource_AREA name="date_time">
+			  <MySource_SET name="show_date" value="yes" />
+			  <MySource_SET name="date_format" value="DD_MM_YYYY" />
+			  <MySource_SET name="show_time" value="yes" />
+			  <MySource_SET name="time_format" value="HH_MM_SS_24" />
+			</MySource>
+		</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>
