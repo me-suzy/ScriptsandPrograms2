@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="25%" border="1" cellspacing="0" cellpadding="11">
+  <tr> 
+    <td align="center" valign="top">MyBannerExchange<br>
+      From <a href="http://nukedweb.pxtek.net/">NukedWeb</a><br>
+      <a href="nukedweb@yahoo.com">Email</a><br>
+      <a href="ymsgr:sendim?nukedweb">Yahoo IM</a><br>
+      <a href="http://nukedweb.pxtek.net/">Get More Free Scripts Here!</a></td>
+  </tr>
+</table>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><b><u><br>
+  MyBannerExchange<br>
+  </u></b>Installation Instructions<br>
+  <br>
+  </font><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">The first 
+  thing you'll need to do is configure your MySQL settings. Open <b>config.php</b> 
+  in Notepad or another text editor. The first 4 variables ($sqlhost, $sqllogin, 
+  $sqlpass, $sqldb) need to be configured with your MySQL settings. These settings 
+  are your MySQL Hostname, Username, Password, and Database Name. The other variable, 
+  $table, is the table name to be created, and can be left as it is unless you 
+  really need to change it.<br>
+  <br>
+  <b>$bx_url</b> must be set to the FULL URL that points to MyBannerExchange. 
+  It <b>must</b> end with a trailing slash! It should point to a directory, NOT 
+  a file.<br>
+  <b>$bx_title</b> should be a one-word title of your existing website that MyBannerExchange 
+  will be running with. This appears in the title bar of each page along with 
+  the individual title of that page. For example, on my copy of the script, $bx_title 
+  = &quot;NukedWeb&quot; and the signup page shows &quot;NukedWeb: Create Your 
+  Account&quot; in the titlebar.<br>
+  <b>$hours_must_be_active</b> represents the number of hours an account is inactive 
+  before it's removed from the banner cycle. This feature safeguards against people 
+  that remove the code from their site, or never put the code in at all. If that 
+  paerson does not send a hit from the banner on their site within xx hours, their 
+  banner is not shown on any other site. Banners will continue being shown on 
+  their site, and when they finally do send a hit, it'll automatically be reinstated 
+  into the system. This feature also prevents dead-beat no-traffic websites from 
+  sucking up hits from high-trafic sites. :) <b>Note: </b>You can set a specific 
+  account, most likely your own, to be exempt from this time interval. This can 
+  be done through the admin page.<br>
+  <b>$adminpass</b> is the password for the administration area. Change this now!! 
+  :)<br>
+  <br>
+  The other variables....<br>
+  The head and foot files are files containing HTML that appears at the top and 
+  bottom of your website. You can use the head.php and foot.php that came with 
+  the script, or point the script to the location of the existing files. The other 
+  variables in this section should need no detailed explanation. They control 
+  the design of the signup and login pages, as well as button texts, page titles, 
+  etc. <br>
+  <br>
+  Save <b>config.php</b> and upload it to your website. Also upload <b>create_table.php</b> 
+  to the same place. Now access your website through your browser, and access 
+  /create_table.php. You'll be prompted with further instructions from there.<br>
+  <br>
+  Now, for the categories. The categories are kept in categories.txt. They're 
+  formatted to include subcategories too. Notice subcategories are separated by 
+  a space, dash, space. If you add/edit categories, it's <b>very important</b> 
+  that you format it this way, because the script sometimes parses category names 
+  using the &quot; - &quot;. Review the categories and add/edit/remove them. It's 
+  best that you do this now! If you remove a category later that someone has listed 
+  themselves under, they may not ever show up in the banner cycle.<br>
+  <br>
+  <b>An explanation to targeted banners...<br>
+  </b>I want to take a minute or two to explain to you how this works. When a 
+  person signs up using a specific category, by default they'll have banners of 
+  that same category on their site. Now obviously, when you first get your service 
+  going, each person may be the only one in their subcategory, or even the only 
+  one in their main category. The script compensates for this. The script first 
+  checks to see if there's another site in that category. If there is, it displays 
+  it. If not, it then checks to see if there's another site in that main category. 
+  If not, it tries a third time by checking the entire database for another banner 
+  to display, regardless of category. If THAT fails, that means you only have 
+  one account in your database that's considered &quot;active&quot;. You should 
+  at least add your own banner by creating your own account, and then set it for 
+  &quot;exempt&quot; on the admin page. :)<br>
+  <br>
+  Now everything's ready! Upload all the files, including files you've just made 
+  changes to, to the folder on your website where MyBannerExhcange will be running 
+  from. Access <b>create.php</b> through your web browser and create your own 
+  account. Remember to go to the admin area afterwards and make your account exempt 
+  from the time interval.</font></p>
+<p><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">To access the 
+  admin page, access <b>admin.php</b> from your browser. From here you can list/edit/remove 
+  users, and add/delete exempt status. Enter the password you chose when configuring 
+  the config file.</font></p>
+</body>
+</html>
