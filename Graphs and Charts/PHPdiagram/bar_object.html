@@ -1,0 +1,52 @@
+<HTML><HEAD></HEAD>
+<BODY bgcolor="#eeeeee">
+<table border=1><tr><td><IMG src="bar_object.png" usemap="#map1" border=0></td></tr></table>
+<map name="map1"> 
+<area shape=rect coords='458,125,488,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("575 hits")'>
+<area shape=rect coords='426,78,456,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("810 hits")'>
+<area shape=rect coords='395,62,425,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("892 hits")'>
+<area shape=rect coords='364,71,394,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("844 hits")'>
+<area shape=rect coords='332,67,362,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("865 hits")'>
+<area shape=rect coords='301,131,331,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("547 hits")'>
+<area shape=rect coords='269,102,299,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("691 hits")'>
+<area shape=rect coords='238,71,268,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("847 hits")'>
+<area shape=rect coords='206,89,236,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("753 hits")'>
+<area shape=rect coords='175,79,205,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("807 hits")'>
+<area shape=rect coords='144,136,174,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("521 hits")'>
+<area shape=rect coords='112,135,142,240'  title='Hits per month' alt='Hits per month' href='javascript:alert("527 hits")'>
+</map>
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">include (</font><font color="#DD0000">"diagram.php"</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">=new </font><font color="#0000BB">Diagram</font><font color="#007700">();
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">=@</font><font color="#0000BB">ImageCreate</font><font color="#007700">(</font><font color="#0000BB">560</font><font color="#007700">, </font><font color="#0000BB">260</font><font color="#007700">) or die(</font><font color="#DD0000">"Cannot create a new GD image."</font><font color="#007700">); 
+<br /></font><font color="#0000BB">ImageColorAllocate</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">); </font><font color="#FF8000">//background color
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetFrame</font><font color="#007700">(</font><font color="#0000BB">80</font><font color="#007700">, </font><font color="#0000BB">40</font><font color="#007700">, </font><font color="#0000BB">520</font><font color="#007700">, </font><font color="#0000BB">240</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetBorder</font><font color="#007700">(-</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">13</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">1000</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetText</font><font color="#007700">(</font><font color="#DD0000">""</font><font color="#007700">,</font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#DD0000">"Website Hits 2001"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">XScale</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Draw</font><font color="#007700">(</font><font color="#DD0000">"#FFFF80"</font><font color="#007700">, </font><font color="#DD0000">"#004080"</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">);
+<br /></font><font color="#0000BB">$Month</font><font color="#007700">=array(</font><font color="#DD0000">"Jan"</font><font color="#007700">, </font><font color="#DD0000">"Feb"</font><font color="#007700">, </font><font color="#DD0000">"Mar"</font><font color="#007700">, </font><font color="#DD0000">"Apr"</font><font color="#007700">, </font><font color="#DD0000">"May"</font><font color="#007700">, </font><font color="#DD0000">"Jun"</font><font color="#007700">, </font><font color="#DD0000">"Jul"</font><font color="#007700">, </font><font color="#DD0000">"Aug"</font><font color="#007700">, </font><font color="#DD0000">"Sep"</font><font color="#007700">, </font><font color="#DD0000">"Oct"</font><font color="#007700">, </font><font color="#DD0000">"Nov"</font><font color="#007700">, </font><font color="#DD0000">"Dec"</font><font color="#007700">);
+<br />for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">&lt;</font><font color="#0000BB">12</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">++)
+<br />{ </font><font color="#0000BB">$y</font><font color="#007700">=</font><font color="#0000BB">500</font><font color="#007700">+</font><font color="#0000BB">rand</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">400</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$j</font><font color="#007700">=</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenX</font><font color="#007700">(</font><font color="#0000BB">$i</font><font color="#007700">+</font><font color="#0000BB">0.5</font><font color="#007700">);
+<br />&nbsp;&nbsp;if (</font><font color="#0000BB">$i</font><font color="#007700">%</font><font color="#0000BB">2</font><font color="#007700">==</font><font color="#0000BB">0</font><font color="#007700">) </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">(</font><font color="#0000BB">$j</font><font color="#007700">-</font><font color="#0000BB">15</font><font color="#007700">, </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">$y</font><font color="#007700">), </font><font color="#0000BB">$j</font><font color="#007700">+</font><font color="#0000BB">15</font><font color="#007700">, </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">), </font><font color="#DD0000">"#0000FF"</font><font color="#007700">, </font><font color="#0000BB">$Month</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">], </font><font color="#DD0000">"#FFFFFF"</font><font color="#007700">, </font><font color="#DD0000">"Hits per month"</font><font color="#007700">, </font><font color="#DD0000">"alert(\""</font><font color="#007700">.</font><font color="#0000BB">$y</font><font color="#007700">.</font><font color="#DD0000">" hits\")"</font><font color="#007700">);
+<br />&nbsp;&nbsp;else </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">(</font><font color="#0000BB">$j</font><font color="#007700">-</font><font color="#0000BB">15</font><font color="#007700">, </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">$y</font><font color="#007700">), </font><font color="#0000BB">$j</font><font color="#007700">+</font><font color="#0000BB">15</font><font color="#007700">, </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">), </font><font color="#DD0000">"#FF0000"</font><font color="#007700">, </font><font color="#0000BB">$Month</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">], </font><font color="#DD0000">"#000000"</font><font color="#007700">, </font><font color="#DD0000">"Hits per month"</font><font color="#007700">, </font><font color="#DD0000">"alert(\""</font><font color="#007700">.</font><font color="#0000BB">$y</font><font color="#007700">.</font><font color="#DD0000">" hits\")"</font><font color="#007700">);
+<br />}
+<br />
+<br /></font><font color="#0000BB">ImagePng</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#DD0000">"bar_object.png"</font><font color="#007700">);
+<br /></font><font color="#0000BB">ImageDestroy</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">);
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;HTML&gt;&lt;HEAD&gt;&lt;/HEAD&gt;
+<br />&lt;BODY bgcolor="#eeeeee"&gt;
+<br />&lt;table border=1&gt;&lt;tr&gt;&lt;td&gt;&lt;IMG src="bar_object.png" usemap="#map1" border=0&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+<br />&lt;map name="map1"&gt; 
+<br /><font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ImgMapData?&gt;
+<br /></font>&lt;/map&gt;
+<br />&lt;/BODY&gt;
+<br />&lt;/HTML&gt;</font>
+</code>
+</BODY>
+</HTML>
