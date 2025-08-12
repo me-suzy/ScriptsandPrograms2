@@ -1,0 +1,64 @@
+<!--@ BEGIN search_form_city -->
+<form action="search.php?l={LANGUAGE}&page=csearch&action=csearch&country={COUNTRY}" method="post">
+<center><span class=head>{W_SEARCH} ({COUNTRY})</span>
+<Table Border="1" CellSpacing="0" CellPadding="4" bordercolor=black bgcolor=#F0E8A0>
+<tr><td width=200><span class=mes>{W_CITY}</td>
+<td><select class=select name="city">
+<option value="">{W_NO_IMPORTANT}
+<!--@ BEGIN city_cycle -->
+<option>{CITY}<!--@ END city_cycle -->
+</td>
+</tr>
+<tr>
+       <td><span class=mes>{W_GENDER}</td>
+       <td><select class=select name=gender>
+<option value="">{W_NO_IMPORTANT}
+<OPTION value=1>{GENDER1}
+<OPTION value=2>{GENDER2}
+</select></td>
+</tr>
+<tr>
+       <td><span class=mes>{W_CATEGORY}</td>
+       <td><select class=select name=purposes>
+<option value="">{W_NO_IMPORTANT}
+<!--@ BEGIN category2_cycle --><OPTION value="{CAT_NUM}">{CATEGORIES}<!--@ END category2_cycle -->
+</select></td>
+</tr>
+<tr>
+       <td><span class=mes>{W_AGE}</td>
+       <td>{W_FROM}
+       <select name=agefrom class=sinput>
+<option value="">------
+<!--@ BEGIN age_cycle2 -->
+<OPTION>{AGE}
+<!--@ END age_cycle2 -->
+</select> {W_TO}
+<select name=ageto class=sinput>
+<option value="">-------
+<!--@ BEGIN age_cycle3 -->
+<OPTION>{AGE}
+<!--@ END age_cycle3 -->
+</select>
+</td>
+</tr>
+
+<tr>
+       <td><span class=mes>{W_RESULTS_}</td>
+       <td><select class=select name=t_step>
+<option selected value=10>10 {W_RESULTS}
+<OPTION value=20>20 {W_RESULTS}
+<OPTION value=30>30 {W_RESULTS}
+<OPTION value=40>40 {W_RESULTS}
+<OPTION value=50>50 {W_RESULTS}
+</select></td>
+</tr>
+<tr>
+       <td><span class=mes>{W_ONLY_}</td>
+       <td><input type="checkbox" name="photos"></td>
+</tr>
+<tr>
+       <td colspan=2 align=right><input class=button type="submit" Value="{W_SEARCH}"> <input class=button type="reset"></td>
+</tr>
+</table>
+</form>
+<!--@ END search_form_city -->
