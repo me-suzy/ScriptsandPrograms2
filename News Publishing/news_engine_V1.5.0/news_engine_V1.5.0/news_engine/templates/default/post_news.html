@@ -1,0 +1,375 @@
+{header}    
+      <br />
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0"> 
+        <tr> 
+          <td class="catrow"><img src="{GRAFURL}/img_arrow_right.gif" alt="" width="14" height="14" border="0" align="middle" /> 
+		  {breadcrumb}
+		  </td> 
+        </tr> 
+      </table> 
+      <br /> 
+      <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+        <tr> 
+          <td valign="top" width="100%"> <table width="100%" cellspacing="2" cellpadding="0" border="0"> 
+              <tr> 
+                <td> <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+                    <tr> 
+                      <td width="100%" class="cat_main_headline" valign="top">{post_news_new_newspost}</td> 
+                    </tr> 
+                  </table></td> 
+              </tr> 
+              <tr> 
+                <td align="center" valign="top"> <!-- Zeile Kategorie 2 --> 
+                  <form method="post" action="{MAINURL}/post_news.php" name="{form_post}" {wysiwyg_on_submit}> 
+                  <input type="hidden" name="news" value="send" />
+                  <input type="hidden" name="poster" value="{post_user_id}" />
+                  <input type="hidden" name="{SESS_NAME}" value="{SESS_ID}" />
+                  {hidden_html}				  
+                    <table width="100%" border="0" cellspacing="2" cellpadding="0"> 
+                      <tr> 
+                        <td bgcolor="{CONTENT_BORDER_COLOR}"><table width="100%" border="0" cellspacing="1" cellpadding="0"> 
+                            <tr> 
+                              <td colspan="2" class="list_headline">{post_news_details_to_your_newspost}</td> 
+                            </tr> 
+                            <tr> 
+                              <td class="list_dark"><p><b>{post_news_name}</b></p></td> 
+                              <td class="list_dark"><label><b>{post_user}</b> [<a href="{news_post_log_out_url}">{post_news_log_out}</a>]</label> </td> 
+                            </tr> 
+                            <tr> 
+                              <td valign="top" class="list_light"><p><b>{post_news_topic}</b></p></td> 
+                              <td valign="top" class="list_light"><input name="headline" type="text" class="input" id="headline2" size="100" /></td> 
+                            </tr> 
+                            <tr> 
+                              <td valign="top" class="list_dark"><p><b>{post_news_category}</b></p></td> 
+                              <td valign="top" class="list_dark">
+                                <select name="catid" class="select"> 
+								  <LOOP NAME="cat_loop">
+                                  <option value="{cat_id}">{cat_titel}</option> 
+								  </LOOP NAME="cat_loop">
+                                </select></td> 
+                            </tr> 
+                            <tr> 
+                              <td valign="top" class="list_light">
+                                  <p><b>{post_news_teaser_text}</b><br /> 
+                                  {post_news_displayed_on_mainpage}
+								  </p></td> 
+                              <td valign="top" class="list_light">
+                                  <IF NAME="wysiwyg_1">
+								  {small_editor}
+								  </IF NAME="wysiwyg_1">
+                                  <IF NAME="no_wysiwyg_1">
+                                    <style type="text/css">
+                                    <!--
+                                    #bbeditor {
+                                    	background: #ECE9D8;
+                                    	padding: 6px;
+                                        border: 2px groove;
+                                    }
+                                    
+                                    #toolbar {	
+                                        margin: 0;
+                                        padding: 0;
+                                        background: #ECE9D8;
+                                    }
+                                    			
+                                    .raised { 
+                                        background:#E1E6E8;
+                                        color: #000000;
+                                        padding: 0px;
+                                        border: 1px solid #316AC5;
+                                    }
+                                    			
+                                    .pressed {
+                                        background:#98B5E2;
+                                        color: #316AC5;
+                                        padding: 0px;
+                                        border: 1px solid #316AC5;
+                                    }                                            
+                                    -->
+                                    </style>                                  
+			                		<script language="JavaScript" type="text/javascript">
+			                		<!--  
+                                    
+                                    // Check for Browser & Platform for PC & IE specific bits
+                                    // More details from: http://www.mozilla.org/docs/web-developer/sniffer/browser_type.html
+                                    var clientPC = navigator.userAgent.toLowerCase(); // Get client info
+                                    var clientVer = parseInt(navigator.appVersion); // Get browser version
+                                    
+                                    var is_ie = ((clientPC.indexOf("msie") != -1) && (clientPC.indexOf("opera") == -1));
+                                    var is_nav = ((clientPC.indexOf('mozilla')!=-1) && (clientPC.indexOf('spoofer')==-1)
+                                                    && (clientPC.indexOf('compatible') == -1) && (clientPC.indexOf('opera')==-1)
+                                                    && (clientPC.indexOf('webtv')==-1) && (clientPC.indexOf('hotjava')==-1));
+                                    var is_moz = 0;
+                                    
+                                    var is_win = ((clientPC.indexOf("win")!=-1) || (clientPC.indexOf("16bit") != -1));
+                                    var is_mac = (clientPC.indexOf("mac")!=-1);  
+                                                    
+                                	if ((clientVer >= 4) && is_ie && is_win) {
+                                        document.write("<style type=\"text/css\"> .button { background:#ECE9D8; color: #000000; padding: 1px; border: 1px solid #ECE9D8; }</style>");
+                                	} else  {
+                                        document.write("<style type=\"text/css\"> .button { background:#ECE9D8; color: #000000; padding: 1px; border: 0px; }</style>");
+                                    }   
+                                                                                          
+			                		tag_prompth = "{post_news_js1}:";
+			                
+			                		link_text_prompth = "{post_news_js2}";
+			                		link_url_prompth = "{post_news_js3}";
+			                		link_email_prompth = "{post_news_js4}";
+			                		
+			                		tags = new Array();
+			                		function getarraysizeh(thearray) {
+			                			for (i = 0; i < thearray.length; i++) {
+			                				if ((thearray[i] == "undefined") || (thearray[i] == "") || (thearray[i] == null))
+			                					return i;
+			                				}
+			                			return thearray.length;
+			                		}
+			                		
+			                		function arraypush(thearray,value) {
+			                			thearraysize = getarraysizeh(thearray);
+			                			thearray[thearraysize] = value;
+			                		}
+			                		
+			                		function arraypop(thearray) {
+			                			thearraysize = getarraysize(thearray);
+			                			retval = thearray[thearraysize - 1];
+			                			delete thearray[thearraysize - 1];
+			                			return retval;
+			                		}
+			                		
+			                		function bbcodeh(theform,bbcode,prompttext) {
+			                			inserttext = prompt(tag_prompth+" ["+bbcode+"]xxx[/"+bbcode+"]",prompttext);
+			                			if ((inserttext != null) && (inserttext != "")) {
+			                				theform.hometext.value += "["+bbcode+"]"+inserttext+"[/"+bbcode+"] ";
+			                				theform.hometext.focus();
+			                			}
+			                		}		
+			                		
+			                		function namedlinkh(theform,thetype) {
+			                			linktext = prompt(link_text_prompth,"");
+			                			var prompttext;
+			                				if (thetype == "URL") {
+			                					prompt_text = link_url_prompth;
+			                					prompt_contents = "http://";
+			                				} else {
+			                					prompt_text = link_email_prompth;
+			                					prompt_contents = "";
+			                				}
+			                			linkurl = prompt(prompt_text,prompt_contents);
+			                				if ((linkurl != null) && (linkurl != "")) {
+			                					if ((linktext != null) && (linktext != "")) {
+			                						theform.hometext.value += "["+thetype+"="+linkurl+"]"+linktext+"[/"+thetype+"] ";
+			                					} else {
+			                						theform.hometext.value += "["+thetype+"]"+linkurl+"[/"+thetype+"] ";
+			                					}
+			                				}
+			                			theform.hometext.focus();
+			                		}		
+                                    
+                                    function mouseover(el) {
+                                        el.className = "raised";
+                                    }	
+                                    
+                                    function mouseout(el) {
+                                        el.className = "button";
+                                    }	
+                                    
+                                    function mousedown(el) {
+                                        el.className = "pressed";
+                                    }	
+                                    
+                                    function mouseup(el) {
+                                        el.className = "raised";
+                                    }	                                    
+			                		
+			                		//-->
+			                		</script> 
+                                <div id="bbeditor" style="text-align:left; width:90%;">	
+                                <table width="100%" border="0" cellpadding="5" cellspacing="1"> 
+                                  <tr> 
+                                    <td align="left">
+                                      <div id="toolbar"><img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbcodeh(alp,'B','')"  src="{GRAFURL}/editor_bold.gif" alt="{comment_bold}" title="{comment_bold}" width="21" height="20" border="0" align="middle" /> 
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbcodeh(alp,'I','')"  src="{GRAFURL}/editor_italic.gif" alt="{comment_italic}" title="{comment_italic}" width="21" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbcodeh(alp,'U','')"  src="{GRAFURL}/editor_underline.gif" alt="{comment_underline}" title="{comment_underline}" width="21" height="20" border="0" align="middle" />
+                                      <img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="namedlinkh(alp,'EMAIL')"  src="{GRAFURL}/editor_email.gif" alt="{comment_email}" title="{comment_email}" width="21" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="namedlinkh(alp,'URL')"  src="{GRAFURL}/editor_createlink.gif" alt="{comment_url}" title="{comment_url}" width="21" height="20" border="0" align="middle" />
+                                      <img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbcodeh(alp,'CODE','')"  src="{GRAFURL}/editor_code.gif" alt="{comment_code}" title="{comment_code}" width="21" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbcodeh(alp,'QUOTE','')"  src="{GRAFURL}/editor_quote.gif" alt="{comment_quote}" title="{comment_quote}" width="21" height="20" border="0" align="middle" />
+                                      <img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbcodeh(alp,'CENTER','')"  src="{GRAFURL}/editor_justifycenter.gif" alt="{comment_center}" title="{comment_center}" width="21" height="20" border="0" align="middle" />
+                                      </div>
+                                    </td> 
+                                  </tr> 
+                                  <tr> 
+                                    <td><textarea class="message_area" name="hometext" cols="" rows="5" wrap="virtual" style="width:99%; height:60px; background-color: #FFFFFF; "></textarea></td> 
+                                  </tr> 
+                                </table></div>                                    
+								  </IF NAME="no_wysiwyg_1">								  
+							  </td> 
+                            </tr> 
+                            <tr> 
+                              <td valign="top" class="list_dark">							
+                                  <p><b>{post_news_main_text}</b><br /> 
+                                  {post_news_will_be_displayed_read_more}
+                                    <IF NAME="parse_click_smilies">
+                                    <fieldset style="width: 60%;"><legend>{post_news_click_smilies}</legend>
+                                        <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+                                        <tr class="list_dark"> 
+                                          <td><div align="center"><img onclick="standard(alp,':D')" alt="" src="{SMILIEURL}/biggrin.gif" style="cursor: hand;" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,';-(')" alt="" src="{SMILIEURL}/sly.gif" style="cursor: hand;" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':-(')" alt="" src="{SMILIEURL}/confused.gif" style="cursor: hand;" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':-O')" alt="" src="{SMILIEURL}/cry.gif" style="cursor: hand;" width="15" height="15" border="0" align="middle" /></div></td>
+                                        </tr>
+                                        <tr class="list_dark"> 
+                                          <td><div align="center"><img onclick="standard(alp,'(?)')" alt="" src="{SMILIEURL}/sneaky2.gif" style="cursor: hand;" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,'(!)')" alt="" src="{SMILIEURL}/notify.gif" style="cursor: hand;" width="15" height="21" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':baaa:')" alt="" src="{SMILIEURL}/baaa.gif" style="cursor: hand;" width="40" height="45" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':stupid:')" alt="" src="{SMILIEURL}/withstupid.gif" style="cursor: hand;" width="40" height="45" border="0" align="middle" /></div></td>
+                                        </tr>
+                                        <tr class="list_dark"> 
+                                          <td><div align="center"><img onclick="standard(alp,'8-)')" alt="" src="{SMILIEURL}/music.gif" style="cursor: hand;" width="21" height="22" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':O')" alt="" src="{SMILIEURL}/wow.gif" style="cursor: hand;" width="15" height="15" border="0" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':zzz:')" alt="" src="{SMILIEURL}/sleepy.gif" style="cursor: hand;" width="15" height="20" border="0" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':xmas:')" alt="" src="{SMILIEURL}/xmas.gif" style="cursor: hand;" width="21" height="22" border="0" /></div></td>
+                                        </tr>
+                                        <tr class="list_dark"> 
+                                          <td><div align="center"><img onclick="standard(alp,';-)')" alt="" src="{SMILIEURL}/wink.gif" style="cursor: hand;" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':-)')" alt="" src="{SMILIEURL}/smile.gif" style="cursor: hand;" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':!')" alt="" src="{SMILIEURL}/thumbs-up.gif" style="cursor: hand;" width="23" height="18" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':inlove:')" alt="" src="{SMILIEURL}/inlove.gif" style="cursor: hand;" width="16" height="27" border="0" align="middle" /></div></td>
+                                        </tr>
+                                      </table>
+                                      </fieldset>                                  
+                                      </IF NAME="parse_click_smilies">
+								  </p></td> 
+                              <td valign="top" class="list_dark"> 
+                                  <IF NAME="wysiwyg_2">
+								  {editor}
+								  </IF NAME="wysiwyg_2">
+                                  <IF NAME="no_wysiwyg_2">
+                                  <div id="bbeditor" style="text-align:left; width:90%;">	
+                            		<table cellpadding="1" cellspacing="5" border="0" width="100%">
+                                    <tr>
+                            			<td colspan="2">
+                                		<table cellpadding="0" cellspacing="1" border="0" width="100%">
+                                		<tr>
+                                			<td>
+                                            <select class="select" onchange="fontformat(this.form,this.options[this.selectedIndex].value,'size')" onmouseover="stat('size')">
+                                              <option value="0">SIZE</option> 
+                                              <option value="1">{post_news_small}</option> 
+                                              <option value="2">{post_news_middle}</option> 
+                                              <option value="3">{post_news_big}</option> 
+                                              <option value="4">{post_news_hugely}</option> 
+                                            </select>
+                                			</td>
+                                			<td>
+                                            <select class="select" onchange="fontformat(this.form,this.options[this.selectedIndex].value,'font')" onmouseover="stat('font')">
+                                              <option value="0">FONT</option> 
+                                              <option value="arial">Arial</option> 
+                                              <option value="comic sans ms">Comic</option> 
+                                              <option value="courier">Courier</option> 
+                                              <option value="courier new">Courier New</option> 
+                                              <option value="tahoma">Tahoma</option> 
+                                              <option value="times new roman">Times New Roman</option> 
+                                              <option value="verdana">Verdana</option> 
+                                            </select>
+                                			</td>
+                                			<td>
+                                            <select class="select" onchange="fontformat(this.form,this.options[this.selectedIndex].value,'color')" onmouseover="stat('color')">
+                                              <option value="0">COLOR</option>
+                                              <option value="#87CEEB" style="color:skyblue">sky blue</option>
+                                              <option value="#4169E1" style="color:royalblue">royal blue</option>
+                                              <option value="#0000FF" style="color:blue">blue</option>
+                                              <option value="#00008B" style="color:darkblue">dark-blue</option>
+                                              <option value="#FFA500" style="color:orange">orange</option>
+                                              <option value="#FF4500" style="color:orangered">orange-red</option>
+                                              <option value="#DC143C" style="color:crimson">crimson</option>
+                                              <option value="#FF0000" style="color:red">red</option>
+                                              <option value="#B22222" style="color:firebrick">firebrick</option>
+                                              <option value="#8B0000" style="color:darkred">dark red</option>
+                                              <option value="#00FF00" style="color:green">green</option>
+                                              <option value="#32CD32" style="color:limegreen">limegreen</option>
+                                              <option value="#2E8B57" style="color:seagreen">sea-green</option>
+                                              <option value="#FF1493" style="color:deeppink">deeppink</option>
+                                              <option value="#FF6347" style="color:tomato">tomato</option>
+                                              <option value="#FF7F50" style="color:coral">coral</option>
+                                              <option value="#800080" style="color:purple">purple</option>
+                                              <option value="#4B0082" style="color:indigo">indigo</option>
+                                              <option value="#DEB887" style="color:burlywood">burlywood</option>
+                                              <option value="#F4A460" style="color:sandybrown">sandy brown</option>
+                                              <option value="#A0522D" style="color:sienna">sienna</option>
+                                              <option value="#D2691E" style="color:chocolate">chocolate</option>
+                                              <option value="#008080" style="color:teal">teal</option>
+                                              <option value="#C0C0C0" style="color:silver">silver</option>
+                                            </select>
+                                			</td>
+                                			<td align="right">
+                                				<span class="imagebutton">{post_news_closetag} <input class="input" type="button" value=" x " accesskey="c" title="{post_news_closetag} (alt+c)" style="color:red; font-weight:bold" onclick="closetag(this.form)" onmouseover="stat('closecurrent')" /></span>
+                                			</td>
+                                		</tr>
+                                		</table>
+                                        
+                            			</td>                                    
+                                    </tr>                                    
+                            		<tr>
+                            			<td><div id="toolbar"><img class="button"  onmouseover="mouseover(this); stat('b')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbcode(alp,'b','')" accesskey="b" src="{GRAFURL}/editor_bold.gif" alt="BOLD (alt+b)" title="BOLD (alt+b)" width="21" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('i')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbcode(alp,'i','')" accesskey="i" src="{GRAFURL}/editor_italic.gif" alt="ITALIC (alt+i)" title="ITALIC (alt+i)" width="21" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('u')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbcode(alp,'u','')" accesskey="u" src="{GRAFURL}/editor_underline.gif" alt="UNDERLINE (alt+u)" title="UNDERLINE (alt+u)" width="21" height="20" border="0" align="middle" />
+                            			<img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('img')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbco(alp,'IMG','http://')"  src="{GRAFURL}/editor_insertimage.gif" alt="{post_news_img_desc}" title="{post_news_img_desc}" width="21" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('list')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="dolist(alp)"  src="{GRAFURL}/editor_insertunorderedlist.gif" alt="{post_news_list_desc}" title="{post_news_list_desc}" width="21" height="20" border="0" align="middle" />
+                                        <img class="button"  onmouseover="mouseover(this); stat('hr')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="standard(alp,'[hr]')"  src="{GRAFURL}/editor_hr.gif" alt="{post_news_hr_desc}" title="{post_news_hr_desc}" width="21" height="20" border="0" align="middle" />
+                            			<img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('email')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="namedlink(alp,'email')"  src="{GRAFURL}/editor_email.gif" alt="{post_news_email_desc}" title="{post_news_email_desc}" width="21" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('url')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="namedlink(alp,'url')"  src="{GRAFURL}/editor_createlink.gif" alt="{post_news_url_desc}" title="{post_news_url_desc}" width="21" height="20" border="0" align="middle" />
+                            			<img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('quote')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbco(alp,'quote','')"  src="{GRAFURL}/editor_quote.gif" alt="{post_news_quote_desc}" title="{post_news_quote_desc}" width="21" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('php')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbco(alp,'php','')"  src="{GRAFURL}/editor_php.gif" alt="{post_news_code_desc}" title="{post_news_code_desc}" width="21" height="20" border="0" align="middle" />
+                            			<img class="button"  onmouseover="mouseover(this); stat('code')" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onClick="bbco(alp,'code','')"  src="{GRAFURL}/editor_code.gif" alt="{post_news_code_desc}" title="{post_news_code_desc}" width="21" height="20" border="0" align="middle" /></div></td>
+                                        <td align="right"><span class="imagebutton">{post_news_closealltags}<input class="input" type="button" value=" x " accesskey="x" title="{post_news_closealltags} (alt+x)" style="color:red; font-weight:bold" onclick="closeall(this.form)" onmouseover="stat('closeall')" /></span></td>
+                            		</tr>
+                                    <tr>
+                            			<td colspan="2">
+                            				<input class="content" type="text" name="status" style="font-size:9px; width: 100%; background: #ECE9D8; border: none;" value="{post_news_usebuttons}" />
+                            			</td>                                    
+                                    </tr>                                    
+                                    <tr>
+                            			<td align="right" colspan="2">
+                            				<textarea class="message_area" name="newstext" rows="20" cols="70" wrap="virtual" style="width:99%; height:250px; background-color: #FFFFFF;" onChange=getActiveText(this) onclick=getActiveText(this) onFocus=getActiveText(this)></textarea> 
+                            			</td>                                    
+                                    </tr>
+                                    <tr>
+                            			<td colspan="2">
+                                			<label for="mode_0"><input id="mode_0" class="input" type="radio" name="mode" value="0" title="Normal Mode: (alt+n)" accesskey="n" onclick="setmode(this.value)" onmouseover="stat('norm')" checked="checked" />einfach</label>
+                                			<label for="mode_1"><input id="mode_1" class="input" type="radio" name="mode" value="1" title="Normal Mode: (alt+e)" accesskey="e" onclick="setmode(this.value)" onmouseover="stat('enha')"  />erweitert</label>
+                            			</td>                                    
+                                    </tr>                                    
+                            		</table>                                  
+                                  </div>
+								  </IF NAME="no_wysiwyg_2">								  
+							  </td> 
+                            </tr> 
+                            <tr> 
+                              <td colspan="2" valign="top" class="list_light"><fieldset> 
+                                <legend>{post_news_options}</legend> 
+                                <label for="comments_allowed"><input name="comments_allowed" id="comments_allowed" type="checkbox" value="1" checked="checked" /> 
+                                {post_news_comments_allowed}</label><br /> 
+                                <label for="news_links"><input type="checkbox" id="news_links" name="news_links" value="checkbox" value="1" /> 
+                                {post_news_display_links_on_mainpage}</label>
+                                </fieldset></td> 
+                            </tr> 
+                          </table></td> 
+                      </tr> 
+                    </table> 
+                    <input type="submit" class="input" value="  {post_news_save_news}  " /> 
+                    &nbsp; &nbsp; 
+                    <input type="reset" class="input" value="  {post_news_reset_form}  " /> 
+                  </form></td> 
+              </tr> 
+            </table></td> 
+        </tr> 
+      </table>
+      <br /> 
+{footer}  	  
