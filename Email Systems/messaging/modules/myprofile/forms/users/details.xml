@@ -1,0 +1,116 @@
+<form>
+	<title>Administrator Details</title>
+	<action>index.php</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	<method>get</method>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="return" >
+			<location>{PRIVATE.FORM_PREVIOUS_PAGE}</location>
+		</return>
+
+		<save onclick="" button="edit">
+			<location>index.php?mod=myprofile&sub=users&action=edit&user_id={USER_ID}&returnurl={CURRENT_PAGE}</location>
+		</save>
+
+	</buttons>
+
+	<redirect>index.php?mod=myprofile&sub=users</redirect>
+
+	<fields>
+
+		<user_id type="hidden" hidden="true"/>
+
+		<user_name type="text">			
+			<title>Administrator Name</title>			
+		</user_name>
+
+		<user_login type="text">			
+			<title>Login</title>			
+		</user_login>
+
+		<passwd type="text" forcevalue="*********" title="Password" />
+
+		<user_email type="text">			
+			<title>Email</title>			
+		</user_email>
+
+		<user_email2 type="text" size="30"> 
+			<title>Secondary Email </title>
+		</user_email2>
+
+
+		<mod type="hidden" default="$_GET[mod]" action="eval" />
+		<sub type="hidden" default="$_GET[sub]" action="eval" />
+		<action type="hidden" default="$_GET[action]" action="eval" />
+
+		<section type="droplist" onchange="document.forms[0].submit();" default="$_GET[section]" action="eval" width="300">
+			<title>View Section</title>
+			<options>
+				<option name="0">User Details</option>
+<!--				<option name="1">Administrators Notes</option>-->
+				<option name="3">Received Messages ( for me only )</option>
+				<option name="2">Sent Messages ( by me only )</option>
+			</options>
+			<description>Select the section you want to apear bellow.</description>
+		</section>
+
+		<subtitle type="subtitle" title="Contact Info" />
+
+		<user_address type="text" size="40"> 
+			<title>Address</title>
+		</user_address>
+
+		<user_city type="text" size="20"> 
+			<title>City</title>
+		</user_city>
+
+		<user_state type="text" empty="true"> 
+			<title>State</title>
+		</user_state>
+
+		<user_zip type="text"> 
+			<title>Zip Code</title>
+		</user_zip>
+
+		<user_country type="text"> 
+			<title>Country</title>
+		</user_country>
+
+		<user_phone type="text" size="20"> 
+			<title>Phone</title>
+		</user_phone>
+
+		<subtitle2 title="Instant Messengers" type="subtitle" />
+		
+		<user_im_aol type="text" size="15">
+			<title>AOL</title>
+		</user_im_aol>
+
+		<user_im_icq type="text" size="15">
+			<title>ICQ</title>
+		</user_im_icq>
+
+		<user_im_msn type="text" size="15">
+			<title>MSN</title>
+		</user_im_msn>
+
+		<user_im_yahoo type="text" size="15">
+			<title>Yahoo</title>
+		</user_im_yahoo>
+
+		<user_im_other type="text" size="15">
+			<title>Other</title>
+		</user_im_other>
+
+	</fields>
+</form>
