@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS `cms_admin`;
+CREATE TABLE `cms_admin` (`id` int(11) NOT NULL auto_increment,`login` varchar(32) NOT NULL default '',`password` varchar(32) NOT NULL default '',`email` varchar(255) NOT NULL default '',PRIMARY KEY  (`id`));
+DROP TABLE IF EXISTS `cms_modules`;
+CREATE TABLE `cms_modules` (`id` int(11) NOT NULL auto_increment,`title` varchar(255) NOT NULL default '',`description` varchar(255) NOT NULL default '',`file` varchar(255) NOT NULL default '',PRIMARY KEY  (`id`));
+DROP TABLE IF EXISTS `cms_pages`;
+CREATE TABLE `cms_pages` (`id` int(11) NOT NULL auto_increment,`name_menu` varchar(255) NOT NULL default '',`name_title` varchar(255) NOT NULL default '',`name_page` varchar(255) NOT NULL default '',`name_url` varchar(255) NOT NULL default '',`name_url_external` varchar(255) NOT NULL default '',`website_title` varchar(255) NOT NULL default '',`website_keywords` varchar(255) NOT NULL default '',`website_description` varchar(255) NOT NULL default '',`is_visible` int(11) default '1',`is_url_external` int(11) default '0',`redirect` int(11) default '-1',`parent` int(11) NOT NULL default '0',`number` int(11) NOT NULL default '0',`level` int(11) default '1',PRIMARY KEY  (`id`));
+INSERT INTO `cms_pages` VALUES (0, 'Home', 'Home', 'Welcome to CMS Master - PHP content management solution for your e-business', '', '', '', '', '', 1, 0, -1, 0, 0, 1);
+UPDATE `cms_pages` SET `id`=0;
+DROP TABLE IF EXISTS `cms_session`;
+CREATE TABLE `cms_session` (`id` varchar(32) NOT NULL default '',`data` text,`time` datetime default NULL,`host` varchar(255) NOT NULL default '',PRIMARY KEY  (`id`));
+DROP TABLE IF EXISTS `cms_site`;
+CREATE TABLE `cms_site` (`title` varchar(255) NOT NULL default '',`keywords` varchar(255) NOT NULL default '',`description` varchar(255) NOT NULL default '');
+INSERT INTO `cms_site` VALUES ('Default website with content management system CMS Master', 'cms website internet design programming php mysql site company clients protfolio corporate identity business solution services products', 'Content management system CMS Master.');
