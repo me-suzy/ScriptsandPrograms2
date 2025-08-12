@@ -1,0 +1,154 @@
+phpDBform Report Creator
+========================
+
+Version: 0.1
+
+The phpDBform Report Creator is at alpha version, and I will
+develop much more functions into it. For now its possible to
+create nice reports with it.
+
+Take a look at test_report.php, that uses the same table for
+the phpDBform Creator database, or test_report_wt.php that
+uses the phpWebThings wt_user table.
+
+For the next version I will implement formatting for date, 
+datetime and real fields, and will implement support for more
+field types.
+
+Other features include: group header and footer, functions
+like SUM, AVG, MIN, MAX and COUNT, pre-generation of the report,
+ability to choose the sort on the fly and much more!
+
+REFERENCE:
+----------
+**Constructor:
+phpdbform_report( $db, $stmt, $reporttitle );
+
+$db: the same database object that is used with phpDBform Creator
+$stmt: the query, don't use limit clause or phpdbform report will
+    crash. Also, try to don't duplicate field names in the query,
+    use field alias.
+    Ex.: select * from wt_users where uid < 1000 order by name
+$reporttitle: The title for the report.
+
+**Properties:
+$border: let you change the border of the table, the default is 0;
+$width: let you set a width for the table, the default is no width fixed;
+$align: set the align of the table, default = center;
+$cellpadding: set the spacing between the cell border and its contents, the default is 2
+$cellspacing: set the spacing between cells, the default is 1
+$draw_ruler: set this to on to draw a ruler on the report and help you configure widths
+
+**Grouping report:
+$group_field: set this to let phpdbform group rows based on a field change;
+$group_title: set the title for the group;
+$group_align: set the align, the default is left;
+You can use $field->print = false to don't print the field on the report when
+you are grouping a report;
+
+**Events:
+$onloadrow: declare a function like: function onrow( &$lform ) and 
+    assign it to eht $onloadrow property of the report. This function
+    will be called before printing the current row.
+    The $lform parameter will hod the current report that called the
+    function, and you can change any value from it before printing
+    or even cancel the printing of this row, returnig false.
+    If you want to print the row, return true.
+
+**Functions:
+process();
+
+Call this function to let phpDBform Report Creator create its fields,
+select the current page and so on.
+   
+draw();
+
+This function will render the report inside a table.
+
+free();
+
+This will free the resources used by the report, mainly its
+result handle
+
+**The field object:
+
+phpDBform Report Creator will create several objects based on
+phpdbform_rep_field. After calling the function process() it is
+possible to change several properties of the fields but its value:
+
+$title: The title that will appear at the table header;
+$align: How to align the value and the header in the cells;
+$print: Set this to false if don't want this field printed on report;
+$onprint: The callback function that will be called every time
+    that the field will print/render.
+    Declare a function like: function event( &$field );
+    The $field parameter will be the field object that is calling
+    the function, and you can change its value at this time.
+    The field value is the formatted one, if format was set in the
+    field. If you want to get the raw data, use the report's onloadrow
+    event. It's possible to change the field value at the event
+    onloadrow too.
+    
+$format: for datetime and date fields, set this value the format 
+that is used by the date function. Below is the possible formats:
+*taken from php manual (http://www.php.net) 
+
+a - "am" or "pm" 
+A - "AM" or "PM" 
+B - Swatch Internet time 
+d - day of the month, 2 digits with leading zeros; i.e. "01" to "31" 
+D - day of the week, textual, 3 letters; e.g. "Fri" 
+F - month, textual, long; e.g. "January" 
+g - hour, 12-hour format without leading zeros; i.e. "1" to "12" 
+G - hour, 24-hour format without leading zeros; i.e. "0" to "23" 
+h - hour, 12-hour format; i.e. "01" to "12" 
+H - hour, 24-hour format; i.e. "00" to "23" 
+i - minutes; i.e. "00" to "59" 
+I (capital i) - "1" if Daylight Savings Time, "0" otherwise. 
+j - day of the month without leading zeros; i.e. "1" to "31" 
+l (lowercase 'L') - day of the week, textual, long; e.g. "Friday" 
+L - boolean for whether it is a leap year; i.e. "0" or "1" 
+m - month; i.e. "01" to "12" 
+M - month, textual, 3 letters; e.g. "Jan" 
+n - month without leading zeros; i.e. "1" to "12" 
+O - Difference to Greenwich time in hours; e.g. "+0200" 
+r - RFC 822 formatted date; e.g. "Thu, 21 Dec 2000 16:01:07 +0200" (added in PHP 4.0.4) 
+s - seconds; i.e. "00" to "59" 
+S - English ordinal suffix for the day of the month, 2 characters; i.e. "st", "nd", "rd" or "th" 
+t - number of days in the given month; i.e. "28" to "31" 
+T - Timezone setting of this machine; e.g. "EST" or "MDT" 
+U - seconds since the Unix Epoch (January 1 1970 00:00:00 GMT) 
+w - day of the week, numeric, i.e. "0" (Sunday) to "6" (Saturday) 
+W - ISO-8601 week number of year, weeks starting on Monday (added in PHP 4.1.0) 
+Y - year, 4 digits; e.g. "1999" 
+y - year, 2 digits; e.g. "99" 
+z - day of the year; i.e. "0" to "365" 
+Z - timezone offset in seconds (i.e. "-43200" to "43200"). The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. 
+
+Some examples for the date format: d/m/Y, m/d/Y, d/m/Y H:i:s
+
+For int and real fields the format is a string with 3 positions:
+    Number of decimals
+    Decimal separator
+    Thousands separator
+Some examples: English format: "2.,"
+               Brazilian format: "2,."
+               French format: "2. "
+               English Integer format: "0.," 
+               
+
+**About css classes:
+The phpDBform creator uses the classes inside the file report.css,
+So, every page must declare these css classes. You can change any
+class inside the report.css or use another css file.
+
+Please take a look at the examples, test_report.php and
+test_report_wt.php to see how phpDBform creator works, and don't 
+forget to visit http://www.phpdbform.com to send bugs, get support
+and share your ideas and implementations for phpDBform Report Creator.
+
+If you need Portuguese support, you can find it at
+http://www.coralinformatica.com.br
+
+Paulo Assis
+paulo@phpdbform.com
