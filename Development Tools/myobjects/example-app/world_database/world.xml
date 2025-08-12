@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<ddl version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ddl.xsd">
+	<database name="world">
+		<table name="City" className="City">
+			<field name="ID" primaryKey="true" autoIncrement="true">
+				<data>
+					<numeric unsigned="true" mysqltype="int" size="11"/>
+				</data>
+				<description><![CDATA[City Id]]></description>
+			</field>
+			<field name="Name" required="true">
+				<data>
+					<text type="alpha" mysqltype="char" size="35">
+						<maximumLength>35</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Name of the city]]></description>
+			</field>
+			<field name="CountryCode" required="true" unique="true" foreignKeyOf="Country:Code" foreignObject="country">
+				<data>
+					<text type="alpha" mysqltype="char" size="3">
+						<minimumLength>3</minimumLength>
+						<maximumLength>3</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Country Code]]></description>
+			</field>
+			<field name="District" required="true">
+				<data>
+					<text type="default" mysqltype="char" size="20">
+						<maximumLength>20</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[District of the city]]></description>
+			</field>
+			<field name="Population" required="true">
+				<data>
+					<numeric unsigned="true" mysqltype="int" size="11"/>
+					<defaultValue>0</defaultValue>
+				</data>
+				<description><![CDATA[Population of the city]]></description>
+			</field>
+			<description><![CDATA[Cities]]></description>
+		</table>
+		<table name="Country" className="Country">
+			<field name="Code" primaryKey="true">
+				<data>
+					<text type="alpha" mysqltype="char" size="3">
+						<minimumLength>3</minimumLength>
+						<maximumLength>3</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Country Code]]></description>
+			</field>
+			<field name="Name" required="true">
+				<data>
+					<text type="default" mysqltype="char" size="52">
+						<maximumLength>52</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Country Name]]></description>
+			</field>
+			<field name="Continent" required="true">
+				<data>
+					<enum>
+						<enumValue>Asia</enumValue>
+						<enumValue>Europe</enumValue>
+						<enumValue>North America</enumValue>
+						<enumValue>Africa</enumValue>
+						<enumValue>Oceania</enumValue>
+						<enumValue>Antarctica</enumValue>
+						<enumValue>South America</enumValue>
+					</enum>
+					<defaultValue>Asia</defaultValue>
+				</data>
+				<description><![CDATA[Continent of the country]]></description>
+			</field>
+			<field name="Region" required="true">
+				<data>
+					<text type="default" mysqltype="char" size="26">
+						<maximumLength>26</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Region of the country]]></description>
+			</field>
+			<field name="SurfaceArea" required="true">
+				<data>
+					<numeric unsigned="true" mysqltype="float" size="10,2"/>
+					<defaultValue>0.00</defaultValue>
+				</data>
+				<description><![CDATA[Surface area of the country]]></description>
+			</field>
+			<field name="IndepYear" required="false">
+				<data>
+					<numeric unsigned="true" mysqltype="smallint" size="6"/>
+				</data>
+				<description><![CDATA[Independence Year]]></description>
+			</field>
+			<field name="Population" required="true">
+				<data>
+					<numeric unsigned="true" mysqltype="int" size="11"/>
+					<defaultValue>0</defaultValue>
+				</data>
+				<description><![CDATA[Population of the country]]></description>
+			</field>
+			<field name="LifeExpectancy" required="false">
+				<data>
+					<numeric unsigned="true" mysqltype="float" size="3,1"/>
+				</data>
+				<description><![CDATA[Life expectancy of the country]]></description>
+			</field>
+			<field name="GNP" required="false">
+				<data>
+					<numeric unsigned="true" mysqltype="float" size="10,2"/>
+				</data>
+			</field>
+			<field name="GNPOld" required="false">
+				<data>
+					<numeric unsigned="true" mysqltype="float" size="10,2"/>
+				</data>
+			</field>
+			<field name="LocalName" required="true">
+				<data>
+					<text type="default" mysqltype="char" size="45">
+						<maximumLength>45</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Local name of the country]]></description>
+			</field>
+			<field name="GovernmentForm" required="true">
+				<data>
+					<text type="cleanText" mysqltype="char" size="45">
+						<maximumLength>45</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Government form of the country]]></description>
+			</field>
+			<field name="HeadOfState" required="false">
+				<data>
+					<text type="cleanText" mysqltype="char" size="60">
+						<maximumLength>60</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Head of state of the country]]></description>
+			</field>
+			<field name="Capital" required="false">
+				<data>
+					<numeric unsigned="true" mysqltype="int" size="11"/>
+				</data>
+			</field>
+			<field name="Code2" required="true">
+				<data>
+					<text type="alpha" mysqltype="char" size="2">
+						<minimumLength>2</minimumLength>
+						<maximumLength>2</maximumLength>
+					</text>
+				</data>
+			</field>
+			<description><![CDATA[Countries]]></description>
+		</table>
+		<table name="CountryLanguage" className="Language">
+			<field name="CountryCode" primaryKey="true" foreignKeyOf="Country" foreignObject="country">
+				<data>
+					<text type="alpha" mysqltype="char" size="3">
+						<minimumLength>3</minimumLength>
+						<maximumLength>3</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Country code for this language]]></description>
+			</field>
+			<field name="Language" primaryKey="true">
+				<data>
+					<text type="alpha" mysqltype="char" size="30">
+						<maximumLength>30</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Language name]]></description>
+			</field>
+			<field name="IsOfficial" required="true">
+				<data>
+					<enum boolean="true">
+						<enumValue flag="true">T</enumValue>
+						<enumValue flag="false">F</enumValue>
+					</enum>
+					<defaultValue>F</defaultValue>
+				</data>
+				<setterFunction>setOfficial</setterFunction>
+				<getterFunction>isOfficial</getterFunction>
+				<description><![CDATA[Is this the official language]]></description>
+			</field>
+			<field name="Percentage" required="true">
+				<data>
+					<numeric unsigned="true" mysqltype="float" size="3,1"/>
+					<defaultValue>0.0</defaultValue>
+				</data>
+				<description><![CDATA[Percentage of usage]]></description>
+			</field>
+		</table>
+	</database>
+</ddl>
