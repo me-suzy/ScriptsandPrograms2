@@ -1,0 +1,25 @@
+<?php
+/***************************************************************************
+ * (c)2002-2004 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+$bbcode_pics=array(
+"bbcode_bold.gif",
+"bbcode_italic.gif",
+"bbcode_type.gif",
+"bbcode_strike.gif",
+"bbcode_center.gif",
+"bbcode_sub.gif",
+"bbcode_sup.gif",
+"bbcode_code.gif",
+"bbcode_quote.gif",
+"bbcode_liststart.gif",
+"bbcode_listitem.gif",
+"bbcode_listend.gif",
+"bbcode_email.gif",
+"bbcode_url.gif",
+"bbcode_pic.gif",
+"bbcode_pic2.gif",
+"bbcode_attach.gif",
+"bbcode_underline.gif"
+);
+?>
