@@ -1,0 +1,306 @@
+<!--
+#####################################################################
+#                                                                   #
+#    Copyright © 1999-2002 CGISCRIPT.NET - All Rights Reserved     #
+#                                                                   #
+#####################################################################
+#                                                                   #
+#          THIS COPYRIGHT INFORMATION MUST REMAIN INTACT            #
+#                AND MAY NOT BE MODIFIED IN ANY WAY                 #
+#                                                                   #
+#####################################################################
+#
+# When you downloaded this script you agreed to accept the terms
+# of this Agreement. This Agreement is a legal contract, which
+# specifies the terms of the license and warranty limitation between
+# you and CGISCRIPT.NET. You should carefully read the following
+# terms and conditions before installing or using this software.
+# Unless you have a different license agreement obtained from
+# CGISCRIPT.NET, installation or use of this software indicates
+# your acceptance of the license and warranty limitation terms
+# contained in this Agreement. If you do not agree to the terms of this
+# Agreement, promptly delete and destroy all copies of the Software.
+#
+# Versions of the Software
+# Only one copy of the registered version of CGISCRIPT.NET
+# may used on one web site.
+#
+# License to Redistribute
+# Distributing the software and/or documentation with other products
+# (commercial or otherwise) or by other than electronic means without
+# CGISCRIPT.NET's prior written permission is forbidden.
+# All rights to the CGISCRIPT.NET software and documentation not expressly
+# granted under this Agreement are reserved to CGISCRIPT.NET.
+#
+# Disclaimer of Warranty
+# THIS SOFTWARE AND ACCOMPANYING DOCUMENTATION ARE PROVIDED "AS IS" AND
+# WITHOUT WARRANTIES AS TO PERFORMANCE OF MERCHANTABILITY OR ANY OTHER
+# WARRANTIES WHETHER EXPRESSED OR IMPLIED.   BECAUSE OF THE VARIOUS HARDWARE
+# AND SOFTWARE ENVIRONMENTS INTO WHICH CGISCRIPT.NET MAY BE USED, NO WARRANTY
+# OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED.  THE USER MUST ASSUME THE
+# ENTIRE RISK OF USING THIS PROGRAM.  ANY LIABILITY OF CGISCRIPT.NET WILL BE
+# LIMITED EXCLUSIVELY TO PRODUCT REPLACEMENT OR REFUND OF PURCHASE PRICE.
+# IN NO CASE SHALL CGISCRIPT.NET BE LIABLE FOR ANY INCIDENTAL, SPECIAL OR
+# CONSEQUENTIAL DAMAGES OR LOSS, INCLUDING, WITHOUT LIMITATION, LOST PROFITS
+# OR THE INABILITY TO USE EQUIPMENT OR ACCESS DATA, WHETHER SUCH DAMAGES ARE
+# BASED UPON A BREACH OF EXPRESS OR IMPLIED WARRANTIES, BREACH OF CONTRACT,
+# NEGLIGENCE, STRICT TORT, OR ANY OTHER LEGAL THEORY. THIS IS TRUE EVEN IF
+# CGISCRIPT.NET IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO CASE WILL
+# CGISCRIPT.NET' LIABILITY EXCEED THE AMOUNT OF THE LICENSE FEE ACTUALLY PAID
+# BY LICENSEE TO CGISCRIPT.NET.
+#
+# Credits:
+# Andy Angrick - Programmer - angrick@cgiscript.net
+# Mike Barone - Design - mbarone@cgiscript.net
+#
+# For information about this script or other scripts see
+# http://www.cgiscript.net
+#
+# Thank you for trying out our script.
+# If you have any suggestions or ideas for a new innovative script
+# please direct them to suggest@cgiscript.net.  Thanks.
+--><html>
+
+<head>
+<title>csCreate Professional by WWW.CGISCRIPT.NET, LLC</title>
+<link rel="stylesheet" type="text/css" href="in(htmlurl)/csCreatePro.css">
+</head>
+
+<body>
+
+<form action="in(cgiurl)" method="POST" name="form1">
+  <div align="center">
+    <center>
+    <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0">
+      <tr>
+        <td width="100%">
+        <table border="0" width="100%" cellspacing="0" cellpadding="3">
+          <tr>
+            <td width="100%">
+            <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+              <tr>
+                <td width="100%" nowrap valign="middle" align="center"><b>
+                <font face="Tahoma">csCreate Professional by CGIScript.net</font></b></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          </center>
+          <tr>
+            <td width="100%">
+            <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+              <tr>
+                <td width="100%" nowrap valign="middle" align="center">
+                <font SIZE="2">
+                <table border="0" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+                  <tr>
+                    <td width="100%" align="center">
+                    <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+                      <tr>
+                        <td width="100%">
+                        <p align="center"><b><font face="Tahoma">User Management</font></b></p>
+                        </td>
+                      </tr>
+                    </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100%" align="center">
+                    <div align="center">
+                      <center>
+                      <table border="0" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+                        <tr>
+                          <td><select size="1" name="user" onChange="document.form1.command.value='manage';document.form1.submit();">
+                          <option>ALL</option>
+                          
+                          
+                          
+                          
+                          
+                          in(useroptions)
+                          </select></td>
+                          <td><font face="Tahoma">
+                          <input CLASS="button" type="button" value="Create New User" onClick="ShowAddUser();"></font></td>
+                          <td><font face="Tahoma" SIZE="2">
+                          <input CLASS="button" type="button" value="Delete Selected User" onClick="DeleteUser();"></font></td>
+                        </tr>
+                      </table>
+                      </center>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="100%" align="center">
+                    <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+                      <tr>
+                        <td width="100%" height="1">
+                        <p align="center"><b><font SIZE="2">Modify Selected User Information</font></b></p>
+                        </td>
+                      </tr>
+                    </table>
+                    <table border="0" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+                      <tr>
+                        <td width="100%">
+                        <div align="center">
+                          <center>
+                          <table border="0" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+                            <tr>
+                              <td align="right"><font SIZE="2" face="Tahoma">First Name:</font></td>
+                              <td><input type="text" name="ufirstname" size="25" value="in(ufirstname)"></td>
+                              <td align="right"><font SIZE="2" face="Tahoma">Last Name:</font></td>
+                              <td><font SIZE="2">
+                              <input type="text" name="ulastname" size="25" value="in(ulastname)"></font></td>
+                              <td rowspan="2" align="center">
+                              <font face="Tahoma" SIZE="2">
+                              <input CLASS="button" type="button" value="Save Changes" onClick="document.form1.command.value='savu';document.form1.submit();" style="float: right"></font></td>
+                            </tr>
+                            <tr>
+                              <td align="right"><font SIZE="2" face="Tahoma">Username:</font></td>
+                              <td><font SIZE="2">
+                              <input type="text" name="uusername" size="25" value="in(uusername)" READONLY></font></td>
+                              <td align="right"><font SIZE="2" face="Tahoma">Password:</font></td>
+                              <td><font SIZE="2">
+                              <input type="text" name="upassword" size="25" value="in(upassword)"></font></td>
+                            </tr>
+                          </table>
+                          </center>
+                        </div>
+                        </td>
+                      </tr>
+                    </table>
+                    </td>
+                  </tr>
+                </table>
+                </font></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <center>
+          <tr>
+            <td width="100%">
+            <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+              <tr>
+                <td width="100%" valign="middle" align="center">
+                <font face="Tahoma">
+                <input CLASS="button" type="button" value="Manage Files" onClick="NewWindow('in(cgiurl)?command=browse','new',700,400,'yes','center');">
+                <input CLASS="button" type="button" value="Log Out" onClick="window.location='in(cgiurl)?command=login';">
+                </font></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%">
+            <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+              <tr>
+                <td width="100%">
+                <table cellspacing="0" border="1" bordercolor="#000000" cellpadding="3" width="100%">
+                  <tr>
+                    <td valign="middle" align="left" nowrap style="font-family: verdana,arial,sans-serif; font-size: 10pt" colspan="4">
+                    Pages for: <font color="#FF0000"><b>in(user)</b></font>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="middle" align="left" nowrap style="font-family: verdana,arial,sans-serif; font-size: 10pt">
+                    <p align="center"><b><font face="Tahoma" size="1">Page Actions</font></b></p>
+                    </td>
+                    <td valign="middle" align="left" nowrap><b>
+                    <font face="Tahoma" size="1">Title</font></b><font face="Tahoma" size="1">
+                    </font></td>
+                    <td valign="middle" align="center" nowrap><b>
+                    <font face="Tahoma" size="1">User Management</font></b></td>
+                    <td valign="middle" align="center" nowrap><b>
+                    <font face="Tahoma" size="1">URL</font></b></td>
+                  </tr>
+                  <font face="Tahoma">in(row) </font>
+                </table>
+                </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%">
+            <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+              <tr>
+                <td width="100%">
+                <p align="center"><font face="Tahoma" size="2">in(cinfo)</font></p>
+                </td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <input type="hidden" name="command" value="sa">
+  <input type="hidden" name="cu" value="in(user)">
+</form>
+
+</body>
+<script language="javascript">
+function DeleteUser(){
+if(confirm("Are you sure you want to delete this user?")){
+  document.form1.command.value="du";
+  document.form1.submit();
+  }
+}
+
+function Edit(id){
+var rndURL = (1000*Math.random());
+var NewURL = "in(cgiurl)?command=edit&id="+id+"&rnd="+rndURL;
+NewWindow(NewURL,'edit',600,400,'yes','center');
+}
+
+function ShowUsers(id){
+var rndURL = (1000*Math.random());
+var NewURL = "in(cgiurl)?command=sua&id="+id+"&rnd="+rndURL;
+NewWindow(NewURL,'edit',400,400,'yes','center');
+}
+
+function TextEdit(id){
+var rndURL = (1000*Math.random());
+var NewURL = "in(cgiurl)?command=edit&t=text&id="+id+"&rnd="+rndURL;
+NewWindow(NewURL,'edit',600,400,'yes','center');
+}
+
+function ShowAddUser(){
+var NewURL = "in(cgiurl)?command=sau";
+NewWindow(NewURL,'edit',600,230,'yes','center');
+}
+
+function Delete(id){
+if(confirm("Are you sure you want to PERMINATELY delete this page from your website?\nIf not, use the remove feature to remove the page from the list but retain the original version.")){
+	var rndURL = (1000*Math.random());
+	window.location = "in(cgiurl)?command=delete&id="+id+"&rnd="+rndURL;
+	}
+}
+function Remove(id){
+if(confirm("Are you sure you want to remove this item from the list?")){
+	var rndURL = (1000*Math.random());
+	window.location = "in(cgiurl)?command=remove&id="+id+"&rnd="+rndURL;
+	}
+}
+
+function View(id){
+var url = "in(cgiurl)?command=view&id="+id;
+NewWindow(url,"include",640,480,"yes","center");
+}
+
+var win=null;
+function NewWindow(mypage,myname,w,h,scroll,pos){
+var rndURL = (1000*Math.random());
+if(pos=="random"){LeftPosition=(screen.width)?Math.floor(Math.random()*(screen.width-w)):100;TopPosition=(screen.height)?Math.floor(Math.random()*((screen.height-h)-75)):100;}
+if(pos=="center"){LeftPosition=(screen.width)?(screen.width-w)/2:100;TopPosition=(screen.height)?(screen.height-h)/2:100;}
+else if((pos!="center" && pos!="random") || pos==null){LeftPosition=0;TopPosition=20}
+LeftPosition=0;
+TopPosition=0;
+settings='width='+w+',height='+h+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',location=no,directories=no,status=no,menubar=no,toolbar=no,resizable=yes';
+win=window.open(mypage+'&rndURL='+rndURL,myname,settings);
+if(win.focus){win.focus();}}
+</script>
+
+</html>
