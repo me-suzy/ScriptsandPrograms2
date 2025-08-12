@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0054)http://www.jmbsoft.com/owners/ags/bdocs/templates.html -->
+<HTML><HEAD><TITLE>Using the Templates</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251"><LINK 
+href="Using the Templates_files/style.css" type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY text=#000000 vLink=#003366 aLink=#003366 link=#003366 
+bgColor=#ffffff><FONT face=Verdana,Arial size=4>
+<DIV align=center><B>Using Templates With AutoGallery SQL </B><BR><BR>
+<TABLE cellSpacing=0 cellPadding=0 width=700>
+  <TBODY>
+  <TR>
+    <TD><FONT face=Arial size=2><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Quick Overview</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>The 
+      template feature of AutoGallery SQL makes the script extremely easy to 
+      integrate into your site. These templates are very easy to edit, but you 
+      need to follow a few guidelines. AutoGallery SQL allows you to edit the 
+      template files through a web-based editor in the administrative script, 
+      but you can also edit them in your normal HTML editor. You should use 
+      whichever you feel more comfortable with. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Rejection E-mails In admin.cgi</B> 
+              </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>These 
+      are used as templates for the e-mails that are sent when a post is 
+      rejected. You can add any number of rejection e-mail templates as you 
+      like, and select which one should be sent for each post. They follow a 
+      certain format which needs to be maintained in order for the e-mails to be 
+      sent. That order is:<BR><BR></FONT><PRE>To: #%EMAIL%#
+From: #%ADMIN_EMAIL%#
+Subject: The subject
+
+The body of the message
+</PRE><FONT face=Arial size=2>Note that there <B>must</B> be a blank line 
+      between the Subject line and the body of the message. Failure to leave 
+      that blank line will result in e-mails not being sent. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>The .htmlt Files</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>These 
+      files are used to generate the HTML that the scripts output. In each of 
+      the files you will find standard HTML and pieces of text surrounded by 
+      #%%#. Anything surrounded by #%%# should not be edited. These are items 
+      that will be inserted by the script. You can move it around all you want, 
+      but do not change the value inside the #%%#. <BR><BR>Basically you can use 
+      any HTML you want. You should first use the script with the default 
+      templates so you can get a feel of what each #%%# item is replaced with. 
+      Once you have a feel for how they are working, you can go in and put your 
+      HTML in. <BR><BR>Be sure to watch out for hidden form fields in these 
+      templates. In almost all cases, those hidden fields are required in order 
+      for the software to function correctly, so be sure to leave all of them in 
+      place. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>The .etmpl Files</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>These 
+      files are used as templates for the e-mails that are sent when a member 
+      signs up, or when a member needs reminded of their password. All of the 
+      .etmpl files will be located in the templates directory of your 
+      installation. You can download them in ASCII mode when you want to make 
+      changes to them. They follow a certain format which needs to be maintained 
+      in order for the e-mails to be sent. That order is: </FONT><PRE>To: #%EMAIL%#
+From: #%ADMIN_EMAIL%#
+Subject: The subject
+
+The body of the message
+</PRE><FONT face=Arial size=2>Note that there <B>must</B> be a blank line 
+      between the Subject line and the body of the message. Failure to leave 
+      that blank line will result in e-mails not being sent. <BR><BR>The same 
+      format is used in the .etmpl files as is used in the .htmlt files. All 
+      items that the script will insert are surrounded by #%%#. Again, do not 
+      edit these. You can move them around all you want within the e-mail. Make 
+      sure you edit these files in an ASCII text editor such as Notepad if you 
+      are not using the built in template file editor. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>After Editing The Templates</B> 
+            </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>If 
+      you are editing the templates through the web based interface, you do not 
+      need to do anything else after you have made the changes you want. 
+      However, if you are editing in your HTML editor, you will need to upload 
+      the template files to the server in ASCII mode when you have completed 
+      editing them. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Descriptions of Each Template</B> 
+              </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR><FONT 
+      face=Verdana>
+      <UL>
+        <LI><B>"Edit HTML For [page]" template in admin.cgi</B><BR><BR><FONT 
+        style="FONT-SIZE: 11px" size=1>This is the HTML that will be used for 
+        the selected page. <BR><BR><B>Main HTML Values</B> <BR><BR>These values 
+        are only recognized in the header or footer HTML <BR><BR>#%CGI_URL%# - 
+        The full URL to the directory where the cgi files are 
+        located<BR>#%LAST_UPDATE%# - The date and time the pages were last 
+        rebuilt<BR>#%TOTAL_PICS%# - The total number of pictures linked to from 
+        this page<BR>#%TOTAL_GALLERIES%# - The total number of galleries linked 
+        to from this page<BR>#%CURRENT_CAT%# - Displays the page's category (if 
+        this page is an archive page) <BR><BR>To display your galleries you will 
+        use template values with numbers in them to denote the gallery that 
+        should be placed in that location. For the archive pages and if you are 
+        not using a categorized main page you will use the following template 
+        values: <BR><BR>#%GALLERY_1%#<BR>#%GALLERY_2%#<BR>#%GALLERY_3%#<BR>... 
+        <BR><BR>If you want your main page categorized, you will need to use the 
+        following syntax. Note that the category name must match exactly what 
+        you have entered in setup.cgi for your category names: 
+        <BR><BR>#%Hardcore_1%#<BR>#%Hardcore_2%#<BR>#%Hardcore_3%#<BR>.... 
+        <BR><BR>#%Softcore_1%#<BR>#%Softcore_2%#<BR>#%Softcore_3%#<BR>... 
+        <BR><BR><B>Template HTML Options</B> <BR><BR>These values are only 
+        recognized in the template HTML. <BR><BR>See the <A class=orange 
+        href="http://www.jmbsoft.com/owners/ags/bdocs/HTML.html">HTML.html</A> 
+        documentation file. <BR><BR></FONT>
+        <LI><B>_post_disabled.htmlt</B><BR><BR><FONT size=1>This is the page 
+        that will be shown when post.cgi is disabled. <BR><BR>This page has no 
+        script variables. </FONT><BR><BR>
+        <LI><B>_post_main.htmlt</B><BR><BR><FONT size=1>This is the page 
+        webmasters will see when posting galleries <BR><BR>#%CAT_OPTIONS%# - The 
+        category selection field </FONT><BR><BR>
+        <LI><B>_post_queued.htmlt</B><BR><BR><FONT size=1>If not in auto-approve 
+        mode and not requiring confirmation through e-mail, this is the page 
+        webmasters will see after submitting a gallery. <BR><BR>#%POST_ID%# - 
+        The ID assigned to this post<BR>#%EMAIL%# - The submitted e-mail 
+        address<BR>#%GALLERY_URL%# - The submitted gallery 
+        URL<BR>#%DESCRIPTION%# - The submitted gallery 
+        description<BR>#%NUM_PICS%# - The submitted number of 
+        pics<BR>#%CATEGORY%# - The submitted gallery category<BR>#%PERMANENT%# - 
+        Yes if the gallery is permanent, no otherwise<BR>#%RECIP_URL%# - The 
+        submitted reciprocal URL<BR>#%CONFIRM%# - Yes if a confirm e-mail will 
+        be sent, no otherwise </FONT><BR><BR>
+        <LI><B>_post_approved.htmlt</B><BR><BR><FONT size=1>When using the 
+        auto-approve feature but not the e-mail confirm feature, this is the 
+        page webmasters will see after submission. This page will also be 
+        displayed if you are using the auto-approve feature and the e-mail 
+        confirm feature. In that case it will appear when the user clicks on the 
+        link to confirm their submission. <BR><BR>#%POST_ID%# - The ID assigned 
+        to this post<BR>#%EMAIL%# - The submitted e-mail 
+        address<BR>#%GALLERY_URL%# - The submitted gallery 
+        URL<BR>#%DESCRIPTION%# - The submitted gallery 
+        description<BR>#%NUM_PICS%# - The submitted number of 
+        pics<BR>#%CATEGORY%# - The submitted gallery category<BR>#%PERMANENT%# - 
+        Yes if the gallery is permanent, no otherwise<BR>#%RECIP_URL%# - The 
+        submitted reciprocal URL </FONT><BR><BR>
+        <LI><B>_post_confirm.htmlt</B><BR><BR><FONT size=1>When using the e-mail 
+        confirm feature, this is the page webmasters will see after submission. 
+        <BR><BR>#%POST_ID%# - The ID assigned to this post<BR>#%EMAIL%# - The 
+        submitted e-mail address<BR>#%GALLERY_URL%# - The submitted gallery 
+        URL<BR>#%DESCRIPTION%# - The submitted gallery 
+        description<BR>#%NUM_PICS%# - The submitted number of 
+        pics<BR>#%CATEGORY%# - The submitted gallery category<BR>#%PERMANENT%# - 
+        Yes if the gallery is permanent, no otherwise<BR>#%RECIP_URL%# - The 
+        submitted reciprocal URL<BR>#%CONFIRM%# - Yes if a confirm e-mail will 
+        be sent, no otherwise </FONT><BR><BR>
+        <LI><B>_post_confirmed.htmlt</B><BR><BR><FONT size=1>When using the 
+        e-mail confirm feature but not the auto-approve feature, this is the 
+        page webmasters will see after submission. <BR><BR>#%POST_ID%# - The ID 
+        assigned to this post<BR>#%EMAIL%# - The submitted e-mail 
+        address<BR>#%GALLERY_URL%# - The submitted gallery 
+        URL<BR>#%DESCRIPTION%# - The submitted gallery 
+        description<BR>#%NUM_PICS%# - The submitted number of 
+        pics<BR>#%CATEGORY%# - The submitted gallery category<BR>#%PERMANENT%# - 
+        Yes if the gallery is permanent, no otherwise<BR>#%RECIP_URL%# - The 
+        submitted reciprocal URL<BR>#%CONFIRM%# - Yes if a confirm e-mail will 
+        be sent, no otherwise </FONT><BR><BR>
+        <LI><B>_partner_edit.htmlt</B><BR><BR><FONT size=1>This is the page 
+        partners will see when editing their details. <BR><BR>#%PARTNER_ID%# - 
+        The partner's username<BR>#%PASSWORD%# - The partner's 
+        password<BR>#%CONTACT%# - The partner's name<BR>#%EMAIL%# - The 
+        partner's e-mail address<BR>#%SITE_URL%# - The partner's site URL 
+        <BR><BR>Do not edit any of the hidden fields on this page! Doing so can 
+        cause the script to stop functioning properly. </FONT><BR><BR>
+        <LI><B>_partner_edited.htmlt</B><BR><BR><FONT size=1>This is the page 
+        partners see confirming their details have been updated. 
+        <BR><BR>#%PARTNER_ID%# - The partner's username<BR>#%PASSWORD%# - The 
+        partner's password<BR>#%CONTACT%# - The partner's name<BR>#%EMAIL%# - 
+        The partner's e-mail address<BR>#%SITE_URL%# - The partner's site URL 
+        </FONT><BR><BR>
+        <LI><B>_partner_login.htmlt</B><BR><BR><FONT size=1>This is the page 
+        partners will see to login and make changes. <BR><BR>This page has no 
+        script variables. </FONT><BR><BR>
+        <LI><B>_partner_main.htmlt</B><BR><BR><FONT size=1>This is the page 
+        partners will see to post their galleries. <BR><BR>#%CAT_OPTIONS%# - The 
+        category selection field <BR><BR>Do not edit any of the hidden fields on 
+        this page! Doing so can cause the script to stop functioning properly. 
+        </FONT><BR><BR>
+        <LI><B>_partner_posted.htmlt</B><BR><BR><FONT size=1>This is the page 
+        partners will see confirming their post has been added. 
+        <BR><BR>#%POST_ID%# - The ID assigned to this post<BR>#%GALLERY_URL%# - 
+        The submitted gallery URL<BR>#%DESCRIPTION%# - The submitted gallery 
+        description<BR>#%NUM_PICS%# - The submitted number of 
+        pics<BR>#%CATEGORY%# - The submitted gallery category<BR>#%PERMANENT%# - 
+        Yes if the gallery is permanent, no otherwise </FONT><BR><BR>
+        <LI><B>_partner_remind.htmlt</B><BR><BR><FONT size=1>This is the page 
+        partners will see if they need their password sent. <BR><BR>This page 
+        has no script variables. </FONT><BR><BR>
+        <LI><B>_partner_reminded.htmlt</B><BR><BR><FONT size=1>This is the page 
+        partners will see once their password has been sent. <BR><BR>#%EMAIL%# - 
+        The e-mail address where login info was sent </FONT><BR><BR>
+        <LI><B>_report_main.htmlt</B><BR><BR><FONT size=1>This is the page 
+        surfers will see when reporting dead/cheating sites <BR><BR>#%POST_ID%# 
+        - The post ID that is being reported<BR>#%DATABASE%# - The database that 
+        post is in <BR><BR>Do not edit any of the hidden fields on this page! 
+        Doing so can cause the script to stop functioning properly. 
+        </FONT><BR><BR>
+        <LI><B>_report_sent.htmlt</B><BR><BR><FONT size=1>This is the page 
+        surfers will see when their report has been recorded 
+        <BR><BR>#%CHEAT_ID%# - The ID assigned to this report<BR>#%DESCRIPTION%# 
+        - The description of this report<BR>#%TGP_URL%# - The URL back to the 
+        main TGP page </FONT><BR><BR>
+        <LI><B>_error_data.htmlt</B><BR><BR><FONT size=1>This is the page 
+        surfers/webmasters will see if there is a data error. <BR><BR>#%ERROR%# 
+        - A description of the error </FONT><BR><BR>
+        <LI><B>_error_http.htmlt</B><BR><BR><FONT size=1>This is the page 
+        webmasters will see if there is an error connecting to their server. 
+        <BR><BR>#%URL%# - The URL trying to be accessed<BR>#%ERROR%# - An error 
+        message describing the problem </FONT><BR><BR>
+        <LI><B>_email_moderator.etmpl</B><BR><BR><FONT size=1>The e-mail that is 
+        optionally sent to a moderator when they are added <BR><BR>#%EMAIL%# - 
+        The moderator's e-mail address<BR>#%ADMIN_EMAIL%# - The TGP 
+        administrator's e-mail address<BR>#%NAME%# - The name of the 
+        moderator<BR>#%USERNAME%# - The username assigned to the 
+        moderator<BR>#%PASSWORD%# - The password assigned to the 
+        moderator<BR>#%CGI_URL%# - The CGI URL <BR><BR><B>Remember</B> to leave 
+        a blank line between the subject line and the message body! 
+        </FONT><BR><BR>
+        <LI><B>_email_partner.etmpl</B><BR><BR><FONT size=1>The e-mail that is 
+        optionally sent to a partner when they are added <BR><BR>#%EMAIL%# - The 
+        partner's e-mail address<BR>#%ADMIN_EMAIL%# - The TGP administrator's 
+        e-mail address<BR>#%CONTACT%# - The name of the 
+        moderator<BR>#%PARTNER_ID%# - The username assigned to the 
+        partner<BR>#%PASSWORD%# - The password assigned to the 
+        partner<BR>#%CGI_URL%# - The CGI URL <BR><BR><B>Remember</B> to leave a 
+        blank line between the subject line and the message body! 
+</FONT><BR><BR>
+        <LI><B>_email_approved.etmpl</B><BR><BR><FONT size=1>The e-mail sent 
+        when a post is approved. <BR><BR>#%POST_ID%# - The post's ID 
+        number<BR>#%EMAIL%# - The e-mail address of the 
+        submitter<BR>#%ADMIN_EMAIL%# - The TGP administrator's e-mail 
+        address<BR>#%GALLERY_URL%# - The gallery URL<BR>#%DESCRIPTION%# - The 
+        gallery description<BR>#%NUM_PICS%# - The # of pics in the 
+        gallery<BR>#%RECIP_URL%# - The reciprocal link for the 
+        gallery<BR>#%CATEGORY%# - The category for the 
+        gallery<BR>#%SUBMIT_DATE%# - The submission date<BR>#%SUBMIT_TIME%# - 
+        The submission time <BR><BR><B>Remember</B> to leave a blank line 
+        between the subject line and the message body! </FONT><BR><BR>
+        <LI><B>_email_remind.etmpl</B><BR><BR><FONT size=1>The e-mail that is 
+        sent when a partner requests login information <BR><BR>#%EMAIL%# - The 
+        partner's e-mail address<BR>#%ADMIN_EMAIL%# - The TGP administrator's 
+        e-mail address<BR>#%PARTNER_ID%# - The username assigned to the 
+        moderator<BR>#%PASSWORD%# - The password assigned to the 
+        moderator<BR>#%POST_URL%# - The full URL to the partner.cgi script 
+        <BR><BR><B>Remember</B> to leave a blank line between the subject line 
+        and the message body! </FONT><BR><BR>
+        <LI><B>_email_confirm.etmpl</B><BR><BR><FONT size=1>The e-mail that is 
+        sent when using the e-mail confirm feature <BR><BR>#%EMAIL%# - The 
+        e-mail address of the submitter<BR>#%ADMIN_EMAIL%# - The TGP 
+        administrator's e-mail address<BR>#%GALLERY_URL%# - The gallery 
+        URL<BR>#%DESCRIPTION%# - The gallery description<BR>#%NUM_PICS%# - The # 
+        of pics in the gallery<BR>#%RECIP_URL%# - The reciprocal link for the 
+        gallery<BR>#%CATEGORY%# - The category for the 
+        gallery<BR>#%CONFIRM_URL%# - The URL they must visit to confirm their 
+        submission <BR><BR><B>Remember</B> to leave a blank line between the 
+        subject line and the message body! </FONT><BR><BR>
+        <LI><B>Rejection E-mails in admin.cgi</B><BR><BR><FONT size=1>These are 
+        the e-mails sent to rejected posts. <BR><BR>#%POST_ID%# - The post's ID 
+        number<BR>#%EMAIL%# - The e-mail address of the 
+        submitter<BR>#%ADMIN_EMAIL%# - The TGP administrator's e-mail 
+        address<BR>#%GALLERY_URL%# - The gallery URL<BR>#%DESCRIPTION%# - The 
+        gallery description<BR>#%NUM_PICS%# - The # of pics in the 
+        gallery<BR>#%RECIP_URL%# - The reciprocal link for the 
+        gallery<BR>#%CATEGORY%# - The category for the 
+        gallery<BR>#%SUBMIT_DATE%# - The submission date<BR>#%SUBMIT_TIME%# - 
+        The submission time 
+</FONT><BR><BR></LI></UL></FONT></FONT></TD></TR></TBODY></TABLE></DIV></FONT></BODY></HTML>
