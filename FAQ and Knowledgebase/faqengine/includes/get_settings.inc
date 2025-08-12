@@ -1,0 +1,310 @@
+<?php
+/***************************************************************************
+ * (c)2001-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+// settings
+$sql = "select * from ".$tableprefix."_settings where settingnr=1";
+if(!$result = faqe_db_query($sql, $db))
+	die("Could not connect to the database.");
+if (!$myrow = faqe_db_fetch_array($result))
+	die("no settings defined");
+$show_proglist=$myrow["showproglist"];
+$watchlogins=$myrow["watchlogins"];
+$allowemail=$myrow["allowemail"];
+$urlautoencode=$myrow["urlautoencode"];
+$enablespcode=$myrow["enablespcode"];
+$nofreemailer=$myrow["nofreemailer"];
+$allowquestions=$myrow["allowquestions"];
+$faqemail=$myrow["faqemail"];
+$allowusercomments=$myrow["allowusercomments"];
+$newcommentnotify=$myrow["newcommentnotify"];
+$enablefailednotify=$myrow["enablefailednotify"];
+$loginlimit=$myrow["loginlimit"];
+$server_timezone=$myrow["timezone"];
+$enablehostresolve=$myrow["enablehostresolve"];
+$ratecomments=$myrow["ratecomments"];
+$usemenubar=$myrow["usemenubar"];
+$userquestionanswermail=$myrow["userquestionanswermail"];
+$userquestionanswermode=$myrow["userquestionanswermode"];
+$userquestionautopublish=$myrow["userquestionautopublish"];
+$faqengine_hostname=$myrow["faqengine_hostname"];
+$ratingcomment=$myrow["ratingcomment"];
+$nosunotify=$myrow["nosunotify"];
+$blockoldbrowser=$myrow["blockoldbrowser"];
+$bbccolorbar=$myrow["bbccolorbar"];
+$disablehtmlemail=$myrow["disablehtmlemail"];
+$admstorefaqfilters=$myrow["admstorefaqfilters"];
+$admhideunassigned=$myrow["admhideunassigned"];
+$admdelconfirm=$myrow["admdelconfirm"];
+$zlibavail=$myrow["zlibavail"];
+$msendlimit=$myrow["msendlimit"];
+$defmailsig=$myrow["defmailsig"];
+$subscriptionavail=$myrow["subscriptionavail"];
+$admedoptions=$myrow["admedoptions"];
+$allsendcompressed=$myrow["allsendcompressed"];
+$uq_allownoemail=$myrow["uq_allownoemail"];
+$admtextareasrows=$myrow["admtextareasrows"];
+$admtextareascols=$myrow["admtextareascols"];
+$blockleacher=$myrow["blockleacher"];
+$faqlistshortcuts=$myrow["faqlistshortcuts"];
+$faqlimitrelated=$myrow["faqlimitrelated"];
+$displayrating=$myrow["displayrating"];
+$admdateformat=$myrow["admdateformat"];
+$showtimezone=$myrow["showtimezone"];
+$showcurrtime=$myrow["showcurrtime"];
+$maxconfirmtime=$myrow["maxconfirmtime"];
+$enablekbrating=$myrow["enablekbrating"];
+$dosearchlog=$myrow["dosearchlog"];
+$logdateformat=$myrow["logdateformat"];
+$uqscmail=$myrow["uqscmail"];
+$usebwlist=$myrow["usebwlist"];
+$lhide=$myrow["lhide"];
+// layout
+$sql = "select * from ".$tableprefix."_layout ";
+if(isset($layout))
+	$sql.=" where id='$layout'";
+else
+	$sql.=" where deflayout=1";
+if(!$result = faqe_db_query($sql, $db))
+	die("Could not connect to the database.");
+if (!$myrow = faqe_db_fetch_array($result))
+{
+	$errmsg="Layout not set up";
+	if(isset($layout))
+		$errmsg.=" ($layout)";
+	else
+		$errmsg.=" (default layout)";
+	die($errmsg);
+}
+$displayattachinfo=$myrow["displayattachinfo"];
+$heading_bgcolor=$myrow["headingbg"];
+$table_bgcolor=$myrow["bgcolor1"];
+$row_bgcolor=$myrow["bgcolor2"];
+$group_bgcolor=$myrow["bgcolor3"];
+$page_bgcolor=$myrow["pagebg"];
+$FontFace=$myrow["fontface"];
+$FontSize1=$myrow["fontsize1"];
+$FontSize2=$myrow["fontsize2"];
+$FontSize3=$myrow["fontsize3"];
+$FontSize4=$myrow["fontsize4"];
+$FontSize5=$myrow["fontsize5"];
+$FontColor=$myrow["fontcolor"];
+$TableWidth=$myrow["tablewidth"];
+$stylesheet=stripslashes($myrow["stylesheet"]);
+$HeadingFontColor=$myrow["headingfontcolor"];
+$SubheadingFontColor=$myrow["subheadingfontcolor"];
+$GroupFontColor=$myrow["groupfontcolor"];
+$LinkColor=$myrow["linkcolor"];
+$VLinkColor=$myrow["vlinkcolor"];
+$ALinkColor=$myrow["alinkcolor"];
+$TableDescFontColor=$myrow["tabledescfontcolor"];
+$dateformat=$myrow["dateformat"];
+$newtime=$myrow["newtime"];
+$newpic=$myrow["newpic"];
+$searchpic=$myrow["searchpic"];
+$printpic=$myrow["printpic"];
+$backpic=$myrow["backpic"];
+$listpic=$myrow["listpic"];
+$pageheader=$myrow["pageheader"];
+$pagefooter=$myrow["pagefooter"];
+$usecustomheader=$myrow["usecustomheader"];
+$usecustomfooter=$myrow["usecustomfooter"];
+$emailpic=$myrow["emailpic"];
+$questionpic=$myrow["questionpic"];
+$usercommentpic=$myrow["usercommentpic"];
+$allowlists=$myrow["allowlists"];
+$allowsearch=$myrow["allowsearch"];
+$searchcomments=$myrow["searchcomments"];
+$searchquestions=$myrow["searchquestions"];
+$showsummary=$myrow["showsummary"];
+$summarylength=$myrow["summarylength"];
+$progrestrict=$myrow["progrestrict"];
+$footerfile=$myrow["footerfile"];
+$headerfile=$myrow["headerfile"];
+$printheader=$myrow["printheader"];
+$printfooter=$myrow["printfooter"];
+$mincommentlength=$myrow["mincommentlength"];
+$minquestionlength=$myrow["minquestionlength"];
+$proginfopic=$myrow["proginfopic"];
+$proginfowidth=$myrow["proginfowidth"];
+$proginfoheight=$myrow["proginfoheight"];
+$proginfoleft=$myrow["proginfoleft"];
+$proginfotop=$myrow["proginfotop"];
+$textareacols=$myrow["textareawidth"];
+$textarearows=$myrow["textareaheight"];
+$helpwindowwidth=$myrow["helpwindowwidth"];
+$helpwindowheight=$myrow["helpwindowheight"];
+$helpwindowleft=$myrow["helpwindowleft"];
+$helpwindowtop=$myrow["helpwindowtop"];
+$helppic=$myrow["helppic"];
+$closepic=$myrow["closepic"];
+$kbmode=$myrow["kbmode"];
+$defsearchmethod=$myrow["defsearchmethod"];
+$enablekeywordsearch=$myrow["enablekeywordsearch"];
+$enablelanguageselector=$myrow["enablelanguageselector"];
+$faqsortmethod=$myrow["faqsortmethod"];
+$kbsortmethod=$myrow["kbsortmethod"];
+$copyrightpos=$myrow["copyrightpos"];
+$copyrightbgcolor=$myrow["copyrightbgcolor"];
+$subheadingbgcolor=$myrow["subheadingbgcolor"];
+$actionbgcolor=$myrow["actionbgcolor"];
+$headerfilepos=$myrow["headerfilepos"];
+$footerfilepos=$myrow["footerfilepos"];
+$newinfobgcolor=$myrow["newinfobgcolor"];
+$ascheader=$myrow["ascheader"];
+$useascheader=$myrow["useascheader"];
+$asclinelength=$myrow["asclinelength"];
+$ascforcewrap=$myrow["ascforcewrap"];
+$addbodytags=$myrow["addbodytags"];
+$asclistmimetype=$myrow["asclistmimetype"];
+$asclistcharset=$myrow["asclistcharset"];
+$keywordsearchmode=$myrow["keywordsearchmode"];
+$questionrequireos=$myrow["questionrequireos"];
+$questionrequireversion=$myrow["questionrequireversion"];
+$faqnewdisplaymethod=$myrow["newfaqdisplaymethod"];
+$enablefaqnewdisplay=$myrow["enablefaqnewdisplay"];
+$faqnewdisplaybgcolor=$myrow["faqnewdisplaybgcolor"];
+$faqnewdisplayfontcolor=$myrow["faqnewdisplayfontcolor"];
+$listallfaqmethod=$myrow["listallfaqmethod"];
+$enableshortcutbar=$myrow["enableshortcutbar"];
+$enablejumpboxes=$myrow["enablejumpboxes"];
+$subcatbgcolor=$myrow["subcatbgcolor"];
+$subcatfontcolor=$myrow["subcatfontcolor"];
+$displayrelated=$myrow["displayrelated"];
+$htmllisttype=$myrow["htmllisttype"];
+$pagetoppic=$myrow["pagetoppic"];
+$attachpic=$myrow["attachpic"];
+$summaryintotallist=$myrow["summaryintotallist"];
+$summarychars=$myrow["summarychars"];
+$maxentries=$myrow["maxentries"];
+$hovercells=$myrow["hovercells"];
+$activcellcolor=$myrow["activcellcolor"];
+$ratingspublic=$myrow["ratingspublic"];
+$ratingcommentpublic=$myrow["ratingcommentpublic"];
+$qesautopub=$myrow["qesautopub"];
+$ns4style=$myrow["ns4style"];
+$ns6style=$myrow["ns6style"];
+$geckostyle=$myrow["geckostyle"];
+$konquerorstyle=$myrow["konquerorstyle"];
+$operastyle=$myrow["operastyle"];
+$ascheaderfile=$myrow["ascheaderfile"];
+$ascheaderfilepos=$myrow["ascheaderfilepos"];
+$numlatest=$myrow["numlatest"];
+$colorscrollbars=$myrow["colorscrollbars"];
+$sbfacecolor=$myrow["sbfacecolor"];
+$sbhighlightcolor=$myrow["sbhighlightcolor"];
+$sbshadowcolor=$myrow["sbshadowcolor"];
+$sb3dlightcolor=$myrow["sb3dlightcolor"];
+$sbarrowcolor=$myrow["sbarrowcolor"];
+$sbtrackcolor=$myrow["sbtrackcolor"];
+$sbdarkshadowcolor=$myrow["sbdarkshadowcolor"];
+$pagebgpic=$myrow["pagebgpic"];
+$pagebgrepeat=$myrow["pagebgrepeat"];
+$pagebgposition=$myrow["pagebgposition"];
+$pagebgattach=$myrow["pagebgattach"];
+$tabledescfontsize=$myrow["tabledescfontsize"];
+$langselectfontsize=$myrow["langselectfontsize"];
+$faqnewfontsize=$myrow["faqnewfontsize"];
+$jumpboxfontsize=$myrow["jumpboxfontsize"];
+$actionlinefontsize=$myrow["actionlinefontsize"];
+$newinfofontsize=$myrow["newinfofontsize"];
+$newinfofontcolor=$myrow["newinfofontcolor"];
+$shortbarfontsize=$myrow["shortbarfontsize"];
+$jumpboxsorting=$myrow["jumpboxsorting"];
+$disableasclist=$myrow["disableasclist"];
+$disablehtmlemail=$myrow["disablehtmlemail"];
+$contentcopy=$myrow["contentcopy"];
+$subcatfontsize=$myrow["subcatfontsize"];
+$questionshorting=$myrow["questionshorting"];
+$cc_font=$myrow["cc_font"];
+$cc_fontsize=$myrow["cc_fontsize"];
+$cc_fontcolor=$myrow["cc_fontcolor"];
+$subscriptionpic=$myrow["subscriptionpic"];
+$irow_bgcolor=$myrow["irow_bgcolor"];
+$irow_fontcolor=$myrow["irow_fontcolor"];
+$irow_fontsize=$myrow["irow_fontsize"];
+$defmailsig=$myrow["defmailsig"];
+$pagenavfontcolor=$myrow["pagenavfontcolor"];
+$pagenavfontsize=$myrow["pagenavfontsize"];
+$subcatfontstyle=$myrow["subcatfontstyle"];
+$linkoptions=$myrow["linkoptions"];
+$listoptions=$myrow["listoptions"];
+$clist_linkcolor=$myrow["clist_linkcolor"];
+$clist_vlinkcolor=$myrow["clist_vlinkcolor"];
+$clist_alinkcolor=$myrow["clist_alinkcolor"];
+$shownextprev=$myrow["shownextprev"];
+$nextprevmode=$myrow["nextprevmode"];
+$kbsearchoptions=$myrow["kbsearchoptions"];
+$searchoptions=$myrow["searchoptions"];
+$displayoptions=$myrow["displayoptions"];
+$usepagenavicons=$myrow["usepagenavicons"];
+$nextpagepic=$myrow["nextpagepic"];
+$prevpagepic=$myrow["prevpagepic"];
+$firstpagepic=$myrow["firstpagepic"];
+$lastpagepic=$myrow["lastpagepic"];
+$displayvotesinline=$myrow["displayvotesinline"];
+$tablealign=$myrow["tablealign"];
+$votesinlinedisplaymode=$myrow["votesinlinedisplaymode"];
+$navbarwidth=$myrow["navbarwidth"];
+$navsync=$myrow["navsync"];
+$navpic_progclosed=$myrow["navpic_progclosed"];
+$navpic_progopen=$myrow["navpic_progopen"];
+$navpic_proglocked=$myrow["navpic_proglocked"];
+$navpic_faq=$myrow["navpic_faq"];
+$navpic_question=$myrow["navpic_question"];
+$navpic_catclosed=$myrow["navpic_catclosed"];
+$navpic_catopen=$myrow["navpic_catopen"];
+$navpic_catlocked=$myrow["navpic_catlocked"];
+$navpic_subcatclosed=$myrow["navpic_subcatclosed"];
+$navpic_subcatopen=$myrow["navpic_subcatopen"];
+$navpic_subcatlocked=$myrow["navpic_subcatlocked"];
+$navpic_kbarticle=$myrow["navpic_kbarticle"];
+$searchhighlight=$myrow["searchhighlight"];
+$searchhighlightcolor=$myrow["searchhighlightcolor"];
+$navpic_kbwizard=$myrow["navpic_kbwizard"];
+$kbnavoptions=$myrow["kbnavoptions"];
+$navpic_kbsearch=$myrow["navpic_kbsearch"];
+$navtreepos=$myrow["navtreepos"];
+$search_inputfieldwidth=$myrow["search_inputfieldwidth"];
+$faqnavoptions=$myrow["faqnavoptions"];
+$tablespacing=$myrow["tablespacing"];
+$tablepadding=$myrow["tablepadding"];
+$extdateformat=$myrow["extdateformat"];
+$srchtoolpic=$myrow["srchtoolpic"];
+$layoutid=$myrow["id"];
+$layout=$layoutid;
+if($displayrating==0)
+	$displayvotesinline=0;
+switch($tablealign)
+{
+	case 0:
+		$tblalign="left";
+		break;
+	case 1:
+		$tblalign="right";
+		break;
+	default:
+		$tblalign="center";
+		break;
+}
+//
+if(is_ns4())
+	$hovercells=0;
+if(!$ascheader)
+	$useascheader=0;
+if((!$pageheader) && (!$headerfile))
+	$usecustomheader=0;
+if((!$pagefooter) && (!$footerfile))
+	$usecustomfooter=0;
+if($pagefooter)
+{
+	$pagefooter=str_replace("</body>","",$pagefooter);
+	$pagefooter=str_replace("</html>","",$pagefooter);
+}
+if($headerfile)
+	$headerfile=determine_inc_filename($headerfile,$act_lang);
+if($footerfile)
+	$footerfile=determine_inc_filename($footerfile,$act_lang);
+if($ascheaderfile)
+	$ascheaderfile=determine_inc_filename($ascheaderfile,$act_lang);
+?>
