@@ -1,0 +1,84 @@
+<html>
+<head>
+  <title>Bid Search Engine</title>
+
+  <SCRIPT LANGUAGE="JavaScript">
+    function previous(curr){
+      document.signuplistings.elements['title'+(curr)].value = document.signuplistings.elements['title'+(curr-1)].value;
+      document.signuplistings.elements['description'+(curr)].value = document.signuplistings.elements['description'+(curr-1)].value;
+      document.signuplistings.elements['url'+(curr)].value = document.signuplistings.elements['url'+(curr-1)].value;
+      document.signuplistings.elements['bid'+(curr)].value = document.signuplistings.elements['bid'+(curr-1)].value;
+    }
+  </SCRIPT>
+</head>
+
+<center>
+<font face="verdana"><B>Bid Search Engine</B> - <font color="#000099">Signup Step 1 of 3</font></font><P><BR>
+<a href="search.[ext]?tab=checkbid" target="new">Check Bids</a> | <a href="search.[ext]?tab=suggest" target="new">Search Term Suggestion Tool</a>
+<form NAME="signuplistings" method="post" action="signup.[ext]?tab=signup2">
+<!-- [free] -->
+<B><font face="verdana" size="-1" color="red"><!-- [error] --></font></B>
+<table width=60% border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <center>
+      <!-- [displaylistings] -->
+      <table border="0" width=100% cellspacing="1" cellpadding="1" bgcolor="#000000">
+        <tr>
+          <td>
+            <table border="0" width=100% cellspacing="0" cellpadding="3" bgcolor=#E0DCC0>
+              <tr>
+                <td colspan=2>
+                  <B><font face="verdana" size="-1">Listing #<!-- [numb] --></font></B>
+                  <font face="verdana" size="-1" color="red"><!-- [listerror] --></font>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <font face="verdana" size="1">Search Term:</font><BR>
+                  <INPUT type=text name="keyword[numb]" maxlength="40" SIZE="22" value="[keyword]">
+                </td>
+                <td>
+                  <font face="verdana" size="1">Title:</font><BR>
+                  <INPUT type=text name="title[numb]" maxlength="40" SIZE="32" value="[title]">
+                </td>
+              </tr>
+              <tr>
+                <td colspan=2>
+                  <font face="verdana" size="1">Description:</font><BR>
+                  <TEXTAREA name="description[numb]" maxlength="190" ROWS=3 COLS=54>[description]</TEXTAREA>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <font face="verdana" size="1">URL:</font><BR>
+                  <INPUT type=text name="url[numb]" SIZE=30 value="[url]">
+                </td>
+                <td>
+                  <font face="verdana" size="1">Bid: <font color="#000000">(ex. 0.02=2 cents, 0.20=20 cents)</font></font><BR>
+                  <!-- [currency] --><INPUT type=text name="bid[numb]" SIZE=6 value="[bid]">
+                </td>
+              </tr>
+              <!-- [copy] -->
+              <tr>
+                <td colspan=2>
+                  <input type=checkbox onClick="javascript:previous([numb]); this.checked=false">
+                  <font face="verdana" size="1">Copy previous information</font><BR>
+                </td>
+              </tr>
+              <!-- [copy] -->
+            </table>
+          </td>
+        </tr>
+      </table>
+      <BR><!-- [displaylistings] -->
+      </center><input type=submit value="Next">
+    </td>
+  </tr>
+</table>
+
+</form>
+</center>
+
+</BODY>
+</HTML>
