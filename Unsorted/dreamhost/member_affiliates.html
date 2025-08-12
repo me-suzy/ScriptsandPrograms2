@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td> 
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"> 
+        <font size="3"> <b> <font size="2"> 
+        <? echo setup("company"); ?>
+        </font></b></font></font></font><font color="#333333" face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Affiliates/Resellers 
+        Section:</b></font></p>
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+        <? echo setup("company"); ?>
+        </font></font></font><font color="#333333">now offers a valuable affiliate 
+        program. Sign up for an account today, and you can redeem your referrals 
+        as described below:</font></font></p>
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#333333"><font size="1"><font size="3"> 
+        <? if ((setup("aff_type") ==0) || (setup("aff_type") ==1)) {?>
+        </font></font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+        </font></font></font></font></p>
+      <table width="450" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td height="37"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#333333">We 
+            will apply a credit to your account for each referral you send to 
+            us. The current refferal rate is 
+            <?
+$t1 =  setup("aff_pay_1");
+$t1a =  setup("aff_pay_1a");
+
+if ($t1 == 1) { echo setup("currency"); }
+echo $t1a;
+if ($t1 ==0) { echo " percent of each order completed."; } else { echo " for each order completed."; }
+?>
+            </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font color="#333333"> 
+            </font></font></td>
+        </tr>
+      </table>
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+        <? if (setup("aff_type") ==0) { echo "We do offer another payout method if 
+        you do not wish to recieve your payments as a credit to your account. 
+        ";
+		 } 
+		 } if ((setup("aff_type") ==0) || (setup("aff_type") ==1)) {?>
+        </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>
+        <br>
+        We can mail you a check for each referral you send to us. The current 
+        refferal rate is <font color="#333333"> 
+        <?
+$t2 =  setup("aff_pay_2");
+$t2a =  setup("aff_pay_2a");
+
+if ($t2 == 1) { echo setup("currency"); }
+echo $t2a;
+if ($t2 ==0) { echo " percent of each order completed."; } else { echo " for each order completed."; }
+?>
+        </font></font></font></font></font></p>
+      <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><font size="2"> 
+        <? }?>
+        </font></font></font></font></p>
+    </td>
+  </tr>
+  <tr>
+    <td> 
+      <p align="center"><br>
+        <font face="Verdana, Arial, Helvetica, sans-serif"><font size="2"> <b>
+        <?$account_id  = get_account_id($session_id);
+ if (affiliate_exist($account_id) == Y) { ?>
+        <a href="members.php?page=affiliates_admin&next_page=affiliates_admin&session_id=<? echo $session_id ?>">View 
+        your affiliate area.</a><br>
+        </b></font><b><font face="Verdana, Arial, Helvetica, sans-serif"><font size="2"> 
+        <? } else { ?>
+        </font></font><font size="2"><a href="members.php?page=affiliates_1&next_page=affiliates_1&session_id=<? echo $session_id ?>">If 
+        you do not have an affiliate account, click here to set one up now.</a></font></b></font><b> 
+        <? } 
+?>
+        </b></p>
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
