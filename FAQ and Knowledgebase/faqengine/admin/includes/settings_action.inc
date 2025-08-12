@@ -1,0 +1,163 @@
+<?php
+/***************************************************************************
+ * (c)2001-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+$errors=0;
+if(isset($linkhide))
+	$lhide=1;
+else
+	$lhide=0;
+if(isset($dobwfilter))
+	$usebwlist=1;
+else
+	$usebwlist=0;
+if(isset($doextfailedlog))
+	$extfailedlog=1;
+else
+	$extfailedlog=0;
+if(isset($qscmail))
+	$uqscmail=1;
+else
+	$uqscmail=0;
+if(isset($noleacher))
+	$blockleacher=1;
+else
+	$blockleacher=0;
+if(isset($uq_noemail))
+	$uq_allownoemail=1;
+else
+	$uq_allownoemail=0;
+if(isset($all_compress))
+	$allsendcompressed=1;
+else
+	$allsendcompressed=0;
+$admedoptions=0;
+if(isset($edfilterrestrict))
+	$admedoptions=setbit($admedoptions,BIT_1);
+if($edsortorder==1)
+	$admedoptions=setbit($admedoptions,BIT_2);
+if(isset($enablesubscription))
+	$subscriptionavail=1;
+else
+	$subscriptionavail=0;
+if(isset($haszlib))
+	$zlibavail=1;
+else
+	$zlibavail=0;
+if(isset($hideunassigned))
+	$admhideunassigned=1;
+else
+	$admhideunassigned=0;
+if(isset($storefaqfilters))
+	$admstorefaqfilters=1;
+else
+	$admstorefaqfilters=0;
+if(isset($nohtmlemail))
+	$disablehtmlemail=1;
+else
+	$disablehtmlemail=0;
+if(isset($usecolorbar))
+	$bbccolorbar=1;
+else
+	$bbccolorbar=0;
+if(isset($blockold))
+	$blockoldbrowser=1;
+else
+	$blockoldbrowser=0;
+if(isset($dontnotifysu))
+	$nosunotify=1;
+else
+	$nosunotify=0;
+if(isset($ratingcom))
+	$ratingcomment=1;
+else
+	$ratingcomment=0;
+if(isset($limitrelated))
+	$faqlimitrelated=1;
+else
+	$faqlimitrelated=0;
+if(isset($dokbrating))
+	$enablekbrating=1;
+else
+	$enablekbrating=0;
+if(isset($dorating))
+	$displayrating=1;
+else
+	$displayrating=0;
+if(isset($dologincount))
+	$watchlogins=1;
+else
+	$watchlogins=0;
+if(isset($enablefaqshortcuts))
+	$faqlistshortcuts=1;
+else
+	$faqlistshortcuts=0;
+if(isset($enableemail))
+	$allowemail=1;
+else
+	$allowemail=0;
+if(isset($enableautourl))
+	$urlautoencode=1;
+else
+	$urlautoencode=0;
+if(isset($allowspcode))
+	$enablespcode=1;
+else
+	$enablespcode=0;
+if(isset($enablefreemailer))
+	$nofreemailer=0;
+else
+	$nofreemailer=1;
+if(isset($enablequestions))
+	$allowquestions=1;
+else
+	$allowquestions=0;
+if(isset($enableusercomments))
+	$allowusercomments=1;
+else
+	$allowusercomments=0;
+if(isset($commentnotify))
+	$newcommentnotify=1;
+else
+	$newcommentnotify=0;
+if(isset($dofailednotify))
+	$enablefailednotify=1;
+else
+	$enablefailednotify=0;
+if(isset($allowhostresolve))
+	$enablehostresolve=1;
+else
+	$enablehostresolve=0;
+if(isset($docommentrating))
+	$ratecomments=1;
+else
+	$ratecomments=0;
+if(isset($enablemenubar))
+	$usemenubar=1;
+else
+	$usemenubar=0;
+if(isset($sendanswermail))
+	$userquestionanswermail=1;
+else
+	$userquestionanswermail=0;
+if(isset($autopublishquestion))
+	$userquestionautopublish=1;
+else
+	$userquestionautopublish=0;
+if(isset($proglist))
+	$showproglist=1;
+else
+	$showproglist=0;
+if(isset($enabletimezone))
+	$showtimezone=1;
+else
+	$showtimezone=0;
+if(isset($enablecurrenttime))
+	$showcurrtime=1;
+else
+	$showcurrtime=0;
+if(isset($logsearches))
+	$dosearchlog=1;
+else
+	$dosearchlog=0;
+?>
