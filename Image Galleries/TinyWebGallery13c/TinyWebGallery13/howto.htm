@@ -1,0 +1,357 @@
+<html>
+<head>
+	<title>TinyWebgalery Credits</title>
+	<link rel="stylesheet" type="text/css" href="twg.css" >
+</head>
+<body>
+<h1><a name="howto"></a>Howto's for 1.2 and 1.3 (only available in English) </h1>
+<ol>
+  <li><a href="#h1">How to make TWG secure</a></li>
+  <li><a href="#h2">How to include TWG into php sites or a cms system (like mambo, phpnuke).</a> </li>
+  <li><a href="#h3">How to integrate a HTML header / footer for TWG (different way then howto 2)</a> </li>
+  <li><a href="#h4">How to setup a random image on a different site/frame </a></li>
+  <li><a href="#h5">How to setup a folder image </a></li>
+  <li><a href="#h5b">How to set a gallery name different from the folder name (e.g. for enhanced sorting) </a></li>
+  <li><a href="#h6">How to add a folder description (shown below the gallery name) or an image &quot;header&quot;</a></li>
+  <li><a href="#h7">How to create a language file.</a></li>
+  <li><a href="#h8">How to change colors of TWG</a></li>
+  <li><a href="#h9">How to check which php is available on your server and if TWG likes it</a></li>
+  <li><a href="#h10">How to link directly into a password protected gallery</a></li>
+  <li><a href="#h12">How to set passwords for a gallery (and howto set multiple passwords for one gallery any why ;))</a></li>
+  <li><a href="#h13">How to set watermarks and text on an image.</a></li>
+  <li><a href="#h14">How to track errors if TWG does not work on your system. </a></li>
+  <li><a href="#h15">How to change or extend the smilies</a></li>
+  <li><a href="#h16">Linking to a website instead of downloading a file </a></li>
+  <li><a href="#h17">How to get an overview what I can place in a directory to configure it! (= summary of some howtows!)</a></li>
+  <li><a href="#h18">How to enable email notification</a> </li>
+  <li><a href="#h19">How to enable download of a whole directory (new v1.3)</a></li>
+  <li><a href="#h20">How to link to pictures in a remote http directory (new v1.3)</a></li>
+  <li><a href="#h21">How to modify the root link of the gallery to link e.g. back to your page instead to the gallery overview (new 1.3) </a></li>
+  <li><a href="#h22">How to use a different background image for each folder (new 1.3) </a></li>
+  <li><a href="#h23">How to upgrade from older versions from TWG</a> </li>
+  <li><a href="#h24">How to show more images in the DHTML thumbnail strip</a><br>
+  </li>
+  <li><a href="#h25">How to use and make a skin! (new 1.3c) </a></li>
+</ol>
+<p>Please read the <a href="#faq">FAQ</a> below the howto's and check the <a href="../forum/">forum</a> as well if you have any problems!</p>
+<p>The FAQ covers the problems some users had with the TinyWebGallery &gt;= v1.1. I hope this will help others to get the TWG running.<br>
+Please check there first if you have done everything that is needed to run TWG. Please check the forum as well! </p>
+<p>Questions:</p>
+<ul type=disc>
+  <li><a
+     href="#0">The images are not shown at all or only some are twg_shown </a></li>
+  <li><a
+     href="#1">I get an error message when running TWG the first time. </a></li>
+  <li><a
+     href="#2">Some of the images are completly black on the thumbnail view</a></li>
+  <li><a
+     href="#6">Deleting the cache</a> </li>
+  <li><a
+     href="#7">You wrote that you removed all the cookies - but when I go to the gallery a cookie is set!</a></li>
+  <li><a
+     href="#8">I want to sort my images by the date the picture is taken (using exif data) - what do I have to set on my server? </a></li>
+  <li><a
+     href="#10">How can I reset/change the image view counter/caption/comments?</a></li>
+  <li><a
+     href="#11">I want to test TinyWebGallery at my system at home. Is there a easy way to do this?</a> </li>
+  <li><a href="#12">Exif information is not shown in TWG but the Windows Explorer does. Why?</a></li>
+</ul>
+<h2><a name="h1"></a>1. How to make TWG secure</h2>
+<p>If you install TWG like the installation site says it is working on all systems very quickly. I have included some index.htm pages in all directores which prevents that the directory can be listed. If you want to protect your data a little bit you should change some rights on your system. I assume that php is running with full rights. If this is too tight you have to use the settings for the group.  <br>
+  If you get permission denied even with 770 e.g. in the xml folder you have to use 777 for the directories. You can still use .htaccess (if you know what to do with it ;) - I have provided a template in the config-demos directory where you have to change the domain name - please read the readme.txt in this folder):</p>
+<ol>
+  <li>Set the counter and xml directory with chmod (check your ftp program) to 700 (770 if too tight). Nobody has to read this directorys from outside.</li>
+  <li>Set the cache directory with chmod to 744 (774 if too tight). The cache directory has to be accessable from everywhere but not to be listed! </li>
+  <li>Make sure that email encryption is turned on in the config.php - encrypt_emails=true. This is the default. Please change the encryption key $encrypt_emails_key. If you leave it like it is, anyone who is downloading TWG with this default key can decrypt your emails by debugging TWG!</li>
+  <li>Make sure that the external login is disabled in the config.php - $enable_external_privategal_login=false. This is the default. Only turn this on if you need it!</li>
+  <li>If you use private galleries or disable the download of the images you should change the permissions of the picture folder. Set the pictures folder and all subfolders to 770. $enable_direct_download has to be set to false because all download have to be done by calling the image.php!</li>
+  <li>Change the name of the password file (config.php: $password_file) to .htprivate (&quot;.ht&quot; is the important part!) if you are on a unix/linux system with an Apache web server. All files starting with .ht are protected by default. You can use any extension where your webserver does not display the files! </li>
+  <li>Use encrypted passwords. Set the flag $encrypt_passwords to true. Choose the encryption method SHA1 or SHA256 (more secure but slower) with $use_sha1_for_password. SHA1 ist enough but you have to have PHP &gt; 4.3 installed. otherwise the SHA256 from TWG is used. Call the password.php in the main directory to generate your passwords! You have to enter this password either in your 'private.txt' file or as the default password in the config.php at $privatepasswort. Use the enycypted password only for $privatepassword - the other ones are not encrypted if you set $encrypt_passwords to true! </li>
+  <li>Thats it :). </li>
+</ol>
+<p>If you have found some more settings to make TWG more save please let me know. </p>
+
+    <h2 ><a name=h2></a>2. How to include TWG into php sites or a cms system (like mambo, phpnuke).</h2>
+
+  <p>It is now possible to integrate TWG into existing php sites in different ways: Before 1.2 you could include TWG by using an extra frame or an iframe. If you want to do this please check the example_i_frame_include.htm. This is the way that works for sure ;). If you use this way of including TWG: $php_include=false, $install_dir=&quot;&quot;</p>
+  <p>TWG 1.2 can now be included directly in existing php sites or cms systems. If you want to use 'include index.php' (see example_php_include.php) your main file had to be in the same directory as TWG in older versions. But this is not really nice because all your code is then located in one directory. A nicer way is to put TWG into a subdirectory like &quot;TinyWebGallery&quot;. Then you have to use 'include TinyWebGallery/index.php'. If this is the case you have to modify the $install_dir parameter in the config.php. In the example you have to use $php_include=true (this is used to use a different calculation for the existing resolution!) and $install_dir=&quot;TinyWebGallery/&quot;; . The / is important! <br>
+    All parameters that don't belong to TWG are added again to the url! If your main php file (e.g. gallery.php) has the parameter &amp;id=3 this parameter is added to all links of TWG and all links from TWG use gallery.php instead index.php. If you open the gallery in a new window the standalone modus ia activated again!<br>
+    If some parameters should not be added to a link in TWG enter these parameters in the config.php: $ignore_parameter.</p>
+  <p>Please note:</p>
+  <ul type=disc>
+    <li>If the gallery does not work properly most of the time the doctype is the problem - please remove the one from the calling page or use<br>
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;<br>
+      If the cmotion gallery on the image page does not work: this is the problem.</li>
+    <li>If the bottom part seems to be cut of, your surrounding environment has most likely set a table to a fixed height but no height in the cell where the TWG is integrated. Please add the missing height (in pixel not %) to this &lt;td&gt; in your template. </li>
+  </ul>
+  <p>I have only done very basic tests on cms systems - if you have any problems - please let me know !</p>
+
+    <h2 ><a name=h3></a>3. How to integrate your own HTML into TWG</h2>
+  <p>If you don't want to include TWG into an existing page but add an additional footer or header to the gallery simply create a file called header.htm and/or footer.htm and store them into the main directory (where the index.php is located). The header/footer is included in a &lt;tr&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt; of the main table.</p>
+  <p>You can also create a file named overview.htm/thumb.htm and/or image.htm. The code you place in there is added on the overview/thumb/image page below the main content. You can e.g. add a random image there ;).</p>
+
+    <h2 ><a name=h4></a>4. How to setup a random image on a different site/frame </h2>
+  <p>You can setup a random image on an other website which links to your gallery. The following two lines show the image and the link tag:</p>
+  <p>The image: <br>
+&lt;img src=&quot;image.php?twg_album=xxx&amp;twg_random=1&amp;twg_type=random&amp;twg_random_size=200&quot;&gt;</p>
+  <p>The link with image: <br>
+&lt;a href ='index.php?twg_random=1'&gt;<br>
+&lt;img src=&quot;image.php?twg_album=xxx|zzz&amp;twg_random=1&amp;twg_type=random&amp;twg_random_size=200&quot;&gt;<br>
+&lt;/a&gt; </p>
+  <ul type=disc>
+    <li>twg_album - Change the album to the album where the image should be picked! (has to be urlencoded - go inside the gallery and copy it from the url there!). you can add several albums by seperating them with an | </li>
+    <li>twg_random - Number has to be unique for one page (it is possilbe to have more than one random image on a page!) - simply start with one an count ... </li>
+    <li>twg_random_size=Size of the image max x or max y value! - please keep in mind that vertical or horizontal images could be choosen and therefore your layout of the page where the image is show should be able to show this nicely.</li>
+  </ul>
+  <p>You have to add the path to the image.php and index.php to the example e.g. http://www.mygallery.com/tinywebgallery/index.php</p>
+  <p>In v1.2 you can use only one album. Additionally you have to add the parameter twg_album to the href. </p>
+
+    <h2 ><a name=h5></a>5. How to setup a folder image </h2>
+  <p>If you don't have any images in a folder (only other directories) or you don't want that images from this folder are displayed you can set a folder image for each folder. Simply put a png image called folder.png in the directory. Only png is supported here because .jpg would be treated as a normal image! <br>
+    Important: The original size of the image is used here! This makes it possible e.g. to use really big images on the 1st page and for subdirectories smaller ones! If you have protected galleries you have to use a private.png </p>
+
+    <h2 ><a name=h5b id=h5b></a>6. How to set a gallery name different from the folder name (e.g. for enhanced sorting) </h2>
+  <p>You can change the name that is displayed for a directory. By default the directory name is used. But sometimes it makes sense to change this:</p>
+  <ul type=disc>
+    <li>You want to sort the directories in a way you like and add e.g. 1,2,3 at each directory to get the sorting you like but that does not look good.</li>
+    <li>You want to use a image or a different font for a folder</li>
+  </ul>
+  <p>Create a file named foldername.txt in the folder you want a different folder name. Then put the text or html for an image into this file. The text can be any valid HTML and is inserted in a &lt;span&gt;&lt;/span&gt;. See the demo 1 where I have set an image for a folder! </p>
+  <p>The name can be language dependant as well! By adding the language to the filename you can provide extra translations. e.g. for German: foldername.txt -&gt; foldername_de.txt.</p>
+  <p>Please note: Please use the html representation in the files for special characters: &auml; -&gt; &amp;auml; The description has to be in one line!! </p>
+
+    <h2 ><a name=h6></a>7. How to add a folder description (shown below the gallery name) or an image &quot;header&quot; </h2>
+  <p>To create an additional text below the bold folder name (like shown in Demo -&gt; Palenque on the website) you have to create a file named folder.txt in the folder the text should appear. Then put the text into this file. The text can be any valid HTML and is inserted in a &lt;span&gt;&lt;/span&gt;. The style class is twg_folderdescription and can be found in the style.css. The folderdescription can be shown on the image page as well. By turning the switch $enable_dir_description_on_image to true this description is shown there as well! </p>
+  <p>The description can be language dependent as well! By adding the language to the filename you can provide extra translations. e.g. for German: folder.txt -&gt; folder_de.txt.</p>
+  <p>The same thing can be done only for the image. if you want to have a different text on the image page than on the thumbnail page you have to set $enable_dir_description_on_image to false and put your text in the image.txt. image_&lt;language&gt;.txt is the language dependant version. This text cannot be set individual for one picture - only for the whole folder!</p>
+  <p>If you use language dependant versions this is only shown if the language can be detected. If the language version does not exists the normal description is used - if this is not present nothing is displayed! </p>
+  <p>Please note: Please use the html representation in the description files for special characters: &auml; -&gt; &amp;auml;<br>
+    I only read the  FIRST line of this file - up to 500 characters! - if you want
+to hhave e.g. 2 lines: put the code in one line and us a &lt;br /&gt; to generate the new line!</p>
+
+    <h2 ><a name=h7></a>8. How to create a language file</h2>
+  <p>To add a new language you have to translate one of the existing language file (e. g. language/language_de.php - the name of the needed flag is language/language_de.gif) and copy it in the 'language' directory (+ the flag). If you provide a file language/language_&lt;lang&gt;.txt you can specify the tooltip. Please write the language in English and then in the language of the country in Brackets e.g. Germany (Deutschland). If you need a flag - please send me an email.<br>
+    Please send me the language files if you want to support TWG. Please make sure to use the latest version of TWG and &quot;Welcome to the TinyWebGallery&quot; as title. Please make sure to translate the latest version of a language file. <br>
+    Please note: Please use the html representation in the language files for special characters: &auml; -&gt; &amp;auml; I use a nice macro &quot;HTML Encoder&quot; for Textpad. Just google for it if you want to save yourself some time ;) </p>
+
+    <h2 ><a name=h8></a>9. How to change colors of TWG </h2>
+  <p>All main style settings are located in the style.css. This file is well documented. Every area has its own part in the style sheet. If you change or insert a color and nothing is changing be sure that you define the settings for a link as well! </p>
+<p>Since 1.3 there is a file called my_style.css in the main TWG folder. I have copied the most important settings to modify the colors of the background, borders, text and links. By default everything is disabled and the settings from the style.css are used. Uncomment the settings you want to change. I recommend not to make any changes in the style.css. Save this settings in the my_style.css. This makes it easier for you to keep track of your changes. All changes in my_style do override the settings in style.css. Remove this file if you don't use it because otherwise its transfered to the server! The settings of my_style.css are valid for all galleries. <br>
+  To change the background and the color of the iframes (login, comments ...) go to i_frame/iframe.css.</p>
+  <p>Please read how-to 22 if you only want to change the background of a gallery. </p>
+  <p>The borders of the gallery are in the framestyle.css!</p>
+  <p>Since 1.3 it is possible to have an additional style sheet for each gallery. e.g. if you want to have different border colors for each gallery. This can be included in 2 ways:</p>
+  <ol>
+    <li>Simply place a css called style.css in the folder where the style should be different. That's it.</li>
+    <li>Solution 1 needs a direct link to the style sheet. If this folder is protected you have to use a different way: It is also possible to place the style sheet in the cache folder (and sometimes mandatory if you have directory names with characters that have to be encoded). Create a style sheet named &lt;urlencoded foldername&gt;_style.css. If you are using recursive folders the folders have to be separated with an _. The easies way to name the file is to go into the cache folder and look for the folder name at an image (It is urlencoded!: e.g. Usa (+&uuml;$&sect;!%&amp;-;) -&gt; Usa+%28%2B%FC%24%A7%21%25%26-%3B%29) . Copy the folder name part and add the _style.css to the style sheet name.</li>
+  </ol>
+  <p>In the Domai folder of the example gallery is a style.css that changes the colors of the border and the text. You can use this as template for your own settings! The settings of the style sheet in a folder overwrite the settings of the default style.css and the my_style.css! There are some example style sheets I use in the demo in the config_demo folder! I like the transparent ;) <br>
+  Please note - you can only have one style of the iframes. If you use different styles for different folders please select colors that fit to all of them! </p>
+  <p>Remember:</p>
+  <ul>
+    <li> style.css (main folder) in the main folder is the default style sheet. </li>
+    <li>framestyle.css (main folder) is the style sheet where the right/left/bottom frame colors are definend.</li>
+    <li>my_style.css (main folder) is the style sheet where you can put your changes to style.css - the existing file is a dummy where you have to uncomment the part you want to use.</li>
+    <li>style.css (album folders) is the style sheet whch can be different for each folder. You can define a different style for each folder! In the example I use a style.css that is a working copy of the my_style.css. </li>
+    <li>To change the background and the color of the iframes (login, comments ...) go to i_frame/iframe.css </li>
+  </ul>
+  <h2 ><a name=h9></a>10. How to check which php version is available on your server and if TWG likes it </h2>
+  <p>There is a file called info.php in the mein directory of TWG. If you call this file instead of index.php TWG is checking some requirements and in printing the php info. If TWG is not running properly or not all features are available it is always nice to take a look there. Then check the FAQ - there are some memory issues already covered. </p>
+
+    <h2 ><a name=h10></a>11. How to link directly into a password protected gallery</h2>
+  <p>It is possible to link into a gallery or to a image. Simple copy the link in the URL! But this does not work with password protected galleries! To link directly into protected folders you have to copy the URL from the gallery you want to link to. You have to login to get this URL! After that you have to add the parameter &amp;twg_private_login=&lt;gallery password&gt; to the URL. Please note: the password is not encrypted. This feature will be added by the administration which is coming soon (I hope ;)). If you use encrypted password (see how-to 1.7) you have to add the encrypted password!! <br>
+    The parameter $enable_external_privategal_login has to be set to true to enable this kind of login. The default is false!</p>
+
+    <h2 ><a name=h12 id=h12></a>12. How to set passwords for a gallery (and howto set multiple passwords for one gallery any why ;))</h2>
+  <p>To protect a gallery with a password you have to create a empty file with the name 'private.txt' in the directory you want to protect. If you want to protect a gallery with a different password you have to enter the password in the 'private.txt' file. </p>
+  <p>This is the description from the config.php. I want to make some more comments at this point because some people asked:</p>
+  <ul>
+    <li>The name of the password file can be changed in the config.php - check the config.php ($password_file) or ask your gallery administrator if he has changed it (maybe because of security issues - see how-to 1</li>
+    <li>Passwords can be encrypted - see how-to 1 for details! </li>
+  </ul>
+  <p>You can now use several passwords for each directory. Simply create a normal password file and seperate the different passwords with a ','. e.g. test,test2,test3. Make sure that there are no spaces between the commas and the passwords. If $encrypt_passwords=true you have to use the generated password! </p>
+  <p>By using multiple passwords you can give some friends access to some directories and e.g. your family access to other directories. The advantage is now that these two groups can now have access to the same galleries as well! Or you can protect all galleries with a kind of &quot;super password&quot; and a couple of directories with a 2nd password for access of only an area.</p>
+  <p>You can also set your individual image for a password protected gallery. Create a file named private.png and place it in the protected folder. The size should be the size you have set in the config.php (default is 120 x 90). <br>
+    Important: If you use another size than the one in the config.php the original size is used - This is because you can use individual folder images which have the same behavior. </p>
+
+    <h2 ><a name=h13></a>13. How to set watermarks and text on an image</h2>
+  <p>The description at the watermark section is a little bit short in the config.php file. Therefore I will give some additional explanations:</p>
+  <ul>
+    <li>Read the watermark section of the config.php!</li>
+    <li>Text on images and watermarks can be set independent of each other - you can use none, one or both.</li>
+    <li>Make sure that you have set $enable_direct_download=false if you want some watermarks on the originals!</li>
+    <li>If you use a random image: The watermark is only printed if the size is &lt; 200 px and the watermark fits on the image!</li>
+    <li>The text is always on the left bottom corner - the watermark image can have 9 positions!</li>
+    <li>Your watermark image should have a solid outline and the background color should surround this for best results. See the buttons/watermark.png I use for the demo. </li>
+  </ul>
+  <p>You can use individual watermarks for each folder! You can do this by creating the following files:</p>
+  <ul type=disc>
+    <li>watermark.txt - The watermark text</li>
+    <li>watermark.png - The watermark image for the image view</li>
+    <li>watermark_big.png - The watermark image for the originals </li>
+  </ul>
+
+    <p>PLEASE NOTE: There is a flag called $resize_only_if_too_big - If you have images smaller than the small_pic_size and this flag to true no small images are created and the originals are used instead! As a consequence no watermarks are printed on these images. You have either to add the watermark by yourself or set this flag to false. Butthen you images are enlarged to the smal picture size </p>
+    <h2 ><a name=h14></a>14. How to track errors if TWG does not work on your system. </h2>
+    <ol>
+      <li>Check if you done all the installation steps (rights and so on...).</li>
+      <li>Check the FAQ below!</li>
+      <li>Check the debug file - The location is defined in the config.php and xml/_mydebug.out by default. Many problems are reported there.</li>
+      <li>Delete the content of the cache, xml and counter directory</li>
+      <li>Call the file info.php in the TWG main directory - on the top are some internal twg tests. Maybe this helps already :). Below is the php_info call where your php info are show. Interesting are the installed modules like gd (with freetype), and memory limits (see 1st faq). If you get errors in the _mydebug.out: most of the time the php configuration/version makes the problem! </li>
+      <li>Check the forum </li>
+      <li>Contact me. Via forum is preferred because if I answer your problem, there is maybe someone else get help there too. But still feel free to contact me directly! </li>
+    </ol>
+    <h2 ><a name=h15></a>15. How to change or extend the smilies</h2>
+  <p>TWG shows smilies in comments and captions if the flag $enable_smily_support is set in config.php (=default).<br>
+    I have only provided a couple of smilies. But you can add your own set or extend the existing set by yourself. Maybe you want to change their size if you changed some fonts ...</p>
+  <p>The smilies are in the directory &lt;installdir&gt;/buttons/smilies.<br>
+    All smilies which are copied in this directory are available in TWG. TWG reads the whole directory and matches the filenames with the characters you normally would enter for a smilie - e.g. ;) -&gt; ;).gif. There are some characters that are not allowed on he file system which are heavily used. I have mapped the following:</p>
+  <blockquote>
+    <p>: -&gt; a<br>
+      \ -&gt; b<br>
+      / -&gt; c<br>
+      * -&gt; d</p>
+  </blockquote>
+  <p>e.g. :) is the file a).gif ! </p>
+  <p>If you have a nice set of smilies and want to share them with others please sent them to me. Thanks. </p>
+
+    <h2 ><a name=h16></a>16. Linking to a website instead of downloading a file</h2>
+  <p>If you have some pictures e.g. from a remote site and want to link to this site if someone wants to download the image you can create a file named link.txt in this directory (Check the Beauties folder of the demo!). The file has to contain the starting &lt;a&gt; tag with a special id. e.g. </p>
+  <p>&lt;a href=&quot;&lt;your url&gt;&quot; id='adefaultslide'&gt; </p>
+  <p>The link is valid for all images of this direcory! - please don't forget the id - javascript will fail if this is missing! </p>
+
+    <h2 ><a name=h17></a>17. How to get an overview what I can place in a directory to configure it! (= summary of some howtows!) </h2>
+  <p>Maybe you have found out that you can place a lot of files inside a directory that are not jpg's to change something I have set as a default. Here is a short summary what you can do (a better description is always in the real how-tos!):</p>
+  <ul type=disc>
+    <li>private.txt - protect your gallery; The filename can and should be changed in the config.php - more than one password is possible </li>
+    <li>private.png - image of a password protected folder when locked</li>
+    <li>folder.txt - Description of a folder that is shown on the thumbnail and if enabled on the image page</li>
+    <li>folder_&lt;language&gt;.txt - language dependant version of the folder.txt</li>
+    <li>image.txt - Description of all image of a folder that is shown on the image page (if you like e.g. a header of the images) </li>
+    <li>image_&lt;language&gt;.txt - language dependant version of the image.txt</li>
+    <li>foldername.txt - The name of the folder - is used instead the name on the file system. Very helpful for individual sorting of albums!</li>
+    <li>foldername_&lt;language&gt;.txt - language dependant version of the foldername.txt </li>
+    <li>folder.png - the image that is shown instead the first/random/collage image of a folder</li>
+    <li>watermark.txt - The watermark text</li>
+    <li>watermark.png - The watermark image for the image view</li>
+    <li>watermark_big.png - The watermark image for the originals </li>
+    <li>link.txt - if you want to link to a website instead downloading the original image by clicking on the image put the &lt;a &gt; tag in this file. </li>
+    <li>root.txt - The link to the root of the gallery - you can link back to e.g. your homepage (1.3). </li>
+    <li>url.txt - Link to a remote http directory. fsocksopen has to be available. The url has to end with a / and link directly where the pictures are (1.3). </li>
+    <li>back.png - The backgound image of the folder where it is stored in (1.3). </li>
+    <li>&lt;directory&gt;.zip - The archive where a whole directory can be downloaded (1.3). </li>
+    <li>style.css &#8211; you can set an individual stylesheet for each folder</li>
+  </ul>
+  <p>Please note: Please use the html representation in the .txt files of special characters: &auml; -&gt; &amp;auml; (exception: watermark.txt !) </p>
+  <p>That's it ;) </p>
+  <p>Have fun! </p>
+
+    <h2 ><a name=h18></a>18. How to enable Email notification</h2>
+  <p>By default email notification is turned off and sending of emails is disabled. In the config file are two main parameters you have to change: $show_email_notification and $enable_email_sending!</p>
+  <p>To configure your email set the $show_email_notification and $enable_email_sending to true. If you go to the overview page you can now register and unregister on the right upper menu. If you login the menu 'register' switches the 'send emails'.<br>
+    Now set the config.php to the following settings:<br>
+    $encrypt_emails = false ; // for testing! <br>
+    $youremail=&quot;&lt;your email&gt;&quot;; - This is the from email address of the registration! <br>
+    $default_subject, $default_text and $email_bottomtext are the defaults for the &quot;send emails&quot; screen. You can change them how you like. </p>
+  <p>Register yourself on the website and check if you get the registration email - Then login and send a notification message! <br>
+    go to the xml/subscriber.xml - your email address should be in there. Delete this file and set the following switches in the config.php:<br>
+    $encrypt_emails=true;<br>
+    $encrypt_emails_key=&quot;A random string- the longer the better - NO special characters here&quot;; </p>
+  <p>Make sure that the xml folder and the subscriber.xml cannot be read from the web (chmod 700 or 770). You find more information about the parameters on the installation page or in the config.php. </p>
+  <p>Since 1.3 there are some additional options in the email section. You can be notified if someone enters a comment or vote for an image. Enter the email where the notification should be sent to and enable the comment or rating notification. One mail is send for each entered comment or vote! </p>
+
+    <h2 ><a name=h19></a>19. How to enable download of a whole directory (new v1.3)</h2>
+  <p>You can provide a .zip file that the user can download instead of viewing/downloading a single image. Create a .zip file with the images you want your users to download. Store it in the directory where the images are located. The file name are the directory names with .zip as extension. e.g. Mexico -&gt; Mexico.zip. Please use folder names without special characters. Some web servers don't allow direct links to this kind of files.<br>
+  Important: If you are in a subdirectory like pictures/Mexico/Palenque the name of the zip/txt file is not the last directory only. They have to be connected with an _. In the example here this would be Mexico_Palenque.zip!</p>
+  <p>You have to activate the download in the config.php (default is enabled). If no archive can be found the normal settings for viewing/downloading of an image is used. </p>
+  <p>If you don't have that much space on your webspace (like on funpic where the filelimit is only 1 MB) you can create a file &lt;foldername&gt;.txt and put the url to your zip file in there. In the example this would be Mexico.zip. You don't need the Mexico.zip anymore!</p>
+  <h2 ><a name=h20></a>20. How to link to pictures in a remote http directory (new v1.3)</h2>
+  <p>This a really nice feature. You can link to images which are located on a remote web server. You have to have two </p>
+  <ul type=disc>
+    <li>The images are located on a remote http server where the directory can be listed </li>
+    <li>fsocksopen() has to be enabled on your php installation (www.funpic.de does not - therefore I cannot show this in the demo).</li>
+  </ul>
+  <p>The directory structure of the images has to be on the local web server. Inside the directory have to specify a file called url.txt where the url of the remote images are stored. Make sure that the url ends with an /. Inside the local directory you can use all the other settings like described in how-to 17. Even private works but is not really save because the images on the remote directory have to be available (but is no one knows :) ...). This does not work recursive! If you have different directory levels on the remote server you have to create a url.txt for each directory. If you have a space in the path to the images please replace this with an %20. The best way is to navigate with the browser to the directory and copy the url. If you have black images then please check your image names - special characters do not work on all web server (on most they do not!) </p>
+  <p>The thumbnails and the small web images are still stored in the cache to provide a performance which is only slow at the first access and in fullscreen mode!</p>
+  <p>You can now link different images galleries together into a single one :). </p>
+
+    <h2 ><a name=h21></a>21. How to modify the root link of the gallery to link e.g. back to your page instead to the gallery overview (new 1.3) </h2>
+  <p>Maybe you want to link back to your homepage instead to an overview of galleries. If you want to do this put a file called root.txt into the folders where the &quot;root&quot; link should be modified. By default the text for the link is &quot;Galleries&quot; (depending on the language). You can modify this by changing the $lang_galleries in the language files you are using! </p>
+  <p>If you want to keep the gallery like it is but ony want to have an additional link back home there: Do the modifications I explained before. Create a folder &quot;Galleries&quot; in the pictures folder and put all your pictures below this folder. and put the root.txt in the folder &quot;Galleries&quot;. If you want to have this language dependant: Create foldername_&lt;lang&gt;.txt files (see howto 6). </p>
+  <h2 ><a name=h22></a>22. How to use a different background image for each folder (new 1.3) </h2>
+  <p>You can use an individual background image for each subfolder. There are 2 ways to do this:</p>
+  <ol>
+    <li>Simply place a png called back.png in the folder where the background should be different. That's it. </li>
+    <li>Solution 1 does not create a direct link to the background image (it calls a php script that returns the image). Therefore its not very efficient and some browsers have problems caching the background image properly. Therefore it is also possible to place the background image into the cache folder. Create a background named &lt;urlencoded foldername&gt;_back.png. If you are using recursive folders the folders have to be separated with an _. The easies way to name the file is to go into the cache folder and look for the folder name at an image (It is urlencoded!: e.g. Usa (+&uuml;$&sect;!%&amp;-;) -&gt; Usa+%28%2B%FC%24%A7%21%25%26-%3B%29) . Copy the folder name part and add the _back to he file name of the png background image.</li>
+  </ol>
+  <p>If you want to save some disk space and make your gallery a little bit faster - use a jpg as background an rename it to png! </p>
+  <p>You can turn of background images in the config.php with $show_background_images. There is also a switch called $low_show_background_images that is used in low bandwidth mode. By default background images are not shown in low bandwidth mode.</p>
+  <h2 ><a name=h23></a>23. How to upgrade from older versions from TWG </h2>
+  <p>If you want to upgrade from TWG 1.1.2 or 1.2 to 1.3 you can still use your counters, captions and comments.</p>
+  <p>Please don't install a version 1.3 over a version 1.1.2 because the whole directory structure ist different here.<br>
+    When upgrading from 1.2 to 1.3 there is no problem doing this.</p>
+  <p>You can copy the folders counter, xml and cache to the new installation without problems. Missing values in the xml files are automatically created.<br>
+    IMPORTANT! <br>
+    The counter files have to be updated before they can be used in Topx. This is done by simple going to the 1.st picture of each folder! <br>
+    The comments have a different file format for the date - If you use old xml comment files please redownload the latest TWG build and replace the inc/readxml.inc.php! This was not working in the 1st final of 1.3 </p>
+  <p>The harder part is the style sheet and the config.php. <br>
+    To make it short - you have to do your changes again in the files from TWG 1.3. Please check the other how-to's before you do your settings. Maybe you discover a feature that makes it easier for you to adapt TWG to your needs. <br>
+    The stylesheet and the config.php can be best merged with a tool like <a
+href="http://www.winmerge.org">WinMerge</a>. I have made the style sheet much more integration save! Therefore some names in the style sheets have changed. Please use my_style.css for your style settings </p>
+  <p>I changed the default name of the 'private' file to 'private.txt' because this was asked too much. Please read the security how-to and use password encryption for your passwords! </p>
+ <h2 ><a name=h24></a>24. How to show more images in the DHTML thumbnail strip </h2>
+  <p>If you scroll in the DHTML thumbnail strip you can set the numbers diplayed at a time with $numberofpics.</p>
+  <p>But here I want to &quot;remove&quot; the green arrows at the end of the thumbnail strip. The problem here is that all pictures have to be loaded until the strip is moving. To decrease the waiting time I have set a limit of the number of images which are displayed with the following two parameters:</p>
+  <p>$cmotion_gallery_limit_ie=40;<br>
+  $cmotion_gallery_limit_firefox=20; </p>
+  <p> This is the max number of images that are shown in one cmotion gallery. At the end there will be a small arrow to go to the next x images :).</p>
+  <p>But why are the numbers different? All browsers except IE don't allow to excange images in this strip on the fly. Therefore an optimization for IE exists: $enable_optimize_cmotion_gallery_limit_ie. If you set this to true only 5 images are loaded each side and all the remaining ones are white  first. Because IE does allow me to exchange these images I can do some nice background exchanging of this images - The big advantage: The gallery is moving if the 1st set of images is loaded.</p>
+  <p>Sometimes some images don't show up in the optimized version. Most of the time this is because the thumbnail had to be genereted and was not available in time when IE requested it. If all thumbnails are created this is no problem anymore. (You can use the search to create all thumbnails quickly -&gt; search -&gt; file name -&gt; . -&gt; All). So if you want to reduce the green arrows: increase this values but not that a lot of data is loaded. There are low_ values for this two settings as well! </p>
+  <h2 ><a name=h25></a>How to use and make a skin! (new 1.3c) </h2>
+  <p>Using a skin is easy. Look in the skins folder which .css files do exist and use the name of the css (without the .css) in the config.php at $skin like $skin=&quot;winter&quot;;. If you download one from the forum extract it into the skins folder and enter the skin name like before in the config.php - be sure not to create a subdirectory. The skin files have to be in the skins folder.</p>
+  <p>Making a skin is actually easy too ;). The skin can have 3 components:</p>
+  <ul>
+    <li>a style sheet called &lt;skin name&gt;.css - This is like the my_style.css in the main folder - you can enter all styles TWG known in there!</li>
+    <li>a php file called &lt;skin name&gt;.php - Here are the config.php settins for this skin. Normally you place here if you use dynamic backgroud and the colors of the background of the slideshow. You can also disable e.g. the optimized slideshow because it does no look that good if you have a background image. Check the elements of he skin section - it makes sense to adopt them for a skin</li>
+    <li>a background image called &lt;skin name&gt;.jpg - This image has to be entered as the background image in the &lt;skin name&gt;.php. I recommend to use a resolution not larger then 1024x768 and set he dynamic background to true - otherwise the loading time for the backgound is maybe too long for some users. Like with the back.png the background image is not shown if a slow connection is detected - Therefore always define a background color too.</li>
+  </ul>
+  <p>Thats it. If you want to share your skin please ckeck the &quot;Skins&quot; section in the forum. You should provide a screenshot and a zipfile with the 3 files in it there. I have provided a template there how a entry in the skin section should look like.</p>
+  <p>Please don't use special characters or spaces for the skin names. Most web server don't work well with style sheets that contain those characters. </p>
+  <p>&nbsp;</p>
+  <h1><a name=faq></a>FAQ (English only!) </h1>
+  <h2 ><a name=0></a>The images/directories are not shown at all or only some are shown</h2>
+  <p>If you have set the right file permissions there can be a problem with your php memory limit. If you have original images with ~ 1MB the needed intern memory is ~10MB (Open a jpg e.g. in Paint Shop Pro or Photoshop and check the memory usage of your image). Call the file info.php in the TWG main directory. It shows you the php-settings of your system. If your memory limit is lower than the limit you need for your pictures you have to increase this limit or make your images smaller. </p>
+  <p>OR - If all images are missing: Have you enabled the &quot;text on image&quot; feature. If yes maybe the FreeType lib isn't installed on your system (call info.php section gd). Set $print_text to false and retry - If the images are twg_shown please use the $print_watermark switch. I will try to detect if the print_text does not work in one of the next releases. </p>
+  <p>OR - TWG is caching everything from the file system in the session - close your browser and try again! </p>
+
+    <h2 ><a name=1></a>I get an error message when running TWG the first time. </h2>
+  <p>Please go to the installation page and check how to install TWG. Maybe you forgot to set the file permissions correctly. </p>
+
+    <h2 ><a name=2></a>Some of the images are completely black on the thumbnail view</h2>
+  <p>You have maybe opened the gallery during uploading the images. Just delete the cache folder and retry. </p>
+
+    <h2 ><a name=6></a>Deleting the cache</h2>
+  <p>Deleting the cache dows not mean to delete all the files which are in there. It means to delete all the images that are in there! There are also .rot files where the rotation of images are stored :). If you want to remove stupid rotations - delete all files in this folder! </p>
+
+    <h2 ><a name=7></a>You wrote that you removed all the cookies - but when I go to the gallery a cookie is set!</h2>
+  <p>That's right - TWG does not use any cookies to store information but php does to track your session. If you don't allow this cookie you can't login or change any settings. But you can refuse this cookie and still use everything of TWG. TWG is designed to run without cookies if the php installation is setting a parameter in the php.ini. If the administrator of the gallery is able to set the flag 'session.use_trans_sid = 1' the urls get a sessionid. Then you can refuse the cookie and still use the whole functionality. If not you should allow your browser to accept this one cookie. </p>
+
+    <h2 ><a name=8></a>I want to sort my images by the date the picture is taken (using exif data) - what do I have to set on my server? </h2>
+  <p>TWG tries so sort your images after the time the picture is taken. Therefore it need to read exif information from the image. This function is only available in PHP 4 compiled using --enable- exif (call the info.php of TWG and check your php settings). Its functionality and behavior has changed in PHP 4.2. Earlier versions are very unstable. There a a couple of libraries in the www that can read the information without --enable- exif but I have tried some and didn't get better results reading the time the picture was taken (my own camera does not have exif data I can use :(). If no proper data can be read the file time is used. If --enable-exif is not set the file time is used as well. </p>
+
+    <h2 ><a name=10></a>How can I reset/change the image view counter/caption/comments?</h2>
+  <p>Maybe you want to reset/change the image view counter. The counter files are stored in the xml directory and have the format &lt;twg_album&gt;_image_counter.xml. Each directory has its own counter file. If you remove the file a new one is created the next time a picture of the twg_album is called. You can also modify it with a text editor to maybe reduce a stupid counter value. <br>
+    The xml directory does also hold the captions (&lt;twg_album&gt;_image_text.xml) and the comments (&lt;twg_album&gt;_album_kommentar.xml). You can delete this files if you want to reset the entries. If you modify something with a texteditor there please be careful because the text is stored encoded there (xml does not like something like &amp; ;)). </p>
+
+    <h2 ><a name=11 id=11></a>I want to test TinyWebGallery at my system at home. Is there a easy way to do this?</h2>
+  <p>Yes there is. There is a great project called xampp that has a ready to go package of an actual Apache with installed PHP (and much more). Just go to <a
+href="http://www.apachefriends.org/de/xampp-windows.html%20" target="_blank">http://www.apachefriends.org/de/xampp-windows.html </a>and download the package. You have only to execute a batch file to start the Webserver (if you download the zip file!). Simply unpack the TWG into the htdocs directory of xampp and you are ready to go. </p>
+  <h2 ><a name=12 id=12></a>Exif information is not shown in TWG but the Windows Explorer does. Why?</h2>
+  <p >Exif information is stored differently by each camera type. The exif reader that is used is looking at a defined set of offsets and tries to extract the information. Windows explorer (and other tools) do just know more offsets than the small php class ;). I have this problem too depending which program I use to process my images. If the images don't work download the freeware version of cam2pc (<a href="http://www.nabocorp.com">http://www.nabocorp.com</a>) and resize the image with the flag &quot;copy metadata&quot; set. Use as size a size bigger than your images if you don't want to resize! This nice tool copies the exif data to a place the exif reader con find it ;).</p>
+  <p >The exif reader is the same coppermine gallery uses. Therefore I want to thank coppermine programmers and the initial developer of the exif class who released this under the GNU General Public License!</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  </div>
+</body>
+</html>
