@@ -1,0 +1,159 @@
+<form method="post" action="">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr valign="top"> 
+      <td width="74%"> 
+        <table width="250" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="161" valign="middle" height="51"> <font class="form_text"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333">DOMAIN 
+              SEARCH:</font></b></font> <br>
+              <input type="text" name="keyword" maxlength="30" size="15" style="border: 1 solid #666666" value="<?php echo $keyword ?>">
+              <input type="image" border="0" name="submit2" value="submit" src="images/button_go.gif" width="21" height="20" onClick="verify(this.form);">
+              <input type="hidden" name="page2" value="<? echo $page ?>">
+            </td>
+            <td width="89" valign="middle" height="51">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+      <td width="26%"> 
+        <table width="250" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#CCCCCC">
+                <tr> 
+                  <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=domains"><font color="#990033">All</font></a> 
+                    domains:</font></td>
+                  <td width="96" height="5" align="right"> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"> 
+                    <?
+$domains = get_total_domains();
+echo $domains;
+?>
+                    </span></span></span></span></font></b></td>
+                  <td width="6" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=domains&amp;today=Y"><font color="#990033">Today's</font></a> 
+                    new domains:</font></td>
+                  <td width="96" height="5" align="right"> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"> 
+                    <?
+$orders_t = get_total_domains_today();
+echo $orders_t;
+?>
+                    </span></span></span></span></font></b></td>
+                  <td width="6" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=domains_due">Due/Overdue</a> 
+                    domains:</font></td>
+                  <td width="96" height="5" align="right"> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><font color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"> 
+                    <?
+$orders_o = get_total_overdue_domains();
+echo $orders_o;
+?>
+                    </span></span></span></span></font></font></b></td>
+                  <td width="6" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=domains_exp&period=30">Expiring</a> 
+                    within 30 days:</font></td>
+                  <td width="96" height="5" align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><font color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"> 
+                    <?echo count_domains_expiring("30");
+
+?>
+                    </span></span></span></span></font></font></b></td>
+                  <td width="6" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form method="post" action="" onSubmit="validate();return returnVal;">
+  <font face="Verdana, Arial, Helvetica, sans-serif"> </font> <font face="Verdana, Arial, Helvetica, sans-serif"> 
+  <? 
+    $date=date("Y-m-d");
+
+	$i="0";	
+	$db = new ps_DB;
+	if(isset($keyword)) {
+	$q  = "SELECT * FROM domains WHERE domain_name LIKE '%$keyword%' ORDER BY domain_host_id, domain_name";
+	} elseif (isset($account_id)) {
+	$q  = "SELECT * FROM domains WHERE domain_account_id LIKE '$account_id' ORDER BY domain_host_id, domain_name";
+	} elseif (isset($today)) {
+	$q  = "SELECT * FROM domains WHERE domain_start_date = '$date' ORDER BY domain_host_id, domain_name";
+	} else {
+	$q  = "SELECT * FROM domains ORDER BY domain_host_id, domain_name";
+	}
+                    if ($count) {
+					$q.= " LIMIT ";
+					$q.= $max_results;
+					$q.= ",";
+					$q.= $count;
+					$next=$count+$max_results;
+					$last=$count-$max_results;
+					} else {
+                    $q.= " LIMIT $max_results";
+					$next=$count+$max_results;
+					$last=$count-$max_results;
+					}
+	$db->query($q);
+		while ($db->next_record()) {
+
+?>
+  </font> <font face="Verdana, Arial, Helvetica, sans-serif"> </font> <font face="Verdana, Arial, Helvetica, sans-serif"> 
+  </font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC" vspace="1" hspace="1">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#E4E4E4" height="10">
+          <tr> 
+            <td width="224" height="5"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#333333"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#333333"><font color="#003399"><b><a href="?page=domains_edit&account_id=<? echo $db->f("domain_account_id"); ?>&domain_id=<? $db->p("domain_id"); ?>"> 
+              <? $db->p("domain_name");  ?>
+              </a></b></font></font></font></font></font></font></b></font><font color="#003399"> 
+              </font></font></b></font></td>
+            <td height="5" width="547"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><i><font color="#003399"> 
+              </font></i><font color="#003399"> </font><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+              <? 
+$host_name = show_hosting_option($db->f("domain_host_id"));
+echo $host_name; 
+ ?>
+              </font></font></b></font><font color="#003399"> </font></font></b></font></td>
+            <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              </font></font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font color="#0033CC"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+              <? $length = $db->f("domain_years");   
+if ($length==0) { 
+$years = "Hosting Only"; 
+} else {
+$years = "$length Year(s)";
+} 
+echo $years;
+
+?>
+              </font></font></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              </font></font></td>
+            <td width="147" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+              <? 
+$status = get_billing_status($db->f("domain_id"));
+echo $status; 
+ ?>
+              </font></font></b></font></font></font></b></font><font color="#003399"> 
+              </font></font></b></font></font></font></b></font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <font face="Verdana, Arial, Helvetica, sans-serif"></font><font face="Verdana, Arial, Helvetica, sans-serif"><br>
+  <?
+$i++;
+ } 
+if ($i=="0") { echo "<BR><B>NO RESULTS FOR THIS SEARCH</B>"; }  ?>
+  </font> 
+</form>
+<div align="center"><a href="?page=<? echo $page ?>&amp;count=<? if($next <= 0) { echo $last; } else { echo "0"; } ?>"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><br>
+  PREV</b></font></a><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+  | <a href="?page=<? echo $page ?>&amp;count=<? echo $next; ?>">NEXT</a></font></b></div>
