@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="et" xml:lang="et">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />  
+  <title>XL-Quiz</title>
+  <style type="text/css">
+body {
+  font-family: georgia;
+  margin: 2em;    
+}
+
+h1, h2, h3 {
+	border-top: solid 6px #fafafa;
+	border-left: solid 6px #fafafa;
+	border-right: solid 6px #eee;
+	border-bottom: solid 6px #eee;
+	padding: 5px;
+	color: #999;
+}
+#main {
+	width: 640px;
+	margin:auto;
+}
+.title
+{
+	font-size: 105%;
+	font-style: italic;
+}
+.highlight {
+	background-color: #eee;
+}
+  </style>
+</head>
+<body>
+<div id="main">
+<h1>XL-quiz</h1>
+<p class="title">&ldquo;Repetito est mater studiorum&rdquo;</p>
+
+<h2>Skripti tutvustus</h2>
+
+<p>Tegemist on järjekordse testisüsteemiga. Sellega on võimalik esitada kolme tüüpi küsimusi:</p>
+<ul>
+<li>radio-tüüpi - ühe õige valikuvariandiga</li>
+<li>checkbox-tüüpi - mitme valikuvariandiga</li>
+<li>tekst-tüüpi - vastus tuleb ise väljakirjutada</li>
+</ul>
+
+<p>Küsimusi / variante võib olla piiramatul hulgal.</p>
+
+<p class="highlight">Kuna ma olen piisavalt laisk siis administreerimisliidest asjal ei ole &mdash; testide koostamine toimub&hellip; MS Exceli (või <a href="http://www.openoffice.org/product2/calc.html">OOCalc</a>) kaudu :P </p>
+<h2>Demo</h2>
+
+<p>On siin  <a href="http://php.bytez.net/xlquiz/taketest.php?id=n2ide">php.bytez.net/xlquiz/</a></p>
+
+<h2>Paigaldus</h2>
+
+<ol>
+<li>Kopeeri failid serverisse</li>
+<li>chmod'i "cache" kataloog 777</li>
+<li>Tee <a href="dump.sql">mysql tabel</a></li>
+<li>Määra configuration.php-s mysql ühendumiseks vajalikud andmed</li>
+</ol>
+
+<h2>Kasutamine</h2>
+
+<p>Selline on näidistest: <a href="example-test.xls">example-test.xls</a></p>
+
+<p>Testifailid (exceli formaadis) tuleb kopeerida "db" kataloogi. Esimesel käivitusel parsitakse sealt info cache kataloogi, niiet järgmisel käivitusel peaks see toimuma juba kiiremini.</p>
+
+<p>Lisamaks linki uuele testile kasuta sellist formaati:<br /> 
+&lt;a href="taketest.php?id=failinimi"&gt;Testi nimi&lt;/a&gt;</p>
+<p>NB! Failinimes laeindit ei pea panema</p>
+<h3>Kontakt</h3>
+Küsimused, kommentaarid <a href="http://lauri.bytez.net/mail.php?subject=xl-quiz">saada siia</a> !
+</body>
+</html>
