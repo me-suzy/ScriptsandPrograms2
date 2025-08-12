@@ -1,0 +1,51 @@
+SAXON : Simple Accessible XHTML Online News
+===================================
+
+Copyright (c) 2004 by Black Widow
+http://www.blackwidows.co.uk
+
+SAXON 4.5: whats-new.txt
+30 September 2005
+
+Fixed a reported security bug on login whereby someone logging in using a login name of:
+
+' or isnull(1/0) /*
+
+could gain illegal access when magic_quotes was turned off.
+I couldn't actually replicate this myself (with or without magic_quotes) but login names are now strictly limited 
+to alphanumeric characters. No punctuation and no whitespace.
+Affected files:
+functions.php
+admin/add-user.php
+
+Post dated items now available:
+Add a news item for next week (or next year) and it won't appear on your site, or in your RSS feed, 
+until the appropriate date.
+
+List news items:
+List all items currently in the database - including post dated articles.
+
+Preview news:
+Jump direct to your main news page (uses path settings within config.php)
+
+Fake cron:
+On the first user visit to the main news page each day, a fake cron function will check to see if there 
+are any articles in the database scheduled for release. These articles will be automatically published on 
+the main news page and a new RSS feed generated. If the fake cron function fails for any reason, the 
+SAXON administrator will be emailed automatically.
+If you don't want to make use of the fake cron for some reason, there is an option to switch it off. 
+See readme.txt for further information.
+
+Formatting:
+Removed the bug that added <br /> to end of lines when creating eye-readable markup and, in the 
+process, added a more intelligent markup function that should respect all block level XHTML tags.
+
+Illegal character clean-up:
+Correct encoding of common "illegal" characters when displaying news on a web page or publishing an RSS feed.
+
+Allow SAXON tables to have prefixes:
+Now you can have multiple instances of SAXON pulling from a single database.
+
+User Passwords:
+Allow SAXON users to automatically email the SAXON administrator to request a new password if they 
+have problems logging in.
