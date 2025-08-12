@@ -1,0 +1,46 @@
+<?
+
+$pass = is_logged($session_id);
+	if ($pass == "N") {
+		include("member_login_1.html");
+	} elseif($pass =="Y") { 
+	
+	// CALCULATE THE ORDER TOTALS
+		$ccexp = $ccexp;
+		$ccexp .= $ccexp_year;
+		$domain_cost = show_registration_cost($REMOTE_ADDR);
+		$hosting_cost = show_hosting_cost($REMOTE_ADDR);
+		$setup_amount = show_setup_cost($REMOTE_ADDR);
+		$subtotal = $hosting_cost + $domain_cost + $setup_amount;
+		if (setup("tax") == "Y") { $tax = $subtotal* setup("tax_rate"); } else { $tax = "0"; }
+		$total_1 = $subtotal + $tax;
+		$total = (number_format ($total_1, 2, ".", ""));
+		$account_id  = get_account_id($session_id);
+		$cc_type = identify($ccnum);
+		
+					
+	// NEW CARD IS BEING USED!
+    if (($new_card != "") && ($ccnum !="")) {
+			if (($ccnum == "") || ($cc_type == "N")) {
+				include("member_order_invalid.html");
+				end;
+			} else {
+				$return = card_checkout($account_id,$setup_amount,$total,$ccnum,$ccexp,$account_name,$account_address,$account_zip,$REMOTE_ADDR,$session_id,$attr,$name,$value);
+				include($return);
+				end;
+			} 
+			end;
+    	} 
+
+    	
+    	// OLD CARD IS BEING USED!
+    	  elseif ($old_card != "") {
+			$return = card_s_checkout($account_id,$setup_amount,$total,$billing_id,$account_name,$account_address,$account_zip,$REMOTE_ADDR,$session_id,$attr,$name,$value);
+			include($return);	
+    			} else {
+    			include("member_order_invalid.html");
+    			}
+}
+
+
+?>
