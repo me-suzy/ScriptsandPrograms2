@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+	<HEAD>
+		<TITLE>Please Log In for Access</TITLE>
+		<LINK rel="stylesheet" href="Inc/Styles.css" type="TEXT/CSS">
+	</HEAD>
+	<BODY onLoad="javascript:form1.LoginUsername.focus()">
+		<TABLE width="730" border="0" align="center" cellspacing="0" cellpadding="3">
+			<TR>
+				<TD width="330" valign="bottom" class="Welcome">
+					Welcome <?php echo $LoggedInFullName; ?>
+				</TD>
+				<TD>
+					<A href="<?=$AdminScript?>"><IMG src="Inc/Images/<?= $AdminSiteLogo ?>" align="right" border="0" alt="Logo"></A>
+				</TD>
+			</TR>
+			<TR>
+				<TD colspan="2">
+					<HR width="740" size="2">
+				</TD>
+			</TR>
+		</TABLE>
+		<TABLE width="500" border="0" align="center" cellspacing="0">
+			<TR>
+				<TD colspan="3" align="left" class="GroupHeading">
+						&nbsp;&nbsp;Login For Access
+				</TD>
+			</TR>
+		</TABLE>
+		<FORM name="form1" action="<?=$AdminScript?>" method="post">
+			<TABLE width="300" border="0" align="center" cellspacing="0">
+				<TR>
+					<TD rowspan="3" align="center" width="20%">
+						<IMG src="Inc/Images/Login.gif" alt="Login">
+					</TD>
+					<TD width="40%" class="FieldPrompt">
+						User ID:
+					</TD>
+					<TD>
+						<INPUT type="text" name="LoginUsername" size="12" maxlength="30">
+					</TD>
+				</TR>
+				<TR>
+					<TD class="FieldPrompt">
+						Password:
+					</TD>
+					<TD>
+						<INPUT type="password" name="LoginPassword" size="12" maxlength="30">
+					</TD>
+				</TR>
+			</TABLE>
+			<TABLE width="300" border="0" align="center" cellspacing="0">
+				<TR>
+					<TD>
+						<CENTER>
+							<INPUT class="but" type="submit" value="       Log in       ">
+						</CENTER>
+					</TD> 
+				</TR>
+			</TABLE>
+		</FORM>
+	</BODY>
+</HTML>
