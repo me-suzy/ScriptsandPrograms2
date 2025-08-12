@@ -1,0 +1,231 @@
+/*
+    expireddomain.css, version 1.10
+    Gamma:  gray-to-green
+    Features:
+        Logo
+            small-caps      H1
+            caps            H1 B
+        Navigation
+            current page    TABLE.nav TH/TD
+            prev pages      TABLE.nav TH/TD A
+        Menu
+            current         TABLE.menu TH/TD
+            other           TABLE.menu TH/TD A
+        Section
+            text            H3
+        Information
+            description     TABLE.info THEAD TH/TD
+            header          TABLE.info [TBODY] TH
+            content         TABLE.info [TBODY] TD
+            legend          TABLE.info TFOOT TH/TD
+        Dialog
+            option          TABLE.dialog TH/TD A
+        Error
+            text            STRONG
+        List
+            static header   TABLE.list TH
+            active header   TABLE.list TH A
+            asc/desc sign   TABLE.list TH DIV
+            static data     TABLE.list TD
+            active data     TABLE.list TD A
+*/
+
+BODY {
+    background-color: #eee;
+    color: #444;
+    font-family: 'Verdana';
+}
+
+A:link, A:visited {
+    color: green;
+    font-family: 'Bookman Old Style';
+    text-decoration: none;
+}
+A:hover {
+    text-decoration: underline;
+}
+
+/*
+                    Logo
+*/
+
+H1 {
+    font-family: 'Bookman Old Style';
+    font-variant: small-caps;
+    text-decoration: underline;
+}
+H1 B {
+    font-variant: normal;
+}
+
+/*
+                    Navigation
+*/
+
+TABLE.nav {
+    border-style: groove;
+    border-width: 0 0 4 0;
+    margin: 0 5% 0 5%;
+}
+TABLE.nav TH, TABLE.nav TD {
+    color: green;
+    font-family: 'Times New Roman';
+/**/letter-spacing: 0.2ex;
+}
+TABLE.nav A:link, TABLE.nav A:visited {
+    color: #666;
+    font-family: 'Times New Roman';
+/**/font-style: italic;
+/**/letter-spacing: 0ex;
+}
+TABLE.nav A:hover {
+    color: green;
+}
+
+/*
+                    Menu
+*/
+
+TABLE.menu {
+    width: 90%;
+    border-style: groove;
+    border-width: 0 0 4 0;
+}
+TABLE.menu TH, TABLE.menu TD {
+    width: 1%;
+    color: green;
+    font-family: 'Arial';
+/**/padding: 2;
+}
+TABLE.menu A:link, TABLE.menu A:visited {
+    color: #666;
+    font-family: 'Arial';
+}
+TABLE.menu A:hover {
+    color: green;
+}
+
+/*
+                    Section
+*/
+
+H3 {
+    font-family: 'Comic Sans MS';
+}
+
+/*
+                    Information
+*/
+
+TABLE.info {
+    border-style: solid;
+    border-color: green;
+    border-width: 1 0 1 0;
+}
+TABLE.info THEAD TH, TABLE.info THEAD TD {
+    color: green;
+}
+TABLE.info TH {
+    background-color: #ccc;
+}
+TABLE.info TFOOT TH, TABLE.info TFOOT TD {
+    font-family: "Times New Roman";
+    font-size: 0.8em;
+}
+
+/*
+                    Dialog
+*/
+
+TABLE.dialog TD, TABLE.dialog TH {
+    width: 1%;
+}
+TABLE.dialog A:link, TABLE.dialog A:visited {
+    color: green;
+    background-color: #ccc;
+    font-family: 'Arial';
+    width: 100%;
+    height: 100%;
+}
+TABLE.dialog A:hover {
+    background-color: #999;
+}
+
+/*
+                    Error
+*/
+
+STRONG {
+    color: red;
+    font-family: 'Verdana';
+}
+
+/*
+                    Form
+*/
+
+FORM {
+    font-family: 'Bookman Old Style';
+}
+INPUT, TEXTAREA {
+    font-weight: bold;
+    border-width: 1;
+}
+
+/*
+                    List
+*/
+
+TABLE.list {
+    width: 100%;
+    border-style: ridge;
+}
+TABLE.list TH {
+    color: #444;
+    background-color: #ccc;
+    font-family: 'Arial';
+}
+TABLE.list TH A:link, TABLE.list TH A:visited {
+    color: green;
+    font-family: 'Arial';
+    width: 100%;
+    height: 100%;
+}
+TABLE.list TH A:hover {
+    background-color: #999;
+}
+TABLE.list TD {
+    border-style: solid;
+    border-width: 1 0 0 0;
+    border-color: black;
+}
+TABLE.list TD A:link, TABLE.list TD A:visited {
+    color: #666;
+    font-family: 'Verdana';
+    width: 100%;
+    height: 100%;
+}
+TABLE.list TD A:hover {
+    color: white;
+    background-color: #999;
+    text-decoration: none;
+}
+
+/*
+                    List: asc/desc order sign (max 1 symbol)
+*/
+
+TABLE.list TH {
+/**/position: relative;
+}
+TABLE.list TH A {
+/**/padding: 0 1ex 0 1ex; 
+}
+TABLE.list TH DIV {
+/**/position: absolute;
+/**/top: -0.05em;
+/**/right: 0;
+    color: red;
+/**/font-size: 1.1em;
+}
+
