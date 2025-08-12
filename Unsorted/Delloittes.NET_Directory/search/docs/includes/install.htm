@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML dir=ltr><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=Windows-1252">
+<META content=True name=InChm>
+
+<head>
+<LINK href="style.css" type=text/css rel=STYLESHEET>
+<SCRIPT src="script/main.js"></SCRIPT>
+</head>
+
+<BODY bgcolor='#ffffff' class=dtBODY id=bodyID topMargin=0>
+
+<SCRIPT language=JavaScript>
+write_header("Users' Guide - Installation");
+</SCRIPT>
+
+<DIV id=scrtext valign="bottom">
+
+<H2 class=dtH2>Installation</H2>
+
+<p>A basic understanding of Microsoft Active Server Pages (ASP) and general web concepts would be helpful during the installation. To install the deloittes.NET Directory please follow these simple steps... 
+
+<br><br>
+
+<b>1.</b> Unpack the contents of the self-extracting Winzip archive directory into your C:\inetpub\wwwroot folder or similar default website folder. This will create a new directory within your default website folder called "directory". Please make sure the installation will not replace any previous directory folder you may have. WinZip may not prompt you to replace files.<br><br>
+
+<b>2.</b> Once you have extracted the various files, you may need to modify various application variables within the <a href="configfile.htm">"configuration_file.asp"</a> in the "directory" folder. <a href="configfile.htm">Click here</a> for detailed information on how to set up the database connection strings and various other global configuration settings.<br><br>
+
+<b>3.</b> For Microsoft Access 97 / 2000: you will need to enable Read/Modify NT permissions for the "/database/" folder under the "IUSR_&lt;Machine Name&gt;" account.<br><br>
+
+<b>4.</b> For SQL Server 7.0 / 2000:<br><br>
+
+<i>a.</i> Create a new SQL Server database and call it "deloittes.net_directory".<br><br>
+
+<i>b.</i> Run the schema.sql script within the database directory on the new "deloittes.net_directory" table using Microsoft Query Analyzer or other query tool. This creates the various tables used by deloittes.NET Directory.<br><br>
+
+<i>c.</i> Run the defaults.sql script within the database directory on the new "deloittes.net_directory" table using Microsoft Query Analyzer or other query tool. This populates the various tables with the default values need to get started.<br><br>
+
+<i>d.</i> Create a New ODBC System DSN. When prompted select SQL Server as the driver. Name the datasource "deloittes_directory". When prompted for security permissions choose to connect using SQL Server authentication. Create a user within SQL Server to access your database. You may need to modify the username and password within the SQL connection string. Do not connect to SQL Server to obtain default settings for configuration settings. Leave all other settings as default.<br><br>
+
+
+<b>5.</b> Test your installation. To launch your directory, load the following address into your browser: <i>http://&lt;your domain name&gt;/&lt;your directory folder&gt;/</i>. You should see a display which looks very similar to our online demo but with no links. This indicates the directory is working correctly.<br><br>
+
+<b>6.</b> Once the directory has been installed correctly the next step is to configure the various directory settings, behaviours and categories. You can do this by accessing the directory administration pages located at <i>http://&lt;your domain name&gt;/&lt;your directory folder&gt;/admin/</i>. 
+
+<br><br>You will be prompted for a username and password to access the administration centre. Please enter "admin" (without the quotes) for both your username and password. Once you access the administration centre please remember to create your own user account and remove the default admin account.<br><br>
+
+<b>7.</b> Once your directory is successfully installed and configured on your server the next step is to begin <a href="gettingstarted.htm">creating your own directory</a>.<br><br>
+
+If you have any problems installing the deloittes.NET Directory please consult our <a href="http://www.deloittes.net/support/faqs/default.asp?id=aspdirectory" target="_blank">FAQ page</a> to view common installation questions. If your questions are not answered on our FAQ page please feel free to post your queries to our support forums at <a href="http://www.deloittes.net/support/forum/viewforum.asp?forumid=5" target="_blank">http://www.deloittes.net/support/forum/</a>.<br><br>
+
+The Small Business Edition, Medium Sized Enterprise Edition, Corporate Edition and Enterprise Edition are all provided with free technical support. Please consult the readme.txt within the root of your download for more information on support entitlement. 
+
+<SCRIPT language=JavaScript>write_footer();</SCRIPT>
+
+</DIV>
+</BODY>
+</HTML>
