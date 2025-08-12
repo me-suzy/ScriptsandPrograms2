@@ -1,0 +1,72 @@
+<form>
+	<title>Message Details</title>
+	<name>edit</name>
+	<width>580</width>
+
+	<action>index.php?mod=myprofile&sub=myprofile.inbox&action=store&FORMvalidate=false</action>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="return" >
+			<location>javascript:document.forms[0].submit();</location>
+		</return>
+
+		<forward button="forward" title="Forward Message">
+			<location>index.php?mod=myprofile&sub=myprofile.compose&msg_id={MSG_ID}&returnurl={CURRENT_PAGE}</location>
+		</forward>
+
+		<reply onclick="" button="reply" title="reply">
+			<location>index.php?mod=myprofile&sub=myprofile.compose&user_id={MSG_FROM}&msg_id={MSG_ID}&returnurl={CURRENT_PAGE}</location>
+		</reply>
+
+	</buttons>
+
+	<redirect>index.php?mod=myprofile&sub=myprofile.inbox</redirect>
+
+	<fields>
+
+		<msg_id type="hidden" hidden="true"/>
+		<msg_new forcevalue="0" type="hidden" hidden="true"/>
+
+		<msg_from type="relation">
+			<relation table="users" id="user_id">
+				<text>
+					<user_name>user_name</user_name>
+					<user_surname preffix="(" suffix=")" field="user_login"/>
+				</text>
+			</relation>
+
+			<title>From</title>
+		</msg_from>
+
+		<msg_to type="relation">
+			<relation table="users" id="user_id">
+				<text>
+					<user_name>user_name</user_name>
+					<user_surname preffix="(" suffix=")" field="user_login"/>
+				</text>
+			</relation>
+
+			<title>To</title>
+		</msg_to>
+
+		<msg_date type="text" title="Sent Date" action="date" params="F j, Y, g:i a" />
+
+		<msg_title type="text">			
+			<title>Subject</title>			
+		</msg_title>
+
+		<msg_body type="text" valign="top" font="normal"> 
+			<title>Message</title>
+		</msg_body>
+
+
+	</fields>
+</form>
