@@ -1,0 +1,153 @@
+<html>
+<head>
+  <title>AutoRank Pro v2.0.x Upgrade Installation Instructions</title>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="purple">
+<div align="center">
+<font face="Verdana">
+<h3>AutoRank Pro v2.0.x to v2.1.0 Upgrade Instructions</h3>
+<font size="2">
+Follow these instructions to upgrade your version 2.0.x installation to version 2.1.0<br>
+These instructions will also work to upgrade the freeware AutoRank v2.0.0<br>
+<p>
+</div>
+<table width="600">
+<tr>
+<td>
+<font face="Verdana">
+<font size="2">
+<ol>
+<b><li></b> Extract all files from the AutoRank Pro v2.1.0 archive you downloaded.<p>
+
+<b><li></b> In each .cgi file, you will need to set the location of Perl 5 on your
+server.<br>  This is done on the first line of the file, usually looking something
+like:<p>
+<font face="Courier">#!/usr/bin/perl</font>
+<p>
+Where /usr/bin/perl is the location of Perl 5.<p>
+
+<b><li></b> The script now uses default settings for the members, template, and script data
+directories.  If you have a directory structure that looks like the following, you can skip this
+step: <b>(If you are using cron, do not skip this step!)</b><p>
+
+/home/username/cgi-bin/AutoRankPro/sdata<br>
+/home/username/cgi-bin/AutoRankPro/members<br>
+/home/username/cgi-bin/AutoRankPro/templates<br>
+
+<p>
+
+If your directories are not named sdata, members, and templates, you will need to edit variables
+in the scripts.  functions.cgi, rankem.cgi, out.cgi, search.cgi, and index.cgi will all need to
+be setup.  If you are using cron, you MUST use full directory paths.  If you are not using cron
+you can use a setup similar to what is already there.  The variables are marked with comments that
+will assist you in properly setting them.<p>
+
+<b><li></b> Now, upload <b>ONLY</b> the update.cgi file, in ASCII mode, to the directory
+where your current AutoRank Pro .cgi files are located.  Set the permissions on this file to
+755; then bring it up in your browser by calling it from the URL at which it is located.
+This will update all of your current member database for use with v2.1.0<p>
+
+<b><li></b> <b>Optional Step</b> This next step is optional, but will save you some space on your
+server.  You can delete all of the files in the sdata directory, except the following files:<p>
+
+- admin.epf<br>
+- members      (GDBM Version)<br>
+- members.dir  (SDBM Version)<br>
+- members.pag  (SDBM Version)<br>
+
+<p>
+
+None of the 2.0.x data formats are supported by 2.1.0, so you will not be damaging anything by
+deleting these files.<p>
+
+Also at this stage you can delete all of the files in your member data directory.  You may want to back
+them up to your local computer just to be safe, but again these files are not used by v2.1.0.  They will
+only be taking up space on your server.<p>
+
+<b><li></b> Next you can begin uploading the new files.  Start with the files in the sdata directory, then
+the templates directory, and finally all of the .cgi scripts.  Upload <b>ALL</b> files in ASCII mode.<p>
+
+Recommended Permissions:<br>
+
+<table border="0" cellpadding="0" cellspacing="0" width="350"><tr><td bgcolor="#000000">
+
+<table width="100%" cellspacing="1" cellpadding="3" border="0">
+<tr>
+<td bgcolor="#afafaf" align="center"><font face="Verdana" size="1"><b>File or Directory</b></font></td>
+<td bgcolor="#afafaf" align="center"><font face="Verdana" size="1"><b>Permissions</b></font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">All .cgi Files</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">755</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">search.html</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">666</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">quick.html</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">666</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">help.dat</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">errors.dat</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">sdata</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">777</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">members</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">777</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">templates</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">755</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">All .htmlt &amp; .etmpl Files</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">Directory where list HTML files will be written</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">777</font></td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<p>
+
+<b><li></b> Now you are ready to run setup.cgi.  Bring it up in your browser by pointing it to the
+URL at which it is located.  This is where you will set all your variables; descriptions of each are included
+in the setup.cgi form.  Your administrative password from v2.0.x will work for v2.1.0<p>
+
+<b><li></b> After you have setup all the variables, you will need to enter the administrative script to
+setup all of the HTML for your site, and anything else that needs to be taken care of.<p>
+
+<b><li></b> <b>Note about old accounts:</b> Any accounts created with v2.0.4 or earlier will not be able
+to view their passwords.  Those passwords were stored using a one-way encryption algorithm, and no plain
+text copy of the passwords were kept.  If you edit any of those accounts from admin.cgi, you will have to
+give them a new password - make sure you inform the account holder of the change.
+<p>
+If the account holder chooses to edit their account, they will have to enter a new password for their account
+and it will be stored for later retreival.
+<p>
+If someone has an old 2.0.x password, and has not updated it, they will not be able to get it from
+the password reminder utility.  They must login to their account and setup a new password before they
+will be able to be reminded.
+<p>
+<b><li></b> <b>Note about accounts.cgi:</b> With v2.1.x you can access the account maintenance features by 
+having a link to accounts.cgi?login  - Other formats will not work.
+<p>
+
+<b><li></b> That's all!  You should now be able to continue normal script operations.
+
+</ol>
+</td>
+</tr>
+</table>
