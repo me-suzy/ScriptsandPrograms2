@@ -1,0 +1,55 @@
+<HTML><HEAD></HEAD>
+<BODY bgcolor="#eeeeee">
+<table border=1><tr><td><IMG src="area_object.png" usemap="#map1" border=0></td></tr></table>
+<map name="map1"> 
+<area shape=polygon coords='484,197,484,147,520,126,520,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("349 -> 500")'>
+<area shape=polygon coords='446,197,446,168,484,147,484,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("205 -> 349")'>
+<area shape=polygon coords='410,197,410,180,446,168,446,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("123 -> 205")'>
+<area shape=polygon coords='373,197,373,202,410,180,410,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("-35 -> 123")'>
+<area shape=polygon coords='336,197,336,211,373,202,373,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("-100 -> -35")'>
+<area shape=polygon coords='299,197,299,217,336,211,336,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("-142 -> -100")'>
+<area shape=polygon coords='262,197,262,223,299,217,299,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("-182 -> -142")'>
+<area shape=polygon coords='226,197,226,226,262,223,262,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("-202 -> -182")'>
+<area shape=polygon coords='188,197,188,223,226,226,226,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("-179 -> -202")'>
+<area shape=polygon coords='155,197,155,216,188,223,188,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("-132 -> -179")'>
+<area shape=polygon coords='117,197,117,209,155,216,155,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("-82 -> -132")'>
+<area shape=polygon coords='80,197,80,197,117,209,117,197'  title='profit/loss per day' alt='profit/loss per day' href='javascript:alert("0 -> -82")'>
+</map>
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">include (</font><font color="#DD0000">"diagram.php"</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">=new </font><font color="#0000BB">Diagram</font><font color="#007700">();
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">=@</font><font color="#0000BB">ImageCreate</font><font color="#007700">(</font><font color="#0000BB">560</font><font color="#007700">, </font><font color="#0000BB">300</font><font color="#007700">) or die(</font><font color="#DD0000">"Cannot create a new GD image."</font><font color="#007700">); 
+<br /></font><font color="#0000BB">ImageColorAllocate</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">); </font><font color="#FF8000">//background color
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetFrame</font><font color="#007700">(</font><font color="#0000BB">80</font><font color="#007700">, </font><font color="#0000BB">40</font><font color="#007700">, </font><font color="#0000BB">520</font><font color="#007700">, </font><font color="#0000BB">240</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetBorder</font><font color="#007700">(</font><font color="#0000BB">UTC</font><font color="#007700">(</font><font color="#0000BB">2000</font><font color="#007700">,</font><font color="#0000BB">12</font><font color="#007700">,</font><font color="#0000BB">15</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">), </font><font color="#0000BB">UTC</font><font color="#007700">(</font><font color="#0000BB">2001</font><font color="#007700">,</font><font color="#0000BB">12</font><font color="#007700">,</font><font color="#0000BB">15</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">), -</font><font color="#0000BB">300</font><font color="#007700">, </font><font color="#0000BB">1100</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetText</font><font color="#007700">(</font><font color="#DD0000">""</font><font color="#007700">,</font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#DD0000">"profit/loss per day during the last year"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">XScale</font><font color="#007700">=</font><font color="#0000BB">4</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">YScale</font><font color="#007700">=</font><font color="#DD0000">" $"</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Draw</font><font color="#007700">(</font><font color="#DD0000">"#FFFFCC"</font><font color="#007700">, </font><font color="#DD0000">"#000000"</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">);
+<br /></font><font color="#0000BB">$base</font><font color="#007700">=</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);
+<br /></font><font color="#0000BB">$t1</font><font color="#007700">=</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenX</font><font color="#007700">(</font><font color="#0000BB">UTC</font><font color="#007700">(</font><font color="#0000BB">2000</font><font color="#007700">,</font><font color="#0000BB">12</font><font color="#007700">,</font><font color="#0000BB">15</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">));
+<br /></font><font color="#0000BB">$P1</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">;
+<br />for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">&lt;</font><font color="#0000BB">12</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">++)
+<br />{ </font><font color="#0000BB">$t0</font><font color="#007700">=</font><font color="#0000BB">$t1</font><font color="#007700">; </font><font color="#0000BB">$P0</font><font color="#007700">=</font><font color="#0000BB">$P1</font><font color="#007700">;
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$t1</font><font color="#007700">=</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenX</font><font color="#007700">(</font><font color="#0000BB">UTC</font><font color="#007700">(</font><font color="#0000BB">2001</font><font color="#007700">,</font><font color="#0000BB">$i</font><font color="#007700">+</font><font color="#0000BB">1</font><font color="#007700">,</font><font color="#0000BB">15</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">0</font><font color="#007700">));
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$P1</font><font color="#007700">+=</font><font color="#0000BB">$i</font><font color="#007700">*</font><font color="#0000BB">20</font><font color="#007700">-</font><font color="#0000BB">rand</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">100</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Area</font><font color="#007700">(</font><font color="#0000BB">$t0</font><font color="#007700">, </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">$P0</font><font color="#007700">), </font><font color="#0000BB">$t1</font><font color="#007700">, </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">$P1</font><font color="#007700">), </font><font color="#DD0000">"ff0000"</font><font color="#007700">, </font><font color="#0000BB">$base</font><font color="#007700">, </font><font color="#DD0000">"profit/loss per day"</font><font color="#007700">, </font><font color="#DD0000">"alert(\""</font><font color="#007700">.</font><font color="#0000BB">$P0</font><font color="#007700">.</font><font color="#DD0000">" -&gt; "</font><font color="#007700">.</font><font color="#0000BB">$P1</font><font color="#007700">.</font><font color="#DD0000">"\")"</font><font color="#007700">);
+<br />}
+<br />
+<br /></font><font color="#0000BB">ImagePng</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#DD0000">"area_object.png"</font><font color="#007700">);
+<br /></font><font color="#0000BB">ImageDestroy</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">);
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;HTML&gt;&lt;HEAD&gt;&lt;/HEAD&gt;
+<br />&lt;BODY bgcolor="#eeeeee"&gt;
+<br />&lt;table border=1&gt;&lt;tr&gt;&lt;td&gt;&lt;IMG src="area_object.png" usemap="#map1" border=0&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+<br />&lt;map name="map1"&gt; 
+<br /><font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ImgMapData?&gt;
+<br /></font>&lt;/map&gt;
+<br />&lt;/BODY&gt;
+<br />&lt;/HTML&gt;</font>
+</code>
+</BODY>
+</HTML>
