@@ -1,0 +1,195 @@
+<html>
+<head>
+<title>SimpleDir 3.0 Documentation - Template Variables</title>
+<STYLE TYPE="text/css">
+<!--
+A:link, A:active, A:visited, A:hover {
+	color: #0000FF;
+}
+A:link, A:active, A:visited {
+	text-decoration: none;
+}
+A:hover {
+	text-decoration: underline;
+}
+BODY {
+	background-color: #FFFFFF;
+	color: #000000;
+	font-family: Courier New;
+}
+.code {
+	background-color: #D5D3D3;
+	padding: 2px;
+}
+.fixit {
+	background-color: #000000;
+	color: #FFFFFF;
+	margin-top: 2px;
+	padding: 2px;
+}
+.spacer {
+	margin-top: 2px;
+}
+i {
+	font-family: Verdana;
+}
+-->
+</STYLE>
+</head>
+<body>
+<a name="top">
+
+<p align="center"><u>SimpleDir 3.0 Documentation<br>Template Variables</u></p>
+<font size="2">
+
+<!-- Table of contents -->
+
+<p><b>Table of Contents</b><br>
+<a href="#instruct">Instructions</a><br>
+<a href="#features">Template Features</a><br>
+<a href="#general">General Variables</a><br>
+<a href="#headfoot">Header/Footer Templates</a><br>
+<a href="#success_link">Successful Link Template</a><br>
+<a href="#success_modify">Successful Modify Template</a><br>
+<a href="#cats">Category Listings Templates</a><br>
+<a href="#links">Links Listing Related Templates</a></p>
+
+<!-- Instructions -->
+
+<a name="#instruct"></a>
+<p><b>Instructions</b></p>
+
+<p>If you would like to use one of the variables listed here in your page, you must put it in the template like this:<br>
+<i>{$var}</i></p>
+
+<p>You can also include a file using one of the listed variables, like this:<br>
+<i>{include file=$var}</i><br>
+Or, if the file has a .php extension, then like this:<br>
+<i>{include_php file=$var}</i></p>
+<p><a href="#top">Back to the top</a></p>
+
+<!-- Template Features -->
+
+<a name="#features"></a>
+<p><b>Template Features</b></p>
+
+<p>With the <a href="http://smarty.php.net" target="_blank">Smarty template engine</a> that SimpleDir uses, you can also use if statements and put comments into your templates that won't show up on the actual HTML code.</p>
+
+<p>To comment a part of your template out or to help explain something for further down the line, you can do something like this:<br>
+<div class="code"><i>{* commented code *}</i></div><br>
+These comments can be spread over several lines or just even a part of one line. All you have to do is put a <i>{*</i> at the beginning of the comment and a <i>*}</i> at the end.</p>
+
+<p>Some of the default templates use if statements to incorporate the options that you have chosen into the look of the page. Here is an example:<br>
+<div class="code">
+<i>{if $var == "Y"}</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTML to show up if the above evaluates to true<br>
+<i>{/if}</i></div><p>
+
+<p>Here is an example with a multi-step if statement:<br>
+<div class="code">
+<i>{if $var == "0"}</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTML to happen if $var equals 0<br>
+<i>{elseif $var == "1"}</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTML to happen if $var equals 1<br>
+<i>{else}</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTML to happen if neither of the above conditions are true<br>
+<i>{/if}</i>
+</div></p>
+<p><a href="#top">Back to the top</a></p>
+
+<!-- General variables -->
+
+<a name="#general"></a>
+<p><b>General Variables</b></p>
+
+<p>
+<i>{$adminname}</i> - the administrator's name<br>
+<i>{$adminemail}</i> - the administrator's e-mail address<br>
+<i>{$allowdesc}</i> - if descriptions are turned on or off (set to 'Y' if descriptions are enabled, set to 'N' if disabled)<br>
+<i>{$pend}</i> - if pending status is turned on or off (set to 'Y' if pending status is turned on, set to 'N' if turned off)<br>
+<i>{$sdversion}</i> - the version of SimpleDir that you are using<br>
+<i>{$self}</i> - the current page<br>
+<i>{$sitename}</i> - your site's name<br>
+<i>{$siteurl}</i> - your site's URL
+</p>
+<p><a href="#top">Back to the top</a></p>
+
+<!-- Header/footer Templates -->
+
+<a name="#headfoot"></a>
+<p><b>Header/Footer Templates</b></p>
+
+<p><i>{include file=$headfile}</i> - include the header file<br>
+<i>{include_php file=$headfile}</i> - include the header file (use this if it has a .php extension)<br>
+<i>{include file=$footfile}</i> - include the footer file<br>
+<i>{include_php file=$footfile}</i> - include the footer file (use this if it has a .php extension)</p>
+<p><a href="#top">Back to the top</a></p>
+
+<!-- Successful Link Template -->
+
+<a name="#success_link"></a>
+<p><b>Successful Link Template</b></p>
+
+<p>
+<i>{$category}</i> - name of the category the link has been added to<br>
+<i>{$linkdesc}</i> - the link's description<br>
+<i>{$linkname}</i> - name of the link<br>
+<i>{$linknotes}</i> - misc. field in the Add A Link form<br>
+<i>{$linkstatus}</i> - the link's current status (set to '0' if pending, set to '1' if approved)<br>
+<i>{$linkurl}</i> - the link's URL<br>
+<i>{$ownername}</i> - the owner's name
+</p>
+<p><a href="#top">Back to the top</a></p>
+
+<!-- Successful Modify Template -->
+
+<a name="#success_modify"></a>
+<p><b>Successful Modify Template</b></p>
+
+<p>
+<i>{$anythingelse}</i> - the misc. field in the Modify A Link form<br>
+<i>{$name}</i> - owner's name<br>
+<i>{$newcat}</i> - name of the new category (if a new category is set)<br>
+<i>{$newcatid}</i> - ID # for the new category<br>
+<i>{$newemail}</i> - owner's new e-mail address<br>
+<i>{$newsitename}</i> - site's new name<br>
+<i>{$newsiteurl}</i> - site's new URL<br>
+<i>{$oldcat}</i> - name of the old category<br>
+<i>{$oldcatid}</i> - ID # for the old category<br>
+<i>{$oldemail}</i> - owner's old e-mail address<br>
+<i>{$oldsitename}</i> - site's old name<br>
+<i>{$oldsiteurl}</i> - site's old URL
+</p>
+<p><a href="#top">Back to the top</a></p>
+
+<!-- Category Listings Templates -->
+
+<a name="#cats"></a>
+<p><b>Category Listings Templates</b></p>
+
+<p>
+<i>{$catDesc}</i> - the category's description<br>
+<i>{$catID}</i> - the ID # of the category<br>
+<i>{$catname}</i> - the name of the category<br>
+<i>{$catnumlinks}</i> - the number of links in the category
+</p>
+<p><a href="#top">Back to the top</a></p>
+
+<!-- Links Listing Related Templates -->
+
+<a name="#links"></a>
+<p><b>Links Listing Related Templates</b></p>
+
+<p>
+<i>{$catname}</i> - the name of the category<br>
+<i>{$catDesc}</i> - the category's description<br>
+<i>{$linkdesc}</i> - the link's description (only for Link Listings templates)<br>
+<i>{$linkname}</i> - the name of the link (only for Link Listings templates)<br>
+<i>{$linkurl}</i> - the URL of the link (only for Link Listings templates)
+</p>
+<p><a href="#top">Back to the top</a></p>
+
+<p align="center"><a href="readme.html">Back to the Readme</a></p>
+
+</body>
+</html>
