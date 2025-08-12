@@ -1,0 +1,243 @@
+<html>
+<head>
+<title>{head_title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={lang_code}">
+<link href="{css_folder}/css.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+  <center>
+  {header} 
+  <table width="778" border="0" cellspacing="0" cellpadding="0" class="tableline">
+    <tr> 
+      <td align="right" class="head"> 
+        <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top"><a href="{bb_url}"><img src="{pic_folder}/logo.gif" border="0"></a></td>
+            <td align="right"> <b>{my_name}:</b>
+              <!-- BEGIN login -->
+              <a href="?action=members">{login}</a> | <a href="?action=user_reg" target="_blank">{register}</a> 
+              <!-- END login -->
+              <!-- BEGIN blog -->
+              <a href="blog.php?bid={bid}">{my_blog}</a> | 
+              <!-- END blog -->
+              <!-- BEGIN logout -->
+              <a href="?action=user_pm&step=view" target="_blank">{view_pm}</a> 
+              | <a href="?action=user_modify" target="_blank">{modify_info}</a> 
+              | <a href="?action=logout">{logout}</a> 
+              <!-- END logout -->
+              | <a href="{web_url}" target="_blank">{web_name}</a> </td>
+            <td align="right" valign="bottom" class="head_right">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table border="0" cellspacing="0" cellpadding="8" class="tableline">
+    <tr> 
+      <td> 
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr> 
+            <td><img src="{pic_folder}/folder.gif"> <a href="{bb_url}">{bb_name}</a><b> 
+              </b>&gt;<b> </b><a href="?action=view_forum&forum_id={forum_id}">{forum_name}</a> 
+              &gt; <a href="?action=view_forum&forum_id={forum_id}">{folder_name}</a> 
+              &gt; <strong>{new_thread}</strong></td>
+          </tr>
+        </table>
+        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+          <tr> 
+            <td height="29" valign="bottom"> 
+              <table border="0" cellspacing="1" cellpadding="3" class="forumline">
+                <tr align="center"> 
+                  <td class="{t_style}"><a href="?action=view_forum&forum_id={forum_id}">{topic_name}({t_folder_num})</a></td>
+                  <td class="{f_style}"><a href="?action=view_forum&folder=faq&forum_id={forum_id}">{faq_name}({f_folder_num})</a></td>
+                  <td class="{c_style}"><a href="?action=view_forum&folder=cream&forum_id={forum_id}">{cream_name}({c_folder_num})</a></td>
+                  <td class="{r_style}"><a href="?action=view_forum&folder=recovery&forum_id={forum_id}">{recovery_name}({r_folder_num})</a></td>
+                </tr>
+              </table>
+            </td>
+            <td align="right" valign="bottom">&nbsp; </td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellpadding="3" cellspacing="1" class="forumline">
+          <form enctype="multipart/form-data" method="post" action="forum.php" name="post" onSubmit="return checkForm(this)">
+            <tr> 
+              <th colspan="2"> {new_thread} 
+                <script language="JavaScript" type="text/javascript" src="bbs/js/post.js"></script> 
+              </th>
+            </tr>
+			<tr class="row2"> 
+              <td width="12%" align="right">&nbsp;</td>
+              <td width="88%"> <span class="gen">
+                <input name="icon" type="radio" value="0" checked>
+                none 
+                <input name="icon" type="radio" value="1">
+                <img src="./{pic_folder}/icons/icon1.gif" width="20" height="20"> 
+                <input type="radio" name="icon" value="2">
+                <img src="./{pic_folder}/icons/icon2.gif" width="20" height="20"> 
+                <input type="radio" name="icon" value="3">
+                <img src="./{pic_folder}/icons/icon3.gif" width="20" height="20"> 
+                <input type="radio" name="icon" value="4">
+                <img src="./{pic_folder}/icons/icon4.gif" width="20" height="20"></span> 
+                <span class="gen"> </span> </td>
+            </tr>
+            <tr class="row1"> 
+              <td width="12%" align="right">{subject_}</td>
+              <td width="88%"> <span class="gen"> 
+                <input type="text" name="subject" size="45" maxlength="60" style="width:550px" tabindex="2" class="post" value="" />
+                </span> </td>
+            </tr>
+            <!-- BEGIN poll -->
+			<tr class="row2"> 
+              <td width="12%" align="right">{poll}</td>
+              <td width="88%"><a href="forum.php?action=set_poll" target="_blank">{poll_manage} 
+                </a></td>
+            </tr>
+			<!-- END poll -->
+			<!-- BEGIN attach -->
+            <tr class="row1"> 
+              <td width="12%" align="right">{attachment}</td>
+              <td width="88%"><a href="forum.php?action=set_attachment" target="_blank">{attach_manage} 
+                </a></td>
+            </tr>
+			<!-- END attach -->
+            <tr class="row1"> 
+              <td width="12%" valign="top" align="right"> <p>&nbsp;</p>
+                <p>{content}</p>
+                <br> </td>
+              <td width="88%" class="row2"> <table width="500" border="0" cellspacing="0" cellpadding="2">
+                  <tr> 
+                    <td colspan="9"><span class="genmed"><img src="./{pic_folder}/edit/image.gif" width="38" height="21" onClick="bbstyle(14)" onMouseOver="helpline('p')"> 
+                      <img src="./{pic_folder}/edit/link.gif" width="38" height="21" onClick="bbstyle(16)" onMouseOver="helpline('w')"> 
+                      <img src="./{pic_folder}/edit/flash.gif" width="38" height="21" onClick="bbstyle(10)" onMouseOver="helpline('l')"> 
+                      <img src="./{pic_folder}/edit/code.gif" width="38" height="21" onClick="bbstyle(8)" onMouseOver="helpline('c')"> 
+                      <img src="./{pic_folder}/edit/quote.gif" width="38" height="21" onClick="bbstyle(6)" onMouseOver="helpline('q')"></span> 
+                    </td>
+                  </tr>
+                  <tr> 
+                    <td colspan="9"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr> 
+                          <td> <span class="genmed">&nbsp; 
+                            <select name="addbbcode18" onChange="bbfontstyle('[color=' + this.form.addbbcode18.options[this.form.addbbcode18.selectedIndex].value + ']', '[/color]');this.selectedIndex=0;" onMouseOver="helpline('s')">
+                              <option style="color:black; background-color: #FAFAFA" value="#444444" class="genmed" selected>COLOR..</option>
+                              <option style="color:darkred; background-color: #FAFAFA" value="darkred" class="genmed">#TEXT#</option>
+                              <option style="color:red; background-color: #FAFAFA" value="red" class="genmed">#TEXT#</option>
+                              <option style="color:orange; background-color: #FAFAFA" value="orange" class="genmed">#TEXT#</option>
+                              <option style="color:brown; background-color: #FAFAFA" value="brown" class="genmed">#TEXT#</option>
+                              <option style="color:yellow; background-color: #FAFAFA" value="yellow" class="genmed">#TEXT#</option>
+                              <option style="color:green; background-color: #FAFAFA" value="green" class="genmed">#TEXT#</option>
+                              <option style="color:olive; background-color: #FAFAFA" value="olive" class="genmed">#TEXT#</option>
+                              <option style="color:cyan; background-color: #FAFAFA" value="cyan" class="genmed">#TEXT#</option>
+                              <option style="color:blue; background-color: #FAFAFA" value="blue" class="genmed">#TEXT#</option>
+                              <option style="color:darkblue; background-color: #FAFAFA" value="darkblue" class="genmed">#TEXT#</option>
+                              <option style="color:indigo; background-color: #FAFAFA" value="indigo" class="genmed">#TEXT#</option>
+                              <option style="color:violet; background-color: #FAFAFA" value="violet" class="genmed">#TEXT#</option>
+                              <option style="color:white; background-color: #FAFAFA" value="white" class="genmed">#TEXT#</option>
+                              <option style="color:black; background-color: #FAFAFA" value="black" class="genmed">#TEXT#</option>
+                            </select>
+                            &nbsp; 
+                            <select name="addbbcode20" onChange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]')" onMouseOver="helpline('f')">
+                              <option value="2"><span class="genmed" selected>SIZE..</span></option>
+                              <option value="0"><span class="genmed">0px(very 
+                              small)</span></option>
+                              <option value="1"><span class="genmed">1px(small)</span></option>
+                              <option value="2"><span class="genmed">2px(normal)</span></option>
+                              <option value="3"><span class="genmed">3px(big}</span></option>
+                              <option value="4"><span class="genmed">4px(very 
+                              big)</span></option>
+                            </select>
+                            </span> <img src="./{pic_folder}/edit/bold.gif" width="28" height="21" onClick="bbstyle(0)" onMouseOver="helpline('b')"> 
+                            <img src="./{pic_folder}/edit/italic.gif" width="28" height="21" onClick="bbstyle(2)" onMouseOver="helpline('i')"> 
+                            <img src="./{pic_folder}/edit/underline.gif" width="28" height="21" onClick="bbstyle(4)" onMouseOver="helpline('u')"> 
+                            <img src="./{pic_folder}/edit/center.gif" width="28" height="21" onClick="bbstyle(12)" onMouseOver="helpline('o')"></td>
+                          <td nowrap align="right" width="2%"><span class="genmed"></span></td>
+                        </tr>
+                      </table></td>
+                  </tr>
+                  <tr> 
+                    <td colspan="9"> <span class="genmed"> 
+                      <input type="text" name="helpbox" size="35" maxlength="100" style="width:450px; font-size:12px" class="helpline" >
+                      </span></td>
+                  </tr>
+                  <tr> 
+                    <td colspan="9"><span class="genmed"> 
+                      <textarea name="message" rows="15" cols="35" wrap="virtual" style="width:550px" tabindex="3" class="post" onSelect="storeCaret(this);" onClick="storeCaret(this);" onKeyUp="storeCaret(this);" onKeyDown="javascript: ctlent();"></textarea>
+                      </span></td>
+                  </tr>
+                </table>
+                
+              </td>
+            </tr>
+			<!-- BEGIN emote -->
+			<tr class="row2"> 
+              <td width="12%" align="right">{emoticons}</td>
+              <td width="88%"><table width="100%" border="0" cellspacing="0" cellpadding="1">
+                  <tr> 
+                    <td colspan="4"><img src="{emote_pic}/emoticons/1.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:1]');"> 
+                      <img src="{emote_pic}/emoticons/2.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:2]');"> 
+                      <img src="{emote_pic}/emoticons/3.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:3]');"> 
+                      <img src="{emote_pic}/emoticons/4.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:4]');"> 
+                      <img src="{emote_pic}/emoticons/5.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:5]');"> 
+                      <img src="{emote_pic}/emoticons/6.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:6]');"> 
+                      <img src="{emote_pic}/emoticons/7.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:7]');"> 
+                      <img src="{emote_pic}/emoticons/8.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:8]');"> 
+                      <img src="{emote_pic}/emoticons/9.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:9]');"> 
+                      <img src="{emote_pic}/emoticons/10.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:10]');"> 
+                      <img src="{emote_pic}/emoticons/11.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:11]');"> 
+                      <img src="{emote_pic}/emoticons/12.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:12]');"><br>
+                      <img src="{emote_pic}/emoticons/13.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:13]');"> 
+                      <img src="{emote_pic}/emoticons/14.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:14]');"> 
+                      <img src="{emote_pic}/emoticons/15.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:15]');"> 
+                      <img src="{emote_pic}/emoticons/16.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:16]');"> 
+                      <img src="{emote_pic}/emoticons/17.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:17]');"> 
+                      <img src="{emote_pic}/emoticons/18.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:18]');"> 
+                      <img src="{emote_pic}/emoticons/19.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:19]');"> 
+                      <img src="{emote_pic}/emoticons/20.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:20]');"> 
+                      <img src="{emote_pic}/emoticons/21.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:21]');"> 
+                      <img src="{emote_pic}/emoticons/22.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:22]');"> 
+                      <img src="{emote_pic}/emoticons/23.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:23]');"> 
+                      <img src="{emote_pic}/emoticons/24.gif" border="0" onmouseover="this.style.cursor='hand';" onclick="emoticon('[e:24]');"></td>
+                  </tr>
+                </table> </td>
+            </tr>
+			<!-- END emote -->
+			<tr class="row1"> 
+              <td width="12%" align="right">{post_option}</td>
+              <td width="88%"><input name="emote_off" type="checkbox" id="emote_off" value="1">
+                {disable_emote}<br>
+                <input name="bbcode_off" type="checkbox" id="bbcode_off" value="1">
+                {disable_bbcode}<br>
+                <input name="parseurl_off" type="checkbox" id="parseurl_off" value="1">
+                {disable_url}</td>
+            </tr>
+            
+            <!-- BEGIN confirm -->
+            <tr class="row2"> 
+              <td width="12%" align="right">{confirm_}</td>
+              <td width="88%"><img src="{img_src}"> {confirm_ex} 
+                <input type="text" name="confirm_code" size="10"> </td>
+            </tr>
+            <!-- END confirm -->
+            <tr class="row2"> 
+              <td colspan="2" align="center"> <input type="submit" name="Submit" value="{submit}" > 
+                <input type="hidden" name="action" value="add_thread"> <input type="hidden" name="step" value="2"> 
+                <input type="hidden" name="forum_id" value="{forum_id}"> </td>
+            </tr>
+          </form>
+        </table>
+      <p>&nbsp;</p></td>
+    </tr>
+  </table>
+  <table width="778" border="0" cellspacing="0" cellpadding="0" class="tableline">
+    <tr> 
+      <td align="center">
+        <p>&nbsp;</p>
+        <p><a href="?action=copyright"><img src="{pic_folder}/powered.gif" border="0"></a><br>
+          {footer} </p>
+      </td>
+    </tr>
+  </table>
+</center>
+</body>
+</html>
