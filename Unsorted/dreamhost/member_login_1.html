@@ -1,0 +1,61 @@
+<form method="post" action="members<? echo $ext ?>">
+  <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"> 
+    <font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+    Account Login</font></b></font></font></b></font> </div>
+  <hr width="450" size="1" noshade align="left">
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font size="1" color="#333333" face="Arial, Helvetica, sans-serif"><font size="2">If 
+        you already have are registered with 
+        <? echo setup("company"); ?>
+        , please login below.<br>
+        Otherwise, you will need to fill in the registration form below to activate 
+        you account.</font></font></font></td>
+    </tr>
+  </table>
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr> 
+      <td width="150"> 
+        <div align="right"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"><b>Your 
+          Email:</b></font></div>
+      </td>
+      <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="text" name="login_email" maxlength="50" size="15" style="border: 1 solid #666666" value="<? echo $login_email ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="150"> 
+        <div align="right"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"><b>Password:</b></font></div>
+      </td>
+      <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="password" name="login_password" maxlength="50" size="15" style="border: 1 solid #666666">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="150"> 
+        <div align="right"></div>
+      </td>
+      <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <br>
+        <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23">
+        <input type="hidden" name="page" value="<? if(isset($next_page)) { echo $next_page; } else { echo "account"; } ?>">
+        <input type="hidden" name="action" value="login">
+        <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+        </font></td>
+    </tr>
+  </table>
+</form>
+<p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><b> 
+  <?include("member_new_account.html");?>
+  </b></font></p>
+<font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+Password Reminder</font></b></font></font></b></font> 
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font size="1" color="#333333" face="Arial, Helvetica, sans-serif"><font size="2">If 
+      you have forgotten your password, <a href="members<? echo $ext ?>?page=email_password&session_id=<? echo $session_id ?>">click 
+      here</a> and we will email it to you!</font></font></font></td>
+  </tr>
+</table>
