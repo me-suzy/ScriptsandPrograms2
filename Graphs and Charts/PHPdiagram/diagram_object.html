@@ -1,0 +1,40 @@
+<HTML><HEAD></HEAD>
+<BODY bgcolor="#eeeeee">
+<table border=1><tr><td><IMG src="diagram_object.png" usemap="#map1" border=0></td></tr></table>
+<map name="map1"> 
+<area shape=rect coords='80,40,450,280'  title='Click on me !' alt='Click on me !' href='javascript:DiagramClick()'>
+</map>
+<script language="JavaScript">
+function DiagramClick(){ alert("Use your own function here."); }
+</script>
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">include (</font><font color="#DD0000">"diagram.php"</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">=new </font><font color="#0000BB">Diagram</font><font color="#007700">();
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">=@</font><font color="#0000BB">ImageCreate</font><font color="#007700">(</font><font color="#0000BB">480</font><font color="#007700">, </font><font color="#0000BB">320</font><font color="#007700">) or die(</font><font color="#DD0000">"Cannot create a new GD image."</font><font color="#007700">);
+<br /></font><font color="#0000BB">ImageColorAllocate</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">); </font><font color="#FF8000">//background color
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetFrame</font><font color="#007700">(</font><font color="#0000BB">80</font><font color="#007700">, </font><font color="#0000BB">40</font><font color="#007700">, </font><font color="#0000BB">450</font><font color="#007700">, </font><font color="#0000BB">280</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetBorder</font><font color="#007700">(</font><font color="#0000BB">10</font><font color="#007700">, </font><font color="#0000BB">50</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">4</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetText</font><font color="#007700">(</font><font color="#DD0000">"X-Label"</font><font color="#007700">,</font><font color="#DD0000">"Y-Label"</font><font color="#007700">,</font><font color="#DD0000">"Title"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetGridColor</font><font color="#007700">(</font><font color="#DD0000">"#44CC44"</font><font color="#007700">,</font><font color="#DD0000">""</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Draw</font><font color="#007700">(</font><font color="#DD0000">"#80FF80"</font><font color="#007700">,</font><font color="#DD0000">"#0000FF"</font><font color="#007700">,</font><font color="#0000BB">true</font><font color="#007700">,</font><font color="#DD0000">"Click on me !"</font><font color="#007700">,</font><font color="#DD0000">"DiagramClick()"</font><font color="#007700">);
+<br />
+<br /></font><font color="#0000BB">ImagePng</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#DD0000">"diagram_object.png"</font><font color="#007700">);
+<br /></font><font color="#0000BB">ImageDestroy</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">);
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;HTML&gt;&lt;HEAD&gt;&lt;/HEAD&gt;
+<br />&lt;BODY bgcolor="#eeeeee"&gt;
+<br />&lt;table border=1&gt;&lt;tr&gt;&lt;td&gt;&lt;IMG src="diagram_object.png" usemap="#map1" border=0&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+<br />&lt;map name="map1"&gt; 
+<br /><font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ImgMapData?&gt;
+<br /></font>&lt;/map&gt;
+<br />&lt;script language="JavaScript"&gt;
+<br />function DiagramClick(){ alert("Use your own function here."); }
+<br />&lt;/script&gt;
+<br />&lt;/BODY&gt;
+<br />&lt;/HTML&gt;</font>
+</code>
+</BODY>
+</HTML>
