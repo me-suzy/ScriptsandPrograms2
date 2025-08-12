@@ -1,0 +1,166 @@
+<html>
+<head>
+<title>Develooping flash chat. Instalaci&oacute;n</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="3"><b><font color="#990000">Instalaci&oacute;n 
+      de develooping flash chat</font><font size="1"><br>
+      </font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Versi&oacute;n
+      1.6.3</font></td>
+    <td valign="top"> <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="installation.html">in 
+        english</a></font></div></td>
+  </tr>
+</table>
+<hr size="1">
+<p><font color="#990000" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Licencia</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1">La utilización 
+  de este software (<a href="../leeme.html">develooping flash chat</a>) es completamente 
+  gratuita. Puedes usarlo y modificarlo bajo tu propia responsabilidad. El autor 
+  no se hace responsable de su funcionamiento. Cualquier mejora introducida en 
+  el software debe ser puesta a disposici&oacute;n p&uacute;blica. Debes conservar 
+  el crédito de todas las personas que han participado en su creación. </font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font color="#990000">Requisitos 
+  en el servidor</font></b></font></p>
+<ul>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1">PHP4 o superior 
+    </font></li>
+</ul>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font color="#990000">Requisitos 
+  en el cliente</font></b></font></p>
+<ul>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1">JavaScript</font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Flash 5 o superior</font></li>
+</ul>
+<p><font color="#990000" size="1" face="Verdana, Arial, Helvetica, sans-serif"> <b>Instalaci&oacute;n</b></font></p>
+<ol>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> Busca el archivo 
+    "<b>config.php</b>" dentro del directorio "required" y ábrelo. </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Reemplaza el 
+    valor de la variable <b>$url</b>="http://www.yourdomain.com/chat/" por el 
+    url del directorio &quot;<strong>chat</strong>&quot; tal y como vaya a quedar 
+    en tu servidor (terminado en /). </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Sube el archivo 
+    "<strong>intro.php</strong>", &quot;<strong>index.php</strong>&quot;  y el
+    directorio "<strong>chat</strong>" a
+    tu servidor (justo de forma que el directorio &quot;chat&quot; coincida con
+     la  direcci&oacute;n que acabas de configurar en el archivo "config.php").
+     No  subas los archivos .swf en modo ASCII. Si subes en modo ASCII
+     los archivos de flash pueden darte problemas al ejecutarlo.</font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Asigna los siguientes 
+    privilegios a los archivos "<b>msg.txt</b>", "<b>users.txt</b>" y "<b>banned_ip.txt</b>" 
+    (dentro de chat/required): el propietario tiene permiso de lectura, escritura 
+    y ejecución, y el grupo y el mundo permiso de lectura y escritura (chmod 766). 
+    Todos los demás archivos basta con que tengan permiso de lectura y escritura 
+    para el propietario y permiso de lectura para el grupo y el mundo (chmod644). 
+    </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1">YA LO TIENES
+       FUNCIONANDO. Llama desde tu navegador al archivo &quot;<strong>index.php</strong>&quot;,
+       el que hay justo fuera del directorio chat
+    y prueba su funcionamiento. </font></li>
+  <li><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Puedes insertar
+      una llamada al chat en cualquier p&aacute;gina, insertando esta misma p&aacute;gina index.php
+      donde quieras a trav&eacute;s de un iFrame. </font></li>
+</ol>
+<p><font color="#990000" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Personalizaci&oacute;n 
+  del script</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1">En el archivo "config.php" 
+  que encontrarás en el directorio "required" hallarás un montón de variables 
+  para personalizar el script. </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Lo 
+  primero que deberías hacer es cambiar los valores "admin" que por defecto tienen 
+  asignadas las variables <b>$admin_name</b> y <b>$admin_password</b>, por el 
+  nombre y password que desees usar para administrar la sala.</font></p>
+<ul>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$text_order</b> 
+    : Sentido en que se muestra el texto en el chat. Puede ser ascendente o descendente. 
+    </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$review_text_order</b> 
+    : Sentido del texto en la ventana de revisión de mensajes. </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$delete_empty_room</b> 
+    : Permite seleccionar si se borran los mensajes de la sala cuando se queda 
+    sin usuarios. </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$show_without_time</b> 
+    : Permite ajustar si se muestra la hora de cada mensaje, o solo cuando el 
+    usuario entra o sale de la sala. </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$password_system</b> 
+    : Permite seleccionar si se usa la IP del usuario como método de identificación 
+    o una contraseña. Si se desea poder hacer banning (inhabilitación permanente 
+    de usuarios), ha de usarse en modo "ip" </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$correct_time</b> 
+    : Diferencia en segundos con el tiempo del servidor. Si el servidor no se 
+    encuentra en tu misma zona horaria puedes ajustar este valor para que no muestre 
+    la hora del servidor sino la de tu ubicación real. Admite valores negativos 
+    y positivos (valor por defecto 0) </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$chat_lenght</b> 
+    : Número de mensajes mostrados en la sala. No uses un valor muy alto para 
+    que no cargar demasiado el servidor. (valor por defecto 15) </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$review_lenght</b> 
+    : Número de mensajes mostrados al revisar mensajes desde el chat. El valor 
+    ha de ser necesariamente menor que el de la variable posterior (valor por 
+    defecto 500) </font></li>
+  <li><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>$total_lenght</b> 
+    : Número de mensajes guardados en el chat. Cuando se alcanza este valor se 
+    conservan solo la cantidad definida en la variable anterior. De esta forma 
+    el archivo no puede crecer indefinidamente. Su valor ha de ser necesariamente 
+    superior al de la variable anterior (valor por defecto 1000) </font></li>
+</ul>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Hay también un 
+  montón más de variables que puedes ajustar o traducir según tu propio criterio. 
+  El significado de esas variables se encuentra explicado en el propio archivo 
+  "config.php"</font></p>
+<p><font color="#990000" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Traducci&oacute;n</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> Todos los textos 
+  empleados en el sistema se encuentran definidos en el archivo de configuraci&oacute;n 
+  &quot;<strong>config.php</strong>&quot;. Para traducir el chat a otros idiomas 
+  basta con modificar los datos correspondientes en este archivo, o reemplazarlo 
+  por otro ya traducido. <br>
+  Develooping flash chat se suministra con interfaces en ingl&eacute;s, espa&ntilde;ol,
+   catal&aacute;n, euskera, holand&eacute;s, franc&eacute;s, alem&aacute;n, h&uacute;ngaro,
+  italiano, portugu&eacute;s, rumano y sueco definidos en archivos &quot;config.php&quot; que
+   podr&aacute;s encontrar dentro del directorio &quot;<strong>languages</strong>&quot;.
+    Para usarlo en una lengua u otra, basta con colocar dentro de &quot;<strong>required</strong>&quot; 
+  el archivo &quot;<strong>config.php</strong>&quot; correspondiente. <br>
+  Si realizas una traducci&oacute;n a otra lengua, por favor, env&iacute;ame el 
+  archivo &quot;config.php&quot; modificado para ponerlo a disposici&oacute;n 
+  de otros usuarios.</font></p>
+<p><font color="#990000" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Personalizaci&oacute;n 
+  de HTML</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> Las p&aacute;ginas 
+  que el sistema muestra son s&oacute;lo dos (m&aacute;s otras tres de administraci&oacute;n). 
+  El archivo "<b>intro.php</b>" es en realidad un documento HTML completamente 
+  personalizable siempre y cuando respetes los scripts que contiene. <br>
+  Lo mismo ocurre con el archivo "<b>index.php</b>" dentro del directorio "chat". 
+  Si quieres puedes ajustarlo al criterio estético de tu propia web. <br>
+  Si quieres, también puedes personalizar las páginas de administración (<b>admin.php</b>, 
+  <b>adminips.php</b> y <b>adminusers.php</b>). El resto de los archivos son scripts 
+  de puro php. </font></p>
+<p><font color="#990000" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Personalizaci&oacute;n 
+  de Flash</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Dentro del directorio 
+  "<strong>flash_sources</strong>" encontrarás los archivo "<strong>chat.fla</strong>", 
+  &quot;<strong>count_users.fla</strong>&quot; y &quot;<strong>private_messages.fla</strong>&quot;, 
+  para editarlos, ajustarlos a tus necesidades y exportarlos de nuevo en formato 
+  flash 5. Si no eres muy experto en Flash y Actionscript procura no modificar 
+  más que lo imprescindible (esencialmente gr&aacute;ficos, colores y tama&ntilde;os).<br>
+  Por supuesto eres libre de modificar todo lo que quieras en los archivos y en 
+  los scripts bajo tu propia responsabilidad.</font></p>
+<p><font color="#990000" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Otras 
+  notas de inter&eacute;s</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Si estas indicaciones 
+  no te han resultado suficientes para instalar el script, o no te gusta dejar 
+  al margen ning&uacute;n detalle , consulta la secci&oacute;n de <a href="notas.html">notas</a></font></p>
+<hr size="1">
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Si tienes alguna 
+  sugerencia o consulta puedes dirigirte a<br>
+  <br>
+  Juan Carlos Posé<br>
+  <script type="text/javascript"><!--
+document.write('<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;' + '&#106;&#117;&#97;&#110;&#99;&#97;&#114;&#108;&#111;&#115;@' + '&#100;&#101;&#118;&#101;&#108;&#111;&#111;&#112;&#105;&#110;&#103;&#46;&#99;&#111;&#109;' + '">' + '&#106;&#117;&#97;&#110;&#99;&#97;&#114;&#108;&#111;&#115;&#64;&#100;&#101;&#118;&#101;&#108;&#111;&#111;&#112;&#105;&#110;&#103;&#46;&#99;&#111;&#109;' + '</a>');
+// -->
+</script>
+  </font></p>
+</body>
+</html>
