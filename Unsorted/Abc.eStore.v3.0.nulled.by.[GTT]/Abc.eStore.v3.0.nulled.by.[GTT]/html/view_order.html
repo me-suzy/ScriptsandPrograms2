@@ -1,0 +1,103 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box05_center.gif" class="BodyText05" align="left"><%tlv 200%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+<br>
+
+<a href="index.php" target="_self" class="menu"><%tlv 201%></a> > <a href="orders.php" target="_self" class="menu"><%tlv 202%></a> > <font class="BodyText03"><%tlv 207%>: <%tlv order_id%></font><br>
+
+<%tif err%>
+<p align="center"><font class="errorMessage"><%tlv err%></font></p>
+<%tendif err%>
+
+<%tif noerr%>
+
+<%tif order%>
+<%tloop order%>
+<br><br>
+<table cellpadding="3" border="0" cellspacing="2" valign="top" width="100%" align="center">
+<tr>
+<td colspan="2"><font class="Chapter02"><%tlv 207%>: <%tlv cart_order_id%></font></td>
+
+<tr>
+<td valign="top" width="175" align="left">
+<b><%tlv 208%>: </b><br><%tlv name_d%><br><%tlv add_1_d%><%tlv add_2_d%><br><%tlv town_d%><br><%tlv county_d%><br><%tlv postcode_d%><br><%tlv country_d%><br><br>
+<b><%tlv 210%>:</b><br><%tlv date%> <%tlv time%><br><br>
+<b><%tlv 209%>:</b><br><%tlv status%>
+<%tif ship_date%>
+<br><br><b><%tlv 694%>:</b><br><%tlv ship_date%>
+<%tendif ship_date%>
+</td>
+<td valign="top" align="left">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" align="left"><b><%tlv 211%>:</b></td>
+<td valign="top" align="left"><b><%tlv 196%>:</b></td>
+<td valign="top" width="100" align="left"><b><%tlv 212%>:</b></td>
+</tr>
+
+<%tloop products%>
+<tr>
+<td valign="top" align="left"><a href="view_product.php?product=<%tlv product%>" target="_self"><%tlv title%></a> (<%tlv 213%>: <%tlv quantity%>)<br><br></td>
+<td valign="top"><%tlv amount_discount%>%</td>
+<td valign="top"><%tlv currency%><%tlv totalprice%></td>
+</tr>
+<%tendloop products%>
+</table></td></tr>
+
+</table>
+
+<br><br>
+<table cellpadding="3" border="0" cellspacing="2" valign="top" width="100%" align="center">
+<tr>
+<td colspan="2"><font class="Chapter02"><%tlv 214%></font></td>
+
+<tr>
+<td valign="top" width="175" align="left"><b><%tlv 215%>:</b><br><%tlv name%><br><%tlv add_1%><br><%tlv add_2%><br><%tlv town%><br><%tlv county%><br><%tlv postcode%><br><%tlv country%><br>Tel: <%tlv phone%><br><br>
+<b><%tlv 216%>:</b><br> <%tlv pay_status%></td>
+<td valign="top" align="right">
+<table align="right" border="0" cellspacing="3" cellpadding="2">
+<tr>
+<td><%tlv 153%>:</td>
+<td><%tlv user_discount%>%</td>
+</tr>
+<tr>
+<td><%tlv 217%>:</td>
+<td><%tlv currency%><%tlv subtotal%></td>
+</tr>
+<tr>
+<td><%tlv 218%>:&nbsp;&nbsp;</td>
+<td><%tlv currency%><%tlv total_ship%></td>
+</tr>
+<tr>
+<td><%tlv 219%>:</td>
+<td><%tlv currency%><%tlv total_tax%></td>
+</tr>
+<tr>
+<td><b><%tlv 220%>:</b></td>
+<td><b><%tlv currency%><%tlv prod_total%></b></td>
+</tr>
+</table>
+</td>
+</tr>
+
+</table><br><br>
+
+<%tendloop order%>
+<%tendif order%>
+
+<%tendif noerr%>
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
