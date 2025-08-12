@@ -1,0 +1,24 @@
+{PROJECT}   ./template/search.de.ini
+{MENU}      00.05
+{TITLE}     phpCMS-Demo - Volltextsuche
+
+{CONTENT}
+<h2>Hier ist die Volltextsuche für diese Webseiten.</h2>
+<p>Ergebnisse mit exakten Treffern werden höher bewertet als Ergebnisse mit Teiltreffern.
+Wenn man z.B. nach "Liebe" sucht, können die Begriffe "Liebe", "Liebelei" und
+"Liebesgeschichte" gefundenen werden. In diesem Fall werden die Suchbegriffe in genau dieser Reihenfolge angezeigt,
+da "Liebe" ein exakter Treffer ist und der Teiltreffer "Liebelei" kürzer ist als "Liebesgeschichte".</p>
+<p>Kommen mehrere Treffer auf einer Seite vor, wird diese Seite höher bewertet als eine Seite mit weniger Treffern.</p>
+<p>Werden zwei oder mehr Begriffe eingetragen, z.B. "ferien wohnung", dann wird nach allen angegebenen Begriffen gesucht. Interessieren Sie aber - um bei diesem Beispiel zu bleiben - nur die Einträge mit "ferien" aber ohne die mit "wohnung", dann geben Sie "ferien <strong>-</strong>wohnung" ein. <br />
+(<b>Achtung:</b> Leerstelle <em>vor</em> aber <em>nicht nach</em> dem Minus-Zeichen / Bindestrich.)</p>
+<p><LZ></p>
+<form action="$home/result.de.htm" method="post">
+  <!-- Methode "post" bei Nicht-Stealth-Mode, für den Stealth-Mode Methode "get" benutzen, damit die Seiten Client-seitig gecached werden können -->
+  <input type="hidden" name="phpcms_rc" value="2" />
+  <!-- Wieviele Ergebnisse sollen pro Seite gescheichert werden? -->
+  <input type="hidden" name="datadir" value="$home/suche" />
+  <!-- Pfad zum Verzeichnis, wo der Suchindex gespeichert ist -->
+  <input name="query" value="" type="text" size="20" maxlength="30" />&nbsp;&nbsp;
+  <!-- Suchbegriff -->
+  <input type="submit" name="submit" value="Suchen" />
+</form>
