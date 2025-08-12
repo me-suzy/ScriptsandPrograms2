@@ -1,0 +1,1 @@
+<STRONG>this is <!--store_name_begin-->MYWEBSTAR<!--store_name_end-->s shipping &amp; returns policy.</STRONG> 
