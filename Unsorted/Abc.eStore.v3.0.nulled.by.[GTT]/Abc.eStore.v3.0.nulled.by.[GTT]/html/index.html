@@ -1,0 +1,233 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+<!-- All specials -->
+
+<%tif specials%>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box06_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box06_center.gif" class="BodyText06" align="left"><%tlv 947%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box06_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+<br>
+
+
+<table border="0" cellspacing="2" cellpadding="10" width="100%">
+<tr>
+<%tloop specials%>
+<td align="center" valign="top" width="<%tv cat_width%>%">
+
+<table align="center" border="0">
+<tr><td align="center">
+<a href="view_product.php?product=<%tlv product%>">
+<img src='images/product/<%tlv small_image%>' border='0'>
+</a>
+</td></tr><tr><td align="center">
+<a href="view_product.php?product=<%tlv product%>" class="menu">
+<%tlv title%>
+</a>
+</td></tr>
+<tr><td align="center">
+<font class="chapter03"><%tlv price%></font>
+</td></tr>
+<tr><td align="center">
+<font class="BodyText07"><%tlv description%></font>
+</td></tr>
+</table>
+
+</td>
+<%tlv tr%>
+<%tendloop specials%>
+</tr>
+</table>
+<br>
+<%tendif specials%>
+
+<!-- /All specials -->
+
+<!-- All categories -->
+
+<%tif empty_cat%>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box05_center.gif" class="BodyText05" align="left"><%tlv 10%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+<br>
+
+
+<table border="0" cellspacing="2" cellpadding="10" width="100%">
+<tr>
+<%tloop empty_cat%>
+<td align="center" valign="bottom" width="<%tv cat_width%>%">
+
+<table align="center" border="0">
+<tr><td align="center">
+<a href="index.php?cat_id=<%tlv cat_id%>">
+<img src='images/category/<%tlv cat_image%>' border='0'>
+</a>
+</td></tr><tr><td align="center">
+<a href="index.php?cat_id=<%tlv cat_id%>" class="menu">
+<%tlv category%>
+</a>
+</td></tr>
+</table>
+
+</td>
+<%tlv tr%>
+<%tendloop empty_cat%>
+</tr>
+</table>
+<br>
+<%tendif empty_cat%>
+
+<!-- /All categories -->
+
+
+<!-- Selected category -->
+<%tif category%>
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box05_center.gif" class="BodyText05" align="left"><%tlv 201%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+<br>
+
+<!-- Navigation -->
+<%tif catnav%>
+<table border="0" width="100%" cellspacing="0" cellpadding="2">
+<tr><td width="100%"><a href="index.php" class="menu"><b><%tlv 11%></b></a>
+<%tloop catnav%>
+ > <a href="index.php?cat_id=<%tlv cat_id%>" class="menu"><b><%tlv category%></b></a>
+<%tendloop catnav%>
+</td></tr></table>
+<%tendif catnav%>
+<!-- /Navigation -->
+
+
+<%tloop catinfo%>
+<p><img src="images/category/<%tlv cat_image%>"></p>
+<%tendloop catinfo%>
+
+<!-- Sub categories -->
+
+<%tif subcategories%>
+<table cellpadding="2" border="0" cellspacing="1" cellpadding="1" width="100%">
+<tr><td><font class="chapter01"><%tlv 860%> '<%tlv catname%>'</font></td></td></tr>
+<tr><td class="tableHeadBg"></td></td></tr>
+</table>
+<br>
+<table border="0" cellspacing="2" cellpadding="2" width="100%"><tr>
+<%tloop subcategories%>
+<td align="center" valign="bottom" width="<%tv cat_width%>%">
+
+<table align="center" border="0">
+<tr><td align="center">
+<a href="index.php?cat_id=<%tlv cat_id%>&catname='<%tlv category%>'">
+<img src='images/category/<%tlv cat_image%>' border='0'>
+</a>
+</td></tr><tr><td align="center">
+<a href="index.php?cat_id=<%tlv cat_id%>&catname='<%tlv category%>'" class="menu">
+<%tlv category%>
+</a>
+</td></tr>
+</table>
+
+
+<%tlv tr%>
+<%tendloop subcategories%>
+</table>
+<br>
+<%tendif subcategories%>
+<!-- /Sub categories -->
+
+<%tif empty_category%>
+<p align="center"><br><%tlv 7%></p><br>
+<%tendif empty_category%>
+
+<%tendif category%>
+<!-- /Selected category -->
+
+<!-- Products -->
+<%tif products%>
+
+<table cellpadding="2" border="0" cellspacing="1" cellpadding="1" width="100%">
+<tr><td><font class="chapter01"><%tlv 861%> '<%tlv catname%>'</font></td></td></tr>
+<tr><td class="tableHeadBg"></td></td></tr>
+</table>
+
+<br>
+
+<!-- Navigation -->
+
+<table width="100%" border="0" cellspacing="3" cellpadding="3">
+<form action="index.php" method="post" name="select_kol_form">
+<tr><td align="left">
+<%tlv 8%>: <%tag sn%>
+</td><td align="right"><%tlv 165%>: <%tlv cnt_navigator%>&nbsp;</td></tr>
+<input type="hidden" name="cat_id" value="<%tlv cat_id%>">
+</form>
+</table>
+
+<!-- /Navigation -->
+
+<br>
+
+<table cellpadding="2" border="0" cellspacing="1" cellpadding="1" width="100%">
+
+<%tloop products%>
+<tr valign="top">
+<td align="center" valign="top">
+<a href="view_product.php?product=<%tlv product%>"><img src="images/product/<%tlv small_image%>" border="0"></a></td>
+<td>&nbsp;&nbsp;&nbsp;
+</td>
+<td valign="top" width="100%">
+<a href="view_product.php?product=<%tlv product%>" class="menu04"><%tlv title%></a><br><br>
+
+<%tif description%>
+<%tlv description%><br><br>
+<%tendif description%>
+
+<%tlv 33%>:&nbsp;&nbsp;<%tlv new_price%><br>
+
+<a href="view_cart.php?add=<%tlv product%>&quan=1"><br>
+<img src="<%tv design_dir%>add_to_cart.gif" border="0"></a>
+
+</td>
+</tr>
+<tr>
+<td colspan"5"><img src="<%tv design_dir%>spicer.gif" width="1" height="30" border="0"></td>
+</tr>
+<%tendloop products%>
+
+</td>
+</tr>
+</table>
+<br>
+
+<div align="center">
+<%tag nav%><br>
+<font class="BodyText02">( <%tag nav pageno%> <%tlv 9%> <%tag nav pages%> )</font>
+</div>
+<br>
+
+<%tlv bottom_nav%>
+
+<%tendif products%>
+<!-- /Products -->
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
