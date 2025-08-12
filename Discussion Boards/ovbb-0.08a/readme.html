@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<style type="text/css">
+	<!--
+		body
+		{
+			font-family: arial, sans-serif;
+			font-size: 10pt;
+			width: 750px;
+			margin-bottom: 2em;
+		}
+		li
+		{
+			text-align: justify;
+		}
+		p
+		{
+			text-align; justify;
+		}
+		h1
+		{
+			font-size: 16pt;
+			font-weight: bold;
+		}
+		h2
+		{
+			font-size: 16pt;
+			font-weight: bold;
+			margin-top: 2em;
+		}
+		.file
+		{
+			font-family: "courier new", monospace;
+			font-weight: bold;
+			color: #008000;
+		}
+		.path
+		{
+			font-family: "courier new", monospace;
+			font-weight: bold;
+			color: #000080;
+		}
+	-->
+	</style>
+
+	<title>Read Me</title>
+</head>
+
+<body>
+
+<h1>V0.08a</h1>
+
+<p>Welcome to the 8<sup>th</sup> release of OvBB, the open source bulletin board system that aims to mimic vBulletin 2.x.x in both look and behavior. In this version we've added Polling, improved several key components, and corrected several bugs throughout the system. Check out <span class="file">changelog.html</span> for an incomplete list of the differences from V0.07a.</p>
+
+<p>After V0.10a is released, I plan to redesign the entire forum system from the ground up. A public hiatus is to be expected but when the project is back and rolling, it will be a whole lot better. I'm just giving everyone a heads up now.</p>
+
+
+<h2>Server Requirements</h2>
+
+<p>You need these two things to install OvBB:</p>
+
+<ul>
+	<li>About 1.5 MB of free space on a Web server with the ability to parse PHP scripts</li>
+	<li>Access to a database (or the ability to create one) on a MySQL server</li>
+</ul>
+
+<p>Additionally, if you want to use the <i>Image Verification</i> feature in the registration of new users, you'll need to have the <a href="http://www.boutell.com/gd/">GD Graphics Library</a> and the <a href="http://www.freetype.org">FreeType Library</a> installed and configured on your server.</p>
+
+
+<h2>Brand-New Installation</h2>
+
+<p>First off, if you don't have (access to) a database on a MySQL server already, you need to get one. I'll wait while you do that... Ready? Great, let's move on.</p>
+
+<ol>
+	<li style="margin-bottom: 10px;">Execute the SQL script file, <span class="file">install.sql</span>, on your database.</li>
+	<li style="margin-bottom: 10px;">Now that we've got the database set up, you need to find the file called <span class="file">db.php</span> in the <span class="path">/upload/includes</span> directory (of the OvBB archive). Open it up and replace the values at the top with the values corresponding to your database.</li>
+	<li style="margin-bottom: 10px;">You're now ready to upload the contents of the <span class="path">/upload</span> directory to your Web server, but before you do that you might be interested in editing the <span class="file">config.inc.php</span> file in the <span class="path">/upload/includes</span> directory. There are some personal values that are specific to your particular installation of OvBB in there that you can (and should) modify. I've tried to explain some of the less-obvious things there, but feel free to contact me if you have questions.</li>
+	<li>Now, upload the contents of the entire <span class="path">/upload</span> directory (and sub-directories) to the location of your choice on your Web server.</li>
+</ol>
+
+<p>You should now be able to view your forums by simply typing in the public address of the location to which you uploaded OvBB. From there, you can register, post, edit, etc.</p>
+
+<p>There is no Moderator Control Panel or Administrator Control Panel yet, but the system does utilize usergroups and permissions. You might want to change the contents of the <code>usergroup</code> field for your <code>member</code> record to that of the Administrator usergroup (3 by default; see the <span class="file">usergroups.inc.php</span> file).</p>
+
+
+<h2>Upgrade From V0.07a</h2>
+
+<p>First, upload the contents of the entire <span class="path">/upload</span> directory (and sub-directories) to the location of your OvBB installation, overwriting files as needed. Remember to backup any files in your <span class="path">/includes</span> directory before overwriting them with the new versions, and don't forget to replace the dummy connection values in the new <span class="file">db.inc.php</span> file with your actual database connection information.</p>
+
+<p>Next, execute the following SQL commands on your OvBB database:</p>
+
+<blockquote><pre>
+ALTER TABLE member ADD lastrequest mediumtext;
+ALTER TABLE session ADD lastrequest mediumtext;
+ALTER TABLE thread ADD poll tinyint(1) unsigned default NULL;
+ALTER TABLE pm DROP COLUMN datetime;
+ALTER TABLE pm ADD datetime int(10) default NULL;
+
+CREATE TABLE poll (
+  id int(10) unsigned NOT NULL default '0',
+  datetime int(10) default NULL,
+  question varchar(255) default NULL,
+  answers text,
+  multiplechoices tinyint(1) unsigned default NULL,
+  timeout smallint(5) unsigned default NULL,
+  PRIMARY KEY  (id)
+);
+
+CREATE TABLE pollvote (
+  id int(10) unsigned NOT NULL auto_increment,
+  parent int(10) unsigned default NULL,
+  owner int(10) unsigned default NULL,
+  vote int(10) unsigned default NULL,
+  votedate int(10) unsigned default NULL,
+  PRIMARY KEY  (id)
+);
+</pre></blockquote>
+
+<p>After you've done that, your forums should be successfully upgraded to V0.08a.</p>
+
+
+<h2>Contact</h2>
+
+<p>If you have any comments, questions, or suggestions, you can e-mail me at <a href="mailto:jon@ovbb.org">jon@ovbb.org</a> or check out the OvBB forums at <a href="http://www.ovbb.org/forums/index.php">http://www.ovbb.org/forums/</a>.</p>
+
+</body>
+
+</html>
