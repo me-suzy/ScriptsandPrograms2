@@ -1,0 +1,494 @@
+<script language="JavaScript">
+<!-- BEGIN Script
+/*      JavaScript written by Mark S. Sethi
+        Any questions, comments, suggestions, or good potato stories,
+        feel free to contact the author at m-sethi@uchicago.edu or
+        iguana.god@juno.com  */
+
+
+var nacho=false;
+var burrito=false;
+
+var payment="";
+var ccnum="";
+var ccexp="";
+
+function runVerification(formName) {
+	formName.payment.selectedIndex++;
+        if (formName.payment.selectedIndex == "null" || formName.payment.selectedIndex == 0) {
+		alert("You didn't select a payment method.");
+                return false;
+                }
+
+        if (!formName.ccnum.value) {
+		alert("You didn't enter a credit card number.");
+                return false;
+                }
+        if (!formName.ccexp.value) {
+		alert("You didn't enter an expiration date.");
+                return false;
+                }
+
+        // nacho returns a true if the cc format is good
+        // burrito return a true if the cc expiration date is good (and not
+        //      already past)
+        nacho=ccformatValidate(formName);
+        if (nacho) {
+                burrito=ccexpdateValidate(formName);
+                if (burrito) {
+            formName.payment.value=payment;
+			return true;
+                        }
+                else {
+                        alert("Your credit card has expired. Please verify your expiration date and enter it as shown in the example");
+                        return false;
+                        }
+		}
+	else {
+                alert("You credit card is invalid. Please verify the number on the card and try again.");
+                return false;
+		}
+	}
+
+function ccformatValidate(formName) {
+	if (formName.payment.selectedIndex == 1) payment="visa";
+	if (formName.payment.selectedIndex == 2) payment="mastercard";
+	if (formName.payment.selectedIndex == 3) payment="amex";
+	if (formName.payment.selectedIndex == 4) payment="discover";
+
+        // get the "clean" version of the cc number, only numbers
+        var ccnum=GimmeNumbers(formName.ccnum.value);
+
+	// check for correct card number length
+	if (ccnum.length<13) return false;
+
+        if (ccnum.length!=16 && payment=="discover") return false;
+        if (ccnum.length!=16 && payment=="mastercard") return false;
+        if (ccnum.length!=15 && payment=="amex") return false;
+        if (ccnum.length!=13 && ccnum.length!=16 && payment=="visa") return false;
+
+        // check first number to verify card type
+        cctype=ccnum.substring(0,1);
+        if (payment=="amex" && cctype!="3") return false;
+        if (payment=="visa" && cctype!="4") return false;
+        if (payment=="mastercard" && cctype!="5") return false;
+        if (payment=="discover" && cctype!="6") return false;
+
+        // make an array and fill it with the individual digits of the cc number
+        ccnumchk=new Array;
+	for (splits=0; splits<ccnum.length; splits++) {
+                ccnumchk[splits]=ccnum.substring(splits, splits+1);
+		}
+
+        // perform the weird mathematical method (some base 10 stuff) to
+        //      convert the number to a two digit number
+        //      for those of you who aren't as familiar with the js operators
+        //      i'll comment some of the math lines...well, really just one
+        var skemp=0;
+	for (splits=0; splits<ccnum.length; splits++) {
+                if (splits%2==0) {      // if splits is an even number...
+                                        //      more specifically, if splits
+                                        //      divided by two has no
+                                        //      remainder (ya' know, remainder
+                                        //      one of those math things :),
+                                        //      then perform this block
+			ccnumchk[splits]=ccnumchk[splits]*2;
+			if (ccnumchk[splits]>=10) ccnumchk[splits]=ccnumchk[splits]-9;
+			}
+                // play a js trick to switch ccnumchk[splits] to a number
+                //      variable instead of a string
+		ccnumchk[splits]++; ccnumchk[splits]--;
+		skemp=skemp + ccnumchk[splits].valueOf();
+		}
+
+        if (skemp%10!=0) {return false;} // if the resulting number isn't base
+                                         //     10, they're lying to ya...
+                                         //     or they mistyped...same thing
+	else {
+		formName.ccnum.value=ccnum;
+		return true;
+		}
+	}
+
+function ccexpdateValidate(formName) {
+        // clean up the expiration date...becuase invariably people will not
+        //      follow directions and put some weird delimeter in there
+        var ccexp=GimmeNumbers(formName.ccexp.value);
+	var expmonth=0;
+	var expyear=0;
+	var realmonth=0;
+	var realyear=0;
+
+
+	// start with the intuitive - length
+        //      since dates have to be between 3 chars long (399) and 6 chars
+        //      long (121998) anything else needs to be tossed
+	if (ccexp.length<3 || ccexp.length>6) return false;
+	if (ccexp.length==3) {
+                expmonth=ccexp.substring(0,1);
+                expyear=ccexp.substring(1,3);
+		}
+	if (ccexp.length==4) {
+                // this bit here is for those people who put a zero in front
+                //      of a single number (like 04 instead of 4)
+                if (ccexp.substring(0,1)=="0") {
+			expmonth=ccexp.substring(1,2);
+			expyear=ccexp.substring(2,4);
+			}
+		else {
+			expmonth=ccexp.substring(0,2);
+			expyear=ccexp.substring(2,4);
+			}
+                }
+	if (ccexp.length==5) {
+		expmonth=ccexp.substring(0,1);
+		expyear=ccexp.substring(1,5);
+		}
+	if (ccexp.length==6) {
+		expmonth=ccexp.substring(0,2);
+		expyear=ccexp.substring(2,6);
+		}
+
+	// make sure month is a valid value
+	if (expmonth<1 || expmonth>12) return false;
+
+        // make sure months and years are numbers and not a strings
+        expmonth++; expmonth--;
+        expyear++; expyear--;
+
+        // convert years to a standard 4 digit format
+	if (ccexp.length==3 || ccexp.length==4) expyear=expyear+1900;
+
+	// check the date
+	timeisit=new Date();
+	realmonth=timeisit.getMonth();
+	realmonth++;
+	realyear=timeisit.getYear();
+
+   	if (realyear<2000) realyear=realyear+1900;
+
+        // compare expiration values with current ones
+        if (expyear==realyear) {
+		if (expmonth<realmonth) return false;
+		}
+        if (expyear<realyear) return false;
+
+        expmonth+=""; expyear+="";
+        if (expmonth.length==1) expmonth="0"+expmonth;
+        ccexp=expmonth.substring(0,expmonth.length);
+        ccexp+=expyear.substring(0,4);
+        formName.ccexp.value=ccexp;
+
+	return true;
+	}
+
+        function GimmeNumbers(loadedText) {     // this function removes everything but numbers
+                var cleanText="";
+                loadedText+="";
+                for (skimp=0; skimp<loadedText.length; skimp++) {
+                        if (loadedText.substring(skimp,skimp+1)>="0" && loadedText.substring(skimp, skimp+1)<="9") cleanText+=loadedText.substring(skimp, skimp+1);
+                        }
+                return cleanText;
+                }
+
+// -->
+</script>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#990000"><b>MAIN 
+  ADMINISTRATION MENU -&gt;</b></font> </p>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#99FFFF">Customer 
+                Account Management</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_account_list_2("1");
+  ?>
+                <input type="submit" name="Submit22" value="Account Info -&gt;">
+                <input type="hidden" name="page" value="add_clients">
+                <input type="hidden" name="set_action" value="client_update">
+                </font></b></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  </font></b> 
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#00FFFF">Customer 
+                Orders</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_account_list_2("1");
+  ?>
+                <input type="submit" name="Submit2" value="Orders -&gt;">
+                <input type="hidden" name="page" value="orders">
+                </font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#0000CC"><a href="?page=orders">All 
+                Orders</a> <font color="#333333">|</font> <a href="?page=orders&today=Y">Todays 
+                Orders</a> <font color="#333333">|</font> <a href="?page=orders&status=0">Pending 
+                Orders</a> <font color="#333333">|</font> <a href="?page=orders&status=1">Complete 
+                Orders</a></font></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  </font></b> 
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#00FF99">Customer 
+                Domains</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_account_list_2("1");
+  ?>
+                <input type="submit" name="Submit232" value="Domains -&gt;">
+                <input type="hidden" name="page" value="domains_edit">
+                </font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#0000CC"><a href="?page=domains">All 
+                Domains</a> <font color="#333333">|</font> <a href="?page=domains&today=Y">Todays 
+                New Domains</a> <font color="#333333">|</font> <a href="?page=domains_due">Due/Overdue 
+                Domain</a> <font color="#333333">|</font> <a href="?page=domains_exp&period=30">Expiring 
+                Soon </a></font></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+</font></b> 
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#00FF99">Domains 
+                Expiring Soon</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_account_list_2("1");
+  ?>
+                <input type="submit" name="Submit2322" value="Expiring Soon -&gt;">
+                <input type="hidden" name="page" value="domain_renew">
+                </font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#0000CC"><a href="?page=domains_exp&period=30">30 
+                Days </a> <font color="#333333">|</font> <a href="?page=domains_exp&period=45">45 
+                Days</a> <font color="#333333">|</font> <a href="?page=domains_exp&period=60">60 
+                Days</a><font color="#333333">|</font> <a href="?page=domains_exp&period=90">90 
+                Days</a> </font></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFF00">Billing 
+                Administration</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_account_list_2("1");
+  ?>
+                <input type="submit" name="Submit233" value="Manual Payment -&gt;">
+                <input type="hidden" name="page" value="domains_billing">
+                </font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#0000CC"><a href="?page=domains_due">View 
+                Due Accounts</a> <font color="#333333">|</font> <a href="?page=domains_due&action=bill_all_now">Bill 
+                All Due Accounts Now</a> <font color="#333333">|</font> <a href="?page=domains_billing">Enter 
+                Manual Payment</a></font></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFF00">Customer 
+                Billing History</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_account_list_2("1");
+  ?>
+                <input type="submit" name="Submit23" value="Billing History -&gt;">
+                <input type="hidden" name="page" value="billing_history">
+                </font></b></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFF00">Create 
+                a Credit</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_account_list_2("1");
+  ?>
+                <input type="submit" name="Submit234" value="Create Credit -&gt;">
+                <input type="hidden" name="page" value="credits_edit">
+                </font></b></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFF00">Update 
+                Credit Cards</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_account_list_2("1");
+  ?>
+                <input type="submit" name="Submit23222" value="Edit -&gt;">
+                <input type="hidden" name="page" value="billing_edit">
+                </font></b></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form name="form1" method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="1">
+          <tr> 
+            <td> 
+              <div align="center"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#99CC00">View 
+                Affiliate Details</font></b></div>
+            </td>
+          </tr>
+          <tr> 
+            <td bgcolor="#CCCCCC"> 
+              <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+                <? 
+
+  echo show_affiliate_list("1");
+  ?>
+                <input type="submit" value="Affiliate Details -&gt;" name="d">
+                <input type="hidden" name="page" value="affiliates_admin">
+                </font></b></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<p align="center">&nbsp;</p>
