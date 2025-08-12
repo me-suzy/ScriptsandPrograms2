@@ -1,0 +1,854 @@
+<html>
+	<head>
+		<title>FileManager</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">FileManager Class</h1>
+		<br />
+		<span class="name">Name: FileManager</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* This class manages all the I/O services. The reason this file is named FileManager is becuase it is intended to manage all</li>
+			<li>* methods regarding IO, even for directories.</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.base</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza &lt; <a href="mailto:aespinoza@structum.com.mx">aespinoza@structum.com.mx</a> &gt;</span>
+		<br />
+		<span class="version">Version: 1.2</span>
+		<br />
+		<span class="extends">Extends: Object</span>
+		<br />
+		<span class="requires">Requires: Object</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#File">File</a>
+			<br />
+			<a href="#Open">Open</a>
+			<br />
+			<a href="#Close">Close</a>
+			<br />
+			<a href="#InsertLine">InsertLine</a>
+			<br />
+			<a href="#GetLine">GetLine</a>
+			<br />
+			<a href="#DeleteLine">DeleteLine</a>
+			<br />
+			<a href="#UpdateContent">UpdateContent</a>
+			<br />
+			<a href="#GetCoreDump">GetCoreDump</a>
+			<br />
+			<a href="#GetLastErrorNumber">GetLastErrorNumber</a>
+			<br />
+			<a href="#GetLastError">GetLastError</a>
+			<br />
+			<a href="#IsFileContentEmpty">IsFileContentEmpty</a>
+			<br />
+			<a href="#GetContents">GetContents</a>
+			<br />
+			<a href="#IsOpen">IsOpen</a>
+			<br />
+			<a href="#GetLastAccessTime">GetLastAccessTime</a>
+			<br />
+			<a href="#GetLastInodeChangeTime">GetLastInodeChangeTime</a>
+			<br />
+			<a href="#GetLastUpdateTime">GetLastUpdateTime</a>
+			<br />
+			<a href="#ResetFileContents.">ResetFileContents.</a>
+			<br />
+			<a href="#ResetBuffers">ResetBuffers</a>
+			<br />
+			<a href="#ResetAll">ResetAll</a>
+			<br />
+			<a href="#Destroy">Destroy</a>
+			<br />
+			<a href="#FindString">FindString</a>
+			<br />
+			<a href="#StripFile">StripFile</a>
+			<br />
+			<a href="#GetAllFilesInDir">GetAllFilesInDir</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="File">
+				<span class="methodName">File</span>
+				<span> ( optional string fileName )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the default options and opens the file.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional string fileName</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="Open">
+				<span class="methodName">Open</span>
+				<span> ( string fileName )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Opens a file and updates the content array if set. This method can be debugged.</li>
+		</ul>
+		<p class="returns">Returns: true if the file is open, or false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string fileName</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="Close">
+				<span class="methodName">Close</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Closes the file in use.</li>
+		</ul>
+		<p class="returns">Returns: true if the file is closed, or false otherwise.</p>
+		<hr />
+		<p>
+			<a name="InsertLine">
+				<span class="methodName">InsertLine</span>
+				<span> ( int lineNumber, string lineContent, optional bool replaceLine )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Inserts a line into the array content; if the line number that is to be inserted exists</li>
+			<li>* the default action is not to replace it, but to move it to the next line. That can be</li>
+			<li>* changed by setting the replaceLine variable to 'true'. This method can be debugged.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int lineNumber</li>
+				<li class="param">string lineContent</li>
+				<li class="param">optional bool replaceLine</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetLine">
+				<span class="methodName">GetLine</span>
+				<span> ( optional int lineNumber )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the value of the desired line from the file. By default it retrieves the line 0 fmr the file if the</li>
+			<li>* line number is not set.</li>
+		</ul>
+		<p class="returns">Returns: string retrieved from the file's selected line.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int lineNumber</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="DeleteLine">
+				<span class="methodName">DeleteLine</span>
+				<span> ( int lineNumber )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Deletes a line from the file.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int lineNumber</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="UpdateContent">
+				<span class="methodName">UpdateContent</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Updates the file content array from disk.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="GetCoreDump">
+				<span class="methodName">GetCoreDump</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the file object variables' values, formated into a string.</li>
+		</ul>
+		<p class="returns">Returns: string formated variables dump.</p>
+		<hr />
+		<p>
+			<a name="GetLastErrorNumber">
+				<span class="methodName">GetLastErrorNumber</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the last error number reported.</li>
+		</ul>
+		<p class="returns">Returns: last error number reported.</p>
+		<hr />
+		<p>
+			<a name="GetLastError">
+				<span class="methodName">GetLastError</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the last error reported.</li>
+		</ul>
+		<p class="returns">Returns: last error string reported.</p>
+		<hr />
+		<p>
+			<a name="IsFileContentEmpty">
+				<span class="methodName">IsFileContentEmpty</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if the file content array is empty.</li>
+		</ul>
+		<p class="returns">Returns: true if the content array is empty, false otherwise.</p>
+		<hr />
+		<p>
+			<a name="GetContents">
+				<span class="methodName">GetContents</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the content array into a formated string.</li>
+		</ul>
+		<p class="returns">Returns: string formated of the content array</p>
+		<hr />
+		<p>
+			<a name="IsOpen">
+				<span class="methodName">IsOpen</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if the file is in use, false otherwise.</li>
+		</ul>
+		<p class="returns">Returns: true if the file is opened, false otherwise</p>
+		<hr />
+		<p>
+			<a name="GetLastAccessTime">
+				<span class="methodName">GetLastAccessTime</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the last time the file was accessed.</li>
+		</ul>
+		<p class="returns">Returns: string of the file's last access.</p>
+		<hr />
+		<p>
+			<a name="GetLastInodeChangeTime">
+				<span class="methodName">GetLastInodeChangeTime</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the last time the file's inode changed.</li>
+		</ul>
+		<p class="returns">Returns: string of the last file's inode change.</p>
+		<hr />
+		<p>
+			<a name="GetLastUpdateTime">
+				<span class="methodName">GetLastUpdateTime</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the las time the file was updated.</li>
+		</ul>
+		<p class="returns">Returns: string of the last time the file's was updated.</p>
+		<hr />
+		<p>
+			<a name="ResetFileContents.">
+				<span class="methodName">ResetFileContents.</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Truncates ONLY the file on disk.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="ResetBuffers">
+				<span class="methodName">ResetBuffers</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Resets all buffers to initial condition.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="ResetAll">
+				<span class="methodName">ResetAll</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Resets all buffers to initial condition and trucantes the file on disk.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="Destroy">
+				<span class="methodName">Destroy</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Destroy the objects reseting the buffers to initial condition.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="FindString">
+				<span class="methodName">FindString</span>
+				<span> ( string String )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Locates a string in a file.</li>
+		</ul>
+		<p class="returns">Returns: line number where the string was found, -1 otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string String</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="StripFile">
+				<span class="methodName">StripFile</span>
+				<span> ( optional int type )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Strips the file returning either the filename or the extension.</li>
+			<li>* Types :</li>
+			<li>* 0 - filename. (Default)</li>
+			<li>* 1 - extension (size 3)</li>
+			<li>* 2 - extension (any size)</li>
+		</ul>
+		<p class="returns">Returns: string containing either the filename or the extension</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int type</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetAllFilesInDir">
+				<span class="methodName">GetAllFilesInDir</span>
+				<span> ( string defDir )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns an array with all files from the defined directory.</li>
+		</ul>
+		<p class="returns">Returns: an array containing all the files in the directory.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string defDir</li>
+			</ul>
+		</p>
+	</body>
+</html>
+<html>
+	<head>
+		<title>FileManager</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">FileManager Class</h1>
+		<br />
+		<span class="name">Name: FileManager</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* This class manages all the I/O services. The reason this file is named FileManager is becuase it is intended to manage all</li>
+			<li>* methods regarding IO, even for directories.</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.base</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza &lt; <a href="mailto:aespinoza@structum.com.mx">aespinoza@structum.com.mx</a> &gt;</span>
+		<br />
+		<span class="version">Version: 1.2</span>
+		<br />
+		<span class="extends">Extends: Object</span>
+		<br />
+		<span class="requires">Requires: Object</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#File">File</a>
+			<br />
+			<a href="#Open">Open</a>
+			<br />
+			<a href="#Close">Close</a>
+			<br />
+			<a href="#InsertLine">InsertLine</a>
+			<br />
+			<a href="#GetLine">GetLine</a>
+			<br />
+			<a href="#DeleteLine">DeleteLine</a>
+			<br />
+			<a href="#UpdateContent">UpdateContent</a>
+			<br />
+			<a href="#GetCoreDump">GetCoreDump</a>
+			<br />
+			<a href="#GetLastErrorNumber">GetLastErrorNumber</a>
+			<br />
+			<a href="#GetLastError">GetLastError</a>
+			<br />
+			<a href="#IsFileContentEmpty">IsFileContentEmpty</a>
+			<br />
+			<a href="#GetContents">GetContents</a>
+			<br />
+			<a href="#IsOpen">IsOpen</a>
+			<br />
+			<a href="#GetLastAccessTime">GetLastAccessTime</a>
+			<br />
+			<a href="#GetLastInodeChangeTime">GetLastInodeChangeTime</a>
+			<br />
+			<a href="#GetLastUpdateTime">GetLastUpdateTime</a>
+			<br />
+			<a href="#ResetFileContents.">ResetFileContents.</a>
+			<br />
+			<a href="#ResetBuffers">ResetBuffers</a>
+			<br />
+			<a href="#ResetAll">ResetAll</a>
+			<br />
+			<a href="#Destroy">Destroy</a>
+			<br />
+			<a href="#FindString">FindString</a>
+			<br />
+			<a href="#StripFile">StripFile</a>
+			<br />
+			<a href="#GetAllFilesInDir">GetAllFilesInDir</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="File">
+				<span class="methodName">File</span>
+				<span> ( optional string fileName )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the default options and opens the file.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional string fileName</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="Open">
+				<span class="methodName">Open</span>
+				<span> ( string fileName )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Opens a file and updates the content array if set. This method can be debugged.</li>
+		</ul>
+		<p class="returns">Returns: true if the file is open, or false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string fileName</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="Close">
+				<span class="methodName">Close</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Closes the file in use.</li>
+		</ul>
+		<p class="returns">Returns: true if the file is closed, or false otherwise.</p>
+		<hr />
+		<p>
+			<a name="InsertLine">
+				<span class="methodName">InsertLine</span>
+				<span> ( int lineNumber, string lineContent, optional bool replaceLine )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Inserts a line into the array content; if the line number that is to be inserted exists</li>
+			<li>* the default action is not to replace it, but to move it to the next line. That can be</li>
+			<li>* changed by setting the replaceLine variable to 'true'. This method can be debugged.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int lineNumber</li>
+				<li class="param">string lineContent</li>
+				<li class="param">optional bool replaceLine</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetLine">
+				<span class="methodName">GetLine</span>
+				<span> ( optional int lineNumber )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the value of the desired line from the file. By default it retrieves the line 0 fmr the file if the</li>
+			<li>* line number is not set.</li>
+		</ul>
+		<p class="returns">Returns: string retrieved from the file's selected line.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int lineNumber</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="DeleteLine">
+				<span class="methodName">DeleteLine</span>
+				<span> ( int lineNumber )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Deletes a line from the file.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int lineNumber</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="UpdateContent">
+				<span class="methodName">UpdateContent</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Updates the file content array from disk.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="GetCoreDump">
+				<span class="methodName">GetCoreDump</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the file object variables' values, formated into a string.</li>
+		</ul>
+		<p class="returns">Returns: string formated variables dump.</p>
+		<hr />
+		<p>
+			<a name="GetLastErrorNumber">
+				<span class="methodName">GetLastErrorNumber</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the last error number reported.</li>
+		</ul>
+		<p class="returns">Returns: last error number reported.</p>
+		<hr />
+		<p>
+			<a name="GetLastError">
+				<span class="methodName">GetLastError</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the last error reported.</li>
+		</ul>
+		<p class="returns">Returns: last error string reported.</p>
+		<hr />
+		<p>
+			<a name="IsFileContentEmpty">
+				<span class="methodName">IsFileContentEmpty</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if the file content array is empty.</li>
+		</ul>
+		<p class="returns">Returns: true if the content array is empty, false otherwise.</p>
+		<hr />
+		<p>
+			<a name="GetContents">
+				<span class="methodName">GetContents</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the content array into a formated string.</li>
+		</ul>
+		<p class="returns">Returns: string formated of the content array</p>
+		<hr />
+		<p>
+			<a name="IsOpen">
+				<span class="methodName">IsOpen</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if the file is in use, false otherwise.</li>
+		</ul>
+		<p class="returns">Returns: true if the file is opened, false otherwise</p>
+		<hr />
+		<p>
+			<a name="GetLastAccessTime">
+				<span class="methodName">GetLastAccessTime</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the last time the file was accessed.</li>
+		</ul>
+		<p class="returns">Returns: string of the file's last access.</p>
+		<hr />
+		<p>
+			<a name="GetLastInodeChangeTime">
+				<span class="methodName">GetLastInodeChangeTime</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the last time the file's inode changed.</li>
+		</ul>
+		<p class="returns">Returns: string of the last file's inode change.</p>
+		<hr />
+		<p>
+			<a name="GetLastUpdateTime">
+				<span class="methodName">GetLastUpdateTime</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the las time the file was updated.</li>
+		</ul>
+		<p class="returns">Returns: string of the last time the file's was updated.</p>
+		<hr />
+		<p>
+			<a name="ResetFileContents.">
+				<span class="methodName">ResetFileContents.</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Truncates ONLY the file on disk.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="ResetBuffers">
+				<span class="methodName">ResetBuffers</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Resets all buffers to initial condition.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="ResetAll">
+				<span class="methodName">ResetAll</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Resets all buffers to initial condition and trucantes the file on disk.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="Destroy">
+				<span class="methodName">Destroy</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Destroy the objects reseting the buffers to initial condition.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="FindString">
+				<span class="methodName">FindString</span>
+				<span> ( string String )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Locates a string in a file.</li>
+		</ul>
+		<p class="returns">Returns: line number where the string was found, -1 otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string String</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="StripFile">
+				<span class="methodName">StripFile</span>
+				<span> ( optional int type )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Strips the file returning either the filename or the extension.</li>
+			<li>* Types :</li>
+			<li>* 0 - filename. (Default)</li>
+			<li>* 1 - extension (size 3)</li>
+			<li>* 2 - extension (any size)</li>
+		</ul>
+		<p class="returns">Returns: string containing either the filename or the extension</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int type</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetAllFilesInDir">
+				<span class="methodName">GetAllFilesInDir</span>
+				<span> ( string defDir )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns an array with all files from the defined directory.</li>
+		</ul>
+		<p class="returns">Returns: an array containing all the files in the directory.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string defDir</li>
+			</ul>
+		</p>
+	</body>
+</html>
