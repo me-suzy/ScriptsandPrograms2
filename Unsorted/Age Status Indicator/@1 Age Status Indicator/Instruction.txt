@@ -1,0 +1,38 @@
+1) Open the script filecheck.cig and filechekcadmin.cgi. On the first line, make sure that the path to Perl is correct. If not, modify it. If not sure, check with your ISP.
+
+2) Create this folder, upload the files and chmod accordingly. All files must be uploaded in ASCII mode.
+
+http://www.yourdomain.com/cgi-bin/filecheck (777)
+- filecheck.cgi (755)
+- filecheckadmin.cgi (755)
+- filecheck.dat (666 or 777 - preferably 666 for higher security)
+- filecheck.config (666 or 777 - preferably 666 for higher security)
+
+4) Configure the settings by calling up the script filecheckadmin.cgi from your browser. The defautl password is "upoint". You may change it.
+
+5) Place this tag into your existing web page (remember to rename it to shtml extension) where you want the age indicator to appear:
+
+<!--#include virtual="cgi-bin/filecheck/filecheck.cgi?X" -->
+where X is a reference number. Please note that X must be set as a 5-digit number ONLY in the admin interface (such as 00001 or 00014). But in the SSI tags, the leading zeros can be omitted.
+
+Example:
+<!--#include virtual="cgi-bin/filecheck/filecheck.cgi?1" -->
+<!--#include virtual="cgi-bin/filecheck/filecheck.cgi?14" -->
+
+6) For more instruction, please execute the script filechekcadmin.cgi.
+
+PROBLEMS?
+========
+Please sent an email to help@upoint.net describing
+- the problems
+- error message generated
+- URL to the script and/or result page
+- other things that you think might be helpful
+* We usually response in less than 12 hours (average is about 4 hours). But before that, you will receive an auto-responded email describing the most common CGI installation mistakes.
+
+The Management,
+UPDN Network Sdn Bhd
+www.upoint.net
+General: mail@upoint.net
+Technical help: help@upoint.net
+
