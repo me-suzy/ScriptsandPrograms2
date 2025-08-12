@@ -1,0 +1,215 @@
+<html>
+
+<head>
+<title>phpJobScheduler - Add a job</title>
+<link rel="stylesheet" type="text/css" href="pjs.css">
+</head>
+
+<body>
+<div align="center"><center>
+
+<table cellSpacing="3" cellPadding="0" border="0" width="490">
+  <tr bgColor="#000000">
+    <td height="1" bgcolor="#808080" width="481" colspan="4"></td>
+  </tr>
+  <tr bgColor="#334873">
+    <td align="middle" bgcolor="#FFFFFF" width="5"></td>
+    <td align="middle" bgcolor="#FFFFFF"><p align="center"><a href="http://www.dwalker.co.uk/"><img
+    src="pjslogo.gif" width="165" height="75" alt="phpJobScheduler" border="0"></a><strong><br>
+    </strong></td>
+    <td align="middle" bgcolor="#FFFFFF" width="153"><font color="#008000"><strong>Scheduled
+    Job</strong></font></td>
+    <td align="middle" bgcolor="#FFFFFF" width="5"></td>
+  </tr>
+  <tr bgColor="#000000">
+    <td height="1" bgcolor="#808080" width="481" colspan="4"></td>
+  </tr>
+</table>
+</center></div>
+
+<form action="add-modify.php" method="POST" NAME="I_F" align="center">
+  <input type="hidden" name="id" value="0"><input type="hidden" name="time_last_fired"
+  value="0"><div align="center"><center><table class="cborder" cellSpacing="0"
+  cellPadding="3">
+<TBODY>
+    <tr>
+      <th align="left" colSpan="3"><div align="center"><center><p><b>Details of job</b></th>
+    </tr>
+    <tr bgColor="#ffffff" align="center">
+      <td vAlign="top" align="right"><small><b>Script to run:</b></small></td>
+      <td align="left" colspan="2"><input class="box" size="76"
+      value="http://www.Your--domain/phpjobscheduler/eg_email_site_stats_to_boss.php"
+      name="scriptpath"><br>
+      <font size="2">enter the path to the script you wish to run<script language="JavaScript"><!--
+help_path="Enter the url to your script.\n\n i.e. http://www.Your--domain.com/phpMySQLAutoBackup/run.php\n\n";
+function testpath()
+{
+ if (confirm("If you have entered the path to the script correctly the script will be executed NOW.\n\nDo you wish to continue?")) 
+ {
+  var tWindow = null;
+  if(tWindow != null) if(!tWindow.closed) tWindow.close()
+  tWindow=open(document.I_F.scriptpath.value,'tWin'); 
+ }
+}
+// --></script>
+      <strong>- <a href="javascript:testpath();">test path</a> - <a
+      href="javascript:alert(help_path)">help</a></strong></font></td>
+    </tr>
+    <tr bgColor="#ffffff" align="center">
+      <td vAlign="top" align="right"><small><b>Job name:</b></small></td>
+      <td align="left" colspan="2"><input class="box" size="29" name="name"
+      value="Email site stats to boss"><br>
+      <small>The name will be used to refer to this new job</small></td>
+    </tr>
+    <tr bgColor="#ffffff" align="center">
+      <td vAlign="top" align="right" rowspan="3"><small><b>Run this script:</b></small></td>
+      <td align="left"><div align="right"><p><font color="#FF0000"><strong><small>HOURLY</small></strong></font></td>
+      <td align="left"><small>- run every: <select class="button" name="hours"
+      onchange="disable_others()" size="1" value="0" <option>
+        <option selected value="-1">0</option>
+        <option value="1">1 </option>
+        <option value="2">2 </option>
+        <option value="3">3 </option>
+        <option value="4">4 </option>
+        <option value="5">5 </option>
+        <option value="6">6 </option>
+        <option value="7">7 </option>
+        <option value="8">8 </option>
+        <option value="9">9 </option>
+        <option value="10">10 </option>
+        <option value="11">11 </option>
+        <option value="12">12 </option>
+        <option value="13">13 </option>
+        <option value="14">14 </option>
+        <option value="15">15 </option>
+        <option value="16">16 </option>
+        <option value="17">17 </option>
+        <option value="18">18 </option>
+        <option value="19">19 </option>
+        <option value="20">20 </option>
+        <option value="21">21 </option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+      </select> hour(s)</small></td>
+    </tr>
+    <tr align="center">
+      <td align="left"><div align="right"><p><font color="#FF8000"><small><strong>DAILY</strong></small></font></td>
+      <td align="left"><small>- run every: <select class="button" name="days"
+      onchange="disable_others()" size="1" value="0" <option>
+        <option selected value="-1">0</option>
+        <option value="1">1 </option>
+        <option value="2">2 </option>
+        <option value="3">3 </option>
+        <option value="4">4 </option>
+        <option value="5">5 </option>
+        <option value="6">6 </option>
+      </select> day(s)</small></td>
+    </tr>
+    <tr align="center">
+      <td align="left"><div align="right"><p><font color="#C00000"><small><strong>WEEKLY</strong></small></font></td>
+      <td align="left"><small>- run every: <select class="button" name="weeks"
+      onchange="disable_others()" size="1" value="0" <option>
+        <option selected value="-1">0</option>
+        <option value="1">1 </option>
+        <option value="2">2 </option>
+        <option value="3">3 </option>
+        <option value="4">4 </option>
+        <option value="5">5 </option>
+        <option value="6">6 </option>
+        <option value="7">7 </option>
+        <option value="8">8 </option>
+        <option value="9">9 </option>
+        <option value="10">10 </option>
+        <option value="11">11 </option>
+        <option value="12">12 </option>
+        <option value="13">13 </option>
+        <option value="14">14 </option>
+        <option value="15">15 </option>
+        <option value="16">16 </option>
+        <option value="17">17 </option>
+        <option value="18">18 </option>
+        <option value="19">19 </option>
+        <option value="20">20 </option>
+        <option value="21">21 </option>
+        <option value="22">22 </option>
+        <option value="23">23 </option>
+        <option value="24">24 </option>
+        <option value="25">25 </option>
+        <option value="26">26 </option>
+        <option value="27">27 </option>
+        <option value="28">28 </option>
+        <option value="29">29 </option>
+        <option value="30">30 </option>
+        <option value="31">31 </option>
+        <option value="32">32 </option>
+        <option value="33">33 </option>
+        <option value="34">34 </option>
+        <option value="35">35 </option>
+        <option value="36">36 </option>
+        <option value="37">37 </option>
+        <option value="38">38 </option>
+        <option value="39">39 </option>
+        <option value="40">40 </option>
+        <option value="41">41 </option>
+        <option value="42">42 </option>
+        <option value="43">43 </option>
+        <option value="44">44 </option>
+        <option value="45">45 </option>
+        <option value="46">46 </option>
+        <option value="47">47 </option>
+        <option value="48">48 </option>
+        <option value="49">49 </option>
+        <option value="50">50 </option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+      </select> week(s)</small></td>
+    </tr>
+    <tr bgColor="#ffffff" align="center">
+      <td vAlign="top" align="right"></td>
+      <td align="left" colspan="2"><div align="center"><center><p>&nbsp;<input class="button"
+      type="button" onclick="add()" value="Add Job" name="button">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="button" type="button"
+      onclick="javascript:document.location='index.php'" value="Cancel" name="cancel"></td>
+    </tr>
+</TBODY>
+  </table>
+  </center></div>
+</form>
+
+<p align="center">&nbsp;</p>
+
+<p align="center">Help me! <a href="readme.html">Please see the readme file</a></p>
+
+<hr width="85%" color="#808080" align="center">
+<font size="-1"><script language="JavaScript"><!--
+function disable_others()
+{
+ validcount=0;
+ with (document.I_F)
+ {
+  if (hours.options[hours.selectedIndex].value<0) validcount=validcount+hours.options[hours.selectedIndex].value *1; 
+  if (days.options[days.selectedIndex].value<0) validcount=validcount+days.options[days.selectedIndex].value *1;
+  if (weeks.options[weeks.selectedIndex].value<0) validcount=validcount+weeks.options[weeks.selectedIndex].value *1; 
+  if (validcount!=-2) 
+  {
+   hours.selectedIndex=0;
+   days.selectedIndex=0;
+   I_F.weeks.selectedIndex=0;
+   alert("Only one can carry a value!  Please re-select.");
+  }
+ }
+}
+function add()
+{
+ with (document.I_F)
+ {
+  if ( (hours.options[hours.selectedIndex].value<0) & (days.options[days.selectedIndex].value<0) & (weeks.options[weeks.selectedIndex].value<0) ) alert("Please select a period to run this script:\n\n HOURLY, DAILY or WEEKLY");
+  else submit();
+ }
+}
+// --></script>
+
+
+<p align="center"></font>&nbsp;</p>
+</body>
+</html>
