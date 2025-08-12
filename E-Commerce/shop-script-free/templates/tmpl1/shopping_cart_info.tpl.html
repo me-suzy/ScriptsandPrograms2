@@ -1,0 +1,19 @@
+{* shopping cart brief info *}
+
+<table>
+ <form name="shopping_cart_form">
+ <tr><td>
+
+ {if $shopping_cart_value}
+	<input class=cart type=text name=gc value="{$shopping_cart_items} {$smarty.const.CART_CONTENT_NOT_EMPTY}"><br>
+	<input type=text class=cart name=ca value="{$shopping_cart_value_shown|replace:'"':'&quot;'}">
+ {else}
+	<input class=cart type=text name=gc value="{$smarty.const.CART_CONTENT_EMPTY}"><br>
+	<input type=text class=cart name=ca value="">
+ {/if}
+
+<nobr><a class=lightsmall href="index.php?shopping_cart=yes">{$smarty.const.CART_PROCEED_TO_CHECKOUT}</a></nobr>
+
+ </td></tr>
+ </form>
+</table>
