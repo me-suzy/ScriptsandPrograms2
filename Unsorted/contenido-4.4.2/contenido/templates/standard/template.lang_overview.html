@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="styles/contenido.css" />
+    <script type="text/javascript" src="scripts/rowMark.js"></script>
+    <script type="text/javascript" src="scripts/messageBox.js.php?contenido={SID}"></script>
+    <script language="javascript">
+
+        var sid = "{SID}";
+
+        box = new messageBox("", "", "", 0, 0);
+        
+        function deleteLang(idlang) {
+
+            str  = "";
+            str += "main.php?area=lang";
+            str += "&action=lang_deletelanguage";
+            str += "&idlang=" + idlang;
+            str += "&targetclient={TARGETCLIENT}";
+            str += "&frame=2";
+            str += "&contenido=" + sid;
+
+            window.location.href = str;
+
+        }
+
+    </script>
+</head>
+<body>
+
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+
+    {NOTIFICATION}
+
+    <!-- BEGIN:BLOCK -->
+    <tr class="text_medium" style="background-color: {BGCOLOR};">
+        <td width="100%" style="padding-left:10px">{LANGUAGE}</td>
+        <td>{ACTIVATEBUTTON}</td>
+        <td>{DELETEBUTTON}</td>
+    </tr>
+    <!-- END:BLOCK -->
+
+
+</table>
+
+</body>
+</html>
