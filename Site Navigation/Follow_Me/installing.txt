@@ -1,0 +1,95 @@
+---------------------------------------
+
+FOLLOW ME - AUTOMATIC DYNAMIC MENUS - V1.1
+
+---------------------------------------
+
+Generates fully customisable auto expandable menus, based on text file, no database connection needed.
+
+
+The code will : 
+- generate automatically a navigation menu.
+- display all the links and open/close collapsible menus when needed. 
+- unlink the current position. 
+
+
+
+The structure allows to use up to 3 different levels:
+
+[r] main level, stands for "Rubrique" (heading)
+
+[s] section, are the main sections. 
+
+[ss-] subsections, all content displayed inside your [s] sections. "-" is to be replaced with the section's number 
+
+note : [s] and [ss-] can be placed in a specific folder or just remain in the main directory.
+
+
+
+
+
+
+
+Three operations are required : 
+
+1/ Copy "menu.inc" in the main folder.
+--------------------------------------
+
+
+
+2/ Build a content.txt file, including all titles and paths to the files.
+-------------------------------------------------------------------------
+
+Content.txt is to be placed in the main [r] directory, with menu.inc
+
+
+Delimiters : 
+[_]Text to be displayed#/path/to/file.php!
+
+
+
+=> example  :http://www.mysite.com/test/ with  3 sections
+
+folders : section1, section2, 
+files concerning section3 stay in the main folder.
+
+Example of Content.txt (only section 1 and 3 have sub-content)
+
+[r]Main Title#/test/index.php!
+[s]section 1#/test/section1/section1.php!
+[ss1]soussection 1-1#/test/section1/ssection1-1.php!
+[ss1]soussection 1-2#/test/section1/ssection1-2.php!
+[ss1]soussection 1-3#/test/section1/ssection1-3.php!
+[s]section 2#/test/section2/section2.php!
+[s]section 3#/test/section3.php!
+[ss3]soussection 3-1#/test/ssection3-1.php!
+
+
+
+3/ ensure content of the left menu table in pages contains the appropriate php code.
+------------------------------------------------------------------------------------
+
+ensure your pages follow this structure:  
+
+**for the index.php main page (identified as [r]) or all [s] and [ss-] files if placed in the main folder **
+<? require("menu.inc") ;?> 
+
+
+**for all other pages [s] and [ss-] when placed in a specific folder **
+<? $sousrep="../"; require("../menu.inc");?>
+
+
+-----------------------------------------------------------
+
+see files included in the archive for a fully functionnal 
+"test" folder to be placed on your  website root
+
+visit http://optipalm.free.fr/test/ for an online demo
+-----------------------------------------------------------
+
+
+
+
+
+
+
