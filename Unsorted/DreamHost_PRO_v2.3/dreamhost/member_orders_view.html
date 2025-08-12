@@ -1,0 +1,238 @@
+<font face="Verdana, Arial, Helvetica, sans-serif"> 
+<?
+$pass = is_logged($session_id);
+if ($pass == "N") {
+include("member_login_1.html");
+} elseif($pass =="Y") {
+$account_id=get_account_id($session_id);
+
+$db = new ps_DB;
+	$q  = "SELECT * FROM orders WHERE order_id='$order_id' AND order_account_id='$account_id' ORDER BY order_id";
+	$db->query($q);
+	$db->next_record();
+	$account_id = $db->f("order_account_id");
+	$billing_id = $db->f("order_billing_id");
+
+                      if($db->num_rows()==0) {
+                                echo "You do not have permission to view this order!";
+                      } else {
+?>
+</font> 
+<table width="95%" border="0" cellspacing="0" cellpadding="15" align="center">
+  <tr> 
+    <td> 
+      <div align="center"> </div>
+      <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+        <tr> 
+          <td> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#CCCCCC">
+              <tr bgcolor="#000066"> 
+                <td width="23%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b>Order 
+                  No:</b></font></td>
+                <td width="30%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b><font color="#FFFFCC"><b>
+                  <?  $db->p("order_id");  ?>
+                  </b></font></b></font></td>
+                <td width="10%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b>Status:
+                  <?  $status = $db->f("order_status"); ?>
+                  </b></font></td>
+                <td width="37%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b><b><b><font color="#FFFFCC"> 
+                  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FFFFFF"><b> 
+                  <?  $status = $db->f("order_status"); 
+if ($status==1) { echo "Complete"; }
+if ($status==0) { echo "Processing"; }
+if ($status==2) { echo "Voided"; }
+if ($status==3) { echo "Canceled"; }
+if ($status==4) { echo "Declined"; }
+
+?>
+                  </b></font><font color="#FFFFCC"> </font></b></b></b></font></td>
+              </tr>
+              <tr> 
+                <td width="23%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#0033CC"><b>Total:</b></font></td>
+                <td width="30%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#0033CC"><b><b>
+                  <?
+ $amount = $db->f("order_amount");  
+echo $currency;
+printf("%.2f",$amount);
+?>
+                  </b></b></font></td>
+                <td width="10%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#0033CC"><b>Date:</b></font></td>
+                <td width="37%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#0033CC"><b><b><b><b><b>
+                  <? $db->p("order_date"); ?>
+                  </b></b></b></b></b></font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font size="1" color="#000000"><b><font color="#0033CC"> 
+      </font></b></font></font> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+        <tr> 
+          <td> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#EBEBEB">
+              <tr> 
+                <td width="45%" height="15"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  </font> 
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#CCCCCC">
+                    <tr> 
+                      <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000066"><b>Account 
+                        Information:</b></font></td>
+                      <td> 
+                        <div align="right"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#000066"><a href="members.php?page=account&session_id=<? echo $session_id ?>&next_page=account"><font size="1"> 
+                          edit account information</font></a></font></div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr> 
+                <td width="45%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <font size="1" color="#000000"><b></b></font></font><font color="#0033CC"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font size="1" color="#000000"><b><font color="#0033CC"> 
+                  <?                    $db = new ps_DB;
+	$q  = "SELECT * FROM account WHERE account_id='$account_id'";
+	$db->query($q);
+	$db->next_record();?>
+                  </font></b></font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                  <? $db->p("account_name");   ?>
+                  </font> <font face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                  <?
+if ($db->f("account_company"))  {
+echo "<BR>";
+$db->p("account_company") ;
+}  
+
+?>
+                  <br>
+                  <?
+$db->p("account_address");   
+?>
+                  <br>
+                  <? $db->p("account_city");   ?>
+                  , 
+                  <? $db->p("account_state");   ?>
+                  <? $db->p("account_zip");   ?>
+                  </font></b></font> </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font size="1" color="#000000"><b><font color="#0033CC"> 
+      </font></b></font></font><br>
+      <font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+      <? 
+	$db = new ps_DB;
+	$q  = "SELECT * FROM  billing WHERE billing_id='$billing_id'";
+	$db->query($q);
+	$db->next_record();
+?>
+      </font>
+<table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+        <tr> 
+          <td> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#EBEBEB">
+              <tr> 
+                <td width="45%"> 
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr bgcolor="#CCCCCC"> 
+                      <td width="53%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font color="#000066">Billing 
+                        Information: </font></b></font></td>
+                      <td width="47%">
+                        <div align="right"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#000066"><a href="members.php?page=billing&session_id=<? echo $session_id ?>&billing_id=<? $db->p("billing_id"); ?>"><font size="1">edit 
+                          billing information</font></a></font></div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr> 
+                <td width="45%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+                  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#666666"><b></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#666666"><b></b></font> 
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="175"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#0033CC"><b>Credit 
+                        Card Number: </b></font></td>
+                      <td><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#0033CC"> 
+                        <?echo show_hidden_cc_1($db->f("billing_cc_num"));?>
+                        </font></b></td>
+                    </tr>
+                    <tr> 
+                      <td width="175"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#0033CC"><b>Expiration 
+                        Date: </b></font></td>
+                      <td><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#0033CC"> 
+                        <? $db->p("billing_cc_exp");   ?>
+                        </font></b></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+        <tr> 
+          <td> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#EBEBEB">
+              <tr bgcolor="#CCCCCC"> 
+                <td width="45%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#000066">Domain 
+                  &amp; Hosting Ordered:</font></b></font></td>
+              </tr>
+              <tr> 
+                <td width="45%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#0033CC">
+                  <? 
+	$db = new ps_DB;
+	$q  = "SELECT * FROM  domains WHERE domain_order_id='$order_id'";
+                    $q.= " ORDER BY domain_name;";
+	$db->query($q);
+	while($db->next_record()) {
+?>
+                  </font></b></font> 
+                  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                    <tr> 
+                      <td width="24%"><font color="#0033CC"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                        <? $db->p("domain_name");   ?>
+                        </font></b></font></td>
+                      <td width="18%"><font color="#0033CC"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                        <? $length = $db->f("domain_years");   
+if ($length==0) { 
+$years = "Hosting Only"; 
+} else {
+$years = "$length Year(s)";
+} 
+echo $years;
+
+?>
+                        </font></font></td>
+                      <td width="45%"><font color="#0033CC"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                        <? 
+$host_name = show_hosting_option($db->f("domain_host_id"));
+echo $host_name; 
+  ?>
+                        </font></b></font></td>
+                      <td width="13%"> 
+                        <div align="right"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#000066"><a href="?page=add_clients&amp;set_action=client_update&amp;account_id=<? echo $account_id; ?>"></a><a href="members.php?page=domains&session_id=<? echo $session_id ?>&domain_id=<? $db->p("domain_id"); ?>"><font size="1">edit/view 
+                          </font></a></font></div>
+                      </td>
+                    </tr>
+                  </table>
+                  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#0033CC"> 
+                  <?  } ?>
+                  </font></b></font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<font color="#0033CC"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+<?}
+}
+  ?>
+</font></b></font>
