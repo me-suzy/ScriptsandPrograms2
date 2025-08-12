@@ -1,0 +1,59 @@
+<form>
+	<title>Add / Edit Expense Report</title>
+	<action>index.php?sub=reports&action=store</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="return" >
+			<location>index.php?sub=reports&action=details&report_id={REPORT_ID}</location>
+		</return>
+
+		<save onclick="" button="saveall">
+			<location>javascript:document.forms[0].submit();</location>
+		</save>
+
+	</buttons>
+
+	<redirect>index.php?sub=reports&action=details&report_id={REPORT_ID}</redirect>
+
+	<fields>
+
+		<report_id type="hidden" hidden="true"/>
+
+		<report_name type="textbox" size="40:100" required="true" validate="A:1:100">
+			<title>Name</title>
+			<description>Enter a name for this report.</description>
+		</report_name>
+
+		<report_description type="textarea" size="40:4">
+			<title>Description</title>
+			<description>Optional you can enter a description for this report.</description>
+		</report_description>
+
+		<report_user type="droplist" empty="true">
+			<title>Assigned User</title>
+			<description>Select a regular user which can view the report and edit / delete it.</description>
+
+			<relation table="users" id="user_id">
+				<text>	
+					<field name="user_login">user_login</field>
+					<field name="user_name">user_name</field>
+				</text>
+
+				<separator>&nbsp;-&nbsp;</separator>
+
+				<condition>user_level=1</condition>
+			</relation>
+		</report_user>
+
+	</fields>
+</form>
