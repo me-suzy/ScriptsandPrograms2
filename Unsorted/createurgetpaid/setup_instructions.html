@@ -1,0 +1,659 @@
+<html>
+
+<head>
+<title>Create Your GetPaid Setup</title>
+</head>
+
+<body>
+
+<p align="center"><u><strong>Create Your GetPaid (v5.5.1) Setup/Upgrade Instructions</strong></u></p>
+
+<p><u><b>Installation Directions (clean install)</b></u></p>
+
+<ol>
+  <li>Upload all files and folders with your favorite ftp program to your server.</li>
+  <li>Chmod 777 the file .htconfig.php in the lib folder and db.sql in the main folder.
+  (It is possible that the folder lib is empty. In that case configure your ftp program
+  to view hidden files.) (<b>do this before you run the installer!</b>)</li>
+  <li>Go to www.yoursite.com/install.php and follow instructions on your screen.</li>
+  <li>Delete the files &quot;install.php&quot; and &quot;db.sql&quot;.</li>
+  <li>Chmod 644 the file .htconfig.php in the folder lib again.</li>
+  <li>Chmod 777 all files in the folder templates and it's subfolders.</li>
+  <li><b>WARNING</b> - If you want to use database backup/restore you <b>have to</b> create a new folder 
+  e.g. &quot;db_backup&quot; and chmod it to 777. You <b>should</b> upload it before 
+  the www or public_html folder so you can't access it with a browser. If you 
+  can't do that you should place a .htaccess file in the db_backup folder. Then 
+  download the .htconfig.php file and open it in your favorite text editor and 
+  change the following line:<br>
+  define ( '_BACKUP_PATH', _BASE_PATH . 'db_backup/' );</li>
+  <li><b>WARNING</b> - If you want to use log files you <b>have to</b> create a new folder e.g. &quot;logs&quot;
+  and chmod it to 777. You <b>should</b> upload it before the www or public_html
+  folder so you can't access it with a browser. If you can't do that you should place a
+  .htaccess file in the db_backup folder. Then download the .htconfig.php file and open
+  it in your favorite text editor and change the following line:<br>
+  define ( '_LOGFILES_PATH', _BASE_PATH . 'logs/' );</li>
+  <li><b>WARNING</b> - To make your administration panel 100% secure we have setup
+  a tutorial for you. You can go to the tutorial by clicking
+  <a href="http://www.createyourgetpaid.com/support.php?tid=-1" target="_blank">here</a>.
+  <li>Log in on your program with the &quot;operator&quot; account. Then go to the 
+  administration by clicking on the &quot;administration&quot; link below, next to 
+  &quot;advertise&quot;, &quot;terms&quot;, &quot;privacy&quot; etc and click on &quot;site configuration&quot;. There 
+  you can set up the configuration of your program.</li>
+  <li>If you want to make your program a lot faster you can enable cronjobs. (highly recommended)
+  For more information about this issue please visit our
+  <a href="http://www.createyourgetpaid.com/support.php?tid=12" target="_blank">support pages</a>.</li>
+  <li>The program is now ready for use! If you want more information about
+  running a "getpaid" program, please click
+  <a href="http://www.createyourgetpaid.com/support.php?page=1" target="_blank">here</a>.</li>
+</ol>
+
+<p><u><b>Upgrade from 5.5.0 to 5.5.1</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (do this before uploading the new files!)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the language file from the languages folder</li>
+  <li>unzip the start.tml file from the /templates/language/pages folder</li>
+  <li>unzip the signup.tml file from the /templates/language/pages folder (the url to the turing number image has been changed)</li>
+  <li>if you own the turing add-on, please download the new version and upload the new files for it (important!)</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 5.4.0 to 5.5.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (do this before uploading the new files!)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the language file from the languages folder</li>
+  <li>unzip the emaillinks.tml file from the /templates/language/pages folder</li>
+  <li>unzip the membermenu.tml file from the /templates/language/pages folder</li>
+  <li>unzip the history.tml file from the /templates/language/pages folder</li>
+  <li>unzip the stats.tml file from the /templates/language/pages folder</li>
+  <li>unzip the stats_detailed.tml file from the /templates/language/pages folder</li>
+  <li>unzip the ptc.tml file from the /templates/language/pages folder</li>
+  <li>unzip the bubble.tml file from the /templates/language/pages folder if you have the bubble add-on (bubble zipfile)</li>
+  <li>unzip the bubble_cyclers.tml file from the /templates/language/pages folder if you have the bubble add-on (bubble zipfile)</li>
+  <li>unzip the bubble_search.tml file from the /templates/language/pages folder if you have the bubble add-on (bubble zipfile)</li>
+  <li>unzip the who.gif file from the /inc/img folder</li>
+  <li>if you own add-ons, please download for all add-ons the new versions and upload the new files for them (important!)</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 5.4.0 to 5.4.1</b></u></p>
+
+<ol>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>if you own add-ons, please download for all add-ons the new versions and upload the new files for them</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 5.3.0 to 5.4.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the redempts.tml file from the /templates/language/pages folder</li>
+  <li>unzip the redempts_confirm.tml file from the /templates/language/pages folder</li>
+  <li>unzip the paidsignups.tml file from the /templates/language/pages folder</li>
+  <li>unzip the signup.tml file from the /templates/language/pages folder</li>
+  <li>unzip the index.tml file from the /templates/language/pages folder</li>
+  <li>unzip the stats.tml file from the /templates/language/pages folder</li>
+  <li>unzip the stats_detailed.tml file from the /templates/language/pages folder</li>
+  <li>unzip the bubble.tml file from the /templates/language/pages folder if you have the bubble add-on (bubble zipfile)</li>
+  <li>unzip the bubble_cyclers.tml file from the /templates/language/pages folder if you have the bubble add-on (bubble zipfile)</li>
+  <li>unzip the bubble_search.tml file from the /templates/language/pages folder if you have the bubble add-on (bubble zipfile)</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li><b>WARNING</b> - To make your administration panel 100% secure we have setup
+  a tutorial for you. You can go to the tutorial by clicking
+  <a href="http://www.createyourgetpaid.com/support.php?tid=-1" target="_blank">here</a>.
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 5.2.1 to 5.3.0</b></u></p>
+
+<ol>
+  <li>request your new serial, click <a href="http://www.createyourgetpaid.com/forums/viewtopic.php?t=539" target="_blank">here</a> for more information</li>
+  <li>unzip the new liveupdate.php from the zipfile, and upload it to your site again</li>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the emaillinks.tml file from the /templates/language/pages folder</li>
+  <li>unzip the emaillinks_open.tml file from the /templates/language/pages folder</li>
+  <li>unzip the emaillinks_text.tml file from the /templates/language/pages folder</li>
+  <li>unzip the emaillinks_close.tml file from the /templates/language/pages folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 5.2.0 to 5.2.1</b></u></p>
+
+<ol>
+  <li>write down all your premium members and their status</li>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the getgold.tml file from the /templates/language/pages folder</li>
+  <li>go to the administration panel and change the premium membership options to suit your needs</li>
+  <li>update all your old premium members by adding them again in the premium membership admin</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 5.1.0 to 5.2.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the emaillinks.tml file from the /templates/language/pages folder</li>
+  <li>unzip the advertise_order.tml file from the /templates/language/pages folder</li>
+  <li>unzip the advertise_overview.tml file from the /templates/language/pages folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 5.0.0 to 5.1.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>delete the unpaidmail_plain.tml and paidmail_plain.tml from your ftp in the /templates/language/emails folder</li>
+  <li>rename the unpaidmail_html.tml to unpaidmail.tml and paidmail_html.tml to paidmail.tml on your ftp in the /templates/language/emails folder</li>
+  <li>unzip the *.lang file from the languages folder (change * with your site's language)</li>
+  <li>unzip the emaillinks.tml file from the /templates/language/pages folder</li>
+  <li>unzip the ptc.tml file from the /templates/language/pages folder</li>
+  <li>unzip the start.tml file from the /templates/language/pages folder</li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.x to 5.0.0</b></u></p>
+
+<ol>
+  <li>go to the upgrade page on Create Your GetPaid by clicking
+  <a href="http://www.createyourgetpaid.com/upgrade.php?action=instructions&v=5" target="_blank">here</a></li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.8 to 4.9.9</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>download the .htconfig.php file from the lib directory and add the following line after the backup_path setting:
+  <br>define ( '_LOGFILES_PATH', _BASE_PATH . 'logs/' );<br>The best thing is to upload it before the www or public_html
+  folder so you can't access it with a browser. Change the path to the logfiles this way:<br>
+  define ( '_LOGFILES_PATH', 'PATH/TO/YOURSITE/logs/' );<br>Be sure you create this new directory (logs) with your<br>
+  ftp program and chmod it to 777 so the log files can be written.</li>
+  <li>unzip the paidmail_plain.tml file from the templates/emails folder</li>
+  <li>unzip the paidmail_html.tml file from the templates/emails folder</li>
+  <li>unzip the unpaidmail_plain.tml file from the templates/emails folder</li>
+  <li>unzip the unpaidmail_html.tml file from the templates/emails folder</li>
+  <li>delete the paidmail.tml file from the templates/emails folder on your ftp</li>
+  <li>delete the unpaidmail.tml file from the templates/emails folder on your ftp</li>
+  <li>delete the rmw.php file from the main folder on your ftp if it exists</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.7 to 4.9.8</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>unzip the requestpayment.tml file from the templates/pages folder</li>
+  <li>unzip the signup.tml file from the templates/pages folder</li>
+  <li>unzip the start.tml file from the templates/pages folder</li>
+  <li>unzip the membermenu.tml file from the templates/pages folder</li>
+  <li><b>delete</b> the turing.php file from the main folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.6 to 4.9.7</b></u></p>
+
+<ol>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.5 to 4.9.6</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.4 to 4.9.5</b></u></p>
+
+<ol>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>unzip the memberlist.php file from the admin folder</li>
+  <li>unzip the track.php file from the main folder</li>
+  <li>unzip the waiting.tml file from the templates/crediting/popup folder</li>
+  <li>unzip the waiting.tml file from the templates/crediting/frames folder</li>
+  <li>unzip the frameset.tml file from the templates/crediting/frames folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.3 to 4.9.4</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>unzip the tickets_respond.tml file from the templates/pages folder</li>
+  <li>unzip the tickets_new.tml file from the templates/pages folder</li>
+  <li>unzip the tickets_view.tml file from the templates/pages folder</li>
+  <li>unzip the tickets.tml file from the templates/pages folder</li>
+  <li>unzip the tickets_change.tml file from the templates/emails folder</li>
+  <li>unzip the tickets_response.tml file from the templates/emails folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+  <li><b>Note:</b> since the trouble tickets system was still in beta fase,
+  it is possible that you will loose the older ticket resolutions. This
+  update will make it possible for you to communicate with a member trough
+  the ticket and enables some other features.</li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.2 to 4.9.3</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+  <li><b>Note:</b> the trouble tickets program is still in beta fase, be carefull when you use it and if you find any
+  bugs please report them as soon as possible!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.1 to 4.9.2</b></u></p>
+
+<ol>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>unzip the tickets_new.tml file from the templates/pages folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+  <li><b>Note:</b> the trouble tickets program is still in beta fase, be carefull when you use it and if you find any
+  bugs please report them as soon as possible!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.9.0 to 4.9.1</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>unzip the membermenu.tml file from the templates/pages folder</li>
+  <li>unzip the tickets_view.tml file from the templates/pages folder</li>
+  <li>unzip the tickets_new.tml file from the templates/pages folder</li>
+  <li>unzip the tickets.tml file from the templates/pages folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+  <li><b>Note:</b> the trouble tickets program is still in beta fase, be carefull when you use it and if you find any
+  bugs please report them as soon as possible!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.8.1 to 4.9.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>unzip the signup.tml file from the templates/pages folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.8.0 to 4.8.1</b></u></p>
+
+<ol>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php and .htconfig.php)</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.7.0 to 4.8.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php, upgrade.php, upgrade_to_4.php and .htconfig.php)</li>
+  <li>unzip the error.tml template from the templates/emails folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.6.2 to 4.7.0</b></u></p>
+
+<ol>
+  <li>unzip the liveupdate.php file from the admin folder</li>
+  <li>upload the liveupdate.php file to the admin folder</li>
+  <li>go to the administration panel and click on "check for updates"</li>
+  <li>upgrade your database using the database conversion tool (link is on check for updates page)</code></li>
+  <li>unzip all files from the inc/img/methods folder</li>
+  <li>unzip the add.gif file from the inc/img folder</li>
+  <li>unzip the ret.gif file from the inc/img folder</li>
+  <li>unzip all files from the admin folder</li>
+  <li>unzip all files from the lib folder except .htconfig.php</li>
+  <li>unzip the advertise.php file from the main folder</li>
+  <li>unzip the stats.php file from the main folder</li>
+  <li>unzip the advertise_banners.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_clicks.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_complete.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_emails.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_index.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_leads.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_order.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_overview.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_pay.tml file from the templates/pages folder</li>
+  <li>unzip the advertise_sales.tml file from the templates/pages folder</li>
+  <li>unzip the members2.tml file from the templates/pages folder</li>
+  <li>unzip the doubleip.tml file from the templates/emails folder</li>
+  <li>unzip the invoice.tml file from the templates/emails folder</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>if you are also running the automatic payments add-on or the bubble game add-on, please contact us for the new version</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.6.1 to 4.6.2</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "run mysql query"</li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ct_top` INT(11) DEFAULT '10' NOT NULL AFTER `referral_movetier`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ct_exclude` TEXT NOT NULL AFTER `ct_top`</code></li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>if you are also running the heads or tails add-on, please contact us for the new versions - <b>IMPORTANT</b></li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.6.0 to 4.6.1</b></u></p>
+
+<ol>
+  <li>unzip all files from the admin folder</li>
+  <li>unzip all files from the advertisers folder</li>
+  <li>unzip all files from the lib folder <b>except</b> .htconfig.php</li>
+  <li>unzip all files from the main folder <b>except</b> upgrade.php, upgrade_to_4.php, db.sql and install.php</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.5.1 to 4.6.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "run mysql query"</li>
+  <li>enter this query: <code>ALTER TABLE `actions` CHANGE `type` `type` ENUM( 'emails', 'clicks', 'signup', 'lead', 'sale', 'credits', 'debits', 'points', 'dpoints', 'transfer_to', 'transfer_from', 'bubble_to', 'bubble_from', 'ht_won', 'ht_lost', 'payout' ) DEFAULT 'credits' NOT NULL</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_min` FLOAT DEFAULT '0.01' NOT NULL AFTER `bubble_highlight`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_max` FLOAT DEFAULT '2' NOT NULL AFTER `ht_min`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_win` INT( 11 ) DEFAULT '50' NOT NULL AFTER `ht_max`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_fee` INT( 11 ) DEFAULT '5' NOT NULL AFTER `ht_win`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_percent` INT( 11 ) DEFAULT '200' NOT NULL AFTER `ht_fee`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_wins` INT( 11 ) DEFAULT '0' NOT NULL AFTER `ht_percent`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_losses` INT( 11 ) DEFAULT '0' NOT NULL AFTER `ht_wins`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_mwins` FLOAT DEFAULT '0' NOT NULL AFTER `ht_losses`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `ht_mlosses` FLOAT DEFAULT '0' NOT NULL AFTER `ht_mwins`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `addon_ht` ENUM( '0', '1' ) DEFAULT '0' NOT NULL AFTER `addon_bubble`</code></li>
+  <li>unzip the configuration.php file from the admin folder</li>
+  <li>unzip the send.php file from the admin folder</li>
+  <li>unzip the membermenu.tml file from the templates/pages folder</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>unzip the stats.php file from the main folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>unzip the .users.php file from the lib folder</li>
+  <li>unzip the .database.php file from the lib folder</li>
+  <li>unzip the .referrals.php file from the lib folder</li>
+  <li>upload all unzipped files in ascii mode to your ftp again in their folders</li>
+  <li>if you are also running the referral contest add-on or the heads or tails add-on, please contact us for the new versions</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.5.0 to 4.5.1</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "run mysql query"</li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `bubble_highlight` FLOAT DEFAULT '0.5' NOT NULL AFTER `bubble_fee`</code></li>
+  <li>enter this query: <code>ALTER TABLE `bubble` ADD `highlight` ENUM( '0', '1' ) DEFAULT '0' NOT NULL AFTER `link`</code></li>
+  <li>request the new bubble zip-package if you are running this add-on and follow the instructions</li>
+  <li>unzip the configuration.php file from the admin folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>upload all unzipped files in ascii mode to your ftp again in their folders</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.4.0 to 4.5.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "run mysql query"</li>
+  <li>enter this query: <code>ALTER TABLE `config` DROP `member_paymentat`</code></li>
+  <li>enter this query: <code>ALTER TABLE `payment_methods` ADD `minimum` FLOAT NOT NULL AFTER `fee`</code></li>
+  <li>enter this query: <code>UPDATE payment_methods SET minimum='YOURPAYOUTMINIMUM'</code> (replace YOURPAYOUTMINIMUM with your pay-out minimum)</li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `member_transfer` ENUM( 'YES', 'NO' ) DEFAULT 'NO' NOT NULL AFTER `member_delete`</code></li>
+  <li>enter this query: <code>ALTER TABLE `actions` CHANGE `type` `type` ENUM( 'emails', 'clicks', 'signup', 'lead', 'sale', 'credits', 'debits', 'points', 'dpoints', 'transfer_to', 'transfer_from', 'bubble_to', 'bubble_from', 'payout' ) DEFAULT 'credits' NOT NULL</code></li>
+  <li>enter this query: <code>ALTER TABLE `actions` ADD `c_type` ENUM( 'unknown', 'cash', 'points' ) DEFAULT 'unknown' NOT NULL AFTER `type`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` CHANGE `email_mailer` `email_mailer` ENUM( 'php', 'smtp' ) DEFAULT 'php' NOT NULL</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `bubble_percent` INT( 11 ) DEFAULT '150' NOT NULL AFTER `ap_passphrase`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `bubble_min` FLOAT DEFAULT '0.01' NOT NULL AFTER `bubble_percent`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `bubble_max` FLOAT DEFAULT '5' NOT NULL AFTER `bubble_min`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `bubble_reset` INT( 11 ) DEFAULT '72' NOT NULL AFTER `bubble_max`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `addon_bubble` ENUM( '0', '1' ) DEFAULT '0' NOT NULL</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `bubble_cash` FLOAT NOT NULL AFTER `bubble_reset`</code></li>
+  <li>enter this query: <code>ALTER TABLE `config` ADD `bubble_fee` INT( 11 ) DEFAULT '5' NOT NULL AFTER `bubble_cash`</code></li>
+  <li>enter this query: <code>CREATE TABLE bubble (  id int(11) NOT NULL auto_increment,  uid int(11) NOT NULL default '0',  spend float NOT NULL default '0',  description varchar(255) NOT NULL default '',  link varchar(255) NOT NULL default '',  cycled enum('0','1') NOT NULL default '0',  dateStamp int(22) NOT NULL default '0',  PRIMARY KEY  (id)) TYPE=MyISAM AUTO_INCREMENT=6 ;</code></li>
+  <li>unzip the cheaters.php file from the admin folder</li>
+  <li>unzip the configuration.php file from the admin folder</li>
+  <li>unzip the index.php file from the admin folder</li>
+  <li>unzip the memberlist.php file from the admin folder</li>
+  <li>unzip the templates.php file from the admin folder</li>
+  <li>unzip the membermenu.tml file from the templates/pages folder</li>
+  <li>unzip the stats.tml file from the templates/pages folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>unzip the .users.php file from the lib folder</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>unzip the request_payment.php file from the main folder</li>
+  <li>unzip the stats.php file from the main folder</li>
+  <li>unzip the transfer.php file from the main folder</li>
+  <li>upload all unzipped files in ascii mode to your ftp again in their folders</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.3.0 to 4.4.0</b></u></p>
+
+<ol>
+  <li>unzip the paidsignups.php file from the admin folder</li>
+  <li>unzip the send.php file from the admin folder</li>
+  <li>unzip the .database.php file from the lib folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>unzip the .referrals.php file from the lib folder</li>
+  <li>upload all unzipped files in ascii mode to your ftp again in their folders</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.2.0 to 4.3.0</b></u></p>
+
+<ol>
+  <li>go to the administration panel and click on "run mysql query"</li>
+  <li>enter this query: <code>ALTER TABLE `ads` ADD `start` INT( 22 ) DEFAULT '0' NOT NULL</code></li>
+  <li>enter this query: <code>ALTER TABLE `ads` ADD `expire` INT( 22 ) DEFAULT '0' NOT NULL</code></li>
+  <li>enter this query: <code>UPDATE ads SET start='1041375600' AND expire='1609369200'</code></li>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php, upgrade.php, upgrade_to_4.php and .htconfig.php)</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>upload all unzipped files in ascii mode to your ftp again in their folders</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.1.1 to 4.2.0</b></u></p>
+
+<ol>
+  <li>unzip all files from the advertisers folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>unzip the memberlist.php file from the admin folder</li>
+  <li>unzip the send.php file from the admin folder</li>
+  <li>unzip the info.php file from the main folder</li>
+  <li>run the following query in the "run mysql query" page: <code>UPDATE users SET active='yes' WHERE active='Yes'</code></li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.1.0 to 4.1.1</b></u></p>
+
+<ol>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>unzip the .users.php file from the lib folder</li>
+  <li>unzip the info.php file from the main folder</li>
+  <li>unzip the index.php file from the admin folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 4.0.0 to 4.1.0</b></u></p>
+
+<ol>
+  <li>unzip all files from the admin folder</li>
+  <li>unzip all files from the lib folder <b>except</b> .htconfig.php</li>
+  <li>unzip all files from the main folder <b>except</b> upgrade.php, upgrade_to_4.php, db.sql and install.php</li>
+  <li>unzip all files from the templates/pages/advertisers folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 3.0.6 to 4.0.0</b></u></p>
+
+<ol>
+  <li>unzip all php files, including the php files in the admin/lib and advertisers folder (except install.php, upgrade.php and .htconfig.php)</li>
+  <li>unzip the advertise.tml file from the templates/pages folder</li>
+  <li>unzip the functions.js file from the inc/js folder</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>upload all unzipped files in ascii mode to your ftp again in their folders, including upgrade_to_4.php</li>
+  <li>go to http://www.yoursite.com/upgrade_to_4.php and follow the instructions on your screen</li>
+  <li>If you want to make your program a lot faster you can enable cronjobs. (highly recommended)
+  For more information about this issue please visit our
+  <a href="http://www.createyourgetpaid.com/support.php?tid=12" target="_blank">support pages</a>.</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 3.0.5 to 3.0.6</b></u></p>
+
+<ol>
+  <li>unzip the index.php file from the admin folder</li>
+  <li>unzip the blocklist.php file from the admin folder</li>
+  <li>unzip the dutch.lang file from the languages folder</li>
+  <li>unzip the english.lang file from the languages folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>unzip the .users.php file from the lib folder</li>
+  <li>unzip the info.php file from the main folder</li>
+  <li>unzip the members.php file from the main folder</li>
+  <li>unzip the track.php file from the main folder</li>
+  <li>unzip the signup.php file from the main folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>upload the upgrade.php file to the main folder on your ftp</li>
+  <li>remove the blocked.tml file from the templates/pages folder on your ftp</li>
+  <li>go to http://www.yoursite.com/upgrade.php and follow the instructions on your screen</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 3.0.4 to 3.0.5</b></u></p>
+
+<ol>
+  <li>unzip the memberlist.php file from the admin folder</li>
+  <li>unzip the .referrals.php file from the lib folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 3.0.3 to 3.0.4</b></u></p>
+
+<ol>
+  <li>unzip the referrals.php file from the admin folder</li>
+  <li>unzip the .referrals.php file from the lib folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 3.0.2 to 3.0.3</b></u></p>
+
+<ol>
+  <li>unzip the members1.tml template from the templates/pages folder</li>
+  <li>unzip the members.php file from the main folder</li>
+  <li>unzip the emaillinks.php file from the main folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>unzip the .users.php file from the lib folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 3.0.1 to 3.0.2</b></u></p>
+
+<ol>
+  <li>unzip the paidmail.tml template from the templates/emails folder</li>
+  <li>unzip the send.php file from the admin folder</li>
+  <li>unzip the track.php file from the main folder</li>
+  <li>unzip the signup.php file from the main folder</li>
+  <li>unzip the signup.tml file from the templates/pages folder</li>
+  <li>unzip the index.php file from the admin folder</li>
+  <li>unzip the memberlist.php file from the admin folder</li>
+  <li>unzip the .referrals.php file from the lib folder</li>
+  <li>unzip the .users.php file from the lib folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p><u><b>Upgrade from 3.0 to 3.0.1</b></u></p>
+
+<ol>
+  <li>unzip the paidmail.tml template from the templates/emails folder</li>
+  <li>unzip the send.php file from the admin folder</li>
+  <li>unzip the .main.php file from the lib folder</li>
+  <li>upload all files in ascii mode in their folders again</li>
+  <li>you're done!</li>
+</ol>
+
+<p>If you experience any problems with the installation or configuration, e-mail
+<a href="mailto:info@createyourgetpaid.com">info@createyourgetpaid.com</a>.</p>
+
+<p><u><strong>Support:</strong></u></p>
+
+<p>Go to <a href="http://www.createyourgetpaid.com/support.php">
+http://www.createyourgetpaid.com/support.php</a> for support issues.<br>
+<br>
+Go to <a href="http://www.createyourgetpaid.com/forums">
+http://www.createyourgetpaid.com/forums</a> for the latest news on Create Your GetPaid.<br>
+Send suggestions for future versions to
+<a href="mailto:info@createyourgetpaid.com">info@createyourgetpaid.com</a>.</p>
+
+</body>
+
+</html>
