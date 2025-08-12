@@ -1,0 +1,1 @@
+<center><p>powered by <a href="http://www.dsiware.com" target=_blank>iWare Professional <?php echo IWARE_VERSION; ?></a></p></center>
