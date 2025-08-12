@@ -1,0 +1,6 @@
+<?php
+	define('DEFAULT_INSTALL_USERS', 7);
+	define('ADMIN_SECURITY_LEVEL', 2);
+	define('TECH_SECURITY_LEVEL', 1);
+	define('ENDUSER_SECURITY_LEVEL', 0);
+?>
