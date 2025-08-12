@@ -1,0 +1,760 @@
+<?php
+/***************************************************************************
+ * (c)2002-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+$compatver="2.28";
+if(!$upload_avail)
+?>
+<table align="center" width="80%" CELLPADDING="1" CELLSPACING="0" border="0" valign="top">
+<tr><TD BGCOLOR="#000000">
+<table align="center" width="100%" border="0" cellspacing="1" cellpadding="1">
+<tr class="headingrow"><td colspan="2" align="center"><b><?php echo $l_importlayout?></b></td></tr>
+<?php
+if($admin_rights < 3)
+{
+	echo "<tr bgcolor=\"#cccccc\"><td align=\"center\">";
+	die("$l_functionnotallowed");
+}
+$errors=0;
+if($new_global_handling)
+	$tmp_file=$_FILES['layoutfile']['tmp_name'];
+else
+	$tmp_file=$HTTP_POST_FILES['layoutfile']['tmp_name'];
+if(is_uploaded_file($tmp_file))
+{
+	if(isset($path_tempdir) && $path_tempdir)
+	{
+		if($new_global_handling)
+			$filename=$_FILES['layoutfile']['name'];
+		else
+			$filename=$HTTP_POST_FILES['layoutfile']['name'];
+		if(!move_uploaded_file ($tmp_file, $path_tempdir."/".$filename))
+			die("<tr class=\"errorrow\"><td>unable to move uploaded file to $path_tempdir");
+		$orgfile=$path_tempdir."/".$filename;
+	}
+	else
+		$orgfile=$tmp_file;
+}
+else
+{
+	$errors=1;
+	echo "<tr class=\"errorrow\"><td align=\"center\">";
+	echo "$l_nolayoutfile</td></tr>";
+}
+if($layoutid)
+{
+	$sql="select * from ".$tableprefix."_layout where id='$layoutid'";
+	if(!$result = mysql_query($sql, $db))
+	    die("<tr class=\"errorrow\"><td>Unable to connect to database. ".mysql_error());
+	if(mysql_num_rows($result)>0)
+	{
+		$errors=1;
+		echo "<tr class=\"errorrow\"><td align=\"center\">";
+		echo "$l_layoutexists</td></tr>";
+	}
+}
+$fileversion=0;
+if($errors==0)
+{
+	$actmode=-1;
+	$numlayoutentries=0;
+	$importfile=fopen($orgfile,"r");
+	$maxsize=filesize($orgfile);
+	$errmsg="";
+	$formaterror="";
+	$contentnote="";
+	while($fileLine=fgets($importfile,$maxsize))
+	{
+		if(eregi("^\{/simpnewslayout\}",$fileLine))
+			$actmode=0;
+		if(eregi("^\{simpnewslayout\}",$fileLine))
+			$actmode=1;
+		else if($actmode==1)
+		{
+			if(eregi("^\{fileversion\}",$fileLine))
+			{
+				$actmode=2;
+				$fileLine=fgets($importfile,$maxsize);
+				if($fileLine)
+					$fileversion=trim($fileLine);
+				$fileLine=fgets($importfile,$maxsize);
+				if($fileLine)
+					$minversion=trim($fileLine);
+				$fileLine=fgets($importfile,$maxsize);
+				if(!eregi("^\{/fileversion\}",$fileLine))
+				{
+					$formaterror="{/fileversion} missing";
+					$errors=1;
+					break;
+				}
+				if($fileversion>$compatver)
+				{
+					$errmsg.="<tr class=\"errorrow\"><td align=\"center\">";
+					$errmsg.=str_replace("{compatver}",$minversion,$l_incompatlayoutfile);
+					$errmsg.="</td></tr>";
+					$errors=1;
+					break;
+				}
+			}
+		}
+		else if($actmode==2)
+		{
+			if(eregi("^\{layoutid\}",$fileLine))
+			{
+				$actmode=3;
+				$fileLine=fgets($importfile,$maxsize);
+				if(($fileLine) && !$layoutid)
+					$layoutid=trim($fileLine);
+				$fileLine=fgets($importfile,$maxsize);
+				if(!eregi("^\{/layoutid\}",$fileLine))
+				{
+					$errors=1;
+					$formaterror="{/layoutid} missing";
+					break;
+				}
+				else
+				{
+					$sql="select * from ".$tableprefix."_layout where id='$layoutid'";
+					if(!$result = mysql_query($sql, $db))
+						die("<tr class=\"errorrow\"><td>Unable to add emoticon to database.");
+					if(mysql_num_rows($result)>0)
+					{
+						$errors=1;
+						$errmsg.="<tr class=\"errorrow\"><td align=\"center\">";
+						$errmsg.="$l_layoutexists: $layoutid</td></tr>";
+						break;
+					}
+				}
+			}
+		}
+		else if($actmode==3)
+		{
+			if(eregi("^\{layout\}",$fileLine))
+			{
+				include_once('./includes/layout_defs.inc');
+				$layoutlang=get_entry($importfile,$maxsize);
+				$heading=get_entry($importfile,$maxsize);
+				$headingbgcolor=get_entry($importfile,$maxsize);
+				$headingfontcolor=get_entry($importfile,$maxsize);
+				$headingfont=get_entry($importfile,$maxsize);
+				$headingfontsize=get_entry($importfile,$maxsize);
+				$bordercolor=get_entry($importfile,$maxsize);
+				$contentbgcolor=get_entry($importfile,$maxsize);
+				$contentfontcolor=get_entry($importfile,$maxsize);
+				$contentfont=get_entry($importfile,$maxsize);
+				$contentfontsize=get_entry($importfile,$maxsize);
+				$TableWidth=get_entry($importfile,$maxsize);
+				$timestampfontcolor=get_entry($importfile,$maxsize);
+				$timestampfontsize=get_entry($importfile,$maxsize);
+				$timestampfont=get_entry($importfile,$maxsize);
+				$dateformat=get_entry($importfile,$maxsize);
+				$showcurrtime=get_entry($importfile,$maxsize);
+				$customheader=get_entry($importfile,$maxsize);
+				$pagebgcolor=get_entry($importfile,$maxsize);
+				$stylesheet=get_entry($importfile,$maxsize);
+				$newsheadingbgcolor=get_entry($importfile,$maxsize);
+				$newsheadingfontcolor=get_entry($importfile,$maxsize);
+				$newsheadingstyle=get_entry($importfile,$maxsize);
+				$displayposter=get_entry($importfile,$maxsize);
+				$posterbgcolor=get_entry($importfile,$maxsize);
+				$posterfontcolor=get_entry($importfile,$maxsize);
+				$posterfont=get_entry($importfile,$maxsize);
+				$posterfontsize=get_entry($importfile,$maxsize);
+				$posterstyle=get_entry($importfile,$maxsize);
+				$newsheadingfont=get_entry($importfile,$maxsize);
+				$newsheadingfontsize=get_entry($importfile,$maxsize);
+				$timestampbgcolor=get_entry($importfile,$maxsize);
+				$timestampstyle=get_entry($importfile,$maxsize);
+				$defsignature=get_entry($importfile,$maxsize);
+				$displaysubscriptionbox=get_entry($importfile,$maxsize);
+				$subscriptionbgcolor=get_entry($importfile,$maxsize);
+				$subscriptionfontcolor=get_entry($importfile,$maxsize);
+				$subscriptionfont=get_entry($importfile,$maxsize);
+				$subscriptionfontsize=get_entry($importfile,$maxsize);
+				$copyrightbgcolor=get_entry($importfile,$maxsize);
+				$copyrightfontcolor=get_entry($importfile,$maxsize);
+				$copyrightfont=get_entry($importfile,$maxsize);
+				$copyrightfontsize=get_entry($importfile,$maxsize);
+				$emailremark=get_entry($importfile,$maxsize);
+				$deflayout=get_entry($importfile,$maxsize);
+				$layoutnr=get_entry($importfile,$maxsize);
+				$customfooter=get_entry($importfile,$maxsize);
+				$searchpic=get_entry($importfile,$maxsize);
+				$backpic=get_entry($importfile,$maxsize);
+				$pagetoppic=get_entry($importfile,$maxsize);
+				$pagepic_back=get_entry($importfile,$maxsize);
+				$pagepic_first=get_entry($importfile,$maxsize);
+				$pagepic_next=get_entry($importfile,$maxsize);
+				$pagepic_last=get_entry($importfile,$maxsize);
+				$newssignal_on=get_entry($importfile,$maxsize);
+				$newssignal_off=get_entry($importfile,$maxsize);
+				$helppic=get_entry($importfile,$maxsize);
+				$attachpic=get_entry($importfile,$maxsize);
+				$prevpic=get_entry($importfile,$maxsize);
+				$fwdpic=get_entry($importfile,$maxsize);
+				$eventheading=get_entry($importfile,$maxsize);
+				$event_dateformat=get_entry($importfile,$maxsize);
+				$newstickerbgcolor=get_entry($importfile,$maxsize);
+				$newstickerfontcolor=get_entry($importfile,$maxsize);
+				$newstickerfont=get_entry($importfile,$maxsize);
+				$newstickerfontsize=get_entry($importfile,$maxsize);
+				$newstickerhighlightcolor=get_entry($importfile,$maxsize);
+				$newstickerheight=get_entry($importfile,$maxsize);
+				$newstickerwidth=get_entry($importfile,$maxsize);
+				$newstickerscrollspeed=get_entry($importfile,$maxsize);
+				$newstickerscrolldelay=get_entry($importfile,$maxsize);
+				$newstickermaxdays=get_entry($importfile,$maxsize);
+				$newstickermaxentries=get_entry($importfile,$maxsize);
+				$newsscrollerbgcolor=get_entry($importfile,$maxsize);
+				$newsscrollerfontcolor=get_entry($importfile,$maxsize);
+				$newsscrollerfont=get_entry($importfile,$maxsize);
+				$newsscrollerfontsize=get_entry($importfile,$maxsize);
+				$newsscrollerheight=get_entry($importfile,$maxsize);
+				$newsscrollerwidth=get_entry($importfile,$maxsize);
+				$newsscrollerscrollspeed=get_entry($importfile,$maxsize);
+				$newsscrollerscrolldelay=get_entry($importfile,$maxsize);
+				$newsscrollerscrollpause=get_entry($importfile,$maxsize);
+				$newsscrollermaxdays=get_entry($importfile,$maxsize);
+				$newsscrollermaxentries=get_entry($importfile,$maxsize);
+				$newsscrollertype=get_entry($importfile,$maxsize);
+				$newsscrollerbgimage=get_entry($importfile,$maxsize);
+				$newsscrollerfgimage=get_entry($importfile,$maxsize);
+				$newsscrollermousestop=get_entry($importfile,$maxsize);
+				$newsscrollermaxchars=get_entry($importfile,$maxsize);
+				$newstickertarget=get_entry($importfile,$maxsize);
+				$newsscrollertarget=get_entry($importfile,$maxsize);
+				$newsscrollerxoffset=get_entry($importfile,$maxsize);
+				$newsscrolleryoffset=get_entry($importfile,$maxsize);
+				$newsscrollerdisplaydate=get_entry($importfile,$maxsize);
+				$newsscrollerwordwrap=get_entry($importfile,$maxsize);
+				$newsscrollerdateformat=get_entry($importfile,$maxsize);
+				$newentrypic=get_entry($importfile,$maxsize);
+				$newstyperbgcolor=get_entry($importfile,$maxsize);
+				$newstyperfontcolor=get_entry($importfile,$maxsize);
+				$newstyperfont=get_entry($importfile,$maxsize);
+				$newstyperfontsize=get_entry($importfile,$maxsize);
+				$newstyperheight=get_entry($importfile,$maxsize);
+				$newstyperwidth=get_entry($importfile,$maxsize);
+				$newstypermaxdays=get_entry($importfile,$maxsize);
+				$newstypermaxentries=get_entry($importfile,$maxsize);
+				$newstyperbgimage=get_entry($importfile,$maxsize);
+				$newstyperxoffset=get_entry($importfile,$maxsize);
+				$newstyperyoffset=get_entry($importfile,$maxsize);
+				$newstyperdisplaydate=get_entry($importfile,$maxsize);
+				$newstyperdateformat=get_entry($importfile,$maxsize);
+				$newstyperfontstyle=get_entry($importfile,$maxsize);
+				$newstyperscroll=get_entry($importfile,$maxsize);
+				$newstypermaxchars=get_entry($importfile,$maxsize);
+				$newstyper2maxchars=get_entry($importfile,$maxsize);
+				$newsscrollernolinking=get_entry($importfile,$maxsize);
+				$newstyper2maxentries=get_entry($importfile,$maxsize);
+				$newstyper2bgcolor=get_entry($importfile,$maxsize);
+				$newstyper2fontcolor=get_entry($importfile,$maxsize);
+				$newstyper2fontsize=get_entry($importfile,$maxsize);
+				$newstyper2displaydate=get_entry($importfile,$maxsize);
+				$newstyper2newscreen=get_entry($importfile,$maxsize);
+				$newstyper2waitentry=get_entry($importfile,$maxsize);
+				$newstyper2dateformat=get_entry($importfile,$maxsize);
+				$newstyper2indent=get_entry($importfile,$maxsize);
+				$newstyper2linespace=get_entry($importfile,$maxsize);
+				$newstyper2maxdays=get_entry($importfile,$maxsize);
+				$newstyper2width=get_entry($importfile,$maxsize);
+				$newstyper2height=get_entry($importfile,$maxsize);
+				$newstyper2bgimage=get_entry($importfile,$maxsize);
+				$newstyper2sound=get_entry($importfile,$maxsize);
+				$newstyper2charpause=get_entry($importfile,$maxsize);
+				$newstyper2linepause=get_entry($importfile,$maxsize);
+				$newstyper2screenpause=get_entry($importfile,$maxsize);
+				$eventscrolleractdate=get_entry($importfile,$maxsize);
+				$separatebylang=get_entry($importfile,$maxsize);
+				$headerfile=get_entry($importfile,$maxsize);
+				$footerfile=get_entry($importfile,$maxsize);
+				$headerfilepos=get_entry($importfile,$maxsize);
+				$footerfilepos=get_entry($importfile,$maxsize);
+				$usecustomheader=get_entry($importfile,$maxsize);
+				$usecustomfooter=get_entry($importfile,$maxsize);
+				$copyrightpos=get_entry($importfile,$maxsize);
+				$categorybgcolor=get_entry($importfile,$maxsize);
+				$categoryfont=get_entry($importfile,$maxsize);
+				$categoryfontcolor=get_entry($importfile,$maxsize);
+				$categoryfontsize=get_entry($importfile,$maxsize);
+				$categorystyle=get_entry($importfile,$maxsize);
+				$hotnews2target=get_entry($importfile,$maxsize);
+				$news2target=get_entry($importfile,$maxsize);
+				$newsscrollermaxlines=get_entry($importfile,$maxsize);
+				$linkcolor=get_entry($importfile,$maxsize);
+				$vlinkcolor=get_entry($importfile,$maxsize);
+				$alinkcolor=get_entry($importfile,$maxsize);
+				$morelinkcolor=get_entry($importfile,$maxsize);
+				$morevlinkcolor=get_entry($importfile,$maxsize);
+				$morealinkcolor=get_entry($importfile,$maxsize);
+				$catlinkcolor=get_entry($importfile,$maxsize);
+				$catvlinkcolor=get_entry($importfile,$maxsize);
+				$catalinkcolor=get_entry($importfile,$maxsize);
+				$commentlinkcolor=get_entry($importfile,$maxsize);
+				$commentvlinkcolor=get_entry($importfile,$maxsize);
+				$commentalinkcolor=get_entry($importfile,$maxsize);
+				$attachlinkcolor=get_entry($importfile,$maxsize);
+				$attachvlinkcolor=get_entry($importfile,$maxsize);
+				$attachalinkcolor=get_entry($importfile,$maxsize);
+				$pagenavlinkcolor=get_entry($importfile,$maxsize);
+				$pagenavvlinkcolor=get_entry($importfile,$maxsize);
+				$pagenavalinkcolor=get_entry($importfile,$maxsize);
+				$colorscrollbars=get_entry($importfile,$maxsize);
+				$sbfacecolor=get_entry($importfile,$maxsize);
+				$sbhighlightcolor=get_entry($importfile,$maxsize);
+				$sbshadowcolor=get_entry($importfile,$maxsize);
+				$sb3dlightcolor=get_entry($importfile,$maxsize);
+				$sbarrowcolor=get_entry($importfile,$maxsize);
+				$sbtrackcolor=get_entry($importfile,$maxsize);
+				$sbdarkshadowcolor=get_entry($importfile,$maxsize);
+				$snsel_bgcolor=get_entry($importfile,$maxsize);
+				$snsel_fontcolor=get_entry($importfile,$maxsize);
+				$snsel_font=get_entry($importfile,$maxsize);
+				$snsel_fontsize=get_entry($importfile,$maxsize);
+				$snsel_fontstyle=get_entry($importfile,$maxsize);
+				$snsel_fontweight=get_entry($importfile,$maxsize);
+				$snsel_borderstyle=get_entry($importfile,$maxsize);
+				$snsel_borderwidth=get_entry($importfile,$maxsize);
+				$snsel_bordercolor=get_entry($importfile,$maxsize);
+				$morelinkfontsize=get_entry($importfile,$maxsize);
+				$sninput_bgcolor=get_entry($importfile,$maxsize);
+				$sninput_fontcolor=get_entry($importfile,$maxsize);
+				$sninput_font=get_entry($importfile,$maxsize);
+				$sninput_fontsize=get_entry($importfile,$maxsize);
+				$sninput_fontstyle=get_entry($importfile,$maxsize);
+				$sninput_fontweight=get_entry($importfile,$maxsize);
+				$sninput_borderstyle=get_entry($importfile,$maxsize);
+				$sninput_borderwidth=get_entry($importfile,$maxsize);
+				$sninput_bordercolor=get_entry($importfile,$maxsize);
+				$snisb_facecolor=get_entry($importfile,$maxsize);
+				$snisb_highlightcolor=get_entry($importfile,$maxsize);
+				$snisb_shadowcolor=get_entry($importfile,$maxsize);
+				$snisb_3dlightcolor=get_entry($importfile,$maxsize);
+				$snisb_arrowcolor=get_entry($importfile,$maxsize);
+				$snisb_trackcolor=get_entry($importfile,$maxsize);
+				$snisb_darkshadowcolor=get_entry($importfile,$maxsize);
+				$snbutton_bgcolor=get_entry($importfile,$maxsize);
+				$snbutton_fontcolor=get_entry($importfile,$maxsize);
+				$snbutton_font=get_entry($importfile,$maxsize);
+				$snbutton_fontsize=get_entry($importfile,$maxsize);
+				$snbutton_fontstyle=get_entry($importfile,$maxsize);
+				$snbutton_fontweight=get_entry($importfile,$maxsize);
+				$snbutton_borderstyle=get_entry($importfile,$maxsize);
+				$snbutton_borderwidth=get_entry($importfile,$maxsize);
+				$snbutton_bordercolor=get_entry($importfile,$maxsize);
+				$eventlinkcolor=get_entry($importfile,$maxsize);
+				$eventvlinkcolor=get_entry($importfile,$maxsize);
+				$eventalinkcolor=get_entry($importfile,$maxsize);
+				$eventlinkfontsize=get_entry($importfile,$maxsize);
+				$actionlinkcolor=get_entry($importfile,$maxsize);
+				$actionvlinkcolor=get_entry($importfile,$maxsize);
+				$actionalinkcolor=get_entry($importfile,$maxsize);
+				$pagebgpic=get_entry($importfile,$maxsize);
+				$eventcalshortnews=get_entry($importfile,$maxsize);
+				$eventcalshortlength=get_entry($importfile,$maxsize);
+				$eventcalshortnum=get_entry($importfile,$maxsize);
+				$eventcalshortonlyheadings=get_entry($importfile,$maxsize);
+				$hotnewstarget=get_entry($importfile,$maxsize);
+				$hotnewsdisplayposter=get_entry($importfile,$maxsize);
+				$hotnewsnohtmlformatting=get_entry($importfile,$maxsize);
+				$hotnewsicons=get_entry($importfile,$maxsize);
+				$ns4style=get_entry($importfile,$maxsize);
+				$ns6style=get_entry($importfile,$maxsize);
+				$operastyle=get_entry($importfile,$maxsize);
+				$geckostyle=get_entry($importfile,$maxsize);
+				$konquerorstyle=get_entry($importfile,$maxsize);
+				$jsnf_maxentries=get_entry($importfile,$maxsize);
+				$jsnf_maxdays=get_entry($importfile,$maxsize);
+				$jsnf_displaydate=get_entry($importfile,$maxsize);
+				$jsnf_maxchars=get_entry($importfile,$maxsize);
+				$jsnf_nolinking=get_entry($importfile,$maxsize);
+				$jsnf_font=get_entry($importfile,$maxsize);
+				$jsnf_fontsize=get_entry($importfile,$maxsize);
+				$jsnf_fontcolor=get_entry($importfile,$maxsize);
+				$jsnf_delay=get_entry($importfile,$maxsize);
+				$jsnf_width=get_entry($importfile,$maxsize);
+				$jsnf_height=get_entry($importfile,$maxsize);
+				$jsnf_linktarget=get_entry($importfile,$maxsize);
+				$jsnf_dateformat=get_entry($importfile,$maxsize);
+				$news3dateformat=get_entry($importfile,$maxsize);
+				$news3useddlink=get_entry($importfile,$maxsize);
+				$news3linktarget=get_entry($importfile,$maxsize);
+				$news3maxchars=get_entry($importfile,$maxsize);
+				$news4dateformat=get_entry($importfile,$maxsize);
+				$news4useddlink=get_entry($importfile,$maxsize);
+				$news4linktarget=get_entry($importfile,$maxsize);
+				$news4maxchars=get_entry($importfile,$maxsize);
+				$ss_font=get_entry($importfile,$maxsize);
+				$ss_fontsize=get_entry($importfile,$maxsize);
+				$ss_fontcolor=get_entry($importfile,$maxsize);
+				$ss_fontstyle=get_entry($importfile,$maxsize);
+				$ss_stars=get_entry($importfile,$maxsize);
+				$ss_speed=get_entry($importfile,$maxsize);
+				$ss_dir=get_entry($importfile,$maxsize);
+				$ss_shadow=get_entry($importfile,$maxsize);
+				$ss_bgcolor=get_entry($importfile,$maxsize);
+				$ss_targetframe=get_entry($importfile,$maxsize);
+				$ss_width=get_entry($importfile,$maxsize);
+				$ss_height=get_entry($importfile,$maxsize);
+				$ss_maxentries=get_entry($importfile,$maxsize);
+				$ss_maxdays=get_entry($importfile,$maxsize);
+				$ss_nolinking=get_entry($importfile,$maxsize);
+				$jsns_font=get_entry($importfile,$maxsize);
+				$jsns_fontsize=get_entry($importfile,$maxsize);
+				$jsns_fontcolor=get_entry($importfile,$maxsize);
+				$jsns_nolinking=get_entry($importfile,$maxsize);
+				$jsns_displaydate=get_entry($importfile,$maxsize);
+				$jsns_linktarget=get_entry($importfile,$maxsize);
+				$jsns_bgcolor=get_entry($importfile,$maxsize);
+				$jsns_direction=get_entry($importfile,$maxsize);
+				$jsns_maxchars=get_entry($importfile,$maxsize);
+				$jsns_maxdays=get_entry($importfile,$maxsize);
+				$jsns_maxentries=get_entry($importfile,$maxsize);
+				$jsns_dateformat=get_entry($importfile,$maxsize);
+				$jsns_height=get_entry($importfile,$maxsize);
+				$jsns_width=get_entry($importfile,$maxsize);
+				$jsns_speed=get_entry($importfile,$maxsize);
+				$jsns_step=get_entry($importfile,$maxsize);
+				$tablealign=get_entry($importfile,$maxsize);
+				$clheadingbgcolor=get_entry($importfile,$maxsize);
+				$clheadingfontcolor=get_entry($importfile,$maxsize);
+				$clheadingfont=get_entry($importfile,$maxsize);
+				$clheadingfontsize=get_entry($importfile,$maxsize);
+				$clwidth=get_entry($importfile,$maxsize);
+				$clcontentbgcolor=get_entry($importfile,$maxsize);
+				$clcontentfontcolor=get_entry($importfile,$maxsize);
+				$clcontentfont=get_entry($importfile,$maxsize);
+				$clcontentfontsize=get_entry($importfile,$maxsize);
+				$enablecatlist=get_entry($importfile,$maxsize);
+				$catframenewslist=get_entry($importfile,$maxsize);
+				$clcontenthighlight=get_entry($importfile,$maxsize);
+				$clactdontlink=get_entry($importfile,$maxsize);
+				$clleftwidth=get_entry($importfile,$maxsize);
+				$clrightwidth=get_entry($importfile,$maxsize);
+				$clnowrap=get_entry($importfile,$maxsize);
+				$contentcopy=get_entry($importfile,$maxsize);
+				$addbodytags=get_entry($importfile,$maxsize);
+				$proposepic=get_entry($importfile,$maxsize);
+				$proposereq=get_entry($importfile,$maxsize);
+				$caltabpic=get_entry($importfile,$maxsize);
+				$caljumpbox=get_entry($importfile,$maxsize);
+				$cjminyear=get_entry($importfile,$maxsize);
+				$cjmaxyear=get_entry($importfile,$maxsize);
+				$hotevmaxdays=get_entry($importfile,$maxsize);
+				$hotevmaxentries=get_entry($importfile,$maxsize);
+				$hotevtarget=get_entry($importfile,$maxsize);
+				$displayevnum=get_entry($importfile,$maxsize);
+				$hotevmaxchars=get_entry($importfile,$maxsize);
+				$hotevnohtmlformatting=get_entry($importfile,$maxsize);
+				$hotevdisplayposter=get_entry($importfile,$maxsize);
+				$hotevicons=get_entry($importfile,$maxsize);
+				$hotscriptsnoheading=get_entry($importfile,$maxsize);
+				$evproposemaxyears=get_entry($importfile,$maxsize);
+				$printheader=get_entry($importfile,$maxsize);
+				$printpic=get_entry($importfile,$maxsize);
+				$TableWidth2=get_entry($importfile,$maxsize);
+				$news5enddate=get_entry($importfile,$maxsize);
+				$news5startdate=get_entry($importfile,$maxsize);
+				$news5monthbgcolor=get_entry($importfile,$maxsize);
+				$news5monthfontcolor=get_entry($importfile,$maxsize);
+				$news5monthfont=get_entry($importfile,$maxsize);
+				$news5monthfontsize=get_entry($importfile,$maxsize);
+				$news5monthfontstyle=get_entry($importfile,$maxsize);
+				$news5yearbgcolor=get_entry($importfile,$maxsize);
+				$news5yearfontcolor=get_entry($importfile,$maxsize);
+				$news5yearfont=get_entry($importfile,$maxsize);
+				$news5yearfontsize=get_entry($importfile,$maxsize);
+				$news5yearfontstyle=get_entry($importfile,$maxsize);
+				$news5monthdisplayyear=get_entry($importfile,$maxsize);
+				$news5dateformat=get_entry($importfile,$maxsize);
+				$news5maxchars=get_entry($importfile,$maxsize);
+				$news5useddlink=get_entry($importfile,$maxsize);
+				$news5linktarget=get_entry($importfile,$maxsize);
+				$news5displayposter=get_entry($importfile,$maxsize);
+				$news5displayicons=get_entry($importfile,$maxsize);
+				$csvexportpic=get_entry($importfile,$maxsize);
+				$csvexportdateformat=get_entry($importfile,$maxsize);
+				$csvexportfields=get_entry($importfile,$maxsize);
+				$asclistpic=get_entry($importfile,$maxsize);
+				$bbchelp_bgcolor=get_entry($importfile,$maxsize);
+				$bbchelp_fontcolor=get_entry($importfile,$maxsize);
+				$bbchelp_fontsize=get_entry($importfile,$maxsize);
+				$bbchelp_font=get_entry($importfile,$maxsize);
+				$bbchelp_fontweight=get_entry($importfile,$maxsize);
+				$bbchelp_fontstyle=get_entry($importfile,$maxsize);
+				$el_font=get_entry($importfile,$maxsize);
+				$el_fontweight=get_entry($importfile,$maxsize);
+				$el_fontstyle=get_entry($importfile,$maxsize);
+				$el_fontsize=get_entry($importfile,$maxsize);
+				$el_hovercolor=get_entry($importfile,$maxsize);
+				$sb_bgcolor=get_entry($importfile,$maxsize);
+				$sb_bordercolor=get_entry($importfile,$maxsize);
+				$bbc_bgcolor=get_entry($importfile,$maxsize);
+				$bbc_bordercolor=get_entry($importfile,$maxsize);
+				$bbcsel_font=get_entry($importfile,$maxsize);
+				$bbcsel_fontsize=get_entry($importfile,$maxsize);
+				$bbcsel_fontcolor=get_entry($importfile,$maxsize);
+				$bbcsel_bgcolor=get_entry($importfile,$maxsize);
+				$bbcsel_borderstyle=get_entry($importfile,$maxsize);
+				$bbcsel_borderwidth=get_entry($importfile,$maxsize);
+				$bbcsel_bordercolor=get_entry($importfile,$maxsize);
+				$bbcsel_fontstyle=get_entry($importfile,$maxsize);
+				$bbcsel_fontweight=get_entry($importfile,$maxsize);
+				$or_bgcolor=get_entry($importfile,$maxsize);
+				$or_fontcolor=get_entry($importfile,$maxsize);
+				$or_font=get_entry($importfile,$maxsize);
+				$or_fontsize=get_entry($importfile,$maxsize);
+				$sep_char=get_entry($importfile,$maxsize);
+				$hn_newsheadingfontsize=get_entry($importfile,$maxsize);
+				$nbindent=get_entry($importfile,$maxsize);
+				$evbindent=get_entry($importfile,$maxsize);
+				$morepic=get_entry($importfile,$maxsize);
+				$announcepic=get_entry($importfile,$maxsize);
+				$gannouncepic=get_entry($importfile,$maxsize);
+				$announceoptions=get_entry($importfile,$maxsize);
+				$maxevcannounce=get_entry($importfile,$maxsize);
+				$noprinticon=get_entry($importfile,$maxsize);
+				$nogotopicon=get_entry($importfile,$maxsize);
+				$news5headingdateformat=get_entry($importfile,$maxsize);
+				$news5noglobalprint=get_entry($importfile,$maxsize);
+				$news4fontsize=get_entry($importfile,$maxsize);
+				$news3fontsize=get_entry($importfile,$maxsize);
+				$n5_newsheadingfontsize=get_entry($importfile,$maxsize);
+				$n5_timestampfontsize=get_entry($importfile,$maxsize);
+				$n5_timestampstyle=get_entry($importfile,$maxsize);
+				$ev2onlyheadings=get_entry($importfile,$maxsize);
+				$ev2_newsheadingfontsize=get_entry($importfile,$maxsize);
+				$ev2_newsheadingstyle=get_entry($importfile,$maxsize);
+				$ev2_timestampstyle=get_entry($importfile,$maxsize);
+				$ev2_timestampfontsize=get_entry($importfile,$maxsize);
+				$ev2_contentfontsize=get_entry($importfile,$maxsize);
+				$ev2_posterfontsize=get_entry($importfile,$maxsize);
+				$ev2_posterstyle=get_entry($importfile,$maxsize);
+				$newsscrollerheadingsep=get_entry($importfile,$maxsize);
+				$newsscrollerheadingsepchar=get_entry($importfile,$maxsize);
+				$newsscrollernumsepchars=get_entry($importfile,$maxsize);
+				$jsns_sepheading=get_entry($importfile,$maxsize);
+				$highlightmarker=get_entry($importfile,$maxsize);
+				$catinfobgcolor=get_entry($importfile,$maxsize);
+				$catinfofont=get_entry($importfile,$maxsize);
+				$catinfofontsize=get_entry($importfile,$maxsize);
+				$catinfofontcolor=get_entry($importfile,$maxsize);
+				$catinfoindent=get_entry($importfile,$maxsize);
+				$searchonlyheadings=get_entry($importfile,$maxsize);
+				$searchdetailtarget=get_entry($importfile,$maxsize);
+				$searchshortchars=get_entry($importfile,$maxsize);
+				$sshort_timestampfontsize=get_entry($importfile,$maxsize);
+				$sshort_headingfontsize=get_entry($importfile,$maxsize);
+				$nofileinfo=get_entry($importfile,$maxsize);
+				$sn_hideallnewslink=get_entry($importfile,$maxsize);
+				$pagenavdetails=get_entry($importfile,$maxsize);
+				$newsletterbgcolor=get_entry($importfile,$maxsize);
+				$newslettercustomheader=get_entry($importfile,$maxsize);
+				$newslettercustomfooter=get_entry($importfile,$maxsize);
+				$subredirecturl=get_entry($importfile,$maxsize);
+				$newsletteralign=get_entry($importfile,$maxsize);
+				$linkposter=get_entry($importfile,$maxsize);
+				$weekstart=get_entry($importfile,$maxsize);
+				$evshowcalweek=get_entry($importfile,$maxsize);
+				$nlsend_heading=get_entry($importfile,$maxsize);
+				$nlsend_dateformat=get_entry($importfile,$maxsize);
+				$nlsend_bgcolor=get_entry($importfile,$maxsize);
+				$nlsend_font=get_entry($importfile,$maxsize);
+				$nlsend_fontsize=get_entry($importfile,$maxsize);
+				$nlsend_fontcolor=get_entry($importfile,$maxsize);
+				$nfheight=get_entry($importfile,$maxsize);
+				$emailpic=get_entry($importfile,$maxsize);
+				$sncatlink=get_entry($importfile,$maxsize);
+				$textareanoscroll=get_entry($importfile,$maxsize);
+				$emailcustomheader=get_entry($importfile,$maxsize);
+				$emailcustomfooter=get_entry($importfile,$maxsize);
+				$emailbgcolor=get_entry($importfile,$maxsize);
+				$emailpageremark=get_entry($importfile,$maxsize);
+				$hn6_numentries=get_entry($importfile,$maxsize);
+				$anhn6numentries=get_entry($importfile,$maxsize);
+				$hotnews6target=get_entry($importfile,$maxsize);
+				$hotnews7useddlink=get_entry($importfile,$maxsize);
+				$ratingprelude=get_entry($importfile,$maxsize);
+				$sns_tablewidth=get_entry($importfile,$maxsize);
+				$sns_options=get_entry($importfile,$maxsize);
+				$hnlinkdest=get_entry($importfile,$maxsize);
+				$usehnlinkdest=get_entry($importfile,$maxsize);
+				$aninc_options=get_entry($importfile,$maxsize);
+				$aninc_tablewidth=get_entry($importfile,$maxsize);
+				$hnlinkdestan=get_entry($importfile,$maxsize);
+				$evinc_tablewidth=get_entry($importfile,$maxsize);
+				$evinc_options=get_entry($importfile,$maxsize);
+				$hnlinkdestev=get_entry($importfile,$maxsize);
+				$useappletlinkdest=get_entry($importfile,$maxsize);
+				$appletlinkdest=get_entry($importfile,$maxsize);
+				$appletlinkdestan=get_entry($importfile,$maxsize);
+				$appletlinkdestev=get_entry($importfile,$maxsize);
+				$usejslinkdest=get_entry($importfile,$maxsize);
+				$jslinkdest=get_entry($importfile,$maxsize);
+				$jslinkdestan=get_entry($importfile,$maxsize);
+				$jslinkdestev=get_entry($importfile,$maxsize);
+				$evscrollevcal2=get_entry($importfile,$maxsize);
+				$evscrollcal2dest=get_entry($importfile,$maxsize);
+				$applet_ganmark=get_entry($importfile,$maxsize);
+				$applet_anmark=get_entry($importfile,$maxsize);
+				$attachpos=get_entry($importfile,$maxsize);
+				$searchhighlightcolor=get_entry($importfile,$maxsize);
+				$searchhighlight=get_entry($importfile,$maxsize);
+				$searchmaxchars=get_entry($importfile,$maxsize);
+				$activcellcolor=get_entry($importfile,$maxsize);
+				$news4showcat=get_entry($importfile,$maxsize);
+				$showproposer=get_entry($importfile,$maxsize);
+				$event_dateformat2=get_entry($importfile,$maxsize);
+				$commentsinline=get_entry($importfile,$maxsize);
+				$icdisplayemail=get_entry($importfile,$maxsize);
+				$ic_heading_bgcolor=get_entry($importfile,$maxsize);
+				$ic_heading_fontcolor=get_entry($importfile,$maxsize);
+				$ic_heading_font=get_entry($importfile,$maxsize);
+				$ic_heading_fontsize=get_entry($importfile,$maxsize);
+				$ic_body_bgcolor=get_entry($importfile,$maxsize);
+				$ic_body_fontcolor=get_entry($importfile,$maxsize);
+				$ic_body_font=get_entry($importfile,$maxsize);
+				$ic_body_fontsize=get_entry($importfile,$maxsize);
+				$ic_heading_style=get_entry($importfile,$maxsize);
+				$ic_body_style=get_entry($importfile,$maxsize);
+				$commentspic=get_entry($importfile,$maxsize);
+				$hotnewscommentslink=get_entry($importfile,$maxsize);
+				$writecommentpic=get_entry($importfile,$maxsize);
+				$ev3_dateformat=get_entry($importfile,$maxsize);
+				$masssuboptions=get_entry($importfile,$maxsize);
+				$tablebgcolor=get_entry($importfile,$maxsize);
+				$hn_catlinking=get_entry($importfile,$maxsize);
+				$hn_linklayout=get_entry($importfile,$maxsize);
+				$rss_channel_title=get_entry($importfile,$maxsize);
+				$rss_channel_description=get_entry($importfile,$maxsize);
+				$rss_channel_link=get_entry($importfile,$maxsize);
+				$rss_auto_title=get_entry($importfile,$maxsize);
+				$rss_auto_short=get_entry($importfile,$maxsize);
+				$rss_channel_copyright=get_entry($importfile,$maxsize);
+				$rss_maxentries=get_entry($importfile,$maxsize);
+				$rss_channel_editor=get_entry($importfile,$maxsize);
+				$rss_channel_webmaster=get_entry($importfile,$maxsize);
+				$wap_title=get_entry($importfile,$maxsize);
+				$wap_description=get_entry($importfile,$maxsize);
+				$wap_copyright=get_entry($importfile,$maxsize);
+				$wap_auto_title=get_entry($importfile,$maxsize);
+				$wap_auto_short=get_entry($importfile,$maxsize);
+				$wap_options=get_entry($importfile,$maxsize);
+				$wap_maxentries=get_entry($importfile,$maxsize);
+				$wap_ev_maxentries=get_entry($importfile,$maxsize);
+				$wap_ev_title=get_entry($importfile,$maxsize);
+				$wap_ev_description=get_entry($importfile,$maxsize);
+				$wap_ev_maxdays=get_entry($importfile,$maxsize);
+				$wap_an_maxentries=get_entry($importfile,$maxsize);
+				$wap_an_title=get_entry($importfile,$maxsize);
+				$wap_an_description=get_entry($importfile,$maxsize);
+				$wap_an_maxdays=get_entry($importfile,$maxsize);
+				$wap_evs_maxldays=get_entry($importfile,$maxsize);
+				$wap_evs_dayrange=get_entry($importfile,$maxsize);
+				$wap_catlist_epp=get_entry($importfile,$maxsize);
+				$wap_evlist2_epp=get_entry($importfile,$maxsize);
+				$printpic_small=get_entry($importfile,$maxsize);
+				$expandpic=get_entry($importfile,$maxsize);
+				$collapsepic=get_entry($importfile,$maxsize);
+				$wap_cl_title=get_entry($importfile,$maxsize);
+				$wap_cl_description=get_entry($importfile,$maxsize);
+				$wap_cl_logo=get_entry($importfile,$maxsize);
+				$newsnodate=get_entry($importfile,$maxsize);
+				$rsspic=get_entry($importfile,$maxsize);
+				$eventcalonlymarkers=get_entry($importfile,$maxsize);
+				$evmarkcolgeneral==get_entry($importfile,$maxsize);
+				$n4nodate=get_entry($importfile,$maxsize);
+				$n4tbmargin=get_entry($importfile,$maxsize);
+				$n4leftmargin=get_entry($importfile,$maxsize);
+				$srchnolimit=get_entry($importfile,$maxsize);
+				$newsnoicons=get_entry($importfile,$maxsize);
+				$snnodate=get_entry($importfile,$maxsize);
+				$hotnewsmaxchars=get_entry($importfile,$maxsize);
+				$entriesperpage=get_entry($importfile,$maxsize);
+				$numhotnews=get_entry($importfile,$maxsize);
+				$newsnotifydays=get_entry($importfile,$maxsize);
+				$news2entries=get_entry($importfile,$maxsize);
+				$news3entries=get_entry($importfile,$maxsize);
+				$srchaddoptions=get_entry($importfile,$maxsize);
+				$cheadnobr=get_entry($importfile,$maxsize);
+				$cfootnobr=get_entry($importfile,$maxsize);
+				$showfuturenews=get_entry($importfile,$maxsize);
+				$nonltrans=get_entry($importfile,$maxsize);
+				$hnnolinking=get_entry($importfile,$maxsize);
+				$newslettercustomheader=str_replace("<BR>","\n",$newslettercustomheader);
+				$newslettercustomheader=bbdecode($newslettercustomheader);
+				$newslettercustomfooter=str_replace("<BR>","\n",$newslettercustomfooter);
+				$newslettercustomfooter=bbdecode($newslettercustomfooter);
+				$news4addoptions=bbdecode($newslettercustomfooter);
+				$subemailtype=bbdecode($newslettercustomfooter);
+				$fileLine=fgets($importfile,$maxsize);
+				if(!eregi("^\{/layout\}",$fileLine))
+				{
+					$formaterror="{/layout} missing";
+					$errors=1;
+					break;
+				}
+				else
+				{
+					$deflayout=0;
+					include('./includes/layout_new.inc');
+					if(!$result = mysql_query($sql, $db))
+						die("<tr class=\"errorrow\"><td>Unable to add layout entry to database.");
+					$numlayoutentries++;
+				}
+			}
+		}
+	}
+	if(isset($path_tempdir) && $path_tempdir)
+		unlink($orgfile);
+	if(($errors==1) || ($actmode!=0) || ($numlayoutentries<1))
+	{
+		$errors=1;
+		if(!$errmsg)
+		{
+			echo "<tr class=\"errorrow\"><td align=\"center\">";
+			echo "$l_fileformaterror ($actmode";
+			if($formaterror)
+				echo " - $formaterror";
+			echo")</td></tr>";
+		}
+		else
+			echo $errmsg;
+	}
+}
+if($errors==1)
+{
+	echo "<tr class=\"actionrow\"><td align=\"center\">";
+	echo "<a href=\"javascript:history.back()\">$l_back</a>";
+	echo "</td></tr></table></td></tr></table>";
+}
+else
+{
+	echo "<tr class=\"displayrow\"><td align=\"center\">";
+	echo "$l_layoutimported ($layoutid  - $numlayoutentries $l_entries)";
+	if(isset($includeemoticons))
+		echo "<br>$numemoticons $l_emoticons $l_added";
+	echo "</td></tr></table></td></tr></table>";
+	echo "<div class=\"bottombox\" align=\"center\">";
+	echo "<a href=\"".do_url_session("$act_script_url?$langvar=$act_lang")."\">$l_layoutselection</a>";
+	echo "</div>";
+}
+include_once('./trailer.php');
+function get_entry($inputfile,$maxsize)
+{
+	global $dodebug;
+	
+	$fileLine=fgets($inputfile,$maxsize);
+	if($fileLine)
+	{
+		if($dodebug)
+			echo "<tr class=\"displayrow\"><td align=\"left\">$fileLine</td></tr>";
+		$fileLine=trim($fileLine);
+		$fileLine=str_replace("\\n","\r\n",$fileLine);
+		return $fileLine;
+	}
+	else
+		return "";
+}
+?>
