@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>gCards User Guide</title>
+	
+	<style>
+		body
+		{
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11 px;
+		}
+	</style>
+</head>
+
+<body>
+<h1>gCards User Guide</h1>
+
+<br>
+
+<h3>About gCards</h3>
+<ul>
+	<li><a href="#Overview">gCards Overview</a></li>
+	<li><a href="#FeatureOverview">gCards Feature Overview</a></li>
+	<li><a href="#Credits">Credits</a></li>
+</ul>
+<h3>Installing gCards</h3>
+<ul>
+	<li><a href="#Requirements">Requirements</a></li>
+	<li><a href="#Installation">gCards Installation</a></li>
+	<li><a href="#Upgrading">Upgrading gCards</a></li>
+</ul>
+<h3>Miscellaneous</h3>
+<ul>
+	<li><a href="#ImageFormat">Image Formats</a></li>
+	<li><a href="#Language">Multiple Language Support</a></li>
+	<li><a href="#Smilies">Adding Extra Smilies</a></li>
+	<li><a href="#Templates">Image Templates</a></li>
+	<li><a href="#DropShadow">Drop Shadows</a></li>	
+</ul>
+<br><br>
+
+<table width="600" align="center">
+	<tr>
+		<td>
+
+<h2>About gCards</h2>
+
+<a name="Overview" id="Overview"><h3>gCards Overview</h3></a>
+gCards is a free PHP-based eCard system that is easy to setup and use. 
+gCards simple Administration Console allows the administrator to upload images,
+add eCard categories, and modify existing settings - 
+no more messing with HTML or PHP to get your eCard site up and running!  
+<br><br>
+gCards is my first stab at a PHP application (or any other programming endeavour) so go easy on me. 
+
+<a name="FeatureOverview" id="FeatureOverview"><h3>gCards Feature Overview</h3></a>
+<ul>
+	<li>JPEG and GIF image support</li>
+	<li>User-defined categories</li>
+	<li>WYSIWYG editor for composing eCards (IE 5.5+)</li>
+	<li>Add smilies to eCards</li>
+	<li>Multiple recipients</li>
+	<li>Background music</li>
+	<li>Multiple lanuage support via language files (only English provided).  Ability to
+	switch languages on the fly.</li>
+	<li>Cards stored in mySQL database - database access via ADODB library</li>
+	<li>E-mails URL to recipients to pickup eCard - no messy HTML mail</li>
+	<li>Sender can be notified when recipient picks up eCard (optional)</li>
+	<li>Automatic deletion of old eCards (configurable and optional)</li>
+	<li>Secure Administration Console</li>
+	<ul>
+		<li>Image uploading</li>
+		<li>Optional automatic thumbnail generation for JPEGs (Using GD or GD2)</li>
+		<li>Create and edit Site News</li>
+		<li>Category maintenance</li>
+		<li>Statistics</li>
+	</ul>
+	<li>Easy setup and configuration - get up and running in 10 minutes!</li>
+	<ul>
+		<li>Setup script creates database tables</li>
+		<li>Configuration script contains all gCards options</li>
+		<li>No fancy libraries or packages required - uses PHP's GD or GD2 library</li>
+		<li>Modify look and feel quickly with CSS</li>
+	</ul>
+	<li>Great browser support!</li>
+	<ul>
+		<li>Internet Explorer</li>
+		<li>Mozilla</li>
+		<li>Netscape 4.7</li>
+		<li>Maybe more! That's all I've tested</li>
+	</ul>
+</ul>
+
+<a name="Credits" id="Credits"><h3>Credits</h3></a>
+gCards is created, designed, and maintained by me - Greg Neustaetter.  It was originally developed
+as a self-imposed project to learn PHP.  It seemed like a good project - combining database interaction,
+dynamic user interfaces, image manipulation, and email.  When I finished I posted it on <a href="http://www.hotscripts.com">HotScripts.com</a>
+and was VERY surprised when about 500 people downloaded it in the first week.
+<br><br>
+In the great tradition of the open source community I like to reuse existing technology whenever possible.  The following
+scripts or other technologies are used in gCards:
+<ul>
+	<li><b>ADOdb Database Library</b> (<a href="http://php.weblogs.com/ADODB" target="_blank">http://php.weblogs.com/ADODB</a>) -
+	ADOdb is a database abstraction library created for PHP.  It supports a wide-range of commercial and open-source databases.
+	This is used for all database interactions within gCards.</li>
+	<li><b>htmlArea</b> (<a href="http://www.interactivetools.com/products/htmlarea/" target="_blank">http://www.interactivetools.com/products/htmlarea/</a>) -
+	htmlArea is a WYSIWYG editor that can be used to replace any textarea field for Windows users on IE 5.5+.  Other users see a standard
+	textarea.  gCards uses htmlArea for composing eCards and for news item creation in the gCards Administration Console.</li>
+	<li><b>PHPMailer</b> (<a href="http://phpmailer.sourceforge.net/" target="_blank">http://phpmailer.sourceforge.net/</a>) -
+	PHPMailer is an object-oriented PHP class that simplifies the process of sending email with PHP.  PHPMailer lets gCards users use the standard PHP
+	mail functions or SMTP instead.  PHPMailer was added to gCards in release 1.21 of gCards</li>
+	<li><b>Image Resizer</b> (<a href="http://horobey.com/demos/imgresize/v5/article/index.html" target="_blank">http://horobey.com/demos/imgresize/v5/article/index.html</a>) -
+	Image Resizer is an object-oriented PHP class that simplifies the process of resizing images with the GD or GD2 Graphics Library.
+	gCards uses image resizer to (optionally) automatically generate thumbnails for JPEG images</li>	
+</ul> 
+
+
+<h2>Installing gCards</h2>
+
+<a name="Requirements" id="Requirements"><h3>Requirements</h3></a>
+<ul>
+	<li><b>PHP</b> - Not quite sure what version is required - version 4.1 used to be required but now
+	it uses the $HTTP_*_VARS instead of the autoglobals, so support should go back a bit further now!</li>
+	<li><b>MySQL</b> - gCards was written to use the free MySQL relational database.  It was written with the
+	ADODB database library and could probably be modified to use other databases fairly easily</li>
+	<li><b>GD or GD2 Image Library</b> - The GD or GD2 image libraries are used to automatically create thumbnails
+	in the gCards administration console.  These are commonly bundled with PHP - GD2 is bundled with PHP 4.3 by default.  GD2 will provide much higher
+	quality thumbnails.</li>
+</ul>
+
+<a name="Installation" id="Installation"><h3>gCards Installation</h3></a>
+<ol>
+	<li>Download the latest gCards version from the <a href="http://www.gregphoto.net/gcards">official site</a></li>
+	<li>Create a database to hold the gCards database tables (or use an existing database)</li>
+	<li>Open the config.php and change the values to reflect your database connection properties and your gCards options</li>
+	<li>If PHP's mail functions don't work on your server, change the mail settings for gCards in config_email.php</li>
+	<li>Upload the files to your web server</li>
+	<li>Browse to the setup.php file and choose to do a new install - this will create the database tables and create an admin user.
+		If there are errors creating the tables then your database information is probably incorrect - fix it in the config.php and try again</li>
+	<li>CHMOD the 'images' and 'sound' directories to '777' to allow image/sound uploads and modification</li>
+	<li><strong>Delete setup.php or CHMOD it to '000' so that it cannot be accessed</strong></li>
+	<li>Login to the gCards Administration Console with the user: 'admin' password: 'admin'.  You can access the login page at login.php</li>
+	<li>Click the 'Change Password' link in the upper right to change the admin password</li>
+	<li>Add a Category using the 'Category Maintenance' link in the gCards Administration Console</li>
+	<li>Add a new Card using the 'Card Maintenance' link in the gCards Administration Console</li>
+	<li>Click the link in the bottom right to go to the index page of gCards - you're new Card should show up here!</li>
+	<li>Done!!!</li>
+</ol>
+
+<a name="Upgrading" id="Upgrading"><h3>Upgrading gCards</h3></a>
+<ol>
+	<li>Download the latest gCards version from the <a href="http://www.gregphoto.net/gcards">official site</a></li>	
+	<li>Read the readme to see if there are any version-specific instructions</li>
+	<li>Backup your current config.php</li>
+	<li>Modify the new config.php to reflect the settings in your old config.php</li>
+	<li>Upload all of the files to your web host, overwriting the old files</li>
+	<ul>
+		<li>If you get an error trying to upload setup.php try CHMODing the file on the server to '644' first</li>
+	</ul>
+	<li>Run setup.php to create new database tables or to modify the existing tables to take advantage of new features</li>
+</ol> 
+
+<h2>Miscellaneous</h2>
+
+<a name="ImageFormat" id="ImageFormat"><h3>Image Formats</h3></a>
+gCards has support for all image formats that can be displayed within an img html tag.  This would primarily be JPEGs and GIFs.
+Though gCards supports GIFs, it will not automatically create thumbnails for GIF images.  This is due to the fact that gCards 
+uses the GD or GD2 library to create thumbnails, and GD does not support the GIF file format due to patent issues.  If it were supported
+gCards would have support for GIF thumbnail creation, but for now you'll have to live with creating your own!
+
+<a name="Language" id="Language"><h3>Multiple Language Support</h3></a>
+gCards has support for multiple languages via language files.  If multiple languages are enabled, flags
+will be shown in the user interface.  When a user clicks a flag it will use that language for the
+rest of the session.  Only an English version is included, though others are available at <a href="http://www.gregphoto.net/gcards/lang.php">http://www.gregphoto.net/gcards/lang.phphttp://www.gregphoto.net/gcards/lang.php</a>.  If you create files for another language please send them to me and I will include them
+and give you credit!<br><br>
+To create a new language file:
+<ol>
+	<li>Make a copy inc/lang/language_en.php</li>
+	<li>Change the name of the file to reflect the language - i.e. language_sp.php for Spanish</li>
+	<li>Change the text in this file to the appropriate language</li>
+	<li>Open config.php and add a new value to the language array to point to your new language file.  A commented example is included in config.php</li>
+	<li>Done!</li>
+</ol>
+
+<a name="Smilies" id="Smilies"><h3>Adding Extra Smilies</h3></a>
+Starting with version 1.1, gCards has support for smilies :)<br>
+If you'd like to modify the smilies it's pretty easy!  Here's how:
+<ol>
+	<li>Open inc/FCKeditor/fckconfig.js</li>
+	<li>Find FCKConfig.SmileyImages at the bottom (the default path is images/siteImages/smilies/, but can be changed)</li>
+	<li>Add new filenames to the array</li>
+	<li>That's it!</li>
+</ol>
+
+<a name="Templates" id="Templates"><h3>Image Templates</h3></a>
+Starting with version 1.2, gCards includes the images/imageTemplates directory.  This folder has
+templates for various images used in gCards.  You can use these templates as a starting point for
+creating smilies, new drop shadows, or stamps.
+
+<a name="DropShadow" id="DropShadow"><h3>Drop Shadows</h3></a>
+Starting with version 1.2, gCards includes an option (configurable in config.php) to use
+drop shadows on image thumbnails, full-size images, and cards.  Choosing the drop shadow mode
+also enables a postcard style layout that includes stamp images.<br>
+The drop shadow option is simple to use if you use the default background color that ships with
+gCards.  If you're using a custom color then it's a bit more difficult - the drop shadow images
+include the background color on them, so you'll need to create new images.  I've provided a template
+for this and instructions on how to do it in the readme in the dropshadow template directory.
+<br>I tried to make a dropshadow image that would work with all backgrounds, but using a transparent
+background on the image made the quality much worse....
+
+		</td>
+	</tr>
+</table>
+<br><br>
+<div align="center">
+&copy; Greg Neustaetter
+</div>
+
+</body>
+</html>
