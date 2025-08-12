@@ -1,0 +1,60 @@
+The template system consists of a class "tpl" and a couple of functions. All template related functions are located in includes/tpl.php. Here is a brief description on how to use the class and those functions:
+
+Template class "tpl"
+
+Defining an instance of the class and passing the template file name to the constructor, opens the template file and loads its contents to the "template" member var.
+
+Now, template files can contain tags in format {tag_name} which can be later replaced by content on the fly. All you need to do is to create an array with keys as tag names and values as replacements and pass it to the class instance with either parse() or compile() member funcs.
+
+So if we have a template file with the content
+
+"Hello my name is {name} and I am {age} years old"
+
+, the array:
+
+$tags = array("name" => "John Doe", "age" => 25);
+
+passing it to the template object, will generate
+"Hello my name is John Doe and I am 25 years old".
+
+You pass this array to the template object with either parse() or compile().
+If the template file is a .php file which needs to be compiled before added in a template, you use compile(), else you use parse() which only replaces the tags. You can always use compile() and have the same results but it also adds a bit more overhead so it is better to use it only when required.
+The result of parse() is returned to "parsed" member var while the result of compile() to "compiled". The "template" member var remains intact and always contains the original template file contents.
+
+The aim of this template engine is to separate PHP code from HTML as much as possible. So, for every php file that outputs contents there should be a .tpl file. For example, in this helpdesk the header is dynamic, the code of which is in header.php and its template in header.tpl. So, when replacing the {header} tag in main.tpl (which defines the basic structure of the page), the header.php is firstly compiled(), that is, its code is being run and its output saved to "compiled" member var, and then {header} is replaced with the output of the header`s class instance "template" member var.
+
+Except of the template class, there are some other functions which are designed so they can be used separately from the template class when required.
+
+fragment_get()
+This gets a fragment of HTML code that will be repeated several times in the code. For example, a post row which will be repeated numerous times with different content.
+The code fragments, must be between
+<!--BEGIN fragment_name-->
+and
+<!--END fragment_name-->.
+Note that the syntax must be exactly like this and it is case sensitive (this can be easily changed by changing strpos to stripos in the function definition, which is however not required because it will affect performance)
+
+fragment_replace()
+This function replaces a fragment of html code in the format described above, with some other content.
+
+fragment_delete()
+Deletes a fragment of html code (same syntax as the previous two)
+
+replace_tags()
+Works the same as the parse() member function of the tpl class, but designed to work separately from the class when needed. Takes the subject in which the replace will take place and returns the result without affecting the subject.
+
+--------
+Following are some template functions which are made just to save time.
+
+error()
+Takes only two parameters, Error box content and title. Its purpose is to show a very simple box containing an error, and, if DEBUG_MODE is enabled in config.php, it also shows errors returned by MySQL (if any).
+It is used as a replacement to die();
+
+
+dialog()
+Same as error, but uses fully site layout and styling. Except of message box content and title it also takes optionally a link text and URL which will be displayed on the bottom of the message, a flag whether the link should be shown and one more parameter which defined whether user will be redirected to that link automatically after a 10 seconds of viewing this message.
+
+content_box()
+Builds and returns a generic content box which contains all the page content. Usually used with build_page()
+
+build_page()
+Builds and returns a generic page with the standard header and footer files. Takes the page content and title as parameters, page content is usually the result returned from content_build() when nothing more than a simple box is required.
