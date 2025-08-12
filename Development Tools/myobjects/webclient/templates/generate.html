@@ -1,0 +1,79 @@
+<?php
+$tabIndex = 1;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>MyObjects Web Client</title>
+<link rel="stylesheet" type="text/css" href="webclient/scripts/myobjects.css" />
+<link rel="stylesheet" type="text/css" href="webclient/scripts/DatabaseTree.css" />
+<script type="text/javascript" src="webclient/scripts/ie5.js"></script>
+<script type="text/javascript" src="webclient/scripts/XulMenu.js"></script>
+<script type="text/javascript" src="webclient/scripts/DynamicTree.js"></script>
+</head>
+<body>
+<div id="logo"><a href="http://www.myobjects.org" target="_blank" title="MyObjects"><img src="webclient/images/logo.gif" width="90" height="29" alt="MyObjects" border="0" /></a></div>
+<script type="text/javscript">
+/* preload images */
+var arrow1 = new Image(4, 7);
+arrow1.src = "webclient/images/arrow1.gif";
+var arrow2 = new Image(4, 7);
+arrow2.src = "webclient/images/arrow2.gif";
+</script>
+<div id="toolbar"><?php echo $this->toolBar?></div>
+<script type="text/javascript">
+    var menu1 = new XulMenu("menu1");
+    menu1.arrow1 = "webclient/images/arrow1.gif";
+    menu1.arrow2 = "webclient/images/arrow2.gif";
+    menu1.init();
+</script>
+<table width="100%"  border="0" cellspacing="0" cellpadding="25" id="main">
+  <tr>
+  	<td width="300" valign="top" style="border-right:1px dashed #000000;"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+      <tr>
+        <td class="tableHeader">Current Database Schema </td>
+      </tr>
+      <tr>
+        <td><?php echo $this->schemaGraph?></td>
+      </tr>
+    </table></td>
+    <td valign="top">
+	<div align="center" class="errorMessage"><?php echo $this->errorMessage?></div>
+	<form name="generateSchema" id="generateSchema" method="post" action="index.php">
+	  <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+		<tr>
+		  <td colspan="2" class="tableHeader">Generate Database Schema </td>
+		</tr>
+		<tr>
+		  <td colspan="2" class="row2"><p>Generating a new schema file will override your current schema design that is in progress.</p>
+		    <p>For security reasons MyObjects Web Client does not store any username or password value. The database connection is immediately closed when the database schema file is generated. Further operations are made using the generated schema file. </p></td>
+		  </tr>
+		<tr>
+		  <td class="row1">Database Host Name : </td>
+		  <td width="300" class="row1"><input name="dbHost" type="text" id="dbHost" style="width:295px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+		</tr>
+		<tr>
+		  <td class="row2">Database User Name : </td>
+		  <td width="300" class="row2"><input name="dbUser" type="text" id="dbUser"  style="width:295px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+		</tr>
+		<tr>
+		  <td class="row1">Database Password : </td>
+		  <td width="300" class="row1"><input name="dbPassword" type="password" id="dbPassword" style="width:295px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+		</tr>
+		<tr>
+		  <td class="row2">Database Names : (Seperated by comma) </td>
+		  <td width="300" class="row2"><textarea name="dbNames" id="dbNames" style="width:295px;" tabindex="<?php echo $tabIndex++ ?>"></textarea></td>
+		</tr>
+		<tr>
+		  <td class="row1">&nbsp;</td>
+		  <td class="row1"><input type="submit" name="Submit" value="Generate Schema" tabindex="<?php echo $tabIndex++ ?>"/>
+		    <input name="action" type="hidden" id="action" value="generateSchema" /></td>
+		  </tr>
+	  </table>
+	</form>
+	</td>
+  </tr>
+</table>
+</body>
+</html>
