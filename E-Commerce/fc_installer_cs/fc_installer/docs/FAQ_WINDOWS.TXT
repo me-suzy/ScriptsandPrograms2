@@ -1,0 +1,102 @@
+Q: What version of the Sun JRE or JDK is required?
+Q: I browse to the CD and double click on the 'startwin.bat' file,
+   but nothing happens.  What is wrong?
+Q: Why does FishCart Installer remain blank for extended times?
+Q: When I get to the last step in the install process to create
+   the databases, FishCart Installer completes but the database
+   tables are not created.
+Q: I'm getting strange errors when FishCart Installer starts to
+   transfer the files to the server.  What is wrong?
+
+======================================================================
+
+Q: What version of the Sun JRE or JDK is required?
+
+A: Version 1.4 or later is required for the crypto and SSL classes.
+
+======================================================================
+
+Q: I browse to the CD and double click on the 'startwin.bat' file,
+   but nothing happens.  What is wrong?
+
+A: If the Installer does not start properly, the Java Runtime
+   Environment (JRE) is probably not installed.  To install
+   it, execute (by double clicking) the Sun JRE distribution
+   file for Windows from the 'sun_jre' directory on this CD.
+   The file will have a name like 'j2re-1_4_1_02-win.exe'.
+
+======================================================================
+
+Q: Why does FishCart Installer remain blank for extended times?
+
+A: While FishCart Installer is copying or transferring the files
+   to the Web site via FTP, the Installer screen may not refresh. 
+   is normal operation.  To verify that the Installer is not
+   frozen, you may want to watch the Java run-time console; it
+   will show you the file copy and FTP transfer progress.
+
+======================================================================
+
+Q: When I get to the last step in the install process to create
+   the databases, FishCart Installer completes but the database
+   tables are not created.
+
+A: There may be several causes of this, most of which are probably
+   not related to FishCart Installer.  First, check the Java run
+   time console on your computer to see if there are obvious error
+   messages.  Second, make sure that the database username,
+   password and hostname you are entering in the Installer are
+   correct.  Third, make sure that the database has been created
+   on the server.  Fourth, make sure that the username and password
+   are created on the server, and that they have been granted
+   sufficient permission to create tables and insert data into them.
+
+======================================================================
+
+Q: I'm getting strange errors when FishCart Installer starts to
+   transfer the files to the server, errors like the messages
+   below.  What is wrong?
+
+C:\DOCUME~1\...\LOCALS~1\Temp\/catalog/maint/version-->/public_html/catalog/maint/version
+C:\DOCUME~1\...\LOCALS~1\Temp\/catalog/maint/sql_setup.php-->/public_html/catalog/maint/sql_setup.php
+C:\DOCUME~1\...\LOCALS~1\Temp\/catalog/languages/lang_eng.php-->/public_html/catalog/languages/lang_eng.php
+
+A: The Windows temporary directory path is given in the environment
+   variable TEMP.  FishCart Installer uses the temporary directory
+   to copy and customize the files before transferring them to the
+   server by FTP.  If the path name contains directories with names
+   longer than 8 characters, the final phase of the installation
+   process fails because FishCart Installer cannot find the files
+   due to the mangled file names.
+
+   This is more likely a problem on Windows NT, 2000 or XP platforms.
+   The Windows 9x platforms usually use 'c:\windows\temp' as the 
+   value of TEMP; because the names are all 8 characters or less,
+   it works well.
+
+   The workaround on NT, 2000 or XP is to change the value of the
+   environment variable to include names no longer than 8 characters.
+
+   One easily usable value on NT or 2000 is 'c:\winnt\temp'.
+   Whatever directory you use, make sure it exists and that your 
+   user ID has read/write access to it.  You may need to use Windows
+   Explorer to create the directory if it does not already exist.
+   
+   On NT 4, right click on 'My Computer' and select 'Properties'.
+   A window will open with 6 tabs; select the 'Environment' tab.
+   Set the value of TEMP in the window 'User variables for ...',
+   where ... will be the user name by which you are logged in.
+   If the TEMP variable does not exist in that window you will
+   need to add it.
+   
+   On 2000, right click on 'My Computer' and select 'Properties'.
+   Select the 'Advanced' tab, then click on 'Environment Variables'
+   Set the value of TEMP in the window 'User variables for ...',
+   where ... will be the user name by which you are logged in.
+   If the TEMP variable does not exist in that window you will
+   need to add it.
+
+   Once you have changed the variable, you may need to log out and
+   log in again for the change to be effective.
+
+======================================================================
