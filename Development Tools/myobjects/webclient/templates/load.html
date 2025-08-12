@@ -1,0 +1,67 @@
+<?php
+$tabIndex = 1;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>MyObjects Web Client</title>
+<link rel="stylesheet" type="text/css" href="webclient/scripts/myobjects.css" />
+<link rel="stylesheet" type="text/css" href="webclient/scripts/DatabaseTree.css" />
+<script type="text/javascript" src="webclient/scripts/ie5.js"></script>
+<script type="text/javascript" src="webclient/scripts/XulMenu.js"></script>
+<script type="text/javascript" src="webclient/scripts/DynamicTree.js"></script>
+</head>
+<body>
+<div id="logo"><a href="http://www.myobjects.org" target="_blank" title="MyObjects"><img src="webclient/images/logo.gif" width="90" height="29" alt="MyObjects" border="0" /></a></div>
+<script type="text/javscript">
+/* preload images */
+var arrow1 = new Image(4, 7);
+arrow1.src = "webclient/images/arrow1.gif";
+var arrow2 = new Image(4, 7);
+arrow2.src = "webclient/images/arrow2.gif";
+</script>
+<div id="toolbar"><?php echo $this->toolBar?></div>
+<script type="text/javascript">
+    var menu1 = new XulMenu("menu1");
+    menu1.arrow1 = "webclient/images/arrow1.gif";
+    menu1.arrow2 = "webclient/images/arrow2.gif";
+    menu1.init();
+</script>
+<table width="100%"  border="0" cellspacing="0" cellpadding="25" id="main">
+  <tr>
+  	<td width="300" valign="top" style="border-right:1px dashed #000000;"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+      <tr>
+        <td class="tableHeader">Current Database Schema </td>
+      </tr>
+      <tr>
+        <td><?php echo $this->schemaGraph?></td>
+      </tr>
+    </table></td>
+    <td valign="top">
+	<?php echo $this->errorMessage?>
+	<form name="loadSchema" id="loadSchema" enctype="multipart/form-data" method="post" action="index.php">
+	  <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+		<tr>
+		  <td colspan="2" class="tableHeader">Load Database Schema </td>
+		</tr>
+		<tr class="row2">
+		  <td colspan="2">(Note: Loading a schema file will override your current schema design that is in progress) </td>
+		  </tr>
+		<tr>
+		  <td class="row1">Schema File  : </td>
+		  <td width="300" class="row1"><input name="schemaFile" type="file" id="schemaFile" tabindex="<?php echo $tabIndex++ ?>"/></td>
+		</tr>
+		<tr>
+		  <td class="row2">&nbsp;</td>
+		  <td class="row2"><input type="submit" name="Submit" value="Load Schema" tabindex="<?php echo $tabIndex++ ?>"/>
+		    <input name="action" type="hidden" id="action" value="loadSchema" />
+		  </td>
+		  </tr>
+	  </table>
+	</form>
+	</td>
+  </tr>
+</table>
+</body>
+</html>
