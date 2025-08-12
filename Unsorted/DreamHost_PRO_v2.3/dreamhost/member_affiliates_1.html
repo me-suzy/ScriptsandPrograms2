@@ -1,0 +1,100 @@
+
+<body bgcolor="#FFFFFF" text="#000000">
+<?
+$pass = is_logged($session_id);
+	if ($pass == "N") {
+		include("member_login_1.html");
+	} elseif($pass =="Y") {  ?>
+<form name="form1" method="post" action="members.php?">
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td> 
+        <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"> 
+          <font size="3"> <b> <font size="2"> </font></b></font></font></font><font color="#333333" face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Affiliates/Resellers 
+          Registration:</b></font></p>
+        <p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#333333">Please 
+          verify that the name and address below are the correct name and address 
+          for the payouts: </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"><font size="3"><b><font size="2"> 
+          <?$account_id  = get_account_id($session_id);
+$db = new ps_DB;
+$q  = "SELECT * FROM account WHERE account_id='$account_id'";
+$db->query($q);
+$db->next_record();?>
+          </font></b></font></font></font></p>
+        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="150"> 
+              <div align="right"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Name:</font></b></font></div>
+            </td>
+            <td><font color="#666666"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+              <input type="text" name="name" maxlength="50" size="20" style="border: 1 solid #666666" value="<? $db->p("account_name"); ?>">
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></b></font></td>
+          </tr>
+          <tr> 
+            <td width="150"> 
+              <div align="right"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Address:</font></b></font></div>
+            </td>
+            <td><font color="#666666"><b><font color="#666666"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+              <input type="text" name="address" maxlength="50" size="20" style="border: 1 solid #666666" value="<? $db->p("account_address"); ?>">
+              </font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></b></font></td>
+          </tr>
+          <tr> 
+            <td width="150"> 
+              <div align="right"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">City:</font></b></font></div>
+            </td>
+            <td><font color="#666666"><b><font color="#666666"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+              <input type="text" name="city" maxlength="50" size="20" style="border: 1 solid #666666" value="<? $db->p("account_city"); ?>">
+              </font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></b></font></td>
+          </tr>
+          <tr> 
+            <td width="150"> 
+              <div align="right"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">State/Province:</font></b></font></div>
+            </td>
+            <td><font color="#666666"><b><font color="#666666"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+              <input type="text" name="state" maxlength="50" size="20" style="border: 1 solid #666666" value="<? $db->p("account_state"); ?>">
+              </font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></b></font></td>
+          </tr>
+          <tr> 
+            <td width="150"> 
+              <div align="right"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Zip:</font></b></font></div>
+            </td>
+            <td><font color="#666666"><b><font color="#666666"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+              <input type="text" name="zip" maxlength="50" size="20" style="border: 1 solid #666666" value="<? $db->p("account_zip"); ?>">
+              </font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></b></font></td>
+          </tr>
+          <tr> 
+            <td width="150"> 
+              <div align="right"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Country:</font></b></font></div>
+            </td>
+            <td><font color="#666666"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+              <? show_country_menu(); ?>
+              </font></b></font></td>
+          </tr>
+          <tr> 
+            <td width="150"> 
+              <div align="right"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Payout 
+                Method:</font></b></font></div>
+            </td>
+            <td><font color="#666666"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+              <? show_payout_options(); ?>
+              </font></b></font> </td>
+          </tr>
+          <tr> 
+            <td width="150">&nbsp;</td>
+            <td> <br>
+              <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23">
+              <input type="hidden" name="page" value="affiliates_admin">
+              <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+              <input type="hidden" name="action" value="activate_affiliate">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<p> 
+  <? } ?>
+</p>
+</body>
+</html>
