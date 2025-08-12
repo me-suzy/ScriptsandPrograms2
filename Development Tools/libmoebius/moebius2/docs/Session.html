@@ -1,0 +1,364 @@
+<html>
+	<head>
+		<title>Session</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">Session Class</h1>
+		<br />
+		<span class="name">Name: Session</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* This class manages all session variables.</li>
+			<li>* NOTE: The design of the class is based on the avoidance of cookies, since cookies are commonly considered harmful;</li>
+			<li>* because PHP functions allow the use of other forms of session management, cookies were not used, instead Encripted URL IDs were used.</li>
+			<li>*</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.session</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza &lt; <a href="mailto:aespinoza@structum.com.mx">aespinoza@structum.com.mx</a> &gt;</span>
+		<br />
+		<span class="version">Version: 1.2</span>
+		<br />
+		<span class="extends">Extends: ObjectManager</span>
+		<br />
+		<span class="requires">Requires: ObjectManager</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#Session">Session</a>
+			<br />
+			<a href="#Start">Start</a>
+			<br />
+			<a href="#Destroy">Destroy</a>
+			<br />
+			<a href="#InsertData">InsertData</a>
+			<br />
+			<a href="#GetData">GetData</a>
+			<br />
+			<a href="#CreateVar">CreateVar</a>
+			<br />
+			<a href="#DeleteVar">DeleteVar</a>
+			<br />
+			<a href="#DeleteAllVars">DeleteAllVars</a>
+			<br />
+			<a href="#IsVarCreated">IsVarCreated</a>
+			<br />
+			<a href="#IsVarEmpty">IsVarEmpty</a>
+			<br />
+			<a href="#CountSessionVars">CountSessionVars</a>
+			<br />
+			<a href="#DumpSession">DumpSession</a>
+			<br />
+			<a href="#IsSessionActive">IsSessionActive</a>
+			<br />
+			<a href="#GetSessionId">GetSessionId</a>
+			<br />
+			<a href="#CreateCounter">CreateCounter</a>
+			<br />
+			<a href="#SetCounter">SetCounter</a>
+			<br />
+			<a href="#AddToCounter">AddToCounter</a>
+			<br />
+			<a href="#GetCounter">GetCounter</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="Session">
+				<span class="methodName">Session</span>
+				<span> ( optional bool startSession )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the default options and starts the session is set.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool startSession</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="Start">
+				<span class="methodName">Start</span>
+				<span> ( optional bool startCounter )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Starts the session, and the counter if set.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool startCounter</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="Destroy">
+				<span class="methodName">Destroy</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Destroys the session object and unsets all variables.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<hr />
+		<p>
+			<a name="InsertData">
+				<span class="methodName">InsertData</span>
+				<span> ( mixed variable, mixed value )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Inserts a new variable.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">mixed variable</li>
+				<li class="param">mixed value</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetData">
+				<span class="methodName">GetData</span>
+				<span> ( mixed variable )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns a variable's value.</li>
+		</ul>
+		<p class="returns">Returns: mixed value of the session var selected.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">mixed variable</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="CreateVar">
+				<span class="methodName">CreateVar</span>
+				<span> ( mixed variable )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Creates a new session variable.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">mixed variable</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="DeleteVar">
+				<span class="methodName">DeleteVar</span>
+				<span> ( mixed variable, optional bool unsetVar )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Deletes a session variable.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">mixed variable</li>
+				<li class="param">optional bool unsetVar</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="DeleteAllVars">
+				<span class="methodName">DeleteAllVars</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Deletes all session variables, thus unseting the session array.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<hr />
+		<p>
+			<a name="IsVarCreated">
+				<span class="methodName">IsVarCreated</span>
+				<span> ( mixed variable )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if a variable exists in the session array.</li>
+		</ul>
+		<p class="returns">Returns: true if variable is found, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">mixed variable</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="IsVarEmpty">
+				<span class="methodName">IsVarEmpty</span>
+				<span> ( mixed variable )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if a variable has a value in the session array.</li>
+		</ul>
+		<p class="returns">Returns: true if variable has value, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">mixed variable</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="CountSessionVars">
+				<span class="methodName">CountSessionVars</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the number of variables in the session array.</li>
+		</ul>
+		<p class="returns">Returns: integer representing the number of session variables.</p>
+		<hr />
+		<p>
+			<a name="DumpSession">
+				<span class="methodName">DumpSession</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the content of the session array.</li>
+		</ul>
+		<p class="returns">Returns: array containing the session variables.</p>
+		<hr />
+		<p>
+			<a name="IsSessionActive">
+				<span class="methodName">IsSessionActive</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if the session is active.</li>
+		</ul>
+		<p class="returns">Returns: true if session is active, false otherwise.</p>
+		<hr />
+		<p>
+			<a name="GetSessionId">
+				<span class="methodName">GetSessionId</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the session id.</li>
+		</ul>
+		<p class="returns">Returns: string representing the id of the session.</p>
+		<hr />
+		<p>
+			<a name="CreateCounter">
+				<span class="methodName">CreateCounter</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Creates a session  counter.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<hr />
+		<p>
+			<a name="SetCounter">
+				<span class="methodName">SetCounter</span>
+				<span> ( int num )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the value of the counter to a new number.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int num</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="AddToCounter">
+				<span class="methodName">AddToCounter</span>
+				<span> ( optional int addNum )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Add a number to the counter.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int addNum</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetCounter">
+				<span class="methodName">GetCounter</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the counter value.</li>
+		</ul>
+		<p class="returns">Returns: integer representing the counter value.</p>
+	</body>
+</html>
