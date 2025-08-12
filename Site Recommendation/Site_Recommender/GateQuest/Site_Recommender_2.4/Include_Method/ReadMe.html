@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>GateQuest php Site Recommender</title>
+	<style type="text/css">
+		<!--
+		input.send {
+			background-color: #FFF;
+			border: 1px solid #0072BC;
+			color: #000;
+			font-family: verdana;
+			font-size: 11px;
+			font-weight: bold;
+			width: 100px;
+		}
+		pre {
+			white-space: -moz-pre-wrap;  /* Mozilla, supported since 1999 */
+			white-space: -pre-wrap;      /* Opera 4 - 6 */
+			white-space: -o-pre-wrap;    /* Opera 7 */
+			white-space: pre-wrap;       /* CSS3 - Text module (Candidate Recommendation)*/
+			word-wrap: break-word;       /* IE 5.5+ */
+		}
+		-->
+	</style>
+</head>
+
+<body>
+
+<a href="http://www.gatequest.net/"><img src="gfx/gq_logo.gif" alt="" width="100" height="50" border="0"></a>
+
+<pre>=====================================================================
+  Script:		GateQuest php Site Recommender
+  Property:		© GateQuest, Inc. - gatequest.net
+  Author:		D Stewart  (dstewart@gatequest.net)
+  Update:		10-29-2005
+  Version:		2.4
+=====================================================================
+
+=====================
+  Include_Method
+=====================
+
+[You will need]:
+   1. A PHP enabled host
+
+[Features]:
+   Easy to install and configure
+   Will allow your visitors to recommend your site to as many recipients as you specify (only one required).
+   Default messages are easily modified.
+   Look and feel is customizable via the stylesheet.
+   You can choose to be notified when your site has been recommended. 
+   Notification will show recipient(s) AND the message!
+   Contains error checking and validation.
+   
+[Installation]:
+   1. Edit/rename any of the three web files as needed (make certain you edit the "config" section in "inc.recommend.php").
+   2. Reference inc.recommend.php as an include. ie. <?php include("inc.recommend.php"); ?>
+   3. Modify/use the included stylesheet (recommend.css) or merge into your existing styles.
+   4. Upload files to host (no chmod necessary).
+   5. That's it!
+ 	
+ 
+[Notes]:
+	recommend.php is not mandatory.  It is included in the zip file to demonstrate how to include inc.recommend.php in your page(s).  Think of recommend.php as the page in which you want to include the script.  Simply place:
+<dl><dt><tt><strong>&lt;?php include("inc.recommend.php"); ?&gt;</strong></tt></dt></dl>in any .php file.
+
+If you would like your visitors to recommend the current page they are on instead of the entire site, you can use http_referer. Here are the steps:
+
+   1.	Add <strong>$referrer = $_SERVER['HTTP_REFERER'];</strong>
+   	to the config section anywhere ABOVE the first instance of <strong>$emailmessage</strong>
+   2.	Change:
+   	<strong>$emailmessage = "Hello,\n\r[name] thought you would like to visit the following site: [url]";</strong>
+   	To this:
+   	<strong>$emailmessage = "Hello,\n\r[name] thought you would like to visit the following page: $referrer";</strong>
+	
+	
+If you choose to implement a safeguard to block multiple form submissions, add the following javascript to your files:
+
+	1: Cut and paste the below script into the <strong>&lt;head&gt;</strong> section of your page:
+	<dl><dt><tt>
+	<strong>&lt;script type="text/javascript"&gt;
+	
+	var formerrormsg="You\'ve attempted to submit the form multiple times.\n Please reload page if you need to resubmit form."
+	
+	function checksubmit(submitbtn){
+	submitbtn.form.submit()
+	checksubmit=blocksubmit
+	return false
+	}
+	
+	function blocksubmit(){
+	if (typeof formerrormsg!="undefined")
+	alert(formerrormsg)
+	return false
+	}
+	
+	&lt;/script&gt;</strong>
+
+	2: With the script installed, all that remains is to add an onClick attribute:
+	
+	<strong>&lt;form&gt;
+	&lt;input type="submit" value="Submit" onClick="return checksubmit(this)"&gt;
+	&lt;/form&gt;</strong>
+	</tt></dt></dl>
+
+Enjoy!
+
+
+=====================================================================
+
+
+<strong>Please rate us!</strong></pre>
+
+<table style="margin-left: 50px">									
+	<tr>
+		<td style="width: 165px">
+			<table>
+				<form action="http://www.hotscripts.com/rate/30168.html" method="POST">
+				<tr>
+					<td><p><a class="home" href="http://www.hotscripts.com"><img src="gfx/logo_hotscripts.com.gif" alt="Hotscripts.com" width="100" height="43" border="0"></a></p></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="external" value="1">
+					<select style="margin:0px" name="rate" size="1">
+					<option value="5" selected>Excellent!</option>
+					<option value="4">Very Good&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					<option value="3">Good</option>
+					<option value="2">Fair</option>
+					<option value="1">Poor</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td align="left"><input class="send" style="margin:0px" name="submit" type="submit" value="Rate!"></td>
+				</tr>
+				</form>
+			</table>
+		</td>
+		<td style="width: 165px">
+			<table>
+				<form action="http://www.scripts.com/rate.php" method="POST">
+				<tr>
+					<td><p><a class="home" href="http://www.scripts.com"><img src="gfx/logo_scripts.com.gif" alt="Scripts.com" width="100" height="43" border="0"></a></p></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="ID" value="13277">
+					<select style="margin:0px" name="rating" size="1">
+					<option value="5" selected>Excellent!</option>
+					<option value="4">Very Good&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					<option value="3">Good</option>
+					<option value="2">Fair</option>
+					<option value="1">Poor</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td align="left"><input class="send" style="margin:0px" name="submit" type="submit" value="Rate!"></td>
+				</tr>
+				</form>
+			</table>
+		</td>
+		<td>
+			<table>
+				<form action="http://www.scriptsearch.com/cgi-bin/rateit.cgi" method="POST">
+				<tr>
+					<td><p><a class="home" href="http://www.scriptsearch.com"><img src="gfx/logo_scriptsearch.com.gif" alt="ScriptSearch.com" width="100" height="43" border="0"></a></p></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="ID" value="10297">
+					<select style="margin:0px" name="rate" size="1">
+					<option value="5" selected>Excellent!</option>
+					<option value="4">Very Good&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					<option value="3">Good</option>
+					<option value="2">Fair</option>
+					<option value="1">Poor</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td align="left"><input class="send" style="margin:0px" name="submit" type="submit" value="Rate!"></td>
+				</tr>
+				</form>
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>
