@@ -1,0 +1,58 @@
+{header}    
+            <br /> <table width="100%"  border="0" cellspacing="0" cellpadding="0"> 
+                <tr> 
+                    <td class="catrow"><img src="{GRAFURL}/img_arrow_right.gif" alt="" width="14" height="14" border="0" align="middle" /> 
+                        {breadcrumb}
+                    </td> 
+                </tr> 
+            </table> 
+            <br /> 
+            <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+                <tr> 
+                    <td valign="top" width="80%"> <table width="100%" cellspacing="2" cellpadding="2" border="0"> 
+                            <tr> 
+                                <td> <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+                                        <tr> 
+                                            <td width="60%" class="cat_main_headline" valign="top">{title}</td> 
+                                        </tr> 
+                                    </table></td> 
+                            </tr> 
+                            <tr> 
+                                <td valign="top"> <!-- Zeile Kategorie 2 -->
+                                  <IF NAME="parse_archive_headlines">
+                                  {archive_links} 
+                                  </IF NAME="parse_archive_headlines">
+                                  <IF NAME="parse_archive_news">
+                                  <LOOP NAME="news_loop">
+                				  <a name="{newsid}"></a>
+                                  <table width="99%" cellspacing="2" cellpadding="2" border="0">
+                                    <tr> 
+                                      <td>
+                					  	{image_headline} <span class="cat_subcat_info">{fulldate}</span><br />{newshead}</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="cat_content" style="text-align : justify;">
+                					  	{image_text} {hometext}
+                						{morenews}
+                						{linkshow}
+                                      </td>
+                                    </tr>
+                                    <tr> 
+                                      <td class="cat_content">
+                					  	{writerlink}
+                						{recommend_link}
+                						{commentlink}
+                					  </td>
+                                    </tr>
+                                  </table>
+                				  <hr />
+                                  <br /> 
+                                  </LOOP NAME="news_loop"> 
+                                  </IF NAME="parse_archive_news">                               
+                                </td> 
+                            </tr> 
+                        </table></td> 
+                </tr> 
+            </table> 
+      <br /> 
+{footer} 
