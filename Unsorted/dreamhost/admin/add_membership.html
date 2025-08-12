@@ -1,0 +1,129 @@
+<font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font color="#333333">HOSTING 
+INFORMATION:</font></b></font> <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+<?php
+
+echo $error;
+
+if ($set_action=="update_membership") {
+echo "<BR>Change the information below that you wish to update.";
+	    $db = new ps_DB;
+        $q = "SELECT * FROM membership WHERE membership_id='$membership_id'";
+		$db->query($q);
+		$db->next_record();
+		
+    $membership_id=$db->f("membership_id");
+    $name= 			$db->f("membership_name");
+    $desc=			$db->f("membership_desc");
+    $price=			$db->f("membership_price");
+    $recurring=		$db->f("membership_recurring");
+    $frequency=		$db->f("membership_frequency");
+    $approval=		$db->f("membership_approval");
+    $periods=		$db->f("membership_periods");
+    $url=			$db->f("membership_url");
+    $active=		$db->f("membership_active");
+    $setup=			$db->f("membership_setup");
+} else {
+$recurring="Y";
+$approval="1";
+$active="Y";
+}
+
+?>
+</font> 
+<form method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="2" class="form_text">
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Name:</font></div>
+      </td>
+      <td width="57%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="membership_name" maxlength="50" size="41" style="border: 1 solid #666666" value="<?php echo $name ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Description:</font></div>
+      </td>
+      <td width="57%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <textarea name="membership_desc" cols="35" style="border: 1 solid #666666" rows="4"><? echo $desc ?></textarea>
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Base 
+          Price:</font></div>
+      </td>
+      <td width="57%"> <font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#990000"> 
+        <?echo $currency;?>
+        <input type="text" name="membership_price" maxlength="10" size="10" style="border: 1 solid #666666" value="<? echo $price ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Setup 
+          Fee:</font></div>
+      </td>
+      <td width="57%"> <font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#990000"> 
+        <?echo $currency;?>
+        <input type="text" name="membership_setup" maxlength="10" size="10" style="border: 1 solid #666666" value="<? echo $setup ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Recurring 
+          Charge?</font></div>
+      </td>
+      <td width="57%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="checkbox" name="membership_recurring" value="Y" <? if ($recurring=="Y") { echo "checked"; } ?>>
+        </font><font size="1" face="Verdana, Arial, Helvetica, sans-serif">This 
+        must be checked to activate auto billing.</font></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Billing 
+          Frequency:</font></div>
+      </td>
+      <td width="57%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="membership_frequency" maxlength="10" size="5" style="border: 1 solid #666666" value="<? echo $frequency ?>">
+        (days) </font></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Billing 
+          Periods:</font></div>
+      </td>
+      <td width="57%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="membership_periods" maxlength="10" size="5" style="border: 1 solid #666666" value="<? echo $periods ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Available 
+          to Shoppers?</font></div>
+      </td>
+      <td width="57%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="checkbox" name="membership_active" value="Y" <? if ($active=="Y") { echo "checked"; } ?>>
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top">&nbsp;</td>
+      <td width="57%">&nbsp; </td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top">&nbsp;</td>
+      <td width="57%"> 
+        <input type="image" border="0" name="submit" value="submit" src="file:///C|/Program%20Files/Apache%20Group/Apache/htdocs/dreamhost/DHP2.0_Echo/images/button_continue.gif" width="80" height="23" >
+        <input type="hidden" name="page" value="membership">
+        <input type="hidden" name="action" value="<? echo $set_action ?>">
+        <input type="hidden" name="account_id" value="<? echo $membership_id ?>">
+        <? if ($set_action=="update_membership--") { ?>
+        <a href=""><img src="file:///C|/Program%20Files/Apache%20Group/Apache/htdocs/dreamhost/DHP2.0_Echo/images/button_delete.gif" width="80" height="23" border="0"></a> 
+        <? } ?>
+      </td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top">&nbsp;</td>
+      <td width="57%">&nbsp;</td>
+    </tr>
+  </table>
+</form>
