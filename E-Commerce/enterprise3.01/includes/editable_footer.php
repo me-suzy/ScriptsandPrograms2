@@ -1,0 +1,1 @@
+<P align=center><FONT color=#0000ff size=4>You can add additional information here like links to other areas of your site. Sell the space to advertisers anything you want.</FONT></P>
