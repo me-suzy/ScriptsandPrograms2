@@ -1,0 +1,149 @@
+<!--
+#####################################################################
+#                                                                   #
+#    Copyright © 1999-2001 localhost - All Rights Reserved     #
+#                                                                   #
+#####################################################################
+#                                                                   #
+#          THIS COPYRIGHT INFORMATION MUST REMAIN INTACT            #
+#                AND MAY NOT BE MODIFIED IN ANY WAY                 #
+#                                                                   #
+#####################################################################
+#
+# When you downloaded this script you agreed to accept the terms
+# of this Agreement. This Agreement is a legal contract, which
+# specifies the terms of the license and warranty limitation between
+# you and localhost. You should carefully read the following
+# terms and conditions before installing or using this software.
+# Unless you have a different license agreement obtained from
+# localhost, installation or use of this software indicates
+# your acceptance of the license and warranty limitation terms
+# contained in this Agreement. If you do not agree to the terms of this
+# Agreement, promptly delete and destroy all copies of the Software.
+#
+# Versions of the Software
+# Only one copy of the registered version of localhost
+# may used on one web site.
+#
+# License to Redistribute
+# Distributing the software and/or documentation with other products
+# (commercial or otherwise) or by other than electronic means without
+# localhost's prior written permission is forbidden.
+# All rights to the localhost software and documentation not expressly
+# granted under this Agreement are reserved to localhost.
+#
+# Disclaimer of Warranty
+# THIS SOFTWARE AND ACCOMPANYING DOCUMENTATION ARE PROVIDED "AS IS" AND
+# WITHOUT WARRANTIES AS TO PERFORMANCE OF MERCHANTABILITY OR ANY OTHER
+# WARRANTIES WHETHER EXPRESSED OR IMPLIED.   BECAUSE OF THE VARIOUS HARDWARE
+# AND SOFTWARE ENVIRONMENTS INTO WHICH localhost MAY BE USED, NO WARRANTY
+# OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED.  THE USER MUST ASSUME THE
+# ENTIRE RISK OF USING THIS PROGRAM.  ANY LIABILITY OF localhost WILL BE
+# LIMITED EXCLUSIVELY TO PRODUCT REPLACEMENT OR REFUND OF PURCHASE PRICE.
+# IN NO CASE SHALL localhost BE LIABLE FOR ANY INCIDENTAL, SPECIAL OR
+# CONSEQUENTIAL DAMAGES OR LOSS, INCLUDING, WITHOUT LIMITATION, LOST PROFITS
+# OR THE INABILITY TO USE EQUIPMENT OR ACCESS DATA, WHETHER SUCH DAMAGES ARE
+# BASED UPON A BREACH OF EXPRESS OR IMPLIED WARRANTIES, BREACH OF CONTRACT,
+# NEGLIGENCE, STRICT TORT, OR ANY OTHER LEGAL THEORY. THIS IS TRUE EVEN IF
+# localhost IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO CASE WILL
+# localhost' LIABILITY EXCEED THE AMOUNT OF THE LICENSE FEE ACTUALLY PAID
+# BY LICENSEE TO localhost.
+#
+# Credits:
+# Andy Angrick - Programmer - angrick@localhost
+# Mike Barone - Design - mbarone@localhost
+#
+# For information about this script or other scripts see
+# http://www.localhost
+#
+# Thank you for trying out our script.
+# If you have any suggestions or ideas for a new innovative script
+# please direct them to suggest@localhost.  Thanks.
+--><html>
+
+<head>
+<title>csNews Professional</title>
+<link rel="stylesheet" type="text/css" href="csNewsPro.css">
+</head>
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+  <tr>
+    <td width="100%" align="center">
+    <form method="POST" action="in(cgiurl)" name="form1" onSubmit="return SetPass();">
+      <input type="hidden" name="command" value="manage">
+      <div align="center">
+        <center>
+        <table border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">
+          <tr>
+            <td bgcolor="#000000" align="center">
+            <img border="0" src="in(htmlurl)/photo.gif" width="152" height="240"></td>
+            <td align="center">
+            <table border="0" cellpadding="5" cellspacing="0" width="100%" height="204">
+              <tr>
+                <td width="100%" align="center" valign="top" height="68">
+                <img border="0" src="in(htmlurl)/text.gif" width="235" height="63"><hr color="#1F215F" noshade size="1">
+                </td>
+              </tr>
+              <tr>
+                <td width="100%" align="center" height="94">                <TABLE border="0" cellpadding="3" cellspacing="0">
+                  <TR>
+                    <TD align="right"><FONT size="2" face="Tahoma"><B>Username:</B></FONT></TD>
+                    <TD><FONT face="Tahoma" size="2" color="#FFFFFF"><B>
+                    <INPUT type="text" name="UserName" size="15"></B></FONT></TD>
+                  </TR>
+                  <TR>
+                    <TD align="right"><FONT size="2" face="Tahoma"><B>Password:</B></FONT></TD>
+                    <TD><FONT face="Tahoma" size="2" color="#FFFFFF"><B>
+                    <INPUT type="password" name="PassWord" size="15"></B></FONT></TD>
+                  </TR>
+                  <TR>
+                    <TD align="right"><FONT size="2" face="Tahoma"><B>Select Database:</B></FONT></TD>
+                    <TD><FONT face="Tahoma" color="#FFFFFF">
+                    <SELECT size="1" name="database">
+                    in(databases)
+                    </SELECT></FONT></TD>
+                  </TR>
+                  <TR>
+                    <TD colspan="2" align="center">
+                    <INPUT CLASS="button" type="submit" value="     Login     " name="B1"></TD>
+                  </TR>
+                </TABLE></TD>
+              </TR>
+              <TR>
+                <TD width="100%" align="center" height="12"><P align="center"><A href="http://www.localhost/">
+                <IMG border="0" src="in(htmlurl)/cr.gif" alt="WWW.localhost, LLC" align="center" width="210" height="12"></A></P></TD>
+              </TR>
+            </TABLE>
+            </TD>
+          </TR>
+        </TABLE>
+        </CENTER>
+      </DIV>
+    </FORM>
+    </TD>
+  </TR>
+</TABLE>
+
+</BODY>
+
+<script language="javascript">
+document.form1.UserName.focus();
+function SetPass(){
+var UserName = document.form1.UserName.value;
+var PassWord = document.form1.PassWord.value;
+if(!UserName){
+alert("Error. Please enter a username");
+return false;
+}
+if(!PassWord){
+alert("Error. Please enter a password");
+return false;
+}
+document.cookie = "UserName="+UserName;
+document.cookie = "PassWord="+PassWord;
+return true;
+}
+</script>
+</HTML>
