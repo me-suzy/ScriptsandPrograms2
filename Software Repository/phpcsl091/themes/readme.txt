@@ -1,0 +1,1 @@
+Please note that only 'default' has been undated to the new version. Pre 0.8 themes may require a little tweaking.
