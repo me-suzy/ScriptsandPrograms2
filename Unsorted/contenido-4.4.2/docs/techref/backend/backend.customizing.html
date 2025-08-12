@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Contenido - Backend customizing</title>
+  <style type="text/css">
+body            {
+                    background-color: #ffffff;
+                    scrollbar-face-color:#C6C6D5;
+                    scrollbar-highlight-color:#FFFFFF;
+                    scrollbar-3dlight-color:#747488;
+                    scrollbar-darkshadow-color:#000000;
+                    scrollbar-shadow-color:#334F77;
+                    scrollbar-arrow-color:#334F77;
+                    scrollbar-track-color:#C7C7D6;
+		    font-family: Verdana, Arial, Helvetica, Sans-Serif; font-size: 11px; color: #000000;
+                }
+
+h1 {
+ font-family: Verdana, Arial, Helvetica, Sans-Serif; font-size: 20px; color: #000000;
+ margin-top: 0px;
+}
+
+h2 {
+ font-family: Verdana, Arial, Helvetica, Sans-Serif; font-size: 15px; color: #000000;
+}
+
+  </style>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+ link="#000099" vlink="#990099" alink="#000099">
+<table cellpadding="2" cellspacing="2" border="0"
+ style="border-bottom: 1px solid; text-align: left; background-color: rgb(255, 255, 255); width: 100%;">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><img src="conlogo.gif"
+ alt="Contenido" align="left"
+ style="width: 190px; height: 112px; padding-right: 20px;">
+      <h1>Backend customizing</h1>
+      <table cellpadding="2" cellspacing="2" border="0"
+ style="text-align: left;">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;">Author</td>
+            <td style="vertical-align: top;">Timo A. Hummel</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">Created</td>
+            <td style="vertical-align: top;">22th October 2003</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">Audience<br>
+            </td>
+            <td style="vertical-align: top;">Site Administrators<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">Applies to<br>
+            </td>
+            <td style="vertical-align: top;">Contenido 4.4 or later<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h2>Introduction</h2>
+Backend customizing is a mechanism to customize various parameters of
+the backend. There are not many settings you can do, as this mechanism
+is relatively new. However, this mechanism will be used more and more
+in the future.<br>
+<br>
+<h2>How it works<br>
+</h2>
+Customizing Contenido settings is very easy and can be done via the
+group or user customizing settings. Here's an example for the user
+customizing:<br>
+<br>
+<img src="backend.customizing.1.gif" alt=""
+ style="width: 631px; height: 104px;"><br>
+<br>
+Important: User settings have precendence before group settings. User
+settings always override group settings. If the user is added to more
+than one group, the result is undefined. Make sure that your groups
+don't override each other.<br>
+<br>
+<h2><span style="font-weight: bold;">Current parameters</span></h2>
+<br>
+<table cellpadding="2" cellspacing="2" border="1"
+ style="text-align: left; width: 100%;">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 33%; font-weight: bold;">Area/Type<br>
+      </td>
+      <td style="vertical-align: top; width: 33%; font-weight: bold;">Property<br>
+      </td>
+      <td style="vertical-align: top; width: 33%; font-weight: bold;">Value
+(Description)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 33%;">backend<br>
+      </td>
+      <td style="vertical-align: top; width: 33%;">currentlogintime<br>
+      </td>
+      <td style="vertical-align: top; width: 33%;">Date and Time when
+this session has been started (automatically set by the backend)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 33%;">backend<br>
+      </td>
+      <td style="vertical-align: top; width: 33%;">lastlogintime<br>
+      </td>
+      <td style="vertical-align: top; width: 33%;">Date and Time when
+the last session was started (automatically set by the backend)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 33%;">wysiwyg<br>
+      </td>
+      <td style="vertical-align: top; width: 33%;">spaw-styles<br>
+      </td>
+      <td style="vertical-align: top; width: 33%;">The CSS style names
+which appear in the styles drop-down.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">wysiwyg<br>
+      </td>
+      <td style="vertical-align: top;">spaw-stylesheet-file<br>
+      </td>
+      <td style="vertical-align: top;">The stylesheet file to use for
+the WYSIWYG.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">wysiwyg<br>
+      </td>
+      <td style="vertical-align: top;">spaw-toolbar-mode<br>
+      </td>
+      <td style="vertical-align: top;">The toolbar mode to use. Allowed
+values: default, full, mini, nofont, sidetable<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">wysiwyg<br>
+      </td>
+      <td style="vertical-align: top;">spaw-height<br>
+      </td>
+      <td style="vertical-align: top;">The height of the SPAW editor
+widget (fallback mode, currently not used)<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">wysiwyg<br>
+      </td>
+      <td style="vertical-align: top;">spaw-height-html<br>
+      </td>
+      <td style="vertical-align: top;">The height of the SPAW editor
+when editing CMS_HTML elements<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">wysiwyg<br>
+      </td>
+      <td style="vertical-align: top;">spaw-height-head<br>
+      </td>
+      <td style="vertical-align: top;">The height of the SPAW editor
+when editing CMS_HEAD elements<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<pre style="margin-left: 40px;"><br><br></pre>
+<br>
+<br>
+</body>
+</html>
