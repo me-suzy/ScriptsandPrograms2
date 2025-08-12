@@ -1,0 +1,5042 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>XML Schema Documentation</title>
+
+<meta http-equiv="Content-Type" content="text/xml; charset=iso-8859-1" />
+
+<style type="text/css">
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* More-configurable styles */
+
+
+
+/******** General ********/
+
+
+
+/* Document body */
+
+body {
+
+   color: Black;
+
+   background-color: White;
+
+   font-family: Arial, sans-serif;
+
+   font-size: 10pt;
+
+}
+
+/* Horizontal rules */
+
+hr {
+
+   color: black;
+
+}
+
+/* Document title */
+
+h1 {
+
+   font-size: 18pt;
+
+   letter-spacing: 2px;
+
+   border-bottom: 1px #ccc solid;
+
+   padding-top: 5px;
+
+   padding-bottom: 5px;
+
+}
+
+/* Main section headers */
+
+h2 {
+
+   font-size: 14pt;
+
+   letter-spacing: 1px;
+
+}
+
+/* Sub-section headers */
+
+h3, h3 a, h3 span {
+
+   font-size: 12pt;
+
+   font-weight: bold;
+
+   color: black;
+
+}
+
+/* Table displaying the properties of the schema components or the
+
+   schema document itself */
+
+table.properties th, table.properties th a {
+
+   color: black;
+
+   background-color: #F99; /* Pink */
+
+}
+
+table.properties td {
+
+   background-color: #eee; /* Gray */
+
+}
+
+
+
+
+
+/******** Table of Contents Section ********/
+
+
+
+/* Controls for switching between printing and viewing modes */
+
+div#printerControls {
+
+   color: #963; /* Orange-brown */
+
+}
+
+/* Controls that can collapse or expand all XML Instance
+
+   Representation and Schema Component Representation boxes */
+
+div#globalControls {
+
+   border: 2px solid #999;
+
+}
+
+
+
+
+
+/******** Schema Document Properties Section ********/
+
+
+
+/* Table displaying the namespaces declared in the schema */
+
+table.namespaces th {
+
+   background-color: #ccc;
+
+}
+
+table.namespaces td {
+
+   background-color: #eee;
+
+}
+
+/* Target namespace of the schema */
+
+span.targetNS {
+
+   color: #06C;
+
+   font-weight: bold;
+
+}
+
+
+
+
+
+/******** Schema Components' Sections ********/
+
+
+
+/* Name of schema component */
+
+.name {
+
+   color: #F93; /* Orange */
+
+}
+
+
+
+/* Hierarchy table */
+
+table.hierarchy {
+
+   border: 2px solid #999; /* Gray */
+
+}
+
+
+
+/* XML Instance Representation table */
+
+div.sample div.contents {
+
+   border: 2px dashed black;
+
+}
+
+
+
+/* Schema Component Representation table */
+
+div.schemaComponent div.contents {
+
+   border: 2px black solid;
+
+}
+
+
+
+
+
+/******** Glossary Section ********/
+
+
+
+/* Glossary Terms */
+
+.glossaryTerm {
+
+   color: #036; /* Blue */
+
+}
+
+
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Printer-version styles */
+
+
+
+@media print {
+
+
+
+/* Ensures that controls are hidden when printing */
+
+div#printerControls {
+
+   visibility: hidden;
+
+}
+
+div#globalControls {
+
+   visibility: hidden;
+
+}
+
+#legend {
+
+   display: none;
+
+}
+
+#legendTOC {
+
+   display: none;
+
+}
+
+#glossary {
+
+   display: none;
+
+}
+
+#glossaryTOC {
+
+   display: none;
+
+}
+
+
+
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Base styles */
+
+
+
+/******** General ********/
+
+
+
+/* Unordered lists */
+
+ul {
+
+   margin-left: 1.5em;
+
+   margin-bottom: 0em;
+
+}
+
+/* Tables */
+
+table {
+
+   margin-top: 10px;
+
+   margin-bottom: 10px;
+
+   margin-left: 2px;
+
+   margin-right: 2px;
+
+}
+
+table th, table td {
+
+   font-size: 10pt;
+
+   vertical-align: top;
+
+   padding-top: 3px;
+
+   padding-bottom: 3px;
+
+   padding-left: 10px;
+
+   padding-right: 10px;
+
+}
+
+table th {
+
+   font-weight: bold;
+
+   text-align: left;
+
+}
+
+/* Table displaying the properties of the schema components or the
+
+   schema document itself */
+
+table.properties {
+
+   width: 90%;
+
+}
+
+table.properties th {
+
+   width: 30%;
+
+}
+
+/* Boxes that can make its content appear and disappear*/
+
+div.box {
+
+   margin: 1em;
+
+}
+
+   /* Box caption */
+
+div.box span.caption {
+
+   font-weight: bold;
+
+}
+
+   /* Button to open and close the box */
+
+div.box input.control {
+
+   width: 1.4em;
+
+   height: 1.4em;
+
+   text-align: center;
+
+   vertical-align: middle;
+
+   font-size: 11pt;
+
+}
+
+   /* Box contents */
+
+div.box div.contents {
+
+   margin-top: 3px;
+
+}
+
+
+
+
+
+/******** Table of Contents Section ********/
+
+
+
+/* Controls for switching between printing and viewing modes */
+
+div#printerControls {
+
+   white-space: nowrap;
+
+   font-weight: bold;
+
+   padding: 5px;
+
+   margin: 5px;
+
+}
+
+/* Controls that can collapse or expand all XML Instance
+
+   Representation and Schema Component Representation boxes */
+
+div#globalControls {
+
+   padding: 10px;
+
+   margin: 5px;
+
+}
+
+
+
+
+
+/******** Schema Document Properties Section ********/
+
+
+
+/* Table displaying the namespaces declared in the schema */
+
+table.namespaces th {
+
+}
+
+table.namespaces td {
+
+}
+
+/* Target namespace of the schema */
+
+span.targetNS {
+
+}
+
+
+
+
+
+/******** Schema Components' Sections ********/
+
+
+
+/* Name of schema component */
+
+.name {
+
+}
+
+
+
+/* Hierarchy table */
+
+table.hierarchy {
+
+   width: 90%;
+
+}
+
+table.hierarchy th {
+
+   font-weight: normal;
+
+   font-style: italic;
+
+   width: 20%;
+
+}
+
+table.hierarchy th, table.hierarchy td {
+
+   padding: 5px;
+
+}
+
+
+
+/* XML Instance Representation table */
+
+div.sample {
+
+   width: 90%;
+
+}
+
+div.sample div.contents {
+
+   padding: 5px;
+
+   font-family: Courier New, sans-serif;
+
+   font-size: 10pt;
+
+}
+
+   /* Normal elements and attributes */
+
+div.sample div.contents, div.sample div.contents a {
+
+   color: black;
+
+}
+
+   /* Group Headers */
+
+div.sample div.contents .group, div.sample div.contents .group a {
+
+   color: #999; /* Light gray */
+
+}
+
+   /* Type Information */
+
+div.sample div.contents .type, div.sample div.contents .type a {
+
+   color: #999; /* Light gray */
+
+}
+
+   /* Occurrence Information */
+
+div.sample div.contents .occurs, div.sample div.contents .occurs a {
+
+   color: #999; /* Light gray */
+
+}
+
+   /* Fixed values */
+
+div.sample div.contents .fixed {
+
+   color: #063; /* Green */
+
+   font-weight: bold;
+
+}
+
+   /* Simple type constraints */
+
+div.sample div.contents .constraint, div.sample div.contents .constraint a {
+
+   color: #999; /* Light gray */
+
+}
+
+   /* Elements and attributes inherited from base type */
+
+div.sample div.contents .inherited, div.sample div.contents .inherited a {
+
+   color: #666; /* Dark gray */
+
+}
+
+   /* Elements and attributes added to or changed from base type */
+
+div.sample div.contents .newFields {
+
+   font-weight: bold;
+
+}
+
+   /* Other type of information */
+
+div.sample div.contents .other, div.sample div.contents .other a {
+
+   color: #369; /* Blue */
+
+   font-style: italic;
+
+}
+
+   /* Link to open up window displaying documentation */
+
+div.sample div.contents a.documentation {
+
+   text-decoration: none;
+
+   padding-left: 3px;
+
+   padding-right: 3px;
+
+   padding-top: 0px;
+
+   padding-bottom: 0px;
+
+   font-weight: bold;
+
+   font-size: 11pt;
+
+   background-color: #FFD;
+
+   color: #069;
+
+}
+
+   /* Invert colors when hovering over link to open up window 
+
+      displaying documentation */
+
+div.sample div.contents a.documentation:hover {
+
+   color: #FFD;
+
+   background-color: #069;
+
+}
+
+
+
+/* Schema Component Representation table */
+
+div.schemaComponent {
+
+   width: 90%;
+
+}
+
+div.schemaComponent div.contents {
+
+   font-family: Courier New, sans-serif;
+
+   font-size: 10pt;
+
+   padding: 5px;
+
+}
+
+   /* Syntax characters */
+
+div.schemaComponent div.contents {
+
+   color: #00f; /* blue */
+
+}
+
+   /* Element and attribute tags */
+
+div.schemaComponent div.contents .scTag {
+
+   color: #933; /* maroon */
+
+}
+
+   /* Element and attribute content */
+
+div.schemaComponent div.contents .scContent, div.schemaComponent div.contents .scContent a {
+
+   color: black;
+
+   font-weight: bold;
+
+}
+
+   /* Comments */
+
+div.schemaComponent div.contents .comment {
+
+   color: #999; /* Light gray */
+
+}
+
+
+
+/******** Legend Section ********/
+
+
+
+div#legend table, div#legend div {
+
+   margin-bottom: 3px;
+
+}
+
+div#legend div.hint {
+
+   color: #999; /* Light gray */
+
+   width: 90%;
+
+   margin-left: 1em;
+
+   margin-bottom: 2em;
+
+}
+
+
+
+
+
+/******** Glossary Section ********/
+
+
+
+/* Glossary Terms */
+
+.glossaryTerm {
+
+   font-weight: bold;
+
+}
+
+
+
+
+
+/******** Footer ********/
+
+
+
+.footer {
+
+   font-size: 8pt;
+
+}
+
+</style>
+
+<script type="text/javascript">
+
+<!--
+
+/* IDs of XML Instance Representation boxes */
+
+var xiBoxes = new Array('element_ddl_xibox', 'element_database_xibox', 'element_table_xibox', 'element_field_xibox', 'element_data_xibox', 'element_setterFunction_xibox', 'element_getterFunction_xibox', 'element_description_xibox', 'element_text_xibox', 'attributeGroup_mysqlText_xibox', 'element_minimumLength_xibox', 'element_maximumLength_xibox', 'element_regexp_xibox', 'element_enum_xibox', 'element_enumValue_xibox', 'element_set_xibox', 'element_setValue_xibox', 'element_numeric_xibox', 'attributeGroup_mysqlnumeric_xibox', 'element_timeData_xibox', 'element_minimumValue_xibox', 'element_maximumValue_xibox', 'element_storeFunction_xibox', 'element_validationFunction_xibox', 'element_defaultValue_xibox');
+
+/* IDs of Schema Component Representation boxes */
+
+var scBoxes = new Array('schema_scbox', 'element_ddl_scbox', 'element_database_scbox', 'element_table_scbox', 'element_field_scbox', 'element_data_scbox', 'element_setterFunction_scbox', 'element_getterFunction_scbox', 'element_description_scbox', 'element_text_scbox', 'attributeGroup_mysqlText_scbox', 'element_minimumLength_scbox', 'element_maximumLength_scbox', 'element_regexp_scbox', 'element_enum_scbox', 'element_enumValue_scbox', 'element_set_scbox', 'element_setValue_scbox', 'element_numeric_scbox', 'attributeGroup_mysqlnumeric_scbox', 'element_timeData_scbox', 'element_minimumValue_scbox', 'element_maximumValue_scbox', 'element_storeFunction_scbox', 'element_validationFunction_scbox', 'element_defaultValue_scbox');
+
+
+
+/**
+
+ * Can get the ID of the button controlling
+
+ * a collapseable box by concatenating
+
+ * this string onto the ID of the box itself.
+
+ */
+
+var B_SFIX = "_button";
+
+
+
+/**
+
+ * Counter of documentation windows
+
+ * Used to give each window a unique name
+
+ */
+
+var windowCount = 0;
+
+
+
+/**
+
+ * Returns an element in the current HTML document.
+
+ * 
+
+ * @param elementID Identifier of HTML element
+
+ * @return               HTML element object
+
+ */
+
+function getElementObject(elementID) {
+
+    var elemObj = null;
+
+    if (document.getElementById) {
+
+        elemObj = document.getElementById(elementID);
+
+    }
+
+    return elemObj;
+
+}             
+
+
+
+/**
+
+ * Closes a collapseable box.
+
+ * 
+
+ * @param boxObj       Collapseable box
+
+ * @param buttonObj Button controlling box
+
+ */
+
+function closeBox(boxObj, buttonObj) {
+
+  if (boxObj == null || buttonObj == null) {
+
+     // Box or button not found
+
+  } else {
+
+     // Change 'display' CSS property of box
+
+     boxObj.style.display="none";
+
+
+
+     // Change text of button 
+
+     if (boxObj.style.display=="none") {
+
+        buttonObj.value=" + ";
+
+     }
+
+  }
+
+}
+
+
+
+/**
+
+ * Opens a collapseable box.
+
+ * 
+
+ * @param boxObj       Collapseable box
+
+ * @param buttonObj Button controlling box
+
+ */
+
+function openBox(boxObj, buttonObj) {
+
+  if (boxObj == null || buttonObj == null) {
+
+     // Box or button not found
+
+  } else {
+
+     // Change 'display' CSS property of box
+
+     boxObj.style.display="block";
+
+
+
+     // Change text of button
+
+     if (boxObj.style.display=="block") {
+
+        buttonObj.value=" - ";
+
+     }
+
+  }
+
+}
+
+
+
+/**
+
+ * Sets the state of a collapseable box.
+
+ * 
+
+ * @param boxID Identifier of box
+
+ * @param open If true, box is "opened",
+
+ *             Otherwise, box is "closed".
+
+ */
+
+function setState(boxID, open) {
+
+  var boxObj = getElementObject(boxID);
+
+  var buttonObj = getElementObject(boxID+B_SFIX);
+
+  if (boxObj == null || buttonObj == null) {
+
+     // Box or button not found
+
+  } else if (open) {
+
+     openBox(boxObj, buttonObj);
+
+     // Make button visible
+
+     buttonObj.style.display="inline";
+
+  } else {
+
+     closeBox(boxObj, buttonObj);
+
+     // Make button visible
+
+     buttonObj.style.display="inline";
+
+  }
+
+}
+
+
+
+/**
+
+ * Switches the state of a collapseable box, e.g.
+
+ * if it's opened, it'll be closed, and vice versa.
+
+ * 
+
+ * @param boxID Identifier of box
+
+ */
+
+function switchState(boxID) {
+
+  var boxObj = getElementObject(boxID);
+
+  var buttonObj = getElementObject(boxID+B_SFIX);
+
+  if (boxObj == null || buttonObj == null) {
+
+     // Box or button not found
+
+  } else if (boxObj.style.display=="none") {
+
+     // Box is closed, so open it
+
+     openBox(boxObj, buttonObj);
+
+  } else if (boxObj.style.display=="block") {
+
+     // Box is opened, so close it
+
+     closeBox(boxObj, buttonObj);
+
+  }
+
+}
+
+
+
+/**
+
+ * Closes all boxes in a given list.
+
+ * 
+
+ * @param boxList Array of box IDs
+
+ */
+
+function collapseAll(boxList) {
+
+  var idx;
+
+  for (idx = 0; idx < boxList.length; idx++) {
+
+     var boxObj = getElementObject(boxList[idx]);
+
+     var buttonObj = getElementObject(boxList[idx]+B_SFIX);
+
+     closeBox(boxObj, buttonObj);
+
+  }
+
+}
+
+
+
+/**
+
+ * Open all boxes in a given list.
+
+ * 
+
+ * @param boxList Array of box IDs
+
+ */
+
+function expandAll(boxList) {
+
+  var idx;
+
+  for (idx = 0; idx < boxList.length; idx++) {
+
+     var boxObj = getElementObject(boxList[idx]);
+
+     var buttonObj = getElementObject(boxList[idx]+B_SFIX);
+
+     openBox(boxObj, buttonObj);
+
+  }
+
+}
+
+
+
+/**
+
+ * Makes all the control buttons of boxes appear.
+
+ * 
+
+ * @param boxList Array of box IDs
+
+ */
+
+function viewControlButtons(boxList) {
+
+    var idx;
+
+    for (idx = 0; idx < boxList.length; idx++) {
+
+        buttonObj = getElementObject(boxList[idx]+B_SFIX);
+
+        if (buttonObj != null) {
+
+            buttonObj.style.display = "inline";
+
+        }
+
+    }
+
+}
+
+
+
+/**
+
+ * Makes all the control buttons of boxes disappear.
+
+ * 
+
+ * @param boxList Array of box IDs
+
+ */
+
+function hideControlButtons(boxList) {
+
+    var idx;
+
+    for (idx = 0; idx < boxList.length; idx++) {
+
+        buttonObj = getElementObject(boxList[idx]+B_SFIX);
+
+        if (buttonObj != null) {
+
+            buttonObj.style.display = "none";
+
+        }
+
+    }
+
+}
+
+
+
+/**
+
+ * Sets the page for either printing mode
+
+ * or viewing mode. In printing mode, the page
+
+ * is made to be more readable when printing it out.
+
+ * In viewing mode, the page is more browsable.
+
+ *
+
+ * @param isPrinterVersion If true, display in
+
+ *                                 printing mode; otherwise, 
+
+ *                                 in viewing mode
+
+ */
+
+function displayMode(isPrinterVersion) {
+
+    var obj;
+
+    if (isPrinterVersion) {
+
+        // Hide global control buttons
+
+        obj = getElementObject("globalControls");
+
+        if (obj != null) {
+
+            obj.style.visibility = "hidden";
+
+        }
+
+        // Hide Legend
+
+        obj = getElementObject("legend");
+
+        if (obj != null) {
+
+            obj.style.display = "none";
+
+        }
+
+        obj = getElementObject("legendTOC");
+
+        if (obj != null) {
+
+            obj.style.display = "none";
+
+        }
+
+        // Hide Glossary
+
+        obj = getElementObject("glossary");
+
+        if (obj != null) {
+
+            obj.style.display = "none";
+
+        }
+
+        obj = getElementObject("glossaryTOC");
+
+        if (obj != null) {
+
+            obj.style.display = "none";
+
+        }
+
+
+
+        // Expand all XML Instance Representation tables
+
+        expandAll(xiBoxes);
+
+        // Expand all Schema Component Representation tables
+
+        expandAll(scBoxes);
+
+
+
+        // Hide Control buttons
+
+        hideControlButtons(xiBoxes);
+
+        hideControlButtons(scBoxes);
+
+    } else {
+
+        // View global control buttons
+
+        obj = getElementObject("globalControls");
+
+        if (obj != null) {
+
+            obj.style.visibility = "visible";
+
+        }
+
+        // View Legend
+
+        obj = getElementObject("legend");
+
+        if (obj != null) {
+
+            obj.style.display = "block";
+
+        }
+
+        obj = getElementObject("legendTOC");
+
+        if (obj != null) {
+
+            obj.style.display = "block";
+
+        }
+
+        // View Glossary
+
+        obj = getElementObject("glossary");
+
+        if (obj != null) {
+
+            obj.style.display = "block";
+
+        }
+
+        obj = getElementObject("glossaryTOC");
+
+        if (obj != null) {
+
+            obj.style.display = "block";
+
+        }
+
+
+
+        // Expand all XML Instance Representation tables
+
+        expandAll(xiBoxes);
+
+        // Collapse all Schema Component Representation tables
+
+        collapseAll(scBoxes);
+
+
+
+        // View Control buttons
+
+        viewControlButtons(xiBoxes);
+
+        viewControlButtons(scBoxes);
+
+    }
+
+}
+
+
+
+/**
+
+ * Opens up a window displaying the documentation
+
+ * of a schema component in the XML Instance
+
+ * Representation table.
+
+ * 
+
+ * @param compDesc      Description of schema component 
+
+ * @param compName      Name of schema component 
+
+ * @param docTextArray Array containing the paragraphs 
+
+ *                           of the new document
+
+ */
+
+function viewDocumentation(compDesc, compName, docTextArray) {
+
+  var width = 400;
+
+  var height = 200;
+
+  var locX = 100;
+
+  var locY = 200;
+
+
+
+  /* Generate content */
+
+  var actualText = "<html>";
+
+  actualText += "<head><title>";
+
+  actualText += compDesc;
+
+  if (compName != '') {
+
+     actualText += ": " + compName;
+
+  }
+
+  actualText += "</title></head>";
+
+  actualText += "<body bgcolor=\"#FFFFEE\">";
+
+  // Title
+
+  actualText += "<p style=\"font-family: Arial, sans-serif; font-size: 12pt; font-weight: bold; letter-spacing:1px;\">";
+
+  actualText += compDesc;
+
+  if (compName != '') {
+
+     actualText += ": <span style=\"color:#006699\">" + compName + "</span>";
+
+  }
+
+  actualText += "</p>";
+
+  // Documentation
+
+  var idx;
+
+  for (idx = 0; idx < docTextArray.length; idx++) {
+
+     actualText += "<p style=\"font-family: Arial, sans-serif; font-size: 10pt;\">" + docTextArray[idx] + "</p>";
+
+  }
+
+  // Link to close window
+
+  actualText += "<a href=\"javascript:void(0)\" onclick=\"window.close();\" style=\"font-family: Arial, sans-serif; font-size: 8pt;\">Close</a>";
+
+  actualText += "</body></html>";
+
+
+
+  /* Display window */
+
+  windowCount++;
+
+  var docWindow = window.open("", "documentation"+windowCount, "toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable,alwaysRaised,dependent,titlebar=no,width="+width+",height="+height+",screenX="+locX+",left="+locX+",screenY="+locY+",top="+locY);
+
+  docWindow.document.write(actualText);
+
+}
+
+
+
+// -->
+
+</script>
+
+</head>
+
+<body>
+
+<h1><a name="top">XML Schema Documentation</a></h1>
+
+<div style="float: right;">
+
+<div id="printerControls" style="display:none;">
+
+<input type="checkbox" onclick="displayMode(this.checked)" />Printer-friendly Version</div>
+
+<script type="text/javascript">
+
+<!--
+
+
+
+var pc = getElementObject("printerControls");
+
+if (pc != null) {
+
+   pc.style.display="block";
+
+}
+
+               
+
+// -->
+
+</script>
+
+<div id="globalControls" style="display:none">
+
+<strong>XML Instance Representation:</strong><br />
+
+<span style="margin-left: 1em; white-space: nowrap">[ <a href="javascript:void(0)" onclick="expandAll(xiBoxes)">Expand All</a> | <a href="javascript:void(0)" onclick="collapseAll(xiBoxes)">Collapse All</a> ]</span><br /><br />
+
+<strong>Schema Component Representation:</strong><br />
+
+<span style="margin-left: 1em; white-space: nowrap">[ <a href="javascript:void(0)" onclick="expandAll(scBoxes)">Expand All</a> | <a href="javascript:void(0)" onclick="collapseAll(scBoxes)">Collapse All</a> ]</span>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+
+
+var gc = getElementObject("globalControls");
+
+if (gc != null) {
+
+   gc.style.display="block";
+
+}
+
+               
+
+// -->
+
+</script>
+
+</div>
+
+<h2>Table of Contents</h2>
+
+<ul>
+
+<li>
+
+<a href="#SchemaProperties">Schema Document Properties</a>
+
+</li>
+
+<li><a href="#SchemaDeclarations">Global Declarations</a>
+
+<ul>
+
+<li>
+
+<a href="#element_data">Element: <strong>data</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_database">Element: <strong>database</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_ddl">Element: <strong>ddl</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_defaultValue">Element: <strong>defaultValue</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_description">Element: <strong>description</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_enum">Element: <strong>enum</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_enumValue">Element: <strong>enumValue</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_field">Element: <strong>field</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_getterFunction">Element: <strong>getterFunction</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_maximumLength">Element: <strong>maximumLength</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_maximumValue">Element: <strong>maximumValue</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_minimumLength">Element: <strong>minimumLength</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_minimumValue">Element: <strong>minimumValue</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_numeric">Element: <strong>numeric</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_regexp">Element: <strong>regexp</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_set">Element: <strong>set</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_setterFunction">Element: <strong>setterFunction</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_setValue">Element: <strong>setValue</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_storeFunction">Element: <strong>storeFunction</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_table">Element: <strong>table</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_text">Element: <strong>text</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_timeData">Element: <strong>timeData</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#element_validationFunction">Element: <strong>validationFunction</strong>
+
+</a>
+
+</li>
+
+</ul>
+
+</li>
+
+<li><a href="#SchemaDefinitions">Global Definitions</a>
+
+<ul>
+
+<li>
+
+<a href="#attributeGroup_mysqlnumeric">Attribute Group: <strong>mysqlnumeric</strong>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="#attributeGroup_mysqlText">Attribute Group: <strong>mysqlText</strong>
+
+</a>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+<ul id="legendTOC" style="margin-top: 0em">
+
+<li><a href="#Legend">Legend</a></li>
+
+</ul>
+
+<ul id="glossaryTOC" style="margin-top: 0em">
+
+<li><a href="#Glossary">Glossary</a></li>
+
+</ul>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h2><a name="SchemaProperties">Schema Document Properties</a></h2>
+
+<table class="properties">
+
+<tr>
+
+<th>
+
+<a title="Look up 'Target Namespace' in glossary" href="#term_TargetNS">Target Namespace</a>
+
+</th>
+
+<td>None</td>
+
+</tr>
+
+<tr>
+
+<th>Element and Attribute Namespaces</th>
+
+<td>
+
+<ul>
+
+<li>Global element and attribute declarations belong to this schema's target namespace.</li>
+
+<li>By default, local element declarations belong to this schema's target namespace.</li>
+
+<li>By default, local attribute declarations have no namespace.</li>
+
+</ul>
+
+</td>
+
+</tr>
+
+</table>
+
+<h3>Declared Namespaces</h3>
+
+<table class="namespaces">
+
+<tr>
+
+<th>Prefix</th>
+
+<th>Namespace</th>
+
+</tr>
+
+<tr>
+
+<td>
+
+<a name="ns_xml">xml</a>
+
+</td>
+
+<td>http://www.w3.org/XML/1998/namespace</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<a name="ns_xs">xs</a>
+
+</td>
+
+<td>http://www.w3.org/2001/XMLSchema</td>
+
+</tr>
+
+</table>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="schema_scbox_button" class="control" onclick="switchState('schema_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="schema_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:schema</span> <span class="scTag">elementFormDefault</span>="<span class="scContent">qualified</span>"&gt;<div class="scContent" style="margin-left: 1.5em">...</div>&lt;/<span class="scTag">xs:schema</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('schema_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h2><a name="SchemaDeclarations">Global Declarations</a></h2>
+
+<h3>Element: <a name="element_data" class="name">data</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>data</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_data.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_data_xibox_button" class="control" onclick="switchState('element_data_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_data_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;data&gt; <br /><span class="group" style="margin-left: 1.5em">Start <a title="Look up 'Choice' in glossary" href="#term_Choice">Choice</a> <span class="occurs">[0..1]</span></span><br /><div style="margin-left: 3em">&lt;<a title="Jump to &quot;text&quot; element declaration." href="#element_text">text</a>&gt; ... &lt;/<a title="Jump to &quot;text&quot; element declaration." href="#element_text">text</a>&gt; <span class="occurs">[1]</span></div><div style="margin-left: 3em">&lt;<a title="Jump to &quot;enum&quot; element declaration." href="#element_enum">enum</a>&gt; ... &lt;/<a title="Jump to &quot;enum&quot; element declaration." href="#element_enum">enum</a>&gt; <span class="occurs">[1]</span></div><div style="margin-left: 3em">&lt;<a title="Jump to &quot;set&quot; element declaration." href="#element_set">set</a>&gt; ... &lt;/<a title="Jump to &quot;set&quot; element declaration." href="#element_set">set</a>&gt; <span class="occurs">[1]</span></div><div style="margin-left: 3em">&lt;<a title="Jump to &quot;numeric&quot; element declaration." href="#element_numeric">numeric</a>&gt; ... &lt;/<a title="Jump to &quot;numeric&quot; element declaration." href="#element_numeric">numeric</a>&gt; <span class="occurs">[1]</span></div><div style="margin-left: 3em">&lt;<a title="Jump to &quot;timeData&quot; element declaration." href="#element_timeData">timeData</a>&gt; ... &lt;/<a title="Jump to &quot;timeData&quot; element declaration." href="#element_timeData">timeData</a>&gt; <span class="occurs">[1]</span></div><span class="group" style="margin-left: 1.5em">End Choice</span><br /><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;defaultValue&quot; element declaration." href="#element_defaultValue">defaultValue</a>&gt; ... &lt;/<a title="Jump to &quot;defaultValue&quot; element declaration." href="#element_defaultValue">defaultValue</a>&gt; <span class="occurs">[0..1]</span></div><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;storeFunction&quot; element declaration." href="#element_storeFunction">storeFunction</a>&gt; ... &lt;/<a title="Jump to &quot;storeFunction&quot; element declaration." href="#element_storeFunction">storeFunction</a>&gt; <span class="occurs">[0..1]</span></div><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;validationFunction&quot; element declaration." href="#element_validationFunction">validationFunction</a>&gt; ... &lt;/<a title="Jump to &quot;validationFunction&quot; element declaration." href="#element_validationFunction">validationFunction</a>&gt; <span class="occurs">[0..1]</span></div>&lt;/data&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_data_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_data_scbox_button" class="control" onclick="switchState('element_data_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_data_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">data</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:choice</span> <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;text&quot; element declaration." href="#element_text">text</a></span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;enum&quot; element declaration." href="#element_enum">enum</a></span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;set&quot; element declaration." href="#element_set">set</a></span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;numeric&quot; element declaration." href="#element_numeric">numeric</a></span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;timeData&quot; element declaration." href="#element_timeData">timeData</a></span>"/&gt;</div>&lt;/<span class="scTag">xs:choice</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;defaultValue&quot; element declaration." href="#element_defaultValue">defaultValue</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;storeFunction&quot; element declaration." href="#element_storeFunction">storeFunction</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;validationFunction&quot; element declaration." href="#element_validationFunction">validationFunction</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_data_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_database" class="name">database</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>database</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_database.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_database_xibox_button" class="control" onclick="switchState('element_database_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_database_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;database<br /><span style="margin-left: 0.5em"> name="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> <span class="occurs">[1]</span>"</span>&gt; <br /><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;table&quot; element declaration." href="#element_table">table</a>&gt; ... &lt;/<a title="Jump to &quot;table&quot; element declaration." href="#element_table">table</a>&gt; <span class="occurs">[1..*]</span></div>&lt;/database&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_database_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_database_scbox_button" class="control" onclick="switchState('element_database_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_database_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">database</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;table&quot; element declaration." href="#element_table">table</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">1</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">unbounded</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">name</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>" <span class="scTag">use</span>="<span class="scContent">required</span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_database_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_ddl" class="name">ddl</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>ddl</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_ddl.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_ddl_xibox_button" class="control" onclick="switchState('element_ddl_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_ddl_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;ddl<br /><span style="margin-left: 0.5em"> version="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:decimal</span> <span class="occurs">[1]</span>"</span>&gt; <br /><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;database&quot; element declaration." href="#element_database">database</a>&gt; ... &lt;/<a title="Jump to &quot;database&quot; element declaration." href="#element_database">database</a>&gt; <span class="occurs">[1..*]</span></div>&lt;/ddl&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_ddl_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_ddl_scbox_button" class="control" onclick="switchState('element_ddl_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_ddl_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">ddl</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;database&quot; element declaration." href="#element_database">database</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">1</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">unbounded</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">version</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:decimal</span></span>" <span class="scTag">use</span>="<span class="scContent">required</span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_ddl_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_defaultValue" class="name">defaultValue</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>defaultValue</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_defaultValue.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_defaultValue_xibox_button" class="control" onclick="switchState('element_defaultValue_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_defaultValue_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;defaultValue&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> &lt;/defaultValue&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_defaultValue_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_defaultValue_scbox_button" class="control" onclick="switchState('element_defaultValue_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_defaultValue_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">defaultValue</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_defaultValue_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_description" class="name">description</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>description</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_description.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_description_xibox_button" class="control" onclick="switchState('element_description_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_description_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;description&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> &lt;/description&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_description_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_description_scbox_button" class="control" onclick="switchState('element_description_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_description_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">description</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_description_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_enum" class="name">enum</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>enum</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_enum.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_enum_xibox_button" class="control" onclick="switchState('element_enum_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_enum_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;enum<br /><span style="margin-left: 0.5em"> boolean="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span> <span class="occurs">[0..1]</span>"</span>&gt; <br /><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;enumValue&quot; element declaration." href="#element_enumValue">enumValue</a>&gt; ... &lt;/<a title="Jump to &quot;enumValue&quot; element declaration." href="#element_enumValue">enumValue</a>&gt; <span class="occurs">[1..*]</span></div>&lt;/enum&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_enum_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_enum_scbox_button" class="control" onclick="switchState('element_enum_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_enum_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">enum</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;enumValue&quot; element declaration." href="#element_enumValue">enumValue</a></span>" <span class="scTag">maxOccurs</span>="<span class="scContent">unbounded</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">boolean</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_enum_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_enumValue" class="name">enumValue</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>enumValue</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_enumValue.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_enumValue_xibox_button" class="control" onclick="switchState('element_enumValue_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_enumValue_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;enumValue<br /><span style="margin-left: 0.5em"> flag="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span> <span class="occurs">[0..1]</span>"</span>&gt; <br /><span style="margin-left: 1.5em"> <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> </span><br />&lt;/enumValue&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_enumValue_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_enumValue_scbox_button" class="control" onclick="switchState('element_enumValue_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_enumValue_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">enumValue</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:simpleContent</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:extension</span> <span class="scTag">base</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">flag</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div>&lt;/<span class="scTag">xs:extension</span>&gt;</div>&lt;/<span class="scTag">xs:simpleContent</span>&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_enumValue_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_field" class="name">field</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>field</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_field.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_field_xibox_button" class="control" onclick="switchState('element_field_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_field_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;field<br /><span style="margin-left: 0.5em"> foreignKeyOf="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> foreignObject="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> name="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> <span class="occurs">[1]</span>"</span><br /><span style="margin-left: 0.5em"> primaryKey="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> autoIncrement="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> required="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> unique="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span> <span class="occurs">[0..1]</span>"</span>&gt; <br /><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;data&quot; element declaration." href="#element_data">data</a>&gt; ... &lt;/<a title="Jump to &quot;data&quot; element declaration." href="#element_data">data</a>&gt; <span class="occurs">[1]</span></div><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;setterFunction&quot; element declaration." href="#element_setterFunction">setterFunction</a>&gt; ... &lt;/<a title="Jump to &quot;setterFunction&quot; element declaration." href="#element_setterFunction">setterFunction</a>&gt; <span class="occurs">[0..1]</span></div><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;getterFunction&quot; element declaration." href="#element_getterFunction">getterFunction</a>&gt; ... &lt;/<a title="Jump to &quot;getterFunction&quot; element declaration." href="#element_getterFunction">getterFunction</a>&gt; <span class="occurs">[0..1]</span></div><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;description&quot; element declaration." href="#element_description">description</a>&gt; ... &lt;/<a title="Jump to &quot;description&quot; element declaration." href="#element_description">description</a>&gt; <span class="occurs">[0..1]</span></div>&lt;/field&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_field_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_field_scbox_button" class="control" onclick="switchState('element_field_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_field_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">field</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;data&quot; element declaration." href="#element_data">data</a></span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;setterFunction&quot; element declaration." href="#element_setterFunction">setterFunction</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;getterFunction&quot; element declaration." href="#element_getterFunction">getterFunction</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;description&quot; element declaration." href="#element_description">description</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">foreignKeyOf</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">foreignObject</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">name</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>" <span class="scTag">use</span>="<span class="scContent">required</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">primaryKey</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">autoIncrement</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">required</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">unique</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_field_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_getterFunction" class="name">getterFunction</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>getterFunction</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_getterFunction.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_getterFunction_xibox_button" class="control" onclick="switchState('element_getterFunction_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_getterFunction_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;getterFunction&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> &lt;/getterFunction&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_getterFunction_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_getterFunction_scbox_button" class="control" onclick="switchState('element_getterFunction_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_getterFunction_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">getterFunction</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_getterFunction_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_maximumLength" class="name">maximumLength</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>maximumLength</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:integer</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_maximumLength.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_maximumLength_xibox_button" class="control" onclick="switchState('element_maximumLength_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_maximumLength_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;maximumLength&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:integer</span> &lt;/maximumLength&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_maximumLength_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_maximumLength_scbox_button" class="control" onclick="switchState('element_maximumLength_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_maximumLength_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">maximumLength</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:integer</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_maximumLength_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_maximumValue" class="name">maximumValue</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>maximumValue</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:decimal</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_maximumValue.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_maximumValue_xibox_button" class="control" onclick="switchState('element_maximumValue_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_maximumValue_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;maximumValue&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:decimal</span> &lt;/maximumValue&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_maximumValue_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_maximumValue_scbox_button" class="control" onclick="switchState('element_maximumValue_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_maximumValue_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">maximumValue</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:decimal</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_maximumValue_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_minimumLength" class="name">minimumLength</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>minimumLength</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:integer</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_minimumLength.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_minimumLength_xibox_button" class="control" onclick="switchState('element_minimumLength_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_minimumLength_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;minimumLength&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:integer</span> &lt;/minimumLength&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_minimumLength_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_minimumLength_scbox_button" class="control" onclick="switchState('element_minimumLength_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_minimumLength_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">minimumLength</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:integer</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_minimumLength_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_minimumValue" class="name">minimumValue</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>minimumValue</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:decimal</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_minimumValue.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_minimumValue_xibox_button" class="control" onclick="switchState('element_minimumValue_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_minimumValue_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;minimumValue&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:decimal</span> &lt;/minimumValue&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_minimumValue_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_minimumValue_scbox_button" class="control" onclick="switchState('element_minimumValue_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_minimumValue_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">minimumValue</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:decimal</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_minimumValue_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_numeric" class="name">numeric</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>numeric</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_numeric.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_numeric_xibox_button" class="control" onclick="switchState('element_numeric_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_numeric_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;numeric<br /><span style="margin-left: 0.5em"> unsigned="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> mysqltype="<span class="constraint"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> (<em>value</em> comes from list: {'tinyint'|'smallint'|'mediumint'|'int'|'bigint'|'float'|'double'|'decimal'})</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> size="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> <span class="occurs">[0..1]</span>"</span>&gt; <br /><span class="group" style="margin-left: 1.5em">Start <a title="Look up 'Sequence' in glossary" href="#term_Sequence">Sequence</a> <span class="occurs">[0..1]</span></span><br /><div style="margin-left: 3em">&lt;<a title="Jump to &quot;minimumValue&quot; element declaration." href="#element_minimumValue">minimumValue</a>&gt; ... &lt;/<a title="Jump to &quot;minimumValue&quot; element declaration." href="#element_minimumValue">minimumValue</a>&gt; <span class="occurs">[0..1]</span></div><div style="margin-left: 3em">&lt;<a title="Jump to &quot;maximumValue&quot; element declaration." href="#element_maximumValue">maximumValue</a>&gt; ... &lt;/<a title="Jump to &quot;maximumValue&quot; element declaration." href="#element_maximumValue">maximumValue</a>&gt; <span class="occurs">[0..1]</span></div><span class="group" style="margin-left: 1.5em">End Sequence</span><br />&lt;/numeric&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_numeric_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_numeric_scbox_button" class="control" onclick="switchState('element_numeric_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_numeric_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">numeric</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span> <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;minimumValue&quot; element declaration." href="#element_minimumValue">minimumValue</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;maximumValue&quot; element declaration." href="#element_maximumValue">maximumValue</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">unsigned</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attributeGroup</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;mysqlnumeric&quot; attribute group definition." href="#attributeGroup_mysqlnumeric">mysqlnumeric</a></span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_numeric_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_regexp" class="name">regexp</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>regexp</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_regexp.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_regexp_xibox_button" class="control" onclick="switchState('element_regexp_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_regexp_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;regexp&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> &lt;/regexp&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_regexp_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_regexp_scbox_button" class="control" onclick="switchState('element_regexp_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_regexp_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">regexp</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_regexp_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_set" class="name">set</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>set</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_set.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_set_xibox_button" class="control" onclick="switchState('element_set_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_set_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;set&gt; <br /><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;setValue&quot; element declaration." href="#element_setValue">setValue</a>&gt; ... &lt;/<a title="Jump to &quot;setValue&quot; element declaration." href="#element_setValue">setValue</a>&gt; <span class="occurs">[1..*]</span></div>&lt;/set&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_set_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_set_scbox_button" class="control" onclick="switchState('element_set_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_set_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">set</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;setValue&quot; element declaration." href="#element_setValue">setValue</a></span>" <span class="scTag">maxOccurs</span>="<span class="scContent">unbounded</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_set_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_setterFunction" class="name">setterFunction</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>setterFunction</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_setterFunction.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_setterFunction_xibox_button" class="control" onclick="switchState('element_setterFunction_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_setterFunction_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;setterFunction&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> &lt;/setterFunction&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_setterFunction_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_setterFunction_scbox_button" class="control" onclick="switchState('element_setterFunction_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_setterFunction_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">setterFunction</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_setterFunction_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_setValue" class="name">setValue</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>setValue</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_setValue.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_setValue_xibox_button" class="control" onclick="switchState('element_setValue_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_setValue_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;setValue&gt; <br /><span style="margin-left: 1.5em"> <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> </span><br />&lt;/setValue&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_setValue_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_setValue_scbox_button" class="control" onclick="switchState('element_setValue_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_setValue_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">setValue</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:simpleContent</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:extension</span> <span class="scTag">base</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"/&gt;</div>&lt;/<span class="scTag">xs:simpleContent</span>&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_setValue_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_storeFunction" class="name">storeFunction</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>storeFunction</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_storeFunction.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_storeFunction_xibox_button" class="control" onclick="switchState('element_storeFunction_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_storeFunction_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;storeFunction&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> &lt;/storeFunction&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_storeFunction_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_storeFunction_scbox_button" class="control" onclick="switchState('element_storeFunction_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_storeFunction_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">storeFunction</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_storeFunction_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_table" class="name">table</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>table</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_table.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_table_xibox_button" class="control" onclick="switchState('element_table_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_table_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;table<br /><span style="margin-left: 0.5em"> name="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> <span class="occurs">[1]</span>"</span><br /><span style="margin-left: 0.5em"> className="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> <span class="occurs">[0..1]</span>"</span>&gt; <br /><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;field&quot; element declaration." href="#element_field">field</a>&gt; ... &lt;/<a title="Jump to &quot;field&quot; element declaration." href="#element_field">field</a>&gt; <span class="occurs">[1..*]</span></div><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;description&quot; element declaration." href="#element_description">description</a>&gt; ... &lt;/<a title="Jump to &quot;description&quot; element declaration." href="#element_description">description</a>&gt; <span class="occurs">[0..1]</span></div>&lt;/table&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_table_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_table_scbox_button" class="control" onclick="switchState('element_table_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_table_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">table</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;field&quot; element declaration." href="#element_field">field</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">1</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">unbounded</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;description&quot; element declaration." href="#element_description">description</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">name</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>" <span class="scTag">use</span>="<span class="scContent">required</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">className</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_table_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_text" class="name">text</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>text</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_text.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_text_xibox_button" class="control" onclick="switchState('element_text_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_text_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;text<br /><span style="margin-left: 0.5em"> type="<span class="constraint"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> (<em>value</em> comes from list: {'date'|'time'|'datetime'|'year'|'email'|'cleanText'|'word'|'alpha'|'numeric'|'default'})</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> mysqltype="<span class="constraint"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> (<em>value</em> comes from list: {'varchar'|'char'|'blob'|'text'|'tinyblob'|'tinytext'|'mediumblob'|'mediumtext'|'longblob'|'longtext'})</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0.5em"> size="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:int</span> <span class="occurs">[0..1]</span>"</span>&gt; <br /><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;minimumLength&quot; element declaration." href="#element_minimumLength">minimumLength</a>&gt; ... &lt;/<a title="Jump to &quot;minimumLength&quot; element declaration." href="#element_minimumLength">minimumLength</a>&gt; <span class="occurs">[0..1]</span></div><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;maximumLength&quot; element declaration." href="#element_maximumLength">maximumLength</a>&gt; ... &lt;/<a title="Jump to &quot;maximumLength&quot; element declaration." href="#element_maximumLength">maximumLength</a>&gt; <span class="occurs">[0..1]</span></div><div style="margin-left: 1.5em">&lt;<a title="Jump to &quot;regexp&quot; element declaration." href="#element_regexp">regexp</a>&gt; ... &lt;/<a title="Jump to &quot;regexp&quot; element declaration." href="#element_regexp">regexp</a>&gt; <span class="occurs">[0..1]</span></div>&lt;/text&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_text_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_text_scbox_button" class="control" onclick="switchState('element_text_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_text_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">text</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:sequence</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;minimumLength&quot; element declaration." href="#element_minimumLength">minimumLength</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">1</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;maximumLength&quot; element declaration." href="#element_maximumLength">maximumLength</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">1</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:element</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;regexp&quot; element declaration." href="#element_regexp">regexp</a></span>" <span class="scTag">minOccurs</span>="<span class="scContent">0</span>" <span class="scTag">maxOccurs</span>="<span class="scContent">1</span>"/&gt;</div>&lt;/<span class="scTag">xs:sequence</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">type</span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:simpleType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:restriction</span> <span class="scTag">base</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">date</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">time</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">datetime</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">year</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">email</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">cleanText</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">word</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">alpha</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">numeric</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">default</span>"/&gt;</div>&lt;/<span class="scTag">xs:restriction</span>&gt;</div>&lt;/<span class="scTag">xs:simpleType</span>&gt;</div>&lt;/<span class="scTag">xs:attribute</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attributeGroup</span> <span class="scTag">ref</span>="<span class="scContent"><a title="Jump to &quot;mysqlText&quot; attribute group definition." href="#attributeGroup_mysqlText">mysqlText</a></span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_text_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_timeData" class="name">timeData</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>timeData</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>Locally-defined complex type</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_timeData.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_timeData_xibox_button" class="control" onclick="switchState('element_timeData_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_timeData_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;timeData<br /><span style="margin-left: 0.5em"> type="<span class="constraint"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> (<em>value</em> comes from list: {'date'|'time'|'datetime'|'timestamp'|'year'})</span> <span class="occurs">[1]</span>"</span><br /><span style="margin-left: 0.5em"> auto="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span> <span class="occurs">[0..1]</span>"</span>/&gt; </div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_timeData_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_timeData_scbox_button" class="control" onclick="switchState('element_timeData_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_timeData_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">timeData</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:complexType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">type</span>" <span class="scTag">use</span>="<span class="scContent">required</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:simpleType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:restriction</span> <span class="scTag">base</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">date</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">time</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">datetime</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">timestamp</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">year</span>"/&gt;</div>&lt;/<span class="scTag">xs:restriction</span>&gt;</div>&lt;/<span class="scTag">xs:simpleType</span>&gt;</div>&lt;/<span class="scTag">xs:attribute</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">auto</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:boolean</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>" <span class="scTag">default</span>="<span class="scContent">false</span>"/&gt;</div>&lt;/<span class="scTag">xs:complexType</span>&gt;</div>&lt;/<span class="scTag">xs:element</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_timeData_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Element: <a name="element_validationFunction" class="name">validationFunction</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>validationFunction</td>
+
+</tr>
+
+<tr>
+
+<th>Type</th>
+
+<td>
+
+<span class="type">
+
+<a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span>
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Nillable' in glossary" href="#term_Nillable">Nillable</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\element_validationFunction.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="element_validationFunction_xibox_button" class="control" onclick="switchState('element_validationFunction_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="element_validationFunction_xibox" class="contents">
+
+<div style="margin-left: 0em">&lt;validationFunction&gt; <span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span> &lt;/validationFunction&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_validationFunction_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="element_validationFunction_scbox_button" class="control" onclick="switchState('element_validationFunction_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="element_validationFunction_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:element</span> <span class="scTag">name</span>="<span class="scContent">validationFunction</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:NCName</span></span>"/&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('element_validationFunction_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h2><a name="SchemaDefinitions">Global Definitions</a></h2>
+
+<h3>Attribute Group: <a name="attributeGroup_mysqlnumeric" class="name">mysqlnumeric</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>mysqlnumeric</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\attributeGroup_mysqlnumeric.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="attributeGroup_mysqlnumeric_xibox_button" class="control" onclick="switchState('attributeGroup_mysqlnumeric_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="attributeGroup_mysqlnumeric_xibox" class="contents">
+
+<span style="margin-left: 0em"> mysqltype="<span class="constraint"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> (<em>value</em> comes from list: {'tinyint'|'smallint'|'mediumint'|'int'|'bigint'|'float'|'double'|'decimal'})</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0em"> size="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> <span class="occurs">[0..1]</span>"</span>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('attributeGroup_mysqlnumeric_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="attributeGroup_mysqlnumeric_scbox_button" class="control" onclick="switchState('attributeGroup_mysqlnumeric_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="attributeGroup_mysqlnumeric_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:attributeGroup</span> <span class="scTag">name</span>="<span class="scContent">mysqlnumeric</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">mysqltype</span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:simpleType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:restriction</span> <span class="scTag">base</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">tinyint</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">smallint</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">mediumint</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">int</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">bigint</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">float</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">double</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">decimal</span>"/&gt;</div>&lt;/<span class="scTag">xs:restriction</span>&gt;</div>&lt;/<span class="scTag">xs:simpleType</span>&gt;</div>&lt;/<span class="scTag">xs:attribute</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">size</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div>&lt;/<span class="scTag">xs:attributeGroup</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('attributeGroup_mysqlnumeric_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<h3>Attribute Group: <a name="attributeGroup_mysqlText" class="name">mysqlText</a>
+
+</h3>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>mysqlText</td>
+
+</tr>
+
+<tr xmlns="">
+
+<th>Diagram</th>
+
+<td>
+
+<img src="ddl_files\attributeGroup_mysqlText.jpg" />
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="sample box">
+
+<div>
+
+<input type="button" id="attributeGroup_mysqlText_xibox_button" class="control" onclick="switchState('attributeGroup_mysqlText_xibox'); return false;" style="display: none" /> <span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div id="attributeGroup_mysqlText_xibox" class="contents">
+
+<span style="margin-left: 0em"> mysqltype="<span class="constraint"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span> (<em>value</em> comes from list: {'varchar'|'char'|'blob'|'text'|'tinyblob'|'tinytext'|'mediumblob'|'mediumtext'|'longblob'|'longtext'})</span> <span class="occurs">[0..1]</span>"</span><br /><span style="margin-left: 0em"> size="<span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:int</span> <span class="occurs">[0..1]</span>"</span>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('attributeGroup_mysqlText_xibox', true);
+
+// -->
+
+</script>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<input type="button" id="attributeGroup_mysqlText_scbox_button" class="control" onclick="switchState('attributeGroup_mysqlText_scbox'); return false;" style="display: none" /> <span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div id="attributeGroup_mysqlText_scbox" class="contents">
+
+<div style="margin-left: 0em">&lt;<span class="scTag">xs:attributeGroup</span> <span class="scTag">name</span>="<span class="scContent">mysqlText</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">mysqltype</span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:simpleType</span>&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:restriction</span> <span class="scTag">base</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:string</span></span>"&gt;<div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">varchar</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">char</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">blob</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">text</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">tinyblob</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">tinytext</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">mediumblob</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">mediumtext</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">longblob</span>"/&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:enumeration</span> <span class="scTag">value</span>="<span class="scContent">longtext</span>"/&gt;</div>&lt;/<span class="scTag">xs:restriction</span>&gt;</div>&lt;/<span class="scTag">xs:simpleType</span>&gt;</div>&lt;/<span class="scTag">xs:attribute</span>&gt;</div><div style="margin-left: 1.5em">&lt;<span class="scTag">xs:attribute</span> <span class="scTag">name</span>="<span class="scContent">size</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type"><a href="#ns_xs" title="Find out namespace of 'xs' prefix">xs</a>:int</span></span>" <span class="scTag">use</span>="<span class="scContent">optional</span>"/&gt;</div>&lt;/<span class="scTag">xs:attributeGroup</span>&gt;</div>
+
+</div>
+
+<script type="text/javascript">
+
+<!--
+
+setState('attributeGroup_mysqlText_scbox', false);
+
+// -->
+
+</script>
+
+</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+<div id="legend">
+
+<h2><a name="Legend">Legend</a></h2>
+
+<div style="float: left; width: 15em;">
+
+<h3 style="margin-bottom: 0px;">Complex Type:</h3>
+
+<div class="hint" style="margin-left: 0em;">Schema Component Type</div>
+
+</div>
+
+<div style="float: left; width: 15em;">
+
+<h3 style="margin-bottom: 0px;"><span class="name">AusAddress</span></h3>
+
+<div class="hint" style="margin-left: 0em;">Schema Component Name</div>
+
+</div>
+
+<table class="hierarchy" style="clear : both">
+
+<tr>
+
+<th>Super-types:</th>
+
+<td>
+
+<span class="type" style="color: #0000FF; text-decoration:underline;">Address</span> &lt; <span class="current">AusAddress</span> (by extension)</td>
+
+</tr>
+
+<tr>
+
+<th>Sub-types:</th>
+
+<td>
+
+<ul>
+
+<li>
+
+<span class="type" style="color: #0000FF; text-decoration:underline;">QLDAddress</span> (by restriction)</li>
+
+</ul>
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="hint">If this schema component is a type definition, its type hierarchy is shown in a gray-bordered box.</div>
+
+<table class="properties">
+
+<tr>
+
+<th>Name</th>
+
+<td>AusAddress</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+<a title="Look up 'Abstract' in glossary" href="#term_Abstract">Abstract</a>
+
+</th>
+
+<td>no</td>
+
+</tr>
+
+</table>
+
+<div class="hint">The table above displays the properties of this schema component.</div>
+
+<div class="sample box">
+
+<div>
+
+<span class="caption">XML Instance Representation</span>
+
+</div>
+
+<div class="contents">
+
+<span style="margin-left: 0em">&lt;...</span>
+
+<span class="newFields">
+
+<span> country="<span class="fixed">Australia</span>"</span>
+
+</span>&gt; <br />
+
+<span style="margin-left: 1.5em" class="inherited">&lt;unitNo&gt; <span class="type">string</span> &lt;/unitNo&gt; <span class="occurs">[0..1]</span></span><br />
+
+<span style="margin-left: 1.5em" class="inherited">&lt;houseNo&gt; <span class="type">string</span> &lt;/houseNo&gt; <span class="occurs">[1]</span></span><br />
+
+<span style="margin-left: 1.5em" class="inherited">&lt;street&gt; <span class="type">string</span> &lt;/street&gt; <span class="occurs">[1]</span></span><br />
+
+<span class="group" style="margin-left: 1.5em">Start <a title="Look up 'Choice' in glossary" href="#term_Choice">Choice</a>
+
+<span class="occurs">[1]</span></span><br />
+
+<span style="margin-left: 3em" class="inherited">&lt;city&gt; <span class="type">string</span> &lt;/city&gt; <span class="occurs">[1]</span></span><br />
+
+<span style="margin-left: 3em" class="inherited">&lt;town&gt; <span class="type">string</span> &lt;/town&gt; <span class="occurs">[1]</span></span><br />
+
+<span class="group" style="margin-left: 1.5em">End Choice</span><br />
+
+<span class="newFields">
+
+<span style="margin-left: 1.5em">&lt;state&gt; <span class="type" style="text-decoration:underline;">AusStates</span> &lt;/state&gt; <span class="occurs">[1]</span></span><br />
+
+<span style="margin-left: 1.5em">&lt;postcode&gt; <span class="constraint">string &lt;&lt;<em>pattern</em> = [1-9][0-9]{3}&gt;&gt;</span> &lt;/postcode&gt; <span class="occurs">[1]</span>
+
+<a href="javascript:void(0)" title="View Documentation" class="documentation" onclick="docArray = new Array('Post code must be a four-digit number.'); viewDocumentation('Element', 'postcode', docArray);">?</a>
+
+</span><br />
+
+</span>
+
+<span style="margin-left: 0em">&lt;/...&gt;</span><br />
+
+</div>
+
+</div>
+
+<div class="hint">
+
+<p>The XML Instance Representation table above shows the schema component's content as an XML instance.</p>
+
+<ul>
+
+<li>The minimum and maximum occurrence of elements and attributes are provided in square brackets, e.g. [0..1].</li>
+
+<li>Model group information are shown in gray, e.g. Start Choice ... End Choice.</li>
+
+<li>For type derivations, the elements and attributes that have been added to or changed from the base type's content are shown in <span style="font-weight: bold">bold</span>.</li>
+
+<li>If an element/attribute has a fixed value, the fixed value is shown in green, e.g. country="Australia".</li>
+
+<li>Otherwise, the type of the element/attribute is displayed.
+
+               <ul>
+
+<li>If the element/attribute's type is in the schema, a link is provided to it.</li>
+
+<li>For local simple type definitions, the constraints are displayed in angle brackets, e.g. &lt;&lt;<em>pattern</em> = [1-9][0-9]{3}&gt;&gt;.</li>
+
+</ul>
+
+</li>
+
+<li>If a local element/attribute has documentation, it will be displayed in a window that pops up when the question mark inside the attribute or next to the element is clicked, e.g. &lt;postcode&gt;.</li>
+
+</ul>
+
+</div>
+
+<div class="schemaComponent box">
+
+<div>
+
+<span class="caption">Schema Component Representation</span>
+
+</div>
+
+<div class="contents">
+
+<span style="margin-left: 0em">&lt;<span class="scTag">complexType</span>
+
+<span class="scTag">name</span>="<span class="scContent">AusAddress</span>"&gt;</span><br />
+
+<span style="margin-left: 1.5em">&lt;<span class="scTag">complexContent</span>&gt;</span><br />
+
+<span style="margin-left: 3em">&lt;<span class="scTag">extension</span>
+
+<span class="scTag">base</span>="<span class="scContent"><span class="type" style="text-decoration:underline;">Address</span></span>"&gt;</span><br />
+
+<span style="margin-left: 4.5em">&lt;<span class="scTag">sequence</span>&gt;</span><br />
+
+<span style="margin-left: 6em">&lt;<span class="scTag">element</span>
+
+<span class="scTag">name</span>="<span class="scContent">state</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type" style="text-decoration:underline;">AusStates</span></span>"/&gt;</span><br />
+
+<span style="margin-left: 6em">&lt;<span class="scTag">element</span>
+
+<span class="scTag">name</span>="<span class="scContent">postcode</span>"&gt;</span><br />
+
+<span style="margin-left: 7.5em">&lt;<span class="scTag">simpleType</span>&gt;</span><br />
+
+<span style="margin-left: 9em">&lt;<span class="scTag">restriction</span>
+
+<span class="scTag">base</span>="<span class="scContent"><span class="type">string</span></span>"&gt;</span><br />
+
+<span style="margin-left: 10.5em">&lt;<span class="scTag">pattern</span>
+
+<span class="scTag">value</span>="<span class="scContent">[1-9][0-9]{3}</span>"/&gt;</span><br />
+
+<span style="margin-left: 9em">&lt;/<span class="scTag">restriction</span>&gt;</span><br />
+
+<span style="margin-left: 7.5em">&lt;/<span class="scTag">simpleType</span>&gt;</span><br />
+
+<span style="margin-left: 6em">&lt;/<span class="scTag">element</span>&gt;</span><br />
+
+<span style="margin-left: 4.5em">&lt;/<span class="scTag">sequence</span>&gt;</span><br />
+
+<span style="margin-left: 4.5em">&lt;<span class="scTag">attribute</span>
+
+<span class="scTag">name</span>="<span class="scContent">country</span>" <span class="scTag">type</span>="<span class="scContent"><span class="type">string</span></span>" <span class="scTag">fixed</span>="<span class="scContent">Australia</span>"/&gt;</span><br />
+
+<span style="margin-left: 3em">&lt;/<span class="scTag">extension</span>&gt;</span><br />
+
+<span style="margin-left: 1.5em">&lt;/<span class="scTag">complexContent</span>&gt;</span><br />
+
+<span style="margin-left: 0em">&lt;/<span class="scTag">complexType</span>&gt;</span><br />
+
+</div>
+
+</div>
+
+<div class="hint">The Schema Component Representation table above displays the underlying XML representation of the schema component. (Annotations are not shown.)</div>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+</div>
+
+<div id="glossary">
+
+<h2><a name="Glossary">Glossary</a></h2>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_Abstract">Abstract</a> </span>(Applies to complex type definitions and element declarations). An abstract element or complex type cannot used to validate an element instance. If there is a reference to an abstract element, only element declarations that can substitute the abstract element can be used to validate the instance. For references to abstract type definitions, only derived types can be used.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_All">All Model Group</a> </span>Child elements can be provided <em>in any order</em> in instances. See: <a title="http://www.w3.org/TR/xmlschema-1/#element-all" href="http://www.w3.org/TR/xmlschema-1/#element-all">http://www.w3.org/TR/xmlschema-1/#element-all</a>.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_Choice">Choice Model Group</a> </span>
+
+<em>Only one</em> from the list of child elements and model groups can be provided in instances. See: <a title="http://www.w3.org/TR/xmlschema-1/#element-choice" href="http://www.w3.org/TR/xmlschema-1/#element-choice">http://www.w3.org/TR/xmlschema-1/#element-choice</a>.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_CollapseWS">Collapse Whitespace Policy</a> </span>Replace tab, line feed, and carriage return characters with space character (Unicode character 32). Then, collapse contiguous sequences of space characters into single space character, and remove leading and trailing space characters.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_ElemBlock">Disallowed Substitutions</a> </span>(Applies to element declarations). If <em>substitution</em> is specified, then <a title="Look up 'substitution group' in glossary" href="#term_SubGroup">substitution group</a> members cannot be used in place of the given element declaration to validate element instances. If <em>derivation methods</em>, e.g. extension, restriction, are specified, then the given element declaration will not validate element instances that have types derived from the element declaration's type using the specified derivation methods. Normally, element instances can override their declaration's type by specifying an <code>xsi:type</code> attribute.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_Key">Key Constraint</a> </span>Like <a title="Look up 'Uniqueness Constraint' in glossary" href="#term_Unique">Uniqueness Constraint</a>, but additionally requires that the specified value(s) must be provided. See: <a title="http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions" href="http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions">http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions</a>.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_KeyRef">Key Reference Constraint</a> </span>Ensures that the specified value(s) must match value(s) from a <a title="Look up 'Key Constraint' in glossary" href="#term_Key">Key Constraint</a> or <a title="Look up 'Uniqueness Constraint' in glossary" href="#term_Unique">Uniqueness Constraint</a>. See: <a title="http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions" href="http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions">http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions</a>.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_ModelGroup">Model Group</a> </span>Groups together element content, specifying the order in which the element content can occur and the number of times the group of element content may be repeated. See: <a title="http://www.w3.org/TR/xmlschema-1/#Model_Groups" href="http://www.w3.org/TR/xmlschema-1/#Model_Groups">http://www.w3.org/TR/xmlschema-1/#Model_Groups</a>.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_Nillable">Nillable</a> </span>(Applies to element declarations). If an element declaration is nillable, instances can use the <code>xsi:nil</code> attribute. The <code>xsi:nil</code> attribute is the boolean attribute, <em>nil</em>, from the <em>http://www.w3.org/2001/XMLSchema-instance</em> namespace. If an element instance has an <code>xsi:nil</code> attribute set to true, it can be left empty, even though its element declaration may have required content.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_Notation">Notation</a> </span>A notation is used to identify the format of a piece of data. Values of elements and attributes that are of type, NOTATION, must come from the names of declared notations. See: <a title="http://www.w3.org/TR/xmlschema-1/#cNotation_Declarations" href="http://www.w3.org/TR/xmlschema-1/#cNotation_Declarations">http://www.w3.org/TR/xmlschema-1/#cNotation_Declarations</a>.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_PreserveWS">Preserve Whitespace Policy</a> </span>Preserve whitespaces exactly as they appear in instances.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_TypeFinal">Prohibited Derivations</a> </span>(Applies to type definitions). Derivation methods that cannot be used to create sub-types from a given type definition.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_TypeBlock">Prohibited Substitutions</a> </span>(Applies to complex type definitions). Prevents sub-types that have been derived using the specified derivation methods from validating element instances in place of the given type definition.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_ReplaceWS">Replace Whitespace Policy</a> </span>Replace tab, line feed, and carriage return characters with space character (Unicode character 32).</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_Sequence">Sequence Model Group</a> </span>Child elements and model groups must be provided <em>in the specified order</em> in instances. See: <a title="http://www.w3.org/TR/xmlschema-1/#element-sequence" href="http://www.w3.org/TR/xmlschema-1/#element-sequence">http://www.w3.org/TR/xmlschema-1/#element-sequence</a>.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_SubGroup">Substitution Group</a> </span>Elements that are <em>members</em> of a substitution group can be used wherever the <em>head</em> element of the substitution group is referenced.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_ElemFinal">Substitution Group Exclusions</a> </span>(Applies to element declarations). Prohibits element declarations from nominating themselves as being able to substitute a given element declaration, if they have types that are derived from the original element's type using the specified derivation methods.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_TargetNS">Target Namespace</a> </span>The target namespace identifies the namespace that components in this schema belongs to. If no target namespace is provided, then the schema components do not belong to any namespace.</p>
+
+<p>
+
+<span class="glossaryTerm">
+
+<a name="term_Unique">Uniqueness Constraint</a> </span>Ensures uniqueness of an element/attribute value, or a combination of values, within a specified scope. See: <a title="http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions" href="http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions">http://www.w3.org/TR/xmlschema-1/#cIdentity-constraint_Definitions</a>.</p>
+
+<div style="text-align: right; clear: both;"><a href="#top">top</a></div>
+
+<hr />
+
+</div>
+
+<p class="footer">Generated by <a href="http://titanium.dstc.edu.au/xml/xs3p">xs3p</a>. Last modified: <script type="text/javascript">
+
+<!--
+
+document.write(document.lastModified);
+
+// -->
+
+</script>
+
+</p>
+
+</body>
+
+</html>
+
