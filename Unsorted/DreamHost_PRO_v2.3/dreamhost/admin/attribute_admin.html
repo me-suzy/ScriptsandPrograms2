@@ -1,0 +1,163 @@
+<font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font color="#333333">ATTRIBUTE 
+INFORMATION</font><font color="#333333">:<br>
+</font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+<?	
+
+$db = new ps_DB;
+	$q  = "SELECT * FROM attributes WHERE attribute_id='$id'";
+	$db->query($q);
+	$db->next_record();
+	
+?>
+</font></b></font> 
+<form name="form1" method="post" action="">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td width="14%" valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Name:</font></td>
+      <td width="86%"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+        </font><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="name" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_name"); ?>" maxlength="32">
+        </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+        </font></b></font></td>
+    </tr>
+    <tr> 
+      <td width="14%" valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Description:</font></td>
+      <td width="86%"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+        </font><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="desc" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_desc"); ?>" maxlength="255">
+        </font></b></font></font></td>
+    </tr>
+    <tr> 
+      <td width="14%" valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Type:</font></td>
+      <td width="86%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <select name="type">
+          <option value="0" <? if ($db->f("attribute_type")==0) echo "selected"; ?>>Collect 
+          Text Input From User</option>
+          <option value="1" <? if ($db->f("attribute_type")==1) echo "selected"; ?>>Checkbox 
+          (Y/N)</option>
+          <option value="2" <? if ($db->f("attribute_type")==2) echo "selected"; ?>>Custom 
+          Menu</option>
+        </select>
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="14%" valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Default 
+        Value: </font></td>
+      <td width="86%"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="value" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_value"); ?>" maxlength="32">
+        </font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">(If 
+        checkbox, enter 'Y' or 'N'. If text, enter the default text. If custom 
+        menu, enter the value of the default option.)</font></font></font></td>
+    </tr>
+    <tr> 
+      <td width="14%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Active:</font></td>
+      <td width="86%"> 
+        <p> 
+          <input type="checkbox" name="active" value="Y" <? if ($db->f("attribute_active") == Y) echo "checked"; ?>>
+          <font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">(If 
+          you don't want to show this option to customers, uncheck the box.)</font></font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+          </font></font></p>
+      </td>
+    </tr>
+    <tr> 
+      <td width="14%">&nbsp;</td>
+      <td width="86%"> 
+        <p><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+          <? if ($db->f("attribute_type") == 2) { ?>
+          </font></b></font><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+          </font></b></font></p>
+        <p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000">Menu 
+          Options:</font></b> 
+        <table width="200" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">1:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_1" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_1"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">2:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_2" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_2"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">3:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_3" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_3"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">4:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_4" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_4"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">5:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_5" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_5"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">6:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_6" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_6"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">7:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_7" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_7"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">8:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_8" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_8"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">9:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_9" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_9"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+          <tr> 
+            <td width="20"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333">10:</font></td>
+            <td width="180"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="_10" size="32" style="border: 1 solid #666666" value="<? $db->p("attribute_10"); ?>" maxlength="32">
+              </font></b></font></font></font></td>
+          </tr>
+        </table>
+        <font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+        <? }?>
+        </font></b></font><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+        </font></b></font><br>
+        <input type="hidden" name="id" value="<? echo $id ?>">
+        <font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+        <? if (isset($id)) {?>
+        </font></b></font> 
+        <input type="hidden" name="action" value="attribute_update">
+        <input type="hidden" name="page" value="attribute_admin">
+        <font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+        <? } else {?>
+        </font></b></font> 
+        <input type="hidden" name="action" value="attribute_add">
+        <input type="hidden" name="page" value="attributes">
+        <font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+        <? }?>
+        </font></b></font> </td>
+    </tr>
+    <tr> 
+      <td width="14%">&nbsp;</td>
+      <td width="86%">&nbsp; </td>
+    </tr>
+    <tr> 
+      <td width="14%">&nbsp;</td>
+      <td width="86%"> 
+        <input type="submit" name="Submit" value="SUBMIT &gt;">
+      </td>
+    </tr>
+  </table>
+</form>
