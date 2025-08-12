@@ -1,0 +1,130 @@
+<?php
+/***************************************************************************
+ * (c)2002-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+require_once('./config.php');
+require_once('./functions.php');
+if(!isset($$langvar) || !$$langvar)
+	$act_lang=$default_lang;
+else
+	$act_lang=$$langvar;
+include_once('./language/lang_'.$act_lang.'.php');
+require_once('./includes/get_settings.inc');
+require_once('./includes/block_leacher.inc');
+if(!isset($category))
+	$category=0;
+if($category<0)
+	die("$l_callingerror");
+if($heading)
+	$pageheading=$heading;
+else
+	$pageheading=$l_news;
+if(($enablepropose==1) && ($maxpropose>0))
+{
+	$sql="select count(entrynr) as numpropose from ".$tableprefix."_tmpdata";
+	if(!$result = mysql_query($sql, $db))
+	    die("Unable to connect to database.".mysql_error());
+	if($myrow=mysql_fetch_array($result))
+		if($myrow["numpropose"]>=$maxpropose)
+			$enablepropose=0;
+}
+if($category>0)
+{
+	$sql = "select * from ".$tableprefix."_categories where catnr='$category'";
+	if(!$result = mysql_query($sql, $db))
+	    die("Unable to connect to database.".mysql_error());
+	if($myrow=mysql_fetch_array($result))
+		$enablepropose=$myrow["enablepropose"];
+	else
+		$enablepropose=0;
+}
+if($enablepropose==0)
+	die("$l_functiondisabled");
+if(isset($mode))
+{
+	if($mode=="upduser")
+	{
+		$page="propose";
+		include_once("./includes/propose_upduser.inc");
+	}
+	if($mode=="eduser")
+	{
+		$page="propose";
+		include_once("./includes/propose_eduser.inc");
+	}
+	if($mode=="directpost")
+	{
+		$page="propose";
+		if($submode=="news")
+			include_once("./includes/propose_post1.inc");
+		else
+			include_once("./includes/propose_post1b.inc");
+	}
+	if($mode=="refed")
+	{
+		$page="propose";
+		include_once("./includes/propose_edit1c.inc");
+	}
+	if($mode=="refpost")
+	{
+		$page="propose";
+		include_once("./includes/propose_post1c.inc");
+	}
+	if($mode=="directed")
+	{
+		$page="propose";
+		if($submode=="news")
+			include_once("./includes/propose_edit1.inc");
+		else
+			include_once("./includes/propose_edit1b.inc");
+	}
+	if($mode=="logout")
+	{
+		$backmsg=$l_back2news;
+		include_once("./includes/prop_logout.inc");
+	}
+	if($mode=="confirmpw")
+	{
+		include_once("./includes/prop_confirmpw.inc");
+	}
+	if($mode=="postpw")
+	{
+		$backmsg=$l_back2news;
+		$basescript="propose.php";
+		include_once("./includes/prop_postpw.inc");
+	}
+	if($mode=="proped")
+	{
+		if($type=="delete")
+			include_once("./includes/propose_del.inc");
+		else
+			include_once("./includes/propose_ed.inc");
+	}
+	if($mode=="proplst")
+	{
+		$page="proplist";
+		include_once("./includes/propose_list2.inc");
+	}
+	if($mode=="login")
+	{
+		$page="prop_edlst";
+		include_once("./includes/propose_list1.inc");
+	}
+	if($mode=="edlst")
+	{
+		$page="prop_edlst";
+		include_once("./includes/propose_list1.inc");
+	}
+	if($mode=="new")
+	{
+		$page="propose";
+		include_once("./includes/propose_new.inc");
+	}
+	if($mode=="add")
+	{
+		include_once("./includes/propose_add.inc");
+	}
+}
+echo "</table></td></tr></table></div>";
+include_once("./includes/footer.inc");
+?>
