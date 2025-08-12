@@ -1,0 +1,168 @@
+<script language="JavaScript">
+
+function init(){
+
+	define('account_password','string','Password');
+
+	define('account_email','email','Email',4);
+
+	define('account_name','string','Name');
+
+	define('account_address','string','Address');
+
+	define('account_zip','string','ZIP Code',5);
+
+}
+
+</script>
+
+<font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font color="#333333"> 
+
+GENERATE INDEX PAGE:</font></b></font> <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"><?php
+
+echo $error;
+
+
+
+if ($set_action=="update_pages") {
+
+echo "<BR>Change the information below that you wish to update.";
+
+    $connection = mysql_connect("$host","$user","$pass") or die("Couldn't make connection.");
+
+    $db = mysql_select_db("$database", $connection) or die("Couldn't select database.");
+
+    $sql = "SELECT * FROM pages WHERE page_id='$page_id' ";
+
+    $sql_result = mysql_query($sql,$connection) or die("Couldn't Check if this email already exsist in the database");
+
+    $row = mysql_fetch_array($sql_result);
+
+    $membership_id=$row["page_membership_id"];
+
+    $page_content=$row["page_content"];
+
+    $page_name=$row["page_name"];
+
+} 
+
+?></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+
+</font> 
+
+<form method="post" action="" onSubmit="validate();return returnVal;">
+
+  <table valign="top" width="93%" border="0" cellspacing="0" cellpadding="2" class="form_text" bgcolor="#F3F3F3">
+
+    <tr valign="top"> 
+
+      <td width="78%"> 
+
+        <div align="center">
+
+          <p align="left"><b> </b><br>
+
+            <font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#003399">To 
+
+            finish creating the index page, paste the content below to a text 
+
+            editor or html editor that supports php tags. <br>
+
+            <br>
+
+            Then, save it as a file your server will recognize as the index file. 
+
+            Also, it must be executable by php, so generally you will need to 
+
+            name it index.php, index.php3, or index.phtml.<br>
+
+            <br>
+
+            Once you have saved it, you will need to save it to the directory 
+
+            you with to password protect. (via ftp if you are not local to your 
+
+            web server.) Once this is done, your setup should be complete!</font></p>
+
+          <p><br>
+
+            <textarea name="page_content" cols="60" style="border: 1 solid #666666" rows="20">&lt;?
+
+$path=&quot;<? echo $dream_path ?>&quot;;
+
+$setup_1file_2directory_3name=$path;
+
+$setup_1file_2directory_3name.=&quot;setup.conf&quot;;
+
+$member_template_file_directory_name=$path;
+
+$member_template_file_directory_name.=&quot;member_template.html&quot;;
+
+$realm_of_access_membership=&quot;<? echo $membership_id ?>&quot;;
+
+$member_template_bad_login=$path;
+
+$member_template_bad_login.=&quot;member_bad_login.html&quot;;
+
+include(&quot;$setup_1file_2directory_3name&quot;);
+
+if (!isset($PHP_AUTH_USER)) {
+
+	header('WWW-Authenticate: Basic realm=Members Area');
+
+        header('HTTP/1.0 401 Unauthorized');
+
+	include(&quot;$member_template_bad_login&quot;);
+
+	exit;
+
+} else if (isset($PHP_AUTH_USER)) {
+
+        $connection = mysql_connect(&quot;$host&quot;,&quot;$user&quot;,&quot;$pass&quot;) or die(&quot;Couldn't make connection.&quot;);
+
+        $db = mysql_select_db(&quot;$database&quot;, $connection) or die(&quot;Could not select database.&quot;);
+
+        $sql = &quot;SELECT account_email,account_password,account_membership_id,account_status FROM account WHERE account_email='$PHP_AUTH_USER'&quot;;
+
+        $sql_result = mysql_query($sql,$connection) or die(&quot;Could Make Database Connection.&quot;);
+
+        $row = mysql_fetch_array($sql_result);
+
+     	if (((($PHP_AUTH_USER != $row[&quot;account_email&quot;]) || ($PHP_AUTH_PW != $row[&quot;account_password&quot;]) || ($row[&quot;account_status&quot;] != &quot;1&quot;) || ($row[&quot;account_membership_id&quot;] != &quot;$realm_of_access_membership&quot;)))) {
+
+        header('WWW-Authenticate: Basic realm=&quot;Members Area&quot;');
+
+	header('HTTP/1.0 401 Unauthorized');
+
+	include(&quot;$member_template_bad_login&quot;);
+
+	exit;
+
+        } else {
+
+        $logged_in=&quot;Y&quot;;
+
+        $show_pages=&quot;Y&quot;;
+
+        include(&quot;$member_template_file_directory_name&quot;);
+
+        }
+
+}
+
+?&gt;</textarea>
+
+          </p>
+
+        </div>
+
+      </td>
+
+    </tr>
+
+  </table>
+
+  </form>
+
+
+
