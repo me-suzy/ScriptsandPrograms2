@@ -1,0 +1,487 @@
+<html>
+	<head>
+		<title>ComboBox</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">ComboBox Class</h1>
+		<br />
+		<span class="name">Name: ComboBox</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* Class that manages a combobox widget for standarized used in XHTML forms.</li>
+			<li>*</li>
+			<li>*  The array structure for the Combo Item array is the following:</li>
+			<li>*  array[index][0] = value</li>
+			<li>*	 array[index][1] = link (optional, usually used for EventOnChange. This goes into the value field)</li>
+			<li>*  array[index][2] = description</li>
+			<li>*</li>
+			<li>*  The position of the values of the array usually end like this:</li>
+			<li>*	  	<option value="array[index][1].array[index][0]"> array[index][2] </option></li>
+			<li>*</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.xhtml.widgets</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza <aespinoza@structum.com.mx></span>
+		<br />
+		<span class="version">Version: 1.5</span>
+		<br />
+		<span class="extends">Extends: ObjectManager</span>
+		<br />
+		<span class="requires">Requires: ObjectManager, XML</span>
+		<br />
+		<span class="see">See: ObjectManager, XML</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#ComboBox">ComboBox</a>
+			<br />
+			<a href="#SetEnable">SetEnable</a>
+			<br />
+			<a href="#SetSelectedIndex">SetSelectedIndex</a>
+			<br />
+			<a href="#SetSelectedValue">SetSelectedValue</a>
+			<br />
+			<a href="#SetIncludeDummy">SetIncludeDummy</a>
+			<br />
+			<a href="#SetDummy">SetDummy</a>
+			<br />
+			<a href="#SetEnableEventOnChange">SetEnableEventOnChange</a>
+			<br />
+			<a href="#SetEventOnChange">SetEventOnChange</a>
+			<br />
+			<a href="#SetItems">SetItems</a>
+			<br />
+			<a href="#AddItem">AddItem</a>
+			<br />
+			<a href="#GetName">GetName</a>
+			<br />
+			<a href="#GetSelectedIndex">GetSelectedIndex</a>
+			<br />
+			<a href="#GetSelectedValue">GetSelectedValue</a>
+			<br />
+			<a href="#GetEventOnChange">GetEventOnChange</a>
+			<br />
+			<a href="#GetItem">GetItem</a>
+			<br />
+			<a href="#GetItemCount">GetItemCount</a>
+			<br />
+			<a href="#GetDummy">GetDummy</a>
+			<br />
+			<a href="#IsEnabled">IsEnabled</a>
+			<br />
+			<a href="#IsEventOnChangeEnabled">IsEventOnChangeEnabled</a>
+			<br />
+			<a href="#Generate">Generate</a>
+			<br />
+			<a href="#GetXhtml">GetXhtml</a>
+			<br />
+			<a href="#GetStringXhtml">GetStringXhtml</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="ComboBox">
+				<span class="methodName">ComboBox</span>
+				<span> ( string name, array valsArray, bool setEventOnChange, bool includeDummy )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the combo widget.</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string name</li>
+				<li class="param">array valsArray</li>
+				<li class="param">bool setEventOnChange</li>
+				<li class="param">bool includeDummy</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetEnable">
+				<span class="methodName">SetEnable</span>
+				<span> ( optional bool enabled )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Enables or disables the widget.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: none.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool enabled</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetSelectedIndex">
+				<span class="methodName">SetSelectedIndex</span>
+				<span> ( optional int item )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Sets the selected combo item by index.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int item</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetSelectedValue">
+				<span class="methodName">SetSelectedValue</span>
+				<span> ( mixed value )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Sets the selected combo item by value.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">mixed value</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetIncludeDummy">
+				<span class="methodName">SetIncludeDummy</span>
+				<span> ( optional bool include )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Inserts or removes the dummy from the item list.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool include</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetDummy">
+				<span class="methodName">SetDummy</span>
+				<span> ( string name, mixed value, optional bool autoInclude )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Sets the contents of the dummy item.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string name</li>
+				<li class="param">mixed value</li>
+				<li class="param">optional bool autoInclude</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetEnableEventOnChange">
+				<span class="methodName">SetEnableEventOnChange</span>
+				<span> ( optional bool enable )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Enables or disables event on change.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool enable</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetEventOnChange">
+				<span class="methodName">SetEventOnChange</span>
+				<span> ( string event, optional bool autoEnable )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Sets the event on change.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string event</li>
+				<li class="param">optional bool autoEnable</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetItems">
+				<span class="methodName">SetItems</span>
+				<span> ( array items )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Sets the items for the combo box.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">array items</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="AddItem">
+				<span class="methodName">AddItem</span>
+				<span> ( mixed value, string description, optional string link )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Adds an item to the item list.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">mixed value</li>
+				<li class="param">string description</li>
+				<li class="param">optional string link</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetName">
+				<span class="methodName">GetName</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the name of the combo box.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: string containing the combobox's name.</p>
+		<hr />
+		<p>
+			<a name="GetSelectedIndex">
+				<span class="methodName">GetSelectedIndex</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the selected item's index.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: integer containing the index of the selected item.</p>
+		<hr />
+		<p>
+			<a name="GetSelectedValue">
+				<span class="methodName">GetSelectedValue</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the selected item's value.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: mixed containing the selected item's value.</p>
+		<hr />
+		<p>
+			<a name="GetEventOnChange">
+				<span class="methodName">GetEventOnChange</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the event on change set.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: string containing the event on change.</p>
+		<hr />
+		<p>
+			<a name="GetItem">
+				<span class="methodName">GetItem</span>
+				<span> ( int index, optional int data )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns an item data from the combobox's item list.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: mixed containing the data from an item.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int index</li>
+				<li class="param">optional int data</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetItemCount">
+				<span class="methodName">GetItemCount</span>
+				<span> ( optional bool incDummyIncount )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the number of items in the combobox's list.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: integer containing the number of items in the combobox.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool incDummyIncount</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetDummy">
+				<span class="methodName">GetDummy</span>
+				<span> ( optional int data )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the dummy item's data.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: mixed containing the data from the dummy item.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int data</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="IsEnabled">
+				<span class="methodName">IsEnabled</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if dummy is included, false otherwise.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if dummy is included, false otherwise.</p>
+		<hr />
+		<p>
+			<a name="IsEventOnChangeEnabled">
+				<span class="methodName">IsEventOnChangeEnabled</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns true if event on change is enabled, false otherwise.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if it is enabled, false otherwise.</p>
+		<hr />
+		<p>
+			<a name="Generate">
+				<span class="methodName">Generate</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Generates the actual widget, with the options selected before.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: true if successful, false otherwise.</p>
+		<hr />
+		<p>
+			<a name="GetXhtml">
+				<span class="methodName">GetXhtml</span>
+				<span> ( optional bool autoGenerate )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the xhtml code; it can also build the Xhtml code for the widget if autoGenerate is set to true (Default).</li>
+		</ul>
+		<p class="returns">Returns: object of type XMLBranch containing the xhtml document.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool autoGenerate</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetStringXhtml">
+				<span class="methodName">GetStringXhtml</span>
+				<span> ( optional bool autoGenerate, optional bool formatString )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the xhtml code in a string; it can also build the Xhtml code for the widget if autoGenerate is set to true (Default).</li>
+			<li>* It can also format the string, depending on if 'formatString' is set to true.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: string containing the xhtml document.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool autoGenerate</li>
+				<li class="param">optional bool formatString</li>
+			</ul>
+		</p>
+	</body>
+</html>
