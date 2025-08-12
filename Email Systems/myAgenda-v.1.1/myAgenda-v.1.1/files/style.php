@@ -1,0 +1,23 @@
+<?php
+#############################################################################
+# myAgenda v1.1																#
+# =============																#
+# Copyright (C) 2002  Mesut Tunga - mesut@tunga.com							#
+# http://php.tunga.com														#
+#																			#
+# This program is free software. You can redistribute it and/or modify		#
+# it under the terms of the GNU General Public License as published by 		#
+# the Free Software Foundation; either version 2 of the License.       		#
+#############################################################################
+?>
+<STYLE>
+A				{color: #000099; font-weight : bold;}
+A:visited   	{color: #000099; font-weight : bold;}
+td				{font-family: Georgia, Arial, Verdana, sans-serif; font-size: 10pt;}
+.text			{font-size: 13pt;font-family: Georgia, Arial, Verdana, sans-serif; font-weight : bold;}
+.small			{font-family: verdana, arial, sans-serif;font-size: 8pt;}
+.small:hover	{text-decoration: underline}
+unknown			{font-size: 10pt; font-family: verdana, arial, sans-serif;}
+input			{font-size: 8pt; font-family: verdana, arial, sans-serif;}
+select			{font-size: 8pt; font-family: verdana, arial, sans-serif;}
+</STYLE>
