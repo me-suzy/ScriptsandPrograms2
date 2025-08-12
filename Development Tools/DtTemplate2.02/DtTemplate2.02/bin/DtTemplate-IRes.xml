@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<iresources name="DtTemplate">
+	<language name="en" default_dialect="us">
+		<dialect name="us">
+			<resource name="DTERR_TEMPL_PARSEFAILED">An general error occured while trying to separate your template into its DtTemplate components.</resource>
+			<resource name="DTERR_TEMPL_INVALIDCLOSEINDICATOR">A closing "#" element was encountered on line [%LINE%], offset [%OFFSET%]. "Closing" number elements (i.e. : beginning with "/") are not permitted.</resource>
+			<resource name="DTERR_TEMPL_INVALIDTAGFLAGS">The extraneous characters "[%CITATION%]" were encountered inside an element on line [%LINE%], offset [%OFFSET%]. Flags are not permitted for this type of element.</resource>
+			<resource name="DTERR_TEMPL_EXTRANEOUSNUMTAG">An extraneous property "[%CITATION%]" was specified inside a "#" element on line [%LINE%], offset [%OFFSET%]. Probably a duplicate "TYPE" or "PARENT" specification was provided, or an unsupported property/property-value was specified.</resource>
+			<resource name="DTERR_TEMPL_INVALIDPREDICATE">A ':' or '|' indicator was found without a matching predicate (number) near the element "[%CITATION%]" on line [%LINE%], offset [%OFFSET%]. </resource>
+			<resource name="DTERR_TEMPL_EXTRANEOUSONTAG">An extraneous 'ON' tag was encountered on line [%LINE%], offset [%OFFSET%]. The offending element was: [%CITATION%].</resource>
+			<resource name="DTERR_TEMPL_EXTRANEOUSCLOSERTAG">An extraneous closing element was encountered on line [%LINE%], offset [%OFFSET%], closing elements cannot have properties or flags.The offending element was: [%CITATION%].</resource>
+			
+			<resource name="DTERR_TEMPL_STATICTAGWITHCONDITIONS">Invalid directive encountered on line [%LINE%], offset [%OFFSET%]: [%CITATION%] . Either this element is a static value with conditions (not permitted); or its an encapsulation opening, which is without its corresponding closing element (required). </resource>
+			<resource name="DTERR_TEMPL_UNMATCHEDONOPENER">An opening "ON" element was encountered without a complimentary closing "ON" element at line [%LINE%], offset [%OFFSET%].</resource>
+			<resource name="DTERR_TEMPL_ENCAPSULATIONMISSINGOPENER">A closing encapsulation element "[%CITATION%]" was found, without a complimentary opening encapsulation element on line [%LINE%], offset [%OFFSET%].</resource>
+			
+			<resource name="DTERR_MERGE_TYPEMISMATCHELNUM">A "#" element's parent target "[%PARENT%]" was not a collection. This is unsupported. </resource>
+			<resource name="DTERR_MERGE_TYPEMISMATCHELSTATIC">A non-scalar value was provided for substitution via a static element "[%ELNAME%]". Either the template contains a static element where an encapsulation element is required, or the data provider supplied erroneous data for merging.</resource>
+			<resource name="DTERR_MERGE_TYPEMISMATCHELCOLLECTION">A scalar value was provided for iteration to an encapsulation element "[%ELNAME%]". Either the template contains a encapsulation element where a static element is required, or the data provider supplied erroneous data for merging.</resource>
+			<resource name="DTERR_MERGE_INVALIDNUMPARENT">An invalid "PARENT" property was encountered under a "#" element . The unparsable parent string was "[%PARENT%]".</resource>
+			<resource name="DTERR_TEMPL_TEMPLATENOTYETDEFINED">DtTemplate::[%DEPENDENTMETHOD%]() was called without a successfully compiled template having existed for the object.</resource>
+			<resource name="DTERR_HIGHLIGHT_UNSUPPORTEDTEMPLATEPARAMETER">An invalid parameter (non-string) was passed to DtTemplate::highlight().</resource>
+			<resource name="DTERR_QMERGE_INVALIDDATASET">An invalid dataset parameter (non-array) was furnished to DtTemplate::mergeQuick().</resource>
+			<resource name="DTERR_PLOAD_NOGETCONTENTS">An error occured while trying to read the template file "[%FILE%]". Be sure to use absolute path names, and verify that the file permissions aren't inapropriately restrictive.</resource>
+			
+			<resource name="DTERR_EVAL_OBFATAL">An general output buffering error occured while trying to capture evaluated code output.</resource>
+			<resource name="DTERR_EVAL_PARSERFAIL">An error occured while trying to evaluate embeded php in code in your template. The php parser states : [%CITATION%]</resource>
+		</dialect>
+	</language>
+</iresources>
