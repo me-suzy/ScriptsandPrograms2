@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tsep3docs.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>TSEP</title>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="TSEP is an open source (free) website PHP search engine. Easy to install, fast, supports logging and user defined stopwords. It uses CSS formating, is localized (multiple languages)" />
+<meta name="keywords" content="TSEP full text PHP search engine searchengine opensource free boolean mysql php stopword logging crawl spider open source" />
+<link href="css/general.css" rel="stylesheet" type="text/css" />
+<link href="css/medium.css" rel="stylesheet" type="text/css" />
+<!-- InstanceParam name="notes" type="text" value="notcurrent" --><!-- InstanceParam name="install" type="text" value="current" --><!-- InstanceParam name="usage" type="text" value="notcurrent" --><!-- InstanceParam name="advconf" type="text" value="notcurrent" --><!-- InstanceParam name="extensions" type="text" value="notcurrent" --><!-- InstanceParam name="faq" type="text" value="notcurrent" --><!-- InstanceParam name="errors" type="text" value="notcurrent" --><!-- InstanceParam name="links" type="text" value="notcurrent" --><!-- InstanceParam name="help" type="text" value="notcurrent" --><!-- InstanceParam name="contents" type="text" value="notcurrent" -->
+<link href="css/docs.css" rel="stylesheet" type="text/css" />
+<link href="css/links.css" rel="stylesheet" type="text/css" />
+<link href="css/urlimg.css" rel="stylesheet" type="text/css" />
+</head>
+<body><a name="topofpage" id="topofpage"></a> 
+<div id="container"> 
+  <div id="header"> 
+    <div class="HeaderLogo"><img src="graphics/tsep-glow.gif" alt="TSEP - The Search Engine Project" width="310" height="70" /></div> 
+    <div class="HeaderText">
+      <h1>Documentation</h1>
+    </div> 
+  </div> 
+  <div id="sidebar-a"> 
+    <div id="navcontainer"> 
+      <ul id="navlist-verti"> 
+        <li><a href="index.htm" class="notcurrent">Contents</a></li> 
+        <li><a href="note.htm" class="notcurrent">Notes</a></li>
+        <li><a href="install.htm" class="current">Install &amp; Upgrade</a></li> 
+        <li><a href="usage.htm" class="notcurrent">Usage</a></li> 
+      <li><a href="advanced.htm" class="notcurrent">Advanced Configuration</a></li>
+      <li><a href="extensions.htm" class="notcurrent">Extensions &amp; Plug-ins</a></li>
+      <li><a href="help.htm" class="notcurrent">Help TSEP </a></li>
+      <li><a href="faq.htm" class="notcurrent">FAQ</a></li>
+      <li><a href="error.htm" class="notcurrent">Problems &amp; Errors</a></li>
+      <li><a href="links.htm" class="notcurrent">Links</a></li>
+      </ul> 	  
+    </div> 
+  </div> 
+  <div id="sidebar-b">      
+  </div> 
+  <div id="content"><!-- InstanceBeginEditable name="middle" --><div id="navcontainer-hori" title="on this page"> 
+      <ul id="navlist-hori"> 
+        <li><a href="#setup">Setup</a></li> 
+        <li><a href="#config">Configuration</a></li> 
+      <li><a href="#security">Security</a></li>    
+      <li><a href="#index">Indexing</a></li>
+      <li><a href="#prepare">Preparing the search page</a></li>
+      </ul> 	  
+    </div>
+	<h1>Install &amp; Upgrade</h1>
+	<ul>
+	  <li><a href="#setup">Setup</a>
+	    <ul>
+	      <li><a href="#setupdebug">Debugging Setup</a> </li>
+        </ul>
+	  </li>
+	  <li><a href="#config">Configuration</a></li>
+	  <li><a href="#security">Security</a></li>
+	  <li><a href="#index">Indexing</a>
+	    <ul>
+	      <li><a href="#profiles">Profiles</a></li>
+        </ul>
+	  </li>
+	  <li><a href="#prepare">Preparing the search page</a></li>
+    </ul>
+	<h1><a name="setup" id="setup"></a>Setup</h1>
+	<p>Before you start, backup your files and your database!</p>
+	<p>Notes before starting:</p>
+	<ul>
+      <li>We <span class="importantNote">strongly</span> recommend a MySQL database version &gt;=4 ! An error might occur because you have a (very) old MySQL version (&lt;4, for example the still popular 3.23). </li>
+      <li>We recommend that you turn JavaScript on in your browser while you are doing administration of <span class="tsep">TSEP</span> (setup is also administration!)</li>
+    </ul>
+	<p>The installation / upgrade process:</p>
+	<ol>
+      <li>Unzip the downloaded <span class="tsep">TSEP</span> files. Make sure that you have the folder structure correct. </li>
+      <li>Upload all files to your website, make sure that you have the folder structure correct. </li>
+      <li><span class="directoryname">/include/</span><span class="filename">global.php</span> should be writeable. <span class="importantNote">chmod 666</span> this file. (If you do not know what this is, try to install. <span class="filename">setup.php</span> will try to this for you.) </li>
+      <li>you should have / create a directory for temporary files which needs to be writeable for PHP as well. (Can be anywhere on the server) </li>
+      <li>Open the <span class="filename">setup.php</span> file in the <span class="directoryname">admin</span> directory. This (introduced in 0942) will lead you through the install and/or upgrading process.</li>
+    </ol>
+	<ul>
+      <li>If everything works fine, all will be done by the <span class="filename">setup.php</span>. If you have been upgrading you can keep all your old data (logs, <a href="complete.htm_#Stopwords" title="What are stopwords">stopwords</a>, index, profiles etc. The following should happen:</li>
+    </ul>
+	<ol>
+      <ul>
+        <li>the file <span class="filename">global.php</span> is changed to match your needs (database connection data) </li>
+      </ul>
+    </ol>
+	<blockquote>
+      <p>Follow the setup until it tells you you are done. Now continue with the next step: <a href="#config">configuration.php</a> (skip the next points of this list!) </p>
+    </blockquote>
+	<ul>
+      <li>If there is an error: the <span class="filename">setup.php</span> should tell you about it. You can also use the <span class="importantNote">special debugging</span><a name="setupdebug" id="setupdebug"></a> function we have included in the <span class="filename">setup.php</span>:</li>
+    </ul>
+	<blockquote>
+	  <p>To show output of _TsepTrace()-function-calls within <span class="filename">setup.php</span> call the file with the following parameter:</p>
+	  <p>.../<span class="filename">setup.php</span><span class="urlparameter">?debugtrace=on</span> </p>
+	  <p>You can also explicitly switch it off using: <br />
+      .../<span class="filename">setup.php</span><span class="urlparameter">?debugtrace=off</span> </p>
+      <p>The default is <span class="urlparameter">off</span> </p>
+      <p>Simply insert _TsepTrace()-calls into setup.php wherever you need it or mean we will need it, if an admin (you) has troubles with <span class="filename">setup.php</span>. <br />
+        Just use _TsepTrace()-calls - you do not need to check &quot;by yourself&quot;, if <span class="fieldDescription">debugtrace</span> is switched on or not.</p>
+	</blockquote>
+	<p><a name="tsepdatabasemodel" id="tsepdatabasemodel"></a> <span class="filename">setup.php</span> will either create the tables with default values or take your old values when updating and you wish so. </p>
+	<h2><a name="feedback" id="feedback"></a>Feedback</h2>
+	<p>In the end of the setup - or in case you abort we have created a feedback form. In this form you can send statistical, general information and you can also comment to tell us your whishes and needs for <span class="tsep">TSEP</span>.<span class="importantNote">This is totally optional and anonymous!</span> You decide if you let us know anything and what you let us know. By submitting any information you will help us to make TSEP fit your needs! </p>
+	<p>You can also directly subscribe to our newsletter. Of course we will never give away your email address and unsubscribing is very easy. You can unsubscribe (and resubscribe every time you like) on our <a href="http://www.tsep.info">website</a>.</p>
+	<p>The next page you will see after you press the finish button is the configuration page of the <span class="tsep">TSEP</span> you have just installed. </p>
+	<p><span class="importantNote">Note: </span>In 0942 we have also introduced a new start page for the admin area. This startpage is the <span class="filename">index.php</span> in the <span class="directoryname">admin</span> directory. This means, you find most, if not all links to important pages on this page. Open <span class="directorystructure">&lt;tsepinstalldir&gt;</span><span class="directoryname">/admin/</span> - or <span class="directorystructure">&lt;tsepinstalldir&gt;</span><span class="directoryname">/admin/</span><span class="filename">index.php</span> to access this page. <a href="graphics/adminstart.png">See the page.</a> </p>
+	<p><a href="graphics/tsepmodel.png">See the database model</a>.</p>
+	<h1><a name="config" id="config"></a>Configuration</h1>
+	<p>This was introduced in v0.912. Open the <span class="filename">configutation.php</span> directly after installation and set the correct values, especially for language and the <span class="tsep">TSEP</span> path - and of course every other value. </p>
+	<p>Open the <span class="filename">configuration.php</span> in the <span class="directoryname">admin</span> directory and make all the changes to your liking.</p>
+	<p><span class="importantNote">Note:</span> The option to check if a file exists before returning it as a result can take quite long if you have many results! We have been notified that at one of the sites using <span class="tsep">TSEP</span> it made a difference of the factor 30 (meaning with the checking it took more than 30 seconds instead of less than 1 second without the checking). The checking can be useful if you delete files after indexing. If you are sure that all files which are indexed still exist on the server you can safely turn it off. We recommend to leave the setting on. </p>
+	<p>Continue with <a href="#security">Security</a>.</p>
+	<h1><a name="security" id="security"></a>Security</h1>
+	<p>If you are able to use <span class="fileextension">.htaccess</span> <span class="importantNote">we strongly advise you</span> to protect the <span class="directoryname">include</span> and the <span class="directoryname">admin</span> directory using <span class="fileextension">.htaccess</span> once you are done installing!</p>
+	<p>You should also delete <span class="filename">setup.php</span> after your installation / upgrade was successfull. </p>
+	<p>Short explanation on this: If you do not protect the directories, everyone could use a plugin for example to fill your database. Everyone would be able to change the index - so again: Protect the <span class="directoryname">include</span> and the <span class="directoryname">admin</span> directory using <span class="fileextension">.htaccess</span></p>
+	<p>Continue with <a href="#index">Indexing your Site </a></p>
+	<h1><a name="index" id="index"></a>Indexing</h1>
+	<p><img src="graphics/indexercrawl.png" alt="Indexer screenshot" width="747" height="1054" /></p>
+	<p>To fill the database with values (content / words of your pages) for the search engine to search for, you have to run the file '<span class="filename">indexer.php</span>'.</p>
+	<p>If you are calling the <span class="filename">indexer.php</span> the old fashioned way (for example by the link in any of the administration pages) you need to input the details asked by the form. </p>
+	<p>By submitting the form with the appropriate values you will see the results of the indexing after a few seconds. The script will provide information on the number of pages, the title, the URL, the size and the number of indexed words found by the indexing script.</p>
+	<p>In version 0.942 we introduced a new parameter for the indexer which concerns our users whish for &quot;selectable subdirectories&quot;. In a multi-line inputfield, subdirectories can be entered. If this field is </p>
+	<ul class="listABC">
+	  <li>empty: 
+            all subdirectories found under the given Web-Directory are used (works as before) </li>
+	  <li> not empty: 
+          each given subdirectory is appended to the given Web-Directory and files are searched.</li>
+    </ul>
+	<p>In version 0.940 the exclude directories setting has been improved (&quot;<span class="formfieldlabel">Enter the directories to be excluded</span>&quot;). It now functions as follows:</p>
+	<ul>
+      <li> abc*ef - means 0 to n charcters instead of * Example: &quot;abcdef&quot;, &quot;abcdddddef&quot;, &quot;abcef&quot;,... would be found and excluded </li>
+      <li>abc+ef - means 1 to n characters instead of + Example: &quot;abcdef&quot;, &quot;abcdddef&quot;,... would be found and excluded</li>
+      <li>abc?ef - 1 character instead of ? Example: &quot;abcdef&quot;, &quot;abceef&quot;,... would be found and excluded</li>
+    </ul>
+	<p> The list which is produced by the indexer with the exclusions has been improved too:</p>
+	<ul>
+      <li>Strikethrough (<span class="invalid">like this</span>) has not beed checked against the dir_exclude </li>
+      <li>Characters in bold were part of the filter</li>
+    </ul>
+	<p><a name="indexerparameters" id="indexerparameters"></a>In version 0.938 we added parameters for the indexer. Just enter any of the following in the address area of your browser. Of course put the correct address like '<span class="completeurl">http://www.yourdomain.com/tsep/admin/</span>' of the <span class="filename">indexer.php</span> before it. </p>
+	<dl>
+      <dt><span class="filename">indexer.php</span><span class="urlparameter">?startindexing</span></dt>
+      <dd>this directly starts indexing with the active profile <span class="urlparameter"></span></dd>
+      <dd>&nbsp;</dd>
+      <dt><span class="urlparameter"></span><span class="filename">indexer.php</span><span class="urlparameter">?startindexing&amp;profile=xxx</span></dt>
+      <dd>this directly starts indexing with the given profile - in this case xxx. <span class="importantNote">Attention</span>: This works only if your profile name does not contain characters which are encoded (spaces included). (also see <a href="#profiles">Profiles</a>) </dd>
+      <dd>&nbsp;</dd>
+      <dd>&nbsp;</dd>
+      <dt><span class="filename">indexer.php</span><span class="urlparameter">?showcompleteindex</span></dt>
+      <dd>this shows complete index currently stored</dd>
+    </dl>
+	<p><span class="importantNote"><a name="indexingyoursitenotes" id="indexingyoursitenotes"></a>Notes</span>: </p>
+	<ul>
+      <li>When you search from the search field in the '<span class="filename">indexer.php</span>, this search will not be logged! </li>
+      <li>Please also read the restriction on &quot;<a href="faq.htm#whatfilescanbeindexed">FAQ: What files can <span class="tsep">TSEP</span> index</a>&quot; in the complete documentation if you encounter problems. </li>
+      <li><a name="forcehttp" id="forcehttp"></a>Using &quot;<span class="formfieldlabel">Force parsing via HTTP</span>&quot; has (at least) two <span class="importantNote">advantages</span>:
+          <ol>
+            <li>SSI-content is parsed too, so are PHP, Perl etc scripts and </li>
+            <li>URLs outside your local scope can be indexed i.e. files, which can not be read directly via local-fileopen). </li>
+          </ol>
+          <p>The <span class="importantNote">disadvantage</span> is, that the indexing-process can be slowed down extremly! In addition, if e.g. an include references to a slow or not existing target, the indexing-process waits, until a possible timeout - this also can cause a 404-page to be returned (and indexed!).</p>
+      </li>
+      <li> The options &quot;<span class="formfieldlabel">indexer should find files via directoryscan</span>&quot; and &quot;<span class="formfieldlabel">indexer should run datasupplier-script</span>&quot; are not exclusive! They can be used at the same time. In case of both options are &quot;on&quot;, the indexer runs external-datasupply first and directory-scan afterwards.</li>
+      <li>If you want to index &quot;dynamic&quot; sites, e.g. sites where the content of pages is drawn from a database please read the &quot;<a href="complete.htm_#dynamicsites">How to index dynamic sites</a>&quot; in the complete documentation </li>
+      <li>While the indexer is still running - and indexing (see the loading status bar or the animated icon in your browser) <span class="importantNote">do not stop the loading of the page</span>, but wait until the page has been fully loaded and your browser tells you so. You will not be able to start two instances of the indexer at
+          <ol>
+            <li> the same time </li>
+            <li> if the indexer stops with an error (see next topic) for the time defined by max_exec_time in php.ini</li>
+          </ol>
+      </li>
+      <li>The indexer runs a maximum of max_exec_time minutes before PHP closes the proces with a fatal error. The error PHP throws can not be handled by a custom error handler - so the script simply dies of a timeout. The max_exec_time (which defines how long each script can run) is set to 30 minutes as a default.<br />
+          <span class="importantNote">If PHP safe_mode is on</span> the code doesn't work and PHP relies on the max_execution_time in the php.ini. If this is the case the indexer notifies the admin.</li>
+    </ul>
+	<h2><a name="profiles" id="profiles"></a>Profiles</h2>
+	<p>As you see there are profiles. Each profile can have totally different settings for the indexer. We provide you with one profile called &quot;<span class="fieldvalue">demo</span>&quot;. You can either rename the &quot;<span class="fieldvalue">demo</span>&quot; profile (Save As-Button) or create a new profile of your own and delete the &quot;<span class="fieldvalue">demo</span>&quot; profile afterwards - or of course just leave the demo. <span class="importantNote">You can not delete the last profile!</span></p>
+	<p>You can choose a profile to use, you can save your settings as profiles (&quot;save &quot; and &quot;save as&quot; buttons), you can rename a profile or delete a profile. When you are deleting a profile all pages which belong to that profile <span class="importantNote">only</span> will be removed from the index as well!</p>
+	<h1><a name="prepare" id="prepare"></a>Preparing the search page</h1>
+	<p>You decide what you want. You want to ... </p>
+  <ol type="a">
+      <li><a href="#tsepsearch">use the pre-made search page</a></li>
+      <li><a href="#ownlayout">include TSEP into your layout?</a> </li>
+      <li><a href="#forwardsearch"> create a search field on your page(s) X and forward the user to the search page Y?</a> </li>
+    </ol>
+    <p></p>
+    <ol type="a">
+      <li><a name="tsepsearch" id="tsepsearch"></a>to use the <span class="importantNote">pre-made</span> search page '<span class="filename">tsepsearch.php</span>', you are done with the installation.</li>
+      <li><a name="ownlayout" id="ownlayout"></a>to include the search page in <span class="importantNote">your own page / layout</span>, please follow these steps - <span class="importantNote">make sure that the path to the two files are set correctly</span>!
+          <ol>
+            <li>You need to make sure your page is being processed as a PHP page, ususally this is the case when your page has the extension <span class="filename">.php</span> or <span class="filename">.php3</span> add the following code between your SEARCH page <span class="HTMLcode">&lt;head&gt;</span> ..and.. <span class="HTMLcode">&lt;/head&gt; </span>tag - otherwise the search will look ugly! This example assumes that <span class="filename">search.php</span> is located in the same directory as your search page, <span class="filename">tsep.css</span> is in a subdirectory called &quot;<span class="directoryname">css</span>&quot;. <br />
+                <div class="HTMLcode">&lt;link href=&quot;css/tsep.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</div>
+            </li>
+            <li>add the search.php into your page at the position you wish to add the search function like this:<br />
+                <div class="HTMLcode">&lt;?php require ('search.php'); ?&gt;</div>
+            </li>
+          </ol>
+          <blockquote>
+            <p>If you want to create <span class="importantNote">your very own search form</span>, please take a look at the '<span class="filename">tsepsearch.php</span>' file provided by us for the fields you need to use.</p>
+            <p>You have now integrated <span class="tsep">TSEP</span> into your own page. </p>
+          </blockquote>
+      </li>
+      <li><a name="forwardsearch" id="forwardsearch"></a>Since people have been asking how they can implement a search field on their pages and forward the user to the actual search page once he enters something in the search field, here is the general solution for this: <br />
+    If I get you right, do the following: </li>
+    </ol>
+    <blockquote>
+      <p>Your sitestructure:</p>
+      <blockquote>
+        <div class="directorystructure">
+          <p> /<br />
+        /<span class="filename">filex</span>.php<br />
+        /<span class="filename">search</span>.php<br />
+        /<span class="directoryname">php</span>/<span class="directoryname">tsep</span>/ ...... here is the complete TSEP structure:<br />
+        /<span class="directoryname">php</span>/<span class="directoryname">tsep</span>/<span class="filename">log</span>.php<br />
+        /<span class="directoryname">php</span>/<span class="directoryname">tsep</span>/admin/ .....<br />
+        /<span class="directoryname">php</span>/<span class="directoryname">tsep</span>/include/ ..... </p>
+        </div>
+      </blockquote>
+      <p>make a (search)form on your page &quot;<span class="filename">filex</span>.php&quot;.<br />
+    HTML Code for this:</p>
+    </blockquote>
+    <ol type="a">
+      <blockquote>
+        <div class="HTMLcode">
+          <p>&lt;form action=&quot;/php/tsep/<span class="filename">log</span>.php&quot; method=&quot;get&quot; name=&quot;tsepsearchform&quot; id=&quot;tsepsearchform&quot;&gt; <br />
+&lt;input name=&quot;go&quot; type=&quot;submit&quot; value=&quot;Search&quot; class=&quot;submitButton&quot; /&gt; <br />
+&lt;input name=&quot;q&quot; type=&quot;text&quot; class=&quot;SearchField&quot; value=&quot;Search&quot; /&gt; <br />
+&lt;input type=&quot;hidden&quot; name=&quot;s&quot; value=&quot;0&quot; /&gt; <br />
+&lt;input type=&quot;hidden&quot; name=&quot;e&quot; value=&quot;&lt;?php echo $tsep_config['config_How_Many_Results'];?&gt;&quot; /&gt; <br />
+&lt;input type=&quot;hidden&quot; name=&quot;user_e&quot; value=&quot;&lt;?php echo $tsep_config['config_How_Many_Results'];?&gt;&quot; /&gt; <br />
+&lt;input type=&quot;hidden&quot; name=&quot;searchpagelocation&quot; value=&quot;/<span class="filename">search</span>.php&quot; /&gt; <br />
+&lt;/form&gt; </p>
+        </div>
+      </blockquote>
+    </ol>
+    <blockquote>
+      <p>Create your own &quot;<span class="filename">search</span>.php&quot; page. In this page include the premade file:</p>
+    </blockquote>
+    <ol type="a">
+      <blockquote>
+        <div class="HTMLcode">
+          <p>&lt;?php require (&quot;/php/tsep/<span class="filename">search</span>.php&quot;);?&gt; </p>
+        </div>
+      </blockquote>
+    </ol>
+    <blockquote>
+      <p>For this require you might need to give the full path! Maybe use this instead:</p>
+      <blockquote>
+        <div class="HTMLcode">
+          <p> $docroot = $GLOBALS['HTTP_SERVER_VARS']['DOCUMENT_ROOT'];<br />
+&lt;?php require (&quot;{$docroot}/php/tsep/<span class="filename">search</span>.php&quot;);?&gt; </p>
+        </div>
+      </blockquote>
+      <p><span class="importantNote">Don't forget the CSS from <span class="tsep">TSEP</span> in your page(s) X and to read the </span><span class="tsep">TSEP</span><span class="importantNote"> config! </span>(<a href="#ownlayout">described in b)</a> )</p>
+    </blockquote>
+  <!-- InstanceEndEditable --></div>
+  <div id="footer">
+  <p>This file is part of <span class="tsep">TSEP</span> (<span class="tsep">The Search Engine Project</span>), Version: TSEP 0.9nnn</p>
+<p>This file has been last modified (SubVersion Data):<br />
+    $LastChangedDate: 2005-09-09 12:08:24 +0200 (Fr, 09 Sep 2005) $<br />
+    $LastChangedBy: olaf $<br />
+    $LastChangedRevision: 326 $</p>
+<p><a href="http://www.tsep.info" title="TSEP Website" class="copyright">&copy; 2002-2005 by TSEP - The Search Engine Project</a></p>
+  </div>
+</div> 
+</body>
+<!-- InstanceEnd --></html>
