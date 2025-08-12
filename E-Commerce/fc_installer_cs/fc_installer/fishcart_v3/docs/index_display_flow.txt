@@ -1,0 +1,197 @@
+Fishcart Flow for index.php, display.php version 1.78
+Courtesy of Jim Flowers <jflowers@ezo.net>, 4/2000
+
+index.php
+
+require public.php
+  define DBbase_Sql class
+  define FC_SQL class
+connect to db
+  if no connection
+    complain and exit
+require cartid.inc
+  set custid
+  if CookieCart  // cust has open order
+    get it
+    switch to cookie->zone
+  if CookieCustID  // we know who he is
+    get it
+  if !ohead.aid // order doesn't exist in db
+    reset CookieCart
+  else // order exists
+  if !cartid // no existing order
+    set new cartid
+    write ohead in db
+  elseif !tmp_aid // existing order but aid=NULL
+    set aid // no value for aid set anywhere except from db
+    update aid in ohead
+  set CookieCart for 48 hours
+if showscat // 0 on first pass
+  chain to display.php
+set zscat
+get web table and language templates
+build page
+  first column 10 pixel wide empty
+  second column 160 pixel wide
+    Zone and language selection commented out
+    FORM 
+      build category selection box
+        if first pass
+        set POST index.html
+      else // second pass
+        set POST display.html
+      get categories from db
+      switch
+        no subcats
+          option = catval // cat id
+        subcats first pass
+          option = catval:catscata // cat id:subcat active?
+        subcats second pass
+          option = catval selected // cat id show default
+      if second pass
+        build subcategory selection box
+      set hidden fields
+      if first pass
+        set showscat = 1 // sets up second pass next entry  
+      if new products build new products button HREF
+	display.php
+      build view cart button HREF $show => showcart.php
+      end FORM
+  third column 10 pixel wide empty
+  fourth column
+    table header
+        if weblogo display it
+    second row
+      header
+        if webhdsku make HREF display.php
+          if webhdgraph display it
+            else
+              display prodbanr for webhdsku
+              display webhdtext
+      body of document
+      footer
+        if webftsku make HREF display.php
+          if webftgraph display it
+            else
+              display prodbanr for webftsku
+              display webfttext
+        General info and cust support commented out
+
+display.php
+------------
+
+require public.inc
+require flags.inc
+function showerr()
+  display error page // no categories/selected
+  return HREF index.php with cartid zid lid
+  exit
+require cartid.inc
+set dn (5) results/page and dn_line (20) lines/result?
+put catdesc or scatdesc in html page title
+if nothing selected showerr()and exit
+log the page access by ip address
+if new product list display it (tbs and pj)
+if closeout/special display it (tbs and pj)
+if cat not empty // selected by shopper
+  if subcategories enabled and a subcategory chosen
+    if cscat // use subcategory properties 
+      get values from db subcat and sort into fcs
+    else
+      get values from db cat and sort into fcs
+  else
+    get values from db cat and sort into fcs
+if psku // single product display, category not selected
+  if scat
+    set pj
+  else
+    set pj
+  else if scat // join with subcategory
+    set pj
+  else // from a category selection, no subcategory
+    set pj
+set tbs
+if key1
+  set pj
+else
+  if psku
+    set pj and tbs
+  elseif key1
+    set pj and tbs
+set fds to fields wanted
+extend pj to reflect inventory active/status
+get count of * from tbs where pj conditions are met
+if no records showerr()
+else
+  get designated fields from db tables for selected pj
+read olimit rows
+if key1
+  update keyhits in db key records
+set up body tag
+  if catagory given no subcat
+  if subcategory overrides category
+display masthead graphic
+  if cat not cscat and catlogo defined
+    display catlogo 
+  elseif cat and cscat and scatlogo defined
+    display scatlogo
+  elseif weblogo exists
+    display weblogo
+display masthead text if any in 1x1 table
+  if cat and not cscat display catmast
+  elseif cat and cscat display scatmast
+display header promo item if any in 1 x 1 table
+  if cat and not scat and catsku defined
+    get image
+  elseif cat and scat and scatsku defined
+    get image
+  if no image set image to prodbanr
+  display image HREF display.php with selected product
+build main table
+ first row
+  if more than one page of results
+    display searchable results bar (1 2 3 ...) click page to display
+ second row  
+  if cat and not cscat
+    display catdescr
+  if cat and cscat
+    display scatdescr  
+  elseif key1
+    display key1 // the search keyword
+ rows 2 - n
+  col 1
+   borderless table
+    row 1 
+     display prodsdescr:proddescr
+    row 2 
+     col 1 prodsku
+     col 2
+      if exists proddload 'Download Now' HREF proddload
+     col 3
+      if prodprice = 0
+       display catfree or scatfree or webfree
+      else 
+       if on sale display 'Special' prodsaleprice
+      else display "Price' prodprice
+    row 3
+     col 1 Audio Clip
+     col 2 Video Clip
+     col 3 empty
+  col 2
+   if exists display product image
+   display Add/Change form button
+ loop to max products per page
+ row n+1
+  borderless table 1x2
+   col 1 display Catalog Front Page HREF index.php
+   col 2 display View Cart logo
+borderless footer table 1x1
+  borderless table 1x2
+    col 1
+     display General Information contact  
+    col 2
+     display Customer care contact
+
+=========================================================================
+FishCart: an online catalog management / shopping system
+Copyright (C) 1997-2002  FishNet, Inc.
