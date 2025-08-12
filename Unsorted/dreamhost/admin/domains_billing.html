@@ -1,0 +1,62 @@
+ <b><font face="Verdana, Arial, Helvetica, sans-serif"> </font><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#990000">ENTER 
+A MANUAL PAYMENT: </font><font face="Verdana, Arial, Helvetica, sans-serif">
+<?
+if ($action=="manual_bill") {
+bill_domain_manual($account_id,$domain_id,print_hosting_cost($domain_id));
+echo "<BR><BR>This account was successfully updated!<BR>";
+}
+?>
+</font></b> 
+<form method="post" action="" onSubmit="validate();return returnVal;">
+  <font face="Verdana, Arial, Helvetica, sans-serif"> </font> <font face="Verdana, Arial, Helvetica, sans-serif"> 
+  </font> <font face="Verdana, Arial, Helvetica, sans-serif"> </font> 
+  <table width="95%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td width="18%"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Account 
+        To Bill:</font></td>
+      <td width="82%"><font face="Verdana, Arial, Helvetica, sans-serif"> 
+        <? echo show_account_list($account_id);?>
+        </font></td>
+    </tr>
+  </table>
+  <font face="Verdana, Arial, Helvetica, sans-serif">
+  <? if (isset($account_id)) {?>
+  </font><br>
+  <table width="95%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td width="18%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Domain 
+        To Bill:</font></td>
+      <td width="82%"><font face="Verdana, Arial, Helvetica, sans-serif"> 
+        <? echo show_domain_list($account_id,$domain_id);?>
+        </font></td>
+    </tr>
+  </table>
+  <p><font face="Verdana, Arial, Helvetica, sans-serif"> 
+    <? }
+	if (isset($domain_id)) { 
+	$status = quick_billing_status($domain_id);
+		if ($status =="Y") {
+			echo "<input type=\"hidden\" name=\"action\" value=\"manual_bill\">";
+  
+  ?>
+    </font></p>
+  <p><font face="Verdana, Arial, Helvetica, sans-serif"><b><font color="#990000">This 
+    account is due.</font></b></font></p>
+  <p><b><font face="Verdana, Arial, Helvetica, sans-serif">Clicking the submit 
+    button will bring the billing status on this account up to date.</font></b></p>
+  <p><b><font face="Verdana, Arial, Helvetica, sans-serif">It will also create 
+    a billing record for today's date in the amount of 
+    <? $amount=print_hosting_cost($domain_id); echo $currency . "" . $amount;  ?>
+    . </font></b></p>
+  <p><font face="Verdana, Arial, Helvetica, sans-serif"> 
+    <? 
+	} elseif ($status=="N") {
+		echo "This account is not due.<BR><BR>";
+		}
+	}
+?>
+    <input type="submit" name="Submit" value="Submit">
+    <input type="hidden" name="page" value="domains_billing">
+    <input type="hidden" name="session_id" value="<? echo $session_id; ?>">
+    </font> </p>
+</form>
