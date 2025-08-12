@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+	<meta name="Keywords" content="PWP, PHP, Wiki, WikiWiki, Community, Edit, Download, Software, Content Management, Documentation, CMS">
+	<meta name="Description" content="PWP Wiki Processor, a GPL based PHP software.">
+	<meta name="Language" content="en">
+	<meta name="Generator" content="PWP Wiki Processor">
+	<meta name="robots" content="index,follow">
+	<title>PWP Wiki Processor &raquo; UserManual</title>
+	<style type="text/css">@import url(../css/standard.css);</style>
+</head>
+<body>
+	<div id='uppermenu'>
+		<img src='../img/wiki.jpg' align='right' alt='PWP wiki processor' border='0'>
+		<h1>UserManual</h1>
+		<p> <a href='TextRules.html'>TextRules</a> .   <a href='SimpleTextRules.html'>SimpleTextRules</a> .   <a href='Installation.html'>Installation</a> .   <a href='Configuration.html'>Configuration</a>   <br>   <a href='UserManual.html'>UserManual</a> .   <a href='FAQ.html'>FAQ</a> .   <a href='http://www.lars-ackermann.de/wiki/static/index.html'>&raquo;find more online</a> </p>
+	</div>
+	<div id='contents'><div id='textcolumn'>
+&nbsp;&middot;&nbsp;<a href="#Common hints">Common hints</a><br>&nbsp;&middot;&nbsp;<a href="#Variables">Variables</a><br>&nbsp;&middot;&nbsp;<a href="#Icons">Icons</a><br>&nbsp;&middot;&nbsp;<a href="#Calendar">Calendar</a><br>&nbsp;&middot;&nbsp;<a href="#Reports">Reports</a><br>&nbsp;&middot;&nbsp;<a href="#Using local links for uploaded files">Using local links for uploaded files</a><br><hr size="1" noshade><!--content begin-->
+<a name="Common hints"><h2>Common hints</h2></a>
+PWP is a web application &quot;running&quot; within a user agent. So make use of its features: Use the back and forward buttons. Bookmark Wiki pages and create your personal view of a Wikis content. Open links in new windows or tabs; work with several pages simultaneouisly.
+<p>
+<a name="Variables"><h2>Variables</h2></a>
+<p>
+Variables are short text fragments which are stored at a central point in your configuration. A variable in a Wiki page will be replaced by its content at the time of the page delivery. 
+<p>
+Variables may contain Wiki mark-up code. It is guaranteed that variable replacement will be done <em>before</em> any other Wiki code translation takes place. For the tricky ones among you: Defining a variable inside a variable will not work.
+<p>
+The syntax is simple: <strong>{{VariableName}}</strong>. If PWP encounters an undefined variable, it will print its {Name}(!) like this. Names are case sensitive.
+<p>
+PWP can be configured to allow variable editing via web interface. In this case, variables must not contain double quotes &quot;. These quotes will be silently replaced by single quotes.
+<p>
+<a name="What can I do with variables?"><h3>What can I do with variables?</h3></a>
+<p>
+<a name="Column / grid layout of Wiki pages"><h4>Column / grid layout of Wiki pages</h4></a>
+Have you wondered how the two column layout of the start page was done? PWP provides four <em>predefined</em> (invisible) variables: 
+<p>
+<ul><li><strong>{{||--}}</strong> opens an invisible layout table
+<li><strong>{{||}}</strong> jumps to the next column
+<li><strong>{{--}}</strong> shifts to the next row
+<li><strong>{{--||}}</strong> finally closes the table</ul>
+<p>
+Using these variables, you can divide up a page in an N x M matrix. One word to the style class 'layout'. The PWP style sheet defines colours and font sizes for tables in general. For an invisible layout table two different style classes are required; they are already defined in PWP's standard style sheet.
+<p>
+<a name="Names, Phone numbers, Disclaimers"><h4>Names, Phone numbers, Disclaimers</h4></a>
+Things you have to repeat on several pages which are subject to change could be stored inside a variable. For example the name and phone number of a sales person:
+<p>
+<pre>Please contact our business representative {{Sales}}.</pre>
+<p>
+might expand to:
+<p>
+<pre>Please contact our business representative Mr. Bob Smith (555-976388).</pre>
+<p>
+<a name="Menus"><h4>Menus</h4></a>
+Just define a menu for your most important pages in a variable. Now you can include your menu on every page by a call to {{MyMenuVariable}}.
+<p>
+<a name="Dynamic linking"><h4>Dynamic linking</h4></a>
+You want to link to a periodically changing featured article or something similar from several other pages? Just define a variable containing a Wiki link to the Wiki page:
+<p>
+<pre> $this-&gt;mVars['FeaturedArticle'] = &quot;[[Congo]]&quot;
+
+ {{FeaturedArticle}}</pre>
+<p>
+<a name="Icons"><h2>Icons</h2></a>
+<p>
+PWP is distributed with several icons. You include the icons either as images using the common link/image syntax or you can define a variable containing the image tag.
+Storing an icon image tag or in a variable will save a lot of typing.
+<p>
+The icons have a size of 12x12 pixel and will fit into a line of text in most cases.  Here are a few samples:
+<p>
+<img src="../img/i12_star_red.gif" alt="" border="0">
+<img src="../img/i12_star_yellow.gif" alt="" border="0">
+<img src="../img/i12_danger_yellow.gif" alt="" border="0">
+<img src="../img/i12b_plus_blue.gif" alt="" border="0">
+<img src="../img/i12b_question_black.gif" alt="" border="0">
+<p>
+<a name="Calendar"><h2>Calendar</h2></a>
+<p>
+Calendar pages are created by a simple click on a link in the menu
+&quot;Extras&quot;. There you will find the required links.
+<p>
+One link section creates an annual overview for copy and paste. The other link section creates Wiki pages; one detail page for each month and an annual overview.
+<p>
+The calendar pages can be used a kind of web log (blogging) with a short
+entry per day linking to bigger stories on further pages.
+<p>
+One last note: The names of weekdays and months are not hard coded, but taken from PHP. Ideally, PHP would receive this information from the current system.
+<p>
+<a name="Reports"><h2>Reports</h2></a>
+<em>New in 1.5.0</em> Reports are automatically generated Wiki pages containing links to other Wiki pages. A report collects information from a page in order to decide whether or not to include the page. Reports can be edited and exported just like any other Wiki page. The report creation is triggered from the menu &quot;Extra&quot;. Reports help to structure content and to navigate within static pages.
+<p>
+<a name="a) Search reports"><h3>a) Search reports</h3></a>
+Search reports act like a file name search (the &quot;Goto&quot; form within the menu) or like a full text search. Instead of providing the results as list view, a report stores them in a Wiki page.
+<p>
+<a name="b) Marker reports"><h3>b) Marker reports</h3></a>
+The second category of reports requires that each included Wiki page offers a report marker. PWP analyses the markers and includes or ignores a page. The marker follow the format:
+<p>
+<div align="center"><strong>%%ReportName:Field1:Field2:..:FieldN%%</strong></div>
+<p>
+Report names are case insensitive. PWP supports partial name matches, thus it is possible to generate very specific or more general reports using a suitable report name scheme. For example  consider a report marker named <strong>%%Rivers.Europe:...%%</strong>. This allows you to generate a report for any marker starting with <strong>Rivers</strong> or to select only a sub category requesting a report for <strong>Rivers.Europe</strong>.
+<p>
+A report name have to be unique within a single Wiki page. But one page may contain many report markers for totally different reports.
+<p>
+It is not required that a report name and the name of the generated Wiki page are identical. The connection between report name and Wiki page is made within the report form.
+<p>
+The report markers can either be visible just like ordinary text or you can hide them within an editor comment: ! -- %%MyReport::2:%% -- !.
+<p>
+A detailed description is to be found within the corresponding report form, reachable via menu &quot;Extra&quot;.
+<p>
+<a name="Table of contents report (TOC)"><h4>Table of contents report (TOC)</h4></a>
+This report helps to organise your pages in a hierarchy. Each page belonging to the report provides information about the predecessor and its level relative to the predecessor within the marker fields.
+<p>
+This way of processing a TOC hierarchy enable you to move a chapter with a whole tree of subchapters within the hierarchy by just changing one predecessor on one page.
+<p>
+<a name="Keyword index report"><h4>Keyword index report</h4></a>
+You may connect one page with several keywords. The report provides a list of related pages for each keyword.
+<p>
+Besides this, the keyword index report is a really useful feature for portal pages. A portal page itself covers a wider theme and enumerates related sub themes. By using the sub theme as keyword, PWP will populate portal pages automatically. You get an enumeration of all sub themes with links to the corresponding Wiki pages.
+<p>
+The keyword index report enables self organising content: Each page classifies itself and provides a link to the report, too:
+<p>
+<div align="center">%%Europe:City%%<br>
+[[Europe#City]] </div>
+<p>
+Instead of linking from each city to all other cities, you just link to the classification entry and join the corresponding report.
+<p>
+<a name="Trail map / teaser text report"><h4>Trail map / teaser text report</h4></a>
+A report for news or tutorial trail maps, etc. This type of report supports the usage of a teaser text. Optionally, you may provide a different heading and a sorting hint. The latter one is required for news pages.
+<p>
+<a name="Using local links for uploaded files"><h2>Using local links for uploaded files</h2></a>
+Within an intranet it might be more comfortable to access uploaded files via a local path or a Windows UNC path instead of executing a HTTP download. In order to do so, PWP offers the InterWiki link target '.'. If set and not empty, the path provided in this link target prepends the links to uploaded files in lists. Within Wiki pages use the usual syntax [{. myfile.doc}] or [-{. myimage.gif}].
+<p>
+ Sample: $this-&gt;mIWiki['.'] = &quot;file://d:/pwp/wiki/&quot;; 
+<p>
+However, some user agents provide a security model that denies local links in web pages recieved via HTTP. For Firefox, there is an extension called &quot;LocalLink&quot; available that solves the problem.<!--content end-->
+
+</div>	</div>
+	<p>&nbsp;&nbsp;&nbsp;<small>(Powered by <a href='http://www.lars-ackermann.de/wiki/static'>PWP Version 1-5-0</a>)</small></p>
+</body>
+</html>
