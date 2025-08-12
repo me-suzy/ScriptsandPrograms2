@@ -1,0 +1,70 @@
+<table class="block">
+<form enctype="multipart/form-data" action="" method="post">
+<input type="hidden" name="MAX_FILE_SIZE" value="3000000">
+<tr><th>Add new image:</th></tr>
+<tr><td>
+<table>
+
+<tr>
+<td >Title:</td>
+<td><INPUT name="title" size="27" type="text" ></td>
+</tr>
+
+<tr>
+<td>Comment:</td>
+<td><INPUT name="comment" size="27" type="text" >
+<!--<textarea name="comment"></textarea>-->
+</td>
+</tr>
+
+<tr>
+<td>Image: (
+<?
+if(function_exists("imagegif"))echo "*.gif";
+if(function_exists("imagepng"))echo " *.png";
+if(function_exists("imagejpeg"))echo " *.jpg";
+?>)
+</td>
+<td><INPUT name="img_file_normal" size="30" type="file" ></td>
+</tr>
+
+<tr>
+<td>Position:</td>
+<td>
+<SELECT name="img_position">
+<?for($i=1;$i<$html["count_total"]+2;$i++){?>
+<option value="<?=$i?>" <?if($html["config"]["sort"]=="old")if($i>$count)echo "selected"?>><?=$i?></OPTION>
+<?}?>
+</SELECT>
+</td>
+</tr>
+
+<tr>
+<td>Category:</td>
+<td>
+<select name="cat" >
+<?foreach($html['cats'] as $item){?>
+<option value="<?=$item['id']?>" <?if($html['postget']['cat']==$item['id'])echo "selected"?>><?=$item['title']?></option>
+<?}?>
+</select>
+</td>
+</tr>
+
+
+<tr>
+<td>visible:</td>
+<td><INPUT type="checkbox" name="img_visible" checked></td>
+</tr>
+
+</table>
+</td></tr>
+
+<tr><td align="center" bgcolor="Silver">
+<INPUT type="submit" value="Submit">
+</td></tr>
+<INPUT type="hidden" name="action" value="gallery_add">
+<INPUT type="hidden" name="lang" value="<?=$template["lang"]?>">
+<INPUT type="hidden" name="page" value="<?=$template["page"]?>">
+
+</form>
+</TABLE>
