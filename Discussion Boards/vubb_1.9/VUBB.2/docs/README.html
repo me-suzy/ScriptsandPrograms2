@@ -1,0 +1,176 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>VUBB ReadMe</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+
+<body>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<table border="1" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+  <tr> 
+	<td width="100%" bgcolor="#327FBF" align="center"><u> <font color="#FFFFFF" face="Copperplate Gothic Bold" size="6">VUBB</font></u> 
+	  <p> <u><font color="#FFFFFF" face="Copperplate Gothic Bold">README</font></u></td>
+  </tr>
+  <tr> 
+	<td height="23" valign="top"> 
+	  <div align="center"><a href="#install">Installation</a> | <a href="#manual">Manual 
+		Install</a> | <a href="#modules">Modules</a> | <a href="#templates">Templates</a> 
+		| <a href="http://www.mysite.com/forum">Extras</a></div></td>
+  </tr>
+  <tr> 
+	<td height="938" valign="top" bgcolor="#EEEEFB"> 
+	  <p style="margin-top: 1; margin-bottom: 1"><strong>Installation 
+		Steps<a name="install" id="install"></a></strong></p>
+	  <p style="word-spacing: 1; margin-top: 1; margin-bottom: 1">Please first 
+		read the license and if you agree then you can upload the <br />
+		contents of the upload folder into your desired location. 
+	  <p style="word-spacing: 1; margin-top: 1; margin-bottom: 1">&nbsp;
+	  <p style="word-spacing: 1; margin-top: 1; margin-bottom: 1">To install the 
+		forum please use install.php in the uploads directory, <br />
+		you will need to chmod config.php to 777 or on some configurations 755.</p>
+	  <p style="word-spacing: 1; margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1">1) Please make sure you read 
+		the licence and agree to it before installing.</p>
+	  <p style="margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1">2) Upload all the contents of 
+		the upload folder in the desired location</p>
+	  <p style="margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1">3) When all files are uploaded, 
+		chmod the config.php file to 777</p>
+	  <p style="margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1">4) Run the install.php file from 
+		the main directory.&nbsp; </p>
+	  <p style="margin-top: 1; margin-bottom: 1">eg, if you installed to <a href="http://www.mysite.com/forum">www.mysite.com/forum</a>, 
+		the installer would be located at <a href="http://www.mysite.com/forum/install.php"> 
+		www.mysite.com/forum/install.php</a></p>
+	  <p style="margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1">5) Fill in the required information 
+		the installer asks for and click to proceed.</p>
+	  <p style="margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1">6) Installation Complete!</p>
+	  <p style="margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1"><i><strong>NOTE:</strong></i>&nbsp; 
+		To provide security, it is advised at this point to remove the install.php 
+		file, keeping the install file could enable someone to do damage to your 
+		board. </p>
+	  <hr color="#000000" size="3">
+	  <p style="margin-top: 1; margin-bottom: 1"><strong>
+		Manual Install<a name="manual" id="manual"></a></strong></p>
+	  <em><strong>If you have no problems with install.php, ignore this section. 
+	  </strong></em> 
+	  <p style="margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1">If you have problems installing 
+		you can manually configure the forum installation.</p>
+	  <p style="margin-top: 1; margin-bottom: 1"><br />
+		Please use the the SQL file provided with this package located in the 
+		docs folder, use this file in phpmyadmin and then edit the config table 
+		to match your site path and site url to the script.</p>
+	  <p style="margin-top: 1; margin-bottom: 1">&nbsp;</p>
+	  <p style="margin-top: 1; margin-bottom: 1">You will need to put this in 
+		the config file(replace with correct values):<br />
+		database_connect('localhost', 'user', 'pass', 'database');</p>
+	  <hr />
+	  <p style="margin-top: 1; margin-bottom: 1"> <strong>Modules</strong><a name="modules" id="modules"></a><br />
+		VUBB has a fully modular system meaning that all files forum.php, 
+		viewforum.php, viewtopic.php are all modules. This makes it easy to mod 
+		as the pages are not hard-coded into the system.<br />
+		<br />
+		Links: <a href="#newmodule">Adding new module</a> | <a href="#defualtmodule">Changing 
+		defualt module</a><br />
+		<br />
+		<a name="newmodule" id="newmodule"></a> <br />
+		To add a new module open index.php and find;<br />
+		<em>// Modules<br />
+		$modules = array(<br />
+		'forum' =&gt; 'forum',<br />
+		'viewforum' =&gt; 'viewforum',<br />
+		'viewtopic' =&gt; 'viewtopic',<br />
+		'register' =&gt; 'register',<br />
+		'login' =&gt; 'login',<br />
+		'usercp' =&gt; 'usercp',<br />
+		'newtopic' =&gt; 'newtopic',<br />
+		'newreply' =&gt; 'newreply',<br />
+		'newpoll' =&gt; 'newpoll',<br />
+		'editpost' =&gt; 'editpost',<br />
+		'viewprofile' =&gt; 'viewprofile',<br />
+		'members' =&gt; 'members'<br />
+		); <br />
+		<br />
+		</em>Simply add another module in like so;<em><br />
+		// Modules<br />
+		$modules = array(</em></p>
+	  <p style="margin-top: 1; margin-bottom: 1"><em>'newmdoule' =&gt; 'newmodule',<br />
+		'forum' =&gt; 'forum',<br />
+		'viewforum' =&gt; 'viewforum',<br />
+		'viewtopic' =&gt; 'viewtopic',<br />
+		'register' =&gt; 'register',<br />
+		'login' =&gt; 'login',<br />
+		'usercp' =&gt; 'usercp',<br />
+		'newtopic' =&gt; 'newtopic',<br />
+		'newreply' =&gt; 'newreply',<br />
+		'newpoll' =&gt; 'newpoll',<br />
+		'editpost' =&gt; 'editpost',<br />
+		'viewprofile' =&gt; 'viewprofile',<br />
+		'members' =&gt; 'members'<br />
+		); </em><br />
+		<br />
+		<a name="defualtmodule" id="defualtmodule"></a> <br />
+		Changing the defualt module, to do this find;<br />
+		<em> // Set defualt module if none set<br />
+		if (!isset($_GET['act']))<br />
+		{<br />
+		$act = 'forum';<br />
+		}</em><br />
+		<br />
+		Change 'forum'; to the name of the module you want to show when the forum 
+		is first loaded up. For example;<br />
+		<em>// Set defualt module if none set<br />
+		if (!isset($_GET['act']))<br />
+		{<br />
+		$act = 'members';<br />
+		} </em></p>
+	  <hr />
+	  <p style="margin-top: 1; margin-bottom: 1"><strong>Templates</strong><a name="templates" id="templates"></a><br />
+		The templates for VUBB are in php for a very good reason, instead 
+		of messing around with a new templating syntax i can actually work php 
+		and html together which also makes for faster loading and enables me to 
+		include advanced options easily.<br />
+		With a tiny bit of php knowledge you will be able to easily edit the templates.<br />
+		<br />
+		For example if you wanted to add another space after each category you 
+		would edit the forum.php template and find this;<br />
+		<em>// end cat table<br />
+		function end_cat_table()<br />
+		{<br />
+		echo '<br />
+		&lt;tr&gt;&lt;td width=&quot;100%&quot; colspan=&quot;5&quot; class=&quot;cat_block&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;<br />
+		&lt;/table&gt;<br />
+		&lt;br /&gt;';<br />
+		}</em><br />
+		<br />
+		You would add another &lt;br /&gt; to the end of it so it would look like 
+		this;</p>
+	  <p style="margin-top: 1; margin-bottom: 1"><em>// end cat table<br />
+		function end_cat_table()<br />
+		{<br />
+		echo '<br />
+		&lt;tr&gt;&lt;td width=&quot;100%&quot; colspan=&quot;5&quot; class=&quot;cat_block&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;<br />
+		&lt;/table&gt;<br />
+		&lt;br /&gt;</em></p>
+	  <p style="margin-top: 1; margin-bottom: 1"><em>&lt;br /&gt;';<br />
+		}</em><br />
+		<br />
+		It is that simple! PHP templates does not make it hard to template! Each 
+		template name is relative to the module name and in each template are 
+		the different sections that module uses (usually inside functions).<br />
+		<br />
+		The PSD files for the images of the core template will be supplied for 
+		download in a later version.</p>
+	  <hr />
+	  </td>
+  </tr>
+</table>
+</body>
+</html>
