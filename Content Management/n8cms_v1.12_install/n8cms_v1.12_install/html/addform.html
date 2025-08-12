@@ -1,0 +1,106 @@
+<?
+$lang['months'] = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+$z = 3;
+	for($i=1;$i < 8; $i++) {
+		
+		if ($z == 0) {
+			echo "	<option value=\"" . ($year - $z) . "\" selected>" . ($year - $z) . "</option>\n";
+		} else {
+			echo "	<option value=\"" . ($year - $z) . "\">" . ($year - $z) . "</option>\n";
+		}
+		
+		$z--;
+	}
+
+	echo "</select>\n\n";
+}
+
+function monthPullDown($month, $montharray)
+{
+	echo "\n<select name=\"month\">\n";
+
+	for($i=0;$i < 12; $i++) {
+		if ($i != ($month - 1)) {
+			echo "	<option value=\"" . ($i + 1) . "\">$montharray[$i]</option>\n";
+		} else {
+			echo "	<option value=\"" . ($i + 1) . "\" selected>$montharray[$i]</option>\n";
+		}
+	}
+
+	echo "</select>\n\n";
+}
+
+function yearPullDown($year)
+{
+	echo "<select name=\"year\">\n";
+
+	$z = 3;
+	for($i=1;$i < 8; $i++) {
+		
+		if ($z == 0) {
+			echo "	<option value=\"" . ($year - $z) . "\" selected>" . ($year - $z) . "</option>\n";
+		} else {
+			echo "	<option value=\"" . ($year - $z) . "\">" . ($year - $z) . "</option>\n";
+		}
+		
+		$z--;
+	}
+
+	echo "</select>\n\n";
+}
+
+function dayPullDown($day)
+{
+	echo "<select name=\"day\">\n";
+
+	for($i=1;$i <= 31; $i++) {
+		if ($i == $day) {
+			echo "	<option value=\"$i\" selected>$i</option>\n";
+		} else {
+			echo "	<option value=\"$i\">$i</option>\n";
+		}
+	}
+
+	echo "</select>\n\n";
+}
+
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+</head>
+
+<body>
+<form name='N8cms_pageadd' method='GET' action='N8cms_add.php'>
+<input type='hidden' name='add' value='1'>
+<input type='Hidden' name='rec_crt' value='$date'>
+<input type='hidden' name='rec_edit' value='$datetime'>
+
+<table cellpadding=2 width=90% cellspacing=1 border=1 align='center'>
+<tr><td>page owner (your user name)</td><td><input type="text" name="author"></td></tr>
+<TR class='one'><TD>Page title</td><td><input type="text" name="pg_title"></td></tr>
+
+<tr><td>enter the text you want on this page</td><td><textarea cols="30" rows="10" name="content"></textarea></td></tr>
+<tr><td>Date this info expires,<br> content will not be displayed after midnight on this date (no entry means never expire)</td><td>day<?dayPullDown($d);?> month<? monthPullDown($m, $lang['months']);?><?  yearPullDown($y); ?></td></tr>
+</table>
+<br>
+<input type='submit' class='button' value='Create'>
+<input type='Reset' class='button' name='discard' value='Reset'>
+<!---
+session will be used to add admin_lvl info
+
+pageid
+rec_crt
+rec_edit
+author
+active
+pg_title
+location
+admin_lvl
+content
+rec_expire
+--->
+</body>
+</html>
