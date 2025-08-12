@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<ddl version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.myobjects.org/reference/ddl.xsd">
+	<database name="casestudy">
+		<table name="users" className="User">
+			<field name="userid" primaryKey="true" autoIncrement="true" required="true" unique="true">
+				<data>
+					<numeric unsigned="true" mysqltype="int" size="11"/>
+				</data>
+				<description><![CDATA[User Id]]></description>
+			</field>
+			<field name="name">
+				<data>
+					<text type="cleanText" mysqltype="varchar" size="80">
+						<minimumLength>4</minimumLength>
+						<maximumLength>80</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Name of the User]]></description>
+			</field>
+			<field name="username" required="true" unique="true">
+				<data>
+					<text type="word" mysqltype="varchar" size="32">
+						<minimumLength>3</minimumLength>
+						<maximumLength>32</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[User Name]]></description>
+			</field>
+			<field name="password" required="true">
+				<data>
+					<text type="default" mysqltype="varchar" size="32">
+						<minimumLength>4</minimumLength>
+						<maximumLength>32</maximumLength>
+					</text>
+					<storeFunction>md5</storeFunction>
+				</data>
+				<description><![CDATA[Password]]></description>
+			</field>
+			<field name="email" required="true" unique="true">
+				<data>
+					<text type="email" mysqltype="varchar" size="255">
+						<maximumLength>255</maximumLength>
+					</text>
+				</data>
+				<description><![CDATA[Email of the user]]></description>
+			</field>
+			<field name="active" required="true">
+				<data>
+					<enum boolean="true">
+						<enumValue flag="true">Y</enumValue>
+						<enumValue flag="false">N</enumValue>
+					</enum>
+				</data>
+				<description><![CDATA[Active flag]]></description>
+			</field>
+			<field name="admin" required="true">
+				<data>
+					<enum boolean="true">
+						<enumValue flag="true">Y</enumValue>
+						<enumValue flag="false">N</enumValue>
+					</enum>
+				</data>
+				<description><![CDATA[Admin Flag]]></description>
+			</field>
+			<field name="creationdate" required="true">
+				<data>
+					<timeData type="datetime"/>
+				</data>
+				<description><![CDATA[Creation Date of the User Account]]></description>
+			</field>
+			<description><![CDATA[The class that will hold user information]]></description>
+		</table>
+	</database>
+</ddl>
