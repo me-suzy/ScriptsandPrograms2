@@ -1,0 +1,75 @@
+<form>
+	<title>Expense Details</title>
+	<action>index.php?sub=tasks&action=store</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<save onclick="" button="return">
+			<location>index.php?sub=reports&action=details&report_id={EXPENSE_REPORT}</location>
+		</save>
+
+		<return onclick="" button="edit" >
+			<location>index.php?sub=expenses&action=edit&expense_id={EXPENSE_ID}</location>
+		</return>
+
+	</buttons>
+
+	<fields>
+
+		<expense_id type="hidden" hidden="true"/>
+
+		<expense_location type="text">
+			<title>Location</title>
+		</expense_location>
+
+		<expense_cat type="relation">
+			<title>Category</title>
+			<relation table="cats" id="cat_id" text="cat_name" />
+		</expense_cat>
+
+		<expense_description type="text" size="40:4">
+			<title>Description</title>
+		</expense_description>
+
+		<subtitle type="subtitle" title="Details" />
+
+		<expense_status type="relation" title="Status" >
+			<options>
+				<option name="1">approved</option>
+				<option name="2">not approved</option>
+				<option name="3">pending</option>
+				<option name="4">other</option>
+			</options>
+		</expense_status>
+
+		<expense_date type="text" action="date" params="m.d.Y">
+			<title>Date</title>
+		</expense_date>
+
+		<expense_amount type="text" action="price" title="Amount" preffix="$" />
+
+		<expense_recepit type="relation" title="Recepit" >
+			<options>
+				<option name="1">yes</option>
+				<option name="0">no</option>
+			</options>
+		</expense_recepit>
+
+		<expense_billable type="relation" title="Billable" >
+			<options>
+				<option name="1">yes</option>
+				<option name="0">no</option>
+			</options>
+		</expense_billable>
+
+	</fields>
+</form>
