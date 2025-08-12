@@ -1,0 +1,867 @@
+<html>
+<head>
+<title>AMXBans v4.0 readme</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<link rel="stylesheet" type="text/css" href="http://games.xs4all.nl/bans/include/amxbans.css" />
+<script type="text/javascript" language="JavaScript" src="http://games.xs4all.nl/misc/bans/layer.js"></script>
+
+</head>
+
+<body>
+
+<a name="index"></a>
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+	<tr>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_xclick">
+		<input type="hidden" name="business" value="yomama@xs4all.nl">
+		<input type="hidden" name="item_name" value="amxbans">
+		<input type="hidden" name="item_number" value="007">
+		<input type="hidden" name="no_note" value="1">
+		<input type="hidden" name="currency_code" value="EUR">
+		<input type="hidden" name="tax" value="0">
+		<td valign="bottom"><input type="image" src="http://www.xs4all.nl/~yomama/amxbans/paypal.gif" border="0" name="submit" alt="You think AMXbans is cool? Donations are appreciated (but not required)"></td>
+		</form>
+		<td align="right" valign="bottom"><font size="4">AMXbans v4.0 by YoMama/LuX</font></td>
+	</tr>
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width='100%'>
+  <tr>
+    <td width='100%' valign='top' style='padding: 20px'>
+    <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+      <tr>
+        <td>
+
+
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>0. index</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						<ol>
+							<li><a href="#current">CURRENT VERSIONS</a></li>
+							<li><a href="#requirements">REQUIREMENTS</a></li>
+							<li><a href="#features">FEATURES</a></li>
+							<li><a href="#installing_amxbans">INSTALLING AMXBANS</a></li>
+							<li><a href="#motd_template">USING THE MOTD-TEMPLATE</a></li>
+							<li><a href="#adding_admins">ADDING ADMINS</a></li>
+							<li><a href="#third_party">THIRD PARTY PLUGINS</a></li>
+							<li><a href="#console_commands">CONSOLE COMMANDS</a></li>
+							<li><a href="#how_does_it_work">HOW DOES IT WORK?</a></li>
+							<li><a href="#contact_info">CONTACT INFO</a></li>
+							<li><a href="#credits">CREDITS</a></li>
+							<li><a href="#download">DOWNLOAD</a></li>
+							<li><a href="#changelog">CHANGELOG</a></li>
+						
+						</ol>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="current">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>1. current versions</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						Below are the most recent versions of the plugins and front-end for AMXBans:<br>
+						<ul>
+							<li>amxmod plugins: <b>4.0</b>.
+							<li>amxmodx plugins: <b>4.0</b>.
+							<li>web front-end (PHP): <b>4.0</b>.
+						</ul>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="requirements">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>2. requirements</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						In order to be able to use AMXbans, you will need the following:<br>
+						<ul>
+							<li>Latest (release) version of Metamod installed and working.
+							<li>Latest (release) version of AMX (0.9.9) or AMXX (1.0) installed and working (with mySQl support).
+							<li>Access to MySQl Database.
+							<li>website/space with PHP (magic_quotes_gpc must be <b>ON</b>)
+							<li>Smarty templating system (<a href="http://smarty.php.net" target="_new">http://smarty.php.net</a>).
+						</ul>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="features">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>3. features</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						<ol>
+							<li>Plugin included for both AMX and AMXX
+							<li>Banmenu (amxmodx only)
+							<li>Fully automated ingame bansystem
+							<li>Supports Steam
+							<li>Ban by SteamID or IP
+							<li>Kickban players on your servers directly from the web front-end
+							<li>Search bandatabase (in-game and via front-end)
+							<li>Supports multiple HL mods (currently Counter-Strike, Counter-Strike: Condition Zero, Day of Defeat, Team Fortress Classic and Natural Selection, and much more are tested)
+							<li>Supports an unlimited (OK maybe not unlimited, but a lot! :) amount of servers (tested on 10+ servers simultaniously)
+							<li>Look and feel fully customizeable by using a templating system
+							<li>Configuration panel for easy front-end configuration
+							<li>Optionally use included amx admin plugin or your own
+							<li>Baninfo displayed in motd-window (html). When a player gets banned, a motd-style window will pop-up with ban-details.
+							<li>Editable MOTD display time. Since the motd-window closes when the player is kicked, a delay is introduced. This delay can also be set via web-frontend (defaults to 10 secs)
+							<li>Login using cookies
+							<li>Ban / unban / ban edit / ban removal via website
+							<li>Banlist-export
+							<li>Search-options (search by wonid, date, server or admin)
+							<li>Import from text-based banlist (i.e. banned.cfg). Original code for this was donated by Jon L. aka intel352 (thx dude!)
+							<li>Customizeable webadmin levels (setup your own levels and assign them to admins)
+							<li>Ability to create gameadmin-only accounts, amxbansweb-only accounts or both (so you can create logins that will only work on the gameserver, but not on the website for example)
+							<li>Ability to assign custom access and flags (according to amxmod specifications)
+							<li>amx plugin auto-update notification
+							<li>Admin management (web-based)
+							<li>Permissions matrix - quickly assign admins to servers.
+							<li>Ban-history
+							<li>Various logging features
+							<li>DB pruning via seperate perl-script (included)
+							<li>works on win32 and linux systems
+							<li>Possibility to use master-slave setups (Contact <a href="mailto:yomama@xs4all..nl">YoMama</a> for more information)
+							<li>Easy to integrate with other plugins (HLGuard, ATAC, admin menu plugin, etc.)
+							<li>easy to install
+							<li>and more...
+						</ol>
+			
+						If you want to check out some of the features before installing, Check out a working example at: <a href="http://games.xs4all.nl/bans" target="_new">http://games.xs4all.nl/bans</a><br><br>
+
+            </td>
+          </tr>
+        </table>
+
+          </tr>
+        </table>
+
+				<br>
+				<a name="installing_amxbans">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>4. installing amxbans</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						<ul>
+							<li><b>Backup</b><br><br>
+							<ol>
+								<li><b>Backup all tables!</b>
+								<li><b>Make a backup of the web front-end</b><br><br>
+							</ol>
+			
+			
+							<li><b>installing the web interface</b><br><br>
+							<ol>
+								<li>Copy the contents of the 'web'-folder to a location accessible to your webserver (e.g. /usr/local/www/www.yoursite.com/htdocs/amxbans).
+								<li>Download the latest stable release of Smarty: <a href="http://smarty.php.net/download.php" target="_new">http://smarty.php.net/download.php</a>
+								<li>Copy the contents (including subdirs!) of the 'libs'-dir to the 'smarty'-directory.
+								<li>Make sure that the user running your webserver has write-access to the smarty/templates_c directory and to include/config.inc.php!
+								<li>Make sure you have a database available that will be holding the AMXBans tables.
+								<li>Open setup.php in your favorite browser (e.g. http://www.yoursite.com/amxbans/admin/setup.php) and follow the directions. Note that existing tables will *NOT* get overwritten. If your upgrading from a previous version, Make sure you enter the same login details as your current one when asked.
+								<li>delete the file setup.php from the 'admin'-dir. The web interface will not work if you do not remove this file.<br><br>
+							</ol>
+			
+							<li><b>Installing the plugins</b><br><br>
+			
+							<ul>
+							<li>AMX<br><br>
+							<ol>
+								<li>extract admins_mysql.sma and amxbans.sma to <moddir>/addons/amx/examples/source (or copy the precompiled versions directly to <moddir>/addons/amx/plugins. Make sure your existing admin_mysql.amx will be overwritten!<br><br>
+										<b>*note*</b><br>
+										The supplied admin_mysql.sma is a slightly modified version of the original. It uses an altered query to only fetch admins assigned to one or more particular servers. This way you can have all admins in one table, and still be able to assign admins per server.<br><br>
+								<li>compile the plugins if you didn't use the precompiled ones.
+								<li>Add entries for both plugins to <moddir>/addons/amx/plugins/plugins.ini (right below admincmd.amx). admin_mysql.amx may allready exist in the plugin.ini file. In that case removing the ';' in front of admin_mysql.amx will suffice.
+								<li>restart your server(s) and verify that both plugins are loaded (type 'amx list' in console).
+								<li>You can use the included web-interface to add your admins.<br><br>
+							</ol>
+							<li>AMXX<br><br>
+							<ol>
+								<li>extract admin.sma, amxbans.sma and amxbans_menu.sma to <moddir>/addons/amxmodx/scripting (or copy the precompiled versions directly to <moddir>/addons/amxmodx/plugins. Make sure your existing admin.amxx will be overwritten!<br><br>
+										<b>*note*</b><br>
+										The supplied admin.sma is a slightly modified version of the original. It uses an altered query to only fetch admins assigned to one or more particular servers. This way you can have all admins in one table, and still be able to assign admins per server.<br><br>
+								<li>compile the plugins if you didn't use the precompiled ones.
+								<li>Add an entry for amxbans.amxx to <moddir>/addons/amxmodx/configs/plugins.ini (right below admin.amxx). Add an entry for amxbans_menu.amxx at the end of plugins.ini
+								<li>Place amxbans.txt in <moddir>/addons/amxmodx/data/lang
+								<li>restart your server(s) (or changelevel) and verify that all three plugins are loaded (You will see a line '[amxbans.amxx] AMXBans amxx_3.1 is online'). If you don't have access to the console; this message is also printed in amxmodx logs.
+								<li>You can use the included web-interface to add your admins and reasons.<br><br>
+							</ol>
+							</ul>
+										
+							<li><b>installing the DB pruning script (optional)</b><br><br>
+							<ol>
+								<li>open the file move_bans.pl located in the zip-file.
+								<li>enter your database details
+								<li> run the script regularly via a cronjob for example. To setup a cronjob for this, you might use: '*/15 * * * * /home/amxbans/mv_bans.pl'. This will prune your DB every 15 minutes.<br><br>
+							</ol>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="motd_template">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>5. using the motd-template</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						From v2.0 onwards, a 'MOTD'-style info-pane is displayed to the target before (s)he gets kicked from the server. Both the time this MOTD is displayed and the URL to the template can be edited in the server setting-window. For your convenience we have included a MOTD-template called 'motd_details.php. You need to pass the banID like so:<br><br>
+						'<i>http://www.yourdomain.com/amxbans/motd_details.php?bid=%s</i>'.<br><br>
+						The '%s' will be parsed by the AMXbans plugin. Obviously you can edit the corresponding template file to suit your needs.<br><br>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="adding_admins">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>6. adding admins</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						There are two types of admins that can be managed using AMXBans:
+			
+						<ol>
+							<li><b>Webadmins</b>. Admins created in this section have access to (some parts of) the AMXBans website. How much access they have, depends on the level they are assigned to.</li>
+							<li><b>AMXadmins</b>. Admins created in this section are given (certain) admin-rights on (some of) the participating servers. How much access and to which servers can be determined by repectively the 'access'-field in the 'AMXadmin management'-section, and the 'server admins'-option at the top of the page.</li>
+						</ol>
+			
+						The Webadmins-part is pretty self explainatory, so we'll get right on to AMXadmin management.<br><br>
+						First off: if you like to disable AMXadmin management alltogether (for example because you want to use 'users.ini' located in '<i>&lt;moddir&gt;/addons/amx/</i>'), you need to set '<i>$CFG-&gt;admin_management</i>' to '<i>no</i>' in '<i>&lt;amxbanswebroot&gt;/inc/config.inc.php</i>'. If you choose to set this value to 'no', you do not need to load the plugin '<i>admin_mysql.amx</i>'.<br><br>
+						If you do choose to use the included admin-management feature, here's what the different fields represent:
+			
+						<ul>
+							<li><b>Nickname/SteamID/IP</b><br>Here you enter (surprisingly) either the admin's nickname, SteamID or IP address. Depending on what you enter here, you need to define the corresponding '<i>flags</i>', but will get to that later.<br><br></li>
+							<li><b>password</b><br>Here you enter the password belonging to whatever you entered in the '<i>Nickname/SteamID/IP</i>'-field. You do not need to enter a password, but again you would have to define the corresponding '<i>flags</i>.<br><br></li>
+							<li><b>access</b><br>Here you define how much 'power' your admin has on the server(s). Below is a legend:<br><br>
+									a - immunity (can't be kicked/banned/slayed/slaped and affected by other commmands)<br>
+									b - reservation (can join on reserved slots)<br>
+									c - amx_kick command<br>
+									d - amx_ban and amx_unban commands<br>
+									e - amx_slay and amx_slap commands<br>
+									f - amx_map command<br>
+									g - amx_cvar command (not all cvars will be available)<br>
+									h - amx_cfg command<br>
+									i - amx_chat and other chat commands<br>
+									j - amx_vote and other vote commands<br>
+									k - access to sv_password cvar (by amx_cvar command)<br>
+									l - access to amx_rcon command and rcon_password cvar (by amx_cvar command)<br>
+									m - custom level A (for additional plugins)<br>
+									n - custom level B<br>
+									o - custom level C<br>
+									p - custom level D<br>
+									q - custom level E<br>
+									r - custom level F<br>
+									s - custom level G<br>
+									t - custom level H<br>
+									u - menu access<br>
+									z - user<br><br>
+			
+									So if you want an admin to only be ably to change maps, vote maps, kick players and use admin chat commands on your server(s), you would enter '<i>cfi</i>'. If you want to give an admin full admin-rights on your server, you would enter '<i>abcdefghijklmnopqrstu</i>' (allthough I strongly advise against 'l', a lowercased 'L' that is, since it basically gives your admin RCON-access to your server).<br><br></li>
+							<li><b>flags</b><br>Here you define the various 'flags' for an admin:<br><br>
+									a - disconnect player on invalid password<br>
+									b - clan tag<br>
+									c - this is steamid<br>
+									d - this is ip<br>
+									e - password is not checked (only name/ip/steamid needed)<br><br>
+			
+									The best way to explain the usage is by looking at some of the examples at the end of this paragraph.<br><br></li>
+							<li><b>SteamID</b><br>Here you define the steamID of the admin. This is purely used for displaying a name on the AMXbans website.<br><br>
+							<li><b>nickname</b><br>Here you define the nickname the admin is commonly known as. This is purely used for displaying a name on the AMXbans website.<br><br>
+									If an admin is for example well known as 'YoMama' in your community, but enters the server incognito as for example 'Shaka Zulu' and bans a player, In the ban-details screen the admin would be displayed as: <b>banned by:&nbsp;&nbsp;&nbsp;&nbsp;Shaka Zulu (YoMama)</b>.<br><br>
+						</ul>
+			
+						Now for some examples:<br><br>
+						If you want the admin YoMama, with SteamID STEAM_0:1:4548 to be able to admin under any name, have full access to your server, and use a password to identify him/herself as admin you would enter:<br><br>
+			
+						<center>
+						<table cellspacing='1' class='listtable' width='60%'>
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>Nickname/SteamID/IP</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>password</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>access</i></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><i>flags</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>steamid</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>nickname</i></td>
+							</tr>
+			
+							<tr bgcolor='#D3D8DC'>
+								<td class='listtable_1' align="center"><input type="text" name="username" value="STEAM_0:1:4548" style="font: 8pt bold; width: 120px" ></td>
+								<td class='listtable_1' align="center"><input type="text" name="password" value="somepassword" style="font: 8pt bold; width: 100px" ></td>
+								<td class='listtable_1' align="center"><input type="text" name="access" value="abcdefghijklmnopqrstu" style="font: 8pt bold; width: 120px" ></td>
+								<td class='listtable_1' align="center"><input type="text" name="flags" value="ac" style="font: 8pt bold; width: 40px" ></td>
+								<td class='listtable_1' align="center"><input type="text" name="steamid" value="STEAM_0:1:4548" style="font: 8pt bold; width: 120px" ></td>
+								<td class='listtable_1' align="center"><input type="text" name="nickname" value="YoMama" style="font: 8pt bold; width: 120px" ></td>
+							</tr>
+						</table>
+						</center>
+						<br><br>
+			
+						If you want the same admin have the same rights as above, but don't need him to enter a password (since SteamIDs are unique), you would enter:<br><br>
+			
+						<center>
+						<table cellspacing='1' class='listtable' width='60%'>
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>Nickname/SteamID/IP</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>password</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>access</i></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><i>flags</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>steamid</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>nickname</i></td>
+							</tr>
+			
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="username" value="STEAM_0:1:4548" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="password" value="" style="font: 8pt bold; width: 100px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="access" value="abcdefghijklmnopqrstu" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><input type="text" name="flags" value="ce" style="font: 8pt bold; width: 40px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="steamid" value="STEAM_0:1:4548" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="nickname" value="YoMama" style="font: 8pt bold; width: 120px" ></td>
+							</tr>
+						</table>
+						</center>
+						<br><br>
+			
+						If you want admin YoMama from a specific IP-address to have kick-, ban- and slay-rights without having to provide a password, enter:<br><br>
+			
+						<center>
+						<table cellspacing='1' class='listtable' width='60%'>
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>Nickname/SteamID/IP</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>password</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>access</i></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><i>flags</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>steamid</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>nickname</i></td>
+							</tr>
+			
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="username" value="207.46.244.188" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="password" value="" style="font: 8pt bold; width: 100px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="access" value="cde" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><input type="text" name="flags" value="de" style="font: 8pt bold; width: 40px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="steamid" value="STEAM_0:1:4548" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="nickname" value="YoMama" style="font: 8pt bold; width: 120px" ></td>
+							</tr>
+						</table>
+						</center>
+						<br><br>
+			
+						Finally an example of the settings I use. I authenticate my admins using their SteamID (so they can admin the servers using whatever name they choose), and I do want them to provide a password. The admins on my servers all have full access (except RCON- and CVAR-access) Besides that, I want to prevent other people from taking on the admin's nickname and pretending to be admin. Last but not least I want to prevent people from connecting with the default name 'Player':<br><br>
+			
+						<center>
+						<table cellspacing='1' class='listtable' width='60%'>
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>Nickname/SteamID/IP</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>password</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>access</i></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><i>flags</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>steamid</i></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><i>nickname</i></td>
+							</tr>
+			
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="username" value="STEAM_0:1:4548" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="password" value="hulahoop" style="font: 8pt bold; width: 100px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="access" value="abcdefhijkmnopqrstu" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><input type="text" name="flags" value="ac" style="font: 8pt bold; width: 40px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="steamid" value="STEAM_0:1:4548" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="nickname" value="YoMama" style="font: 8pt bold; width: 120px" ></td>
+							</tr>
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="username" value="YoMama" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="password" value="hulahoop" style="font: 8pt bold; width: 100px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="access" value="abcdefhijkmnopqrstu" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><input type="text" name="flags" value="a" style="font: 8pt bold; width: 40px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="steamid" value="STEAM_0:1:4548" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="nickname" value="YoMama" style="font: 8pt bold; width: 120px" ></td>
+							</tr>
+							<tr bgcolor='#D3D8DC'>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="username" value="Player" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="password" value="somerandompwd" style="font: 8pt bold; width: 100px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="access" value="z" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="4%"  class='listtable_1' align="center"><input type="text" name="flags" value="a" style="font: 8pt bold; width: 40px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="steamid" value="" style="font: 8pt bold; width: 120px" ></td>
+								<td height='16' width="16%" class='listtable_1' align="center"><input type="text" name="nickname" value="" style="font: 8pt bold; width: 120px" ></td>
+							</tr>
+						</table>
+						</center>
+						<br><br>
+			
+						Note that in the last example you want to use the same password and acces for the first 2 entries, since they belong to the same admin.<br><br>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="third_party">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>8. third party plugins</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						The examples below are based on AMXMODX 0.16.
+
+			<ul>
+				<li><b>ATAC (Advanced Team Attack Control)</b><br><br>
+				<ol>
+					<li>Install this plugin according to the installation instructions. You'll find the plugin and information on how to install it in this thread (this example discusses the amxmodx version of the plugin): <a href="http://www.amxmodx.org/forums/viewtopic.php?t=443">http://www.amxmodx.org/forums/viewtopic.php?t=443</a>
+					<li>Open the plugin 'amx_atac.sma' (located in the zip-file), and right below the line:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'><i>//Reomved due to steam equal("4294967295", kAuthid)</i> (around line 725)</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>Find the following line:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>
+
+							<i>if( atac_banvia == 2 ) // If LAN or IP ban via IP<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;server_cmd("addip %i %s;writeip;kick #%d", atac_bantime, kIP, userid)<br>
+							else<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">server_cmd("banid %i #%d kick;writeid", atac_bantime, userid)</font></i>
+
+							</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>And replace it with:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>
+
+							<i>if( atac_banvia == 2 ) // If LAN or IP ban via IP<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;server_cmd("addip %i %s;writeip;kick #%d", atac_bantime, kIP, userid)<br>
+							else<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">server_cmd("amx_ban %i %s Team kill violation", atac_bantime, kAuthid)</font></i>
+
+							</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>When you're done, save the plugin and compile it.
+					<li>Move the compiled plugin (named amx_atac.cfg) to '.../addons/amxx/plugins'
+					<li>(Re)start your server, and you should be all set.<br><br>
+				</ol>
+			</ul>
+
+			<ul>
+				<li><b>HLG (Half-Life Guard)</b><br><br>
+				<ol>
+					<li>Install this anti-cheat solution according to the installation instructions. You'll find it at <a href="http://www.unitedadmins.com/hlguard.php">http://www.unitedadmins.com/hlguard.php</a>
+					<li>Open the file 'hlg_net.cfg' (located in the zip-file in 'addons/hlguard/configs). In section::<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'><i>// Aimbot Warning System Detection Actions</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>Find the following line:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>hlg_aimbot "banid 60.0 %w kick;wait;writeid"</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>And replace it with:<br><br>
+  
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>hlg_aimbot "amx_ban 0 %w Suspected Aimbot"</td>
+						</tr>
+					</table>
+  
+					<br><br>
+
+					<li>In section:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'><i>// Alias Detection Actions</td>
+						</tr>
+					</table>
+
+					<br><br>
+  
+					<li>Find the following line:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>hlg_action "t:found:10" "banid 1440.0 %w kick;wait;writeid;hlg_setcounter check up"</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>And replace it with:<br><br>
+  
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>
+
+							hlg_action "t:found:10" "amx_ban 1440.0 %w %y"<br>
+							hlg_action "t:found:10" "hlg_setcounter check up"
+
+							</td>
+						</tr>
+					</table>
+  
+					<br><br>
+
+					<li>Find the following line:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>hlg_action "b:found:10" "banid 0.0 %w kick;wait;writeid;hlg_setcounter check up"</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>And replace it with:<br><br>
+  
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>
+
+							hlg_action "b:found:10" "amx_ban 0.0 %w %y"<br>
+							hlg_action "b:found:10" "hlg_setcounter check up"
+
+							</td>
+						</tr>
+					</table>
+  
+					<br><br>
+
+					<li>In section:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'><i>// Nameban Actions</td>
+						</tr>
+					</table>
+
+					<br><br>
+  
+					<li>Find the following line:<br><br>
+
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>hlg_action "q:found:10" "amx_ban 1440.0 %w Name violation"</td>
+						</tr>
+					</table>
+
+					<br><br>
+
+					<li>And replace it with:<br><br>
+  
+					<table cellspacing='1' class='listtable' width='80%'>
+						<tr bgcolor='#D3D8DC'>
+							<td class='listtable_1'>hlg_action "q:found:10" "amx_ban 1440.0 %w Name violation"</td>
+						</tr>
+					</table>
+  
+					<br><br>
+
+
+					<li>Do *not* change: '<i>hlg_blacklist "15" "banid 1440.0 %w kick;wait;writeid"</i>' (in section '<i>// Blacklist Check Actions</i>') If you want the HLG Blacklist to work.
+					<li>When you're done, save the file.
+					<li>(Re)start your server, and you should be all set.<br><br>
+				</ol>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="console_commands">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>9. console commands</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						<b>amx_ban</b> <i>&lt;time_in_minutes&gt; &lt;nickname|steamid&gt; &lt;reason&gt;</i><br><br>
+			
+						Kicks and bans specified nickname/steamid
+			
+						<ul>
+							<li>When using nickname to ban, the user needs to be on the server. When steamid is used, the player does not need to be on the server.
+							<li><nickname> *cannot* contain spaces
+							<li><nickname> may be a unique substring of the actual nickname
+						</ul>
+			
+						<b>amx_banip</b> <i>&lt;time_in_minutes&gt; &lt;nickname|steamid&gt; &lt;reason&gt;</i><br><br>
+			
+						Kicks and bans specified nickname/steamid by IP. All future connections from this IP will be refused. Use with caution and only when target has fixed IP.
+			
+						<ul>
+							<li>When using nickname to ban, the user needs to be on the server. When steamid is used, the player does not need to be on the server.
+							<li><nickname> *cannot* contain spaces
+							<li><nickname> may be a unique substring of the actual nickname
+						</ul>
+			
+						<b>amx_find</b> <i>&lt;nickname|steamid&gt;</i><br><br>
+			
+						Checks wether a ban exists for given steamid (nickname will be translated to wonid)
+			
+						<ul>
+							<li><nickname> *cannot* contain spaces
+							<li><nickname> may be a unique substring of the actual nickname
+						</ul>
+
+						<b>amxbans_menu</b><br><br>
+			
+						Opens up the AMXBans Menu<br><br>
+
+						<b>amx_reloadreasons</b><br><br>
+			
+						Reloads the reasons for that server from the database<br><br>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="how_does_it_work">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>10. how does it work?</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						Instead of using the standard banid/writeid functionality this banmod is based on kicking offenders. When a player connects, the steamID (and/or IP-address) is matched against a table. If a match is found, the corresponding information of that steamID will be displayed to the player (banlength, reason, admin, etc), and the player will be kicked. Unbanning a player consists of merely moving his record from the ban table to the ban history table. If the player then connects, no match will be found, and the player can connect as usual. I'm not the one who invented this set-up (check the credits :)<br><br>
+						People will be able to view all ban-details via the included php-scripts, including timeleft in case of a temp ban. Everyone can use the various search-options to display bandetails and banhistory details Admins are able to add, edit, unban and completely remove bans using the webinterface. Admin-management is also performed here.<br><br>
+						Each plugin that is loaded will register itself to provide an overview on which servers are currently connected to the ban-database. In the near future, a master/slave setup will be available.<br><br>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="contact_info">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>11. contact info</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						For questions/comments/suggestions please contact:<br><br>
+			
+						YoMama (yomama@xs4all.nl)<br>
+						ICQ: 104115504<br>
+						#xs4all on Quakenet<br>
+						http://www.xs4all.nl/~yomama/amxbans<br><br>
+			
+						For discussions on AMXbans, please visit: <a href="http://djeyl.net/forum/index.php?showtopic=22816" target="_new">http://djeyl.net/forum/index.php?showtopic=22816</a><br><br>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="credits">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>12. credits</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						Credits go to:
+			
+						<ul>
+							<li>nassie of course!
+							<li>Downtown for fixing a *huge* bug in the amxbans plugin, and helping me out with new functionality)
+							<li>mahnsawce for helping me out bigtime with the Banmenu plugin
+							<li>BAILOPAN, SniperBeamer, devicenull, Gonzo, QwertyAccess and definately XTC too... basically all devs and testers for helping me out a great deal
+							<li>GIR for helping me out with the amxx-port
+							<li>OLO as usual
+							<li>JustinHoMi for the original MySQL banplugin
+							<li>Mannekino for helping out a lot with the smarty templating system.
+							<li>Mannekino again for letting me steal some of his layout (check out his site: <a href="http://www.clanhost.nl" target="_new">http://www.clanhost.nl</a> if you're looking to rent a good Dutch clanserver)
+							<li>5chaap2k, Nya, Bunnykiller, take13|Invader Zim, NetBlaster, Ingerfara and all the others for testing
+							<li>Nieka for the perl pruning script
+							<li>Jon L. aka intel352 for the original ban-import code
+							<li>Morpheus for making HLGuard work with AMXBans
+							<li>ToT | V!PER for pointing out some security issues
+							<li>Gerimaster for making some plugins amxbans compatible
+							<li>Conrad (http://conradworld.free.fr) for letting me use his rcon class)
+							<li>Sikkie for continously bugging me for no apparent reason. (ok, ok... he did give me *some* pointers ;)
+							<li>All the admins @ XS4ALL.nl gameservers for giving feedback
+						</ul>
+			
+						If you like AMXBans, we would appreciate some sort of hint on your website that you are using this system.<br><br>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="download">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>13. download</b></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						Get the latest version of AMXBans <a href="http://games.xs4all.nl/downloads/downloads.php?dl=84">here</a><br><br>
+
+            </td>
+          </tr>
+        </table>
+
+				<br>
+				<a name="changelog">
+        <table cellspacing='1' class='listtable' width='100%'>
+          <tr>
+          	<td height='16' class='listtable_top'><b>14. changelog</b> <font size="1">(<a href="#index">back to top</a>)</font></td>
+          </tr>
+
+          <tr bgcolor='#D3D8DC'>
+            <td height='16' class='listtable_1'><br>
+
+						<ul>
+
+						<li><b>25/11/2004 - v4.0 (AMX) / v4.0 (AMXX) / v4.0 (PHP)</b>. Major release. Added lots of new features, fixed lots of bugs (probably intoduced a couple too).<br><br>
+							<ul>
+								<li>AMX plugin(s): all
+								<li>AMXX plugins: all
+								<li>php file(s): all (plus corresponding .tpl files)
+							</ul><br>
+
+						<li><b>25/07/2004 - v3.0 (AMX) / v3.0 (AMXX) / v3.1 (PHP)</b>. Patched a couple of major security holes (sorry!). Included second rcon class for those who were having problems with the first one (configurable via control panel). Added button in add_live_ban section (for browsers incapable of some javascript). Added support for the Specialist mod.<br><br>
+							<ul>
+								<li>AMX plugin(s): amxbans.sma, amxbans.amx
+								<li>AMXX plugins: amxbans.sma, amxbans.amx
+								<li>php file(s): all (plus corresponding .tpl files)
+							</ul><br>
+
+						<li><b>18/07/2004 - v3.0 (AMX) / v3.0 (AMXX) / v3.0 (PHP)</b>. Major release. Added lots of new features, fixed lots of bugs.<br><br>
+							<ul>
+								<li>AMX plugin(s): amxbans.sma, amxbans.amx
+								<li>AMXX plugins: amxbans.sma, amxbans.amx
+								<li>php file(s): all
+							</ul><br>
+			
+						<li><b>20/04/2004 - v2.1 (AMX) / v2.0 (AMXX) / v2.2 (PHP)</b>. Added support for AMXX (http://www.amxmodx.org). Added AMX/AMXX-specific versionchecks. Fixed some minor bugs. Affected files:<br><br>
+							<ul>
+								<li>AMX plugin(s): amxbans.sma, amxbans.amx
+								<li>AMXX plugins: admin_mysql.sma, admin_mysql.amx, amxbans.sma, amxbans.amx
+								<li>php file(s): mylib.inc.php, server_mgmt, ban_list.php
+							</ul><br>
+			
+						<li><b>29/02/2004 - v2.0 (AMX) / v2.1 (PHP)</b>. In 'admins & levels'-screen renamed 'username' field to 'NickName/SteamID/IP'. Fixed incorrect link in 'Prune DB'-screen. Corrected a typo in motd_details.php. Fixed bug where admins & levels wasn't displayed appropriately according to the access restrictions. Added ability to display reason on main page (configurable via config.inc.php). Added section to readme explaining the use of 'AMXadmins management'. Affected files:<br><br>
+							<ul>
+								<li>php file(s): config.inc.php, mylib.inc.php, header.php, ban_list.php, prune_db.php, admin_mgmt.php, motd_details.php
+							</ul><br>
+						<li><b>14/02/2004 - v2.0 (AMX) / v2.0 (PHP)</b>. Major release (refer to the amxbans-thread on amxmod forums). Affected files:<br><br>
+							<ul>
+								<li>AMX plugin(s): all
+								<li>php file(s): all
+							</ul><br>
+						<li><b>29/10/2003 - v1.1 (AMX) / v1.3 (PHP)</b>. Added a manual 'prune database'-option (level 1 status required). This is for people who are unable to run the included perl-script; They can now use this functionality to transfer expired bans to the banhistory table. I also fixed a minor cosmetic issue in the Permissions Marix. Besides this I added the ability to remove servers from within the ban_stats page. Affected files:<br><br>
+							<ul>
+								<li>php file(s): config.inc.php, mylib.inc.php, move_bans.php (new), permissions_matrix.php, ban_stats.php
+							</ul><br>
+						<li><b>14/10/2003 - v1.1 (AMX) / v1.2 (PHP)</b>. Added account-flags support in admin-management screen (defaults to "a" for nickname account-flags, and "ac" for steamid account-flags). For more info on account-flags, please check users.ini in your '<modname>/addons/amx'-directory. Affected files:<br><br>
+							<ul>
+								<li>php file(s): config.inc.php, mylib.inc.php, admin_management.php, form_check.js
+							</ul><br>
+						<li><b>30/09/2003 - v1.1 (AMX) / v1.1 (PHP)</b>. Added SteamID+IP ban support ('amx_banplayer'-command). Included new global variable 'view_ip' (defaults to "no"). Affected files:<br><br>
+							<ul>
+								<li>AMX plugin(s): amxbans.sma, amxbans.amx
+								<li>php file(s): config.inc.php, ban_details.php, ban_edit.php, ban_search
+							</ul><br>
+						<li><b>24/09/2003 - v1.0 (AMX) / v1.0 (PHP)</b>. Amxbans v1.0 is released
+						</ul>
+
+            </td>
+          </tr>
+        </table>
+
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+
+</html>
+                                                                                                                                                                                                                                                                                                                                   ds                          d   i                                                
