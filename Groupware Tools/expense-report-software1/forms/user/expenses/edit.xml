@@ -1,0 +1,81 @@
+<form>
+	<title>Edit Expense</title>
+	<action>index.php?sub=expenses&action=store</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<save onclick="" button="return">
+			<location>index.php?sub=expenses&action=det&expense_id={EXPENSE_ID}</location>
+		</save>
+
+		<return onclick="" button="save" >
+			<location>javascript:document.forms[0].submit();</location>
+		</return>
+
+	</buttons>
+
+	<vars>
+		<report type="eval" import="$_GET[expense_report] ? $_GET[expense_report] : $_POST[expense_report]" />
+	</vars>
+
+	<redirect>index.php?sub=reports&action=details&report_id={EXPENSE_REPORT}</redirect>
+
+	<fields>
+
+		<expense_id type="hidden" hidden="true"/>
+
+		<expense_report type="hidden" default="$_GET[expense_report]" action="eval"/>
+
+		<expense_location type="textbox" size="30">
+			<title>Location</title>
+		</expense_location>
+
+		<expense_cat type="droplist" empty="true" required="true" validate="A:1:200">
+			<title>Category</title>
+			<relation table="cats" id="cat_id" text="cat_name" />
+		</expense_cat>
+
+		<expense_description type="textarea" size="44:4">
+			<title>Description</title>
+		</expense_description>
+
+		<subtitle type="subtitle" title="Details" />
+
+
+		<expense_date type="date" now="true">
+			<title>Date</title>
+
+			<fields>
+				<month format="int" default="now" />
+				<day format="int" default="now" />
+				<year from="2004" to="2010" default="now"/>
+			</fields>
+		</expense_date>
+
+		<expense_amount type="textbox" size="10" preffix="$" title="Amount" description="Please do not add any commans in the amount value"/>
+
+		<expense_recepit type="droplist" title="Recepit" >
+			<options>
+				<option name="1">yes</option>
+				<option name="0">no</option>
+			</options>
+		</expense_recepit>
+
+		<expense_billable type="droplist" title="Billable" >
+			<options>
+				<option name="1">yes</option>
+				<option name="0">no</option>
+			</options>
+		</expense_billable>
+
+	</fields>
+</form>
