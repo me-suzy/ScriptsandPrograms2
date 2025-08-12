@@ -1,0 +1,170 @@
+Changs of Openbiz 2.0 RC2 from 2.0 RC1:
+   New project structure to separate openbiz core library and applications
+      - Openbiz core library
+      - demo application
+      - need to reorganize your application specific code
+   More bugs fixed.
+
+Changs of Openbiz 2.0 RC1 from 2.0 beta 2:
+   New security model is added in openbiz architecture
+      - User authentication
+      - Role-based view access control
+      - Attribute-based data access control
+   More plugin services included in the package
+
+Change from 2.0 beta to 2.0 beta2
+   Fix bugs of running openbiz on Unix/Linux OS.
+   Fix bug of binding dynamic list (Table column) to comboBox
+
+Change from 2.0 alpha to 2.0 beta
+   Integrate Openbiz Eclipse Designer in the release
+   Fix bugs on both Openbiz Framwork and Designer
+   Demo redone - include web calendar
+
+Change from 1.x to 2.0 alpha
+   Complete Object Relational Database mapping (ORM)
+   - Support mapping M-1, 1-M, M-M table relationship to BizDataObj
+   - Support aggregating tables column into a BizDataObj by join
+   Fully support PHP5 new object-oriented model
+   Metadata declaration file enhancement
+   Include Web-Calendar as a shared component
+
+
+Change from 1.1 beta to 1.1
+1. Allow users to specify 3rd party package directories in sysheader.inc file.
+   - Share installed resource with other applications
+   - Unified package location makes more efficient opcode caching
+   - Now support ADODB, SMARTY, FPDF, JPGRAPH
+2. Allow users to specify metadata file path and log file path in sysheader.inc file.
+3. Introduce chartService as plug-in service.
+   - chartService renders chart based on the chart xml file.
+   - Chart is defined in xml file. Support Bar, Line, Pie and combination charts. XML is easy to extend.
+   - Work with Jpgraph. Can use other chart package with the chart xml file.
+   - Add sponsors view to demo the chartService
+4. Replace xml to array package with more reliable one. Now the converted associated array uses CAPITAL keys
+5. Support more flexible queries on BizForm
+   - Can query with >, >=, <, <=, !=, = symbols and AND, OR logic connections
+6. Support more flexible rule on GoToView client function
+   - rule format as >, >=, <, <=, !=, =, LIKE symbols and AND, OR logic connections
+7. Calendar and timestamp picker improvement
+   - More compact and easier configuration by changing style sheet file and variables definitions
+8. Bugs fix.
+
+Change from 1.02 beta to 1.1 beta
+1. All metadata files are organized by packages so that metadata files for big application can be stored in different directories. 
+2. Easy plug-in service interface to invoke customer-specified functions.
+3. Long-expected PDF report and Excel export support are added as plug-in services. 
+
+Change from 1.01 to 1.02 beta
+1. More efficient session management is introduced to reduce the session file size (save memory usage if you map session directory to memory). 
+2. Building multiple-database application is supported.
+3. Combine pagesrvr.php, rpcsrvr.php and popupsrvr.php to a single file bizsrvr.php who plays as a function calls dispatcher
+
+Change from 1.01RC to 1.01
+1. Add OtherSQLRule in BizObj element (per Ricardo request)
+2. Support SQL Functions in BizField (per Ricardo request)
+
+Change from B10110 to 1.01RC
+1. Compiled config xml file
+2. Netscape/Mozilla bug fix
+
+Change from B10109 to B10110
+1. Add BizFormTree
+2. Add Windows Installer working with AppServ
+3. New Demo application
+4. Extract TypeManager classes from BizObj.php into TypeMgr.php
+5. Extract BizForm, BizView, BizFormTree and BizPopup classes from UIControl.php into BizForm.php
+
+Change from B10108 to B10109
+1. BizForm xml schema
+   - Replace Template element with DisplayMode element
+     * Mode can be declared as READ | NEW | EDIT | QUERY
+     * If the InitMode attribute of a mode is "Y", this mode is first display mode when user enter the Form
+   - Add "htmltable" one of DataFormat type, and FormatStyle as new attribute of DisplayMode element
+     * BizForm provide a default render for html table, user can specify table style in FormatStyle
+       i.e. FormatStyle="tbl,tbl_head,tbl_rowodd,tbl_roweven,tbl_rowsel,tbl_cell"
+       Since only html string instead of 2D array are returned by render function, template file needs to be changed as well
+   - Output associated array to array-based templates EDIT/NEW/QUERY
+     * User can easily layout controls by their names
+   - Replace the Template attribute of BizCtrl and Control element with DisplayMode attribute
+   - Add Order attribute for BizCtrl element. User can specify the display order of BizCtrls
+   - Add RedirectView function in BizForm
+     * Example: RedirectView(RegistView,FMRegist.reg_evtid=#evt_id) in FMEvent will redirect current view to
+       RegistView, and FMRegist shows the records whose reg_evtid is same as the evt_id of current record in FMEvent
+   - Add RefreshQuery function in BizForm
+     * This function will display query results using default SearchRule and SortRule.
+
+2. BizObj xml schema
+   - Add SortRule attribute for BizObj element
+     * Example: SortRule = "[Id] ASC" or SortRule = "[Id] DESC"
+     
+3. History back and forward support
+   - When user returns to visited view, the record which the user worked on before he went to another will be highlighted
+
+//////////   
+  todo:
+//////////
+Re-org the class chart
+  ObjectFactory
+  HttpRequest, HttpResponse, ClientProxy
+  SessionContext, ConfigureContext, ApplicationContext
+
+Allow developer to extend more classes
+  BizObjData, BizForm, BizView,
+  HTMLControl, BizControl, BizField
+  jsClass
+
+1-1, M-1, 1-M, M-M relationship
+  M-1 mapps to fields
+  1-M, M-M mapps to another bizobj
+  M-1: <ObjReference Name="A-B" ObjName="B" Relationship="M-1" Dependency="A.aid=B.aid"/>
+       <Object Name="B" Relationship="M-1" Column="Fkey_col" Fetch="Join|Select" FieldRef="key_col" Cascade="save|delete|all"/>
+  1-1: <ObjReference Name="A-B" ObjName="B" Relationship="1-1" Dependency="A.aid=B.aid"/>
+       <Object Name="B" Relationship="1-1" Fetch="Join|Select" FieldRef="key_col" Cascade=""/>
+  1-M: <ObjReference Name="A-B" ObjName="B" Relationship="1-M" Dependency="A.aid=B.aid"/>
+       <Object Name="B" Relationship="1-M" Table="TB" Column="FK_TA_Id" Fetch="Join|Select" FieldRef="key_col" Cascade=""/>
+  M-M: <ObjReference Name="A-C" ObjName="C" Relationship="M-M" Dependency="A.aid=AC.aid AND AC.cid=C.cid"/>
+       <ObjReference Name="AC_Intersection" ObjName="AC".../>
+       <Object Name="C" Relationship="M-M" Table="TC" Column="TC_Id" XTable="TA_TC" XColumn1="FK_TA_Id" XColumn2="FK_TC_Id"/>
+  BizDObj::GetReferenceObj($refName, $populateData)
+  force relationship on bizobj level, don't use view
+  Field maps to table column or other X-1 object field
+  Set maps to other X-M object field
+  cascade update?
+
+Transaction support
+
+More UI widgets - tree, tab, menu, toggle button ...
+
+Event handler replaces Function
+  OnAction, OnValueChange
+
+Support simple expression in metadata confgiuration
+
+Support field dependency
+
+Navigation rules, Validation rules
+
+Localization support
+
+Use PDO as underline database abstraction layer (P1)
+Transaction, SQL preparation support
+
+Plug-in service everywhere. Each service has a configuration file .inc.
+Validation
+Expression
+UserProfile
+Authentication
+SYSId
+File Upload
+http://www.hotscripts.com/Detailed/3249.html
+http://us3.php.net/features.file-upload 
+Audit Trail Service
+<DataObj Name="BOSample" EnableAuditTrail="Y" New="" Delete="" Update="">
+  <Field Name="Field1" />
+  <Field Name="Field2" />
+</DataObj>
+
+import library support in metadata files
+
+Unicode
