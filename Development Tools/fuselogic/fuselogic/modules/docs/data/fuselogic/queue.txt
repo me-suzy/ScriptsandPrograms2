@@ -1,0 +1,44 @@
+====== Queue ======
+
+Queue is the most confusing and the most powerfull thing in FuseLogic.
+I you by Ticket in "Cinema" that playing "box office" movie most of the time you need to queue your self in front of "ticket counter". Which mean **"First Come, get service First by the counter"**. This thing also hapen in FuseLogic. You can not run fuse direcly but you need to insert the fuse in the FuseLogic Queuing system by using command Queue("fuse/name").
+
+
+For Example:
+
+
+Queue('init/one');
+
+Queue('init/two');
+
+Queue('init/three');
+
+Will be executed by FuseLogic as follow:
+
+**Run fuse 'init/one';
+
+Run fuse 'init/two';
+
+Run fuse 'init/three';
+
+**
+
+----
+**API**
+
+**Queue**(string $fuse_name);
+
+**Queue**(string $fuse_name, string $layout_name);
+
+**$fuse_name:** the name of fuse you want to insert in the FuseLogic Queue system
+
+**$layout_name (optional)**: Name of Layout you want to put all the string produce by fuse
+
+**Example:** 
+
+Queue('display/left'); 
+
+Queue('display/left','left_menu')
+
+----
+//Credit List: Eko Budi Setiyo//
