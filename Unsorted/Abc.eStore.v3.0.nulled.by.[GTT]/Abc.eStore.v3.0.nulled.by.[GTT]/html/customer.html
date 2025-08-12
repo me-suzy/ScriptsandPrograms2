@@ -1,0 +1,207 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+<!-- No logined -->
+<%tif nologined%>
+
+<form method="post" action="customer.php<%tif session%>?session=<%tlv session%><%tendif session%>">
+<table cellpadding="3" border="0" cellspacing="2" align="center">
+<tr> 
+<td width="100%" colspan="2" class="tableHeadBg"><b><%tlv 81%>:</b></td>
+</tr>
+<tr> 
+<td width="45%"><%tlv 82%>:</td>
+<td width="55%"><input name="email" class="textbox" type="text" size="25" maxlength="40"></td>
+</tr>
+<tr> 
+<td width="45%">&nbsp;</td>
+<td width="55%"><input type="radio" name="do" value="new"><%tlv 83%></td>
+</tr>
+<tr> 
+<td width="45%">&nbsp;</td> 
+<td width="55%"><input type="radio" name="do" value="return"><%tlv 84%>:</td>
+</tr>
+<tr> 
+<td width="45%">&nbsp;</td>
+<td width="55%"><input name="password" class="textbox" type="password"name="password" size="25" maxlength="40"></td>
+</tr>
+<tr> 
+<td width="45%">&nbsp;</td>
+<td width="55%">
+<a href="password.php<%tif session%>?session=<%tlv session%><%tendif session%>" target="_self"><%tlv 85%></a><br><br>
+<INPUT type="hidden" name="submit" value="submit">
+<INPUT type="submit" name="modify" class="submit" value="<%tlv 931%>">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+<INPUT type="button" name="modify" class="submit" value="<%tlv 929%>" onclick="javascript:window.location='index.php<%tif session%>?session=<%tlv session%><%tendif session%>';">
+</td>
+</tr>
+</table>
+</form>
+
+<%tendif nologined%>
+<!-- /No logined -->
+
+<!-- No radio selected -->
+<%tif noradio%>
+
+<p align="center"><font class="errorMessage"><b><%tlv 86%></b></font>
+<br><br><a href = "javascript:history.back()"><%tlv 87%></a></p>
+<br>&nbsp;
+</td></tr>
+
+<%tendif noradio%>
+<!-- /No radio selected -->
+
+<!-- Again -->
+<%tif again%>
+
+<p align="center"><font class="errorMessage"><b><%tlv err%></b></font>
+<br><br><a href = "javascript:history.back()"><%tlv 87%></a></p>
+<br>&nbsp;
+</td></tr>
+
+<%tendif again%>
+<!-- /Again -->
+
+
+<!-- New -->
+<%tif new%>
+
+<form method="post" action="order.php<%tif session%>?session=<%tlv session%><%tendif session%>">
+<table cellpadding="3" border="0" cellspacing="2" width="70%" align="center">
+<tr> 
+<td width="100%" colspan="2" class="tableHeadBg "><b><%tlv 90%>:</b> <%tlv email%></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 91%><font class="errorMessage">*</font></td>
+<td width="60%"><input type="text" class="textbox" name="name" value="<%tlv name%>" size="46" maxlength="50"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 92%><font class="errorMessage">*</font></td>
+<td width="60%"><input name="add_1" class="textbox" value="<%tlv add_1%>" type="text" size="46" maxlength="50"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 92%></td>
+<td width="60%"><input name="add_2" class="textbox" value="<%tlv add_2%>" type="text" size="46" maxlength="50">
+</td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 93%><font class="errorMessage">*</font></td>
+<td width="60%"><input name="town" class="textbox" value="<%tlv town%>" type="text"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 94%><font class="errorMessage">*</font></td>
+<td width="60%"><input name="county" class="textbox" value="<%tlv county%>" type="text"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 95%> <font class="errorMessage">*</font></td>
+<td width="60%"><input name="postcode" class="textbox" value="<%tlv postcode%>" type="text"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 96%> <font class="errorMessage">*</font></td>
+<td width="60%">
+<%tag country%>
+</td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 97%> <font class="errorMessage">*</font></td>
+<td width="60%"><input name="phone" class="textbox" value="<%tlv phone%>" type="text"name="phone"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 98%> <font class="errorMessage">*</font><br>(Between 6 and 20 chars)</td>
+<td width="60%"><input name="password1" class="textbox" type="password" name="password1"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 99%> <font class="errorMessage">*</font></td>
+<td width="60%"><input name="password2" class="textbox" type="password" name="password2"></td>
+</tr>
+<tr> 
+<td width="40%"><%tlv 100%></td>
+<td width="60%"> <input type="radio" name="add" value="same_add" checked >
+<%tlv 106%>
+<input type="radio" name="add" value="new_add">
+<%tlv 107%></td>
+</tr>
+<tr> 
+<td>&nbsp;</td>
+<td><%tlv 101%> <input type="checkbox" name="perm" value="N" <%tif perm%>checked<%tendif perm%>></td>
+</tr>
+<tr>
+<td width="40%">&nbsp;</td>
+<td width="60%"><input type="hidden" name="register" value="register">
+<input type="hidden" name="email" value="<%tlv email%>">
+<INPUT type="submit" name="register" class="submit" value="<%tlv 931%>">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+<INPUT type="button" name="modify" class="submit" value="<%tlv 929%>" onclick="javascript:window.location='index.php<%tif session%>?session=<%tlv session%><%tendif session%>';">
+</td>
+</tr>
+</table>
+<div align="center"><br><font class="errorMessage">*</font> <%tlv 102%> </div>
+</form>
+
+<%tendif new%>
+<!-- /New -->
+
+<!-- Old -->
+
+<%tif old%>
+
+<form method="post" action="order.php<%tif session%>?session=<%tlv session%><%tendif session%>">
+<table cellpadding="2" cellspacing="2" align="center" border="0">
+<tr> 
+<td width="100%" class="tableHeadBg" colspan="2"><b><%tlv 103%></b></td>
+</tr>
+<tr> 
+<td width="45%"><%tlv 104%>:</td>
+<td width="55%"><%tlv name%></td>
+</tr>
+<tr> 
+<td width="45%"><%tlv 105%>:</td>
+<td width="55%"><%tlv email%></td>
+</tr>
+<tr> 
+<td width="45%" valign="top"><%tlv 92%>:</td>
+<td width="55%"><%tlv add_1%><br><%tlv add_2%><br><%tlv town%><br><%tlv county%><br><%tlv postcode%><br><%tlv country%><br></td>
+</tr>
+<tr> 
+<td width="45%"><%tlv 97%>:</td> 
+<td width="55%"><%tlv phone%></td>
+</tr>
+<tr> 
+<td width="45%"><%tlv 100%></td>
+<td width="55%"><input type="radio" name="add" value="same_add" checked>
+<%tlv 106%>
+<input type="radio" name="add" value="new_add">
+<%tlv 107%> </td>
+</tr>
+<tr> 
+<td width="45%">&nbsp;</td>
+<td width="55%">
+<input type="hidden" name="name" value="<%tlv name%>">
+<input type="hidden" name="email" value="<%tlv email%>">
+<input type="hidden" name="add_1" value="<%tlv add_1%>">
+<input type="hidden" name="add_2" value="<%tlv add_2%>">
+<input type="hidden" name="town" value="<%tlv town%>">
+<input type="hidden" name="county" value="<%tlv county%>">
+<input type="hidden" name="postcode" value="<%tlv postcode%>">
+<input type="hidden" name="country" value="<%tlv country%>">
+<input type="hidden" name="country_id" value="<%tlv country_id%>">
+<input type="hidden" name="phone" value="<%tlv phone%>">
+<input type="hidden" name="submit" value="submit"><a href="account.php" target="_self"><%tlv 108%></a><br><br>
+<INPUT type="submit" name="submit" class="submit" value="<%tlv 931%>">
+<img src="<%tv design_dir%>spacer.gif" width="1" height="1" border="0">
+<INPUT type="button" name="modify" class="submit" value="<%tlv 929%>" onclick="javascript:window.location='index.php<%tif session%>?session=<%tlv session%><%tendif session%>';">
+</td>
+</tr>
+</table>
+</form>
+
+<%tendif old%>
+<!-- /Old -->
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
