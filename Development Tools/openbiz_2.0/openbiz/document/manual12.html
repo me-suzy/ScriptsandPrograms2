@@ -1,0 +1,350 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="stylesheet" href="doc.css" type="text/css">
+<title>OpenBiz Document</title>
+<style>
+body { font-family: Tahoma;Verdana;Arial; font-size: 12px;}
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="100%" height="55" bgcolor="#0B326B"><a href="index.html"><img border="0" src="openbiz.gif" width="476" height="58"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFCC00"> &nbsp; </td>
+  </tr>
+</table>
+
+<h1>OpenBiz Document 1.2</h1>
+<table border="0">
+  <tr>
+    <td valign="top"><b>1.</b></td>
+    <td valign="top"><b>Overview of Openbiz 1.2</b>
+      <table border="0">
+        <tr>
+          <td width="100%"><a href="#1.1"> Openbiz 1.2 architecture stack</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#1.2"> Openbiz 1.2 package organization</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#1.3"> Sequence diagram of a typical RPC call</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><b>2.</b></td>
+    <td valign="top"><b>Difference between 1.2 and 1.1.x</b>
+      <table border="0">
+        <tr>
+          <td width="100%"><a href="#2.1">BizSystem - the infrastructure
+            class</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#2.2">BizDataObj - Query and get results</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#2.3">BizForm - RPC calls</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#2.4">Metadata changes</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#2.5">Logging and debugging</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><b>3.</b></td>
+    <td valign="top"><a href="#install"><b>Installation</b></a></td>
+  </tr>
+  <tr>
+    <td valign="top"><b>4.</b></td>
+    <td valign="top"><a href="#build"><b>Build your application</b></a></td>
+  </tr>
+  <tr>
+    <td valign="top"><b>5.</b></td>
+    <td valign="top"><a href="apidoc12/index.html"><b>API document</b></a></td>
+  </tr>
+</table>
+<hr>
+<h2><b>Overview of Openbiz 1.2</b></h2>
+<p>Openbiz was rewritten in its 1.2 version. Some facts drove this code rewritings.&nbsp;</p>
+<ul>
+  <li>PHP5 new object-oriented model</li>
+  <li>Popular design patterns used in web technology</li>
+  <li>The need of infrastructure library to handle plumbing work</li>
+  <li>The requests of more extendibility from Openbiz customers</li>
+</ul>
+<h3><b>1.1 Openbiz 1.2 architecture stack<a name="1.1"></a></b></h3>
+<p><img border="0" src="stack.gif" width="788" height="262"></p>
+<h3><b>1.2 Openbiz 1.2 package organization<a name="1.2"></a></b></h3>
+<table border="1" cellspacing="0" cellpadding="3" width="782">
+  <tr>
+    <td bgcolor="#C0C0C0" width="58"><b>Package</b></td>
+    <td bgcolor="#C0C0C0" width="710"><b>Class</b></td>
+  </tr>
+  <tr>
+    <td rowspan="6" width="58"><b>BizSystem</b></td>
+    <td width="710"><b>BizSystem</b><br>
+      - Provide a global variable accessed anywhere in openbiz application<br>
+      - Provide the Get method for ObjectFactory, SessionContext, TypeManager,
+      ClientProxy and Configuration<br>
+      - Provide static methods for accessing XML metadata, logging and error
+      reporting.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>ObjectFactory</b>&nbsp;<br>
+      - It's a factory class to get metadata-driven objects (BizView, BizForm,
+      BizdataObj and their extended classes)&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="710"><b>SessionContext</b><br>
+      - Session management class that has additional methods to save/get session variables of metadata-driven
+      stateful objects through their GetSessionVars|SetSessionVars interfaces</td>
+  </tr>
+  <tr>
+    <td width="710"><b>TypeManager</b><br>
+      - Type management class that has help methods to format data to UI and unformat UI input to
+      data</td>
+  </tr>
+  <tr>
+    <td width="710"><b>ClientProxy</b><br>
+      - It's a class that is treated as the bi-direction proxy of client. Through this class,
+      others can get client form inputs, redraw client form or call client javascript functions.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>Configuration</b><br>
+      - A class that has help methods to get data from config.xml</td>
+  </tr>
+  <tr>
+    <td rowspan="5" width="58"><b>BizDataObj</b></td>
+    <td width="710"><b>BizDataObj</b><br>
+      - It's the base class of all data object classes. Before Openbiz 1.2,
+      BizDataObj was called BizObj. Since BizObj means Business Object, but it
+      acts as business data unit, in 1.2 it is changed as BizDataObj.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>BizRecord</b><br>
+      - BizRecord class implements basic function of handling record</td>
+  </tr>
+  <tr>
+    <td width="710"><b>BizField</b><br>
+      - BizField is the class of a logic field which mapps to a table column</td>
+  </tr>
+  <tr>
+    <td width="710"><b>BizDataSql</b><br>
+      - BizObjSql is the class to constrcut SQL statement for BizDataObj</td>
+  </tr>
+  <tr>
+    <td width="710"><b>CacheRecordList</b><br>
+      - CacheRecordList implements the cache for BizDataObj</td>
+  </tr>
+  <tr>
+    <td rowspan="8" width="58"><b>BizView</b></td>
+    <td width="710"><b>BizView</b><br>
+      - BizView is the class that contains list of forms. View is same as html page.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>BizForm</b><br>
+      - BizForm is the base class that contains UI controls. BizForm is a html form that is included in a BizView which is a html page.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>RecordRow</b><br>
+      - RecordRow is the class that contains FieldControls</td>
+  </tr>
+  <tr>
+    <td width="710"><b>ToolBar</b><br>
+      - ToolBar is the class that contains HTMLControls</td>
+  </tr>
+  <tr>
+    <td width="710"><b>NavBar</b><br>
+      - NavBar is the class that contains navigation buttons</td>
+  </tr>
+  <tr>
+    <td width="710"><b>HTMLControl</b><br>
+      - HTMLControl is the base class of HTML controls</td>
+  </tr>
+  <tr>
+    <td width="710"><b>FieldControl</b><br>
+      - FieldControl is the base class of field control who binds with a bizfield</td>
+  </tr>
+  <tr>
+    <td width="710"><b>DisplayMode</b><br>
+      - contains the BizForm display mode information</td>
+  </tr>
+</table>
+<h3><b>1.3 Sequence diagram of a typical RPC call<a name="1.3"></a></b></h3>
+<p><a href="seq_chart.GIF" target="seq_chart"><img border="0" src="seq_chart.GIF" width="600" height="460"></a></p>
+
+<p>&nbsp;</p>
+<h2><b>Difference</b><b> between Openbiz 1.2 and 1.1.x</b></h2>
+<h3><b>2.1 BizSystem - the infrastructure class<a name="2.1"></a></b></h3>
+<p>Before 1.2, all infrastructure functionalities are implemented as functions
+in system.php.</p>
+<p>In 1.2, a new BizSystem class is introduced to provides an entry point of
+infrastructure funtionalities</p>
+<ul>
+  <li>BizSystem provides a global variable accessed anywhere in openbiz application</li>
+  <li>BizSystem provides the Get method for getting the object instances of
+    ObjectFactory, SessionContext, TypeManager,
+      ClientProxy and Configuration</li>
+  <li>BizSystem provides static methods for accessing XML metadata, logging and error
+      reporting.</li>
+</ul>
+<p>Example of getting metadata-driven object instance</p>
+<ul>
+  <li>1.1.x way, $obj = sys_getobj($objname);</li>
+  <li>1.2 way, $obj = $g_BizSystem-&gt;GetObjectfactory()-&gt;GetObject($objname);</li>
+</ul>
+<h3><b>2.2 BizDataObj - Query and get results<a name="2.2"></a></b></h3>
+<p>1.1.x BizObj is renamed as BizDataObj in 1.2, because it mainly acts as
+business data unit.&nbsp;</p>
+<p>1.1.x use GetField and SetField to do get and set field values. In 1.2, no
+field level methods, but using GetRecord() and UpdateRecord() method to do
+record level operations. The idea behind is to make easier coding to retrieve
+query results and provide coarse-grained interfaces between 2 layers.</p>
+<p><b>1.1.x way to query and get records</b></p>
+<p>$bizobj-&gt;SetSearchRule(&quot;...&quot;);&nbsp;&nbsp;&nbsp; <font color="#008080">//
+set search rule</font><br>
+$bizobj->RunSearch(-1);&nbsp;&nbsp;&nbsp; <font color="#008080">// run query
+against the database tables.&nbsp;</font><br>
+$bizobj-&gt;Home();&nbsp;&nbsp;&nbsp; <font color="#008080">// reset the result
+record set</font><br>
+$hasVal = $bizobj->MoveFirst();&nbsp;&nbsp;&nbsp; <font color="#008080">// </font><font color="#008080">move
+cursor to first record</font><br>
+      while ($hasVal)<br>
+      {<br>
+&nbsp;&nbsp;&nbsp; foreach ($fieldlist as $field)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $field_val[] = $bizobj-&gt;GetField($field);
+<font color="#008080"><br>
+&nbsp;&nbsp;&nbsp;</font> <font color="#008080">// user
+logic code can be put here.&nbsp;</font><br>
+&nbsp;&nbsp;&nbsp; $hasVal = $bizobj->MoveNext();&nbsp;&nbsp;&nbsp; <font color="#008080">//
+</font><font color="#008080">move cursor to next record</font><br>
+      }</p>
+<p><b>1.2 way to query and get records</b></p>
+<p>$bizobj-&gt;SetSearchRule(&quot;...&quot;);&nbsp;&nbsp;&nbsp; <font color="#008080">//
+set search rule</font><br>
+$bizobj->RunSearch(-1);&nbsp;&nbsp;&nbsp; <font color="#008080">// run query
+against the database tables.&nbsp;<br>
+</font>      while ($recArray = $bizobj-&gt;GetRecord(1))&nbsp;&nbsp;&nbsp; <font color="#008080">//
+get current record and move the cursor to the next record&nbsp;<br>
+</font>      {<br>
+&nbsp;&nbsp;&nbsp; <font color="#008080">// user logic code can be put here.
+recArray is an associated array whose key is &quot;fieldname&quot; and value is
+value of the field<br>
+</font>}</p>
+<h3><b>2.3 BizForm - RPC calls<a name="2.3"></a></b></h3>
+<p>From Openbiz 1.2, ClientProxy acts as a middle man between client and BizForm
+(server). It have convenient methods for BizForm to call to get client inputs
+and redraw client components.</p>
+<table border="1" width="535" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="141" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="179" bgcolor="#C0C0C0"><b>1.1.x</b></td>
+    <td width="193" bgcolor="#C0C0C0"><b>1.2</b></td>
+  </tr>
+  <tr>
+    <td width="141"><b>Get the client inputs</b></td>
+    <td width="179">Need to explicitly specify $currentRowNum and $currentControl
+      as input arguments of BizForm methods</td>
+    <td width="193">$currentRowNum and $currentControl can be retrieved from
+      ClientProxy object by calling GetFormInputs method</td>
+  </tr>
+  <tr>
+    <td width="141"><b>Return html content</b></td>
+    <td width="179">Need to explicitly call BuildTgtCtnt function to generate
+      client-updating html&nbsp;</td>
+    <td width="193">Call RedrawForm method in ClientProxy object to generate
+      client-updating html</td>
+  </tr>
+</table>
+<h3><b>2.4 </b><b>Metadata changes<a name="2.4"></a></b></h3>
+<p>Openbiz 1.2 use almost the &quot;same&quot; metadata files used in 1.1.x.
+Only trivial change needs to be done make upgrade the 1.1.x metadata files.</p>
+<ul>
+  <li>In <b> popup bizform</b> xml metadata file, change the Class attribute of BizForm
+from &quot;BizForm&quot; to &quot;BizFormPopup&quot;. It's because that popup
+bizform is now based on class BizFormPopup , not BizForm.<br>
+    &nbsp;</li>
+  <li>Due to the name of <b> BizDataObj </b> (name as BizObj in 1.1.x), all related
+metadata files should make change accordingly. To avoid such massive change,
+Openbiz 1.2 will treat BizObj as BizDataObj. So no naming change is needed.<br>
+    &nbsp;</li>
+  <li> A new <b> &quot;Class&quot; attribute</b> is added in all metadata objects
+including HTMLControl, FieldControl and BizField. BizView, BizForm and
+BizDataObj already has such attribute in 1.1.x. With this &quot;Class&quot;
+attribute, developers can implement their own logic in extended classes at
+Control and Field level. This feature gives more flexibility to Openbiz.<br>
+    &nbsp;</li>
+  <li>For the Value attribute of BizField, openbiz 1.2 accept <b>simple
+    expression</b>. The syntax is &lt;BizField ...
+    Value=&quot;expression&quot;&gt;. If users need more complicated logic which
+    can't be put in a simple expression, they can assign a user-defined BizField
+    class and override GetValue method.<br>
+    The simple expression is a single PHP statement which return a value.
+    [fieldname] in the expression stands for the value of the BizField. (todo:
+    user should be able to refer BizDataObj's varible in the expression).
+    Following operators are valid.
+    <ul>
+      <li>Arithmetic: +, - (binary), *, / and div, % and mod, - (unary)</li>
+      <li>Logical: and, &amp;&amp;, or, ||, not, !</li>
+      <li>Relational: ==, !=, &lt;, >, &lt;=, &gt;=.&nbsp; Comparisons can be made against other values, or against boolean, string, integer, or floating point literals.</li>
+      <li>Empty: The empty operator is a prefix operation that can be used to determine whether a value is null or empty.</li>
+      <li>Conditional: A ? B : C. Evaluate B or C, depending on the result of the evaluation of A.&nbsp;</li>
+    </ul>
+  </li>
+</ul>
+<h3><b>2.5 Logging and debugging<a name="2.5"></a></b></h3>
+<p>In Openbiz 1.2, developers can add diagnostic code using new logging and
+debugging functionalities.</p>
+<p>- <b>Logging</b>. BizSystem::log() method&nbsp; can be called to log 4
+priority levels LOG_EMERG, LOG_ERR, LOG_WARNING and LOG_DEBUG. Also a subject
+can be specified to give log messages different categories.</p>
+<p>- <b>Debugging</b>. Other than the DEBUG flag in 1.1.x is still valid,
+developers can turn on other 2 debug flags.<br>
+&nbsp; 1) Turn on SQL debug flag. Uncomment <font color="#008080">//$this->m_DbConnection[$rDBName]->debug = true;</font>
+in BizSystem::GetDBConnection().<br>
+&nbsp; 2) Turn on RPC debug flag, each RPC response is printed in a separate
+window. Set <b> var RPC_DEBUG = <font color="#FF0000">true</font></b>; in
+clientUtil.js.</p>
+
+<p>&nbsp;</p>
+
+<h2>Installation<a name="install"></a></h2>
+<p>Installation of Openbiz 1.2 is almost same as installation steps for Openbiz
+1.1.x. Please note some difference described below:</p>
+<p>OpenBiz is written by PHP5 scripts, it won't work in PHP4.x web server. We
+recommend platforms as</p>
+<ul>
+  <li>Apache HTTP Server 1.3.x or 2.x + PHP 5.x</li>
+  <li>Internet Information Server (IIS) 5.x + PHP 5.x</li>
+</ul>
+<p>Installation directory changed from evtmgr (1.1.x) to openbiz, or you can configure apache using:
+Alias /openbiz /path/to/openbiz.</p>
+<p>Windows installer is not in Openbiz 1.2 beta. It'll be available in 1.2 final
+release.</p>
+<p>Openbiz Deisgn Tools is not in Openbiz 1.2 beta. It'll be available in 1.2
+final release.</p>
+<p>&nbsp;</p>
+<h2><b>Build
+Your Application<a name="build"></a></b></h2>
+<p>The way to build application with Openbiz 1.2 is same as that of Openbiz
+1.1.x. Please refer to the Openbiz manual for 1.1.x.</p>
+<p>Since Openbiz Deisgn Tools is not in Openbiz 1.2 beta, developers need to use
+xml/text editors to modify the metadata xml files.</p>
+
+</body>
+
+</html>
