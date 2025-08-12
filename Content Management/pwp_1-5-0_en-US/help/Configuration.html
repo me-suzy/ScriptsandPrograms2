@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+	<meta name="Keywords" content="PWP, PHP, Wiki, WikiWiki, Community, Edit, Download, Software, Content Management, Documentation, CMS">
+	<meta name="Description" content="PWP Wiki Processor, a GPL based PHP software.">
+	<meta name="Language" content="en">
+	<meta name="Generator" content="PWP Wiki Processor">
+	<meta name="robots" content="index,follow">
+	<title>PWP Wiki Processor &raquo; Configuration</title>
+	<style type="text/css">@import url(../css/standard.css);</style>
+</head>
+<body>
+	<div id='uppermenu'>
+		<img src='../img/wiki.jpg' align='right' alt='PWP wiki processor' border='0'>
+		<h1>Configuration</h1>
+		<p> <a href='TextRules.html'>TextRules</a> .   <a href='SimpleTextRules.html'>SimpleTextRules</a> .   <a href='Installation.html'>Installation</a> .   <a href='Configuration.html'>Configuration</a>   <br>   <a href='UserManual.html'>UserManual</a> .   <a href='FAQ.html'>FAQ</a> .   <a href='http://www.lars-ackermann.de/wiki/static/index.html'>&raquo;find more online</a> </p>
+	</div>
+	<div id='contents'><div id='textcolumn'>
+&nbsp;&middot;&nbsp;<a href="#Mapping config settings to variables">Mapping config settings to variables</a><br>&nbsp;&middot;&nbsp;<a href="#Application control">Application control</a><br>&nbsp;&middot;&nbsp;<a href="#General HTML settings">General HTML settings</a><br>&nbsp;&middot;&nbsp;<a href="#Static HTML settings">Static HTML settings</a><br>&nbsp;&middot;&nbsp;<a href="#Edit, Save, View pages">Edit, Save, View pages</a><br>&nbsp;&middot;&nbsp;<a href="#Calendar">Calendar</a><br>&nbsp;&middot;&nbsp;<a href="#File StaticHtml.inc">File StaticHtml.inc</a><br>&nbsp;&middot;&nbsp;<a href="#File Snippets.inc">File Snippets.inc</a><br><hr size="1" noshade><!--content begin-->
+This pages describes the settings in the file <strong>wiki/conf/config.inc</strong> and other config files within the same directory.
+<p>
+<a name="Mapping config settings to variables"><h2>Mapping config settings to variables</h2></a>
+<p>
+For security reasons the config settings are not web editable. But if you feel some should, you can map a setting to a variable and enable &quot;AllowEditConfig&quot;:
+<p>
+<ol><li>Create a variable &quot;DateFormat&quot;
+<li>Map the config setting to the variable:</ol>
+<pre>    $this-&gt;mProp['DateFormat'] = $this-&gt;mVars['DateFormat'];</pre>
+<p>
+Be aware that variables can only contain strings. If you want to map a number, use a type cast:
+<p>
+<pre>$this-&gt;mProp['MinFileAge']     = (int)$this-&gt;mVars['MinFileAge'];
+$this-&gt;mProp['UseGzipHandler'] = (bool)$this-&gt;mVars['UseGzipHandler'];</pre>
+<p>
+For arrays usa the PHP function &quot;explode()&quot;.
+<p>
+<a name="Application control"><h2>Application control</h2></a>
+<p>
+<a name="UseGzipHandler"><h3>UseGzipHandler</h3></a>
+<p>
+Compress HTML finally into a zip stream if the client signals support for this kind of communication (Mozilla/Firefox and MS IE will). May speed up internet based applications. May slow down internal applications if bandwidth does not matter.
+<p>
+<pre>Values: TRUE or FALSE
+Sample: $this-&gt;mProp['UseGzipHandler'] = false;</pre>
+<p>
+<a name="<strike>UseCache</strike>"><h3><strike>UseCache</strike></h3></a>
+<p>
+<em>Removed in 1.5.0</em> PWP caches lists and search result but not Wiki pages.
+<p>
+<a name="AllowEditConfig"><h3>AllowEditConfig</h3></a>
+<p>
+<em>DANGER!</em> Allows you to edit variables and InterWiki links in
+a web form. It means actually to change PHP code in your config file!
+Set this value to FALSE if you are running an open wiki.
+<p>
+<pre>Values: TRUE or FALSE
+Sample: $this-&gt;mProp['AllowEditConfig'] = false;</pre>
+<p>
+<a name="UseJSLinks"><h3>UseJSLinks</h3></a>
+<p>
+JavaScript links will prevent search engine spiders
+from deleting your files by following the &quot;erase&quot; links. But people with user agents
+not supporting JavaScript won't be able to participate.
+Enable this option if you are running an open Wiki.
+The search engines will be able to follow the &quot;view&quot;
+links and to index your pages. Just the &quot;maintenance&quot; links
+will be composed of JavaScript.
+<p>
+<pre>Values: TRUE or FALSE
+Sample: $this-&gt;mProp['UseJSLinks'] = false;</pre>
+<p>
+<a name="TextFileTypes"><h3>TextFileTypes</h3></a>
+<p>
+Affects the search in uploaded files. Which files are text files and shall become included in a full text search? Note: All files with a name matching one of the text file extensions are accepted: '.htm' matches 'web.html' and '.txt' matches 'my.txt.zip'.
+<p>
+<pre>Values: String, comma separated list of text file extensions
+Sample: $this-&gt;mProp['TextFileTypes']	 = '.txt,.htm,.xml';</pre>
+<p>
+<a name="MinFileAge"><h3>MinFileAge</h3></a>
+<p>
+Minimal age in days before history files
+and files from trash can be deleted physically.
+Prevents open Wikis from wipe out attacks.
+<p>
+<pre>Values: Integer (-1,0,N)
+   0 clear the trash bin completely at any time
+  -1 will keep all files forever
+  30 will delete files which have been in trash for at least 30 days
+
+Sample:$this-&gt;mProp['MinFileAge'] = 21;</pre>
+<p>
+<a name="DateFormat"><h3>DateFormat</h3></a>
+<p>
+String pattern for the date format in PWP. For more details see PHP documentation of date(). Default for ISO format: 'Y-m-d H:i:s'
+<p>
+<pre>Values: TEXT
+  l = weekday
+  Y = year 4 digits
+  m = month 2 digits
+  d = day of month, 2 digits
+  H = hours, 2 digits
+  i = minutes, 2 digits
+
+Sample: $this-&gt;mProp['DateFormat'] = 'l, Y-m-d H:i';</pre>
+<p>
+<a name="MenuType"><h3>MenuType</h3></a>
+<p>
+<em>Now active in 1.5.0</em> Change the layout of the dynamic Wiki pages; doesn't affect the static pages.
+<p>
+<pre>Values: Integer
+   1 Top&Bottom (standard)
+   2 Left side only
+   3 Right side only
+
+Sample:$this-&gt;mProp['MenuType'] = 1;</pre>
+<p>
+<a name="Admins"><h3>Admins</h3></a>
+<em>New in 1.5.0</em> A comma separated list of all admin user names. The user name have to be provided in the variable 'REMOTE_USER' by the webserver. Most web servers will do so automatically.<br>
+A few actions like exporting static pages will required admin access if the corresponding config setting is not empty.
+<p>
+<pre>Values: Comma separated list of admin user names.
+
+Sample: $this-&gt;mProp['Admins'] = '';  //feature disabled 
+        $this-&gt;mProp['Admins'] = 'bill,george';</pre>
+<p>
+<a name="General HTML settings"><h2>General HTML settings</h2></a>
+<p>
+These settings affect the (invisible) header of every HTML page. The title will show up in the title bar of the user agent window. The language setting is just an information for the user agent and for search engines.
+<p>
+<a name="HTML Header Settings"><h3>HTML Header Settings</h3></a>
+<p>
+<pre>Sample: $this-&gt;mProp['HtmlTitle'] = 'PWP Wiki Processor';
+
+Sample: $this-&gt;mProp['CommonDescription'] = &quot;The PWP Wiki Processor.&quot;;
+
+Sample: $this-&gt;mProp['CommonKeywords']	= &quot;PWP, PHP, Wiki, WikiWiki, Community&quot;;
+
+Values: Use two char ISO code: en, fr, de, dk, se, es, it, hu.
+Sample: $this-&gt;mProp['Language'] = &quot;fr&quot;;</pre>
+<p>
+<a name="LogoImg"><h3>LogoImg</h3></a>
+<p>
+Which logo should be at the top of the page? You have to provide a complete HTML img tag. Use a relative path (without http://webserver) - otherwise the logo might not be found on your static pages.
+<p>
+<pre>Values: A whole HTML image tag - or even more HTML.
+Sample: $this-&gt;mProp['LogoImg'] = &quot;&lt;img src='../img/wiki.jpg' alt='PWP wiki'&gt;&quot;;</pre>
+<p>
+<a name="StyleSheets"><h3>StyleSheets</h3></a>
+<p>
+Web path and name of the style sheet(s). You can include more than one style sheet. The settings of a later included style sheet will override similar settings of previously included style sheets.
+<p>
+<pre>Values:
+   old style: &lt;link rel='STYLESHEET' type='text/css' href='fileName'&gt;
+   new style: &lt;style type=&quot;text/css&quot;&gt;@import url(../css/standard.css);&lt;/style&gt;;
+
+Sample: this-&gt;mProp['StyleSheets'] 
+        = '&lt;style type=&quot;text/css&quot;&gt;@import url(../my.css);&lt;/style&gt;';</pre>
+<p>
+<a name="Static HTML settings"><h2>Static HTML settings</h2></a>
+<p>
+<a name="EnableStaticExport"><h3>EnableStaticExport</h3></a>
+<p>
+Allows or denies the export of static pages.
+<p>
+<pre>Values: TRUE|FALSE: 
+Sample: $this-&gt;mProp['EnableStaticExport'] = TRUE;</pre>
+<p>
+<a name="<strike>CreateStaticLists</strike>"><h3><strike>CreateStaticLists</strike></h3></a>
+<p>
+<em>Removed in 1.5.0</em> Use reports instead.
+<p>
+<pre><strike>Values: TRUE|FALSE:</strike> 
+<strike>Sample: $this-&gt;mProp['CreateStaticLists'] = TRUE;</strike></pre>
+<p>
+<a name="RemoveCommentsStatic"><h3>RemoveCommentsStatic</h3></a>
+<p>
+Removes all visible editor comments in static pages. These are lines starting with an '!'.
+<p>
+<pre>Values: TRUE|FALSE: 
+Sample: $this-&gt;mProp['RemoveCommentsStatic'] = TRUE;</pre>
+<p>
+<a name="ConstructionMessage"><h3>ConstructionMessage</h3></a>
+<p>
+The default message for static &quot;under construction&quot; pages. This message will appear on a static page instead of the page contents if a Wiki page contains the &quot;under construction comment&quot; which consists of <strong>'!?'</strong> and a following text is omitted.
+<p>
+<pre>Values: Text, HTML is allowed
+Sample: $this-&gt;mProp['ConstructionMessage'] 
+           = 'Sorry, this page is still &lt;strong&gt;under construction&lt;/strong&gt;.';</pre>
+<p>
+<a name="Edit, Save, View pages"><h2>Edit, Save, View pages</h2></a>
+<p>
+<a name="CreateTOC"><h3>CreateTOC</h3></a>
+<p>
+Create a table of contents on top of each page, uses all contained H1 and H2 tags.
+<p>
+<pre>Values: TRUE|FALSE
+Sample: $this-&gt;mProp['CreateTOC'] = TRUE;</pre>
+<p>
+<a name="ShowInfoLine"><h3>ShowInfoLine</h3></a>
+<p>
+If TRUE every page will have a small line at the bottom
+informing about file size, create date and cache state.
+<p>
+<pre>Values: TRUE|FALSE
+Sample: $this-&gt;mProp['ShowInfoLine'] = true;</pre>
+<p>
+<a name="EditRows"><h3>EditRows</h3></a>
+<p>
+Number of rows of the text edit box. Default: 21. 
+<p>
+<pre>Values: Integer
+Sample: $this-&gt;mProp['EditRows'] = 21;</pre>
+<p>
+<a name="EditColumns"><h3>EditColumns</h3></a>
+<p>
+Number of chars in one line of  the text edit box. Default: 85. 
+<p>
+<pre>Values: Integer
+Sample: $this-&gt;mProp['EditColumns'] = 85;</pre>
+<p>
+<a name="AllowedTags"><h3>AllowedTags</h3></a>
+<p>
+Enumeration of allowed HTML tags inside a Wiki file.
+If this string is EMPTY , no HTML is allowed;
+chars like &amp; &lt; &gt; will be converted into HTML entities '&...;'
+<p>
+If this string contains ANY tag(s), all undefined tags will be silently removed.
+You may use &lt; &gt; as single char with spaces around in mathematical meaning. But
+&lt;&lt; and &gt;&gt; may cause the strip_tags() function to remove text or even to truncate
+your text starting at '&lt;&lt;'!
+<p>
+<pre>Values: Enumeration of <em>opening</em> HTML tags or empty string.
+Sample: $this-&gt;mProp['AllowedTags'] 
+           = '&lt;h1&gt;&lt;h2&gt;&lt;h3&gt;&lt;p&gt;&lt;pre&gt;&lt;div&gt;&lt;ul&gt;&lt;ol&gt;&lt;li&gt;&lt;img&gt;&lt;a&gt;&lt;hr&gt;&lt;br&gt;&lt;b&gt;&lt;i&gt;';
+        $this-&gt;mProp['AllowedTags'] = '';</pre>
+<p>
+<a name="UseSnippets"><h3>UseSnippets</h3></a>
+<p>
+The edit form will show snippet links if set to TRUE.
+A snippet is a user defined text fragment which can be
+appended at the edit form. Snippets are defined in the file <strong>config/Snippets.inc</strong>.
+<pre>
+Values: TRUE|FALSE
+Sample: $this-&gt;mProp['UseSnippets'] = TRUE;</pre>
+<p>
+<a name="MaxUploadSize"><h3>MaxUploadSize</h3></a>
+<p>
+Max. size for uploaded files in KBytes. PHP itself has a default of max. 2048 KB. PWP can restrict it further. But the PWP setting cannot exceed the PHP setting. 
+Default: 1024;
+<pre>
+Values: Integer
+Sample: $this-&gt;mProp['MaxUploadSize'] = 1024;</pre>
+<p>
+<a name="MaxPostSize"><h3>MaxPostSize</h3></a>
+<p>
+Max. file size for one Wiki page in KB. We are talking about Wiki code size, not HTML. 64 KB are about 12..16 typewriter pages with a lot of text on each. A user would have to scroll about 3 meters down in such a Wiki page.
+<pre>
+Values: Integer
+Sample: $this-&gt;mProp['MaxPostSize'] = 64;</pre>
+<p>
+<a name="<strike>RecentChangesLinks</strike>"><h3><strike>RecentChangesLinks</strike></h3></a>
+<p>
+<em>Deprecated in 1.5.0</em> The array is now hard coded.
+<pre>
+<strike>Values: Array containing integers.</strike>
+<strike>Sample: $this-&gt;mProp['RecentChangesLinks'] = array(1,3,7,15,30,60,90);</strike></pre>
+<p>
+<a name="IndexType"><h3>IndexType</h3></a>
+<p>
+This setting affects the list of Wiki pages, uploaded files, recent changes and the trash bin. PWP supports two list types: A single column index with detailed information and a multi column index with less information.
+<p>
+<pre>Values: Integer
+        1 = single column index with time information
+        n = n column index without time information
+        use n = 3 for 800 pixel screen resolution
+        use n = 4 for 1024 pixel screen resolution
+        0 or smaller: forbidden
+</pre>
+Sample: $this-&gt;mProp['IndexType'] = 3;
+<p>
+<a name="ListLength"><h3>ListLength</h3></a>
+<p>
+How many entries should appear on one list page? The number of lines per list depends on the IndexType setting, see also above. Default: 100
+<p>
+<pre>Values: Integer
+Sample: $this-&gt;mProp['ListLength'] = 100;</pre>
+<p>
+<a name="HistoryBehaviour"><h3>HistoryBehaviour</h3></a>
+<em>New in PWP 1.5.0</em> How should PWP record changes of Wiki pages in the revision history?
+<p>
+<pre>Values:
+ 1: always record a change in the history on each save action
+ 0: leave it to the user (checkbox in edit view)
+-1: never record any changes in the history
+
+Sample: $this-&gt;mProp['HistoryBehaviour'] = 0;</pre>
+<p>
+<a name="Calendar"><h2>Calendar</h2></a>
+<p>
+<a name="EnableCalendar"><h3>EnableCalendar</h3></a>
+<p>
+Enable or disable calendar creation. 
+<p>
+<pre>Values: TRUE|FALSE
+Sample: $this-&gt;mProp['EnableCalendar'] = TRUE;</pre>
+<p>
+<a name="IsUSCalendar"><h3>IsUSCalendar</h3></a>
+<p>
+US calendars (and others?) have a week begin on Sunday. A German week starts on Monday. Affects the small month overview table. The contained week number is calculated by PHP corresponding to some ISO definition. This hopefully works around the globe...
+<p>
+<pre>Values: TRUE|FALSE
+Sample: $this-&gt;mProp['IsUSCalendar'] = TRUE;</pre>
+<p>
+<a name="<strike>Holidays, Events and Entries</strike>"><h3><strike>Holidays, Events and Entries</strike></h3></a>
+<p>
+<em>Deprecated in 1.5.0</em>
+<p>
+<pre><strike>Values: STRING: dd.mm;text</strike>
+<strike>Sample:</strike>
+  <strike>$this-&gt;mProp['CalendarHolidays'] = &quot;25.12.;X-Mas;26.12.;X-Mas&quot;;</strike>
+  <strike>$this-&gt;mProp['CalendarEvents'] = &quot;21.06.;Summer;23.09.;Autum&quot;;</strike>
+  <strike>$this-&gt;mProp['CalendarEntries'] = &quot;10.03.;Annual Business Report&quot;;</strike></pre>
+<p>
+<a name="File StaticHtml.inc"><h2>File StaticHtml.inc</h2></a>
+<p>
+This file contains the HTML header and footer for <em>static</em> HTML pages. Header and footer for dynamic Wiki pages are contained in wiki/resp/out/Html.inc. However this file is not considered to be part of the configuration; it contains a whole bunch of program logic.
+<p>
+StaticHtml.inc consists of thee functions, each returning a string. Just edit the part between:
+<p>
+<pre> return &lt;&lt;&lt;eoh
+
+ eoh;</pre>
+<p>
+You can access config settings and variables using:
+<p>
+<pre>{$gConfig-&gt;mProp['StartPage']}
+{$gConfig-&gt;mVars['IconYes']}</pre>
+<p>
+Having some programming experience, you might use the passed $wikiPage to use different headers. For example, if a page name ends with &quot;.EN&quot; or &quot;.DE&quot;, an appropriate header could be returned.
+<p>
+The third function returns an index (default) page which must match the naming requirements of your webserver. It simply forwards to the configured start page. Usually you do not have to change this function.
+<p>
+<a name="File Snippets.inc"><h2>File Snippets.inc</h2></a>
+<p>
+Here are the snippets defined which appear as JavaScript links below the edit box. The function &quot;_defineSnippets()&quot; is of interest for you. It must return an array with a name =&gt; value mapping.
+<p>
+
+<!--content end-->
+
+</div>	</div>
+	<p>&nbsp;&nbsp;&nbsp;<small>(Powered by <a href='http://www.lars-ackermann.de/wiki/static'>PWP Version 1-5-0</a>)</small></p>
+</body>
+</html>
