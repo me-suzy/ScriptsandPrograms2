@@ -1,0 +1,142 @@
+/* $Id: UPGRADE_LIESMICH.txt,v 1.1.2.6 2004/08/27 15:49:09 bjmg Exp $ */
+
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+                  Upgrade auf phpCMS 1.2.x von phpCMS 1.1.x
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+
+Diese Anleitung geht davon aus, dass eine ältere phpCMS Installation vorhanden
+ist, die während des Upgrades und der notwendigen Tests nicht gestört werden
+sollte.
+Möchten Sie eine Neuinstallation durchführen, lesen Sie bitte die Datei
+"Installation.txt" im Verzeichnis "/parser/readme/de".
+
+(10 Schritte zum Erfolg ;-))
+
+   0. Entpacken Sie die ZIP-Datei (phpcms-1_2_x.zip oder
+      phpcms-1_2_x.tar.gz) auf Ihrem lokalen Rechner.
+
+   1. Nennen Sie das nun auf Ihrem Rechner befindliche Verzeichnis "/parser" um
+      in "/parser12x".
+
+   2. Laden Sie dieses komplette Verzeichnis auf Ihren Server. Sie haben dort
+      nun zwei Verzeichnisse:
+       /parser (phpCMS 1.1.x)
+       /parser12x (phpCMS 1.2.x)
+
+   3. Ihre bisherigen Einstellungen und Profile des HTTP-Indexers können ohne
+      Probleme in die 1.2.x übernommen werden. Dazu _kopieren_ Sie jetzt die
+      Dateien "default.php" sowie "defaults_indexer.php" aus dem Verzeichnis
+      "/parser/include" in das neue Verzeichnis "/parser12x/include".
+
+   4. Kopieren Sie eventuell verwendete Plug-Ins und Scripte aus dem alten
+      Verzeichnis "/parser/plugs" in das neue Verzeichnis "/parser12x/plugs"
+
+   5. Stellen Sie sicher, dass alle neu angelegten Verzeichnisse und Dateien
+      die erforderlichen Rechte besitzen. Die benötigten Rechte sind in der
+      Datei "Installation.txt" im Verzeichnis "/parser/readme/de" beschrieben.
+
+   6. Loggen Sie sich nun mit Ihrem alten Passwort in das GUI ein:
+       http://www.domain.test/parser12x/parser.php
+      Beim ersten Aufruf des Menüpunktes "Konfiguration" im GUI wird die Datei
+      default.php automatisch konvertiert und neue Einstellungen werden
+      hinzugefügt. Die Datei defaults_indexer.php ist ohne Änderungen zu 100%
+      kompatibel, da sich das Format nicht geändert hat.
+      (Zwei neue Einstellungen in Version 1.2.x werden beim Ändern eines Profils
+      automatisch hinzugefügt).
+
+   7. Überprüfen Sie Ihre Einstellungen:
+         1. Überall dort, wo "/parser" verwendet wird, ändern Sie dies in
+            "/parser12x".
+         2. Schalten Sie den Stealth-Mode zunächst aus.
+         3. Lesen Sie den Abschnitt "Hinweise zu den Änderungen im Einzelnen"
+            weiter unten, und nehmen Sie ggf. notwendige Anpassungen vor.
+
+   8. Nun testen Sie, ob Ihre Seiten mit dem neuen Parser richtig angezeigt
+      werden:
+       http://www.domain.test/parser12x/parser.php?file=/demo-de/index.htm .
+
+   9. Wenn dieser Test erfolgreich verlaufen ist, ändern Sie in der
+      Konfiguration wieder alle Einträge, die "/parser12x" enthalten, zurück
+      in "/parser". Wenn Sie den Stealth-Mode verwenden, schalten Sie diesen
+      wieder ein.
+
+  10. Nennen Sie nun Ihr altes und das neue Parser Verzeichnis um:
+       /parser_alt (phpCMS 1.1.x)
+       /parser (phpCMS 1.2.x)
+
+Fertig!
+
+
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+                  Hinweise zu den Änderungen im Einzelnen
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+                                    PLUGINS
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+
+   1. Alle eigenen Plugins aus dem Plugin-Verzeichnis in den neuen Parser
+      kopieren.
+   2. Plugin sxform: auch hier muss eine Anpassung gemacht werden:
+       http://phpcms.de/forum/showthread.php?id=3736
+
+
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+                                     SCRIPTE
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+   1. Die Auto-Gallery funktioniert im Secure Stealth-Mode nicht ohne Anpassung.
+      Näheres dazu hier:
+       http://phpcms.de/forum/showthread.php?id=3409
+
+
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+                                      SUCHE
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+In Version 1.2.x werden Stopworte und indizierte Worte in einem anderen Format
+gespeichert. Sie haben daher zwei Möglichkeiten:
+
+   1. Am besten: erstellen Sie einen neuen Index.
+   2. Am 2.besten: words.db und stop.db, die Stopwortdatei, in einem guten
+      Text-Editor öffnen, und alle Wörter auf kleinschreibung setzen.
+
+    * Neues Feature: Sie können in Ihrer Tag-Datei <SEARCH_MIDDLE> definieren.
+      Dieses wird dann zwischen <SEARCH_PREV> und <SEARCH_NEXT> platziert. Wenn
+      es nicht definiert ist, wird es durch " " ersetzt.
+    * Neues Feature: In der Datei nono.db können "verbotene" Suchbegriffe
+      definiert werden. Bei verwendung eines dort definierten Wortes kann dem
+      Besucher eine besondere Mitteilung angezeigt werden.
+
+
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+                            Mail2Crypt SPAM Schutz
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+Der in v1.1.9 eingeführte SPAM Schutz "PAX MailCrypt?" wurde unabhängig von PAX
+neu implementiert. Zur Verwendung von Mail2Crypt ist es nun nicht mehr
+erforderlich, "PAX TAGS berücksichtigen" aktiviert zu haben. Zudem wurde
+wegen einer Namenskollision die Bezeichnung in "Mail2Crypt" geändert.
+
+    * In Zukunft wird der Bezeichner des Tags auf "MAIL2CRYPT" umgestellt.
+      In v1.2.x funktioniert jedoch auch noch "MAILCRYPT".
+    * Die JavaScript?-Datei heisst nun ebenfalls js_mail2crypt.js.
+      Bitte beachten!
+    * Das Tag <!-- MAILCRYPT include ---> wird nicht mehr benötigt - kann
+      also gelöscht werden.
+      Zur Einbindung der JS-Datei wird - wo erforderlich - automatisch ein
+      <script> Tag in die geparste Seite eingefügt.
+
+
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+                    Anleitung für die Profis (via symlinks)
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+Eine andere Möglichkeit, phpCMS zu updaten, ist, das Ganze über Symlinks zu
+machen. Dies funktioniert natürlich nur unter [Linux|Unix]. Falls Sie das
+machen wollen, empfielt es sich, diesen Thread von [TOM] zu lesen:
+ http://phpcms.de/forum/index.de.html?topic=1509.0
+Da ist alles schön beschrieben.
