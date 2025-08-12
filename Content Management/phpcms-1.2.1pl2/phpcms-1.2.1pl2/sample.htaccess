@@ -1,0 +1,112 @@
+# $Id: sample.htaccess,v 1.1.2.4 2003/08/01 11:40:04 bjmg Exp $ 
+#
+#   +----------------------------------------------------------------------+
+#   | phpCMS Content Management System - Version 1.2.0
+#   +----------------------------------------------------------------------+
+#   | phpCMS is Copyright (c) 2001-2003 by Michael Brauchl
+#   | and Contributing phpCMS Team Members
+#   +----------------------------------------------------------------------+
+#   | This program is free software; you can redistribute it and/or modify
+#   | it under the terms of the GNU General Public License as published by
+#   | the Free Software Foundation; either version 2 of the License, or
+#   | (at your option) any later version.
+#   |
+#   | This program is distributed in the hope that it will be useful, but
+#   | WITHOUT ANY WARRANTY; without even the implied warranty of
+#   | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#   | General Public License for more details.
+#   |
+#   | You should have received a copy of the GNU General Public License
+#   | along with this program; if not, write to the Free Software
+#   | Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+#   | MA  02111-1307, USA.
+#   +----------------------------------------------------------------------+
+#   | Original Author: Michael Brauchl (mcyra)
+#   | Contributors:
+#   |    Henning Poerschke (hpoe)
+#   +----------------------------------------------------------------------+
+#
+
+
+##########################
+#  sample .htaccess
+##########################
+
+##########################
+# Purpose
+################
+# The .htaccess file is used on Apache servers to put phpCMS
+# into "Stealth-Mode" which hides the "?file=" part of the URL
+# and makes your site more search engine friendly
+#
+# In order to use Stealth-Mode configure this file, 
+# and save it as ".htaccess" in your document root.
+# Finally, turn on Stealth-Mode in the GUI - and preferrably 
+# "Secure Stealth-Mode" as well.
+#
+# If you installed phpCMS into a directory other than /parser, please 
+# remember to make appropriate changes in this .htaccess to reflect
+# the parser's location.
+#
+# Note: The windows explorer (in some Windows versions) isn't able
+# to rename files to a name beginning with '.'.
+
+##########################
+# Stealth-Mode
+##########################
+# There are currently three ways to put phpCMS into Stealth Mode:
+#
+# Two involve the Apache mod_actions and mod_mime modules, 
+# one involves mod_rewrite.
+
+##########################
+# ...using AddType and Action directives
+#################
+# uncomment the following two lines *only*:
+
+#AddType application/x-httpd-parse .htm
+#Action application/x-httpd-parse "/parser/parser.php?file="
+
+# "AddType" tells Apache to map the ".htm" file extension to the 
+# the file type "application/x-httpd-parse".
+# Next, Apache is told to perform an action each time it encounters
+# a file of file type "application/x-httpd-parse".
+# This action consists in passing on these file to "/parser/parser.php?file="
+# This way any file whose extension is ".htm" is sent to phpCMS.
+#
+# You may, of course, change this from ".htm" to e.g. ".html" or,
+# actually, any file extension you like (except .php !)
+
+##########################
+# ...using AddHandler and Action directives
+#################
+# This is similar to the above, and may be used in the (rare)
+# event that AddType does not work while AddHandler does.
+#
+# Again, uncomment the following two lines *only*:
+
+#AddHandler application/x-httpd-parse .htm
+#Action application/x-httpd-parse "/parser/parser.php?file="
+
+##########################
+# ...using mod_rewrite
+#################
+# If you have mod_rewrite installed but not mod_actions,
+# of if you are into URL rewriting, you may...
+#
+# uncomment the following three lines:
+
+#RewriteEngine on
+#RewriteBase /
+#RewriteRule (.*)\.htm$ /parser/parser.php?file=/$1.htm [PT,QSA]
+
+
+##########################
+# Other things you could do...
+##########################
+# Tell Apache to allways display a certain file, whenever
+# a URL points to a directory instead of to a file.
+# You can specify more than one file as DirectoryIndex. Apache tries
+# to get each file in turn, if the preceding file is not there:
+
+#DirectoryIndex index.htm myoldindex.html listingdenied.htm
