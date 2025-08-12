@@ -1,0 +1,52 @@
+/**************************************************/
+/*                                                */
+/*  Install.txt                                   */
+/*                                                */
+/*                                                */
+/*                                                */
+/**************************************************/
+
+circeOS_cv Requirements:
+
+	OS:			Windows NT/2000/XP / Unix / Linux
+	WEB SERVER:		IIS, Apache 
+	DB:			Oracle 9i or >
+				Oracle Text enabled on Oracle server (see oracle specifications)
+				Oracle Client installed on web server machine
+				
+
+	PHP:			4 or > (go to your system directory (es. c:/winnt on Windows) and 
+					in the configuration file PHP.INI put the variables
+					error_reporting = E_COMPILE_ERROR|E_ERROR|E_CORE_ERROR
+					register_globals = On)
+	Browser:		IE 5 or >	
+
+
+
+
+STEPS with Windows XP + IIS:
+
+1)	copy php_oci8.dll into %SYSTEMRoot%/system32
+
+
+STEPS with Windows 2000 server + Apache:
+
+1)	copy oci.dll from $ORACLE_HOME/bin into Apache/bin 
+2)	copy php4ts.dll into %SYSTEMRoot%/system32
+3)	copy php_oci8.dll into %SYSTEMRoot%/system32
+
+
+COMMON STEPS:
+
+1) edit php.ini in your system dir (es. c:/windows) and set correctly the variable extension_dir 
+	(es.: extension_dir = "c:\PHP\extensions")
+2) edit php.ini and uncomment this row:	extension=php_oci8.dll
+3) edit itw_module_config.inc.php and configure db oracle variables (db, user, password)
+4) create Oracle TEXT indexes using the script sql/build_index.oracle 
+	(you can schedule this script every day using kron or windows services)
+5) restart web server
+6) create Oracle Table using the script: sql/itw_curriculum_db.oracle
+7) schedule every day the re-build of indexes on your oracle db, using the script: sql/build_index.oracle
+8) enable Oracle Text on Oracle server (see Oracle specifications)
+
+
