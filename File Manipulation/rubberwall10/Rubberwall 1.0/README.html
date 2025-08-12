@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>RubberwaLL 1.0a README</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+}
+.style3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+.style4 {font-size: 12px; font-family: Arial, Helvetica, sans-serif;}
+-->
+</style></head>
+<body>
+<p><strong><span class="style2">RubberwaLL V1.0a Readme:</span></strong></p>
+<p class="style3">Thanks for downloading RubberwaLL, the anti-leech php script. </p>
+<p class="style3">Please read the enclosed license before using this script.</p>
+<p class="style3"><u>Prerequisites;</u></p>
+<p class="style4">This script requires a base of a PHP 3 or higher enabled webserver. .htaccess support on your webserver is a plus. </p>
+<p class="style4"><span class="style3"><u>Overview:</u></span></p>
+<p class="style4">What does RubberwaLL do? If your files are unprotected, any other site can include your movies, images or other files for download as if it were their own. Often, their visitors will see no difference.</p>
+<p class="style4">This costs the other webmaster nothing, but can cost you bandwidth (if you pay for file-transfer from your site by the gigabyte, the more people stealing your files, the more you pay!) - and on free hosting this can lead to your site being shut down - this is not fair! </p>
+<p class="style4">Combat hotlinking now by installing RubberwaLL - this script sits between client and your files, which remain securely password protected at all times, and ensures that people opening your files have actually come from YOUR website. </p>
+<p class="style4">Nobody sees the username and password for your files except the webserver your files sit on, and visitors do not see the true address of your files. The real address of your file never even TOUCHES the visitors browser. Files are served to users totally transparently, just as if you linked to a normal unprotected file. </p>
+<p class="style4"><em>Without having the address to access your files, and without the username or password to access them even if they DID, RubberwaLL ensures your files are completely watertight. </em></p>
+<p class="style4">The script is fast, easy to use, and transparent. See it in use at <a href="Http://www.explodingpanda.com/vids/" target="_blank">Http://www.explodingpanda.com/vids/</a> - where I use it personally to keep the videos I host accessible to only people visiting MY site. </p>
+<p class="style4"><span class="style3"><u>Installation:</u></span></p>
+<p class="style4"><strong>The Files:</strong></p>
+<p class="style4"><strong>Main Script Files: </strong><em><br>
+  .htaccess - </em>To enable password protection, upload this to the relevant folder - without password protection, you can just rely on visitors not knowing the true address to your files. <br>
+  <em>.htpasswd - </em>The file containing passwords for the above file.<br>
+<em>filescraper.php - </em>The actual engine of the script, which loads files into memory and serves them to users after checking they are legitimate. <br>
+<em>referlog.html - </em>This is a log of all access grants and denials for reference. <strong>If logging is enabled, you must CHMOD this file via ftp to at least 766. (Writable by webserver!)</strong><br>
+<em>logit.php - </em>This file generates the logs described above, if you enable logging. <br>
+<em><em>config.php - </em></em>The main configuration file - you must edit this before uploading! <em><br>
+<em><em>fileindex.txt - </em></em></em>A list of all your files, in a special format. <em><br>
+<em><br>
+</em></em><strong>Other Files:</strong><em><em><br> 
+None
+</em></em></p>
+<p class="style4"><strong>Installation and Configuration:</strong></p>
+<p class="style4">Installation is simple. First, open <strong>config.php</strong> in a text editor such as 'notepad', and ensure all fields are correctly configured as below:</p>
+<p class="style4"><em><strong>$path = &quot;/home/httpd/vhosts/example.com/htdocs/myfiles/rubberwall/lockdown/&quot;;  - </strong></em><strong>The full path to the lockdown folder on your server. Remember to change this line if you modify the folder name for added security. Remember the trailing slash. <br>
+  <br>
+    <em>$webaddress = &quot;http://username:password@www.example.com/myfiles/rubberwall/lockdown/&quot;;</em> - The full address of the lockdown folder as seen on the web, remember trailing slash &amp; to modify username / pass as appropriate. <br>
+    <br>
+    <em>$allowblank = 1;</em>  - Whether to allow a blank referrer - some browsers block the information regarding which sites have been visited, so some users may not show the correct information for the script to determine where they came from. Recommended to be kept enabled, as you don't want to block legitimate users. <br>
+    <br>
+<em>$logging = 1;</em> - Whether to enabled logging of access grants / failures.<br> 
+<br> 
+<em>$alloweddomains = array('explodingpanda.com','blue-networks.net');</em> - A list of domains to allow access from, seperated by commas. Includes all subdomains, ie www.yoursite.com, yoursite.com, anything.yoursite.com.</strong></p>
+<p class="style4">If you are able to use .htaccess password protection, you must also edit .htaccess and .htpasswd in a text editor such as notepad before uploading them. </p>
+<p class="style4"><strong>.htaccess:</strong></p>
+<p class="style4">AuthName &quot;RubberWall Anti-Leech&quot;<br>
+  AuthType Basic<br>
+  AuthUserFile /home/httpd/vhosts/example.com/htdocs/myfiles/rubberwall/lockdown/.htpasswd <strong>&lt;-- this must be the full path to the .htpasswd file on your server. </strong><br>
+Require valid-user</p>
+<p class="style4"><strong>.htpasswd:</strong></p>
+<p class="style4"><strong>username:password</strong></p>
+<p class="style4">The file must contain this line only, with an empty line beneath. Username is the username to access the folder. You must generate a password using the following site:</p>
+<p class="style4"><a href="http://www.xs4all.nl/%7Eremcovz/htpasswd.html">http://www.xs4all.nl/~remcovz/htpasswd.html </a>&lt;- This site allows you to generate secure encrypted passwords for the config file.</p>
+<p class="style4"><strong>Remember to put the username and unencrypted password into the config.php file's $webaddress setting.</strong></p>
+<p class="style4"><strong>And finally: </strong>The most important file - <strong>fileindex.txt</strong>.</p>
+<p class="style4">This file contains all of your file's names, in the format: <strong>ID:Filename, </strong>one on each line - for example 1:myflashmovie.swf. The ID is used to allow visitors from your site to access this file. <strong>ALL IDS MUST BE UNIQUE, AS BELOW. </strong>An example file:</p>
+<p class="style4"><em><strong>1:mycoolvideo.swf<br>
+  2:anything.mpeg<br>
+  3:homevideo.avi<br>
+4:importantfiles.zip</strong></em><em><strong><br>
+5:anything.jpg</strong></em></p>
+<p class="style4"><strong>ALL OF THE FILES YOU WISH TO LEECH-PROTECT MUST BE PLACED INTO THE LOCKDOWN FOLDER (OR WHATEVER YOU RENAME IT TO). </strong></p>
+<p class="style4"><strong>Once you upload an edited config file, and all of your files to the protected folder, along with .htaccess and .htpasswd if you are able to, you are now ready to access your files, using the id's you provided in the fileindex.txt.</strong></p>
+<p class="style4"><strong>To access your files: </strong></p>
+<p class="style4">This is now very simple. The script will serve your files transparently. If you would normally link to <em>http://www.mysite.com/movie.mpeg</em>, and you have now moved movie.mpeg to the protected lockdown folder, simply link to <em>http://www.mysite.com/myfiles/rubberwall/filescraper.php?serve=<strong>id</strong></em>, where id is the id number you gave the file in the fileindex.txt file. The file will open as normal.</p>
+<p class="style4">So, if your fileindex.txt contains:</p>
+<p class="style4"><em><strong>1:mycoolvideo.swf<br>
+2:anything.gif</strong></em></p>
+<p class="style4">And you wish to give a secure link to mycoolvideo.swf, simply give the link: <em><strong>Http://www.mysite.com/myfiles/rubberwall/filescraper.php?serve=1</strong></em> </p>
+<p class="style4">This link will work inside an &lt;img&gt; tag (ie &lt;img src=&quot;Http://www.mysite.com/myfiles/rubberwall/filescraper.php?serve=2&quot;&gt;), and the &lt;embed&gt; tag for flash/movie files, and many more. It works just like a normal link to the file. </p>
+<p class="style4">&nbsp;</p>
+<p class="style4"><strong>If you have any problems installing or using the script, have found a bug, or wish to suggest something, please contact me in the <a href="http://explodingpanda.com/board/index.php">forum!</a></strong></p>
+<p class="style4"><strong>I hope this script is useful to you.</strong></p>
+<p class="style4">&nbsp;</p>
+</body>
+</html>
