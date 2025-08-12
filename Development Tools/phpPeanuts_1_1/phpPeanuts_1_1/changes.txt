@@ -1,0 +1,38 @@
+phpPeanuts 1.1
+
+Changes since 1.1 beta 2
+
+x IndexPage::getInformation versienummer aanpassen
+
+BUGS (x = Fixed)
+
+warnings when allow_call_time_pass_reference=Off
+	PntObjectDeleteMarkedAction::PntObjectDeleteMarkedAction
+	PntObjectIndexPage::getButtonsList
+	PntAction::PntAction
+	PntObjectDeleteAction::PntObjectDeleteAction
+	PntSqlJoinFilter::initFromPersistArray
+	PntObjectEditDetailsPage::printFormWidget
+	PntFilterFormPart::_runQhStoreAllItemsSize_getItemsLimitedTo
+	PntObjectDialog::getButtonsList
+
+New function
+
+PntErrorHandler::logError
+	Errorlog now includes http referrer
+	$someInfo['referer'] = isSet($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'no referer';
+PntSite::getBaseUrl
+	now offers a much better guess of the base url and caches it
+PntSite::PntSite 
+	no longer sets $this->baseUrl from baseurl.txt. 
+	set it from scritMakeSettings if you need to override getBaseUrl
+pnt/generalFunctions.php getPntVersion returns phpPeanuts version identifier
+
+	
+Comments
+
+PntSite::isFunkyUrl
+PntSite::getFunkyRequestData
+PntSite all var declarations and comments modified
+scriptMakeSettings.php comments on optional settings
+
