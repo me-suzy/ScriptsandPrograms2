@@ -1,0 +1,1 @@
+Powered by <A HREF="http://www.ukiweb.net" target="_blank" class="menu">UKiBoard</A> v2.0.1 © 2003-2004 LUKiO
