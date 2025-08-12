@@ -1,0 +1,28 @@
+1) 
+create database CMS;
+2) 
+GRANT ALL PRIVILEGES ON cms.* to cms_admin IDENTIFIED BY 'cms_admin' with grant option;
+3)
+
+
+USE CMS;
+
+CREATE TABLE cms_t_users 
+(UserID VARCHAR(20) NOT NULL, 
+Password VARCHAR(20), 
+UserName VARCHAR(50), 
+EMail VARCHAR(50),
+AdminUser CHAR(1),
+Active CHAR(1),
+PRIMARY KEY (UserID));
+
+CREATE TABLE cms_t_menus (
+    ID MEDIUMINT  UNSIGNED NOT NULL AUTO_INCREMENT,
+    Title VARCHAR(255),
+    HyperLink VARCHAR(255),
+    DisplaySequence MEDIUMINT  UNSIGNED,
+	Active CHAR(1),
+    PRIMARY KEY (id)
+);
+
+INSERT INTO cms_t_users(UserID,UserName,Password,AdminUser,Email,Active) VALUES('ADMIN','admin','admin','Y','admin','Y')
