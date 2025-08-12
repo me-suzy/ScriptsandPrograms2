@@ -1,0 +1,52 @@
+<table width="100%" border="0" cellpadding="5">
+ <tr>
+  <td colspan="3">
+
+   <!-- IF ##ERR_MSG## --><center><span class="error">##ERR_MSG##</span></center><!-- ENDIF -->
+
+   <form method="post" name="frm" action="##REQUEST_URI##">
+   <table border="0" cellspacing="0" cellpadding="4" width="100%">
+    <tr valign="top">
+     <td width="25%"><b>##LNG['_TBL_U_ML']##</b> *</td>
+     <td width="75%">
+	    <select name="mlist_id" OnChange="hwSetMailDescr()">
+	    ##mlist##
+	    </select><br />
+      <div id="m_txt"></div>
+     </td>
+	  </tr>
+    <tr valign="top">
+     <td><b>##LNG['_TBL_U_ML_NAME']##</b></td>
+     <td>
+      <input type="text" name="name" size="30" value="##name##" /><br />
+     </td>
+    </tr>
+    <tr valign="top">
+     <td><b>##LNG['_TBL_U_ML_EMAIL']##</b> *</td>
+     <td>
+      <input type="text" name="email" size="30" value="##email##" /><br />
+      <input type="radio" name="action" value="subscribe" checked style="border:0;" /> ##LNG['_TBL_U_ML_SUBS']##<br />
+      <input type="radio" name="action" value="unsubscribe" style="border:0;" /> ##LNG['_TBL_U_ML_UNSUBS']##<br /><br />
+     </td>
+    </tr>
+    <tr>
+     <td>&nbsp;</td>
+     <td><input type="submit" name="submit" value="##LNG['_BTN_SUBMIT']##" /></td>
+    </tr>
+   </table>
+   </form>
+  </td>
+ </tr>
+</table>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+function hwSetMailDescr(){
+  var a_Descr = new Array(##a_Descr##);
+  var mid = document.frm.mlist_id.selectedIndex;
+  if (document.all) document.all.m_txt.innerHTML = a_Descr[mid];
+  else document.getElementById('m_txt').innerHTML = a_Descr[mid];
+}
+hwSetMailDescr();
+// -->
+</script>
