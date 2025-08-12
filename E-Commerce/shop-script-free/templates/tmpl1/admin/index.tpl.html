@@ -1,0 +1,71 @@
+{* main admin template*}
+<html>
+<head>
+
+<script>
+	function confirmDelete(id, ask, url) //confirm order delete
+	{literal}{{/literal}
+		temp = window.confirm(ask);
+		if (temp) //delete
+		{literal}{{/literal}
+			window.location=url+id;
+		}
+	}
+	function open_window(link,w,h)
+	{literal}{{/literal}
+		var win = "width="+w+",height="+h+",menubar=no,location=no,resizable=yes,scrollbars=yes";
+		newWin = window.open(link,'newWin',win);
+	}
+</script>
+
+<link rel=STYLESHEET href="style1.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset={$smarty.const.DEFAULT_CHARSET}">
+<title>{$smarty.const.ADMIN_TITLE}</title>
+</head>
+
+<body bgcolor=#EEEEEE leftmargin=0 topmargin=0 marginwidth=0 marginheight=0>
+
+<table width=100% border=0 cellpadding=0 cellspacing=0 height="100%">
+
+<tr>
+ <td height=34 background="images/admin_head_bg.gif" colspan={$admin_departments_count}>&nbsp;&nbsp;<a href="admin.php" class=big><b>{$smarty.const.ADMIN_TITLE}</b></a> (<a href="admin.php?logout=yes">{$smarty.const.LOGOUT_LINK}</a>)</td>
+ <td height=34 background="images/admin_head_bg.gif" valign=top align=right>&nbsp;&nbsp;<a href="index.php">{$smarty.const.ADMIN_BACK_TO_SHOP}</a></td>
+</tr>
+
+<tr>
+	{section name=i loop=$admin_departments}
+	 {if $admin_departments[i].id ne $current_dpt}
+	  <td bgcolor=#3FAACF width=1% align=center height=39>
+	   <table cellspacing=0 cellpadding=0 border=0 height=39>
+	    <td width=5><img src="images/admin_menu_1.gif" width=5></td>
+		<td background="images/admin_menu_3.gif"><table cellpadding=4><tr><td align=center><a href="admin.php?dpt={$admin_departments[i].id}">{$admin_departments[i].name}</a></td></tr></table></td>
+		<td><img src="images/admin_menu_2.gif"></td>
+	   </table>
+	  </td>
+	 {else}
+	  <td bgcolor=#9FDAFF width=1% align=center>
+	   <table cellspacing=0 cellpadding=0 border=0 height=39>
+	    <td width=5><img src="images/admin_menu_1_h.gif" width=5></td>
+		<td background="images/admin_menu_3_h.gif"><table cellpadding=4><tr><td align=center><b>{$admin_departments[i].name}</b></td></tr></table></td>
+		<td><img src="images/admin_menu_2_h.gif"></td>
+	   </table>
+	  </td>
+	 {/if}
+	{/section}
+	<td background="images/admin_menu_bg.gif" height=39 width=99%>&nbsp;</td>
+</tr>
+
+<tr>
+ <td colspan={$admin_departments_count+1} bgcolor=#EEFAFC height=100% valign=top>
+
+	{include file="$admin_main_content_template"}
+
+ </td>
+</tr>
+
+
+</table>
+
+</body>
+
+</html>
