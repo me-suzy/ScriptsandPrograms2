@@ -1,0 +1,380 @@
+<html>
+	<head>
+		<title>Head</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">Head Class</h1>
+		<br />
+		<span class="name">Name: Head</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* Class that represents the header for an html document. The idea behind this whole class is to manage  all the document</li>
+			<li>* header's data internally and then, when needed, parse and generate the actual XHTML code. This class manages only</li>
+			<li>* the HTML Header.</li>
+			<li>*</li>
+			<li>* This class is designed to only manage XHTML code, since it uses an XML parser for HTML code generation.</li>
+			<li>* If you embed any other version of HTML code things should work fine, but won't match W3C standards,</li>
+			<li>* and won't pass the validation test.</li>
+			<li>*</li>
+			<li>* NOTE: Changing the Document type to another HTML document type other than XHTML, won't change the fact,</li>
+			<li>* that this class is designed for XHTML.</li>
+			<li>*</li>
+			<li>* Glossary :</li>
+			<li>* - Document Header : The document header represents a set of multimedia content that goes in the top of a document.</li>
+			<li>* - HTML Header : A set of HTML tags that define the body of the document.</li>
+			<li>*</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.xhtml.base</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza <aespinoza@structum.com.mx></span>
+		<br />
+		<span class="version">Version: 0.1</span>
+		<br />
+		<span class="extends">Extends: ObjectManager</span>
+		<br />
+		<span class="requires">Requires: ObjectManager, XML</span>
+		<br />
+		<span class="see">See: XML</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#Head">Head</a>
+			<br />
+			<a href="#SetTitle">SetTitle</a>
+			<br />
+			<a href="#GetTitle">GetTitle</a>
+			<br />
+			<a href="#AddMetadata">AddMetadata</a>
+			<br />
+			<a href="#GetMetadata">GetMetadata</a>
+			<br />
+			<a href="#GetMetadataXML">GetMetadataXML</a>
+			<br />
+			<a href="#AddStyle">AddStyle</a>
+			<br />
+			<a href="#GetStyles">GetStyles</a>
+			<br />
+			<a href="#GetStylesXML">GetStylesXML</a>
+			<br />
+			<a href="#AddScript">AddScript</a>
+			<br />
+			<a href="#GetScripts">GetScripts</a>
+			<br />
+			<a href="#GetScriptsXML">GetScriptsXML</a>
+			<br />
+			<a href="#SetCustomHtmlHead">SetCustomHtmlHead</a>
+			<br />
+			<a href="#GetCustomHtmlHead">GetCustomHtmlHead</a>
+			<br />
+			<a href="#Generate">Generate</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="Head">
+				<span class="methodName">Head</span>
+				<span> ( object htmlDoc )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the html header.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">object htmlDoc</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetTitle">
+				<span class="methodName">SetTitle</span>
+				<span> ( string title )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the document's title.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string title</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetTitle">
+				<span class="methodName">GetTitle</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the document's title.</li>
+		</ul>
+		<p class="returns">Returns: string containing the document's title</p>
+		<hr />
+		<p>
+			<a name="AddMetadata">
+				<span class="methodName">AddMetadata</span>
+				<span> ( string content, string attribContent, optional int attribType )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Adds a metadata (&lt;meta&gt;) text to the html header.</li>
+			<li>* Attribute's types:</li>
+			<li>* META_HTTP_EQUIV</li>
+			<li>* META_NAME</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string content</li>
+				<li class="param">string attribContent</li>
+				<li class="param">optional int attribType</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetMetadata">
+				<span class="methodName">GetMetadata</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the list of metadata added to the html header; depending on the 'returnType' selected, this method can</li>
+			<li>* return an array, an XMLBranch Object array or even an string.</li>
+			<li>*</li>
+			<li>* Return types :</li>
+			<li>* RET_ARRAY : returns an array. (Default)</li>
+			<li>* RET_ARRAY_XML : returns an Array of XMLBranch references.</li>
+			<li>* RET_TEXT : returns a string with the html code.</li>
+			<li>*</li>
+			<li>* The structure of the returning array is :</li>
+			<li>*</li>
+			<li>*	 array[index][0] = metadata attrib type (META_HTTP_EQUIV or META_NAME)</li>
+			<li>*	 array[index][1] = metadata attribute content</li>
+			<li>*	 array[index][2] = metadata content</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: list of metadata; depending on the returnType selected : array, XMLBranch  array or string.</p>
+		<hr />
+		<p>
+			<a name="GetMetadataXML">
+				<span class="methodName">GetMetadataXML</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns an XMLBranch object array with references to the list of metadata in XML format.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: array of XMLBranch objects</p>
+		<hr />
+		<p>
+			<a name="AddStyle">
+				<span class="methodName">AddStyle</span>
+				<span> ( string style, optional int type )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Adds a CSS Style Sheet link or text to the header depending on the selected type.</li>
+			<li>* Style Types :</li>
+			<li>* TAG_LINK - Style link. i.e. &lt;link rel="stylesheet" type="text/css"  href="style.css"&gt; (Default)</li>
+			<li>*	TAG_TEXT - Style text. i.e. &lt;style type="text/css"&gt;body {background-color: white;}&lt;/style&gt;</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string style</li>
+				<li class="param">optional int type</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetStyles">
+				<span class="methodName">GetStyles</span>
+				<span> ( int returnType )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the list of styles added to the html header; depending on the 'returnType' selected, this method can</li>
+			<li>* return an array, an XMLBranch Object array or even an string.</li>
+			<li>*</li>
+			<li>* Return types :</li>
+			<li>* RET_ARRAY : returns an array. (Default)</li>
+			<li>* RET_ARRAY_XML : returns an Array of XMLBranch references.</li>
+			<li>* RET_TEXT : returns a string with the html code.</li>
+			<li>*</li>
+			<li>* The structure of the returning array is :</li>
+			<li>*</li>
+			<li>* array[index][0] = style type. (TAG_LINK or TAG_TEXT)</li>
+			<li>* array[index][1] = actual style (either text or link)</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: list of styles; depending on the returnType selected : array, XMLBranch array or string.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int returnType</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetStylesXML">
+				<span class="methodName">GetStylesXML</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns an XMLBranch object array with references to the list of styles in XML format.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: array of XMLBranch objects</p>
+		<hr />
+		<p>
+			<a name="AddScript">
+				<span class="methodName">AddScript</span>
+				<span> ( string src, optional int  type )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Adds a script to the html header; either text or link depending on the selected type.</li>
+			<li>* Style Types :</li>
+			<li>* TAG_LINK - Script link. i.e. &lt;script type='text/javascript' src='script.js'&gt; &lt;/script&gt; (Default)</li>
+			<li>* TAG_TEXT - Script text. i.e. &lt;script type='text/javascript'&gt; document.write("hello world")lt;/script&gt;</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string src</li>
+				<li class="param">optional int  type</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetScripts">
+				<span class="methodName">GetScripts</span>
+				<span> ( optional int returnType )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the list of scripts added to the html header; depending on the 'returnType' selected, this method can</li>
+			<li>* return an array, an XMLBranch Object array or even an string.</li>
+			<li>*</li>
+			<li>* Return types :</li>
+			<li>* RET_ARRAY : returns an array. (Default)</li>
+			<li>* RET_ARRAY_XML : returns an Array of XMLBranch references.</li>
+			<li>* RET_TEXT : returns a string with the html code.</li>
+			<li>*</li>
+			<li>* The structure of the returning array is (if chosen) :</li>
+			<li>*</li>
+			<li>*	 array[index][0] = script type (TAG_LINK or TAG_TEXT)</li>
+			<li>*	 array[index][1] = actual script (either text or link)</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: list of scripts; depending on the returnType selected : array, XMLBranch array or string.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int returnType</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetScriptsXML">
+				<span class="methodName">GetScriptsXML</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns an XMLBranch object array with references to the list of scripts in XML format.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: array of XMLBranch objects</p>
+		<hr />
+		<p>
+			<a name="SetCustomHtmlHead">
+				<span class="methodName">SetCustomHtmlHead</span>
+				<span> ( string customHtmlHead )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Sets a custom html header into the document, replacing the html head generated.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string customHtmlHead</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetCustomHtmlHead">
+				<span class="methodName">GetCustomHtmlHead</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the custom html code previously set.</li>
+		</ul>
+		<p class="returns">Returns: object of type XMLBranch containing the custom html head.</p>
+		<hr />
+		<p>
+			<a name="Generate">
+				<span class="methodName">Generate</span>
+				<span> ( optional bool autoGenerate )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the xhtml code; it can also build the Xhtml code for the head if autoGenerate is set to true (Default).</li>
+		</ul>
+		<p class="returns">Returns: object of type XMLBranch containing the head.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool autoGenerate</li>
+			</ul>
+		</p>
+	</body>
+</html>
