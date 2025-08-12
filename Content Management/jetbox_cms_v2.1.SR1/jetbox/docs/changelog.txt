@@ -1,0 +1,380 @@
+v2.1 final
+--
+11-10-2005
+
+03-10-2005 fixed:   Download path in file browser
+03-10-2005 fixed:   Could not delete uploaded images
+05-10-2005 feature: Pagination in overview list (thanks Tim)
+05-10-2005 feature: Ability to move a sub-tree page to a main page 
+06-10-2005 fixed:   Front-end order of the open tree links matches with order in the back-end
+06-10-2005 removed: Events, events signin and user registration (will probably be released in a separate package)
+06-10-2005 feature: *BETA* Simple weblog with comment, please provide feedback
+07-10-2005 feature: *BETA* RSS support for weblog, please provide feedback
+08-10-2005 feature: Generalised form module for the front-end, based on the same technigue as containers
+09-10-2005 fixed:   In some very specific (undefined) cases, mysql_insert_id() would return false due to the use of mysql_prefix_query
+10-10-2005 feature: Totally revamped mailing list, you can now create as many as you like
+10-10-2005 feature: Registration for Mailinglist based on the new front-end form module
+10-10-2005 feature: php_function calling from any contents in the website. 
+
+v2.1 RC2
+--
+18-08-2005
+
+14-06-2005 fixed:   Javascript include error for rich text editor
+15-06-2005 update:  Changed the default publish start time for workflow enabled items (now always directly online)
+15-06-2005 update:  Container code generator, added page_title formatting for convenient file names (strtolower(replace spaces))
+16-06-2005 update:  Changed the sql file to mysql 4.0 compatible instead of 4.1
+16-07-2005 update:  Container code generator to work more elegant with yes/no options
+20-07-2005 fixed:   Error handler would cause fatal error at login
+21-07-2005 update:  Added redirect in /admin/ to /admin/cms when active session is detected
+22-07-2005 update:  Moved back to the old authentication mechanism, due to serious compatibility problems on specific systems
+06-08-2005 update:  Removed all references to the old "register_long_arrays" (used before PHP 4.1.0), to be compatible with modern system settings
+06-08-2005 fixed:   Image selecting problems in RTE in association with "register_long_arrays"
+10-08-2005 feature: Re-enabled the option to turn the RTE on and off
+10-08-2005 fixed:   SQL queries in installer to work with mysql 3.23 again
+11-08-2005 fixed:   Image upload vulnarability: image container now checks for appropriate file extensions
+11-08-2005 feature: Status of item are displayed with images instead of text
+12-08-2005 fixed:   Downloads pointed to wrong location on front-end
+12-08-2005 feature: added modal dialog to log in again, no popup anymore
+17-08-2005 fixed:   File upload in administration
+
+v2.1 RC1
+--
+13-06-2005
+
+25-12-2004 fixed:   Includes path error jpghraph for traffic grafics in the statistics page.
+19-01-2005 fixed:   Some registered globals issues on the front-end
+20-01-2005 fixed:   Some include path issues in combination with open_basedir restrictions, in very specific system configurations
+10-03-2005 fixed:   Single quote's defunct in opentree.php
+23-03-2005 fixed:   broken html affected forms
+24-03-2005 update:  Cleanup html
+30-03-2005 feature: Autoexpanding text area's, textarea's are always as big as the contents
+05-04-2005 update:  authors now only see their own items in the list
+08-04-2005 update:  Small interface cleanup for meta information sections
+09-04-2005 feature: Preview contents from a textarea inline in the edit form
+12-04-2005 fixed:   \ in page tree item cleared all contents in that item.
+15-04-2005 fixed:   Link insert popup in the rich text editor was too small in IE6 (status bar cannot be disabled in this version)
+18-04-2005 fixed:   Container generator for Firefox
+19-04-2005 fixed:   Display rendering bug in Container generator for Firefox
+24-04-2005 update:  All (99%) rulers to css based rendering. 
+08-05-2005 update:  Full rebuild of the front-end files, functions and templates
+09-05-2005 feature: You can now administrate the navigation items via the admin.
+09-05-2005 updated: Admin css, left navigation items jumped around.
+09-05-2005 updated: FCKeditor (rich text editor for FireFox) to 2.0 RC3
+10-05-2005 feature: option to enable or disable current item in breadcrum, in general_settings.inc.php
+11-05-2005 updated: front-end now works with only two main templates and several different page specific templates
+12-05-2005 feature: Implemented new single rich text editor Tiny_mce, it works with IE and Firefox
+12-05-2005 update:  general_formelements.inc.php and jetstream-html.inc.php to work with tiny_mce
+13-05-2005 update:  tiny_mce is now fully configurable with /includes/jetstream-html.inc.php
+23-05-2005 removed: FCKeditor (rich text editor for FireFox)
+23-05-2005 removed: HTMLarea  (rich text editor for IE)
+24-05-2005 feature: Implemented image browser from HTMLarea in Tiny_mce
+24-05-2005 updated: general_settings.inc.php to work with tiny_mce
+25-05-2005 updated: Cleanup /admin/cms folder
+31-05-2005 updated: Overview list now shows all item for authors, if dupication is allowed
+31-05-2005 updated: Changed the user administration container to use the default jetbox features instead of custom code
+31-05-2005 feature: Option to activate and deactivate an account
+31-05-2005 feature: Duplicate an item for any container (with or without workflow)
+31-05-2005 feature: Enable or disable item duplication per container (default on)
+06-06-2005 fixed:   Relative locations for Tiny_mce javascript includes
+08-06-2005 updated: Front-page template and css for new style
+08-06-2005 updated: Logo and tabs colors in admin section
+09-06-2005 updated: Installation process
+09-06-2005 feature: URL rewriting, for clean (/index.php/ less) urls
+09-06-2005 feature: Automatic detection if URL rewriting is enabled
+10-06-2005 feature: Front-end files generator integrated in container generator (separate controller and template file)
+12-06-2005 feature: Support Authentication for Database (Any), Plaintext files, LDAP, POP3, IMAP, vpopmail, RADIUS, SAMBA, SOAP. Via PEAR:Auth.
+
+v2.0.11
+--
+17-12-2004
+
+16-12-2004 fixed:   Mailing list properties changer
+16-12-2004 updated: Massive code cleanup, 99% of all notices corrected
+17-12-2004 feature: Instant preview for "rich text" textarea
+17-12-2004 feature: Experimental support for fckeditor, a rich text editor should work in mozilla
+17-12-2004 updated: Rich text editor settings for image path etc. 
+17-12-2004 feature: Global support for custom error handler, shows a pop-up with all notices, warnings and errors (available in Jetbox professional)
+
+
+v2.0.10
+--
+15-12-2004
+
+02-12-2004 fixed:   Automatic path detection for root installations
+02-12-2004 updated: Integrated help faq search url
+02-12-2004 feature: More support url added for help page
+14-12-2004 updated: The container generator, improved descriptions
+14-12-2004 updated: Added default value to the editlink option
+14-12-2004 fixed:   Active sorting in overview list if "help under list" was enabled
+14-12-2004 updated: Added extra notification for configurating the referred show option for the overview list
+14-12-2004 updated: Container code generator to use $_REQUEST, instead of $GLOBALS
+14-12-2004 feature: Show workflow comment in editorial overview
+14-12-2004 updated: Removed default text from news container
+15-12-2004 updated: Major changes in TECHNICAL SITE SETTINGS/ check /includes/general_settings.inc.php
+15-12-2004 updated: Default front-end templates, moved "basedir" option to the top of the files to accomodate the new TECH Settings
+15-12-2004 fixed:   The limited mailing list manager now works with register globals off.
+
+
+v2.0.9
+---
+30-11-2004
+
+30-08-2004 updated: moved some installation error handling of the front-end to f_error_handling.php
+30-08-2004 updated: Front-end session handling clean up (now only start session if someone is logged in)
+20-09-2004 updated: Removed aaa from 'main_tpl.html' 
+29-09-2004 fixed:   Extra table rows in file manager
+15-10-2004 updated: Several language items
+21-10-2004 fixed:   Sub-pages turn main-page on update
+18-11-2004 fixed:   Filemanager selection for deletion
+20-11-2004 fixed:   User preferences would reset password
+30-11-2004 fixed:   Several register globals issues in mailinglist manager
+30-11-2004 updated: Installation procedure
+
+
+v2.0.8 SR1
+---
+21-07-2004
+
+21-07-2004 updated: Deafult cookie security settings lowered
+21-07-2004 fixed:   Creating a subpage in the page tree always ended up in the root
+21-07-2004 fixed:   Image library in rich text editor
+
+
+v2.0.8
+---
+19-07-2004
+
+14-06-2004 updated: Installation script, will now redirect to main index.php if called directly
+06-07-2004 updated: JPgraph to version 1.16
+06-07-2004 updated: Includes.inc to detect GD(2) availablity before including Jpgraph files
+06-07-2004 fixed:   Automatic detection front-end path, with more than one sub folder (thanks Sébastien Hordeaux)
+06-07-2004 updated: /admin/ to redirect to installation if not installed properly
+06-07-2004 updated: Configuration instruction when dealing with incorrect absolute path detection due to virtual links
+06-07-2004 fixed:   Windows/ linux different includes path methods
+06-07-2004 updated: Session Cookie settings
+06-07-2004 updated: P3P settings for admin section
+07-07-2004 feature: Templates in page tree now supports default value when creating a new page
+07-07-2004 feature: Templates in page tree now supports madatory fields
+07-07-2004 feature: Breadcrum trail above page tree for better navigation
+07-07-2004 feature: Default sort colomn, order for overview list
+07-07-2004 feature: Pretty cool sorting css for overview list
+08-07-2004 feature: Extra option in help_section() to show "help top" or not, this makes clean displaying several help sections possible
+08-07-2004 updated: Help information for the container generator
+09-07-2004 updated: Container generator: updated help information, improved interface, added sorting column (order) support
+13-07-2004 updated: HTML caching meta tags
+13-07-2004 updated: HTML output for correct working firefox DOM 
+14-07-2004 updated: Centralized general_date_process();
+14-07-2004 updated: Removed show_format_javascript from all container files
+14-07-2004 updated: Removed mysql_close(); from all container files
+14-07-2004 updated: Help.php for better information supply
+14-07-2004 feature: By pressing F1 in IE the standard help popup screen is displayed with help information
+14-07-2004 feature: Integrated the online faq in the help page
+15-07-2004 updated: DOCTYPE to XHTML 1.0 Transitional
+15-07-2004 updated: Style sheet to render accoring to XHTML 1.0 Transitional
+15-07-2004 updated: General clean up of all core files for proper rendering in XHTML 1.0 Transitional
+15-07-2004 feature: Sort options for containers, front-end sort column and order can be specified
+15-07-2004 feature: Item can be sorted client side in the overview list, this is directly updated on the server
+15-07-2005 feature: Overview list selected sort is stored in session
+17-07-2004 updated: general_process to accomodate order column
+17-07-2004 updated: logo, left main menu shade and content area
+18-07-2004 updated: login & info icons, made by the world class designer David Lanham
+19-07-2004 updated: user preferences container fo better usability
+19-07-2004 feature: user administration, a email is sent to the new user with its account information
+19-07-2004 updated: approval & decline email routine to work with the new installation path detection
+19-07-2004 fixed:   file upload to use the new installation path detection method, or use a custom specified one
+19-07-2004 fixed:   "Submit for publishing" button is shown when item is waiting for approve or decline
+
+
+v2.0.7
+--
+12-05-2004
+
+03-02-2004 fixed:   Webuser could not register on the website
+13-02-2004 updated: Installation procedure to work better with Konqueror
+13-02-2004 updated: chown to chmod in installation procedure
+15-02-2004 fixed:   system includes path used : as separator
+11-05-2004 updated: Installation wizard and installation detection
+11-05-2004 updated: Root folder detection and failure instructions
+11-05-2004 updated: reintroduced the manual installation
+11-05-2004 updated: Scaled down general_settings.inc.php to single server setup
+11-05-2004 fixed:   Mailinglist would only send one email
+
+
+v2.0.6
+---
+02-02-2004
+
+28-12-2003 updated: Left main menu now fully works with css
+30-12-2003 feature: Changes overview (top nav) for all workflow enabled containers (admins only)
+02-01-2004 updated: Cleaner session handling (nicer to the database)
+02-01-2004 updated: Cleaner login method
+02-01-2004 updated: Cleaned jpgraph includes folder
+02-01-2004 updated: Cleaned general_form (removed session_field function and primarykey field)
+02-01-2004 feature: Pre-support for db tables prefixes
+02-01-2004 feature: Event hook on_before_process (pre process input values/ set an error message)
+02-01-2004 feature: Event hook on_before_form (pre process values/ set an error message)
+02-01-2004 feature: Ingore option in records array 4th element (show fields in form that won't be used in process sql query)
+02-01-2004 feature: Default value for form element (can be set in records array 5th element)
+02-01-2004 feature: Option to disable overview list
+02-01-2004 updated: Author may now change submitted items
+02-01-2004 fixed:   Pages with childs can't be deleted anymore
+02-01-2004 feature: Incorporated phpMailer class to send approval requests & decline emails in html and plain text
+04-01-2004 updated: Removed javascript function from opentree.php for compatibility issues with mozilla (Gecko engine)
+05-01-2004 fixed:   move function in opentree.php (only with register globals off)
+08-01-2004 updated: cleaned imagepopup folder and rich text editor folder
+12-01-2004 feature: Event hook on_before_list (pre process values/ set an error message)
+12-01-2004 feature: With the introduction of the 'no process' option a separator is introduced for the forms
+12-01-2004 feature: Keywords, description & robot tags on container level (can be for front-end with pages containing lists)
+14-01-2004 updated: front-end to work with mysql_prefix_query
+14-01-2004 updated: cleaned up front-end and some back-end folders
+17-01-2004 updated: container code generator with additional features
+17-01-2004 fixed:   show 'create sub page' after page was deleted
+25-01-2004 fixed:   when creating a new item workflow online & offline date not correct set due to 'default value' option
+30-01-2004 updated: phpOpenTracker website statistics to 1.4.0
+30-01-2004 updated: centralized many configuration option in general_settings.inc.php
+30-01-2004 updated: manual installation procedure made simpeler
+30-01-2004 updated: Page flow for mailing list and subscriber management
+30-01-2004 updated: Big front-end cleanup (removed non-used features and renamed templates)
+30-01-2004 updated: Some top tabs logic to display only appropriate tabs
+30-01-2004 fixed:   Create sub page tab shown after a page was created or edited
+31-01-2004 updated: Security tightened: forced re-login when the login screen is showed even when a valid session is available
+31-01-2004 updated: Changed several locations for searchengine temp & text files 
+31-01-2004 fixed:   Wrong file location path was displayed in file browser when jetbox is installed in sub dir
+31-01-2004 upated:  File browser container: better displaying on low resolution screens
+01-02-2004 feature: Added for several containers meta information support in the front-end
+01-02-2004 feature: Site wide meta informations settings added in general_settings.inc.php
+02-02-2004 updated: Restructured general_settings.inc.php
+02-02-2004 feature: Fully working installation procedure
+02-02-2004 updated: Includes path configuration and installation folder detection splitted
+
+
+v2.0.5
+---
+NEVER RELEASED
+
+19-10-2003 feature: phpopentracker statistics now have ip to country stats (even the orig version does not have this feature for free :) )
+20-10-2003 updated: phpOpentracker to version 1.3.0
+21-10-2003 feature: jpgraph lib is standard included
+21-10-2003 feature: enabled grafical stats generation (Requires manual configuration)
+24-10-2003 feature: added "image" support for template generator
+25-10-2003 fixed:   workflow bug in code generation page
+01-11-2003 feature: experimental support for standard url reformating
+01-11-2003 feature: upgrade procedure
+03-12-2003 fixed:   Editorial overview for author users
+03-12-2003 updated: _blank is now selected by default for inserting a new link in the rich text editor
+07-12-2003 fixed:   wrong date range in site statistics
+
+
+v2.0.4SR1
+---
+17-10-2003
+
+15-10-2003 fixed: image selector in richtext editor
+17-10-2003 fixed: installation dir detection for root installation
+17-10-2003 improvement: several language items translated to english
+17-10-2003 improvement: editorial overview doesn't show archived items anymore
+
+
+v2.0.4
+---
+13-10-2003
+
+07-10-2003 improvement: changed the installation dir detection (again) for wider system compatibily
+07-10-2003 feature: a popup window appears after session timeout (standard 600 sec) to login again. This
+           prevents data loss and irritation, after you submit a form, only to find out you are logged out.
+10-10-2003 fixed: on-offline date are set correctly on update
+10-10-2003 fixed: general remove item, now works on non workflow enabled items with new button
+11-10-2003 improvement: cleanup of jetstream-html.inc.php
+11-10-2003 improvement: changed left menu for better usability
+11-10-2003 improvement: login procedure now support register globals off
+11-10-2003 improvement: button text logic for non workflow items
+11-10-2003 improvement: generate container code to container sub link
+12-10-2003 improvement: layout aspect of general_formelements.inc.php
+12-10-2003 improvement: container code generator now adds archive tab if workflow support is enabled
+12-10-2003 feature: help information section below list and form
+12-10-2003 improvement: added help information in serveral section
+12-10-2003 improvement: pages: left menu is by default on
+12-10-2003 improvement: default sorting logic to asc first
+12-10-2003 improvement: general layout pages container
+12-10-2003 improvement: pages container shows status information and shown/ not shown on website
+12-10-2003 improvement: pages container doesn't use overlib anymore to create sub pages, but upper tabs
+12-10-2003 improvement: pages container now uses general code
+13-10-2003 improvement: changed any third party software authentication to 'reg globals off' compatible
+13-10-2003 feature: 'pages' can be moved in tree structure
+
+
+v2.0.3
+---
+06-10-2003
+
+04-10-2003 fixed: opentree() in index.php now uses appropriate temples for pages with leftnav disabled
+04-10-2003 improvement: changed template for installation error page
+04-10-2003 feature: enable or disable phpOpenTracker from general_settings.inc.php
+04-10-2003 improvement: changed general button texts
+04-10-2003 improvement: record deletion is now handled by general_process
+05-10-2003 improvement: changed button texts (more self explaining)
+                        'remove item' is now a button
+                        item status is now visible next to buttons
+			changed logic (publish button is not shown if item is already published etc)
+      			splitted meta information and workflow information
+			meta information and workflow are now in show/ hide menu
+			workflow part layout (pull down for on and offline date)
+			moved show/hide layer javascript to jetstream_header() function
+06-10-2003 improvement: the posted primarykey and parent_id are now checked the are (a) integer
+06-10-2003 feature: added archive for any workflow enabled item
+                       
+
+v2.0.2
+---
+30-09-2003
+
+27-09-2003 fixed: won't go to page if not installed in subdir
+27-09-2003 fixed: error in output of general_formelement.php (only PHP4.0.2)
+27-09-2003 fixed: useradmin.inc.php errors (only PHP4.0.2)
+27-09-2003 improvement: Rich text editor image popup now auto detects for user restriction
+27-09-2003 fixed: site statistics to show the site name automatically
+28-09-2003 improvement: changed install procedure for better support in save mode
+28-09-2003 fixed: supply news on error last name was blank again
+30-09-2003 improvement: changed template.inc to use cleaner file paths
+30-09-2003 improvement: Better error reporting for supplynews
+
+
+v2.0.1B
+---
+25-09-2003
+
+25-09-2003 fixed: outputs and images to work with new configuration setup
+25-09-2003 fixed: general_process() & general_list_elements() to work with new configuration setup
+25-09-2003 improvement: The 'file field' now shows the old value on update
+25-09-2003 fixed: opentree update bug
+
+
+v2.0.1
+---
+24-09-2003
+
+03-09-2003 fixed: unlink file on delete file/ images item
+03-09-2003 fixed: global replace of richtext editor in opentree.php
+03-09-2003 clean: cleaned up opentree.php
+03-09-2003 feature: added feature to enable or disable left menu in opentree
+04-09-2003 rich text editor: insert image: can also use uppercase extensions 
+11-09-2003 fixed: uploaded file value was reset on update
+17-09-2003 feature: show or hide main menu in admin page (handy for popup window)
+22-09-2003 feature: show link to front-end page in list view (updated general_list_records & general_list_items fot this feature)
+23-09-2003 improvement: Mailing list 'Errors-To' directive is now configarable
+24-09-2003 fixed: obvious php code error on line 92 in webuser.php
+24-09-2003 fixed: obvious error in sitemap
+24-09-2003 improvement: changed the includes directory structure
+24-09-2003 improvement: cleaned up the included files and configuration
+24-09-2003 improvement: session management now only uses sessions db.table
+24-09-2003 improvement: automatic detection of installation directory
+24-09-2003 feature: added 'phpdig' search engine
+24-09-2003 feature: added  document management system
+
+
+v2.0
+---
+27-08-2003
+
+initial release
