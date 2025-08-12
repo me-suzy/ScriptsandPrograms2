@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Utopia News Pro Upgrade Documentation - 1.1.5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="header">Utopia News Pro Upgrade Documentation - 1.1.5</div>
+<p>Utopia News Pro has been designed to make upgrading from version to version as quick and easy as possible. Just follow the instructions and you should not run into any problems. If you do, send an email to <a href="mailto:utopiasupport@gmail.com">utopiasupport@gmail.com</a>.</p>
+<p>The first step is to unzip the new version .ZIP archive, ensuring to retain the directory/file structure.</p>
+
+
+<div class="section">Backing Up</div>
+<p>The first step in the upgrade process is backing up. Always back up your MySQL database before attempting an upgrade. If you have made any changes to the default files from the previous version, make sure to back up these files too.</p>
+
+
+<div class="section">Uploading The Files</div>
+<p>Upload all files from the <tt>/upload/</tt> directory <strong>except</strong> <tt>config.inc.php</tt> and <tt>install.php</tt> ensuring to retain the directory/file structure.<br />
+From the directory <tt>/upgrade/</tt>, upload the files <tt>upgrade<em>X</em>.php</tt>, where <em>X</em> is the number script that you will need to use.<br /><br />
+Use the following upgraders for each version:<br />
+<strong>From 1.0.0:</strong> <tt>upgrade1.php</tt>, <tt>upgrade2.php</tt>, <tt>upgrade3.php</tt>, <tt>upgrade4.php</tt>, <tt>upgrade5.php</tt>, <tt>upgrade6.php</tt><br />
+<strong>From 1.1.0:</strong> <tt>upgrade2.php</tt>, <tt>upgrade3.php</tt>, <tt>upgrade4.php</tt>, <tt>upgrade5.php</tt>, <tt>upgrade6.php</tt><br />
+<strong>From 1.1.1:</strong> <tt>upgrade3.php</tt>, <tt>upgrade4.php</tt>, <tt>upgrade5.php</tt>, <tt>upgrade6.php</tt><br />
+<strong>From 1.1.2:</strong> <tt>upgrade4.php</tt>, <tt>upgrade5.php</tt>, <tt>upgrade6.php</tt><br />
+<strong>From 1.1.3:</strong> <tt>upgrade5.php</tt>, <tt>upgrade6.php</tt><br />
+<strong>From 1.1.4:</strong> <tt>upgrade6.php</tt></p>
+
+
+<div class="section">Running The Upgrader(s)</div>
+<p>Once all files have been uploaded to the server, open your web browser and navigate to http://<code>www.yourdomain.com</code>/<code>unpdirectory</code>/<tt>upgrade<em>X</em>.php</tt>, replacing <code>www.yourdomain.com</code>, <code>unpdirectory</code>, and <tt>upgrade<em>X</em>.php</tt> with the correct values for your site.
+<br />You must run each upgrade script progressively in the given order.<br />
+All steps of the upgrade are extremely straightforward. Once each step is completed, simply proceed to the next step. You will not be asked to submit any information.</p>
+
+
+<div class="section">Completion</div>
+<p>At the end of each upgrade script, you will either be told to proceed to the next upgrade script (if it exists on the server) or to the administration panel (if the next upgrade script does not exist on the server).<br />
+Once you have run through all available upgrades available for your version of UNP, you will be sent to the administration panel.
+When this happens, immediately remove <strong>all</strong> <tt>upgrade<em>X</em>.php</tt> scripts from the server.</p>
+
+
+<div class="section">After Upgrading</div>
+<p>After upgrading, <em>immediately</em> remove <strong>all</strong> <tt>upgrade<em>X</em>.php</tt> scripts from the server, as they can pose a security risk.</p>
+<p>If you were previously running UNP 1.1.0 and you had customized your newsbit.php, you will need to carry over the changes to the new newsbit, since template handling has changed between versions. Copy the template contents of the <tt>newsbit.php</tt> file to the new <tt>news_newsbit</tt> in the template editor of the administrator control panel. Surround variables with <tt>{</tt> and <tt>}</tt>, instead of the old <tt>&lt;?=</tt> and <tt>?&gt;</tt> (ie. <tt>{$var}</tt> instead of <tt>&lt;?=$var ?&gt;</tt>).<br /><strong>Note:</strong> These changes are unnecessary if you did not customize your newsbit.</p>
+<p>If you plan on using the avatars feature introduced in version 1.1.2, you must ensure that the new <tt>/images/avatars</tt> directory is writable (CHMOD 777).</p>
+<p>Once the upgrade scripts are removed, log into the administration panel, and navigate to the settings page. Configure any new settings that were introduced in the new version.</p>
+
+
+<div id="footer">Copyright &copy; 2003-2005, UtopiaSoft, UtopiaSoftware.net</div>
+
+
+</body>
+</html>
