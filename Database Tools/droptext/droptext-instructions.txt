@@ -1,0 +1,64 @@
+Here is the code for all who need it. 
+
+NOTE Only need to change the require reference for you mysql connect file and the table, column references in the queries. 
+
+Shall we get on to the code 
+
+-------------start code------------------ 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+
+<head><?php 
+require('db.php'); 
+mysql_select_db($db name here); 
+$query_Recordset1 = "SELECT * FROM title WHERE title <> descr ORDER BY id ASC"; 
+$Recordset1 = mysql_query($query_Recordset1) or die(mysql_error()); 
+$row_Recordset1 = mysql_fetch_assoc($Recordset1); 
+$totalRows_Recordset1 = mysql_num_rows($Recordset1); 
+
+mysql_select_db($db name here); 
+$query_Recordset2 = "SELECT descr FROM title WHERE descr <> title ORDER BY id ASC"; 
+$Recordset2 = mysql_query($query_Recordset2) or die(mysql_error()); 
+$row_Recordset2 = mysql_fetch_assoc($Recordset2); 
+$totalRows_Recordset2 = mysql_num_rows($Recordset2); 
+?> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>Untitled Document</title> 
+<script language='javascript'> 
+function move_me(s) 
+{ 
+document.form2.my_box.value = s; 
+} 
+</script> 
+
+</head> 
+
+<body> 
+
+
+<p>&nbsp;</p> 
+<form action="" enctype="multipart/form-data" name="form2" target="_parent"> 
+<select name='mylist' onChange='move_me(this.value);'> 
+<?php 
+do { 
+?> 
+<option value="<?php echo $row_Recordset1['descr']?>"><?php echo $row_Recordset1['title']?></option> 
+<?php 
+} while ($row_Recordset1 = mysql_fetch_assoc($Recordset1)); 
+$rows = mysql_num_rows($Recordset1); 
+if($rows > 0) { 
+mysql_data_seek($Recordset1, 0); 
+$row_Recordset1 = mysql_fetch_assoc($Recordset1); 
+} 
+?> 
+</select> <BR><BR><BR> 
+<textarea name='my_box' COLS="60" ROWS="18" type='text'> 
+
+<?php 
+mysql_free_result($Recordset1); 
+
+mysql_free_result($Recordset2); 
+?> 
+
+-------------end code------------------
