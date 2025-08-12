@@ -1,0 +1,417 @@
+<HTML>
+<head>
+<style>
+        body{
+                font-size : 10pt;
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-weight : normal;
+                background-color : #FFFFF0;
+                border : thin solid Black;
+        }
+        li.paramlist{
+                margin-top : 5px;
+        }
+        table.example{
+                margin-top : 5px;
+                margin-bottom : 5px;
+                background-color : #F0F8FF;
+                border : 1 solid Black;
+                color : #444444;
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+                padding-left : 5px;
+                padding-right : 5px;
+                padding-top : 5px;
+                padding-bottom : 5px;
+                max-width : 85%;
+                float : none;
+                vertical-align : middle;
+        }
+        .remark{
+                font-size : 8pt;
+        }
+        .footnote{
+                font-size : 8pt;
+        }
+        a.footnote{
+                text-decoration : none;
+                color : #191970;
+        }
+        a.footnote:hover{
+                background-color : Yellow;
+        }
+        PRE {
+                font-family : "Courier New", Courier, monospace;
+                font-size : 10pt;
+                color : Black;
+        }
+        tr.params{
+                background-color : #DCDCDC;
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 10pt;
+        }
+        tr.params_heading{
+                background-color : #A9A9A9;
+        }
+        td.paramname{
+                font-style : italic;
+                text-align : center;
+                width : 20%;
+                vertical-align : top;
+        }
+        td.paramdesc{
+                text-align : left;
+                padding-left : 2pt;
+                padding-right : 2pt;
+                vertical-align : top;
+                width : 50%
+        }
+        td.paramdefval{
+                text-align : left;
+                padding-left : 2pt;
+                vertical-align : top;
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+        }
+        table.code{
+                background-color : #F0F8FF;
+                border : 1 solid Black;
+                color : #444444;
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+                padding-left : 2px;
+                padding-right : 2px;
+        }
+        th{
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 10pt;
+        }
+</style>
+<title>FAQEngine - LiesMich</title>
+</head>
+<body>
+<a id="install"><h1>Installation</h1></a>
+<em>Wichtiger Installationshinweis:</em> Die in config.php definierte Datenbank muss bereits existieren.
+Aus Sicherheitsgr&uuml;nden legt das Skript nur Tabellen und keine Datenbanken an.
+<ol>
+<li>Kopieren Sie config.dist.php nach config.php und editieren Sie diese, so dass die Einstellungen f&uuml;r Ihren Server stimmen (nur empfohlen f&uuml;r Personen mit PHP-Kenntnissen)
+oder rufen Sie admin/mkconfig.php auf, um eine config.php zu erzeugen.
+<span class="remark">(wenn Sie eine PHP Version &gt;=4.2.0 benutzen, so m&uuml;ssen Sie <em>$new_global_handling=true;</em>
+in mkconfig.php einstellen)</span><br>
+<em>Anmerkung:</em> Sie k&ouml;nnen mehrere Instanzen von FAQEngine in einer Datenbank haben.
+Benutzen Sie dabei nur bei jeder Installation verschiedene Werte f&uuml;r <em>tableprefix</em> in der config.php.
+<em>Dies muss gemacht werden bevor Sie install.php aufrufen.</em></li>
+<li>Kopieren Sie alle Dateien (.php, .inc ...) auf den Webhost. <em>Bitte unbedingt die Unterverzeichnisstruktur beibehalten.</em><br>
+<span class="remark"><em>Wichtig:</em>
+Die Dateien in /gfx und /admin/gfx im Bin&auml;rmodus &uuml;bertragen !!!!</span>
+</li>
+<li>
+<ol type=A>
+<li><strong>Erstinstallation:</strong><br>
+Rufen Sie nun http://ihr.host.de/installationsverzeichnis/admin/install.php
+auf, um die Tabellen in der Datenbank zu erzeugen und den ersten Administrator zu definieren.
+</li>
+<li TYPE=A><strong>Updates:</strong><br>
+<span class="remark">IM AKTUELLEN ARCHIV SIND NUR UPDATE-SKRIPTS F&Uuml;R UPDATES AB &gt;=V4.05 VORHANDEN !!!
+UM DAS UPDATE &Auml;LTERER SKRIPTS DURCHZUF&Uuml;HREN LADEN SIE BITTE NOCH DAS UPDATE-PAKET AUF 4.05
+HERUNTER !!
+</span><br>
+<em>Alle Dateien (.php, .inc ...) auf dem Server durch die neuen ersetzen.</em><br>
+<em>So bestimmen Sie das ben&ouml;tigte Updateskript:</em><ul>
+<li>Nehmen Sie die aktuell installierte Version (z.B. 3.10)</li>
+<li>Entfernen Sie den Punkt innerhalb der Versionnummer (im Beispiel wird das dann 310).<br>
+Jetzt haben Sie die ben&ouml;tigte Updateversion.</li>
+<li>Benutzen Sie nun alle Updateskripts von dieser Version an bis zur aktuellen Version (in der richtigen Reihenfolge).<br>
+Angenommen im Beispiel w&auml;re die aktuelle Version 3.22 (kurz 322), dann benutzen Sie upgrade_310_to_311.php,
+danach upgrade_311_to_312.php usw. bis upgrade_321_to_322.php.<br>
+<span class="remark">Existiert eines der Zwischenskripte nicht, so war bei den entsprechenden Versionen kein
+Update der DB n&ouml;tig. Fahren sie in diesem Fall einfach mit dem n&auml;chsten, passenden Skript in der Reihe fort.</span>
+</li></ul>
+</ul>
+</li></ol></li>
+<li>Nach der Installation entfernen Sie bitte mkconfig.php, install.php, upgrade_* and fill_* vom Server und setzen die Dateizugriffsrechte f&uuml;r die <em>config.php</em> so,
+dass PHP nicht in die Datei schreiben kann <span class="remark">(bei den meissten Serverkonfigurationen ist das <em>chmod 644</em>)</span>.</li>
+<li>Nun k&ouml;nnen Sie sich bei der Administrationsoberfl&auml;che unter
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installionsverzeichnis/admin/index.php
+</TD></TR></TABLE>
+mit dem bei der Installation angegebenen Daten anmelden.</li>
+</ol>
+<a id="calling"><h1>Aufruf der unterschiedlichen Benutzeransichten</h1></a>
+<ul>
+<li class="paramlist">FAQ-Frame:<ul><li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faqframe.php?limitprog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+gibt die Liste der neuesten FAQs f&uuml;r das angegebene Programm in der angegebenen Sprache im Framemodus (mit der Baumansicht) aus.
+</li></ul>
+<ul><li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faqframe.php?&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+gibt die Liste der neuesten FAQs f&uuml;r alle Programm in der angegebenen Sprache im Framemodus (mit der Baumansicht) aus.
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faqframe.php?list=categories&amp;prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+gibt die Liste der Kategorien f&uuml;r das angegebene Programm in der angegebenen Sprache im Framemodus (mit der Baumansicht) aus.
+<br>Verwenden Sie an Stelle von <em>prog=&lt;progid&gt;</em>&nbsp;&nbsp;<em>limitprog=&lt;progid&gt;</em>, so wird die
+Baumansicht auf das angegebene Programm beschr&auml;nkt.
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faqframe.php?list=all&amp;prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+gibt alle FAQs, nach Kategorien geordnet, f&uuml;r das angegebene Programm in der angegebenen Sprache im Framemodus (mit der Baumansicht) aus.
+<br>Verwenden Sie an Stelle von <em>prog=&lt;progid&gt;</em>&nbsp;&nbsp;<em>limitprog=&lt;progid&gt;</em>, so wird die
+Baumansicht auf das angegebene Programm beschr&auml;nkt.</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faqframe.php?list=progs&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+zeigt alle FAQs, nach Kategorien geordnet, f&uuml;r das angegebene Programm in der angegebenen Sprache im Framemodus (mit der Baumansicht) an.
+<br>Verwenden Sie an Stelle von <em>prog=&lt;progid&gt;</em>&nbsp;&nbsp;<em>limitprog=&lt;progid&gt;</em>, so wird die
+Baumansicht auf das angegebene Programm beschr&auml;nkt.
+</li></ul></li>
+<li class="paramlist">FAQs:<ul><li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faq.php?prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+gibt die Liste der neuesten FAQs f&uuml;r das angegebene Programm in der angegebenen Sprache aus.
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faq.php?list=categories&amp;prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+gibt die Liste der Kategorien f&uuml;r das angegebene Programm in der angegebenen Sprache aus.</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faq.php?list=all&amp;prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+zeigt alle FAQs, nach Kategorien geordnet, f&uuml;r das angegebene Programm in der angegebenen Sprache an.
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/faq.php?list=progs&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+zeigt alle FAQs, nach Kategorien geordnet, f&uuml;r das angegebene Programm in der angegebenen Sprache an.
+</li></ul></li>
+<li class="paramlist">Knowledge Base:<ul>
+<li><table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/kb.php?prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+Knowledge Base anzeigen.<br>
+Dieser Aufruf startet im in der Administrationsoberfl&auml;che eingestellen Defaultmodus.
+Sie k&ouml;nnen auch in einem anderen Modus starten, indem Sie ihn in der URL angeben:
+<table class="example"><tr><td nowrap>
+http://ihr.host.de/installationsverzeichnis/kb.php?prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;mode=&lt;mode&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+</li></ul>
+</li>
+</ul>
+<a id="scriptparams"><h2>URL-Parameter f&uuml;r die Skripts</h2></a>
+<table width="85%" border="0" cellspacing="0" cellpadding="1" align="left" bgcolor="black">
+<tr bgcolor="black"><td><table width="100%" cellspacing="1" cellpadding="1" align="center">
+<tr class="params_heading">
+    <th>Parametername</th>
+    <th>Beschreibung</th>
+        <th>Voreinstellung<sup><a class="footnote" href="#defval">1</a></sup></th>
+</tr>
+<tr class="params">
+    <td class="paramname">langvar</td>
+    <td class="paramdesc">Sprachvariable, die in der config.php definiert wurde.<br><span class="remark">($langvar)</span></td>
+        <td class="paramdefval"><strong>kein optionaler Wert</strong></td>
+</tr>
+<tr class="params">
+    <td class="paramname">language</td>
+    <td class="paramdesc">Sprache, in der die Oberfl&auml;che angezeigt werden soll<br><span class="remark">(G&uuml;ltige Werte sind die Sprachk&uuml;rzel, f&uuml;r die eine entspr. Sprachdatei im Verzeichnis language vorhanden ist.<br>
+        Der zu benutzende Wert ist der Teil des Dateinamens zwischen '_' und '.' -&gt; f&uuml;r lang_de.php ist der Wert "de")</span></td>
+        <td class="paramdefval"><em>$default_lang</em> aus config.php</td>
+</tr>
+<tr class="params">
+    <td class="paramname">layoutid</td>
+    <td class="paramdesc">Gew&uuml;nschtes Layout.<br><span class="remark">($langvar)</span></td>
+        <td class="paramdefval">in der Administrationsoberfl&auml;che als <em>default</em> gekennzeichnetes Layout</td>
+</tr>
+<tr class="params">
+    <td class="paramname">progid</td>
+    <td class="paramdesc">Programm, auf das sich die Anzeige beziehen soll</td>
+        <td class="paramdefval"></td>
+</tr>
+<tr class="params">
+    <td class="paramname">mode</td>
+    <td class="paramdesc">Modus, in dem die Knowledge Base angezeigt werden soll.<br>
+        m&ouml;gliche Werte:<ul>
+        <li><em>wizard</em>: startet mit der Wizardoberfl&auml;che</li>
+        <li><em>search</em>: startet mit der Schl&uuml;sselwortsuche</li>
+        <li><em>proglist</em>: startet mit der Programmliste</li>
+        </ul>
+        </td>
+        <td class="paramdefval">in der Administrationsoberfl&auml;che eingesteller Modus</td>
+</tr>
+</table>
+</td></tr></table>
+<br clear="all">
+<a id="defval"><span class="footnote"><sup class="footnote">1</sup> voreingestellter Wert, der benutzt wird, wenn der entspr. Parameter nicht angegeben wird</span></a>
+<h3>Newsletterbestellung in eigene Seiten einbauen</h3>
+Beispiel, wie man die Anmeldung zum Abo auf einer eigenen Seite platzieren kann:<br>
+Bitte ersetzen Sie <em>{desired program}</em> durch die ID des Programms, f&uuml;r das die FAQ durch dieses Formular
+abboniert werden soll, <em>{installpath}</em> mit dem URL-Pfad zu den Skripten, <em>{desired lang}</em> durch die die gew&uuml;nschte Sprache und <em>{langvar}</em> durch
+die in der config.php definierte Variable f&uuml;r die Sprache.
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td>
+<pre>
+&lt;!-- --------- Start of subscription code --------- --&gt;
+&lt;table width="80%" align="center"&gt;
+&lt;form method="post" action="/{installpath}/subscription.php"&gt;
+&lt;input type="hidden" name="{langvar}" value="{desired lang}"&gt;
+&lt;input type="hidden" name="mode" value="subscribe"&gt;
+&lt;tr&gt;&lt;td align="right" width="30%"&gt;E-Mail:&lt;/td&gt;
+&lt;td&gt;&lt;input type="text" name="email" size="40" maxlength="240"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td align="right" valign="top"&gt;E-Mailart:&lt;/td&gt;&lt;td&gt;
+&lt;input type="radio" name="emailtype" value="0" checked&gt; HTML&lt;br&gt;
+&lt;input type="radio" name="emailtype" value="1"&gt; nur text&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td align="right" valign="top"&gt;komprimierter Versand:&lt;/td&gt;&lt;td&gt;
+&lt;input type="radio" name="compress" value="1" checked&gt; ja&lt;br&gt;
+&lt;input type="radio" name="compress" value="0"&gt; nein&lt;/td&gt;&lt;/tr&gt;
+&lt;input type="hidden" name="prog" value="{desired program}"&gt;
+&lt;td align="center" colspan="2"&gt;&lt;input type="submit" value="abonnieren"&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/form&gt;&lt;/table&gt;
+&lt;!-- --------- End of subscription code --------- --&gt;
+</pre></TD></TR></TABLE></TD></TR></TABLE><br>
+Beispiel, wie man die Abmeldung vom Abo auf einer eigenen Seite platzieren kann:
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td>
+<pre>
+&lt;!-- --------- Start of unsubscription code --------- --&gt;
+&lt;table width="80%" align="center"&gt;
+&lt;form method="post" action="/{installpath}/subscription.php"&gt;
+&lt;input type="hidden" name="{langvar}" value="{desired lang}"&gt;
+&lt;input type="hidden" name="mode" value="unsubscribe"&gt;
+&lt;tr&gt;&lt;td align="right" width="30%"&gt;E-Mail:&lt;/td&gt;
+&lt;td&gt;&lt;input type="text" name="email" size="40" maxlength="240"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;input type="hidden" name="prog" value="{desired program}"&gt;
+&lt;td align="center" colspan="2"&gt;&lt;input type="submit" value="abmelden"&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/form&gt;&lt;/table&gt;
+&lt;!-- --------- End of unsubscription code --------- --&gt;
+</pre></TD></TR></TABLE></TD></TR></TABLE><br>
+<h1>Administrationsoberfl&auml;che</h1>
+<h2>Textbausteine</h2>
+F&uuml;r verschiedene Textbausteine k&ouml;nnen bei der Erfassung verschiedene Platzhalter verwendet werden.
+Diese werden dann bei Benutzung des entspr. Textbausteins im Programm durch entsprechende, aktuelle Werte ersetzt.<br>
+Im folgenden werden die Platzhalter f&uuml;r die einzelnen Textbausteine aufgef&uuml;hrt und auch durch welchen Wert Sie
+ersetzt werden.
+<ul>
+<li>"Mail: Benachrichtigung Benutzerfrage"<ul>
+<li>{qnr} --&gt; im Text wird durch die aktuelle Fragenummer ersetzt.</li>
+<li>{qlink} --&gt; durch einen Link zu dieser Frage in der Administrationsoberfl&auml;che.</li>
+</ul></li></ul>
+<h2>FAQ-Upload mittels Textdatei</h2>
+Sie k&ouml;nnen eine Textdatei, die &Uuml;berschrift, Frage und Antwort enth&auml;lt uploaden,
+wie Sie vom Offlineeditor erzeugt werden.
+Sie k&ouml;nnen im Text f&uuml;r Frage und Antwort alle BBCode Tags verwenden,
+genauso, als ob Sie den Text direkt in das Formular eintippen.
+<h2>Authentifizierung von Administratoren</h2>
+Es gibt 3 Authentifizierungsmethoden f&uuml;r die Administrationsoberfl&auml;che:
+<ol>
+<li>Die interne Authentifizierungsmethode. Diese basiert auf den Benutzerdaten, die
+per Administrationsoberfl&auml;che eingegeben wurden und benutzt ein Cookie f&uuml;r das
+Sessionhandling.</li>
+<li>wie 1, aber die Session-ID wird per GET und POST &uuml;bermittelt.</li>
+<li>Authentifizierung durch den Webserver (z.B. .htaccess)</li>
+</ol>
+<h3>Methode #1</h3>
+Sie m&uuml;ssen <em>$enable_htaccess</em> und <em>$sessid_url</em> in der config.php auf <strong>false</strong> setzen.<br>
+Bitte pr&uuml;fen Sie ob die folgenden Variablen in der config.php richtig gesetzt sind:<ul>
+<li>$url_faqengine</li>
+<li>$cookiename</li>
+<li>$cookiepath</li>
+<li>$cookiesecure</li>
+<li>$sesscookiename</li>
+<li>$sesscookietime</li>
+</ul>
+Diese Methode benutzt den Username und das Passwort aus der internen Tabelle, so dass
+sie diese per Administrationsoberfl&auml;che setzen k&ouml;nnen.
+<h3>Methode #2</h3>
+Setzen Sie <em>$enable_htaccess</em> auf <strong>false</strong> und <em>$sessid_url</em> auf <strong>true</strong> in der config.php.<br>
+Diese Methode benutzt kein Cookie, sondern die Session-ID wird bei jedem GET und POST
+mitgeschickt. Aus diesem Grund kann jeder, der Blickkontakt mit Ihrem Bildschirm hat, die Sessionid aus
+der im Browser angezeigten URL auslesen.<br>
+<span class="remark">Wir erachten diese Methode als nicht besonders sicher
+(wurde aber gew&uuml;nscht) und empfehlen Ihnen eher Methode 1 oder 3 einzusetzen. Aber das
+soll jeder Admin f&uuml;r sich entscheiden.</span><br>
+Bitte pr&uuml;fen Sie, dass auch <em>$sesscookiename</em> sinnvoll belegt ist. Am Besten ist es hier den
+voreingestellten Namen beizubehalten, da die entsprechende HTTP-Variable von FAQEngine nicht anderweitig verwendet werden darf,
+da das Programm sonst nicht funktioniert.
+<br><br>
+Diese Methode benutzt den Username und das Passwort aus der internen Tabelle, so dass
+sie diese per Administrationsoberfl&auml;che setzen k&ouml;nnen.
+<h3>Methode #3</h3>
+Setzen Sie <em>$enable_htaccess</em> in der config.php auf <strong>true</strong>.<br>
+Ausserdem m&uuml;ssen Sie f&uuml;r jeden in der Administrationsoberfl&auml;che definierten Admin auch
+einen gleichnamigen Benutzer f&uuml;r die Sicherheitspr&uuml;fung durch den Webserver (z.B. .htpasswd)
+erzeugen. Dies ist notwendig, damit das Programm den vom Webserver erhaltenen Benutzer auch
+einem Admin zuordnen kann und so auf die Daten, wie E-Mail und Benutzerlevel kommt.
+<span class="remark">(Beim Benutzernamen wird in FAQEngine nicht nach Gro&szlig;-/Kleinschreibung unterschieden,
+bei vielen Webservern bei der internen Authentifizierung allerdings schon)</span><br>
+Aus Sicherheitsgr&uuml;nden k&ouml;nnen Sie eine .htaccess/.htpasswd <em>nicht</em> aus der Administrationsoberfl&auml;che
+aktualisieren. &Auml;ndern Sie also bei dieser Methode das Passwort in der Administrationsoberfl&auml;che,
+so hat dies keinerlei Effeckt. Legen Sie einen neuen Admin an, so m&uuml;ssen Sie ein Passwort vergeben,
+damit keine Sicherheitsl&uuml;cke entsteht, wenn Sie von dieser Methode auf Methode 1 oder 2 wechseln.<br>
+<span class="remark">Anmerkung: Bei Verwendung dieser Methode ist die im Programm integrierte Protokollierung von Anmeldungen
+und fehlgeschlagenen Anmeldungen nicht verf&uuml;gbar. Au&szlig;erdem funktioniert die Logout-Funktion der
+Administrationsoberfl&auml;che nicht.</span>
+<h1>Speicherart f&uuml;r Dateianh&auml;nge &auml;ndern</h1>
+<strong>Wichtig:</strong> &Auml;ndern Sie nicht einfach die Speicherart f&uuml;r Dateianh&auml;nge in der config.php ($attach_in_fs),
+wenn Sie bereits Dateianh&auml;nge in der FAQEngine benutzen. Bevor Sie die Speicherart von Ablage in der Datenbank auf
+Ablage im Dateisystem &auml;ndern (und umgekehrt), benutzen Sie die Funktionen <em>Dateien in Datenbank transferieren</em>
+bzw. <em>Dateien ins Dateisystem transferieren</em> unter <em>Dateien verwalten</em> in der Administrationsoberfl&auml;che.
+Damit werden die Bin&auml;rdaten der Dateianh&auml;nge von der Datenbank ins Dateisystem transferiert (bzw. umgekehrt) und
+die Datenbank entsprechend aktualisiert. <em>Danach</em> und <em>bevor Sie neue Dateianh&auml;nge uploaden</em>, &auml;ndern
+Sie die Einstellung f&uuml;r den Speicherort in der config.php.
+<h1>Encoding translated language files to HTML entities</h1>
+Included in the archive is a script to convert language files containing foreign characters to
+HTML entities. To convert your translated language file to one with HTML entities, follow these steps:
+<h1>&Uuml;bersetzte Sprachdateien in HTML-Entities konvertieren</h1>
+Im Archiv ist ein Skript enthalten, mit dem Sie eine Sprachdatei, die nicht ASCII Zeichen enth&auml;lt in
+HTML-Entities umwandeln k&ouml;nnen. Um Ihre &uuml;bersetzte Sprachdatei zu konvertieren, f&uuml;hren Sie
+folgende Schritte aus:
+<ol>
+<li>&Uuml;bersetzen Sie die Sprachdatei und speichern Sie diese im entspr. <em>language</em> Unterverzeichnis ab</li>
+<li>Rufen Sie <em>admin/encode_langfile.php</em> auf</li>
+<li>W&auml;hlen Sie die Sprachdatei aus, die konvertiert werden soll</li>
+<li>Kopieren Sie die heruntergeladene Datei (mit dem <em>_enc</em> durch die entspr. L&auml;nderkennung ersetzt) in das entspr. <em>language</em> Unterverzeichnis</li>
+<li>Nun k&ouml;nnen Sie die Administrationsoberfl&auml;che/Benutzeransicht mit der neuen Sprachdatei aufrufen</li>
+</ol>
+<span class="remark">Anmerkung: Nach dem Konvertieren der Sprachdatei sollten Sie <em>admin/encode_langfile.php</em> auf dem Server l&ouml;schen</span>
+<h1>getestete Browser</h1>
+F&uuml;r eine aktuelle Liste besuchen Sie unsere <a href="http://www.boesch-it.de/sw/php-scripts/deutsch/prgversions.php">Website</a>
+<h1><a name="lizenz">Lizenzbestimmungen</a></h1>
+Dieses Programm ist Freeware. Sie d&uuml;rfen es kostenlos im nicht kommerziellen und
+kommerziellen Umfeld einsetzen. Sie d&uuml;rfen keine &Auml;nderungen an den Skripten vornehmen.
+Ausnahme:<ul>
+<li>language/*</li>
+<li>admin/language/*</li>
+<li>stylesheets (*.css)</li>
+<li>metadata.php</li>
+<li>die gekennzeichneten Bereiche in den Dateien im Hauptverzeichnis, d.h. Sie d&uuml;rfen &Auml;nderungen nur zwischen <pre>// begin user editable part</pre>
+und <pre>// end user editable part</pre> vornehmen</li>
+</ul>
+Sollten Sie das Programm auf Ihrer Website einsetzen, so tragen Sie diese doch
+bitte als Referenz auf unserer Website ein.
+<br><br>
+Sollten Sie das Programm im kommerziellen Umfeld einsetzen, so f&auml;nden wir es
+toll, wenn Sie unsere Arbeit evtl. auch finanziell unterst&uuml;tzen w&uuml;rden.
+<br><br>
+Die neueste Version gibt es immer auf
+<a href="http://www.boesch-it.de">http://www.boesch-it.de</a>
+<br><br>
+<span class="remark">
+(Benutzt die HTML Mime Mail class by Richard Heyes &lt;richard@phpguru.org&gt;)
+</span>
+<br><hr>
+<span class="remark">
+&copy; 2001-2005 B&ouml;sch EDV-Consulting<br>
+letzte Aktualisierung: 10.08.2005
+</span>
+</body>
+</HTML>
