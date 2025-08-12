@@ -1,0 +1,177 @@
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif"> </font><font face="Verdana, Arial, Helvetica, sans-serif"> 
+<?	$db = new ps_DB;
+	$q  = "SELECT * FROM domain_type  WHERE domain_type_id = '$tld_id'";
+	$db->query($q);
+	$db->next_record();
+?>
+</font><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b>EDIT TOP 
+LEVEL DOMAINS &gt;</b></font><font face="Verdana, Arial, Helvetica, sans-serif"> 
+</font><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><br>
+</b></font> 
+<form method="post" action="">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Extension:</font></td>
+      <td width="74%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <font size="1"> 
+        <input type="text" name="extension" maxlength="50" size="10" style="border: 1 solid #666666" value="<? $db->p("domain_type_extension") ?>">
+        (example:com)</font></font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Name:</font></td>
+      <td width="74%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="name" maxlength="50" size="10" style="border: 1 solid #666666" value="<? $db->p("domain_type_name") ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Whois 
+        Server:</font></td>
+      <td width="74%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="url" maxlength="50" size="25" style="border: 1 solid #666666" value="<? $db->p("domain_type_url") ?>">
+        <font size="1">(example:whois.internic.net)</font></font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Whois 
+        Response:</font></td>
+      <td width="74%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="response" maxlength="50" size="25" style="border: 1 solid #666666" value="<? $db->p("domain_type_response") ?>">
+        <font size="1">(example: No Match)</font></font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Accepted?</font></td>
+      <td width="74%"> 
+        <input type="checkbox" name="status" value="Y" <? if ($db->f("domain_type_status")==Y) echo " checked"; ?>>
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif"><font size="1">(If 
+        selected, shoppers will be able to buy this TLD type)</font></font> </td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Auto 
+        Search?</font></td>
+      <td width="74%"> 
+        <input type="checkbox" name="auto" value="Y" <? if ($db->f("domain_type_auto")==Y) echo " checked"; ?>>
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif"><font size="1">(If 
+        selected, the auto search function will include this TLD type)</font></font> 
+      </td>
+    </tr>
+    <tr bgcolor="#003366"> 
+      <td width="26%"><font color="#FFFFFF"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"></font></b></font></td>
+      <td width="74%"><font color="#FFFFFF"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif">DOMAIN 
+        REGISTRATION PRICING LEVELS:</font></b></font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">1 
+        Year:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?$currency=setup("currency");
+  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p1" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p1") ?>">
+        </font><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><font size="1">(example: 
+        30.00)</font></font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">2 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p2" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p2") ?>">
+        </font><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><font size="1"> 
+        Do not include your currency sign!</font></font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">3 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p3" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p3") ?>">
+        </font><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><font size="1"> 
+        No more than 2 numbers after the decimal point!</font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"> 
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">4 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p4" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p4") ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">5 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p5" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p5") ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">6 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p6" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p6") ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">7 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p7" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p7") ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">8 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p8" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p8") ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">9 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p9" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p9") ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">10 
+        Years:</font></td>
+      <td width="74%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><b><font size="1"> 
+        <?  echo $currency;  ?>
+        </font></b> 
+        <input type="text" name="p10" maxlength="50" size="5" style="border: 1 solid #666666" value="<? $db->p("domain_type_p10") ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="26%">&nbsp;</td>
+      <td width="74%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="26%">&nbsp;</td>
+      <td width="74%"> 
+        <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23" onClick="verify(this.form);">
+        <input type="hidden" name="action" value="<? echo $set_action ?>">
+        <input type="hidden" name="tld_id" value="<? echo $tld_id ?>">
+        <input type="hidden" name="page" value="tld">
+        <? if ($set_action=="tld_update--") { ?>
+        <a href="?page=tld&amp;set_action=tld_delete&amp;tld_id=<? echo $tld_id ?>"><img src="images/button_delete.gif" width="80" height="23" border="0"></a> 
+        <? } ?>
+        <input type="hidden" name="set_action">
+      </td>
+    </tr>
+  </table>
+</form>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b> </b> </font> 
+</body>
+</html>
