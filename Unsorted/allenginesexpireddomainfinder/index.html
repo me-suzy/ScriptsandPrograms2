@@ -1,0 +1,69 @@
+<!--&
+my @Rec = List(\%Q);
+local %nav = %{ CalcNavigation({ Records=>0+@Rec, Count => $Q{Count}, From => $Q{From} }) };
+-->
+<HTML>
+<HEAD>
+<TITLE>Expired Domain Finder</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="expireddomain.css">
+</HEAD>
+<BODY>
+
+<center>
+<H1><B>A</B>aron's <B>E</B>xpired<B> D</B>omain <B>F</B>inder</H1>
+
+<FORM METHOD=GET>
+<TR><TD ALIGN=CENTER>Keyword contain: <INPUT TYPE=TEXT NAME="query" VALUE="@~$Q{query}~@" SIZE=40 MAXLENGTH=200>
+<INPUT TYPE=SUBMIT VALUE="Search" name=Action></TD></TR>
+</FORM>
+<HR>
+<table class=menu><tr><td>
+<a href="Search.html">	Make a new file </a> <br> </table>
+
+<BR>
+<TABLE calss=info><TR><TD>
+<!--& if ($nav{Records}) { -->
+Found @~$nav{Records}~@, shown @~$nav{From}~@-@~$nav{To}~@
+<!--& } else { -->
+No records exists
+<!--& } -->
+</TD></TR></TABLE>
+<p>
+
+<!--& if ($nav{Records}) { -->
+<TABLE class=list>
+<TR>
+<TH>N
+<TH> Keyword 
+<TH> Date
+<!--& for $num ($nav{From}..$nav{To}) { $_ = $Rec[$num-1]; -->
+<TR>
+<TD ALIGN=LEFT>@~$num~@
+<TD ALIGN=LEFT><a href="Browse.html?file=^~EncUri($_->{fname})~^">@~$_->{name}~@</a>
+<TD ALIGN=LEFT>@~$_->{date}~@
+<!--& } #for-->
+</TABLE>
+<!--& } -->
+
+<BR>
+<TABLE><TR>
+<!--& if (defined $nav{Prev}) { -->
+<TD><A HREF="?From=^~$nav{Prev}~^&query=^~$Q{query}~^">Prev</A></TD>
+<!--& } -->
+<!--& for (@{$nav{Pages}}) { -->
+<TD>
+<!--& if ($_->{Page} == $nav{Page}) { -->
+<B>@~$_->{Page}~@</B>
+<!--& } else { -->
+<A HREF="?From=^~$_->{From}~^&query=^~$Q{query}~^">@~$_->{Page}~@</A>
+<!--& } -->
+</TD>
+<!--& } -->
+<!--& if (defined $nav{Next}) { -->
+<TD><A HREF="?From=^~$nav{Next}~^&query=^~$Q{query}~^">Next</A></TD>
+<!--& } -->
+</TR></TABLE>
+
+
+</BODY>
+</HTML>
