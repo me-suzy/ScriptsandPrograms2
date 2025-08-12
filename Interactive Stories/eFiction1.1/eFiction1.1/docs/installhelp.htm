@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<div align="center">
+  <p><font face="Arial, Helvetica, sans-serif"><b>Install Help</b></font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">Help with the lovely
+    settings.</font></p>
+  <p align="left"><b><font face="Arial, Helvetica, sans-serif">Basic Installation
+    Instructions:</font></b></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">If you know basic
+    web stuff like CHMODing, look below at step #1. If you have no clue what you're
+    doing, just go to http://www.yoursite.com/install.php after uploading all
+    the files to your server.</font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">1) CHMOD the stories
+    folder to 777 if you intend to write the story texts to the server or allow
+    image uploads.</font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">2) CHMOD config.php
+    to 666</font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">3) Modify data/dbconfig.php
+    with the appropriate MySQL database info, and put outside the web directory.</font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">4) Run install.php</font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">5) Login with the
+    admin login and password set in step #4, and set your settings.</font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">The stuff below is
+    explanations for certain steps done during the install.php procedure.</font></p>
+  <hr>
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b>PHP.INI<a name="php"></a></b></font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">The php.ini file is
+    not something that most people have access to if they're using shared webhosting
+    (which most people are). It is the config file for PHP, and modifying it would
+    affect everyone who is on the server -- so your webhost must be the ones to
+    modify it. Sometimes they can be sticky about changing certain settings, especially
+    safe_mode. So, if they won't turn it on for you, you must either live with
+    safe_mode being on and lose some of the functionality of the script, OR find
+    a host that runs PHP with safe_mode off (of which there are many). </font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">Note: one of the requirements
+    of the script is that register_globals be set to on. The recent versions of
+    PHP, when installed, have register_globals set to off as the default. If the
+    install script is telling you that register_globals is off, contact your web
+    host, and ask them to set it to on. </font></p>
+  <hr>
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b>CHMODing</b><a name="chmod"></a></font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">CHMODing means that
+    you are changing the permissions of a file. Basically, a file has read, write,
+    or execute permissions for Owner, Group, and Other. You have to set the read,
+    write, and execute permissions correctly for these three groups so that they
+    add up to 666 (for config.php -- this would be read and write for all 3 groups)
+    or 777 (for the stories folder -- read, write, and execute for all three groups).
+    </font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">In most FTP programs,
+    you select the file or folder in question, and right click on it. You should
+    see a choice there that says &quot;CHMOD&quot; or &quot;Permissions&quot;.
+    Choose that, and you should see some sort of interface to change the permissions
+    (usually little checkboxes that you turn on or off). If you're still stuck
+    on how to do this, come ask in the Orodruin forums for more info.</font></p>
+  <hr>
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Database Info</b><a name="dbinfo"></a></font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">This is going to be
+    the hard part for people who are not used to working with MySQL databases.
+    If you're using shared webhosting, then you probably have some sort of control
+    panel interface that comes with your hosting. Do some poking around in there,
+    and see if you can't find a place that mentions either &quot;MySQL&quot; or
+    &quot;databases.&quot; You need to create a database, that has both a database
+    login, and password associated with it. Once you've done that, you can modify
+    the dbconfig.php file with that information. If you're still not able to figure
+    out how to do this, it's best to talk to your webhost and ask for help.</font></p>
+  <hr>
+  <p align="left"><font face="Arial, Helvetica, sans-serif"><b>Installing the
+    Tables</b><a name="tables"></a></font></p>
+  <p align="left"><font face="Arial, Helvetica, sans-serif">The database must
+    have several tables installed where all the script information is stored (i.e.
+    the users, the stories, and everything else). The script can install these
+    tables for you, and there's really no reason not to have it do that. If you're
+    concerned about it doing that, you can use the tables.sql file (found in the
+    docs folder) and run them yourself -- you should only do this if you know
+    what you're doing.</font></p>
+  <p align="left">&nbsp;</p>
+</div>
+</body>
+</html>
