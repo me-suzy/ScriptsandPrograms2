@@ -1,0 +1,1062 @@
+<html>
+
+<head>
+<title>Members</title>
+
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<p><font face="Verdana" size="2" color="red"><b>Members</b></font><font face="Verdana" size="2"><br><br>An 
+existing member can log in at '</font><font face="Verdana" size="2" color="blue">member.php</font><font face="Verdana" size="2">'. 
+The login page is based on template <b>u_login.html</b>. This template has several variables, these are used only if someone already 
+tried to log in (filled in the form and sent it out) but the system rejected it for 
+some reason (probably wrong username or password). The following variables are available:<br></font></p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">#%info%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">Description 
+            of the reason why the form was rejected</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">Entered 
+            Username</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">Entered 
+            Password</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2"><br>If a member forgot username or password, he/she 
+will go to '</font><font face="Verdana" size="2" color="blue">member.php?action=remind</font><font face="Verdana" size="2">' 
+for a password reminder. There the member fills in email address associated with 
+an account and both username and password will be automatically emailed to this email. 
+The remind form is based on template '<b>u_remind.html</b>'. This template has 2 variables, these are used only if someone already 
+entered an email  but the system rejected it because the entered email was not 
+associated with any account. These variables are below:<br></font></p>
+<table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">#%info%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">Description 
+            of the reason why the form was rejected</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">#%email%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">Entered 
+            Email</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2">The remind email is based on template '<b>email_remind.txt</b>' 
+where are these variables available:<br></font></p>
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%loginurl%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">URL of your member.php script<br>
+			</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2">Once a member is logged in, he/she can see 
+a page based on template '<b>u_home.html</b>'. There are these variables 
+available:<br></font></p>
+
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%w1%#, 
+                                #%h1%#<br>#%w2%#, #%h2%#<br>#%w3%#, #%h3%#</font><font size="2" face="Verdana"><br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Banner 
+            dimensions (width, height) used in 3 sizes of&nbsp;your 
+                                exchange system.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%move_impressions%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">If 
+            you allow users to move impressions between sizes, it shows a 
+            form field to select this option. This field is based on template 
+            'u_move_impressions.txt'. This template doesn't have variables.</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2">On this page the user can select from several 
+actions to do. Below is a description of each of these actions and list of variables 
+in used templates.<br><br></font><font face="Verdana" size="2" color="blue"><b>Edit 
+details</b></font><font face="Verdana" size="2"><br>By selecting this action 
+a 
+member gets a form to&nbsp;edit user details. &nbsp;This form is based on template 
+'<b>u_edit.html</b>'. These variables are available:<br></font></p>
+
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">#%info%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p align="center"><font face="Verdana,Arial" size="2" color="#000000">If 
+            the form was&nbsp;just send out, it informs the user that data are 
+            saved or that some error occurred.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%name%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Name 
+                                of the member</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%email%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Email 
+                                of the member</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%siteurl%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">URL 
+                                of site of the member</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2" color="black">If you have checked that you want 
+to get an email when a member changed his/her details, you now get an email 
+based on template '<b>email_admin_u_change.txt</b>'. These variables may be used:<br></font></p>
+
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%adminfile%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">URL 
+            of your admin interface</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%name%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Name 
+                                of the member</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%email%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Email 
+                                of the member</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%siteurl%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">URL 
+                                of site of the member</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2" color="blue"><b>Edit ads<br></b></font><font face="Verdana" size="2" color="black">If 
+this is selected, your user gets a form to edit ads. This page 
+is may be based on the following templates:<br><b>u_ad_edit.html - </b>this 
+template is used if you don't allow users to enter a plain HTML code and banners 
+of your users are stored on their servers<br><b>u_ad_edit_raw.html - </b>this 
+template is used if you allow users to enter a plain HTML code and banners of 
+your users are stored on their servers<br><b>u_ad_edit_upload.html - </b>this 
+template is used if you don't allow users to enter a plain HTML code and banners 
+of your users are stored on your&nbsp;server<br><b>u_ad_edit_upload_raw.html 
+- </b>this template is used if you allow users to enter a plain HTML code and 
+banners of your users are stored on your&nbsp;server<br>In these templates are available the 
+following 
+variables:</font><font face="Verdana" size="2"><br><br></font></p>
+
+                    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%size%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number 
+                                of account which is just edited (number 1, 2 
+                                or 3)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%info%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">It&nbsp;shows 
+                                an info for the&nbsp;member when&nbsp;data has been 
+                                saved or when any problem has occurred. </font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%ienabled%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">It 
+                                informs if the account is actually enabled or 
+                                disabled.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%approved%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">It 
+                                informs if the account is actually approved 
+                                by admin.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%enablebutton%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">If 
+                                you do allow your members enable/disable their 
+                                accounts, it makes a button to enable it if 
+                                the account is disabled or disable it if the 
+                                account is enabled.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%category%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">List 
+                                of categories, member&nbsp;can select category 
+                                of this account.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%czct%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">List 
+                                of categories which have to be displayed on 
+                                pages of this user. Users can select ANY 
+                                or maximum of five single categories.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%current_ad_1%#<br>#%current_ad_2%#<br>#%current_ad_3%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Current 
+                                ads of this account.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%current_banner_1%#<br>#%current_banner_2%#<br>#%current_banner_3%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Current 
+                                banners of this account (only if banners are 
+            stored on your server)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%url1%#<br>#%url2%#<br>#%url3%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">URL's 
+                                which gets a surfer when clicks on link of 
+                                this account.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%alt1%#<br>#%alt2%#<br>#%alt3%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Alt 
+                                 
+                                tags of banners</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%raw1%#<br>#%raw2%#<br>#%raw3%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Raw 
+            HTML 
+                                 
+                                of ads (only available if you allow users to 
+            enter raw HTML)</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2">Once an ad is updated, the account is disabled 
+(if it's checked in your&nbsp;Configuration) and an admin must check the new info 
+and re-enable this account. If you have selected that you want to get an email when 
+a link is changed, you now&nbsp;get an email which is based on template '<b>email_admin_u_ad.txt</b>'. 
+These variables may be used:<br></font></p>
+
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%adminfile%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">URL of your admin/index.php script<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the 
+                                account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p>	<font face="Verdana,Arial" size="2" color="#000000">#%category%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Category of site of the account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%size%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number 
+                                of exchange size which has been updated (1, 
+            2 or 3)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%url1%#<br>#%url2%#<br>#%url3%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">URL's 
+                                which gets a surfer by a click on ad of 
+                                this account.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%banner1%#<br>#%banner2%#<br>#%banner3%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Banners 
+                                of this account.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%alt1%#<br>#%alt2%#<br>#%alt3%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Alt 
+                                 
+                                tags of banners of this account.</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font size="2" face="Verdana" color="blue"><b>Statistic</b></font><font size="2" face="Verdana"><br>If 
+this is selected, the user gets detailed statistic. The statistic page is based 
+on template '</font><b><font size="2" face="Verdana">u_statistic.html</font></b><font size="2" face="Verdana">'. 
+These variables may be used:<br></font></p>
+
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%size%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Selected 
+            ad size (1, 2, or 3)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%width%#<br>#%height%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Banner 
+            dimensions (width, height) used in the selected size.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%ratio%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Exchange 
+                                ratio valid for this account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%forclick%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number 
+                                of credits which this account gets for each sent 
+            click.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%i_nu%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p> <font face="Verdana,Arial" size="2" color="#000000">Number 
+            of not used impressions at this time</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%time%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Current time</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%lasttime%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Time 
+            of the last impression sent by this account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%earned%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Total
+            number of earned credits</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%forclicks%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Total
+            number of credits earned for clicks</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%i_move_in%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number of impressions 
+            moved by the user from other exchange sizes (if you allow it)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%i_move_out%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number of impressions 
+            moved by the user to other exchange sizes (if you allow it)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%i_free%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number of free 
+            impressions given to this account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%i_refer%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number of free credits for referring new members<br>
+            </font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap colspan="2">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Statistic</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%i_m%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Total number of impressions 
+            sent by this account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%i_w%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p> <font face="Verdana,Arial" size="2" color="#000000">Total 
+            number of impressions received by this account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%c_m%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Total number of clicks sent 
+            by this account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%c_w%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p> <font face="Verdana,Arial" size="2" color="#000000">Total 
+            number of clicks received by this account</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%r_m%#</font></p>
+                            </td>
+                            <td align="center">
+<FONT face="Verdana,Arial" size="2">Ratio 
+impressions/clicks on pages of this account</FONT>                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%r_w%#</font></p>
+                            </td>
+                            <td align="center">
+<FONT face="Verdana,Arial" size="2">Ratio 
+impressions/clicks on ads&nbsp;of this account</FONT>                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%w_rest%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Currently 
+            waiting deferred impressions</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%w_daily%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number 
+            of deferred which has to be added each day</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%hourly_graph%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p> <font face="Verdana,Arial" size="2" color="#000000">Complete 
+            table containing graph with hour-after-hour statistic</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap colspan="2">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Statistic 
+            for individual banners</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%ban1%#<br>#%ban2%#<br>#%ban3%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Actual banners number 1, 2 and 3</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%ad_i1%#<br>#%ad_i2%#<br>#%ad_i3%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number 
+                                of impressions of ads 1, 2 and 3. This is counted since the 
+                                last reset.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%ad_c1%#<br>#%ad_c2%#<br>#%ad_c3%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number 
+                                of clicks on&nbsp;links 1, 2 and 3. This is counted since the 
+                                last reset.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%ad_ratio1%#<br>#%ad_ratio2%#<br>#%ad_ratio3%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Ratio 
+                                (clicks/impressions) in %&nbsp;for&nbsp;links 
+                                1, 2 and 3. This 
+                                is counted since the last reset.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%ad_res1%#<br>#%ad_res2%#<br>#%ad_res3%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Date 
+                                and time of the last reset of this statistic.</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2" color="blue"><b>Statistic - days</b></font><font face="Verdana" size="2"><br>If 
+this is selected, the user gets day-by-day statistic for the actual month. This page is based on template '<b>u_statistic_day_by_day.html</b>' and there 
+are these variables used:<br></font></p>
+
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%size%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Ad 
+            size (1, 2 or 3)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%width%#<br>#%height%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Banner 
+                                dimensions (width, height) used in  the selected 
+            size.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%month%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Actual 
+            or selected&nbsp;month and year</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%table1%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Complete 
+            table containing graphs and numbers of impressions sent/received 
+            by this account, day-by-day. In the Configuration you can select 
+            if this table&nbsp;should be placed vertically or horizontally.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%table2%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Complete 
+            table containing graphs and numbers of clicks&nbsp;sent/received 
+            by this account, day-by-day. In the Configuration you can select 
+            if this table&nbsp;should be placed vertically or horizontally.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%prev_m%#<br>#%next_m%#<br>#%prev_y%#<br>#%next_y%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">These 
+            variable are used in the buttons which go to previous/next months 
+            statistics</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2" color="blue"><b>Statistic - months</b></font><font face="Verdana" size="2"><br>If 
+this is selected, the user gets month-by-month statistic for the actual year. This page is based on template '<b>u_statistic_month_by_month.html</b>' and there 
+are these variables used:<br></font></p>
+
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%size%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Ad 
+            size (1, 2 or 3)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%width%#<br>#%height%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Ad 
+                                dimensions (width, height) used in  the selected 
+            size.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%year%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number 
+            of actual or selected year</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%table1%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Complete 
+            table&nbsp;containing graphs and numbers of impressions sent/received 
+            by this account, month-by-month.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%table2%#<br></font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Complete 
+            table containing graphs and numbers of clicks&nbsp;sent/received 
+            by this account, month-by-month.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%prev_y%#<br>#%next_y%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">These 
+            variable are used in the buttons which go to previous/next years&nbsp;statistics</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2" color="blue"><b>Get HTML code</b></font><font face="Verdana" size="2"><br>By selecting this 
+option your users get a HTML code to place on their pages. There are 
+used template '<b>u_html.txt</b>' which contains these variables:</font></p>
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%size%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Ad 
+            size (1, 2 or 3)</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%width%#<br>#%height%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Dimensions 
+            (width, height) of the exchange link</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%html%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">HTML 
+            which the member has to paste onto pages</font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font face="Verdana" size="2">To show the HTML code is used template '<b>html.txt</b>'. 
+We don't recommend to edit this template.</font></p>
+<p><font face="Verdana" size="2" color="blue"><b>Move impressions between sizes</b></font><font face="Verdana" size="2"><br>This 
+option is only available if you allow users to move impressions between ad sizes. 
+This may be used for example if&nbsp;an u</font><font size="2" face="Verdana">ser earns impressions in size 1 but wants to use them in size 2. If you 
+allow it, you must also  enter a ratio (in Configuration) which should be used for this conversion. 
+Please note that while the conversion is the number of impressions always rounded 
+down in order to prevent users to steal impressions by moving it many times&nbsp;between 
+sizes.<br>By selecting this option your users get a page containing form which 
+may be used to convert the impressions. This page is based on template '<b>u_move_impressions.html</b>', 
+these variables are used:<br></font></p>
+                    <table border="1" cellpadding="5" cellspacing="0">
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%info%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">This 
+            is used only if some impressions have been just converted or if 
+            some error occurred to show an info what has happen.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%move1%#<br>#%move2%#<br>#%move3%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">The 
+            ratio which you have set to convert impressions.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%w1%# 
+            #%h1%#<br>#%w2%# #%h2%#<br>#%w3%# #%h3%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Dimensions 
+            (width,height) of 3 ad sizes in your system</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%available1%#<br>#%available2%#<br>#%available3%#&nbsp;</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Number 
+            of currently available impressions in sizes 1, 2 and 3. This is 
+            the maximum number of impressions which can be converted.</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userid%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Username of the member<br>
+</font></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" nowrap>
+                                <p><font face="Verdana,Arial" size="2" color="#000000">#%userpass%#</font></p>
+                            </td>
+                            <td align="center">
+                                <p><font face="Verdana,Arial" size="2" color="#000000">Password of the member<br></font></p>
+                            </td>
+                        </tr>
+                    </table>
+<p><font size="2" face="Verdana"><br>&nbsp;</font></p>
+</body>
+
+</html>
