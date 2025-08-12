@@ -1,0 +1,193 @@
+<html>
+<head>
+<style>
+<!--
+.netscape6problem		{ font-family: Verdana,Arial,Helvetica; font-size: 10px; }
+.smallnormal			{ font-family: Verdana,Arial,Helvetica; font-size: 10px; color: white; }
+.smallnormaltable		{ font-family: Verdana,Arial,Helvetica; font-size: 10px; color: white; }
+.smallnormaltablealt		{ font-family: Verdana,Arial,Helvetica; font-size: 10px; color: #FF9999; }
+.mednormal			{ font-family: Verdana,Arial,Helvetica; font-size: 12px; color: #CCCCFF }
+.mednormaltable			{ font-family: Verdana,Arial,Helvetica; font-size: 12px; color: white; }
+.mednormalhighlight		{ font-family: Verdana,Arial,Helvetica; font-size: 12px; color: white; background: yellow; }
+.medbold			{ font-family: Verdana,Arial,Helvetica; font-size: 12px; font-weight: bold; color: white; }
+.medboldalt			{ font-family: Verdana,Arial,Helvetica; font-size: 12px; font-weight: bold; color: #FF9999; }
+.medboldtable			{ font-family: Verdana,Arial,Helvetica; font-size: 12px; font-weight: bold; color: white; }
+.largebold			{ font-family: Verdana,Arial,Helvetica; font-size: 18px; font-weight: bold }
+.smallcompact			{ font-family: Verdana,Arial,Helvetica; font-size: 10px }
+.smallbold			{ font-family: Verdana,Arial,Helvetica; font-size: 10px; font-weight: bold }
+.smallboldtable			{ font-family: Verdana,Arial,Helvetica; font-size: 10px; font-weight: bold; color: white; }
+.smallboldtablealt		{ font-family: Verdana,Arial,Helvetica; font-size: 10px; font-weight: bold; color: #FF9999; }
+.smallboldtabletop		{ font-family: Verdana,Arial,Helvetica; font-size: 10px; font-weight: bold; color: white }
+.smallboldtemplate		{ font-family: Verdana,Arial,Helvetica; font-size: 10px; font-weight: bold; color: white;}
+.smallboldfooter		{ font-family: Verdana,Arial,Helvetica; font-size: 10px; color: #999999;}
+.locationbar			{ font-family: Verdana,Arial,Helvetica; font-size: 10px; color: white; }
+
+A:link					{text-decoration: underline; color: #8888FF; }
+A:visited				{text-decoration: underline; color: #8888FF; }
+A:hover					{text-decoration: underline; color: #FF9999; }
+
+A.minibasket:link		{text-decoration: underline; color: #8888FF; }
+A.minibasket:visited	{text-decoration: underline; color: #8888FF; }
+A.minibasket:hover		{text-decoration: underline; color: #FF9999; }
+
+A.table:link			{text-decoration: underline; color: #8888FF; }
+A.table:visited			{text-decoration: underline; color: #8888FF; }
+A.table:hover			{text-decoration: underline; color: #FF9999; }
+
+A.templatemenu:link			{text-decoration: none; color: #DDDDDD; }
+A.templatemenu:visited		{text-decoration: none; color: #DDDDDD; }
+A.templatemenu:hover		{text-decoration: underline; color: white; background: gray; }
+
+
+A.locationlink:link		{text-decoration: underline; color: #8888FF; }
+A.locationlink:visited		{text-decoration: underline; color: #8888FF; }
+A.locationlink:hover		{text-decoration: underline; color: #FFFF99; }
+
+table.minibasket	{background-color: #565681; }
+tr.minibasketline 	{background-color: #666691; }
+
+hr		{ height: 1; color: #DDDDDD }
+pre		{ font-family: Courier; font-size: 10px; }
+select	{ font-family: Verdana; font-size: 10px; color: black; background-color: white; border-color: #DDDDDD; }
+
+table.mainpage				{background-color: #444466; }
+tr.mainpagetableline 		{background-color: #555577; }
+tr.mainpagetableline2 		{background-color: #494975; }
+tr.mainpagetablespecial		{background-color: #7777A0; }
+tr.mainpageversionhighlight	{background-color: #FF0000; }
+
+.buttonstyle	{font-family: Verdana; font-size: 10px; font-weight: bold; color: #DDDDFF; background-color: #444477; border-style: outset; border-color: #444477; }
+-->
+
+</style>
+
+
+<!---
+===============================================================================
+ CACTUSHOP 4.0 ASP SHOPPING CART ©1999-2001 CACTUSOFT LTD. - WWW.CACTUSOFT.COM
+ All rights reserved.
+===============================================================================
+---->
+<title>Cactusoft ASP Shopping Cart Demo</title>
+</head>
+<body bgcolor="#444466" text="#FFFFFF" link="#8888FF" vlink="#8888FF" alink="#FF9999"
+ LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
+
+<!---
+===============================================================================
+ This DHTML part modified from a script on WSABSTRACT.COM - worth a visit!
+===============================================================================
+---->
+
+<script language="JavaScript1.2">
+var basketwidth=''
+var basketheight=''
+
+function initialize(){
+if (document.all){
+basketwidth=basketsummary.offsetWidth
+basketheight=basketsummary.offsetHeight
+setInterval("staticit_ie()",10)
+basketsummary.style.visibility="visible"
+}
+else if (document.layers){
+basketwidth=document.basketsummary.document.width
+basketheight=document.basketsummary.document.height
+setInterval("staticit_ns()",50)
+document.basketsummary.visibility="show"
+}
+}
+
+function staticit_ie(){
+basketsummary.style.pixelLeft=document.body.scrollLeft+document.body.clientWidth-basketwidth-10
+basketsummary.style.pixelTop=document.body.scrollTop+5
+}
+
+function staticit_ns(){
+document.basketsummary.left=pageXOffset+window.innerWidth-basketwidth-10
+document.basketsummary.top=pageYOffset
+}
+
+window.onload=initialize
+</script>
+
+<span id="basketsummary" style="position:absolute;left:0;top:0;visibility:hidden">
+<table bgcolor="#565681" width="160" cellpadding="2" cellspacing="2" border="0">
+<tr>
+<td class="smallboldtemplate">My Basket</td>
+</tr>
+<tr>
+<td>
+  <table border="0" cellpadding="5" cellspacing="0" width="100%">
+    <tr>
+      <td width="100%">xxxBASKETSUMMARYxxx</td>
+    </tr>
+  </table></td>
+</tr>
+<tr>
+<td class="smallboldtemplate">Categories</td>
+</tr>
+<tr>
+<td>xxxCATEGORYMENUxxx</td>
+</tr>
+</table>
+
+</span>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+	<td><img border="0" src="templateimages/floater.gif" width="240" height="50"></td>
+</tr>
+</table>
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+      <td class="smallboldtemplate">
+      <a class="templatemenu" href="../asp/default.asp">Home</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/search.asp">Search</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/prodtypelist.asp">Categories</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/basket.asp?V=refresh">Basket</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/speedorder.asp">SpeedOrder</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/shipping.asp">Shipping</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/customer_showorder.asp">My Account</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/about.asp">About&nbsp;CactuShop</a>
+      </td>
+    </tr>
+  </table>
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<tr>
+	<td valign="top">xxxPAGECONTENTxxx<br><img src="../images_webshop/spacer.gif" width="490" height="1"></td>
+	<td valign="top" width="160"><img src="../images_webshop/spacer.gif" width="150" height="1"></td>
+</tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tr>
+    <td><table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+      <td class="smallbold">
+      <a class="templatemenu" href="../asp/default.asp">Home</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/search.asp">Search</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/prodtypelist.asp">Categories</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/basket.asp?V=refresh">Basket</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/speedorder.asp">SpeedOrder</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/shipping.asp">Shipping</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/customer_showorder.asp">My Account</a>&nbsp;::&nbsp;
+      <a class="templatemenu" href="../asp/about.asp">About&nbsp;CactuShop</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="smallboldfooter">CactuShop v4.0 ASP Shopping Cart ©1999-2001
+        Cactusoft Ltd.. - <a class="templatemenu" href="http://www.cactushop.com/" target="_blank">www.cactushop.com</a><br>
+        All rights reserved.
+      </td>
+    </tr>
+  </table></td>
+  </tr>
+</table>
+
+
+
+</body>
+
+</html>
