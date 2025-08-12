@@ -1,0 +1,188 @@
+<html>
+
+<head>
+<title>phpJobScheduler - Readme</title>
+<link rel="stylesheet" type="text/css" href="pjs.css">
+</head>
+
+<body>
+<div align="center"><center>
+
+<table cellSpacing="3" cellPadding="0" border="0" width="508">
+  <tr bgColor="#000000">
+    <td height="1" bgcolor="#808080" width="486" colspan="4"></td>
+  </tr>
+  <tr bgColor="#334873">
+    <td align="middle" bgcolor="#FFFFFF" width="17"></td>
+    <td align="middle" bgcolor="#FFFFFF"><p align="center"><img src="pjslogo.gif" width="165"
+    height="75" alt="phpJobScheduler" border="0"><strong><br>
+    </strong></td>
+    <td align="middle" bgcolor="#FFFFFF" width="230"><p align="center"><strong><font
+    color="#008000">README</font><font color="#400040"> <br>
+    </font></strong></p>
+    <p align="center"><small>Now released under <a href="../../phpmysqlautobackup/LICENSE">GPL
+    License</a><br>
+    That means its free to use!&nbsp; Enjoy&nbsp; ;-)</small></td>
+    <td align="middle" bgcolor="#FFFFFF" width="14"></td>
+  </tr>
+  <tr bgColor="#000000">
+    <td height="1" bgcolor="#808080" width="486" colspan="4"></td>
+  </tr>
+</table>
+</center></div>
+
+<p align="center"><strong>* Author: <a href="http://DWalker.co.uk">http://DWalker.co.uk</a>&nbsp;
+</strong>For help and support please try the fourm: <a href="http://dwalker.co.uk/forum/">http://dwalker.co.uk/forum/</a>
+</p>
+
+<p align="center"><strong>Designed to automate tasks by scheduling PHP scripts to run at
+set intervals.</strong></p>
+
+<p align="left"><strong>Requirements:</strong> </p>
+
+<ul>
+  <li>MySQL</li>
+  <li>PHP4 - with <b>register_globals ON or OFF</b></li>
+</ul>
+
+<p align="center">Full details can be at:<br>
+<a href="http://www.dwalker.co.uk/phpjobscheduler/">http://www.dwalker.co.uk/phpjobscheduler/</a></p>
+
+<hr width="85%" color="#808080" align="center">
+
+<p align="left"><strong>To upgrade an existing installation:</strong></p>
+
+<ol>
+  <li><p align="left">Remove all files from your original installation folder:&nbsp; <strong><a
+    href="http://www.your--Domain.com/phpjobscheduler">www.your--Domain/phpjobscheduler/</a><br>
+    <br>
+    &nbsp; RETAINING</strong> the following files: <br>
+    &nbsp;&nbsp; * config.inc.php&nbsp; [your original config file, this can be used for the
+    new version]<br>
+    &nbsp;&nbsp; * .htaccess&nbsp;&nbsp; [should be there if you have password protected your
+    folder!]<br>
+    &nbsp;&nbsp; * .htpasswd&nbsp;&nbsp; [if there, depends on o/s]</p>
+  </li>
+  <li>Unzip the files and upload to your server.&nbsp; <br>
+    The following assumes you have uploaded the files and folders retaining the original names<br>
+    i.e.&nbsp; <strong><a href="http://www.your--Domain.com/phpjobscheduler/pjsfiles/">www.your--Domain/phpjobscheduler/pjsfiles/</a><br>
+    </strong></li>
+  <li>The upgrade is complete (no changes required to database).&nbsp; To use the new features
+    please now follow steps 4 and 5 below.</li>
+</ol>
+
+<hr width="85%" color="#808080" align="center">
+
+<p align="left"><big><strong>To complete a new installation:</strong> </big></p>
+
+<ol>
+  <li>Unzip the files and upload to your server.<blockquote>
+      <p>The following assumes you have uploaded the files and folders retaining the original
+      names<br>
+      i.e.&nbsp; <strong>www.your--Domain/phpjobscheduler/pjsfiles/</strong></p>
+    </blockquote>
+  </li>
+  <li>YOU MUST <strong>password protect the &quot;pjsfiles&quot; folder</strong> - if you fail
+    to do so visitors to your site could add/delete/modify your scheduled jobs!&nbsp; If you
+    host on Unix or Linux add htaccess to the folder to force a username and password prompt
+    before entry (if you host on a Windows machine RTFM).&nbsp; If you host with <a
+    href="http://www.seiretto.com">Seiretto</a> adding htaccess is easy, with just a few
+    clicks of your mouse using your Server Virtual Control Panel the folder can be secured in
+    seconds (comprehensive details can be found within the Server Virtual Control Panel, see
+    &nbsp; Web Site section, sub section<strong> security</strong>).</li>
+  <li>Configure your installation - in your browser open the file:&nbsp;<strong> <a
+    href="index.php">index.php</a>&nbsp; <font color="#FF0000">*</font></strong></li>
+  <li>Add the PHP code to fire your scheduled tasks when due.&nbsp; There are two methods:<br>
+    <ol>
+      <li type="i">add to the END of an<strong> existing<font color="#7B8CD6"> </font><font
+        color="#8080C0">PHP</font> file</strong>, for example to your index.php home page (and/or
+        any other relevant page in the root directory):<blockquote>
+          <p><font color="#8080C0"><strong>&lt;? include(&quot;phpjobscheduler/firepjs.php&quot;);
+          ?&gt;</strong></font></p>
+        </blockquote>
+      </li>
+      <li>add to the END of an <strong>existing<font color="#0080FF"> HTML</font> file</strong>,
+        for example to your index.html home page (and/or any other relevant page in the root
+        directory):</li>
+    </ol>
+    <blockquote>
+      <blockquote>
+        <font SIZE="1" COLOR="#000000"><p></font><font color="#0080FF"><strong>&lt;img
+        src=&quot;phpjobscheduler/firepjs.php?return_image=1&quot; width=&quot;1&quot;
+        height=&quot;1&quot;&gt;</strong></font><font COLOR="#ff0000"></p>
+        </font><p>Adding the above img tag will add a very small clear image to your page - almost
+        invisible.</p>
+      </blockquote>
+    </blockquote>
+  </li>
+  <li><strong>Finally add your scheduled tasks here:&nbsp; <a href="index.php">index.php</a></strong></li>
+</ol>
+
+<hr width="85%" color="#808080" align="center">
+
+<p align="left"><font color="#FF0000"><strong>*If the installation fails!</strong></font></p>
+
+<blockquote>
+  <p align="left"><font color="#FF0000"><strong>Possible Error:</strong></font></p>
+</blockquote>
+
+<blockquote>
+  <blockquote>
+    <p><font color="#FF0000"><strong>On some systems a common error reported is:</strong></font></p>
+  </blockquote>
+  <blockquote>
+    <blockquote>
+      <font face="Arial"><b><p><em>Warning</b>: fopen(config.inc.php): failed to open stream: <small><br>
+      </small>Permission denied in <b>[home folder]/phpJobScheduler/install.php</b> </em></font></p>
+    </blockquote>
+  </blockquote>
+  <blockquote>
+    <p>To over-come this error<ol>
+      <li>unzip the file: <strong>config.inc.zip</strong></li>
+      <li>then using notepad or your favourite PHP editor open the file:<strong> &nbsp;
+        config.inc.php</strong><br>
+        and change:<ol>
+          <li><strong>YourUsername </strong></li>
+          <li><strong>YourPassword </strong></li>
+          <li><strong>YourdbName</strong></li>
+        </ol>
+      </li>
+      <p>to your own details.&nbsp; Then save the file in the folder: <strong>/phpJobScheduler/ </strong><br>
+      Then, so long as the above install has been run the application should load without error.</p>
+    </ol>
+  </blockquote>
+</blockquote>
+
+<hr width="85%" color="#808080" align="center">
+
+<p align="left"><a name="timeframewindow"></a><strong>Altering the time frame window</strong></p>
+
+<blockquote>
+  <p align="left">This can be changed by altering the value assigned to TIME_WINDOW within
+  the <strong>config.inc.php</strong> file.&nbsp; The default value is 1800 seconds (30
+  minutes&nbsp; which should suffice for most sites).&nbsp; This means that when the firing
+  engine (phpjobscheduler/phpjobscheduler.php) is called any scheduled job having a fire
+  time within 30 minutes will be executed.</p>
+  <p align="left">You can increase or decrease the default value of the time frame
+  window.&nbsp; If your site receives just a few hits per day you should consider increasing
+  the value to 43200 (12 hours).</p>
+  <p align="left">If your site<strong> ALWAYS</strong> receives several hits per hour or
+  more then you should consider reducing the value to suit your needs.</p>
+  <p align="left"><font color="#0000FF"><big><strong>NEED more help?&nbsp; Try </strong></big></font>
+  <a href="http://dwalker.co.uk/forum/">http://dwalker.co.uk/forum/</a> </p>
+</blockquote>
+
+<hr width="85%" color="#808080" align="center">
+
+<p align="left">DISCLAIMER<br>
+phpJobScheduler IS PROVIDED &quot;AS IS&quot; WITHOUT REPRESENTATION OR WARRANTY OF ANY
+KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY REPRESENTATIONS OR
+ENDORSEMENTS REGARDING THE USE OF, THE RESULTS OF, OR PERFORMANCE OF THE INFORMATION, ITS
+APPROPRIATENESS, ACCURACY, RELIABILITY, OR CORRECTNESS.<br>
+THE ENTIRE RISK AS TO THE USE OF phpJobScheduler IS ASSUMED BY THE USER.&nbsp; IN NO EVENT
+I BE LIABLE FOR ANY DAMAGES, DIRECT, INDIRECT, INCIDENTAL OR CONSEQUENTIAL, RESULTING FROM
+ANY DEFECT IN phpJobScheduler, EVEN IF THE POSSIBILITY OF SUCH DAMAGES HAS BEEN ADVISED.
+&nbsp; THIS DISCLAIMER SHALL SUPERSEDE ANY VERBAL OR WRITTEN STATEMENT TO THE CONTRARY. IF
+YOU DO NOT ACCEPT THESE TERMS YOU MUST CEASE AND DESIST USING phpJobScheduler IMMEDIATELY.</p>
+</body>
+</html>
