@@ -1,0 +1,310 @@
+<HTML><HEAD><TITLE>CodeGirl Classifieds Installation Instructions</TITLE>
+<BODY><FONT face=arial,verdana>
+<H2>
+<CENTER>CodeGirl Classifieds Installation Instructions</CENTER></H2><A 
+href="#Requirements">Requirements</A><BR><A 
+href="#Directories">Creating 
+Directories</A><BR><A 
+href="#Variables">Configuring 
+Script Variables</A><BR><A 
+href="#Upload">Uploading 
+Files</A><BR><A 
+href="#Script">Calling 
+the Script</A><BR><A 
+href="#Troubleshooting">Troubleshooting 
+Errors</A><BR><A 
+href="#HTML">HTML 
+Customization</A><BR><A 
+href="#Support">Support</A><BR><A 
+href="#Copyright">Copyright 
+Notice</A><BR>
+<P><i>*If you are upgrading from a previous version, you may copy and paste your configuration variables into the new classifieds.cgi file, upload it, and chmod 755. You will also need to upload index.txt as it has changed also. Always backup your  scripts before making any changes. An easy way to do this is to rename your old script classifieds.cgi.BAK.cgi</i>
+<H3><A name=Requirements>Requirements</A></H3>
+<UL type=1>
+  <LI>A website with access to a CGI directory. 
+  <LI>Perl 5.003 or higher. 
+  <LI>A FTP uploading utility that allows you to select ASCII or binary mode. If 
+  you do not already have an FTP utility you might try <A 
+  href="http://www.ipswitch.com/">WS-FTP</A> or <A 
+  href="http://www.cuteftp.com/">CuteFTP</A>. </LI></UL>
+<H3><A name=Directories>Creating Directories</A></H3>
+<UL type=1>
+  <LI>Make a directory on your server where the data will be stored. For 
+  security reasons it is best to make this folder in a directory that it isn't 
+  web accessable. If you do not have access to a directory that is not web 
+  accessable, you should use .htacess and .htpasswd files to protect the data 
+  from being seen by visitors (contact your web host for more information about 
+  password protection on your server). You should also upload an index.html file 
+  to this directory if it is web accessable. If you are on a Unix server, chmod 
+  the folder to 777. If you are using NT, give this folder full rights.<BR><BR>
+  <LI>Within the directory that you just created, make a directory named 
+  <I>bannedmail</I>. Chmod this directory to 777 (or give full rights on 
+  NT).</LI><br><br>
+<LI>Create a directory where uploaded images will be stored. Chmod this directory to 777 (or give full rights on 
+  NT). This directory does not have to be in your CGI directory and if your web host does not allow images in the CGI directory you will want to make this directory under your public html directory.</UL>
+<H3><A name=Variables>Configuring Script Variables</A></H3>Open classifieds.cgi 
+with a text editor such as WordPad. 
+<P>The first line of classifieds.cgi is the path to Perl. Change this to the 
+path to Perl on your server. Be sure that this line starts with <I>#!</I>. 
+Contact your web host if you do not know the path to Perl on your server. 
+<P>In the configuration section of classifieds.cgi (below the copyright notice) 
+you will need to set the following variables: 
+<P>
+<DL>
+  <DT>$config{'basepath'} 
+  <DD>The path of the data directory you created. Be sure to include the 
+  trailing slash. 
+  <P></P>
+  <DT>$config{'closedir'} 
+  <DD>The name of the directory for storing expired ads. This will allow you to 
+  keeps ads for records and also allows users to repost their ads when they 
+  receive an ad expiration e-mail. There is no need to create this directory, 
+  the script will create it when run. 
+  <P></P>
+  <DT>$config{'regdir'} 
+  <DD>The name of the directory for storing users' registration files. There is 
+  no need to create this directory, the script will create it when run. You may 
+  also choose not to require registration by setting this variable to 
+  <I>$config{'regdir'} = '';</I>. 
+  <P></P>
+  <DT>$config{'adminpass'} 
+  <DD>The password for accessing the administrative functions. You should change 
+  this password immediately to a password of your choice. 
+  <P></P>
+  <DT>$config{'mailprog'} or $config{'mailhost'} 
+  <DD>These are your mail program and mail host variables. Choose only one of 
+  these variables and comment the other line out by placing a <I>#</I> at the 
+  beginning of the line. It is preferable to use a mail program and this is 
+  possible with nearly all web hosts. Contact your web host for the path to your 
+  mail program. 
+  <P></P>
+  <DT>$config{'admin_address'} 
+  <DD>The e-mail address where you would like to receive administrative mail 
+  such as new user registration and new ad listing notifications. It is also the 
+  address that will be listed on the e-mails that are sent to users. 
+  <P></P>
+  <DT>$config{'scripturl'} 
+  <DD>Your website address. This is not the address to your script. Do not 
+  include <I>http://</I> or a trailing slash. 
+  <P></P>
+  <DT>$config{'colortablehead'} 
+  <DD>The color of the table heading. 
+  <P></P>
+  <DT>$config{'colortablebody'} 
+  <DD>The color of the table body. 
+  <P></P>
+  <DT>$config{'colortableborder'} 
+  <DD>The border color for tables. 
+  <P></P>
+  <DT>$config{'sitename'} 
+  <DD>The name of your site. If your site name includes a possessive with an 
+  apostrophe (i.e, Jim's), you should include a slash before the apostrophe 
+  (i.e, Jim\'s). 
+  <P></P>
+  <DT>$config{'pagebreak'} 
+  <DD>The number of titles to display on each ad listing page. 
+  <P></P>
+  <DT>$config{'searchpagebreak'} 
+  <DD>The number of titles to display on each search results page. This does not 
+  limit the number of search results, it simply limits the number of results 
+  shown on a page. 
+  <P></P>
+  <DT>$config{'adlimit'} 
+  <DD>The number of ads each user is allowed to post. This does not include 
+  expired ads. 
+  <P></P>
+  <DT>$config{'flock'} 
+  <DD>Allow file locking. This should be set to <I>1</I> unless you are 
+  receiving file locking errors. 
+  <P></P>
+  <DT>$config{'newokay'} 
+  <DD>Set to <I>1</I> to allow users to post ads. 
+
+ <P></P>
+  <DT>$config{'imageuploaddir'} 
+  <DD>The path to your directory where uploaded images will be stored.. 
+  <P></P>
+  <DT>$config{'imageuploadurl'} 
+  <DD>Complete URL to your directory where uploaded images will be stored. Include <i>http://</i>
+
+
+  <P></P>
+  <DT>$config{'header'} 
+  <DD>The HTML code that will be appended to the top of your script. Be sure to 
+  leave <I>&lt;&lt;"EOF";</I> intact. Also be sure to include the <I>HTML, HEAD, 
+  TITLE,</I> and <I>BODY</I> tags as wells as the <I>EOF</I> at the end of your 
+  HTML. See the <A 
+  href="#HTML">HTML 
+  Customization</A> section for additional tips for customizing your script. 
+  <P></P>
+  <DT>$config{'footer'} 
+  <DD>The HTML code that will be appended to the bottom of your script. Be sure 
+  to leave <I>&lt;&lt;"EOF";</I> intact. Also be sure to include the <I>BODY</I> 
+  and <I>HTML</I> tags as wells as the <I>EOF</I> at the end of your HTML. See 
+  the <A 
+  href="#HTML">HTML 
+  Customization</A> section for additional tips for customizing your script. 
+  </DD></DL>
+<P>To configure the ad duration choices a user has, search for <I>&lt;select 
+name=DAYS size="1"&gt;</I> in the script. After this you will see the options 
+for ad duration. You may change these to any amount of time you like. The values 
+are equal to the amount of days (1 week = 7 days). 
+<P>If you would like to allow users to place an ad for longer than one year you 
+will also need to search for <I>366</I> in the script and change this number to 
+1 above the number of days you would like to allow the user to place the ad. For 
+example, if you would like users to be able to place an ad for 2 years you would 
+change this number to 731 (365 days * 2 + 1). 
+
+<P>Open upload.cgi and change the first line to reflect your server's path to perl.
+
+<P>In the configuration section of upload.cgi you will need to set the following variables:
+
+  <P></P>
+  <DT>$config{'basedir'} 
+  <DD>This is the path to your uploaded image directory. This should be the same as <i>$config{'imageuploaddir'}</i> in classifieds.cgi.
+
+<P></P>
+  <DT>$config{'basedir'} 
+  <DD>The URL to your uploaded image directory. 
+
+  <P></P>
+  <DT>$config{'windows'}
+  <DD>This one is easy :)  If you are on a Windows server enter "yes", if not enter "no". This will automatically chmod the image for you if you are on a Unix server.
+
+
+  <P></P>
+  <DT>$config{'returnurl'}
+  <DD>The full URL to your classifieds script.
+
+
+  <P></P>
+  <DT>$config{'mailerror'}
+  <DD>The e-mail address of the site administrator.
+
+
+
+<H3><A name=Upload>Uploading Files</A></H3>
+<UL type=1>
+  <LI>Upload classifieds.cgi and upload.cgi to your CGI directory. Be sure to upload in ASCII 
+  mode. Chmod these files to 755.<BR><BR>
+  <LI>Upload index.txt to the CGI directory where you uploaded classifieds.cgi. 
+  Be sure to upload in ASCII mode. If you changed the name of classifieds.cgi, 
+  you will need tochange <I>my $configfile</I> in index.txt to the name of your 
+  classifieds script.<BR><BR>
+  <LI>Upload camera.gif to your CGI directory. You must use binary mode to 
+  upload this file. If your web host does not allow images in the CGI directory, 
+  you may upload this file to your images directory. If you upload this file to 
+  your image directory or another directory you must edit the classifieds.cgi 
+  file. Simply use the find function in your text editor and search for 
+  <I>camera.gif</I>, then add the url or path to this file before 
+  <I>camera.gif</I>. </LI></UL>
+<H3><A name=Script>Calling the Script</A></H3>To access the script go 
+to:<BR><I>http://www.yourdomain.com/cgi-directory/classifieds.cgi</I>.<BR><BR>To 
+access the administration panel go 
+to:<BR><I>http://www.yourdomain.com/cgi-directory/classifieds.cgi?action=adminview</I>.<BR><BR>*Be 
+sure to replace <I>www.yourdomain.com</I> with your domain name or address and 
+change <I>cgi-directory</I> to the name of your CGI directory. 
+<H3><A name=Troubleshooting>Troubleshooting Errors</A></H3><B>500 Internal 
+Server Error: Possible Causes</B> 
+<UL type=1>
+  <LI>The script was not uploaded in ASCII mode. 
+  <LI>The script was not chmod 755. 
+  <LI>The path to perl is not correct. 
+  <LI>There is a syntax error caused by a bad text editor or mistakes made while 
+  editing the script. 
+  <LI>The server has an older version of Perl than 5.003.</LI></UL>
+<P><B>The ad number must consist of alphanumeric characters only.</B> - The 
+trailing slash is wrong. Try placing the trailing slash like this / at the start 
+and the end of the basepath. Sometimes this is necessary even when using a 
+Windows server. 
+<P><B>Category directory could not be opened.</B> - The basepath is incorrect. 
+If you do not know the path to your site, you will need to ask your web host. 
+The basepath will be the path to your site including the path from your site to 
+your data directory. 
+<H3><A name=HTML>HTML Customization</A></H3>It is always advisable to make a 
+backup copy of your script before you make any modifications or changes to the 
+script or the HTML within the script. 
+<P>CodeGirl Classifieds is built upon table percentages instead of pixels (with 
+exception of the admin sections - you can modify those sections) and will easily 
+fit anywhere in your page that you desire. The easiest way to use your HTML is 
+to use a standard header and footer. You can easily create a professional 
+looking page by inserting CodeGirl Classifieds into a table also. 
+<P>If you are customizing your classifieds page beyond a typical header and 
+footer, the best way to determine how to configure the <I>$config{'header'}</I> 
+and <I>$config{'footer'}</I> is to design your site with a blank space or table 
+where you want the classifieds to appear. Once you have determined where you 
+want the classifieds to appear, insert a comment line for a marker such as 
+<I>INSERT CLASSIFIEDS HERE</I>. It will then be very easy to determine which 
+part of your HTML should be your head and which should be your footer. 
+Everything above your comment line will be your header (including the <I>HTML, 
+HEAD, TITLE,</I> and <I>BODY</I> tags). Everything below your comment line will 
+be your footer (including the ending <I>BODY</I> and <I>HTML</I> tags). 
+<P>You may also change your category pages to be HTML pages instead of the 
+script generated category pages. To do this you simply would link your 
+categories to the corresponding categories of your script. If you do this, 
+remember to change the link for <I>Categories</I> at the bottom of your page to 
+the HTML page of your categories. 
+<P>Fonts are easily changed within the script. You can either set a 
+<I>BASEFONT</I> tag for the entire page in your header or you can change the 
+font for each line of the script that is printed to the screen. 
+<H3><A name=Support>Support</A></H3>Unlimited technical support is offered from 
+30 days of product delivery date. Technical support covers the functionality of 
+the script and does not include custom modifications. Custom modifications are 
+provided at a rate of $30/hr. At the end of the 30 day period we will attempt to 
+give technical assistance as time permits and as long as the offer of continued 
+support is not abused. 
+<P>To contact our support department, send an e-mail to <A 
+href="mailto:support@codegirl.virtualave.net?subject=Classifieds Technical Support">mailto:support@codegirl.virtualave.net?subject=Classifieds 
+Technical Support</A>. If you are not e-mailing us from the e-mail address you 
+used when registering the script, please include your name, address, and 
+telephone number. You may also request support on our website through the <A 
+href="http://codegirl.virtualave.net/support.html">support form</A>. 
+<H3><A name=Copyright>Copyright Notice</A></H3>Copyright 2001 by CodeGirl 
+Classifieds. All rights reserved. This copyright notice must remain intact. By 
+installing this software you agree to the following terms and conditions. If you 
+do not agree to these terms and conditions, you must delete this software 
+immediately. This script may not be copied or modified in any way without 
+permission in writing from CodeGirl Classifieds. This Software Product is 
+licensed (not sold) to you, and CodeGirl Classifieds owns all copyright, trade 
+secret, patent and other proprietary rights in the Software Product. The term 
+"Software Product" includes all copies of the CodeGirl classifieds script and 
+its documentation.You are hereby granted a nonexclusive license to use the 
+Software Product on a single domain. You may make one copy of the Software 
+Product's computer program for back-up purposes only. You may not: (1) copy 
+(other than once for back-up purposes), distribute, rent, lease or sublicense 
+all or any portion of the Software Product; (3) reverse engineer, decompile or 
+dissemble the Software Product. You agree to keep confidential and use your best 
+efforts to prevent and protect the contents of the Software Product from 
+unauthorized disclosure or use. Transfer of the Software Product is prohibited. 
+Your license is automatically terminated if you transfer the Software Product. 
+For 90 days from the date of registration, we warrant that the media (for 
+example, ZIP archive) on which the Software Product is contained will be free 
+from defects in materials and workmanship. This warranty does not cover damage 
+caused by improper use or neglect. We do not warrant the contents of the 
+Software Product or that it will be error free. The Software Product is 
+furnished "As Is" and without warranty as to the performance or results you may 
+obtain by using the Software Product. The entire risk as to the results and 
+performance of the Software Product is assumed by you. The warranties in this 
+agreement replace all other warranties, express or implied, including any 
+warranties of merchantability or fitness for a particular pupose. We disclaim 
+and exclue all other warranties. In no event will our liability of any kind 
+include any special, incidental or consequential damages, including lost 
+profits, even if we have knowledge of the potential loss or damage. We will not 
+be liable for any loss or damage caused by delay in furnishing a Software 
+Product or any other performance under this Agreement. Our entire liability and 
+your exclusive remedies for our liability of any kind (including liability for 
+negligence except liability for personal injury caused solely by our negligence) 
+for the Software Product covered by this Agreement and all other performance or 
+nonperformance by us under or related to this Agreement are limited to the 
+remedies specified by this Agreement. This Agreement is effective until 
+terminated. You may terminate it at any time by destroying the Software Product, 
+including all computer programs and documentation, and erasing any copies 
+residing on computer equipment or storage media. This Agreement also will 
+terminate if you do not comply with any terms or conditions of this Agreement. 
+Upon such termination you agree to destroy the Software Product and erase all 
+copies residing on computer equipment or storage media. The Software Product is 
+provided to the Government only with restricted rights and limited rights. Use, 
+duplication, or disclosure by the Government is subject to restrictions set 
+forth in FAR Sections 52-227-14 and 52-227-19 or DFARS Section 
+52.227-7013(C)(1)(ii), as applicable. You are responsible for installation, 
+management and operation of the Software Product. </FONT></BODY></HTML>
