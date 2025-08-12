@@ -1,0 +1,340 @@
+<html>
+<head>
+	<title>AutoRank Pro v2.1.0 Installation File</title>
+</head>
+
+<body bgcolor="white" text="black" link="blue">
+
+<div align="center">
+
+<table width="600"><tr><td>
+<font face="Verdana" size="2">
+
+<div align="center">
+
+<h2>AutoRank Pro v2.1.0 Installation Manual</h2>
+
+<font size="1">
+[ <a href="#install">Installation</a> ] | 
+[ <a href="#postinstall">After Installation</a> ] | 
+[ <a href="template.html">HTML Template Feature</a> ]<br>
+[ <a href="templates.html">Templates</a> ] | 
+[ <a href="cron.html">Cron Help</a> ] | 
+[ <a href="#tech">Tech Support</a> ]
+</font>
+
+</div>
+
+<hr width="550" size="1" align="center" noshade>
+
+<b><a name="install">Installation Procedure</a></b>
+
+<font size="1">
+
+<p>
+
+<b>If you are upgrading from AutoRank Pro v2.0.x or AutoRank v2.0.0 please
+use the instructions in upgrade.html.</b>
+
+<p>
+
+<ol>
+
+<b><li></b> Unpack the AutoRank Pro archive that you downloaded, using directory names.<p>
+
+<b><li></b> Locate Perl 5 on your server.  In most cases it can be found at /usr/bin/perl or
+/usr/local/bin/perl.  Once you have found it, and are sure it is Perl 5, write the location
+down.
+
+<b><li></b> If your Perl 5 location is /usr/bin/perl, you can skip to the next step.  If not,
+open all of the files that have a .cgi extension in a text editor.  You will need to set
+the location of Perl 5 on your server.  This is done on the first line of the file:
+<p>
+<font face="Courier" size="2">#!/usr/bin/perl</font>
+<p>
+Change the /usr/bin/perl value to match your system's setup.  If you have telnet access you can locate
+perl by typing the following command:
+<p>
+<font face="Courier" size="2">which perl</font>
+<p>
+In most cases, /usr/bin/perl or /usr/local/bin/perl is a valid setting.  Note that <b>this must point to
+Perl 5</b>.  Ask your server administrator if you are unsure about the perl location.<p>
+
+<b><li></b> Login to your FTP server, and change into the directory where you will be installing the
+CGI scripts.  (We recommend that this directory be inside a cgi-bin or equivalent directory) In that
+directory, create 3 more directories.  Name them members, sdata, and templates.
+These directories will contain all of the files that control script operation.  The HTML files that
+the script creates (the files that contain the list) will need to be in a seperate directory located
+outside of the cgi-bin.<p>
+
+<b>Example Directory Structure</b>
+
+<table width="100%" cellspacing="1" cellpadding="1" border="0">
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="1">/home/username/cgi-bin/AutoRank</font></td>                 
+<td bgcolor="#ffffff"><font face="Verdana" size="1">location of .cgi files</font></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="1">/home/username/cgi-bin/AutoRank/sdata</font></td>          
+<td bgcolor="#ffffff"><font face="Verdana" size="1">location of script data files</font></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="1">/home/username/cgi-bin/AutoRank/members</font></td>        
+<td bgcolor="#ffffff"><font face="Verdana" size="1">location where member stats files will be stored</font></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="1">/home/username/cgi-bin/AutoRank/templates</font></td>        
+<td bgcolor="#ffffff"><font face="Verdana" size="1">location of all template files</font></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="1">/home/username/public_html  </font></td>                   
+<td bgcolor="#ffffff"><font face="Verdana" size="1">where the main HTML files will be generated</font></td>
+</tr>
+</table>
+<p>
+
+<b><li></b> Now, upload all of the .cgi files to the directory that you want them installed in.  Make
+sure that you are uploading in ASCII mode.  Next, upload the errors.dat, help.dat, def.html, quick.html,
+and search.html files to the sdata directory that you created - again in ASCII mode.  Finally, upload all
+of the .htmlt and .etmpl files to the templates directory that you created - in ASCII mode.<p>
+
+<b><li></b> You will now need to set permissions on the files you uploaded, and directories that
+you created.  Below you will see a table with recommended permissions settings.  These settings 
+should work for most servers, however others may require different settings.<p>
+
+<table border="0" cellpadding="0" cellspacing="0" width="350"><tr><td bgcolor="#000000">
+
+<table width="100%" cellspacing="1" cellpadding="3" border="0">
+<tr>
+<td bgcolor="#afafaf" align="center"><font face="Verdana" size="1"><b>File or Directory</b></font></td>
+<td bgcolor="#afafaf" align="center"><font face="Verdana" size="1"><b>Permissions</b></font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">All .cgi Files</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">755</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">search.html</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">666</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">quick.html</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">666</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">def.html</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">help.dat</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">errors.dat</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">sdata</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">777</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">members</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">777</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">templates</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">755</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">All .htmlt &amp; .etmpl Files</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#dcdcdc"><font face="Verdana" size="1">Directory where list HTML files will be written</font></td>
+<td bgcolor="#dcdcdc" align="center"><font face="Verdana" size="1">777</font></td>
+</tr>
+</table>
+
+</td></tr></table>
+
+<p>
+
+<b><li></b> You are now ready to begin the WWW based portion of the setup.  In your browser, type in 
+the full URL to the setup.cgi file on your server.  This will bring up the portion of the script where
+you will set all of the variables.  Details and examples for each variable are given, so follow along
+through that to get all of the variables set properly.<p>
+After you have set all of the variables, enter the default password <b>admin</b> and click the button.
+If everything went well, you will be presented with a page telling you that the variables have been
+recorded, and some self tests will be done by the script.  If all the tests pass, you are ready to go
+on.  If any of them fail, you will need to check file permissions and directory settings.
+<p>
+
+<b><li></b> You should now be ready to begin using the scripts.  The first thing you will want to do is
+point your browser to admin.cgi.  Login using the default password <b>admin</b> - make sure you press
+the login button with your mouse pointer and don't simply hit enter on your keyboard.  Once inside the
+admin script you can start exploring the features, but make sure that you change your administrative
+password soon after your initial installation.<p>
+
+In the administrative script, you will find links to "help" near the bottom of each page.  Clicking on
+that help link will bring up a description of the function you are working with
+</ol>
+
+<p>
+
+<font size="2"><b>Other Installation Notes</b></font>
+
+<p>
+
+<ul>
+<li> If you chose to use cron then you will need to do some additional work to install the software.
+Please see the <a href="cron.html">cron.html</a> file included with the documentation.
+<p>
+
+<li>You will need to <b>provide a link</b> to the page where <b>webmasters can add their site</b>
+when you edit the header and footer files for your list.  Somewhere in the header/footer
+<b>place a link that points to accounts.cgi</b> so people can add their site.  Members can edit their
+information, get detailed stats, and see your banner farm by <b>placing a link that points to
+accounts.cgi?login</b>.<p>
+
+<li>If you have any problems, contact us using the <a href="#tech">information</a> at the
+bottom of this file.
+</ul>
+
+<p>
+
+<hr width="550" size="1" align="center" noshade>
+
+<p>
+
+<font size="2"><a name="postinstall"><b>After Installation</b></a></font>
+
+<p>
+
+Once you have completed the installation you will want to get the list setup and ready
+to accept new members.  Here we will outline the steps you will want to take immediately
+following the installation.
+
+<p>
+
+<ol>
+<b><li></b> The first thing you will want to do is setup the HTML for each of your list
+pages.  This is done through the administrative script by using the "Edit HTML For" function.
+This is located in the second pull down menu on the main page of the administrative
+script.
+
+<p>
+
+<b>Editing the header/footer</b>
+
+<p>
+
+Editing the header and footer for each of your list pages will setup the HTML that appears
+above and below the rankings.  All HTML entered in the header will appear above the list; all
+HTML entered in the footer will appear below the list.  Any HTML you want can be entered here,
+with the exception of a textarea tag.  Typically your header will contain the opening html, title, and
+body tags, as well as links to accounts.cgi and accounts.cgi?login so that webmasters can add and
+edit their accounts.
+
+<p>
+
+The header and footer do contain some template values.  These will display the last updated time, # of members
+in your database, and the site of the moment.  More information about setting these up is found in the
+<a href="templates.html">templates.html</a> file.   See the portion labled "Edit HTML For [page]" template in admin.cgi
+
+<p>
+
+<b>Editing the HTML template</b>
+
+<p>
+
+A complete description on how to generate your template can be found in the <a href="template.html">template.html</a>
+file included with the distribution.  There is also some additional information in <a href="templates.html">templates.html</a>
+which reinforces what was explained in the template.html file.  We will breifly discuss it here as well. 
+
+<p>
+
+The template allows you to insert your own style of how to list the sites.  In the template form, 
+you will enter the HTML that will be used for a <b>SINGLE</b> rank.  The script will then use that HTML
+for each of the sites in your database. For most applications, each of the template variables should only
+appear <b>ONCE</b> in the template. If you find yourself inserting #%BANNER%#, #%DESC%#, or any of the script
+values <b>more than once</b> in the template, you are most likely <b>doing something wrong</b>.
+
+<p>
+
+<b><li></b> After HTML is setup for all of your list pages, you can re-rank the list for the
+first time.  Do this from the administrative script.  It is the first function available from
+the first pull down menu.  Note that you should always let the script create the html files. 
+If they already exist on the server, you should delete them before re-ranking the list.  Once
+you have successfully re-ranked the list, you can view the output on the HTML files you selected
+to have the list written to.
+
+<p>
+
+<b><li></b> The next thing you will probably want to do is edit the templates for the accounts.cgi
+script.  These are all located in the templates directory, and can be edited with any HTML editor. 
+Each of the files contains normal HTML, and special items that the script recognizes.  The special
+values that the script understands are surrounded by #%%#.  You should never edit those values; you
+can move them around all you want, but don't change anything between the #%%#.  Complete descriptions
+of each of the templates is included on <a href="templates.html">templates.html</a> which is included
+with the software distribution.
+
+<p>
+
+<b><li></b> The final thing you may want to do, if you are using double CGI cheat protection, is to
+generate a custom version of the rankem.cgi script.  This will allow you to have a customized version
+of the gateway page that matches your site.  A complete description of this can be found at the 
+<a href="http://www.cgi-works.net/members/autorankpro">owners lounge</a>, where you will generate the
+ customized version of the script.
+</ol>
+
+<p>
+
+<hr width="550" size="1" align="center" noshade>
+
+<p>
+
+<font size="2"><a name="tech"><b>Technical Support</b></a></font>
+
+<p>
+
+<ul>
+<li><b>Where To Go To Get Tech Support</b><p>
+If you need any assistance you can contact us via e-mail by using the
+tech support page in the owners lounge at:
+<a href="http://www.cgi-works.net/members/">
+http://www.cgi-works.net/members/</a><p>
+Or you can post a message on our members only message/help board at:<br>
+<a href="http://www.cgi-works.net/members/forums/board.cgi">
+http://www.cgi-works.net/members/board/forums.cgi</a>
+
+<p>
+
+<li><b><font color="Red">IMPORTANT NOTES ABOUT TECH SUPPORT:</font></b><p>
+
+<b>VERY IMPORTANT:</b> If you edit the scripts in any way other than described
+above, you will no longer be eligible for technical support.<br>
+<b>WE WILL NOT PROVIDE SUPPORT FOR EDITED SCRIPTS!</b>
+
+<p>
+
+The only two ways we provide support for our commercial scripts are listed above.
+We do it this way to make sure we are providing support only to those who have paid
+for the scripts and deserve the support.  If you post a message at the General CGI Board
+it will not be answered by us, you must post on the Owners Lounge board.  Also sending
+a plain e-mail to us will be ignored, you must use the tech support form in the Owners Lounge.
+
+<p>
+
+These two methods also help to ensure that we are not wasting our time providing
+support for illegal copies of our software, and will result in faster responses
+to legitimate owners questions.
+
+<p>
+
+Thank You, and enjoy your new script!
+
+</ul>
+</td></tr></table>
+
+</body>
+</html>
