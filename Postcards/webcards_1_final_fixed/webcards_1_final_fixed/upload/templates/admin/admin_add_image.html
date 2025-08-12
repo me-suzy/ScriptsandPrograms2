@@ -1,0 +1,138 @@
+<span class="title">||add_image||</span><span align="right"><a href="javascript:popHelp('add_img', '{{sess}}');"><img border="0" style="cursor:help;" src="./site_images/help.gif" /></a></span><br /><br />
+<form action="{{admin_script}}?act=images&amp;what=doimages&amp;s={{sess}}" enctype="multipart/form-data" method="post" name="image_form">
+{{uploads_disabled}}
+<table width="100%" cellpadding="15" cellspacing="2" class="config">
+<tr>
+<td colspan="2" class="theader">
+||here_upload_image||
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+||img_name||:
+</td>
+<td width="50%" class="ad_row">
+<input type="text" name="name" size="50" />
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+||choose_cat||:
+</td>
+<td width="50%" class="ad_row">
+{{cat_select}}
+</td>
+</tr>
+<tr>
+<td colspan="2" class="theader">
+||how_add_img||
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+<input type="radio" name="image_choose" value="upload" onClick="javascript:hideDiv('div_link_img'); showDiv('div_upload_img');"> ||upload_img||
+</td>
+<td width="50%" class="ad_row">
+<div id="div_upload_img" style="display:none;">
+||img_to_upload||:<br />
+<input type="file" name="upload_image" size="30" {{disabled}} />
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+<input type="radio" name="image_choose" value="link" onClick="javascript:hideDiv('div_upload_img'); showDiv('div_link_img');"> ||link_img||
+</td>
+<td width="50%" class="ad_row">
+<div id="div_link_img" style="display:none;">
+||img_to_link_to||:<br />
+<input type="text" name="link_image" size="50" />
+</div>
+</td>
+</tr>
+<!--
+<select name="image_choose" {{disabled}}>
+<option value="none">||choose_option||
+<option value="upload">||upload_img||
+<option value="link" {{must_link}}>||link_img||
+</select>
+-->
+
+<tr>
+<td colspan="2" class="theader">
+||how_add_thumb||
+</td>
+</tr>
+<tr>
+<td colspan="2" class="ad_row">
+<input type="radio" name="thumb_choose" value="gen_thumb" onClick="javascript:hideDiv('div_link_thumb'); hideDiv('div_upload_thumb');"> ||gen_thumb||
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+<input type="radio" name="thumb_choose" value="upload" onClick="javascript:hideDiv('div_link_thumb'); showDiv('div_upload_thumb');"> ||upload_thumb||
+</td>
+<td width="50%" class="ad_row">
+<div id="div_upload_thumb" style="display:none;">
+||thumb_to_upload||:<br />
+<input type="file" name="upload_thumb" size="30" {{disabled}} />
+</div>
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+<input type="radio" name="thumb_choose" value="link" onClick="javascript:hideDiv('div_upload_thumb'); showDiv('div_link_thumb');"> ||link_thumb||
+</td>
+<td width="50%" class="ad_row">
+<div id="div_link_thumb" style="display:none;">
+||thumb_to_link_to||:<br />
+<input type="text" name="link_thumb" size="50" />
+</div>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="theader">
+||about_img_dimensions||
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+||img_dimensions||:
+</td>
+<td width="50%" class="ad_row">
+<!-- A table is required here for layout purposes -->
+<table class="noborder">
+<tr>
+<td class="ad_row">||width||:</br /><input type="text" name="width" size="4" /></td>
+<td valign="bottom" class="ad_row"> X </td>
+<td class="ad_row">||height||:<br /><input type="text" name="height" size="4" /></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+||thumb_dimensions||:
+</td>
+<td width="50%" class="ad_row">
+<!-- A table is required here for layout purposes -->
+<table class="noborder">
+<tr>
+<td class="ad_row">||width||:</br /><input type="text" name="thumb_width" size="4" /></td>
+<td class="ad_row" valign="bottom"> X </td>
+<td class="ad_row">||height||:<br /><input type="text" name="thumb_height" size="4" /></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="theader">
+||finish_adding_img||
+</td>
+</tr>
+<tr>
+<td class="ad_row" colspan="2">
+<input type="submit" value="||add_image||" />
+</td>
+</tr>
+</table>
+</form>
