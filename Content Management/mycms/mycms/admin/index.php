@@ -1,0 +1,8 @@
+<?
+
+header("Location: mainf.php");
+
+
+?>
+
+
