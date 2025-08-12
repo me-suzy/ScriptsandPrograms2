@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>chamadoDetalhe</title>
+<link href="../Styles/{CCS_Style}/Style.css" type="text/css" rel="stylesheet">
+<link href="../Styles/{CCS_Style}/Style_Components.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+{TopoAdmin}<br>
+<!-- BEGIN Grid ChamadoDetalhe -->
+<table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+          <th>&nbsp;Detalhes do contato</th>
+ 
+          <td class="HeaderRight{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid{CCS_Style}" cellspacing="0" cellpadding="0">
+        <!-- BEGIN Row -->
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;Nome</th>
+ 
+          <td>{x_connome}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;Email</th>
+ 
+          <td>{x_con_mail}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;Tipo</th>
+ 
+          <td>{x_con_depa}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;Assunto</th>
+ 
+          <td>{x_conassunto}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;Status</th>
+ 
+          <td>{x_constatus}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <td colspan="2">
+            <p style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana"><strong>Mensagem:<br>
+            </strong>{x_con_mensa}</p>
+          </td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <td colspan="2">
+            <p align="center"><font color="#ff0000"></font>&nbsp;</p>
+          </td>
+        </tr>
+ <!-- END Row -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid ChamadoDetalhe -->
+<!-- BEGIN Record Resposta -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Record{CCS_Style}" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error{CCS_Style}">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;Nome do Cliente</th>
+ 
+            <td><input maxlength="100" size="40" value="{x_connome}" name="{x_connome_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;Email do Cliente</th>
+ 
+            <td><input size="40" value="{x_con_mail}" name="{x_con_mail_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;Assunto</th>
+ 
+            <td><input maxlength="90" size="40" value="{x_conassunto}" name="{x_conassunto_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;Mensagem</th>
+ 
+            <td><textarea style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" name="{x_con_mensa_Name}" rows="6" cols="40">{x_con_mensa}
+</textarea></td>
+          </tr>
+ 
+          <tr class="Bottom{CCS_Style}">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Insert --><input type="image" src="../Styles/{CCS_Style}/Images/en-US/ButtonInsert.gif" value="Criar" border="0" name="{Button_Name}"><!-- END Button Insert --></td>
+          </tr>
+        </table>
+        <input type="hidden" value="{x_condata}" name="{x_condata_Name}"><input type="hidden" value="{x_re_con_id}" name="{x_re_con_id_Name}"><br>
+        <input type="hidden" value="{x_con_depa}" name="{x_con_depa_Name}"><input type="hidden" value="{x_constatus}" name="{x_constatus_Name}"></td>
+    </tr>
+  </table>
+</form>
+<!-- END Record Resposta --><br>
+<!-- BEGIN Grid x_contato -->
+<table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+          <th>&nbsp;Respostas deste&nbsp;contato - Ordem descendente</th>
+ 
+          <td class="HeaderRight{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid{CCS_Style}" cellspacing="0" cellpadding="0">
+        <!-- BEGIN Row -->
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;<strong>Nome</strong></th>
+ 
+          <td>{x_connome}</td>
+        </tr>
+ 
+        <tr class="RowBlueprintXQ">
+          <th>&nbsp;Email</th>
+ 
+          <td>{x_con_mail}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;Assunto</th>
+ 
+          <td>{x_conassunto}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;Data</th>
+ 
+          <td>{x_condata}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th>&nbsp;Mensagem</th>
+ 
+          <td>{x_con_mensa}</td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <td colspan="2">&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords{CCS_Style}">
+          <td colspan="2">Nao ha respostas </td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer{CCS_Style}">
+          <td colspan="2">
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN First_On --><a href="{First_URL}">Prim</a> <!-- END First_On -->
+            <!-- BEGIN First_Off -->Prim <!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anter</a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off -->Anter <!-- END Prev_Off -->&nbsp; 
+            <!-- BEGIN Pages -->
+            <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+            <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->&nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}">Prox</a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off -->Prox <!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}">Ultimo</a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off -->Ultimo <!-- END Last_Off --><!-- END Navigator Navigator --></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid x_contato -->
+<!-- BEGIN Grid x_contato_conf -->
+<table cellspacing="0" cellpadding="0" align="center" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Grid{CCS_Style}" cellspacing="0" cellpadding="0">
+        <!-- BEGIN Row -->
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_conf_id}" name="{x_conf_id_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_co_titulo}" name="{x_co_titulo_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_co_top}" name="{x_co_top_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_co_remete}" name="{x_co_remete_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_co_obrigado}" name="{x_co_obrigado_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_co_site}" name="{x_co_site_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_co_toporegi}" name="{x_co_toporegi_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_co_enviado}" name="{x_co_enviado_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_co_novacon}" name="{x_co_novacon_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_assu_novaco}" name="{x_assu_novaco_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_assu_contat}" name="{x_assu_contat_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_assu_respo}" name="{x_assu_respo_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_assu_novaad}" name="{x_assu_novaad_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <th></th>
+ 
+          <td><input type="hidden" value="{x_assu_conadm}" name="{x_assu_conadm_Name}"></td>
+        </tr>
+ 
+        <tr class="Row{CCS_Style}">
+          <td colspan="2">&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid x_contato_conf --><br>
+</body>
+</html>
