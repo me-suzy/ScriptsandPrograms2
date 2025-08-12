@@ -1,0 +1,127 @@
+
+<!--S:Login-->
+			<!-- BOX -->
+			<script>
+				draw_box(1,1,"Login to Administration Area");
+			</script>
+			<br><br>
+						<!-- LOGIN FORM -->
+						<table width=450 cellpadding=7 cellspacing=0 align=center>
+							<tr>
+								<td class="box_content" style="padding-left:20px;">									
+									Enter the username and password for site administrator.
+									If you forgot your user and/or password <a href="index.php?mod=auth&sub=recover">click here to recover them</a>.
+
+								</td>
+							</tr>
+							<tr>
+								<td align=center>
+									<font color="red">{AUTH.ERROR}</font>
+									<table>
+									<form method=post action="index.php" onsubmit="" name=login>
+									<input type="hidden" name="redirect" value="{AUTH.REDIRECT}" />
+										<tr>
+											<td width="80" align="right">USERNAME:</td>
+											<td class="box_content"><input tabindex=1 class="login_input" name="user" value="{AUTH.USER}"></td>
+											<td><img width=4 height=1 src="images/dot.gif"></td>
+											<td class="box_content" tabindex=3>
+												<script> draw_button("login","javascript:document.forms[0].submit();","");</script>
+											</td>											
+										</tr>
+										<tr>
+											<td align="right">PASSWORD:</td>
+											<td class="box_content"><input tabindex=2 class="login_input" type="password" name="pass"></td>
+											<td><img width=4 height=1 src="images/dot.gif"></td>
+											<td class="box_content" tabindex=4>
+												<script> draw_button("cancel","javascript:document.forms[0].reset()","");</script>
+											</td>											
+										</tr>
+									</form>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<!-- LOGIN FORM -->
+			<script>
+				draw_box(2,2,"Login");
+			</script>
+
+<!--E:Login-->
+
+<!--S:Recover-->
+			<!-- BOX -->
+			<script>
+				draw_box(1,1,"Recover Login Info");
+			</script>
+			<br><br>
+						<!-- LOGIN FORM -->
+						<table width=450 cellpadding=7 cellspacing=0 align=center>
+							<tr>
+								<td class="box_content" style="padding-left:20px;">									
+									If you forgot your user and/or password enter the email address you entered in your profile, and the login info will be emailed to you. If you are no longer using the email address then please contact an administrator to update your profile and reset the password. Thank you.
+								</td>
+							</tr>
+							<tr>
+								<td align=center>
+									<font color="red">{AUTH.RECOVER}</font>
+									<table>
+									<form method=post action="index.php?sub=recover" onsubmit="" name=login>
+										<tr>
+											<td width="80" align="right">EMAIL:</td>
+											<td class="box_content"><input tabindex=1 class="login_input" name="email" value="{AUTH.EMAIL}"></td>
+											<td><img width=4 height=1 src="images/dot.gif"></td>
+											<td class="box_content" tabindex=3>
+												<script> draw_button("recover","javascript:document.forms[0].submit();","");</script>												
+											</td>
+											<td class="box_content">
+												<script>draw_button("return","index.php","");</script>
+											</td>
+										</tr>
+									</form>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<!-- LOGIN FORM -->
+			<script>
+				draw_box(2,2,"Login");
+			</script>
+
+<!--E:Recover-->
+
+<!--S:Thanks-->
+			<!-- BOX -->
+			<script>
+				draw_box(1,1,"Mail Sent");
+			</script>
+			<br><br>
+						<!-- LOGIN FORM -->
+						<table width=450 cellpadding=7 cellspacing=0 align=center>
+							<tr>
+								<td class="box_content" style="padding-left:20px;">									
+									An email with your login info was mailed to your email address.
+								</td>
+							<tr>
+								<td align="center">
+									<script> draw_button("return","index.php","");</script>
+								</td>
+							</tr>
+						</table>
+						<!-- LOGIN FORM -->
+			<script>
+				draw_box(2,2,"Login");
+			</script>
+
+<!--E:Thanks-->
+
+<!--S:Header-->
+					<script>AdminMenuBox(1)</script>
+						<div class="AdminTDSmall">
+							Welcome<br>
+							<img src="images/dot.gif" width="2" height="1"><b>{AUTH.USER_NAME}</b>
+							<br><img src="images/dot.gif" width="2" height="1">Username:<b> {AUTH.USER_LOGIN}</b>
+							<br><img src="images/dot.gif" width="2" height="1">Last Login:<b> {AUTH.LAST_LOGIN}</b>
+							<br><img src="images/dot.gif" width="2" height="1">Last IP:<b> <font title="Resolved Hostname: {AUTH.LAST_HOSTNAME}">{AUTH.LAST_IP}</font></b>
+						</div>
+					<script>AdminMenuBox(2)</script>
+<!--E:Header-->
