@@ -1,0 +1,134 @@
+<HTML>
+<HEAD>
+<TITLE>CNStats 2.1 Manual</TITLE>
+<STYLE type="text/css">
+<!--
+H1 {font-size:21px;font-weight:normal;}
+TABLE {border:1px solid black;border-collapse: collapse;width:250px;}
+TD {padding: 10px;background-color:white;border:1px solid}
+PRE {color:#0000C0;}
+//-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1>CNStats 2.1 Installation</H1>
+
+<div align=right>
+&copy; CN-Software 2002-2003<br>
+support@cn-software.com<br>
+http://www.cn-software.com/
+</div>
+
+<H1>Purpose</H1>
+
+<P>This software is designed for web-site statistics collection and analysis in on-line mode. A series of reports becomems available for a web-master right upon the installation, allowing to find out about the most popular pages, general information about web-site visitors, and choose optimal ways for the web-site development.
+
+<H1>Installation:</H1>
+
+<OL>
+<LI>The downloaded distribution should be unpacked in the root directory of the web-server. 
+<LI>It is necessary to run and follow instructions of the installation script. You may do this by going to the address: http://www.yoursite.com/cnstats/install.php
+<LI>After the installation procedure is over you will be given a configuration file code to be stored in the file  'cnstats/_vars.php'
+<LI>You will be also provided with a counter code to be stored in every page of  your site.
+</OL>
+
+<H1>Stats Collecting Code Installation</H1>
+
+
+<P>This is the last step of the installation procedure. CNStats supports two modes of statistics generation.
+
+<OL>
+<LI>Installation into the web-site core.
+<LI>Installation of a graphical counter.
+</OL>
+
+<H4>Installation into the Web-site Core.</H4>
+
+<P>The counter is activated from the web-site core. 
+<P><U>Advantages:</U>
+
+<UL>
+<LI>All users are counted, even those, who turn off images in their browsers.
+<LI>Search robots are counted.
+<LI>No additional code is inserted in HTML page.
+</UL>
+
+<P><U>Disadvantages:</U>
+
+<UL>
+<LI>The web-site core should be written on PHP.
+<LI>The counter code should be inserted at the very beginning of the page (necessary for cookies to work).
+</UL>
+
+<P><U>Installation:</U>
+
+<P>To install the counter the following code should be inserted in every page of the web-site:
+<PRE>
+&lt;?
+include $HTTP_SERVER_VARS["DOCUMENT_ROOT"]."/cnstats/cnt.php";
+?&gt;
+</PRE>
+<H4>Installation of the Graphical Counter.</H4>
+<P>This is not the best variant of installation, but sometimes may be the only one.
+<P><U>Advantages:</U>
+
+<UL>
+<LI>The web-site core may be written in any language, and the statistics collecting system may work on a different server.
+<LI>Attendance summary (total hits, hits today, hosts) may be displayed on the web-site pages by means of PNG images.
+</UL>
+
+<P><U>Disadvantages:</U>
+
+<UL>
+<LI>Search robots and users, who turned images off in their browsers, are not counted.
+<LI>It is necessary to insert the counter code in HTML documents.
+<LI>Presence of the GD library is necessary if you use a visible image.
+</UL>
+
+<P><U>Installation:</U>
+
+<P>The following parameters should be inserted in the '_vars.php' file:
+
+<P>1. Type of the counter
+
+<UL>
+<LI>0 - transparent GIF (1x1 pixel) 
+<LI>1 - PNG button 88x31. (GD library should be present, see <a href=http://www.php.net/manual/en/ref.image.php>http://www.php.net/manual/en/ref.image.php</a>)
+</UL>
+
+<PRE>
+$COUNTER["type"]=1;
+</PRE>
+
+<P>2. If the image is not transparent, the following three parameters define R,G, and B components of the symbols colour on the counter:
+
+<PRE>
+$COUNTER["inkR"]=1;
+$COUNTER["inkG"]=1;
+$COUNTER["inkB"]=1;
+</PRE>
+
+<P>3. The following code should be inserted in all pages of the web-site:
+
+<PRE>
+&lt;SCRIPT Language="JavaScript"&gt;
+&lt;!--
+document.write("&lt;img src='/cnstats/cntg.php?r="+escape(document.referrer)+
+'&'+Math.random()+"' width=<font color=red>88</font> height=<font color=red>31</font> border=0&gt;");
+// --&gt;
+&lt;/SCRIPT&gt;
+&lt;NOSCRIPT&gt;&lt;img src="/cnstats/cntg.php?r=nojs" width="<font color=red>88</font>" height="<font color=red>31</font>"
+border="0"&gt;&lt;/NOSCRIPT&gt;
+</PRE>
+
+<P>If the transparent GIF 1x1 is used, the highlighted with red text should be changed to "1"
+
+<P><U>Notes:</U>
+
+<UL>
+<LI>Presence of GD library is not required if the transparent GIF 1x1 is used.
+<LI>It is possible to change the counter background. It is stored in the file cnstats/button.png.
+</UL>
+
+</BODY>
+</HTML>
