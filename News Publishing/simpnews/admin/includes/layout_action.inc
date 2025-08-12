@@ -1,0 +1,571 @@
+<?php
+/***************************************************************************
+ * (c)2002-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+if(isset($nohnlinking))
+	$hnnolinking=1;
+else
+	$hnnolinking=0;
+$nonltrans=0;
+if(isset($chnobrtrans))
+	$nonltrans=setbit($nonltrans,BIT_1);
+if(isset($cfnobrtrans))
+	$nonltrans=setbit($nonltrans,BIT_2);
+if(isset($nchnobrtrans))
+	$nonltrans=setbit($nonltrans,BIT_3);
+if(isset($ncfnobrtrans))
+	$nonltrans=setbit($nonltrans,BIT_4);
+if(isset($futurenews))
+	$showfuturenews=1;
+else
+	$showfuturenews=0;
+$news4addoptions=0;
+if(isset($n4addbr))
+	$news4addoptions=setbit($news4addoptions,BIT_1);
+if(isset($nocheadbr))
+	$cheadnobr=1;
+else
+	$cheadnobr=0;
+if(isset($nocfootbr))
+	$cfootnobr=1;
+else
+	$cfootnobr=0;
+if(isset($singlenodate))
+	$snnodate=1;
+else
+	$snnodate=0;
+if(isset($nonewsicons))
+	$newsnoicons=1;
+else
+	$newsnoicons=0;
+if(isset($nosrchlimit))
+	$srchnolimit=1;
+else
+	$srchnolimit=0;
+$newsnodate=0;
+if(isset($nnodate))
+	$newsnodate=setbit($newsnodate,BIT_1);
+if(isset($non4date))
+	$n4nodate=1;
+else
+	$n4nodate=0;
+$srchaddoptions=0;
+if(isset($srchdispcats))
+	$srchaddoptions=setbit($srchaddoptions,BIT_1);
+if(isset($srchselectparts))
+	$srchaddoptions=setbit($srchaddoptions,BIT_2);
+$wap_options=0;
+if(isset($wap_rss_short))
+	$wap_options=setbit($wap_options,BIT_1);
+if($wap_ev_mode==1)
+	$wap_options=setbit($wap_options,BIT_2);
+if(isset($wap_show_numentries))
+	$wap_options=setbit($wap_options,BIT_3);
+if(isset($wap_evs_llink))
+	$wap_options=setbit($wap_options,BIT_4);
+if(isset($wap_evs_drange))
+	$wap_options=setbit($wap_options,BIT_5);
+if(isset($wap_catlist))
+	$wap_options=setbit($wap_options,BIT_6);
+if(isset($wap_evs_text))
+	$wap_options=setbit($wap_options,BIT_7);
+if($wap_evs_searchtype==1)
+	$wap_options=setbit($wap_options,BIT_8);
+if(isset($wap_show_lastupdated))
+	$wap_options=setbit($wap_options,BIT_9);
+if(isset($wap_link_catlist))
+	$wap_options=setbit($wap_options,BIT_10);
+if(isset($wap_cl_nomode))
+	$wap_options=setbit($wap_options,BIT_11);
+if(isset($wap_nopagecount))
+	$wap_options=setbit($wap_options,BIT_12);
+if($wap_evs_dayrange<1)
+	$wap_evs_dayrange=1;
+if($wap_evs_maxldays<2)
+	$wap_evs_maxldays=2;
+if($wap_auto_title>100)
+	$wap_auto_title=100;
+if($wap_auto_short>500)
+	$wap_auto_short=500;
+if($rss_auto_title>100)
+	$rss_auto_title=100;
+if($rss_auto_short>500)
+	$rss_auto_short=500;
+$hn_catlinking=0;
+if(isset($hn6nocatlink))
+	$hn_catlinking=setbit($hn_catlinking,BIT_1);
+if(isset($hn7nocatlink))
+	$hn_catlinking=setbit($hn_catlinking,BIT_2);
+if(isset($hn2nocatlink))
+	$hn_catlinking=setbit($hn_catlinking,BIT_3);
+$masssuboptions=0;
+if(isset($msublastsenddate))
+	$masssuboptions=setbit($masssuboptions,BIT_1);
+if(isset($hncommentslink))
+	$hotnewscommentslink=1;
+else
+	$hotnewscommentslink=0;
+if(isset($icemail))
+	$icdisplayemail=1;
+else
+	$icdisplayemail=0;
+if(isset($inlinecomments))
+	$commentsinline=1;
+else
+	$commentsinline=0;
+if(isset($proposershow))
+	$showproposer=1;
+else
+	$showproposer=0;
+if(isset($news4catshow))
+	$news4showcat=1;
+else
+	$news4showcat=0;
+if(isset($highlightsearch))
+	$searchhighlight=1;
+else
+	$searchhighlight=0;
+if(isset($evscrollcal2))
+	$evscrollevcal2=1;
+else
+	$evscrollevcal2=0;
+$evinc_options=0;
+if(isset($evinc_displaypageheading))
+	$evinc_options=setbit($evinc_options,BIT_1);
+if(isset($evinc_displaydate))
+	$evinc_options=setbit($evinc_options,BIT_2);
+if(isset($evinc_displayheading))
+	$evinc_options=setbit($evinc_options,BIT_3);
+if(isset($evinc_displayposter))
+	$evinc_options=setbit($evinc_options,BIT_4);
+if(isset($evinc_linkposter))
+	$evinc_options=setbit($evinc_options,BIT_5);
+if(isset($evinc_printicon))
+	$evinc_options=setbit($evinc_options,BIT_6);
+if(isset($evinc_gotopicon))
+	$evinc_options=setbit($evinc_options,BIT_7);
+if(isset($evinc_displaycatinfo))
+	$evinc_options=setbit($evinc_options,BIT_8);
+if(isset($evinc_displaycat))
+	$evinc_options=setbit($evinc_options,BIT_9);
+if(isset($evinc_catlink))
+	$evinc_options=setbit($evinc_options,BIT_10);
+$aninc_options=0;
+if(isset($aninc_displaycat))
+	$aninc_options=setbit($aninc_options,BIT_1);
+if(isset($aninc_catlink))
+	$aninc_options=setbit($aninc_options,BIT_2);
+if(isset($aninc_displaydate))
+	$aninc_options=setbit($aninc_options,BIT_3);
+if(isset($aninc_displayheading))
+	$aninc_options=setbit($aninc_options,BIT_4);
+if(isset($aninc_displayposter))
+	$aninc_options=setbit($aninc_options,BIT_5);
+if(isset($aninc_linkposter))
+	$aninc_options=setbit($aninc_options,BIT_6);
+if(isset($aninc_printicon))
+	$aninc_options=setbit($aninc_options,BIT_7);
+if(isset($aninc_gotopicon))
+	$aninc_options=setbit($aninc_options,BIT_8);
+if(isset($aninc_emailnews))
+	$aninc_options=setbit($aninc_options,BIT_9);
+if(isset($aninc_displaycatinfo))
+	$aninc_options=setbit($aninc_options,BIT_10);
+if(!$hnlinkdest)
+	$usehnlinkdest=0;
+$sns_options=0;
+if(isset($sns_catlink))
+	$sns_options=setbit($sns_options,BIT_1);
+if(isset($sns_displaydate))
+	$sns_options=setbit($sns_options,BIT_2);
+if(isset($sns_displayheading))
+	$sns_options=setbit($sns_options,BIT_3);
+if(isset($sns_displaypageheading))
+	$sns_options=setbit($sns_options,BIT_4);
+if(isset($sns_displayposter))
+	$sns_options=setbit($sns_options,BIT_5);
+if(isset($sns_displaycat))
+	$sns_options=setbit($sns_options,BIT_6);
+if(isset($sns_linkposter))
+	$sns_options=setbit($sns_options,BIT_7);
+if(isset($sns_printicon))
+	$sns_options=setbit($sns_options,BIT_8);
+if(isset($sns_gotopicon))
+	$sns_options=setbit($sns_options,BIT_9);
+if(isset($sns_emailnews))
+	$sns_options=setbit($sns_options,BIT_10);
+if(isset($sns_rating))
+	$sns_options=setbit($sns_options,BIT_11);
+if(isset($sns_displaynav))
+	$sns_options=setbit($sns_options,BIT_12);
+if(isset($sns_displaycatinfo))
+	$sns_options=setbit($sns_options,BIT_13);
+if(isset($hotnews7ddlink))
+	$hotnews7useddlink=1;
+else
+	$hotnews7useddlink=0;
+if(isset($textareanoscrbar))
+	$textareanoscroll=1;
+else
+	$textareanoscroll=0;
+if(isset($enablepagenavdetails))
+	$pagenavdetails=1;
+else
+	$pagenavdetails=0;
+if(isset($evcalweek))
+	$evshowcalweek=1;
+else
+	$evshowcalweek=0;
+if(isset($posterlink))
+	$linkposter=1;
+else
+	$linkposter=0;
+if(isset($sn_hideallnews))
+	$sn_hideallnewslink=1;
+else
+	$sn_hideallnewslink=0;
+if(isset($hidefileinfo))
+	$nofileinfo=1;
+else
+	$nofileinfo=0;
+if(isset($srchonlyheadings))
+	$searchonlyheadings=1;
+else
+	$searchonlyheadings=0;
+if(isset($jsns_headingsep))
+	$jsns_sepheading=1;
+else
+	$jsns_sepheading=0;
+if(isset($nsheadingsep))
+	$newsscrollerheadingsep=1;
+else
+	$newsscrollerheadingsep=0;
+if(isset($events2onlyheadings))
+	$ev2onlyheadings=1;
+else
+	$ev2onlyheadings=0;
+if(isset($disableprinticon))
+	$noprinticon=1;
+else
+	$noprinticon=0;
+if(isset($disablegotopicon))
+	$nogotopicon=1;
+else
+	$nogotopicon=0;
+if(isset($disablen5globalprint))
+	$news5noglobalprint=1;
+else
+	$news5noglobalprint=0;
+$announceoptions=0;
+if(isset($an_evlist))
+	$announceoptions=setbit($announceoptions,BIT_1);
+if(isset($an_newslist))
+	$announceoptions=setbit($announceoptions,BIT_2);
+if(isset($an_evcal_on))
+	$announceoptions=setbit($announceoptions,BIT_3);
+if($an_evcal==1)
+	$announceoptions=setbit($announceoptions,BIT_4);
+if($an_n5dmode==1)
+	$announceoptions=setbit($announceoptions,BIT_5);
+if($an_ev2dmode==1)
+	$announceoptions=setbit($announceoptions,BIT_6);
+if(isset($an_ev2asc))
+	$announceoptions=setbit($announceoptions,BIT_7);
+if(isset($an_newsticker))
+	$announceoptions=setbit($announceoptions,BIT_8);
+if(isset($an_curev))
+	$announceoptions=setbit($announceoptions,BIT_9);
+if($an_curevdisp==1)
+	$announceoptions=setbit($announceoptions,BIT_10);
+if(isset($an_nnotify))
+	$announceoptions=setbit($announceoptions,BIT_11);
+if(isset($an_hotnews))
+	$announceoptions=setbit($announceoptions,BIT_12);
+if($an_hn5dmode==1)
+	$announceoptions=setbit($announceoptions,BIT_13);
+if(isset($an_hn6show))
+	$announceoptions=setbit($announceoptions,BIT_14);
+if($an_hn6dmode==1)
+	$announceoptions=setbit($announceoptions,BIT_15);
+$csvexportfields=0;
+if(isset($csv_date))
+	$csvexportfields=setbit($csvexportfields,BIT_1);
+if(isset($csv_lang))
+	$csvexportfields=setbit($csvexportfields,BIT_2);
+if(isset($csv_category))
+	$csvexportfields=setbit($csvexportfields,BIT_3);
+if(isset($csv_heading))
+	$csvexportfields=setbit($csvexportfields,BIT_4);
+if(isset($csv_entry))
+	$csvexportfields=setbit($csvexportfields,BIT_5);
+if(isset($csv_poster))
+	$csvexportfields=setbit($csvexportfields,BIT_6);
+if(isset($news5icons))
+	$news5displayicons=1;
+else
+	$news5displayicons=0;
+if(isset($news5poster))
+	$news5displayposter=1;
+else
+	$news5displayposter=0;
+if(isset($news5ddlink))
+	$news5useddlink=1;
+else
+	$news5useddlink=0;
+if(isset($news5displayyear))
+	$news5monthdisplayyear=1;
+else
+	$news5monthdisplayyear=0;
+$news5startdate=$news5startyear."-".$news5startmonth."-".$news5startday;
+$news5enddate=$news5endyear."-".$news5endmonth."-".$news5endday;
+if(isset($headerprint))
+	$printheader=1;
+else
+	$printheader=0;
+if(isset($hotnoheading))
+	$hotscriptsnoheading=1;
+else
+	$hotscriptsnoheading=0;
+if(isset($hotevdisplayicons))
+	$hotevicons=1;
+else
+	$hotevicons=0;
+if(isset($hotevposter))
+	$hotevdisplayposter=1;
+else
+	$hotevdisplayposter=0;
+if(isset($hotevnohtml))
+	$hotevnohtmlformatting=1;
+else
+	$hotevnohtmlformatting=0;
+if(isset($showevnum))
+	$displayevnum=1;
+else
+	$displayevnum=0;
+if(isset($caljump))
+	$caljumpbox=1;
+else
+	$caljumpbox=0;
+$proposereq=0;
+if(isset($propose_name))
+	$proposereq=setbit($proposereq,BIT_1);
+if(isset($propose_email))
+	$proposereq=setbit($proposereq,BIT_2);
+if(isset($propose_heading))
+	$proposereq=setbit($proposereq,BIT_3);
+if(isset($noclwrap))
+	$clnowrap=1;
+else
+	$clnowrap=0;
+if(isset($noclactlink))
+	$clactdontlink=1;
+else
+	$clactdontlink=0;
+if(isset($usecatlist))
+	$enablecatlist=1;
+else
+	$enablecatlist=0;
+if(isset($news3ddlink))
+	$news3useddlink=1;
+else
+	$news3useddlink=0;
+if(isset($news4ddlink))
+	$news4useddlink=1;
+else
+	$news4useddlink=0;
+if(isset($hotnewsdisplayicons))
+	$hotnewsicons=1;
+else
+	$hotnewsicons=0;
+if(isset($hotnewsnohtml))
+	$hotnewsnohtmlformatting=1;
+else
+	$hotnewsnohtmlformatting=0;
+if(isset($hotnewsposter))
+	$hotnewsdisplayposter=1;
+else
+	$hotnewsdisplayposter=0;
+if(isset($shortheadings))
+	$eventcalshortonlyheadings=1;
+else
+	$eventcalshortonlyheadings=0;
+if(isset($eventcalshorts))
+	$eventcalshortnews=1;
+else
+	$eventcalshortnews=0;
+if(isset($eventcalmarkers))
+	$eventcalonlymarkers=1;
+else
+	$eventcalonlymarkers=0;
+if(isset($enablesbcolors))
+	$colorscrollbars=1;
+else
+	$colorscrollbars=0;
+if($newsscrollermaxlines>4000)
+	$newsscrollermaxlines=4000;
+if(isset($sepbylang))
+	$separatebylang=1;
+else
+	$separatebylang=0;
+if(isset($eventscrollerdate))
+	$eventscrolleractdate=1;
+else
+	$eventscrolleractdate=0;
+if(isset($typer2date))
+	$newstyper2displaydate=1;
+else
+	$newstyper2displaydate=0;
+if(isset($typer2waitentry))
+	$newstyper2waitentry=1;
+else
+	$newstyper2waitentry=0;
+if(isset($typer2newscreen))
+	$newstyper2newscreen=1;
+else
+	$newstyper2newscreen=0;
+if(isset($disablestarlink))
+	$ss_nolinking=1;
+else
+	$ss_nolinking=0;
+if(isset($disablescrollerlink))
+	$newsscrollernolinking=1;
+else
+	$newsscrollernolinking=0;
+if(isset($typerscroll))
+	$newstyperscroll=1;
+else
+	$newstyperscroll=0;
+if(isset($typerdate))
+	$newstyperdisplaydate=1;
+else
+	$newstyperdisplaydate=0;
+if(isset($scrollerdate))
+	$newsscrollerdisplaydate=1;
+else
+	$newsscrollerdisplaydate=0;
+if(isset($scrollerwordwrap))
+	$newsscrollerwordwrap=1;
+else
+	$newsscrollerwordwrap=0;
+if(isset($scrollerstoponmouse))
+	$newsscrollermousestop=1;
+else
+	$newsscrollermousestop=0;
+if(isset($enablecurrtime))
+	$showcurrtime=1;
+else
+	$showcurrtime=0;
+if(isset($showposter))
+	$displayposter=1;
+else
+	$displayposter=0;
+if(isset($enablecustomheader))
+	$usecustomheader=1;
+else
+	$usecustomheader=0;
+if(isset($enablecustomfooter))
+	$usecustomfooter=1;
+else
+	$usecustomfooter=0;
+if(isset($jsnf_linkingoff))
+	$jsnf_nolinking=1;
+else
+	$jsnf_nolinking=0;
+if(isset($jsnf_showdate))
+	$jsnf_displaydate=1;
+else
+	$jsnf_displaydate=0;
+if(isset($jsns_linkingoff))
+	$jsns_nolinking=1;
+else
+	$jsns_nolinking=0;
+if(isset($jsns_showdate))
+	$jsns_displaydate=1;
+else
+	$jsns_displaydate=0;
+if(isset($clearcustomheader))
+	$customheader="";
+else
+{
+	if($new_global_handling)
+		$tmp_file=$_FILES['customheaderfile']['tmp_name'];
+	else
+		$tmp_file=$HTTP_POST_FILES['customheaderfile']['tmp_name'];
+	if($upload_avail && is_uploaded_file($tmp_file))
+	{
+		if(isset($path_tempdir) && $path_tempdir)
+		{
+			if($new_global_handling)
+				$filename=$_FILES['customheaderfile']['name'];
+			else
+				$filename=$HTTP_POST_FILES['customheaderfile']['name'];
+			if(!move_uploaded_file ($tmp_file, $path_tempdir."/".$filename))
+			{
+				echo "<tr class=\"errorrow\"><td align=\"center\">";
+				printf($l_cantmovefile,$path_attach."/".$physfile);
+				echo "</td></tr>";
+				die();
+			}
+			$orgfile=$path_tempdir."/".$filename;
+		}
+		else
+			$orgfile=$tmp_file;
+		$customheader = addslashes(get_file($orgfile));
+		if(isset($path_tempdir) && $path_tempdir)
+			unlink($orgfile);
+	}
+}
+if(isset($clearcustomfooter))
+	$customfooter="";
+else
+{
+	if($new_global_handling)
+		$tmp_file=$_FILES['customfooterfile']['tmp_name'];
+	else
+		$tmp_file=$HTTP_POST_FILES['customfooterfile']['tmp_name'];
+	if($upload_avail && is_uploaded_file($tmp_file))
+	{
+		if(isset($path_tempdir) && $path_tempdir)
+		{
+			if($new_global_handling)
+				$filename=$_FILES['customfooterfile']['name'];
+			else
+				$filename=$HTTP_POST_FILES['customfooterfile']['name'];
+			if(!move_uploaded_file ($tmp_file, $path_tempdir."/".$filename))
+			{
+				echo "<tr class=\"errorrow\"><td align=\"center\">";
+				printf($l_cantmovefile,$path_attach."/".$physfile);
+				echo "</td></tr>";
+				die();
+			}
+			$orgfile=$path_tempdir."/".$filename;
+		}
+		else
+			$orgfile=$tmp_file;
+		$customfooter = addslashes(get_file($orgfile));
+		if(isset($path_tempdir) && $path_tempdir)
+			unlink($orgfile);
+	}
+}
+if(($customfooter) && !isset($cfnobrtrans))
+	$customfooter=str_replace("\n","<BR>",$customfooter);
+if(($customheader) && !isset($chnobrtrans))
+	$customheader=str_replace("\n","<BR>",$customheader);
+if($newslettercustomheader)
+{
+	$newslettercustomheader=bbencode($newslettercustomheader);
+	if(!isset($nchnobrtrans))
+		$newslettercustomheader=str_replace("\n","<BR>",$newslettercustomheader);
+}
+if($newslettercustomfooter)
+{
+	$newslettercustomfooter=bbencode($newslettercustomfooter);
+	if(!isset($ncfnobrtrans))
+		$newslettercustomfooter=str_replace("\n","<BR>",$newslettercustomfooter);
+}
+$heading=trim($heading);
+$heading=stripslashes($heading);
+$heading=strip_tags($heading);
+$heading=addslashes($heading);
+$defsignature=strip_tags($defsignature);
+?>
