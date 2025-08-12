@@ -1,0 +1,70 @@
+<?php
+/***************************************************************************
+ * (c)2001-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+$bbcode_pics=array(
+	"bbcode_bold.gif",
+	"bbcode_italic.gif",
+	"bbcode_type.gif",
+	"bbcode_strike.gif",
+	"bbcode_center.gif",
+	"bbcode_underline.gif",
+	"bbcode_sub.gif",
+	"bbcode_sup.gif",
+	"bbcode_liststart.gif",
+	"bbcode_listitem.gif",
+	"bbcode_listend.gif",
+	"bbcode_email.gif",
+	"bbcode_url.gif",
+	"bbcode_pic.gif",
+	"bbcode_unc.gif",
+	"bbcode_code.gif",
+	"bbcode_php.gif",
+	"bbcode_quote.gif"
+	);
+
+$bbcode_functions=array(
+	"bold",
+	"italic",
+	"typewriter",
+	"strike",
+	"center",
+	"underline",
+	"subscript",
+	"superscript",
+	"listStart",
+	"listItem",
+	"listEnd",
+	"email",
+	"aHref",
+	"pic",
+	"unc",
+	);
+$specialchars=array(
+	"&amp;",
+	"&quot;",
+	"&lt;",
+	"&gt;",
+	"&trade;",
+	"&copy;",
+	"&permil;",
+	"&dagger;",
+	"&Dagger;",
+	"&frasl;",
+	"&cent;",
+	"&pound;",
+	"&curren;",
+	"&yen;",
+	"&sect;",
+	"&reg;",
+	"&deg;",
+	"&plusmn;",
+	"&micro;",
+	"&iquest;",
+	"&times;",
+	"&divide;",
+	"&middot;"
+);
+$bbc_availfonts = array("Andale Mono","Arial","Arial Black","Book Antiqua","Century Gothic","Comic Sans MS","Courier New","Georgia","Impact","Tahoma","Times New Roman","Script MT Bold","Verdana","Lucida Console");
+$bbc_availcolors = array("White","Black","Red","Yellow","Pink","Green","Orange","Purple","Blue","Beige","Brown","Teal","Navy","Maroon","Limegreen");
+?>
