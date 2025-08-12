@@ -1,0 +1,88 @@
+<table width="100%">
+ <tr>
+  <td>
+   <table width="100%">
+    <tr>
+     <td><h3>##LNG['_PAGE_TITLE']##</h3></td>
+     <td nowrap width="1%" valign="top" align="right">##ADM_PATH##</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td width="100%" valign="top" align="right">
+
+   <table width="100%" border="0" cellpadding="5">
+    <tr>
+     <td colspan="3">
+      <form name="ml_frm" method="post" action="##REQUEST_URI##">
+
+      <table class="txt12" width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#999999" align="center">
+       <tr class="row##[row-1-2]##">
+        <td><b>##LNG['_TBL_ML_NAME']##</b> *</td>
+        <td><input type="text" name="ml_name" size="30" value="##name##" /></td>
+       </tr>
+
+       <tr class="row##[row-1-2]##">
+        <td><b>##LNG['_TBL_ML_DESCR']##</b></td>
+        <td><textarea name="ml_descr" cols="60" rows="4">##descr##</textarea><input type="hidden" name="QUOT[]" value="ml_descr" /></td>
+       </tr>
+
+       <tr class="row##[row-1-2]##">
+        <td><b>##LNG['_TBL_ML_BOTTXT']##</b><br /><font class="txt10">(##LNG['_TBL_ML_UNSUB']##)</font></td>
+        <td>
+         <textarea name="ml_bottom_text" cols="60" rows="4">##bottom_text##</textarea><input type="hidden" name="QUOT[]" value="ml_bottom_text" /><br />
+         <font class="note">##LNG['_MSG_ML_UNSUB_NOTE']##</font>
+        </td>
+       </tr>
+
+       <tr class="row##[row-1-2]##">
+        <td>&nbsp;</td>
+        <td valign="bottom"><input type="submit" name="ml_save" value="##LNG['_BTN_SAVE']##" /></td>
+       </tr>
+      </table>
+      </form>
+
+      <!-- IF ##subscr_show## -->
+      <hr color="#" size="1" />
+      <form name="frm" method="post" action="##REQUEST_URI##">
+      <b>##LNG['_HEADER_SUBS_MANAGE']##</b>
+      <table class="txt12" width="1%" border="0" cellspacing="1" cellpadding="3" bgcolor="#999999" align="center">
+       <tr class="tha">
+        <th width="1%">#</th>
+        <th width="1%">&nbsp;##LNG['_TBL_SUBS_NAME']##</th>
+        <th width="1%">&nbsp;##LNG['_TBL_SUBS_EMAIL']##</th>
+        <th width="1%" align="center"><input type="checkbox" name="chk_all" value="1" OnClick="SwitchItemsAdm()" /></th>
+       </tr>
+
+       <!-- LOOP subscr -->
+       <tr class="row##[row-1-2]##">
+        <td>##subscr['num']##</td>
+        <td>##subscr['name']##</td>
+        <td><a href="mailto:##subscr['email']##">##subscr['email']##</a></td>
+        <td align="center"><input type="checkbox" name="chk_id[]" value="##subscr['id']##" /></td>
+       </tr>
+       <!-- /LOOP -->
+
+       <tr class="row##[row-1-2]##">
+        <td>&nbsp;</td>
+        <td><input type="text" name="subs_name" /></td>
+        <td><input type="text" name="subs_email" /></td>
+        <td><input type="submit" name="subs_add" value="##LNG['_BTN_ADD']##" /></td>
+       </tr>
+      </table>
+      <p align="center">
+      <input type="submit" name="subs_del" value="##LNG['_BTN_DELETE']##" onClick="return(confirm('##LNG['_MSG_SUBS_CONFIRM_DELETE']##'))" />
+      <input type="reset" value="##LNG['_BTN_RESET']##" /><br /><br />
+      ##nav##
+      </p>
+      </form>
+      <!-- ENDIF -->
+
+     </td>
+    </tr>
+   </table>
+
+  </td>
+ </tr>
+</table>
