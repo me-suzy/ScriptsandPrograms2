@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>changelog</title>
+	<link rel="stylesheet" type="text/css" href="media/style.css">
+	<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+	<td class="header-top-left">&nbsp;</td>
+    <td class="header-top-right">MyObjects<br /><div class="header-top-right-subpackage"></div></td>
+  </tr>
+  <tr><td colspan="2" class="header-line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td colspan="2" class="header-menu">
+  		  [ <a href="classtrees_MyObjects.html" class="menu">class tree: MyObjects</a> ]
+		  [ <a href="elementindex_MyObjects.html" class="menu">index: MyObjects</a> ]
+		  [ <a href="elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td colspan="2" class="header-line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="195" class="menu">
+		<div class="package-title">MyObjects</div>
+  <div class="package">
+	<div id="ric">
+					<p><a href="ric_changelog.html">changelog</a></p>
+					<p><a href="ric_install.html">install</a></p>
+					<p><a href="ric_license.html">license</a></p>
+			</div>
+	</div>
+      <b>Packages:</b><br />
+  <div class="package">
+              <a href="li_MyObjectsCommandLineClient.html">MyObjectsCommandLineClient</a><br />
+              <a href="li_MyObjectsCompiler.html">MyObjectsCompiler</a><br />
+              <a href="li_MyObjectsRuntime.html">MyObjectsRuntime</a><br />
+              <a href="li_MyObjectsWebClient.html">MyObjectsWebClient</a><br />
+              <a href="li_UserManagerExample.html">UserManagerExample</a><br />
+              <a href="li_WorldExample.html">WorldExample</a><br />
+      	</div>
+      <br />
+                        <br />
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1 align="center">changelog</h1>
+<pre>
+Changes
+---------------------------------------------------------------------------------
+# Release Candidate 2 (Hopefully the final release candidate)
+
+  * 2004-12-07
+    * Date/time validation functions in generated classes fixed (Erdinc)
+    * Import schema sql to a MySql server functionality added (Erdinc)
+    * A new method for loading array values into Mapable objects Mapable::loadArray() added (Erdinc)
+    * Super classes for the generated classes can now be defined (Erdinc)
+
+  * 2004-11-30
+    * Class generator does not overwrite MyObjectsSettings.php file anymore. (Erdinc)
+    * The foreign keys are no longer registered automatically by default. (Erdinc)
+    * Getter methods for foreign objects automatically register the foreign object if it
+    wasn't registered correctly before (Erdinc)
+
+  * 2004-11-28
+    * Auto type time fields are now handled correctly. (Erdinc)
+    * The setter methods of unique fields now have a second paramether that enables
+    skipping of unique value existence check. (Erdinc)
+    * In the get() method of generated classes, ObjectNotFoundExceptions are automatically
+    caught while registering the foreign keys. It will no longer give an ObjectNotFoundException
+    if the foreign key of an object does not exists. (Erdinc)
+
+  * 2004-11-26
+    * DebugMode which enables logging of the executed sql queries was added. (Erdinc)
+
+  * 2004-11-23
+    * Added a new icon for required fields at the table editor. (Erdinc)
+
+  * 2004-11-20
+    * Removed Options menu from the web client. The options are now set
+    * on the class generation screen. (Erdinc)
+    * Changed error handling
+  
+  * 2004-11-19
+    * DbModel::get() method was modified and the second parameter was changed.
+    Now the second parameter is a boolean flag for auto registering the foreign
+    key objects automatically. The old second parameter $compact was moved to the
+    third position because it will be used less likely. (Erdinc)
+    (Thanks to Jay Kramer for the idea)
+    * Fixed character encoding in ddl files (Markus)
+
+  * 2004-11-18
+    * Fixed a few bugs in StringValidator. (Erdinc) (Thanks to Jay Kramer)
+    * Fixed &quot;Add new field&quot; links in the Tree menu (Erdinc)
+    * Added control for 0 number of rows in DbModel::get method (Erdinc)
+
+  * 2004-11-15
+    * Added possibility to use different images in dynamicTree (Markus)
+    * The schema menu now displays the types of the fields (Erdinc)
+
+  * 2004-11-14
+    * Minor Gui changes (Erdinc)
+
+  * 2004-11-13
+    * Options dialog settings now depends on the databasename (Markus)
+    * Added &quot;MySql-Connection Settings&quot; to options dialog (Markus)
+    * Added &quot;Change Database Options&quot; - button to editDatabase template (Markus)
+    * Added class attribute to the first row in editDatabse template (Markus)
+    * Changed class attribute in editfield template to start with row1 (Markus)
+    * Changed class attribute in edittable template to start with row1 (Markus)
+
+  * 2004-11-12
+    * Import/Export functionality for individual tables and databases was added.
+      (Erdinc)
+    * Added new Navigation-Node &quot;Sql&quot; and moved the Node &quot;Generate Sql Dump&quot; to it
+      (Markus)
+    * Moved Node &quot;Generate Schema From Existing Database&quot; to the last position
+      (Markus)
+    
+  * 2004-11-08
+    * A bug that caused the retreival of information about enum and set fields
+    incorrectly was fixed. The web client now expects the enum and set values to
+    be input as 'value1', 'value2' style. (Erdinc)
+
+  * 2004-11-06
+    * Tab indexes were added in the web client forms. (Erdinc)
+
+  * 2004-11-05
+    * Links at the web client that were pointing to localhost were fixed. (Erdinc)
+    * Work folders that are older than one week are now deleted automatically. (Erdinc)
+
+# Release Candidate 1
+</pre>
+        <div class="credit">
+		    <hr class="separator" />
+		    Documentation generated on Tue,  7 Dec 2004 20:29:36 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
