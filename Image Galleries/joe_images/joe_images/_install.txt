@@ -1,0 +1,45 @@
+INSTRUCTIONS FOR INSTALLATION
+JOE IMAGES created by Wes Edling @ http://joedesigns.com
+
+Step 1.
+Copy all files from joe_images.zip into a folder on your server called 'joe_images' on your server.
+
+Step 2.
+Create a MySQL database, you may name it anything you want and add these tables using sql.
+
+CREATE TABLE `joe_images` (
+  `id` mediumint(9) NOT NULL auto_increment,
+  `status` mediumint(9) NOT NULL default '0',
+  `name` text NOT NULL,
+  `info` text NOT NULL,
+  `timestamp` text NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) TYPE=MyISAM AUTO_INCREMENT=5 ;
+
+NOTE: if you have a database already created with other tables you can use this database for this table.
+
+Step 3.
+Chmod the folder 'images' to 777. This must be writeable for the images to be uploaded.
+
+Step 4. Config the variables in 'joe_images/config_connect_functions.php', Make sure that you have setup a user MySQL that will have the same information as your config file.
+
+Step 5.
+Put this code in your site some where and make sure the path is correct. This is how you will show your images on your site.
+
+<?php
+require "/joe_images/config_connect_functions.php";
+viewPhotos("3", "1", "1", "/joe_images");
+?>
+
+NOTE: the options for the viewPhotos are customizable. You can use these options below to change them.
+
+viewPhotos($cols, $sort, $order, $path);
+
+$cols = number of columns for the photos to display. (1 - 10)
+$sort = this is how it will sort the photos. (1-2); 1 = by date; 2 = by name;
+$order = this will change the order by either ascending or descending. (1-2); 1 = by ascending; 2 = by descending;
+$path = the path needs to be pointed to the joe_images folder.
+
+Step 6. Go to your site and add some photos, and your good to go!
+
+http://yoursite.com/joe_images/
