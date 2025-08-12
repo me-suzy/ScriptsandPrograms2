@@ -1,0 +1,31 @@
+General FAQ 
+How do I set permissions? 
+
+If you only have FTP access to your server, then this is a difficult question to answer. It is possible to set permissions through most FTP clients, but each one is different. You will need to consult the documentation for your FTP client to find out how you can use it to set permissions on files and directories. 
+
+If you have telnet access, you will use the chmod command. You will need to change into the directory where the file is located that you want to adjust the permissions on. Once in that directory, type the following command: 
+
+
+            chmod 755 filename
+            
+In this case, filename is the name of the file which you are setting the permissions on, and 755 is the permissions setting. Our documentation contains the recommended 3-digit permissions setting for each file included with the software. 
+
+
+What is telnet and how do I use it? 
+
+Have a look at this tutorial on telnet 
+
+
+I am getting a CGI error message that says Permission Denied. How do I fix this? 
+
+Any time you get a permission denied message, this indicates that you need to set the permissions on the file mentioned in the error message. They will need to be set to 666 - this may require that you delete the file, then upload a blank copy of it from your local computer. The file that needs it's permissions set will be found in the "Accessing File:" portion of the error message. 
+
+
+I am getting a CGI error message that says No Such File or Directory. How do I fix this? 
+
+Any time you get this message, it indicates that the operating system cannot find the directory you have specified. You will need to double check that you are using the correct full path to the directory in question. If you are unsure of the correct path, contact your server administrator for assistance. 
+
+
+I am getting a CGI error message that says "Maybe you didn't strip carriage returns after a network transfer?". How do I fix this? 
+
+This means that one or more of the files was not uploaded in ASCII mode. You will need to start over and re-upload all files to your server making sure you do so in ASCII mode. There is nothing else that can cause this error message. 
