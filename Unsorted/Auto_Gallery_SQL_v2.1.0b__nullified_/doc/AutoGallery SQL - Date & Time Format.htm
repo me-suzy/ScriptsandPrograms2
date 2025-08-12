@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://www.jmbsoft.com/owners/ags/bdocs/dates.html -->
+<HTML><HEAD><TITLE>AutoGallery SQL - Date & Time Format</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff>
+<DIV align=center><FONT face=Verdana,Arial size=4><B>Date &amp; Time 
+Documentation </B><BR><BR>
+<TABLE cellSpacing=0 cellPadding=2 width=650 border=0>
+  <TBODY>
+  <TR>
+    <TD><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#000000>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#dcdcdc><FONT face=Verdana,Arial 
+                  size=2><B>Understanding Date &amp; Time Formats</B> 
+              </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR><FONT 
+      face=Arial size=2>This software allows you to enter your own custom date 
+      and time formats so they may displayed how you would like them. This 
+      document explains all of the available format possibilities, and gives 
+      several examples on how to get you going. If you would rather not mess 
+      with this, you can leave the format fields in setup.cgi blank, and the 
+      script will use a default value. <BR><BR>A quick explanation of how the 
+      formatting works is: The script will look at the format string that is 
+      passed to it. When it finds a character preceded by a percent sign, it 
+      will try to replace that with a date or time value. All other characters 
+      in the string are ignored, and returned unchanged. For example, if the 
+      string '%d-%w-%m' were passed in, the script would find three distinct 
+      values - %d, %w, %m - and replace them with the appropriate values. Below 
+      is a table listing all of the valid percent-character combinations. 
+      <BR><BR><B>Date Formats</B> <BR><BR></FONT><PRE>%d - day of the month, 2 digits with leading zeros; i.e. "01" to "31"
+%j - day of the month without leading zeros; i.e. "1" to "31"
+%D - day of the week, textual, 3 letters; i.e. "Fri"
+%w - day of the week, textual, long; i.e. "Friday"
+%M - month, textual, 3 letters; i.e. "Jan"
+%F - month, textual, long; i.e. "January"
+%m - month, 2 digits with leading zeros; i.e. "01" to "12"
+%n - month without leading zeros; i.e. "1" to "12"
+%Y - year, 4 digits; i.e. "1999"
+%y - year, 2 digits; i.e. "99"
+</PRE><FONT face=Arial size=2><B>Time Formats</B> <BR><BR></FONT><PRE>%a - "am" or "pm"
+%h - hour, 12-hour format; i.e. "01" to "12"
+%H - hour, 24-hour format; i.e. "00" to "23"
+%g - hour, 12-hour format without leading zeros; i.e. "1" to "12"
+%G - hour, 24-hour format without leading zeros; i.e. "0" to "23"
+%i - minutes; i.e. "00" to "59"
+%s - seconds; i.e. "00" to "59"
+</PRE><FONT face=Arial size=2>Now that we have covered the allowable 
+      format characters, we'll give you some examples. Below are a few valid 
+      format strings, and three examples of the output they would produce. 
+      <BR><BR><B>Date Examples</B> <BR><BR></FONT><PRE>Format String          Sample Output
+-------------          -------------
+%n-%j-%y               1-5-00
+                       10-7-99
+                       11-29-00
+
+%d/%m/%Y               01/05/2000
+                       10/07/1999
+                       11/29/2000
+
+%w, %M %d %Y           Wednesday, Jan 5 2000
+                       Thursday, Oct 10 2000
+                       Wednesday, Nov 29 2000
+</PRE><FONT face=Arial size=2><B>Time Examples</B> <BR><BR></FONT><PRE>Format String          Sample Output
+-------------          -------------
+%g:%i%a                1:25pm
+                       12:13am
+                       7:05pm
+
+%H:%i                  13:25
+                       00:13
+                       19:05
+</PRE><FONT face=Arial size=2>That should be enough to get you going. You 
+      can experiment with these formats until you get a result you like. Each 
+      time you make a change in setup.cgi, an example of the new date and time 
+      formats will be displayed on the verification page. 
+  </FONT></TD></TD></TR></TBODY></TABLE></FONT></DIV></BODY></HTML>
