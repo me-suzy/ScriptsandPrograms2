@@ -1,0 +1,102 @@
+StoryStream 0.3.2 - Beta - 11/20/2005
+
+************
+Overview
+************
+StoryStream is a formalized, collaborative hyperfiction system that allows users to 
+create,extend and rate hierarchical or other text/media based art forms.  Written in 
+PHP and using MySQL (by default) as a back-end database, StoryStream can be run on 
+any number of hosts all over the world.   StoryStream hopes to be a tool for 
+channeling creativity on the web while being a source of entertainment and fun. You
+can use a working StoryStream site here: http://www.storystream.org
+
+************
+Thanks
+************
+Many thanks to the following projects and people who have helped (knowingly
+or otherwise) in the development of StoryStream:
+
+Projects >>	
+-----------
+Smarty - http://smarty.php.net
+SourceForge - http://www.sourceforge.net
+
+People >>
+-----------
+Ramsey S. - Testing
+Matt R. - Testing
+Roger Raymond - HTTP_USER_AGENT Client Sniffer for PHP
+
+
+************
+Installation
+************
+Requirements: 
+- PHP 4.4.x
+- MySQL 4.x 
+- Tested on Apache and IIS
+
+1. Create a new database with an appropriate name in your MySQL server 
+	(or use an existing one).  
+	IMPORTANT: The installation script will overwrite existing tables with the same name
+		so do not use an existing StoryStream installation if you wish to reuse the 
+		data.  You must manually create the dbconfig.php file in the config directory and
+		point it to your existing data.
+	
+2. Go to the site via web client.  You will be redirected to the install directory
+    
+3. Enter the database information and click 'Install'.  Note that there are three things
+	that are done during install:
+		a. Database tables created and populated
+		b. dbconfig.php file in config/ directory is created
+		c. Permissions on include/smarty/templates_c directory are set to writable.
+		
+	If any of these things fail during install, you will be given an error message. You
+	can continue to run the install script until you have no more error messages.  Sometimes
+	the script cannot set the permissions of a file due to security restrictions setup
+	by your webhost - that means that you have to do the permissions setting yourself.  To do 
+	so, simply open your ftp client and navigate to the storystream directory.  Now find the
+	'config' and set the permissions to 0777 (or drwxrwxrwx).  Do the same for the 
+	'include/smarty/templates_c' directory.  Now rerun the installer script and everything should
+	work correctly.  
+	
+	IMPORTANT: For security reasons, you should set the config directory back to read-only AND
+		delete the install directory. 
+
+4. Login as 'admin' with password 'password1'. 
+
+Note: The FAQ code has not been included in this distribution.  The 
+test StoryStream site uses ODFAQ which can found here: 
+http://www.oodie.com/project/odfaq/.  As long as your FAQ is located in 
+a folder called 'faq' off the root of the storystream site, there won't
+be any broken links in the default theme.
+
+Note2: StoryStream assumes that your webserver includes 'index.php' as 
+one of the default pages.
+
+
+
+************
+Comments
+************
+Send comments and criticisms to storystream@karimspot.com
+
+************
+Legal
+************
+StoryStream - An Online Hyperfiction Engine
+Copyright (C) 2005 Karim Shehadeh
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
