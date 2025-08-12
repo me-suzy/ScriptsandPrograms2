@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<title>EasyForum! README</title>
+<style type="text/css">
+body{font-family:Verdana,Arial,Sans-Serif;font-size:10px}
+pre{font-family:"Courier New",Courier,monospace;font-size:11px}
+ul{font-family:Verdana,Arial,Sans-Serif;font-size:10px}
+ol{font-family:Verdana,Arial,Sans-Serif;font-size:10px}
+A:link{color:blue;background-color:white}
+A:visited{color:blue;background-color:white}
+A:hover{color:red;background-color:white}
+A:active{color:red;background-color:white}
+.l{font-size:9px}
+.k{color:#cccccc;background-color:#bbbbbb}
+.m{color:#333333;background-color:#ffffff}
+.n{color:#ff0000;background-color:#ffffff}
+</style></head><body><a name="0"></a>
+<h2>EasyForum! 2.x README</h2><ul>
+<li><a href="http://hot-things.net" target="_blank">Homepage: http://hot-things.net</a></li>
+<li><a href="#a">Description and features</a></li>
+<li><a href="#b">License</a><br /><br /></li>
+<li><a href="#1">How to install EasyForum! 2.x</a></li>
+<li><a href="#2">How to upgrade from a previous version</a></li>
+<li><a href="#3">How to set your own colors and settings</a></li>
+<li><a href="#4">How to create a lang file in your native language</a></li>
+</ul><hr size="1" class="k" />
+<br /><a name="a"></a>
+<h3>Description and features</h3>
+Easy Forum! 2.x is a Bulletin Board System written in PHP.
+The output produced by Easy Forum! 2.x is very small, 100% XHTML1.1 compliant
+and also looks fine with any modern browser which supports HTML4+ and JavaScript.
+<h4>Features</h4>
+<ul>
+<li>Fast processing and low web traffic</li>
+<li>Easy to install. No MySQL database required</li>
+<li>100% XHTML 1.1 and CSS2 compliant output</li>
+<li>Full PHP3/PHP4/PHP5 compatibility</li>
+<li>Best viewed with any browser - MSIE 4+, Netscape 4+, Opera 4+, Mozilla (any)</li>
+<li>Text formatting - bold, italic and colored text</li>
+<li>10 pretty color schemes at choice or a custom scheme</li>
+<li>Different icons at choice, smilies, 'http' and 'mailto' links</li>
+<li>Up to 99 forums</li>
+<li>HTML and other filters</li>
+<li>Two valid RDF/RSS feeds in different format</li>
+<li>Supports cell phones and PDA via WAP</li>
+<li>User registration</li>
+<li>Search features</li>
+<li>Images in the posts</li>
+<li>Administration mode</li>
+<li>Backup/Restore</li>
+<li>IP banning and flood prevention</li>
+<li>Custom time settings</li>
+<li>Translated in different languages</li>
+</ul>
+<a href="#0">top</a><hr size="1" class="k" />
+<br /><a name="b"></a><h3>License</h3>
+Easy Forum! 2.x is distributed under a GNU General Public License (GPL): 
+<a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">http://www.gnu.org/copyleft/gpl.html</a>
+
+<br /><br /><a href="#0">top</a><hr size="1" class="k" />
+
+
+<br /><a name="1"></a>
+<h3>How to install EasyForum! 2.x</h3>
+<ol>
+<li>Extract all files in an empty directory keeping the directory structure</li>
+<li>Upload that directory (and all files/subdirectories in it) by an FTP program</li>
+<li>CHMOD:
+<pre>
+ the subdirectory:  /data         to 777
+ the subdirectory:  /backup       to 777
+ the file:          -members.php  to 777
+</pre>
+<div class="l">------------------------------<br /><br />CHMOD means to change permissions/attributes of a file or a directory on a Linux/Unix system usually by an FTP program.<br />   If you are running a Windows server this can be done from the admin panel (in most cases).<br /><br />------------------------------</div><br /></li>
+<li>Run a browser, type the URL: <a href="#" onclick="return false">http://yoursite.com/forum/index.php</a> and post a test topic</li>
+<li>Enter the admin panel to setup an ADMIN password: <a href="#" onclick="return false">http://yoursite.com/forum/admin.php</a></li>
+<li>Add a second (third) forum: create two new subdirectories (data2 and backup2), CHMOD them to 777 and register these changes in config.php</li>
+</ol>
+
+<a href="#0">top</a><hr size="1" class="k" />
+<br /><a name="2"></a>
+<h3>How to upgrade from a previous version</h3>
+* <i>OVERWRITE ALL FILES</i> means to replace the files from the main directory and  <i>ALL SUBDIRECTORIES</i> with the new ones!<br />
+&nbsp; If you have an FTP client which is able to compare files, you can keep those which are the same.<br />
+&nbsp; For best result first delete all files <b>except</b> the ones from the subdirectories <i>/data</i>, <i>/backup</i> and <i>-members.php</i> and then upload the new files!<br />
+&nbsp; Note that <i>upgrade1.php</i> and <i>upgrade2.php</i> are zipped in <i>upgrade.zip</i> and should be extracted separately if necessary.
+<br /><br />
+* Upgrading from version 1.x to version 2.x is not recommended! The forum will work fine but won't be XHTML compatible!
+<br /><br /><br /><br />
+&nbsp;&nbsp;&nbsp;<b class="l">If you are going to upgrade from EasyForum! 2.1/2.2/2.3/2.4:</b><ol>
+<li>OVERWRITE all files with the new ones -&gt; <i>REMEMBER TO KEEP YOUR PREVIOUS "-members.php" FILE AND ALL 'DATA' FILES</i></li>
+</ol><br />
+&nbsp;&nbsp;&nbsp;<b class="l">If you are going to upgrade from EasyForum! 2.0:</b><ol>
+<li>OVERWRITE all files with the new ones -&gt; <i>REMEMBER TO KEEP YOUR PREVIOUS "-members.php" FILE AND ALL 'DATA' FILES</i></li>
+<li>Delete the file <i>data/psss</i> and enter the admin panel to setup a password</li>
+</ol><br />
+&nbsp;&nbsp;&nbsp;<b class="l">If you are going to upgrade from EasyForum! 1.6:</b><ol>
+<li>OVERWRITE all files with the new ones -&gt; <i>REMEMBER TO KEEP YOUR PREVIOUS "-members.php" FILE AND ALL 'DATA' FILES</i></li>
+<li>Delete the file <i>data/psss</i> and enter the admin panel to setup a password</li>
+</ol><br />
+&nbsp;&nbsp;&nbsp;<b class="l">If you are going to upgrade from EasyForum! 1.4 or 1.5:</b><ol>
+<li>OVERWRITE all files with the new ones -&gt; <i>REMEMBER TO KEEP YOUR PREVIOUS "-members.php" FILE AND ALL 'DATA' FILES</i></li>
+<li>Convert <i>-members.php</i> by running the file <i>upgrade2.php</i> ONCE (and then delete <i>upgrade2.php</i>)
+<br />e.g. <a href="#" onclick="return false">http://yoursite.com/forum/upgrade2.php</a><br />
+<i class="l">If you run <i>upgrade2.php</i> more than once you'll lose your 'members' file!</i></li>
+<li>Enter the admin panel to setup a password</li>
+</ol><br />
+&nbsp;&nbsp;&nbsp;<b class="l">If you are going to upgrade from EasyForum! 1.3:</b><ol>
+<li>OVERWRITE all files with the new ones</li>
+<li>CHMOD <i>-members.php</i> to 777</li>
+<li>Enter the admin panel once to setup a password</li>
+</ol><br />
+&nbsp;&nbsp;&nbsp;<b class="l">If you are going to upgrade from EasyForum! 1.2:</b><ol>
+<li>OVERWRITE all files with the new ones</li>
+<li>CHMOD <i>-members.php</i> to 777</li>
+<li>Create a new directory <i>backup</i> and CHMOD it to 777</li>
+<li>Enter the admin panel once to setup a password</li>
+</ol><br />
+&nbsp;&nbsp;&nbsp;<b class="l">If you are going to upgrade from EasyForum! 1.0 or 1.1:</b><ol>
+<li>OVERWRITE all files with the new ones</li>
+<li>CHMOD <i>-members.php</i> to 777</li>
+<li>Create a new directory <i>backup</i> and CHMOD it to 777</li>
+<li>Convert the contents of your <i>data</i> directory by running the file <i>upgrade1.php</i> ONCE...
+<br />e.g. <a href="#" onclick="return false">http://yoursite.com/forum/upgrade1.php</a></li>
+<li>Enter the admin panel once to setup a password</li>
+</ol>
+
+<a href="#0">top</a><hr size="1" class="k" />
+<br /><a name="3"></a>
+<h3>How to set your own colors and settings</h3>
+
+First of all, open <i>config.php</i> by a text editor and go through the settings!
+<br /><br />
+-------------------------
+<br /><br />
+If you'd like to involve some parts of your site in the forum, you can do it
+using the files <i>incl/cust-top.inc</i> (header) and <i>incl/cust-bot.inc</i> (footer). <br />
+Everything in both files will appear at the top and respectively at the bottom of the forum pages.<br /><br />
+Take a note that you mustn't put there any starting and ending HTML tags such as
+<i>&lt;html&gt;&lt;/html&gt;</i>, <i>&lt;head&gt;&lt;/head&gt;</i>, <i>&lt;body&gt;&lt;/body&gt;</i>.
+
+<pre>
+  &lt;html&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+
+  <i>--- any data from 'incl/cust-top.inc' goes here ---</i>
+
+  ... forum goes here ...
+
+  <i>--- any data from 'incl/cust-bot.inc' goes here ---</i>
+
+ &lt;/body&gt;
+ &lt;/html&gt;
+</pre>
+The file <i>incl/cust-top.inc</i> currently contains two different multi-forum navigation bars and links to the wap version and the RSS feeds.
+<br /><br />
+You can replace the title <i>EasyForum! 2.x</i> appearing at the top of the forum
+with any other title you wish or just insert an image tag: (<i>lang-xx.inc</i>, line #6).
+<br /><br />
+If you do not expect visitors from other countries you can make the forum show your local time, the months in your language etc.
+<br />Replace the function <i>time_offset(){...}</i> (<i>config.php</i>) with the following lines:
+<pre>---
+
+function time_offset($s){
+setlocale (LC_TIME,'<b>xx_XX</b>');
+$time_format="%d %b %Y, %H:%M";
+return strftime($time_format,$s);}
+
+---</pre>
+
+where <b>xx_XX</b> is your country code: 
+<pre>
+NETHERLANDS     =  <b>nl_NL</b> (on Win systems: <b>nld_nld</b>)
+FRANCE          =  <b>fr_FR</b> (on Win systems: <b>fra_fra</b>)
+UNITED KINGDOM  =  <b>gb_GB</b> (on Win systems: <b>gbr_gbr</b>)
+SWEDEN          =  <b>se_SE</b> (on Win systems: <b>swe_swe</b>)
+SOLOMON ISLANDS =  <b>sb_SB</b> (on Win systems: <b>slb_slb</b>)
+etc etc etc</pre>
+more country codes: <a href="http://www.unicode.org/onlinedat/countries.html" target="_blank">http://www.unicode.org/onlinedat/countries.html</a>
+<br />arguments for <i>$time_format</i>: <a href="http://www.php.net/manual/en/function.strftime.php" target="_blank">http://www.php.net/manual/en/function.strftime.php</a>
+<br />Finally, replace <i>$show_time=gmdate('H:i',$current_time+$user_time*3600);</i> (config.php) with: <i>$show_time='';</i>
+<br /><br /><br />
+It is recommended to hide the IP addresses of your users by using a <i>.htaccess</i> files
+in all <i>data</i> and <i>backup</i> directories (an example can be found in <i>/data</i>).<br />
+For best results (an <i>obligation</i> on systems that do not support .htaccess) 
+we recommend changing the names of all <i>data</i> and <i>backup</i> directories. 
+<br />(<i>Do not forget to register these changes in config.php</i>)
+<br /><br />
+It is possible to remove color changing and set custom colors. <br />
+Just set <i>$color_changing</i> to 0 (<i>config.php</i>), edit any of the CSS files in the subdirectory <i>/css</i> and set it as a default CSS file.
+<div class="l">/* Use a simple text editor or a CSS editor such as TopStyle (TopStyleLite) - <a href="http://www.bradsoft.com/topstyle/tslite/" target="_blank">http://www.bradsoft.com/topstyle/tslite</a> */</div>
+<br /><br />
+The URL of the WAP version you should enter in your cell phone or PDA browser is <a href="#" onclick="return false">http://yoursite.com/forum/wap.php</a>.<br />
+<br /><br />
+The URLs of the RSS/RDF feeds are:<br /><br />
+<a href="#" onclick="return false">http://yoursite.com/forum/rdf.php?f=<b>ID</b></a> (RSS/RDF 1.0)<br />
+<a href="#" onclick="return false">http://yoursite.com/forum/rss.php?f=<b>ID</b></a> (RSS 2.0)
+<br /><br />
+where ID is the serial number of the forum (not set = 0).
+
+<br />
+<br /><a href="#0">top</a><hr size="1" class="k" />
+<br /><a name="4"></a>
+<h3>How to create a lang file in your native language</h3>
+Translating Easy Forum! into any language is very easy.
+All language files are simple ASCII text files - <i>lang-en.inc</i>, <i>lang-bg.inc</i> etc.
+Create your own file or/and set Easy Forum! which one to load: (<i>config.php</i>).
+If you are going to use a non-English alphabet it is strongly recommended to
+change the encoding in your language file to the proper one: (incl/lang-xx.inc file, line #5).
+It would decrease the loading time and prevent some browsers from displaying incorrect letters.<br />
+<br />examples:
+<br /><b>$lang[1]='ISO-8859-1:en';</b> &nbsp;&nbsp;&nbsp;where <i>ISO-8859-1</i> is the proper charset for English and <i>en</i> is 2-letters language code.
+<br /><b>$lang[1]='euc-jp:jp';</b> &nbsp;&nbsp;&nbsp;where <i>euc-jp</i> is the proper charset for Japanese and <i>jp</i> is 2-letters language code.
+
+<br /><br /><a href="#0">top</a><hr size="1" class="k" />
+</body></html>
