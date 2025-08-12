@@ -1,0 +1,186 @@
+# Base de données PortailPhp
+# phpMyAdmin MySQL-Dump
+# http://www.portailphp.com
+# http://www.yoopla.net/portailphp/
+# Cedric CLAIRE claced@m6net.fr
+# http://phpwizard.net/phpMyAdmin/
+# http://phpmyadmin.sourceforge.net/ (download page)
+# Base de données: `PortailPhp`
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_docs`
+#
+
+CREATE TABLE pphp_docs (
+  DO_uid int(8) NOT NULL auto_increment,
+  DO_date date NOT NULL default '0000-00-00',
+  DO_aut varchar(50) NOT NULL default '',
+  DO_rub varchar(50) NOT NULL default '',
+  DO_suj varchar(50) NOT NULL default '',
+  DO_cont text NOT NULL,
+  DO_lect int(8) NOT NULL default '1',
+  DO_mail varchar(25) NOT NULL default '',
+  PRIMARY KEY  (DO_uid),
+  KEY DO_rub (DO_rub,DO_suj)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_docs_cat`
+#
+
+CREATE TABLE pphp_docs_cat (
+  DOC_uid int(8) NOT NULL auto_increment,
+  DOC_nom varchar(30) NOT NULL default '',
+  PRIMARY KEY  (DOC_uid),
+  KEY DOC_nom (DOC_nom)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_faq`
+#
+
+CREATE TABLE pphp_faq (
+  FA_uid int(8) NOT NULL auto_increment,
+  FA_que varchar(200) NOT NULL default '',
+  FA_rep varchar(200) NOT NULL default '',
+  FA_cat varchar(30) NOT NULL default '',
+  PRIMARY KEY  (FA_uid),
+  KEY FA_que (FA_que,FA_rep)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_faq_cat`
+#
+
+CREATE TABLE pphp_faq_cat (
+  FAC_uid int(8) NOT NULL auto_increment,
+  FAC_nom varchar(30) NOT NULL default '',
+  PRIMARY KEY  (FAC_uid),
+  KEY FAC_nom (FAC_nom)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_file`
+#
+
+CREATE TABLE pphp_file (
+  FI_uid int(8) NOT NULL auto_increment,
+  FI_cat varchar(50) NOT NULL default '',
+  FI_nom varchar(100) NOT NULL default '',
+  FI_titre varchar(100) NOT NULL default '',
+  FI_date date NOT NULL default '0000-00-00',
+  FI_lect int(8) NOT NULL default '0',
+  FI_aut varchar(50) NOT NULL default '',
+  FI_mail varchar(25) NOT NULL default '',
+  PRIMARY KEY  (FI_uid),
+  KEY FI_cat (FI_cat),
+  KEY FI_titre (FI_titre)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_file_cat`
+#
+
+CREATE TABLE pphp_file_cat (
+  FIC_uid int(8) NOT NULL auto_increment,
+  FIC_nom varchar(30) NOT NULL default '',
+  PRIMARY KEY  (FIC_uid),
+  KEY FIC_nom (FIC_nom)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_forum`
+#
+
+CREATE TABLE pphp_forum (
+  id int(11) NOT NULL auto_increment,
+  nom varchar(255) NOT NULL default '',
+  email varchar(255) NOT NULL default '',
+  date_verif datetime NOT NULL default '0000-00-00 00:00:00',
+  date varchar(10) NOT NULL default '',
+  heure varchar(5) NOT NULL default '',
+  texte text NOT NULL,
+  reponse_a_id int(11) NOT NULL default '0',
+  addr varchar(255) NOT NULL default '',
+  lect int(11) NOT NULL default '0',
+  titre varchar(255) NOT NULL default '- no title -',
+  PRIMARY KEY  (id),
+  UNIQUE KEY id_2 (id),
+  KEY id (id)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_liens`
+#
+
+CREATE TABLE pphp_liens (
+  LI_uid int(8) NOT NULL auto_increment,
+  LI_date date NOT NULL default '0000-00-00',
+  LI_aut varchar(50) NOT NULL default '',
+  LI_mail varchar(30) NOT NULL default '',
+  LI_lien varchar(50) NOT NULL default '',
+  LI_rub varchar(50) NOT NULL default '',
+  LI_suj varchar(50) NOT NULL default '',
+  LI_cont varchar(200) NOT NULL default '',
+  LI_clic int(11) NOT NULL default '0',
+  PRIMARY KEY  (LI_uid),
+  KEY LI_uid (LI_uid),
+  KEY LI_suj (LI_suj)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_liens_cat`
+#
+
+CREATE TABLE pphp_liens_cat (
+  LIC_uid int(8) NOT NULL auto_increment,
+  LIC_nom varchar(30) NOT NULL default '',
+  PRIMARY KEY  (LIC_uid),
+  KEY LIC_nom (LIC_nom)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_photos`
+#
+
+CREATE TABLE pphp_photos (
+  PO_uid int(11) NOT NULL auto_increment,
+  PO_code varchar(12) NOT NULL default '0',
+  PO_date date NOT NULL default '0000-00-00',
+  PO_titre varchar(50) NOT NULL default '',
+  PO_text text,
+  PRIMARY KEY  (PO_uid),
+  KEY PO_date (PO_date)
+) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Structure de la table `pphp_user`
+#
+
+CREATE TABLE pphp_user (
+  US_uid int(5) NOT NULL auto_increment,
+  US_nom varchar(60) NOT NULL default '',
+  US_mail varchar(40) NOT NULL default '',
+  US_pseudo varchar(30) NOT NULL default '',
+  US_pwd varchar(100) NOT NULL default '',
+  US_regdate date NOT NULL default '0000-00-00',
+  US_droit varchar(30) NOT NULL default '',
+  US_img varchar(30) NOT NULL default '',
+  US_web varchar(100) NOT NULL default '',
+  PRIMARY KEY  (US_uid),
+  UNIQUE KEY US_pseudo (US_pseudo),
+  KEY US_nom (US_nom)
+) TYPE=MyISAM;
+
+INSERT INTO pphp_user VALUES (1,'Webmaster','webmaster@mail.fr','webmaster','5f4dcc3b5aa765d61d8327deb882cf99','2005-11-01','1','','http://www.portailphp.com/');
