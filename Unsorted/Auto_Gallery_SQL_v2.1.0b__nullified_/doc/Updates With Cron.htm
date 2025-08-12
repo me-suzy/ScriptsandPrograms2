@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0049)http://www.jmbsoft.com/owners/ags/bdocs/cron.html -->
+<HTML><HEAD><TITLE>Updates With Cron</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff>
+<DIV align=center><FONT face=Verdana,Arial size=4><B>Updates With Cron 
+</B><BR><BR>
+<TABLE cellSpacing=0 cellPadding=2 width=650 border=0>
+  <TBODY>
+  <TR>
+    <TD><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Before You Begin</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR><FONT 
+      face=Arial size=2>Before you begin working with cron, it is imparitive 
+      that you have at least a basic understanding of several concepts, and have 
+      the proper access to your server. Without knowing these things, you will 
+      have an extremely difficult time getting the cron scripts to work 
+      properly. <BR><BR>Your server must allow the following: <BR><BR>- Telnet 
+      or SSH access<BR>- crontab access<BR>- Ability to setup multiple cron jobs 
+      <BR><BR>If you are not sure that your hosting company allows the above 
+      access on their servers, contact them before you begin. You will not want 
+      to spend the time getting everything configured, if you do not have the 
+      proper priveleges to run the cron jobs on your server. <BR><BR>You must 
+      understand each of the following: <BR><BR>- Unix commands (cd, chmod, 
+      etc)<BR>- Uploading files in ASCII mode<BR>- Setting variables in perl 
+      scripts<BR>- Editing ASCII text files<BR>- Full Unix directory paths<BR>- 
+      Using telnet or SSH to access your server <BR><BR>If there is anything you 
+      do not understand in the list above, you will need to educate yourself on 
+      that item(s) before you proceed. Our tech support staff will assist you if 
+      you run into problems, however we simply do not have the resources to 
+      educate people about the items above. There are many tutorials available 
+      on the WWW covering most of the items above. Take the time to learn about 
+      them if you don't already understand them. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Crontab Entries</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>An 
+      entry consists of two parts - a time to run, and a command to run. 
+      <BR><BR>The time to run (the first part of the entry) is broken up into 5 
+      fields:<BR>1. minute of the hour <BR>2. hour of the day (on the 24 hour 
+      clock) <BR>3. day of the month <BR>4. month of the year (1 = January, 2 = 
+      February, etc.) <BR>5. day of the week (0 = Sunday, 1 = Monday, 2 = 
+      Tuesday, ..., 6 = Saturday) <BR><BR><BR>A * in one of these fields 
+      indicates that the job should be executed at any or every one of these, so 
+      for instance a * in the month of the year field means that this task 
+      should be carried out every month at the time specified in the other 
+      fields. A * in the day of the week field, when there is something in the 
+      day of the month field, does not mean that this task should be carried out 
+      every day, but rather that it should be carried out on the appointed day 
+      of the month regardless of what weekday it is. Only *s in the day of the 
+      week field, and the day of the month field, and the month of the year 
+      field would indicate a daily task. <BR><BR>Examples:<BR>In the examples, 
+      [command] represents the full path and filename of the file you want to 
+      execute. <BR><BR>The job with this time to run would run every Sunday at 
+      12:20 am. <BR>20 0 * * 0 [command]<BR>This job would run at midnight on 
+      any Friday the 13th. <BR>0 0 13 * 5 [command] <BR><BR>You don't have to 
+      put just one time in a field. This job, for instance, would run every day 
+      at 12:30am, 2:30am, 4:30am, 6:30am, 6:30pm, 8:30pm, and 10:30pm: <BR>30 
+      0,2,4,6,18,20,22 * * * [command] <BR><BR>This one would run every Tuesday 
+      and Friday at 5:30 am: <BR>30 5 * * 2,5 [command] <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Cronfiguring AutoGallery SQL</B> 
+              </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>To 
+      get started you will need to edit the cron.cgi file included with the 
+      AutoGallery SQL distribution. This file can be edited in a text file 
+      editor of your choice. Locate the line that looks like the following: 
+      <BR><BR>$CDIR = '/home/soft/cgi-bin/ags'; <BR><BR>You will need to change 
+      this variable so that it points to the full path to the directory where 
+      you have installed the software. You only need to edit the portion inside 
+      the single quotes. Once you have setup the correct directory path, you can 
+      save this file. Note that if perl is not located at /usr/bin/perl on your 
+      server, you will need to adjust the first line of this file to point to 
+      the correct location of perl on your server. <BR><BR>Next you need to open 
+      the sample cronfile included with the software distribution. The default 
+      setup has the script rebuilding the TGP pages at 8am daily. If you want it 
+      to run at different time than this, you will need to adjust the entries 
+      according to the information provided above. <BR><BR>Next you will need to 
+      change the following portion of each command: <BR><BR>/path/to/cron.cgi 
+      <BR><BR>This will need to be changed so that it points to the cron.cgi 
+      file on your server. If you have any other cron jobs running on your 
+      server, make sure to include those in the cronfile as well. <BR><BR>Once 
+      your cronfile is setup how you want it, you can save that file. Now you 
+      need to upload these two files to your server. They should be uploaded in 
+      ASCII mode to the same directory where the cgiworks.pm and ags.pl files 
+      are located. Once uploaded, change the permissions on the cron.cgi file to 
+      755. <BR><BR>Now you need to telnet (or SSH) into your server, and change 
+      into the directory where you have uploaded cronfile. Once in that 
+      directory, issue the following command: <BR><BR>crontab cronfile 
+      <BR><BR>This will enter all of the commands in cronfile, and the server 
+      will begin executing them at the selected times. To double check your 
+      crontab entries, you can issue the following command (note the character 
+      following the - is a lower case L): <BR><BR>crontab -l <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Testing Your Setup</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>To 
+      test your setup, you will need to login to your server via telnet or SSH. 
+      Once logged in, make sure you are not in the directory where the cron.cgi 
+      file is located. Copy the full command from the cronfile you are using, 
+      but do not include the time settings. For example if your cronfile looks 
+      like this: <BR><BR>0 6 * * * /home/soft/cgi-bin/ags/cron.cgi <BR><BR>You 
+      would run the following command: <BR><BR>/home/soft/cgi-bin/ags/cron.cgi 
+      <BR><BR>Running this command should result in no output, and return you 
+      directly to the command prompt. You can then view your TGP pages to check 
+      the last updated time (use the #%LAST_UPDATE%# template value in your TGP 
+      page template to display it) to make sure they were updated correctly. 
+      </FONT></TD></TR></TBODY></TABLE></FONT></DIV></BODY></HTML>
