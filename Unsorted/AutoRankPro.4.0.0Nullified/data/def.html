@@ -1,0 +1,195 @@
+##
+##  Never edit this file
+##
+
+#################################################################################
+##  Removing any code from this file which creates the link back to CGI Works  ##
+##  is a copyright violation.  If your site is found to have removed the link  ##
+##  your software license will be terminated and the proper authorities will   ##
+##  be contacted.  Do not remove any code that creates the link to CGI Works.  ##
+#################################################################################
+
+
+$HEAD = <<'HEAD';
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <title>Top Sites</title>
+  <style type="text/css">
+  a.black  {
+    color: #000000;
+    text-decoration: none
+  }
+
+  a.black:hover {
+    color: #ff7600;
+    text-decoration: none
+  }
+
+  a.blue {
+    color: #003366;
+    text-decoration: none
+  }
+
+  a.blue:hover {
+    color: #ff7600;
+    text-decoration: none
+  }
+
+  a.orange {
+    color: #ff7600;
+    text-decoration: none
+  }
+
+  a.orange:hover {
+    color: #7d7d7d;
+   text-decoration: none
+  }
+  </style>
+</head>
+<body bgcolor="#ffffff" link="#004080" text="#000000" alink="#ff0000" vlink="#004080">
+
+<div align="center">
+
+
+<table align="center" bgcolor="#000000" border="0" cellpadding="2" cellspacing="0" width="550">
+<tr bgcolor="#004080">
+<td align="center">
+<font face="Verdana" size="2" style="font-size: 11px;" color="#FFFFFF">
+<b>Site Of The Moment</b>
+</font>
+</td>
+</tr>
+<tr bgcolor="#dfdfdf">
+<td align="center">
+<a href="#%SOM_OUT_URL%#" target="_blank">#%SOM_BANNER_HTML%#</a>
+<font face="Verdana" size="2" style="font-size: 11px;">
+<a href="#%SOM_OUT_URL%#" target="_blank" class="blue">#%SOM_TITLE%#</a><br>
+#%SOM_DESCRIPTION%#
+</font>
+</td>
+</tr>
+</table>
+
+
+<br>
+
+<form action="#%CGI_URL%#/search.cgi" method="GET">
+<input type="text" name="key" size="20" style="font-size: 11px; font-family: Verdana">
+<select name="cat" style="font-size: 11px; font-family: Verdana">
+<option value="Overall">Overall</option>
+#%CAT_OPTIONS%#
+</select>
+<input type="submit" value="Search" style="font-size: 11px; font-family: Verdana">
+</form>
+
+<table align="center" border="0" cellpadding="3" cellspacing="0" width="750">
+
+<tr bgcolor="#004080">
+<td align="center">
+<font face="Verdana" size="2" style="font-size: 11px;" color="#ffffff">
+<b>Rank</b>
+</font>
+</td>
+<td align="center">
+<font face="Verdana" size="2" style="font-size: 11px;" color="#ffffff">
+<b>Title and Description</b>
+</font>
+</td>
+<td align="center">
+<font face="Verdana" size="2" style="font-size: 11px;" color="#ffffff">
+<b>In</b>
+</font>
+</td>
+<td align="center">
+<font face="Verdana" size="2" style="font-size: 11px;" color="#ffffff">
+<b>Out</b>
+</font>
+</td>
+</tr>
+HEAD
+
+$FOOT = <<'FOOT';
+</table>
+
+<br>
+
+<font face="Verdana" size="2" style="font-size: 11px;">
+#%MEMBERS%# Sites In Our Database<br>
+Last Updated: #%LAST_RERANK%#<br>
+Next Update: #%NEXT_RERANK%#
+</font>
+
+<br><br>
+
+<font face="Verdana" size="2" style="font-size: 11px;">
+<b>
+<a href="#%CGI_URL%#/accounts.cgi" class="orange">Add Account</a> |
+<a href="#%CGI_URL%#/accounts.cgi?login" class="orange">Edit Account</a>
+</b>
+</font>
+
+</div>
+
+<br><br>
+
+FOOT
+
+$FILL = <<'FILL';
+<tr bgcolor="#%ROW_COLOR%#">
+<td align="center">
+<font face="Verdana" size="2">
+<b>#%OVERALL_RANK%#</b>
+</font>
+</td>
+<td align="center" colspan="4">
+<font face="Verdana" size="2">
+<b><a href="#%CGI_URL%#/accounts.cgi" class="blue">Add Your Site!</a></b>
+</font>
+</td>
+</tr>
+FILL
+
+$TEMP = <<'TEMP';
+<tr bgcolor="#cccccc">
+<td width="8%" align="center">
+<font face="Verdana" size="2">
+<b>#%OVERALL_RANK%#</b> #%MOVE_ICON%#
+</td>
+<td width="64%">
+<font face="Verdana" size="#%FONT_SIZE%#">
+<b><a href="#%OUT_URL%#" class="blue" target="_blank">#%TITLE%#</a></b>
+</font>
+</td>
+<td width="10%" align="center">
+<font face="Verdana" size="2">
+#%HITS_IN%#
+</font>
+</td>
+<td width="10%" align="center">
+<font face="Verdana" size="2">
+#%HITS_OUT%#
+</font>
+</td>
+</tr>
+<tr bgcolor="#efefef">
+<td align="center">
+#%NEW_ICON%#
+#%ICONS%#
+</td>
+<td>
+<a href="#%OUT_URL%#" class="blue" target="_blank">#%BANNER_HTML%#</a>
+<font face="Verdana" size="2">
+#%DESCRIPTION%#
+</font>
+</td>
+<td colspan="2">
+<font face="Verdana" size="1" color="#555555">
+<b>Category:</b> <a href="#%CAT_PAGE_URL%#" class="orange">#%CATEGORY%#</a><br>
+<b>Previous Rank:</b> #%P_ALL_RANK%#
+</font>
+</td>
+</tr>
+TEMP
+
+1;
