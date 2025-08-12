@@ -1,0 +1,473 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>D.E. Classifieds Documentation - Html Templates</TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+
+<STYLE TYPE="text/css">
+ A.functions{text-decoration:none; }
+ A:Hover.functions{text-decoration:none; color:#FF0000; }
+</STYLE>
+
+</HEAD>
+
+<BODY>
+
+<TABLE WIDTH="500" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+<TR>
+<TD VALIGN="TOP">
+
+<A NAME="top"></A>
+<a href="index.html">Main Page</a>
+<BR>
+<BR>
+<a href="#templateUse">Creating html templates(For Html developers)</a>
+<BR>
+<a href="#templateDev">How the template system works(For PHP developers)</a>
+<BR>
+<BR>
+<A NAME="templateUse"></a>
+<FONT SIZE="5" FACE="Arial">
+<U><B>Creating Html Templates</B></U>
+</FONT>
+<BR>
+<BR>
+<!--<UPDATE>--> 
+There are a few basic things you need to do in order to create a new html template. 
+<BR>
+<BR>
+1. Create the template page. 
+<BR>
+2. Make sure your your template file has a ".php" extension.
+<BR>
+3. Put the new template file in the "templates" directory.
+<BR>
+4. make the appropriate changes in the "cnfg_vars.php" file.
+<BR>
+<BR>
+<U><B>Creating the template page</B></U>
+<BR>
+Create your html template file, insert the php tags that are listed below where 
+you want the associated behavior. 
+<BR>
+Make sure that the template file has a .php extension.  
+Your template file should be named something like myTemplate.php as opposed 
+to myTemplate.html or myTemplate.htm . This is really a php file! But for all intents and purposes you can regard it as an html file with a few special tags in it and a .php extension in the name.
+<BR>
+<BR>
+<U><B>Make sure your template file has a ".php" extension</B></U>
+<BR>
+This has already been covered, but it can't be stressed enough.
+<BR>
+<BR>
+<U><B>Put the new template file in the "templates" directory</B></U>
+<BR>
+Make sure your new template file is in the "templates" directory which 
+you should have already defined the path to in "path_cnfg.php".
+<BR>
+<BR>
+<U><B>Make the appropriate changes in the "cnfg_vars.php" file</B></U>
+<BR>
+Once you have created a new html template you need to let D.E. Classifieds 
+know to use it.  You do this by going into "cnfg_vars.php" and changing 
+the value of the appropriate variable. 
+<BR>
+All variables pertaining to template file names will be prefixed with "tmplt_" .
+After the "tmplt_" prefix will be the name of one of the pages of the application.  
+<BR>
+For instance "add_item.php" is the name of the page that D.E. Classifieds uses 
+when someone choose to add an item to the database.  "add_item.php" is not the template file, but the actual php that is invoked in the application and that does most of the work.  If you wanted to change the look of "add_item.php" you 
+would set "tmplt_add_item" to the name of your new template files.
+<BR>
+<BR>
+Example:
+<BR>
+$cnfg['tmplt_add_item'] = "myNewTemplate.php"; 
+<BR>
+<BR>
+If you wanted to change the look of your home page you would change the 
+value of "tmplt_index".
+<BR>
+<BR>
+Example:
+<BR>
+$cnfg['tmplt_index'] = "homePageTemplate.php";
+<BR>
+<BR>
+If you want to change which template file a particular page of the application 
+uses, but aren't sure what the name of the page is.  Just navigate through the site to the page in question and look in the location bar of your browser. 
+The name of the page will be something like index.php or add_item.php.
+If there is a question mark and stuff following it, don't worry about that stuff, it's extra stuff that the application uses.  The name of the file comes before 
+the question mark.  
+<BR>
+<BR>
+Example:
+<BR>
+http://myclassifiedsite.com/classifieds/search.php?doSearch=1 
+<BR>
+<BR>
+If the above is what you see in the location bar, then the name of the file for 
+the current page is "search.php". 
+<BR>
+<BR>
+Now you should know the basics of creating a template file.
+<BR>
+<BR>
+<BR>
+<U><B>Using the predefined tags</B></U>
+<BR>
+These are the tags that the application uses to actually do stuff.
+If you create a template file but don't put any of these tags in it, 
+it will just sit there and not do anything but display the html that you 
+put in it.
+<BR>
+Most of these tags are optional, but at least one is mandatory, that is " &lt;?php content($content); ?&gt; ".
+The quotation marks are only used to distinguish the tag from the rest of the words in the sentence.  Quotation marks should not be present in actual usage.
+<BR>
+<BR>
+<U><B>A brief description of how the " &lt;?php content($content); ?&gt; "  tag works.</B></U>
+<BR>
+What the " &lt;?php content($content); ?&gt; " does depends on which page is 
+currently being served.  
+If you are at the home page then the  " &lt;?php content($content); ?&gt; " tag will display the 
+
+<BR>
+
+Ideally, you will be able to copy and paste 
+the tags below into your html templates.  
+You may have to copy the tags that are lower down on the 
+page rather than copying the linked tags.  Some text 
+editors may paste the linked tags as underlined html links.
+Either way, you should copy the tag that you want to use directly 
+from this page.  
+<BR>
+<BR>
+</TD>
+</TR>
+</TABLE>
+<!--</UPDATE>-->
+<BR>
+<BR>
+
+<!--<UPDATE>-->
+<TABLE WIDTH="100%" CELLPADDING="10">
+<TR>
+<TD VALIGN="TOP">
+<A NAME="templateTags"></A>
+<NOBR>
+<a href="#php main_css" CLASS="functions">&lt;?php main_css(); ?&gt;</a>
+<BR>
+<BR>
+<a href="#main_header" CLASS="functions">&lt;?php main_header(); ?&gt;</a>
+<BR>
+<BR>
+<a href="#top_nav" CLASS="functions">&lt;?php top_nav(); ?&gt;</a>
+<BR>
+<BR>
+<a href="#display_cats_main" CLASS="functions">&lt;?php display_cats_main(); ?&gt;</a>
+<BR>
+<BR>
+<a href="#content" CLASS="functions">&lt;?php content($content); ?&gt;</a>
+<BR>
+<BR>
+
+</TD>
+
+<TD VALIGN="TOP">
+
+<NOBR>
+<a href="#log_in_form_and_status" CLASS="functions">&lt;?php log_in_form_and_status(); ?&gt;</a>
+<BR>
+<BR>
+<a href="#log_in_form" CLASS="functions">&lt;?php log_in_form(); ?&gt;</a>
+<BR>
+<BR>
+<a href="#log_in_status" CLASS="functions">&lt;?php log_in_status(); ?&gt;</a>
+<BR>
+<BR>
+<a href="#main_footer" CLASS="functions">&lt;?php main_footer(); ?&gt;</a>
+<BR>
+</NOBR>
+
+</TD>
+</TR>
+</TABLE>
+
+ <!--</UPDATE>-->
+
+
+
+<a name="#php main_css"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php main_css(); ?&gt;
+<BR>
+<BR>
+This is where the CSS for the page is inserted. 
+This should always be present in the template file unless 
+you've made the appropriate changes in other parts of the script. 
+Various parts of the application depend on values that are defined in 
+CSS that is inserted here.  
+If you know what you are doing it would be best to put this CSS in it's own file and then call it using something similar to:
+<BR>
+&lt;LINK REL=StyleSheet HREF="style.css" TYPE="text/css"&gt;
+<BR>
+Not cluttering up the top of your html document could help you out in with the search engines.
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<a name="#main_header"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php main_header(); ?&gt;
+<BR>
+<BR>
+This is the stuff that will appear at the top of the page.
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<a name="#top_nav"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php top_nav(); ?&gt;
+<BR>
+<BR>
+These are the links that the user clicks when they want to perform an action, for instance "edit", "search", "register", etc. .
+It is also where the "home" link resides. 
+If you know html you can go into this function and change it to suit your needs.  Then in your template file you can insert this function call to put the links wherever you want in the page.
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<a name="#display_cats_main"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php display_cats_main(); ?&gt;
+<BR>
+<BR>
+This is where the links to the top-level categories are displayed.
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<a name="#content"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php content($content); ?&gt;
+<BR>
+<BR>
+This is where the main content for any particular page is displayed. 
+The content depends on which page is currently being displayed. 
+If you are on the search page, then this is where the search results are displayed.  If you are browsing ads, this is where the results are displayed.  If you are browing categories, it's where the sub-categories are displayed. 
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<a name="#log_in_form_and_status"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php log_in_form_and_status(); ?&gt;
+<BR>
+<BR>
+Shows the login form when the user is not logged in.
+<BR>
+Shows the "logged in as" message when the user is logged in.
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<a name="#log_in_form"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php log_in_form(); ?&gt;
+<BR>
+<BR>
+Shows the login form only.
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<a name="#log_in_status"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php log_in_status(); ?&gt;
+<BR>
+<BR>
+Shows "logged in as" message when user is logged in.
+<BR>
+When user is not logged in it shows nothing.
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<a name="#main_footer"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+&lt;?php main_footer(); ?&gt;
+<BR>
+<BR>
+This is the stuff that will appear at the bottom of the page.
+<BR>
+<BR>
+<A href="#top">Top of page</A>
+<BR>
+<BR>
+<a href="#templateTags">Template Tags</a>
+<BR>
+<BR>
+<HR WIDTH="500" ALIGN="LEFT">
+<BR>
+<BR>
+<A NAME="templateDev"></a>
+<FONT SIZE="5" FACE="Arial">
+<U><B>How the template system works</B></U>
+</FONT>
+<BR>
+<BR>
+I thought the best thing to do was to use an html template file instead of having the html in every file of the application.
+<BR>
+The way I decided to handle it was to do all the computing that I needed to do at the top of each file.  And then include the html template file at the bottom.
+<BR>
+When I want to output something, I put the code in an array that will be eval()'d inside of a function named "content".
+The "content" function is in "func_common.php", but it is called from the template file.
+<BR>
+When the "content" function is called, the $content array is passed to it. 
+It is passed by reference. 
+<BR>
+The name of the array that holds the code to be eval()'d is <!--<UPDATE>--> "$content" .<!--</UPDATE>-->
+<BR>
+Since the code is eval()'d inside of a function, only variables within the function's scope are available.  
+The "content" function brings the $gbl array into its scope, so you can put any 
+values in there that need to be evaluated.
+<BR>
+Example:
+<BR>
+$gbl['content']['message'] = 'this is a message.';
+<BR>
+$content[] = 'echo "$gbl['content']['message']";'; 
+<BR>
+<BR>
+If you want to direct output to more than one section of the page from the html file, you can simply create additional arrays 
+and call the "content" function from another part of the page, 
+making sure to pass the appropriate array variable to the function.
+<BR>
+<BR>
+For example:
+<BR>
+$content[] = 'echo "this is content in one section of the page.";'; 
+<BR>
+$content2[] = 'echo "this is content in another section of the page.";';
+<BR>
+<BR>
+content($content);// evals code in $content
+<BR>
+content($content2); // evals code in $content2
+<BR>
+<BR>
+Just remember that array elements are being eval()'d one at a time.  So "echo" statements or some other types of operations should not span more than one array element.  Every array element should be a piece of self contained code.  
+<BR>
+<BR>
+If you need to do something beyond printing a simple string, you should probably make a function for it, then just put a function call in the $content array.
+<BR>
+<BR>
+For example:
+<BR>
+$content[] = 'printMessage();' ;
+<BR>
+<BR>
+Just make sure that the current file has access to the "printMessage()" function.
+<BR>
+<BR>
+If you are going to call a function from the 
+<!--<UPDATE>--> "content"<!--</UPDATE>--> function that needs to pass variable arguments, you should put the values in $gbl elements and pass the $gbl elements as the argument.
+<BR>
+<BR>
+Example:
+<BR>
+$gbl['content']['arg1'] = 'this is arg1';
+<BR>
+$gbl['content']['arg2'] = 'this is arg2';
+<nobr>$content[] = 'printMessage($gbl[\'content\'][\'arg1\'], $gbl[\'content\'][\'arg2\']);' ;</nobr>
+<BR>
+<BR>
+<BR>
+By default, the application uses one template file named 
+<!--<UPDATE>-->"html_template1.php"<!--</UPDATE>--> .
+This is actually a php file, and should keep the ".php" extension.  
+Since the sole purpose of this file is to manage the look of the output, which will pretty much all be html after it gets to the browser, I thought I'd regard it as an "html template".
+<BR>
+The template file itself calls some functions from 
+<!--<UPDATE>-->"func_common.php"<!--</UPDATE>-->.  
+<BR>
+These functions deal with getting info from the database for category navigation, and other things.
+<BR>
+<BR>
+You <U><B>DON'T</B></U> have to limit yourself to using one template file.
+<BR>
+For example say you wanted to make a different template for the search page.  
+<BR>
+In <!--<UPDATE>-->"search.php"<!--</UPDATE>--> you would specify the name of the template file in 
+the require statement.
+<BR>
+<BR>
+Example:
+<BR>
+<NOBR>
+<!--<UPDATE>--> 
+require_once(path_cnfg('pathToTemplatesDir').'/my_new_template.php'); 
+</NOBR>
+<BR>
+<BR>
+The value that is returned from path_cnfg('pathToTemplatesDir') is the path 
+to the "templates" directory that you set in the "path_cnfg.php" file. 
+<BR>
+A slash is not included at the end of the returned value, so you should 
+start the name of your template with a slash(/).
+<!--</UPDATE>-->
+<BR>
+<BR>
+<A HREF="#top">Top of page</A>
+<BR>
+<BR>
+<a href="index.html">Main Page</a>
+<BR>
+<BR>
+</BODY>
+</HTML>
