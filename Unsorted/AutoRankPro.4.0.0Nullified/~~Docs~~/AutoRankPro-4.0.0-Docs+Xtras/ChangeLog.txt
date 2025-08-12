@@ -1,0 +1,158 @@
+3.0.5 -> 4.0.0
+--------------
+- Added ability to download and serve banners from your server
+- Added ability to check banner dimensions and filesize
+- Added option to fill in empty ranks with links to accounts.cgi
+- Added ability to split category ranks into multiple pages
+- Added option to review all account editing before displaying
+- Improved cheat protection
+- Added ability to ban IP addresses from adding accounts
+- Added language file for easy translation of error messages
+- Added ability to reset the total hit counts
+- Added built in template file editor
+- Improved search engine and random site link
+- Added a check for available disk space during file writes to prevent data loss
+- Fixed bugs with the inactive count and database restore functions
+- Added ability to ban special characters (ie *, %, #, etc)
+- More user friendly initialization and setup scripts for first time installers
+- Easier software installation for first time installers
+- Added a unified cron script and made cron setup easier
+- Added ability to do database backups through cron
+- General code cleanup and optimizations
+- Added a "jump to page" option when viewing all accounts
+- Made template values more user friendly, and unified them accross all templates
+
+- Patches since 4.0.0b release
+    - Fixed bad category forward URL created in rankem.cgi
+    - Fixed category check when no categories exist
+    - Delete member banners if account is rejected
+    - Fixed banner width checking bug
+    - Added a check for invalid . in file extension setup field
+
+
+
+3.0.4 -> 3.0.5
+--------------
+
+- Fixed the "Banned Word ''" error message some were getting
+- Fixed timezone offset problem when viewing account stats
+- Added alternating row color capabilities with #%ROWC%# value
+- search.cgi now properly handles non-alphanumeric characters
+- Added support for blank banner heights and widths
+- Added #%CATL%# ranking page template value which provides URL to site's category ranking page
+- Added check for valid hit ratio when editing accounts through admin.cgi
+- Added check for valid font sizes setting in setup.cgi
+
+3.0.3p -> 3.0.4
+---------------
+
+- Added workaround for browser problem which prevented use of &nbsp; in ranking page templates
+- Added #%IU%#, #%SES%#, #%ID%# values to gateway template
+- Added a check for spaces in setup.cgi fields
+- Added duplicate URL checking when reviewing new accounts
+- SMTP code updated and now should work with all SMTP servers
+- <textarea> and all other HTML tags can now be used in ranking page templates
+- Duplicate account checking made optional
+- Added a check to see if data/html directory and setup.cgi HTML directory are the same
+
+3.0.3 -> 3.0.3p
+---------------
+
+- Added initial support for protecting against proxy cheaters
+- PHP, mod_perl, and C add ons updated with proxy cheat protection
+
+3.0.2 -> 3.0.3
+--------------
+
+- Fixed bug in the rerank function that could cause problems with category rankings
+- Updated sort.pl sort by username function
+- Fixed height/width bug when editing an account awaiting approval
+- Remove | from fields when editing accounts in admin
+- Replace < and > when editing an acount awaiting approval
+- Added #%SORT%# value to ranking page template
+- Select Hits In as default ranking option first time setup.cgi is run
+- Members can now access banner farm while site is in the review database
+
+3.0.1 -> 3.0.2
+--------------
+
+- Fixed HTML URL typo in setup.cgi template
+- Fixed "username too short" when editing account
+- Fixed CGI Error messages on session files when logging into admin.cgi
+- Remove expired session files at reranks and resets
+- Fixed sort.pl category bug when sorting by ID
+- Fixed accounts.cgi not updating the .cnt file
+
+3.0.0 -> 3.0.1
+--------------
+
+- Fixed typo in administrative help files for sending email
+- Added option to forward surfers to category pages
+- Added ability to edit the banner alt tag
+- Updated the edit gateway page to display the $DDIR value
+- Default banner now appears for upgraded accounts
+- Added note in init.cgi about passwords not working
+- Fixed accounts.cgi user defined fields bug
+- Added #%CATP%# template value to header/footer of ranking pages
+- Added #%SOMCAT%# template value for site of the moment
+
+3.0.0b -> 3.0.0
+---------------
+
+- Added a note in init.cgi with info about 500 server error causes
+- User defined fields remain the same if member edits account and
+  the field has been removed by the administrator
+- Suspended sites will no longer be displayed on index.cgi, during
+  a search, and will not be selected by random.cgi
+- Fixed password problem when reranking list from admin script
+- Replaced _new with _blank in default template
+
+3.0.0a3 -> 3.0.0b
+-----------------
+
+- Added #%CAT%# template value to the _account_edit.htmlt page
+- Removed \n and \r from all submitted fields in accounts.cgi
+- Create stats file on setup so no error is reported
+- Added ability to remove multiple items from blacklist at same time
+- Added a check to make sure no blank lines are entered in black list
+- Fixed search db corruption when reviewing accounts
+- admin.cgi now updates both .htaccess and normal passwords during
+  a password change. This makes sure the administrative interface is
+  protected if the webmaster uploads both copies of admin.cgi
+- Added a check to make sure there are not spaces in the category list
+- Added database backup reminder in administrative script
+- Category remains the same if member edits account and the category
+  field has been removed by the administrator
+- help.dat file completed (built in admin help now works)
+
+3.0.0a2 -> 3.0.0a3
+------------------
+
+- Fixed setup.cgi bug that prevented changing list split value
+- Fixed start file; added newline so database backup works
+- Fixed account statistics not using ratio
+- Began adding support for non-htaccess admin and setup scripts
+- Fixed mail member function on dislpay member details page
+
+3.0.0a1 -> 3.0.0a2
+------------------
+
+- Updated rankem.cgi IP logging code for NT/2000 servers
+- Updated the set_cookie function in rankem.cgi for NT/2000 servers
+- Updated cgiworks.pm dbinsert for NT/2000 servers
+
+3.0.0a -> 3.0.0a1
+-----------------
+
+- Fixed the upgrade scripts so they create dbs for random.cgi and search.cgi
+- Fixed showing of down image when a site had no previous ranking
+- Updated cookie setting code
+- Updated the IP log clearing code in admin.cgi
+- Updated file locking in rankem.cgi
+- Added javascript on gateway to break out of frames automatically
+- Fixed index.cgi looking in the wrong directory for the search database
+
+3.0.0a
+------
+
+- Initial public release of 3.x.x series
