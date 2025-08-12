@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>TGPDevil Thumbnail Preview Mod Installation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<div align="center"> 
+  <p><b><font face="Verdana">TGPDevil Thumbnail Preview Add-On</font></b></p>
+  <p align="left"><b><font face="Verdana" color="#FF0000">Setup</font></b></p>
+  <p align="left"><font face="Verdana" color="#000000"> Setup is pretty simple. 
+    First, upload the scripts included in the .zip file replacing the old scripts. 
+    Replace your old submit form and partner submit form with the forms included 
+    in the .zip. Make sure the scripts permissions are set to 755. </font></p>
+  <p align="left"><font face="Verdana" color="#000000">Set the variables in the 
+    config file. There are a few new variables in the config file:</font></p>
+  <p align="left"><font face="Verdana" color="#FF0000">$mondir</font><font face="Verdana" color="#000000"> 
+    - This is the full system path of the directory you would like the thumbs 
+    to be uploaded to.<br>
+    <font color="#FF0000">$monurl</font> - This is the URL of the directory you 
+    set with $mondir.<br>
+    <font color="#FF0000">$maxsize</font> - This is the max size of the image 
+    (in bytes)that you will allow to be uploaded. The script will count everything 
+    submitted to it INCLUDING the text from the fields the submitter filled out 
+    so I would recommend adding about 1024 (1K) to whatever value you have chosen.</font></p>
+  <p align="left"><font face="Verdana" color="#000000">Now call install.cgi in 
+    your browser. You should be provided with a message that the database setup 
+    was completed successfully.</font></p>
+  <p align="left"><font face="Verdana" color="#FF0000">Congratulations! The hardest 
+    part is over with.</font></p>
+  <p align="left"><font face="Verdana" color="#000000">Log in to your admin panel 
+    and go to your template management area. You will notice a new template in 
+    the list called &quot;Thumbnail Image Preview Template&quot;. This is basically 
+    the same as the regular line template as it controls the way your image appears 
+    on the generated page. Below is an example of a good thumbnail image preview 
+    template. </font></p>
+  <p align="left"><font face="Verdana" color="#000000"> 
+    <textarea name="textfield2" rows="4" cols="100">&lt;a href="#URL#"&gt;&lt;img src="#IMGURL#" border="0"&gt;&lt;/a&gt;</textarea>
+    </font></p>
+  <p align="left"><font face="Verdana" color="#000000">Obviously #URL# will be 
+    replaced by the URL to the gallery and #IMGURL# will be replaced by the URL 
+    to the thumbnail on your server.<br>
+    </font></p>
+  <p align="left"><font face="Verdana" color="#000000"><font color="#FF0000">You 
+    will need to save a thumbnail image preview template before you can continue!</font></font></p>
+  <p align="left"><font face="Verdana" color="#000000">Last step!</font></p>
+  <p align="left"><font face="Verdana" color="#000000">Edit your main gallery 
+    page template and place the tag <b><font color="#FF0000">#-THUMB-#</font></b> 
+    wherever you would like a thumbnail to appear. Thumbnails are ordered in the 
+    same way as regular text links. By date, rank, and order submitted. Newer/higher 
+    ranked thumbs appear higher on the days listings.</font></p>
+</div>
+</body>
+</html>
