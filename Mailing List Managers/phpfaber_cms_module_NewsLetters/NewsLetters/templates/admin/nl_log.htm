@@ -1,0 +1,66 @@
+<form name="frm" method="post" action="##REQUEST_URI##">
+<table width="100%">
+ <tr>
+  <td>
+   <table width="100%">
+    <tr>
+     <td><h3>##LNG['_PAGE_TITLE']##</h3></td>
+     <td nowrap width="1%" valign="top" align="right">##ADM_PATH##</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td width="100%" valign="top" align="right">
+
+   <table border="0" cellPadding="4" cellSpacing="1" width="90%" align="center">
+    <tr>
+     <td colspan="4" align="right"><b>##LNG['_TBL_NLLOG_SHOWNL']##</b>##mlist##</td>
+    </tr>
+    <tr valign="middle">
+     <td width="3%"><b>#</b></td>
+     <td width="3%">&nbsp;</td>
+     <td width="3%">&nbsp;</td>
+     <td width="91%"><b>##LNG['_TBL_NLLOG_DETAILS']##</b></td>
+    </tr>
+    <tr>
+     <td colspan="4"><hr color="#" size="1" /></td>
+    </tr>
+    
+    <!-- LOOP letters -->
+    <tr valign="middle">
+     <td align="center" valign="top" width="3%">##letters['num']##</td>
+     <td align="center" valign="top" width="3%">
+      <input type="checkbox" name="chk_id[]" value="##letters['id']##" />
+     </td>
+     <td align="center" valign="top" width="3%">
+      <a href="##URL_MOD_NAME##&amp;action=nl_view&amp;id=##letters['id']##"><img src="##URL_IMG##/icons/edit.gif" width="16" height="16" border="0" alt="##LNG['_TBL_NLLOG_VIEW']##" /></a>
+     </td>
+     <td align="left" valign="top" width="91%">
+      <b>##LNG['_TBL_NLLOG_MLNAME']##:</b> ##letters['name']##<br />
+      <b>##LNG['_TBL_NLLOG_DATE']##:</b> ##letters['date']## &nbsp; <b>##LNG['_TBL_NLLOG_HTML']##?</b> ##letters['is_html']##<br />
+      <b>##LNG['_TBL_NLLOG_SUBJECT']##:</b> ##letters['subj']##<br />
+      <b>##LNG['_TBL_NLLOG_AMOUNT']##:</b> ##letters['amount']## &nbsp; 
+      <b>##LNG['_TBL_NLLOG_STATUS']##: <font color=red>##letters['status']##</font></b>&nbsp;
+      <a href="##URL_MOD_NAME##&amp;action=nl_add&amp;likeid=##letters['id']##&amp;mlist_id=##letters['list_id']##" class="txt10">##LNG['_TBL_NLLOG_CLIKE']##</a>
+      <hr color="#" size="1" />
+     </td>
+    </tr> 
+    <!-- /LOOP -->
+
+   </table>
+
+   <center>
+   <p>
+   <!-- IF ##cron_ok## -->
+   <input type="submit" name="mail_now" value="##LNG['_TBL_NLLOG_SUBM_MAILNOW']##" onclick="return(confirm('##LNG['_TBL_NLLOG_STARTMAIL']## ?'))" /> 
+   <!-- ENDIF -->
+   <input type="submit" name="submdel" value="##LNG['_BTN_DELETE']##" onclick="return(confirm('##LNG['_TBL_NLLOG_DELETE']## ?'))" />
+   <input type="reset" value="##LNG['_BTN_RESET']##" />
+   <!-- IF ##nav## --><p>##nav##</p><!-- ENDIF -->
+   </center>
+
+  </td>
+ </tr>
+</table>
+</form>
