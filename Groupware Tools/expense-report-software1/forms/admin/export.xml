@@ -1,0 +1,78 @@
+<form>
+	<title>Export Expenses</title>
+	<action>index.php?sub=export&action=store</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<save onclick="" button="return">
+			<location>index.php?sub=reports&action=details&report_id={PROJECT}&status={STATUS}</location>
+		</save>
+
+
+		<return onclick="" button="save">
+			<location>javascript:document.forms[0].submit();</location>
+		</return>
+
+	</buttons>
+
+	<vars>
+		<project import="$_GET[expense_report] ? $_GET[expense_report] : $_POST[expense_report]" type="eval" />
+		<status import="$_GET[status] ? $_GET[status] : $_POST[status]" type="eval" />
+	</vars>
+
+	<fields>
+
+
+		<report_id type="droplist" empty="true" required="true" validate="A:1:1000">
+			<title>Report</title>
+			<relation table="reports" id="report_id" text="report_name" />
+		</report_id>
+
+		<date_start type="date" now="true">
+			<title>From Date</title>
+			<description>Select the beginning date for export.</description>
+
+			<fields>
+				<month format="int" default="now" />
+				<day format="int" default="now" />
+				<year from="2004" to="2010" default="now"/>
+			</fields>
+		</date_start>
+
+
+		<date_end type="date" now="true">
+			<title>To Date</title>
+			<description>Select the end date for export.</description>
+
+			<fields>
+				<month format="int" default="now" />
+				<day format="int" default="now" />
+				<year from="2004" to="2010" default="now"/>
+			</fields>
+		</date_end>
+
+
+		<status type="droplist" title="Expenses Status">
+			<options>
+				<option name="0">[ all ]</option>
+				<option name="1">approved</option>
+				<option name="2">not approved</option>
+				<option name="3">pending</option>
+				<option name="4">other</option>
+			</options>
+		</status>
+
+		
+
+
+	</fields>
+</form>
