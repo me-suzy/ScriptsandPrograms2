@@ -1,0 +1,128 @@
+<p align="center"><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><b> 
+  <?
+$pass = is_logged($session_id);
+
+if ($pass == "N") {
+include("member_login_1.html");
+} elseif($pass =="Y") {
+$account_id  = get_account_id($session_id);
+
+
+
+?>
+  </b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"> 
+  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+  </b></font> </p>
+<form name="form1" method="post" action="">
+  <b><font face="Verdana, Arial, Helvetica, sans-serif">Your Billing History</font></b><font face="Verdana, Arial, Helvetica, sans-serif"><b>:</b></font> 
+  <br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+
+  echo show_billing_list(get_account_id($session_id),$billed_id);
+  ?>
+  <input type="submit" name="Submit" value="Details -&gt;">
+  <input type="hidden" name="page" value="billing_details">
+  <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+  </font></b> 
+</form>
+<br>
+<p align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <?
+if (isset($billed_id))  {
+?>
+  </font></b> <font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b>
+  <?
+	$db = new ps_DB;
+	$acct = get_account_id($session_id);
+	$q = "SELECT * FROM billed WHERE billed_id='$billed_id' AND billed_account_id='$acct'"; 
+	$db->query($q);
+
+	$db->next_record();
+		if ($db->num_rows()=="0") {
+		echo "<BR><BR><B>You do not have permission to view this record!</B>";
+		} else {
+?>
+  </b></font><font face="Verdana, Arial, Helvetica, sans-serif"><b><font size="3" color="#990000">Billing 
+  Details</font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#990000"><b>:</b></font> 
+</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="1">
+  <tr> 
+    <td> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="2">
+              <tr> 
+                <td width="189"> 
+                  <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Charge 
+                    Type :</font></b></div>
+                </td>
+                <td width="442"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font size="2"> 
+                  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <?$t=$db->f("billed_type");
+if($t=="1") { echo "Recurring Hosting Charge"; }
+if($t=="2") { echo "Domain Renewal Charge"; }
+if($t=="3") { echo "Charge for Order No." . $db->f("billed_order_id"); }?>
+                  </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b> 
+                  </font></font></font></font></b></font></td>
+                <td width="325">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td width="189"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Date 
+                  Billed:</font></b></td>
+                <td width="442"><font size="-1" face="ARIAL,HELVETICA"> </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <?$db->p("billed_date"); ?>
+                  </font></font></font></font></b> </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></td>
+                <td width="325">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td width="189"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Amount 
+                  Billed:</font></b></td>
+                <td width="442"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <a href="members.php?page=domains&session_id=<? echo $session_id ?>&domain_id=<? echo $db->f("billed_membership_id"); ?>"> 
+                  </a><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+                  <?
+echo setup("currency");
+ $db->p("billed_amount"); ?>
+                  </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></td>
+                <td width="325">&nbsp;</td>
+              </tr>
+              <tr>
+                <td width="189"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <?if (($t=="1") || ($t=="2")) {?>
+                  </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Domain 
+                  Billed: </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <?} else {?>
+                  </font></font></font></font><font size="1" color="#000000">Order 
+                  No:</font><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <?}?>
+                  </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></b></td>
+                <td width="442"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="members.php?page=domains&session_id=<? echo $session_id ?>&domain_id=<? echo $db->f("billed_membership_id"); ?>"> 
+                  <?
+				  if (($t=="1") || ($t=="2")) {
+ echo print_domain_name($db->f("billed_membership_id"));
+} else {
+?>
+                  </a><a href="members.php?page=orders_view&order_id=<?  $db->p("billed_order_id") ?>&session_id=<? echo $session_id; ?>">View 
+                  Order</a></font></font></font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                  <? } ?>
+                  </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></b></font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></td>
+                <td width="325">&nbsp;</td>
+              </tr>
+            </table>
+            <font face="Verdana, Arial, Helvetica, sans-serif" color="#CC0000"></font></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+<? 
+
+}
+}
+}
+?>
+</font><font color="#666666"> </font></b></font> <br>
