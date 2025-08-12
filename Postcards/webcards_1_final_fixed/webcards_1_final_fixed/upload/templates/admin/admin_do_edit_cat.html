@@ -1,0 +1,38 @@
+<form action="{{admin_script}}?act=category&amp;what=finaleditcat&amp;s={{sess}}" method="post">
+
+<span class="title">||edit_cat||</span><span align="right"><a href="javascript:popHelp('edit_cat', '{{sess}}');"><img border="0" style="cursor:help;" src="./site_images/help.gif" /></a></span><br /><br />
+
+<table width="100%" cellpadding="15" cellspacing="2" class="config">
+
+<input type="hidden" name="id" value="{{cat_id}}" />
+{{msg}}
+<tr>
+<td colspan="2" class="theader">
+||curr_editing|| {{cat_name}} (||id||: {{cat_id}})
+</td>
+</tr>
+<tr>
+<td width="50%" class="ad_row">
+||cat_name||:
+</td>
+<td width="50%" class="ad_row">
+<input type="text" name="title" value="{{cat_name}}" size="50" />
+</td>
+</tr>
+
+<tr>
+<td width="50%" class="ad_row">
+||cat_desc|| ||new_lines_converted|| &lt;br /&gt;:
+</td>
+<td width="50%" class="ad_row">
+<textarea name="description" cols="50" rows="8">{{cat_description}}</textarea>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="ad_row">
+<input type="submit" value="||edit_cat||" />
+</td>
+</tr>
+</table>
+</form>
