@@ -1,0 +1,48 @@
+<TABLE border="0" width="100%" cellspacing="0">
+<tr>
+
+<td><b><a href="http://powerdev.com.ru/products/encapsgallery/" style="text-decoration: none;">EncapsGallery</a></b></td>
+
+<td align="right" valign="bottom">
+|
+<?
+//echo "$page";
+$html["links"] = array(
+		array("title"=>"Images list","href"=>"gallery.php",'page'=>'gallery.php'),
+		//array("title"=>"Show custom","href"=>"gallery_custom.php?action=show_custom",'page'=>'gallery_custom.php'),
+		array("title"=>"Categories","href"=>"gallery_cats.php",'page'=>'cats.php'),
+		array("title"=>"Scan for new images","href"=>"gallery_scan_rwx.php",'page'=>'gallery_scan_rwx'),
+		array("title"=>"Config","href"=>'gallery_cfg.php','page'=>'gallery_cfg.php'),
+		array("title"=>"Reinstall","href"=>'gallery_install.php','page'=>'install.php'),
+//		array("title"=>"Log off","href"=>'../user.php?uaction=user_logoff_exec','page'=>'user.php'),
+
+	);
+$active_link="";
+//var_dump($_SERVER["REQUEST_URI"]);
+
+foreach ($html["links"] as $item) {
+	if(!strstr($_SERVER["REQUEST_URI"], $item['page']) ){
+		$style="	
+			color: green;
+			text-decoration: underline;
+			border: none;
+			font-weight: bold;
+			background-color: white;";
+	}
+	else {
+		$style="	
+			padding: 2px;
+			color: white;
+			text-decoration: none;
+			font-weight: bold;
+			background-color: green;";
+		$active_link=$item["title"];
+	}
+	?><a href="<?=$item["href"]?>" style="<?=$style?>"><?=$item["title"]?></a> | <?
+}?>
+</td>
+
+</tr>
+<tr><td colspan="2" bgcolor="Green" height="10"></td></tr>
+</TABLE>
+<br>
