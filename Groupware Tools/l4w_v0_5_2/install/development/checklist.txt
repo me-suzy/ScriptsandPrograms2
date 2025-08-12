@@ -1,0 +1,101 @@
+
+// Ticketmanager:
+
+~/shell/deployment/ticketmanager $ ./deploy HEAD ticketmanager
+copy from htdocs/downloads -> projekte/ticketmanager/versions
+install in localapache/htdocs/ticketmanager/<version> and test
+
+
+// Preparation
+==============
+
+* check references to easy-framework!!!
+    * Copy ./easy_framework to dummy dir
+    * delete all cvs folders in dummy dir
+    * copy subdirs to leads4web/inc/easy_framework
+    * commit appropriate files
+
+* check extern/phpgacl/admin/gacl_admin.inc.php for die-Function (should not be uncommented)
+
+* check version in components in basic_insert_mysql.sql or
+  in adjust_xxx.sql
+
+* check frame.php for debug frame
+* check debug level in config (4)
+* check install_file for execute_file (mandator.sql) (?)
+* check if there are any changes in config.inc.php.default
+* check version in config.inc.php.default file
+* check version in INSTALL file
+* check app.ini
+* update changelog
+* install old version (0.5.1) from c:\projekte\application...
+  to c:\apache\htdocs using db name l4w_051 
+  
+* Run install / upgrade script on old installation (local l4w_051)
+  to check update script, i.e.:
+  overwrite existing installation with new files from 0.5.2
+  (./deployment/leads4web4/: ./deploy_(complete?) HEAD myevandorCRM,
+   then copy from download dir to local)
+  
+* new install in db "leads4web4" (via eclipse path)
+* Run all tests (PHPUnit)
+  http://localhost/leads4web4/tests/testcase.categories.php
+  http://localhost/leads4web4/tests/testcase.notes.php
+  
+* Run Jmeter:
+	Open testplan_login.jmx (C:/programme/eclipse/.../tests/jmeter/...)
+
+// Check / Deploy version to chicago Server
+===========================================
+
+* check deployment/leads4web4/subscripts/...config_files...
+* maybe update deployments: 
+	export CVSROOT=/usr/local/cvsroot
+	cd shell
+	./cvssync2 deployment HEAD /home/wwwadmin/shell/deployment/
+	
+* shell/deployment/leads4web4/deploy_quick HEAD myevandorCRM
+* update database by upgrading from previous version
+* adjust deployment/leads4web4/subscripts/config file
+
+* shell/deployment/leads4web4/deploy_quick HEAD leads4web4_demo
+* update database by upgrading from previous version
+* adjust deployment/leads4web4/subscripts/config file
+
+* check installation http://217.172.179.216/leads4web4_demo
+
+// Tag version
+==============
+* update / commit all relevant files
+* tag v0_5_2 
+  ticketmanager_v0_0_1
+
+// create download file
+=======================
+
+* set CVSROOT export CVSROOT=/usr/local/cvsroot
+* deploy_complete v0_5_1 myevandorCRM or
+  ~/shell/deployment/ticketmanager $ ./deploy ticketmanager_v0_0_1 ticketmanager
+
+* move l4w_v0_5_1.zip to download directory:
+  chmod 770 /var/www/localhost/htdocs/myevandorCRM/l4w_v0_5_1.zip
+  mv /var/www/localhost/htdocs/myevandorCRM/l4w_v0_5_1.zip /var/www/localhost/htdocs/downloads/
+* download http://217.172.179.216/downloads/l4w_v0_5_1.zip,
+  and save in l4w_versions
+
+// check download file
+======================
+
+* missing files, too many files...
+* Install l4w_Head locally (DB l4w_051)
+
+
+// Evandor / Freshmeat page
+===========================
+
+* Update www.evandor.de download site
+* check links on evandor.de
+* update freshmeat site  (add_release)
+* send info to php-mag
+* add message to forum
+
