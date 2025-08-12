@@ -1,0 +1,48 @@
+<form>
+	<title>Message Details</title>
+	<name>edit</name>
+	<width>580</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="return" >
+			<location>index.php?mod=myprofile&sub=myprofile.trash</location>
+		</return>
+
+	</buttons>
+
+	<fields>
+
+		<msg_id type="hidden" hidden="true"/>
+
+		<msg_user type="relation">
+			<relation table="users" id="user_id">
+				<text>
+					<user_name>user_name</user_name>
+					<user_surname>user_surname</user_surname>
+				</text>
+			</relation>
+
+			<title>To</title>
+		</msg_user>
+		
+		<msg_date type="text" title="Date" action="date" params="F j, Y, g:i a" />
+
+		<msg_title type="text">			
+			<title>Subject</title>			
+		</msg_title>
+
+		<msg_body type="text"> 
+			<title>Message</title>
+		</msg_body>
+
+
+	</fields>
+</form>
