@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>GaleriaXQ</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include JSFunctions @1-61CA6547
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;lang={res:CCS_LocaleID}" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include JSFunctions
+
+//page_x_produto1_Button_Delete_OnClick @24-5E8F0192
+function page_x_produto1_Button_Delete_OnClick()
+{
+    var result;
+//End page_x_produto1_Button_Delete_OnClick
+
+//Confirmation Message @25-3D8A80B1
+    return confirm('Apagar registro?');
+//End Confirmation Message
+
+//Close page_x_produto1_Button_Delete_OnClick @24-BC33A33A
+    return result;
+}
+//End Close page_x_produto1_Button_Delete_OnClick
+
+//page_x_produto1_Button_Cancel_OnClick @26-28E08C01
+function page_x_produto1_Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End page_x_produto1_Button_Cancel_OnClick
+
+//bind_events @1-0FDB07B3
+function bind_events() {
+    if (document.forms["x_produto1"]) check_and_bind('document.forms["x_produto1"].Button_Delete','onclick',page_x_produto1_Button_Delete_OnClick);
+    if (document.forms["x_produto1"]) check_and_bind('document.forms["x_produto1"].Button_Cancel','onclick',page_x_produto1_Button_Cancel_OnClick);
+    forms_onload();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link href="../Styles/{CCS_Style}/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<table cellspacing="0" cellpadding="3" width="100%" border="0">
+  <tr valign="top">
+    <td width="20%">
+      <form name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
+        <font class="NoiseSectionHeaderFont">{MenuAdm}</font> 
+      </form>
+    </td> 
+    <td>
+      <!-- BEGIN Grid x_produto -->
+      <table cellspacing="0" cellpadding="0" width="450" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+                <th><font size="2">&nbsp;Lista de Imagens</font></th>
+ 
+                <td class="HeaderRight"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid" cellspacing="0" cellpadding="0">
+              <tr class="Row">
+                <td colspan="4">&nbsp;Total de imagens: &nbsp;
+                  {x_produto_TotalRecords} </td>
+              </tr>
+ 
+              <tr class="Caption">
+                <th>
+                <!-- BEGIN Sorter Sorter_proid --><a href="{Sort_URL}">Edição</a> 
+                <!-- BEGIN Asc_On --><img src="../Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img src="../Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_proid --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_x_procate --><a href="{Sort_URL}">Categoria</a> 
+                <!-- BEGIN Asc_On --><img src="../Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img src="../Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_procate --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_x_pronome --><a href="{Sort_URL}">Nome</a> 
+                <!-- BEGIN Asc_On --><img src="../Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img src="../Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_pronome --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_x_proimg --><a href="{Sort_URL}">Imagem</a> 
+                <!-- BEGIN Asc_On --><img src="../Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img src="../Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_proimg --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row">
+                <td style="TEXT-ALIGN: right"><a href="{proid}"><img src="imagens/editar.gif" border="0"></a>&nbsp;</td> 
+                <td>{x_procate}&nbsp;</td> 
+                <td>{x_pronome}&nbsp;</td> 
+                <td><a href="{x_proimg}" target="_blank"><img height="110" src="../img/{x_proimg_Src}" width="130" border="0"></a>&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords">
+                <td colspan="4">Sem Imagens no momento</td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer">
+                <td colspan="4"><a href="{x_produto_Insert_Src}">Adic novo</a>&nbsp; 
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/{CCS_Style}/Images/First.gif" border="0"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img src="../Styles/{CCS_Style}/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/{CCS_Style}/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img src="../Styles/{CCS_Style}/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number}
+                  de&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/{CCS_Style}/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img src="../Styles/{CCS_Style}/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/{CCS_Style}/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img src="../Styles/{CCS_Style}/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator --></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid x_produto -->
+      <!-- BEGIN Record x_produto1 -->
+      <form name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
+        <table cellspacing="0" cellpadding="0" width="450" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft"><font size="2"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></font></td> 
+                  <th><font size="2">&nbsp;Adicionar/Editar imagens</font></th>
+ 
+                  <td class="HeaderRight"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error">
+                  <td colspan="3">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls">
+                  <th>&nbsp;Categoria</th>
+ 
+                  <td colspan="2">
+                    <select name="{x_procate_Name}">
+                      <option value="" selected>Escolha</option>
+                      {x_procate_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>&nbsp;Nome</th>
+ 
+                  <td colspan="2"><input maxlength="90" size="25" value="{x_pronome}" name="{x_pronome_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>&nbsp;Descrição</th>
+ 
+                  <td colspan="2"><textarea style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" name="{x_prodescri_Name}" rows="6" cols="40">{x_prodescri}
+</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>&nbsp;Notas do Admin</th>
+ 
+                  <td colspan="2"><textarea style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" name="{x_pronotas_Name}" rows="5" cols="35">{x_pronotas}
+</textarea></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>&nbsp;Destaque?</th>
+ 
+                  <td colspan="2">
+                    <select name="{x_prodesta_Name}">
+                      <option value="" selected>Escolha</option>
+                      {x_prodesta_Options}
+                    </select>
+ </td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <th>&nbsp;Imagem</th>
+ 
+                  <td colspan="2">&nbsp; 
+                    <!-- BEGIN FileUpload FileUpload1 --><input type="hidden" value="{State}" name="{ControlName}">
+                    <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes. <!-- END Info -->
+                    <!-- BEGIN Upload --><input type="file" name="{FileControl}"><!-- END Upload -->
+                    <!-- BEGIN DeleteControl -->Apagar <input type="checkbox" name="{DeleteControl}" {deletechecked}>&nbsp;<!-- END DeleteControl --><!-- END FileUpload FileUpload1 --></td>
+                </tr>
+ 
+                <tr class="Controls">
+                  <td colspan="3">&nbsp;</td>
+                </tr>
+ 
+                <tr class="Bottom">
+                  <td align="right" colspan="3">
+                    <!-- BEGIN Button Button_Insert --><input type="image" src="../Styles/{CCS_Style}/Images/en/ButtonInsert.gif" value="Adic" border="0" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="image" src="../Styles/{CCS_Style}/Images/en/ButtonUpdate.gif" value="Enviar" border="0" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="image" src="../Styles/{CCS_Style}/Images/en/ButtonDelete.gif" value="Apagar" border="0" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input type="image" src="../Styles/{CCS_Style}/Images/en/ButtonCancel.gif" value="Cancelar" border="0" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record x_produto1 --></td>
+  </tr>
+</table>
+</body>
+</html>
