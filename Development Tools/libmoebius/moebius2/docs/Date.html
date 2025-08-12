@@ -1,0 +1,608 @@
+<html>
+	<head>
+		<title>Date</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">Date Class</h1>
+		<br />
+		<span class="name">Name: Date</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* This class manages all the date services.</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.base</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza &lt; <a href="mailto:aespinoza@structum.com.mx">aespinoza@structum.com.mx</a> &gt;</span>
+		<br />
+		<span class="version">Version: 1.2</span>
+		<br />
+		<span class="extends">Extends: Object</span>
+		<br />
+		<span class="requires">Requires: Object</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#Date">Date</a>
+			<br />
+			<a href="#LoadArrays">LoadArrays</a>
+			<br />
+			<a href="#SetLang">SetLang</a>
+			<br />
+			<a href="#SetCurrentDate">SetCurrentDate</a>
+			<br />
+			<a href="#SetDate">SetDate</a>
+			<br />
+			<a href="#GetFormatDate">GetFormatDate</a>
+			<br />
+			<a href="#GetDayOfWeek">GetDayOfWeek</a>
+			<br />
+			<a href="#SetYear">SetYear</a>
+			<br />
+			<a href="#GetYear">GetYear</a>
+			<br />
+			<a href="#SetMonth">SetMonth</a>
+			<br />
+			<a href="#GetMonth">GetMonth</a>
+			<br />
+			<a href="#SetDay">SetDay</a>
+			<br />
+			<a href="#GetDay">GetDay</a>
+			<br />
+			<a href="#IsLeapYear">IsLeapYear</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="Date">
+				<span class="methodName">Date</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the default options and sets the object to the current date.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="LoadArrays">
+				<span class="methodName">LoadArrays</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Loads the predefined array data.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="SetLang">
+				<span class="methodName">SetLang</span>
+				<span> ( int langNum )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes language for date formatting.</li>
+			<li>* Lang Types :</li>
+			<li>* 0 - LANG_EN : English</li>
+			<li>* 1 - LANG_SP : Spanish</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int langNum</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetCurrentDate">
+				<span class="methodName">SetCurrentDate</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the object's date value to the current date.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="SetDate">
+				<span class="methodName">SetDate</span>
+				<span> ( string date )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the date to a defined value, in the followinf format: %d/%m/%Y</li>
+		</ul>
+		<p class="returns">Returns: true if the date wasa successfully changed, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string date</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetFormatDate">
+				<span class="methodName">GetFormatDate</span>
+				<span> ( optional string format )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the date in a defined format.</li>
+			<li>* Format varibales :</li>
+			<li>* - %W = Day of Week (Str).</li>
+			<li>* - %d = Day of Month (Int).</li>
+			<li>* - %M = Month of Year (Str).</li>
+			<li>* - %m = Month of Year (Int).</li>
+			<li>* - %y = Year two digits (Int).</li>
+			<li>* - %Y = Year four digits (Int).</li>
+		</ul>
+		<p class="returns">Returns: string containing the date formated.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional string format</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetDayOfWeek">
+				<span class="methodName">GetDayOfWeek</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the day of the week of the object's date.</li>
+		</ul>
+		<p class="returns">Returns: string representing the day of the week.</p>
+		<hr />
+		<p>
+			<a name="SetYear">
+				<span class="methodName">SetYear</span>
+				<span> ( int year )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changed the year.</li>
+		</ul>
+		<p class="returns">Returns: true if it was changed, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int year</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetYear">
+				<span class="methodName">GetYear</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the year set in the object.</li>
+		</ul>
+		<p class="returns">Returns: number representing the year</p>
+		<hr />
+		<p>
+			<a name="SetMonth">
+				<span class="methodName">SetMonth</span>
+				<span> ( int month )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes de month.</li>
+		</ul>
+		<p class="returns">Returns: tru if it was changed, false otherwise</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int month</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetMonth">
+				<span class="methodName">GetMonth</span>
+				<span> ( string type )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the month number or name.</li>
+			<li>* Type:</li>
+			<li>* m - Number</li>
+			<li>* M - Name</li>
+		</ul>
+		<p class="returns">Returns: string or number representing the month</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string type</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetDay">
+				<span class="methodName">SetDay</span>
+				<span> ( int day )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the day.</li>
+		</ul>
+		<p class="returns">Returns: tru if it was changed, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int day</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetDay">
+				<span class="methodName">GetDay</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the representation of the day in the year selected.</li>
+		</ul>
+		<p class="returns">Returns: number that identifies a certain day ina year.</p>
+		<hr />
+		<p>
+			<a name="IsLeapYear">
+				<span class="methodName">IsLeapYear</span>
+				<span> ( optional int year )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Identifies if the year is a leap year.</li>
+		</ul>
+		<p class="returns">Returns: true if the year is a leap year, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int year</li>
+			</ul>
+		</p>
+	</body>
+</html>
+<html>
+	<head>
+		<title>Date</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">Date Class</h1>
+		<br />
+		<span class="name">Name: Date</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* This class manages all the date services.</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.base</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza &lt; <a href="mailto:aespinoza@structum.com.mx">aespinoza@structum.com.mx</a> &gt;</span>
+		<br />
+		<span class="version">Version: 1.2</span>
+		<br />
+		<span class="extends">Extends: Object</span>
+		<br />
+		<span class="requires">Requires: Object</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#Date">Date</a>
+			<br />
+			<a href="#LoadArrays">LoadArrays</a>
+			<br />
+			<a href="#SetLang">SetLang</a>
+			<br />
+			<a href="#SetCurrentDate">SetCurrentDate</a>
+			<br />
+			<a href="#SetDate">SetDate</a>
+			<br />
+			<a href="#GetFormatDate">GetFormatDate</a>
+			<br />
+			<a href="#GetDayOfWeek">GetDayOfWeek</a>
+			<br />
+			<a href="#SetYear">SetYear</a>
+			<br />
+			<a href="#GetYear">GetYear</a>
+			<br />
+			<a href="#SetMonth">SetMonth</a>
+			<br />
+			<a href="#GetMonth">GetMonth</a>
+			<br />
+			<a href="#SetDay">SetDay</a>
+			<br />
+			<a href="#GetDay">GetDay</a>
+			<br />
+			<a href="#IsLeapYear">IsLeapYear</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="Date">
+				<span class="methodName">Date</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the default options and sets the object to the current date.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="LoadArrays">
+				<span class="methodName">LoadArrays</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Loads the predefined array data.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="SetLang">
+				<span class="methodName">SetLang</span>
+				<span> ( int langNum )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes language for date formatting.</li>
+			<li>* Lang Types :</li>
+			<li>* 0 - LANG_EN : English</li>
+			<li>* 1 - LANG_SP : Spanish</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int langNum</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetCurrentDate">
+				<span class="methodName">SetCurrentDate</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the object's date value to the current date.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="SetDate">
+				<span class="methodName">SetDate</span>
+				<span> ( string date )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the date to a defined value, in the followinf format: %d/%m/%Y</li>
+		</ul>
+		<p class="returns">Returns: true if the date wasa successfully changed, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string date</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetFormatDate">
+				<span class="methodName">GetFormatDate</span>
+				<span> ( optional string format )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the date in a defined format.</li>
+			<li>* Format varibales :</li>
+			<li>* - %W = Day of Week (Str).</li>
+			<li>* - %d = Day of Month (Int).</li>
+			<li>* - %M = Month of Year (Str).</li>
+			<li>* - %m = Month of Year (Int).</li>
+			<li>* - %y = Year two digits (Int).</li>
+			<li>* - %Y = Year four digits (Int).</li>
+		</ul>
+		<p class="returns">Returns: string containing the date formated.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional string format</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetDayOfWeek">
+				<span class="methodName">GetDayOfWeek</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the day of the week of the object's date.</li>
+		</ul>
+		<p class="returns">Returns: string representing the day of the week.</p>
+		<hr />
+		<p>
+			<a name="SetYear">
+				<span class="methodName">SetYear</span>
+				<span> ( int year )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changed the year.</li>
+		</ul>
+		<p class="returns">Returns: true if it was changed, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int year</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetYear">
+				<span class="methodName">GetYear</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the year set in the object.</li>
+		</ul>
+		<p class="returns">Returns: number representing the year</p>
+		<hr />
+		<p>
+			<a name="SetMonth">
+				<span class="methodName">SetMonth</span>
+				<span> ( int month )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes de month.</li>
+		</ul>
+		<p class="returns">Returns: tru if it was changed, false otherwise</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int month</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetMonth">
+				<span class="methodName">GetMonth</span>
+				<span> ( string type )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the month number or name.</li>
+			<li>* Type:</li>
+			<li>* m - Number</li>
+			<li>* M - Name</li>
+		</ul>
+		<p class="returns">Returns: string or number representing the month</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string type</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="SetDay">
+				<span class="methodName">SetDay</span>
+				<span> ( int day )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the day.</li>
+		</ul>
+		<p class="returns">Returns: tru if it was changed, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int day</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetDay">
+				<span class="methodName">GetDay</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the representation of the day in the year selected.</li>
+		</ul>
+		<p class="returns">Returns: number that identifies a certain day ina year.</p>
+		<hr />
+		<p>
+			<a name="IsLeapYear">
+				<span class="methodName">IsLeapYear</span>
+				<span> ( optional int year )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Identifies if the year is a leap year.</li>
+		</ul>
+		<p class="returns">Returns: true if the year is a leap year, false otherwise.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional int year</li>
+			</ul>
+		</p>
+	</body>
+</html>
