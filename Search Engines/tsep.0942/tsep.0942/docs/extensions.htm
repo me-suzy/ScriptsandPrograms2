@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tsep3docs.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>TSEP</title>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="TSEP is an open source (free) website PHP search engine. Easy to install, fast, supports logging and user defined stopwords. It uses CSS formating, is localized (multiple languages)" />
+<meta name="keywords" content="TSEP full text PHP search engine searchengine opensource free boolean mysql php stopword logging crawl spider open source" />
+<link href="css/general.css" rel="stylesheet" type="text/css" />
+<link href="css/medium.css" rel="stylesheet" type="text/css" />
+<!-- InstanceParam name="notes" type="text" value="notcurrent" --><!-- InstanceParam name="install" type="text" value="notcurrent" --><!-- InstanceParam name="usage" type="text" value="notcurrent" --><!-- InstanceParam name="advconf" type="text" value="notcurrent" --><!-- InstanceParam name="extensions" type="text" value="current" --><!-- InstanceParam name="faq" type="text" value="notcurrent" --><!-- InstanceParam name="errors" type="text" value="notcurrent" --><!-- InstanceParam name="links" type="text" value="notcurrent" --><!-- InstanceParam name="help" type="text" value="notcurrent" --><!-- InstanceParam name="contents" type="text" value="notcurrent" -->
+<link href="css/docs.css" rel="stylesheet" type="text/css" />
+<link href="css/links.css" rel="stylesheet" type="text/css" />
+<link href="css/urlimg.css" rel="stylesheet" type="text/css" />
+</head>
+<body><a name="topofpage" id="topofpage"></a> 
+<div id="container"> 
+  <div id="header"> 
+    <div class="HeaderLogo"><img src="graphics/tsep-glow.gif" alt="TSEP - The Search Engine Project" width="310" height="70" /></div> 
+    <div class="HeaderText">
+      <h1>Documentation</h1>
+    </div> 
+  </div> 
+  <div id="sidebar-a"> 
+    <div id="navcontainer"> 
+      <ul id="navlist-verti"> 
+        <li><a href="index.htm" class="notcurrent">Contents</a></li> 
+        <li><a href="note.htm" class="notcurrent">Notes</a></li>
+        <li><a href="install.htm" class="notcurrent">Install &amp; Upgrade</a></li> 
+        <li><a href="usage.htm" class="notcurrent">Usage</a></li> 
+      <li><a href="advanced.htm" class="notcurrent">Advanced Configuration</a></li>
+      <li><a href="extensions.htm" class="current">Extensions &amp; Plug-ins</a></li>
+      <li><a href="help.htm" class="notcurrent">Help TSEP </a></li>
+      <li><a href="faq.htm" class="notcurrent">FAQ</a></li>
+      <li><a href="error.htm" class="notcurrent">Problems &amp; Errors</a></li>
+      <li><a href="links.htm" class="notcurrent">Links</a></li>
+      </ul> 	  
+    </div> 
+  </div> 
+  <div id="sidebar-b">      
+  </div> 
+  <div id="content"><!-- InstanceBeginEditable name="middle" --><div id="navcontainer-hori"> 
+      <ul id="navlist-hori"> 
+        <li><a href="#ext">Extensions &amp; Plug-ins</a></li> 
+      </ul> 	  
+    </div>
+	<h1><a name="ext" id="ext"></a>Extensions &amp; Plug-ins</h1>
+	<p>You will notice that there is an additional directory called &quot;<span class="directoryname">examples</span>&quot; in the <span class="directoryname">admin</span> directory. There we give you some examples for plugins.</p>
+  <p>If you have written a plugin and would like to share it, please let us know. Send us the file and instructions on how to use it, what it does... If you allow it, we might publish it with a next version of <span class="tsep">TSEP</span>.</p>
+    <p>Please look directly into the files for instructions if you do not find any help in the general <span class="tsep">TSEP</span> documentation. </p>
+    <p>Also see:</p>
+    <ul>
+      <li><a href="advanced.htm#external">External datasupply</a> </li>
+    </ul>
+    <p>At this time you find the following files there:</p>
+    <h3>General</h3>
+    <dl>
+      <dt class="filename">phpcrawl4tsep.php</dt>
+      <dd>This is for spidering / crawling a site. You find a short explanation <a href="#shortexplanationphpcrawlurllist">below</a>, for details please see <a href="advanced.htm#external">Using external data supply </a></dd>
+      <dd>&nbsp;</dd>
+      <dt class="filename">urllist.php</dt>
+      <dd>This hand over a plain list of URLs to <span class="tsep">TSEP</span> which then will be indexed. You find a short explanation <a href="#shortexplanationphpcrawlurllist">below</a>, for details please see <a href="advanced.htm#external">Using external data supply</a></dd>
+      <dt class="filename">fillwithcontent.php</dt>
+      <dd>This is a ready-to-run example-script, which &quot;delivers&quot; filenames <span class="importantNote">AND</span> content to <span class="tsep">TSEP</span> (to be indexed by TSEP). The script is intended to give an idea, how content can be delivered to the <span class="tsep">TSEP</span>-indexer. It's an equivalent to the <span class="filename">urllist.php</span> example script, but here, the file-content is provided directly from within this script. You find a short explanation <a href="#shortexplanationphpcrawlurllist">below</a>, for details please see <a href="advanced.htm#external">Using external data supply</a></dd>
+    </dl>
+    <h4><a name="shortexplanationphpcrawlurllist" id="shortexplanationphpcrawlurllist"></a>Short explanation for <span class="filename">phpcrawl4tsep.php</span>, <span class="filename">urllist.php</span> and<span class="filename"> fillwithcontent.php</span></h4>
+    <p> These scripts are completly independent and <span class="importantNote">do not</span> belong to eachother!<br />
+        <br />
+        <span class="filename">urllist.php</span> is an example for <span class="importantNote">returning a fixed list of URLs</span> to <span class="tsep">TSEP</span>. This has nothing to do with PHPCRAWL.<br />
+  If you want <span class="tsep">TSEP</span> to build an index for a fixed defined list of URLs, build <br />
+  this list as you did in <span class="filename">urllist.php</span> and use this script as external datasupply (define &quot;<span class="directoryname">example/</span><span class="filename">urllist.php</span>&quot; as external datasupply - the parameter for the datasupply-script can be left blank - is not used in this case).<br />
+      <br />
+  If <span class="filename">urllist.php</span> contains e.g. </p>
+    <p><span class="HTMLcode">call_user_func(&quot;TSEP_ExternalCallBack&quot;, &quot;URL&gt;http://www.mydomain.com/school_ov/school_id/1&quot;);</span> </p>
+    <p>this URL is returned to <span class="tsep">TSEP</span> to be indexed.<br />
+        <span class="importantNote">You have to switch ON force-parsing-via-HTTP.</span><br />
+        <br />
+        <br />
+        <span class="filename">phpcrawl4tsep.php</span> <span class="importantNote">runs <a href="http://phpcrawl.sourceforge.net" target="_blank">PHPCrawl</a> and returns all found URLs</span> via the same mechanism like <span class="filename">urllist.php</span> - e.g.</p>
+    <div class="HTMLcode">
+      <p> call_user_func(&quot;TSEP_ExternalCallBack&quot;, &quot;URL&gt;http://www.mydomain.com/school_ov/school_id/1&quot;); </p>
+    </div>
+    <p><span class="importantNote">You have to switch ON force-parsing-via-HTTP.</span><br />
+        <br />
+        <span class="filename">urllist.php</span> and <span class="filename">phpcrawl4tsep.php</span> are just examples!<br />
+        <br />
+  The only thing an &quot;<a href="advanced.htm#external">External datasupply</a>&quot;-script has to ensure is, that URLs to be indexed are sent to <span class="tsep">TSEP</span> via </p>
+    <div class="HTMLcode">
+      <p>call_user_func(&quot;TSEP_ExternalCallBack&quot;, &quot;URL&gt;url2bIndexed&quot;); </p>
+    </div>
+    <p><span class="importantNote">Not less not more!</span></p>
+    <p> You also can use</p>
+    <div class="HTMLcode">
+      <p> call_user_func(&quot;TSEP_ExternalCallBack&quot;, &quot;ALL&gt;url2bIndexed&lt;TSEPCONTENT&gt;text&quot;);</p>
+    </div>
+    <p> to directly return &quot;text&quot; as the files-content; in this case, <span class="tsep">TSEP</span> does not<br />
+  open/read/parse the file (see <span class="directoryname">examples/</span><span class="filename">fillwithcontent.php</span> for this).</p>
+    <p>Question:</p>
+    <div class="question">
+      <p>what is the difference between using:</p>
+      <p> &quot;<span class="variablename">ALL</span>&gt; </p>
+      <p> and</p>
+      <p>&quot;<span class="variablename">URL</span>&gt; </p>
+      <p> I wasn't clear from reading the documentation. Is it possible to use code like:</p>
+      <p class="HTMLcode">&quot;URL&gt;http://www.oururl.com&lt;TSEPCONTENT&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Title&lt;/title&gt;&lt;/head&gt;&lt;body&gt; Body Text&lt;/body&gt;&lt;/html&gt;&quot; </p>
+      <p> Or must the &quot;<span class="variablename">ALL</span>&gt; command be used? What difference in indexing will it make?</p>
+    </div>
+    <p>Answer:</p>
+    <div class="answer">
+      <p><span class="variablename">URL</span> means: only the <span class="variablename">URL</span> is sent back to the <span class="tsep">TSEP</span>-indexer (and the <span class="tsep">TSEP</span>-indexer has to open the url, read and parse it's content).</p>
+      <p><span class="variablename">ALL</span> means, that <span class="variablename">ALL</span> data are sent back to the <span class="tsep">TSEP</span>-indexer; these are</p>
+      <ol>
+        <li> the URL <span class="importantNote">and</span> </li>
+        <li> the CONTENT.</li>
+      </ol>
+      <p> In this case, the <span class="tsep">TSEP</span>-indexer takes the URL and CONTENT &quot;as is&quot; (the url does not even need to exist).<br />
+            <br />
+    In your example, you must use:<br />
+    <span class="HTMLcode">&quot;ALL&gt;http://www.oururl.com&lt;TSEPCONTENT&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;Title&lt;/title&gt;&lt;/head&gt;&lt;body&gt;Body Text&lt;/body&gt;&lt;/html&gt;&quot;</span></p>
+    </div>
+    <p>For further details please see this discussion in the <span class="tsep">TSEP</span> forum (external link): <a href="http://sourceforge.net/forum/forum.php?thread_id=1258790&amp;forum_id=369628">Thread 1258790</a></p>
+    <h3>For *nix systems only</h3>
+    <dl>
+      <dt class="filename">TSEPautoIndexing.sh</dt>
+      <dd>Using this file you can run <span class="tsep">TSEP</span> using &quot;cron&quot;. Please see the section <a href="advanced.htm#cron">&quot;Scheduling: cron / at&quot;</a> for this extensive topic. This is the equivalent for *nix systems to <span class="filename">TSEPautoIndexing.cmd</span> (Windows) </dd>
+      <dt class="filename">wwws.sh</dt>
+      <dd>This uses (is an example how to use) <span class="filename">wwwshot.sh</span></dd>
+      <dt><span class="filename"></span><span class="filename">wwwshot.sh</span></dt>
+      <dd>is intended to build screenshot from webpages. Please see the file itself for documentation on how to use it. <br />
+          <span class="importantNote">Attention: This has not been tested yet. If you test this, please let us know of any results (good and bad e.g. errors)</span> We will introduce pictures for the websites in a future version of <span class="tsep">TSEP</span>.</dd>
+    </dl>
+    <h3>For Windows systems only</h3>
+    <dl>
+      <dt><span class="filename">TSEPautoIndexing.cmd</span></dt>
+      <dd>This is the equivalent for windows systems to <span class="filename">TSEPautoIndexing.sh</span>. Using this file you can run <span class="tsep">TSEP</span> using &quot;at&quot;. Please see the section <a href="advanced.htm#cron">&quot;Scheduling: cron / at&quot;</a> for this extensive topic. </dd>
+    </dl>
+    <p>&nbsp;</p>
+  <!-- InstanceEndEditable --></div>
+  <div id="footer">
+  <p>This file is part of <span class="tsep">TSEP</span> (<span class="tsep">The Search Engine Project</span>), Version: TSEP 0.9nnn</p>
+<p>This file has been last modified (SubVersion Data):<br />
+    $LastChangedDate: 2005-09-08 20:24:25 +0200 (Do, 08 Sep 2005) $<br />
+    $LastChangedBy: olaf $<br />
+    $LastChangedRevision: 324 $</p>
+<p><a href="http://www.tsep.info" title="TSEP Website" class="copyright">&copy; 2002-2005 by TSEP - The Search Engine Project</a></p>
+  </div>
+</div> 
+</body>
+<!-- InstanceEnd --></html>
