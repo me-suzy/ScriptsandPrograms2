@@ -1,0 +1,307 @@
+<script language="JavaScript">
+<!-- BEGIN Script
+/*      JavaScript written by Mark S. Sethi
+        Any questions, comments, suggestions, or good potato stories,
+        feel free to contact the author at m-sethi@uchicago.edu or
+        iguana.god@juno.com  */
+
+
+var nacho=false;
+var burrito=false;
+
+var payment="";
+var ccnum="";
+var ccexp="";
+
+function runVerification(formName) {
+	formName.payment.selectedIndex++;
+        if (formName.payment.selectedIndex == "null" || formName.payment.selectedIndex == 0) {
+		alert("You didn't select a payment method.");
+                return false;
+                }
+
+        if (!formName.ccnum.value) {
+		alert("You didn't enter a credit card number.");
+                return false;
+                }
+        if (!formName.ccexp.value) {
+		alert("You didn't enter an expiration date.");
+                return false;
+                }
+
+        // nacho returns a true if the cc format is good
+        // burrito return a true if the cc expiration date is good (and not
+        //      already past)
+        nacho=ccformatValidate(formName);
+        if (nacho) {
+                burrito=ccexpdateValidate(formName);
+                if (burrito) {
+            formName.payment.value=payment;
+			return true;
+                        }
+                else {
+                        alert("Your credit card has expired. Please verify your expiration date and enter it as shown in the example");
+                        return false;
+                        }
+		}
+	else {
+                alert("You credit card is invalid. Please verify the number on the card and try again.");
+                return false;
+		}
+	}
+
+function ccformatValidate(formName) {
+	if (formName.payment.selectedIndex == 1) payment="visa";
+	if (formName.payment.selectedIndex == 2) payment="mastercard";
+	if (formName.payment.selectedIndex == 3) payment="amex";
+	if (formName.payment.selectedIndex == 4) payment="discover";
+
+        // get the "clean" version of the cc number, only numbers
+        var ccnum=GimmeNumbers(formName.ccnum.value);
+
+	// check for correct card number length
+	if (ccnum.length<13) return false;
+
+        if (ccnum.length!=16 && payment=="discover") return false;
+        if (ccnum.length!=16 && payment=="mastercard") return false;
+        if (ccnum.length!=15 && payment=="amex") return false;
+        if (ccnum.length!=13 && ccnum.length!=16 && payment=="visa") return false;
+
+        // check first number to verify card type
+        cctype=ccnum.substring(0,1);
+        if (payment=="amex" && cctype!="3") return false;
+        if (payment=="visa" && cctype!="4") return false;
+        if (payment=="mastercard" && cctype!="5") return false;
+        if (payment=="discover" && cctype!="6") return false;
+
+        // make an array and fill it with the individual digits of the cc number
+        ccnumchk=new Array;
+	for (splits=0; splits<ccnum.length; splits++) {
+                ccnumchk[splits]=ccnum.substring(splits, splits+1);
+		}
+
+        // perform the weird mathematical method (some base 10 stuff) to
+        //      convert the number to a two digit number
+        //      for those of you who aren't as familiar with the js operators
+        //      i'll comment some of the math lines...well, really just one
+        var skemp=0;
+	for (splits=0; splits<ccnum.length; splits++) {
+                if (splits%2==0) {      // if splits is an even number...
+                                        //      more specifically, if splits
+                                        //      divided by two has no
+                                        //      remainder (ya' know, remainder
+                                        //      one of those math things :),
+                                        //      then perform this block
+			ccnumchk[splits]=ccnumchk[splits]*2;
+			if (ccnumchk[splits]>=10) ccnumchk[splits]=ccnumchk[splits]-9;
+			}
+                // play a js trick to switch ccnumchk[splits] to a number
+                //      variable instead of a string
+		ccnumchk[splits]++; ccnumchk[splits]--;
+		skemp=skemp + ccnumchk[splits].valueOf();
+		}
+
+        if (skemp%10!=0) {return false;} // if the resulting number isn't base
+                                         //     10, they're lying to ya...
+                                         //     or they mistyped...same thing
+	else {
+		formName.ccnum.value=ccnum;
+		return true;
+		}
+	}
+
+function ccexpdateValidate(formName) {
+        // clean up the expiration date...becuase invariably people will not
+        //      follow directions and put some weird delimeter in there
+        var ccexp=GimmeNumbers(formName.ccexp.value);
+	var expmonth=0;
+	var expyear=0;
+	var realmonth=0;
+	var realyear=0;
+
+
+	// start with the intuitive - length
+        //      since dates have to be between 3 chars long (399) and 6 chars
+        //      long (121998) anything else needs to be tossed
+	if (ccexp.length<3 || ccexp.length>6) return false;
+	if (ccexp.length==3) {
+                expmonth=ccexp.substring(0,1);
+                expyear=ccexp.substring(1,3);
+		}
+	if (ccexp.length==4) {
+                // this bit here is for those people who put a zero in front
+                //      of a single number (like 04 instead of 4)
+                if (ccexp.substring(0,1)=="0") {
+			expmonth=ccexp.substring(1,2);
+			expyear=ccexp.substring(2,4);
+			}
+		else {
+			expmonth=ccexp.substring(0,2);
+			expyear=ccexp.substring(2,4);
+			}
+                }
+	if (ccexp.length==5) {
+		expmonth=ccexp.substring(0,1);
+		expyear=ccexp.substring(1,5);
+		}
+	if (ccexp.length==6) {
+		expmonth=ccexp.substring(0,2);
+		expyear=ccexp.substring(2,6);
+		}
+
+	// make sure month is a valid value
+	if (expmonth<1 || expmonth>12) return false;
+
+        // make sure months and years are numbers and not a strings
+        expmonth++; expmonth--;
+        expyear++; expyear--;
+
+        // convert years to a standard 4 digit format
+	if (ccexp.length==3 || ccexp.length==4) expyear=expyear+1900;
+
+	// check the date
+	timeisit=new Date();
+	realmonth=timeisit.getMonth();
+	realmonth++;
+	realyear=timeisit.getYear();
+
+   	if (realyear<2000) realyear=realyear+1900;
+
+        // compare expiration values with current ones
+        if (expyear==realyear) {
+		if (expmonth<realmonth) return false;
+		}
+        if (expyear<realyear) return false;
+
+        expmonth+=""; expyear+="";
+        if (expmonth.length==1) expmonth="0"+expmonth;
+        ccexp=expmonth.substring(0,expmonth.length);
+        ccexp+=expyear.substring(0,4);
+        formName.ccexp.value=ccexp;
+
+	return true;
+	}
+
+        function GimmeNumbers(loadedText) {     // this function removes everything but numbers
+                var cleanText="";
+                loadedText+="";
+                for (skimp=0; skimp<loadedText.length; skimp++) {
+                        if (loadedText.substring(skimp,skimp+1)>="0" && loadedText.substring(skimp, skimp+1)<="9") cleanText+=loadedText.substring(skimp, skimp+1);
+                        }
+                return cleanText;
+                }
+
+// -->
+</script>
+
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#666666"><b><font color="#990000">UPDATE 
+  CREDIT CARD INFOMATION ON FILE:</font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"><br>
+  <?
+if ($action=="update_billing_account") {
+update_billing_account_2(get_account_id($session_id),$billing_id,$ccnum,$ccexp);
+echo "Billing Information Updated  Updated!<BR>";
+}
+ 
+?>
+  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+  </b></font> <b></b></p>
+<form name="form1" method="post" action="">
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+
+ if (isset($account_id)) {
+ echo show_cc_list($account_id,$billing_id);
+
+  ?>
+  <input type="submit" name="Submit2" value="Update Record">
+  <? 
+}
+  ?>
+  <input type="hidden" name="page" value="billing_edit">
+  </font></b> 
+</form>
+<p align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  </font></b></p>
+<b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366">
+<?
+if (isset($billing_id))  {
+  ?>
+</font></b>
+<form action="" name="nameMe" onSubmit="return runVerification(this);">
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b>Update Customers Credit 
+  Card Information:</b></font> <font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+  <?
+	$db = new ps_DB;
+                    $account_id =get_account_id($session_id);
+	$q = "SELECT * FROM billing WHERE billing_id='$billing_id'"; 
+	$db->query($q);
+	if ($db->num_rows()==0) {
+		echo "<BR><BR><B>You do not have permission to view this record!</B>";
+		} else {
+	$db->next_record();
+?>
+  </b></font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr>
+      <td>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                <tr> 
+                  <td width="149"> 
+                    <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Card 
+                      Type:</font></b></div>
+                  </td>
+                  <td width="118"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font size="2">
+                    <select name="payment">
+                      <option><font size="-1" face="ARIAL,HELVETICA">Visa </font>
+                      <option><font size="-1" face="ARIAL,HELVETICA">MasterCard 
+                      </font>
+                      <option><font size="-1" face="ARIAL,HELVETICA">Amex </font>
+                      <option><font size="-1" face="ARIAL,HELVETICA">Discover/Novus 
+                      </font>
+                    </select>
+                    </font></font></font></font></b></font></td>
+                  <td width="637">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="149"> 
+                    <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Card 
+                      Number: </font></b></div>
+                  </td>
+                  <td width="118"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font size="2"> 
+                    <input type="text" name="ccnum" value="<?  echo show_hidden_cc_1($db->f("billing_cc_num")); ?>" style="border: 1 solid #666666">
+                    </font></font></font></font></b></font></td>
+                  <td width="637"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Example: 
+                    4111111111111111</font></td>
+                </tr>
+                <tr>
+                  <td width="149"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Card 
+                    Expiration:</font></b></td>
+                  <td width="118"><font size="-1" face="ARIAL,HELVETICA"> </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font size="2"> 
+                    <input type="text" name="ccexp" value="<? $db->p("billing_cc_exp"); ?>"  style="border: 1 solid #666666">
+                    </font></font></font></font></b></font></td>
+                  <td width="637"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Example: 
+                    022005</font></td>
+                </tr>
+              </table>
+              <font size="-1" face="ARIAL,HELVETICA">
+              <input type="submit" name="submit" value="Update Credit Card Info -&gt;">
+              </font> 
+              <input type="hidden" name="page" value="billing_edit">
+              <input type="hidden" name="billing_id" value="<? echo $billing_id; ?>">
+              <input type="hidden" name="action" value="update_billing_account">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  </form><font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+<? 
+
+}
+}
+?>
+</font><font color="#666666"> </font></b></font> <br>
