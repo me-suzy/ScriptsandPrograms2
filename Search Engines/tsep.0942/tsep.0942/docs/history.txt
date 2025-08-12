@@ -1,0 +1,583 @@
+I am trying to add everything I have done - but do not take this list for complete! - Olaf Noehring
+====================================================================
++       new / added
+-       removed
+*       changed (works different now)
+/       checked / tested
+(tag ) 	search this file for the tags to get more information
+/*
+* following will be filled automatically by SubVersion!
+* Do not change by hand!
+*  $LastChangedDate: 2005-05-17 17:18:57 +0200 (Di, 17 Mai 2005) $
+*  @lastedited $LastChangedBy: olaf $
+*  $LastChangedRevision: 41 $
+*/
+
+--------------
+version 0.942.02
+* indexoverview:
+   corrected ugly output in "complete index overview" (Olaf)
+      indexoverview complete: output now fine
+      indexoverview short: overflow hidden if colums are too small, title tag added
+   placed "protected status"-checkbox directly under file size (Olaf) 
+* indexedit: placed "protected status"-checkbox directly under file size (Olaf)
+
+--------------
+version 0.942.01
+* prevent reading pages twice - once for meta, once for content (Manfred)
+* https fix (hopefully) (Toon)
+* protect from multiple runs (Toon)
+
+--------------
+version 0.941
+offical release
+
+--------------
+version 0.941.13 (not public)
+* improved indexer call: now shows the domain in the first field of the site TSEP is installed, shows the absolute path in the second field (Toon)
+* changed indexer output: Only one line per page now. Complete index is still available on another page. (Toon)
+
+
+--------------
+version 0.941.12 (not public)
+* minor change to logview: added a breaker div to make display in FF correct
+* updated install to take new fields into account (Toon)
+* updated language.php to have shorter entries in logview
+
+
+--------------
+version 0.941.11 (not public)
+* logview: Title attribute to all entries. So if they are cut off, the user can still hover over them to read the complete entry
+* logview: If log is type 2 only the link itself is clickable. This allows to show the title better
+
+--------------
+version 0.941.10 (not public)
+* updated documentation
+* fixed stopwords / regex: Spaces between words should now be shown correctly when a stopword was searched. This also fixed wrong number of results. (Manfred))
+* updated logview: 
+  Stopwords and IPresolve can be filtered now
+  filter stays when sorting is changed (putsortpicture.php updated for this as well)
+  now, after removing criterias from content, stopwords, ipresolved all records are returned again (search file for "MySQL bug??" 3 occurences)
+  added calendar
+  removed | between multiple stopwords (change was in log.php)
+* updated CSS to make a nice logview.php  
+* created new directory JS to hold javascript. This can not be under /include or /admin since the user would need a password if those directories are protected
+
+--------------
+version 0.941.08 (not public)
+* added improved logging and logview: IP resolving (Toon, Eric)
+* updated documentation
+* updated ipfunctions.php, configfunctions.php to require files so that it should work even when open_basedir is in on
+* updated website
+* updated insert.sql -> DB Version number
+
+--------------
+version 0.941.07 (not public)
+* fix UTF bug (Manfred made a workaround the MySQL UTF bug):
+  ifIf Mysql >= 4.1 still the "normal" search is done. 
+  If Mysql < 4.1 AND the search-string DOES NOT contain 'special' chars (like e.g. "à") still the "normal" search is done. 
+  If Mysql < 4.1 AND the search-string DOES contain 'special' chars (like e.g. "à") tsep_search-table is read without using a where-clause. The Result is built by testing each record against a regex (built out of the search-string) respecting utf8.
+* changes language directories - to match better for multilanguage use: Now 4 charcters format: language 2 chars + "_" + variation 2 chars (en_US)
+
+--------------
+version 0.941.06 (not public)
+* updated todo
+* added .htaccess to /include directory (deny from all)
+* added  "ipresolved VARCHAR(250) NULL,  stopwords TEXT NULL," to create sql from _log table
+
+
+--------------
+version 0.941.05 (not public)
+* logview: basic filter function added (will be improved in future version): (Toon)
+    Filter on logview type, searchterm, date/time, IP address 
+    Filter is active after choosing different sort order and through navigation 
+
+--------------
+version 0.941.04 (not public)
+* corrected configuration.php: path for languages can be 2-5 characters long now (e.g: pt_PT and pt_BR)
+* improved tsepinfo.php: Noew showing also MySQL version
+* added hint in install.php for dbpassword security
+* added CHARACTER SET utf8; to create.sql script to make sure UTF-8 is used in MySQL >=4.1
+
+--------------
+version 0.941.03 (not public)
+* fixed UTF-8 encoding bug. BIG thanks to Manfred here!
+* install.php: Passwortfield is now password (shows *)
+
+--------------
+version 0.941.02 (not public)
+* removes language bug:  $tsep_lng = array(); --> we need to pay attention that this does not happen again
+
+--------------
+version 0.941.01 (not public)
+* removed $tsep_lng['language_iso_setting'] from languages file since all is done now with UTF-8
+* changed sortortder of an entry in the indexer to make more sense
+* introduced groups in the indexer (needs new install)
+
+--------------
+version 0.940
+* introduced completely new way of translating TSEP
+* changed languase charset used by TSEP to UTF-8
+* fixed log: search for "o'neil" is now correctly logged as "o'neil" and not anymore as "o\'neil"
+* added traces to search and indexer: ATTENTION: switch OFF the debugprint function in configuration.php !!
+* search.php : 
+    fixed error that a search word was too short is being output only if it was really to short (<4 characters) now
+    corrected the search option: 
+        was
+            +Apfel +Birne
+            has searched: "Apfel" and "Birne"
+ 
+            +Apfel+Birne
+            has searched : "Apfel+Birne"
+        now:
+            +Apfel+Birne
+            searches "Apfel" and "Birne" 
+    pages which can not be accesses by TSEP will be checked in a second way if they exist before outputting them in the search results
+    output of search for "o'neil" is now correctly printed as "o'neil" and not anymore as "o\'neil"
+* indexer:
+    fixed: out of memory bug when indexing and index was really large
+    multiple spaces are removed from the index now
+    much faster now (1200 files in 130 seconds)
+    dir_exclude improved
+* updated all stopword list files to have comma seperated values
+* updated create.sql to create MyISAM tables (should be default but problems were reported)
+* changed database field in search table from text to longtext to be able to index (very)large html files
+* updated insert.sql: now the page rank can be html code again (hopefully)
+* htaccess protected directories should be indexed fine now
+* updated documentation:
+    added: hint how to use stopword lists
+    add a hint to words which are in more than 50% of the searches might not return anything!
+    add hint: 3 character are mysql restriction
+    make clearer what quick.htm and complete.htm are all about
+    add hint: search from indexer is not logged
+    hint: look at tsepsearch.php for details how to build your own search page
+
+--------------
+version 0.939
+* removed bug with TSEP path (now stored when opening configuration.php)
+* updated docs
+* updated todo
+
+--------------
+version 0.938
++ removed bug in IE on indexer.php -> mouse over links breaks layout, was CSS error
++ CSS corrected
++ TSEP path is saved automatically
++ added correct description in indexoverview to title and URL link
++ introduced tags: tsep:cmd:start, tsep:cmd:end, tsep:cmd:noindex
++ updated and split documentation
+* removed bug from phpcrawl4tsep
++ pages are now shown in the iso encoding used in the language.php (tag: <language charset>)
+* corrected english language.php - TRANSLATORS: please update the translations!
++ removed indexedit link from navigation area.
++ indexoverview: click on page title opens the indexedit, click on URL opens the page itself
++ created the putsortoder.php file in /include. Was in logview.php now we can use it in other files (indexoverview) Corrected the fuction to work this way (new $gotoURL parameter)
++ sort indexoverview
++ corrected polish language directory name (po now correct pl)
+* configuration: true / false should be dropdown boxes in configuration.php
++ groups in configuration
++ each field can have help
+* configuration of between how many results the user can choose: multiple values can be entered at once, no doubles can be entered
+* stopwords: can be entered comma seperated now; no doubles can be entered
+* starting parameters for indexer.php:
+	indexer.php?startindexing	- starts creating a new index for the current indexingprofile
+	indexer.php?startindexing&profile=xxx	- starts creating a new index for indexingprofile named xxx
+	indexer.php?showcompleteindex	- show complete index currently stored
+	indexer.php		- shows the maintain-screen
++ meta tags are saved now (was incorrect before). They are put into an extra field
+* new database structure
+	- change tsep_config: formfieldvalue to different (larger fieldtype)
++ Indexingprofiles:
+	+ work with profiles from indexer.php
+	+ an indexentry can belong do multiple profiles
+	+ protect entry from being indexed automatically
+	+ indexing only for the chosen profile
+		1. delete all entries of the profile which are not protected
+		2. create new index of all matching (to that profile) files/directories with no overwriting of protected files
+		If an entry is not protected it will be renewed even if it belongs to different profiles.
+* correct the search field in the indexer: When you search any special characters (  -> &auml) from here it does not work		
++ many other changes!
+
+--------------
+version 0.935.5 (not public)
++ grab TSEP path for the installation and the indexer.php (no need to enter that manually anymore)
+* fixed: not really indexing files but telling us so (not really indexing again ;-) )
++ local files are opened via local fopens. this should prevent firewall actions which disallows us to open files to read their contents
+* fixed call of css should now be correct
+
+--------------
+version 0.935.3 (not public)
+* removed many superfluous <?php ?> tags in indexer.php this solved the problem of loosing configuration
+* removed "weird code" part from indexer
++ fixed error with outputting $tsep_lng['pages_found'] when that contained special characters ( "pages trouv&eacute;es."), Thanks for the hint Alain
++ fixed SF bug 1082257: check excluded directories in the section of code that recursively calls search_get instead of the section , dir_exclude is being checked also in the read_dir-function
+* correct the number of pages shown after creating a new index
+* changed <? to <?php in config.php (and checked for that in some other files), hint from msg_id=2903480
+
+--------------
+version 0.935.1 (not public)
++ commented todo (sorry - some of it is german)
+* indexer_search_table.php corrected (now for real)
+* updated language: french, complete update to this version. Thanks Alain!
+
+--------------
+version 0.934
+* updated language: Italian, complete update to 0933. Thanks Ivan!
+* updated configuration: only available languages are shown, when language is changed, form will (submit and) reload with new setting
+* updated indexer_search_table because of possible bug there (bug not always happening)
+
+--------------
+version 0.933
+* updated create.sql - phpmyadmin did not create a correct script (with the fulltext index)
+* updated (a little) language: spanisch 
+
+--------------
+version 0.932 (not public)
++ introduced sorting of fields in indexer.php
+* changed way of sorting fields in configuration.php
+* table internal: field_type is now category (numeric value) -2 (this is not used yet) (config values are -1)
+* docs: updated picture of database modell
+* updated insert.sql
+* updated create.sql
+
+--------------
+version 0.931
+* documentation of phpcrawl4tsep.php and ullist.php in phpxref style
+* docs updated
+
+--------------
+version 0.930 (not public)
+* corrected DBConnectionData to use single quotes
+* docs: added external variable
+* docs: indexer.php?index picture updated
+* added safe mode protection to timelimit in phpcrawl4tsep
+
+--------------
+version 0.929 (not public)
+* renamed "update 0925.sql" to "update 0929.sql", because of changes from 0925->0929 and 0925 was not public
++ fileextension-filter now can be maintained from within indexers "build new index"-page
++ fileextension-filter also made available for external datasupply via global var $TSEPextinclude
+* phpcrawl4tsep.php: AllowFollowMatch-definition now uses $TSEPextinclude
+
+--------------
+version 0.926 (not public)
+* placed $start_time in indexer in the bedinning of the file 
+* removed bug when accessing a directory
+* change "(c) TSEP" to "powered by TSEP"
+* updated documentation
+
+--------------
+version 0.925.2.ON (not public)
+
+* updated french language from Alain (additional)  
+* time limit possible (set to 1800) now if safemode is off (might be important for many files) tag: <script time limit>
+* phpcrawl4tsep.php: added a @ to set timelimit (set to 10000) to prevent error when safemode is on tag: <script time limit>
+- in indexer.php : showResultsHeadlineFileCount - 2 lines commented so that the user sees the progress tag: <user see progress indexing>
+
+--------------
+version 0.925.1.MJ (not public)
++ "update 0925.sql" which inserts new variables into the tables tsep-config and tsep-internal needed for the new features
++ added ability to run indexer in "only-show-filelist-of-files-which-would-be-indexed"-mode
++ indexer now can retrieve to-be-indexed-filenames from an external .php-script too (crawler,filelist,...)
++ included admin/examples/phpcrawl4tsep.php as an example-script to be used as external .php-script
+  (it's an interface to using sf: http://phpcrawl.sf.net)  tag: <spider>
++ included admin/examples/urllist.php as an example-script to be used as external .php-script
+  (simply returns fix urls)
+
+--------------
+version 0.924
+* removed bug from printpagedetails.php
+* updated languages: polish, dutch, spanish to support new (0.923) string 
+
+--------------
+version 0.923
+
++ always read english language before the user language as some (new) strings might not have been translated, several files affected (this is cool I think)
++ update 0923.sql which inserts a new variable in the tsep config table -> YOU MIGHT NEED TO ADJUST THE TABLEPREFIX !
++ check if a file exists before it shows up in the results list (tag <check if file exists>) sf: http://snipurl.com/b1f1
++ added a new variable to tha language file.  
+PLEASE TRANSLATE to the existing languages and send me back the line of code (and which language it is for):
+    $tsep_lng['config_check_file_exists']       =               "Before showing file in results test if it really exists? (true/false) If true the search is a little slower but in the results only files that still exist are shown. Be aware that this only works when allow_url_open is enabled in php.ini! Maybe you MUST set this to false.";
+* updated create.sql
+* updated insert.sql
+* install.php improved: will keep your stopwords AND logs when upgrading!
+    
+--------------
+version 0.922
+
+indexer.php
+* removed * from file_exclude and dir_exclude. thanks to Manfred
+* ."/". between the dirname and entry in indexer - IF THIS WORKS OK, OTHERWISE WE MIGHT CHECK BACK HERE
+/ this is correct so the todo is obsolete: + markup the x words before and after (tag <words before and after>) / display results: X words before and after the first findng of a search term. thanks to Ecki
+
+include/printpagedetails.php
+* page details after indexing are correctly outputting special characters like &auml; again - instead of some weird stuff
+
+--------------
+version 0.921 non public
+* fixed SF:1065203: "searching for strings with "." doesnt work!" - should work now
+* updated website: added languages, removed display bug in css(float was missing . the heck, i swear it was there ... once - use a good browser to see a cool effect (opera,firefox...))
+* updated css to correctly display long lists (float was missing . the heck, i swear it was there ... once - use a good browser to see a cool effect (opera,firefox...))
+* fixed SF msg_id=2870246:  Warning: Call-time pass-by-reference ... in /include/stringfunctions.php
+* changed some css names as they could conflict with your names - again only an IE problem :-( (Copyright -> tsepCopyright)
+
+--------------
+version 0.920
+* corrected convert_htmlent (tag <sql error>)
+* corrected cleanstring.php, now also removes \ character which messed up sql
+* indexer.php: metatags are now cleaned to prevent sql error (cleanString ($metatags_stage2);) (tag <meta tag error>)
++ added italian language
+
+--------------
+version 0.919 not public
+
+--------------
+version 0.918-3 not public
++ added polish language file
++ updated spanish language file
++ added frensh language
+* bug removed: search term words are now marked, thanks to MJ
+several more of course
+
+--------------
+version 0.918-2 not public
++ started documenting files for PHPXref (look on sourceforge for phpxref - http://phpxref.sourceforge.net)
++ changes table format from InnoDB to MyIASM
+- removed set_time_limit from indexer.php so that no problem occurs in when php safe mode is on
+* corrected indexoverview - when clicking on a link to open the page the page was opened correctly but there was also the add new page area
+/ php 4.3.8: safemode=on works, but produces non vital error with time in admin pages (this is good news!)
+/ php 4.3.8: register_globals = off works       (this is good news!)
+
+--------------
+version 0.917(-2)
+* removed logging of "" as search term
+* changed all $editFormAction to <?php echo $_SERVER["PHP_SELF"]; ?>
+
+--------------
+version 0.916
+* hopefully removed open_basedir (someone has to try)
+* hopefully corrected "array_multisort" error (since what version did this happen?)
+* hopefully corrected pagecount of hits (seems to have something to do with the array_multisort)
+Note: As you can see I want to be VERY careful about the additions. If they work for others great, if they will not produce any errors in furher testing good....
+
+--------------
+version 0.915 (removed from sourceforge)
+* tried to solve the open_basedir problem again, hopefully correct
+- removed one of the "bad" fixes from 0.914
+
+--------------
+version 0.914 (removed from sourceforge)
++ "added @ for testing" in indexer.php to see if this removes the error accessing forbidden paths 
+* changes in chonfig.php to avoid open_basedir restriction
+* updated / corrected docs/index.htm
+
+--------------
+version 0.913 -> complete new install needed, database has changed!
++ somebody noticed an error, I tried (not sure it it will work) to overcome that with -> look into checking the file permissions before indexing (fileperms). indexer:  search_get($dirName."/".$entry,$temp_var,$dir_exclude,$file_exclude);
++ auto installer: install.php -> simple file to install the SQL for you.
+* changed some database field names (was needed for user defined table prefix)
+* in logview, if it is a click on a result the whole line can be clicked now (not only the likt itself as before)
+
+--------------
+version 0.912
+* removed bug: in indexer.php after creating a new index: show new value for ... in the user defined language
+* added in the search.php when showing the results -> links below results "Click  on this link to open the page" ... not shows title of the page also
++ added section on how to change the look of the search in the docs / adjust the tsep.css for your layout
+* fixed bug: in search results was a div tag twice (next to each other -> obsolete once)
+* now we are modern: using Verdana instead of standard font on pages in docs and sourceforge
+* updated sourceforge website
+* removed bug: when updating / deleting an entry in the index no navigation and no "new index" was shown anymore
+* updated database modell
+* checked: is searchtips head line in font: verdana? - > if ok
++ create a browser configuration file for tsep
++ all config except database is stored in the database itself (table internal)
++ all add user defined table prefix instead of "tsep_search"
++ search.php -> values in the combo box (how many results per page) could be drawn from a database
+* should be all right now: set default max results when search page is first opened
+* removed several small bugs, did more small stuff
+
+--------------
+version 0.911
+* updated docs
+* updated sourceforge website
+* changed all tsep config variables to config[..] (except database)
++ added log table to database : all search and "click-on-result"-actions can be loged now (this knowledge might help you learn about your visitors intrests)
+* changed format of which last indexing time is stored in database
+* changed php_self to $server['phpself ...
++ added logging of search term, ip, click on search result, time -> all can be turned on / off by admin
++ added logview.php which is for viewing log. values of direction and field are written to config and extracted again
++ Formfield description + help in indexer.php now localized !
++ fixed error in rstnavigation : wrong name for arrow (previous instead of next)
+
+--------------
+version 0.910
+* added internal table to database for storing the databaseversion (for now, might be more useful in the future)
+* updated website
+* updated docs
+* corrected localization - now using $arrayname['word'] format as known in other applications
+* corrected tsepsearch to use localization
+* updated CSS (example: made fields in indexer.php larger - this way it's easier to enter long lines)
++ mysql version checking if boolean search is possible. if not, we will search normal and notify user (should work)
++ sorting by number of hits ! - if a word is found more often in a page this page is ranked higher in the results list. 
+Note: 
+I feel again: computers are like math: When you try to accomplsish something you might code hundreds of lines without getting it done. Suddenly you realize what you did wrong and solve the problem in just 10 lines of code ... this is really annoying! (happend when coding the sorting ....)
++ introduced a debug function - no use for normal user, only for programmer, prints variable contents on page (programmer stuff)
++ added hint to internal mysql stopword in searchtips
+* removed all tables (if there are some left, I did not notice them - let me know please)
++ used even more code recycling (programmer stuff)
++ edit / change / delete the indexed words after of indexing.
++ extend Index Edit (indexoverview): create contents page which shows all pages titles & link but nothing else, user can click on that page to open details of it with everything
++ Display the last indexed (edit) date: each time an index is created or something is changed (delete, update) this date is set
++ added /admin directory which SHOULD be protected by .htaccess for security, moved administration files to this location
++ search user defined -> show X results on one page
+Note: This sounds so easy but somehow it took me hours to figure out the right way - now it works.
++ show number of search result before result, also added "before" and "after" characters
+* made pagination nicer (added title tag)
++ added result numbering - the admin can show the real "rank" (or) "result" number before the page title.
++ removed ugly border around linked images (CSS was wrong)
+* fixed bugs in recordset paging and recordset navigation (both of th search.php file)
+
++ as always: lots of small things + bugfixes + neat ideas
+
+--------------
+version 0.907, 0.908:
+
++ Stopwords are working correctly! They are not searched for and they are not marked in the results.
+* removed the "on_click" from the "search tips" link because the page is so large by now that we can open it using html - little javascript window is not enough.
+* corrected the BOOLEAN SEARCH (introduced dereslash.php, and much more - search was definetely not BOOLEAN before!) Examples: 
+        "meyer maier" (+pr?dent -grnder)
+        aufgefhrt* >grnder
+return correct results now!
+* corrected indexing (special characters)
+* corrected search
+* corrected strip_tags
+* changed some language strings in english and german
++ added some language strings in english and german
++ tested search with special characters (german, some french) -  worked fine
+* corected: mark all found words as search words "Pr?dent" and "Grnder", not only "Pr?sent" ->correct the display of the search words in the results - now only the first seacrh word is correctly displayed. Code was correct, but in the wrong place
++ the page URLs below the page details are links (clickable) now since the user might be used to click on http://.... stuff
+* updated install.htm
+
+--------------
+version 0.906:
+
++ localization complete, every string is stored as a php variable in language.php. Very easy to translate
+* reintroduced pre-made search page
+* updated documentation
++ created install.htm 
+
+--------------
+version 0.9beta until 0.905:
+
+lots and lots of things I have changed ....
+
+
+
+
+--------------------------
+Tags what needed to be done / has been done / has been done similar:
+
+<sql error>
+    The problem is with the single quote - I had the same problem... Try this - should fix all problems with single and double quotes: 
+     
+    /includes/convert_htmlent.php: Line 12: Add: 
+    $text = str_replace("\\", "", $text); // remove "\" 
+     
+    /includes/convert_htmlent.php: Line 30: Add: 
+    $text = str_replace("'", "\'", $text); // add "\'" 
+     
+    This should straighten you out... 
+</sql error>
+
+<meta tag error>
+    habe folgendes Problemchen in TSEP gefunden:
+    Im
+      indexer.php
+    werden in der
+      function file_parser($dirName,$web_dir,$entry)
+    die metatags mittels
+      $metatags_stage1 = @get_meta_tags($fullpath,1);
+      $metatags_stage2 = $metatags_stage1[keywords];
+    ausgelesen.
+    Dabei werden mgliche enthaltene single-quotes nicht ersetzt, was beim
+    mysql-insert zum Abbruch fhrt.
+    (Habe das Problem durch Hinzufgen der Zeile
+      $metatags_stage2 = str_replace("'", "\\'", $metatags_stage2);
+    behoben.)
+    
+    ===> die Ersetzung von Manfred l?t sich mit der Funktion dereslash.php besser lsen.
+</meta tag error>
+
+
+
+<words before and after>
+        also $text soll mal der jeweilige DB-Eintrag der entsprechenden Seite sein.
+        Jetzt habe ich einmal nach dem Wort "Landesregierung" und "Scheitern" im String $text gesucht.
+
+        Als Ausgabe bekommen wir in dem Beispiel jeweils 5 Wrter vor und 5 Wrter nach dem Suchwort. Beim      Suchwort "Landesregierung" wird bercksichtigt, dass es sich an zweiter Stelle befindet. Daher  werden nicht 5 sondern 8 Wrter nach dem Suchbegriff ausgegeben.
+
+        <?
+        $text = 'Brandenburgs Landesregierung ist nach ?erzeugung des parlamentarischen Untersuchungsausschusses mit schuld am Scheitern der Chipfabrik in Frankfurt (Oder). Das geht aus      dem Abschlussbericht des Gremiums hervor, der heute im Landtag mit den Stimmen der      Koalitionsfraktionen von SPD und CDU sowie der oppositionellen PDS verabschiedet wurde. Die     rechtsextreme DVU habe sich der Stimme enthalten und wolle ein Minderheitenvotum vorlegen, sagte Ausschussvorsitzender Heinz Vietze (PDS).';
+        $a = explode (" ",$text);
+        
+        function getStringAmor ($t, $a) {
+                $iWordPos = array_search ($t, $a);
+                if ($iWordPos) {
+                        $iStartPos = $iWordPos >= (floor($surroundingWords/2) ? $iWordPos - (floor($surroundingWords/2) : 0;
+                        $sText = '';
+                        for ($i = $iStartPos; $i < $iStartPos + $surroundingWords; $i++)        
+                                $sText .= $a[$i] ." ";
+                }
+                return $sText;
+        }
+        
+        print getStringAmor ('Landesregierung', $a) . '<br>';
+        print getStringAmor ('Scheitern', $a);
+        ?>
+        
+</words before and after>
+
+<check if file exists>
+    The feature I am proposing is that TSEP should do the verification of whether "TEST.TXT" exists or not before returning it as the result. If "TEST.TXT" exists then display it as one of the results - if not then simply do not return it as one of the results.
+</check if file exists>
+
+<script time limit>
+                open indexer.php
+                search
+                        //      $time_limit_var = 1800;
+                        //      @set_time_limit($time_limit_var);  
+                replace with
+                                $time_limit_var = 1800;
+                                @set_time_limit($time_limit_var);  
+
+to do this use:
+        if( ini_get('safe_mode') ){                     //as in http://de.php.net/features.safe-mode
+           // Do it the safe mode way
+        }else{
+           // Do it the regular way
+         
+        }
+
+</script time limit>
+
+<user see progress indexing>
+now: 
+
+        //   if (!( $ct == 10 or $ct == 25 or ($ct % 50) == 0 ))
+        //      return;
+</user see progress indexing>   
+
+<spider>
+we are NOT spidering ourselves, but we let others spider for us!
+        + add crawling / spidering along URL additional to opening files by fopen. The admin can choose which way. Also both can be done (indexing twice, but writing of course only one entry for each page to the database) : http://phpcrawl.sf.net      and phpdig.net
+</spider>
+
+<language charset>
+> >And one more thing. My translation is encoded in ISO-8859-2 but your scripts don't allow to change the encoding. You could add one more variable in you config file or, which I think would be better, a variable in the language file. This variable could be used to determine which encoding is to be used.        
+> I do not really understand what you mean, please explain.
+Well. AFAIR the <meta content="text/xhtml; charset=iso-8859-1" ... >  tag can't be changed in an easy way. That involves some problems because Polish special characters require ISO-8859-2 charset encoding.  That's why I recommend adding a new variable to the config file or to every of the translated texts files. Example:
+        in one of the files I've mentioned:
+                $charset = 'ISO-8859-2';
+        and in every html header:
+                echo('<meta content="text/xhtml; charset='.$charset.'" ....');
+</language charset>
