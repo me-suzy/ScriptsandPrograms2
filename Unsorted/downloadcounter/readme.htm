@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>DownloadCounter</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+<p><strong><font color="#FF0000" face="Verdana, Arial, Helvetica, sans-serif">How 
+  to install:</font></strong></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">1. open config.php 
+  and edit it.</font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">2. create <font color="#0000FF">download_titles</font> 
+  table (sql file is included) in your database.</font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">3.upload all the files in 
+  the ascii mode.</font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">4. Open the admin.php through 
+  your browser and add new downloads.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><strong><font color="#FF0000" size="3">How 
+  to link to your downloads:</font></strong></font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">it will be something like 
+  that:</font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">http://www.yourdomain.com/download.php?<font color="#0000CC">title=MyFile</font></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif"><strong><font color="#FF0000">How 
+  to Show the counter:</font></strong></font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">type:</font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">http://www.yourdomain.com/download.php?action=show&amp;title=<font color="#0000FF">YourFileTitle</font></font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">to include in your 
+  page through ssi:</font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> &lt;!--#include 
+  virtual=&quot;download.php?action=show&amp;title=<font color="#0000FF">YourFileTitle</font>&quot; 
+  --&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif"><br>
+  </font></p>
+<p><font color="#FF0000" size="3" face="Verdana, Arial, Helvetica, sans-serif"><strong>How 
+  to delete records:</strong></font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Ok, i was too lazy 
+  to add a way to delete the records from the admin panel, so i afraid that you 
+  have to delete it manually throguh PhpMyAdmin or Telnet! if you want to remove 
+  a specific record, just delete the row which hold the file title you wanna delete 
+  in (<font color="#0000FF">download_titles</font> table) after that, remove its 
+  table, the table name will be something like that download_YourFileName. If 
+  you want to delete them all, just remove any table starts with &quot;<font color="#0000FF">download</font>&quot; 
+  make sure that the table is created by this script!</font></p>
+<p><strong><font color="#FF0000" face="Verdana, Arial, Helvetica, sans-serif">Using 
+  JavaScript to show the counter!</font></strong></p>
+<p><font color="#000000" size="2" face="Verdana, Arial, Helvetica, sans-serif">edit 
+  config.php and include this code in your html:</font></p>
+<p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">&lt;script language=&quot;javascript&quot; 
+  src=&quot;http://www.yourdomain.com/download.php?title=<font color="#FF0000">YourFileName</font>&amp;action=show&quot;&gt;&lt;/script&gt;</font></p>
+<p>&nbsp;</p>
+<p><font color="#FF9900" size="2" face="Verdana, Arial, Helvetica, sans-serif">
+
+#########################################################
+#                                                       #
+# This script was provided by:                          #
+#                                                       #
+# PHPSelect Web Development Division.                   #
+# http://www.phpselect.com/                             #
+#                                                       #
+# This script and all included modules, lists or        #
+# images, documentation are © 2004                      #
+# PHPSelect (http://www.phpselect.com/) unless          #
+# otherwise stated in the script.                       #
+#                                                       #
+# Purchasers are granted rights to use this script      #
+# on any site they own. There is no individual site     #
+# license needed per site.                              #
+#                                                       #
+# Any copying, distribution, modification with          #
+# intent to distribute as new code will result          #
+# in immediate loss of your rights to use this          #
+# program as well as possible legal action.             #
+#                                                       #
+# This and many other fine scripts are available at     #
+# the above website or by emailing the authors at       #
+# admin@phpselect.com or info@phpselect.com             #
+#                                                       #
+#########################################################
+</body>
+</html>
