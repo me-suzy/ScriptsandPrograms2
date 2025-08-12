@@ -1,0 +1,942 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>D.E. Classifieds Documentation - Configuration  </TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+</HEAD>
+
+<BODY>
+<A NAME="top"></A>
+<a href="index.html">Main Page</a>
+<BR>
+<BR>
+
+<FONT SIZE="5" FACE="Arial">
+<U><B>Configuration</B></U>
+</FONT>
+<BR>
+<BR>
+<!--<UPDATE>-->
+Open the file named "path_cnfg.php".
+<BR>
+In this file you will set the paths to the "cnfg", "admin_scripts", "lib", and "templates" directories.
+<!--</UPDATE>-->
+<BR>
+There are further instructions contained in this file so 
+make sure you read them as well.
+<BR>
+<BR>
+After you have set your path values, open up the file 
+named 
+<!--<UPDATE>-->
+"cnfg_vars.php" located in the "cnfg" directory.
+<!--</UPDATE>-->
+<BR>
+There are several values that need to be set in this file, and 
+the rest are optional.
+<BR>
+You will have to provide all of you DB info here and some other stuff.
+<BR>
+There are more instructions contained in the file itself.
+<BR>
+<BR>
+<!--<UPDATE>-->"path_cnfg.php"contains the paths to 4 directories. <!--</UPDATE>--> 
+<BR>
+You can put these directories anywhere you want.
+<BR>
+All the other files and directories should <U><B>NOT</B></U> be moved.
+<BR>
+<BR>
+<BR>
+<a name="variableList"></a>
+<FONT SIZE="5" FACE="Arial">
+<U><B>Configuration Variables</B></U>
+</FONT>
+<BR>
+<BR>
+
+<TABLE WIDTH="500" CELLPADDING="10">
+<TR>
+<TD VALIGN="TOP">
+
+<a href="#deDir">deDir</a>
+<BR>
+<BR>
+<a href="#deHome">deHome</a>
+<BR>
+<BR>
+<a href="#dbHost">dbHost</a>
+<BR>
+<BR>
+<a href="#dbName">dbName</a>
+<BR>
+<BR>
+<a href="#dbPass">dbPass</a>
+<BR>
+<BR>
+<a href="#dbUser">dbUser</a>
+<BR>
+<BR>
+
+
+
+<a href="#editAdsRowColor1">editAdsRowColor1</a>
+<BR>
+<BR>
+<a href="#editAdsRowColor2">editAdsRowColor2</a>
+<BR>
+<BR>
+<a href="#expireAdsDays">expireAdsDays</a>
+<BR>
+<BR>
+<a href="#expireTempUsersDays">expireTempUsersDays</a>
+<BR>
+<BR>
+
+
+
+<a href="#logInFormBgColor">logInFormBgColor</a>
+<BR>
+<BR>
+<a href="#logInFormCaption">logInFormCaption</a>
+<BR>
+<BR>
+<a href="#logInFormCaptionBgColor">logInFormCaptionBgColor</a>
+<BR>
+<BR>
+<a href="#logInFormCaptionFontColor">logInFormCaptionFontColor</a>
+<BR>
+<BR>
+<a href="#logInFormWidth">logInFormWidth</a>
+<BR>
+<BR>
+
+<a href="#logInStatusBgColor">logInStatusBgColor</a>
+<BR>
+<BR>
+<a href="#logInStatusWidth">logInStatusWidth</a>
+<BR>
+<BR>
+<a href="#logOutMessage">logOutMessage</a>
+<BR>
+<BR>
+
+</TD>
+
+<TD VALIGN="TOP">
+
+<a href="#mainCatsBufferCols">mainCatsBufferCols</a>
+<BR>
+<BR>
+<a href="#mainCatsCenter">mainCatsCenter</a>
+<BR>
+<BR>
+<a href="#mainCatsCols">mainCatsCols</a>
+<BR>
+<BR>
+<a href="#mainCatsTablePad">mainCatsTablePad</a>
+<BR>
+<BR>
+<a href="#mainCatsTableSpace">mainCatsTableSpace</a>
+<BR>
+<BR>
+<a href="#mainCatsTableWidth">mainCatsTableWidth</a>
+<BR>
+<BR>
+<a href="#mainCatsTdWidth">mainCatsTdWidth</a>
+<BR>
+<BR>
+
+
+<a href="#replyEmail">replyEmail</a>
+<BR>
+<BR>
+<a href="#rowsOfAdsTableWidth">rowsOfAdsTableWidth</a>
+<BR>
+<BR>
+<a href="#rowsOfEditAdsTableWidth">rowsOfEditAdsTableWidth</a>
+<BR>
+<BR>
+
+
+
+<a href="#siteName">siteName</a>
+<BR>
+<BR>
+<a href="#subCatsBufferCols">subCatsBufferCols</a>
+<BR>
+<BR>
+
+
+
+<a href="#subCatsCenter">subCatsCenter</a>
+<BR>
+<BR>
+<a href="#subCatsCols">subCatsCols</a>
+<BR>
+<BR>
+<a href="#subCatsTablePad">subCatsTablePad</a>
+<BR>
+<BR>
+<a href="#subCatsTableSpace">subCatsTableSpace</a>
+<BR>
+<BR>
+<a href="#subCatsTableWidth">subCatsTableWidth</a>
+<BR>
+<BR>
+<a href="#subCatsTdWidth">subCatsTdWidth</a>
+<BR>
+<BR>
+
+
+</TD>
+
+<TD VALIGN="TOP">
+
+<a href="#userNameMinLength">userNameMinLength</a>
+<BR>
+<BR>
+<a href="#userNameMaxLength">userNameMaxLength</a>
+<BR>
+<BR>
+<a href="#userPassMinLength">userPassMinLength</a>
+<BR>
+<BR>
+<a href="#userPassMaxLength">userPassMaxLength</a>
+<BR>
+<BR>
+
+
+
+<a href="#tmplt">tmplt_add_item</a>
+<BR>
+<BR>
+<a href="#tmplt">tmplt_add_item_results</a>
+<BR>
+<BR>
+<a href="#tmplt">tmplt_details</a>
+<BR>
+<BR>
+<a href="#tmplt">tmplt_edit</a>
+<BR>
+<BR>
+<a href="#tmplt">tmplt_index</a>
+<BR>
+<BR>
+<a href="#tmplt">tmplt_log_in</a>
+<BR>
+<BR>
+<a href="#tmplt">tmplt_log_out</a>
+<BR>
+<BR>  
+<a href="#tmplt">tmplt_register</a>
+<BR>
+<BR>  
+<a href="#tmplt">tmplt_search</a>
+<BR>
+<BR>  
+<a href="#tmplt">tmplt_select_to_add</a>
+<BR>
+<BR>  
+<a href="#tmplt">tmplt_showCat</a>
+<BR>
+<BR>  
+<a href="#tmplt">tmplt_verify_registration</a>
+<BR>
+<BR>  
+
+
+<a href="#viewAdsRowColor1">viewAdsRowColor1</a>
+<BR>
+<BR>
+<a href="#viewAdsRowColor2">viewAdsRowColor2</a>
+<BR>
+<BR>
+
+
+</TD>
+</TR>
+</TABLE>
+
+
+<a name="#dbHost"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>dbHost</B></U>
+<BR>
+The hostname that the database is running on.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#dbUser"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>dbUser</B></U>
+<BR>
+Your mysql username.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#dbPass"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>dbPass</B></U>
+<BR>
+The mysql password assigned to your username.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#dbName"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>dbName</B></U>
+<BR>
+The name of the database to connect to.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#deHome"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>deHome</B></U>
+<BR>
+This is the url path to the "index.php" file of D.E. Classifieds. 
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#deDir"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>deDir</B></U>
+<BR>
+This is the path to the directory that you chose to put D.E. Classifieds in.  There must be a trailing slash on this value! 
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#siteName"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>siteName</B></U>
+<BR>
+This is the name of the site.
+This shouldn't be confused with the domain name 
+of the site, although the two could be the same.
+For example if the name of your classified ads 
+site is "Big Joe's Classifieds", then you should 
+set the value of 'siteName' to "Big Joe's Classifieds" .
+The name of the site may be used in outgoing emails, and 
+in other situations when the application needs to 
+refer to the site that it belongs to.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#replyEmail"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>replyEmail</B></U>
+<BR>
+This is the email address that will appear in the "From:" header when new users are emailed their registration keys.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#logOutMessage"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>logOutMessage</B></U>
+<BR>
+This is the message that appears when user logs out.
+<BR>
+Make sure you put quotation marks around this value.
+If you need to include quotation marks in the message itself, 
+be sure to proceed them with a backslash(\) .
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#expireAdsDays"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>expireAdsDays</B></U>
+<BR>
+The number of days in which the ad will expire after it 
+has been posted. This value is also used by the database 
+administration section to determine which ads are old enough to 
+be deleted.
+<BR>
+<BR>
+Should value(s) be in quotes: No
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#expireTempUsersDays"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>expireTempUsersDays</B></U>
+<BR>
+When a new user takes the first step toward signing up they are put into a temporary spot in the 
+database until they confirm their registration.  If they do not confirm 
+their registration the temporary record stays in the database until deleted. 
+So for example if you set this value to 7, temporary users who have been in the database longer than 7 days will be deleted.  
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#rowsOfAdsTableWidth"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>rowsOfAdsTableWidth</B></U>
+<BR>
+This sets the width of the table 
+where rows of results are displayed 
+after searching or browsing 
+categories.
+<BR>
+<BR>
+Value can be a regular number or a percentage.
+Percentage is the width relative to the table which holds 
+this particular table. 
+<BR>
+<BR>
+Examples:
+<BR>
+$cnfg['rowsOfAdsTableWidth'] = "80%"; 
+<BR>
+$cnfg['rowsOfAdsTableWidth'] = "300";
+<BR>
+----------------
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#viewAdsRowColor1"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>viewAdsRowColor1</U></B>
+<BR>
+<a name="#viewAdsRowColor2"></a>
+<U><B>viewAdsRowColor2</U></B>
+<BR>
+These are the colors of the rows 
+where people are browsing/searching ads.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#rowsOfEditAdsTableWidth"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>rowsOfEditAdsTableWidth</B></U>
+<BR>
+This sets the width of the table 
+on the edit page.
+<BR>
+Example:
+<BR>
+$cnfg['rowsOfEditAdsTableWidth'] = "100%";  
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#editAdsRowColor1"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>editAdsRowColor1</U></B>
+<BR>
+<a name="#editAdsRowColor2"></a>
+<U><B>editAdsRowColor2</U></B>
+<BR>
+These are the colors of the rows that are displayed 
+when a registered user is viewing the summary of 
+ads that they have running.
+<BR>
+The colors will alternate from one row to the next to 
+help distinguish between records.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#mainCatsCols"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>mainCatsCols</B></U>
+<BR>
+Number of columns 
+for category navigation. 
+<BR>
+<BR>
+Should value(s) be in quotes: No 
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#mainCatsBufferCols"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>mainCatsBufferCols</B></U>
+<BR>
+Space between columns for category navigation. 
+<BR>   
+Right way: $cnfg['mainCatsBufferCols'] = "20";
+<BR>
+Right way: $cnfg['mainCatsBufferCols'] = "20%";
+<BR>
+Wrong way: $cnfg['mainCatsBufferCols'] = 20px;
+<BR>
+<BR>
+This value has no effect is mainCatsCols is set to 1 .
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#mainCatsTableWidth"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>mainCatsTableWidth</B></U>
+<BR>
+Width of table that main categories will 
+be displayed in. 
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#mainCatsTableSpace"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>mainCatsTableSpace</B></U>
+<BR>
+This will be the value of the "cellspacing" attribute 
+in the table that displays the list of main categories.
+Setting it to a higher number will increase the amount of space 
+between table cells.
+<BR>
+A value of 3 seems to work fairly well.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#mainCatsTablePad"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>mainCatsTablePad</B></U>
+<BR>
+This will be the value of the "cellpadding" attribute 
+in the table that displays the list of main categories. 
+Setting this to a higher number will increase the amount 
+of "padding" inside of each table cell.
+<BR>
+A value of 3 seems to work fairly well.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#mainCatsTdWidth"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>mainCatsTdWidth </B></U> 
+<BR>
+The max width for each column.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#mainCatsCenter"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>mainCatsCenter</B></U> 
+<BR>
+Set to true If you want the main categories to be 
+centered inside of their parent table, false if you don't.  
+<BR>
+<BR>
+Should value(s) be in quotes: No
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#subCatsCols"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>subCatsCols</B></U>
+<BR>
+Number of columns for sub-category navigation. 
+<BR>
+<BR>
+Should value(s) be in quotes: No 
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#subCatsBufferCols"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<U><B>subCatsBufferCols</B></U>
+<BR>
+Same rules apply for subCatsBufferCols 
+as for mainCatsBufferCols.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#subCatsTableWidth"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>subCatsTableWidth</B></U>
+<BR>
+Width of table that sub categories will 
+be displayed in. 
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#subCatsTableSpace"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>subCatsTableSpace</B></U>
+<BR>
+This will be the value of the "cellspacing" attribute 
+in the table that displays the list of sub categories.
+Setting it to a higher number will increase the amount of space 
+between table cells.
+<BR>
+A value of 3 seems to work fairly well.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#subCatsTablePad"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>subCatsTablePad</B></U>
+<BR>
+This will be the value of the "cellpadding" attribute 
+in the table that displays the list of sub categories. 
+Setting this to a higher number will increase the amount 
+of "padding" inside of each table cell.
+<BR>
+A value of 3 seems to work fairly well.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#subCatsTdWidth"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>subCatsTdWidth </B></U> 
+<BR>
+The max width for each sub-cat column
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#subCatsCenter"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>subCatsCenter</B></U> 
+<BR>
+Set to true If you want the sub categories to be 
+centered inside of their parent table, false if you don't.  
+<BR>
+<BR>
+Should value(s) be in quotes: No
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#logInFormCaption"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>logInFormCaption</B></U> 
+<BR>
+This is the text that appears above the login form.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#logInFormCaptionFontColor"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>logInFormCaptionFontColor</B></U> 
+<BR>
+This is the font color of the text in the caption above the login form.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#logInFormCaptionBgColor"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>logInFormCaptionBgColor</B></U> 
+<BR>
+This is the background color of the caption above the login form.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#logInFormWidth"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>logInFormWidth</B></U> 
+<BR>
+This is the width of the login form.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#logInFormBgColor"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>logInFormBgColor</B></U> 
+<BR>
+This is the background color of the login form.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#logInStatusWidth"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>logInStatusWidth</B></U> 
+<BR>
+This is the width of the table that holds the login status.
+The login status is the message that tells the user that they are logged in.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#logInStatusBgColor"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>logInStatusBgColor</B></U> 
+<BR>
+The background color of the area where the login status message is displayed.
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#tmplt"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<B>tmplt_*</B> 
+<BR>
+<BR>
+These values determine which template files 
+are used for each page of the application which needs an html template file.
+"tmplt_" prefix is followed by the exact 
+name of the php file(minus the .php extension) 
+that uses the template file.
+<BR>  
+<BR>
+<U>Example: </U>
+<BR>
+$cnfg['tmplt_add_item'] = "html_template1.php";
+<BR>
+<BR>
+-----------------
+<BR>
+In the example "add_item.php" uses the template 
+file named "html_template1.php" .
+<BR> 
+<BR>
+Caution:
+The value should only be the file name of the 
+template file.  It should not contain the path 
+to the file itself. The path to the file should 
+be supplied in the "path_cnfg.php" file in the 
+'pathToTemplatesDir' value.  
+Whatever template file you use should
+be kept in your "templates" directory.
+<BR>
+<BR>
+Should value(s) be in quotes: Yes
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+
+<a name="#userPassMinLength"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>userPassMinLength</B></U> 
+<BR>
+<a name="#userPassMaxLength"></a>
+<U><B>userPassMaxLength</B></U> 
+<BR>
+User will get an error if he/she tries to 
+choose a password shorter than 'userPassMinLength' 
+or longer than 'userPassMaxLength' .
+<BR>
+If you want user passwords to be able 
+to be longer than 20 characters then 
+you'll need to change the definition of the 
+password field in the std_users table.
+<BR>
+<BR>
+Should value(s) be in quotes: No
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<a name="#userNameMinLength"></a>
+<HR WIDTH="300" ALIGN="LEFT">
+<BR>
+<U><B>userNameMinLength</B></U> 
+<BR>
+<a name="#userNameMaxLength"></a>
+<U><B>userNameMaxLength</B></U> 
+<BR>
+User will get an error if he/she tries to 
+choose a user name that is shorter than 'userNameMinLength' 
+or longer than 'userNameMaxLength' .
+<BR>
+If you want user names to be able 
+to be longer than 20 characters then 
+you'll need to change the definition of the 
+user_name field in the std_users table.
+<BR>
+<BR>
+Should value(s) be in quotes: No
+<BR>
+<BR>
+<a href="#top">Top of page</a>
+<BR>
+<a href="#variableList">Variable List</a>
+<BR>
+<BR>
+<a href="index.html">Main Page</a>
+<BR>
+<BR>
+</BODY>
+</HTML>
