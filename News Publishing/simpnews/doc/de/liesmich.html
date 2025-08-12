@@ -1,0 +1,697 @@
+<HTML>
+<head>
+<style>
+        body{
+                font-size : 10pt;
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-weight : normal;
+                background-color : #FFFFF0;
+                border : thin solid Black;
+        }
+        .remark{
+                font-size : 8pt;
+        }
+        .footnote{
+                font-size : 8pt;
+        }
+        a.footnote{
+                text-decoration : none;
+                color : #191970;
+        }
+        a.footnote:hover{
+                background-color : Yellow;
+        }
+        PRE {
+                font-family : "Courier New", Courier, monospace;
+                font-size : 10pt;
+                color : Black;
+        }
+        tr.params{
+                background-color : #DCDCDC;
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 10pt;
+        }
+        tr.params_heading{
+                background-color : #A9A9A9;
+        }
+        td.paramname{
+                font-style : italic;
+                text-align : center;
+                width : 20%;
+                vertical-align : top;
+        }
+        td.paramscripts{
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+                text-align : left;
+                padding-left : 2pt;
+                vertical-align : top;
+                width : 30%;
+        }
+        td.paramdesc{
+                text-align : left;
+                padding-left : 2pt;
+                vertical-align : top;
+                width : 25%
+        }
+        td.paramdefval{
+                text-align : left;
+                padding-left : 2pt;
+                vertical-align : top;
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+        }
+        table.code{
+                background-color : #F0F8FF;
+                border : 1 solid Black;
+                color : #444444;
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+                padding-left : 2px;
+                padding-right : 2px;
+        }
+        th{
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 10pt;
+        }
+</style>
+<title>SimpNews - LiesMich</title>
+</head>
+<body>
+<em>Hinweise f&uuml;r Benutzer von Versionen &lt;2.20:<br>
+Ab 2.20 wurde ein neuer Benutzerlevel f&uuml;r Administratoren (superadmin) eingef&uuml;hrt. Systemkritische Aktionen (z.B. Herunterfahren von
+SimpNews) k&ouml;nnen nur noch von Administratoren mit diesem Benutzerlevel durchgef&uuml;hrt werden. Wenn die Administrationsoberfl&auml;che heruntergefahren oder das max. Benutzerlimit erreicht ist, dann k&ouml;nnen sich nur Administratoren mit diesem Benutzerlevel noch anmelden.<br>
+Aus diesem Grund sollten Sie nach einem Upgrade einem der Administratoren diesen Level geben.
+Wir empfehlen nur einen Administrator mit diesem Benutzerlevel anzulegen, damit es bei den Systemkritischen Aktionen nicht zu Kollisionen kommt.</em>
+<a id="install"><h1>Installation</h1></a>
+<em>Wichtiger Installationshinweis:</em> Die in config.php definierte Datenbank muss bereits existieren.
+Aus Sicherheitsgr&uuml;nden legt das Skript nur Tabellen und keine Datenbanken an.<br>
+<em>Hinweis f&uuml;r Benutzer von PHP4 &lt;= 4.0.4:</em>
+Bitte die Kommentare um die Funktion <em>is_null</em> am Ende von functions.php entfernen.
+<ol>
+<li>Kopieren Sie config.dist.php nach config.php und editieren Sie diese Datei, so dass die Einstellungen f&uuml;r Ihren Server stimmen (nur empfohlen f&uuml;r Personen mit PHP-Kenntnissen)
+oder rufen Sie admin/mkconfig.php auf, um eine config.php zu erzeugen.
+<span class="remark">(wenn Sie eine PHP Version &gt;=4.2.0 benutzen, so m&uuml;ssen Sie $new_global_handling=true;
+in mkconfig.php einstellen)</span><br>
+<em>Anmerkung:</em> Sie k&ouml;nnen mehrere Instanzen von SimpNews in einer Datenbank haben.
+Benutzen Sie dabei nur bei jeder Installation verschiedene Werte f&uuml;r <em>tableprefix</em> in der config.php.
+<em>Dies muss gemacht werden bevor Sie install.php aufrufen.</em><br><br>
+<em>Stellen Sie beim Upgrade von einer alten Installation sicher, da&szlig; Sie alle neuen Variablen der aktuellen Version in Ihre bestehende config.php &uuml;bernehmen!</em></li>
+<li>Kopieren Sie alle Dateien (.php, .inc ...) auf den Webhost. <em>Bitte unbedingt die Unterverzeichnisstruktur beibehalten.</em><br>
+<span class="remark"><em>Wichtig:</em>
+Die Dateien in /applet, /gfx und /sfx im Bin&auml;rmodus &uuml;bertragen !!!!</span>
+</li>
+<li>
+<ol type=A>
+<li><strong>Erstinstallation:</strong><br>
+Rufen Sie nun http://ihr.host.de/installationsverzeichnis/admin/install.php
+auf, um die Tabellen in der Datenbank zu erzeugen und den ersten Administrator zu definieren.
+
+</li>
+<li TYPE=A><strong>Updates:</strong><br>
+<span class="remark">IM AKTUELLEN ARCHIV SIND NUR UPDATE-SKRIPTS F&Uuml;R UPDATES AB &gt;=V2.25 VORHANDEN !!!
+UM DAS UPDATE &Auml;LTERER SKRIPTS DURCHZUF&Uuml;HREN LADEN SIE BITTE NOCH DAS UPDATE-PAKET AUF 2.25
+HERUNTER !!
+</span><br>
+<em>Alle Dateien (.php, .inc ...) auf dem Server durch die neuen ersetzen.</em><br>
+<em>So bestimmen Sie das ben&ouml;tigte Updateskript:</em><ul>
+<li>Nehmen Sie die aktuell installierte Version (z.B. 1.10)</li>
+<li>Entfernen Sie den Punkt innerhalb der Versionnummer (im Beispiel wird das dann 110).<br>
+Jetzt haben Sie die ben&ouml;tigte Updateversion.</li>
+<li>Benutzen Sie nun alle Updateskripts von dieser Version an bis zur aktuellen Version (in der richtigen Reihenfolge).<br>
+Angenommen im Beispiel w&auml;re die aktuelle Version 1.22 (kurz 122), dann benutzen Sie upgrade_110_to_111.php,
+danach upgrade_111_to_112.php usw. bis upgrade_121_to_122.php.<br>
+<span class="remark">Existiert eines der Zwischenskripte nicht, so war bei den entsprechenden Versionen kein
+Update der DB n&ouml;tig. Fahren sie in diesem Fall einfach mit dem n&auml;chsten, passenden Skript in der Reihe fort.</span>
+</li></ul>
+</ul>
+</li></ol></li>
+<li>Nach der Installation entfernen Sie bitte mkconfig.php, install.php, upgrade_* and fill_* vom Server und setzen die Dateizugriffsrechte f&uuml;r die <em>config.php</em> so,
+dass PHP nicht in die Datei schreiben kann <span class="remark">(bei den meissten Serverkonfigurationen ist das <em>chmod 644</em>)</span>.</li>
+<li>Nun k&ouml;nnen Sie sich bei der Administrationsoberfl&auml;che unter
+<pre>http://ihr.host.de/installionsverzeichnis/admin/index.php</pre>
+mit dem bei der Installation angegebenen Daten anmelden.</li>
+</ol>
+<a id="calling"><h1>Aufruf der unterschiedlichen Benutzeransichten</h1></a>
+<ul>
+<li>Liste der News:<ul>
+<li>Typ 1:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/news.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>Typ 2:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/news4.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>Typ 3:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/news5.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li></ul>
+<li>Liste der News, in einer Archivkategorie:<ul>
+<li>Typ 1:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/news_arc.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>Typ 2:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/news4_arc.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+</ul>
+<li>Liste der News, nach Kategorien getrennt:<ul>
+<li>Typ 1:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/news2.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>Typ 2:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/news3.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+</ul>
+</li>
+<li>Anmeldeformular f&uuml;r das Abonnement:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/subscription.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>Kalender mit den Events:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/eventcal.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>Liste mit allen eingetragenen Events:<ul>
+<li>Typ 1:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/events.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>Typ 2:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/evlist2.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>Typ 3:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/evlist3.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li></ul></li>
+<li>News und Kategorieliste als Frameset:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/newsframe.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>RSS Newsfeed:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/rss_news.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>WAP Seiten:<ul>
+<li>WAP Kategorieliste:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/wap_catlist.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>WAP Kategorieliste Typ 2:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/wap_catlist2.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>WAP Eventsuche:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/wap_ev_search.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>WAP Eventliste Typ 1:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/wap_short_events.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>WAP Eventliste Typ 2:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/wap_short_events2.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>WAP Liste der Ank&uuml;ndigungen:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/wap_short_announce.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+<li>WAP Liste der News:<br>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/wap_short_news.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+</li>
+</ul></li></ul>
+<a id="scriptparams"><h2>URL-Parameter f&uuml;r die Skripts</h2></a>
+<table width="85%" border="0" cellspacing="0" cellpadding="1" align="left" bgcolor="black">
+<tr bgcolor="black"><td><table width="100%" cellspacing="1" cellpadding="1" align="center">
+<tr class="params_heading">
+    <th>Parametername</th>
+    <th>g&uuml;ltig f&uuml;r</th>
+    <th>Beschreibung</th>
+        <th>Voreinstellung<sup><a class="footnote" href="#defval">1</a></sup></th>
+</tr>
+<tr class="params">
+    <td class="paramname">language</td>
+    <td class="paramscripts"><ul><li type="square">news.php</li> <li type="square">news2.php</li> <li type="square">news3.php</li> <li type="square">news4.php</li> <li type="square">news5.php</li> <li type="square">eventcal.php</li> <li type="square">events.php</li> <li type="square">evlist2.php</li> <li type="square">newsframe.php</li> <li type="square">subscription.php</li><li type="square">news_arc.php</li><li type="square">news4_arc.php</li><li type="square">evlist3.php</li><li type="square">masssub.php</li><li type="square">nlmaint.php</li><li type="square">rss_news.php</li><li type="square">wap_catlist.php</li><li type="square">wap_ev_search.php</li><li type="square">wap_short_events.php</li><li type="square">wap_short_events2.php</li><li type="square">wap_short_announce.php</li><li type="square">wap_short_news.php</li><li type="square">wap_catlist2.php</li></ul></td>
+    <td class="paramdesc">Sprache, in der die Oberfl&auml;che angezeigt werden soll<br><span class="remark">(G&uuml;ltige Werte sind die Sprachk&uuml;rzel, f&uuml;r die eine entspr. Sprachdatei im Verzeichnis language vorhanden ist.<br>
+        Der zu benutzende Wert ist der Teil des Dateinamens zwischen '_' und '.' -&gt; f&uuml;r lang_de.php ist der Wert "de")</span></td>
+        <td class="paramdefval"><em>$default_lang</em> aus config.php</td>
+</tr>
+<tr class="params">
+    <td class="paramname">layout</td>
+    <td class="paramscripts"><ul><li type="square">news.php</li> <li type="square">news2.php</li> <li type="square">news3.php</li> <li type="square">news4.php</li> <li type="square">news5.php</li> <li type="square">eventcal.php</li> <li type="square">events.php</li> <li type="square">evlist2.php</li> <li type="square">newsframe.php</li> <li type="square">subscription.php</li><li type="square">news_arc.php</li><li type="square">news4_arc.php</li><li type="square">evlist3.php</li><li type="square">masssub.php</li><li type="square">nlmaint.php</li><li type="square">rss_news.php</li><li type="square">wap_catlist.php</li><li type="square">wap_ev_search.php</li><li type="square">wap_short_events.php</li><li type="square">wap_short_events2.php</li><li type="square">wap_short_announce.php</li><li type="square">wap_short_news.php</li><li type="square">wap_catlist2.php</li></ul></td>
+    <td class="paramdesc">Layout, das f&uuml;r die Oberfl&auml;che benutzt werden soll</td>
+        <td class="paramdefval">Layout f&uuml;r die gew&uuml;nschte Sprache, das in der Administrationsoberfl&auml;che als <em>Voreinstellung</em> markiert wurde</td>
+</tr>
+<tr class="params">
+    <td class="paramname">category</td>
+    <td class="paramscripts"><ul><li type="square">news.php</li> <li type="square">news4.php</li> <li type="square">news5.php</li> <li type="square">eventcal.php</li> <li type="square">events.php</li> <li type="square">subscription.php</li><li type="square">news_arc.php</li><li type="square">news4_arc.php</li><li type="square">evlist3.php</li><li type="square">rss_news.php</li><li type="square">wap_short_events.php</li><li type="square">wap_short_events2.php</li><li type="square">wap_short_announce.php</li><li type="square">wap_short_news.php</li></ul></td>
+    <td class="paramdesc">Kategorie, der die Daten zugeordnet sein m&uuml;ssen<br><span class="remark">(-1=alle Kategorien anzeigen)</span><br><span class="remark">Bei news_arc.php und news4_arc.php muss die entspr. Kategorie in der Administrationsoberfl&auml;che als Archivkategorie gekennzeichnet worden sein.</span></td>
+        <td class="paramdefval">Kategorie 0 (Allgemein)</td>
+</tr>
+<tr class="params">
+    <td class="paramname">sortorder</td>
+    <td class="paramscripts"><ul><li type="square">news.php</li> <li type="square">news2.php</li> <li type="square">news3.php</li> <li type="square">news4.php</li> <li type="square">news5.php</li> <li type="square">events.php</li> <li type="square">evlist2.php</li> <li type="square">newsframe.php</li><li type="square">evlist3.php</li><li type="square">rss_news.php</li><li type="square">wap_short_events.php</li><li type="square">wap_short_events2.php</li><li type="square">wap_short_announce.php</li><li type="square">wap_short_news.php</li></ul></td>
+    <td class="paramdesc">Sortierreihenfolge f&uuml;r die Eintr&auml;ge<br><span class="remark">(0=absteigend nach Datum, 1=aufsteigend nach Datum, 2=aufsteigend nach &Uuml;berschrift, 3=absteigend nach &Uuml;berschrift)</span></td>
+        <td class="paramdefval">Absteigend nach Datum<br><br>news5.php/evlist2.php: aufsteigend nach Datum</td>
+</tr>
+<tr class="params">
+    <td class="paramname">limitdays</td>
+    <td class="paramscripts"><ul><li type="square">news.php</li> <li type="square">news2.php</li> <li type="square">news3.php</li> <li type="square">news4.php</li><li type="square">evlist3.php</li><li type="square">rss_news.php</li><li type="square">wap_short_events.php</li><li type="square">wap_short_events2.php</li><li type="square">wap_short_announce.php</li><li type="square">wap_short_news.php</li></ul></td>
+    <td class="paramdesc">Begrenzt die Anzahl zu ber&uuml;cksichtigender Tage in den Listen.<br><span class="remark">(&Uuml;berschreibt entspr. Einstellung aus der Datenbank)</span></span></td>
+        <td class="paramdefval">&nbsp;</td>
+</tr>
+<tr class="params">
+    <td class="paramname">startdate<br><span class="remark">Format: YYYY-MM-DD</span></td>
+    <td class="paramscripts"><ul><li type="square">news.php</li> <li type="square">news2.php</li> <li type="square">news3.php</li> <li type="square">news4.php</li> <li type="square">news5.php</li> <li type="square">events.php</li> <li type="square">evlist2.php</li><li type="square">evlist3.php</li><li type="square">rss_news.php</li></ul></td>
+    <td class="paramdesc">Liste bei angegebenem Datum beginnen</td>
+        <td class="paramdefval">&nbsp;</td>
+</tr>
+<tr class="params">
+    <td class="paramname">enddate<br><span class="remark">Format: YYYY-MM-DD</span></td>
+    <td class="paramscripts"><ul><li type="square">news.php</li> <li type="square">news2.php</li> <li type="square">news3.php</li> <li type="square">news4.php</li> <li type="square">news5.php</li> <li type="square">events.php</li> <li type="square">evlist2.php</li><li type="square">evlist3.php</li><li type="square">rss_news.php</li></ul></td>
+    <td class="paramdesc">Liste bei angegebenem Datum beenden<br><span class="remark">(&uuml;berschreibt eine Begrunzung nach Anzahl Tagen)</span></td>
+        <td class="paramdefval">&nbsp;</td>
+</tr>
+<tr class="params">
+    <td class="paramname">maxannounce</td>
+    <td class="paramscripts"><ul><li type="square">news.php</li> <li type="square">news2.php</li> <li type="square">news3.php</li> <li type="square">news4.php</li> <li type="square">news5.php</li> <li type="square">events.php</li> <li type="square">evlist2.php</li><li type="square">evlist3.php</li></ul></td>
+    <td class="paramdesc">Max. angegebene Anzahl von Ank&uuml;ndigungen anzeigen.<br><span class="remark">(bei Skripts, die die Daten nach Kategorien getrennt anzeigen: max. Anzahl an Ank&uuml;ndigungen pro Kategorie)</span></td>
+        <td class="paramdefval">&nbsp;</td>
+</tr>
+<tr class="params">
+    <td class="paramname">maxentries</td>
+    <td class="paramscripts"><ul><li type="square">news.php</li><li type="square">news3.php</li><li type="square">news4.php</li><li type="square">rss_news.php</li><li type="square">wap_short_announce.php</li><li type="square">wap_short_events.php</li><li type="square">wap_short_events2.php</li><li type="square">wap_short_news.php</li></td>
+    <td class="paramdesc">Max. angegebene Anzahl von Eintr&auml;gen anzeigen.</td>
+        <td class="paramdefval">&nbsp;</td>
+</tr>
+<tr class="params">
+        <td class="paramname">cats</td>
+        <td class="paramscripts"><ul><li type="square">masssub.php</li></ul></td>
+        <td class="paramdesc">Liste der Kategorien, die f&uuml;r das Formular ber&uuml;cksichtigt werden sollen<br><span class="remark">(durch Komma getrennt, z.B. cats=1,2,3)</span></td>
+        <td class="paramdefval">&nbsp;</td>
+</tr>
+<tr class="params">
+        <td class="paramname">mode</td>
+        <td class="paramscripts"><ul><li type="square">wap_catlist.php</li></ul></td>
+        <td class="paramdesc">Gibt an, auf welche Endseiten verlinkt werden soll.<br>
+        M&ouml;gliche Werte:<ul>
+        <li type="square">news = wap_short_news.php</li>
+        <li type="square">events = wap_short_events.php</li>
+        <li type="square">events2 = wap_short_events2.php</li>
+        <li type="square">announce = wap_short_announce.php</li>
+        <li type="square">evsearch = wap_ev_search.php</li>
+        </ul>
+        </td>
+        <td class="paramdefval">news</td>
+</tr>
+<tr class="params">
+        <td class="paramname">searchtype</td>
+        <td class="paramscripts"><ul><li type="square">wap_ev_search.php</li></ul></td>
+        <td class="paramdesc">Gibt an, welcher Suchmodus verwendet werden soll.<br>
+        M&ouml;gliche Werte:<ul>
+        <li type="square">text = Suche &uuml;ber Suchtext</li>
+        <li type="square">normal = Suche &uuml;ber Kategorie &amp; Datum</li>
+        </ul>
+        </td>
+        <td class="paramdefval">In Administrationsoberfl&auml;che eingestellter Modus</td>
+</tr>
+<tr class="params">
+        <td class="paramname">sortorder</td>
+        <td class="paramscripts"><ul><li type="square">news_arc.php</li><li type="square">news4_arc.php</li></ul></td>
+        <td class="paramdesc">Gibt an, welche Sortierreihenfolge verwendet werden soll.<br>
+        M&ouml;gliche Werte:<ul>
+        <li type="square">0 = in Administrationsoberfl&auml;che definierte Reihenfolge</li>
+        <li type="square">10 = nach &Uuml;berschrift aufsteigend</li>
+        <li type="square">11 = nach &Uuml;berschrift absteigend</li>
+        <li type="square">20 = nach Datum aufsteigend</li>
+        <li type="square">21 = nach Datum absteigend</li>
+        </ul>
+        </td>
+        <td class="paramdefval">0</td>
+</tr>
+</table>
+</td></tr></table>
+<br clear="all">
+<a id="defval"><span class="footnote"><sup class="footnote">1</sup> voreingestellter Wert, der Benutzt wird, wenn der entspr. Parameter nicht angegeben wird</span></a>
+<br><br>
+<em>URL-Parameter m&uuml;ssen wie folgt angegeben werden:</em><ul>
+<li>Dem erste Parameter nach der URL muss ein<strong>?</strong> vorangestellt werden <span class="remark">(z.B. news.php?language=de)</span></li>
+<li>Allen folgenden Parametern muss ein <strong>&amp;</strong> vorangestellt werden <span class="remark">(z.B. news.php?language=de&amp;layout=1)</span></li>
+</ul>
+<h1>Listen in Ihre eigenen Seiten einbinden</h1>
+Bitte beachten Sie, dass nur die in diesem Abschnitt angegeben Skripte in Ihre eigenen Seiten eingebunden werden k&ouml;nnen.
+Die anderen sind so gestaltet, dass Sie direkt aufgerufen werden m&uuml;ssen.<br><br>
+Die einfachste Methode, um den ben&ouml;tigten Code zum Einbinden eines Skripts zu erhalten, ist der Code-Generator in
+der Administrationsoberfl&auml;che.<br>
+<span class="remark">Anmerkung: Die Kodesegment, die in dieser Dokumentation angegeben werden sind in PHP</span>
+<h3>Hotnewsliste</h3>
+<ol>
+<li>Mit <pre>include('&lt;pathtosimpnews&gt;/hotnews.php');</pre> bzw. <pre>include('&lt;pathtosimpnews&gt;/hotnews2.php');</pre>
+bzw. <pre>include('&lt;pathtosimpnews&gt;/hotnews4.php');</pre> bzw. <pre>include('&lt;pathtosimpnews&gt;/hotnews5.php');</pre>
+bzw. <pre>include('&lt;pathtosimpnews&gt;/hotnews6.php');</pre>  bzw. <pre>include('&lt;pathtosimpnews&gt;/hotnews7.php');</pre>
+bzw. <pre>include('&lt;pathtosimpnews&gt;/hotnews8.php');</pre> bzw. <pre>include('&lt;pathtosimpnews&gt;/hotnews9.php');</pre>
+k&ouml;nnen Sie das Skript in Ihre Seite einbinden.</li>
+<li>Wenn Sie das Cookie f&uuml;r die Speicherung des letzten Besuches verwenden wollen,
+benutzen Sie <pre>include('&lt;pathtosimpnews&gt;/newscookie.php');</pre> um die Cookieroutine in Ihre bestehende Seite
+einzubinden.<br><span class="remark">Diese Datei muss eingebunden werden, bevor der HTTP Body von PHP gesendet wird.</span>
+</ol>
+Diese Skripte benutzen weder die selbst definierten Header oder Footer, noch das Stylesheet,
+die metadata.php oder setzen die Farben f&uuml;r Links. Diese Skripte wurden geschrieben, um sie in eine
+existierende PHP-Seite integrieren zu k&ouml;nnen (wenn Sie z.B. die 3 neuesten Eintr&auml;ge auf Ihrer
+Hauptseite anzeigen wollen).<br>
+hotnews.php arbeitet analog zu news.php, hotnews2.php analog zu news2.php hotnews4.php analog zu news4.php and hotnews5.php analog zu news5.php.<br>
+hotnews6/7/8/9 zeigen alle News zu den in der Administrationsoberfl&auml;che ausgew&auml;hlten Kategorien an.
+<h3>Liste der aktuellen Events</h3>
+<ol>
+<li>Mit <pre>include('&lt;pathtosimpnews&gt;/currentevents.php');</pre>
+k&ouml;nnen Sie das Skript in Ihre Seite einbinden.</li>
+<li>Wenn Sie das Cookie f&uuml;r die Speicherung des letzten Besuches verwenden wollen,
+benutzen Sie <pre>include('&lt;pathtosimpnews&gt;/newscookie.php');</pre> um die Cookieroutine in Ihre bestehende Seite
+einzubinden.<br><span class="remark">Diese Datei muss eingebunden werden, bevor der HTTP Body von PHP gesendet wird.</span>
+</ol>
+Dieses Skript benutzt weder die selbst definierten Header oder Footer, noch das Stylesheet,
+die metadata.php oder setzen die Farben f&uuml;r Links. Dieses Skript wurden geschrieben, um es in eine
+existierende PHP-Seite integrieren zu k&ouml;nnen.
+<h3>Icon f&uuml;r die Anzeige von neuen News</h3>
+<h4>ohne Cookie f&uuml;r letzten Besuch</h4>
+<ol>
+<li>Mit <pre>include('&lt;pathtosimpnews&gt;/newsnotify.php');</pre>
+k&ouml;nnen Sie das Skript in Ihre Seite einbinden.</li>
+</ol>
+<h4>mit Cookie f&uuml;r letzten Besuch</h4>
+<ol>
+<li>Mit <pre>include('&lt;pathtosimpnews&gt;/newsnotify2.php');</pre>
+k&ouml;nnen Sie das Skript in Ihre Seite einbinden.</li>
+<li>Wenn Sie das Cookie f&uuml;r die Speicherung des letzten Besuches verwenden wollen,
+benutzen Sie <pre>include('&lt;pathtosimpnews&gt;/newscookie.php');</pre> um die Cookieroutine in Ihre bestehende Seite
+einzubinden.<br><span class="remark">Diese Datei muss eingebunden werden, bevor der HTTP Body von PHP gesendet wird.</span>
+</ol>
+<h3>Eventkalender</h3>
+<ol>
+<li>Mit <pre>include('&lt;pathtosimpnews&gt;/eventcal2.php');</pre>
+k&ouml;nnen Sie das Skript in Ihre Seite einbinden.</li>
+<li>Wenn Sie das Cookie f&uuml;r die Speicherung des letzten Besuches verwenden wollen,
+benutzen Sie <pre>include('&lt;pathtosimpnews&gt;/newscookie.php');</pre> um die Cookieroutine in Ihre bestehende Seite
+einzubinden.<br><span class="remark">Diese Datei muss eingebunden werden, bevor der HTTP Body von PHP gesendet wird.</span>
+</ol>
+<h3>Ticker Java Applets</h3>
+Es sind 6 verschiedene Ticker vorhanden:<ul>
+<li>newsticker.php</li>
+<li>newsscroller.php</li>
+<li>newstyper.php</li>
+<li>newsmsgtyper.php</li>
+<li>starscroller.php</li>
+<li>eventscroller.php</li>
+</ul>
+Die Methode zum Einbinden in eine eigene Seite ist f&uuml;r alle 6 die gleiche. In der folgenden Anleitung ersetzen
+Sie einfach <em>&lt;script&gt;</em> durch den Namen des Skripts, das Sie einbinden wollen.
+<ol>
+<li>Mit <pre>include('&lt;pathtosimpnews&gt;/&lt;script&gt;');</pre>
+k&ouml;nnen Sie das Skript in Ihre Seite einbinden.</li>
+<li>Wenn Sie das Cookie f&uuml;r die Speicherung des letzten Besuches verwenden wollen,
+benutzen Sie <pre>include('&lt;pathtosimpnews&gt;/newscookie.php');</pre> um die Cookieroutine in Ihre bestehende Seite
+einzubinden.<br><span class="remark">Diese Datei muss eingebunden werden, bevor der HTTP Body von PHP gesendet wird.</span>
+</ol>
+<h3>JavaScript newsfader/newsscroller</h3>
+<ol>
+<li>Mit <pre>include('&lt;pathtosimpnews&gt;/js_newsfader.php');</pre> bzw. <pre>include('&lt;pathtosimpnews&gt;/js_newsscroller.php');</pre>
+k&ouml;nnen Sie das Skript in Ihre Seite einbinden.</li>
+<li>Wenn Sie das Cookie f&uuml;r die Speicherung des letzten Besuches verwenden wollen,
+benutzen Sie <pre>include('&lt;pathtosimpnews&gt;/newscookie.php');</pre> um die Cookieroutine in Ihre bestehende Seite
+einzubinden.<br><span class="remark">Diese Datei muss eingebunden werden, bevor der HTTP Body von PHP gesendet wird.</span>
+</ol>
+<h3>catlist_inc.php</h3>
+<ol>
+<li>Mit <pre>include('&lt;pathtosimpnews&gt;/catlist_inc.php');</pre>
+k&ouml;nnen Sie das Skript in Ihre Seite einbinden.</li>
+</ol>
+<em>Beachten:</em>Der Zielframe, in dem die News erscheinen wird durch <em>$linktarget</em> am Skriptanfang festgelegt.
+<h3>Newsletterbestellung</h3>
+<h4>Durch von der Anwendung erzeugte Formulare</h4>
+<h5>Bestellung von einzelnen Newslettern</h5>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/subscription.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+Wird der Parameter <em>category</em> angegeben, so gilt das Formular nur f&uuml;r die angegebene Kategorie.<br>
+Wird er nicht angegeben, so kann die gew&uuml;nschte Kategorie aus einer Dropdownliste vom Benutzer ausgew&auml;hlte werden.
+<h5>Bestellung von mehreren Newslettern auf einmal</h5>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/masssub.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+Es wird eine Liste aller f&uuml;r den Versand von Newslettern verf&uuml;gbaren Kategorien angezeigt. Der
+Benutzer kann dann markieren, welche er bestellen will und muss seine Emailadresse nur einmal eingeben.
+<h5>Verwaltung der bestellten Newsletter</h5>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td nowrap>
+http://your.host.com/installdir/nlmaint.php?<em>params</em>
+</TD></TR></TABLE></TD></TR></TABLE>
+Der Benutzer muss seine Emailadresse eingeben und bekommt dann eine Liste aller von Ihm bestellten (und auch best&auml;tigten)
+Newsletter angezeigt. Aus dieser Liste kann er dann die ausw&auml;hlen, die er abbestellen m&ouml;chte.
+<h4>Newsletterbestellung in eigene Seiten einbauen</h4>
+<h5>Formular zur Bestellung eines einzelnen Newsletters</h5>
+Beispiel, wie man die Anmeldung zum Abo auf einer eigenen Seite platzieren kann:<br>
+Bitte ersetzen Sie <em>{desired category}</em> durch die Kategorie, die durch dieses Formular
+abonniert werden soll. <span class="remark">(0=Abo f&uuml;r alle Kategorien)</span>
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td>
+<pre>
+&lt;!-- --------- Start of subscription code --------- --&gt;
+&lt;table width="80%" align="center"&gt;
+&lt;form method="post" action="/simpnews/subscription.php"&gt;
+&lt;input type="hidden" name="lang" value="de"&gt;
+&lt;input type="hidden" name="layout" value="1"&gt;
+&lt;input type="hidden" name="mode" value="subscribe"&gt;
+&lt;tr&gt;&lt;td align="right" width="30%"&gt;E-Mail:&lt;/td&gt;
+&lt;td&gt;&lt;input type="text" name="email" size="40" maxlength="240"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td align="right" valign="top"&gt;E-Mailart:&lt;/td&gt;&lt;td&gt;
+&lt;input type="radio" name="emailtype" value="0" checked&gt; HTML&lt;br&gt;
+&lt;input type="radio" name="emailtype" value="1"&gt; nur text&lt;/td&gt;&lt;/tr&gt;
+&lt;input type="hidden" name="newscat" value="{desired category}"&gt;
+&lt;td align="center" colspan="2"&gt;&lt;input type="submit" value="subscribe"&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/form&gt;&lt;/table&gt;
+&lt;!-- --------- End of subscription code --------- --&gt;
+</pre></TD></TR></TABLE></TD></TR></TABLE><br>
+Beispiel, wie man die Abmeldung vom Abo auf einer eigenen Seite platzieren kann:
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td>
+<pre>
+&lt;!-- --------- Start of unsubscription code --------- --&gt;
+&lt;table width="80%" align="center"&gt;
+&lt;form method="post" action="/simpnews/subscription.php"&gt;
+&lt;input type="hidden" name="lang" value="de"&gt;
+&lt;input type="hidden" name="layout" value="1"&gt;
+&lt;input type="hidden" name="mode" value="unsubscribe"&gt;
+&lt;tr&gt;&lt;td align="right" width="30%"&gt;E-Mail:&lt;/td&gt;
+&lt;td&gt;&lt;input type="text" name="email" size="40" maxlength="240"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;input type="hidden" name="newscat" value="{desired category}"&gt;
+&lt;td align="center" colspan="2"&gt;&lt;input type="submit" value="unsubscribe"&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/form&gt;&lt;/table&gt;
+&lt;!-- --------- End of unsubscription code --------- --&gt;
+</pre></TD></TR></TABLE></TD></TR></TABLE><br>
+<h5>Formular zu Bestellung mehrere Newsletter auf einmal</h5>
+Den HTML-Code f&uuml;r ein solches Formular erzeugen Sie bitte mittels der entspr. Funktion in der
+Administrationsoberfl&auml;che.
+<h1>Administrationsoberfl&auml;che</h1>
+<h4>Hinweis zu den Dateianh&auml;ngen</h4>
+Stellen Sie bei bereits vorhandenen Dateianh&auml;ngen $attach_in_fs von <em>false</em> auf <em>true</em> oder umgekehrt,
+so f&uuml;hrt dies zu Inkonsitenzen in der Datenbank. Bitte vor dem Umschalten alle Anh&auml;nge l&ouml;schen
+und danach neu anh&auml;ngen.
+<h4>Anmerkung zum Feld "Vermerk (wird in E-Mails mitgeschickt)" im Layout:</h4>
+Bitte irgendwo im Text "{unsubscribeurl}" (ohne Anf&uuml;hrungszeichen) platzieren.
+Dies wird beim versenden der Mails durch die f&uuml;r den jeweiligen Empf&auml;nger passende URL zum
+Abmelden ersetzt.
+<h2>Textbausteine</h2>
+F&uuml;r die unterschiedlichen Textbausteine k&ouml;nnen bei der Erfassung verschiedene Platzhalter verwendet werden.
+Diese werden dann bei Benutzung des entspr. Textbausteins im Programm durch entsprechende, aktuelle Werte ersetzt.<br>
+Im folgenden werden die Platzhalter f&uuml;r die einzelnen Textbausteine aufgef&uuml;hrt und auch durch welchen Wert Sie
+ersetzt werden.
+<ul>
+<li>Anmerkung f&uuml;r &uuml;bernommenen Eintragsvorschlag<ul>
+<li>{postername} --&gt; Name der Person, die den Eintrag (Event, bzw. News) vorgeschlagen hat.</li>
+<li>{postermail} --&gt; E-Mailadresse der Person, die den Eintrag vorgeschlagen hat.</li>
+</ul></li>
+<li>Benachrichtigung bei neuen Vorschl&auml;gen (Betreff)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{ptype} --&gt; Art des Vorschlags. <span class="remark">Bei News wird hier "News" und bei Events "Events" eingetragen</span></li>
+</ul></li>
+<li>Benachrichtigung bei neuen Vorschl&auml;gen (Mailtext)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{ptype} --&gt; Art des Vorschlags.</li>
+<li>{category} --&gt; Name der Kategorie, f&uuml;r die der Vorschlag ist</li>
+<li>{postername} --&gt; Name der Person, die den Vorschlag verfasst hat.</li>
+<li>{postermail} --&gt; E-Mailadresse der Person, die den Vorschlag verfasst hat.</li>
+<li>{linkurl} --&gt; URL, die direkt zur Anzeige des Vorschlags in der Administrationsoberfl&auml;che f&uuml;hrt.</li>
+</ul></li>
+<li>Benachrichtigung bei neuem Abonnenten (Betreff)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+</ul></li>
+<li>Benachrichtigung bei neuem Abonnenten (Mailtext)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{email} --&gt; E-Mailadresse des Abonnenten.</li>
+<li>{category} --&gt; Name der Kategorie, f&uuml;r die der Vorschlag ist</li>
+<li>{linkurl} --&gt; URL, die direkt zur Anzeige des Abonnenten in der Administrationsoberfl&auml;che f&uuml;hrt.</li>
+</ul></li>
+<li>Benachrichtigung bei Abmeldung eines Abonnenten (Betreff)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+</ul></li>
+<li>Benachrichtigung bei Abmeldung eines Abonnenten (Mailtext)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{email} --&gt; E-Mailadresse des Abonnenten.</li>
+<li>{category} --&gt; Name der Kategorie, f&uuml;r die der Vorschlag ist</li>
+</ul></li>
+<li>Best&auml;tigungsmail bei Aboabmledung<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{confirmurl} --&gt; URL, die der Besucher aufrufen muss, um seine Abmeldung zu best&auml;tigen</li>
+</ul>
+</li>
+<li>Best&auml;tigungsmail bei Aboanmeldung<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{confirmurl} --&gt; URL, die der Besucher aufrufen muss, um seine Anmeldung zu best&auml;tigen</li>
+<li>{confirtime} --&gt; Zeitraum, in dem die Best&auml;tigung erfolgen muss</li>
+</ul>
+</li>
+<li>Best&auml;tigungsmail bei Aboabmledung (nlmaint.php)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{confirmurl} --&gt; URL, die der Besucher aufrufen muss, um seine Abmeldung zu best&auml;tigen</li>
+<li>{catname} --&gt; Name der gew&auml;hlten Kategorie</li>
+</ul>
+</li>
+<li>Best&auml;tigungsmail bei Aboanmeldung (massub.php)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{confirmurl} --&gt; URL, die der Besucher aufrufen muss, um seine Anmeldung zu best&auml;tigen</li>
+<li>{confirtime} --&gt; Zeitraum, in dem die Best&auml;tigung erfolgen muss</li>
+<li>{catname} --&gt; Name der gew&auml;hlten Kategorie</li>
+</ul>
+</li>
+<li>Benachrichtigung bei neuem Kommentar (Betreff)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+</ul></li>
+<li>Benachrichtigung bei neuem Kommentar (Mailtext)<ul>
+<li>{sitename} --&gt; In der config.php definierter Websitename</li>
+<li>{email} --&gt; E-Mailadresse des Verfassers.</li>
+<li>{poster} --&gt; Name des Verfassers.</li>
+<li>{entry} --&gt; # des Eintrags, auf den sich der Kommentar bezieht.</li>
+<li>{linkurl} --&gt; URL, die direkt zur Anzeige des Abonnenten in der Administrationsoberfl&auml;che f&uuml;hrt.</li>
+</ul></li>
+</ul>
+<h2>Authentifizierung von Administratoren</h2>
+Es gibt 3 Authentifizierungsmethoden f&uuml;r die Administrationsoberfl&auml;che:
+<ol>
+<li>Die interne Authentifizierungsmethode. Diese basiert auf den Benutzerdaten, die
+per Administrationsoberfl&auml;che eingegeben wurden und benutzt ein Cookie f&uuml;r das
+Sessionhandling.</li>
+<li>wie 1, aber die Session-ID wird per GET und POST &uuml;bermittelt.</li>
+<li>Authentifizierung durch den Webserver (z.B. .htaccess)</li>
+</ol>
+<h3>Methode #1</h3>
+Sie m&uuml;ssen <em>$enable_htaccess</em> und <em>$sessid_url</em> in der config.php auf <strong>false</strong> setzen.<br>
+Bitte pr&uuml;fen Sie ob die folgenden Variablen in der config.php richtig gesetzt sind:<ul>
+<li>$url_simpnews</li>
+<li>$cookiename</li>
+<li>$cookiepath</li>
+<li>$cookiesecure</li>
+<li>$sesscookiename</li>
+<li>$sesscookietime</li>
+</ul>
+Diese Methode benutzt den Username und das Passwort aus der internen Tabelle, so dass
+sie diese per Administrationsoberfl&auml;che setzen k&ouml;nnen.
+<h3>Methode #2</h3>
+Setzen Sie <em>$enable_htaccess</em> auf <strong>false</strong> und <em>$sessid_url</em> auf <strong>true</strong> in der config.php.<br>
+Diese Methode benutzt kein Cookie, sondern die Session-ID wird bei jedem GET und POST
+mitgeschickt. Aus diesem Grund kann jeder, der Blickkontakt mit Ihrem Bildschirm hat, die Sessionid aus
+der im Browser angezeigten URL auslesen.<br>
+<span class="remark">Wir erachten diese Methode als nicht besonders sicher
+(wurde aber gew&uuml;nscht) und empfehlen Ihnen eher Methode 1 oder 3 einzusetzen. Aber das
+soll jeder Admin f&uuml;r sich entscheiden.</span><br>
+Bitte pr&uuml;fen Sie, dass auch <em>$sesscookiename</em> sinnvoll belegt ist. Am Besten ist es hier den
+voreingestellten Namen beizubehalten, da die entsprechende HTTP-Variable von SimpNews nicht anderweitig verwendet werden darf,
+da das Programm sonst nicht funktioniert.
+<br><br>
+Diese Methode benutzt den Username und das Passwort aus der internen Tabelle, so dass
+sie diese per Administrationsoberfl&auml;che setzen k&ouml;nnen.
+<h3>Methode #3</h3>
+Setzen Sie <em>$enable_htaccess</em> in der config.php auf <strong>true</strong>.<br>
+Ausserdem m&uuml;ssen Sie f&uuml;r jeden in der Administrationsoberfl&auml;che definierten Admin auch
+einen gleichnamigen Benutzer f&uuml;r die Sicherheitspr&uuml;fung durch den Webserver (z.B. .htpasswd)
+erzeugen. Dies ist notwendig, damit das Programm den vom Webserver erhaltenen Benutzer auch
+einem Admin zuordnen kann und so auf die Daten, wie E-Mail und Benutzerlevel kommt.
+<span class="remark">(Beim Benutzernamen wird in SimpNews nicht nach Gro&szlig;-/Kleinschreibung unterschieden,
+bei vielen Webservern bei der internen Authentifizierung allerdings schon)</span><br>
+Aus Sicherheitsgr&uuml;nden k&ouml;nnen Sie eine .htaccess/.htpasswd <em>nicht</em> aus der Administrationsoberfl&auml;che
+aktualisieren. &Auml;ndern Sie also bei dieser Methode das Passwort in der Administrationsoberfl&auml;che,
+so hat dies keinerlei Effeckt. Legen Sie einen neuen Admin an, so m&uuml;ssen Sie ein Passwort vergeben,
+damit keine Sicherheitsl&uuml;cke entsteht, wenn Sie von dieser Methode auf Methode 1 oder 2 wechseln.<br>
+<span class="remark">Anmerkung: Bei Verwendung dieser Methode ist die im Programm integrierte Protokollierung von Anmeldungen
+und fehlgeschlagenen Anmeldungen nicht verf&uuml;gbar. Au&szlig;erdem funktioniert die Logout-Funktion der
+Administrationsoberfl&auml;che nicht.</span>
+<h1>Speicherart f&uuml;r Dateianh&auml;nge &auml;ndern</h1>
+<strong>Wichtig:</strong> &Auml;ndern Sie nicht einfach die Speicherart f&uuml;r Dateianh&auml;nge in der config.php ($attach_in_fs),
+wenn Sie bereits Dateianh&auml;nge in SimpNews benutzen. Bevor Sie die Speicherart von Ablage in der Datenbank auf
+Ablage im Dateisystem &auml;ndern (und umgekehrt), benutzen Sie die Funktionen <em>Dateien in Datenbank transferieren</em>
+bzw. <em>Dateien ins Dateisystem transferieren</em> unter <em>Dateien verwalten</em> in der Administrationsoberfl&auml;che.
+Damit werden die Bin&auml;rdaten der Dateianh&auml;nge von der Datenbank ins Dateisystem transferiert (bzw. umgekehrt) und
+die Datenbank entsprechend aktualisiert. <em>Danach</em> und <em>bevor Sie neue Dateianh&auml;nge uploaden</em>, &auml;ndern
+Sie die Einstellung f&uuml;r den Speicherort in der config.php.
+<h1>getestete Browser und Systeme</h1>
+F&uuml;r eine aktuelle Liste besuchen Sie unsere <a href="http://www.boesch-it.de/sw/php-scripts/deutsch/prgversions.php">Website</a>
+<h1><a name="lizenz">Lizenzbestimmungen</a></h1>
+Dieses Programm ist Freeware. Sie d&uuml;rfen es kostenlos im nicht kommerziellen und
+kommerziellen Umfeld einsetzen. Sie d&uuml;rfen keine &Auml;nderungen an den Skripten vornehmen.
+Ausnahme:<ul>
+<li>language/*</li>
+<li>admin/language/*</li>
+<li>stylesheets (*.css)</li>
+<li>index.html</li>
+<li>metadata.php</li>
+<li>die gekennzeichneten Bereiche in den Dateien im Hauptverzeichnis, d.h. Sie d&uuml;rfen &Auml;nderungen nur zwischen <pre>// begin user editable part</pre>
+und <pre>// end user editable part</pre> vornehmen</li>
+</ul>
+Sollten Sie das Programm auf Ihrer Website einsetzen, so tragen Sie diese doch
+bitte als Referenz auf unserer Website ein.
+<br><br>
+Sollten Sie das Programm im kommerziellen Umfeld einsetzen, so f&auml;nden wir es
+toll, wenn Sie unsere Arbeit evtl. auch finanziell unterst&uuml;tzen w&uuml;rden.
+<br><br>
+Die neueste Version gibt es immer auf
+<a href="http://www.boesch-it.de">http://www.boesch-it.de</a>
+<br><br>
+<span class="remark">
+Benutzt:
+<ul>
+<li>HTML Mime Mail class by Richard Heyes &lt;richard@phpguru.org&gt;</li>
+<li>Coolmenus 4 by Thomas Brattli - www.dhtmlcentral.com</li>
+<li>Tabs by Garrett Smith - dhtmlkitchen.com</li>
+</ul>
+</span>
+<br><hr>
+<span class="remark">
+&copy; 2002-2005 B&ouml;sch EDV-Consulting<br>
+letzte Aktualisierung: 02.03.2005
+</span>
+</body>
+</HTML>
