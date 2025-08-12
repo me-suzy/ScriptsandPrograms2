@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>GaleriaXQ</title>
+<link href="Styles/{CCS_Style}/Style_Components.css" type="text/css" rel="stylesheet">
+<link href="Styles/{CCS_Style}/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<table style="WIDTH: 800px; HEIGHT: 466px" cellspacing="0" cellpadding="0" width="800" align="center" border="0">
+  <tr>
+    <td>{Header}<br>
+      <table style="WIDTH: 800px; HEIGHT: 439px" cellspacing="0" width="800" border="0">
+        <tr valign="top">
+          <td width="20%">
+            <form name="{HTMLFormName}" action="{Action}" method="post">
+              {Categorias}<br>
+              {Menu}<br>
+              {BlocoE} 
+            </form>
+          </td> 
+          <td>
+            <p align="center">{Topo}</p>
+            <!-- BEGIN Record users -->
+            <form name="{HTMLFormName}" action="{Action}" method="post">
+              <table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+                <tr>
+                  <td valign="top">
+                    <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td class="HeaderLeft{CCS_Style}"></td> 
+                        <th><img src="imagens/conta.gif" align="absMiddle">&nbsp;Editar
+                        dados pessoais</th>
+ 
+                        <td class="HeaderRight{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+                      </tr>
+                    </table>
+ 
+                    <table class="Record{CCS_Style}" cellspacing="0" cellpadding="0">
+                      <!-- BEGIN Error -->
+                      <tr class="Error{CCS_Style}">
+                        <td colspan="2">{Error}</td>
+                      </tr>
+                      <!-- END Error -->
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;Nome *</td> 
+                        <td><input maxlength="50" size="40" value="{x_nome}" name="x_nome"></td>
+                      </tr>
+ 
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;Endereço</td> 
+                        <td><textarea style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" name="{x_endere1_Name}" rows="3" cols="40">{x_endere1}
+</textarea></td>
+                      </tr>
+ 
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;Cidade</td> 
+                        <td><input maxlength="30" value="{x_cidade}" name="x_cidade"></td>
+                      </tr>
+ 
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;UF</td> 
+                        <td>
+                          <select name="state_id">
+                            <option value="" selected>Escolha o Estado</option>
+                            {state_id_Options}
+                          </select>
+ </td>
+                      </tr>
+ 
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;Fone</td> 
+                        <td><input maxlength="50" value="{x_fone}" name="x_fone"></td>
+                      </tr>
+ 
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;Apelido</td> 
+                        <td>&nbsp;{x_apelido}</td>
+                      </tr>
+ 
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;Senha *</td> 
+                        <td><input maxlength="20" value="{x_senha}" name="x_senha"></td>
+                      </tr>
+ 
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;Email *</td> 
+                        <td><input maxlength="50" size="40" value="{x_email}" name="x_email"></td>
+                      </tr>
+ 
+                      <tr class="Controls{CCS_Style}">
+                        <td>&nbsp;Comentários</td> 
+                        <td><textarea style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" name="x_comentarios" rows="3" cols="40">{x_comentarios}</textarea></td>
+                      </tr>
+ 
+                      <tr class="Bottom{CCS_Style}">
+                        <td align="right" colspan="2">
+                          <!-- BEGIN Button Update --><input type="image" src="Styles/{CCS_Style}/Images/{res:CCS_LanguageID}/ButtonUpdate.gif" value="Update" border="0" name="Update"><!-- END Button Update -->
+                          <!-- BEGIN Button Delete --><input type="image" src="Styles/{CCS_Style}/Images/{res:CCS_LanguageID}/ButtonDelete.gif" value="Delete" border="0" name="Delete"><!-- END Button Delete -->
+                          <!-- BEGIN Button Cancel --><input type="image" src="Styles/{CCS_Style}/Images/{res:CCS_LanguageID}/ButtonCancel.gif" value="Cancel" border="0" name="Cancel"><!-- END Button Cancel --></td>
+                      </tr>
+                    </table>
+                    <input type="hidden" value="{date_add}" name="{date_add_Name}"></td>
+                </tr>
+              </table>
+            </form>
+            &nbsp;<!-- END Record users -->
+            <p align="center"><a href="{logout_link_Src}">{logout_link}</a></p>
+          </td>
+        </tr>
+      </table>
+ 
+      <p align="center">{Footer}</p>
+    </td>
+  </tr>
+</table>
+<p align="center">&nbsp;</p>
+</body>
+</html>
