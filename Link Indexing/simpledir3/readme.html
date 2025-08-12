@@ -1,0 +1,296 @@
+<html>
+<head>
+<title>SimpleDir 3.0 Readme</title>
+<STYLE TYPE="text/css">
+<!--
+A:link, A:active, A:visited, A:hover {
+	color: #0000FF;
+}
+A:link, A:active, A:visited {
+	text-decoration: none;
+}
+A:hover {
+	text-decoration: underline;
+}
+BODY {
+	background-color: #FFFFFF;
+	color: #000000;
+	font-family: Courier New;
+}
+.code {
+	background-color: #D5D3D3;
+	padding: 2px;
+}
+.fixit {
+	background-color: #000000;
+	color: #FFFFFF;
+	margin-top: 2px;
+	padding: 2px;
+}
+.spacer {
+	margin-top: 2px;
+}
+-->
+</STYLE>
+</head>
+<body>
+<a name="top">
+
+<p align="center"><u>SimpleDir 3.0 Documentation</u><br><u>Readme</u></p>
+<font size="2">
+
+<p><b>Table of Contents</b><br>
+<a href="#notes">Notes</a><br>
+<a href="#clog">Change Log</a><br>
+<a href="#contents">Contents of the zip file</a><br>
+<a href="#install">Installation Instructions</a><br>
+<a href="#upgrade1">Upgrading from Version 1.0 Instructions</a><br>
+<a href="#upgrade2">Upgrading from Version 2.x Instructions</a><br>
+<a href="#addinfo">Additional Information</a><br>
+<a href="#snippets">Code Snippets</a><br>
+<a href="#trouble">Troubleshooting</a><br>
+<a href="docs_tplvars.html">Template Variables</a><br>
+<a href="#credits">Credits</a></p>
+
+<a name="#notes"></a>
+<p><b>Notes</b></p>
+
+<p>- Suggestion: Read through all of the information in this file before beginning to install. That way you'll have a bit of a feel for the script before you begin installing it.<br>
+- If you are installing SimpleDir for the first time, read the <a href="#install">Installation Instructions</a>.<br>
+- If you have installed a previous version of SimpleDir, read the <a href="#upgrade1">Upgrading from Version 1.0 Instructions</a> or the <a href="#upgrade2">Upgrading from Version 2.x Instructions</a>.</p>
+<p><a href="#top">Back to top</a></p>
+
+<a name="clog">
+<p><b>Change Log</b></p>
+
+<p>New features in version 3.0:<br>
+- rewritten login script<br>
+- template system<br>
+- descriptions for categories<br>
+- file manager to edit files in<br>
+- new layout for the admin panel<br>
+- categories displayed in forms with drop-down menu or radio buttons</p>
+
+<p>New features in version 2.2:<br>
+- fixed bug on listing.php that would direct visitor to listing.php?catID instead of listing.php?cat=catID when there was only one link in that category<br>
+- fixed bug on add.php that, if the visitor tried to change the category of their link, would send the old category's ID in place of the new category's ID<br>
+- new and improved readme file</p>
+
+<p>New features in version 2.1:<br>
+- fixed some minor bugs</p>
+
+<p>New features in version 2.0:<br>
+- notification by e-mail to the directory owner when a new link is added<br>
+- notification by e-mail to the link owner when their link has been approved<br>
+- turn on or off e-mail notification in the admin panel<br>
+- update the directory owner's e-mail address in the admin panel<br>
+- send an e-mail to any link owner<br>
+- send an e-mail to all link owners<br>
+- an update form<br>
+- links are divided up onto different pages, based on the number of links that you would like to be displayed on each page</p>
+<p><a href="#top">Back to top</a></p>
+
+<a name="contents"></a>
+<p><b>Contents of the zip file</b></p>
+
+<p>Total files and folders: 21<br>
+/cache/ - part of the Smarty template system (<a href="http://smarty.php.net">http://smarty.php.net</a>)<br>
+/configs/ - part of the Smarty template system (<a href="http://smarty.php.net">http://smarty.php.net</a>)<br>
+/smarty/ - (and subfolders and files) Smarty template system (<a href="http://smarty.php.net">http://smarty.php.net</a>)<br>
+/templates/ - folder for all of the templates<br>
+/templates_c/ - part of the Smarty template system (<a href="http://smarty.php.net">http://smarty.php.net</a>)<br>
+add.php - page for visitors to add links to the directory<br>
+admin.php - main control panel file<br>
+common.php - common SQL queries<br>
+config.php - database configuration options<br>
+create.php - setup file<br>
+docs_tplvars.html - variables you can use in the templates<br>
+file.gif - part of the file manager<br>
+first.inc.php - the header file inserted at the top of the control panel pages<br>
+footer.inc.php - the footer file inserted at the bottom of the control panel pages<br>
+index.php - a sample index page for your webdirectory<br>
+listing.php - the listing of categories & links<br>
+readme.html - readme file<br>
+style.css - the default stylesheet<br>
+style3.css - the stylesheet for the admin panel<br>
+upgrade1.php - upgrade file (from version 1.0)<br>
+upgrade2.php - upgrade file (from version 2.x)</p>
+<p><a href="#top">Back to top</a></p>
+
+<a name="install"></a>
+<p><b>Installation Instructions</b></p>
+
+<p>1. Log into your domain control panel and create a new MySQL database (unless you plan on using an existing database for this script). Be sure to create a new user if necessary and add it to the database. The user will need the following privileges: ADD, ALTER, INSERT, DELETE, UPDATE, SELECT.</p>
+
+<p>2. Open config.php in a text editor. Read through the instructions, then edit the variables. Now upload config.php in ASCII mode to your web server.</p>
+
+<p>3. Upload file.gif in Binary mode. Upload all other files <i>EXCEPT upgrade1.php and upgrade2.php</i> in the same folder hierarchy as they came in the zip file, in ASCII mode. CHMOD all files in the folder "templates" to 766.</p>
+
+<p>4. Create the following directories: "cache", "configs", and "templates_c" in the directory that you installed SimpleDir into. CHMOD folders "cache" and "templates_c" to 777.</p>
+
+<p>5. Access the uploaded create.php file in your web browser. The script will create the necessary tables in the specified datbase and put the default values into the tables. If you get a "Success ..." message, then continue onto the next step. Otherwise, check your options in config.php. Be sure to delete create.php from your server once you have run it.</p>
+
+<p>6. Now access admin.php in your web browser. Enter "Admin" as the username and "cooney" as the password (without the quotation marks) into the login box.</p>
+
+<p>7. Before you begin to use this script, it is highly suggested that you edit your password and/or username. On the menu on the left hand panel, find the heading "Misc." and then click on "Change Login Info", the second option. Just enter "cooney" (without the quotation marks) into the Old Password box and enter what you would like to be your new password into the other box and click the Submit button. If you want to change the username, simply delete "Admin" from the corresponding box and type in what you would like your username to be. It will ask you to login again. Make sure that you remember these, as there is no way to recall your password.</p>
+
+<p>8. Now you need to change the configuration options to reflect what you want. If you want to edit the templates or use the file manager, make sure that you set the absolute path correctly.</p>
+
+<p>Please note that the username for logging in is the admin name, which is set to "Admin" by default. You can change this in the configuration.</p>
+
+<p>That's all! You have now fully installed SimpleDir 3.0.</p>
+<p><a href="#top">Back to top</a></p>
+
+<a name="upgrade1"></a>
+<p><b>Upgrading from Version 1.0 Instructions</b></p>
+
+<p>1. Before continuing further with the upgrade, it is recommended that you login to your control panel and disable visitors adding new links (by setting "Ability for Visitors to Add" to "N"). Once you have done that logout.</p>
+
+<p>2. Make note of any changes that you have made to the SimpleDir 1.0 PHP files.</p>
+
+<p>3. Upload file.gif in Binary mode. Upload the following files in ASCII mode: admin.php, common.php, docs_toplvars.html, first.inc.php, footer.inc.php, readme.html, style3.css, and upgrade1.php. Upload the contents of the folders "templates" and "smarty" to this same directory. Now delete the following files from your server: approve.php, delcats.php, dellinks.php, editcats.php, editlinks.php, loginform.inc.php, menu.inc.php, and protect.php.</p>
+
+<p>4. Create the following directories: "cache", "configs", and "templates_c" in the directory that you installed SimpleDir into. CHMOD folders "cache" and "templates_c" to 777.</p>
+
+<p>5. Access the uploaded upgrade1.php in your web browser. The script will alter the tables to accomodate the things that SimpleDir 3.0 can do that SimpleDir 1.0 could not. If you get a "Success ..." message, then continue onto the next step. Otherwise, check your options in config.php. Be sure to delete upgrade1.php from your server once you have run it.</p>
+
+<p>6. Now access admin.php in your web browser. Enter the admin's name and your password into the login box.</p>
+
+<p>7. Now go to the main configuration page. You must change the default e-mail address to your own. If you would like, disable e-mail notification. Edit the site URL. If you want to edit the templates or use the file manager, make sure that you set the absolute path correctly.</p>
+
+<p>8. Go to the Edit Header/Footer Templates page. Change these two templates to reflect your current header and footer files. If you have made any changes to the SimpleDir 1.0 PHP files, then edit the appropriate templates to reflect these changes.</p>
+
+<p>9. Upload the add.php and listing.php files that came in the zip file. Now delete your header and footer files (the old ones, not the template ones).</p>
+
+<p>10. You now need to go through and edit any links to the category listings, changing your existing links like the following example. ex: listing.php?5 --> listing.php?cat=5</p>
+
+<p>11. Go to the edit configuration page and enable "Ability for Visitors to Add".</p>
+
+<p>Please note that the username for logging in is the admin name, which is set to "Admin" by default. You can change this by going to "Change Login Info", under Misc. in the left hand panel.</p>
+
+<p><a href="#top">Back to top</a></p>
+
+<a name="upgrade2"></a>
+<p><b>Upgrading from Version 2.x Instructions</b></p>
+
+<p>1. Before continuing further with the upgrade, it is recommended that you login to your control panel and disable visitors adding new links (by setting "Ability for Visitors to Add" to "N"). Once you have done that logout.</p>
+
+<p>2. Make note of any changes that you have made to the SimpleDir 2.x PHP files.</p>
+
+<p>3. Upload file.gif in Binary mode. Upload the following files in ASCII mode: admin.php, common.php, docs_toplvars.html, first.inc.php, footer.inc.php, readme.html, style3.css, and upgrade2.php. Upload the contents of the folders "templates" and "smarty" to this same directory. Now delete the following files from your server: actions.php, loginform.inc.php, menu.inc.php, and protect.php.</p>
+
+<p>4. Create the following directories: "cache", "configs", and "templates_c" in the directory that you installed SimpleDir into. CHMOD folders "cache" and "templates_c" to 777.</p>
+
+<p>5. Access the uploaded upgrade2.php in your web browser. The script will alter the tables to accomodate the things that SimpleDir 3.0 can do that SimpleDir 2.x could not. If you get a "Success ..." message, then continue onto the next step. Otherwise, check your options in config.php. Be sure to delete upgrade2.php from your server once you have run it.</p>
+
+<p>6. Now access admin.php in your web browser. Enter the admin's name and your password into the login box.</p>
+
+<p>7. Now go to the main configuration page. If you want to edit the templates or use the file manager, make sure that you set the absolute path correctly.</p>
+
+<p>8. Go to the Edit Header/Footer Templates page. Change these two templates to reflect your current header and footer files. If you have made any changes to the SimpleDir 2.x PHP files, then edit the appropriate templates to reflect these changes.</p>
+
+<p>9. Upload the add.php and listing.php files that came in the zip file. Now delete your header and footer files (the old ones, not the template ones).</p>
+
+<p>10. Go to the edit configuration page and enable "Ability for Visitors to Add".</p>
+
+<p>Please note that the username for logging in is the admin name, which is set to "Admin" by default. You can change this in the configuration.</p>
+
+<p><a href="#top">Back to top</a></p>
+
+<a name="addinfo"></a>
+<p><b>Additional Information</b></p>
+
+<p>1. Categories will only appear on the listing.php page if they have 1 or more links in them.<br>
+2. To link to a certain category's listing page, use the following link: listing.php?cat=# where # is the category's ID.<br>
+3. To link to the modify a link page, use the following link: add.php?modify<br>
+4. To link to the submit a link page, use the following link: add.php</p>
+
+<p><a href="#top">Back to top</a></p>
+
+<a name="snippets"></a>
+<p><b>Code Snippets</b></p>
+
+<p>Please note that the old versions of the code snippets will still work. The newer versions are just better for beginners to use.</p>
+
+<p>1. To display the number of pending links in your directory simply place the following code where you would like it to appear. If you want to show the number of approved links, then change the 0 to a 1.</p>
+<p class="code">&lt;php require('common.php'); ?&gt;<br>
+&lt;p&gt;&lt;b&gt;Pending links:&lt;/b&gt; &lt;?=snippetStatus(0)?&gt;&lt;/p&gt;</p>
+
+<p>2. To display the total number of links in your directory simply place the following code where you would like it to appear:</p>
+<p class="code">&lt;php require('common.php'); ?&gt;<br>
+&lt;p&gt;&lt;b&gt;Total links:&lt;/b&gt; &lt;?=snippetTotal('L')?&gt;&lt;/p&gt;</p>
+
+<p>3. To display the total number of categories in your directory simply place the following code where you would like it to appear:</p>
+<p class="code">&lt;php require('common.php'); ?&gt;<br>
+&lt;p&gt;&lt;b&gt;Total categories:&lt;/b&gt; &lt;?=snippetTotal('C')?&gt;&lt;/p&gt;</p>
+
+<p>4. To display a random link, place the following code where you would like the random link to appear:</p>
+<p class="code">&lt;?php $linkname = ''; $linkurl = '';<br>
+snippetRandLink($linkname,$linkurl); ?&gt;<br>
+&lt;p&gt;Random link: &lt;a href="&lt;?=$linkurl?&gt;" target="_blank"&gt;&lt;?=$linkname?&gt;&lt;/a&gt;&lt;/p&gt;</p>
+
+<p>5. If you would like to display a random link from a certain category, place the following code where you would like the random link to appear and change 1 in the line where it says snippetRandLinkCat(1,$linkname,$linkurl); to the ID of the category you want the random link to be in. If you set it to a category ID that doesn't have any links in it, then a link will be selected randomly from the entire directory.</p>
+<p class="code">&lt;?php $linkname = ''; $linkurl = '';<br>
+snippetRandLinkCat(1,$linkname,$linkurl); ?&gt;<br>
+&lt;p&gt;Random link: &lt;a href="&lt;?=$linkurl?&gt;" target="_blank"&gt;&lt;?=$linkname?&gt;&lt;/a&gt;&lt;/p&gt;</p>
+
+<p><a href="#top">Back to top</a></p>
+
+<a name="trouble"></a>
+<p><b>Troubleshooting</b></p>
+
+<p>Are you having problems with SimpleDir 3.0? Please read through this section of the readme before contacting me. Some variables I have used in the sample errors and a description of what will replace them in the actual error:<br>
+*absolute path* - your absolute path<br>
+*user* - the username specified in config.php<br>
+*file* - the name of any of the files included in the zip file</p>
+
+<div class="code">
+Warning: Access denied for user: '*user*@localhost' (Using password: YES) in *absolute path*/config.php on line 41<br><br>
+
+Warning: MySQL Connection Failed: Access denied for user: '*user*@localhost' (Using password: YES) in *absolute path*/config.php on line 41<br><br>
+
+Cannot connect to the MySQL server. Please check your variables and re-upload the config.php file or try again later.
+</div>
+<div class="fixit">If you are getting the above error, you do not have the correct database username or password. If *user* = user, then you most likely did not edit the variables in config.php.</div>
+
+<br>
+
+<div class="code">Warning: Failed opening '*file*' for inclusion (include_path='.:/php/includes:/usr/share/php') in *absolute path*/admin.php on line 17</div>
+<div class="spacer"></div>
+<div class="code">Fatal error: Failed opening required '*file*' (include_path='.:/php/includes:/usr/share/php') in *absolute path*/protect.php on line 15</div>
+<div class="fixit">If you are getting either of the above errors, then you have either not uploaded *file* or you uploaded it to a different directory than the one admin.php and protect.php are in.</div>
+
+<br>
+
+<div class="code">Warning: Failed opening 'config.php' for inclusion (include_path='.:/php/includes:/usr/share/php') in *absolute path*/admin.php on line 16<br><br>
+
+Warning: Failed opening 'config.php' for inclusion (include_path='.:/php/includes:/usr/share/php') in *absolute path*/common.php on line 15<br>
+You have an error in your SQL syntax near 'WHERE id = '1'' at line 1</div>
+<div class="fixit">If you are getting the above error, then you have either not uploaded config.php or you have uploaded it to a different directory than the one admin.php and protect.php are in.</div>
+
+<br>
+
+<div class="code">SimpleDir 3.0 asks you for your password on every page you go to.</div>
+<div class="fixit">If you are having the above problem, then you have cookies disabled.</div>
+<p><a href="#top">Back to top</a></p>
+
+<a name="credits"></a>
+<p><b>Credits</b></p>
+
+<p>
+- Script created by <a href="http://www.ice-star.net" target="_blank">Tara</a>.<br>
+- Thanks to Instinct for help with fixing a lot of the countless errors my script went through in the development stages, as well as providing me with lots of helpful code snippets.<br>
+- Thank you to <a href="http://www.typicalgirl.net" target="_blank">Christina</a> for helping me out with some coding stuff and for giving me good pointers.<br>
+- Thank you to <a href="http://www.pure-essence.net" target="_blank">dodo</a> for some help with the pages feature on listing.php.<br>
+- Thank you to my two beta testers for version 3.0: <a href="http://www.end-of-the-rainbow.net/" target="_blank">Nicole</a> and <a href="http://acidgloss.net" target="_blank">Krissy</a>.<br>
+- Thank you to all of my beta testers for version 1.0: <a href="http://www.kuruni.net" target="_blank">Yolei</a>, Instinct, <a href="http://www.typicalgirl.net" target="_blank">Christina</a>, and <a href="http://www.real-bitch.net" target="_blank">Shannon</a>. Thank you for all of your help.<br>
+- Thank you to <a href="http://nothing-less.net/Nothing/you/script_fanbase.php" target="_blank">PHPFanBase</a>, <a href="http://flinx.splodge.nu/" target="_blank">Flinx</a>, and <a href="http://affili8.posed.org/" target="_blank">Affili8</a> for inspiring me to write my own PHP script.<br>
+- Thank you to the creators of <a href="http://www.editpadpro.com" target="_blank">EditPad Pro</a> and <a href="http://www.crimsoneditor.com/" target="_blank">Crimson Editor</a> for creating their respective programs.<br>
+- Thank you to the documentation at <a href="http://www.php.net" target="_blank">http://www.php.net</a> and <a href="http://www.mysql.com" target="_blank">http://www.mysql.com</a> for help with some of the coding.<br>
+- Thank you to <a href="http://www.firepages.com.au/" target="_blank">phpdev</a> for being able to test out SimpleDir on my own computer.<br>
+- Also thank you to <a href="http://www.php-princess.net" target="_blank">PHP-Princess.net</a>, <a href="http://www.spoono.com/" target="_blank">Spoono</a>, <a href="http://www.ascenvia.net/" target="_blank">Ascenvia.net</a>, and <a href="http://www.yohng.com/phpm.html" target="_blank">Accessing MySQL from PHP</a> for some good PHP help.</p>
+
+<p><a href="#top">Back to top</a></p>
+
+</body>
+</html>
