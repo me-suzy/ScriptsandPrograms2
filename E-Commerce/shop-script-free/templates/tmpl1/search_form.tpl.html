@@ -1,0 +1,25 @@
+{* simple search form *}
+
+<table cellspacing=0 cellpadding=1 border=0>
+
+<form action="index.php" method=get>
+
+<tr>
+<td><font class=light>{$smarty.const.STRING_SEARCH}</font></td>
+<td><input type="text" name="searchstring" size=7 value="{$searchstring|replace:'"':'&quot;'|replace:"\'":"'"|default:""}"></td>
+<td><nobr>&nbsp;<input type="image" border=0 src="images/search.gif">&nbsp;&nbsp;&nbsp;</nobr></td>
+</tr>
+
+	{if $old_search_query ne ""}
+		<input type=hidden name="oldproducts" value="{$old_search_query}">
+	{/if}
+
+<tr>
+<td colspan=3>
+<input type="checkbox" name="inside" {if $search_in_results}checked{/if}><font class=light>{$smarty.const.STRING_SEARCH_IN_RESULTS}</font>
+</td>
+</tr>
+
+</form>
+</table>
+
