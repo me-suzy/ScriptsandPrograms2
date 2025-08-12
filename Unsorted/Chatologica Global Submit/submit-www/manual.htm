@@ -1,0 +1,432 @@
+<HTML>
+<HEAD>
+  <!-- Created with AOLpress/2.0 -->
+  <TITLE>Chatologica Global Submit cgi script version 1.0 - Manual</TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffff" TEXT="#000000" LINK="#0000ff" VLINK="#0000a0">
+<CENTER>
+  <P ALIGN=Center>
+  <SMALL><SMALL><SMALL>&nbsp;</SMALL></SMALL></SMALL><BR>
+  <I><B>Chatologica <BIG><BIG>GlobalSubmit </BIG>- cgi script v1.0</BIG><SMALL>
+  &nbsp;(22 April 2000)</SMALL></B></I> 
+    <HR WIDTH="80%">
+  <BR>
+  <SMALL><SMALL>&nbsp; </SMALL></SMALL><BR>
+  <U><SMALL><SMALL>
+  </SMALL></SMALL></U><B><BIG><BIG><BIG>Manual</BIG></BIG></BIG></B><BR>
+  <BIG><BIG><BIG>&nbsp;</BIG></BIG></BIG>
+</CENTER>
+<CENTER>
+  <CENTER>
+    <TABLE BORDER="0" CELLPADDING="2" WIDTH="90%">
+      <TR>
+	<TD><A NAME="1"><!-- --></A><BIG><B>Installation</B></BIG>
+	  <UL>
+	    <LI>
+	      <A HREF="#11">System requirements - what software and hardware I need to
+	      run this program?</A>
+	    <LI>
+	      How to install this software? - Read <A HREF="README.TXT">README.TXT</A>
+	    <LI>
+	      <A HREF="#13">Known bugs and problems.</A>
+	  </UL>
+	  <P>
+	  <A NAME="2"><!-- --></A><BIG><B>Technical details and structure of this
+	  software</B></BIG>
+	  <UL>
+	    <LI>
+	      <A HREF="#21">Files, directories and their purpose.</A>
+	    <LI>
+	      <A HREF="#22">How this program works?</A>
+	    <LI>
+	      How to communicate with <B><I>nph-submit.pl</I></B>? - Look at
+	      <A HREF="demo.htm">demo.htm</A> for details.
+	    <LI>
+	      <A HREF="#24">Performance tests.</A>
+	    <LI>
+	      <A HREF="#26">Why Chatologica does not use libwww, LWP.pm, CGI.pm?</A>
+	  </UL>
+	  <P>
+	  <A NAME="3"><!-- --></A><BIG><B>How to make custom modifications?</B></BIG>
+	  <UL>
+	    <LI>
+	      <A HREF="#31">What is an add-on submit module?</A>
+	    <LI>
+	      <A HREF="#32">How to install an add-on submit module?</A>
+	    <LI>
+	      <A HREF="#33">How to make my own modules?</A>
+	    <LI>
+	      <A HREF="#34">Can I rename the cgi handler
+	      <B><I>nph-submit.pl</I></B>?</A>
+	    <LI>
+	      <A HREF="#35">How to add banners?</A>
+	    <LI>
+	      <A HREF="#36">How to customize the html layout through templates?</A>
+	    <LI>
+	      <A HREF="#37">How to password protect my admin directory?</A>
+	  </UL>
+	  <P>
+	  <A NAME="4"><!-- --></A><BIG><B>License, usage and support</B></BIG>
+	  <UL>
+	    <LI>
+	      <A HREF="#41">Is this free software? </A>- License:
+	      <A HREF="LICENSE.TXT">LICENSE.TXT</A>
+	  </UL>
+	  <P>
+	  <A NAME="5"><!-- --></A><BIG><B>Troubleshooting</B></BIG>
+	  <UL>
+	    <LI>
+	      <A HREF="#51">Error message: "Forbidden. You do not have right to access
+	      this file." or what file permissions I have to set?</A>
+	    <LI>
+	      <A HREF="#52">Error message: "Internal Server Error" and some rules how to
+	      fix similar problems.</A>
+	    <LI>
+	      <A HREF="#53">"core" file - what is this?</A>
+	  </UL>
+	</TD>
+      </TR>
+    </TABLE>
+    <P ALIGN=Center>
+    &nbsp;<BIG>&nbsp;</BIG><BR>
+      <HR SIZE="1" WIDTH="70%">
+    <BR>
+    &nbsp;
+    <CENTER>
+      <TABLE BORDER="0" CELLPADDING="2" WIDTH="90%">
+	<TR>
+	  <TD><FONT COLOR="#0000ff"><BIG><B><U>Installation</U></B></BIG></FONT>
+	    <P>
+	    <A NAME="11"><!-- --></A><SMALL><SMALL>[ <A HREF="#1">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: System requirements - what software and hardware
+	    I need to run this program?</I></B><BR>
+	    - web hosting account that allows cgi scripts, perl version 5, FTP or Telnet
+	    access.
+	    <P>
+	    <A NAME="13"><!-- --></A><SMALL><SMALL>[ <A HREF="#1">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: Known bugs and problems.</I></B><BR>
+	    On Windows platform server-side http connections may not timeout as set in
+	    Admin Panel, and wait longer - up to 45-50 seconds if there is DNS/connect
+	    problems. This is because Perl does not support <I>alarm( ) </I>call on Windows
+	    platform. Unix is&nbsp;recommended.
+	    <P>
+	    &nbsp;
+	    <P>
+	    <FONT COLOR="#0000ff"><BIG><B><U>Technical details and structure of this
+	    software</U></B></BIG></FONT>
+	    <P>
+	    <A NAME="21"><!-- --></A><SMALL><SMALL>[ <A HREF="#2">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: Files, directories and their purpose.</I><BR>
+	    admin - </B>directory where we keep administrator's only files and
+	    scripts&nbsp;-&nbsp;protect it with password!<BR>
+	    <B>lib</B> -&nbsp;directory with perl library files<BR>
+	    <B>lib/common.pl </B>-&nbsp;some frequently used functions<BR>
+	    <B>lib/cgi-handler.pl </B>-&nbsp;a standard cgi input parsing subroutine<BR>
+	    <B>lib/http.pl </B>-&nbsp;http connection tools<BR>
+	    <B>lib/submit-lib.pl - </B>custom url submit procedures<BR>
+	    <B>logs</B> - directory where we keep the log files<BR>
+	    <B>modules</B> - put here your add-on submit modules (You can have more
+	    directories with modules.)<BR>
+	    <B>nph-submit.pl</B> - the main cgi script<BR>
+	    <B>fetch.pl</B> - a&nbsp;script fetching the page, parsing and filling
+	    in&nbsp;the submit form as well as possible<BR>
+	    <B>parameters.pl</B> - parameters for this cgi application - updated through
+	    Admin Panel
+	    <P>
+	    <A NAME="22"><!-- --></A><SMALL><SMALL>[ <A HREF="#2">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: How this program works?</I></B><BR>
+	    There are two ways for the user to enter his web-page data. 1st is to enter
+	    url only in a form like <A HREF="fetch.htm">fetch.htm</A>. There is a script
+	    <I>fetch.pl </I>which will download the page and will fill out as fully as
+	    possible the submit form. The second way is not to use <I>fetch.pl</I> but
+	    fill directly in&nbsp;the submit form - <A HREF="demo.htm">demo.htm</A>.
+	    Then user has to&nbsp;choose how to submit: through his javascript-enabled
+	    browser or leave the submission process on&nbsp;server side.
+	    <P>
+	    <A NAME="24"><!-- --></A><SMALL><SMALL>[ <A HREF="#2">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: Performance tests.</I><BR>
+	    </B>Performance tests made with <I>Chatologica HTTP Benchmark test utility
+	    version 1.0</I>:<BR>
+	    <B>Software used:</B> Linux Red Hat 6.0, perl v.5.00503<B><BR>
+	    Hardware used:</B> CPU AMD K6-2/300, 8ns RAM, EIDE
+	    <TABLE BORDER CELLPADDING="2" WIDTH="100%">
+	      <TR BGCOLOR="#aaaaaa">
+		<TD><P ALIGN=Center>
+		  <B>Submission Type</B></TD>
+		<TD><P ALIGN=Center>
+		  <B>Server-Side</B></TD>
+		<TD><P ALIGN=Center>
+		  <B>Client-Side</B></TD>
+	      </TR>
+	      <TR BGCOLOR="#cccccc">
+		<TD><P ALIGN=Center>
+		  <B>CPU usage</B></TD>
+		<TD COLSPAN=2><P ALIGN=Center>
+		  <B>compilation time in seconds (off line mode)</B></TD>
+	      </TR>
+	      <TR>
+		<TD><P ALIGN=Center>
+		  script + 1 module</TD>
+		<TD><P ALIGN=Center>
+		  0.300s</TD>
+		<TD><P ALIGN=Center>
+		  0.300s</TD>
+	      </TR>
+	      <TR>
+		<TD><P ALIGN=Center>
+		  script + 32 modules</TD>
+		<TD><P ALIGN=Center>
+		  0.790s</TD>
+		<TD><P ALIGN=Center>
+		  0.660s</TD>
+	      </TR>
+	      <TR>
+		<TD><P ALIGN=Center>
+		  average time per module</TD>
+		<TD><P ALIGN=Center>
+		  0.013s</TD>
+		<TD><P ALIGN=Center>
+		  0.012s</TD>
+	      </TR>
+	      <TR BGCOLOR="#cccccc">
+		<TD><P ALIGN=Center>
+		  <B>Network usage</B></TD>
+		<TD COLSPAN=2><P ALIGN=Center>
+		  <B>transfer in KBytes</B></TD>
+	      </TR>
+	      <TR>
+		<TD><P ALIGN=Center>
+		  original script + 32 modules</TD>
+		<TD><P ALIGN=Center>
+		  130KB<BR>
+		  (100KB in + 30KB out)<BR>
+		  average: 4KB/module</TD>
+		<TD><P ALIGN=Center>
+		  0</TD>
+	      </TR>
+	      <TR>
+		<TD><P ALIGN=Center>
+		  modified script + 32 modules<BR>
+		  (with LWP module instead of http.pl)</TD>
+		<TD><P ALIGN=Center>
+		  285KB<BR>
+		  (250KB in + 35KB out)<BR>
+		  average: 8.9KB/module</TD>
+		<TD><P ALIGN=Center>
+		  0</TD>
+	      </TR>
+	    </TABLE>
+	    <P>
+	    The above test was made with 100% CPU usage. The Chatologica HTTP Benchmark
+	    utility and the tested program were running on same machine so&nbsp;the CPU
+	    resources were shared.
+	    <P>
+	    <A NAME="26"><!-- --></A><SMALL><SMALL>[ <A HREF="#2">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: Why Chatologica does not use libwww, LWP.pm,
+	    CGI.pm?</I></B>
+	    <UL>
+	      <LI>
+		We use <B>cgi-handler.pl </B>instead of <B>CGI.pm</B> because it&nbsp;compiles
+		almost 6 times faster. On Windows 95&nbsp;platform cgi-handler.pl compiles
+		for 20ms but CGI.pm for 120ms.
+	      <LI>
+		<B>libwww/LWP</B> module has timeout bugs. I do not know if in the latest
+		releases of LWP for Unix it is fixed but for Windows and generally for Unix
+		it does not timeout properly when the system call connect() does not return
+		in time. Using LWP::Parallel is not good too. LWP::Parallel executes in one
+		process, receiving the content from many sources is in parallel but the
+		connection phase is consecutive. In other words if you have to connect
+		6&nbsp;sockets in parallel and if&nbsp;the first socket fail to get connected
+		within the timeout period we will not have time to try to connect the rest
+		of sockets. Another&nbsp;inconvenience: some LWPs does not return any content
+		in case of timeout. Chatologica's http library returns the content read up
+		to the moment of timeout and in equal situation Chatologica will return more
+		results than a&nbsp;LWP based version. More about the timeout bugs of LWP
+		read in
+		<A HREF="http://www.xray.mpe.mpg.de/cgi-bin/w3glimpse/libwww-perl?query=timeout&amp;errors=0&amp;case=on&amp;maxfiles=100&amp;maxlines=30">this
+		mail archive</A>. Another disadvantage of LWP is that it uses more CPU power
+		than the Chatologica's http library. On my computer it compiles for 380ms
+		against 140ms for the http library. It is about 2.7 times slower. Over more
+		the http.pl library has the capability to download <B>only the http response
+		header</B> (not whole response page) -&nbsp;which is very important to save
+		network and time resources if task is url submission only.
+	    </UL>
+	    <P>
+	    &nbsp;&nbsp;
+	    <P>
+	    <FONT COLOR="#0000ff"><BIG><B><U>How to make custom
+	    modifications?</U></B></BIG></FONT>
+	    <P>
+	    <A NAME="31"><!-- --></A><SMALL><SMALL>[ <A HREF="#3">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: What is an add-on submit module?<BR>
+	    </I></B>It is&nbsp;a perl file (.pl extension) that resides in your modules
+	    directory and have special purpose - to provide an interface between the
+	    url-submit software and the search engine. &nbsp;It has two parts - one that
+	    defines the module profile and the search engine connection data.
+	    The&nbsp;second part defines how to accommodate submission variables for
+	    this search engine.
+	    <P>
+	    <A NAME="32"><!-- --></A><SMALL><SMALL>[ <A HREF="#3">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: How to install an add-on submit module?<BR>
+	    </I></B>Upload the module file (Example: altavista.pl) to your <I>modules</I>
+	    directory in ASCII mode because&nbsp;it&nbsp;is a&nbsp;text file. Then call
+	    your Admin Panel and see if&nbsp;this module is recognized successfully in
+	    the table of installed modules. It's good if you first test it through the
+	    <I>GlobalSubmit Module Testing Utility</I>.
+	    <P>
+	    <A NAME="33"><!-- --></A><SMALL><SMALL>[ <A HREF="#3">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: How to make my own modules?<BR>
+	    </I></B>Try the <B>Chatologica GlobalSubmit Utilities.&nbsp;</B>There is
+	    an intelligent <I>Module Building Utility</I> that you can use to generate
+	    modules semi-automatically.&nbsp;Simply&nbsp;fill a
+	    form&nbsp;and&nbsp;submit.&nbsp;There is&nbsp;<I>Module Testing Utility</I>
+	    to test if module works. As well you can write modules manually without this
+	    utility.
+	    <P>
+	    <A NAME="34"><!-- --></A><SMALL><SMALL>[ <A HREF="#3">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: Can I rename the cgi handler
+	    <U>nph-submit.pl</U>?</I></B><BR>
+	    Yes, but please note that the prefix <I>nph-</I> have special
+	    meaning.&nbsp;It&nbsp;says that this script uses <I>non-parsed-header</I>
+	    method to&nbsp;communicate with client. NPH scripts contact directly with
+	    browser and their output is not buffered by web server. If your web server
+	    do not need nph- prefix to&nbsp;recognize nph scripts you can remove it.
+	    NPH method is needed only for server-side submissions.
+	    <P>
+	    <A NAME="35"><!-- --></A><SMALL><SMALL>[ <A HREF="#3">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: How to add banners?</I></B><BR>
+	    Put the banner code or the&nbsp;code provided by your ad-rotator software
+	    in your html templates.
+	    <P>
+	    <A NAME="36"><!-- --></A><SMALL><SMALL>[ <A HREF="#3">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: How to customize the html layout through
+	    templates?<BR>
+	    </I></B>In <I>submit-cgi/templates</I> directory you will find the html templates
+	    used with this script. Feel free to modify them and make your own custom
+	    design and html layouts. Here is a list of&nbsp;template files:
+	    <UL>
+	      <LI>
+		<B>message.htm</B> - template for warning messages. Put <B>$message </B>string
+		in the place where you wish message to appear.
+	      <LI>
+		<B>server-side.htm</B> - template for server-side submissions. Put
+		<B>SplitHere</B> string in the place where we want to split the page in
+		2&nbsp;parts:&nbsp;header and footer. The script will send first the html
+		header then dynamically the submission status lines and at the end the html
+		code of footer part.
+	      <LI>
+		<B>fetch.htm</B> - the submit form which is auto-filled by fetch.pl. Use
+		the following strings to put values in the html source: <B>$out{'error'}
+		$out{'title'} $out{'url'} $out{'description'} $out{'keywords'} $out{'email'}
+		$out{'company'} </B>As you notice these are values of hash <B>%out.</B>
+	      <LI>
+		<B>jscript-based.htm </B>- the page we show if browser-based submission is
+		selected. Used html components are: <B>$out{'last'}</B> <B>$out{'forms'}</B>
+		<B>$out{'engines_list'}</B> <B>$out{'url_list'}</B>
+	    </UL>
+	    <P>
+	    <B>Important NOTE: </B>All templates are considered as perl strings so that
+	    Perl will interpolate any substrings started with $ or&nbsp;@ within the
+	    template with a variable's value. To avoid 'non-defined variable' errors
+	    escape any non-related $ and @ signs with \ sign before them - \$ or \@.
+	    For example write your email address this way:
+	    &nbsp;<I>youraccount\@yourserver.com</I>
+	    <P>
+	    <A NAME="37"><!-- --></A><SMALL><SMALL>[ <A HREF="#3">top</A> ]
+	    </SMALL></SMALL>&nbsp;<B><I>Q: How to password protect my admin
+	    directory?</I></B><BR>
+	    Here are instructions for Apache web server. Upload to your admin directory
+	    in ASCII mode a file <I>.htaccess</I> like this one:<BR>
+	    <SMALL><B>AuthUserFile
+	    /usr/home/chatologica/www/cgi-bin/submit-cgi/admin/.htpasswd<BR>
+	    AuthGroupFile /dev/null<BR>
+	    AuthName Admin Panel<BR>
+	    AuthType Basic<BR>
+	    &lt;Limit GET POST&gt;<BR>
+	    require valid-user<BR>
+	    &lt;/Limit&gt;</B></SMALL>
+	    <P ALIGN=Left>
+	    You have similar file in your modules directory. Use the list command: <B>ls
+	    -la</B> to see it. Replace the sample path above:
+	    &nbsp;<SMALL><B>/usr/home/chatologica/www/cgi-bin/submit-cgi/admin/.htpasswd</B></SMALL><I>
+	    </I>&nbsp;with path to your own admin directory. Then from Telnet prompt
+	    type the command:<BR>
+	    <B>htpasswd -c .htpasswd</B><BR>
+	    This will create a password file <B>.htpasswd </B>which will contain encrypted
+	    information about the users/passwords for this directory. You will be prompted
+	    to add users and passwords.</TD>
+	</TR>
+      </TABLE>
+      <P ALIGN=Center>
+      <BIG>&nbsp;</BIG>
+      <CENTER>
+	<TABLE BORDER="0" CELLPADDING="2" WIDTH="90%">
+	  <TR>
+	    <TD><FONT COLOR="#0000ff"><BIG><B><U>License, usage and
+	      support</U></B></BIG></FONT>
+	      <P>
+	      <A NAME="41"><!-- --></A><SMALL><SMALL>[ <A HREF="#4">top</A> ]
+	      </SMALL></SMALL>&nbsp;<B><I>Q: Is this free software? - License:
+	      &nbsp;<A HREF="LICENSE.TXT">LICENSE.TXT</A></I></B><BR>
+	      This software is not freeware. Look at
+	      <A HREF="http://www.chatologica.com/">http://www.chatologica.com/</A> to
+	      find out how to order.
+	      <P>
+	      &nbsp;
+	      <P>
+	      <FONT COLOR="#0000ff"><BIG><B><U>Troubleshooting</U></B></BIG></FONT>
+	      <P>
+	      <A NAME="51"><!-- --></A><SMALL><SMALL>[ <A HREF="#5">top</A> ]
+	      </SMALL></SMALL>&nbsp;<B><I>Q: Error message: "Forbidden. You do not have
+	      right to access this file." or what file permissions I have to
+	      set?</I></B><BR>
+	      This error indicates that the web server user (usually <B>nobody</B>) do
+	      not have permission to read or execute the requested file. Set world 'read'
+	      and 'execute' permission to avoid this problem. Look at
+	      <A HREF="README.TXT">README.TXT</A> to see which are the right file permissions
+	      that you have to set in order to run successfully this program.
+	      <P>
+	      <A NAME="52"><!-- --></A><SMALL><SMALL>[ <A HREF="#5">top</A> ]
+	      </SMALL></SMALL>&nbsp;<B><I>Q: Error message: "Internal Server Error" and
+	      some rules how to fix similar problems.</I></B><BR>
+	      This error indicates that the script has not produced valid output. Check
+	      the following:
+	      <UL>
+		<LI>
+		  your perl is version 5
+		<LI>
+		  the file is uploaded in ASCII mode
+		<LI>
+		  it does not have syntax errors, use: <B>perl -c the_file.pl</B> to check
+		<LI>
+		  look in the web server error log to see what errors are registered there,
+		  may be there is missing perl module
+		<LI>
+		  check if all files are uploaded properly in full
+	      </UL>
+	      <P>
+	      <A NAME="53"><!-- --></A><SMALL><SMALL>[ <A HREF="#5">top</A> ]
+	      </SMALL></SMALL>&nbsp;<B><I>Q: "core" file - what is this?</I></B><BR>
+	      This is so called 'core dump' and happens during memory faults. The operating
+	      system writes down&nbsp;the current state of memory in a file named 'core'
+	      and kills the failed process. Happens when something in the data or code
+	      area of the process gets corrupted, read/write access outside the process
+	      area, very fast <I>forks</I> making the operating system confused, low resources.
+	      Delete this file if you worry that it takes space from your hard drive.</TD>
+	  </TR>
+	</TABLE>
+	<P ALIGN=Center>
+	<SMALL><SMALL>&nbsp;</SMALL></SMALL><BR>
+	<SMALL><SMALL>&nbsp;</SMALL></SMALL><BR>
+	  <HR WIDTH="50%">
+	<SMALL><SMALL>All rights reserved &copy; 2000 &nbsp;
+	</SMALL></SMALL><A HREF="http://www.chatologica.com/"><SMALL><SMALL>www.chatologica.com</SMALL></SMALL></A>
+	<CENTER>
+	  <P ALIGN=Center>
+	  &nbsp;
+	</CENTER>
+      </CENTER>
+    </CENTER>
+  </CENTER>
+</CENTER>
+</BODY></HTML>
