@@ -1,0 +1,109 @@
+<div align="center">
+
+<table class="block">
+<form method="POST">
+<tr><th>Configure EncapsGallery:</th></tr>
+<tr><td>
+<table>
+
+<tr>
+<th >Database:</th>
+<th></th>
+</tr>
+
+<?//if($html["config"]["demo"] != "on"){?>
+
+<tr>
+<td >Database SQL-server, DNS-name or IP:</td>
+<td><INPUT name="db_host" size="27" type="text" value="<?=$html["config"]["db_host"]?>"></td>
+</tr>
+
+<tr>
+<td >Database name:</td>
+<td><INPUT name="db_name" size="27" type="text" value="<?=$html["config"]["db_name"]?>"></td>
+</tr>
+
+<tr>
+<td >Database user:</td>
+<td><INPUT name="db_user" size="27" type="text" value="<?=$html["config"]["db_user"]?>"></td>
+</tr>
+
+<tr>
+<td >Database password:</td>
+<td><INPUT name="db_pass" size="27" type="password" value="<?=$html["config"]["db_pass"]?>"></td>
+</tr>
+
+<tr>
+<td >Database type:</td>
+<td><SELECT name="db_type">
+<OPTION <?if($html["config"]["db_type"]=="mysql")echo "selected"?> value="mysql">MySQL</OPTION>
+<OPTION <?if($html["config"]["db_type"]=="pgsql")echo "selected"?> value="pgsql">PostgreSQL</OPTION>
+</SELECT></td>
+</tr>
+
+<?//}else echo "<b>Database settings aren't visible with a demo</b>";?>
+
+<tr>
+<th >Common:</th>
+<th></th>
+</tr>
+
+<tr>
+<td >Output debug info:</td>
+<td><INPUT name="debug" type="checkbox" <?if($html["config"]["debug"]=="on")echo "checked"?>></td>
+</tr>
+
+<tr>
+<td >Demo mode (read-only):</td>
+<td>
+<INPUT name="demo" type="checkbox" <?if($html["config"]["demo"]=="demo")echo "checked"?>></td>
+</tr>
+
+<tr>
+<td >Design (theme):</td>
+<td><SELECT name="theme">
+<?foreach($html["themes"] as $item){?>
+<OPTION value="<?=$item?>" <?if($html["config"]["theme"]==$item)echo "selected"?>><?=$item?></OPTION>
+<?}?>
+</SELECT></td>
+</tr>
+
+<tr>
+<td >Images per 1 page: (0 - unlimit)</td>
+<td><INPUT name="pager_items_per_page" size="2" type="text" value="<?=$html['config']['pager_items_per_page']?>" ></td>
+</tr>
+
+<tr>
+<th >Upload:</th>
+<th></th>
+</tr>
+
+<tr>
+<td >Uploaded images sort order : </td>
+<td><SELECT name="sort">
+<OPTION value="new" <?if($html["config"]["sort"]=="new")echo "selected"?>>new items first</OPTION>
+<OPTION value="old" <?if($html["config"]["sort"]=="old")echo "selected"?>>new items last</OPTION>
+</SELECT></td>
+</tr>
+
+<tr>
+<td >Default category:</td>
+<td><SELECT name="upl_def_cat">
+<?foreach($html["cats"] as $item){?>
+<OPTION value="<?=$item["id"]?>" <?if($html["config"]["upl_def_cat"]==$item["id"])echo "selected"?>><?=$item["title"]?></OPTION>
+<?}?>
+</SELECT></td>
+</tr>
+
+</table>
+</td></tr>
+
+<tr><td align="center" bgcolor="Silver">
+<INPUT type="submit" value="Submit">
+</td></tr>
+<INPUT type="hidden" name="action" value="<?=$html['action']?>">
+
+</form>
+</TABLE>
+
+</div>
