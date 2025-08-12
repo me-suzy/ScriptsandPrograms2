@@ -1,0 +1,21 @@
+<form name="asdf">
+Jump to category:
+<select name="cat" onchange="asdf.submit()">
+<?foreach($html['cats'] as $item){?>
+<option value="<?=$item['id']?>" <?if($html['postget']['cat']==$item['id'])echo "selected"?>><?=$item['title']?></option>
+<?}?>
+</select>
+
+<BR>
+
+
+<?foreach($html['cats'] as $item){?>
+<?if($html['postget']['cat']==$item['id']){?>
+	[<?=$item['title']?>]
+<?}else{?>
+	<a href="?cat=<?=$item['id']?>"><?=$item['title']?></a> 
+<?}?>
+<?}?>
+
+<INPUT type="hidden" name="action" value="upd_cat_exec">
+</form>
