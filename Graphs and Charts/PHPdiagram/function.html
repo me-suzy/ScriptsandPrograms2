@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY bgcolor="#eeeeee">
+<form name="inputform" method="post" action="dynamic_example.php" onSubmit="return checkForm()">
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2 WIDTH=720>
+<TR><TD width=40></TD>
+    <TD width=50 align=right>x-min:</TD>
+    <TD width=80 align=left><input name="xmin" value="-4" size=8></TD>
+    <TD width=50 align=right>x-max:</TD>
+    <TD width=80 align=left><input name="xmax" value="4" size=8></TD>
+    <TD width=50 align=right>y-min:</TD>
+    <TD width=80 align=left><input name="ymin" value="-0.2" size=8></TD>
+    <TD width=50 align=right>y-max:</TD>
+    <TD width=80 align=left><input name="ymax" value="0.5" size=8></TD>
+    <TD></TD>
+</TR>
+<TR><TD align=right>y=</TD>
+    <TD colspan=8 align=left><input name="fx" value="1/sqrt(2*PI)*exp(-x*x/2)+sin(PI*x)/10" size=56></TD>
+    <TD><input type=button value="Draw"></TD>
+</TR>
+<TR><TD colspan=10>
+<IMG src="function.png">
+</TD></TR>
+</TABLE>
+</form>
+<SCRIPT Language="JavaScript">
+function checkForm()
+{ var xmin=parseFloat(document.inputform.xmin.value);
+  var xmax=parseFloat(document.inputform.xmax.value);
+  var ymin=parseFloat(document.inputform.ymin.value);
+  var ymax=parseFloat(document.inputform.ymax.value);
+  if (isNaN(xmin)) { alert("x-min is not a number"); return(false); }
+  if (isNaN(xmax)) { alert("x-max is not a number"); return(false); }
+  if (isNaN(ymin)) { alert("y-min is not a number"); return(false); }
+  if (isNaN(ymax)) { alert("y-max is not a number"); return(false); }
+  return(true);
+}
+</SCRIPT>
+<code><font color="#000000">
+<font color="#0000BB">&lt;?PHP
+<br /></font><font color="#FF8000">//function.php
+<br /></font><font color="#007700">include (</font><font color="#DD0000">"diagram.php"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$xmin</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'xmin'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'xmin'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br /></font><font color="#0000BB">$xmax</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'xmax'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'xmax'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br /></font><font color="#0000BB">$ymin</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'ymin'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'ymin'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br /></font><font color="#0000BB">$ymax</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'ymax'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'ymax'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br /></font><font color="#0000BB">$fx</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'fx'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'fx'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br />if ((</font><font color="#0000BB">$xmin</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$xmax</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$ymin</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$ymax</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$fx</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">))
+<br />{ </font><font color="#0000BB">$D</font><font color="#007700">=new </font><font color="#0000BB">Diagram</font><font color="#007700">();
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">=@</font><font color="#0000BB">ImageCreate</font><font color="#007700">(</font><font color="#0000BB">720</font><font color="#007700">, </font><font color="#0000BB">400</font><font color="#007700">) or die(</font><font color="#DD0000">"Cannot create a new GD image."</font><font color="#007700">); 
+<br />&nbsp;&nbsp;</font><font color="#0000BB">ImageColorAllocate </font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetFrame</font><font color="#007700">(</font><font color="#0000BB">60</font><font color="#007700">, </font><font color="#0000BB">40</font><font color="#007700">, </font><font color="#0000BB">700</font><font color="#007700">, </font><font color="#0000BB">340</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetBorder</font><font color="#007700">(</font><font color="#0000BB">$xmin</font><font color="#007700">, </font><font color="#0000BB">$xmax</font><font color="#007700">, </font><font color="#0000BB">$ymin</font><font color="#007700">, </font><font color="#0000BB">$ymax</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetText</font><font color="#007700">(</font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#DD0000">"f(x)="</font><font color="#007700">.</font><font color="#0000BB">$fx</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetGridColor</font><font color="#007700">(</font><font color="#DD0000">"#FFFFFF"</font><font color="#007700">, </font><font color="#DD0000">"#EEEEEE"</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Draw</font><font color="#007700">(</font><font color="#DD0000">"#DDDDDD"</font><font color="#007700">, </font><font color="#DD0000">"#000000"</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$fx</font><font color="#007700">=</font><font color="#0000BB">strtolower</font><font color="#007700">(</font><font color="#0000BB">$fx</font><font color="#007700">); 
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$fx</font><font color="#007700">=</font><font color="#0000BB">str_replace</font><font color="#007700">(</font><font color="#DD0000">'exp'</font><font color="#007700">,</font><font color="#DD0000">'e*p'</font><font color="#007700">,</font><font color="#0000BB">$fx</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$fx</font><font color="#007700">=</font><font color="#0000BB">str_replace</font><font color="#007700">(</font><font color="#DD0000">'x'</font><font color="#007700">,</font><font color="#DD0000">'($x)'</font><font color="#007700">,</font><font color="#0000BB">$fx</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$fx</font><font color="#007700">=</font><font color="#0000BB">str_replace</font><font color="#007700">(</font><font color="#DD0000">'e*p'</font><font color="#007700">,</font><font color="#DD0000">'exp'</font><font color="#007700">,</font><font color="#0000BB">$fx</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$fx</font><font color="#007700">=</font><font color="#0000BB">str_replace</font><font color="#007700">(</font><font color="#DD0000">'pi()'</font><font color="#007700">,</font><font color="#DD0000">'pi'</font><font color="#007700">,</font><font color="#0000BB">$fx</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$fx</font><font color="#007700">=</font><font color="#0000BB">str_replace</font><font color="#007700">(</font><font color="#DD0000">'pi'</font><font color="#007700">,</font><font color="#DD0000">'pi()'</font><font color="#007700">,</font><font color="#0000BB">$fx</font><font color="#007700">);&nbsp;&nbsp;
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$y</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;
+<br />&nbsp;&nbsp;for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">60</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">&lt;=</font><font color="#0000BB">700</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">++)
+<br />&nbsp;&nbsp;{ </font><font color="#0000BB">$x </font><font color="#007700">= </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">RealX</font><font color="#007700">(</font><font color="#0000BB">$i</font><font color="#007700">);
+<br />&nbsp;&nbsp;&nbsp;&nbsp;eval (</font><font color="#DD0000">"\$y = "</font><font color="#007700">.</font><font color="#0000BB">$fx</font><font color="#007700">.</font><font color="#DD0000">";"</font><font color="#007700">);
+<br />&nbsp;&nbsp;&nbsp;&nbsp;if ((</font><font color="#0000BB">$ymin</font><font color="#007700">&lt;=</font><font color="#0000BB">$y</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$y</font><font color="#007700">&lt;=</font><font color="#0000BB">$ymax</font><font color="#007700">)) 
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Pixel</font><font color="#007700">(</font><font color="#0000BB">$i</font><font color="#007700">, </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">$y</font><font color="#007700">), </font><font color="#DD0000">"#0000FF"</font><font color="#007700">);
+<br />&nbsp;&nbsp;}
+<br />&nbsp;&nbsp;</font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Content-type: image/png"</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">ImagePng</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">);
+<br />&nbsp;&nbsp;</font><font color="#0000BB">ImageDestroy</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">);
+<br />}
+<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code>
+</BODY>
+</HTML>
