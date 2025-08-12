@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0064)http://webstationone.com/test/htmlarea/popups/insert_anchor.html -->
+<HTML style="WIDTH: 425px; HEIGHT: 100px">
+<HEAD>
+<TITLE>Insert Anchor</TITLE>
+<STYLE>HTML {
+	FONT-SIZE: 8pt; FONT-FAMILY: MS Shell Dlg; POSITION: absolute
+}
+BODY {
+	FONT-SIZE: 8pt; FONT-FAMILY: MS Shell Dlg; POSITION: absolute
+}
+BUTTON {
+	FONT-SIZE: 8pt; FONT-FAMILY: MS Shell Dlg; POSITION: absolute
+}
+DIV {
+	FONT-SIZE: 8pt; FONT-FAMILY: MS Shell Dlg; POSITION: absolute
+}
+INPUT {
+	FONT-SIZE: 8pt; FONT-FAMILY: MS Shell Dlg; POSITION: absolute
+}
+SELECT {
+	FONT-SIZE: 8pt; FONT-FAMILY: MS Shell Dlg; POSITION: absolute
+}
+FIELDSET {
+	FONT-SIZE: 8pt; FONT-FAMILY: MS Shell Dlg; POSITION: absolute
+}
+</STYLE>
+<SCRIPT language=javascript>
+
+      var highlightedText = window.dialogArguments;
+
+    function returnSelected() {
+	var text = escape( "<a name='" );
+	text = text + escape( document.set.text.value );
+	text = text + escape( "'>" );	
+	text = text + escape( "&nbsp;</a>" );
+	window.returnValue = text;
+	window.close();
+      }
+
+      function paste_link() {
+	document.set.text.value = highlightedText;
+      }
+
+</SCRIPT>
+<script>
+function _CloseOnEsc() {
+  if (event.keyCode == 27) {
+
+    parent.window.close();
+    return;
+  }
+}
+
+function Init() {
+  document.body.onkeypress = _CloseOnEsc;
+}
+
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<BODY bgcolor="#FFFFFF" 
+style="MARGIN: 10px; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none" onload="javascript: paste_link();Init()" 
+scroll=no>
+<FORM name=set method=post>
+  <FIELDSET id=fldLayout 
+style="LEFT: 0.5em; WIDTH: 31.5em; TOP: 0.8em; HEIGHT: 5.2em">
+  </FIELDSET>
+  <DIV id=divFileName 
+style="LEFT: 1.5em; WIDTH: 5em; TOP: 2.4em; HEIGHT: 1.21em">Anchor:</DIV>
+  <INPUT 
+style="LEFT: 7em; WIDTH: 23.8em; TOP: 2.3em; HEIGHT: 2em" size=30 value=f 
+name=text>
+  <INPUT style="LEFT: 32.5em; WIDTH: 6em; TOP: 1.1em; HEIGHT: 2.2em" onclick=returnSelected() type=button value=OK>
+  <INPUT style="LEFT: 32.5em; WIDTH: 6em; TOP: 3.6em; HEIGHT: 2.2em" onclick=window.close() type=button value=Cancel>
+</FORM>
+</BODY>
+</HTML>
+
+
+
