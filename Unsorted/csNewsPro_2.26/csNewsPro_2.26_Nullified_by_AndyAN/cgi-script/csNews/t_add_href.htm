@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Add Link</title>
+</head>
+
+<body bgcolor="#C0C0C0">
+
+<form name=form1>
+  <div align="left">
+    <table border="0" cellpadding="3" cellspacing="0">
+      <tr>
+        <td align="right" colspan="2">
+          <p align="center"><font face="Tahoma" size="1">&nbsp;</font><font face="Tahoma" size="3"><b>Add
+          New Link</b></font></td>
+      </tr>
+      <tr>
+        <td align="right" colspan="2">
+          <hr>
+        </td>
+      </tr>
+      <tr>
+        <td align="right"><font face="Tahoma" size="2"><b>Target: </b></font></td>
+        <td>
+          <div align="left">
+            <table border="0" cellpadding="3" cellspacing="0">
+              <tr>
+                <td><font face="Tahoma" size="1"><input type="radio" value="same" name="target" checked></font></td>
+                <td><font face="Tahoma" size="1">Same Window</font></td>
+                <td><font face="Tahoma" size="1"><input type="radio" value="new" name="target"></font></td>
+                <td><font face="Tahoma" size="1">New Window</font></td>
+                <td><font face="Tahoma" size="1"><input type="radio" value="other" name="target"></font></td>
+                <td><font face="Tahoma" size="1"><input type="text" name="othertxt" size="20"></font></td>
+              </tr>
+            </table>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td align="right"><font face="Tahoma" size="2"><b>URL:</b></font></td>
+        <td><input type="text" name="url" size="35" value="http://"></td>
+      </tr>
+      <tr>
+        <td width="100%" colspan="2">
+          <hr>
+        </td>
+      </tr>
+      <tr>
+        <td width="100%" colspan="2">
+          <p align="center"><input type="button" value="Apply" onClick="DoReturn();"> <input type="button" value="Cancel" onClick="window.close();"></td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+</body>
+<script language=javascript>
+function DoReturn(){
+var target;
+if(document.form1.target[0].checked == true){target = "_self";}
+if(document.form1.target[1].checked == true){target = "_blank";}
+if(document.form1.target[2].checked == true){target = document.form1.othertxt.value;}
+var sel=window.opener.editArea.document.selection.createRange();
+var txt = sel.htmlText;
+sel.pasteHTML("<a href=\""+document.form1.url.value+"\" target=\""+target+"\">"+txt+"</a>");
+sel.select();
+window.close();
+}
+</script>
+</html>
