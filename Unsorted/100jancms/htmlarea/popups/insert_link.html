@@ -1,0 +1,177 @@
+<html style="Width: 310px; Height: 153px;">
+<head>
+<title>Hyperlink Editor</title>
+
+
+<script>
+function _CloseOnEsc() {
+  if (event.keyCode == 27) { window.close(); return; }
+}
+
+function Init() {
+  document.body.onkeypress = _CloseOnEsc;
+}  
+
+</script>
+<script language="javascript">
+
+document.title = "HyperLink Editor";
+var myValues = window.dialogArguments;
+
+var URLtext = myValues.href_attribute;
+var highlightedText = myValues.highlightedText;
+var target = myValues.tar_attribute;
+var linkText = myValues.linkText;
+
+function returnSelected() {
+
+  // if being edited, REMOVE old link.
+
+	var text = escape( "<a href='" );
+	text = text + escape( document.set.link_value.value );
+
+	if (target != "") {
+	  text = text + escape( "' target='" );
+	  text = text + escape( target );
+  }
+
+	text = text + escape( "'>" );
+
+ 	// modified by barry hunter to use text as inputed rather than from a text box (as likey to contain html code!)
+	if (linkText == '') { text = text + escape( highlightedText ); }
+	else { text = text + escape( linkText ); }
+
+	text = text + escape( "</a>" );
+
+	window.returnValue = text;          // set return value
+	window.close();                     // close dialog
+
+}
+
+
+// Now, if a person changes the protocol AFTER having entered the
+// link, the inputted link info isn't erased.
+function myChange() {
+
+  var selectedItem      	= document.set.type.selectedIndex;
+  var selectedItemValue 	= document.set.type.options[selectedItem].value;
+  var selectedItemText  	= document.set.type.options[selectedItem].text;
+  var inputtedText			  = document.set.link_value.value;
+
+  var protocol = document.set.link_value.value.split(":");
+  if (protocol[1]) {
+     var date = protocol[1].replace(/^\/\//, "");
+	}
+	else {
+	   var date = protocol[0];
+	}
+	document.set.link_value.value = selectedItemValue + date;
+
+}
+
+function updateTarget() {
+
+  var selectedItem 				= document.set.target.selectedIndex;
+	var selectedItemValue		= document.set.target.options[selectedItem].value;
+  target = selectedItemValue;
+
+}
+
+function updateForm() {
+
+	if (URLtext != '') {
+		// 1. set protocol
+    var compare = URLtext.substring(0,5);
+    for (i=0; i<document.set.type.length; i++) {
+		  if (document.set.type.options[i].value.search(compare) != -1) {
+				document.set.type.options[i].selected = true;
+			}
+		}
+
+  	// 2. set link URL
+		URLtext = URLtext.replace(/\/\/\//, "//");
+		document.set.link_value.value = URLtext;
+	}
+
+	// 3. set link text
+	// modified by barry hunter to store text in a global variable (as likey to contain html code!)
+	if (linkText == '') { desc = highlightedText; }
+	else { desc = linkText; }
+
+	// 4. set target
+	if (target != '') {
+    for (i=0; i<document.set.target.length; i++) {
+      if (document.set.target.options[i].value.search(target) != -1) {
+	  	  document.set.target.options[i].selected = true;
+	  	}
+	  }
+	}
+
+}
+
+</script>
+
+<link href="../../cms_style.css" rel="stylesheet" type="text/css">
+</head>
+<body topmargin=5 leftmargin=0 onload="updateForm();Init()" class="maintext">
+<center>
+<form method="post" name="set" onsubmit="returnSelected();return false;">
+
+<table cellpadding="0" cellspacing="0" border="0" align="center">
+<tr>
+<td align="center" class="maintext">
+<fieldset align="center" width="290">
+<legend align="left">Hyperlink Information</legend>
+
+<table border="0" cellspacing="4" align="center" class="maintext">
+    <tr>
+      <td align="right" nowrap="nowrap" width="40">Type: </td>
+      <td nowrap="nowrap">
+        <select name="type" class="formfields" onchange="javascript: myChange();">
+  	  	  <option value="http://" selected>HTTP
+			    <option value="https://">HTTPS
+			<option value="mailto:">Email
+			    <option value="file://">File
+			    <option value="ftp://">FTP
+			    <option value="gopher:">Gopher
+			    <option value="news:">News
+			    <option value="telnet:">Telnet
+			    <option value="wias:">WIAS
+		        <option value="">other
+	  	    </select>
+      </td>
+	    <td align="right">Target: </td>
+      <td><select name="target" class="formfields" onChange="javascript: updateTarget();">
+		  	  <option value="">not set
+		  	  <option value="_self">_self
+		  	  <option value="_blank">_blank
+		  	  <option value="_parent">_parent
+		  	  <option value="_top">_top
+			  </select>
+			</td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap">Link: </td>
+      <td nowrap="nowrap" colspan="3">
+        <input class="formfields" type="text" name="link_value" value="http://" size="35">&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+  </table>
+	</fieldset>
+</td>
+</tr>
+<tr>
+  <td colspan="2" align="center">
+    <table cellpadding="3">
+		<tr><td align="center">
+  		<input type="hidden" value="" name="empty">
+		  <input type="submit" class="maintext" value=" OK " style="width: 73px; height: 23px;" onClick="returnSelected();">
+	    <input type="button" class="maintext" value="Cancel" style="width: 73px; height: 23px;" onClick="window.close()">
+		</td></tr></table>
+		</form>
+  </td>
+</tr>
+</table>
+</center>
+</body>
+</html>
