@@ -1,0 +1,53 @@
+<form>
+	
+	<subtitle>Received Messages ( for me only )</subtitle>
+	<width>580</width>
+	
+	<fields>
+		<_count header="No" suffix="." width="20" align="center" />
+		<msg_new type="relation" width="10" align="center">
+			<options>
+				<option name="1">N</option>
+			</options>
+		</msg_new>
+		<msg_title header="Title" align="left" />
+		
+		<msg_date width="130" header="Date" type="date" params="j M Y g:i a" align="center" />
+
+		<delete type="button" width="20" align="center" button="ac_delete" title="Delete Message">
+			<location>javascript:if(confirm('Are you sure you want to delete this record ?')) window.location='index.php?mod=myprofile&sub=myprofile.delete&msg_id={MSG_ID}&returnURL={CURRENT_PAGE}'</location>
+		</delete>
+
+		<reply type="button" width="20" align="center" button="ac_reply" title="Reply Message">
+			<location>index.php?mod=myprofile&sub=myprofile.compose&user_id={MSG_FROM}&msg_id={MSG_ID}&returnurl={CURRENT_PAGE}</location>
+		</reply>
+
+		<forward type="button" width="20" align="center" button="ac_forward" title="Forward Message">
+			<location>index.php?mod=myprofile&sub=myprofile.compose&msg_id={MSG_ID}&returnurl={CURRENT_PAGE}</location>
+		</forward>
+
+		<details type="button" width="20" align="center" button="ac_details" title="View Message">
+			<location>index.php?mod=myprofile&sub=myprofile.inbox&action=details&msg_id={MSG_ID}&returnurl={CURRENT_PAGE}</location>
+		</details>		
+	</fields>
+
+	<header>
+		<titles>true</titles>
+	</header>
+	<SQL>
+		<vars>
+			<sql_page type="page"/>
+			<sql_items type="form" var="items" />
+			<sql_table import="$this->tables['mb_msg']" type="eval"/>
+			<user import="$_SESSION['minibase']['raw']['user_id']" type="eval" />
+			<from import="$_GET['user_id']" type="eval" />
+			<sql_condition import="WHERE msg_type=1 AND msg_from='{FROM}' AND msg_user='{USER}' AND msg_delete=0" type="var" />
+	
+		</vars>
+		<query>SELECT * FROM `{SQL_TABLE}` {SQL_CONDITION} ORDER BY msg_date desc LIMIT {SQL_PAGE},{SQL_ITEMS} </query>
+		<count table="{SQL_TABLE}" condition="{SQL_CONDITION}" />
+	</SQL>
+
+	<items>25</items>
+
+</form>
