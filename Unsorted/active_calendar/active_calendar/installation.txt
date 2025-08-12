@@ -1,0 +1,58 @@
+activewebsuite.com Active Calendar Installation Notes:
+Release: 09/2001
+http://www.activewebsuite.com
+Copyright (©) 2000-2001. Active Web Suite Technologies.  All rights reserved.
+
+
+==============================================================
+FREE INSTALLATION
+==============================================================
+If you are familiar with installing a cgi program, you should have little problem installing the classified ads system.  If you are not familiar with installing cgi, you may wish to have one of our support representatives install your system.  To receive free installation, you should send am email containing your name, site name, and ftp login information to support@activewebsuite.com.  We are happy to provide free installation and normally install within hours of your request.
+
+==============================================================
+SELF-INSTALL INSTRUCTIONS
+==============================================================
+
+The installation of your calendar program is mostly completed via the Setup Wizard.  Upon decompressing the active_calendar.zip file, you should have a a directory containing the following folders on your local computer.
+
+
+www (sometimes called htdocs, public_html, etc.)
+  |------------- suite (777)
+      |------------- images (contains all the month and year image files)
+
+cgi-bin (usually within your www folder but sometimes outside the www folder)
+  |------------- suite (777)
+      |------------- library (contains all the supporting cgi files)
+      |------------- admin.cgi (the main admin cgi script) (755)
+      |------------- calendar.cgi (the main calendar script) (755)
+
+setup.cgi (755)
+eula.txt
+
+All files ending in *.cgi must have the correct "path to perl" on the first line.  The default path in these files is:
+
+	#!/usr/bin/perl
+
+If this is not correct, you must change this line to the correct path to perl 5 on your system.
+
+
+Begin by uploading the setup.cgi file to the your main cgi-bin and setting the unix file permissions to 755.  You will then upload the remaining files as follows:
+
+
+ - Upload in ASCII mode the "suite" folder located in the cgi files folder to your cgi-bin directory.
+ - Upload in BINARY mode the "suite" folder located under the www files folder to your main root directory.
+
+ Once you have uploaded these files, you need to set the file permissions on three directories.
+
+  - "suite" directory located in the cgi-bin directory (777)
+  - "calendar" directory located in the cgi-bin/suite/calendar (777)
+  - "suite" directory located in your public_html or root directory (777)
+
+You will now begin to setup your calendar by calling the setup.cgi script in your browser.  This should be something like:
+
+  http://www.yoursite.com/cgi-bin/setup.cgi
+
+The remaining installation instructions are included in the setup wizard.
+
+
+	
