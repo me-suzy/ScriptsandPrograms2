@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Random link script test</title>
+</head>
+<body>
+<script type="text/javascript">
+//<![CDATA[
+var req;
+function loadXMLDoc(url) {
+	req = false;
+    // branch for native XMLHttpRequest object
+    if(window.XMLHttpRequest) {
+    	try {
+			req = new XMLHttpRequest();
+        } catch(e) {
+			req = false;
+        }
+    // branch for IE/Windows ActiveX version
+    } else if(window.ActiveXObject) {
+       	try {
+        	req = new ActiveXObject("Msxml2.XMLHTTP");
+      	} catch(e) {
+        	try {
+          		req = new ActiveXObject("Microsoft.XMLHTTP");
+        	} catch(e) {
+          		req = false;
+        	}
+		}
+    }
+	if(req) {
+		req.onreadystatechange = processReqChange;
+		req.open("GET", url, true);
+		req.send('');
+	}
+}
+function processReqChange() {
+    // only if req shows "loaded"
+    if (req.readyState == 4) {
+        // only if "OK"
+        if (req.status == 200) {
+            // ...processing statements go here...
+			document.getElementById('myAnchor').href = req.responseText ;
+        } else {
+            alert("There was a problem retrieving the data:\n" +
+                req.statusText);
+        }
+    }
+}
+//]]>
+</script>
+<p>Feeling lucky? Try our <a href='http://www.msn.com/' id='myAnchor' onClick="loadXMLDoc('randlink.php')" onKeyPress="loadXMLDoc('randlink.php')" target='_blank'>random link</a>. [Each click will get a new link. These links are randomly selected from Yahoo&rsquo;s database. We have no control over the content. <em>You have been warned.</em>]</p>
+<script type="text/javascript">
+//<![CDATA[
+loadXMLDoc('randlink.php') ;
+//]]>
+</script>
+<p>
+<a href="http://thejaffes.org/downstat/download.php?file=randlink ">Download the scripts here</a></p>
+</body>
+</html>
