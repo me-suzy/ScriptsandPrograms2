@@ -1,0 +1,79 @@
+<script language="javascript" type="text/javascript">
+function checkLength(maxLength) {
+	MessageLength  = document.main_form.message.value.length;
+	message  = "";
+		if (maxLength == null)
+		{
+			message = "||no_max_msg_length||.";
+		}
+		else if (maxLength > 0)
+		{
+			message = "||max_length|| " + maxLength + " ||chars||.";
+		}
+		else
+		{
+			message = "";
+		}
+		alert(message + "\n||so_far_used|| " + MessageLength + " ||chars||.");
+}
+</script>
+
+
+<span class="page_header">||form_create_webcard||</span><form action="{{action}}?act=preview" method="post" name="main_form">
+<br />
+<span class="warning">{{warnings}}</span>
+<input type="hidden" name="pic" value="{{chosen_pic}}" />
+<table width="100%"><tr><td align="center" valign="top">
+<td align="center" valign="top">
+<br />||img_chosen||:<br />{{show_pic}}
+</td>
+<td valign="top" align="left">
+<br />
+||card_title||:<br /><input size="50" type="text" name="title" value="{{title}}" class="chunky" /><br /><br /><br />||your_name||:<br /><input size="50" type="text" name="sender_name" value="{{sender_name}}" class="chunky" /><br /><br />||your_email||:<br /><input size="50" type="text" name="sender_email" value="{{sender_email}}" class="chunky" /><br /><br /><br />
+||can_enter_up_to|| {{max_recip}} ||card_recips||
+<br /><br />
+{{recipients}}
+<br /><br />
+
+||choose_attributes||
+<!-- A table is required here for layout purposes -->
+<table class="noborder" cellspacing="5">
+<tr>
+<td>
+||bg_colour||:<br />
+<select name="bg_color" class="chunky">
+{{bg_select}}
+</select>
+</td>
+
+<td>
+||font_colour||:<br />
+<select name="font_color" class="chunky">
+{{font_colour_select}}
+</select>
+</td>
+
+<td>
+||font_face||:<br />
+<select name="font_face" class="chunky">
+{{font_face_select}}
+</select>
+</td>
+
+<td>
+||font_size||:<br />
+<select name="font_size" class="chunky">
+{{font_size_select}}
+</select>
+</td>
+</tr>
+</table>
+
+||can_use_codes||
+<br />
+<input name="bold" type="button" title="BOLD (access key B)" value=" B " accesskey="b" onClick="javascript:makeTag('B')" class="chunky" style="margin: 5px 5px 5px 5px;">
+<input name="italic" title="ITALIC (access key I)" type="button" value=" I " accesskey="i" onClick="javascript:makeTag('I')" class="chunky" style="margin: 5px 5px 5px 5px;">
+<input name="underline" title="UNDERLINE (access key U)" type="button" value=" U " accesskey="u" onClick="javascript:makeTag('U')" class="chunky" style="margin: 5px 5px 5px 5px;">
+<input name="strikethrough" title="STRIKETHROUGH (access key S)" type="button" value=" S " accesskey="s" onClick="javascript:makeTag('S')" class="chunky" style="margin: 5px 5px 5px 5px;">
+
+<br /><br />||msg_to_send|| (<a href="javascript:checkLength({{max_message_length}});">||check_length||</a>):<br /><textarea name="message" rows="16" cols="50" class="chunky">{{message}}</textarea>{{notify_box}}<br /><br /><input type="submit" name="submit" value="||preview_card||" class="chunky" /></form></td></tr></table>
