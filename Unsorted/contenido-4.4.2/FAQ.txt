@@ -1,0 +1,240 @@
+Contenido 4.4.x FAQ
+
+1 Allgemeines
+1.1 Warum ist diese FAQ so klein?
+1.2 Ich habe ein Problem mit Contenido. Wie kann ich es lösen?
+1.3 Installation: Menü sieht komisch aus und Artikelbearbeitung
+    funktioniert nicht.
+
+2 Fragen zum Backend
+2.1 Wie kann ich den WYSIWYG-Editor wechseln?
+2.2 Kann ich im Backend verschiedene Sprachen benutzen?
+2.3 Was ist Lost + Found?
+2.4 Funkioniert der WYSIWYG-Editor auch mit Mozilla?
+2.5 Funktioniert Contenido auch mit Netscape 4.x?
+2.6 Was ist PseudoCron?
+2.7 Läuft Contenido mit der Datenbank <XYZ>?
+2.8 Läuft Contenido mit dem Webserver <XYZ>?
+2.9 Der Editor und/oder die Vorschau funktionieren nicht!
+2.10 Im Insite-Editing bekomme ich die Fehlermeldung
+     "document.forms.editcontent.data ist Null oder kein Objekt"
+2.11 Nach dem Anlegen eines neuen Layouts erhalte ich einen
+     Parse Error!
+2.12 An diversen Stellen bekomme ich ein "Permission denied"!
+2.13 Kein Cursor im Insite-Editing mit dem Mozilla/Firebird!
+2.14 Bei einem Klick auf "Text-HTML" im Insite-Editing bekomme
+	 ich einen JavaScript-Fehler!
+
+3 Fragen zum Frontend
+3.1 Wie kann ich eine Login-Funktionalität implementieren?     
+3.2 Wie kann ich im Frontend Module und Container debuggen?
+3.3 Änderungen an Modulen wirken sich nicht aus! Was kann ich dagegen tun?
+
+
+1.1 Warum ist diese FAQ so klein?
+
+Da diese FAQ recht neu ist, ist sie noch recht klein. Wir werden
+die FAQ mit jeder neuen Version aktualisieren und erweitern.
+
+
+1.2 Ich habe ein Problem mit Contenido. Wie kann ich es lösen?
+
+Zuerst sollte das Problem eingekreist werden. Oftmals sind falsche
+Konfigurationseinstellungen für den Fehler verantwortlich. Danach
+sollte im Forum unter www.contenido.de/forum nach dem Problem
+gesucht werden, denn es ist sehr warscheinlich, daß andere Benutzer
+das Problem auch schon einmal hatten. Erst wenn das kein Ergebnis
+bringt, sollte im Forum ein Bugreport eröffnet werden. Wichtig ist,
+daß der Bugreport soviele Informationen wie möglich enthält, z.b.
+verwendetes Betriebssystem, PHP-Version usw.
+
+
+1.3 Installation: Menü sieht komisch aus und Artikelbearbeitung
+    funktioniert nicht.
+    
+Bei einer Installation mit register_globals = off in der php.ini
+kann es passieren, dass die Webpfade nicht richtig ausgelesen und
+gesetzt werden. An zwei Orten ist Abhilfe zu schaffen.
+a) config.php in den Zeilen 24 und 47 stehen Pfade, die zu prüfen
+   sind. Die Datei findet sich unter 'contenido/includes'.
+   Bitte den fehlenden Teil zwischen http:// und dem nachfolgenden
+   ergänzen.
+b) Änderungen bei den Mandanteneinstellungen. Hier ist ebenfalls der
+   Pfad zu modifizieren, der mit http:// beginnt. Die Einstellungen
+   für die Mandanten finden sich in Contenido unter
+   'Administration / Mandanten'.
+
+
+2.1 Wie kann ich den WYSIWYG-Editor wechseln?
+
+Contenido liefert 2 Editoren mit: HTMLArea und SPAW. Der Editor
+kann in der Datei config.php mit den Pfadangaben
+$cfg['path']['wysiwyg'] und $cfg['path']['wysiwyg_html'] gesetzt
+werden.
+
+
+2.2 Kann ich im Backend verschiedene Sprachen benutzen?
+
+Die Möglichkeit, das Backend auf verschiedene Sprachen umzustellen,
+wird in einer nachfolgenden Version wieder eingeführt werden.
+Hierzu wird die Standardbibliothek "GNU gettext" verwendet.
+Auswahl der Backendsprache erfolgt bei dem Login.
+
+
+2.3 Was ist Lost + Found?
+
+Lost + Found ist ein Mechanismus, um Artikel aufzufangen, die keiner
+Kategorie zugeordnet sind (z.b. wenn bei der Zeitsteuerung eines
+Artikels "Verschieben nach Kategorie" gewählt ist und die
+Zielkategorie beim Zeitpunkt des Verschiebens nicht mehr existiert).
+
+
+2.4 Funkioniert der WYSIWYG-Editor auch mit Mozilla?
+
+Nein, derzeit funktionieren die WYSIWYG-Editoren SPAW und HTMLArea
+nur mit dem Internet Explorer. In naher Zukunft soll HTMLArea
+allerdings auch Mozilla unterstützen. Sobald eine Mozilla-fähige
+Version von HTMLArea verfügbar ist, werden wir diese einbauen.
+Insite-Editing mit Mozile über F7 möglich (siehe auch 2.13)
+
+
+2.5 Funktioniert Contenido auch mit Netscape 4.x?
+
+Nein, Contenido setzt als Webapplikation auf Technologien wie CSS
+und JavaScript. Obwohl auch Netscape 4.x diese bietet, sind die 
+dort implementierten Standards zu alt. Wenn es überhaupt möglich
+wäre, Contenido auf Netscape 4.x zu portieren, wäre es sehr viel
+Aufwand, um dies zu bewerkstelligen. Ein aktueller Browser ist
+Voraussetzung, um Contenido zu benutzen.
+
+Wichtig: Die Seiten, die das Frontend von Contenido erzeugt, sind
+nicht spezifisch und können, sofern die Templates und Layouts
+korrekt implementiert wurden, auf jedem Browser betrachtet werden.
+
+
+2.6 Was ist PseudoCron?
+
+PseudoCron ist ein Cronjob-Emulator. Dieser wurde eingebaut, da
+nicht immer die Möglichkeit besteht, auf dem Webserver CronJobs
+auszuführen. PseudoCron wird über das Frontend aufgerufen und
+führt Wartungsjobs regelmäßig durch. Eigene Jobs können einfach
+in die Datei crontab.txt eingetragen werden, das Format ist
+dem des regulären Unix-Cron-Daemons ähnlich.
+
+
+2.7 Läuft Contenido mit der Datenbank <XYZ>?
+
+Contenido wird derzeit ausschließlich auf der OpenSource-Datenbank
+MySQL entwickelt, auch das Setup ist auf MySQL ausgelegt.
+Werden weitere Datenbanken unterstützt, werden wir es bekanntgeben.
+
+
+2.8 Läuft Contenido mit dem Webserver <XYZ>?
+
+Contenido wird derzeit ausschließlich auf dem OpenSource-Webserver
+Apache entwickelt. Zwar wurde Contenido nicht auf anderen
+Webservern getestet, allerdings sollte es auf jedem Webserver
+funktionieren, auf dem auch PHP installiert ist.
+
+
+2.9 Der Editor und/oder die Vorschau funktionieren nicht!
+
+Zu allererst sollten die Pfadeinstellungen unter
+"Administration / Mandanten" überprüft werden. Sind die Pfade dort
+korrekt, sollte die Datei "config.php" im Frontendverzeichnis 
+überprüft werden. Dort müssen Contenido-Verzeichnis sowie die
+Variablen "load_client" sowie "load_lang" gesetzt werden. Den
+Inhalt für load_client sowie load_lang bekommt man über die
+Nummer nach der Sprache bzw. des Mandanten im Administrationsmenü
+heraus. Mandant, Sprache und das Contenido-Verzeichnis werden auch
+idr. beim Erstellen eines neuen Mandanten automatisch eingetragen.
+
+
+2.10 Im Insite-Editing bekomme ich die Fehlermeldung
+     "document.forms.editcontent.data ist Null oder kein Objekt"
+     
+Wenn im Layout oder in Modulen Formulare (d.h. <form>-HTML-Elemente)
+verwendet werden, muß sichergestellt sein, daß diese auch durch
+</form> geschlossen werden.
+
+2.11 Nach dem Anlegen eines neuen Layouts erhalte ich einen
+     Parse Error!
+
+Jedes Layout befindet sich per default im PHP-Modus. Um HTML in
+einem Layout zu verwenden, muß der PHP-Modus zunächst mit '?>'
+verlassen werden. Danach kann reguläres HTML folgen, am Ende muß
+der PHP-Modus mit '<?php' wieder aktiviert werden.
+
+
+
+2.12 An diversen Stellen bekomme ich ein "Permission denied"!
+
+"Permission denied" deutet in 99% der Fälle auf ein
+Berechtigungsproblem auf dem Webserver hin. Eine typische Meldung
+lautet so:
+
+>Warning: fopen("/web/contenido/cronjobs/pseudo-cron.log", "a") -
+>Permission denied in /web/contenido/includes/pseudo-cron.inc.php
+>on line 148 
+
+Dies bedeutet, daß die Datei /web/contenido/cronjobs/pseudo-cron.log
+nicht geschrieben werden kann. Die Angabe von
+/web/contenido/includes/pseudo-cron.inc.php zeigt in desem Falle
+die Datei an, in der versucht wurde, die Datei zu öffnen.
+
+
+2.13 Kein Cursor im Insite-Editing mit dem Mozilla/Firebird!
+
+Derzeit funktioniert das Insite-Editing als JavaScript-Komponente,
+und der Cursor muß manuell über die Taste F7 (Caret Browsing)
+aktiviert werden. In zukünftigen Versionen von Mozilla wird dies
+wohl automatisch geschehen, wenn "mozile" (Mozilla In-Site Editing)
+als XPI in Mozilla integriert wird. Weitere Informationen:
+http://mozile.mozdev.org/faq.html
+
+
+2.14 Bei einem Klick auf "Text-HTML" im Insite-Editing bekomme
+	 ich einen JavaScript-Fehler!
+	 
+Im Layout ist darauf zu achten, daß es einen abschließenden "</head>"
+Tag enthält. Wenn dieser nicht vorhanden ist, kann die Website nicht
+mit dem WYSIWYG und/oder dem Insite-Editing bearbeitet werden.
+
+
+3.1 Wie kann ich eine Login-Funktionalität implementieren?
+
+Seit der aktuellen Version wird automatisch auf ein Login
+geprüft. Eine Beispiel-Loginmaske findet sich in der Datei
+"front_crclogin.inc.php" im Frontend-Verzeichnis. 
+
+Tips+Tricks zur Anpassung: Soll das Einloggen über einen
+Artikel geschehen, muß in der Datei front_crclogin.inc.php
+ein Redirect auf den entsprechenden Artikel eingebaut werden.
+
+
+3.2 Wie kann ich im Frontend Module und Container debuggen?
+
+In der Datei "config.php" gibt es die folgenden direktiven:
+
+$frontend_debug["container_display"] = false;
+$frontend_debug["module_display"] = false;
+$frontend_debug["module_timing"] = false;
+
+"container_display" zeigt die Container-Nummer an.
+"module_display" zeigt das Modul, welches sich in dem Container befindet, an.
+"module_timing" zeigt die Laufzeit eines Moduls an.
+
+Wichtig: Für dieses Feature *muß* das forcierte Modulgenerieren eingeschaltet
+werden (siehe Punkt 3.3)
+
+3.3 Änderungen an Modulen wirken sich nicht aus! Was kann ich dagegen tun?
+
+Unter bestimmten Umständen werden Artikel nicht neu generiert, wenn Module
+geändert wurden. Dies kann mit der Direktive
+
+$force = 0;
+
+in der Datei config.php des Frontends umgangen werden. Um ein forciertes
+Modulgenerieren zu aktivieren, ist $force auf den Wert 1 zu setzen, und
+dann den gewünschten Artikel anwählen.
+
