@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>phpPeanuts release notes</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2>Release notes</H2>
+<P>Version 1.1.<BR>
+<BR>
+Documentation is on <A HREF="http://www.phppeanuts.org/site/index.php?pntType=Pagina&amp;id=20">www.phpPeanuts.org</A>.
+To try out your phpPeanuts install, <A HREF="emptyapp/index.php">click here</A></P>
+
+<P>To upgrade from 1.1 beta 2 to 1.1, copy the classes/pnt folder to your 1.1 beta 2 install. To upgrade from 1.0a
+download the special upgrade.</P>
+<H3>What's new</H3>
+<P>Since 1.1 beta 2:</P>
+
+<OL>
+	<LI>Errorlog now includes http referrer
+</OL>
+
+<P>Since 1.1 beta 1:</P>
+
+<OL>
+	<LI>Evaluating php source from session apears to be seen as a security hazard according to www.php.net, annoucement
+	of php version 4.3.10. pnt.web.PntSite::getGlobalFilters now instantiates filter from array instead of evaluating
+	php source from session.
+	<LI>folder for skins, widgets and most base classes can now be overriden
+</OL>
+
+<P>Several bugs and notifications fixed, see <A HREF="http://www.phppeanuts.org/site/index_php/Pagina/176/version+1.1+beta+1.html">the
+list on the bugs section of the website</A></P>
+<P>In 1.1 beta 1 Since phpPeanuts 1.0a:</P>
+
+<OL>
+	<LI>Null values can now be stored for number, date, time and timestamp datatypes. The user interface framework
+	has allways converted empty strings entered by the user into null values and set those on the corresponding properties
+	of the updated or created object, but now the persistancy framework really tries to store these null values into
+	the database. If the columns in which these null values are to be stored are specified als NOT NULL, query errors
+	will be the result. To prevent this you need to check all table definitions of existing applications to match with
+	settings for the minLength of the corresponding propertyDescriptors: Where null is not allowed, minLength should
+	be set to a number larger then 0. This will make the framework report a proper error to the user and let the user
+	correct the value he entered or selected. See <A HREF="http://www.phppeanuts.org/site/index_php/Pagina/175">how
+	to convert and validate user input</A>. Where null should be allowed, the database table should be modified accordingly.
+	Be aware that MySql versions prior 3.23.2 can not index columns with null values. See <A HREF="http://dev.mysql.com/doc/mysql/en/Problems_with_NULL.html">problems
+	with null values</A> in the MySql documentation. If do not (allways) want the framework to convert empty strings
+	to null values, you may override the <A HREF="http://www.phppeanuts.org/site/index.php?pntType=HcodeMethod&amp;id=pnt.web.PntStringConverter::convert">convert
+	method</A> on class <A HREF="http://www.phppeanuts.org/site/index.php?pntType=HcodeClass&amp;id=StringConverter">StringConverter</A>.
+	If this solution does not work for you, please ask for alternatives on the forum.
+	<LI>Select and Dialog widgets now will prevent the removal of a value if the corresponding propertyDescriptor or
+	id-propertyDescriptor's minLength is larger then 0. In older releases minValue was used for this, but that was
+	not consistent with form validation. You may have to check propertyDescriptors in exesting applications for this
+	in order to get the expected behavior with the new version of the framework,
+	<LI>Sql files for the examples now create tables according to the properperty descriptors in the new examples code.
+	When upgrading exisiting examples you should re-run the sql files needed for those examples.
+	<LI>HorizontalTablePart that lists peanuts horizontally (one peanut per column) and properties vertically (one
+	property per row),
+	<LI>SearchPage now includes support for the application of a global filter, see the new version of example 9
+	<LI>Polymorphic persistancy, see example 12
+	<LI>Support for multi value properties in navigational queries,
+	<LI>No more notifications triggered by the framework and the examples
+	<LI>Support for time datatype
+	<LI>ErrorHandler now properly handles errors in the ErrorPage, thus avoinding endlessly looping
+	<LI>ErrorHandler level for logging can now be set seperately
+	<LI>classes/dateFunction.php is no longer included.
+</OL>
+
+<P>
+<H3>Known bugs</H3>
+
+<OL>
+	<LI><A HREF="http://www.phppeanuts.org/site/index.php?pntType=Pagina&amp;id=108">Column mappings</A> may not be
+	consequently applied. If you need to set a columnName different to the propertyName on an PropertyDescriptor, test
+	your applications database persistence functionality thouroughly.
+	<LI><A HREF="http://www.phppeanuts.org/site/index.php?pntType=Pagina&amp;id=167">Reference Anomalies</A>: Before
+	the generic workaround was applied, use of references by phpPeanuts occasionally made uninitialized php variables
+	or associations arbitrarily hold values that seemed to come from another variable. This rarily happened and since
+	the generic workaround it never happend again, so we recon this issue closed. However, it is impossible to guarantee
+	that the problem has been eliminated once and for all. Do not use phpPeanuts for mission critical applications.
+	<LI>Does not work with php5. An upgrade to a portable version functionally equal to 1.1 beta 2 is available.
+</OL>
+
+<P>
+
+</BODY>
+
+</HTML>
