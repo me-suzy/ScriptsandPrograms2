@@ -1,0 +1,87 @@
+<form>
+	<title>{TITLE} Message</title>
+	<action>index.php?mod=myprofile&sub=myprofile.compose&action=store</action>
+	<name>edit</name>
+	<width>580</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="cancel" >
+			<location>{PRIVATE.FORM_PREVIOUS_PAGE}</location>
+		</return>
+
+
+		<save onclick="" button="send">
+			<location>javascript:document.forms[0].submit();</location>
+		</save>
+
+	</buttons>
+
+	<redirect>index.php?sub=settings.mails.details</redirect>
+
+	<vars>
+		<return import="$_GET['return']" type="eval" />
+		<user import="$_GET['user_id']" type="eval" />
+		<title import="($_GET[msg_id] && !$_GET[user_id]) ? 'Forward' : (($_GET[msg_id] && $_GET[user_id]) ? 'Reply' : 'Compose')" type="eval"/>
+	</vars>
+
+	<redirect>index.php?sub=settings.mails.details</redirect>
+
+	<fields>
+		<id type="hidden" default="$_GET[user_id]" action="eval" />
+		<return type="hidden" default="{RETURN}"/>
+
+		<comment type="comment" padding="20">
+			<description>Send private messages to other users which are using the admin panel.</description>
+		</comment>
+
+		<to type="droplist" empty="true" size="30" validate="A:1:200" required="true">
+			<emptyMSG>no friends found</emptyMSG>
+			<title>To</title>
+			<relation table="users" id="user_id">
+				<text>
+					<user_name>user_name</user_name>
+					<user_login field="user_login" preffix="- (&nbsp;" suffix="&nbsp;)" />
+				</text>
+			</relation>			
+		</to>
+
+		<subject type="textbox" size="45" validate="A:2:200" required="true">
+			<title>Subject</title>
+		</subject>
+
+		<mail type="textarea" size="64:18" required="true" validate="A:1:20000">
+			<title>Message</title>
+		</mail>
+
+		<save type="droplist">
+			<title>Save</title>
+
+			<options>
+				<option name="0">yes</option>
+				<option name="1">no</option>
+			</options>
+			<description>Select yes if you want to save a copy of this message in the SENT folder.</description>
+		</save>
+<!--
+In future, now i really dont have time.
+		<email type="droplist">
+			<title>Notice</title>
+
+			<options>
+				<option name="0">no</option>
+				<option name="1">yes</option>
+			</options>
+			<description>Select yes if you want the user to get a notice by email about the new message.</description>
+		</email>
+-->
+	</fields>
+</form>
+
