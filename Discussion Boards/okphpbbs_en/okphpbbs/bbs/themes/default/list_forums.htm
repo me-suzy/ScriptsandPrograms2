@@ -1,0 +1,245 @@
+<html>
+<head>
+<title>{head_title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={lang_code}">
+<link href="{css_folder}/css.css" rel="stylesheet" type="text/css">
+</head>
+
+<body leftmargin="0" topmargin="0">
+<center>
+  {header} 
+  <table width="778" border="0" cellspacing="0" cellpadding="0" class="tableline">
+    <tr> 
+      <td align="right" class="head"> 
+        <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td valign="top"><a href="{bb_url}"><img src="{pic_folder}/logo.gif" border="0"></a></td>
+            <td align="right"> <b>{my_name}:</b>
+              <!-- BEGIN login -->
+              <a href="?action=members">{login}</a> | <a href="?action=user_reg" target="_blank">{register}</a> 
+              <!-- END login -->
+              <!-- BEGIN blog -->
+              <a href="blog.php?bid={bid}">{my_blog}</a> | 
+              <!-- END blog -->
+              <!-- BEGIN logout -->
+              <a href="?action=user_pm&step=view" target="_blank">{view_pm}</a> 
+              | <a href="?action=user_modify" target="_blank">{modify_info}</a> 
+              | <a href="?action=logout">{logout}</a> 
+              <!-- END logout -->
+              | <a href="{web_url}" target="_blank">{web_name}</a> </td>
+            <td align="right" valign="bottom" class="head_right">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table border="0" cellspacing="0" cellpadding="8" class="tableline">
+    <tr> 
+      <td> 
+        <!-- BEGIN announcements -->
+        <br>
+        <table width="100%" border="0" cellspacing="1" cellpadding="2" class="forumline">
+          <tr> 
+            <td class="row2" width="17%" align="center"><img src="{announce_pic}/announcements.gif">{announcements}</td>
+            <td width="82%" class="row1"> <marquee direction="left" scrollamount="3" onMouseOver="this.stop();" onMouseOut="this.start();"> 
+              <!-- BEGIN announcement -->
+              <a href="forum.php?action=announcement&id={a_id}" target="_blank">{a_title}</a>({a_time}) 
+              &nbsp;&nbsp; 
+              <!-- END announcement -->
+              </marquee> </td>
+          </tr>
+        </table>
+        <!-- END announcements -->
+        <br>
+        <table border="0" cellspacing="0" cellpadding="0" class="tableline2">
+          <tr> 
+            <td><a href="{bb_url}"><b>{bb_name}</b></a><b> </b>&gt;<b> </b></td>
+          </tr>
+        </table> 
+        <table border="0" cellspacing="1" cellpadding="5" class="forumline">
+          <tr> 
+            <th width="30%" colspan="2">{forum}</th>
+            <th  width="8%">{topic_name}</th>
+            <th width="8%">{faq_name}</th>
+            <th width="8%">{cream_name}</th>
+            <th width="8%">{recovery_name}</th>
+            <th width="8%">{posts}</th>
+            <th width="18%">{lastpdate_}</th>
+            <th colspan="3">{auth}</th>
+          </tr>
+          <!-- BEGIN category_tr -->
+          <tr> 
+            <td colspan="11" class="cat">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{category_name} 
+            </td>
+          </tr>
+          <!-- BEGIN forum_tr -->
+          <tr> 
+            <td width="1%" class="row1">{got_new}</td>
+            <td class="row1">{head_pic}<a href="?action=view_forum&forum_id={forum_id}">{forum_name}</a><br>
+              {intr} <br>
+              {moderator_}:{moderator}</td>
+            <td align="center" class="row2">{topic_num} <a href="?action=view_forum&forum_id={forum_id}&folder=recovery"><img src="{forum_pic}/arrow.gif" border="0"></a></td>
+            <td class="row2" align="center">{faq_num} <a href="?action=view_forum&forum_id={forum_id}&folder=recovery"><img src="{forum_pic}/arrow.gif" border="0"></a></td>
+            <td class="row2" align="center">{cream_num} <a href="?action=view_forum&forum_id={forum_id}&folder=recovery"><img src="{forum_pic}/arrow.gif" border="0"></a></td>
+            <td class="row2" align="center">{recovery_num} <a href="?action=view_forum&forum_id={forum_id}&folder=recovery"><img src="{forum_pic}/arrow.gif" border="0"></a></td>
+            <td class="row1" align="center">{post_num}</td>
+            <td class="row2" align="center">{lastpdate}<br> <a href="forum.php?action=view_user&user_name={lastpostby}" target="_blank">{lastpostby}</a></td>
+            <td width="1%" align="center" class="row1"> {p_view}</td>
+            <td width="1%" align="center" class="row1"> {p_reply}</td>
+            <td width="1%" align="center" class="row1"> {p_post}</td>
+          </tr>
+          <!-- END forum_tr -->
+          <!-- END category_tr -->
+          <tr> 
+            <td colspan="8" class="row3"><img src="{pic_folder}/read_auth.gif">:{read_auth}, 
+              <img src="{pic_folder}/reply_auth.gif">:{reply_auth}, <img src="{pic_folder}/new_auth.gif">:{new_auth} 
+              --&gt; </td>
+            <td align="center" class="row1"><img src="{pic_folder}/read_auth.gif"></td>
+            <td align="center" class="row1"><img src="{pic_folder}/reply_auth.gif"></td>
+            <td align="center" class="row1"><img src="{pic_folder}/new_auth.gif"></td>
+          </tr>
+        </table>
+        
+       
+        <table width="90%" border="0" cellspacing="1" cellpadding="5">
+          <tr>
+            <td><img src="{pic_folder}/forum_old.gif" border="0"> {no_new_posts}, 
+              <img src="{pic_folder}/forum_new.gif" border="0"> {new_posts} </td>
+          </tr>
+        </table>
+        <br>
+        <table width="100%" border="0" cellspacing="1" cellpadding="5" class="forumline">
+          <tr>
+		    <th colspan="5">{bb_stats}</th>
+          </tr>
+		  <!-- BEGIN online -->
+		  <tr> 
+            <td colspan="5"  class="cat">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{all_online}:{onlines} ({users}:{_users},{guests}:{_guests})</td>
+          </tr>
+          <tr> 
+            <td colspan="4" align="center"  class="row2"><img src="{online_pic}/users.gif"></td>
+            <td width="92%"  class="row1">{maxol}:{_maxol}<br>
+              {whois_online}</td>
+          </tr>
+		  <!-- END online -->
+		  <tr> 
+            <td colspan="5"  class="cat">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{bb_count}:</td>
+          </tr>
+          <tr> 
+            <td colspan="4" align="center"  class="row2"><img src="{pic_folder}/count.gif"></td>
+            <td width="92%"  class="row1">{count_topic_}:{count_topic} ({topic_name}:{c_topic},{faq_name}:{c_faq},{cream_name}:{c_cream},{recovery_name}:{c_recovery}), 
+              {count_post_}:{count_post}<br>
+              {count_user_}:{count_user}, {new_user}:<a href="?action=view_user&user_id={c_userid}" target="_blank">{c_username}</a></td>
+          </tr>
+		  <tr> 
+            <td colspan="5"  class="cat" background="{pic_folder}/cat_bg.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{basic_setting}:</td>
+          </tr>
+          <tr> 
+            <td colspan="4" align="center"  class="row2"><img src="{pic_folder}/setting.gif"></td>
+            <td width="92%"  class="row1">{set_poll}:<b> </b>{o_poll}, {set_attach}:<b> 
+              </b>{o_attach}, {charset_}:<b> {charset}<br>
+              </b>{view_itvl}: <b>{_view_itvl}</b> , {exceed_allow}: <b>{view_crigger}</b><br>
+              {input_itvl}: <b>{_input_itvl}</b> , {exceed_allow}: <b>{input_crigger}</b></td>
+          </tr>
+        </table>
+		
+        <br>
+        <br>
+        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="60%" valign="top"> 
+              <table width="100%" border="0" cellspacing="1" cellpadding="5" class="forumline">
+                <tr align="center"> 
+                  <th background="{pic_folder}/th_bg.gif" colspan="5" >{d_o_settings}</th>
+                </tr>
+                <tr class="row1"> 
+                  <td class="cat" background="{pic_folder}/cat_bg.gif">&nbsp;</td>
+                  <td align="center" class="cat" background="{pic_folder}/cat_bg.gif">{topic_name}</td>
+                  <td align="center" class="cat" background="{pic_folder}/cat_bg.gif">{faq_name}</td>
+                  <td align="center" class="cat" background="{pic_folder}/cat_bg.gif">{cream_name}</td>
+                  <td align="center" class="cat" background="{pic_folder}/cat_bg.gif">{recovery_name}</td>
+                </tr>
+                <tr class="row2"> 
+                  <td class="row1">{reply_auth}</td>
+                  <td align="center">{topicnew_post}</td>
+                  <td align="center">{faqnew_post}</td>
+                  <td align="center">{creamnew_post}</td>
+                  <td align="center">{recoverynew_post}</td>
+                </tr>
+                <tr class="row2"> 
+                  <td class="row1">{edit_post}</td>
+                  <td align="center">{topicedit_post}</td>
+                  <td align="center">{faqedit_post}</td>
+                  <td align="center">{creamedit_post}</td>
+                  <td align="center">{recoveryedit_post}</td>
+                </tr>
+                <tr class="row2"> 
+                  <td class="row1">{read_auth}</td>
+                  <td align="center">{topicview}</td>
+                  <td align="center">{faqview}</td>
+                  <td align="center">{creamview}</td>
+                  <td align="center">{recoveryview}</td>
+                </tr>
+              </table>
+            </td>
+            <td valign="top"> <table width="100%" border="0" cellpadding="4"  cellspacing="1" class="forumline">
+                <form name="form3" method="post" action="forum.php">
+                  <tr> 
+                    <th background="{pic_folder}/th_bg.gif" colspan="2">{my_info} </th>
+                  </tr>
+				  <!-- BEGIN login_ -->
+                  <tr class="row1"> 
+                    <td height="9" align="right"> <p><font face="Verdana, Arial, Helvetica, sans-serif">{username_}</font>:</p></td>
+                    <td class="row2">
+<input type="text" name="username" size="12"></td>
+                  </tr>
+                  <tr class="row1"> 
+                    <td height="10" align="right"><font face="Verdana, Arial, Helvetica, sans-serif">{password_}</font>:</td>
+                    <td height="10" class="row2">
+<input type="password" name="password" size="12"></td>
+                  </tr>
+				  <!-- BEGIN confirm -->
+                  <tr class="row1"> 
+                    <td height="20" align="right">{confirm_}:</td>
+                    <td height="20" class="row2"> 
+                      <input type="text" name="confirm_code" size="12">
+                      <img src="bbs/includes/confirm_code.php"></td>
+                  </tr>
+				  <!-- END confirm -->
+                  <tr class="row1"> 
+                    <td height="20" colspan="2" align="center"> <input type="checkbox" name="rememberme" value="1">
+                      {remember_me}
+<input type="hidden" name="action" value="login"> 
+                      <input type="hidden" name="redirect" value="forum.php"> 
+                      <input type="submit" name="Submit" value="{submit_}">
+                      <a href="forum.php?action=user_reg" target="_blank">{register_}</a></td>
+                  </tr>
+				  <!-- END login_ -->
+				  <!-- BEGIN my_stats -->
+				  <tr class="row1"> 
+                    <td height="20" colspan="2">{my_posts}:{_my_posts}, {my_score}:{_my_score}<br>
+                      {my_reg}:{reg_time} </td>
+                  </tr>
+				  <!-- END my_stats -->
+                </form>
+              </table>
+              <p><font class="font1"></font></p>
+            </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+      </td>
+    </tr>
+  </table>
+<table width="778" border="0" cellspacing="0" cellpadding="0" class="tableline">
+    <tr>
+      <td align="center">
+        <p>&nbsp;</p>
+        <p><a href="?action=copyright"><img src="{pic_folder}/powered.gif" border="0"></a><br>
+          {footer} </p>
+      </td>
+    </tr>
+  </table>
+  </center>
+</body>
+</html>
