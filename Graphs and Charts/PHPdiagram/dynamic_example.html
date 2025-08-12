@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY bgcolor="#eeeeee">
+<form name="inputform" method="post" action="dynamic_example.php" onSubmit="return checkForm()">
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2 WIDTH=720>
+<TR><TD width=40></TD>
+    <TD width=50 align=right>x-min:</TD>
+    <TD width=80 align=left><input name="xmin" value="-4" size=8></TD>
+    <TD width=50 align=right>x-max:</TD>
+    <TD width=80 align=left><input name="xmax" value="4" size=8></TD>
+    <TD width=50 align=right>y-min:</TD>
+    <TD width=80 align=left><input name="ymin" value="-0.2" size=8></TD>
+    <TD width=50 align=right>y-max:</TD>
+    <TD width=80 align=left><input name="ymax" value="0.5" size=8></TD>
+    <TD></TD>
+</TR>
+<TR><TD align=right>y=</TD>
+    <TD colspan=8 align=left><input name="fx" value="1/sqrt(2*PI)*exp(-x*x/2)+sin(PI*x)/10" size=56></TD>
+    <TD><input type=button value="Draw" onClick="location.href='function.html'"></TD>
+</TR>
+</TABLE>
+</form>
+<SCRIPT Language="JavaScript">
+function checkForm()
+{ var xmin=parseFloat(document.inputform.xmin.value);
+  var xmax=parseFloat(document.inputform.xmax.value);
+  var ymin=parseFloat(document.inputform.ymin.value);
+  var ymax=parseFloat(document.inputform.ymax.value);
+  if (isNaN(xmin)) { alert("x-min is not a number"); return(false); }
+  if (isNaN(xmax)) { alert("x-max is not a number"); return(false); }
+  if (isNaN(ymin)) { alert("y-min is not a number"); return(false); }
+  if (isNaN(ymax)) { alert("y-max is not a number"); return(false); }
+  return(true);
+}
+</SCRIPT>
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#FF8000">//dynamic_example.php
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;HTML&gt;
+<br />&lt;HEAD&gt;
+<br />&lt;TITLE&gt;&lt;/TITLE&gt;
+<br />&lt;/HEAD&gt;
+<br />&lt;BODY bgcolor="#eeeeee"&gt;
+<br />&lt;form name="inputform" method="post" action="dynamic_example.php" onSubmit="return checkForm()"&gt;
+<br />&lt;TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2 WIDTH=720&gt;
+<br /><font color="#0000BB">&lt;?
+<br />$xmin</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'xmin'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'xmin'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br /></font><font color="#0000BB">$xmax</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'xmax'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'xmax'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br /></font><font color="#0000BB">$ymin</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'ymin'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'ymin'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br /></font><font color="#0000BB">$ymax</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'ymax'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'ymax'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br /></font><font color="#0000BB">$fx</font><font color="#007700">=(isset(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'fx'</font><font color="#007700">])) ? </font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'fx'</font><font color="#007700">] : </font><font color="#DD0000">""</font><font color="#007700">;
+<br />if ((</font><font color="#0000BB">$xmin</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$xmax</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$ymin</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$ymax</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">)&amp;&amp;(</font><font color="#0000BB">$fx</font><font color="#007700">!=</font><font color="#DD0000">""</font><font color="#007700">))
+<br />{
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;TR&gt;&lt;TD width=40&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=50 align=right&gt;x-min:&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=80 align=left&gt;&lt;input name="xmin" value="<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$xmin?&gt;</font>" size=8&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=50 align=right&gt;x-max:&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=80 align=left&gt;&lt;input name="xmax" value="<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$xmax?&gt;</font>" size=8&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=50 align=right&gt;y-min:&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=80 align=left&gt;&lt;input name="ymin" value="<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$ymin?&gt;</font>" size=8&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=50 align=right&gt;y-max:&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=80 align=left&gt;&lt;input name="ymax" value="<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$ymax?&gt;</font>" size=8&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD&gt;&lt;/TD&gt;
+<br />&lt;/TR&gt;
+<br />&lt;TR&gt;&lt;TD align=right&gt;y=&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD colspan=8 align=left&gt;&lt;input name="fx" value="<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$fx?&gt;</font>" size=56&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD&gt;&lt;input type=submit value="Draw"&gt;&lt;/TD&gt;
+<br />&lt;/TR&gt;
+<br />&lt;TR&gt;&lt;TD colspan=10&gt;
+<br />&lt;IMG src="function.php?xmin=<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$xmin?&gt;</font>&amp;xmax=<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$xmax?&gt;</font>&amp;ymin=<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$ymin?&gt;</font>&amp;ymax=<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$ymax?&gt;</font>&amp;fx=<font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">urlencode</font><font color="#007700">(</font><font color="#0000BB">$fx</font><font color="#007700">)</font><font color="#0000BB">?&gt;</font>"&gt;
+<br />&lt;/TD&gt;&lt;/TR&gt;
+<br /><font color="#0000BB">&lt;?
+<br /></font><font color="#007700">}
+<br />else
+<br />{
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;TR&gt;&lt;TD width=40&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=50 align=right&gt;x-min:&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=80 align=left&gt;&lt;input name="xmin" value="-4" size=8&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=50 align=right&gt;x-max:&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=80 align=left&gt;&lt;input name="xmax" value="4" size=8&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=50 align=right&gt;y-min:&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=80 align=left&gt;&lt;input name="ymin" value="-0.2" size=8&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=50 align=right&gt;y-max:&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD width=80 align=left&gt;&lt;input name="ymax" value="0.5" size=8&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD&gt;&lt;/TD&gt;
+<br />&lt;/TR&gt;
+<br />&lt;TR&gt;&lt;TD align=right&gt;y=&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD colspan=8 align=left&gt;&lt;input name="fx" value="1/sqrt(2*PI)*exp(-x*x/2)+sin(PI*x)/10" size=56&gt;&lt;/TD&gt;
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;TD&gt;&lt;input type=submit value="Draw"&gt;&lt;/TD&gt;
+<br />&lt;/TR&gt;
+<br /><font color="#0000BB">&lt;?
+<br /></font><font color="#007700">}
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;/TABLE&gt;
+<br />&lt;/form&gt;
+<br />&lt;SCRIPT Language="JavaScript"&gt;
+<br />function checkForm()
+<br />{ var xmin=parseFloat(document.inputform.xmin.value);
+<br />&nbsp;&nbsp;var xmax=parseFloat(document.inputform.xmax.value);
+<br />&nbsp;&nbsp;var ymin=parseFloat(document.inputform.ymin.value);
+<br />&nbsp;&nbsp;var ymax=parseFloat(document.inputform.ymax.value);
+<br />&nbsp;&nbsp;if (isNaN(xmin)) { alert("x-min is not a number"); return(false); }
+<br />&nbsp;&nbsp;if (isNaN(xmax)) { alert("x-max is not a number"); return(false); }
+<br />&nbsp;&nbsp;if (isNaN(ymin)) { alert("y-min is not a number"); return(false); }
+<br />&nbsp;&nbsp;if (isNaN(ymax)) { alert("y-max is not a number"); return(false); }
+<br />&nbsp;&nbsp;return(true);
+<br />}
+<br />&lt;/SCRIPT&gt;
+<br />&lt;/BODY&gt;
+<br />&lt;/HTML&gt;</font>
+</code>
+</BODY>
+</HTML>
