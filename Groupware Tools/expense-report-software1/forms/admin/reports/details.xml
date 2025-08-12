@@ -1,0 +1,74 @@
+<form>
+	<title>Report Details</title>
+	<action>index.php?sub=reports&action=store</action>
+	<name>edit</name>
+	<width>580</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<header>true</header>			
+			<footer>true</footer>
+		</set>
+
+		<stat_all onclick="" button="all" >
+			<location>index.php?sub=reports&action=details&report_id={REPORT_ID}</location>
+		</stat_all>
+
+		<stat_aproved onclick="" button="approved" >
+			<location>index.php?sub=reports&action=details&report_id={REPORT_ID}&status=1</location>
+		</stat_aproved>
+
+		<stat_naproved onclick="" button="napproved" >
+			<location>index.php?sub=reports&action=details&report_id={REPORT_ID}&status=2</location>
+		</stat_naproved>
+
+		<stat_pending onclick="" button="pending" >
+			<location>index.php?sub=reports&action=details&report_id={REPORT_ID}&status=3</location>
+		</stat_pending>
+
+		<stat_other onclick="" button="other" >
+			<location>index.php?sub=reports&action=details&report_id={REPORT_ID}&status=4</location>
+		</stat_other>
+
+		<return onclick="" button="return" >
+			<location>index.php?sub=reports</location>
+		</return>
+
+		<save onclick="" button="edit">
+			<location>index.php?sub=reports&action=edit&report_id={REPORT_ID}</location>
+		</save>
+
+	</buttons>
+
+	<fields>
+
+		<report_id type="hidden" hidden="true"/>
+
+		<report_name type="text" size="40:100">
+			<title>Name</title>
+		</report_name>
+
+		<report_description type="text" size="40:4">
+			<title>Description</title>
+		</report_description>
+
+		<report_user type="relation">
+			<title>Assigned User</title>
+
+			<relation table="users" id="user_id">
+				<text>	
+					<field name="user_login">user_login</field>
+					<field name="user_name">user_name</field>
+				</text>
+
+				<separator>&nbsp;-&nbsp;</separator>
+
+				<condition>user_level=1</condition>
+			</relation>
+		</report_user>
+
+	</fields>
+</form>
