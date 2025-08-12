@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Send A WebCard</title>
+
+<link rel="stylesheet" type="text/css" href="./templates/styles/{{chosen_style}}" />
+
+<script language="javascript" type="text/javascript">
+function makeTag(theTag)
+{
+	document.main_form.message.value += "[" + theTag + "][/" + theTag + "]";
+}
+</script>
+
+</head>
+
+<body>
+<table width="100%" cellpadding="6" cellspacing="0" class="main_table">
+	<tr>
+		<td align="right" valign="top">
+			<form action="./index.php?act=prefs" method="post">
+				<select name="_lang">
+					<option value="">Choose language</option>
+					{{lang_list}}
+				</select>
+				<select name="_style">
+					<option value="">Choose style</option>
+					{{style_list}}
+				</select>
+				<input type="submit" value="||go||" />
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td class="logo_table">
+			<span class="head_link"><a class="head_link" href="./index.php" title="Send A WebCard">Send A WebCard</a> | <a class="head_link" href="./pickup.php" title="Pickup A WebCard">Pickup A WebCard</a> | <a class="head_link" href="./pickup.php?act=show_resend_form" title="Forgotten your pickup code?">Forgotten your pickup code?</a></span>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			{{content}}
+		</td>
+	</tr>
+</table>
+
+
+
+{{stats}}
+
+</body></html>
