@@ -1,0 +1,96 @@
+Celeste	2003 Bulletin Board Installation
+========================================
+
+
+Celeste 2003 Requirements:
+
+	Celeste 2003 is written in optimised PHP code and uses a lightning fast MySQL database backend. 
+	PHP and MySQL can be obtained at no cost, please check with your host that you have both installed. 
+	Safe mode can be OFF or ON.
+	
+	* HTTP Server (Apache, IIS or any other server with PHP support)
+	* PHP 4.0.6 or higher (4.1.1 or higher recommended)
+	* MySQL Database 3.23.XX or higher
+	* FTP user account and access to CHMOD files.
+	
+	Before installing Celeste 2003, you need to verify that you have the above 
+	installed and working correctly before attempting to proceed with the Celeste installation. 
+	If you are unsure, please ask your host for more information.
+	
+Database:
+
+	Create a MySQL database for Celeste 2003, with a username that has read/write access to the tables.
+	
+STEP 1
+
+	Upload all directories and files to an HTTP-accessible folder. i.e. www.yourdomain.com/forum
+
+	- Chmod the following directories and files to writable mode ( 777 )
+		celeste_data/settings/*.php
+		celeste_data/attachment
+		celeste_data/cache
+		celeste_data/email/*
+		celeste_data/log
+		celeste_data/poll
+		celeste_data/session
+	        celeste_data/mailbox
+	
+		/help/showsmiles.html
+		/install/config.tmp.php
+		/acp.php
+		/modpanel.php
+		/index.php
+		/direct_output/attachments
+		/images/upload
+		/images/avatars
+	
+	
+	  - Move "celeste_data" to an HTTP-inaccessible folder. A folder outside your 'public' folder.
+	    ( folder not under public html folder. An option is put it under the CGI-BIN folder )
+	    Make sure you take note of the full path of this data folder.
+	    For example: /home/myaccount/celeste_data
+                 /home/myaccount/cgi-bin/celeste_data
+                 
+STEP 2
+	
+	Open up your browser and run www.yourdomain.com/forum/install.php
+   	Follow the step-by-step instructions. Errors will show if you have set the permission incorrectly.
+   	When all the steps have been done successfully, your board should now be fully operational. 
+	You can check this by visiting www.yourdomain.com/forum/index.php 
+   	
+STEP 3
+ 
+	- Chmod the following directories and files to normal mode ( 755 )
+   	www.yourdomain.com/forum/acp.php
+   	www.yourdomain.com/forum/modpanel.php
+   	www.yourdomain.com/forum/index.php
+   	
+   	- Delete the following directories & files
+   	www.yourdomain.com/forum/install.php
+   	www.yourdomain.com/forum/install
+   
+   Done!
+   =====
+   
+    - To visit your forum:
+      www.yourdomain.com/forum/index.php
+    
+    - To use your admin panel:
+   www.yourdomain.com/forum/acp.php
+   
+   Don't forget to logon using the admin ID and change the Global Setting before using your new forum.
+   
+   
+   
+   
+   
+   
+   
+  
+  
+ Credits:
+ 
+ List will go here, be added later.
+   
+   
+   (c)2003 CelesteSoft.com 
