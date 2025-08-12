@@ -1,0 +1,11 @@
+<?php
+/**
+ * @package METAjour
+ * @subpackage lang
+ */
+
+$LANG['label_name'] = 'Navn';
+$LANG['label_subject'] = 'Emne';
+$LANG['label_content'] = 'Indhold';
+$LANG['name'] = 'Kommentarer';
+?>
