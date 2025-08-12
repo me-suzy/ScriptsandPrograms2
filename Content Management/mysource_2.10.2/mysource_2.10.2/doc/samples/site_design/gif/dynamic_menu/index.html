@@ -1,0 +1,164 @@
+<MySource_SET name="bodycopy_styles" value_type="set">
+	<MySource_OPTION value="h1"  >Page Heading</MySource>
+	<MySource_OPTION value="h2"  >Section Title Heading</MySource>
+	<MySource_OPTION value="h3"  >Paragraph Heading</MySource>
+	<MySource_OPTION value="pre" >Monospaced</MySource>
+</MySource>
+
+<MySource_SET name="main_colour"   VALUE="#800080" value_type="colour" description="Strong colour used in header, bold text etc. Logo should be same colour" />
+<MySource_SET name="second_colour" VALUE="#000000" value_type="colour" description="The second colour, used for text, the background of the menus etc" />
+
+<MySource_AREA name="colourise_image">
+	<MySource_SET name="image_name"    value="Footer Stripe" />
+	<MySource_SET name="print"         value="no" />
+	<MySource_SET name="image"         value="images/footer.gif" />
+	<MySource_SET name="type"          value="multiple_colours" />
+	<MySource_SET name="filename_only" value="yes" />
+	<MySource_SET name="from_colour_1" value="#d00005" />
+	<MySource_SET name="to_colour_1"   value="main_colour" value_type="variable" />
+	<MySource_SET name="from_colour_2" value="#000000" />
+	<MySource_SET name="to_colour_2"   value="second_colour" value_type="variable" />
+</MySource>
+<MySource_AREA name="colourise_image">
+	<MySource_SET name="image_name"    value="SideBar" />
+	<MySource_SET name="print"         value="no" />
+	<MySource_SET name="image"         value="images/sidebar.gif" />
+	<MySource_SET name="type"          value="multiple_colours" />
+	<MySource_SET name="filename_only" value="yes" />
+	<MySource_SET name="from_colour_1" value="#d00005" />
+	<MySource_SET name="to_colour_1"   value="main_colour" value_type="variable" />
+	<MySource_SET name="from_colour_2" value="#000000" />
+	<MySource_SET name="to_colour_2"   value="second_colour" value_type="variable" />
+</MySource>
+<MySource_AREA name="colourise_image">
+	<MySource_SET name="image_name"    value="SideBar BG" />
+	<MySource_SET name="print"         value="no" />
+	<MySource_SET name="image"         value="images/sidebar_bg.gif" />
+	<MySource_SET name="type"          value="multiple_colours" />
+	<MySource_SET name="filename_only" value="yes" />
+	<MySource_SET name="from_colour_1" value="#d00005" />
+	<MySource_SET name="to_colour_1"   value="main_colour" value_type="variable" />
+	<MySource_SET name="from_colour_2" value="#000000" />
+	<MySource_SET name="to_colour_2"   value="second_colour" value_type="variable" />
+</MySource>
+
+<HTML>
+<HEAD>
+<TITLE><MySource_print name="site_name" /> - <MySource_print name="page_name" /></TITLE>
+
+<LINK REL=stylesheet HREF="images/styles.css" TYPE="text/css">
+<style type="text/css">
+<!--
+.bodytext, p, td {
+	color: #<MySource_PRINT name='second_colour' />; 
+}
+.pageTitle, h1,
+.sectionTitle, h2,
+.topParaTitle, h3,
+.headinglink-current,
+.headinglink:hover   { 
+	color: #<MySource_PRINT name='main_colour' />;
+}
+-->
+</style>
+</HEAD>
+<BODY bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#<MySource_PRINT name='main_colour' />" alink="#<MySource_PRINT name='main_colour' />" vlink="#B00000">
+<A name="top"></a>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="91" bgcolor="#<MySource_PRINT name='main_colour' />">
+  <tr> 
+    <td  valign="middle" >&nbsp;<A HREF="index.php"><MySource_AREA NAME="custom_image"><MySource_SET name="image_name" value="logo"/><MySource_SET name='max_width' value='300' /><MySource_SET name='max_height' value='75' /></MySource></A></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="16">
+  <tr> 
+    <td background="<Mysource_area name=colourise_image image_name='SideBar BG' print=yes />"><img src="<Mysource_area name=colourise_image image_name='SideBar' print=yes />" width="12" height="16"></td>
+    <td bgcolor="#<MySource_PRINT name='second_colour' />" align=right CLASS="headinglink"> 
+
+
+<MySource_AREA name="menu" level="top" type="dhtml">
+
+	<MySource_SET name="start_printing_at" value="0" />
+
+	<MySource_SET name="menu_width" value="150" />
+	<MySource_SET name="left_position" value="15" />
+	<MySource_SET name="top_position"  value="65" />
+
+	<MySource_SET name="top_is_permanent"  value="false" />
+	<MySource_SET name="top_is_horizontal" value="false" />
+	<MySource_SET name="top_is_variable_width"  value="true" />
+	<MySource_SET name="tree_is_variable_width" value="true" />
+	
+	<MySource_SET name="font_size"      value="8" />
+	<MySource_SET name="border_width"   value="1" />
+	<MySource_SET name="border_color"   value="#FFFFFF" />
+	<MySource_SET name="separator_size" value="0" />
+
+	<MySource_SET name="font_color"                 value="#ffffff" />
+	<MySource_SET name="background_color"           value="#999999" />
+	<MySource_SET name="mouseover_font_color"       value="main_colour" value_type=variable />
+	<MySource_SET name="mouseover_background_color" value="second_colour" value_type=variable />
+
+	<MySource_SET name="top_more_images_visible"  value="false" />
+	<MySource_SET name="tree_more_images_visible" value="false" />
+
+	<MySource_SET name="child_overlap" value="10" />
+	<MySource_SET name="child_offset"  value="10" />
+
+	<MySource section="page">
+		<MySource_SET name="top_position_offset"  value="15" />
+		<MySource_SET name="left_position_offset" value="0" />
+		<MySource_SET name='class'         value='headinglink'/>
+		<MySource_SET name='class_current' value='headinglink-current' />
+		<a href="<MySource_PRINT name='page_link' />" class="<MySource_PRINT name='class' />" <MySource_PRINT name='link_name' /> onMouseOver="javascript:window.status='<MySource_PRINT name='page_name' escape='yes' />'; <MySource_PRINT name='onmouseover' /> return true;" onMouseOut="javascript:window.status=''; <MySource_PRINT name='onmouseout' /> return true;"><b><MySource_PRINT name='page_short_name' /></b></a> &nbsp; &nbsp;
+	</MySource>
+
+</MySource>
+
+    </td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td bgcolor="#<MySource_PRINT name='main_colour' />" width=18><img src="images/blank.gif" width="12" height="18"></td>
+    <td width=99%><img src="images/blank.gif" width="100%" height="18"></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="12" valign="top" bgcolor="#<MySource_PRINT name='main_colour' />"><img src="images/blank.gif" width="12" height="12"></td>
+	<td width="123" valign="top"><img src="images/blank.gif" width="122" height="1"></td>
+	<td valign="top" width=100%> 
+
+		<p><b class="pageTitle"><MySource_PRINT name="page_title" /></b>
+		
+		<p><MySource_AREA name="body" />
+
+		<p>&nbsp;
+
+    </td>
+    <td width="96"><img src="images/bodyrightside.gif" width="96" height="12"></td>
+  </tr>
+</table>
+	
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><img src="<Mysource_area name=colourise_image image_name='Footer Stripe' print=yes />" width="100%" height="9"></td>
+  </tr>
+  <tr> 
+    <td>
+		<MySource_AREA name="date_time">
+			<MySource_SET name="show_date" value="yes" />
+			<MySource_SET name="date_format" value="DD_MM_YYYY" />
+			<MySource_SET name="show_time" value="yes" />
+			<MySource_SET name="time_format" value="HH_MM_SS_24" />
+		</MySource>
+	</td>
+  </tr>
+</table>
+</BODY>
+</HTML>
