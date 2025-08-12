@@ -1,0 +1,249 @@
+http://www.portailphp.com
+Cedric CLAIRE
+cedric.claire@safari-msi.com
+ou cedric.claire@voila.fr
+------------------------------------------
+HISTORIQUE DES MODIFICATIONS DE VERSIONS :
+------------------------------------------
+
+v1.4 (11/2005 : Merci à Emeric MARTINEAU dit Bubule! http://php4php.free.fr)
+SUPP  : suppression de 2 bannieres de pubs.(Forums Yoopla et Modules Portailphp TuxFamily)
+SUPP  : suppression de SpeedTest (inutile et trop volumineux)
+SUPP  : suppression de 2 partenaires dont les site n'existe plus (phpapps et TuxFamily)
+DEBUG : code HTML du forum
+DEBUG : correction des trous de sécurité du forum
+MODIF : remise en forme d'une partie du code du forum
+MODIF : finir d'extraire le texte pour le mettre en traduction du forum
+MODIF : barre de navigation dans les messages et la recherche du forum
+MODIF : ajout de lien Modifier/Supprimer directement sur l'interface de navigation du portail pour les news
+MODIF : le bouton retour des news est devenu un lien
+MODIF : le nombre apparaissant à coté du lien forum dans le menu est le nombre de sujet et MODIF : ajout de lien Modifier/Supprimer directement sur l'interface de navigation du portail pour les fichiers à télécharger
+pas le nombre total de messages et de réponses
+MODIF : remaniment du menu
+MODIF : affichage de pages pour la photothèque
+MODIF : Dans le menu haut, au lieu de Admin mettre connecter/déconnecter
+MODIF : réécriture complète du forum
+MODIF : compatibilité avec sessionid en url et si pas automatiquement mis
+NOUVEAU : afficher dans la liste la date/heure de la dernière réponse pour le forum
+NOUVEAU : barre de navigation dans les news
+NOUVEAU : barre de navigation dans les fichiers à télécharger
+NOUVEAU : gestion d'un code de sécurité
+NOUVEAU : ajout de profil pour modifier ces paramètres
+NOUVEAU : possibilité de supprimer un message ou une réponse du forum
+NOUVEAU : Ajout du partenaire Php4php (Bubule)
+NOUVEAU : Ajout du theme "ancien1"
+
+v1.3 (10/2004) : 
+DEBUG : affiche message d'erreur si transfert de fichiers pose problème et n'enregistre pas dans la base
+DEBUG : compatibilité avec short_open_tag = off
+DEBUG : correction de l'affichage du module publicitaire sous Mozilla
+DEBUG : correction HTML
+DEBUG : intégration javascript dans la page pour éviter erreur chemin
+DEBUG : le nom n'apparassait pas dans l'accueil 
+DEBUG : modification de l'icone des news dans l'admin
+DEBUG : nombreux SQL Injection possible (en admin seulement)
+DEBUG : pas d'affichage de valeur dans le texte des news si pas éditeur WYSIWYG
+DEBUG : suppression du message de l'éditeur WYSIWYG sous Mozilla
+MODIF : Activation du debbugage dans config.php : error_reporting(E_ALL).
+MODIF : ajout de la balise <base > dans l'entête et suppression de toutes les références au chemin dans <img > et <a >
+MODIF : conversion des <b></<b> en <strong></strong>, <br> en <br />, <center></center> en <div align='center'></div>, <img ...> en <img ... />
+MODIF : copyright dans le tableau
+MODIF : l'édito se trouve dans les fichiers include/edito/lang-XXX.php en fonction de la langue
+MODIF : modif du menu administration
+MODIF : optimisation du module publicitaire
+OPTIMISATION : nettoyage du code
+OPTIMISATION : passage du forum php3 en php
+OPTIMISATION : remise en forme du code
+OPTIMISATION : suppression des nombreuses connexion à la base de données inutiles (temps d'éxécution divisé par 4 en moyenne)
+NOUVEAU : ajout de la variable $Mod_File_Upload_NOK dans le fichier de langue du module fichier en français et en anglais (à ajouter pour les autre)
+NOUVEAU : ajout des variables $Mod_Membres_Menu_General, $Mod_Membres_Menu_News, $Mod_Membres_Menu_Fichiers, $Mod_Membres_Menu_Liens, $Mod_Membres_Menu_Faq, $Mod_Membres_Menu_Photos du module membre
+TEST : Tester avec Amaya 8.6 OK - Stadard HTML 4.01
+
+v1.2 ( 05/2003) :
+DEBUG : Correction du bug sur le chemin de la suppression des photos et des vignettes ( cf. Forum ).
+DEBUG : Remplacement du nom en dur du forum par sa variable dans tous les fichiers du module Forum.
+DEBUG : Correction du bug sur l'affichage du message d'erreur en cas de mauvaise authentification dans le Module Admin (Membre).
+OPTIMISATION : Ajout du Fichiers pphp_versions.txt et MAJ le l'aide du fichier lismoi.txt .
+OPTIMISATION : Les répertoires vides contiennent un fichier "vide.txt" pour resoudre les pbs d'upload avec FileZilla.
+OPTIMISATION : Les fichiers langues des 9 modules sont chacun dans le repertoires du module puis dans "lang".
+NOUVEAU : Modification du texte de la licence.
+NOUVEAU : Modification du texte d'accueil.
+
+v1.1 :
+DEBUG : Modification de la fonction sql_connect pour que cela fonctionne chez le provider www.free.fr et ajout du dossier "sessions".
+OPTIMISATION : Ajout de fichiers titi.txt vides pour bien uploader les repertoires vides PortailPhp.
+NOUVEAU : Ajout des liens vers PortailPhp Modules dans les partenaires, dans lismoi.txt, en pub et en lien module dans la licence. ( Il etait temps ! ).
+NOUVEAU : Affichage de la taille limite des fichiers d'Upload dans la page d'information du module membres.
+NOUVEAU : SUPPRESSION : Vous pouvez supprimer les photos dans le modules Membres.
+NOUVEAU : SUPPRESSION : 
+NOUVEAU : Activation du debbugage dans index.php : error_reporting(E_ALL).
+NOUVEAU : Installeur ( install.php ), ATTENTION A SUPPRIMER SI VOUS NE L'UTILISEZ PAS !!! ( Merci EtreDeux ).
+NOUVEAU : Optimisation des fichiers langues et modularisation des langues pour les modules ( Cf. ci-dessous).
+NOUVEAU : Le MODULES FAQ contient maintenant ses 6 fichiers de langues.
+NOUVEAU : Le MODULES FILE contient maintenant ses 6 fichiers de langues.
+NOUVEAU : Le MODULES FORUM contient maintenant ses 6 fichiers de langues.
+NOUVEAU : Le MODULES LIENS contient maintenant ses 6 fichiers de langues.
+NOUVEAU : Le MODULES MEMBRES contient maintenant ses 6 fichiers de langues.
+NOUVEAU : Le MODULES NEWS contient maintenant ses 6 fichiers de langues.
+NOUVEAU : Le MODULES PHOTOS contient maintenant ses 6 fichiers de langues.
+NOUVEAU : Le MODULES PUBLICITE contient maintenant ses 6 fichiers de langues.
+NOUVEAU : Le MODULES SEARCH contient maintenant ses 6 fichiers de langues.
+
+v1.0
+OPTIMISATION : Création du fichier i-index.php et a-index.php
+OPTIMISATION : Suppression des fichiers i-haut.php, i-bas.php, bandeau.php, a-haut.php et a-bas.php
+OPTIMISATION : Affichage en 3 colonnes.
+OPTIMISATION : Ajout du docType ( pour la conformité HTML du www.w3c.org )
+OPTIMISATION : Ajout du Patch de Sécurité i-accueil.php de PhpSecure de Charlie ( http://www.phpsecure.org ).
+OPTIMISATION : Ajout du Patch de Sécurité SQL Injection et XSS de Valdeux( http://www.phpsecure.org ).
+OPTIMISATION : Suppression des images pour les rubriques (rub-*) des themes.
+OPTIMISATION : Les libelles de rubriques sont donc du textes multilingues. ( dans les langues )
+OPTIMISATION : Les menus sont dans 1 tableaux de 150 pixels de large.
+NOUVEAU : Changement de couleur du Theme par Defaut.
+NOUVEAU : Ajout d'une couleur parametrable pour la couleur de fond.
+NOUVEAU : Ajout du module Forum live.
+NOUVEAU : Ajout du module News TooLinux ( http://www.toolinux.com )
+NOUVEAU : Ajout des Parametres.
+NOUVEAU : Suppression des fichiers.
+NOUVEAU : Ajout du module publicite.
+
+v 0.99 :
+DEBUG : Correction du problème d'affichage sous Mozilla dans la partie Admin (Merci à LeDuc http://www.lalorraine.net)
+OPTIMISATION : integration complète de l'editeur de texte riche (Merci à LeDuc http://www.lalorraine.net)
+OPTIMISATION : Modularisation des menus + changement des variables d'affichage (booleens)(Merci à LeDuc http://www.lalorraine.net)
+OPTIMISATION : Amélioration du module de recherche ( Recherche multi table ) (Merci à LeDuc http://www.lalorraine.net)
+OPTIMISATION : Amélioration du module de FAQ (Merci à LeDuc http://www.lalorraine.net)
+OPTIMISATION : Le forum est multilingue
+OPTIMISATION : Integration de la nouvelle version du Forum  ( Merci à Philippe ALBRAND de Modules PortailPhp http://phil.albrand.free.fr/ et à LeDuc http://www.lalorraine.net)
+OPTIMISATION : Refontes de tous les themes ( pour inclure la CSS au forum) (Merci à LeDuc http://www.lalorraine.net)
+NOUVEAU : Ajout de la langue Italienne  ( Merci à Philippe ALBRAND de Modules PortailPhp http://phil.albrand.free.fr/ )
+
+v 0.98 :
+NOUVEAU : Ajout du partenaires http://www.n-picture.net/
+NOUVEAU : Ajout de la langue Espagnole
+NOUVEAU : Ajout de la langue Portugaise
+NOUVEAU : Langue Hollandaise
+NOUVEAU : Ajout de la banniere vers les forums de Yoopla (www.yoopla.net/forum.htm)
+
+v 0.97 :
+DEBUG : Oups .. J'ai rajouté le nombre de documents du forum dans la banniere de gauche d'accueil
+DEBUG : Affichage du resultat de la recherche
+OPTIMISATION : Ajout du partenaire PhpApps.org
+NOUVEAU : Ajout de la table 'pphp_faq_cat'
+NOUVEAU : Les FAQ ont des categorie ( en visu et dans l'aministration )
+NOUVEAU : Ajout du cu champ FA_cat dans la table 'pphp_faq'
+
+v 0.96 :
+DEBUG : Script Verification du module Membre.
+DEBUG : Editeur Texte Riche : Images Case Sensitive.
+OPTIMISATION : Changement affichage mod-file
+OPTIMISATION : Changement affichage mod-liens
+OPTIMISATION : Changement affichage mod-news
+OPTIMISATION : correction des fichiers de langue
+NOUVEAU : Réécriture sur i-accueil.php, i-haut.php, i-bas.php ( Merci a Leduc : http://www.lalorraine.net )
+NOUVEAU : Admin lien (oui-non)
+NOUVEAU : Admin file (oui-non)
+NOUVEAU : ajout d'un champ LI_clic dans la table des Liens
+
+v 0.95 :
+OPTIMISATION : Leduc a coupé les pages d'index et d'admin en 3 pour un affichage plus rapide. ( Merci a Leduc : http://www.lalorraine.net )
+OPTIMISATION : index = bandeau.php + i-haut.php + i-bas.php ( Merci a Leduc : http://www.lalorraine.net )
+OPTIMISATION : admin= bandeau.php + a-haut.php + a-bas.php ( Merci a Leduc : http://www.lalorraine.net )
+OPTIMISATION : App_Theme est en variable de session, Le changement de theme s'applique directement à la page en cours de lecture.  ( Merci a Leduc : http://www.lalorraine.net )
+OPTIMISATION : Une fois la session admin activée on peu retourner dans admin sans etre obligé de retaper le mot de passe . ( Merci a Leduc : http://www.lalorraine.net )
+OPTIMISATION : Tous les appels sont maintenant traités par index.php meme pour admin  ( Merci a Leduc : http://www.lalorraine.net )
+OPTIMISATION : Tout est sécurisé efficacement pour la partie admin  ( Merci a Leduc : http://www.lalorraine.net )
+OPTIMISATION : Le selecteur de theme indique correctement le theme SELECTED   ( Merci a Leduc : http://www.lalorraine.net )
+NOUVEAU : Des commentaires s'affichent en dessous des photos.   ( Merci a Leduc : http://www.lalorraine.net )
+NOUVEAU : Fichier langue en anglais ( Merci a Leduc : http://www.lalorraine.net )
+NOUVEAU : Drapeaux permettant de choisir la langue UK ou FR ( Merci a Leduc : http://www.lalorraine.net )
+
+v 0.9 :
+OPTIMISATION : Affichage de la pub dans le tableau des Partenaires.
+OPTIMISATION : Affichage dans nouvelle fenetre du lien vers la PinUp,la WebRing et la Pub.
+OPTIMISATION : Recuperation de l'image de la Webring et de la Pub ( pour les test en local ).
+OPTIMISATION : Affichage des téléchargements les plus récents dans le menu du haut.
+OPTIMISATION : Nouvelle image "rub-parten.gif" pour tous les Themes.
+NOUVEAU : Module SpeedTest dans la section d'administration ( Merci à http://speedtest.nomai.com/ )
+NOUVEAU : choix des themes par l'internaute sur le menu du haut !!! ( Merci à http://dpobel.free.fr et à http://www.asp-php.net )
+NOUVEAU : Module de Photos JPG ( merci à LeDuc http://www.lalorraine.net )
+NOUVEAU : Ajout de la table "pphp_photos"
+
+v 0.8 :
+DEBUG : HTML4 de la page d'index ( suppression de commentaires )
+OPTIMISATION : Index des liens ( critere de la requete par categorie )
+NOUVEAU : Affichage de la PinUP par vince ( merci à http://vpontier.free.fr/ )
+NOUVEAU : Ajouts de l'image pour la rubrique PinUp pour tous les themes.
+NOUVEAU : Affichages des 10 liens les plus recents
+
+v 0.7 :
+DEBUG : Meilleur affichage de la description des liens.
+OPTIMISATION : fonctions.php : Ajout des fonctions sql_connect et sql_query dans /include/fonctions.php (Merci à dpobel@enssat.fr)
+OPTIMISATION : index.php et admin.php : $sql_id identifiant de connection peut être utilisé dans toutes les pages (Merci à dpobel@enssat.fr)
+OPTIMISATION : i-bas.php : Utilisation "else if" et utilisation des fonctions pour les requetes de compteurs de documents modules (Merci à dpobel@enssat.fr)
+OPTIMISATION : a-bas.php : Utilisation "else if" (Merci à dpobel@enssat.fr)
+OPTIMISATION : licence.php
+OPTIMISATION : user -> Requetes Module Faq (Merci à dpobel@enssat.fr)
+OPTIMISATION : user -> Requetes Module Search (Merci à dpobel@enssat.fr)
+OPTIMISATION : user -> Requetes Module File : index.php, plusclics.php, plusrecents.php, upload.php (Merci à dpobel@enssat.fr)
+OPTIMISATION : user -> Requetes Module Liens : index.php, liens.php (Merci à dpobel@enssat.fr)
+OPTIMISATION : user -> Requetes Module News : archives.php, pluslus.php, plusrecents.php (Merci à dpobel@enssat.fr)
+OPTIMISATION : user -> Requetes Module Membres : * fichiers avec requetes  (Merci à dpobel@enssat.fr)
+NOUVEAU : Les remerciements sont desormais dans 1 document à part.La Webring ne s'affiche plus que à gauche.
+
+v0.6 :
+DEBUG : Modification des ' en \" pour les META NAME dans le fichier /index.php
+DEBUG : Modification des include ( merci à FrogMan leseulfrog@hotmail.com )
+DEBUG : Modification de l'erreur sur la cle primaire de la table des liens pphp_liens
+NOUVEAU : dans /config.php la variable $App_Affiche_Webring permet d'afficher ou non la Webring dans la page d'accueil et dans la frame de gauche
+NOUVEAU : Modification du texte de la licence dans /licence.php
+NOUVEAU : Suppression du champs LI_lect de la table pphp_liens (Cf. sql.txt)
+NOUVEAU : Ajout du champ LI_cont dans la table la table pphp_liens. (Cf. sql.txt)
+NOUVEAU : Modification du module de lien (Interface du champ de description LI_cont )
+
+v 0.5a :
+DEBUG : Ajout du lien vers le module FAQ dans le menu du haut
+DEBUG : Correction de la faille de securite ( merci à PhpAlbum phpalbum@fr.st et FrogMan leseulfrog@hotmail.com )
+
+v 0.5 :
+DEBUG : Amelioration des requetes de compteurs
+DEBUG : Modification du message d'ajout de lien
+NOUVEAU : Amélioration des Thèmes (Barre) et affichage du nom du theme
+NOUVEAU : Ajout du theme Voila
+NOUVEAU : Ajout du theme Dmoz
+NOUVEAU : Ajout de la table pphp_faq ( Cf. sql.txt )
+NOUVEAU : Module de FAQ ( Affichage )
+NOUVEAU : Partie Admin
+          - Ajout de FAQ ( Creation,Modification,suppression )
+          - Ajout des caracteres maximum
+          
+v 0.4 :
+DEBUG : Modification des 3 themes existants
+NOUVEAU : Cadre pour la WebRing et script dans la licence
+NOUVEAU : Ajout d'une baniere de pub dans images (468x60)
+NOUVEAU : Image de la rubrique Webring dans les 3 Themes existants
+NOUVEAU : Ajout de la table pphp_liens_cat ( Cf. sql.txt )
+NOUVEAU : Module de Liens ( Affichage et proposition de liens )
+NOUVEAU : Partie Admin
+          - Ajout de rubrique pour les liens
+NOUVEAU : Parametrage de la page d'accueil :
+          - Ajout en parametre du module lien
+          - Affichage en parametre des Files les + recentes et non les + Clics
+
+v 0.3 :
+DEBUG : Correction du problème de l'affichage du mail de l'auteur d'un document ( le champs de la table est DO_mail et non Do_mail )
+DEBUG : Modification du lien vers le site du module externe de forum LightForum
+NOUVEAU : Membre de la Webring PHP Francophone
+NOUVEAU : Ajout des remerciements dans /licence.php
+NOUVEAU : Amelioration de la section Admin
+          - Ajout d'image pour les catégories
+          - Ajout de la Page Info.
+          - Possibilité de suppression des news.
+          - Editeur WYSIWYG pour la creation de documents ( Modules Membres / News )
+
+v 0.2 :
+DEBUG : Correction dans la partie admin du bug sur l'ajout de catégorie pour le module News
+NOUVEAU : La version 0.2 contient 1 nouveau thème : 73lab
+
+v 0.1a (08/2002) :
+DEBUG : La version 0.1a corrige le problème de Upload
