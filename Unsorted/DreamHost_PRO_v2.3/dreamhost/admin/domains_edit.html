@@ -1,0 +1,171 @@
+<p align="center"><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><b> 
+  </b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"> 
+  <?if ($action=="update_domain") {
+update_domain_2($account_id,$domain_id,$membership_id);
+echo "<BR>Domain  Information Updated  Updated!<BR>";
+}
+ 
+?>
+  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+  </b></font> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+if (check_domain_list($account_id)<>0) {
+  ?>
+  </font></b></p>
+<form name="form1" method="post" action="">
+  <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif"><b>Customers 
+    Domains / Hosting Plans:</b></font> <br>
+    <br>
+    <b><font face="Verdana, Arial, Helvetica, sans-serif"> 
+    <?if (!isset($account_id)) {
+ echo show_account_list();
+}?>
+    </font></b> <br>
+    <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+    <? if (isset($account_id))  {
+echo show_domain_list($account_id,$domain_id);
+}
+  ?>
+    <br>
+    <br>
+    <input type="submit" name="Submit22" value="View -&gt;">
+    <input type="hidden" name="page" value="domains_edit">
+    </font></b> </div>
+</form>
+<b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+<? 
+}
+  ?>
+<br>
+<br>
+</font></b> 
+<p align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <?
+if (isset($domain_id))  {
+?>
+  </font></b> </p>
+<form action="" name="" onSubmit="return runVerification(this);">
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b> Domain Information:</b></font> 
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+  <?
+	$db = new ps_DB;
+	$q = "SELECT * FROM domains WHERE domain_id='$domain_id'"; 
+	$db->query($q);
+	if ($db->num_rows()==0) {
+		echo "<BR><BR><B>No records found</B>";
+		} else {
+	$db->next_record();
+?>
+  </b></font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                <tr> 
+                  <td width="235"> 
+                    <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Hosting 
+                      Plan:</font></b></div>
+                  </td>
+                  <td width="396"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font size="2"> 
+                    </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                    <? show_hosting_menu_2($db->f("domain_id"),$db->f("domain_host_id")); ?>
+                    </font></font></font></font></b></font></td>
+                  <td width="325">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="235"> 
+                    <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Billing 
+                      Status: </font></b></div>
+                  </td>
+                  <td width="396"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                    <? echo get_billing_status($domain_id); ?>
+                    </font></font></font></font></b></font><font size="2"> </font></font></font></font></b></font></td>
+                  <td width="325">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="235"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Registration 
+                    Expiration:</font></b></td>
+                  <td width="396"><font size="-1" face="ARIAL,HELVETICA"> </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                    <? 
+$days = check_domain_status($domain_id); 
+$years = $days / 364;
+$months = $years * 12;
+
+if ($days=="1111111") { 
+	echo "Hosting Only"; 
+} elseif (($months <= 12) && ($days >= 31)) { 
+	printf("%.1f",$months); echo " months"; 
+} elseif ($days <= 31) {
+	echo $days . " days"; 
+} elseif ($months >= 12) {
+	printf("%.1f",$years); echo " years"; 
+}
+?>
+                    </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></td>
+                  <td width="325">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="235"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Order 
+                    Details :</font></b></td>
+                  <td width="396"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                    <a href="?page=orders_view&order_id=<? $db->p("domain_order_id"); ?>">Order 
+                    No. 
+                    <? echo $db->f("domain_order_id"); ?>
+                    </a> </font></font></font></font></b></font></font></font></font></b></font></td>
+                  <td width="325">&nbsp;</td>
+                </tr>
+              </table>
+              <p><font size="-1" face="ARIAL,HELVETICA"> 
+                <input type="submit" name="submit" value="Update Domain Hosting Plan -&gt;">
+                </font> 
+                <input type="hidden" name="page" value="domains_edit">
+                <input type="hidden" name="domain_id" value="<? echo $domain_id; ?>">
+                <input type="hidden" name="action" value="update_domain">
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<p><font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+
+}
+}
+?>
+  </font><font color="#666666"> </font></b></font> <br>
+</p>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? note_showform("3",$domain_id); ?>
+  </font></b></p>
+<form action="" name="" onSubmit="return runVerification(this);">
+  <font face="Verdana, Arial, Helvetica, sans-serif"><b> </b></font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <p><font size="-1" face="ARIAL,HELVETICA"> 
+                <input type="submit" name="submit2" value="Delete This Domain -&gt;">
+                </font> 
+                <input type="hidden" name="page" value="domains">
+                <input type="hidden" name="domain_id" value="<? echo $domain_id; ?>">
+                <input type="hidden" name="action" value="delete_domain">
+                <br>
+                <font face="Verdana, Arial, Helvetica, sans-serif" size="2">Note: 
+                The delete action <font color="#990000">IS FINAL AND CAN NOT BE 
+                UNDONE!</font></font> </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+
