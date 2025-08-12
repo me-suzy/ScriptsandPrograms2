@@ -1,0 +1,41 @@
+<br />
+<table width="70%" align="center" class="noborder">
+ 	<tr>
+   	<td>
+			<fieldset>
+				<legend>||adv_img_search||</legend>
+				<span class="warning">{{warnings}}</span>
+				<form action="{{action}}?act=do_adv_search" method="post">
+				  <table width="100%" align="center" class="noborder">
+					    <tr>
+					      <td align="center" width="50%" valign="top">
+					        <b>||choose_search_cats||</b>
+					        <br /><br />
+     						  <select name="cat_search[]" multiple="multiple" size="15" class="chunky">
+									  <option value="all">||all_cats||</option>
+									  {{cat_select}}
+  					      </select>
+									<br />||search_multiple||
+  					    </td>
+  					    <td align="center" width="50%" valign="top">
+  					      <b>||choose_terms||</b><br /><br />
+  						    <input type="text" name="search_terms" title="||enter_terms|| (||accesskey|| S)" accesskey="s" size="40" class="chunky" />
+									<br /><br /><br />
+									<b>||choose_match_mode||</b><br /><br />
+									<input type="radio" name="match_mode" value="any_words" id="any_words" checked="checked" accesskey="n" title="||any_words|| (||accesskey|| N)" /> <label for="any_words">||any_words||</label><br /><br />
+									<input type="radio" name="match_mode" value="all_words" id="all_words" accesskey="l" title="||all_words|| (||accesskey|| L)" /> <label for="all_words" />||all_words||</label><br /><br />
+									<input type="radio" name="match_mode" value="exact_phrase" id="exact_phrase" accesskey="x" title="||exact_phrase|| (||accesskey|| X)" /> <label for="exact_phrase">||exact_phrase||</label><br /><br />
+					      </td>
+					    </tr>
+					    <tr>
+					      <td align="center" colspan="2" valign="top">
+					        <br /><br />
+					        <input type="submit" value="||do_search||" class="chunky" /> <input type="reset" value="||reset||" class="chunky" />
+					      </td>
+					    </tr>
+					  </table>
+					</form>
+				</fieldset>
+			</td>
+		</tr>
+</table>
