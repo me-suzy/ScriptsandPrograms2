@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
+  <head>
+
+    <title>myobjects:web_client [MyObjects]</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+
+    <meta name="generator" content="DokuWiki" />
+
+    <link rel="stylesheet" media="screen" type="text/css" href="./style.css" />
+
+    <link rel="stylesheet" media="print" type="text/css" href="./print.css" />
+
+    <link rel="shortcut icon" href="./images/favicon.ico" />
+
+    <link rel="start" href="./doku.php?id=" />
+
+    <link rel="contents" href="web_client&amp;do=index.html" title="" />
+
+    <link rel="alternate" type="application/rss+xml" title="Recent Changes" href="./feed.php" />
+
+    <link rel="alternate" type="application/rss+xml" title="Current Namespace" href="./feed.php?mode=list&amp;ns=" />
+
+    <link rel="alternate" type="text/html" title="Plain HTML" href="web_client&amp;do=export_html.html" />
+
+    <link rel="alternate" type="text/plain" title="Wiki Markup" href="web_client&amp;do=export_raw.html" />
+
+        <meta name="robots" content="noindex,nofollow" />
+
+
+    <script language="JavaScript" type="text/javascript" src="./script.js"></script>
+
+
+
+    <script language="JavaScript" type="text/javascript">
+
+    var alertText   = 'Please enter the text you want to format.\nIt will be appended to the end of the document.';
+
+    var notSavedYet = 'There are unsaved changes that will be lost.\nReally continue?';
+
+    var baseURL     = './';
+
+    </script>
+
+
+
+    <!--[if gte IE 5]>
+
+    <style type="text/css">
+
+      /* that IE 5+ conditional comment makes this only visible in IE 5+ */
+
+      img { behavior: url("./pngbehavior.htc"); } /* IE bugfix for transparent PNGs */
+
+    </style>
+
+    <![endif]-->
+
+	</head><body>
+<div class="toc"><div class="tocheader">Table of Contents <script type="text/javascript">showTocToggle("+","-")</script></div><div id="tocinside">
+<ul class="toc">
+<li class="level1"><span class="li"><a href="#creating_database_schema" class="toc">Creating Database Schema</a></span>
+<ul class="toc">
+<li class="level2"><span class="li"><a href="#how_to_generate_a_database_schema_file_from_your_existing_mysql_databases" class="toc">How to generate a database schema file from your existing MySql databases</a></span>
+<ul class="toc">
+<li class="level3"><span class="li"><a href="#using_the_web_client_to_create_a_database_schema_file" class="toc">Using the Web Client to create a database schema file</a></span></li>
+<li class="level3"><span class="li"><a href="#using_the_command_line_client_to_create_a_database_schema_file" class="toc">Using the Command Line Client to create a database schema file</a></span></li>
+</ul>
+</li>
+<li class="level2"><span class="li"><a href="#designing_a_database_schema_using_the_web_client" class="toc">Designing a database schema using the Web Client</a></span></li>
+<li class="level2"><span class="li"><a href="#creating_a_schema_file_manually" class="toc">Creating a schema file manually</a></span></li></ul>
+</li></ul>
+</div></div>
+
+<a name="creating_database_schema"></a><h1>Creating Database Schema</h1><div class="level1">
+<p>
+You can create a <a href="database_schema_file.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">database schema file</a> in several ways.
+</p>
+
+<ul>
+<li class="level1"><span class="li">Using the command line or web client to generate it from existing databases</span></li>
+<li class="level1"><span class="li">Designing it using the web client</span></li>
+<li class="level1"><span class="li">Creating it on your own using a text editor</span></li>
+</ul>
+
+
+<p>
+<!-- SECTION [0-5] --></p>
+</div><a name="how_to_generate_a_database_schema_file_from_your_existing_mysql_databases"></a><h2>How to generate a database schema file from your existing MySql databases</h2><div class="level2">
+
+</div><a name="using_the_web_client_to_create_a_database_schema_file"></a><h3>Using the Web Client to create a database schema file</h3><div class="level3">
+<p>
+To create a database schema file using the MyObjects WebClient you need to open your web browser and go to the MyObjects main page. Using the toolbar menu or the link that is on the left side of the page go to the myobjects/?generateSchema page.
+</p>
+<p>
+You should note that MyObjects does not store any user/password information. (For keeping the WebClient simple and for security.)
+</p>
+<p>
+On the Schema generation page you will see a form that you should enter database access options. Fill in this form and press the Generate Schema button. MyObjects will connect to your existing database, retreive information about the tables and fields and it will create a database schema file for you.
+</p>
+<p>
+MyObjects does not make assumptions about the relations in your database or type of information that you will store in your database tables. MyObjects Code Generator can create validation code for your database fields. To make use of this feature you should manually edit field information of your tables&#8230;&#8230;
+</p>
+<p>
+<!-- SECTION [6-15] --></p>
+</div><a name="using_the_command_line_client_to_create_a_database_schema_file"></a><h3>Using the Command Line Client to create a database schema file</h3><div class="level3">
+<p>
+MyObjects has a command line based tool that you can use in schema generation and code generation. The Command Line Client is a script that is also written in Php language. This script is <em>MyObjects.php</em> file that you can find in the installation folder. On the command prompt when you type: <code>$ php MyObjects.php</code> you will get the list of options that you can provide to the MyObjects <a href="command_line_client.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Command Line Client</a>.
+</p>
+<p>
+To generate a <a href="database_schema_file.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">database schema file</a> you should provide -gs (Generate Schema) option to the script. You can also use -generatechema option that is an alias to -gc. Additionally you should provide database access information as command line options. These options are :
+</p>
+
+
+<ul>
+<li class="level1"><span class="li">-hostname, -h &lt;Database Host Name&gt; (-h localhost)</span></li>
+<li class="level1"><span class="li">-username, -u &lt;Database User Name&gt; (-u root)</span></li>
+<li class="level1"><span class="li">-password, -pa &lt;Database Password) (-pa yourdatabasepassword)</span></li>
+<li class="level1"><span class="li">-databases, -d &lt;Database Names) (-d databaseName1 databaseName2 &#8230;)</span></li>
+</ul>
+
+
+<p>
+You can also specify the output schema file name using the -so option (or -schemaout). If you do not provide the output file name the default name schema.xml will be assumed. Here is an example usage that will generate database schema of databases name world and spring :
+</p>
+<pre class="code">
+$php MyObjects.php -gs -h localhost -u root -pa 1234 -d world spring -so world.xml;
+</pre>
+<p>
+You can also create a project file and perform several tasks at one time. MyObjects Command Line Client project files are defined in the <a href="project.html" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">project.xsd</a> Xml schema file.
+</p>
+<p>
+To perform the same operation using a project file you need to create an Xml file as below :
+</p>
+
+<pre class="code"><span class="sc3"><span class="re1">&lt;</span>?xml <span class="re0">version</span>=<span class="st0">"1.0"</span>?<span class="re2">&gt;</span></span>
+<span class="sc3"><span class="re1">&lt;project</span> <span class="re0">name</span>=<span class="st0">"World"</span><span class="re2">&gt;</span></span>
+ <span class="sc3"><span class="re1">&lt;generateSchema</span> <span class="re0">output</span>=<span class="st0">"world.xml"</span><span class="re2">&gt;</span></span>
+  <span class="sc3"><span class="re1">&lt;connect</span> <span class="re0">host</span>=<span class="st0">"localhost"</span> <span class="re0">user</span>=<span class="st0">"root"</span> <span class="re0">password</span>=<span class="st0">"1234"</span><span class="re2">&gt;</span></span>
+   <span class="sc3"><span class="re1">&lt;database<span class="re2">&gt;</span></span></span>world<span class="sc3"><span class="re1">&lt;/database<span class="re2">&gt;</span></span></span>
+   <span class="sc3"><span class="re1">&lt;database<span class="re2">&gt;</span></span></span>spring<span class="sc3"><span class="re1">&lt;/database<span class="re2">&gt;</span></span></span>
+  <span class="sc3"><span class="re1">&lt;/connect<span class="re2">&gt;</span></span></span>
+ <span class="sc3"><span class="re1">&lt;/generateSchema<span class="re2">&gt;</span></span></span>
+<span class="sc3"><span class="re1">&lt;/project<span class="re2">&gt;</span></span></span></pre>
+<p>
+After creating the project file you can pass the -p parameter to the MyObjects command line client.
+</p>
+<pre class="code">
+$ php MyObjects.php -p project.xml
+</pre>
+
+<p>
+<!-- SECTION [16-49] --></p>
+</div><a name="designing_a_database_schema_using_the_web_client"></a><h2>Designing a database schema using the Web Client</h2><div class="level2">
+<p>
+Please see the documentation of <a href="web_client.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Web Client</a>
+</p>
+<p>
+<!-- SECTION [50-52] --></p>
+</div><a name="creating_a_schema_file_manually"></a><h2>Creating a schema file manually</h2><div class="level2">
+<p>
+Please see the documentation of <a href="database_schema_file.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Database Schema File</a>
+</p>
+<!-- SECTION [53-] --></div>
+<!-- cachefile ./data/.cache/a174db2d2eb6bec0e23b3bc9118663da used -->
+</body>
+</html>
