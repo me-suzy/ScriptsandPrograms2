@@ -1,0 +1,65 @@
+  /**
+    * $Id: views_structure.txt,v 1.1 2005/07/07 15:12:19 carsten Exp $
+    *
+    * ...
+    *
+    * @author       Carsten Graef <evandor@gmx.de>
+    * @copyright    evandor media 2005
+    * @package      ...
+    */
+    
+    examined: categories (i.e. collections)
+
+    // --- inclusions -----------------------------------------------
+    include ('../common/standard_inclusions.inc.php');
+    include ('../common/datagrid_functions.php');
+   	include ("../common/HTMLElements.class.php");   
+    require_once ('../../extern/phpgacl/gacl.class.php');
+    require_once ('../../extern/phpgacl/gacl_api.class.php');
+    require_once ('../../inc/acl.inc.php');
+   
+	// --- pagestats ------------------------------------------------
+	set_page_stats(__FILE__);
+
+	// --- init -----------------------------------------------------
+    $entry_type = '...';
+    $dg         =& $this->model->dg;
+    $model      =& $this->model;
+
+    // --- Header ---------------------------------------------------
+	include ("../common/header.inc.php");
+
+    // --- PHPGACL --------------------------------------------------
+    $gacl_api = new gacl_api($gacl_options);
+
+	// --- HTML Class -----------------------------------------------
+    $HTML     = new HTMLElements (0, 'collection');
+	$HTML->setImgPath ($img_path);
+	
+    // --- functions -------------------------------------------------
+    ...
+    
+    // --- javascripts -----------------------------------------------
+
+    <form>
+    <input type=hidden ...>
+    
+    // --- headline --------------------------------------------------
+    $headline  = "<img src='".$img_path."....gif' align=top>&nbsp;";
+    $headline .= translate ("...");
+    include ("../common/headline.php");
+    
+    // --- tabs navigation -------------------------------------------
+
+
+    <table class='adminframe'>
+    // --- check restrictions ----------------------------------------
+    include ("../common/error_and_info.php");
+    
+    </table>
+    
+    </form>
+
+</body>
+</html>
+    
