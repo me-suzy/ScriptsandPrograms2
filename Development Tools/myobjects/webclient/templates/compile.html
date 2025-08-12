@@ -1,0 +1,157 @@
+<?php 
+$tabIndex = 1;
+?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>MyObjects Web Client</title>
+<link rel="stylesheet" type="text/css" href="webclient/scripts/myobjects.css" />
+<link rel="stylesheet" type="text/css" href="webclient/scripts/DatabaseTree.css" />
+<script type="text/javascript" src="webclient/scripts/ie5.js"></script>
+<script type="text/javascript" src="webclient/scripts/XulMenu.js"></script>
+<script type="text/javascript" src="webclient/scripts/DynamicTree.js"></script>
+<script type="text/javascript" language="javascript">
+function isValidName(required, id) {
+	var phpNamePattern = /^[A-Za-z_]+[A-Za-z0-9_]+$/;
+	
+	if(required && document.getElementById(id).value == '') {
+		return false;
+	}
+	
+	if(document.getElementById(id).value != '' && !phpNamePattern.test(document.getElementById(id).value)) {
+		return false;
+	}
+	return true;
+}
+
+function showTooltip(name, e) {
+	document.getElementById(name + 'Tooltip').style.visibility = 'visible';
+
+	if(e.clientX + 300 > screen.width - 50) {
+		var x = screen.width - 350;
+		document.getElementById(name + 'Tooltip').style.left = x + 'px';
+	} else {
+		document.getElementById(name + 'Tooltip').style.left = e.clientX + 'px';
+	}
+	var y = e.clientY + 20;
+	document.getElementById(name + 'Tooltip').style.top = y + 'px';
+}
+
+function hideTooltip(name) {
+	document.getElementById(name + 'Tooltip').style.visibility = 'hidden';
+}
+</script>
+</head>
+<body>
+<div id="outputDirTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+The output directory path that the generated php classes will be saved. This folder must be writable by the web server.
+</div>
+<div id="copyRuntimeTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Check this if you want the runtime classes to be copied to the destination directory.
+</div>
+<div id="logo"><a href="http://www.myobjects.org" target="_blank" title="MyObjects"><img src="webclient/images/logo.gif" width="90" height="29" alt="MyObjects" border="0" /></a></div>
+<script type="text/javscript">
+/* preload images */
+var arrow1 = new Image(4, 7);
+arrow1.src = "webclient/images/arrow1.gif";
+var arrow2 = new Image(4, 7);
+arrow2.src = "webclient/images/arrow2.gif";
+</script>
+<div id="toolbar"><?php echo $this->toolBar?></div>
+<script type="text/javascript">
+    var menu1 = new XulMenu("menu1");
+    menu1.arrow1 = "webclient/images/arrow1.gif";
+    menu1.arrow2 = "webclient/images/arrow2.gif";
+    menu1.init();
+</script>
+<table width="100%"  border="0" cellspacing="0" cellpadding="25" id="main">
+  <tr>
+    <td width="300" valign="top" style="border-right:1px dashed #000000;"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td class="tableHeader">Current Database Schema </td>
+        </tr>
+        <tr>
+          <td><?php echo $this->schemaGraph?></td>
+        </tr>
+      </table></td>
+    <td valign="top"><form name="compiler" id="compiler" action="index.php" method="post">
+        <div align="center" class="errorMessage"><?php echo $this->errorMessage?></div>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="tableHeader">Options :</td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="row1">Add <a href="http://www.phpdoc.org" target="_blank">phpDoc</a> style comments : </td>
+            <td class="row1" width="300"><input name="comments" type="checkbox" id="comments" value="true" checked="checked" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2">Generate getter functions :</td>
+            <td class="row2"><input name="getters" type="checkbox" id="getters" value="true" checked="checked" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1">Generate setter functions :</td>
+            <td class="row1"><input name="setters" type="checkbox" id="setters" value="true" checked="checked" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2">Seperate files for each class :</td>
+            <td class="row2"><input name="separateFiles" type="checkbox" id="separateFiles" value="true" checked="checked" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1">Package name :</td>
+            <td class="row1"><input name="packageName" type="text" id="packageName" value="" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2">Version :</td>
+            <td class="row2"><input name="version" type="text" id="version" value="1.0" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1">Author name :</td>
+            <td class="row1"><input name="authorName" type="text" id="authorName" value="" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5" style="margin-top:20px;">
+          <tr>
+            <td class="tableHeader">MySql-Connection Settings :</td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="row1">Database server host name: </td>
+            <td class="row1" width="300"><input name="dbHost" type="text" id="dbHost" value="localhost" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1">Database user name: </td>
+            <td class="row1"><input name="dbUser" type="text" id="dbUser" value="" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2">Database password: </td>
+            <td class="row2"><input name="dbPassword" type="text" id="dbPassword" value="" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5" style="margin-top:20px;">
+          <tr>
+            <td class="tableHeader">Generate Classes :</td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('outputDir', event);" onmouseout="hideTooltip('outputDir');">Output Directory :</a></td>
+            <td width="300" class="row2"><input name="outputDir" type="text" id="outputDir" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('copyRuntime', event);" onmouseout="hideTooltip('copyRuntime');">Copy Runtime Classes :</a></td>
+            <td width="300" class="row2"><input name="copyRuntime" type="checkbox" id="copyRuntime" value="true" checked="checked" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="submit" name="Submit" value="Generate Classes" tabindex="<?php echo $tabIndex++ ?>"/>
+            <input name="action" type="hidden" id="action" value="compile" /></td>
+          </tr>
+        </table>
+        </form></td>
+  </tr>
+</table>
+</body>
+</html>
