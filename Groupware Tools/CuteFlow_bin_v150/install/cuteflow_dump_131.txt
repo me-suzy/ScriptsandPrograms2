@@ -1,0 +1,217 @@
+# phpMyAdmin MySQL-Dump
+# version 2.5.1
+# http://www.phpmyadmin.net/ (download page)
+#
+# Host: localhost
+# Generation Time: Jan 14, 2004 at 03:01 PM
+# Server version: 3.23.49
+# PHP Version: 4.0.5
+# Database : `CuteFlow`
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_attachment`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 09, 2004 at 03:50 PM
+#
+
+CREATE TABLE `cf_attachment` (
+  `nID` int(11) NOT NULL auto_increment,
+  `strPath` text NOT NULL,
+  `nCirculationId` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`nID`),
+  UNIQUE KEY `nID` (`nID`),
+  KEY `nID_2` (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_circulationform`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 14, 2004 at 01:46 PM
+#
+
+CREATE TABLE `cf_circulationform` (
+  `nID` int(11) NOT NULL auto_increment,
+  `nSenderId` int(11) NOT NULL default '0',
+  `strName` text NOT NULL,
+  `dateSending` date NOT NULL default '0000-00-00',
+  `nMailingListId` int(11) NOT NULL default '0',
+  `strAdditionalText` text NOT NULL,
+  `bIsArchived` tinyint(4) NOT NULL default '0',
+  `nEndAction` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`nID`),
+  UNIQUE KEY `nID` (`nID`),
+  KEY `nID_2` (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_circulationprocess`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 14, 2004 at 01:25 PM
+#
+
+CREATE TABLE `cf_circulationprocess` (
+  `nID` int(11) NOT NULL auto_increment,
+  `nCirculationFormId` int(11) NOT NULL default '0',
+  `nSlotId` int(11) NOT NULL default '0',
+  `nUserId` int(11) NOT NULL default '0',
+  `dateInProcessSince` date NOT NULL default '0000-00-00',
+  `nDecissionState` tinyint(4) NOT NULL default '0',
+  `dateDecission` date NOT NULL default '0000-00-00',
+  `nIsSubstitiuteOf` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_fieldvalue`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 14, 2004 at 01:23 PM
+#
+
+CREATE TABLE `cf_fieldvalue` (
+  `nID` int(11) NOT NULL auto_increment,
+  `nInputFieldId` int(11) NOT NULL default '0',
+  `strFieldValue` text NOT NULL,
+  `nSlotId` int(11) NOT NULL default '0',
+  `nFormId` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`nID`),
+  UNIQUE KEY `nID` (`nID`),
+  KEY `nID_2` (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_formslot`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 09, 2004 at 03:50 PM
+#
+
+CREATE TABLE `cf_formslot` (
+  `nID` int(11) NOT NULL auto_increment,
+  `strName` tinytext NOT NULL,
+  `nTemplateId` int(11) NOT NULL default '0',
+  `nSlotNumber` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`nID`),
+  UNIQUE KEY `nID` (`nID`),
+  KEY `nID_2` (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_formtemplate`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 09, 2004 at 03:50 PM
+#
+
+CREATE TABLE `cf_formtemplate` (
+  `nID` int(11) NOT NULL auto_increment,
+  `strName` tinytext NOT NULL,
+  PRIMARY KEY  (`nID`),
+  UNIQUE KEY `nID` (`nID`),
+  KEY `nID_2` (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_inputfield`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 09, 2004 at 03:50 PM
+#
+
+CREATE TABLE `cf_inputfield` (
+  `nID` int(11) NOT NULL auto_increment,
+  `strName` tinytext NOT NULL,
+  `nType` int(11) NOT NULL default '0',
+  `strStandardValue` text NOT NULL,
+  `bReadOnly` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`nID`),
+  UNIQUE KEY `nID` (`nID`),
+  KEY `nID_2` (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_mailinglist`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 09, 2004 at 03:50 PM
+#
+
+CREATE TABLE `cf_mailinglist` (
+  `nID` int(11) NOT NULL auto_increment,
+  `strName` text NOT NULL,
+  `nTemplateId` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_slottofield`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 09, 2004 at 03:50 PM
+#
+
+CREATE TABLE `cf_slottofield` (
+  `nID` int(11) NOT NULL auto_increment,
+  `nSlotId` int(11) NOT NULL default '0',
+  `nFieldId` int(11) NOT NULL default '0',
+  `strStandardValue` text NOT NULL,
+  `bReadOnly` tinyint(4) NOT NULL default '0',
+  `bMandantory` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_slottouser`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 14, 2004 at 01:11 PM
+#
+
+CREATE TABLE `cf_slottouser` (
+  `nID` int(11) NOT NULL auto_increment,
+  `nSlotId` int(11) NOT NULL default '0',
+  `nMailingListId` int(11) NOT NULL default '0',
+  `nUserId` int(11) NOT NULL default '0',
+  `nPosition` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`nID`),
+  UNIQUE KEY `nID` (`nID`),
+  KEY `nID_2` (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+# --------------------------------------------------------
+
+#
+# Table structure for table `cf_user`
+#
+# Creation: Jan 09, 2004 at 03:50 PM
+# Last update: Jan 09, 2004 at 03:50 PM
+#
+
+CREATE TABLE `cf_user` (
+  `nID` int(11) NOT NULL auto_increment,
+  `strLastName` tinytext NOT NULL,
+  `strFirstName` tinytext NOT NULL,
+  `strEMail` tinytext NOT NULL,
+  `nAccessLevel` int(11) NOT NULL default '0',
+  `strUserId` tinytext NOT NULL,
+  `strPassword` tinytext NOT NULL,
+  `nSubstitudeId` int(11) NOT NULL default '0',
+  PRIMARY KEY  (`nID`),
+  UNIQUE KEY `nID` (`nID`),
+  KEY `nID_2` (`nID`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+INSERT INTO `cf_user` VALUES (12, 'None', 'Administrator', '', 2, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0);
+    
