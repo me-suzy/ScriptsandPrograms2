@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="no"?>
+
+<BizForm Name="FMRegist" Package="demo" Class="BizForm" jsClass="jbForm" Title="Registration" SearchRule="" Description="Add description of BizForm" BizDataObj="BORegist" PageSize="10">
+   <DisplayModes>
+   <Mode Name="QUERY" TemplateFile="edit.tpl" InitMode="" DataFormat="array"/>
+      <Mode Name="EDIT" TemplateFile="edit.tpl" InitMode="" DataFormat="array"/>
+      <Mode Name="NEW" TemplateFile="edit.tpl" InitMode="" DataFormat="array" FormatStyle=""/>
+      <Mode Name="READ" TemplateFile="list.tpl" InitMode="" DataFormat="block" FormatStyle="tbl,tbl_head,tbl_rowodd,tbl_roweven,tbl_rowsel,tbl_cell"/>
+   </DisplayModes>
+   <BizCtrlList>
+      <BizCtrl Name="reg_id" FieldName="Id" DisplayName="Registration Id"/>
+      <BizCtrl Name="reg_evtid" FieldName="EvtId" DisplayName="Event Id"/>
+      <BizCtrl Name="reg_attdid" FieldName="AttendeeId" DisplayName="Attendee Id"/>
+      <BizCtrl Name="reg_attdfn" FieldName="AttdFName" DisplayName="First Name"/>
+      <BizCtrl Name="reg_attdln" FieldName="AttdLName" DisplayName="Last Name" ValuePicker="FMAttendeePopup" DrillDownLink="AttendeeView,FMAttendee.attd_id=reg_attdid"/>
+      <BizCtrl Name="reg_attdnm" FieldName="FullName" DisplayName="Full Name"/>
+      <BizCtrl Name="reg_fee" FieldName="Fee" DisplayName="Fee" SelectFrom="Selection(Fee)"/>
+      <BizCtrl Name="reg_onschd" FieldName="OnSchedule" DisplayName="On Schedule" Type="Checkbox"/>
+   </BizCtrlList>
+   <Toolbar>
+      <Control Name="btn_search" Image="search.gif" Caption="Search" Type="Button" Width="" Height="" HTMLAttr="" Function="SearchRecord()" Style="" Enabled="" DisplayMode="READ" Access="READ"/>
+      <Control Name="btn_dosearch" Image="" Caption="Search" Type="button" Width="" Height="" HTMLAttr="" Function="RunSearch()" Style="" Enabled="" DisplayMode="QUERY" Access=""/>
+      <Control Name="btn_edit" Image="edit.gif" Caption="Edit" Type="Button" Width="" Height="" HTMLAttr="" Function="EditRecord()" Style="" Enabled="" DisplayMode="READ" Access="WRITE"/>
+      <Control Name="btn_new" Image="new.gif" Caption="New" Type="Button" Width="" Height="" HTMLAttr="" Function="NewRecord()" Style="" Enabled="" DisplayMode="READ" Access="WRITE"/>
+      <Control Name="btn_save" Image="" Caption="Save" Type="Button" Width="" Height="" HTMLAttr="" Function="SaveRecord()" Style="" Enabled="" DisplayMode="EDIT|NEW" Access="WRITE"/>
+      <Control Name="btn_copy" Image="copy.gif" Caption="Copy" Type="button" Style="" Function="CopyRecord()" DisplayMode="READ" Access="WRITE"/>
+      <Control Name="btn_delete" Image="delete.gif" Caption="Delete" Type="button" Style="" Function="DeleteRecord()" DisplayMode="READ" Access="WRITE"/>
+      <Control Name="btn_cancel" Image="" Caption="Cancel" Type="Button" Width="" Height="" HTMLAttr="" Function="Cancel()" Style="" Enabled="" DisplayMode="EDIT|NEW|QUERY" Access="WRITE"/>
+      <Control Name="btn_refresh" Image="refresh.gif" Caption="Default Query" Type="button" Function="RefreshQuery()" Style="" DisplayMode="READ" Access=""/>
+      <Control Name="btn_excel" Image="excel.gif" Caption="Excel Export" Type="Button" Width="" Height="" HTMLAttr="target=_blank" Function="CallService(excelService,renderCSV)" FunctionType="Popup" Style="" Enabled="" DisplayMode="READ" Access=""/>
+   </Toolbar> 
+   <Navbar>
+      <Control Name="btn_next" Image="next.gif" Caption="Next" Type="Button" Width="" Height="" HTMLAttr="" Function="MoveNext()" Style="" Enabled="" DisplayMode="" Access=""/>
+      <Control Name="btn_prev" Image="prev.gif" Caption="Previous" Type="Button" Width="" Height="" HTMLAttr="" Function="MovePrev()" Style="" Enabled="" DisplayMode="" Access=""/>
+   </Navbar> 
+</BizForm>
