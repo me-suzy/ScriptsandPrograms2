@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<style>
+
+			.kewlButton
+			{
+				border:			1px solid #ece9d8;
+			}
+
+		</style>
+	</head>
+	<body bgcolor="#ece9d8" onmouseover="OnMouseOverHandler();" onmouseout="OnMouseOutHandler();">
+		<table>
+			<tr>
+				<td>
+					<table cellpadding="2" cellspacing="0">
+						<tr>
+							<td><img class="kewlButton" src="Images/Regular.gif"></td>
+							<td><img class="kewlButton" src="Images/Bold.gif"></td>
+							<td><img class="kewlButton" src="Images/Italic.gif"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<iframe id="editor" width="500" height="300">
+					</iframe>
+				</td>
+			</tr>
+		</table>
+	</body>
+	<script language="javascript">
+
+		editor.document.designMode = "on";
+		editor.document.open();
+		editor.document.write( "" );
+		editor.document.close();
+		editor.document.body.style.margin = "0";
+		editor.document.body.style.padding = "0";
+
+		var currKewlButton = null;
+
+		function IsKewlButton( elem )
+		{
+			return ( elem.className == "kewlButton" &&
+					 elem.tagName == "IMG" );
+		}
+
+		function OnMouseOverHandler()
+		{
+			var elem = event.toElement;
+
+			if ( IsKewlButton( elem ) )
+			{
+				currKewlButton = elem;
+				elem.style.borderTop = "1px solid white";
+				elem.style.borderLeft = "1px solid white";
+				elem.style.borderBottom = "1px solid black";
+				elem.style.borderRight = "1px solid black";
+			}
+		}
+
+		function OnMouseOutHandler()
+		{
+			var elem = event.fromElement;
+
+			if ( IsKewlButton( elem ) && currKewlButton != null && elem == currKewlButton )
+			{
+				elem.style.border = "1px solid #ece9d8";
+			}
+		}
+
+	</script>
+</html>
