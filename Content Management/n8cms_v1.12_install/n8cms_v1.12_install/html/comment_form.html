@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="incl/n8_05.css" type="text/css">
+
+<form method="post" action="addcomment.php"> 
+<table border=0><tr>
+<td class="content_bottom" colspan=2>Posting From:<?=$ip?><br></td></tr>
+<tr><td align=right class="content_bottom">
+
+ Your Name</td><td><input class='selectbox' type="text" name="sender_name" value="<? $_POST[sender_name]?>" size=30>  </td></tr>
+<tr><td colspan=2 class="content_bottom"> Message:</td></tr>
+<tr><td colspan=2>
+<textarea  class='selectbox' name="comment_text" cols=30 rows=5 wrap=virtual><?$_POST[comment_text]?></textarea>  </td></tr>
+<input class='selectbox' type="hidden" name="dir" value="<?=$dir ?>">
+<input class='selectbox' type="hidden" name="page_id" value="<?=$page_id ?>">	 
+<input class='selectbox' type="hidden" name="addcomment" value="1"> 
+<input class='selectbox' type="hidden" name="datetime" value="<?=$datetime?>">
+<input class='selectbox' type="hidden" name="comment_ip" value="<?=$ip?>">
+<tr><td align=right ><input class='button' type="submit" name="submit" value="Send"> </td><td><input class='button' type="reset" name="reset" value="Clear All"> 
+</td></tr></table>
+</form>
