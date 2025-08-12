@@ -1,0 +1,68 @@
+<font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"><?  
+if ($action==tld_update) {
+update_domain_type($tld_id,$name,$extension,$status,$url,$response,$auto,$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10);
+}
+if ($action==tld_add) {
+add_domain_type($tld_id,$name,$extension,$status,$url,$response,$auto,$p1,$p2,$p3,$p4,$p5,$p6,$p7,$p8,$p9,$p10);
+}
+if ($set_action=="tld_delete") {
+tld_delete($tld_id);
+}
+   ?></font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>VIEW 
+TOP LEVEL DOMAINS &gt; </b></font> 
+<form method="post" action="" onSubmit="validate();return returnVal;">
+  <table width="400" border="0" cellspacing="0" cellpadding="0" bgcolor="#003366" height="10">
+    <tr bgcolor="#003366"> 
+      <td width="31%" height="5"> <font color="#FFFFFF"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Extension:</font><font size="2"><font face="Verdana, Arial, Helvetica, sans-serif"> 
+        </font></font></b></font></td>
+      <td width="37%" height="5"><font color="#FFFFFF"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Description: 
+        </font></b></font></td>
+      <td width="28%" height="5"><font color="#FFFFFF"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Status? 
+        </font></b></font></td>
+      <td width="4%" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"></font></td>
+    </tr>
+  </table>
+  <font face="Verdana, Arial, Helvetica, sans-serif"> <? 
+    $today=date("Y-m-d");
+    $today_date=strtotime($today);
+	$i="0";	
+	$db = new ps_DB;
+	$q  = "SELECT * FROM domain_type ORDER BY domain_type_name";
+	$db->query($q);
+		while ($db->next_record()) {
+?></font> 
+  <table width="400" border="0" cellspacing="0" cellpadding="0" bgcolor="#E4E4E4" height="10">
+    <tr> 
+      <td width="31%" height="5"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#990033"><? 
+ $def = $db->f("domain_type_auto");  
+echo ".";
+if ($def==Y) {
+echo "<B>" ;
+$db->p("domain_type_extension"); 
+echo "</B>";
+} else {
+$db->p("domain_type_extension"); 
+}
+ ?></font></font></font><font color="#990033"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+        </font></font></td>
+      <td width="37%" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"><? $db->p("domain_type_name");   ?></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"> 
+        </font></font></td>
+      <td width="27%" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"><? $status = $db->f("domain_type_status");  
+if ($status==Y) {
+echo "<B>Active</B>" ;
+} else {
+echo "Inactive";
+}
+?></font></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+        </font></td>
+      <td width="5%" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?page=tld_edit&amp;set_action=tld_update&amp;tld_id=<? echo $db->p("domain_type_id"); ?>">edit</a></font></td>
+    </tr>
+  </table>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><?   
+$i++;
+ } 
+if ($i=="0") { echo "<BR>NO RESULTS FOR THIS SEARCH"; }  ?></font><br>
+</form>
+
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif"> <a href="?page=tld_edit&amp;set_action=tld_add"><br>
+<img src="images/button_add.gif" width="80" height="23" border="0"></a> </font>
