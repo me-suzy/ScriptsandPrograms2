@@ -1,0 +1,1 @@
+<?php $msgsystem='y'; $posting='y';  $sorting='ASC'; $time_show='n'; $nb='10'; $emailsub=''; $url='';?>
