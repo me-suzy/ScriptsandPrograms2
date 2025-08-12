@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page tce_db_dal_mysql.php</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name">/shared/code/tce_db_dal_mysql.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-functions">Functions</a>
+			</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">MySQL driver for TCExam Database Abstraction Layer (DAL).</p>
+<p class="description"><p>This abstraction layer uses the same SQL syntax of MySQL.</p></p>
+	<ul class="tags">
+				<li><span class="field">since:</span> 2003-10-12</li>
+				<li><span class="field">link:</span> www.tecnick.com</li>
+				<li><span class="field">copyright:</span> Copyright &amp;copy; 2004, Tecnick.com S.r.l. - Via Ugo Foscolo n.19 - 09045 Quartu Sant'Elena (CA) - ITALY - www.tecnick.com - info@tecnick.com</li>
+				<li><span class="field">author:</span> Nicola Asuni</li>
+			</ul>
+		
+			</div>
+</div>
+		
+
+	
+	
+	
+	<a name="sec-functions"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Functions</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<span class="disabled">Functions</span>
+		</div>
+		<div class="info-box-body">	
+			<a name="functionF_db_affected_rows" id="functionF_db_affected_rows"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">F_db_affected_rows</span> (line <span class="line-number">98</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns number of rows (tuples) affected by the last INSERT, UPDATE or DELETE query associated with link_identifier.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of rows.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Number</span>
+		<span class="method-name">
+			F_db_affected_rows
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$link_identifier</span>, <span class="var-type">resource</span>&nbsp;<span class="var-name">$result</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$link_identifier</span><span class="var-description">: database link identifier.</span>			</li>
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$result</span><span class="var-description">: result resource to the query result [UNUSED].</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionF_db_close" id="functionF_db_close"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">F_db_close</span> (line <span class="line-number">56</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Closes the non-persistent connection to a database associated with the given connection resource.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> TRUE on success or FALSE on failure</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			F_db_close
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$link_identifier</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$link_identifier</span><span class="var-description">: database link identifier.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionF_db_connect" id="functionF_db_connect"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">F_db_connect</span> (line <span class="line-number">41</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Open a connection to a MySQL Server and select a database.</p>
+<p class="description"><p>If a second call is made to mysql_connect() with the same arguments, no new link will be established, but instead, the link identifier of the already opened link will be returned.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> link identifier on success, or FALSE on failure.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">MySQL</span>
+		<span class="method-name">
+			F_db_connect
+		</span>
+					([<span class="var-type">mixed</span>&nbsp;<span class="var-name">$host</span> = <span class="var-default">'localhost'</span>], [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$port</span> = <span class="var-default">'3306'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$username</span> = <span class="var-default">'root'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$password</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$database</span> = <span class="var-default">''</span>], <span class="var-type">string</span>&nbsp;<span class="var-name">$server</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$server</span><span class="var-description">: Database server path. It can also include a port number. e.g. &quot;hostname:port&quot; or a path to a local socket e.g. &quot;:/path/to/socket&quot; for the localhost. Note: Whenever you specify &quot;localhost&quot; or &quot;localhost:port&quot; as server, the MySQL client library will override this and try to connect to a local socket (named pipe on Windows). If you want to use TCP/IP, use &quot;127.0.0.1&quot; instead of &quot;localhost&quot;. If the MySQL client library tries to connect to the wrong local socket, you should set the correct path as mysql.default_host in your PHP configuration and leave the server field blank.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$username</span><span class="var-description">: Name of the user that owns the server process.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password</span><span class="var-description">: Password of the user that owns the server process.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$database</span><span class="var-description">: Database name.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionF_db_error" id="functionF_db_error"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">F_db_error</span> (line <span class="line-number">64</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the text of the error message from previous database operation</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> error message.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			F_db_error
+		</span>
+				()
+			</div>
+
+		
+	
+</div>
+<a name="functionF_db_fetch_array" id="functionF_db_fetch_array"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">F_db_fetch_array</span> (line <span class="line-number">88</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Fetch a result row as an associative and numeric array.</p>
+<p class="description"><p>Note: This function sets NULL fields to PHP NULL value.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> an array that corresponds to the fetched row, or FALSE if there are no more rows.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Returns</span>
+		<span class="method-name">
+			F_db_fetch_array
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$result</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$result</span><span class="var-description">: result resource to the query result.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionF_db_insert_id" id="functionF_db_insert_id"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">F_db_insert_id</span> (line <span class="line-number">118</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get the ID generated from the previous INSERT operation</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> ID generated from the last INSERT operation.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			F_db_insert_id
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$link_identifier</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$tablename</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$fieldname</span> = <span class="var-default">''</span>])
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$link_identifier</span><span class="var-description">: database link identifier.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$tablename</span><span class="var-description">: Table name.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fieldname</span><span class="var-description">: Field name (column name).</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionF_db_num_rows" id="functionF_db_num_rows"><!-- --></a>
+<div class="oddrow">
+	
+	<div>
+		<span class="method-title">F_db_num_rows</span> (line <span class="line-number">107</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get number of rows in result.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> of affected rows.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Number</span>
+		<span class="method-name">
+			F_db_num_rows
+		</span>
+					(<span class="var-type">resource</span>&nbsp;<span class="var-name">$result</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$result</span><span class="var-description">: result resource to the query result.</span>			</li>
+				</ul>
+		
+	
+</div>
+<a name="functionF_db_query" id="functionF_db_query"><!-- --></a>
+<div class="evenrow">
+	
+	<div>
+		<span class="method-title">F_db_query</span> (line <span class="line-number">76</span>)
+	</div> 
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends a query to the currently active database on the server that's associated with the specified link identifier.<br />  NOTE: Convert PostgreSQL RANDOM() function to MySQL RAND() on ORDER BY clause of selection queries.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> in case of error, TRUE or resource-identifier in case of success.</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">FALSE</span>
+		<span class="method-name">
+			F_db_query
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$query</span>, <span class="var-type">resource</span>&nbsp;<span class="var-name">$link_identifier</span>)
+			</div>
+
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$query</span><span class="var-description">: The query tosend. The query string should not end with a semicolon.</span>			</li>
+					<li>
+				<span class="var-type">resource</span>
+				<span class="var-name">$link_identifier</span><span class="var-description">: database link identifier.</span>			</li>
+				</ul>
+		
+	
+</div>
+		</div>
+	</div>
+	
+	<p class="notes" id="credit">
+		Documentation generated on Thu,  7 Jul 2005 00:54:44 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC3</a>
+	</p>
+	</div></body>
+</html>
