@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Login</title>
+<link href="Styles/{CCS_Style}/Style_Components.css" type="text/css" rel="stylesheet">
+<link href="Styles/{CCS_Style}/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+{Topo} 
+<!-- BEGIN Grid Responder -->
+<table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+          <th>&nbsp;Contatos existentes</th>
+ 
+          <td class="HeaderRight{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid{CCS_Style}" cellspacing="0" cellpadding="0">
+        <tr class="Row{CCS_Style}">
+          <td>&nbsp;<a href="{ImageLink1}"><img src="admin/imagens/novo.jpg" border="0"></a></td> 
+          <td colspan="2">&nbsp; {x_contato_TotalRecords}</td>
+        </tr>
+ 
+        <tr class="Caption{CCS_Style}">
+          <th>&nbsp;</th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_x_conassunto --><a href="{Sort_URL}">Assunto</a> 
+          <!-- BEGIN Asc_On --><img src="Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_conassunto --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_x_constatus --><a href="{Sort_URL}">Status</a> 
+          <!-- BEGIN Asc_On --><img src="Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_constatus --></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row{CCS_Style}">
+          <td>&nbsp;<a href="{Ver2}"><img src="admin/imagens/visualizar.gif" border="0"></a></td> 
+          <td>{x_conassunto}&nbsp;</td> 
+          <td>{x_constatus}&nbsp;</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords{CCS_Style}">
+          <td>&nbsp;</td> 
+          <td colspan="2">&nbsp;Não há registros </td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer{CCS_Style}">
+          <td>&nbsp;</td> 
+          <td colspan="2"><a href="{x_contato_Insert_Src}"></a>&nbsp; 
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN First_On --><a href="{First_URL}"><img src="Styles/{CCS_Style}/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img src="Styles/{CCS_Style}/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="Styles/{CCS_Style}/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img src="Styles/{CCS_Style}/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number}
+            &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="Styles/{CCS_Style}/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img src="Styles/{CCS_Style}/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="Styles/{CCS_Style}/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img src="Styles/{CCS_Style}/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator --></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid Responder -->
+<!-- BEGIN Record x_contato -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+            <th>&nbsp;Novo Contato </th>
+ 
+            <td class="HeaderRight{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record{CCS_Style}" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error{CCS_Style}">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Seu nome</strong></th>
+ 
+            <td><input maxlength="100" size="40" value="{x_connome}" name="{x_connome_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Seu Email</strong></th>
+ 
+            <td><input maxlength="90" size="40" value="{x_con_mail}" name="{x_con_mail_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Departamento</strong></th>
+ 
+            <td>
+              <select name="{x_con_depa_Name}">
+                <option value="" selected>Escolha</option>
+                {x_con_depa_Options}
+              </select>
+ </td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Assunto</strong></th>
+ 
+            <td><input maxlength="90" size="40" value="{x_conassunto}" name="{x_conassunto_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Mensagem</strong></th>
+ 
+            <td><textarea style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" name="{x_con_mensa_Name}" rows="8" cols="40">{x_con_mensa}
+</textarea></td>
+          </tr>
+ 
+          <tr class="Bottom{CCS_Style}">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Button_Insert --><input type="image" src="Styles/{CCS_Style}/Images/en-US/ButtonInsert.gif" value="Criar" border="0" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Delete --><input type="image" src="Styles/{CCS_Style}/Images/en-US/ButtonDelete.gif" value="Apagar" border="0" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+          </tr>
+        </table>
+        <input type="hidden" value="{x_conobserva}" name="{x_conobserva_Name}"><input type="hidden" value="{x_constatus}" name="{x_constatus_Name}"><input type="hidden" value="{x_condata}" name="{x_condata_Name}"></td>
+    </tr>
+  </table>
+</form>
+<!-- END Record x_contato -->
+<!-- BEGIN Record Usuarios -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+            <th>&nbsp;Editar conta pessoal</th>
+ 
+            <td class="HeaderRight{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record{CCS_Style}" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error{CCS_Style}">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Apelido</strong>&nbsp; </th>
+ 
+            <td>{x_apelido}</td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Senha</strong></th>
+ 
+            <td><input style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" maxlength="50" value="{x_senha}" name="{x_senha_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Email</strong></th>
+ 
+            <td><input maxlength="90" size="40" value="{x_email}" name="{x_email_Name}"></td>
+          </tr>
+ 
+          <tr class="Bottom{CCS_Style}">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Button_Update --><input title="Enviar" type="image" src="Styles/{CCS_Style}/Images/en-US/ButtonUpdate.gif" value="Enviar" border="0" name="{Button_Name}"><!-- END Button Button_Update --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record Usuarios -->{Rodape}<br>
+</body>
+</html>
