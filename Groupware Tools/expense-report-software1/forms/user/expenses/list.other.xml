@@ -1,0 +1,48 @@
+<form>
+	
+	<subtitle>Expenses ( OTHER )</subtitle>
+	<width>540</width>
+	<fields>
+		<_count header="No" width="30" align="center" suffix="."/>
+		<expense_cat header="Category" align="left" type="relation">
+			<relation table="cats" id="cat_id" text="cat_name" />
+		</expense_cat>
+		<expense_date header="Date" type="date" params="m.d.Y" width="100" align="center" />
+		<expense_amount header="Amount" type="price" preffix="$" width="100" align="right" />
+	</fields>
+
+	<header>
+		<titles>true</titles>
+		<buttons>
+
+			<delete onclick="" button="addnew" >
+				<location>index.php?sub=expenses&action=add&expense_report={REPORT_ID}</location>
+			</delete>
+		</buttons>
+	</header>
+
+	<buttons>
+
+
+		<details onclick="" button="details" >
+			<location>index.php?sub=expenses&action=det&expense_id={EXPENSE_ID}</location>
+		</details>
+
+	</buttons>
+
+	<SQL>
+		<vars>
+			<sql_page type="page"/>
+			<sql_items type="form" var="items" />
+			<sql_table import="$this->tables['expenses']" type="eval"/>
+			<report import="(int)$_GET[report_id]" type="eval" />
+			<sql_condition import="WHERE expense_report={REPORT} and expense_status='4'" type="var"/>
+	
+		</vars>
+		<query>SELECT * FROM `{SQL_TABLE}` {SQL_CONDITION} ORDER by expense_date DESC LIMIT {SQL_PAGE},{SQL_ITEMS} </query>
+		<count table="{SQL_TABLE}" condition="{SQL_CONDITION}" />
+	</SQL>
+
+	<items>40</items>
+
+</form>
