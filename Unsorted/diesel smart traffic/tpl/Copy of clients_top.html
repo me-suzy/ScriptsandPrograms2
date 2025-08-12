@@ -1,0 +1,80 @@
+<?php
+ 	if($auth == "") header("Location: ../login.php");
+
+	require "../conf/sys.conf";
+	require "../lib/mysql.lib";
+	require "../lib/group.lib";
+	require "../lib/ban.lib";
+
+	$db = c();
+	$user = f(q("select * from members where id='$auth'"));
+	$policies = q("select * from members_policy where user_id='$user[id]'");
+
+	if (e(q("select * from campaigns where user_id='$auth' and id='$cid'"))) $cid=0;
+
+	if(!e($policies))
+		$policy = f($policies);
+
+	if($dcid == "") $cc = "";
+	else{
+	 	$cam = f(@q("select * from campaigns where status='1' and id='$dcid' and 
+user_id='$user[id]'"));
+		if($cam == "") $cc = "";
+		else $cc = "$cam[url]";
+	}
+
+
+?>
+
+ <html>
+<head>
+<title>Welcome to Your <? echo $SITE_NAME ?> Account Area!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+<body bgcolor="#DDDDDD"><center>
+<img src="http://traffic.smartdownloads.net/images/member.gif" width="760" height="92"><table width="760" border="0" cellspacing="0" cellpadding="0"> 
+<tr> 
+    <td bgcolor="#000000">
+
+<table width="760" border="0" cellspacing="1" cellpadding="0">
+  <tr> 
+    
+    <td bgcolor="#D3D9EB">
+      <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font 
+color="#333333">
+
+<table border=0 width=100%>
+	<td width="23%">
+	<B><a href=index.php><? echo $SITE_NAME ?> » Members Area</A><B>
+	</td>
+	          <td width="77%" align=right valign=top><b><font color="#333333" size="1" face="Verdana, Arial, Helvetica, sans-serif">YOUR 
+                STATUS: </font></b> 
+                <?php include('../src/qinfo'); ?>
+              </td>
+	</table>
+
+</font></b></font></div>
+    </td>
+  </tr>
+  
+  <tr height="20"> 
+      <td bgcolor="#8EA4D7">    <font size="1" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <B> <a class=menu href="index.php?src=view_campaigns"> CAMPAIGNS </a> 
+        - <a class=menu href="index.php?src=cr_campaign"> NEW CAMPAIGN </a> - 
+        <a class=menu href=editdetails.php>MEMBER</A> - <a class=menu href="index.php?src=stat"> 
+        STATISTICS </a> - 
+        <? if($policy[trusted]==1){ ?>
+        <a class=menu href="index.php?src=transfer"> TRANSFER </a> - 
+        <? } ?>
+        <? if ($exchange["withdraw"]){?>
+        <a class=menu href="withdraw.php"> WITHDRAW MONEY </a> | 
+        <? } ?>
+        - </B><a class=menu href="index.php?src=logout"><strong>LOGOUT </strong></a> 
+        </font> </td>
+    </tr> <tr> 
+      <td bgcolor="#FFFFFF" align="center"> <br>
+
+<table width="730" border="0" cellspacing="0" cellpadding="0">
+  <tr><td bgcolor="#FFFFFF">
