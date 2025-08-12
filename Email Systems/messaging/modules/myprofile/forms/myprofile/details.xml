@@ -1,0 +1,109 @@
+<form>
+	<title>My Profile Details</title>
+	<action>index.php</action>
+	<name>edit</name>
+	<method>get</method>
+	<width>580</width>
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<header>true</header>
+		</set>
+
+		<save onclick="" button="edit">
+			<location>index.php?mod=myprofile&sub=myprofile.account&action=edit&user_id={USER_ID}&return={CURRENT_PAGE}&returnurl={CURRENT_PAGE}</location>
+		</save>
+
+	</buttons>
+
+	<redirect>index.php?mod=myprofile&sub=myprofile&action=details&user_id={USER_ID}</redirect>
+
+	<fields>
+
+		<user_id type="hidden" default="$_GET['user_id']" action="eval" />
+
+		<user_name type="text"> 
+			<title>Name</title>
+		</user_name>
+
+		<user_login type="text"> 
+			<title>Login</title>
+		</user_login>
+
+		<passwd type="text" forcevalue="*********" title="Password" />
+
+		<user_email type="text"> 
+			<title>Email </title>
+		</user_email>
+
+		<user_email2 type="text" size="30"> 
+			<title>Secondary Email </title>
+		</user_email2>
+
+		<subtitle type="subtitle" title="Contact Info" />
+
+		<user_address type="text" size="40"> 
+			<title>Address</title>
+		</user_address>
+
+		<user_city type="text" size="20"> 
+			<title>City</title>
+		</user_city>
+
+		<user_state type="text" empty="true"> 
+			<title>State</title>
+		</user_state>
+
+		<user_zip type="text"> 
+			<title>Zip Code</title>
+		</user_zip>
+
+		<user_country type="text"> 
+			<title>Country</title>
+		</user_country>
+
+		<user_phone type="text" size="20"> 
+			<title>Phone</title>
+		</user_phone>
+
+		<subtitle2 title="Instant Messengers" type="subtitle" />
+		
+		<user_im_aol type="text" size="15">
+			<title>AOL</title>
+		</user_im_aol>
+
+		<user_im_icq type="text" size="15">
+			<title>ICQ</title>
+		</user_im_icq>
+
+		<user_im_msn type="text" size="15">
+			<title>MSN</title>
+		</user_im_msn>
+
+		<user_im_yahoo type="text" size="15">
+			<title>Yahoo</title>
+		</user_im_yahoo>
+
+		<user_im_other type="text" size="15">
+			<title>Other</title>
+		</user_im_other>
+
+
+		<subtitle3 type="subtitle" title="Messaging Settings" />
+		<user_msg_send type="relation">
+			<title>Send Notice</title>
+
+			<options>
+				<option name="0">no</option>
+				<option name="1">yes</option>
+			</options>
+		</user_msg_send>
+
+		<user_msg_subject type="text" default="New Message">
+			<title>Email Subject</title>
+		</user_msg_subject>
+
+	</fields>
+</form>
