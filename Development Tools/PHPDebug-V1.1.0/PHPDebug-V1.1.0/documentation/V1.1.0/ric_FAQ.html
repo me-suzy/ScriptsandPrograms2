@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>FAQ</title>
+	<link rel="stylesheet" type="text/css" href="media/style.css">
+	<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+	<td class="header-top-left"><img src="media/logo.png" border="0" alt="phpDocumentor " /></td>
+    <td class="header-top-right">PHP_Debug<br /><div class="header-top-right-subpackage"></div></td>
+  </tr>
+  <tr><td colspan="2" class="header-line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td colspan="2" class="header-menu">
+  		  [ <a href="classtrees_PHP_Debug.html" class="menu">class tree: PHP_Debug</a> ]
+		  [ <a href="elementindex_PHP_Debug.html" class="menu">index: PHP_Debug</a> ]
+		  [ <a href="elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td colspan="2" class="header-line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="195" class="menu">
+		<div class="package-title">PHP_Debug</div>
+  <div class="package">
+	<div id="ric">
+					<p><a href="ric_CHANGELOG.html">CHANGELOG</a></p>
+					<p><a href="ric_FAQ.html">FAQ</a></p>
+					<p><a href="ric_INSTALL.html">INSTALL</a></p>
+					<p><a href="ric_README.html">README</a></p>
+			</div>
+	</div>
+  <div class="package">
+	<div id="todolist">
+			<p><a href="todolist.html">Todo List</a></p>
+	</div>
+	</div>
+      <b>Packages:</b><br />
+  <div class="package">
+              <a href="li_PHP_Debug.html">PHP_Debug</a><br />
+      	</div>
+      <br />
+                        <br />
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1 align="center">FAQ</h1>
+<pre>
++-----------------------------------------------------------------------------+
++-- PHP_Debug : A simple and fast way to debug your PHP code                  |
++--                                                                           |
++-- Support : Vernet Loic (qrf_coil@yahoo.fr)                                 |
++-----------------------------------------------------------------------------+
+
+
+== FAQ ========================================================================
+
+
+== 1 - Why direct links to PhpMyadmin don't work ? ============================
+
+You must configure the path and database name. (replace with you own paths)
+
+&lt;?php
+
+$Dbg-&gt;ViewSourceScriptPath = &quot;/myproject/functions/&quot;;
+$Dbg-&gt;ViewSourceScriptName = &quot;source.php&quot;;
+
+?&gt;
+
+
+== 2 - Why when I add query to debug info i have no link to PhpMyAdmin ? ======
+
+It is because you do not use the correct debugline type, you must add debug
+info for queries, like this :
+
+&lt;?php
+
+$Dbg-&gt;addDebug(&quot;Select email from users&quot;, DBGLINE_QUERY, __FILE__, __LINE__);
+
+?&gt;
+
+
+== 3 - What are the different debug type ? ====================================
+
+Here is the list (check doc : Constants)
+
+- DBGLINE_STD           : Standart debug, fonctionnal or other
+- DBGLINE_QUERY         : Query debug
+- DBGLINE_QUERY_REL     : Database related debug
+- DBGLINE_ENV           : Environment debug ( $GLOBALS... )
+- DBGLINE_CURRENTFILE   : Output current file that is debugged
+- DBGLINE_APPERROR      : Debug Error 
+- DBGLINE_CREDITS       : Credits
+- DBGLINE_SEARCH        : Search mode in debug
+- DBGLINE_OBJECT        : Debug object mode
+- DBGLINE_PROCESSPERF   : Performance analysys
+- DBGLINE_TEMPLATES     : Debug included templates
+- DBGLINE_PAGEACTION    : Debug main page action 
+- DBGLINE_ARRAY         : Debug array mode
+- DBGLINE_SQLPARSE      : SQL Parse error
+
+Some debugtype are automatically added depending the debugmode.
+
+
+== 4 - When searching for a given string, some debug infos still appears even
+the requested string is not present, why ?
+
+True, actually : DBGLINE_CURRENTFILE, DBGLINE_CREDITS, DBGLINE_SEARCH
+DBGLINE_PROCESSPERF debug types are always displayed in search mode.
+
+You can change this behaviour by setting for example :
+
+&lt;?php
+
+$Dbg-&gt;DisplayTypeInSearch[DBGLINE_CURRENTFILE] = false;
+
+?&gt;
+
+
+== 5 - Super arrays are great, but how may i have $GLOBALS super array to 
+display all environment variables that is possible to see ?
+
+You must do as followning :
+
+&lt;?php
+
+$Dbg-&gt;ShowGlobals = true;
+
+?&gt;
+
+
+== 6 - Include path are far too long when displaying included or required
+files, how should i truncate it ?
+
+You must use addRequiredFilesPattern() function, and check that 
+$RemoveTemplatesPattern variable is set to true
+
+&lt;?php
+
+$Dbg-&gt;RemoveTemplatesPattern = true;
+$Dbg-&gt;addRequiredFilesPattern('/home/pc/project/group/p/ph/');
+
+?&gt;
+
+This pattern will be truncated from paths.
+
+
+== 7 - I do not understant the way DebugPerf works can you explain me ?
+
+Well in fact it is easy : (check index.php)
+
+First you may add a string for this debug info :
+
+&lt;?php
+
+$Dbg-&gt;addDebug('This script is quiet long because i get RSS files 
+	directly from SourceForge.net ---&gt;', DBGLINE_STD, __FILE__, __LINE__);
+
+?&gt;
+
+
+And then you must call DebugPerf function at the start and at the end of
+the part of code you want to monitor, like this : 
+
+&lt;?php
+
+// Monitor time to retrieve RSS feed, start timer
+$Dbg-&gt;DebugPerf(DBGLINE_STD);
+
+$rss_news =&amp; new XML_RSS($rss_news_url);
+$rss_news-&gt;parse();
+$rss_summary =&amp; new XML_RSS($rss_summary_url);
+$rss_summary-&gt;parse();
+
+// Stop timer
+$Dbg-&gt;DebugPerf(DBGLINE_STD);
+
+?&gt;
+
+/!\ But remember ! You must use the SAME DebugType for this 3 functions 
+calls (here DBGLINE_STD) , if not, the time process will be affected to
+another debugline, or may have unpredictable results...
+
+
+== 8 - I am bored with seeing your credits, how may i remove it ? =============
+
+As you want man...  :/
+
+&lt;?php
+
+$Dbg-&gt;DisableCredits = true;
+
+?&gt;
+
+:)
+
+
+== 9 - I don't want to see included files, how can i remove it ? ==============
+
+Easy. Try this...
+
+&lt;?php
+
+$Dbg-&gt;ShowTemplates = false;
+
+?&gt;
+
+Check also the different debugmode availables :
+
+- DBG_MODE_OFF       : Debug mode is OFF
+- DBG_MODE_USERPERF  : Base debug mode
+- DBG_MODE_QUERY     : DBG_MODE_USERPERF + queries
+- DBG_MODE_QUERYTEMP : DBG_MODE_QUERY + included files
+- DBG_MODE_FULL      : All available debug infos
+(including $GLOBALS array that is quiet big)
+- DBG_MODE_AUTO      : Mode auto take the mode of Debug Object
+
+I usually use DBG_MODE_QUERYTEMP mode.
+
+You can set the mode like this :
+
+&lt;?php
+
+// Create the debug object with a specified debug mode
+$Dbg = &amp;new Debug(DBG_MODE_QUERYTEMP);
+
+?&gt;
+
+
+== 10 - You claim to be XHTML compliant but the stylesheet is generated in ====
+the body, what the f*$ ? 
+
+You need to enable the XHTML output, first :
+
+
+&lt;?php
+
+// Generate XHTML
+$Dbg-&gt;genXHTMLOutput = true;
+
+?&gt;
+
+Then you need to generate the stylesheet in your html &lt;head&gt; section
+
+(check header.php)
+
+&lt;head&gt;
+...
+
+&lt;?php
+
+/**
+ * Generate StyleSheet  
+ */
+print($Dbg-&gt;generateStyleSheet());
+
+?&gt;
+
+...
+&lt;/head&gt;
+
+</pre>
+        <div class="credit">
+		    <hr class="separator" />
+		    Documentation generated on Sun, 12 Jun 2005 14:52:13 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
