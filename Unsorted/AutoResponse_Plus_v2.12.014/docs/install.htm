@@ -1,0 +1,439 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Installing Autoresponse Plus</title>
+<style>
+<!--
+body, p, td, form {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000000
+}
+-->
+</style>
+</head>
+
+<body>
+<div align="center"><center>
+
+<table border="0" cellpadding="4" cellspacing="0" width="90%">
+  <tr>
+    <td width="100%"><strong><font face="Trebuchet MS" size="4" color="#000080">AutoResponse
+    Plus<br>
+    </font><font face="Trebuchet MS" size="3" color="#000080">Sequential Autoresponder System</font><font
+    face="Trebuchet MS" size="4" color="#000080"><br>
+    </font><font face="Trebuchet MS" size="3" color="#000000">Version 2 Installation Guide</font></strong><p><font
+    face="Trebuchet MS" size="2" color="#000000">Installation Guide Version 2.04<br>
+    Released on April 29, 2001</font></p>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Welcome to AutoResponse Plus</strong></font></p>
+    <p>Please read these instructions carefully before installation. We have tried to make
+    installation as easy as possible. Our priority is to get you up and running quickly. If
+    all goes well, installation should be complete in 30 minutes or less.<ul>
+      <li>If at any time you need help, visit our support forums at<br>
+        <a href="http://www.autoresponseplus.com/forums">http://www.autoresponseplus.com/forums</a></li>
+    </ul>
+    <ul>
+      <li>For direct support, visit<br>
+        <a href="http://www.autoresponseplus.com/support">http://www.autoresponseplus.com/support</a></li>
+    </ul>
+    <ul>
+      <li>If you don't want to install AutoResponse Plus yourself, we can do it for you. For more
+        details or to order, visit<br>
+        <a href="http://www.autoresponseplus.com/services">http://www.autoresponseplus.com/services</a></li>
+    </ul>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Before you begin</strong></font><ol>
+      <li>You will need a copy of the AutoResponse Plus zip file (arplus.zip).</li>
+      <li>You will need unzipping software such as WinZip.</li>
+      <li>You will need an FTP client such as WS_FTP or CuteFTP.</li>
+      <li>If your web server allows telnet access, you will need a telnet client such as
+        telnet.exe supplied with Windows.</li>
+      <li>You need to know the path to Perl on your web server. This is usually #!/usr/bin/perl.
+        If you are unsure, contact your host's support desk.</li>
+      <li>You need to know the path to the sendmail program on your web server. This is usually
+        something like /usr/sbin/sendmail but is different on every server. Contact your host's
+        support desk for this.</li>
+      <li>All e-mails sent to your domain need to be forwarded to your main login account. Speak
+        to your host's support desk about setting this up.</li>
+    </ol>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 1: Unzip the AutoResponse Plus files onto your
+    computer</strong></font></p>
+    <p>Use your unzipping software to unzip the AutoResponse Plus zip file into a temporary
+    folder on your PC. Make sure you select the option to use folder names or preserve
+    directories when unzipping. If the unzip is successful, your temporary folder will contain
+    these folders:</p>
+    <blockquote>
+      <ul>
+        <li>data</li>
+        <li>docs</li>
+        <li>help</li>
+        <li>images</li>
+        <li>mime</li>
+        <li>other</li>
+        <li>scripts</li>
+        <li>styles</li>
+      </ul>
+    </blockquote>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 2: Setting the path to Perl</strong></font></p>
+    <p>In the 'scripts' directory, there are several files that contain the path to Perl on
+    your server. The first line in each of these files may need to be changed (using a text
+    editor) to show the correct Perl path for your server. The files to edit are:</p>
+    <blockquote>
+      <ul>
+        <li>arplus.pl</li>
+        <li>daily.pl</li>
+        <li>emailcapture.pl</li>
+        <li>formcapture.pl</li>
+        <li>import.pl</li>
+        <li>install.pl</li>
+        <li>un.pl</li>
+      </ul>
+    </blockquote>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 3: Setting up the 'cgi' directories</strong></font></p>
+    <p>Using your FTP client, log into your web server. Assuming your CGI-BIN directory is
+    called 'cgi-bin', create the following directories. Please note that these are
+    case-sensitive. Also, set the CHMOD or permission of each of these directories to 0777
+    [drwxrwxrwx].</p>
+    <blockquote>
+      <ul>
+        <li>cgi-bin/<font color="#000080">arplus</font></li>
+        <li>cgi-bin/<font color="#000080">arplus/data</font></li>
+        <li>cgi-bin/<font color="#000080">arplus/attachments</font></li>
+        <li>cgi-bin/<font color="#000080">arplus/MIME</font> (use capital letters for MIME)</li>
+      </ul>
+    </blockquote>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 4: Setting up the 'non cgi' directory</strong></font></p>
+    <p>In the public part of your web space (usually the directory is called 'public',
+    'public_html', 'html', 'htdocs' etc), create the following directory. There is no need to
+    set any permissions. For this example, we assume your public html directory is 'htdocs'.</p>
+    <blockquote>
+      <ul>
+        <li>htdocs/<font color="#000080">arplus</font></li>
+      </ul>
+    </blockquote>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 5: Editing your 'arp-paths.pl' file</strong></font></p>
+    <p>Before uploading the files, you need to edit two lines in the file 'arp-paths.pl' which
+    is located in your 'scripts' directory. Use a text editor and follow the instructions in
+    the file.</p>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 6: Transferring the files to your web server</strong></font></p>
+    <p>Using your FTP client, upload the files from each of your local directories and set the
+    permissions as shown in the table. Again, we assume that your CGI-BIN directory is
+    'cgi-bin' and your public html directory is 'htdocs'.</p>
+    <div align="center"><center><table border="1" cellpadding="2" width="100%" cellspacing="0">
+      <tr>
+        <td width="25%" align="center"><font color="#000080"><strong>Local Computer Directory</strong></font></td>
+        <td width="25%" align="center"><font color="#000080"><strong>Web Server Directory</strong></font></td>
+        <td width="25%" align="center"><font color="#000080"><strong>Transfer Mode</strong></font></td>
+        <td width="25%" align="center"><font color="#000080"><strong>File Permissions</strong></font></td>
+      </tr>
+      <tr>
+        <td width="25%" align="center">help</td>
+        <td width="25%" align="center">html/arplus</td>
+        <td width="25%" align="center">ASCII</td>
+        <td width="25%" align="center">Not Applicable</td>
+      </tr>
+      <tr>
+        <td width="25%" align="center">styles</td>
+        <td width="25%" align="center">html/arplus</td>
+        <td width="25%" align="center">ASCII</td>
+        <td width="25%" align="center">Not Applicable</td>
+      </tr>
+      <tr>
+        <td width="25%" align="center">images</td>
+        <td width="25%" align="center">html/arplus</td>
+        <td width="25%" align="center">BINARY</td>
+        <td width="25%" align="center">Not Applicable</td>
+      </tr>
+      <tr>
+        <td width="25%" align="center">scripts</td>
+        <td width="25%" align="center">cgi-bin/arplus</td>
+        <td width="25%" align="center">ASCII</td>
+        <td width="25%" align="center">0755 [drwxr-xr-x]</td>
+      </tr>
+      <tr>
+        <td width="25%" align="center">data</td>
+        <td width="25%" align="center">cgi-bin/arplus/data</td>
+        <td width="25%" align="center">ASCII</td>
+        <td width="25%" align="center">0777 [drwxrwxrwx]</td>
+      </tr>
+      <tr>
+        <td width="25%" align="center">mime</td>
+        <td width="25%" align="center">cgi-bin/arplus/MIME</td>
+        <td width="25%" align="center">ASCII</td>
+        <td width="25%" align="center">0755 [drwxr-xr-x]</td>
+      </tr>
+    </table>
+    </center></div><hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 7: Time to run the installation program</strong></font></p>
+    <p>To make things easy, we've created a program that will install your databases and
+    create other files needed to run the system.</p>
+    <p>If you receive any error messages when you run the installer program, go back and
+    double check everything.<ul>
+      <li><font color="#000080"><strong>Step 7(a) : Starting the installer program</strong></font></li>
+    </ul>
+    <blockquote>
+      <p>Using your web browser, run the installer program by entering the following address:</p>
+      <p><font color="#000080">http://www.yourdomain.com/cgi-bin/arplus/install.pl</font></p>
+      <p>(Obviously substitute yourdomain.com with your own domain name)</p>
+    </blockquote>
+    <ul>
+      <li><font color="#000080"><strong>Step 7(b) : Starting the installation procedure</strong></font></li>
+    </ul>
+    <blockquote>
+      <p>When it is run, the installer program will check certain aspects of the directories you
+      have created. If you see any error messages, go back over the directory creation and file
+      upload procedures then try running the installer again.</p>
+      <p>If there are no error messages, click the <strong>Install</strong> button to begin the
+      installation procedure.</p>
+      <p>In a few seconds, the results of the installation procedure will be shown. If you see
+      any error messages, go back over the installation instructions and double check everything
+      before trying again.</p>
+      <p>If no errors are reported, you can test that AutoResponse Plus runs by clicking the
+      link at the bottom of the page.</p>
+    </blockquote>
+    <ul>
+      <li><font color="#000080"><strong>Step 7(c) : Delete the installer program</strong></font></li>
+    </ul>
+    <blockquote>
+      <p><font color="#000080">IMPORTANT NOTE: When the installer has run without any errors and
+      AutoResponse Plus runs OK, you need to delete the file 'install.pl' from your
+      'cgi-bin/arplus' directory. If you don't, anyone can run the installer and delete all your
+      AutoResponse Plus data.</font></p>
+    </blockquote>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 8: Configuring AutoResponse Plus</strong></font></p>
+    <p>When you run AutoResponse Plus for the first time you will see a red message bar
+    telling you that the system setup is not yet complete. Enter <strong>owner</strong> for
+    the owner name and <strong>12345</strong> for the password on the login screen.<ul>
+      <li><font color="#000080"><strong>Step 8(a) : 5 important settings</strong></font></li>
+    </ul>
+    <blockquote>
+      <p>When you have logged in, click the <strong>Setup</strong> option on the menu bar.
+      Complete the five entries shown in red and click the <strong>Save Changes</strong> button
+      at the bottom. <font color="#000080">AutoResponse Plus will not run correctly until these
+      five items have been entered correctly.</font></p>
+    </blockquote>
+    <blockquote>
+      <p>The five entries are:</p>
+    </blockquote>
+    <blockquote>
+      <ul>
+        <li>your domain name (eg yourdomain.com)</li>
+        <li>the URL to your AutoResponse Plus scripts directory (eg
+          http://www.yourdomain.com/cgi-bin/arplus)</li>
+        <li>the path to your sendmail program</li>
+        <li>the e-mail address of your support desk (eg support@yourdomain.com)</li>
+        <li>the system e-mail address that will be used to send your subscribers confirmation
+          messages (eg admin@autoresponseplus.com)</li>
+      </ul>
+    </blockquote>
+    <blockquote>
+      <p>When you have saved these changes, the red message bar will vanish.</p>
+    </blockquote>
+    <ul>
+      <li><font color="#000080"><strong>Step 8(b) : Testing the AutoResponse Plus e-mail engine</strong></font></li>
+    </ul>
+    <blockquote>
+      <p>At this point, you can test if the AutoResponse Plus e-mail engine is working
+      correctly. Click on <strong>Setup</strong> on the menu bar then click on <strong>E-Mail
+      Send Test</strong> on the sub menu bar. Follow the instructions on the screen carefully.
+      If you get an Internal Server Error while running this test, check these items:</p>
+    </blockquote>
+    <blockquote>
+      <ul>
+        <li>Did you create the MIME directory in the correct place, upload the 'Lite.pm' file and
+          set all permissions as instructed?</li>
+        <li>When you created the MIM directory, did you type MIME in capital letters? You must!</li>
+        <li>Did you enter the correct path to your sendmail program? (It's usually something like
+          /usr/sbin/sendmail)</li>
+      </ul>
+    </blockquote>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 9: Setting up .forward</strong></font></p>
+    <p>All e-mails sent to your domain need to be checked to see if they are directed to one
+    of your autoresponders. This is done using the UNIX .forward system.<ul>
+      <li><font color="#000080"><strong>Step 9(a) : Editing the example .forward file</strong></font></li>
+    </ul>
+    <blockquote>
+      <p>The 'other' directory you created when unzipping contains an example .forward file
+      called 'forward'. Using a text editor, edit this file.</p>
+    </blockquote>
+    <blockquote>
+      <ul>
+        <li>Replace 'loginname' with the login name you use to access your web server.</li>
+        <li>Replace '/usr/bin/perl' with the correct path to Perl for your server.</li>
+        <li>Replace '/path/to/your/cgi-bin/arplus/emailcapture.pl' with the absolute path to
+          'emailcapture.pl' on your web server.</li>
+      </ul>
+      <ul>
+        <p><font color="#000080">IMPORTANT NOTE: The path to 'emailcapture.pl' you enter is from <strong>**your</strong>**
+        domain's root and not your <strong>**host's**</strong> server root. Sometimes these are
+        the same, sometimes they are not!</font></p>
+      </ul>
+    </blockquote>
+    <ul>
+      <li><font color="#000080"><strong>Step 9(b) : Uploading and renaming the .forward file</strong></font></li>
+    </ul>
+    <blockquote>
+      <p>Check that your web server does not already have a .forward file in your main login
+      directory. Note that this may not appear in your FTP client. You may need to login through
+      telnet and use the<strong> ll</strong> (lower case LL) to see it.</p>
+      <p>Using your FTP client in ASCII transfer mode, upload the edited 'forward' file to the
+      main login directory of your web server. <font color="#000080">Note that this file is
+      called 'forward' when you upload it but must be renamed '.forward' after upload. This is a
+      Windows limitation.</font></p>
+    </blockquote>
+    <ul>
+      <li><font color="#000080"><strong>Step 9(c) : Testing the .forward file</strong></font></li>
+    </ul>
+    <blockquote>
+      <p>To test that the .forward file is working correctly, click on <strong>Setup</strong> on
+      the menu bar then click on <strong>E-Mail Capture Test</strong> on the sub menu bar.
+      Follow the instructions on the screen carefully.</p>
+    </blockquote>
+    <p><font color="#000080"><strong>If you have problems...</strong></font></p>
+    <p>Some hosts do not allow Perl scripts to be run from within the .forward file. If this
+    is the case, you have some choices:<ol>
+      <li>Ask your host to remove this restriction. It is a UNIX/Linux configuration issue.</li>
+      <li>Use the file .procmailrc instead. Edit the example procmailrc file in the 'other'
+        directory on your PC, following the instructions in the file. Upload the file using ASCII
+        to your main login directory and rename it <strong>.procmailrc</strong></li>
+      <li>Check out the <strong>Troubleshooting</strong> forum at <a
+        href="http://www.autoresponseplus.com/forums">http://www.autoresponseplus.com/forums</a>
+        for some more solutions to .forward problems.</li>
+    </ol>
+    <blockquote>
+      <p>The procedure for testing .forward (explained above) can also be used to test that
+      .procmailrc is working.</p>
+    </blockquote>
+    <p>It would be unusual for your server not to be able to use at least one of these
+    methods.</p>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 10 : Setting up the cron job</strong></font></p>
+    <p>Once per day, AutoResponse Plus needs to send out any due follow-up messages. At this
+    time it will also send out any one-off messages you have queued. This process is managed
+    automatically by a cron job running on your web server. Some hosting services provide a
+    web based interface for creating and maintaining cron jobs. If this is the case, follow
+    the instructions provided by your host.</p>
+    <p>More often however, you will need to set up the cron task manually through telnet. Here
+    is a detailed explanation of the procedure.</p>
+    <p>You can check if your system is already running other cron jobs from the telnet prompt.
+    Login to your web server using your telnet client and enter the command <strong>crontab -l</strong>
+    [lower case L]. If cron jobs are already running, you will need to add what follows to the
+    end of your existing cron file rather than creating a new one.<ul>
+      <li><font color="#000080"><strong>Step 10(a) : Creating your cron file</strong></font></li>
+    </ul>
+    <blockquote>
+      <p>This contains a single line description of the automated task - what has to be run and
+      when. The 'other' directory on your PC contains an example cron file called 'arpcron'
+      which you can edit and use. An example is shown below.</p>
+    </blockquote>
+    <p align="center">30 23 * * * /usr/bin/perl /path/to/your/cgi-bin/arplus/daily.pl</p>
+    <blockquote>
+      <p><font color="#000080">IMPORTANT NOTE: The path to 'daily.pl' you enter is from your <strong>**host's</strong>**
+      server root and not <strong>**your</strong>** domain's root directory. Sometimes these are
+      the same. It would be normal for your domain or login name to appear somewhere in this
+      path.</font></p>
+      <p>The 30 23 * * * in the example tells UNIX that the job should be run every night at
+      23:30 hours (11.30pm). This can be set to whatever time you choose. If you change 30 23 to
+      * *, the cron taks will run once per minute. Although you would never normally use this,
+      it will allow you to test that the cron task is working -- see step 10(c) below.</p>
+      <p>If your server is already running a cron job, you will need to add your command line to
+      the existing cron file. You can check if your server is already running any cron jobs by
+      typing <strong>crontab -l</strong> (lower case L) at the telnet prompt.</p>
+      <p>Assuming your server is not already running cron jobs, upload your cron file using
+      ASCII mode to a location on your web server that does not have public access (like your
+      login root directory or a sub-directory of it).</p>
+    </blockquote>
+    <ul>
+      <li><font color="#000080"><strong>Step 10(b) : Running crontab to set up the cron job<br>
+        </strong></font><br>
+        Login to your server through telnet and navigate to the directory where you just stored
+        'arpcron'. Assuming your cron file is called 'arpcron' as in our example, type the command
+        <strong>crontab arpcron</strong> and hit Enter. You should simply get the UNIX prompt
+        back.</li>
+    </ul>
+    <blockquote>
+      <p>The command <strong>crontab -l</strong> (lower case L) will show you that the cron job
+      is active and the command <strong>crontab -r</strong> will cancel the cron job, should
+      this ever be necessary.</p>
+    </blockquote>
+    <ul>
+      <li><font color="#000080"><strong>Step 10(c) : Running a test cron task<br>
+        </strong></font><br>
+        As described above, if you set the cron task's time to * * * * *, it will run once per
+        minute. When you install AutoResponse Plus, the install program creates a test
+        autoresponder called<strong> test</strong>. It has an immediate message plus two
+        follow-ups that are scheduled to be sent out each time the cron task runs.</li>
+    </ul>
+    <blockquote>
+      <p>So set the cron task to run once per minute (remember to run <strong>crontab arpcron</strong>)
+      and then subscribe yourself to the autoresponder called <strong>test</strong> by sending a
+      blank e-mail to test@yourdomain.com. You will receive the first message immediately. One
+      minute later you will receive the second message and a minute after that you will receive
+      the third.</p>
+      <p>This tells you that the cron task is working correctly. You can then safely set the
+      time back to 30 23 in the cron file. Remember you need to run <strong>crontab arpcron</strong>
+      to activate the changes you made to the file.</p>
+    </blockquote>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Step 11 : Running AutoResponse Plus</strong></font></p>
+    <p><strong>Congratulations - installation is complete!</strong></p>
+    <p>At any time, you can reach the AutoResponse Plus login screen in your browser by going
+    to the URL:</p>
+    <p><font color="#000080">http://www.yourdomain.com/cgi-bin/arplus/arplus.pl</font></p>
+    <p>(Obviously substitute yourdomain.com with your own domain name)</p>
+    <p>It would be a good idea to bookmark this address.</p>
+    <p>The default 'Owner Name' is <strong>owner</strong> and the default 'Password' is <strong>12345</strong>.
+    When you have logged in to the system, click on <strong>Your Profile</strong> on the menu
+    bar. Here you can enter a new owner name and password. We recommend you do this
+    immediately after installation.</p>
+    <hr noshade size="1" color="#000080">
+    <p><font color="#000080"><strong>Further help and support</strong></font></p>
+    <p>AutoResponse Plus has a detailed in-built help system and every page has a context
+    sensitive help link. There is also a help index which is accessible from every help page.</p>
+    <p>The user guide for the software is called <strong>manual.pdf</strong> and was supplied
+    with the system. It can be found in the 'docs' directory which is created when the issue
+    file is unzipped.</p>
+    <p>We hope you enjoy using your new AutoResponse Plus system.<ul>
+      <li>If you need any help or would like to suggest improvements for future versions, visit
+        our community at<br>
+        <a href="http://www.autoresponseplus.com/forums">http://www.autoresponseplus.com/forums</a></li>
+    </ul>
+    <ul>
+      <li>Watch out for updates at<br>
+        <a href="http://www.autoresponseplus.com/members">http://www.autoresponseplus.com/members</a></li>
+    </ul>
+    <ul>
+      <li>You can contact us directly at<br>
+        <a href="http://www.autoresponseplus.com/support">http://www.autoresponseplus.com/support</a></li>
+    </ul>
+    <ul>
+      <li>If you would like to find out more about using your new AutoResponse Plus system to
+        generate income, visit our affiliate center at<br>
+        <a href="http://www.autoresponseplus.com/affiliates">http://www.autoresponseplus.com/affiliates</a></li>
+    </ul>
+    <ul>
+      <li>Remember we can install AutoResponse Plus for you. For more details, visit<br>
+        <a href="http://www.autoresponseplus.com/services">http://www.autoresponseplus.com/services</a></li>
+    </ul>
+    <p>Finally, thanks once again for choosing AutoResponse Plus.<br>
+    </p>
+    <p><font color="#000080"><strong>The AutoResponse Plus Team</strong></font></p>
+    <hr noshade size="1" color="#000080">
+    <p><font size="1">© Copyright Gobots Internet Solutions, 2001.<br>
+    All rights reserved.<br>
+    <a href="http://www.autoresponseplus.com">http://www.autoresponseplus.com</a></font></td>
+  </tr>
+</table>
+</center></div>
+</body>
+</html>
