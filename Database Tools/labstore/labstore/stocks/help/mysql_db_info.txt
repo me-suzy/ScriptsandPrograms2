@@ -1,0 +1,710 @@
+﻿MySQL database name
+-------------------
+
+labstock
+
+==============================
+
+The tables may have been modified for customization.
+
+------
+Tables
+------
+
+This is general description. MySQL structure is defined at the end.
+
+1. Table of users
+.................
+
+Name - users
+For - member list
+
+7 columns
+
+ID_user - primary key - integer - autoincrements
+name - full name
+status - past or current user
+group - administrator, etc.
+comment - comment
+md5_password - MD5 encrypted password
+username - for logging in
+
+2. Table of protein reagents
+............................
+
+Name - proteins
+For - antibodies, purified proteins
+
+24 columns
+
+id - primary key - integer - autoincrements 
+name - protein name, antibody against, etc. 
+source - company, lab, etc.
+lot_no -
+cat_no - catalog detail
+expiry_date - 
+box - storage box details, e.g. box B12
+fridge - e.g., no. 2 at min 20
+amount - e.g., 100 ug, 2 vials, etc.
+experiment - e.g., purified in X413 by Santosh
+nature - primary antibody, purified protein, etc.
+made_in - E.coli, mouse, etc.
+isotype - IgG, etc.; applicable if ab
+clonality - monoclonal, etc.; applicable if ab
+conjugate - e.g., biotin
+reactivity - e.g., mouse and turkey
+comment -
+added_by -
+added_on - date type
+modified_by -
+modified_on - date type
+acquired_on
+ID_user - value of ID_user of table 'users'; needed for 'maximal' authentication if enabled
+
+3. Table of chemical reagents
+.............................
+
+Name - chemicals
+For - chemicals, nucleic acids
+
+20 columns
+
+id - primary key - integer - autoincrements
+name - name
+source - company, lab, etc.
+lot_no -
+cat_no - catalog detail
+expiry_date - 
+box - storage box details, e.g. box B12
+fridge - e.g., no. 2 at min 20
+amount - e.g., 100 ug, 2 vials, etc.
+experiment - e.g., purified in X413 by Santosh
+nature - chemical, RNA, etc.
+use - e.g., glycosylation inhibition
+condition - e.g., lyophilized, in DMSO, etc.
+comment -
+added_by -
+added_on - date type
+modified_by -
+modified_on - date type
+acquired_on -
+ID_user - value of ID_user of table 'users'; needed for 'maximal' authentication if enabled
+
+4. Table of records
+...................
+
+Name - records
+For - cell history, freezer box record, documents, etc.
+
+12 columns
+
+id - primary key - integer - autoincrements
+name - description
+type - e.g., freezer box record
+owner - person who is owner
+experiment - e.g., purified in X413 by Santosh
+comment -
+added_by -
+added_on - date type
+modified_by -
+modified_on - date type
+file - location of attached file
+ID_user - value of ID_user of table 'users'; needed for 'maximal' authentication if enabled
+
+5. Table of plasmids
+....................
+
+Name - plasmids
+For - plasmids
+
+28 columns
+
+id - primary key - integer - autoincrements
+name - name of plasmid, including aliases
+description - 
+insert - e.g., Fut10 ORF - 1300 bp
+vector - e.g., pSecFc - 5600 bp
+generation - e.g., Mouse kidney full ORF RTPCR product TA cloned
+mam_prom - e.g., CMV
+other_prom - e.g., T7
+feature - e.g., IRES-GFP
+tag - e.g., N-terminal myc
+bact_sel - e.g., ampicillin
+other_sel - e.g., zeocin
+source - company, lab, etc. 
+plasmid_box - plasmid storage box details, e.g. box B12
+bacteria_box - transformed bacteria storage box details, e.g. box B12
+plasmid_fridge - e.g., no. 2 at min 20
+bacteria_fridge - 
+experiment - e.g., purified in X413 by Santosh
+map_file - plasmid map file location
+insert_seq_file - insert sequence file location
+extra_file - other file, e.g., vector non-cutter list
+comment -
+added_by -
+added_on - date type
+modified_by -
+modified_on - date type
+acquired_on -
+owner - 
+ID_user - value of ID_user of table 'users'; needed for 'maximal' authentication if enabled
+
+6. Table of cell-lines
+......................
+
+Name - cell-lines
+For - cell-lines
+
+24 columns
+
+id - primary key - integer - autoincrements - database ID
+name - name of cell-line, including aliases
+nature - lineage, e.g., NIH 3T3, mouse ES cells
+type - primary, transfectant, etc.
+description - e.g., transfected with mouse Fut10 ORF construct
+generation - e.g., isolated by expression cloning
+source - company, lab, etc.
+acquired_on - date of obtaining
+owner - owner of stocks
+selection - e.g., grow in 1.5 mg/ml G418
+cult_feat - e.g., adherent, special medium requirement
+freez_thaw_feat - how to thaw, etc.
+sev_loc - which fridge, etc.
+nit_loc - which fridge, etc.
+hun_loc - which fridge, etc.
+sev_box - which box, how many vials and date of freeze and age
+nit_box - which box, how many vials and date of freeze and age
+hun_box - which box, how many vials and date of freeze and age 
+experiment - e.g., purified in X413 by Santosh
+comment -
+added_by -
+added_on - date type
+modified_by -
+modified_on - date type
+ID_user - value of ID_user of table 'users'; needed for 'maximal' authentication if enabled
+
+7. Table of parts
+.................
+
+Name - parts
+For parts, equipments, kits, accessories, etc.
+
+14 columns
+
+id - primary key - integer - autoincrements - database ID
+name - name or description
+category
+usage
+quantity
+condition
+location - storage
+requirement - other accessories needed, etc.
+comment
+added_by
+added_on - date type
+modified_by
+modified_on - date type
+ID_user - value of ID_user of table 'users'; needed for 'maximal' authentication if enabled
+
+8. Table of others
+..................
+
+Name - others
+For miscellaneous items, books, software, etc.
+
+14 columns
+
+id - primary key - integer - autoincrements - database ID
+name - name or description
+category
+usage
+quantity
+condition - or status
+location - storage
+comment
+added_by
+added_on - date type
+modified_by
+modified_on - date type
+ID_user - value of ID_user of table 'users'; needed for 'maximal' authentication if enabled
+
+9. Tables used by interface creator for configuring forms
+.........................................................
+
+dadabik_ prefixed tables and dadabik_table_list
+
+
+-------------------
+Structure of tables
+-------------------
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+CREATE TABLE `cell-lines` (
+  `id` int(11) NOT NULL auto_increment,
+  `owner` varchar(64) NOT NULL default '',
+  `name` varchar(64) NOT NULL default '',
+  `nature` varchar(128) NOT NULL default '',
+  `type` varchar(64) NOT NULL default '',
+  `description` text NOT NULL,
+  `generation` text NOT NULL,
+  `source` text NOT NULL,
+  `acquired_on` varchar(128) NOT NULL default '',
+  `selection` varchar(128) NOT NULL default '',
+  `cult_feat` text NOT NULL,
+  `freez_thaw_feat` text NOT NULL,
+  `sev_loc` text NOT NULL,
+  `hun_loc` text NOT NULL,
+  `nit_loc` text NOT NULL,
+  `sev_box` text NOT NULL,
+  `hun_box` text NOT NULL,
+  `nit_box` text NOT NULL,
+  `experiment` text NOT NULL,
+  `comment` text NOT NULL,
+  `added_by` varchar(128) NOT NULL default '',
+  `added_on` date NOT NULL default '0000-00-00',
+  `modified_by` varchar(128) NOT NULL default '',
+  `modified_on` date NOT NULL default '0000-00-00',
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `chemicals` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(128) NOT NULL default '',
+  `nature` varchar(64) NOT NULL default '',
+  `source` varchar(64) NOT NULL default '',
+  `lot_no` varchar(32) NOT NULL default '',
+  `cat_no` varchar(32) NOT NULL default '',
+  `acquired_on` varchar(32) NOT NULL default '',
+  `expiry_date` varchar(32) NOT NULL default '',
+  `use` text NOT NULL,
+  `condition` varchar(128) NOT NULL default '',
+  `amount` varchar(64) NOT NULL default '',
+  `box` varchar(64) NOT NULL default '',
+  `fridge` varchar(64) NOT NULL default '',
+  `experiment` text NOT NULL,
+  `comment` text NOT NULL,
+  `added_on` date NOT NULL default '0000-00-00',
+  `added_by` varchar(64) NOT NULL default '',
+  `modified_on` date NOT NULL default '0000-00-00',
+  `modified_by` varchar(64) NOT NULL default '',
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_cell-lines` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL,
+  `primary_key_table_field` varchar(255) NOT NULL,
+  `primary_key_db_field` varchar(50) NOT NULL,
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL,
+  `linked_fields_extra_mysql` varchar(255) NOT NULL,
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL,
+  `height_field` varchar(5) NOT NULL,
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL,
+  `order_form_field` smallint(6) NOT NULL,
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_chemicals` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL default '',
+  `primary_key_table_field` varchar(255) NOT NULL default '',
+  `primary_key_db_field` varchar(50) NOT NULL default '',
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL default '',
+  `linked_fields_extra_mysql` varchar(255) NOT NULL default '',
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL default '',
+  `height_field` varchar(5) NOT NULL default '',
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL default '',
+  `order_form_field` smallint(6) NOT NULL default '0',
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_others` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL default '',
+  `primary_key_table_field` varchar(255) NOT NULL default '',
+  `primary_key_db_field` varchar(50) NOT NULL default '',
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL default '',
+  `linked_fields_extra_mysql` varchar(255) NOT NULL default '',
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL default '',
+  `height_field` varchar(5) NOT NULL default '',
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL default '',
+  `order_form_field` smallint(6) NOT NULL default '0',
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_parts` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL default '',
+  `primary_key_table_field` varchar(255) NOT NULL default '',
+  `primary_key_db_field` varchar(50) NOT NULL default '',
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL default '',
+  `linked_fields_extra_mysql` varchar(255) NOT NULL default '',
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL default '',
+  `height_field` varchar(5) NOT NULL default '',
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL default '',
+  `order_form_field` smallint(6) NOT NULL default '0',
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_plasmids` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL default '',
+  `primary_key_table_field` varchar(255) NOT NULL default '',
+  `primary_key_db_field` varchar(50) NOT NULL default '',
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL default '',
+  `linked_fields_extra_mysql` varchar(255) NOT NULL default '',
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL default '',
+  `height_field` varchar(5) NOT NULL default '',
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL default '',
+  `order_form_field` smallint(6) NOT NULL default '0',
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_proteins` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL default '',
+  `primary_key_table_field` varchar(255) NOT NULL default '',
+  `primary_key_db_field` varchar(50) NOT NULL default '',
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL default '',
+  `linked_fields_extra_mysql` varchar(255) NOT NULL default '',
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL default '',
+  `height_field` varchar(5) NOT NULL default '',
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL default '',
+  `order_form_field` smallint(6) NOT NULL default '0',
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_records` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL default '',
+  `primary_key_table_field` varchar(255) NOT NULL default '',
+  `primary_key_db_field` varchar(50) NOT NULL default '',
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL default '',
+  `linked_fields_extra_mysql` varchar(255) NOT NULL default '',
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL default '',
+  `height_field` varchar(5) NOT NULL default '',
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL default '',
+  `order_form_field` smallint(6) NOT NULL default '0',
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_table_list` (
+  `name_table` varchar(255) NOT NULL default '',
+  `allowed_table` tinyint(4) NOT NULL default '0',
+  `enable_insert_table` varchar(5) NOT NULL default '',
+  `enable_edit_table` varchar(5) NOT NULL default '',
+  `enable_delete_table` varchar(5) NOT NULL default '',
+  `enable_details_table` varchar(5) NOT NULL default '',
+  PRIMARY KEY  (`name_table`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_users` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL,
+  `primary_key_table_field` varchar(255) NOT NULL,
+  `primary_key_db_field` varchar(50) NOT NULL,
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL,
+  `linked_fields_extra_mysql` varchar(255) NOT NULL,
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL,
+  `height_field` varchar(5) NOT NULL,
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL,
+  `order_form_field` smallint(6) NOT NULL,
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `others` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` text NOT NULL,
+  `category` varchar(128) NOT NULL default '',
+  `usage` text NOT NULL,
+  `quantity` text NOT NULL,
+  `condition` text NOT NULL,
+  `location` text NOT NULL,
+  `requirement` text NOT NULL,
+  `comment` text NOT NULL,
+  `added_by` text NOT NULL,
+  `added_on` date NOT NULL default '0000-00-00',
+  `modified_by` text NOT NULL,
+  `modified_on` date NOT NULL default '0000-00-00',
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `parts` (
+  `id` int(11) NOT NULL default '0',
+  `name` text NOT NULL,
+  `category` varchar(128) NOT NULL default '',
+  `usage` text NOT NULL,
+  `quantity` text NOT NULL,
+  `condition` text NOT NULL,
+  `location` text NOT NULL,
+  `requirement` text NOT NULL,
+  `comment` text NOT NULL,
+  `added_by` text NOT NULL,
+  `added_on` date NOT NULL default '0000-00-00',
+  `modified_by` text NOT NULL,
+  `modified_on` date NOT NULL default '0000-00-00',
+  `ID_user` varchar(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `plasmids` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL default '',
+  `description` varchar(255) NOT NULL default '',
+  `insert` varchar(255) NOT NULL default '',
+  `vector` varchar(255) NOT NULL default '',
+  `owner` varchar(128) NOT NULL default '',
+  `generation` text NOT NULL,
+  `mam_prom` varchar(255) NOT NULL default '',
+  `other_prom` varchar(255) NOT NULL default '',
+  `feature` text NOT NULL,
+  `tag` text NOT NULL,
+  `bact_sel` varchar(255) NOT NULL default '',
+  `other_sel` varchar(255) NOT NULL default '',
+  `plasmid_box` varchar(255) NOT NULL default '',
+  `plasmid_fridge` varchar(255) NOT NULL default '',
+  `bact_box` varchar(255) NOT NULL default '',
+  `bact_fridge` varchar(255) NOT NULL default '',
+  `source` varchar(255) NOT NULL default '',
+  `acquired_on` varchar(255) NOT NULL default '',
+  `experiment` text NOT NULL,
+  `comment` text NOT NULL,
+  `map_file` text NOT NULL,
+  `insert_seq_file` text NOT NULL,
+  `extra_file` text NOT NULL,
+  `added_by` varchar(64) NOT NULL default '',
+  `added_on` date NOT NULL default '0000-00-00',
+  `modified_by` varchar(64) NOT NULL default '',
+  `modified_on` date NOT NULL default '0000-00-00',
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `proteins` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL default '',
+  `source` varchar(128) NOT NULL default '',
+  `lot_no` varchar(32) NOT NULL default '',
+  `cat_no` varchar(32) NOT NULL default '',
+  `expiry_date` varchar(32) NOT NULL default '',
+  `fridge` varchar(64) NOT NULL default '',
+  `box` varchar(64) NOT NULL default '',
+  `amount` varchar(64) NOT NULL default '',
+  `experiment` text NOT NULL,
+  `nature` varchar(64) NOT NULL default '',
+  `made_in` varchar(128) NOT NULL default '',
+  `isotype` varchar(32) NOT NULL default '',
+  `clonality` varchar(64) NOT NULL default '',
+  `conjugate` varchar(64) NOT NULL default '',
+  `reactivity` varchar(255) NOT NULL default '',
+  `comment` text NOT NULL,
+  `acquired_on` varchar(32) NOT NULL default '',
+  `added_by` varchar(64) NOT NULL default '',
+  `added_on` date NOT NULL default '0000-00-00',
+  `modified_by` varchar(64) NOT NULL default '',
+  `modified_on` date NOT NULL default '0000-00-00',
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `records` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL default '',
+  `type` varchar(64) NOT NULL default '',
+  `owner` varchar(64) NOT NULL default '',
+  `experiment` text NOT NULL,
+  `comment` text NOT NULL,
+  `added_by` varchar(64) NOT NULL default '',
+  `added_on` date NOT NULL default '0000-00-00',
+  `modified_by` varchar(64) NOT NULL default '',
+  `modified_on` date NOT NULL default '0000-00-00',
+  `file` text NOT NULL,
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `users` (
+  `ID_user` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL default '',
+  `md5_password` varchar(32) NOT NULL,
+  `status` varchar(32) NOT NULL default '',
+  `group` varchar(64) NOT NULL default '',
+  `comment` varchar(255) NOT NULL default '',
+  `username` varchar(32) NOT NULL,
+  PRIMARY KEY  (`ID_user`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+SET FOREIGN_KEY_CHECKS = 1;
