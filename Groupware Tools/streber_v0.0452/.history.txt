@@ -1,0 +1,90 @@
+streber-version-history
+
+
+
+
+
+=== v0.0452 [2005-09-09] ====================================================
+
+interface
+-----------
++ commentMoveToFolder
++ go up in hierarchie (ALT-U)
+% hide help-block from home
+
+interal
+---------
++ theme-settings for list-row-colors (odd/even/selected/hover)
++ define welcome-message in conf
+% fixed display of dropDown menu
+- use php5- _GET _POST _COOKIE - vars
+% initialize selected rows-hilighting on page load
+% remove quicknew and pagefunctions from print-theme
+% validate user-rights on moving tasks
+% fixed HTTP_GET_VARS - complaints with on restrictive php-environments
+
+
+=== v0.0451 [2005-09-04] ====================================================
+
++ create another project after submut
++ fixed comment-view_collapsed error
+
+
+
+=== v0.045 [2005-09-02]  ================================================================
+
+major changes
+------------------
++ duplicating project including all sub-items (that actually enables using templates)
++ list Person with accounts
++ installation can now upgrade (starting from v0.044)
++ print_style / (just try print-preview in your browser... it's nice)
+% fixed bug with double assigning people if current user is admin but not in team
+% company-names not wrapping in project-overview
+% added correct toggle-buttons to blocks
+% fixed overwriting nickname-bug
+
+interface
+--------------
++ in personListAccounts...
+  + show current projects of person
+  + show user-profile
++ add status-summary-text field to projects
++ added cancel-buttons to edit-forms
++ added styles to buttons
++ added page-functions at the upper right (for tasks, projects, persons, companies)
++ project->closed tasks
++ project->History
++ added functions to taskFolder-List
++ efforts are now related to tasks (drop-downlist for project-foldes when editing effort)
++ effort-list show parent-task
++ public-level can be changed for effort
++ fixed colors of labels
++ fixed font-size of comment-texts
++ tasks can now be undeleted (restored)
+
+minor changes
+----------------------
+% fixed display of daygraph
+% fixed validation of environment (php-version and db-connection)
+% added a config-text of fatal-startup-errors
+% hide client-view-link from client
++ added STRING_LENGTH_SHORT - config setting
+% changed display of level-open (was shown as 4)
+% fixed the db-version check when logging in
+% the last breadcrumb is not a link
+% adjusted page-title when editing efforts and comments
+
+
+
+internal
+----------
++ g_item_names
+% fixed initialization of abstract project-items
+% set modification-timestamp and user when updating
+% set delete-timestamp and user when deleting
++ Task::getSumEfforts() (recursively including all subtasks)
+% finetuned Project::getTasks() (support of min ... max_status)
+% projectView options are now define in build_projVew_options()
+
+
