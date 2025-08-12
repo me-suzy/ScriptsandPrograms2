@@ -1,0 +1,63 @@
+<form>
+	<title>Add / Edit User</title>
+	<action>index.php?sub=users&action=store&type=add</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="return" >
+			<location>index.php?sub=users</location>
+		</return>
+
+		<save onclick="" button="saveall">
+			<location>javascript:document.forms[0].submit();</location>
+		</save>
+
+	</buttons>
+
+	<redirect>index.php?sub=users</redirect>
+
+	<fields>
+
+
+		<user_id type="hidden" hidden="true"/>
+
+		<user_name type="textbox" size="35" required="true" validate="A:2:200">			
+			<title>User Name</title>			
+		</user_name>
+
+		<user_login type="textbox" size="20" unique="true" required="true" validate="A:2:200">			
+			<title>Login</title>			
+			<description>Enter the login name this user will use to login in to the admin panel</description>
+		</user_login>
+
+		<user_password type="textbox" size="20" required="true" validate="A:2:200">			
+			<title>Password</title>			
+		</user_password>
+
+		<user_level type="droplist" empty="true" required="true" validate="A:1:200">			
+			<title>User Level</title>			
+
+			<options>
+				<option name="1">Normal User</option>
+				<option name="0">Administrator</option>
+			</options>
+
+			<description>Normal users have access only to the project where they are assigned.</description>
+		</user_level>
+
+		<user_email type="textbox" size="30" required="true" unique="true" validate="E:2:200">			
+			<title>Email</title>			
+			<description>Enter a valid email for this user. It will be used to send status changes notices.</description>
+		</user_email>
+
+	</fields>
+</form>
