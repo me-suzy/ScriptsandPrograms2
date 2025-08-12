@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
+  <head>
+
+    <title>myobjects:command_line_client [MyObjects]</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+
+    <meta name="generator" content="DokuWiki" />
+
+    <link rel="stylesheet" media="screen" type="text/css" href="./style.css" />
+
+    <link rel="stylesheet" media="print" type="text/css" href="./print.css" />
+
+    <link rel="shortcut icon" href="./images/favicon.ico" />
+
+    <link rel="start" href="./doku.php?id=" />
+
+    <link rel="contents" href="command_line_client&amp;do=index.html" title="" />
+
+    <link rel="alternate" type="application/rss+xml" title="Recent Changes" href="./feed.php" />
+
+    <link rel="alternate" type="application/rss+xml" title="Current Namespace" href="./feed.php?mode=list&amp;ns=" />
+
+    <link rel="alternate" type="text/html" title="Plain HTML" href="command_line_client&amp;do=export_html.html" />
+
+    <link rel="alternate" type="text/plain" title="Wiki Markup" href="command_line_client&amp;do=export_raw.html" />
+
+        <meta name="robots" content="noindex,nofollow" />
+
+
+    <script language="JavaScript" type="text/javascript" src="./script.js"></script>
+
+
+
+    <script language="JavaScript" type="text/javascript">
+
+    var alertText   = 'Please enter the text you want to format.\nIt will be appended to the end of the document.';
+
+    var notSavedYet = 'There are unsaved changes that will be lost.\nReally continue?';
+
+    var baseURL     = './';
+
+    </script>
+
+
+
+    <!--[if gte IE 5]>
+
+    <style type="text/css">
+
+      /* that IE 5+ conditional comment makes this only visible in IE 5+ */
+
+      img { behavior: url("./pngbehavior.htc"); } /* IE bugfix for transparent PNGs */
+
+    </style>
+
+    <![endif]-->
+
+	</head><body>
+<a name="deploying_applications"></a><h1>Deploying Applications</h1><div class="level1">
+<p>
+After designing your <a href="database_schema_file.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">database schema</a> and <a href="generating_classes.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">creating your classes</a> to a folder, you will notice that a file named <code>MyObjectsSettings.php</code> is created. Edit this file and set the path for your <a href="runtime.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">runtime</a> classes and the generated classes. Additionally set the database access information about your MySql server.
+</p>
+
+<pre class="code"><span class="co1">// Runtime library path. This is the path of the directory named 'runtime'.</span>
+<span class="co1">// Without a trailing slash</span>
+<a target="_blank"  href="http://www.php.net/define"><span class="kw3">define</span></a><span class="br0">&#40;</span><span class="st0">'MyObjectsRuntimePath'</span>, <span class="st0">'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY/AAAAA'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">// The path of generated classes</span>
+<span class="co1">// Without a trailing slash</span>
+<a target="_blank"  href="http://www.php.net/define"><span class="kw3">define</span></a><span class="br0">&#40;</span><span class="st0">'MyObjectsClassPath'</span>, <span class="st0">'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY/XXXXXX'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="coMULTI">/**
+* MyObjects Runtime Settings
+*
+* This class defines some configuration constants
+*
+* @author Erdinc Yilmazel &lt;erdinc@yilmazel.com&gt;
+* @version 1.0
+* @package MyObjectsRuntime
+*/</span>
+<span class="kw2">class</span> MyObjectsRuntimeSettings <span class="br0">&#123;</span>
+    
+    <span class="co1">// This Section Should Be Edited -------------------------------------------</span>
+    
+    <span class="co1">// Database Host Name</span>
+    const DB_HOST =             <span class="st0">'localhost'</span>;
+    <span class="co1">// Database User Name</span>
+    const DB_USER =             <span class="st0">''</span>;
+    <span class="co1">// Database Password</span>
+    const DB_PASSWORD =         <span class="st0">''</span>;
+    <span class="co1">// Database Name</span>
+    const DB_NAME =             <span class="st0">'casestudy'</span>;
+    
+    <span class="co1">// End Of Editing Section. Do not change anything below this unless you know</span>
+    <span class="co1">// what you are doing.</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+In the scripts that you are going to write you should include <code>MyObjectsSettings.php</code> and <code>Base.php</code> files. Here is a header that you can add in your php scripts:
+</p>
+
+<pre class="code"><span class="kw1">require_once</span><span class="br0">&#40;</span><span class="st0">'MyObjectsSettings.php'</span><span class="br0">&#41;</span>;
+<span class="kw1">require_once</span><span class="br0">&#40;</span>MyObjectsRuntimePath . <span class="st0">'/Base.php'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">// Write your code below this.</span></pre>
+
+</div>
+<!-- cachefile ./data/.cache/c7e389171d8adb9aa37be55a5ed608c2 used -->
+</body>
+</html>
