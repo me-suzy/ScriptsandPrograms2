@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>WB News Administration Panel - Help</title>
+<script type="text/javascript">
+
+var helpContentOpen = null;
+
+window.onload = function()
+{
+    var e = document.getElementById("help-contents");
+    var help = e.getElementsByTagName("div");
+    
+    var contentID = new Array();
+    
+    for (var i = 0; i < help.length; i = i + 1)
+    {
+        if (help[i].id !== "home")
+        {
+            contentID.push(help[i].id);
+        }
+    }
+    
+    contentID.sort(array_compare);
+    helpListDisplay(contentID);
+    
+    // check if we have a subject to display
+    var url = document.URL;
+    helpDisplay(url.substr(url.indexOf("#") + 1));
+}
+
+function helpListDisplay(myHelpList)
+{
+    var e = document.getElementById("help-list");
+    var helpList = "";
+    helpList += '<a href="" onclick="helpDisplay(\'home\');return false;">Help Index</a><br />';
+    for (var i = 0; i < myHelpList.length; i = i + 1)
+    {
+        helpList += '<a href="" onclick="helpDisplay(\'' + myHelpList[i] + '\');return false;">' + helpFormalName(myHelpList[i]) + '</a><br />';
+    }
+    
+    e.innerHTML = helpList;
+}
+
+function helpFormalName(name)
+{
+    var myNameArray = name.split("-");
+    var string = "";
+    
+    string = myNameArray[0].substring(0, 1).toUpperCase() + myNameArray[0].substring(1) + " ";
+    string += myNameArray[1].substring(0, 1).toUpperCase() + myNameArray[1].substring(1);
+
+    return string;
+}
+
+function array_compare(a, b)
+{
+    if (a > b)
+    {
+        return 1
+    }
+    else if (a < b)
+    {
+        return -1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function helpDisplay(id)
+{
+    var e = document.getElementById(id);
+    if (e === null)
+    {
+        helpContentOpen = "home";
+        document.getElementById("home").style.display = "block";
+        return;
+    }
+    
+    if (helpContentOpen !== null)
+    {
+        document.getElementById(helpContentOpen).style.display = "none";
+    }
+    
+    helpContentOpen = id;
+    e.style.display = "block";
+}
+
+</script>
+<style type="text/css">
+
+body {
+    font: 12px  arial, helvectica, sans-serif;
+    background: #eee;
+}
+
+#logo {
+    background: #fff;
+}
+
+#help-list {
+    float: left;
+    width: 130px;
+    height: 190px;
+    overflow: auto;
+    padding: 5px;
+    background: #fff;
+}
+
+#help-contents {
+    height: 190px;
+    overflow: auto;
+    padding: 5px;
+    background: #fff;
+}
+
+#footer {
+    text-align: center;
+}
+
+#help-contents h1 {
+    margin: 0px;
+    font: 20px arial, helvectica, sans-serif;
+    font-weight: bold;
+}
+
+#help-contents h2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.content-display {
+    display: none;
+}
+
+</style>
+</head>
+<body>
+
+<div id="logo"><img src="./images/wbnews.png" alt="WB News" title="WB News" /></div>
+<div id="help-container">
+    <div id="help-list"></div>
+    <div id="help-contents">
+        <div id="home" class="content-display">
+            <h1>Help Index</h1>
+            This help section is meant to make sure difficuilty tasks are easier by having a quick reference to use to be able to complete the task. Its also here to get the most out of WB News.
+        </div>
+        <div id="emoticon-code" class="content-display">
+            <h1>Emoticon Code</h1>
+            A unique code which when using the Editor will be later converted to the Emoticon Image
+        </div>
+        <div id="emoticon-image" class="content-display">
+            <h1>Emoticon Image</h1>
+            The absolute location to the emoticon image to use.
+        </div>
+        <div id="category-avatar" class="content-display">
+            <h1>Category Avatar</h1>
+            The file name of the category image located in the WB News avatar directory.
+        </div>
+        <div id="category-avatar-link" class="content-display">
+            <h1>Category Avatar Link</h1>
+            An absolute link i.e. http://mydomain.com/path/to/myimage.png it can be any file type accessible by the browser.
+        </div>
+        <div id="user-search" class="content-display">
+            <h1>User Search</h1>
+            The Search user link opens in a popup windows to search for username(s). You can only find usernames that are in a usergroup lower than the group your in.
+        </div>
+        <div id="theme-name" class="content-display">
+            <h1>Theme Name</h1>
+            The name of the theme you want.
+        </div>
+        <div id="theme-dir" class="content-display">
+            <h1>Theme Directory</h1>
+            The directory name which is located in the templates directory of WB News.
+        </div>
+        <div id="backup-format" class="content-display">
+            <h1>Backup Format</h1>
+            You can download or view a online text version of each format. 
+            <h2>SQL</h2>
+            The SQL (Structured Query Language) format allows for easy backup being core language of the Database. The format is not of MySQL dump version or PHPMyAdmin however using either tool to re-use an old backup of the SQL format should work.
+            <h2>WBSML</h2>
+            The WBSML (Webmobo Structured Query Markup Language) format is an XML format developed by the Webmobo Development Team.<p />This format will only work with Webmobo Applications the format doesnt use to the Core Database Language which is SQL (Structured Query Language), however since its built for Webmobo Applications you do not require the knowledge of the Table Formats.<p />This format will only store data records of each tables.
+        </div>
+    </div>
+    <div id="footer">[<a href="" onclick="window.close();">Close Window</a>]</div>
+</div>
+
+</body>
+</html>
