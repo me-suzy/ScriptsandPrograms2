@@ -1,0 +1,159 @@
+<font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font color="#333333"> 
+
+MASS EMAIL: </font></b></font> <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"><?php echo $error; ?> 
+
+</font> <br>
+
+<br>
+
+<form method="post" action="" onSubmit="validate();return returnVal;">
+
+  <table valign="top" width="93%" border="0" cellspacing="0" cellpadding="1" class="form_text" bgcolor="#F3F3F3">
+
+    <tr valign="top"> 
+
+      <td width="22%" valign="top"> 
+
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>
+
+          Message:</font></div>
+
+      </td>
+
+      <td width="78%" valign="top"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>
+
+        <textarea name="email_message" cols="40" style="border: 1 solid #666666" rows="6"><?php
+
+ if($admin_action <>"account_email") { echo "Dear <CUSTNAME>,
+ "; } ?>
+<? echo $desc ?>
+</textarea>
+
+        </font></td>
+
+    </tr>
+
+    <tr valign="top"> 
+
+      <td width="22%"> 
+
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Subject:</font></div>
+
+      </td>
+
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+        <input type="text" name="subject" maxlength="50" size="41" style="border: 1 solid #666666">
+
+        </font></td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="22%"> 
+
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">From 
+
+          Email:</font></div>
+
+      </td>
+
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+        <input type="text" name="from_email" maxlength="50" size="41" style="border: 1 solid #666666">
+
+        </font></td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="22%"> 
+
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">From 
+
+          Name:</font></div>
+
+      </td>
+
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+        <input type="text" name="from_name" maxlength="50" size="41" style="border: 1 solid #666666">
+
+        </font></td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="22%"> 
+
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">High 
+
+          Priority?</font></div>
+
+      </td>
+
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+        <input type="checkbox" name="high_priority" value="Y">
+
+        </font></td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="22%"> 
+
+        <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Recipients:</font></div>
+
+      </td>
+
+      <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"><?php if($admin_action=="account_email") { ?> 
+
+        <textarea name="recipient" cols="40" style="border: 1 solid #666666" rows="6"><? echo $recipient ?></textarea>
+
+        <input type="hidden" name="admin_action" value="account_email_2">
+
+        <input type="hidden" name="page" value="admin">
+
+        <br>
+
+        <? } else { ?> </font> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+        <input type="hidden" name="page" value="admin">
+
+        <select name="admin_action">
+          <option value="email_all" selected>Email All Accounts</option>
+        </select>
+
+        <font color="#990000"><? } ?></font></font> </td>
+
+    </tr>
+
+    <tr> 
+
+      <td width="22%" valign="top"> 
+
+        <div align="right"></div>
+
+      </td>
+
+      <td width="78%"> <br>
+
+        <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23" onClick="verify(this.form);">
+
+      </td>
+
+    </tr>
+
+  </table>
+
+  </form>
+
+
+
+<p>&nbsp;</p>
+
