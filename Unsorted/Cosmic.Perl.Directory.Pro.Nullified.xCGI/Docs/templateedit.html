@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>CosmicPerl User Guide</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" topmargin=0 marginheight=0 leftmargin=0 marginwidth=0 rightmargin=0>
+<table width="100%" border="0" bgcolor="#000000">
+  <tr>
+    <td>
+      <div align="center"><img src="logo.gif" width="321" height="67"></div>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="20">
+  <tr>
+    <td>
+<p align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">Usage 
+  Guide</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Editing the 
+  template file's.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">You can edit 
+  the file's using a WYSIWYG HTML editor such as DreamWeaver or AceExpert. You 
+  can also edit these file's as Raw HTML using a text editor. NOTE:- FrontPage 
+  and other editors change the layout of the HTML, this causes serious problems 
+  with template. If you are using FrontPage then please edit Raw HTML.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">About the <b>::symbols::</b></font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">The symbols 
+  such as ::sitename:: and ::u1:: are very important. Our software replaces these 
+  symbols with data relating to your directory, such as site information, category 
+  information, etc. When editing the template file's do <b>NOT</b> remove these 
+  symbols unless instructed.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Each template 
+  file, what it is, and it's symbols are shown below:-</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">ADDSITE.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the &quot;Add your site to this category page&quot;. The add 
+  site system works in a similar way to yahoo. In each category there is an addsite 
+  link, clicking this link will take you to the add site page which is generated 
+  using this template. Below is a list of all the symbols and what they represent:-</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::category:: 
+  - Displays the name of the category the site is being added to, this is also 
+  used in a hidden form field.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">When editing 
+  this page you must be sure not to remove the hidden form field. There are extra 
+  user fields u1 to u10, you can delete any extra field you decide not to use. 
+  Extra user fields can make your search directory unique, offering more than 
+  just site name and description. You can change the text from U1, etc to whatever 
+  you require, although the form field name must stay as u1, etc. Be sure the 
+  form action is pointing to your server.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">CATEGORYP.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the category pages. When you create a new category this template 
+  is used having the relevant category details parsed into the page.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::addsitelink:: 
+  - This will be swapped for the unique category add site link.<br>
+  ::modifysitelink:: - This will be swapped for the link to user modify sites.<br>
+  ::catname:: - Full category name.<br>
+  ::catnameshort:: - Category name without parent categories.<br>
+  ::catnameshort2:: - Parent category name's.<br>
+  ::banner:: - Category specific banner advert.<br>
+  ::resultshere:: - Three of these should be in your page, the first is where 
+  the sub-categories will appear, second where the top site listings will appear, 
+  third where the standard listings will appear.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you are 
+  not going to allow user's to modify their listings then you can remove ::modifysitelink::. 
+  If you are not going to have banner advertising in your categories then you 
+  can remove ::banner::. If you are not going to display topsites in your directory 
+  then put the last to ::resultshere:: symbols next to each other. Other template 
+  files are used to setup how the sites and sub-categories are displayed.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">CATEGORYB.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the category banner display. There are also extra user fields 
+  if you want to use them.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::bannerurl:: 
+  - URL to the banner image.<br>
+  ::siteurl:: - URL to the advertising site.<br>
+  ::sitedescription:: - Advertising site description.<br>
+  ::u1:: to ::u10:: - User variables allowing you to display extra information.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you are 
+  not going to have category banner advertising then you can ignore this file. 
+  If you are then adjust this file to match your needs, removing extra user fields, 
+  etc.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">CATEGORYS.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the category site display. This template is repeated into 
+  the category page for each site.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::siteurl:: 
+  - URL of the site.<br>
+  ::sitename:: - Name of the site.<br>
+  ::sitedescription:: - Description of the site.<br>
+  ::coolsite:: - Coolsite HTML (if marked as coolsite).<br>
+  ::u1:: to ::u10:: - User fields allowing you to display extra information.<br>
+  ::modify:: - Where modify site link will appear if in modify site view.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you do not 
+  intend to mark some sites as &quot;Cool sites&quot; then remove ::coolsite::. 
+  Remove any extra user fields you are not using. If you are not allowing users 
+  to modify their listings then remove ::modify::. The ::modify:: link is only 
+  displayed when the modify site link has been clicked.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">CATEGORYT.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the category topsite display. This template is repeated into 
+  the category page for each topsite.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::siteurl:: 
+  - URL of the site.<br>
+  ::sitename:: - Name of the site.<br>
+  ::sitedescription:: - Description of the site.<br>
+  ::coolsite:: - Coolsite HTML (if marked as coolsite).<br>
+  ::u1:: to ::u10:: - User fields allowing you to display extra information.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you are 
+  not going to use topsites then you can ignore this file. If you do not intend 
+  to mark some sites as &quot;Cool sites&quot; then remove ::coolsite::. Remove 
+  any extra user fields you are not using. There is no modify link as only the 
+  admin can modify topsites. Topsites are displayed above normal sites, you may 
+  wish to have them displayed slightly differently so that they stand out.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">CATEGORYC.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the category sub-category display. This template is repeated 
+  into the category page for each sub-category.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::catname:: 
+  - Name of the sub-category.<br>
+  ::caturl:: - URL of the sub-category.<br>
+  ::catdescription:: - Description of the sub-category.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Adjust this 
+  file so that is matches your site's style.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">SEARCHRESULTSP.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the search results page. When a search is run the results 
+  are parsed into this page and displayed.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::terms:: - 
+  Search terms.<br>
+  ::Banner:: - Keyword specific banner advert.<br>
+  ::resultshere:: - Three of these should be in your page, the first is where 
+  the category results will appear, second where the top site listings will appear, 
+  third where the standard results will appear.<br>
+  ::nextresults:: - This will be swapped for the next page of results link if 
+  the search generates more matches than your set maximum to display.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Remove ::banner:: 
+  is you are not going to be offering keyword specific advertising.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">SEARCHRESULTSB.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the keyword specific banner display. There are also extra 
+  user fields if you want to use them.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::bannerurl:: 
+  - URL to the banner image.<br>
+  ::siteurl:: - URL to the advertising site.<br>
+  ::sitedescription:: - Advertising site description.<br>
+  ::u1:: to ::u10:: - User variables allowing you to display extra information.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you are 
+  not going to have keyword banner advertising then you can ignore this file. 
+  If you are then adjust this file to match your needs, removing extra user fields, 
+  etc.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">SEARCHRESULTSS.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the search results site display. This template is repeated 
+  into the search results page for each site.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::siteurl:: 
+  - URL of the site.<br>
+  ::sitename:: - Name of the site.<br>
+  ::sitedescription:: - Description of the site.<br>
+  ::sitenumber:: - Sites rank.<br>
+  ::sitematch:: - Sites score.<br>
+  ::caturl:: - URL to the sites category.<br>
+  ::catname:: - Full name of the sites category.<br>
+  ::catnameshort:: - Category name without parent category.<br>
+  ::catnameshort2:: - Category parent category.<br>
+  ::coolsite:: - Coolsite HTML (if marked as coolsite).<br>
+  ::u1:: to ::u10:: - User fields allowing you to display extra information.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you do not 
+  intend to mark some sites as &quot;Cool sites&quot; then remove ::coolsite::. 
+  Remove any extra user fields you are not using. You may wish to display the 
+  sites relevancy score, if you are using the topsites feature then this may look 
+  irregular. You may also choose to display the category the site is in.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">SEARCHRESULTST.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the search results topsite display. This template is repeated 
+  into the search results page for each topsite.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::siteurl:: 
+  - URL of the site.<br>
+  ::sitename:: - Name of the site.<br>
+  ::sitedescription:: - Description of the site.<br>
+  ::sitenumber:: - Sites rank.<br>
+  ::sitematch:: - Sites score.<br>
+  ::caturl:: - URL to the sites category.<br>
+  ::catname:: - Full name of the sites category.<br>
+  ::catnameshort:: - Category name without parent category.<br>
+  ::catnameshort2:: - Category parent category.<br>
+  ::coolsite:: - Coolsite HTML (if marked as coolsite).<br>
+  ::u1:: to ::u10:: - User fields allowing you to display extra information.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you are 
+  not going to use topsites then you can ignore this file. If you do not intend 
+  to mark some sites as &quot;Cool sites&quot; then remove ::coolsite::. Remove 
+  any extra user fields you are not using. You may wish to display the sites relevancy 
+  score, if you are using the topsites feature then this may look irregular. You 
+  may also choose to display the category the site is in. Topsites are displayed 
+  above normal sites, you may wish to have them displayed slightly differently 
+  so that they stand out.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">SEARCHRESULTSC.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the search results category display. This template is repeated 
+  into the search results page for each category.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::catname:: 
+  - Name of the category.<br>
+  ::catnameshort:: - Category name without parent category.<br>
+  ::catnameshort2:: - Category parent category.<br>
+  ::catnumber:: - Category ranking.<br>
+  ::caturl:: - URL of the category.<br>
+  ::catdescription:: - Description of the category.<br>
+  ::catmatch:: - Category score.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Adjust this 
+  file so that it matches your site.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="4">MODIFYPASS.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the modify your site password check page. This template contains 
+  a form where the user inputs their password.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::category:: 
+  - Sites category.<br>
+  ::site:: - Site name.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you are 
+  not going to allow users to modify their site then you can ignore this file. 
+  The symbols are used for hidden form fields which must NOT be removed.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="4">MODIFYPAGE.TPL</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">This is the 
+  template file for the modify your site page. This template contains a form similar 
+  to that of addsite.tpl, allowing the user to make changes to their site listing.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">::siteurl:: 
+  - Site URL.<br>
+  ::sitename:: - Site name.<br>
+  ::sitedescription:: - Site description.<br>
+  ::u1:: to ::u10:: - User variables 1 to 10.<br>
+  ::email:: - Site email.<br>
+  ::password:: - Site password.<br>
+  ::cool:: - 1 for coolsite 0 otherwise.<br>
+  ::affiltrade:: - Site marked at affiltrade.<br>
+  ::category:: - Sites category.<br>
+  ::site:: - Sites original name.</font></p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">If you are 
+  not going to allow users to modify their site then you can ignore this file. 
+  Some of the symbols are used for hidden form fields which must NOT be removed. 
+  When editing this page only remove the extra user fields which do not apply, 
+  and check the form action is pointing to your server.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Your template 
+  files should now be ready to be uploaded to your server, replacing the default 
+  templates uploaded in the installation.</font></p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+
