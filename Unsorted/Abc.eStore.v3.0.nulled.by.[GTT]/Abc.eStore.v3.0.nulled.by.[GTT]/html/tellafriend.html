@@ -1,0 +1,66 @@
+<%tloop lng%>
+
+<!-- Midle column -->
+
+<td width="100%" valign="top">
+
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_left.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+<td width="100%" background="<%tv design_dir%>box05_center.gif" class="BodyText05" align="left"><%tlv 173%></td>
+<td width="13" height="23" align="center" background="<%tv design_dir%>box05_right.gif"><img src="<%tv design_dir%>spacer.gif" width="13" height="1" border="0"></td>
+</tr>
+</table>
+<br>
+
+<%tlv nav%>
+
+<%tif err%>
+<p align="center"><font class="errorMessage"><b><%tlv err%></b></font>
+<%tendif err%>
+
+<%tif succ%>
+<p align="center"><%tlv succ%><br><br>
+<a href="view_product.php?product=<%tlv product%>" target="_self"><%tlv 182%></a></p>
+<%tendif succ%>
+
+<%tif nosubmit%>
+
+<p align="left"><%tlv mes%></p>
+<form action="tellafriend.php?product=<%tlv product%><%tif session%>&session=<%tlv session%><%tendif session%>" method="post" enctype="multipart/form-data" name="form1" target="_self">
+<table width="500" border="0" align="center" cellpadding="3" cellspacing="2">
+<tr> 
+<td width="150" align="left"><%tlv 184%>: <font class="errorMessage">*</font></td>
+<td><input name="recip_name" class="textbox" value="<%tlv recip_name%>" type="text" size="30" maxlength="30"></td>
+</tr>
+<tr> 
+<td width="150" align="left"><%tlv 185%>: <font class="errorMessage">*</font></td>
+<td><input name="recip_email" value="<%tlv recip_email%>" type="text" class="textbox" size="30" maxlength="30"></td>
+</tr>
+<tr> 
+<td width="150" align="left"><%tlv 186%>: <font class="errorMessage">*</font></td>
+<td><input name="from_name" value="<%tlv from_name%>" type="text" class="textbox" size="30" maxlength="30"></td>
+</tr>
+<tr> 
+<td width="150" align="left"><%tlv 187%>: <font class="errorMessage">*</font></td>
+<td><input name="from_email" value="<%tlv from_email%>" type="text" class="textbox" size="30" maxlength="30"></td>
+</tr>
+<tr> 
+<td align="left" valign="top"><%tlv 188%>:<br>
+<%tlv 189%></td>
+<td valign="top"><textarea name="message" cols="55" rows="15" id="message"><%tlv message%></textarea></td>
+</tr>
+<tr> 
+<td width="150" align="left" valign="top">&nbsp;</td>
+<td><input type="submit" name="submit" class="submit" value="<%tlv 190%>"><br>
+<p>
+<font class="errorMessage">*</font> <%tlv 191%></td>
+</tr>
+</table>
+</form>
+
+<%tendif nosubmit%>
+
+<!-- /Midle column -->
+
+<%tendloop lng%>
