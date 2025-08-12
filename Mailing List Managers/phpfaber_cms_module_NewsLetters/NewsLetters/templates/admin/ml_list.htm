@@ -1,0 +1,48 @@
+<table width="100%">
+ <tr>
+  <td>
+   <table width="100%">
+    <tr>
+     <td><h3>##LNG['_PAGE_TITLE']##</h3></td>
+     <td nowrap width="1%" valign="top" align="right">##ADM_PATH##</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td width="100%" valign="top" align="right">
+   <a href="##URL_MOD_NAME##&amp;action=ml_add">##LNG['_HEADER_ML_ADD']##</a><br /><br />
+    <table class="txt12" width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#999999">
+     <tr class="tha">
+      <th width="3%">#</th>
+      <th width="71%">##LNG['_TBL_ML_DETAILS']##</th>
+      <th width="20%">##LNG['_TBL_ML_EMAILS']##</th>
+      <th width="1%" nowrap>##LNG['_TBL_ML_ACTION']##</th>
+     </tr>
+    
+     <!-- LOOP ml -->
+     <tr class="row##ml['row_alt']##">
+      <td valign="top">##ml['row_num']##</td>
+      <td valign="top" width="91%">
+       <b>##LNG['_TBL_ML_NAME']##:</b> ##ml['name']##<br />
+    	 <font class=txt10>
+    	 <b>##LNG['_TBL_ML_DESCR']##:</b> <br />##ml['descr']##
+    	 </font>
+      </td>
+      <td align="center" valign="top">##ml['sub_amt']##</td>
+      <td valign="top" width="3%">
+       <a href="##URL_MOD_NAME##&amp;action=ml_edit&amp;id=##ml['id']##" title="##LNG['_CMD_ML_EDIT']##"><img src="##URL_IMG##/icons/edit.gif" width="16" height="16" border="0" alt="##LNG['_CMD_ML_EDIT']##" /></a>
+       <a href="#" onClick="if(confirm('##LNG['_MSG_ML_CONFIRM_DELETE']## ?')) GoURL('##URL_MOD_NAME##&amp;action=ml_delete&amp;id=##ml['id']##'); else return false;" title="##LNG['_CMD_ML_DELETE']##"><img src="##URL_IMG##/icons/remove.gif" width="16" height="16" border="0" alt="##LNG['_CMD_ML_DELETE']##" /></a>
+      </td>
+     </tr>
+     <!-- /LOOP -->
+     <!-- IF !##ml## -->
+     <tr>
+      <td class="row1" align="center" colspan="4"><br />##LNG['_MSG_ML_NO']##<br /><br /></td>
+     </tr>
+     <!-- ENDIF -->
+    </table>
+
+  </td>
+ </tr>
+</table>
