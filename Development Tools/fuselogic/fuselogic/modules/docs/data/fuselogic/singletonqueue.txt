@@ -1,0 +1,31 @@
+API
+
+**SingletonQueue(string $fuse);**
+
+**$fuse (optional)** = the name of the fuse.
+
+$fuse = This command will tell the system Queue that fuse we give is define as Singleton Queue. It mean the fuse will not be able to insert again in to system queue.
+
+**Example:**
+
+Queue('forum/delete');
+
+Queue('forum/delete');
+
+Queue('forum/delete');
+
+... Now there are **3 of fuse 'forum/delete'** inside system queue.
+
+
+Queue('forum/post');
+
+SingletonQueue('forum/post');
+
+Queue('forum/post');
+
+Queue('forum/post');
+
+....Now there is only **1 of fuse 'forum/post'** inside system queue.
+
+----
+//Credit List: Eko Budi Setiyo//
