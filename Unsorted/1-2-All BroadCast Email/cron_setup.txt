@@ -1,0 +1,64 @@
+////////////////////////////////////////////////////////////////////////////////
+
+--------------------------------------------------------------------------------
+
+
+********************************************************************************
+PLEASE NOTE THAT IT IS RECOMMENDED TO CONTACT YOUR WEB HOST OR SYSTEM 
+ADMIN TO COMPLETE THIS IF YOU ARE UNSURE ABOUT SETTING CRON JOBS
+********************************************************************************
+
+
+You are able to set a cronjob for the following files/tasks:
+
+	cron.php 	   - Required for scheduled sending and will also eliminate
+				server timeouts while sending mailings. 
+
+	cron_bounce.php    - Automatically runs bounced email checker. 
+
+	cron_responder.php - Required for auto-responders.  
+				(Not required for instant auto-responders)
+
+
+--------------------------------------------------------------------------------
+Setup:
+--------------------------------------------------------------------------------
+
+1) 	Set permissions of the cron file to be usable via cron.
+		Chmod cron file to 755
+
+2) 	Ensure that the first line of the cron file is the location of php on the server.  
+		Default first line entry on this file is:
+    		 #!/usr/local/bin/php -q
+     		The /usr/local/bin/php should be the location of php
+
+3) 	Add a cron job to run the cron file as often as you require.
+	Suggested times for running cron:
+		cron.php 		every 15 minutes
+		cron_bounce.php		every 12 hrs
+		cron_responder.php	every 60 minutes
+
+
+If you are unsure how to set the cronjob to run, it is suggested to contact your
+web host or system administrator.
+You should not set your cron job to run under 5 minutes
+
+--------------------------------------------------------------------------------
+Need additional help with setting up a cron job?
+--------------------------------------------------------------------------------
+
+  We suggest to contact your web host/system admin or
+  view some of the resources below:
+
+  http://david.dpitts.com/archives/000011.html
+
+  http://www.linux-tutorial.info/cgi-bin/display.pl?78&0&67&0&3
+
+  http://www.linuxjournal.com/article.php?sid=3290
+
+  http://www.4webhelp.net/tutorials/misc/cron.php
+
+  http://www.phpfreaks.com/tutorials/28/0.php
+
+
+--------------------------------------------------------------------------------
