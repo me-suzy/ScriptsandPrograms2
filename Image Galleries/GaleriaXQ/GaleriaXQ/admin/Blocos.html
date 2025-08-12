@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>GaleriaXQ</title>
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include JSFunctions @1-61CA6547
+</script>
+<script language="JavaScript" src="../ClientI18N.php?file=Functions.js&amp;lang={res:CCS_LocaleID}" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include JSFunctions
+
+//page_x_bloco1_Button_Delete_OnClick @24-49713858
+function page_x_bloco1_Button_Delete_OnClick()
+{
+    var result;
+//End page_x_bloco1_Button_Delete_OnClick
+
+//Confirmation Message @25-3D8A80B1
+    return confirm('Apagar registro?');
+//End Confirmation Message
+
+//Close page_x_bloco1_Button_Delete_OnClick @24-BC33A33A
+    return result;
+}
+//End Close page_x_bloco1_Button_Delete_OnClick
+
+//page_x_bloco1_Button_Cancel_OnClick @26-9280450C
+function page_x_bloco1_Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End page_x_bloco1_Button_Cancel_OnClick
+
+//bind_events @1-34EB7F24
+function bind_events() {
+    if (document.forms["x_bloco1"]) check_and_bind('document.forms["x_bloco1"].Button_Delete','onclick',page_x_bloco1_Button_Delete_OnClick);
+    if (document.forms["x_bloco1"]) check_and_bind('document.forms["x_bloco1"].Button_Cancel','onclick',page_x_bloco1_Button_Cancel_OnClick);
+    forms_onload();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link href="../Styles/{CCS_Style}/Style.css" type="text/css" rel="stylesheet">
+<link href="../Styles/{CCS_Style}/Style_Components.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<table cellspacing="0" width="100%" border="0">
+  <tr valign="top">
+    <td width="20%">
+      <form name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
+        <font class="NoiseSectionHeaderFont">{MenuAdm}</font> 
+      </form>
+    </td> 
+    <td>
+      <!-- BEGIN Grid x_bloco -->
+      <table cellspacing="0" cellpadding="0" width="450" border="0">
+        <tr>
+          <td valign="top">
+            <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td class="HeaderLeft{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+                <th>&nbsp;Lista de Blocos</th>
+ 
+                <td class="HeaderRight{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+              </tr>
+            </table>
+ 
+            <table class="Grid{CCS_Style}" cellspacing="0" cellpadding="0">
+              <tr class="Row{CCS_Style}">
+                <td colspan="4">Total de registros: &nbsp;
+                  {x_bloco_TotalRecords} </td>
+              </tr>
+ 
+              <tr class="Caption{CCS_Style}">
+                <th>
+                <!-- BEGIN Sorter Sorter_bloid --><a href="{Sort_URL}">Bloid</a> 
+                <!-- BEGIN Asc_On --><img src="../Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img src="../Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_bloid --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_x_blotitulo --><a href="{Sort_URL}">X
+                Blotitulo</a> 
+                <!-- BEGIN Asc_On --><img src="../Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img src="../Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_blotitulo --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_x_blostatus --><a href="{Sort_URL}">X
+                Blostatus</a> 
+                <!-- BEGIN Asc_On --><img src="../Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img src="../Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_blostatus --></th>
+ 
+                <th>
+                <!-- BEGIN Sorter Sorter_x_blolado --><a href="{Sort_URL}">X
+                Blolado</a> 
+                <!-- BEGIN Asc_On --><img src="../Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+                <!-- BEGIN Desc_On --><img src="../Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_blolado --></th>
+              </tr>
+ 
+              <!-- BEGIN Row -->
+              <tr class="Row{CCS_Style}">
+                <td style="TEXT-ALIGN: right"><a href="{bloid_Src}">{bloid}</a>&nbsp;</td> 
+                <td>{x_blotitulo}&nbsp;</td> 
+                <td>{x_blostatus}&nbsp;</td> 
+                <td>{x_blolado}&nbsp;</td>
+              </tr>
+ <!-- END Row -->
+              <!-- BEGIN NoRecords -->
+              <tr class="NoRecords{CCS_Style}">
+                <td colspan="4">Sem registros </td>
+              </tr>
+              <!-- END NoRecords -->
+              <tr class="Footer{CCS_Style}">
+                <td colspan="4"><a href="{x_bloco_Insert_Src}">Adic novo</a>&nbsp; 
+                  <!-- BEGIN Navigator Navigator -->
+                  <!-- BEGIN First_On --><a href="{First_URL}"><img src="../Styles/{CCS_Style}/Images/First.gif" border="0"></a> <!-- END First_On -->
+                  <!-- BEGIN First_Off --><img src="../Styles/{CCS_Style}/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+                  <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="../Styles/{CCS_Style}/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+                  <!-- BEGIN Prev_Off --><img src="../Styles/{CCS_Style}/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number}
+                  of&nbsp;{Total_Pages}&nbsp; 
+                  <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="../Styles/{CCS_Style}/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+                  <!-- BEGIN Next_Off --><img src="../Styles/{CCS_Style}/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+                  <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="../Styles/{CCS_Style}/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+                  <!-- BEGIN Last_Off --><img src="../Styles/{CCS_Style}/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator --></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- END Grid x_bloco --><br>
+      <!-- BEGIN Record x_bloco1 -->
+      <form name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
+        <table cellspacing="0" cellpadding="0" width="450" border="0">
+          <tr>
+            <td valign="top">
+              <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="HeaderLeft{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+                  <th>Adicionar/Editar Bloco </th>
+ 
+                  <td class="HeaderRight{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+                </tr>
+              </table>
+ 
+              <table class="Record{CCS_Style}" cellspacing="0" cellpadding="0">
+                <!-- BEGIN Error -->
+                <tr class="Error{CCS_Style}">
+                  <td colspan="2">{Error}</td>
+                </tr>
+                <!-- END Error -->
+                <tr class="Controls{CCS_Style}">
+                  <th>&nbsp;Titulo</th>
+ 
+                  <td><input maxlength="90" size="50" value="{x_blotitulo}" name="{x_blotitulo_Name}"></td>
+                </tr>
+ 
+                <tr class="Controls{CCS_Style}">
+                  <th>&nbsp;Conteudo</th>
+ 
+                  <td><textarea style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" name="{x_bloconte_Name}" rows="6" cols="50">{x_bloconte}
+</textarea></td>
+                </tr>
+ 
+                <tr class="Controls{CCS_Style}">
+                  <th>&nbsp;Detalhes</th>
+ 
+                  <td><textarea style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" name="{x_blodeta_Name}" rows="6" cols="50">{x_blodeta}
+</textarea></td>
+                </tr>
+ 
+                <tr class="Controls{CCS_Style}">
+                  <th>&nbsp;Imgbloco</th>
+ 
+                  <td>
+                    <!-- BEGIN FileUpload FileUpload1 -->&nbsp;<input type="hidden" value="{State}" name="{ControlName}">
+                    <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes. <!-- END Info -->
+                    <!-- BEGIN Upload --><input type="file" name="{FileControl}"><!-- END Upload -->
+                    <!-- BEGIN DeleteControl -->Apagar <input type="checkbox" name="{DeleteControl}" {deletechecked}>&nbsp;<!-- END DeleteControl --><!-- END FileUpload FileUpload1 --></td>
+                </tr>
+ 
+                <tr class="Bottom{CCS_Style}">
+                  <td align="right" colspan="2">
+                    <!-- BEGIN Button Button_Insert --><input type="image" src="../Styles/{CCS_Style}/Images/en/ButtonInsert.gif" value="Adic" border="0" name="{Button_Name}"><!-- END Button Button_Insert -->
+                    <!-- BEGIN Button Button_Update --><input type="image" src="../Styles/{CCS_Style}/Images/en/ButtonUpdate.gif" value="Enviar" border="0" name="{Button_Name}"><!-- END Button Button_Update -->
+                    <!-- BEGIN Button Button_Delete --><input type="image" src="../Styles/{CCS_Style}/Images/en/ButtonDelete.gif" value="Apagar" border="0" name="{Button_Name}"><!-- END Button Button_Delete -->
+                    <!-- BEGIN Button Button_Cancel --><input type="image" src="../Styles/{CCS_Style}/Images/en/ButtonCancel.gif" value="Cancelar" border="0" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <!-- END Record x_bloco1 --></td>
+  </tr>
+</table>
+</body>
+</html>
