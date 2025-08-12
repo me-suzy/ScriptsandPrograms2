@@ -1,0 +1,43 @@
+// Russian KOI8-R translation by Vladimir Vitkovsky
+// admin@transport.su
+// www.webgui.uanet.biz
+
+tinyMCE.addToLang('',{
+bold_desc : 'ðÏÌÕÖÉÒÎÙÊ',
+italic_desc : 'ëÕÒÓÉ×',
+underline_desc : 'ðÏÄÞÅÒËÎÕÔÙÊ',
+striketrough_desc : 'ðÅÒÅÞÅÒËÎÕÔÙÊ',
+justifyleft_desc : '÷ÙÒÁ×ÎÉ×ÁÎÉÅ ×ÌÅ×Ï',
+justifycenter_desc : '÷ÙÒÁ×ÎÉ×ÁÎÉÅ ÐÏ ÃÅÎÔÒÕ',
+justifyright_desc : '÷ÙÒÁ×ÎÉ×ÁÎÉÅ ×ÐÒÁ×Ï',
+justifyfull_desc : 'òÁ×ÎÏÍÅÒÎÏÅ ÚÁÐÏÌÎÅÎÉÅ',
+bullist_desc : 'íÁÒËÉÒÏ×ÁÎÎÙÊ ÓÐÉÓÏË',
+numlist_desc : 'îÕÍÅÒÏ×ÁÎÎÙÊ ÓÐÉÓÏË',
+outdent_desc : 'õÍÅÎØÛÉÔØ ÏÔÓÔÕÐ',
+indent_desc : 'õ×ÅÌÉÞÉÔØ ÏÔÓÐÕÔ',
+undo_desc : 'ïÔÍÅÎÉÔØ',
+redo_desc : '÷ÅÒÎÕÔØ',
+link_desc : '÷ÓÔÁ×ÉÔØ/ÉÚÍÅÎÉÔØ ÓÓÙÌËÕ',
+unlink_desc : 'õÂÒÁÔØ ÓÓÙÌËÕ',
+image_desc : '÷ÓÔÁ×ÉÔØ/ÉÚÍÅÎÉÔØ ÉÚÏÂÒÁÖÅÎÉÅ',
+cleanup_desc : 'ðÏÄÞÉÓÔÉÔØ ÉÚÂÙÔÏÞÎÙÊ ËÏÄ',
+focus_alert : 'äÌÑ ÉÓÐÏÌØÚÏ×ÁÎÉÑ ÄÁÎÎÏÊ ËÏÍÁÎÄÙ ÷Ù ÄÏÌÖÎÙ ÎÁÈÏÄÉÔÓÑ × ÐÏÌÅ ÒÅÄÁËÔÏÒÁ.',
+edit_confirm : 'èÏÔÉÔÅ ÌÉ ÷Ù ÒÅÄÁËÔÉÒÏ×ÁÔØ × ×ÉÚÕÁÌØÎÏÍ (WYSIWYG) ÒÅÖÉÍÅ?',
+insert_link_title : '÷ÓÔÁ×ÉÔØ/ÉÚÍÅÎÉÔØ ÓÓÙÌËÕ',
+insert : '÷ÓÔÁ×ÉÔØ',
+update : 'ðÒÉÍÅÎÉÔØ',
+cancel : 'ïÔÍÅÎÉÔØ',
+insert_link_url : 'áÄÒÅÓ ÓÓÙÌËÉ',
+insert_link_target : 'ïÔËÒÙÔØ ×...:',
+insert_link_target_same : 'ÔÏÍ ÖÅ ÏËÎÅ',
+insert_link_target_blank : 'ÎÏ×ÏÍ ÏËÎÅ',
+insert_image_title : '÷ÓÔÁ×ÉÔØ/ÉÚÍÅÎÉÔØ ÉÚÏÂÒÁÖÅÎÉÅ',
+insert_image_src : 'áÄÒÅÓ ËÁÒÔÉÎËÉ',
+insert_image_alt : 'ïÐÉÓÁÎÉÅ ËÁÒÔÉÎËÉ',
+help_desc : 'ðÏÍÏÝØ',
+bold_img : "bold_ru.gif",
+italic_img : "italic_ru.gif",
+underline_img : "underline_ru.gif",
+clipboard_msg : 'ëÏÐÉÒÏ×ÁÔØ/÷ÙÒÅÚÁÔØ/÷ÓÔÁ×ÉÔØ ÎÅÄÏÓÔÕÐÎÙ ÄÌÑ Mozilla É Firefox.\nèÏÔÉÔÅ ÕÚÎÁÔØ ÏÂ ÜÔÏÍ ÐÏÄÒÏÂÎÅÅ?',
+popup_blocked : 'éÚ×ÉÎÉÔÅ, ÎÏ × ÷ÁÛÅÍ ÂÒÁÕÚÅÒÅ ÚÁÂÌÏËÉÒÏ×ÁÎÙ ×ÓÐÌÙ×ÁÀÝÉÅ ÏËÎÁ. äÌÑ ÔÏÇÏ, ÞÔÏÂÙ ÉÍÅÔØ ×ÏÚÍÏÖÎÏÓÔØ ×ÏÓÐÏÌØÚÏ×ÁÔØÓÑ ×ÓÅÍÉ ×ÏÚÍÏÖÎÏÓÔÑÍÉ ÒÅÄÁËÔÏÒÁ, ÎÅÏÂÈÏÄÉÍÏ ÏÔËÌÀÞÉÔØ ÂÌÏËÉÒÏ×ËÕ ×ÓÐÌÙ×ÁÀÝÉÈ ÏËÏÎ ÄÌÑ ÜÔÏÇÏ ÓÁÊÔÁ.'
+});
