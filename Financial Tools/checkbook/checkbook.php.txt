@@ -1,0 +1,136 @@
+<?php
+error_reporting (E_ERROR | E_WARNING | E_PARSE );
+
+include 'db.php';
+$today = date("n/d/y");
+
+if (isset($entry)) {
+
+$query="SELECT * FROM checkbook ORDER BY entry";
+$result=mysql_query($query);
+$num=mysql_num_rows($result);
+$i=0;
+while ($i < $num) {
+	$subbalance=mysql_result($result,$i,"balance");
+++$i;
+}
+if ($withdrawal) {
+	$balance = $subbalance - $withdrawal;
+	} elseif ($deposit) {
+	$balance = $subbalance + $deposit;
+	} else {
+	echo "<br>Nothing was entered</br>";
+}
+
+	$query = mysql_query("INSERT INTO checkbook (date, number, subject, payee, withdrawal, deposit, balance)
+			VALUES ('$date', '$number', '$subject', '$payee', '$withdrawal', '$deposit', '$balance')") 
+        or die (mysql_error()); 
+}
+
+?>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">    
+
+<LINK REL=STYLESHEET TYPE="text/css" HREF="checkbook.css">
+
+
+<head>
+<title>My Checkbook</title>
+
+
+</head>
+<body>
+<a href="checkbook.php">home</a><br>
+
+
+<form action="checkbook.php" method="post">
+<table id="enter" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+		<td>Date</td>
+		<td>Number</td>
+		<td>Subject</td>
+		<td>Payee</td>
+		<td>Withdrawal</td>
+		<td>Deposit</td>
+		
+	</tr>
+	<tr>
+		<td><input type="text" name="date" value="<? echo "$today"; ?>" size="6"></td>
+		<td><input type="text" name="number" size="4"></td>
+		<td><input type="text" name="subject"></td>
+		<td><input type="text" name="payee"></td>
+		<td><input type="text" name="withdrawal"></td>
+		<td><input type="text" name="deposit"></td>
+		
+		<td><input type="submit" name="entry" value="go" class="entry"></td>
+	</tr>
+	
+	
+
+</table>	
+</form>
+	
+<div id="display">
+<table id="tabledisplay" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>Entry</td>
+		<td>Date</td>
+		<td>Number</td>
+		<td>Subject</td>
+		<td>Payee</td>
+		<td>Withdrawal</td>
+		<td>Deposit</td>
+		<td>Balance</td>
+	</tr>
+		
+
+<?
+//Grab entriest to Checkbook
+$query="SELECT * FROM checkbook ORDER BY entry";
+$result=mysql_query($query);
+$num=mysql_num_rows($result);
+$i=0;
+while ($i < $num) {
+	$entry=mysql_result($result,$i,"entry");
+	$date=mysql_result($result,$i,"date");
+	$number=mysql_result($result,$i,"number");
+	$subject=mysql_result($result,$i,"subject");
+	$payee=mysql_result($result,$i,"payee");
+	$withdrawal=mysql_result($result,$i,"withdrawal");
+	$deposit=mysql_result($result,$i,"deposit");
+	$balance=mysql_result($result,$i,"balance");	
+	
+	if ($z == 0) {
+		$class = "color1";
+		$z = 1;
+	} else {
+		$class = "color2";
+		$z = 0;
+	}
+	
+	
+ echo"
+ <tr class=\"$class\">
+ 	<td>$entry</td>
+ 	<td>$date</td>
+ 	<td>$number</td>
+ 	<td>$subject</td>
+ 	<td>$payee</td>
+ 	<td>$withdrawal</td>
+ 	<td>$deposit</td>
+ 	<td><b>$$balance</b></td>
+ </tr>";
+	
+++$i;
+}
+
+?>
+</table>
+</div>
+</body>
+</html>
+
+
