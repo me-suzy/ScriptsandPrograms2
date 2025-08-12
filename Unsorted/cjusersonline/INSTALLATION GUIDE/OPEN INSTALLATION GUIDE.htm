@@ -1,0 +1,195 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-gb">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Installation Guide</title>
+<style type="text/css">
+<!--
+A:link      	{text-decoration: none; color: #11116E;}
+A:visited   	{text-decoration: none; color: #11116E;}
+A:hover      	{font-style: normal; color: #000000; text-decoration: underline;}
+
+SELECT       	{font-family:Verdana;font-size:8pt;background:#FFFFFF;color:#000000;}
+INPUT       	{font-family:Verdana;font-size:8pt;background:#FFFFFF;color:#000000;}
+TEXTAREA     	{font-family:Verdana;font-size:8pt;background:#FFFFFF;color:#000000;}
+hr		{color: #11116E; background-color: #11116E; height: 1px;}
+
+body {
+	background-color: #FFFFFF;
+	color: #000000;
+	font-family: verdana;
+	font-size: 10pt;
+	scrollbar-base-color: #0263C2;
+	scrollbar-arrow-color:  #FFFFFF;
+	}
+TD{
+	font-family: verdana;
+	font-size: 10pt;
+	}
+-->
+</style>
+</head>
+
+<body topmargin="50" leftmargin="50">
+
+<p align="center"><img border="0" src="cjt.jpg" width="545" height="220"></p>
+
+<p align="left"><br>
+<font size="4"><b>
+Installation Guide</b></font></p>
+<div align="left">
+  <table border="0" cellpadding="3" cellspacing="0" width="100%">
+    <tr>
+      <td width="15%" height="19"><b>Script Name</b></td>
+      <td width="85%" height="19">CJ Users Online v1.0</td>
+    </tr>
+    <tr>
+      <td width="100%" height="21" colspan="2">
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td width="15%" height="21"><b>Files Required:</b></td>
+      <td width="85%" height="21">setup.php (once ran - delete!)</td>
+    </tr>
+    <tr>
+      <td width="15%" height="21"></td>
+      <td width="85%" height="21">config.php</td>
+    </tr>
+    <tr>
+      <td width="15%" height="21"></td>
+      <td width="85%" height="21">users.php</td>
+    </tr>
+    <tr>
+      <td width="100%" height="21" colspan="2">
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td width="15%" height="21" valign="top"><b>Installation</b></td>
+      <td width="85%" height="21"><b>1)&nbsp; MySQL Database Set-Up.<br>
+        <br>
+        </b>
+        Unfortunately we cannot set-up your database for you, sometimes you <b>already
+        have one database</b> set up on your web-space account, sometimes you
+        can go into your <b>web-space account</b> and navigate to a &quot;Create
+        Database&quot; area and sometimes you have to <b>ask your web-space
+        provider</b> to create one for you.&nbsp; If you haven't got one already
+        created call it &quot;<font color="#0000FF">database1</font>&quot;&nbsp;
+        <font color="#FF0000">Remember, this is the DATABASE not the TABLE!<br>
+        <br>
+        </font>Once you have a database created, you can go on to step 2...<b><br>
+        <br>
+        2)&nbsp; Variables to edit in config.php<br>
+        <br>
+        </b>
+        <font color="#808080">a)&nbsp; Your mySQL Server, most cases &quot;localhost&quot;</font><br>
+        $server = &quot;<font color="#0000FF">localhost</font>&quot;;&nbsp;<br>
+        <br>
+        <font color="#808080">b)&nbsp; Your mySQL Database Username&nbsp;</font><br>
+        $db_user = &quot;<font color="#0000FF">joe_bloggs</font>&quot;;<br>
+        <br>
+        <font color="#808080">c)&nbsp; Your mySQL Database Password&nbsp;</font><br>
+        $db_pass = &quot;<font color="#0000FF">password</font>&quot;;<br>
+        <br>
+        <font color="#808080">d)&nbsp; Your mySQL Database Name&nbsp;&nbsp;</font><br>
+        $db = &quot;<font color="#0000FF">database1</font>&quot;;<br>
+        <br>
+        <font color="#808080">e)&nbsp; Time to reset IP address's value in seconds, default here is 120 (2 minutes)</font><br>
+        $to_secs = <font color="#0000FF">120</font>;<p><b><br>
+        3)&nbsp;&nbsp;Upload<br>
+        <br>
+        </b>Upload all the files required (see above) into a directory
+        preferably called &quot;<font color="#0000FF">usersonline</font>&quot; so
+        your link to users.php would be <font color="#0000FF"><a href="http://www.yourdomain.com/usersonline/users.php">www.yourdomain.com/usersonline/users.php</a><br>
+        <br>
+        </font><b>4)&nbsp; CHMOD Folder<br>
+        <br>
+        </b>If you understand how to CHMOD a folder then change /usersonline
+        folder to 777 (writable by all)<b><br>
+        <br>
+        </b><font color="#808080"><i>Why?</i><b><br>
+        </b>We have to CHMOD the folder so we can run setup.php with know
+        difficulties!&nbsp; It is <b>NOT</b> Necessary to do this BUT If you
+        dont it will mean <b>MANUALLY</b> deleting setup.php from your server
+        once you have ran it!</font><b><br>
+        <br>
+        5)&nbsp; Run SETUP.PHP<br>
+        <br>
+        </b>You are ready to automatically create the database!&nbsp; To do this
+        go to the destination of your setup.php file, usually <a href="http://www.yourdomain.com/usersonline/setup.php">www.yourdomain.com/usersonline/setup.php</a>.
+        This will run the setup script and take you to users.php
+        afterwards.&nbsp; If you get errors it will be sometimes to do with <b>CONFIG.PHP</b>
+        so go and check your <b>connection variables</b>!&nbsp; If you get the
+        error message &quot;<font color="#FF0000">Unable to delete Setup file..</font>&quot;
+        then you didn't do Step 4!&nbsp; No worries, go and delete setup.php
+        manually!<br>
+        <br>
+        <b>6)&nbsp; Linking to users.php!<br>
+        <br>
+        </b>After creating a page in which you would like to show how many users
+        are online (usually your index page) you will then need to INSERT the
+        users.php file within it.&nbsp; This can be done using PHP or SSI!<br>
+        <b>
+        <br>
+        a)&nbsp; How to create a link within a PHP Page (.php, .php3, .php4)<br>
+        <br>
+        </b>To create the INSERT using PHP use this code:<br>
+        <br>
+        <textarea rows="3" name="S1" cols="58"><?
+include("usersonline/users.php");
+?></textarea><br>
+        <br>
+        <b>NOTE</b>: You may need to change the path to users.php (to be certain
+        you could enter the full path!)<br>
+        <b><br>
+        b)&nbsp; How to create a link within a SSI Page (.shtml, .shtm)<br>
+        <br>
+        </b>To create the INSERT using SSI use this code<br>
+        <br>
+        <textarea rows="5" name="S1" cols="58"><!--#include virtual="/usersonline/users.php" -->
+
+OR
+
+<!--#exec cgi="/usersonline/users.php" --> </textarea><br>
+        <b><br>
+        <br>
+        </b>
+        Once you have added the code to the page, upload the page!</td>
+    </tr>
+    <tr>
+      <td width="100%" height="21" valign="top" colspan="2">
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td width="15%" height="4" valign="top"><b>Finished</b></td>
+      <td width="85%" height="4"><b>Thats all!<br>
+        </b><br>
+        If you have any problems with the script go to <a href="http://www.cj-design.com/?id=forum">www.cj-design.com/?id=forum</a>
+        and seek advice!</td>
+    </tr>
+    <tr>
+      <td width="100%" height="4" valign="top" colspan="2">
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td width="15%" height="3" valign="top"><b>Donate</b></td>
+      <td width="85%" height="3">Show your appreciation for this script by
+        donating : ) <a href="http://www.cj-design.com/?id=donate">www.cj-design.com/?id=donate</a></td>
+    </tr>
+    <tr>
+      <td width="100%" height="10" valign="top" colspan="2">
+        <hr>
+      </td>
+    </tr>
+  </table>
+</div>
+<p align="center">© CJ Website Design
+</p>
+
+</body>
+
+</html>
