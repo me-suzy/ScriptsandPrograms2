@@ -1,0 +1,61 @@
+#############################################################################
+# myAgenda v1.1																#
+# =============																#
+# Copyright (C) 2002  Mesut Tunga - mesut@tunga.com							#
+# http://php.tunga.com														#
+#																			#
+# This program is free software. You can redistribute it and/or modify		#
+# it under the terms of the GNU General Public License as published by 		#
+# the Free Software Foundation; either version 2 of the License.       		#
+#############################################################################
+
+SYSTEM REQUIREMENTS
+--------------------------------------------------------------------
+* MySQL
+* PHP 4.0 or later, compiled with MySQL support
+* Linux Cron access or similar schedule program
+
+INSTALL
+--------------------------------------------------------------------
+* Open files/config.php with your favorite text editor and edit variables
+
+* Create or choose a database to use with the myAgenda tables.
+  For creating a new db, firstly login to MySql server:
+ /path/to/your/mysql -ppassword
+
+on your MySql shell type:
+mysql> create database myagenda;
+
+* Then you need to configure the mysql server to grant access priveleges on myagenda database
+  to whatever username you configured in config.php $sql_user variable and also whatever password 
+  you set with $sql_pass. To do this, login to mysql server and type the commands below.
+
+mysql> GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER
+       ON agenda.*
+       TO agenda@localhost
+       IDENTIFIED BY 'agenda';
+       exit;
+
+ If you do not have root or create access to MySql server then use the db 
+ you already have. Do not forget to set them in config.php
+
+* Run 
+/path/to/your/mysql -ppassword yourdb < /path/to/myAgenda/myAgenda.sql
+  This will create all the tables myAgenda needs. Remove myAgenda.sql after
+  you have finished your work with that file. (This is just let another people
+  not to view your sql structure via web).
+
+  P.S: I have tested the above command on a Win98/MySql. All the uppercase 
+  letters turned to lowercase. This will crash the program. Be aware. All the
+  letters shoud be as same as in myAgenda.sql
+
+* To send reminders, add a cron entry like below. This will check every day at 8.15 am
+  if there is a reminder; then sr.php will do the work. One more point is the user/pass
+  we set in config.php with $auth_us/$auth_ps. Write these variables values to your cron
+  entry also. text.txt is a null value. Never mind it.
+  
+  15 8 * * * /usr/bin/lynx -auth=agenda:agenda -dump http://www.yourdomain.com/agenda/sr.php >  text.txt
+
+* Upload all the scripts to your web directory. 
+	   
+* Go http://yourdomain.com/path/to/myAgenda/ and see your agenda.
