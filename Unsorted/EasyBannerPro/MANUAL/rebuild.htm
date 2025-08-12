@@ -1,0 +1,63 @@
+<html>
+
+<head>
+<title>Reset</title>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+<p><font face="Verdana" size="2" color="red"><b>Daily Job</b></font><font face="Verdana" size="2" color="black"><br><br> Easy 
+Banner Pro has one  job which must to be run on&nbsp;daily basis - Daily Job.<br>It 
+must be running daily after midnight. It copies statistic of the previous day 
+to the day-by-day and month-by-month statistics,  </font><SPAN class=text10><font face="Verdana" size="2">deletes all IP records used in the anti-cheat protection, converts daily portion of the 'Deferred free impressions' to normal free 
+impressions and deletes unpaid sponsor orders older than 7 days. You can run 
+this job also manually in the Admin Area, however it's not recommended.<br>Please 
+note that <b>it's very important to run the daily job immediately after midnight</b> 
+to have the statistic as accurate as possible.<br><br>There are 3 different ways to run this job:<br><b>Automatically</b> 
+- just check field 'Run t</font></SPAN><SPAN class="text13"><font face="Verdana" size="2">he daily and weekly jobs 
+automatically' in your Configuration. This is a very easy way but it needs additional 
+system resources and it is not recommended. You should never use this way if you 
+have more than 30,000 impressions/day.<br><b>By Crontab (Linux) or Task Manager 
+(Windows)</b> - it's the best way but there is needed a little more setting. 
+You can read below how to set a Cron on your server. If you use 
+this way, never check '</font></SPAN><SPAN class=text10><font face="Verdana" size="2">Run 
+t</font></SPAN><SPAN class="text13"><font face="Verdana" size="2">he daily  job 
+automatically' in the Configuration.<br><b>Manually</b> - You can run this 
+job manually in the Admin Area.</font><br></SPAN><font face="Verdana" size="2" color="black"><br></font><FONT face="Verdana,Arial" color=#000000 size=2><B><FONT color=#ff0000>Using Cron<br><BR></FONT></B></FONT><font face="Verdana" size="2">If you haven't 
+used Crontab before, please go to <A 
+href="http://webmasterworkshop.com/guides/crontab_guide.shtml">http://webmasterworkshop.com/guides/crontab_guide.shtml</A> 
+or to <A 
+href="http://www.linux-2000.org/tutorial82999.html">http://www.linux-2000.org/tutorial82999.html</A> 
+to read more about this.</font></p>
+<P><font face="Verdana" size="2">You will need to figure out if you will be using 
+lynx or wget to perform the Cron tasks. These are both programs that are 
+commonly available on Linux and Unix servers, but not always. You will need to 
+locate one of these programs on your server. If you do not know where they can 
+be found, contact your server administrator to get that information. You will 
+need the full path to the program (ie /usr/bin/lynx).<br><br>Please note that 
+if you set up in your Configuration that time on the server is different from 
+a real time, you must move also the Daily Job. For example if there is +2 hours 
+difference, you have to run the Daily Job after 2 am.</font></P>
+<font face="Verdana" size="2" color="blue">You have to add one of 
+                    the following lines to your Cron tasks.<br>
+		    </font><font face="Verdana" size="2">It 
+                    runs this job daily at 0:01 am, it's very important to run 
+them immediately after a midnight.<br><br>If 
+                    you will be using wget, the line is (all between '1' and 
+                    'ip'):</font><br>
+</pre>
+<pre>1 0 * * *&nbsp;/path/to/wget --spider -q http://www.yourdomain.com/easybannerprodirectory/rebuild.php?word=yoursecretword</pre>
+<font face="Verdana" size="2">If you will be using lynx, 
+                    the line is (all between '1' and 'null'):</font><br>
+<pre>1 0 * * * /path/to/lynx -dump http://www.yourdomain.com/easybannerprodirectory/rebuild.php?word=yoursecretword &gt;/dev/null</pre>
+                    <p><font face="Verdana" size="2">You must replace &quot;/path/to/wget&quot; 
+                    or &quot;/path/to/lynx&quot; with real path to wget or lynx.<br>You 
+                    also must replace &quot;http://www.yourdomain.com/easybannerprodirectory/rebuild.php&quot; 
+                    by a real URL of your rebuild.php file. Also replace &quot;yoursecretword&quot; 
+                    by your secret word you have entered in the </font><SPAN class="text13"><font face="Verdana" size="2">Configuration</font></SPAN><font face="Verdana" size="2">.<br><br>These 
+                    are only samples. You may want to change the times if you 
+                    are familiar with Cron.<br><br>
+
+                    </font></p>
+</body>
+
+</html>
