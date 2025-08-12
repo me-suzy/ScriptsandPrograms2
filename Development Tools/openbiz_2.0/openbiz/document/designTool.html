@@ -1,0 +1,119 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Openbiz Eclise Plugin Document</title>
+<link rel="stylesheet" href="doc.css" type="text/css">
+<style>
+body { font-family: Tahoma;Verdana;Arial; font-size: 12px;}
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="100%" height="55" bgcolor="#0B326B"><a href="index.html"><img border="0" src="openbiz.gif" width="476" height="58"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFCC00"> &nbsp; </td>
+  </tr>
+</table>
+
+<h2>
+      Openbiz Eclipse Plugin User Manual</h2>
+
+<ol>
+  <li><b>Installation</b></li>
+  <li><b>Work on openbiz project<br>
+    </b>2.1 Create openbiz project<br>
+    2.2 Create and edit a BizObj<br>
+    2.3 Create and edit a BizForm<br>
+    2.4 Create and edit a BizView<br>
+    2.5 Test BizView on browser</li>
+</ol>
+<h3>1. Installation</h3>
+<p>Openbiz Eclipse Plugin assists openbiz users to develop openbiz application
+in Eclipse environment.</p>
+<p>First remove older Openbiz Eclipse plugin installation. Download
+openbiz_eclipse_0.9.x.zip from openbiz sourceforge web site. Same as
+installation of other eclipse plugins, just unzip it to your eclipse directory.
+Then restart eclipse. Openbiz plugin works with Eclipse 3.x.</p>
+<p>To make sure that openbiz plugin can connect to your database (which is
+required for openbiz development), please edit config.xml under ECLIPSE_ROOT/plugins/org.openbiz.metadata_0.9.x/config.
+A pre-configured database element in the file is to connect local MySql database
+using connect/j JDBC driver. Please make change on it to point to coorect jdbc
+driver and database url.</p>
+<p><b>The pre-configure database element in config.xml</b></p>
+<p>
+&lt;Database DriverFile=&quot;D:\java\eclipse\plugins\org.openbiz.metadata_0.9.x\lib\mysql-connector-java-3.1.10-bin.jar&quot;
+DriverClass=&quot;com.mysql.jdbc.Driver&quot; ConnectURL=&quot;jdbc:mysql://localhost:3306/demo&quot; User="root" Password="root"/></p>
+<p><b><strike>Use the new metadata zip file for Openbiz 2.0 alpha</strike> <font color="#0000FF">(no
+longer needed in Openbiz 2.0 beta)</font></b></p>
+<p><strike>The metadata files come with openbiz 2.0 alpha release will give errors when
+they are opened with Openbiz Eclipse plugin. So please download the new metadata
+zip file and replace the one in the openbiz 2.0 alpha release. The new metadata
+files basically remove the line includes dtd and replace &lt;BizObj&gt; with
+&lt;BizDataObj&gt;.</strike></p>
+<h3>2. Work on Openbiz Project</h3>
+<h4>2.1 Create openbiz project</h4>
+<p>With help of eclipse, openbiz directory can be managed under an eclipse
+project. User can create a project that points to the openbiz (or openbiz/metadata)
+directory. Then the openbiz project tree should appear on the eclipse Navigator
+view.</p>
+<p><img border="0" src="eclipse_obproj.jpg" width="664" height="400"></p>
+<h4>2.2 Create a BizDataObj - the object maps to database table</h4>
+<p>Click the File -&gt; New -&gt; Others... from the menu, or right click on the
+item of openbiz project, select New -&gt; Others..., a window pops up. Select
+Openbiz Metadata Object -&gt; BizDataObj metadata file.</p>
+<p><img border="0" src="eclipse_obnew.jpg" width="525" height="500">&nbsp;</p>
+<p>Then do the following tasks in the rest pages.</p>
+<ol>
+  <li>Type in a metadata file name</li>
+  <li>Select a database table to be the BizDataObj base table</li>
+  <li>Select table columns mapping to the BizFields</li>
+</ol>
+<p>After you click Finish button, the new metadata file is opened in the editor
+area. The editor looks like eclipse Plug-in Menifest Editor. The overview page
+shows the information of root xml element of the metadata object, the rest pages
+show the second level xml elements.&nbsp;</p>
+<p><img border="0" src="eclipse_dataobj.jpg" width="768" height="580"></p>
+<p>The plugin provides three wasy to edit the metadata file,&nbsp;</p>
+<ul>
+  <li>Add, delete or move elements</li>
+  <li>Type in value in editbox or select value in comboBox</li>
+  <li>Clicking on buttons with &quot;...&quot; pops up a selection dialog for
+    users to pick a value such as table, column or metadata object</li>
+</ul>
+<p><img border="0" src="eclipse_fields.jpg" width="801" height="580"></p>
+<h4>2.3 Create a BizForm - the UI object maps to BizDataObj</h4>
+<p>Like creating a BizDataObj, click the File -&gt; New -&gt; Others... from the
+menu, or right click on the item of openbiz project, select New -&gt; Others...,
+a window pops up. Select Openbiz Metadata Object -&gt; BizForm metadata file.</p>
+<p>Then do the following tasks in the rest pages.</p>
+<ol>
+  <li>Type in a metadata file name</li>
+  <li>Select a BizDataObj that BizForm depends on&nbsp;</li>
+  <li>Select BizDataObj's BizFields mapping to the BizForm's BizCtrls</li>
+</ol>
+<p>After you click Finish button, the new metadata file is opened in the editor
+area.&nbsp;</p>
+<h4>2.4 Create a BizView - BizForm Container</h4>
+<p>Like creating a BizDataObj, click the File -&gt; New -&gt; Others... from the
+menu, or right click on the item of openbiz project, select New -&gt; Others...,
+a window pops up. Select Openbiz Metadata Object -&gt; BizView metadata file.</p>
+<p>Then Type in a metadata file name and click Finish button.</p>
+<p>After you click Finish button, the new metadata file is opened in the editor
+area. </p>
+
+<h4><b>2.5 Test BizView on browser</b></h4>
+<p>A BizView can be accessed with url as following format:</p>
+<p><b>openbiz_root_path/bin/bizController.php?view=package.viewname</b></p>
+<p>For example, http://localhost/openbiz/bin/bizController.php?view=shared.SignupView</p>
+
+</body>
+
+</html>
