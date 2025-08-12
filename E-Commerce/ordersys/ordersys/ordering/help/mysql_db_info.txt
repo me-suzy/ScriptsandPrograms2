@@ -1,0 +1,267 @@
+MySQL database name
+-------------------
+
+laborder
+
+==============================
+
+------
+Tables
+------
+
+This is a general description. MySQL structure is defined at the end.
+
+1. Table of items
+.................
+
+Name - item
+For - items
+
+ID - primary key - integer - autoincrements
+
+2. Table of vendors
+............................
+
+Name - vendor
+For - vendor list
+
+Vendor_ID - primary key - integer - autoincrementsÊ
+
+3. Table of past orders
+.............................
+
+Name - order
+For - past orders
+
+order_id - primary key - integer - autoincrements
+
+4. Table of users
+.................
+
+Name - users
+For - users
+
+ID_user - primary key - integer - autoincrements
+
+5. Tables added through interface creator
+.................................................
+
+dadabik_table_list and dadabik_ prefixed tables.
+
+
+------------------------------
+MySQL structure of laborder db
+------------------------------
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+CREATE TABLE `dadabik_item` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL,
+  `primary_key_table_field` varchar(255) NOT NULL,
+  `primary_key_db_field` varchar(50) NOT NULL,
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL,
+  `linked_fields_extra_mysql` varchar(255) NOT NULL,
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL,
+  `height_field` varchar(5) NOT NULL,
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL,
+  `order_form_field` smallint(6) NOT NULL,
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_order` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL default '',
+  `primary_key_table_field` varchar(255) NOT NULL default '',
+  `primary_key_db_field` varchar(50) NOT NULL default '',
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL default '',
+  `linked_fields_extra_mysql` varchar(255) NOT NULL default '',
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL default '',
+  `height_field` varchar(5) NOT NULL default '',
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL default '',
+  `order_form_field` smallint(6) NOT NULL default '0',
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_table_list` (
+  `name_table` varchar(255) NOT NULL default '',
+  `allowed_table` tinyint(4) NOT NULL default '0',
+  `enable_insert_table` varchar(5) NOT NULL default '',
+  `enable_edit_table` varchar(5) NOT NULL default '',
+  `enable_delete_table` varchar(5) NOT NULL default '',
+  `enable_details_table` varchar(5) NOT NULL default '',
+  PRIMARY KEY  (`name_table`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_users` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL,
+  `primary_key_table_field` varchar(255) NOT NULL,
+  `primary_key_db_field` varchar(50) NOT NULL,
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL,
+  `linked_fields_extra_mysql` varchar(255) NOT NULL,
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL,
+  `height_field` varchar(5) NOT NULL,
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL,
+  `order_form_field` smallint(6) NOT NULL,
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `dadabik_vendor` (
+  `name_field` varchar(50) NOT NULL default '',
+  `label_field` varchar(255) NOT NULL default '',
+  `type_field` enum('text','textarea','rich_editor','password','insert_date','update_date','date','select_single','select_multiple','select_multiple_checkbox','generic_file','image_file','ID_user','unique_ID') NOT NULL default 'text',
+  `content_field` enum('alphabetic','alphanumeric','numeric','url','email','html','phone') NOT NULL default 'alphanumeric',
+  `present_search_form_field` enum('0','1') NOT NULL default '1',
+  `present_results_search_field` enum('0','1') NOT NULL default '1',
+  `present_details_form_field` enum('0','1') NOT NULL default '1',
+  `present_insert_form_field` enum('0','1') NOT NULL default '1',
+  `present_ext_update_form_field` enum('0','1') NOT NULL default '1',
+  `required_field` enum('0','1') NOT NULL default '0',
+  `check_duplicated_insert_field` enum('0','1') NOT NULL default '0',
+  `other_choices_field` enum('0','1') NOT NULL default '0',
+  `select_options_field` text NOT NULL,
+  `primary_key_field_field` varchar(255) NOT NULL,
+  `primary_key_table_field` varchar(255) NOT NULL,
+  `primary_key_db_field` varchar(50) NOT NULL,
+  `linked_fields_field` text NOT NULL,
+  `linked_fields_order_by_field` text NOT NULL,
+  `linked_fields_order_type_field` varchar(255) NOT NULL,
+  `linked_fields_extra_mysql` varchar(255) NOT NULL,
+  `select_type_field` varchar(100) NOT NULL default 'is_equal/contains/starts_with/ends_with/greater_than/less_then',
+  `prefix_field` text NOT NULL,
+  `default_value_field` text NOT NULL,
+  `width_field` varchar(5) NOT NULL,
+  `height_field` varchar(5) NOT NULL,
+  `maxlength_field` varchar(5) NOT NULL default '100',
+  `hint_insert_field` varchar(255) NOT NULL,
+  `order_form_field` smallint(6) NOT NULL,
+  `separator_field` varchar(2) NOT NULL default '~',
+  PRIMARY KEY  (`name_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `item` (
+  `ID` int(11) NOT NULL auto_increment,
+  `Category` varchar(64) NOT NULL default 'Category',
+  `Name` varchar(255) NOT NULL default 'Name',
+  `Size` varchar(64) NOT NULL default 'Size',
+  `Manufacturer` varchar(128) NOT NULL default 'Manufacturer',
+  `Manufacturer_cat_no` varchar(32) NOT NULL default 'Man. cat. no.',
+  `Vendor` varchar(128) NOT NULL default 'Vendor',
+  `Vendor_cat_no` varchar(32) NOT NULL default 'Vendor cat. no.',
+  `Price` decimal(10,2) NOT NULL default '0.00',
+  `Extra` varchar(255) NOT NULL default 'Extra',
+  `update_date` date NOT NULL default '0000-00-00',
+  `insert_date` date NOT NULL default '0000-00-00',
+  `order_date` date NOT NULL default '0000-00-00',
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Details on items';
+
+
+CREATE TABLE `order` (
+  `order_id` mediumint(10) NOT NULL auto_increment,
+  `description` text NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL default '0.00',
+  `ordered_by` varchar(255) NOT NULL default '',
+  `comment` text NOT NULL,
+  `cost_reduce` decimal(10,2) NOT NULL default '0.00',
+  `cost_add` decimal(10,2) NOT NULL default '0.00',
+  `status` varchar(255) NOT NULL default '',
+  `modified_date` date NOT NULL default '0000-00-00',
+  `ordered_date` date NOT NULL default '0000-00-00',
+  `reception_status` varchar(255) NOT NULL default '',
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`order_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `users` (
+  `ID_user` int(11) NOT NULL auto_increment,
+  `name` varchar(64) NOT NULL default '',
+  `md5_password` varchar(32) NOT NULL,
+  `status` varchar(32) NOT NULL default '',
+  `group` varchar(64) NOT NULL default '',
+  `comment` varchar(255) NOT NULL default '',
+  `username` varchar(32) NOT NULL,
+  PRIMARY KEY  (`ID_user`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `vendor` (
+  `Vendor_ID` int(11) NOT NULL auto_increment,
+  `Name` varchar(64) NOT NULL default 'Vendor',
+  `Phone` varchar(32) NOT NULL default 'Phone',
+  `Fax` varchar(32) NOT NULL default 'Fax',
+  `Address` varchar(255) NOT NULL default 'Address',
+  `update_date` date NOT NULL default '0000-00-00',
+  `insert_date` date NOT NULL default '0000-00-00',
+  `website` varchar(255) NOT NULL default '',
+  `ID_user` int(11) NOT NULL,
+  PRIMARY KEY  (`Vendor_ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Information on vendor to whom order is sent';
+
+
+SET FOREIGN_KEY_CHECKS = 1;
