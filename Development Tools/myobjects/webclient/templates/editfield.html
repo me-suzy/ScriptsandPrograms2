@@ -1,0 +1,785 @@
+<?php
+$tabIndex = 1;
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>MyObjects Web Client</title>
+<link rel="stylesheet" type="text/css" href="webclient/scripts/myobjects.css" />
+<link rel="stylesheet" type="text/css" href="webclient/scripts/DatabaseTree.css" />
+<script type="text/javascript" src="webclient/scripts/ie5.js"></script>
+<script type="text/javascript" src="webclient/scripts/XulMenu.js"></script>
+<script type="text/javascript" src="webclient/scripts/DynamicTree.js"></script>
+<style>
+#numericFieldOptions, #textFieldOptions, #enumFieldOptions, #setFieldOptions, #timeFieldOptions {
+	margin-top:20px;
+	display:none;
+}
+#autoInc {
+	display:none;
+}
+#foreignKeySelector, #enumValueSelector, #booleanValueSelector {
+	display:none;
+}
+</style>
+<script language="javascript" type="text/javascript">
+<!--
+
+if(navigator.userAgent.indexOf('MSIE')) {
+	var display = 'block';
+	var displayRow = 'block';
+} else {
+	var display = 'table';
+	var displayRow = 'table-row';
+}
+function changeOptions() {
+	var n = document.fieldEditor.dataType.selectedIndex;
+	if(n < 8 || n == 25) {
+		document.getElementById('numericFieldOptions').style.display = display;
+		document.getElementById('textFieldOptions').style.display = 'none';
+		document.getElementById('enumFieldOptions').style.display = 'none';
+		document.getElementById('setFieldOptions').style.display = 'none';
+		document.getElementById('timeFieldOptions').style.display = 'none';
+		if(document.fieldEditor.primaryKey.checked) {
+			document.getElementById('autoInc').style.display = displayRow;
+		}
+	}
+	else if(n < 18 || n == 26) {
+		document.getElementById('numericFieldOptions').style.display = 'none';
+		document.getElementById('textFieldOptions').style.display = display;
+		document.getElementById('enumFieldOptions').style.display = 'none';
+		document.getElementById('setFieldOptions').style.display = 'none';
+		document.getElementById('timeFieldOptions').style.display = 'none';
+	}
+	else if (n < 19) {
+		document.getElementById('numericFieldOptions').style.display = 'none';
+		document.getElementById('textFieldOptions').style.display = 'none';
+		document.getElementById('enumFieldOptions').style.display = display;
+		document.getElementById('setFieldOptions').style.display = 'none';
+		document.getElementById('timeFieldOptions').style.display = 'none';
+	}
+	else if(n < 20) {
+		document.getElementById('numericFieldOptions').style.display = 'none';
+		document.getElementById('textFieldOptions').style.display = 'none';
+		document.getElementById('enumFieldOptions').style.display = 'none';
+		document.getElementById('setFieldOptions').style.display = display;
+		document.getElementById('timeFieldOptions').style.display = 'none';
+	}
+	else {
+		document.getElementById('numericFieldOptions').style.display = 'none';
+		document.getElementById('textFieldOptions').style.display = 'none';
+		document.getElementById('enumFieldOptions').style.display = 'none';
+		document.getElementById('setFieldOptions').style.display = 'none';
+		document.getElementById('timeFieldOptions').style.display = display;
+	}
+}
+
+function toggleForeignKey() {
+	if(document.fieldEditor.foreignKey.checked) {
+		document.getElementById('foreignKeySelector').style.display = display;
+	} else {
+		document.getElementById('foreignKeySelector').style.display = 'none';
+	}
+}
+
+function toggleAutoIncrement() {
+	if(document.fieldEditor.primaryKey.checked) {
+		document.getElementById('autoInc').style.display = display;
+	} else {
+		document.getElementById('autoInc').style.display = 'none';
+	}
+}
+
+function toggleBoolean() {
+	if(document.fieldEditor.isBoolean.checked) {
+		document.getElementById('booleanValueSelector').style.display = display;
+		document.getElementById('enumValueSelector').style.display = 'none';
+	} else {
+		document.getElementById('booleanValueSelector').style.display = 'none';
+		document.getElementById('enumValueSelector').style.display = display;
+	}
+}
+
+function selectDataType(n) {
+	document.fieldEditor.dataType.selectedIndex = n;
+	if(n == 26 || ( n > 7 && n < 18)) {
+		document.fieldEditor.restriction.selectedIndex = <?php echo $this->restriction?>;
+	}
+}
+
+function init() {
+	selectDataType(<?php echo $this->dataType?>);
+	changeOptions();
+	toggleForeignKey();
+	toggleBoolean();
+}
+
+function validateForm (form) {
+	var valid = true;
+	var errorMessage = '';
+	// Check the fieldname
+	var namePattern = /^[A-Za-z0-9_$]{1,64}$/;
+	var digitOnlyPattern = /^[0-9]+$/;
+	if(!namePattern.test(form.fieldName.value)) {
+		valid = false;
+		errorMessage += ' * Please enter a valid field name\n';
+	}
+	
+	if(digitOnlyPattern.test(form.fieldName.value)) {
+		valid = false;
+		errorMessage += ' * Please enter a valid field name\nField name may not consist solely of digits.\n';
+	}
+	
+	// Check if foreign table name is supplied
+	if(form.foreignKey.checked) {
+		if(!namePattern.test(document.getElementById('foreignTableName').value) || digitOnlyPattern.test(document.getElementById('foreignTableName').value)) {
+			valid = false;
+			errorMessage += ' * Please enter a valid foreign table name.\n';
+		}
+		if(document.getElementById('foreignKeyName').value != '') {
+			if(!namePattern.test(document.getElementById('foreignKeyName').value) || digitOnlyPattern.test(document.getElementById('foreignKeyName').value)) {
+				valid = false;
+				errorMessage += ' * Please enter a valid foreign key name.\n';
+			}
+		}
+		if(document.getElementById('foreignObjectName').value != '') {
+			if(!namePattern.test(document.getElementById('foreignObjectName').value) || digitOnlyPattern.test(document.getElementById('foreignObjectName').value)) {
+				valid = false;
+				errorMessage += ' * Please enter a valid foreign object property name.\n';
+			}
+		}
+	}
+	
+	// Check the getter function name
+	if(!isValidName(false, 'getterFunction')) {
+		valid = false;
+		errorMessage += ' * Please enter a valid getter function name.\n';
+	}
+	
+	// Check the setter function name
+	if(!isValidName(false, 'setterFunction')) {
+		valid = false;
+		errorMessage += ' * Please enter a valid setter function name.\n';
+	}
+	
+	// Check the validation function name
+	if(!isValidName(false, 'validationFunction')) {
+		valid = false;
+		errorMessage += ' * Please enter a valid validation function name.\n';
+	}
+	
+	// Check the store function name
+	if(!isValidName(false, 'storeFunction')) {
+		valid = false;
+		errorMessage += ' * Please enter a valid store function name.\n';
+	}
+	
+	var n = form.dataType.selectedIndex;
+	// Check numeric field options if the type is numeric
+	if(n < 8 || n == 25) {
+		if(form.numericSize.value != '' && !digitOnlyPattern.test(form.numericSize.value)) {
+			valid = false;
+			errorMessage += ' * Field size should be a numeric value.\n';
+		}
+
+		var unsigned = form.unsigned.checked;
+		
+		if(form.minimumValue.value != '') {
+			var m = form.minimumValue.value;
+			var pattern = /^-?[0-9]+$/;
+			if(!pattern.test(m)) {
+				valid = false;
+				errorMessage += ' * Minimum value should be a numeric value.\n';
+			} else {
+				if(unsigned) {
+					if(m< 0) {
+						valid = false;
+						errorMessage += ' * Minimum value cannot be negative for unsigned numeric fields.\n';
+					}
+				} else {
+					if(n == 0 && m < -128) {
+						valid = false;
+						errorMessage += ' * Minimum value for TINYINT fields cannot be less then -128.\n';
+					}
+					if(n == 1 && m < -32768) {
+						valid = false;
+						errorMessage += ' * Minimum value for SMALLINT fields cannot be less then -32768.\n';
+					}
+					if(n == 2 && m < -8388608) {
+						valid = false;
+						errorMessage += ' * Minimum value for MEDIUMINT fields cannot be less then -8388608.\n';
+					}
+					if(n == 3 && m < -2147483648) {
+						valid = false;
+						errorMessage += ' * Minimum value for INT fields cannot be less then -2147483648.\n';
+					}
+					if(n == 4 && m < -9223372036854775808) {
+						valid = false;
+						errorMessage += ' * Minimum value for INT fields cannot be less then -9223372036854775808.\n';
+					}
+				}
+			}
+		}
+		
+		if(form.maximumValue.value != '') {
+			var m = form.maximumValue.value;
+			if(!digitOnlyPattern.test(m)) {
+				valid = false;
+				errorMessage += ' * Maximum value should be a numeric value.\n';
+			} else {
+				if(n == 0) {
+					if(unsigned && m > 255) {
+						valid = false;
+						errorMessage += ' * Maximum value for unsigned TINYINT fields cannot be more than 255.\n';
+					}
+					else if(!unsigned && m > 127) {
+						valid = false;
+						errorMessage += ' * Maximum value for TINYINT fields cannot be more than 127.\n';
+					}
+				}
+				if(n == 1) {
+					if(unsigned && m > 65535) {
+						valid = false;
+						errorMessage += ' * Maximum value for unsigned SMALLINT fields cannot be more than 65535.\n';
+					}
+					else if(!unsigned && m > 32767) {
+						valid = false;
+						errorMessage += ' * Maximum value for SMALLINT fields cannot be more than 32767.\n';
+					}
+				}
+				if(n == 2) {
+					if(unsigned && m > 16777215) {
+						valid = false;
+						errorMessage += ' * Maximum value for unsigned MEDIUMINT fields cannot be more than 16777215.\n';
+					}
+					else if(!unsigned && m > 8388607) {
+						valid = false;
+						errorMessage += ' * Maximum value for MEDIUMINT fields cannot be more than 8388607.\n';
+					}
+				}
+				if(n == 3) {
+					if(unsigned && m > 4294967295) {
+						valid = false;
+						errorMessage += ' * Maximum value for unsigned INT fields cannot be more than 4294967295.\n';
+					}
+					else if(!unsigned && m > 2147483647) {
+						valid = false;
+						errorMessage += ' * Maximum value for INT fields cannot be more than 2147483647.\n';
+					}
+				}
+				if(n == 4) {
+					if(unsigned && m > 1844674073709551615) {
+						valid = false;
+						errorMessage += ' * Maximum value for unsigned BIGINT fields cannot be more than 1844674073709551615.\n';
+					}
+					else if(!unsigned && m > 9223372036854775807) {
+						valid = false;
+						errorMessage += ' * Maximum value for BIGINT fields cannot be more than 9223372036854775807.\n';
+					}
+				}
+			}
+		}
+	}
+	else if(n < 18 || n == 26) {
+		if(form.textSize.value != '' && !digitOnlyPattern.test(form.textSize.value)) {
+			valid = false;
+			errorMessage += ' * Field size should be a numeric value.\n';
+		}
+		if(n == 7 || n == 8) {
+			if(form.textSize.value != '' && (form.textSize.value > 255 || form.textSize.value < 0)) {
+				valid = false;
+				errorMessage += ' * CHAR and VARCHAR types can have a size between 0 - 255\n';
+			}
+		}
+		if(form.mimimumLength.value != '' && !digitOnlyPattern.test(form.minimumLength.value)) {
+			valid = false;
+			errorMessage += ' * Minimum Length should be a numeric value.\n';
+		}
+		if(form.minimumLength.value < 0) {
+			valid = false;
+			errorMessage += ' * Minimum Length should be greater then zero.\n';
+		}
+		if(form.maximumLength.value != '' && !digitOnlyPattern.test(form.maximumLength.value)) {
+			valid = false;
+			errorMessage += ' * Minimum Length should be a numeric value.\n';
+		}
+		if(form.maximumLength.value > 255 && (n == 7 ||  n == 8)) {
+			valid = false;
+			errorMessage += ' * Maximum Length for VARCHAR and CHAR fields cannot be more than 255.\n';
+		}
+	}
+	else if(n == 18) {
+		if(form.isBoolean.checked) {
+		  pattern = /^\'([^\']*(\'\')*)+\'$/;
+		  
+			if(!pattern.test(form.enumValue1.value) || !pattern.test(form.enumValue2.value)) {
+				valid = false;
+				errorMessage += ' * Enter the enum values in a correct syntax. eg \'xxx\', \'yyy\'.\n';
+			}
+		} else {
+		  pattern = /^\'([^\']*(\'\')*)+\'(\s?,\s?\'([^\']*(\'\')*)+\')*$/;
+		
+			if(!pattern.test(form.enumValues.value)) {
+				valid = false;
+				errorMessage += ' * Enter the enum values in a correct syntax. eg \'xxx\', \'yyy\'.\n';
+			}
+		}
+	}
+	else if(n == 19) {
+	  pattern = /^\'([^\']*(\'\')*)+\'(\s?,\s?\'([^\']*(\'\')*)+\')*$/;
+		if(pattern.test(form.setValues.value)) {
+			valid = false;
+			errorMessage += ' * Enter the set values in a correct syntax. eg \'xxx\', \'yyy\'.\n';
+		}
+	}
+	else {
+		if(form.defaultValue.value != '') {
+			if(n == 20) {
+				pattern = /^(\d{4})\-(\d{2})\-(\d{2})$/;
+				if(!pattern.test(form.defaultValue.value)) {
+					valid = false;
+					errorMessage += ' * Default value for DATE fields must be in YYYY-MM-DD format.\n';
+				}
+			}
+			else if(n == 21) {
+				pattern = /^(\d{2}):(\d{2}):(\d{2})$/;
+				if(!pattern.test(form.defaultValue.value)) {
+					valid = false;
+					errorMessage += ' * Default value for TIME fields must be in HH:MM:SS format.\n';
+				}
+			}
+			else if(n == 22) {
+				pattern = /^(\d{4})\-(\d{2})\-(\d{2})\s(\d{2}):(\d{2}):(\d{2})$/;
+				if(!pattern.test(form.defaultValue.value)) {
+					valid = false;
+					errorMessage += ' * Default value for DATETIME fields must be in YYYY-MM-DD HH:MM:SS format.\n';
+				}
+			}
+			else if(n == 23) {
+				pattern = /^(\d+)$/;
+				if(!pattern.test(form.defaultValue.value)) {
+					valid = false;
+					errorMessage += ' * Default value for TIMESTAMP fields must be a numeric value.\n';
+				}
+			}
+			else if(n == 24) {
+				pattern = /^\d{4}$/;
+				if(!pattern.test(form.defaultValue.value)) {
+					valid = false;
+					errorMessage += ' * Default value for YEAR fields must be in YYYY format.\n';
+				}
+			}
+		}
+	}
+	
+	if(!valid) {
+		alert('There are some problems in the form:\n\n' + errorMessage);
+	}
+	return valid;
+}
+
+function isValidName(required, id) {
+	var phpNamePattern = /^[A-Za-z_]+[A-Za-z0-9_]+$/;
+	
+	if(required && document.getElementById(id).value == '') {
+		return false;
+	}
+	
+	if(document.getElementById(id).value != '' && !phpNamePattern.test(document.getElementById(id).value)) {
+		return false;
+	}
+	return true;
+}
+
+function showTooltip(name, e) {
+	document.getElementById(name + 'Tooltip').style.visibility = 'visible';
+
+	if(e.clientX + 300 > screen.width - 50) {
+		var x = screen.width - 350;
+		document.getElementById(name + 'Tooltip').style.left = x + 'px';
+	} else {
+		document.getElementById(name + 'Tooltip').style.left = e.clientX + 'px';
+	}
+	var y = e.clientY + 20;
+	document.getElementById(name + 'Tooltip').style.top = y + 'px';
+}
+
+function hideTooltip(name) {
+	document.getElementById(name + 'Tooltip').style.visibility = 'hidden';
+}
+-->
+</script>
+</head>
+<body onload="init();">
+<!-- Tooltips -->
+<div id="fieldNameTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Maximum 64 characters. May contain digits, aplhabetic characters '_' and '$' characters.<br />
+May not consist solely of digits.
+</div>
+<div id="fieldTypeTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Select the MySql field type for this field. If you don't want to create an sql script from your database schema, you
+can select generic types NUMERIC or STRING.
+</div>
+<div id="descriptionTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Description text for the field. This text will be embeded in the generated php classes as comments.
+</div>
+<div id="requiredTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If the field is required make sure this is checked. This will add a NOT NULL statement to the generated
+sql script for this field. Also the generated php classes will have extra code to make sure this field
+is assigned to a valid value before database operations.
+</div>
+<div id="primaryKeyTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If the field is a primary key make sure this is selected.
+</div>
+<div id="autoIncrementTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Check this if the primary key is an auto incremented field.
+</div>
+<div id="uniqueKeyTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If the field is a unique key make sure this is selected. If the field is unique the generated php classes
+will automatically check for the existance of the data entered in this field.
+</div>
+<div id="foreignKeyTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If the field is a foreign key for another table's primary key field check this box.
+</div>
+<div id="foreignTableNameTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+The name of the foreign table.
+</div>
+<div id="foreignKeyNameTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+The name of the foreign field in the foreign table.
+</div>
+<div id="foreignObjectNameTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+You can override the class property name that will hold the foreign object instance by writing the property name here.
+The default value is the name of the foreign class in lowercase letters. This is needed when you have more than one
+foreign key field pointing to a single table.
+</div>
+<div id="getterFunctionTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+By default MyObjects creates &quot;<em>getFieldname</em>&quot; style getter function names in the generated php classes
+for each field. To override the default name you can write the function name that you desire in this area.
+</div>
+<div id="setterFunctionTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+By default MyObjects creates &quot;<em>setFieldname</em>&quot; style setter function names in the generated php classes
+for each field. To override the default name you can write the function name that you desire in this area.
+</div>
+<div id="validationFunctionTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If you want to use your own validation function for this field you can type the name of the php function that will be
+embedded in the generated classes. The validation function should return a boolean value and check the validness
+of the field data. It will be called when the user calls the setter method for the field.
+</div>
+<div id="storeFunctionTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If you want to filter the value using a function before assigning the value to the object property, you can write a
+function name here. For instance you want to store the md5 hash of the passwords in the password property of the object;
+writing <em>md5</em> here will make the setter method for the field to call md5 function before assigning the password
+property of the object. &quot;<em>$this-&gt;password = md5($value);</em>&quot;
+</div>
+<div id="defaultValueTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+You can enter a default value for the field here. This can be used in the generated sql script and the default value
+will be inserted in the constructor of the generated class.
+</div>
+<div id="unsignedTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If the field must not have negative values check this box. The generated code will not let negative values to be assigned
+for this field it this is checked.
+</div>
+<div id="displayWidthTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+This is the size of the field that will be inserted in the generated sql script. This value is only needed if you want to
+create an sql script from your database schema.
+</div>
+<div id="minimumValueTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If you want to restrict the values for this field to a minimum value, enter the minimum value here.
+</div>
+<div id="maximumValueTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If you want to restrict the values for this field to a maximum value, enter the maximum value here.
+</div>
+<div id="restrictionTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+You can add restrictions to your text type fields. This feature will validate the assigned value against different styles
+of patterns. These patterns are:
+<ul>
+	<li><strong>date:</strong> The assigned string should be in YYYY-MM-DD format.</li>
+	<li><strong>time:</strong> The assigned string should be in HH:MM:SS format.</li>
+	<li><strong>datetime:</strong> The assigned string should be in YYYY-MM-DD HH:MM:SS format.</li>
+	<li><strong>year:</strong> The assigned string should be in YYYY format.</li>
+	<li><strong>email:</strong> The assigned string should be a valid email address.</li>
+	<li><strong>cleanText:</strong> The assigned string should be formed of alphabetic characters, space character, &acute; character and ' character. (Without digits)</li>
+	<li><strong>word: </strong>The assigned string should be formed of alphabetic characters, digits or _ character. No white space is allowed.</li>
+	<li><strong>alpha:</strong> The assigned string should be formed of only alphabetical characters.</li>
+	<li><strong>numeric:</strong> The assigned string should be formed of only digits.</li>
+</ul>
+</div>
+<div id="sizeTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Size of the field. (Number of chars that will be stored in the field.) Needed for MySql
+</div>
+<div id="minimumLengthTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Enter the minimum allowed length for the for the string.
+</div>
+<div id="maximumLengthTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Enter the maximum allowed length for the for the string.
+</div>
+<div id="regularExpressionTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If you want the field value to be checked against a regular expression, enter it here.
+</div>
+<div id="booleanTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If you set an enum field as boolean the enum field can get one of two values. The generated getter method will retun true
+or false and the generated setter method will accept a boolean parameter. The getter function name will be in <em>isFieldname</em>
+format if another is not specified. 
+</div>
+<div id="enumValuesTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Enter the values that are allowed for this enum field. Seperate values with comma. e.g. 'something', 'somethingelse'
+</div>
+<div id="setValuesTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+Enter the values that are allowed for this set field. Seperate values with comma. e.g. 'something', 'somethingelse'
+</div>
+<div id="autoTooltip" style="position:absolute; visibility:hidden; " class="tooltip">
+If this checkbox is checked the default value for this field will be the time that the object is initiated.
+</div>
+<!-- End Of Tooltips -->
+<div id="logo"><a href="http://www.myobjects.org" target="_blank" title="MyObjects"><img src="webclient/images/logo.gif" width="90" height="29" alt="MyObjects" border="0" /></a></div>
+<script type="text/javscript">
+/* preload images */
+var arrow1 = new Image(4, 7);
+arrow1.src = "webclient/images/arrow1.gif";
+var arrow2 = new Image(4, 7);
+arrow2.src = "webclient/images/arrow2.gif";
+</script>
+<div id="toolbar"><?php echo $this->toolBar?></div>
+<script type="text/javascript">
+    var menu1 = new XulMenu("menu1");
+    menu1.arrow1 = "webclient/images/arrow1.gif";
+    menu1.arrow2 = "webclient/images/arrow2.gif";
+    menu1.init();
+</script>
+<table width="100%"  border="0" cellspacing="0" cellpadding="25" id="main">
+  <tr>
+    <td width="300" valign="top" style="border-right:1px dashed #000000;"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td class="tableHeader">Current Database Schema </td>
+        </tr>
+        <tr>
+          <td><?php echo $this->schemaGraph?></td>
+        </tr>
+      </table></td>
+    <td valign="top"><form name="fieldEditor" id="fieldEditor" action="index.php" method="post" onsubmit="return validateForm(this);">
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td colspan="2" class="tableHeader">Field Editor : Editing (Database: <a href="?editDatabase&amp;database=<?php echo $this->databaseName?>"><?php echo $this->databaseName?></a> / Table : <a href="?editTable&amp;database=<?php echo $this->databaseName?>&table=<?php echo $this->tableName?>"><?php echo $this->tableName?></a> / Feield : <?php echo $this->fieldName?>)</td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('fieldName', event);" onmouseout="hideTooltip('fieldName');">Field Name : *</a></td>
+            <td class="row1" width="300" align="right"><input name="fieldName" type="text" id="fieldName" style="width: 300px;" value="<?php echo $this->fieldName?>" maxlength="64" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('fieldType', event);" onmouseout="hideTooltip('fieldType');">Field Type : *</a></td>
+            <td class="row2" width="300" align="right"><select name="dataType" id="dataType" onchange="changeOptions();" style="width: 300px;" tabindex="<?php echo $tabIndex++ ?>">
+                <option value="tinyint">TINYINT</option>
+                <option value="smallint">SMALLINT</option>
+                <option value="mediumint">MEDIUMINT</option>
+                <option value="int">INT</option>
+                <option value="bigint">BIGINT</option>
+                <option value="float">FLOAT</option>
+                <option value="double">DOUBLE</option>
+                <option value="decimal">DECIMAL</option>
+                <option value="char">CHAR</option>
+                <option value="varchar">VARCHAR</option>
+                <option value="tinyblob">TINYBLOB</option>
+                <option value="blob">BLOB</option>
+                <option value="mediumblob">MEDIUMBLOB</option>
+                <option value="longblob">LONGBLOB</option>
+                <option value="tinytext">TINYTEXT</option>
+                <option value="text">TEXT</option>
+                <option value="mediumtext">MEDIUMTEXT</option>
+                <option value="longtext">LONGTEXT</option>
+                <option value="enum">ENUM</option>
+                <option value="set">SET</option>
+                <option value="date">DATE</option>
+                <option value="time">TIME</option>
+                <option value="datetime">DATETIME</option>
+                <option value="timestamp">TIMESTAMP</option>
+                <option value="year">YEAR</option>
+                <option value="numeric">NUMERIC</option>
+                <option value="string">STRING</option>
+              </select></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('description', event);" onmouseout="hideTooltip('description');">Description :</a></td>
+            <td class="row1" width="300"><textarea name="description" id="description" style="width:300px;" tabindex="<?php echo $tabIndex++ ?>"><?php echo $this->description?></textarea></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('required', event);" onmouseout="hideTooltip('required');">Required :</a></td>
+            <td class="row2" width="300"><input name="required" type="checkbox" id="required" value="true" <?php echo $this->required?> tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1">Key : </td>
+            <td class="row1" width="300" align="left"><table width="300"  border="0" cellspacing="0" cellpadding="0">
+                <tr align="left" valign="top">
+                  <td height="25" style="font-size:12px; "><a href="javascript:;" onmouseover="showTooltip('primaryKey', event);" onmouseout="hideTooltip('primaryKey');">Primary Key</a></td>
+                  <td height="25" style="font-size:12px; "><a href="javascript:;" onmouseover="showTooltip('uniqueKey', event);" onmouseout="hideTooltip('uniqueKey');">Unique Key</a></td>
+                </tr>
+                <tr align="left">
+                  <td><input name="primaryKey" type="checkbox" id="primaryKey" value="true" onclick="toggleAutoIncrement();" <?php echo $this->primaryKey?> tabindex="<?php echo $tabIndex++ ?>"/></td>
+                  <td><input name="unique" type="checkbox" id="unique" value="true" <?php echo $this->unique?> tabindex="<?php echo $tabIndex++ ?>"/></td>
+                </tr>
+              </table></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('foreignKey', event);" onmouseout="hideTooltip('foreignKey');">Foreign Key :</a>
+              <input name="foreignKey" type="checkbox" id="foreignKey" value="true" onclick="toggleForeignKey()" <?php echo $this->foreignKey?> tabindex="<?php echo $tabIndex++ ?>"/></td>
+            <td class="row2" width="300" align="right"><table width="300" border="0" cellpadding="0" cellspacing="0" id="foreignKeySelector">
+                <tr>
+                  <td align="left" valign="top" width="150" height="25" style="font-size:12px"><a href="javascript:;" onmouseover="showTooltip('foreignTableName', event);" onmouseout="hideTooltip('foreignTableName');">Foreign Table Name *</a></td>
+                  <td align="left" valign="top" width="150" height="25" style="font-size:12px"><a href="javascript:;" onmouseover="showTooltip('foreignKeyName', event);" onmouseout="hideTooltip('foreignKeyName');">Foreign Key Name</a></td>
+                </tr>
+                <tr>
+                  <td align="left" width="150"><input name="foreignTableName" type="text" id="foreignTableName" style="width:130px; " value="<?php echo $this->foreignTableName?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+                  <td align="left" width="150"><input name="foreignKeyName" type="text" id="foreignKeyName" style="width:130px; " value="<?php echo $this->foreignKeyName?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+                </tr>
+				<tr>
+				  <td colspan="2" align="left" style="font-size:12px"><a href="javascript:;" onmouseover="showTooltip('foreignObjectName', event);" onmouseout="hideTooltip('foreignObjectName');">Foreign Object Property Name</a>: <input  tabindex="10" name="foreignObjectName" type="text" id="foreignObjectName" value="<?php echo $this->foreignObjectName?>" /></td>
+				</tr>
+              </table></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('getterFunction', event);" onmouseout="hideTooltip('getterFunction');">Getter Function Name :</a></td>
+            <td class="row1" align="right"><input name="getterFunction" type="text" id="getterFunction" style="width: 300px;" value="<?php echo $this->getterFunction?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('setterFunction', event);" onmouseout="hideTooltip('setterFunction');">Setter Function Name :</a></td>
+            <td class="row2" align="right"><input name="setterFunction" type="text" id="setterFunction" style="width: 300px;" value="<?php echo $this->setterFunction?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('validationFunction', event);" onmouseout="hideTooltip('validationFunction');">Validation Function :</a></td>
+            <td class="row1" align="right"><input name="validationFunction" type="text" id="validationFunction" style="width: 300px;" value="<?php echo $this->validationFunction?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('storeFunction', event);" onmouseout="hideTooltip('storeFunction');">Store Function :</a></td>
+            <td class="row2" align="right"><input name="storeFunction" type="text" id="storeFunction" style="width: 300px;" value="<?php echo $this->storeFunction?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('defaultValue', event);" onmouseout="hideTooltip('defaultValue');">Default Value :</a></td>
+            <td class="row1" align="right"><input name="defaultValue" type="text" id="defaultValue" style="width: 300px;" value="<?php echo $this->defaultValue?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellpadding="5" cellspacing="0" id="numericFieldOptions">
+          <tr>
+            <td colspan="2" class="tableHeader">Numeric Field Options </td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('unsigned', event);" onmouseout="hideTooltip('unsigned');">Unsigned :</a></td>
+            <td class="row1" width="300"><input type="checkbox" name="unsigned" value="true" <?php echo $this->unsigned?> tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr id="autoInc">
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('autoIncrement', event);" onmouseout="hideTooltip('autoIncrement');">Auto Increment :</a></td>
+            <td class="row2" width="300" align="right"><input type="checkbox" name="auto_increment" value="true" <?php echo $this->auto_increment?> tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('displayWidth', event);" onmouseout="hideTooltip('displayWidth');">Display Width :</a></td>
+            <td class="row1" width="300" align="right"><input name="numericSize" type="text" id=" numericSize" style="width:300px;" value="<?php echo $this->numericSize?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('minimumValue', event);" onmouseout="hideTooltip('minimumValue');">Minimum Value :</a></td>
+            <td class="row2" width="300" align="right"><input name="minimumValue" type="text" id="minimumValue" style="width:300px;" value="<?php echo $this->minimumValue?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('maximumValue', event);" onmouseout="hideTooltip('maximumValue');">Maximum Value :</a></td>
+            <td class="row1" width="300" align="right"><input name="maximumValue" type="text" id="maximumValue" style="width:300px;" value="<?php echo $this->maximumValue?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellpadding="5" cellspacing="0" id="textFieldOptions">
+          <tr>
+            <td colspan="2" class="tableHeader">Text Field Options </td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('restriction', event);" onmouseout="hideTooltip('restriction');">Restriction :</a></td>
+            <td class="row1" width="300" align="right"><select name="restriction" id="restriction" style="width: 300px;" tabindex="<?php echo $tabIndex++ ?>">
+                <option value="default">default</option>
+                <option value="date">date</option>
+                <option value="time">time</option>
+                <option value="datetime">datetime</option>
+                <option value="year">year</option>
+                <option value="email">email</option>
+                <option value="cleanText">cleanText</option>
+                <option value="word">word</option>
+                <option value="alpha">alpha</option>
+                <option value="numeric">numeric</option>
+              </select></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('size', event);" onmouseout="hideTooltip('size');">Size :</a></td>
+            <td class="row2" width="300" align="right"><input name="textSize" type="text" id="textSize" style="width:300px;" value="<?php echo $this->textSize?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('minimumLength', event);" onmouseout="hideTooltip('minimumLength');">Minimum Length :</a></td>
+            <td class="row1" width="300" align="right"><input name="minimumLength" type="text" id="minimumLength" style="width:300px;" value="<?php echo $this->minimumLength?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row2"><a href="javascript:;" onmouseover="showTooltip('maximumLength', event);" onmouseout="hideTooltip('maximumLength');">Maximum Length :</a></td>
+            <td class="row2" width="300" align="right"><input name="maximumLength" type="text" id="maximumLength" style="width:300px;" value="<?php echo $this->maximumLength?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('regularExpression', event);" onmouseout="hideTooltip('regularExpression');">Regular Expression :</a></td>
+            <td class="row1" width="300" align="right"><input name="regexp" type="text" id="regexp" style="width:300px;" value="<?php echo $this->regexp?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellpadding="5" cellspacing="0" id="enumFieldOptions">
+          <tr>
+            <td colspan="2" class="tableHeader">Enum Field Options </td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('boolean', event);" onmouseout="hideTooltip('boolean');">Boolean :</a></td>
+            <td class="row1"><input name="isBoolean" type="checkbox" id="isBoolean" value="true" onclick="toggleBoolean();" <?php echo $this->enumBoolean?> tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="row2"><table width="100%"  border="0" cellspacing="0" cellpadding="0" id="booleanValueSelector">
+                <tr>
+                  <td>Value 1 </td>
+                  <td align="center"><input name="binaryFlag" type="radio" value="first" <?php echo $this->firstChecked?> tabindex="<?php echo $tabIndex++ ?>"/>
+                    True</td>
+                  <td width="300" align="right"><input name="enumValue1" type="text" id="enumValue1" style="width: 300px;" value="<?php echo $this->enumValue1?>"  tabindex="<?php echo $tabIndex++ ?>"/></td>
+                </tr>
+                <tr>
+                  <td>Value 2 </td>
+                  <td align="center"><input name="binaryFlag" type="radio" value="second" <?php echo $this->secondChecked?> tabindex="<?php echo $tabIndex++ ?>"/>
+                    True</td>
+                  <td><input name="enumValue2" type="text" id="enumValue2" style="width: 300px;" value="<?php echo $this->enumValue2?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+                </tr>
+              </table>
+              <table width="100%"  border="0" cellspacing="0" cellpadding="0" id="enumValueSelector">
+                <tr>
+                  <td><a href="javascript:;" onmouseover="showTooltip('enumValues', event);" onmouseout="hideTooltip('enumValues');">Values :</a></td>
+                  <td width="300" align="right"><input name="enumValues" type="text" id="enumValues" style="width: 300px;" value="<?php echo $this->enumValues?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellpadding="5" cellspacing="0" id="setFieldOptions">
+          <tr>
+            <td colspan="2" class="tableHeader">Set Field Options </td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('setValues', event);" onmouseout="hideTooltip('setValues');">Values :</a></td>
+            <td class="row1" width="300" align="right"><input name="setValues" type="text" id="setValues" style="width: 300px;" value="<?php echo $this->setValues?>" tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellpadding="5" cellspacing="0" id="timeFieldOptions">
+          <tr>
+            <td colspan="2" class="tableHeader">Time Field Options </td>
+          </tr>
+          <tr>
+            <td class="row1"><a href="javascript:;" onmouseover="showTooltip('auto', event);" onmouseout="hideTooltip('auto');">Auto :</a></td>
+            <td class="row1" width="300" align="left"><input name="auto" type="checkbox" id="auto" value="true" <?php echo $this->timeAuto?> tabindex="<?php echo $tabIndex++ ?>"/></td>
+          </tr>
+        </table>
+        <table width="100%"  border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td><input tabindex="34" type="submit" name="Submit" value="Update" tabindex="<?php echo $tabIndex++ ?>"/>
+              <input name="action" type="hidden" id="action" value="editField" />
+              <input name="database" type="hidden" id="database" value="<?php echo $this->databaseName?>" />
+              <input name="table" type="hidden" id="table" value="<?php echo $this->tableName?>" />
+              <input name="field" type="hidden" id="field" value="<?php echo $this->fieldName?>" /></td>
+          </tr>
+        </table>
+      </form></td>
+  </tr>
+</table>
+</body>
+</html>
