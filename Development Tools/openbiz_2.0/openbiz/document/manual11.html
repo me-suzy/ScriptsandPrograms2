@@ -1,0 +1,1596 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="stylesheet" href="doc.css" type="text/css">
+<title>OpenBiz Document</title>
+<style>
+body { font-family: Tahoma;Verdana;Arial; font-size: 12px;}
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="100%" height="55" bgcolor="#0B326B"><a href="index.html"><img border="0" src="openbiz.gif" width="476" height="58"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFCC00"> &nbsp; </td>
+  </tr>
+</table>
+
+<h1>OpenBiz Document 1.1.1</h1>
+<table border="0">
+  <tr>
+    <td valign="top"><b>1.</b></td>
+    <td valign="top"><a href="#Introdunction"><b>Introduction</b></a>
+      <table border="0" width="100%">
+        <tr>
+          <td width="100%"><a href="#pkg_bo">Package BizObj</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#pkg_bv">Package BizView</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#pkg_jf">Package jbForm (javascript bizForm)</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#pkg_adodb">Package ADODB</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><b>2.</b></td>
+    <td valign="top"><a href="#Installation"><b>Installation</b></a>
+      <table border="0" width="100%">
+        <tr>
+          <td width="100%"><a href="#Install_1">Running Environment</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#Install_2">Install Openbiz</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#Install_3"> Install necessary third party packages</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#Install_4"> Windows Installer with AppServ</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><b>3.</b></td>
+    <td valign="top"><a href="#Config"><b>Build your application</b></a>
+      <table border="0" width="100%">
+        <tr>
+          <td width="100%"><a href="#build_1"> Specify requirement of your application</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#build_2">
+Create your database model</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#build_3"> Create metadata xml files</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#build_4">
+Build template</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#build_5">
+Technical Details - Advanced Configration</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><b>4.</b></td>
+    <td valign="top"><a href="#Adv_config"><b>Advanced: build your application by extending
+    OpenBiz</b></a>
+      <table border="0" width="100%">
+        <tr>
+          <td width="100%"><a href="#ext_1">
+Extend BizObj and BizForm</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#ext_2">Implement Plug-in Service Interface</a></td>
+        </tr>
+        <tr>
+          <td width="100%"><a href="#ext_3">
+Implement View Access Control</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><b>5.</b></td>
+    <td valign="top"><a href="#Api"><b>API document</b></a></td>
+  </tr>
+  <tr>
+    <td valign="top"><b>6.</b></td>
+    <td valign="top"><a href="#Debug"><b>Debug strategies</b></a></td>
+  </tr>
+  <tr>
+    <td valign="top"><b>7.</b></td>
+    <td valign="top"><b><a href="designTool.html">Openbiz designer user manual</a></b></td>
+  </tr>
+</table>
+<hr>
+<h2><b><a name="Introdunction"></a> Introduction</b></h2>
+<p>OpenBiz provides a PHP framework that assists you to build complicated web
+application in an easy way.&nbsp;</p>
+<p>OpenBiz is designed as a multi-layer architecture as the figure below.</p>
+<p><img border="0" src="threelayer.gif" width="511" height="169"></p>
+<p>Usually a business application can be modulated to 3 layers - Data layer,
+Business Logic layer and Presentation layer. In OpenBiz architecture, these 3
+layers map to 3 packages, Presentation layer is refined to logic which is implemented by BizView
+package and GUI layers which is implemented by jbForm javascript package.
+Business Logic layer is implemented by BizObj package. 3rd party package ADODB
+handles Database layer.</p>
+<h3><b>Package BizObj<a name="pkg_bo"></a></b></h3>
+<h4>Classes</h4>
+<ul>
+  <li>BizObj - A base class that represents business logic
+    entities, such as Menu, Customer, Orders. A BizObj plays as a logic
+    container that hold data from different data source (i.e. database tables).
+    A BizObj contains N BizRecords</li>
+  <li>BizRecord - the logic unit that consist of the value of different data
+    source (i.e. database tables). A BizRecord contains M BizFields</li>
+  <li>BizField - A base class that represents a single logic field
+    in a BizObj. For example, the last name of the customer (BizObj Customer)
+    could be a BizField object.</li>
+</ul>
+<h4><b>Functionalities</b></h4>
+<ul>
+  <li><b>Use configuration xml file to map several database table into a single
+    BizObj</b><br>
+    $boUser = new BizObj(&quot;../metadata/BOUser.xml&quot;);<br>
+    &nbsp;</li>
+  <li><b>Query on logic level</b><br>
+    $boUser-&gt;SetSearchRule(&quot;[LastName]='Yao' OR [FirstName]='James'&quot;);<br>
+    $boUser-&gt;RunSearch();<br>
+    $boUser-&gt;PrintMe();<br>
+    &nbsp;</li>
+  <li><b>Insert a new record</b><br>
+    $boUser-&gt;NewRecord();<br>
+    $boUser-&gt;SetField(&quot;Id&quot;, "USER-1006");<br>
+    $boUser-&gt;SetField(&quot;LastName&quot;, "Test");<br>
+    $boUser-&gt;SetField(&quot;FirstName&quot;, "Add");<br>
+    $boUser-&gt;InsertRecord();<br>
+    &nbsp;</li>
+  <li><b>Update a record</b><br>
+    $boUser-&gt;SetSearchRule(&quot;[Id]='USER-1006'&quot;);<br>
+    $boUser-&gt;RunSearch();<br>
+    $boUser-&gt;EditRecord();<br>
+    $boUser-&gt;SetField(&quot;LastName&quot;, "Test");<br>
+    $boUser-&gt;SetField(&quot;FirstName&quot;, "Update");<br>
+    $boUser-&gt;UpdateRecord();<br>
+    &nbsp;</li>
+  <li><b>Delete a record</b><br>
+    $boUser-&gt;SetSearchRule(&quot;[Id]='USER-1006'&quot;);<br>
+    $boUser-&gt;RunSearch();<br>
+    $boUser-&gt;DeleteRecord();<br>
+    &nbsp;
+  </li>
+  <li><b>Define a field with expression<br>
+    </b>		&lt;BizField Name="P1 Points" SourceTable=&quot;matches&quot;
+    SourceColumn=&quot;PLAYER1_POINT&quot;/&gt;<br>
+		&lt;BizField Name="P2 Points" SourceTable=&quot;matches&quot;
+    SourceColumn=&quot;PLAYER2_POINT&quot;/&gt;<br>
+		&lt;BizField Name="P1_P2" <font color="#0000FF"> Value="[P1 Points] : [P2
+    Points]&quot;</font>/&gt;<br>
+    &nbsp;
+  </li>
+  <li><b><a href="#data_type_format"> Data type, format and validation</a></b><br>
+  </li>
+</ul>
+<h3><b>Package BizView<a name="pkg_bv"></a></b></h3>
+<h4>Classes</h4>
+<ul>
+  <li>BizView - the base class that contains list of UIControls
+    such as BizForms. If can specify the dependency relationship between
+    BizForms
+    <ul>
+      <li>BizPopup - A special BizView. It contains one BizForm from which use
+        can select a record to populate on the base form</li>
+    </ul>
+    <table border="0" width="79%" cellspacing="6" cellpadding="6">
+      <tr>
+        <td width="48%" valign="top"><img border="0" src="BizView.jpg" width="283" height="199">
+          <p align="center">A BizView contains 2 BizForm</td>
+        <td width="52%"><img border="0" src="BizPopup.jpg" width="423" height="194">
+          <p align="center">Click &quot;Select&quot; icon on a Field to show the
+          BizPopup, then Select a record to populate the fields on the base form</td>
+      </tr>
+    </table>
+  </li>
+  <li>BizForm - the base class to implement a set of controls mapping to a
+    BizObj</li>
+  <li>FieldControl - the class to implement single control that maps to a
+    BizField</li>
+  <li>HTMLControl
+    - the base class of generic HTML controls</li>
+  <li>DisplayMode - the class to read in mode
+  config for BizForm</li>
+</ul>
+<blockquote>
+  <p><img border="0" src="BizForm.gif" width="603" height="257"></p>
+</blockquote>
+<h4><b>Functionalities</b></h4>
+<ul>
+  <li><b>Use configuration xml file to map BizObj on BizForm and map BizFields
+    on FieldControls</b></li>
+  <li><b>Associate HTMLControl with published BizForm functions
+    </b></li>
+  <li><b>Page Navigation - </b>support MovePrev, MoveNext BizForm functions
+  </li>
+  <li><b>Search </b>- support multi-field search and wild character search
+  </li>
+  <li><b>Insert a new record</b> - insert a record before current record
+  </li>
+  <li><b>Update, Delete a record
+    </b></li>
+  <li><b><a href="#data_html_elem">Present data with various HTML elements</a></b></li>
+  <li><b>Sort a column
+    </b>
+    <table border="0" cellspacing="5">
+      <tr>
+        <td valign="top" align="center"><img border="0" src="before_sort.gif" width="228" height="209"><br>
+          Before sorting</td>
+        <td valign="top" align="center"><img border="0" src="after_sort.gif" width="229" height="208"><br>
+          After sorting on Name</td>
+      </tr>
+    </table>
+  </li>
+  <li><b>Link to another view<a name="LinkToView"></a>
+    </b>
+    <table border="0" cellspacing="5">
+      <tr>
+        <td valign="top" align="center"><img border="0" src="linkto_1.gif" width="337" height="112">
+          <p>In Match View, Click<font color="#0000FF"> </font><font color="#000080"><u>Michael
+          Liu</u></font></td>
+        <td valign="top" align="center"><img border="0" src="linkto_2.gif" width="372" height="243"><br>
+          Link to Registration View with Michael Liu record&nbsp;</td>
+      </tr>
+    </table>
+  </li>
+  <li><b>Select field data from comboBox</b> - comboBox list are defined in
+    extra xml file
+  </li>
+  <li><b>Select field data from other BizForm<a name="SelectField"></a></b></li>
+</ul>
+<blockquote>
+  <table border="0">
+    <tr>
+      <td width="100%">
+        <p align="center"><img border="0" src="SelectPopup.gif" width="743" height="289"><br>
+        Popup an BizForm and Select data to populate multiple fields on base
+        BizForm</td>
+    </tr>
+  </table>
+</blockquote>
+<ul>
+  <li><b>Link 2 BizForm with dependent relationship<a name="Dependency"></a></b></li>
+</ul>
+<blockquote>
+  <table border="0">
+    <tr>
+      <td width="100%" valign="top" colspan="2"><b>Registration BizForm depends
+        on Player BizForm (RegForm.PlayerId = PlyForm.PlayerId)</b></td>
+    </tr>
+    <tr>
+      <td width="46%" valign="top" align="center"><img border="0" src="Mliu.gif" width="398" height="281"><br>
+        Michael Liu is current selected player</td>
+      <td width="54%" valign="top" align="center"><img border="0" src="AChew.gif" width="401" height="265"><br>
+        <br>
+        Alan Chew is current selected player</td>
+    </tr>
+  </table>
+</blockquote>
+<ul>
+  <li><h4>Present table hierarchy with tree<a name="FormTree"></a></h4>
+    <table border="0">
+      <tr>
+        <td width="100%"><b>User can navigate to root, parent, children nodes</b></td>
+      </tr>
+      <tr>
+        <td width="100%"><img border="0" src="FormTree.gif" width="609" height="404"></td>
+      </tr>
+    </table>
+  </li>
+</ul>
+<h3><b>Package jbForm (javascript bizForm)<a name="pkg_jf"></a></b></h3>
+<h4>Class</h4>
+<ul>
+  <li>jbForm - the base calss that handles RPC function call and callback.</li>
+</ul>
+<p><b>Functionalities</b></p>
+<ul>
+  <li>Make server side remote function call. For example, A button associated
+    with FMRegist.InsertRecord(), when use click this button, jbForm make the
+    RPC call to server side.</li>
+  <li>Handle callback funtion. After a RPC call is issued, server object returns
+    data back to browser through a callback function, jbForm handle the callback
+    data and re-render the page.</li>
+</ul>
+<h3><b>Package ADODB<a name="pkg_adodb"></a></b></h3>
+<p>This is an abstract database connection package
+which can connects to all major databases from different vendors. It can be
+downloaded from <a href="http://php.weblogs.com/ADODB">http://php.weblogs.com/ADODB</a></p>
+<hr>
+<h2><b>Installation<a name="Installation"></a></b></h2>
+<h3>1. Running environment<a name="Install_1"></a></h3>
+<p>OpenBiz is written by PHP4 scripts, it runs at web server side. The typical
+running environment could be Web Server + PHP 4.x. To ensure the performance and
+reliability, we recommend users to use latest web server and php engine. For
+example</p>
+<ul>
+  <li>Apache HTTP Server 1.3.x or 2.x + PHP 4.3.x</li>
+  <li>Internet Information Server (IIS) 5.x + PHP 4.3.x</li>
+</ul>
+<p>If you have the administrator permission, you can configure PHP running as an
+Apache module. Some php performance software, such as mmcache, works under Apache
+module. This url <a href="http://www.thesitewizard.com/archive/php4install.shtml">http://www.thesitewizard.com/archive/php4install.shtml</a>
+is the guide to setting up PHP 4 to run with Apache on Windows.</p>
+<p>For better performance, please enable dom xml extension under PHP4. Please
+refer to <a href="http://us4.php.net/domxml">http://us4.php.net/domxml</a>. <b>domxml
+extension is required to run Design Studio.</b></p>
+<p>Support web browsers - IE5.x, Netscape 7.x and Mozillar 1.x</p>
+<h3>2. Install OpenBiz<a name="Install_2"></a></h3>
+<p>Download the zip file and unzip it to a directory under your web access root.</p>
+<p><b>Please read through the sysheader.inc under openbiz_root/ directory.
+Important notices:</b></p>
+<ul>
+  <li>This file defines the paths of 3rd party php packages including Smarty,
+    Adodb, Fpdf and Jpgraph. If you have same packages installed in other
+    directories and you don't want to use the packages installed with openbiz,
+    please modify the proper paths.&nbsp;</li>
+  <li>Metadata file path, log file path and session file path can also be
+    specified in sysheader.inc</li>
+  <li>To use the default authentication<b>
+      </b>functionality, <a href="faq.html#authen">read here</a>.</li>
+</ul>
+<p><b>Source tree structure:</b></p>
+<blockquote>
+  <p><font face="Courier New" size="2"><b>openbiz_root/&nbsp;<br>
+  ---bin/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz php
+  source)<b><br>
+  ------adodb/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(adodb package)<b><br>
+  ------configs/&nbsp;&nbsp;&nbsp;&nbsp; </b>(smarty config dir)<b><br>
+  ------fpdf/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(fpdf package)<b><br>
+  ------jpgraph/&nbsp;&nbsp;&nbsp;&nbsp; </b>(jpgraph package)<b><br>
+  ------Smarty/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(smarty package)<br>
+  <b>------templates/&nbsp;&nbsp; </b>(openbiz templates)<b><br>
+  ------templates_c/ </b>(templates compiled code)<b><br>
+  ------tmpfiles/&nbsp;&nbsp;&nbsp; </b>(temporary file directory)<b><br>
+  ------usrlib/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz user library
+  directory)<b><br>
+  ---css/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz style
+  sheets)<b><br>
+  ---document/&nbsp;&nbsp;&nbsp; </b>(openbiz documents)<b><br>
+  ---images/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz images)<b><br>
+  ---log/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz logs)<b><br>
+  ---medata/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz metadata files)<b><br>
+  ------demo/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demo package)<b><br>
+  ------design/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(design package)<b><br>
+  ---session&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz session files)</font></p>
+</blockquote>
+<p>In Unix or Linux box, you need to give write permission to web users on log,
+metadata, session, bin/tmpfiles and bin/templates_c directories.</p>
+<h3>3. Install necessary third party packages<a name="Install_3"></a></h3>
+<p>The following package are necessary - they are included in openbiz package</p>
+<ul>
+  <li>ADODB, <a href="http://php.weblogs.com/ADODB">http://php.weblogs.com/ADODB</a>.
+    Install it under OpenBizRoot/bin/adodb</li>
+  <li>Smarty
+    template enginee, <a href="http://smarty.php.net/">http://smarty.php.net/</a>.
+    Install it under OpenBizRoot/bin/</li>
+</ul>
+<p>We
+recommend you install PHP optimization packages.</p>
+<ul>
+  <li>Turck MMCache (free), <a href="http://www.turckware.com/en/e_mmc.htm">http://www.turckware.com/en/e_mmc.htm</a>.
+    Please follow the instruction to install this extension.</li>
+  <li>Zend Performance Suite <a href="http://www.zend.com/store/products/zend-performance-suite.php">http://www.zend.com/store/products/zend-performance-suite.php</a>&nbsp;</li>
+</ul>
+<h3>4. Windows Installer with AppServ<a name="Install_4"></a></h3>
+<p>For Windows users who want to install Web Server + PHP + Openbiz, an
+installer is available since B10110. Please follow the steps below:</p>
+<ul>
+  <li>Install AppServ 2.2.0 from <a href="http://www.appservnetwork.com/">http://www.appservnetwork.com/</a>.
+    Apache 1.3.28 + PHP4.3.4</li>
+  <li>Install openbiz by double click setup_opnebiz.exe. Please use installer
+    suggested install path which is under AppServ install directory<br>
+    <table border="0">
+      <tr>
+        <td width="100%"><b>What openbiz installer does?</b></td>
+      </tr>
+      <tr>
+        <td width="100%"><img border="0" src="arrow.png" width="9" height="9"> Install openbiz package under AppServ\www\evtmgr</td>
+      </tr>
+      <tr>
+        <td width="100%"><img border="0" src="arrow.png" width="9" height="9"> Install mmcache 2.4.6 for PHP 4.3.3</td>
+      </tr>
+      <tr>
+        <td width="100%"><img border="0" src="arrow.png" width="9" height="9"> Enable domxml extension</td>
+      </tr>
+      <tr>
+        <td width="100%"><img border="0" src="arrow.png" width="9" height="9"> Install Demo database under AppServ\mysql\data</td>
+      </tr>
+      <tr>
+        <td width="100%"><img border="0" src="arrow.png" width="9" height="9"> Add shortcut on your desktop and program menu</td>
+      </tr>
+    </table>
+  </li>
+  <li><p>Uninstall Openbiz and AppServ<br>
+    Both AppServ and Openbiz have uninstall program which can be run from
+    programs menu. Sometimes the Appache and Mysql services can't be uninstalled
+    by the uninstaller. Please use the trick below:<br>
+    <b>Clean up MySql command line:</b><br>
+    &gt; mysql-nt -- remove (remove the mysql windows service)<br>
+    &gt; del c:\winnt\my.ini (delete the mysql ini file)<br>
+    <b>Clean up Appache command line</b><br>
+    &gt; appache -u (remove the appache windos service)</p>
+  </li>
+</ul>
+<hr>
+<h2><b>Build
+Your Application<a name="Config"></a></b></h2>
+<h3>1. Specify requirement of your application<a name="build_1"></a></h3>
+<p>OpenBiz is a perfect tool that help you develop your complicated web
+application easily and comprehensively. Based on its 3-layer architecture, your
+application will be on a clear logic model. It takes care the basic and advanced
+feature of the data-oriented application. In order to tell whether OpenBiz can
+help building your application, you need ask these questions:</p>
+<ul>
+  <li>Is your application web-based application or can be converted to web-based
+    application?</li>
+  <li>Is your application need manipulate different types of data using
+    database?</li>
+</ul>
+<p>If the answers are YES, OpenBiz is the right framework for developing your
+application!</p>
+<h3><b>2.
+Create your database model<a name="build_2"></a></b></h3>
+<p>Modeling your business data with Relational database tables is the necessary
+base for building your whole application.</p>
+<h4><b>Populate the demo database to see how demo works</b></h4>
+<ul>
+  <li>If you use openbiz installer, demo database is installed already. So
+    please skip the steps below.</li>
+  <li>Find gendb.sql under openbiz root directory, apply it against your
+    database. Notes this&nbsp; gendb.sql is for mysql database, please adjust
+    the syntax according to different database type.</li>
+  <li>Table &quot;ob_objects&quot;, &quot;ob_users&quot; and &quot;ob_sysids&quot;
+    are openbiz system tables. Other tables are application tables, not required</li>
+</ul>
+<h4>Create a new database</h4>
+<ul>
+  <li>Assign the new database to be Default database in config.xml</li>
+  <li>Create &quot;ob_objects&quot; table which stores openbiz objects</li>
+  <li>Create &quot;ob_users&quot; table which stores user id and password</li>
+  <li>Create &quot;ob_sysids&quot; table which stores SYSID information for all
+    tables who have SYSID column</li>
+  <li>Create customer tables. Each table must have a SYSID column and add a
+    record in ob_sysids table (TABLE=your table name, PREFIX=prefix of sysid,
+    IDBODY=starting integer)</li>
+</ul>
+<h4>Use existing database (assume each table has single auto-generated id
+column)</h4>
+<ul>
+  <li>Assign the new database to be Default database in config.xml</li>
+  <li>Create ob_objects table which is used to store openbiz objects</li>
+  <li>Create &quot;ob_users&quot; table or reuse an exsiting table which
+    contains userid and password columns and reconfig the BOLogin.xml (point the
+    Table and BaseTable to the existing table).</li>
+  <li>Since each table has single auto-generated id column, no need to create
+    &quot;ob_sysids&quot;</li>
+</ul>
+<h3>3. Create metadata xml files<a name="build_3"></a></h3>
+<p>Developers can choose use XML editor to edit medata files or use Openbiz
+Designer to visually edit metadata files. For more detail of Openbiz designer,
+Please refer to <b><a href="designTool.html">Openbiz designer user manual</a>.</b></p>
+<h4>3.1 Organize metadata by package</h4>
+<p>In a big application, user may need to build lots of objects, therefore they
+have big metadata file list. If they put these files under a single metadata
+directory, managing the metadata files is a painful thing. From openbiz 1.1,
+metadata files can be organized by package name. Bear in mind, metadata package
+is different with the (BizObj, BizView ...) packages which are the code units.
+Metadata package is a naming system, different package maps to different
+directory. It is like the package concept used in Java.&nbsp;</p>
+<p><font color="#0000FF">PackageX</font><b>.</b><font color="#008000">PackageY</font><b>.</b><font color="#800080">metaA.xml</font>
+refers to the <font color="#800080">metaA.xml</font> under <b>META_PATH/</b><font color="#0000FF">PackageA</font><b>/</b><font color="#008000">PackageB</font>
+directory. Where <b>META_PATH</b> is the root metadata directory. This macro is
+defined in sysheader.inc with define (&quot;META_PATH&quot;,
+&quot;../metadata/&quot;).&nbsp;</p>
+<p><b>3.1.1 How to configure&nbsp; package in metadata files?</b></p>
+<p>Let's explain it with the demo example. After you unzip the source, find the
+demo directory under metadata directory. Open FMRegist.xml file with a text
+editor. You'll see a Package=&quot;demo&quot; attribute in the BizForm element.
+This attribute is to say the default package of any type of openbiz object is
+under &quot;demo&quot; package. Here the openbiz objects refer to the following
+object types.</p>
+<table border="1" width="478">
+  <tr>
+    <td width="94" bgcolor="#C0C0C0"><b>Object Type</b></td>
+    <td width="368" bgcolor="#C0C0C0"><b>Referred as attributes in metadata
+      files</b></td>
+  </tr>
+  <tr>
+    <td valign="top">BizObj</td>
+    <td valign="top">BizForm[BizObj]<br>
+      BizObj-&gt;BizFieldList-&gt;BizField[SelectBizObj]</td>
+  </tr>
+  <tr>
+    <td valign="top">BizForm</td>
+    <td valign="top">BizView-&gt;ControlList-&gt;Control[Form]<br>
+      BizView-&gt;ControlList-&gt;Control[SubCtrl]<br>
+      BizForm-&gt;BizCtrlList-&gt;BizCtrl[SelectFrom]</td>
+  </tr>
+  <tr>
+    <td valign="top">BizView</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">BizPopup</td>
+    <td valign="top">BizForm-&gt;BizCtrlList-&gt;BizCtrl[SelectBizForm]</td>
+  </tr>
+  <tr>
+    <td valign="top">BizFormTree</td>
+    <td valign="top">Same as BizForm</td>
+  </tr>
+</table>
+<p>If an object name doesn't contain dot symbol (&quot;.&quot;), the system uses
+the package attribute defined in the object root element as its package.
+Otherwise, if an object name has format as aaa.objectname, the system thinks
+such object under package &quot;aaa&quot; and will locate such object under aaa
+directory.</p>
+<p>Go back to the example, you can find &lt;BizForm Name=&quot;FMRegist&quot; Package="demo"
+... <font color="#0000FF"><i>BizObj=&quot;BORegist&quot;</i></font>...&gt;, &lt;BizCtrl
+Name=&quot;reg_attdln&quot;
+...&nbsp; <font color="#0000FF"><i>SelectBizForm=&quot;AttendeePopup&quot;</i></font>...&gt;
+and &lt;BizCtrl Name=&quot;reg_fee&quot; ... <font color="#0000FF"><i>SelectFrom=&quot;Selection(Fee)&quot;</i></font>...&gt;.
+They all use default package, so the system will try to locate the metadata
+files as <font color="#0000FF"><i>demo/BORegist.xml,</i></font> <i><font color="#0000FF">demo/AttendeePopup.xml</font>
+</i>and <font color="#0000FF"><i>demo/Selection.xml.</i></font></p>
+<p>If you want to refer to an object under other package, just add the package
+name as the prefix of the object name. Notice, there're a Selection.xml under
+/demo directory and another Selection.xml under /design directory, they belong
+to different packages. In FMRegist, whose package is &quot;demo&quot;, you can
+use &lt;BizCtrl ...&nbsp; <font color="#0000FF"><i>SelectFrom=&quot;design.Selection(Mode)&quot;
+</i></font>...&gt; to configure a comboBox whose values are from the
+&quot;Mode&quot; element of &quot;design/Selection.xml&quot;.</p>
+<p><b>3.1.2 How to configure&nbsp; package with Openbiz Design Tool?</b></p>
+<p>From openbiz 1.1, in the object browser view of Design Tool, user can give
+&quot;Package&quot; name for each object. If the object is not found under the
+directory (META_PATH/package/) mapping to the given package, a sample metadata
+file (copied from object type template) is created under that directory. If no
+package name is specified, a sample metadata file (copied from object type
+template) is created under META_PATH/ directory.</p>
+<p><img border="0" src="dsgn_package.gif" width="570" height="122"></p>
+<h4>3.2 Use object metadata inheritance</h4>
+<p>If you have a complex application, you want to reuse the existing object to
+different places, but you want the object behave a little differently in
+different scenarios. Object inheritance will solve the above problem. Since in
+openbiz framework objects maps to metadata file, object inheritance becomes
+metadata file inheritance.</p>
+<p><b>3.2.1 How to specify inheritance between metadata files?</b></p>
+<p>Specify an object attribute, InheritFrom = "parent object name". For example,
+in demo application, BOEventX has &lt;BizObj Name="BOEventX" Description="Event BizObj Extended from BOEvent" Package="demo" Class="BizObj"
+<b>InheritFrom=&quot;demo.BOEvent&quot;</b>...&gt;. This indicates that is
+BOEventX is inherited from BOEvent.&nbsp;</p>
+<p>Metadata file inheritance is similar with class inheritance in programming
+languages, child object can inherit (if not defined in child object, but defined
+in parent object)&nbsp; or override (if same attribute defined in both child
+object and parent object) the parent object attributes.</p>
+<table border="1" width="626">
+  <tr>
+    <td width="157" bgcolor="#C0C0C0"><b>Object Type which can has inheritance</b></td>
+    <td width="229" bgcolor="#C0C0C0"><b>What CAN be inherited or overridden</b></td>
+    <td width="218" bgcolor="#C0C0C0"><b>What CANNOT be inherited - must be
+      specified in child metadata file</b></td>
+  </tr>
+  <tr>
+    <td valign="top" width="157"><b>BizObj</b></td>
+    <td valign="top" width="229"><b>Object Attributes:</b> Description, DBName,
+      Table, SearchRule, SortRule, OtherSQLRule, CacheMode
+      <p><b>Object BizFieldList</b>: BizField</p>
+    </td>
+    <td valign="top" width="218"><b>Object Attributes:</b> Name, Package, Class,
+      InheritFrom, DesignProfile</td>
+  </tr>
+  <tr>
+    <td valign="top" width="157"><b>BizForm</b></td>
+    <td valign="top" width="229"><b>Object Attributes:</b> Description, jsClass,
+      Title, BizObj, PageSize, Width, Height, SearchRule
+      <p><b>Object BizCtrlList</b>: BizCtrl<br>
+      <b>Object </b><b>DisplayModes</b>: Mode<br>
+      <b>Object Toolbar</b>: Control<br>
+      <b>Object </b><b>Navbar</b>: Control</p>
+    </td>
+    <td valign="top" width="218"><b>Object Attributes:</b> Name, Package, Class,
+      InheritFrom, DesignProfile</td>
+  </tr>
+</table>
+<h4>3.3 Create an object record in ObjBrowse view</h4>
+<p>Open design.htm in browser to access OpenBiz Design Studio.<font size="3"> In
+unix, make sure your metadata directory has write permission open for web
+clients. Put focus on a record, click &quot;Design&quot; button <img border="0" src="design_icon.gif" width="27" height="24">
+to modify the object xml file.</font></p>
+<p><img border="0" src="ObjBrowse.gif" width="565" height="360"></p>
+<h4><b>3.4
+Build BizObj metadata</b></h4>
+<p>BizObj metadata file describes the mapping between database tables and BizObj.
+It's a xml file with following DTD.</p>
+<table border="1">
+  <tr>
+    <td width="100%"><pre>&lt;!--OpenBiz BizObj metadata DTD--&gt;
+
+&lt;!ELEMENT BizObj (BizFieldList) &gt;
+&lt;!ATTLIST BizObj    Name                        CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizObj    Description                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizObj    Package                     CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    Class                       CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizObj    InheritFrom                 CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    Table                       CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizObj    SearchRule                  CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    SortRule                    CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    OtherSQLRule                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    CacheMode                   CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    DesignProfile               CDATA  #REQUIRED &gt;
+
+&lt;!ELEMENT BizFieldList (BizField+) &gt;
+&lt;!ELEMENT BizField EMPTY &gt;
+&lt;!ATTLIST BizField    Name                      CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizField    BaseTable                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizField    BaseColumn                CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizField    ForeignTable              CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    ForeignColumn             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    ForeignPrimKey            CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    SelectBizObj              CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    SelectField               CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Type                      CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Format                    CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Required                  CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Validator                 CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Value                     CDATA  #IMPLIED &gt;</pre></td>
+  </tr>
+</table>
+<p>Open Design Studio screenshot - BizObj Design. Click &quot;Go Back to object
+browser&quot; button <img border="0" src="browse_icon.gif" width="26" height="23">
+to return to ObjBrowse View.</p>
+<p><img border="0" src="EdiBizObj.gif" width="781" height="330"></p>
+<p><font color="#FF0000"><b>Important Notes:&nbsp;</b></font></p>
+<ul>
+  <li>&quot;Id&quot; field is a required field, a BizObj must have an
+    &quot;Id&quot; field that points to the primary key of the table.&nbsp;</li>
+  <li>If the ForeignTable and ForeignColumn have values, you may assign
+    ForeignPrimKey to be the primary key column of foreign table if it isn't
+    named as SYSID.</li>
+</ul>
+<p><b>3.4.1 Composite keys support</b></p>
+<p>Most database table designers recommend each table have its unique primary
+key column which is also called ID column. In Openbiz BizObj, Id field is a
+required field for all BizObj. If table has ID column, it's easy to map such
+column to Id BizField. But there's still many tables are given composite keys.
+Openbiz provide the following solution to map composite keys to Id BizField.</p>
+<p>On the Id BizField of a BizObj, user can specify >1 column names in the BaseColumn attribute.  For example, &lt;<b>BizField
+Name=&quot;Id&quot; ... BaseColumn=&quot;key1,key2,key3&quot; </b>...&gt;. But you need to make sure all BizFields mapping to the composite keys are marked as "Required='Y'".</p>
+<p><b>3.4.2 Efficiently use memory by specifying cache mode</b></p>
+<p>Openbiz leverages server side BizObj cache (storing database query results temporally)
+to maintain the session data so that users can feel smooth interaction just as
+they are using desktop rich client. But many web interfaces simply provide
+navigation only functionality. To help openbiz use memory efficiently, BizObj
+cache mode can be turned off. There're two ways to control the cache mode.</p>
+<p>1) Set CacheMode attribute in BizObj metadata file. &lt;BizObj Name=... CacheMode = "0|1"
+...&gt;. 0 means no cache is used, 1 means query data is cached. If no value is
+given, default cache mode = 1.</p>
+<p>2) Call BizObj::Home($cacheMode) to reset the ResultSet and set the cache
+mode. The default $cacheMode is 1.</p>
+<p>Keep in mind, no cache mode is suggested to be used in navigation only
+BizForm.&nbsp;</p>
+<h4><b>3.5
+Build BizForm metadata</b></h4>
+<p>BizForm metadata file describes the mapping between BizObj and BizForm as
+well as other UI controls in BizForm. It's a xml file with following DTD.</p>
+<table border="1">
+  <tr>
+    <td width="100%">
+    <pre>&lt;!--OpenBiz BizForm metadata DTD--&gt;
+
+&lt;!ELEMENT BizForm (BizCtrlList, TemplateList, Toolbar, Navbar) &gt;
+&lt;!ATTLIST BizForm    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    Description          CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    Package              CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizForm    Class                CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    InheritFrom          CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizForm    jsClass              CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    Title                CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    BizObj               CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    PageSize             CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    SearchRule           CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizForm    DesignProfile        CDATA  #REQUIRED &gt;
+
+&lt;!ELEMENT BizCtrlList (BizCtrl+) &gt;
+&lt;!ELEMENT BizCtrl EMPTY &gt;
+&lt;!ATTLIST BizCtrl    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizCtrl    FieldName            CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizCtrl    DisplayName          CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizCtrl    Type                 CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Width                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Height               CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    HTMLAttr             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Function             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Image                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Hidden               (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST BizCtrl    Enabled              (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST BizCtrl    Sortable             (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST BizCtrl    Order                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Style                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    SelectBizForm        CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    SelectFrom           CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    DisplayMode          CDATA  #IMPLIED &gt;
+
+&lt;!ELEMENT DisplayModes (Mode+) &gt;
+&lt;!ELEMENT Mode EMPTY &gt;
+&lt;!ATTLIST Control    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    Image                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Caption              CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    Type                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    Width                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Height               CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    HTMLAttr             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Function             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Style                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Enabled              (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST Control    DisplayMode          CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Access               (READ|WRITE) &quot;&quot; &gt;</pre></td>
+  </tr>
+</table>
+<p>Open Design Studio screenshot - BizForm Design.&nbsp;</p>
+
+<p><img border="0" src="EditBizForm.gif" width="797" height="506"></p>
+
+<p><b>3.6
+Build BizView metadata</b></p>
+
+<p>BizView metadata file describes the BizForms and their relationship in the
+BizView. It's a xml file with following DTD.</p>
+
+<table border="1">
+  <tr>
+    <td width="100%"><pre>&lt;!--OpenBiz BizView metadata DTD--&gt;
+      
+&lt;!ELEMENT BizView (ControlList) &gt;
+&lt;!ATTLIST BizView    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizView    Description          CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizView    Package              CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizView    Class                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizView    Template             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizView    AccessControl        CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizView    DesignProfile        CDATA  #REQUIRED &gt;
+
+&lt;!ELEMENT ControlList (Control+) &gt;
+&lt;!ELEMENT Control EMPTY &gt;
+&lt;!ATTLIST Control    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    Form                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    SubCtrls             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Dependency           CDATA  #IMPLIED &gt;</pre></td>
+  </tr>
+</table>
+<p>Open Design Studio screenshot - BizView Design.&nbsp;</p>
+
+<p><img border="0" src="EditBizView.gif" width="802" height="171"></p>
+
+<h4>3.7&nbsp;<b>
+Build BizPopup metadata</b></h4>
+
+<p>BizPopup is a special BizView. It has only one BizForm and uses BizForm.dtd
+file as its XML schema. Because the BizPopup is mainly used in record selection,
+it makes sense to provide only navigation and query for its BizForm, meanwhile
+only need to show most critical columns.</p>
+
+<p>Open Design Studio screenshot - BizPopup Design</p>
+
+<p><img border="0" src="EditBizPopup.gif" width="799" height="393"></p>
+
+<h4>3.8 <b>
+Build BizFormTree metadata</b></h4>
+
+<p>BizFormTree is a special BizForm. It uses BizForm.dtd file as its XML schema.
+BizFormTree is designed to represent the tree hierarchy relationship within a
+database table.</p>
+
+<p>For example, event table schema: (every record has PARENT_ID and CHILD_FLAG columns which build tree hierarchy
+relationship between the records in the same table)</p>
+
+<table border="1" width="65%" cellspacing="0">
+  <tr>
+    <td width="21%" bgcolor="#C0C0C0"><b>Column</b></td>
+    <td width="79%" bgcolor="#C0C0C0"><b>Comments</b></td>
+  </tr>
+  <tr>
+    <td width="21%">SYSID</td>
+    <td width="79%">Primary key</td>
+  </tr>
+  <tr>
+    <td width="21%">NAME</td>
+    <td width="79%">Event name</td>
+  </tr>
+  <tr>
+    <td width="21%">PARENT_ID</td>
+    <td width="79%">Store the SYSID of its parent event.</td>
+  </tr>
+  <tr>
+    <td width="21%">CHILD_FLAG</td>
+    <td width="79%">Flag that indicates whether this record has child
+      record or not</td>
+  </tr>
+</table>
+<p>Open Design Studio screenshot - BizFormTree Design</p>
+
+<h4><img border="0" src="EditFormtree.gif" width="799" height="442"></h4>
+
+<p>To build up a BizFormTree metadata, please the following xml elements are
+necessary</p>
+
+<ul>
+  <li><b>TreeNodeIcon</b> element under BizCtrlList<br>
+    <b>Type</b> = &quot;FunctionColumn&quot; indicates this column is a
+    function-only (non-data) column<br>
+    <b>Image</b> = &quot;image1; image2&quot;, image1 represents the image that
+    indicates the record has children records; image2 represents the image that
+    indicates the record has no child records.<br>
+    <b>Function</b> = &quot;ExpandNode()&quot;. When user click on the image1,
+    all children record will display on the form<br>
+  </li>
+  <li><b>TreeNodeKey</b> element under BizCtrlList<br>
+    FieldName = &quot;the field points to the column of PARENT_ID&quot;<br>
+  </li>
+  <li><b>TreeNodeChldFlag</b> element under BizCtrlList<br>
+    FieldName = &quot;the field points to the column of CHILD_FLAG&quot;<br>
+  </li>
+  <li><b>GoRoot</b> button element under Toolbar - show the records who don't
+    have parent<br>
+  </li>
+  <li><b>GoUp</b> button element under Toolbar - show the records who are
+    siblings of the parent record of the current record</li>
+</ul>
+
+<p>See screenshot <a href="#FormTree">here</a></p>
+
+<h4>3.9 Upgrade configuration xml files when openbiz xml schema changes</h4>
+
+<p>The main xml schema (DTD files) won't get changed, but xml element's
+attributes can be changed (adding a new attribute or remove an old attribute)
+along the OpenBiz development. To assist OpenBiz customers to update their
+existing xml files easily, a new button is introduced since B10105.</p>
+
+<p><img border="0" src="UpdSchema.gif" width="204" height="65"></p>
+
+<p>The button in the red circle is to update the xml element from the current
+xml schema, meanwhile the existing attributes data is kept. <b>This button can
+only upgrade the attributes in single xml element.</b> Put focus on an element
+and click the upgrade button. Then repeat it on another element.</p>
+
+<h3><b>4.
+Build template<a name="build_4"></a></b></h3>
+
+<p>Smarty
+template engine is used in OpenBiz to render the HTML output. We provides some
+basic templates for render BizForm and BizView. You can create your own
+templates. <font color="#FF0000"> Remember that an openbiz form must begin with a form tag &lt;form id={$name} name={$name}&gt;</font>.
+For detail, please refer to <a href="http://smarty.php.net/docs.php">http://smarty.php.net/docs.php</a>&nbsp;</p>
+<h4>4.1
+Draw BizForm as a html table</h4>
+<p>From
+B10109, draw a BizForm as a html table is easy.&nbsp;</p>
+<p>In
+BizForm xml file, you need give DataFormat as &quot;htmltable&quot; and
+FormatStyle as &quot;table style, table header style, table odd row style, table
+even row style, table selected row style&gt;<br>
+&lt;Mode ... TemplateFile=&quot;list.tpl&quot; ... DataFormat=&quot;htmltable&quot;
+FormatStyle=&quot;tbl,tbl_head,tbl_rowodd,tbl_roweven,tbl_rowsel,tbl_cell&quot;/&gt;</p>
+<p>In
+template file, {$fmttable}represents form whole html table.</p>
+<p>Please
+refer to demo files FMEvent.xml and list.tpl</p>
+<h4>4.2
+Draw BizForm as a set of controls</h4>
+<p>From
+B10109, draw a BizForm as a set of controls is more flexisible.</p>
+<p>Since the array dataformat output to smarty template is associated array,
+user can easily layout controls by their names.</p>
+<p>Please
+refer to demo files FMEvent.xml and edit.tpl</p>
+<h3><b>5.
+Technical Details - Advanced Configration<a name="build_5"></a></b></h3>
+<h4><b>5.1 Link to another view</b></h4>
+<p>You can configure a BizCtrl associated with a hyperlink which changes current
+view to another view who has the detailed information of that BizCtrl.</p>
+<p>In a BizForm, set a LinkTo attribute of a BizCtrl. Syntax is<b>  LinkTo=&quot;OtherView.OtherBizForm.OtherBizCtrl=MyBizCtrl&quot;.</b><br>
+<b>OtherView</b> - a view name the link takes to;<br>
+<b>OtherBizForm</b> - an independent BizForm, who is not a subctrl of any other
+BizForm, in OtherView;<br>
+<b>OtherBizCtrl</b> - a BizCtrl of OtherBizForm<br>
+<b>MyBizCtrl</b> - a BizCtrl in current BizForm&nbsp;</p>
+<p>
+Please see the example in demo xml files (FMMatch, RegistView, FMPlayer). In
+this example, a link is associated with player name. This link changes view to
+RegistView with the player's detail. <a href="#LinkToView">Click here to see the
+screenshot.</a></p>
+<h4><b>5.2 Select field data from comboBox or ListBox</b></h4>
+<p><b>5.2.1 Bind static list to comboBox</b></p>
+<p>In your BizForm, you assign SelectFrom="Selection(Fee)" for a BizCtrl, which means this
+field control is a comboBox whose data is from the &quot;Fee&quot; elements in Selection.xml file. Please see example in
+demo FMRegist.xml where BizCtrl reg_fee is defined as a comboBox.<br>
+&lt;Selection&gt;<br>
+&nbsp; &lt;Fee Value=&quot;&quot;/&gt;<br>
+&nbsp; &lt;Fee Value=&quot;15&quot;/&gt;<br>
+&nbsp; &lt;Fee Value=&quot;20&quot;/&gt;<br>
+&lt;/Selection></p>
+<p>Also, you can give both value and text. If only give value, openbiz uses the
+value as the display text.<br>
+&lt;Selection&gt;<br>
+&nbsp;&nbsp; &lt;ChartOption Value="AAA" Text="BarLine Chart"/><br>
+&nbsp;&nbsp; &lt;ChartOption Value="BBB" Text="Pie Chart"/><br>
+&nbsp;&nbsp; &lt;ChartOption Value="CCC" Text="GroupBar Chart"/><br>
+&lt;/Selection><br>
+You can make up your own xml file that has list of values for selection.</p>
+<p><b>5.2.2 Bind dynamic list (Table column) to comboBox</b></p>
+<p>In your BizForm, you assign <b> SelectFrom="BizObjName[BizFieldName]&quot;</b> for a BizCtrl, which means this
+field control is a comboBox whose data is from the table column mapping to the
+BizFieldName of the BizObjName. To avoid same values appear in the comboBox, you
+need to make sure the BizObj query returns an unique list.</p>
+<h4><b>5.3 Select a field data Fld1 in BizForm FM1 from another popup BizForm FM2</b></h4>
+Say you have following configuration, you want to select Ctrl_1 data from Ctrl_2
+that is a bizCtrl on popup BizForm. Keep in mind, the real data is selected from
+BizObj fields, you need to configure base and popup BizForms as well as their
+corresponding BizObjs.
+<table border="1" cellspacing="0" cellpadding="2" width="200">
+  <tr>
+    <td width="50%" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="50%" bgcolor="#C0C0C0"><b>BizCtrl/BizForm</b></td>
+    <td width="50%" bgcolor="#C0C0C0"><b>BizField/BizObj</b></td>
+  </tr>
+  <tr>
+    <td width="50%"><b>Base BizForm</b></td>
+    <td width="50%">Ctrl_1/FM_1</td>
+    <td width="50%">Fld_1/BO_1</td>
+  </tr>
+  <tr>
+    <td width="50%"><b>Popup BizForm</b></td>
+    <td width="50%">Ctrl_2/FM_2&nbsp;</td>
+    <td width="50%">Fld_2/BO_2</td>
+  </tr>
+</table>
+<br>
+
+Step1: Give SelectBizObj=BO_2 and SelectField=Fld_2 for the Fld_1 in BO_1 xml file<br>
+Step2: Create a Popup_2.xml whose BizForm is FM_2<br>
+Step3: In FM_1.xml set SelectBizForm=FM_2 for Ctrl_1<br>
+<br>
+Please see the example in demo xml files (BORegist, FMRegist, BOEvent, EventPopup). In this example, it is configured to select event data to populate multiple fields on FMRegist.
+<a href="#SelectField">Click here to see the screenshot.</a>
+<h4><b>5.4 Link 2 BizForm with dependent relationship</b></h4>
+<p>You can define the dependency relationship between BizForms in a same view.
+Records in a child BizForm&nbsp; is dynamically changed along the record change
+on it parent BizForm. Such relationship is defined in BizView xml file.</p>
+<p>&lt;BizView ... &gt;<br>
+&nbsp; &lt;ControlList&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;Control Name=&quot;fm_1&quot; Form=&quot;<b>ParentForm</b>&quot;
+SubCtrls=&quot;<b>ChildForm</b>&quot;/&gt;<br>
+&nbsp;&nbsp;&nbsp; &lt;Control Name=&quot;fm_2&quot; Form=&quot;<b>ChildForm</b>&quot;
+Dependency=&quot;<b>ChildBizCtrl</b>=<b>ParentForm</b>.<b>ParentBizCtrl</b>&quot;/&gt;<br>
+&nbsp; &lt;/ControlList&gt;<br>
+&lt;/BizView&gt;</p>
+<p>Please see the exmaple in demo xml files - RegistView.xml. It defines that Registration BizForm depends
+        on Player BizForm (RegForm.PlayerId = PlyForm.PlayerId). <a href="#Dependency">Click
+here to see the screenshot.</a></p>
+<h4><b><a name="data_type_format"></a>5.5 Data type, format and validation</b></h4>
+<p><b>5.5.1 Openbiz support following data types and formats (attributes of
+BizField)</b></p>
+<table border="1" width="800" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="73" bgcolor="#C0C0C0"><b>Type</b></td>
+    <td width="325" bgcolor="#C0C0C0"><b>Format</b></td>
+    <td width="267" bgcolor="#C0C0C0"><b>Syntax</b></td>
+    <td width="370" bgcolor="#C0C0C0"><b>Format Example</b></td>
+  </tr>
+  <tr>
+    <td width="73"><b>Text</b></td>
+    <td width="325">none</td>
+    <td width="267">&nbsp;</td>
+    <td width="370">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA"><b>Number</b></td>
+    <td width="325" bgcolor="#EAEAEA">format supported by printf</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Number&quot;
+      Format=&quot;%...&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">%5.2f to print a float number</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="325" bgcolor="#EAEAEA">&quot;Int&quot; - integer format according
+      locale</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Number&quot;
+      Format=&quot;Int&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">If locale=enu, 12345.678 is displayed as
+      12,346</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="325" bgcolor="#EAEAEA">&quot;Float&quot;- float format according
+      locale</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Number&quot;
+      Format=&quot;Float&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">If locale=enu, 12345.678 is displayed as
+      12,345.68</td>
+  </tr>
+  <tr>
+    <td width="73"><b>Date</b></td>
+    <td width="325">In default read-only mode, a date can be formatted according
+      to the <a href="http://www.php.net/manual/en/function.strftime.php">Date
+      format</a>.</td>
+    <td width="267">&lt;BizField ... Type=&quot;Date&quot; Format=&quot;date
+      format&quot; ...&gt;</td>
+    <td width="370">6/21/2003 can be formatted as<br>
+      %A, %b %d %Y - Saturday, Jun 21 2003 if system locale is enu</td>
+  </tr>
+  <tr>
+    <td width="73">&nbsp;</td>
+    <td width="325">In edit/query mode, a date is formatted as YYYY-MM-DD (ISO
+      8601)</td>
+    <td width="267">&nbsp;</td>
+    <td width="370">12/31/2003 can be formatted as 2003-12-31</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA"><b>Datetime</b></td>
+    <td width="325" bgcolor="#EAEAEA">In default read-only mode, a date can be
+      formatted according to the <a href="http://www.php.net/manual/en/function.strftime.php">Date
+      format</a>.</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Datetime&quot;
+      Format=&quot;datetime format&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">6/22/2003 9:30am can be formatted as<br>
+      %m/%d/%Y %H:%M:%S - 06/22/2003 09:30:00 if system locale is enu</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="325" bgcolor="#EAEAEA">In edit/query mode, a date is formatted as
+      YYYY-MM-DD hh:mm:ss (ISO 8601)</td>
+    <td width="267" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="370" bgcolor="#EAEAEA">6/22/2003 9:30am can be formatted as<br>
+      2003-06-22 09:30:00</td>
+  </tr>
+  <tr>
+    <td width="73"><b>Currency</b></td>
+    <td width="325">Formatted according to locale setting</td>
+    <td width="267">&lt;BizField ... Type=&quot;Currency&quot;
+      Format=&quot;Currency&quot; ...&gt;</td>
+    <td width="370">1456.89 is formatted as $1,456.89 (enu)<br>
+      1456.89 is formatted as F1&nbsp;456,89 (fra)</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA"><b>Phone</b></td>
+    <td width="325" bgcolor="#EAEAEA">Formatted according to given mask #</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Phone&quot;
+      Format=&quot;mask string&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">1234567890 is formatted as&nbsp;<br>
+      mask=(###) ###-####,&nbsp;<br>
+      phone=(123) 456-7890<br>
+      mask=###-###-####, phone=123-456-7890</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="325" bgcolor="#EAEAEA">If a phone number starting with
+      &quot;*&quot;, it represents international phone number, it won't be
+      formatted</td>
+    <td width="267" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="370" bgcolor="#EAEAEA">*123 4567890 is treated as international
+      number</td>
+  </tr>
+</table>
+<p><b>5.5.2 Openbiz support following data validations</b></p>
+<table border="1" width="686" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="161" bgcolor="#C0C0C0"><b>Validation Type</b></td>
+    <td width="509" bgcolor="#C0C0C0"><b>Example</b></td>
+  </tr>
+  <tr>
+    <td width="161"><b>Required</b> - indicates the field can not be empty</td>
+    <td width="509">&lt;BizField Name="Name" <b> Required="Y"</b>  BaseTable=&quot;players&quot;
+      BaseColumn=&quot;NAME&quot;/&gt;</td>
+  </tr>
+  <tr>
+    <td width="161" bgcolor="#EAEAEA"><b>Validator</b> - php statments that
+      returns a boolean value&nbsp;</td>
+    <td width="509" bgcolor="#EAEAEA">&lt;BizField Name="Fee" Type="Currency" Format="Currency"
+      <b> Validator=&quot;return [Fee]>=15;"</b>  BaseTable=&quot;regist&quot;
+      BaseColumn=&quot;FEE&quot;&gt;</td>
+  </tr>
+</table>
+<h4><b><a name="data_html_elem"></a>5.6 Present data with various HTML elements</b></h4>
+<p>From B10107, customer can present their data with various HTML elements by
+specifying element type and attributes in BizForm xml files. HTML elements are
+displayed in edit/query modes</p>
+<table border="1" width="800" cellspacing="0" cellpadding="2">
+  <tr>
+    <td bgcolor="#C0C0C0" colspan="9">
+      <p align="center"><b>Attributes of FieldControl element in BizForm</b></td>
+    <td bgcolor="#EAEAEA" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#C0C0C0"><b>Type</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Width</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Height</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>HTMLAttr*</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Style**</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>SeclectFrom</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Caption</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Function</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Image</b></td>
+    <td bgcolor="#EAEAEA" align="center"><b>Comments</b></td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Text</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T1"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Limit
+      the input length</font></a></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnChange</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top" bgcolor="#EAEAEA">Single line text input.
+      Default type</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Textarea</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnChange</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Multi-line Text input</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>ListBox</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T2"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Show
+      ListBox or ComboBox</font></a></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T3"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Set
+      list of values</font></a></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnChange</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">ListBox or ComboBox</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>CheckBox</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T4"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Set
+      True value</font></a></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">CheckBox</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Radio</b></td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Arrange
+      radio list&nbsp;</font></a></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T3"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Set
+      list of values</font></a></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Radio buttons</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>HTMLButton</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Standard HTML Button</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>SubmitButton</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Standard HTML Submit
+      Button</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>ResetButton</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Standard HTML Reset Button</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Password</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">HTML password</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Button</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">x</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">OpenBiz image button</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Date</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Textbox with date picker
+      icon</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Datetime</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Textbox with datetime
+      picker icon</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>HTMLBlock</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T6"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Special
+      Characters</font></a></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Caption is treated as HTML
+      block</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>FunctionColumn</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">This type doesn't map to a
+      data field</td>
+  </tr>
+</table>
+<p>* HTMLAttr field can contain any valid additional HTML attribute applied on
+the HTML element type</p>
+<p>** Style field can contain any valid style properties (css)</p>
+<p><b><a name="Note_T1"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Limit
+the input length:</b>&nbsp;</i></p>
+<p>HTMLAttr=&quot;maxlength=N&quot; to limit the maximum number of characters
+that the user can enter in a text control.&nbsp;</p>
+<p><b><a name="Note_T2"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Show
+ListBox or ComboBox:</b>&nbsp;</i></p>
+<p>By default show comboBox. If HTMLAttr=&quot;size=N&quot;, show N-row listbox.</p>
+<p><b><a name="Note_T3"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Set
+list of values:</b>&nbsp;</i></p>
+<p> SelectFrom=&quot;XmlFile(Key)&quot; means this field control is a listbox or radio
+buttons whose data is from the &quot;Key&quot; elements in XmlFile.</p>
+<p><b><a name="Note_T4"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Set
+True value:</b>&nbsp;</i></p>
+<p> SelectFrom=&quot;Value&quot; means this checkbox returns the Value when user
+check the checkbox.</p>
+<p><b><a name="Note_T5"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Arrange
+radio list:&nbsp;</b></i></p>
+<p>By default the radion buttons are arranged horiztionally. If HTMLAttr=&quot;wide=1&quot;,
+you can force them arranged vertically.</p>
+<p><b><a name="Note_T6"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Special
+characters:&nbsp;</b></i></p>
+<p>&quot;&lt;&quot; and &quot;&gt;&quot; used in HTML block have to be replaced
+by &quot;&amp;lt;&quot; and &quot;&amp;gt;&quot;.</p>
+<h4><b>5.7 Use the aggregation SQL functions&nbsp;</b></h4>
+<p>You can assign a BizField with SQL
+      functions provided by the database engine.&nbsp;The syntax is</p>
+<p>&lt;BizField Name=&quot;FieldName&quot; BaseTable=&quot;TableName&quot;
+BaseColumn=&quot;FUNC(ColumnName)&quot;...&gt;</p>
+<p>For example:</p>
+<p>&nbsp;&lt;BizField Name=&quot;SumFee&quot; BaseTable=&quot;regist&quot;
+BaseColumn=&quot;SUM(FEE)&quot;...&gt;</p>
+<h4><b>5.8 Usage of SearchRule, SortRule and OtherSQLRule</b></h4>
+<table border="1" width="72%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="16%" bgcolor="#C0C0C0">&nbsp;</td>
+    <td width="39%" bgcolor="#C0C0C0"><b>Syntax</b></td>
+    <td width="45%" bgcolor="#C0C0C0"><b>Example</b></td>
+  </tr>
+  <tr>
+    <td width="16%"><b>SearchRule</b></td>
+    <td width="39%">SearchRule = SQL Where clause*</td>
+    <td width="45%">SearchRule = &quot;[LastName]='Yao' OR [FirstName]='James'&quot;</td>
+  </tr>
+  <tr>
+    <td width="16%"><b>SortRule</b></td>
+    <td width="39%">SortRule = SQL Order By clause*</td>
+    <td width="45%">SortRule = "[Id] ASC&quot;&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="16%"><b>OtherSQLRule</b></td>
+    <td width="39%">OtherSQLRule = any SQL clause*</td>
+    <td width="45%">OtherSQLRule = &quot;GROUP BY [EvtId] HAVING [SumFee]&gt;10&quot;</td>
+  </tr>
+</table>
+<p>* Replace the Column name with BizField name.</p>
+<h4><b>5.9 Usage of rule in calling GoToView from client</b></h4>
+<p>The most useful client side javascript function is GoToView(view, rule,
+loadPageTarget).</p>
+<table border="1" width="72%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="7%" bgcolor="#C0C0C0"><b>Argument</b></td>
+    <td width="23%" bgcolor="#C0C0C0"><b>Description</b></td>
+    <td width="25%" bgcolor="#C0C0C0"><b>Sample</b></td>
+  </tr>
+  <tr>
+    <td width="7%"><b>view</b></td>
+    <td width="23%">the view name</td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="7%"><b>rule</b></td>
+    <td width="23%">the search rule of a bizform who is not depent on (a subctrl
+      of) another bizform
+      <p>syntax is &quot;<b>form.ctrl operator value</b>&quot;.<br>
+      <b>operator</b> can be =,>,>=,&lt;,&lt;=,!=. "LIKE %" SQL format is also valid rule.
+      &quot;AND&quot;, &quot;OR&quot; can be used to add more restriction.</p>
+    </td>
+    <td width="25%">FMSponsor.spr_exp&gt;=12000&nbsp;
+      <p>FMSponsor.spr_name=\'Midas Auto\' OR FMSponsor.spr_id=\'SPSR_2\'</p>
+      <p>FMSponsor.spr_name LIKE \'S%\'</td>
+  </tr>
+  <tr>
+    <td width="7%"><b>loadPageTarget</b></td>
+    <td width="23%">the window or frame target to load the page</td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+</table>
+<p>In the demo application, EvtMenu.htm consists of a list of hyperlinks that
+call GoToView functions.</p>
+<h4><b>5.10 Make your own calendar and timestamp picker</b></h4>
+<ul>
+  <li>Change the look-and-feel of calendar and timestamp picker<br>
+    <i>Modify the stylesheet file popcalendar.css under openbiz_root/css.</i></li>
+  <li>&nbsp;Change the text shown on the calendar and timestamp picker<br>
+    <i>Modify the variables definition part of popcalendar.js under openbiz_root/.</i></li>
+</ul>
+<hr>
+<h2><a name="Adv_config"></a>Advanced: build your application by extending OpenBiz</h2>
+<p>OpenBiz provide many functionalities to building a complicated web
+application. But different application has different requirement, so you may
+extend OpenBiz packages to build customer oriented application.</p>
+<p>Because OpenBiz packages are based on object-oriented design, you can easily
+build up your own object by extending these packages and inherit all useful
+functions provided by them.</p>
+<p>Since B10107, extended classes are automatically loaded on demand. Customers
+can put their library files under <b>/bin or /bin/usrlib/</b>. Extended
+class&nbsp; must be included in a file with format as ClassName.php.</p>
+<h3>1.
+Extend BizObj and BizForm<a name="ext_1"></a></h3>
+<p><font face="Courier New" size="2"><font color="#008080">/**<br>
+ * class BOUser is the BizObj class to implement USER logic object<br>
+ */</font><br>
+<font color="#0000FF">class</font> BOUser <font color="#0000FF"> extends</font> BizObj&nbsp;<br>
+ {<br>
+<font color="#0000FF">&nbsp;&nbsp;&nbsp;</font> <font color="#0000FF">function</font>
+BOUser(<font color="#800000">$xmlFile</font>=<font color="#0000FF">null</font>) {}&nbsp;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;<font face="Courier New">&nbsp;&nbsp; <font color="#0000FF">function</font>
+ my_special_function() {}&nbsp;&nbsp;&nbsp; <font color="#008080">// new function</font><br>
+}&nbsp;</font></font></p>
+<p><font face="Courier New" size="2"><font color="#008080">/**<br>
+ * class FMUser is the BizForm class to implement USER UI object<br>
+ */</font><br>
+<font color="#0000FF">class</font> FMUser <font color="#0000FF"> extends</font>
+BizForm&nbsp;<br>
+ {<br>
+<font color="#0000FF">&nbsp;&nbsp;&nbsp;</font> <font color="#0000FF">   function</font>
+FMUser(<font color="#800000">$xmlFile</font>=<font color="#0000FF">null</font>) {}&nbsp;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;<font face="Courier New">&nbsp;&nbsp; <font color="#0000FF">function</font>
+ my_special_function() {}&nbsp;&nbsp;&nbsp; <font color="#008080">// new function</font></font></font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;<font face="Courier New">&nbsp;&nbsp; <font color="#0000FF">function</font>
+Render() {}&nbsp;&nbsp;&nbsp;<font color="#008000">  </font><font color="#008080"> // override Render()</font><br>
+}</font></font></p>
+<h3>2. Implement Plug-in Service Interface<a name="ext_2"></a></h3>
+<p>From openbiz 1.1, customer can write their special logic by implement Plug-in
+Service Interface.</p>
+<ul>
+  <li>Define the caller function in BizForm metadata file<br>
+    &lt;... Function=&quot;CallService(ClassName,MethodName)&quot;...&gt; is to
+    call a method &quot;MethodName&quot; of the service &quot;ClassName&quot;.
+    ClassName is a class which defined in ClassName.php under bin/usrlib/
+    directory</li>
+  <li>Implement the class and method in the ClassName.php<br>
+    A input argument of the method are the caller's object name (a BizForm name)
+    and the input data string (a collection of form values from client browser).
+    It implements the user-specific business logic and returns void. See the
+    following code snippet.</li>
+</ul>
+<blockquote>
+  <p><font face="Courier New" size="2"><font color="#0000FF">class</font> chartService<br>
+  {<br>
+  <font color="#0000FF">   function</font>  chartService() {}<br>
+  <br>
+  <font color="#0000FF">   function</font> render(<font color="#800000">$objname</font>,
+  <font color="#800000">$inputDataStr</font>)<br>
+   {<br>
+  &nbsp; <font color="#800000">$kvArray</font> = ExtractInputToArray(<font color="#800000">$inputDataStr</font>);<br>
+  &nbsp; <font color="#800000">$chartName</font> = <font color="#800000">$kvArray</font>[<font color="#808080">'__this'</font>];
+  <font color="#008080">// get the value of the control that issues the
+  call&nbsp;</font><br>
+  <br>
+  &nbsp; <font color="#008080">// get the current UI bizobj and its querySQL, create a new bizobj and search with the same sql<br>
+  &nbsp; </font><font color="#800000">$bizform </font> = &amp;sys_getobj(<font color="#800000">$objname</font>);
+  <font color="#008080">    // get the existing bizform object</font>&nbsp;<br>
+  <br>
+  &nbsp; <font color="#008080">// copy to a new bizobj, not touch the bizobj belong to UI, syntax may change in PHP5<br>
+  &nbsp; </font><font color="#800000">$bizobj</font> = <font color="#800000">$bizform</font>-&gt;m_BizObj;<br>
+  ...<br>
+  }</font></p>
+</blockquote>
+<p>Three examples can be found in&nbsp;bin/usrlib/</p>
+<ul>
+  <li>pdfService.php -&nbsp; prints PDF report. Use FPDF library <a href="http://www.fpdf.org/">http://www.fpdf.org/<br>
+    </a><i>class PDF_SQL_Table is the base class to print a pdf table based on
+    sql query. It provide the capability for users to configure title, title
+    font, table header font, table row font and table color theme easily.</i></li>
+  <li>excelService.php - print Excel output with HTML or CSV formats</li>
+  <li>chartService.php - draw business charts based on chart xml definition
+    file. Use Jpgraph library <a href="http://www.aditus.nu/jpgraph/">http://www.aditus.nu/jpgraph/</a>&nbsp;<br>
+    <i>
+    Please refer to the <a href="chartdoc.html">chart
+    service document</a> to understand how to configure chart xml file.</i></li>
+</ul>
+<h3>3.
+Implement View Access Control<a name="ext_3"></a></h3>
+<p>By assigning a customer function call to the &quot;AccessControl&quot;
+attribute of BizView, access control can be added to a view. The syntax is</p>
+<p>&lt;BizView ... AccessControl=&quot;ClassName.MethodName&quot;...&gt;</p>
+<p>Or <font color="#0000FF"><b> &lt;BizView ... AccessControl=&quot;I&quot;...&gt;. If I=0 access denied;
+if I=1 view readonly; if I=2 view is read+write.&nbsp;</b></font></p>
+<p>You can control the access level of each control by assign &quot;Access&quot;
+attribute (READ/WRITE) to a control in BizForm. If no Access attribute is given,
+openbiz treates it have &quot;WRITE&quot; permission.</p>
+<p>&lt;Control Name=&quot;SearchButton&quot; ... <b>Access=&quot;READ&quot;</b>&gt;<br>
+&lt;Control Name=&quot;EditButton&quot; ... <b>Access=&quot;WRITE&quot;</b>&gt;</p>
+<p>Then implement this function call as a class method with a input argument as
+view name. The function should return an integer value.</p>
+<table border="1" cellspacing="0">
+  <tr>
+    <td align="center" bgcolor="#C0C0C0"><b>Return Value</b></td>
+    <td align="left" bgcolor="#C0C0C0"><b>Meaning</b></td>
+  </tr>
+  <tr>
+    <td align="center">0</td>
+    <td align="left">Cannot access the view. System will show an error page
+      &quot;viewdenied.tpl&quot;</td>
+  </tr>
+  <tr>
+    <td align="center">1</td>
+    <td align="left">View is read-only</td>
+  </tr>
+  <tr>
+    <td align="center">2</td>
+    <td align="left">View is editable</td>
+  </tr>
+</table>
+<p><font color="#008000" face="Courier New" size="2">/*
+Example: method </font><font color="#008000" face="Courier New" size="2">CanAccessView
+</font><font color="#008000" face="Courier New" size="2">of
+class ViewControl.&nbsp;&nbsp;<br>
+&nbsp;&nbsp; BizView config as AccessControl=&quot;ViewControl.CanAccessView&quot;&nbsp;
+*/<br>
+<br>
+</font>function
+</font>CanAccessView($view)<br>
+   {</font><font color="#008000" face="Courier New" size="2"><br>
+//$userid = _SESSION[&quot;login&quot;];<br>
+      //check if this user can access this view<br>
+      //if view is not accessible<br>
+      //   echo "$view is not accessible!";<br>
+      //   exit;<br>
+      //else<br>
+      //   return;&nbsp;&nbsp;&nbsp; // (0,1,2) - (no view, read, write)<br>
+</font><font face="Courier New" size="2">   }</font></p>
+<p><a name="Api"></a></p>
+<hr>
+<h2>API
+Document</h2>
+<p>OpenBiz
+API Document</a> is generated by PhpDocumentor <a href="http://phpdocu.sourceforge.net/">http://phpdocu.sourceforge.net/</a>
+</p>
+
+<p><a name="Debug"></a></p>
+<hr>
+<h2>Debug Strategies</h2>
+
+<ul>
+  <li>The error is logged under /log/log_error.html, open it and you may find
+    out what's wrong</li>
+  <li>Open the sysheader.inc under /bin, turn on debug log by changing&nbsp;<strong>define(&quot;DEBUG&quot;,
+    1);</strong> Then you'll see some debug information in /log/log_debug.html.
+    This debug file records mainly the database calls and other operations</li>
+</ul>
+
+</body>
+
+</html>
