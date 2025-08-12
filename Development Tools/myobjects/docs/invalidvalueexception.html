@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
+  <head>
+
+    <title>myobjects:code_generator [MyObjects]</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+
+    <meta name="generator" content="DokuWiki" />
+
+    <link rel="stylesheet" media="screen" type="text/css" href="./style.css" />
+
+    <link rel="stylesheet" media="print" type="text/css" href="./print.css" />
+
+    <link rel="shortcut icon" href="./images/favicon.ico" />
+
+    <link rel="start" href="./doku.php?id=" />
+
+    <link rel="contents" href="code_generator&amp;do=index.html" title="" />
+
+    <link rel="alternate" type="application/rss+xml" title="Recent Changes" href="./feed.php" />
+
+    <link rel="alternate" type="application/rss+xml" title="Current Namespace" href="./feed.php?mode=list&amp;ns=" />
+
+    <link rel="alternate" type="text/html" title="Plain HTML" href="code_generator&amp;do=export_html.html" />
+
+    <link rel="alternate" type="text/plain" title="Wiki Markup" href="code_generator&amp;do=export_raw.html" />
+
+        <meta name="robots" content="noindex,nofollow" />
+
+
+    <script language="JavaScript" type="text/javascript" src="./script.js"></script>
+
+
+
+    <script language="JavaScript" type="text/javascript">
+
+    var alertText   = 'Please enter the text you want to format.\nIt will be appended to the end of the document.';
+
+    var notSavedYet = 'There are unsaved changes that will be lost.\nReally continue?';
+
+    var baseURL     = './';
+
+    </script>
+
+
+
+    <!--[if gte IE 5]>
+
+    <style type="text/css">
+
+      /* that IE 5+ conditional comment makes this only visible in IE 5+ */
+
+      img { behavior: url("./pngbehavior.htc"); } /* IE bugfix for transparent PNGs */
+
+    </style>
+
+    <![endif]-->
+
+	</head><body>
+<a name="invalid_value_exception"></a><h1>Invalid Value Exception</h1><div class="level1">
+<p>
+InvalidValueException&#8217;s are thrown by the <a href="setter_methods.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">setter methods</a> when an invalid data is tried to be assigned as an object property. <a href="setter_methods.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Setter methods</a> can be specialized in the <a href="database_schema_file.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">database schema file</a> for the type of validation that is going to be made.
+</p>
+<p>
+Here is an example:
+</p>
+<pre class="code">try <span class="br0">&#123;</span>
+    <span class="re0">$usr</span> = <span class="kw2">new</span> User<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    <span class="re0">$usr</span>-&gt;<span class="me0">setUsername</span><span class="br0">&#40;</span><span class="st0">"validname"</span><span class="br0">&#41;</span>;
+    <span class="re0">$usr</span>-&gt;<span class="me0">setName</span><span class="br0">&#40;</span><span class="st0">"213 21312"</span><span class="br0">&#41;</span>; <span class="co1">// Exception is thrown here</span>
+<span class="br0">&#125;</span> catch<span class="br0">&#40;</span>InvalidValueException <span class="re0">$e</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <a target="_blank"  href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">"Error in "</span> . <span class="re0">$e</span>-&gt;<span class="me0">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>
+
+<p>
+The <code>getMessage()</code> method for the exception returns the field name that caused the exception. You can use a switch statement in the catch block, to inform the user about the exception in more detail:
+</p>
+
+<pre class="code"><span class="br0">&#125;</span> catch<span class="br0">&#40;</span>InvalidValueException <span class="re0">$e</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">switch</span><span class="br0">&#40;</span><span class="re0">$e</span>-&gt;<span class="me0">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">case</span> <span class="st0">'username'</span>:
+        <span class="co1">// Report error about the user name</span>
+        <span class="kw1">case</span> <span class="st0">'name'</span>:
+        <span class="co1">// Report error about the name</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+<!-- cachefile ./data/.cache/eea96a243da56982bb1e4436b5e1e8c7 used -->
+</body>
+</html>
