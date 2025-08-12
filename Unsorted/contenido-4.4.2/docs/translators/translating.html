@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>Contenido - Translating</title>
+  <style type="text/css">
+body            {
+                    background-color: #ffffff;
+                    scrollbar-face-color:#C6C6D5;
+                    scrollbar-highlight-color:#FFFFFF;
+                    scrollbar-3dlight-color:#747488;
+                    scrollbar-darkshadow-color:#000000;
+                    scrollbar-shadow-color:#334F77;
+                    scrollbar-arrow-color:#334F77;
+                    scrollbar-track-color:#C7C7D6;
+		    font-family: Verdana, Arial, Helvetica, Sans-Serif; font-size: 11px; color: #000000;
+                }
+
+h1 {
+ font-family: Verdana, Arial, Helvetica, Sans-Serif; font-size: 20px; color: #000000;
+ margin-top: 0px;
+}
+
+h2 {
+ font-family: Verdana, Arial, Helvetica, Sans-Serif; font-size: 15px; color: #000000;
+}
+
+  </style>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);"
+ link="#000099" vlink="#990099" alink="#000099">
+<table cellpadding="2" cellspacing="2" border="0"
+ style="border-bottom: 1px solid; text-align: left; background-color: rgb(255, 255, 255); width: 100%;">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><img src="conlogo.gif"
+ alt="Contenido" align="left"
+ style="width: 190px; height: 112px; padding-right: 20px;">
+      <h1>Translating Contenido<br>
+      </h1>
+      <table cellpadding="2" cellspacing="2" border="0"
+ style="text-align: left;">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;">Author</td>
+            <td style="vertical-align: top;">Timo A. Hummel</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">Created</td>
+            <td style="vertical-align: top;">11th November 2003</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">Audience<br>
+            </td>
+            <td style="vertical-align: top;">Translators<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">Applies to<br>
+            </td>
+            <td style="vertical-align: top;">Contenido 4.4 or later<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h1><!--[if !supportLists]--><span style="" lang="EN-GB">1<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="" lang="EN-GB">Translating
+Contenido<o:p></o:p></span></h1>
+<p class="MsoNormal"><span style="" lang="EN-GB">If you've
+translated Unix/Linux applications before, you might already know the
+GNU
+gettext tool library. If you do, you can immediately start translating
+by using
+the .po files in the locale/&lt;yourcode&gt;/LC_MESSAGES/ directory. If
+you are
+new to the GNU gettext tool library and concepts, read on.<o:p></o:p></span></p>
+<h2><!--[if !supportLists]--><span style="" lang="EN-GB">1.1<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="" lang="EN-GB">How Contenido
+is internationalized<o:p></o:p></span></h2>
+<p class="MsoNormal"><span style="" lang="EN-GB">Contenido
+is currently translated using the GNU gettext tool library. Strings are
+directly edited in the source code, and are extracted after the
+development so
+translators can directly translate the strings. <o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="EN-GB">In the
+past, we have had so-called language variables. However, this system
+had a few
+drawbacks. Every time a new string was added to Contenido, developers
+had to
+create a new language variable which afterwards had to be translated.
+If the
+variable wasn't translated yet, users received an empty string or even
+a parse
+error.<o:p></o:p></span></p>
+<h2><!--[if !supportLists]--><span style="" lang="EN-GB">1.2<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="" lang="EN-GB">How to translate<o:p></o:p></span></h2>
+<p class="MsoNormal"><span style="" lang="EN-GB">When the
+development of a new Contenido version has been finished, developers
+extract
+all strings using a special tool into so-called language files. These
+files can
+be found in the directory
+contenido/locale/&lt;LANGCODE&gt;/LC_MESSAGES/.
+&lt;LANGCODE&gt; is the ISO country code for your country, for Germany,
+this
+would be de_DE, and for Italy it would be it_IT. More codes can be
+found on <a
+ href="http://nscp.upenn.edu/aix4.3html/aixbman/baseadmn/locale.htm">http://nscp.upenn.edu/aix4.3html/aixbman/baseadmn/locale.htm</a>.<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="EN-GB">If you open
+the contenido.po file, you'll see the default messages and their
+translation:<o:p></o:p></span></p>
+<p class="MsoNormal"><span style="" lang="EN-GB"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span></p>
+<div
+ style="border: 0.5pt solid windowtext; padding: 4pt; background: rgb(224, 224, 224) none repeat scroll 0%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;">
+<p class="Code"><span lang="EN-GB">msgid ""</span></p>
+<p class="Code"><span lang="EN-GB">msgstr ""</span></p>
+<p class="Code"><span lang="EN-GB">"Project-Id-Version: Contenido
+4.3.2\n"</span></p>
+<p class="Code"><span lang="EN-GB">"POT-Creation-Date: \n"</span></p>
+<p class="Code"><span style="" lang="IT">"PO-Revision-Date:
+2003-06-18 13:22+0100\n"<o:p></o:p></span></p>
+<p class="Code"><span lang="EN-GB">"Last-Translator: Timo A. Hummel
+&lt;timo.hummel@4fb.de&gt;\n"</span></p>
+<p class="Code"><span lang="EN-GB">"Language-Team: Contenido
+&lt;contenido@4fb.de&gt;\n"</span></p>
+<p class="Code"><span style="" lang="FR">"MIME-Version:
+1.0\n"<o:p></o:p></span></p>
+<p class="Code"><span style="" lang="FR">"Content-Type:
+text/plain; charset=iso-8859-1\n"<o:p></o:p></span></p>
+<p class="Code"><span lang="EN-GB">"Content-Transfer-Encoding: 8bit\n"</span></p>
+<p class="Code"><span lang="EN-GB"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span></p>
+<p class="Code"><span lang="EN-GB">#
+E:/timo/contenido431/contenido/translationdemo.php:89</span></p>
+<p class="Code"><span lang="EN-GB">msgid "Welcome to My PHP
+Application\n"</span></p>
+<p class="Code"><span style="" lang="IT">msgstr "Benvenuto
+alla mia applicazione di PHP\n"<o:p></o:p></span></p>
+<p class="Code"><span style="" lang="IT"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span></p>
+</div>
+<p class="MsoNormal"><span style="" lang="EN-GB">You can
+ignore the first lines, as they are not important for translation. The
+important lines are "msgid" and "msgstr". The
+"msgid" specifies the source text, and the "msgstr" the
+translation. Thus, it's very easy to translate as you always see the
+original
+text and your translation. You can also use "poEdit" which is a
+graphical frontend to .po files.<o:p></o:p></span></p>
+<h2><!--[if !supportLists]--><span style="" lang="EN-GB">1.3<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="" lang="EN-GB">How to
+translate the menu<o:p></o:p></span></h2>
+<p class="MsoNormal"><span style="" lang="EN-GB">The
+contenido menu is a special case, where you need to edit the XML-File
+called
+"lang_de_DE.xml" for example. The string after "lang_" is
+the same as in the locale directory, so for italian, you would have the
+file
+"lang_it_IT.xml" instead. Just copy the file, change the texts, and
+insert the file into your config.php file.<o:p></o:p></span></p>
+<h2><!--[if !supportLists]--><span style="" lang="EN-GB">1.4<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="" lang="EN-GB">How to
+integrate the translation<o:p></o:p></span></h2>
+<p class="MsoNormal"><span style="" lang="EN-GB">You can
+test your translation by running the application "msgfmt":<o:p></o:p></span></p>
+<div
+ style="border: 0.5pt solid windowtext; padding: 4pt; background: rgb(224, 224, 224) none repeat scroll 0%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;">
+<p class="Code"><span style="" lang="IT">msgfmt contenido.po &#8211;o
+contenido.mo<o:p></o:p></span></p>
+</div>
+<p class="MsoNormal"><span style="" lang="EN-GB">This
+command compiles the textual file "contenido.po" into a binary one
+called "contenido.mo". This has to be done for performance reasons.
+If you can't run msgfmt yourself, just send your translated
+contenido.po file
+to us with the remark that you'd like to receive a compiled .mo file,
+and we'll
+return the .mo file to you. If you are using poEdit, you don't need to
+call
+msgfmt yourself, poEdit does that for you.<o:p></o:p></span></p>
+<h1><!--[if !supportLists]--><span style="" lang="EN-GB">2<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="" lang="EN-GB">Resources<o:p></o:p></span></h1>
+<h2><!--[if !supportLists]--><span style="" lang="EN-GB">2.1<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="" lang="EN-GB">poEdit<o:p></o:p></span></h2>
+<p class="MsoNormal"><span style="" lang="EN-GB">poEdit is
+available for both Linux and Windows. You can grab it at <a
+ href="http://poedit.sourceforge.net/">http://poedit.sourceforge.net/</a><o:p></o:p></span></p>
+<h2><!--[if !supportLists]--><span style="" lang="EN-GB">2.2<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><span style="" lang="EN-GB">GNU gettext<o:p></o:p></span></h2>
+<p class="MsoNormal"><span style="" lang="EN-GB">You can get
+GNU gettext from http://www.gnu.org/directory/gettext.html<o:p></o:p></span></p>
+<br>
+</body>
+</html>
