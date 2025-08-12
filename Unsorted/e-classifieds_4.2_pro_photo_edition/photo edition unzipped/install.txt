@@ -1,0 +1,320 @@
+Installation Instructions
+
+e-Classifieds Photo Edition
+
+This file contains important installation instructions.
+
+_________________________________________________
+
+Conventions
+-----------
+
+In this document, all Unix-like operating systems, such as Linux, FreeBSD, Solaris, and others, are referred to simply as "Unix".  All Windows operating systems, such as Windows NT, Windows 2000, and Windows 95/98/ME, are referred to simply as "Windows".
+
+Quick List of Instructions
+--------------------------
+
+Below is the short Quick List of Instructions.  Each numbered instruction is explained in more detail in the paragraphs that follow.  If you follow these instructions carefully and still have trouble running the program, please consult the Troubleshooting section at the end of this file.  You may want to print this file for future reference.
+
+1. Unzip the classifieds.zip file
+2. Edit first line of classifieds.cgi to point to location of Perl 5 on your server (Unix only)
+3. Rename classifieds.cgi to classifieds.pl if your server requires the .pl extension for Perl scripts
+4. Edit the variables in the user.cfg file
+5. Upload all files to your server and create the appropriate directories
+6. Set permissions on all files and directories
+7. Run the program from your web browser
+8. Post a test ad
+9. Link to your new classifieds section from the rest of your web site
+
+
+1. Unzip the classify.zip file
+---------------------------------
+
+Initially, you should place the file CLASSIFY.ZIP in its own directory on your computer and then unzip it.  Once you have unzipped this file, you will see a number of files, as well as subdirectories that contain more files.  This is the general structure of the program as it should exist once you have uploaded it to your server.  
+
+2. Edit the first line of the classifieds.cgi file
+--------------------------------------------------
+
+If you are on a Unix server, you also need to make sure that the program is looking for Perl 5 in the right place (Windows users can skip this section).  This is indicated by the very first line in the CLASSIFIEDS.CGI file, which looks like this:
+
+#!/usr/local/bin/perl
+
+If Perl 5 is not located in the /usr/local/bin/perl directory on your server, then you will need to edit this line.  To find the location of Perl 5 on your server, you should run one of the following two commands from your Telnet prompt:
+
+which perl5
+whereis perl5
+
+At least one of these should report the directory where Perl 5 "lives" on your server.  This is the directory that you want the first line of CLASSIFIEDS.CGI to point to.  For example, if your server reported that Perl 5 is located at "/usr/foo/perl5", then your first line would read:
+
+#!/usr/foo/perl5
+
+You'll notice that we left the #! in front of the directory.  This is required.
+
+If you changed the first line of the CLASSIFIEDS.CGI file, then you will also need to change the first line of the following files (which are contained in the "cron" subdirectory) in a similar manner if you plan to use them:
+
+autonotify.pl
+autonotify_purge.pl
+purge.pl
+warn.pl
+
+3. Rename classifieds.cgi to classifieds.pl if your server requires the .pl extension for Perl scripts
+------------------------------------------------------------------------------------------------------
+
+If your server requires Perl programs to use the ".pl" extension, you should rename the classifieds.cgi file to classifieds.pl.  On some servers, you may need to rename it to classifieds.plx, classifieds.pl5, or something else.  If your server does not allow Perl programs to use the ".pl" extension, then you will also need to rename the files in the "cron" directory to use the appropriate extension for executable Perl programs on your server.
+
+
+4. Edit the variables in the user.cfg file
+------------------------------------------------------------------------------------
+
+Before you upload the files, you will need to change some of the variables in the user.cfg file.  This file contains the global system variables.  These variables are preceded by comment lines (lines beginning with the # symbol) that explain how you should set the variables.  Among other things, it is extremely important that you change the $admin_password variable to something other than the default.  If you fail to do this before allowing any outside users to access this program, you will risk allowing outsiders to gain "admin" status and wreak havoc with your classifieds system, since the default password that comes with the program is not only very easy to guess, but also widely known.  It is also extremely important that you change the $script_url variable from "classifieds.cgi" to the full URL to your classifieds program, such as "http://www.yourdomain.com/cgi-bin/classifieds/classifieds.cgi".  Failure to set this to the full URL will cause some functions to fail.  Finally, you should make sure that you set the program to use the correct mail program and to enter the correct location of that mail program on your server (or the correct domain name if you will be using SMTP).
+
+5. Upload all files to your server and create the appropriate directories
+-------------------------------------------------------------------------
+
+Once you have configured the variables, you are now ready to begin uploading the files to your server.
+
+These instructions assume that you have FTP access to the server and that you have some basic knowledge of how to use an FTP program to go to different directories on your site, create directories when necessary, and to upload files to your server.  If you do not have this basic knowledge, we recommend getting an FTP program such as WS_FTP (http://www.ipswitch.com/) or CuteFTP (http://www.cuteftp.com/) and reading its documentation thoroughly in order to learn how to use such programs.
+
+When uploading all of the text files for the classified ads program, be sure to set your FTP program to transfer in ASCII mode (the graphics files, such as those ending in ".gif", should be transferred in Binary mode).  The script will NOT work properly if you transfer it in binary mode.
+
+Please note that capitalization DOES MATTER on many servers, so be sure to create these directory names with the exact capitalization used here.  *All* directories and files should be in lower case.  If they somehow arrived in uppercase after you unzipped the file, please convert them to lower case before uploading them to the server.
+
+Use your FTP program to connect to your server.  Then, go to your "cgi-bin" directory and create a subdirectory called "classifieds".  Go to this subdirectory.  Within the classifieds directory, you will upload the following files:
+
+classifieds.cfg
+classifieds.cgi
+user.cfg
+
+The classifieds.cgi file is the main program file for the script.
+
+Then create the following subdirectories under the classifieds directory:
+
+attach
+cron
+data
+html
+library
+temp
+
+The "attach" directory should initially be empty.  The script will create temporary files in this directory as needed.
+
+Upload the following files to the "cron" directory.  Please note that if the cron function is not available on your server, or if you don't plan on using it, you don't need to upload these files, as all of these functions can also be accessed from the administrative Control Panel.  Please see the readme.txt file for more information about cron.
+
+autonotify.pl
+autonotify_purge.pl
+purge.pl
+warn.pl
+
+Then, go to the "data" directory and upload the following files:
+
+ads.counter
+ads.data
+ads.log
+maillist.txt
+notify.counter
+notify.data
+
+Then go to the "html" subdirectory and upload the following files.
+
+main-html.pl
+print_privacy_page.pl
+print_terms_page.pl
+
+Then go to the "library" subdirectory and upload the following files.
+
+blat.pl
+cgi-lib.pl
+date.pl
+sendmail.pl
+smtp.pl
+windmail.pl
+
+The "temp" directory should initially be empty.  The script will create temporary files in this directory as needed.
+
+You also need to create a directory that will contains the subdirectories where the graphics and uploaded multimedia files are stored.  On many servers, HTML files and graphics are not viewable from a web browser if they are stored beneath the cgi-bin, so you may want to create this directory outside your cgi-bin.  We suggest creating a directory called "classifieds" that is located underneath the top-level directory where your HTML documents are stored.
+
+Beneath this "classifieds" directory, you should create one directory called "graphics" where the graphics for the program are stored.
+
+Upload the following files to this directory (all of which are contained in the "graphics" subdirectory in the distribution):
+
+blueblack.gif
+blueline.gif
+bot_left_corner.gif
+bot_right_corner.gif
+eclass_photo.gif
+e-classifieds_photo.gif
+logo.gif
+newsearch.gif
+photo.gif
+smallcamera.gif
+top_left_corner.gif
+top_right_corner.gif
+
+You should then create a second subdirectory of the "classifieds" directory called "upload" where the multimedia files that users upload with their ads will be stored.  Failure to make this directory will cause the multimedia file uploading portion of the program to fail.
+
+6. Set permissions on all files and directories
+-----------------------------------------------------------
+
+For both Unix and Windows users, it is extremely important that you set the proper permissions for all files and directories by following the instructions below.  Please see the appropriate section below for your operating system.
+
+Windows
+-------
+
+These instructions are for Windows NT/2000 users who are running Microsoft's Internet Information Server (IIS) version 4.x or above and who are also using NTFS.  If you are not using NTFS (for example, if you are using FAT or FAT32 instead), or if your server is running Windows 95, Windows 98, or Windows ME, you will not be able to set permissions in this manner, but then you probably won't need to anyway, as the permissions on such systems are already "wide open".
+
+Windows users should set both the "classifieds" directory that you created under your cgi-bin, and the "classifieds" directory that you created outside of your cgi-bin, to "Full Control" or "Special Access Privileges--RWXD" for the user "IUSR_SERVERNAME", where you would replace "SERVERNAME" with the actual name that you have defined for this computer.  If this doesn't work for some reason, you can also try setting the permissions on these directories to "Full Control" or "Special Access Privileges--RWXD" for the user "Everyone", although doing so is less secure.
+
+When changing these settings, it is extremely important that you set the "Full Control" settings on these directories so that they will affect all files and subdirectories contained within those directories as well (there is a checkbox for this setting).
+
+We should also mention that on many Windows servers, the user does not have direct access to the permissions settings.  If you just create the directories and upload the files, the program may still work on your server.  If not, however, you may need to ask your server admin or web hosting company to set the appropriate permissions on these directories.
+
+Unix
+----
+
+Unix users need to set the permissions on the various files and directories using the CHMOD command.  Permissions are set using numeric CHMOD settings that correlate to attributes such as "readable", "writable", and "executable".  The chart below lists some of the common CHMOD settings and what they mean:
+
+Unix CHMOD number        What it means
+-----------------        ------------------
+644                      readable file
+666                      writable file
+755                      standard (non-writable) directory/executable file
+777                      writable directory
+
+You may be able to use your FTP program to set permissions if it contains the ability to use the "chmod" command on Unix servers to set permissions.  Some FTP programs, such as WS_FTP, do have this capability.  In WS_FTP, click on the file whose permissions you want to change, highlighting it.  Then, right-click your mouse in order to bring up a popup menu.  Select "chmod (UNIX)" from this menu.  A popup menu will appear that has a table consisting of three rows and three columns, with a radio button next to each item.  This table is organized in the manner shown below, except that the table doesn't actually list the numbers in parenthesis:
+
+Owner                Group                Other
+
+Read (4)             Read (4)             Read (4)
+Write (2)            Write (2)            Write (2)
+Execute (1)          Execute (1)          Execute (1)	
+
+Permissions in Unix are normally set using a three digit value.  For example, the normal value for an executable CGI program is 755.  Each of these digits corresponds to one column in the table above.  For example, the first digit (7) in our example (755), corresponds to the values in the first column above (the "Owner" column).  Thus, you would check the radio buttons next to Read (4), Write (2), and Execute (1) in the Owner column to get the value of 7, since 4 + 2 + 1 = 7.  In the second column ("Group"), you would check the buttons next to Read (4) and Execute (1) to the get the value of 5 (4 + 1 = 5).  You would check the same radio buttons in the third column ("Other") to get a value of 5 again.  That sets the permissions on this file to 755.
+
+If you are using another FTP program, you will need to consult the documentation for that program on how to set permissions from within that program, assuming that it even has this capability.
+
+If you are setting permissions from your Telnet program, you would need to log into your server and then change directories (using the "cd" command) until you get to the directories that we need to set the permissions for here.  To set the permissions for a file or directory in Telnet, you use the following command (where "classifieds" is the name of the file or directory that you are setting permissions for):
+
+chmod 755 classifieds
+
+In this example, you are using the "chmod" command to set the permissions to "755" for the "classifieds" file or directory.
+
+Using one of the above techniques from your FTP or Telnet program, you would set the permissions for the "classifieds" directory that you created under your cgi-bin to 755.  The files within this directory should have their permissions set as follows (each file is listed with the appropriate permissions setting listed next to it--we will use this format througout the remainder of this section on setting permissions):
+
+classifieds.cfg   644
+classifieds.cgi   755
+user.cfg          666
+
+The subdirectories under the classifieds directory should have their permissions set as follows:
+
+attach      777
+cron        755
+data        777
+html        755
+library     755
+temp        777
+
+If you plan on using the files in the "cron" directory, they should all have their permissions set to 755.
+
+The files in the "data" directory should have the following permissions:
+
+ads.counter     666
+ads.data        666
+ads.log         666
+maillist.txt    666
+notify.counter  666
+notify.data     666
+
+The files in the "html" subdirectory should have the following permissions:
+
+main-html.pl             644
+print_privacy_page.pl    644
+print_terms_page.pl      644
+
+The files in the "library" subdirectory should have the following permissions:
+
+blat.pl          644
+cgi-lib.pl       644
+date.pl          644
+sendmail.pl      644
+smtp.pl          644
+windmail.pl      644
+
+Your "classifieds" directory that you created outside of your cgi-bin and that contains the "graphics" and "upload" subdirectories should have its permissions set to 755.  The "graphics" subdirectory should also have its permissions set to 755, and all of the graphics files that you placed in this subdirectory should have their permissions set to 644 (on many servers, this is the default setting for such files, so you may not need to manually set them).  The "upload" subdirectory should have its permissions set to 777.  
+
+7. Run the program from your web browser
+----------------------------------------
+
+That's it.  If you have carefully followed all of the instructions above, you are now ready to start the program for the first time.  To do so, you should point your browser to the following URL, where "www.yourdomain.com" would be replaced by your actual domain name (if you renamed the classifieds.cgi file to classifieds.pl or stored the program in a different location other than the default locations as discussed above, you would need to adjust this URL accordingly):
+
+http://www.yourdomain.com/cgi-bin/classifieds/classifieds.cgi
+
+The front page for the classifieds program should be displayed on your web browser.  If the program doesn't come up, you will need to read the Troubleshooting section below.  In general, a "500 Server Error" message may indicate that a syntax error was introduced to one of the files that you modified.  If you see a "Document contains no data" message in Netscape or a blank screen in Internet Explorer, this may indicate that the permissions for one or more of the files have not been set correctly, or that one or more files or directories are not in the right place.  It also could mean that a syntax error was introduced to one of the files that you modified, either by your text editor or your FTP program.
+
+8. Post a test ad
+------------------
+
+At this point, you may want to post a test ad, just to make sure that everything is working properly.  Once you have posted your ad, upload a photo to your ad to make sure that the multimedia upload portion of the program is working properly.  Also, check your mailbox to make sure that both the ad poster (yourself in this case) and the admin (yourself) received the proper e-mail messages from the program.
+
+9. Link to your new classifieds section from the rest of your web site
+-----------------------------------------------------------------------
+
+Congratulations!  You have completed the installation and configuration of your new classifieds section.  You can now link to your classifieds section from the rest of your site by adding links to the following URL, where "www.yourdomain.com" would be replaced by your actual domain name (if you renamed the classifieds.cgi file to classifieds.pl or stored the program in a different location other than the default locations as discussed above, you would need to adjust this URL accordingly):
+
+http://www.yourdomain.com/cgi-bin/classifieds/classifieds.cgi
+
+Enjoy!
+
+Troubleshooting
+---------------
+
+Installation of Perl scripts can be tricky, so if you run into problems, please be patient.  Here is a checklist of items to check if you cannot get the program to run:
+
+1. The number one cause of problems is usually that the permissions for some file or directory haven't been set properly, so that's the first thing to check if the script doesn't work for some reason.
+
+2. If you're using Unix, please make sure that the first line of CLASSIFIEDS.CGI (and the "warn", "purge", "autonotify", and "autonotify_purge" files if you are using them) points to the location of Perl 5 on your server.
+
+3. Another thing to check is to make sure that you have set your FTP program to ASCII mode when uploading the text files that comprise the script.  If you upload these files in binary mode, the program won't work.  The "automatic" binary versus ASCII selection of some programs such as CuteFTP can cause problems, because it may not recognize files with the .cfg extension as being text files.
+
+4. Another potential source of problems that we have been noticing lately is the so-called "web shells" that some web hosting companies provide in place of true FTP and Telnet access.  These web shells are not nearly as useful as FTP and Telnet, and they often cause problems for CGI scripts.  For example, one thing to check for is whether the web shell or other program that you used to upload the files has inserted extra blank lines into the scripts, as this will cause syntax errors and "break" the program.
+
+5. If you used WordPad or any other program to edit some of the files, this may have corrupted them, even though the program appeared to be saving them in ASCII or text format.  If at all possible, it is best to use a "pure" text editor such as Notepad if you are editing these files on a Windows computer.  Other programs that are known to cause problems include Pico, Frontpage, Word, and others.  In fact, most editors other than Notepad are likely to cause problems.
+
+6. Also, please make sure that you have specified the correct mail program for your server, as well as its correct location on your server, in the user.cfg file.  The most common sources of e-mail problems are incorrect values for the $mail_program or $location_of_mail_program variables.
+
+7. If you are using Unix and are having problems with e-mailing, this could be because your e-mail address is being aliased on the server.  If so, you will need to set the $block_sendmail_aliasing variable in the user.cfg file equal to "off".  If this still doesn't correct the problem, you might also try setting the $require_admin_from_address variable equal to "on".  If none of these solutions corrects the problem, or if you are experiencing e-mail problems on a Windows server, the mail program may be missing or improperly configured on the server.  You will need to contact your server administrator about this.
+
+8. If you are installing the program on a Windows server, have kept the name of the main file as classifieds.cgi, and see the message "%1 is not a valid Windows NT application" when you try to run it from your browser, this indicates that your server either does not have Perl 5 installed, or that the server has not been properly configured to recognize files with the ".cgi" extension as executable CGI programs, or that the "cgi-bin" directory has not been set by the administrator as having the rights to execute scripts.  Try renaming the main file to classifieds.pl and then run it from your browser again.  If your browser now prompts you to save the file or simply displays the code on the screen, this indicates that the server has not been properly configured to recognize files with the ".pl" extension as executable Perl programs.  It is also possible that the "cgi-bin" directory has not been set by the administrator as having the rights to execute scripts.  Another possibility is that the server may not even have Perl 5 installed.  In such cases, please contact your web hosting company or server administrator about making sure that Perl 5 is installed on the server, that the server is properly configured to recognize the ".cgi" and/or the ".pl" extensions as executable, and that the "cgi-bin" directory has been set by the administrator as having the rights to execute scripts.  If the program ran after you changed the name of the main file to classifieds.pl, you will need to edit the $script_url variable in the user.cfg file and then upload this file to your server again.  Otherwise, none of the links or buttons on the front page will work, as they will still point to "classifieds.cgi" instead of "classifieds.pl".
+
+9. Also, please make sure that you have uploaded all of the files with their correct names (they should all be lower case) to the proper directories and that the files and directories use the correct capitalization as described above.
+
+10. If you see Path Error message or the "Document contains no data" message in Netscape or a blank page in Internet Explorer, and possibly even if you see a Server Error message on some systems, you may need to manually set the $path variable in the classifieds.cgi file.  Specifically, look for the "Path Variable" section near the very beginning of the classifieds.cgi file.  Within that section, you will see some code, followed by a block of commented text (lines with the # symbol in front of them) that explain what this $path variable is and how to set it if you need to manually set it.  In the code just above this text you will see the following line:
+
+# $path = "/usr/www/users/you/cgi-bin/classifieds";
+
+To manually override the script's attempts to automatically get this value, you should remove the # symbol from in front of this line and then edit this line to point to the full internal server path to the "classifieds" directory where the classifieds.cgi file is stored.  If you don't know your internal server path information, you will need to obtain this information from your web hosting company or your server administrator.  If you're on a Unix server, you may be able to just set this to ".", although the cron scripts may not work if you use this feature.  This setting will NOT work on Windows servers.
+
+The typical format is something like "/usr/www/users/you/cgi-bin/classifieds" for Unix users or "d:/Inetpub/wwwroot/cgi-bin/classifieds" for Windows users.  These are merely examples, of course, and your actual directory will be different.  Also, do NOT add the trailing slash.  Please note that on Windows servers, this internal path value must start from the drive letter, such as "c:" or "d:".  It also must use forward slashes, rather than the typical DOS/Windows backslashes.
+
+Manually overriding the $path variable should be the last solution that you try after you have exhausted all of the other suggestions above, and only if the program is not running at all or you are seeing the Path Error message.  This is because doing so may actually make things worse for several reasons: you may not use the correct value, and/or you may corrupt the classifieds.cgi file when you edit it.  If the program is running but you are experiencing other problems (see the suggestions below), do NOT manually edit the $path variable, as this is not the source of your problem.  In fact, since the program is able to automatically obtain the correct path information on virtually all servers, you should almost never have to manually override the setting for the $path variable.
+
+11. If your primary desktop computer is running Linux or another flavor of Unix and you unzipped the classify.zip file on that computer and then uploaded the files to your server from that computer, or if you placed the classify.zip file directly on your Unix/Linux server and unzipped the files and set up the program there, you may see a server error message when you run the program.  This is because the classify.zip file contains files that were edited on a Windows PC and thus have DOS/Windows carriage returns in them.  Normally, these carriage returns are automatically stripped out by Windows FTP programs when these files are uploaded to a Unix server, but this may not be the case if your desktop computer is running Linux or another Unix variant. In such cases, please e-mail us and advise that you may fall into this category.  We will then send you a small conversion program that will strip out these carriage returns.  We can send you the conversion program in a ".zip" or ".gz" format.
+
+12. If you are able to run the program but see a Server Error message when you click on any of the links, this could indicate that the $script_url variable is set incorrectly (this will be the case if you renamed classifieds.cgi and didn't edit the $script_url variable in the user.cfg file).  Otherwise, this may indicate that your server has a major configuration error in that it is not allowing or recognizing GET requests from CGI programs.  One way to test this is to see if clicking on the "Search" button in the toolbar along the left hand side of the pages works.  If clicking on the Search button works, but none of the other links works, this is a sure sign that your server is misconfigured.  We have seen this on some Cobalt Microservers.  If you experience this, please contact your web hosting company or server administrator about getting this server configuration error corrected.
+
+13. If you are able to run the program but see an error message when you attempt to post an ad, there are two probable causes for this.  Fortunately, it's fairly easy to determine which one is the culprit.  After seeing the error message, go back and click on the "Browse Ads" link (if you are requiring administrative approval for new ads, you will need to go to the Control Panel and select the Preview New Ads option to see if your ad was posted).  If the ad that you just posted shows up, then the problem is related to your e-mail settings.  You will need to modify one or more of the mail settings in the user.cfg file.  If the ad didn't show up, then the problem is related to the permission settings for one or more files or directories.  The classifieds program wasn't able to write the ad because one or more of the files in the "data" subdirectory was not set to be writable.  It's also possible that you may not have set the "data" directory itself to be writable.
+
+14. If you are able to run the program but see error messages when performing certain activities, such as posting an ad, your system may not support the system flock command.  If so, you'll need to turn off the $flock variable in the user.cfg file.  Fortunately, almost all modern Unix servers support the flock utility, but if you are attempting to run this program on a Windows computer, you may need to turn off the $flock variable.
+
+15. If you are able to run the program but are unable to upload multimedia files because you receive the message indicating that the file is not a valid GIF or JPG file, this may indicate that the setting for the $upload_path variable is incorrect or that the directory specified in that variable does not have its permissions set so that it's writable.  If you are certain that both the settings and the permissions are correct, and especially if you are on a Windows server, then there is a strong likelihood that the server is not configured properly to allow the Perl "rename" command to function.  We have seen this on some IMC Online servers.  If necessary, we can send you a test script that will test for this problem. 
+
+16. On some esoteric server setups, it's possible that the server is set up to prevent CGI scripts from writing to files contained in directories underneath the cgi-bin.  If that is the case (you'll definitely need to verify this from your server admin), you'll have to contact us, as we will need to do a custom modification to the program to get it to work on your server.  This is bad server practice, however, and if we modify the program to write to files located outside of your cgi-bin, this will also cause your users' passwords to potentially be visible to other users from a web browser (this is just one example of why this is a very bad server setup).  Also, if we are required to perform this custom modification, we will charge for this service.
+
+17. Certain versions of e-Classifieds depend on certain modules being present in order for certain functions to work properly, such as the Socket.pm module or the LWP::UserAgent module.  You may need to obtain these modules from CPAN (http://www.perl.com) if your system does not have them installed.  This is especially true if you are using an older version of Perl, and especially if you are running on a Windows server.  In fact, if you are running on a Windows server, we highly recommend going to www.activestate.com and downloading and installing the latest version of Perl if you don't already have the current version, as older versions of Perl on Windows are known to have problems.
+
+Finally, if you are having problems related to posting a specific ad, you may want to try posting this exact same ad on the demo version at the e-Classifieds web site (http://www.e-classifieds.net) in order to see if you can replicate the problem.  If you can replicate the problem on our demo version, this would be very useful information when you contact us, and it will make it much more likely that we can discover and solve the problem.  If the problem does not appear when you post the test ad on our demo version, this is a very strong indication that you have not set one or more variables, file permissions, or other settings correctly on your version.
+
+If none of these solutions helps you to solve the problem, as a last resort, you can submit a technical support request via our online Technical Support Request (TSR) form.  Please note that charges may apply if you submit a TSR.  If you do so, explain exactly what you have done thus far and exactly what types of error messages you are receiving.  Please be aware that if we need to diagnose a problem, we may need to obtain your username and password from you and access your server directly via FTP and/or Telnet in order to properly diagnose the problem, as the source of many problems cannot be detected otherwise.  If your only access is via a "web shell", we probably will not be able to help you.
+
+ALL TECHNICAL SUPPORT REQUESTS *MUST* BE SUBMITTED THROUGH THE TSR SYSTEM.  DO NOT SEND US E-MAIL, AS WE DO NOT HAVE THE STAFF RESOURCES TO RESPOND TO INDIVIDUAL E-MAILS, AND ANY SUCH E-MAILS WILL BE IGNORED.
+
+We normally charge $50 for installations, so please do not contact us unless you have checked all of the items above and are willing to pay the installation fee.  The $50 installation fee is for standard installations that take less than one hour.  Installations that take longer than one hour due to non-standard server setups, server misconfigurations, or for any other reason will incur additional fees.
