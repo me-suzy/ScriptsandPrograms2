@@ -1,0 +1,61 @@
+<config upload="./upload/" path="./" url="./">
+	
+	<formspath>./forms/</formspath>
+	<default_location>index.php</default_location>
+
+	<forms>
+		<adminpath>./forms/admin/</adminpath>
+		<userpath>./forms/user/</userpath>
+		<admintemplate>./templates/form.htm</admintemplate>
+		<sitepath>./forms/</sitepath>
+		<sitetemplate>./admin/templates/form.htm</sitetemplate>
+	</forms>
+
+	<database type="mysql">
+		<server>localhost</server>
+		<login>root</login>
+		<password></password>
+		<default>messaging</default>
+	</database>
+
+	<!--variable which will be replaced in the final template, you ca add any variblae, and in the html {MINIBASE.<var>} -->
+	<vars>
+		<var name="header">Messaging</var>
+		<var name="title">Messaging Administration Area</var>
+	</vars>
+
+	<modules>
+		<admin>
+			<module name="myprofile">myprofile</module>
+			<module name="auth">auth</module>
+		</admin>
+	</modules>
+
+	<tables>
+		<table name="types">site_types</table>
+		<table name="customers">site_clients</table>
+		<table name="notes">site_notes</table>
+		<table name="problems">site_problems</table>
+		<table name="calls">site_calls</table>
+		<table name="calls_prods">site_calls_prods</table>
+
+		<table name="files">site_files</table>
+
+		<table name="news_groups">news_groups</table>
+		<table name="news_identities">news_identities</table>
+		<table name="news_users">news_users</table>
+		<table name="news_newsletters">news_newsletters</table>
+		<table name="news_files">news_files</table>
+		<table name="news_history">news_history</table>
+
+		<table name="vars">site_vars</table>
+
+	</tables>
+ 
+	<templates path="./templates/">
+		<admin path="./templates/admin/">
+			<template name="menus">menus.htm</template>
+			<template name="layout">layout.htm</template>
+		</admin>
+	</templates>
+</config>
