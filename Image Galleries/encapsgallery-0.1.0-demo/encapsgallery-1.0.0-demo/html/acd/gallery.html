@@ -1,0 +1,53 @@
+<center>
+Category: <?include($html['path'].'gallery_cats_select.html');?>
+<br><br>
+<?include($html['path'].'pager.html');?>
+<table border="0" cellpadding="10" cellspacing="10">
+<tr>
+<?
+$columns = 4;
+$count = sizeof($html["items"]);
+$current = 0;
+//if(sizeof($html["items"])>0))
+foreach($html["items"] as $item){
+	if($item["visible"]!="on")continue;
+	
+	if($current++ % $columns ==0)
+		echo "</tr><tr>";
+	?>
+<td valign="middle" align="center" width="">
+
+<table border="0" cellpadding="10" cellspacing="0"><tr><td align="center" valign="middle">
+
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><img src="<?=$html['path']?>img/gallery/r1c1.gif"></td>
+<td background="<?=$html['path']?>img/gallery/r1c2.gif"></td>
+<td><img src="<?=$html['path']?>img/gallery/r1c3.gif"></td>
+</tr>
+<tr>
+<td background="<?=$html['path']?>img/gallery/r2c1.gif"></td>
+<td background="<img src="<?=$html['path']?>img/gallery/r2c1.gif"><a 
+	title="<?=$item['comment']?>" target="_blank" href="gallery.php?page=foto&action=show_custom&id=<?=$item["id"]?>&cat=<?=$html['cat']['id']?>"><img 
+	border="0" src="./core/gallery_resize.php?filename=../rwx_gallery/<?=$item["filename_normal"]?>" ></a></td>
+<td background="<?=$html['path']?>img/gallery/r2c3.gif"></td>
+</tr>
+<tr>
+<td><img src="<?=$html['path']?>img/gallery/r3c1.gif"></td>
+<td background="<?=$html['path']?>img/gallery/r3c2.gif"></td>
+<td><img src="<?=$html['path']?>img/gallery/r3c3.gif"></td>
+</tr>
+</table>
+
+<?=$item['title']?>
+</td></tr></table>
+
+</td>
+<?}?>
+</tr>
+
+
+</TABLE>
+<?include($html['path'].'pager.html');?>
+</center>
+<!--</FIELDSET>-->
