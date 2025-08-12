@@ -1,0 +1,432 @@
+<html>
+<head>
+	<title>Templates</title>
+</head>
+
+<body>
+<font face="Verdana,Arial" size="2">
+
+<div align="center">
+
+<h2>Templates</h2>
+
+<table width="600">
+<tr>
+<td>
+
+<font face="Verdana,Arial" size="2">
+
+<div align="center">
+[ <a href="#using">Using The Templates</a> ] | [ <a href="#desc">Descriptions Of Each Template</a> ]
+</div>
+
+<p>
+
+<hr width="550" size="1" align="center" noshade>
+
+<b><a name="using">Using The Templates</a></b>
+
+<p>
+
+The template feature of AutoRank Pro makes the script extremely easy to integrate into your site.
+These files are very easy to edit, but you need to follow a few guidelines.  You should be able to
+edit all of the .htmlt files in any html editor and be ok.  All of the .etmpl files need to be edited
+in an ASCII text editor such as Notepad in Windows or Pico in Unix.
+
+<p>
+
+<b>The template in admin.cgi</b>
+
+<p>
+
+In admin.cgi when you choose to edit the HTML for one of your main pages, you will be presented with 
+a page that has text boxes for the header, template, and footer.  In this file we will discuss the
+template, header, and footer portions of that page.
+This template works the same way as all the others; the only difference is that you will be entering
+the HTML you create into a web-based form instead of editing a template file.  If you do not enter a
+template the default template will be used.
+
+<p>
+
+When you edit the template, you will only enter the HTML for a single rank.  The script will then use that
+HTML for each of the rankings on the page.  If you find yourself inserting #%RANK%#, #%DESC%#, or any of
+those values in #%%# more than once in the template, then you are most likely doing something wrong.
+
+<p>
+
+A different template can be used for each of your pages, so don't feel like you have to stick with the
+same look throughout your top list.  If you have any questions, see the <a href="#support">tech support</a> info
+at the bottom of this file.
+
+<p>
+
+<b>The .htmlt Files</b>
+
+<p>
+These files are used to generate the HTML that the scripts output.
+Of the .htmlt files, there are only certain ones you should edit.  Never, ever, edit any .htmlt file that
+begins with _admin.  Those are used for the administrative script, and only you the administrator will
+see them.  Any editing to those files will result in loss of tech support from CGI Works.
+
+<p>
+
+In each of the files you will find standard HTML and pieces of text surrounded by #%%#.  Anything 
+surrounded by #%%# should not be edited.  These are items that will be inserted by the script. You can
+move it around all you want, but do not change the value inside the #%%#. 
+
+<p>
+
+Basically you can use any HTML you want.  You should first use the script with the default templates
+so you can get a feel of what each #%%# item is replaced with.  Once you have a feel for how they are
+working, you can go in and put your HTML in.  If you have any questions, see the <a href="#support">tech support</a> info
+at the bottom of this file.
+
+<p>
+
+<b>The .etmpl Files</b>
+
+<p>
+
+These files are used as templates for the e-mails that are sent when a member signs up, or when
+a member needs reminded of their password.  They follow a certain format which needs to be maintained
+in order for the e-mails to be sent.  That order is:<p>
+
+To: user@domain.com<br>
+From: your-email@domain.com<br>
+Subject: The subject<br><br>
+The body of the message
+
+<p>
+
+Note that there <b>must</b> be a blank line between the Subject line and the body of the message.  Failure
+to leave that blank line will result in e-mails not being sent.
+
+<p>
+
+The same format is used in the .etmpl files as is used in the .htmlt files.  All items that the script
+will insert are surrounded by #%%#.  Again, do not edit these.  You can move them around all you want
+within the e-mail.  Make sure you edit these files in an ASCII text editor such as Notepad.  If you have 
+any questions, see the <a href="#support">tech support</a> info at the bottom of this file.
+
+<p>
+
+<b>After editing the templates</b>
+
+<p>
+
+After you have edited the templates to your liking, simply upload them in ASCII mode to the templates
+directory you created.  If your FTP client asks you if you want to replace the current version, select yes.
+You can verify that the new versions have been uploaded properly by pointing your browser to accounts.cgi
+to see if your HTML appears.
+
+<p>
+
+<hr width="550" size="1" align="center" noshade>
+
+<p>
+
+<a name="desc"><b>Descriptions Of Each Template</b></a>
+
+<p>
+
+<ul>
+<li> <b>"Edit HTML For [page]" template in admin.cgi</b><p>
+<font size="1">
+This is the HTML that will be used for the selected page.
+<p>
+
+<b>Header HTML and Footer HTML Options</b>
+<p>
+These values are only recognized in the header or footer HTML
+<p>
+#%UPDATE%# - The last updated time<br>
+#%NEXTUP%# - The time the next rerank will occur<b>*</b><br>
+#%TOTAL%# - Total members in the database<br>
+#%TITLE%# - Title for the site of the moment<br>
+#%DESC%# - Description for the site of the moment<br>
+#%BANNER%# - Banner for the site of the moment<br>
+#%URL%# - Outgoing URL for the site of the moment<br>
+#%ICONS%# - Icons for the site of the moment
+<p>
+* Only works if you have filled in a value for Re-rank time in setup.cgi.
+If you are using cron, you can still set this value to the amount of time
+that will pass between cron updates.
+<p>
+<b>Template HTML Options</b>
+<p>
+These values are only recognized in the template HTML.
+<p>
+#%RANK%# - The site's current rank<br>
+#%FONT_SIZE%# - The font size to use, from setup.cgi<br>
+#%BANNER%# - The site's banner<br>
+#%TITLE%# - The site's title<br>
+#%IN%# - The number of hits sent BY the site<br>
+#%OUT%# - The number of hits sent TO the site<br>
+#%DESC%# - The description of the site<br>
+#%NEW%# - This will place a new icon next to the site if it is a new account<br>
+#%URL%# - This is the outgoing URL for the account<br>
+#%PREVRANK%# - This is the site's rank when the list was last reset<br>
+#%PREVIN%# - This is the # of hits the site had sent when the list was last reset<br>
+#%CAT%# - This is the site's category<br>
+#%ICONS%# - This will display any icons that heve been selected for the site
+    
+</font>
+
+<p>
+
+<li> <b>search.cgi template</b><p>
+<font size="1">
+This is the page surfers will see when they do a search.
+<p>
+
+#%NEW%# - The new icon, if applicable<br>
+#%URL%# - The outgoing URL to the site<br>
+#%IN%# - Number of hits sent in by the site<br>
+#%OUT%# - Hits sent out to the site<br>
+#%DESC%# - The site's description<br>
+#%CAT%# - The site's category<br>
+#%TITLE%# - The site's title<br>
+#%ICONS%# - Any icons associated with this account<br>
+<p>
+<b>Footer Values</b>
+<p>
+These values may be placed only in the footer.
+<p>
+#%TOTAL%# - The number of matches found<br>
+#%SEARCH%# - The keyword that was searched for
+</font>
+
+<p>
+
+<li> <b>index.cgi template</b><p>
+<font size="1">
+This is the page surfers will see for the quick list.
+<p>
+
+#%TITLE%# - The site's title<br>
+#%URL%# - The outgoing URL to the site
+</font>
+
+<p>
+
+<li> <b>_account_add.htmlt</b><p>
+<font size="1">
+This is the page webmasters will see when adding their account.
+<p>
+
+#%EM_FIELD%# - The form field where members enter their e-mail address<br>
+#%ST_FIELD%# - The form field where members enter their site's title<br>
+#%SU_FIELD%# - The form field where members enter their site's url<br>
+#%SD_FIELD%# - The form field where members enter their site's description<br>
+#%BU_FIELD%# - The form field where members enter their default banner URL<br>
+#%CT_FIELD%# - The form field where members select their site's category<br>
+#%UN_FIELD%# - The form field where members enter their desired username<br>
+#%PW_FIELD%# - The form field where members enter their desired password<br>
+#%VP_FIELD%# - The form field where members verify their desired password<br>
+#%SUBMIT%#   - The button the webmaster will press to add their account
+</font>
+
+<p>
+
+<li> <b>_account_added.htmlt</b><p>
+<font size="1">
+This is the page webmasters will see after adding their account.
+<p>
+
+#%LOGIN_URL%# - The URL to the account maintenance login page (accounts.cgi?login)<br>
+#%TRACK_URL%# - The URL the member should send hits to<br>
+#%E-MAIL%# - The webmaster's e-mail address<br>
+#%SITE_TITLE%# - The webmaster's site title<br>
+#%SITE_URL%# - The webmaster's site URL<br>
+#%SITE_DESC%# - The webmaster's site description<br>
+#%BANNER_URL%# - The webmaster's banner URL<br>
+#%USERNAME%# - The webmaster's username<br>
+#%PASSWORD%# - The webmaster's password
+
+</font>
+
+<p>
+
+<li> <b>_account_edit.htmlt</b><p>
+<font size="1">
+This is the page webmasters will see when editing their account.
+<p>
+
+#%EM_FIELD%# - The form field where members enter their e-mail address<br>
+#%ST_FIELD%# - The form field where members enter their site's title<br>
+#%SU_FIELD%# - The form field where members enter their site's url<br>
+#%SD_FIELD%# - The form field where members enter their site's description<br>
+#%BU_FIELD%# - The form field where members enter their default banner URL<br>
+#%CT_FIELD%# - The form field where members select their site's category<br>
+#%PW_FIELD%# - The form field where members enter their desired password<br>
+#%SUBMIT%#   - The button the webmaster will press to add their account
+</font>
+
+<p>
+
+<li> <b>_account_farm.htmlt</b><p>
+<font size="1">
+This page will be your banner farm - members will get links to your site here.
+<p>
+
+#%URL%# - The URL the member should link to
+</font>
+
+<p>
+
+<li> <b>_account_login.htmlt</b><p>
+<font size="1">
+This is the page webmasters will see when logging into their account.
+<p>
+
+#%USERNAME_FIELD%# - The form field where members enter their username<br>
+#%EDIT_RADIO%# - The radio button to select to edit account<br>
+#%STATS_RADIO%# - The radio button to select to view stats<br>
+#%LINK_RADIO%# - The radio button to select to view the banner farm<br>
+#%PASSWORD_FIELD%# - The form field where members enter their password<br>
+#%SUBMIT_BUTTON%# - The button the webmaster will press to login to their account
+</font>
+
+<p>
+
+<li> <b>_account_remind.htmlt</b><p>
+<font size="1">
+This is the page webmasters will see if they need their password sent.
+<p>
+
+#%EMAIL_FIELD%# - The field to enter an e-mail address<br>
+#%SUBMIT_BUTTON%# - The submit button
+</font>
+
+<p>
+
+<li> <b>_account_reminded.htmlt</b><p>
+<font size="1">
+This is the page webmasters will see when their password is sent.
+<p>
+
+#%EMAIL%# - The e-mail address that login information was sent to.
+</font>
+
+<p>
+
+<li> <b>_account_stats.htmlt</b><p>
+<font size="1">
+This is the page webmasters will see that displays their stats.
+<p>
+
+#%HITS_IN%# - Hits in since the last reset<br>
+#%HITS_OUT%# - Hits out since the last reset<br>
+#%PREVRANK%# - Site's rank when the list was last reset<br>
+#%PREVIN%# - Hits the account had sent when last reset<br>
+#%STATS%# - An overview of previous stats
+</font>
+
+<p>
+
+<li> <b>_account_updated.htmlt</b><p>
+<font size="1">
+This is the page webmasters will see after they edit their account
+<p>
+
+No Script Variables
+</font>
+
+<p>
+
+<li> <b>_error_data.htmlt</b><p>
+<font size="1">
+This is the page surfers/webmasters will see if there is a data error.
+<p>
+
+#%HTML_TITLE%# - The HTML page title<br>
+#%SHORT_ERROR_DESC%# - A short error message<br>
+#%LONG_ERROR_DESC%# - A long descriptive error message<br>
+#%SITE_ADMIN%# - A string containing list administrator's e-mail address
+</font>
+
+<p>
+
+<li> <b>_email_added.etmpl</b><p>
+<font size="1">
+The e-mail sent when a webmaster signs up for an account.
+<p>
+
+#%EMAIL%# - The e-mail address of the webmaster signing up<br>
+#%FROM%# - Your e-mail address<br>
+#%SEND_URL%# - The URL the member should send hits to<br>
+#%LOGIN_URL%# - The URL to accounts.cgi?login<br>
+#%USER%# - The username the member selected<br>
+#%PASS%# - The password the member selected<br>
+#%MAIN_PAGE%# - The URL to the main page of your pic post
+
+<p>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+<p>
+
+<li> <b>_email_reject.etmpl</b><p>
+<font size="1">
+The e-mail sent when an account is rejected for addition to your list.<br>
+Only used if you are reviewing new additions!
+<p>
+
+#%EMAIL%# - The webmaster's email address<br>
+#%FROM%# - Your email address<br>
+#%TITLE%# - The title of the rejected site<br>
+#%DESC%# - The description of the rejected site<br>
+#%URL%# - The URL of the rejected site<br>
+#%ACCTS_URL%# - The URL to accounts.cgi<br>
+#%MAIN_PAGE%# - The URL to your main ranking page
+
+<p>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+<p>
+
+<li> <b>_email_remind.etmpl</b><p>
+<font size="1">
+The e-mail sent when a webmaster needs their login information sent.
+<p>
+
+#%EMAIL%# - The webmaster's email address<br>
+#%FROM%# - Your email address<br>
+#%USER%# - The webmaster's username<br>
+#%PASS%# - The webmaster's password<br>
+#%EDIT%# - The URL to accounts.cgi?login<br>
+#%LINK%# - The URL the member should send hits to
+
+<p>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+</ul>
+
+<p>
+
+<hr width="550" size="1" align="center" noshade>
+
+<p>
+
+<font size="2"><a name="support"><b>Technical Support</b></a></font>
+
+<p>
+
+<ul>
+<li><b>Where To Go To Get Tech Support</b><p>
+If you need any assistance you can contact us via e-mail by using the
+tech support page in the owners lounge at:
+<a href="http://www.cgi-works.net/members/">
+http://www.cgi-works.net/members/</a><p>
+Or you can post a message on our members only message/help board at:<br>
+<a href="http://www.cgi-works.net/members/board/board.cgi">
+http://www.cgi-works.net/members/forums/board.cgi</a>
+
+</td>
+</tr>
+</table>
