@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Login</title>
+<link href="Styles/{CCS_Style}/Style_Components.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript">
+//Begin CCS script
+//Include JSFunctions @1-16A90551
+</script>
+<script language="JavaScript" src="ClientI18N.php?file=Functions.js&amp;locale={res:CCS_LocaleID}" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include JSFunctions
+
+//page_x_contato1_Button_Delete_OnClick @28-A150B449
+function page_x_contato1_Button_Delete_OnClick()
+{
+    var result;
+//End page_x_contato1_Button_Delete_OnClick
+
+//Confirmation Message @29-2AF67BA3
+    return confirm('O registro será apagado em definitivo. È isso mesmo que deseja?');
+//End Confirmation Message
+
+//Close page_x_contato1_Button_Delete_OnClick @28-BC33A33A
+    return result;
+}
+//End Close page_x_contato1_Button_Delete_OnClick
+
+//page_OnLoad @1-D0F4E1D3
+function page_OnLoad()
+{
+    var result;
+//End page_OnLoad
+
+//Set Focus @7-D20FE9BF
+    if (document.forms["Login"] && document.forms["Login"].login) document.forms["Login"].login.focus();
+//End Set Focus
+
+//Close page_OnLoad @1-BC33A33A
+    return result;
+}
+//End Close page_OnLoad
+
+//page_x_contato1_Button_Cancel_OnClick @30-4D8FD18F
+function page_x_contato1_Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End page_x_contato1_Button_Cancel_OnClick
+
+//bind_events @1-BD8F629F
+function bind_events() {
+    if (document.forms["x_contato1"]) check_and_bind('document.forms["x_contato1"].Button_Delete','onclick',page_x_contato1_Button_Delete_OnClick);
+    if (document.forms["x_contato1"]) check_and_bind('document.forms["x_contato1"].Button_Cancel','onclick',page_x_contato1_Button_Cancel_OnClick);
+    page_OnLoad();
+    forms_onload();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+
+//End CCS script
+</script>
+<link href="Styles/{CCS_Style}/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+{Topo} 
+<!-- BEGIN Grid x_contato -->
+<table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+  <tr>
+    <td valign="top">
+      <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td class="HeaderLeft{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+          <th>&nbsp;Contatos existentes</th>
+ 
+          <td class="HeaderRight{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+        </tr>
+      </table>
+ 
+      <table class="Grid{CCS_Style}" cellspacing="0" cellpadding="0">
+        <tr class="Row{CCS_Style}">
+          <td>&nbsp;<a href="{Novo}"><img src="admin/imagens/novo.jpg" border="0"></a></td> 
+          <td colspan="2">&nbsp;{x_contato_TotalRecords2}</td>
+        </tr>
+ 
+        <tr class="Caption{CCS_Style}">
+          <th>&nbsp;</th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_x_conassunto --><a href="{Sort_URL}">Assunto</a> 
+          <!-- BEGIN Asc_On --><img src="Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_conassunto --></th>
+ 
+          <th>
+          <!-- BEGIN Sorter Sorter_x_constatus --><a href="{Sort_URL}">Status</a> 
+          <!-- BEGIN Asc_On --><img src="Styles/{CCS_Style}/Images/Asc.gif" border="0"><!-- END Asc_On -->
+          <!-- BEGIN Desc_On --><img src="Styles/{CCS_Style}/Images/Desc.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_x_constatus --></th>
+        </tr>
+ 
+        <!-- BEGIN Row -->
+        <tr class="Row{CCS_Style}">
+          <td>&nbsp;<a href="{Ver}"><img alt="Ver detalhes" src="admin/imagens/visualizar.gif" border="0"></a></td> 
+          <td>{x_conassunto}</td> 
+          <td>{x_constatus}</td>
+        </tr>
+ <!-- END Row -->
+        <!-- BEGIN NoRecords -->
+        <tr class="NoRecords{CCS_Style}">
+          <td>&nbsp;</td> 
+          <td colspan="2">Não há registros </td>
+        </tr>
+        <!-- END NoRecords -->
+        <tr class="Footer{CCS_Style}">
+          <td>&nbsp;</td> 
+          <td colspan="2"><a href="{x_contato_Insert_Src}"></a>&nbsp; 
+            <!-- BEGIN Navigator Navigator -->
+            <!-- BEGIN First_On --><a href="{First_URL}"><img src="Styles/{CCS_Style}/Images/First.gif" border="0"></a> <!-- END First_On -->
+            <!-- BEGIN First_Off --><img src="Styles/{CCS_Style}/Images/FirstOff.gif" border="0"><!-- END First_Off -->
+            <!-- BEGIN Prev_On --><a href="{Prev_URL}"><img src="Styles/{CCS_Style}/Images/Prev.gif" border="0"></a> <!-- END Prev_On -->
+            <!-- BEGIN Prev_Off --><img src="Styles/{CCS_Style}/Images/PrevOff.gif" border="0"><!-- END Prev_Off -->&nbsp;{Page_Number}
+            &nbsp;{Total_Pages}&nbsp; 
+            <!-- BEGIN Next_On --><a href="{Next_URL}"><img src="Styles/{CCS_Style}/Images/Next.gif" border="0"></a> <!-- END Next_On -->
+            <!-- BEGIN Next_Off --><img src="Styles/{CCS_Style}/Images/NextOff.gif" border="0"><!-- END Next_Off -->
+            <!-- BEGIN Last_On --><a href="{Last_URL}"><img src="Styles/{CCS_Style}/Images/Last.gif" border="0"></a> <!-- END Last_On -->
+            <!-- BEGIN Last_Off --><img src="Styles/{CCS_Style}/Images/LastOff.gif" border="0"><!-- END Last_Off --><!-- END Navigator Navigator --></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- END Grid x_contato -->
+<!-- BEGIN Record x_contato1 -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+            <th>&nbsp;Ver/Apagar contato</th>
+ 
+            <td class="HeaderRight{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record{CCS_Style}" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error{CCS_Style}">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls{CCS_Style}">
+            <th><strong>&nbsp;Seu Nome</strong></th>
+ 
+            <td>{x_connome}</td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Seu Email</strong></th>
+ 
+            <td>{x_con_mail}</td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Departamento</strong>&nbsp;</th>
+ 
+            <td>{x_con_depa} </td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Assunto</strong></th>
+ 
+            <td>{x_conassunto}</td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Mensagem<br>
+            </strong>&nbsp;(somente leitura)</th>
+ 
+            <td><textarea style="FONT-SIZE: 11px; COLOR: saddlebrown; FONT-FAMILY: Verdana" name="{x_con_mensa_Name}" rows="8" readonly cols="35">{x_con_mensa}
+</textarea></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Status</strong></th>
+ 
+            <td>{x_constatus} </td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Data</strong></th>
+ 
+            <td>{x_condata}</td>
+          </tr>
+ 
+          <tr class="Bottom{CCS_Style}">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Button_Insert --><input type="image" src="Styles/{CCS_Style}/Images/en-US/ButtonInsert.gif" value="" border="0" name="{Button_Name}"><!-- END Button Button_Insert -->
+              <!-- BEGIN Button Button_Update --><input type="image" src="Styles/{CCS_Style}/Images/en-US/ButtonUpdate.gif" value="" border="0" name="{Button_Name}"><!-- END Button Button_Update -->
+              <!-- BEGIN Button Button_Delete --><input type="image" src="Styles/{CCS_Style}/Images/en-US/ButtonDelete.gif" value="" border="0" name="{Button_Name}"><!-- END Button Button_Delete -->
+              <!-- BEGIN Button Button_Cancel --><input type="image" src="Styles/{CCS_Style}/Images/en-US/ButtonCancel.gif" value="" border="0" name="{Button_Name}"><!-- END Button Button_Cancel --></td>
+          </tr>
+        </table>
+        <input type="hidden" value="{x_conobserva}" name="{x_conobserva_Name}"></td>
+    </tr>
+  </table>
+</form>
+<!-- END Record x_contato1 -->
+<!-- BEGIN Record x_usuarios -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+            <th>&nbsp;Editar conta pessoal</th>
+ 
+            <td class="HeaderRight{CCS_Style}"><img src="Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Record{CCS_Style}" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error{CCS_Style}">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Apelido</strong>&nbsp; </th>
+ 
+            <td>{x_apelido}</td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Senha</strong></th>
+ 
+            <td><input style="FONT-SIZE: 11px; COLOR: darkred; FONT-FAMILY: Verdana" maxlength="50" value="{x_senha}" name="{x_senha_Name}"></td>
+          </tr>
+ 
+          <tr class="Controls{CCS_Style}">
+            <th>&nbsp;<strong>Email</strong></th>
+ 
+            <td><input maxlength="90" size="40" value="{x_email}" name="{x_email_Name}"></td>
+          </tr>
+ 
+          <tr class="Bottom{CCS_Style}">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Button_Update --><input title="Enviar" type="image" src="Styles/{CCS_Style}/Images/en-US/ButtonUpdate.gif" value="Enviar" border="0" name="{Button_Name}"><!-- END Button Button_Update --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record x_usuarios -->
+<p align="center"><a href="{Link1_Src}">Sair da Conta</a><br>
+<br>
+{Rodape} </p>
+</body>
+</html>
