@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>Install </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="600" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td valign="top"> 
+      <p><b><font size="4">Comus TGP Version 2.0</font></b></p>
+      <p><b>How to install Comus TGP</b></p>
+      <p>Before you do anything, check for the latest version of the software. 
+        Latest version can be found at <a href="http://www.nibbi.net/scripts/comus/">http://www.nibbi.net/scripts/comus/</a>.</p>
+      <ol>
+        <li>Unzip archive 
+          <ul>
+            <li>Admin <i>Folder</i> 
+              <ul>
+                <li>admin.php</li>
+                <li>blacklist.php</li>
+                <li>categories.php</li>
+                <li>check.list.php</li>
+                <li>ck.gallery.php</li>
+                <li>config.setup.php</li>
+                <li>config.templates.php</li>
+                <li>db_setup.php</li>
+                <li>index.php</li>
+                <li>new.check.php</li>
+                <li>preferred.php</li>
+                <li>view.delete.php</li>
+              </ul>
+            </li>
+            <li>Includes<i> Folder</i> 
+              <ul>
+                <li><i>Language folder</i> 
+                  <ul>
+                    <li>lang-english.php</li>
+                    <li>lang-polish.php</li>
+                    <li>lang-russian.php</li>
+                  </ul>
+                </li>
+                <li>archiveinc.php</li>
+                <li>config.fnc.php</li>
+                <li>config.inc.php</li>
+                <li>formcheck.inc.php</li>
+                <li>gnat-tgp-style.css</li>
+                <li>header.php</li>
+                <li>tgpinc.php</li>
+              </ul>
+            </li>
+            <li>Templates Folder 
+              <ul>
+                <li>email_confirm_subject.txt</li>
+                <li>email_confirm.txt</li>
+                <li>email_partner_subject.txt</li>
+                <li>email_partner.txt</li>
+                <li>email_post_accepted_subject.txt</li>
+                <li>email_post_accepted.txt</li>
+                <li>email_post_rejected_subject.txt</li>
+                <li>email_post_rejected.txt</li>
+                <li>html_galtmpl.txt</li>
+                <li>html_recip.txt</li>
+                <li>html_rules.txt<br>
+                </li>
+              </ul>
+            </li>
+            <li>Webmaster<i> Folder</i> 
+              <ul>
+                <li>index.html</li>
+                <li>post.php</li>
+              </ul>
+            </li>
+            <li>accept.php</li>
+            <li>install.html (this file)</li>
+            <li>instructions.html</li>
+            <li>License.txt</li>
+          </ul>
+        </li>
+      </ol>
+      <p>2. Edit /includes/head.php - </p>
+      <ul>
+        <li>Change the base URL to be your domain.</li>
+        <li>Change the Title on the page.. this will be the title for the whole 
+          script</li>
+      </ul>
+      <p> 3. Upload everything to the root of your website <br>
+        4. Set permissions (chmod) of the following files to 766 - </p>
+      <ul>
+        <li>/includes - config.inc.php </li>
+        <li>/templates - Everything within the folder </li>
+      </ul>
+      <p>5. From a web brower, open up http://yourdomain/admin/ and click on 'Setup' 
+        to change settings to fit your site.<br>
+        6. Open http://www.yourdomain.com/admin/db_setup.php. This will create 
+        the MySQL database needed for the script.</p>
+      <p><b>Special note to revshare hosted sites....</b></p>
+      <p>If your scrpit is having a path error Check for this tag [ $DOCUMENT_ROOT 
+        . ] in the script's probelmatic file and replace it with your revshare 
+        path like this virtual/revsharehosting.com/var/www/yourdomain.com </p>
+      <p>That about it for initial setup.</p>
+      <p>The heart of the site is the &quot;tgpinc.php&quot; and &quot;archiveinc.php&quot; 
+        files. These are meant to be includes within your main TGP and Archive 
+        pages. To do this, just make your site design and include these files 
+        with the code &quot;&lt;?php include ($DOCUMENT_ROOT . &quot;/includes/tgpinc.php&quot;) 
+        ?&gt;&quot; or &quot;&lt;?php include ($DOCUMENT_ROOT . &quot;/includes/archiveinc.php&quot;) 
+        ?&gt;&quot;. I have included a few template sites for you to work off 
+        of. </p>
+      <p>To view a working example of this script, you can check it out at <a href="http://www.tgp-now.com">http://www.tgp-now.com</a>.</p>
+      <p><b>A quick word on security</b></p>
+      <blockquote> 
+        <p>Many people have asked me about securing their admin and includes directories. 
+          The way I do it, and I suggest you do to, is use .htaccess and .htpasswd 
+          files. For more info on how to do this, just search the web for .htaccess 
+          and you will find more than enough information.</p>
+      </blockquote>
+      </td>
+  </tr>
+</table>
+</body>
+</html>
