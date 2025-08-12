@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+<meta generator="PHPDoctor 1.4 (http://phpdoctor.sourceforge.net/)" />
+<meta when="Sun, 25 Sep 2005 10:15:11 +0300" />
+
+<title>Ss_zip (SS_ZIP class )</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+<link rel="start" href="overview-summary.html" />
+
+</head>
+
+<body id="definition" onload="parent.document.title=document.title;">
+
+
+<table width="100%" cellpadding="0" class="header">
+<tr><td class="header">
+<a href="../overview-summary.html">Overview</a>
+&nbsp;<a href="package-summary.html">Package</a>
+</td><td class="short_title">
+SS_ZIP class</td></tr>
+</table>
+
+<table width="100%" cellpadding="0" class="small_links">
+<tr>
+<td><a href="../index.html" target="_top">FRAMES</a>&nbsp; &nbsp;<a href="ss_zip.html" target="_top">NO FRAMES</a></td>
+</tr>
+<tr>
+<td>SUMMARY: &nbsp;<a href="#summary_field">FIELD</a> &nbsp;<a href="#summary_method">METHOD</a></td>
+<td>DETAIL: &nbsp;<a href="#detail_field">FIELD</a> &nbsp;<a href="#detail_method">METHOD</a></td>
+</tr>
+</table>
+
+<hr />
+
+
+<h3>SS_ZIP</h3>
+
+<h1>Class ss_zip</h1>
+
+<pre><strong>SS_ZIP.ss_zip</strong><br /></pre>
+
+
+<hr />
+
+<p>
+class <strong>ss_zip</strong><br />
+</p>
+
+<p>SS_ZIP class is designed to work with ZIP archives </p><dl><dt>Author:</dt><dd>Yuriy Horobey, smiledsoft.com </dd></dl>
+<hr />
+
+<a name="summary_field"></a>
+<table width="100%" cellspacing="0" class="title">
+<tr><th class="title">Field Summary</th></tr>
+</table>
+
+<table width="100%" cellspacing="0" class="body"><tr><td class="type">public var</td><td class="description"><a href="#$zipfile">$zipfile</a><p>contains whole zipfile </p></td></tr><tr><td class="type">public var</td><td class="description"><a href="#$complevel">$complevel</a><p>compression level </p></td></tr><tr><td class="type">public var</td><td class="description"><a href="#$cnt">$cnt</a><p>entry counter </p></td></tr><tr><td class="type">public var</td><td class="description"><a href="#$offset">$offset</a><p>current offset in zipdata segment </p></td></tr><tr><td class="type">public var</td><td class="description"><a href="#$idx">$idx</a><p>index of current entry </p></td></tr><tr><td class="type">public var</td><td class="description"><a href="#$zipdata">$zipdata</a><p>ZipData segment, each element of this array contains local file header plus zipped data </p></td></tr><tr><td class="type">public var</td><td class="description"><a href="#$cdir">$cdir</a><p>central directory array </p></td></tr></table>
+<a name="summary_method"></a>
+<table width="100%" cellspacing="0" class="title">
+<tr><th class="title">Method Summary</th></tr>
+</table>
+
+<table width="100%" cellspacing="0" class="body"><tr><td class="type">public void</td><td class="description"><a href="#ss_zip">ss_zip</a><p>constructor </p></td></tr><tr><td class="type">public void</td><td class="description"><a href="#clear">clear</a><p>Resets the objec, clears all the structures </p></td></tr><tr><td class="type">public void</td><td class="description"><a href="#open">open</a><p>opens zip file. </p></td></tr><tr><td class="type">public void</td><td class="description"><a href="#save">save</a><p>saves to the disc or sends zipfile to the browser. </p></td></tr><tr><td class="type">public void</td><td class="description"><a href="#add_data">add_data</a><p>adds data to zip file </p></td></tr><tr><td class="type">public void</td><td class="description"><a href="#add_file">add_file</a><p>adds a file to the archive </p></td></tr><tr><td class="type">public str</td><td class="description"><a href="#archive">archive</a><p>compile the arcive. </p></td></tr><tr><td class="type">public int</td><td class="description"><a href="#seek_idx">seek_idx</a><p>changes pointer to current entry. </p></td></tr><tr><td class="type">public array</td><td class="description"><a href="#read">read</a><p>Reads an entry from the arcive which is pointed by inner index pointer. </p></td></tr><tr><td class="type">public bool</td><td class="description"><a href="#remove">remove</a><p>Removes entry from the archive. </p></td></tr><tr><td class="type">public array</td><td class="description"><a href="#extract_data">extract_data</a><p>extracts data from the archive and return it as a string. </p></td></tr><tr><td class="type">public void</td><td class="description"><a href="#extract_file">extract_file</a><p>extracts the entry and creates it in the file system. </p></td></tr><tr><td class="type">private void</td><td class="description"><a href="#_check_idx">_check_idx</a></td></tr><tr><td class="type">private void</td><td class="description"><a href="#_write">_write</a></td></tr></table>
+
+<a name="detail_field"></a>
+<table width="100%" cellspacing="0" class="detail">
+<tr><th class="title">Field Detail</th></tr>
+</table>
+
+<a name="$zipfile"></a><h2>zipfile</h2> <code>public var <strong>$zipfile</strong> = ""</code><div class="details"><p>contains whole zipfile </p><dl><dt>See Also:</dt><dd><a href="../SS_ZIP/ss_zip.html#archive">ss_zip::archive</a>, <a href="../SS_ZIP/ss_zip.html#ss_zip">ss_zip::ss_zip</a></dd></dl></div><hr /><a name="$complevel"></a><h2>complevel</h2> <code>public var <strong>$complevel</strong> = 6</code><div class="details"><p>compression level </p></div><hr /><a name="$cnt"></a><h2>cnt</h2> <code>public var <strong>$cnt</strong></code><div class="details"><p>entry counter </p></div><hr /><a name="$offset"></a><h2>offset</h2> <code>public var <strong>$offset</strong></code><div class="details"><p>current offset in zipdata segment </p></div><hr /><a name="$idx"></a><h2>idx</h2> <code>public var <strong>$idx</strong></code><div class="details"><p>index of current entry </p><dl><dt>See Also:</dt><dd><a href="../SS_ZIP/ss_zip.html#read">ss_zip::read</a></dd></dl></div><hr /><a name="$zipdata"></a><h2>zipdata</h2> <code>public var <strong>$zipdata</strong> = array()</code><div class="details"><p>ZipData segment, each element of this array contains local file header plus zipped data </p></div><hr /><a name="$cdir"></a><h2>cdir</h2> <code>public var <strong>$cdir</strong> = array()</code><div class="details"><p>central directory array </p></div>
+<a name="detail_method"></a>
+<table width="100%" cellspacing="0" class="detail">
+<tr><th class="title">Method Detail</th></tr>
+</table>
+
+<a name="ss_zip"></a><h2>ss_zip()</h2><pre>public void <strong>ss_zip</strong>(string zipfile = "",
+                   int complevel = 6)</pre><div class="details"><p>constructor </p><dl><dt>Parameters:</dt><dd><code>zipfile</code> - if not empty must contain path to valid zip file, ss_zip will try to open and parse it. If this parameter is empty, the new empty zip archive is created. This parameter has no meaning in LIGHT verion, please upgrade to PROfessional version. </dd><dd><code>complevel</code> - compression level, 1-minimal compression, 9-maximal, default is 6 </dd></dl></div><hr /><a name="clear"></a><h2>clear()</h2><pre>public void <strong>clear</strong>()</pre><div class="details"><p>Resets the objec, clears all the structures </p></div><hr /><a name="open"></a><h2>open()</h2><pre>public void <strong>open</strong>(str zipfile,
+                 bool append = false)</pre><div class="details"><p>opens zip file. </p><p><center><hr nashade>*** This functionality is available in PRO version only. ***<br><a href='http://smiledsoft.com/demos/phpzip/' target='_blank'>please upgrade </a><hr nashade></center> This function opens file pointed by zipfile parameter and creates all necessary structures </p><dl><dt>Parameters:</dt><dd><code>zipfile</code> - path to the file </dd><dd><code>append</code> - if true the newlly opened archive will be appended to existing object structure </dd></dl></div><hr /><a name="save"></a><h2>save()</h2><pre>public void <strong>save</strong>(str zipfile,
+                 char where = 'f')</pre><div class="details"><p>saves to the disc or sends zipfile to the browser. </p><p></p><dl><dt>Parameters:</dt><dd><code>zipfile</code> - path under which to store the file on the server or file name under which the browser will receive it. If you are saving to the server, you are responsible to obtain appropriate write permissions for this operation. </dd><dd><code>where</code> - indicates where should the file be sent <ul> <li>'f' -- filesystem </li> <li>'b' -- browser</li> </ul> Please remember that there should not be any other output before you call this function. The only exception is that other headers may be sent. See <a href='http://php.net/header' target='_blank'>http://php.net/header</a> </dd></dl></div><hr /><a name="add_data"></a><h2>add_data()</h2><pre>public void <strong>add_data</strong>(str filename,
+                     str data = null)</pre><div class="details"><p>adds data to zip file </p><dl><dt>Parameters:</dt><dd><code>filename</code> - path under which the content of data parameter will be stored into the zip archive </dd><dd><code>data</code> - content to be stored under name given by path parameter </dd></dl><dl><dt>See Also:</dt><dd><a href="../SS_ZIP/ss_zip.html#add_file">ss_zip::add_file</a></dd></dl></div><hr /><a name="add_file"></a><h2>add_file()</h2><pre>public void <strong>add_file</strong>(str filename,
+                     str storedasname = "")</pre><div class="details"><p>adds a file to the archive </p><dl><dt>Parameters:</dt><dd><code>filename</code> - contains valid path to file to be stored in the arcive. </dd><dd><code>storedasname</code> - the path under which the file will be stored to the archive. If empty, the file will be stored under path given by filename parameter </dd></dl><dl><dt>See Also:</dt><dd><a href="../SS_ZIP/ss_zip.html#add_data">ss_zip::add_data</a></dd></dl></div><hr /><a name="archive"></a><h2>archive()</h2><pre>public str <strong>archive</strong>()</pre><div class="details"><p>compile the arcive. </p><p>This function produces ZIP archive and returns it. </p><dl><dt>Returns:</dt><dd>string with zipfile </dd></dl></div><hr /><a name="seek_idx"></a><h2>seek_idx()</h2><pre>public int <strong>seek_idx</strong>(int idx)</pre><div class="details"><p>changes pointer to current entry. </p><p>Most likely you will always use it to 'rewind' the archive and then using read() Checks for bopundaries, so will not allow index to be set to values < 0 ro > last element </p><dl><dt>Parameters:</dt><dd><code>idx</code> - the new index to which you want to rewind the archive curent pointer </dd></dl><dl><dt>Returns:</dt><dd>idx the index to which the curent pointer was actually set </dd></dl><dl><dt>See Also:</dt><dd><a href="../SS_ZIP/ss_zip.html#read">ss_zip::read</a></dd></dl></div><hr /><a name="read"></a><h2>read()</h2><pre>public array <strong>read</strong>()</pre><div class="details"><p>Reads an entry from the arcive which is pointed by inner index pointer. </p><p><center><hr nashade>*** This functionality is available in PRO version only. ***<br><a href='http://smiledsoft.com/demos/phpzip/' target='_blank'>please upgrade </a><hr nashade></center> The curent index can be changed by seek_idx() method. </p><dl><dt>Returns:</dt><dd>Returns associative array of the following structure <ul> <li>'idx'=>	index of the entry </li> <li>'name'=>full path to the entry </li> <li>'attr'=>integer file attribute of the entry </li> <li>'attrstr'=>string file attribute of the entry <br> This can be: <ul> <li>'file' if the integer attribute was 32</li> <li>'dir' if the integer attribute was 16 or 48</li> <li>'unknown' for other values</li> </ul> </li> </ul> </dd></dl><dl><dt>See Also:</dt><dd><a href="../SS_ZIP/ss_zip.html#seek_idx">ss_zip::seek_idx</a></dd></dl></div><hr /><a name="remove"></a><h2>remove()</h2><pre>public bool <strong>remove</strong>(int idx)</pre><div class="details"><p>Removes entry from the archive. </p><p>please be very carefull with this function, there is no undo after you save the archive </p><dl><dt>Parameters:</dt><dd><code>idx</code></dl><dl><dt>Returns:</dt><dd>true on success or false on failure </dd></dl></div><hr /><a name="extract_data"></a><h2>extract_data()</h2><pre>public array <strong>extract_data</strong>(int idx)</pre><div class="details"><p>extracts data from the archive and return it as a string. </p><p><center><hr nashade>*** This functionality is available in PRO version only. ***<br><a href='http://smiledsoft.com/demos/phpzip/' target='_blank'>please upgrade </a><hr nashade></center> This function returns data identified by idx parameter. </p><dl><dt>Parameters:</dt><dd><code>idx</code> - index of the entry </dd></dl><dl><dt>Returns:</dt><dd>returns associative array of the folloving structure: <ul> <li>'file' path under which the entry is stored in the archive</li> <li>'data' In case if the entry was file, contain its data. For directory entry this is empty</li> <li>'size' size of the data</li> <li>'error' the error if any has happened. The bit 0 indicates incorect datasize, bit 1 indicates CRC error</li> </ul> </dd></dl><dl><dt>See Also:</dt><dd><a href="../SS_ZIP/ss_zip.html#extract_file">ss_zip::extract_file</a></dd></dl></div><hr /><a name="extract_file"></a><h2>extract_file()</h2><pre>public void <strong>extract_file</strong>(int idx,
+                         string path = ".")</pre><div class="details"><p>extracts the entry and creates it in the file system. </p><p><center><hr nashade>*** This functionality is available in PRO version only. ***<br><a href='http://smiledsoft.com/demos/phpzip/' target='_blank'>please upgrade </a><hr nashade></center> </p><dl><dt>Parameters:</dt><dd><code>idx</code> - Index of the entry </dd><dd><code>path</code> - the first part of the path where the entry will be stored. So if this is '/my/server/path' and entry is arhived/file/path/file.txt then the function will attempt to store it under /my/server/path/arhived/file/path/file.txt You are responsible to ensure that you have write permissions for this operation under your operation system. </dd></dl></div><hr /><a name="_check_idx"></a><h2>_check_idx()</h2><pre>private void <strong>_check_idx</strong>(var $idx)</pre><div class="details"><dl><dt>Parameters:</dt><dd><code>$idx</code></dl></div><hr /><a name="_write"></a><h2>_write()</h2><pre>private void <strong>_write</strong>(var $name,
+                    var $data)</pre><div class="details"><dl><dt>Parameters:</dt><dd><code>$name</code><dd><code>$data</code></dl></div>
+<hr />
+
+
+<table width="100%" cellpadding="0" class="header">
+<tr><td class="header">
+<a href="../overview-summary.html">Overview</a>
+&nbsp;<a href="package-summary.html">Package</a>
+</td><td class="short_title">
+SS_ZIP class</td></tr>
+</table>
+
+<table width="100%" cellpadding="0" class="small_links">
+<tr>
+<td><a href="../index.html" target="_top">FRAMES</a>&nbsp; &nbsp;<a href="ss_zip.html" target="_top">NO FRAMES</a></td>
+</tr>
+<tr>
+<td>SUMMARY: &nbsp;<a href="#summary_field">FIELD</a> &nbsp;<a href="#summary_method">METHOD</a></td>
+<td>DETAIL: &nbsp;<a href="#detail_field">FIELD</a> &nbsp;<a href="#detail_method">METHOD</a></td>
+</tr>
+</table>
+
+<hr />
+
+
+<p id="footer">This document was generated by <a href="http://phpdoctor.sourceforge.net/">PHPDoctor: The PHP Documentation Creator</a> v1.4.</p>
+
+</body>
+</html>
