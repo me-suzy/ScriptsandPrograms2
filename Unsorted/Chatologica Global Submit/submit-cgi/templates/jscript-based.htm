@@ -1,0 +1,196 @@
+<HTML>
+<HEAD>
+  <SCRIPT LANGUAGE="JavaScript">
+<!--
+var engines = new Array(
+$out{'engines_list'}
+);
+var urls = new Array(
+$out{'url_list'}
+);
+var Timer = '';		
+var Timeout = 18000;	// default result loading timeout is 15 seconds
+var win = '';
+var last = $out{'last'};	// the last engine index
+
+function Reset(){	// "Reset" button pressed
+	document.form.from.value = 1;
+	document.form.to.value = last;
+	document.form.status.value = "All engines selected. Press `Start` button to begin!";
+	if(Timer) {
+		clearTimeout(Timer); Timer = '';
+	};
+};
+
+function Start(){	// "Start" button pressed
+	var from = parseInt(document.form.from.value);
+	var to = parseInt(document.form.to.value);
+	if((from <= to) && (from > 0)
+	    && (to <= last)) {
+		win=window.open("",'result','toolbar=1,location=1,directories=0,status=1,menubar=1,scrollbars=1,resizable=1,width=500,height=300');		
+		submit_from(from);
+	} else {
+		Reset();
+	};
+}
+
+function Stop(){	// "Stop" button pressed
+	if(Timer) {
+		clearTimeout(Timer);
+		document.form.status.value = "Submissions stopped. Press `Start` button to resume!";
+		Timer = '';
+	};
+}
+
+function Next(){	// "Next" button pressed
+	var num = parseInt(document.form.from.value);
+	if(num < document.form.to.value) {
+		num ++;
+		document.form.from.value = num;
+		if(Timer) {
+			submit_from(num);
+		};
+	};
+}
+
+function submit_from(num) {	// Submit to the current engine and schedule the next
+	if(Timer) {
+		clearTimeout(Timer); Timer = '';
+	};
+	var from = parseInt(document.form.from.value);
+	var to = parseInt(document.form.to.value);	
+	// checking if values are correct:
+	if(to > last){
+		document.form.to.value = last;
+	};
+	if(to < 1){
+		document.form.to.value = 1;
+	};
+	if(from < 1) {
+		document.form.from.value = 1;
+	};
+	if(from > last) {
+		document.form.from.value = last;
+	};
+	from = parseInt(document.form.from.value);
+	to = parseInt(document.form.to.value);
+	if(((num - from) > 1) || ((num - from) < 0)){		
+		if(from <= to) {
+			num = from;		// current index changed - update
+		};
+	};
+	if(num > to) {
+		Finished(); return;
+	};
+	var next = num; next ++;
+	Timeout = document.form.timeout.value*1000;
+	if(num < document.form.to.value) {		
+		Timer = setTimeout("submit_from(" + next + ");",Timeout);
+	} else {
+		Timer = setTimeout("Finished();",Timeout);
+	};
+	document.form.status.value = "#"+num+": submitting to `" + engines[num-1] + "` at " + urls[num-1];
+	document.form.from.value = num;
+	var Form = '';
+	eval("Form = document.form" + num);	// current form object
+	var button = Form.elements[0];	// submit button object
+	button.click();			// submit form	
+}
+
+function Finished(){	// Submissions task finished
+	document.form.status.value = 'Submissions task complete.'; 
+	clearTimeout(Timer); Timer = '';
+	if(!win.closed){
+		win.close(); win = '';
+	};
+}
+
+function Faster(){	// "Faster" button pressed
+	Timeout = document.form.timeout.value*1000;
+	if(Timeout > 1000) {
+		Timeout -= 1000;
+	};
+	document.form.timeout.value = Timeout/1000;
+}
+
+function Slower(){	// "Slower" button pressed
+	Timeout = document.form.timeout.value*1000;
+	Timeout += 1000;
+	document.form.timeout.value = Timeout/1000;
+}
+
+//-->
+</SCRIPT>
+  <TITLE>Chatologica GlobalSubmit v1.0: Automated Browser-Based Submissions</TITLE>
+</HEAD>
+<BODY onLoad="document.form.status.value = 'Ready. Press `Start` button to begin!';"
+BGCOLOR="#ffffff" TEXT="#000000" LINK="#0000ff" VLINK="#0000a0">
+<CENTER>
+  <P ALIGN=Center>
+  <SMALL><SMALL><SMALL>&nbsp;</SMALL></SMALL></SMALL><BR>
+  <I><B>Chatologica <BIG><BIG>GlobalSubmit </BIG>- cgi script v1.0</BIG><SMALL>
+  &nbsp;(22 April 2000)</SMALL></B></I> 
+    <HR WIDTH="80%">
+  <SMALL><SMALL><SMALL>&nbsp;&nbsp; &nbsp; </SMALL></SMALL></SMALL><BR>
+  <SMALL><SMALL>&nbsp; </SMALL></SMALL><BR>
+  <FONT COLOR="#000000"><B><BIG><BIG><BIG>Automated Browser-Based
+  Submissions</BIG></BIG></BIG></B></FONT><BR>
+  &nbsp;
+  <CENTER>
+    <FORM ACTION="submit.pl" NAME="form" METHOD="POST">
+      <FONT COLOR="#000000"> </FONT>
+      <TABLE BORDER=4 CELLPADDING="9" CELLSPACING="0" BGCOLOR="#aaaaaa">
+	<TR>
+	  <TD><FONT COLOR="#ffffff">
+	    <INPUT TYPE="text" NAME="status" VALUE="Please wait! Loading submissions data ..."
+		SIZE="56"></FONT></TD>
+	</TR>
+      </TABLE>
+      <P>
+      <TABLE BORDER CELLPADDING="2" BGCOLOR="#000000">
+	<TR VALIGN="Baseline">
+	  <TD><P ALIGN=Right>
+	    <FONT size="3" COLOR="#ffffff"><B>Engines:</B></FONT></TD>
+	  <TD><FONT size="3" color="#FFFFFF"><B>from# </B>
+	    <INPUT TYPE="text" NAME="from" VALUE="1" SIZE="5" MAXLENGTH="5"> <B>to# </B>
+	    <INPUT TYPE="text" NAME="to" VALUE="$out{'last'}" SIZE="5" MAXLENGTH="5">
+	    &nbsp; &nbsp;&nbsp;<B> 
+	    <INPUT TYPE=button VALUE="Start" onClick="Start();">
+	    <INPUT TYPE=button VALUE="Stop" onClick="Stop();">
+	    <INPUT TYPE=button VALUE="Next" onClick="Next();">
+	    <INPUT TYPE=button VALUE="Reset" onClick="Reset();"></B></FONT></TD>
+	</TR>
+	<TR VALIGN="Baseline">
+	  <TD><P ALIGN=Right>
+	    <FONT size="3" COLOR="#ffffff"><B>Timeout:</B></FONT></TD>
+	  <TD><FONT size="3" color="#FFFFFF">
+	    <INPUT TYPE="text" NAME="timeout" VALUE="18" SIZE="4" MAXLENGTH="4"> <B>
+	    seconds. Make submissions &nbsp;
+	    <INPUT TYPE=button NAME="faster" VALUE="Faster" onClick="Faster();">
+	    <INPUT TYPE=button NAME="slower" VALUE="Slower" onClick="Slower();">
+	    </B></FONT></TD>
+	</TR>
+      </TABLE>
+    </FORM>
+    <P>
+    &nbsp;<FONT COLOR="#000000"><BIG><BR>
+    For manual submissions use 'Submit' buttons below:</BIG></FONT>
+    <P>
+    $out{'forms'}<SMALL><SMALL><BR>
+    </SMALL></SMALL><A HREF="/submit-www/fetch.htm">Fetch URL Form</A>&nbsp;
+    &nbsp; &nbsp; &nbsp;&nbsp; <A HREF="/submit-www/demo.htm">Submit Form</A><BR>
+    <SMALL>&nbsp;</SMALL><BR>
+      <HR WIDTH="50%">
+    <SMALL><SMALL>All rights reserved &copy; 2000 &nbsp;
+    </SMALL></SMALL><A HREF="http://www.chatologica.com/"><SMALL><SMALL>www.chatologica.com</SMALL></SMALL></A>
+    <CENTER>
+      <CENTER>
+	<CENTER>
+	  <P ALIGN=Center>
+	  &nbsp;
+	</CENTER>
+      </CENTER>
+    </CENTER>
+  </CENTER>
+</CENTER>
+</BODY></HTML>
