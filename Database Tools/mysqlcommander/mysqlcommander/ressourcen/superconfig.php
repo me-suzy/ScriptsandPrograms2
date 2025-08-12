@@ -1,0 +1,42 @@
+<?php 
+$commander_user = "";
+$commander_pass = "";
+$mysql_databasename1 = "Local Server";
+$mysql_user1 = "root";
+$mysql_password1 = "";
+$mysql_server1 = "localhost";
+$mysql_databasename2 = "";
+$mysql_user2 = "";
+$mysql_password2 = "";
+$mysql_server2 = "";
+$comment_xxx_cbdcd7695b76732503e7fe8af587f9eb = "To configure more Servers scroll down";
+$comment_xxx_b28aae7e1d9f0f4124ca6f3a37f6d94c = "";
+$interface_username = "test";
+$interface_password = "test2";
+$list_dbase = "";
+$not_list_dbase = "";
+$default_seperator = "||#||";
+$strLineFeedCode = "##|n|##";
+$strCarriageReturnCode = "##|r|##";
+$default_sets_per_file = "1000";
+$default_setTimeLimit = "480";
+$data_path = "./data/";
+$language = "english";
+$mysql_databasename3 = "";
+$mysql_user3 = "";
+$mysql_password3 = "";
+$mysql_server3 = "";
+$mysql_databasename4 = "";
+$mysql_user4 = "";
+$mysql_password4 = "";
+$mysql_server4 = "";
+$mysql_databasename5 = "";
+$mysql_user5 = "";
+$mysql_password5 = "";
+$mysql_server5 = "";
+$mysql_databasename6 = "";
+$mysql_user6 = "";
+$mysql_password6 = "";
+$mysql_server6 = "";
+
+?>
