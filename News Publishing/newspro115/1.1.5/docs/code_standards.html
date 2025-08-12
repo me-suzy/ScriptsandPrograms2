@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Utopia News Pro Coding Standards</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+<!--
+/* styles */
+body {
+	background: #ffffff;
+	color: #000000;
+	margin: 0;
+	font-family: verdana,arial,helvetica,sans-serif;
+	font-size: 12px;
+}
+p {
+	color: #000000;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+a:link,a:active,a:visited {
+	color: #000000;
+}
+a:hover {
+	background: #c2c2c2;
+}
+pre {
+	font-family: "Courier New", Courier;
+	font-weight: monospace;
+	font-size: small;
+	background: #eeeeee;
+	border: 1px solid black;
+	display: block;
+	margin: 0px 20px 10px 60px;
+	padding: 5px;
+}
+/* classes and ids */
+div#header {
+	background: #130777;
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 15px;
+	color: #ffffff;
+	padding: 20px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 22px;
+}
+div.section {
+	background: #130777;
+	padding-left: 8px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ffffff;
+	margin: 8px;
+}
+div#footer {
+	background: #130777;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	bottom: 0;
+	padding: 15px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 9px;
+	text-align: center;
+	color: #ffffff;
+}
+span.codecorrect {
+	font-family: "Courier New", Courier;
+	font-weight: monospace;
+	font-size: small;
+	color: #000080;
+}
+span.codewrong {
+	font-family: "Courier New", Courier;
+	font-weight: monospace;
+	font-size: small;
+	color: #ff0000;
+}
+ol#toc {
+	font-family: verdana,arial,helvetica,sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+-->
+</style>
+</head>
+<body>
+<a name="top"></a>
+<div id="header">Utopia News Pro Coding Standards</div>
+<p>Utopia News Pro is coded according to the following PHP standards.</p>
+
+
+<div class="section">Table of Contents</div>
+<ol id="toc">
+	<li><a href="#braces">Braces</a></li>
+	<li><a href="#indent">Indenting</a></li>
+	<li><a href="#loopsbranches">Loops and Branches</a></li>
+	<li><a href="#spacing">Spacing</a></li>
+	<li><a href="#quotes">Quoting</a></li>
+	<li><a href="#boolean">Boolean Function Return Values</a></li>
+	<li><a href="#andor">AND/and/&amp;&amp; OR/or/||</a></li>
+	<li><a href="#comment">Comments</a></li>
+	<li><a href="#sql">SQL Query Syntax</a></li>
+	<li><a href="#funcname">Function Naming</a></li>
+	<li><a href="#misc">Miscellaneous</a></li>
+</ol>
+
+<p>Color Examples Key:</p>
+<pre><span class="codecorrect">$code = do_function($var); // blue: code like this
+</span><span class="codewrong">
+$code = do_function($var); // red: do not code like this
+</span></pre>
+
+
+<a name="braces"></a>
+<div class="section">Braces</div>
+<p>Braces should always be placed on a new line.</p>
+
+<pre><span class="codecorrect">if ($condition1)
+{
+	// condition1 is true - do something
+}
+elseif ($condition2)
+{
+	// condition2 is true - do something else
+}
+else
+{
+	// neither is true - do another thing
+}
+</span></pre>
+<p>Always use braces even when a loop or branch contains just one line of code.</p>
+<pre><span class="codewrong">if ($condition1)
+	// condition1 is true - do something
+else
+	if ($condition2)
+		// condition2 is true - do something
+	else
+		// neither is true - do another thing
+
+
+</span><span class="codecorrect">if ($condition1)
+{
+	// condition1 is true - do something
+}
+else
+{
+	if ($condition2)
+	{
+		// condition2 is true - do something
+	}
+	else
+	{
+		// neither is true - do another thing
+	}
+}
+</span></pre>
+
+
+<a name="indent"></a>
+<div class="section">Indenting</div>
+<p>When indenting use a single tab.</p>
+<pre><span class="codecorrect">function unp_isValidEmail($email)
+{
+	if (eregi('^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$', $email))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+</span></pre>
+
+
+<a name="loopsbranches"></a>
+<div class="section">Loops and Branches</div>
+<p>Loops and branches should be followed by a space before the opening parenthesis.</p>
+<pre><span class="codecorrect">if ($action == 'main')
+{
+	// do something
+}
+</span><span class="codewrong">
+if($action=='main')
+{
+	// do something
+}
+</span><span class="codecorrect">
+for ($i = 0; $i &lt; 10; $i++)
+{
+	// do something
+}
+</span><span class="codewrong">
+for($i=0;$i&lt;10;$i++)
+{
+	// do something
+}
+</span><span class="codecorrect">
+while ($resultset = $DB->fetch_array($query))
+{
+	// do something
+}
+</span><span class="codewrong">
+while($resultset=$DB->fetch_array($query))
+{
+	// do something
+}
+</span></pre>
+
+
+<a name="spacing"></a>
+<div class="section">Spacing</div>
+<p>Operators, except for ++ and --, should be surrounded with spaces.</p>
+<pre><span class="codecorrect">$var1 = 10;
+
+$var2 = 80 / 20;
+
+$var3 = 3 * 6;
+
+$var4 = (3 * 6) / 2;
+
+$var5++;
+
+$var6--;
+</span></pre>
+<p>Function calls should not have a space before opening parentheses.</p>
+<pre><span class="codecorrect">$str = preg_replace('/\[b\](.+)\[\/b\]/is','&lt;strong&gt;\\1&lt;/strong&gt;',$str);</span></pre>
+<p>Function arguments should have a space after each comma.</p>
+<pre><span class="codecorrect">$str = str_replace($var1, $var2, $var3);</span></pre>
+<p>There should be no unnecessary spaces around parentheses.</p>
+<pre><span class="codecorrect">$str = stripslashes($str);</span>
+<span class="codewrong">$str = addslashes( $str );</span></pre>
+
+
+<a name="quotes"></a>
+<div class="section">Quoting</div>
+<p>Strings should be quoted using single quotes. If they have control characters, escape them. If they have special entities (such as line breaks \n), concatenate the string and use double quotes to contain them. If they have variables, concatenate the string with the variable.</p>
+<pre><span class="codecorrect">$str1 = 'Hello World!';
+$str2 = 'Hello, World!'."\n\n"; // concatenation with special entities &amp; double strings
+$str3 = 'Hello, World! My name is '.$name; // concatenation with variable
+$str4 = 'Your PHP version is '.phpversion().'&lt;br /&gt;';</span></pre>
+<p>MySQL queries should always be in double quotes.</p>
+<pre><span class="codecorrect">$DB->query("SELECT COUNT(*) AS NumResults FROM unp_table");</span>
+<span class="codewrong">$DB->query('SELECT COUNT(*) AS NumResults FROM unp_table');</span></pre>
+<p>Variables that do not need to be quoted should not be.</p>
+<pre><span class="codecorrect">$var = $var;
+$var2 = addslashes($var2);</span>
+
+<span class="codewrong">$var = "$var";
+$var2 = addslashes("$var2");</span></pre>
+
+
+<a name="boolean"></a>
+<div class="section">Boolean Function Return Values</div>
+<p>Unless there is very good reason to use 0 and 1, such as if there is the possibility of a 2 return value, use <tt>true</tt> and <tt>false</tt>.</p>
+<pre><span class="codewrong">function is_ten($int)
+{
+	if ($int == 10)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}</span>
+
+<span class="codecorrect">function is_ten($int)
+{
+	if ($int == 10)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}</span></pre>
+<p>Use the lowercase forms of true and false rather than TRUE and FALSE. Uppercase words are generally reserved for constants.</p>
+<pre><span class="codewrong">if ($var == TRUE)
+{
+	// do something
+}</span>
+
+<span class="codecorrect">if ($var == true)
+{
+	// do something
+}
+</span></pre>
+
+
+<a name="andor"></a>
+<div class="section">AND/and/&amp;&amp; OR/or/||</div>
+<p>Use '&amp;&amp;' instead of 'AND/and' and '||' instead of 'OR/or'.</p>
+<pre><span class="codecorrect">if ($var == true &amp;&amp; $var2 == true)
+{
+	// do something
+}
+if ($var == true || !$var2)
+{
+	// do something
+}</span>
+
+<span class="codewrong">if ($var == true AND $var2 == true)
+{
+	// do something
+}
+</span></pre>
+
+
+<a name="comment"></a>
+<div class="section">Comments</div>
+<p>Use the following comment as a header for large chunks of code or branches.</p>
+<pre><span class="codecorrect">// +------------------------------------------------------------------+
+// | Do Operation                                                     |
+// +------------------------------------------------------------------+
+</span></pre>
+<p>Use the // comment style for single line/short comments, and the /* ... */ syntax for large block comments.</p>
+<pre><span class="codecorrect">// this is a short single line comment
+
+// this is a fairly short comment
+// that spans two lines
+
+/*
+ * this is a long
+ * block style comment.
+ * it spans multiple lines
+ * and my go on and on
+ */
+ </span>
+ <span class="codewrong">// this is a long
+ // block style comment
+ // that is using a non-standard
+ // method of commenting</span></pre>
+<p>Prefix function definitions with the following comment string.</p>
+<pre><span class="codecorrect">/***************************************************************
+   Start Check Vars are The Same
+***************************************************************/
+function do_something($var1, $var2)
+{
+	if ($var1 == $var2)
+	{
+		// the same
+		return true;
+	}
+	else
+	{
+		// different
+		return false;
+	}
+}
+</span></pre>
+
+
+<a name="sql"></a>
+<div class="section">SQL Query Syntax</div>
+<p>SQL queries should always be double quoted, regardless of whether or not the query contains dynamic content.</p>
+
+<pre><span class="codecorrect">$DB->query("SELECT * FROM `table` WHERE id='$someid'");
+$DB->query("SHOW TABLE STATUS");</span>
+
+<span class="codewrong">$DB->query('SELECT * FROM `table` WHERE id='.$someid);
+$DB->query('SHOW TABLE STATUS');
+</span></pre>
+
+<p>In addition, table names should be enclosed within ` type quotes and values should be enclosed within ' quotes.</p>
+
+<pre><span class="codecorrect">$DB->query("SELECT * FROM `table` WHERE id='$someid'");</span>
+
+<span class="codewrong">$DB->query("SELECT * FROM table WHERE id='$someid'");</span></pre>
+
+
+<a name="funcname"></a>
+<div class="section">Function Naming</div>
+<p>Custom written functions for UNP should be, for the most part, prefixed with "unp_".</p>
+
+<pre><span class="codecorrect">function unp_lettersOnly($str)
+{
+	$str = preg_replace('^[^a-zA-Z]+$','', $str);
+	return $str;
+}</span></pre>
+
+<p>Functions should be named something useful so that someone could be able to have a general idea of what the function does just by looking at the name.</p>
+
+
+<a name="misc"></a>
+<div class="section">Miscellaneous</div>
+<p>When passing a variable through a URL, use the following statement to retrive it (example assumes variable is &quot;action&quot;). The longer method should not be used.</p>
+
+<pre><span class="codecorrect">isset($_GET['action']) ? $action = $_GET['action'] : $action = '';</span>
+
+<span class="codewrong">if (isset($_GET['action']))
+{
+	$action = $_GET['action'];
+}
+else
+{
+	$action = '';
+}</span></pre>
+
+<center><a href="#top">Top</a></center>
+
+
+<div id="footer">Copyright &copy; 2003, UtopiaSoft, UtopiaSoftware.net</div>
+
+
+</body>
+</html>
