@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- 
+     This is the web-app configurations that allow Cocoon to work under
+     Apache Tomcat. Please, follow the installation section of the
+     documentation for more information about installing Cocoon on Tomcat 
+-->
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2.2.dtd">
+
+<web-app>
+ <servlet>
+  <servlet-name>FileDownloadServlet</servlet-name>
+  <servlet-class>FileDownloadServlet</servlet-class>
+  <init-param>
+   <param-name>targetpath</param-name>
+   <param-value>c:/jakarta-tomcat-3.2.3_new/webapps/jupload/WEB-INF/uploadedfiles/</param-value>
+  </init-param>
+ </servlet>
+ 
+ <servlet>
+  <servlet-name>DirCheckServlet</servlet-name>
+  <servlet-class>DirCheckServlet</servlet-class>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>FileDownloadServlet</servlet-name>
+  <url-pattern>/FileDownloadServlet</url-pattern>
+ </servlet-mapping>
+
+ <servlet-mapping>
+  <servlet-name>DirCheckServlet</servlet-name>
+  <url-pattern>/DirCheckServlet</url-pattern>
+ </servlet-mapping>
+
+</web-app>
