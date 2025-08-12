@@ -1,0 +1,27 @@
+
+Destiney.com Scripts v0.3 Upgrade:
+
+1. Upload and uncompress files on server.
+
+2. Perform Upgrade queries in admin/sql/upgrade_*.sql
+
+	mysql destiney < admin/sql/upgrade_0.2_0.3.sql
+
+		or
+
+	mysql> source admin/sql/upgrade_0.2_0.3.sql
+
+	* Upgrade scripts are not all-inclusive.  For example if you are
+	upgrading from 0.1 to 0.3, you must perform all the queries in
+	both upgrade_0.1_0.2.sql and upgrade_0.2_0.3.sql.
+
+
+5. Delete the `admin/sql` directory if desired.
+
+6. Rename faq.php-new as faq.php.
+
+	This is so future releases will not overwrite your changes.
+
+7. Rename include/image_rules.php-new as include/image_rules.php.
+
+	This is so future releases will not overwrite your changes.
