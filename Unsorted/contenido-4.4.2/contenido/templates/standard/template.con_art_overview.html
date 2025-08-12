@@ -1,0 +1,183 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="styles/contenido.css"/>
+    <script type="text/javascript" src="scripts/rowMark.js"></script>
+    <script type="text/javascript" src="scripts/articleObject.js.php?contenido={SID}"></script>
+    <script type="text/javascript" src="scripts/messageBox.js.php?contenido={SID}"></script>
+    <script language="javascript">
+
+        /* Contenido Session-ID */
+        var sid = "{SID}";
+
+        /* New messageBox
+           instance */
+        box = new messageBox("", "", "", 0, 0);
+
+        /* Function for deleting
+           articles */
+        function deleteArticle(idart, idcat) {
+
+            var url = "main.php?area=con&action=con_deleteart&frame=4&idcat="+idcat+"&idart="+idart+"&contenido="+sid;
+            window.location.href = url;
+
+        }
+
+    </script>
+</head>
+<body style="margin:10px">
+
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+	
+	<tr class="text_medium" style="background-color: #ffffff;">
+        <td colspan="12" style="border: 1px; border-color: #747488; border-style: solid; background-color: #F4F4F7">{CATEGORY}</td>      
+    </tr>
+
+	<tr>
+        <td colspan="12"><img src="images/spacer.gif" width="1" height="10"></td>
+    </tr>
+
+     <tr valign="middle">
+        <td colspan="4" class="text_medium" style="border: 1px; border-color: #747488; border-style: solid; background-color: #F4F4F7">
+        
+        <table cellspacing="0" cellpadding="0" border="0">
+        
+            <tr>
+               <td>{CATEGORY_CONF}</td>
+               <td>&nbsp;</td>
+               <td>{CATEGORY_LINK}</td>  
+               <td>&nbsp;&nbsp;&nbsp;</td> 
+               <td>{NEWARTICLE_IMG}</td> 
+               <td>&nbsp;</td> 
+               <td>{NEWARTICLE_TEXT}</td>              
+            </tr>
+        
+        </table>
+        
+        </td>
+        <td align="right" class="text_medium" colspan="8" style="border: 1px; border-left:0px; border-color: #747488; border-style: solid; background-color: #F4F4F7">{ARTSORTCAPTION}: {ARTSORT}</td>
+    </tr>
+
+    <tr>
+        <td colspan="12"><img src="images/spacer.gif" width="1" height="10"></td>
+    </tr>
+
+    {NOTIFICATION}
+
+    <tr class="textw_medium" style="background-color: #a9aec2">
+        <td class="textw_medium" style="border:1px; border-color:#747488; border-style:solid" nowrap="nowrap">Start</td>
+        <td class="textw_medium" style="border:1px; border-left:0px; border-color: #747488; border-style: solid" nowrap="nowrap">i18n("Title")</td>
+        <td class="textw_medium" style="border:1px; border-left:0px; border-color: #747488; border-style: solid" nowrap="nowrap">i18n("Created")</td>
+        <td class="textw_medium" style="border:1px; border-left:0px; border-color: #747488; border-style: solid" nowrap="nowrap">i18n("Changed")</td>
+		<td class="textw_medium" style="border:1px; border-left:0px; border-color: #747488; border-style: solid" nowrap="nowrap">i18n("Sort order")</td>
+        <td class="textw_medium" style="border:1px; border-left:0px; border-color: #747488; border-style: solid" nowrap="nowrap">i18n("Template")</td>
+        <td class="textw_medium" colspan="6" style="border:1px; border-left:0px; border-color: #747488; border-style: solid" nowrap="nowrap">i18n("Actions")</td>
+    </tr>
+
+    <!-- BEGIN:BLOCK -->
+    <tr id="{ROWID}" class="text_medium" style="background-color: {BGCOLOR};" onmouseover="artRow.over(this)" onmouseout="artRow.out(this)" onclick="artRow.click(this)">
+        <td class="text_medium" style="border:1px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap" align="center">{START}</td>
+        <td class="text_medium" width="100%" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap">{ARTICLE}</td>
+        <td class="text_medium" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap">{CREATED}</td>
+        <td class="text_medium" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap">{LASTMODIFIED}</td>
+		<td class="text_medium" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap">{SORTKEY}</td>
+        <td class="text_medium" style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid" nowrap="nowrap">{TPLNAME}</td>
+        <td style="border:1px; border-left:0px; border-top:0px; border-right:0px; border-color: #747488; border-style: solid">{ARTCONF}</td>
+        <td style="border:1px; border-left:0px; border-top:0px; border-right:0px; border-color: #747488; border-style: solid">{TPLCONF}</td>
+        <td style="border:1px; border-left:0px; border-top:0px; border-right:0px; border-color: #747488; border-style: solid">{ONLINE}</td>
+        <td style="border:1px; border-left:0px; border-top:0px; border-right:0px; border-color: #747488; border-style: solid">{DELETE}</td>
+        <td style="border:1px; border-left:0px; border-top:0px; border-right:0px; border-color: #747488; border-style: solid">{LOCKED}</td>        
+        <td style="border:1px; border-left:0px; border-top:0px; border-color: #747488; border-style: solid">{USETIME}</td>
+    </tr>
+    <!-- END:BLOCK -->
+
+</table>
+
+<script language="javascript">
+
+    /* Supress error messages,
+       not a good work-around =/ */
+    function foo() { return true; }
+    window.onerror = foo;
+    
+    /* Create a reference to the
+       Article Object in frame 'right_top' */
+    artObj = parent.frames["right_top"].artObj;
+    
+    /* Reset article object properties.
+       e.g. Some article was edited and we are
+       now back in the overview mask. There is
+       now no marked article, the articleObject
+       data should be reset.  */
+    if ( artObj ) {
+        artObj.reset();
+        artObj.enable();
+    }
+
+    /* Timeout to call the function afer 250ms */
+    window.setTimeout("createReference()", 250);
+        
+    /* Javascript-Error work-around...
+       try to create the reference after
+       250ms again... and hope it works.. */
+    function createReference() {
+        if (!artObj) {
+            artObj = parent.frames["right_top"].artObj;
+            artObj.reset();
+            artObj.enable();
+        }
+    }
+       
+
+    /* Extract data from
+       the article grid and
+       send them to the articleObject
+       Instance. The data is stored in
+       the attribute 'id' of the row
+       object. */
+    function conArtOverviewExtractData( obj ) {
+		
+		if (!artObj) 
+			createReference();
+		
+        var datastring  = obj.id;
+        var data        = datastring.split( "-" );
+
+        if ( data.length == 5 ) {
+
+            /* Send data to articleObject instance:
+                0:  idart
+                1:  idartlang
+                2:  idcat
+                3:  idcatlang
+                5:  idcatart */
+            artObj.setProperties(data[0], data[1], data[2], data[3], data[4]);
+        
+        }
+
+    }
+
+    /* Function for sorting
+       the articles */
+    function artSort(selObj) {
+
+        var url = '{SELF_URL}';
+        var i = selObj.selectedIndex;
+        var sortkey = selObj.options[i].value;
+
+        window.location.href = url + '&sort=' + sortkey;
+
+    }
+
+    /* Mark the first submenu item i.e. 'Overview' */
+    if ( parent.frames['right_top'].document.getElementById('c_0') ) {
+        menuItem = parent.frames['right_top'].document.getElementById('c_0');
+        parent.frames['right_top'].sub.click(menuItem);
+    }
+    
+    {ROWMARKSCRIPT};
+
+</script>
+
+</body>
+</html>
