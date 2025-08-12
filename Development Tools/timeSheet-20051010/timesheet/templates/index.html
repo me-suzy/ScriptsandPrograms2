@@ -1,0 +1,67 @@
+<div style="margin:auto;text-align:center">
+<h2>Client Listing</h2>
+<a href="index.php?action=logout">Log out</a>
+{if $smarty.session.id == 1} :: <a href="index.php?action=showAdmin">Show Admin Panel</a>{/if}
+</div>
+<Br/>
+<Br/>
+
+{include file="showAdmin.html"}
+
+<table cellpadding="3" width="100%" align="center">
+	<tr>
+		<th colspan="6">Add new client</th>
+	</tr>
+	<tr>
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="newClient">
+		<td></td>
+		<td colspan="4"><input type="text" name="newClient" style="width:400px"></td>
+		<td><input type="submit" class="btn" value="Add"></td>
+</form>
+	</tr>
+
+{if $clients}
+	<tr>
+		<th width="21"></th>
+		<th>Client</th>
+		<th align="center">Finished</th>
+		<th align="center">hh:mm:ss</th>
+		<th align="center">Revenue</th>
+		<th align="center"></th>
+	</tr>
+	<form action="index.php" method="POST">
+	<input type="hidden" name="action" value="renClients">
+	{foreach from=$clients item=client}
+	<tr {if $client.isRunning}class=runningJobs{/if}>
+		<td>
+{if !$client.shared}<a href="javascript:confirmDel('client','index.php?action=delClient&id={$client.id}','{$client.clientDesc|escape:"quotes"}')"><img src="img/trash.gif" border="0" align="middle"></a>{else}<img src="img/shared.gif">{/if}
+		</td>
+		<td>
+			<input type="text" name="client[{$client.id}]"class="editMe" value="{$client.clientDesc|stripslashes}" style="width:200px">
+		</td>
+		<td align="center">{$client.numJobsClosed} / {$client.numJobs} </td>
+		<td align="center">{if $client.totalTime.days}{$client.totalTime.days}D {/if}{$client.totalTime.hours}:{$client.totalTime.minutes}:{$client.totalTime.seconds}</td>
+		<td align="right">{$client.revenue|number_format:2}</td>
+		<td align="center"><a href="index.php?page=editJobs&client_id={$client.id}"><img src="img/editjobs.gif" border="0"></a></td>
+	</tr>
+	{/foreach}
+	<tr style="background:#F3F3F3">
+		<td></td>
+		<td align="right"><b><i>Totals</i></b></td>
+		<td align="center"><b>{$total.finished} / {$total.jobs}</b></td>
+		<td align="center"><b>{if $total.time.days}{$total.time.days}D {/if}{$total.time.hours}:{$total.time.minutes}:{$total.time.seconds}</b></td>
+		<td align="right"><b>{$total.revenue|number_format:2}</b></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="6" align="right"><input type="submit" class="btn" value="Update"></td>
+	</tr>
+</form>
+	</td>
+</tr>
+</table>
+{else}
+<h2 align="center">No clients yet.</h2>
+{/if}
+</table>
