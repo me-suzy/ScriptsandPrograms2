@@ -1,0 +1,38 @@
+table ub_admin (administrator's login)
+==============
+admin_name	varchar(255)	- name
+admin_pasw	varchar(255)	- password
+admin_level	tinyint(1)	- member's level (to privilege assigning) ('1' = administrator)
+admin_control	varchar(128)	- session id (identification by login)
+admin_time	varchar(15)	- time of actual login
+
+table ub_config (board's information)
+===============
+config_name	varchar (255)	- config name
+config_value	varchar (255)	- config name's item
+
+	board_title	- board's title
+	board_char	- short description
+	board_email	- contacts email
+	board_lang	- board's language
+	board_themes	- board's theme
+	board_page	- topics per page
+	board_admin	- show login for administrator on index.php
+
+table ub_head (categories)
+=============
+head_id		int (10)	- primary key of category
+head_name	varchar (255)	- name of category
+head_order	int (10)	- category order
+head_number	int (10)	- topics per page
+head_char	varchar (255)	- description of category
+
+table ub_topic (topics)
+==============
+topic_id	int (10)	- primary key of topic
+topic_head	int (10)	- category
+topic_user	varchar (255)	- author's name
+topic_email	varchar (255)	- author's email
+topic_time	datetime	- date and time of topic
+topic_title	varchar (255)	- subject
+topic_text	text		- topic
