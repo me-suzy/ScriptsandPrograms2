@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>iWare Installation Guide</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1>	iWare Professional 4.0.0</h1>
+<h2>Installation Guide</h2>
+<hr />
+
+<h3>System Requirements</h3>
+<p>
+iWare was built and tested on multiple platforms to ensure as much interoperability as possible.
+We recommend meeting the following system requirements at a minimum.
+<p>
+
+<center>
+<table border=0 cellpadding=5 cellspacing=15>
+<tr>
+<td>
+<b>Windows Platform</b><br />
+Microsoft Internet Information Server  (IIS) 5.0 +<br />
+PHP Version 4.3.1 +<br />
+MySQL Version 3.23.54 +<br />
+GDLib Support under PHP (optional)	<br />
+</td>
+<td>
+<b>UNIX / Linux Platform (recommended configuration)</b><br />
+Apache Web server <br />
+PHP Version 4.3.0 +<br />
+MySQL Version 3.23.54 +<br />
+GDLib Support under PHP (optional)	<br />
+</td>
+</tr>
+</table>
+</center>
+<hr />
+<h3>Unzipping the install package</h3>
+Once you have downloaded the installation .zip file extract its contents to a directory beneath your web servers web tree. If you are on a Windows system you can use <a href="http://www.winzip.com">Winzip</a>, if your using UNIX / Linux you can use zip & unzip, gzip, etc If necessary, FTP the entire unzipped structure to your web hosting provider.
+<hr />
+<h3>Setting necessary file & directory permissions</h3>
+BEFORE running the included installation script you must change the directory permission settings for both the admin and files directories of your installation to read,write,execute to allow the install utility to write the needed config files. Under UNIX / Linux you can accomplish this with the chmod command:
+<dir>
+Example : <i>chmod  777 admin</i>
+</dir>
+<hr />
+<h3>Using the install script</h3>
+IWare includes a browser based installation tool that will automatically create the necessary database backend and write the needed configuration files for your installation. To access and use this utility simply visit the URL of where your software is installed. The admin/ directory of your installation contains the install.php script:
+<dir>
+Example : <i>http://www.yourwebsite.com/admin/install.php</i>
+</dir>
+You will then be presented with a simple form allowing you to specify your default language, database connection settings and default table names to create during the installation. The install procedure will also generate a configuration file in the admin directory of your installation. Upon a normal install the install script will drop / create the table names and populate those tables with the default data used by the install. Any existing data will be removed.
+
+<p>With the installation script you can also choose to perform an <b>UPGRADE</b>. In an upgrade situation the existing database tables and their data will remain untouched and only the needed configuration files will be re-created using the entered database table names. You can opt for an upgrade by checking the upgrade option checkbox.</p>
+
+<hr />
+<h3>Initial setup / first-time login</h3>
+Once installed you can access the control panel using the default administrative account by entering admin as the username and setup as your password. To access the control panel simply visit the URL of where its is installed like so :
+<dir>
+Example : <i>http://www.yourwebsite.com/admin/</i>
+</dir>
+<hr />
+<h3>Post-install tips</h3>
+Once you have successfully setup your installation it is highly recommended that you :
+Change the default administrative root password to a more secure letter / number combination. 
+Remove the install.php script and install.sql script from your admin/ directory  to prevent accidental re-installs and / or tampering with your site. And (if desired) change the directory permissions for the admin/ directory back to a more secure setting (755).
+<hr />
+<h3>Installing Modules</h3>
+By default when the initial software is installed any included modules will not automatically install. This is done to save disk space by not creating un-necessary database structure in the configured database. Upon first accessing a module from the Modules screen within the control panel each module will be checked for installation status. In the event a module has not yetbeen installed you will be presented with an option to do so.
+
+</body>
+</html>
