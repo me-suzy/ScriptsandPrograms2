@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>:: :: :: :: Contenido {VERSION}</title>
+    <link REL="SHORTCUT ICON" HREF="{CONTENIDOPATH}"> 
+    <script type="text/javascript" src="scripts/browserCheck.js"></script>
+    <script type="text/javascript" src="scripts/conFrameResize.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/contenido.css" />
+    <script language="javascript">
+
+        frameResize = new conFrameResize();
+
+    </script>
+</head>
+
+<!--
+
+Content Frameset for Contenido.
+
+Contains four frames:
+
+    #1:     Left Top Frame
+            Quick actions for anything
+            listed in the Left Bottom Frame
+            
+    #2:     Left Bottom Frame
+            Usually Item Lists like Structure,
+            Modules or Templates.
+            
+    #3:     Right Top Frame
+            Contains the 3rd navigation level.
+            
+    #4:     The Main Frame
+            Contains the main Contenido Functions
+            and Forms
+
+-->
+
+<frameset id="contentFrame" cols="200,6,*" border="0" frameborder="0">
+
+    <frameset rows="56,*" frameborder="0">
+        <frame src="{FRAME[1]}" name="left_top" border="0" marginwidth="0" marginheight="0" scrolling="no" />
+        <frame src="{FRAME[2]}" name="left_bottom" border="0" scrolling="yes" />
+    </frameset>
+
+    <frame src="./templates/standard/filler.html" border="0" scrolling="no" noresize="noresize" />
+
+    <frameset rows="19,*" frameborder="0">
+        <frame src="{FRAME[3]}" name="right_top" border="0" scrolling="no" noresize="noresize" />
+        <frame src="{FRAME[4]}" name="right_bottom" border="0" scrolling="auto" />
+    </frameset>
+
+</frameset>
+
+<body>
+</body>
+</html>
