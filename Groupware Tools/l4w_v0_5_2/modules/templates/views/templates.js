@@ -1,0 +1,127 @@
+
+    function confirm_deleting(name, id) {
+	    //text         = "<?=translate ('confirm_delete_entry')?>";
+		confirmation = confirm (translate_confirm_delete_entry.replace (/%s/g,name));
+        if(confirmation != false) {
+            var link = "index.php?command=delete_entry&entry_id=" + id;
+            window.location.href = link;
+        }
+	}
+
+	function OpenElement (obj) {
+	    var link = "index.php?command=edit_entry&entry_id=" + obj.id;
+	    window.location.href = link;       
+	}    
+	        
+    function set_action (reference, confirm_msg, parent) {
+        var selected = document.formular.select_action.selectedIndex;
+        switch(document.formular.select_action[selected].value) {
+            case "delete selected":
+		        confirmation = confirm (confirm_msg);
+                if(confirmation != false) {
+                    document.formular.command.value='delete_selected';
+                    document.formular.submit();
+                }
+                break;
+            case "invert selection":
+                var form   = document.formular;
+                var inputs = document.getElementsByTagName("input");
+                for (i = 0; i < inputs.length; i++) {
+                    elem = inputs[i];
+                    att  = elem.getAttributeNode("name");
+                    if (att.nodeValue.slice (0,5) == reference) {
+                        elem.checked = !(elem.checked);
+                    }        
+                }    
+                break;
+            case "select all":
+                var form   = document.formular;
+                var inputs = document.getElementsByTagName("input");
+                for (i = 0; i < inputs.length; i++) {
+                    elem = inputs[i];
+                    att  = elem.getAttributeNode("name");
+                    if (att.nodeValue.slice (0,5) == reference) {
+                        elem.checked = true;
+                    }        
+                }    
+                break;
+            case "new entry":
+                link = "index.php?command=add_entry_view&parent="+parent;
+                document.location.href=link;
+                break;
+            case "new folder":
+                link = "index.php?command=add_folder_view&parent="+parent;
+                document.location.href=link;
+                break;
+            case "add references":
+                var form   = document.formular;
+                var inputs = document.getElementsByTagName("input");
+                var orig   = opener.document.formular;
+                if (document.all) {
+                	alert ("Sorry, this currently does not work with IE");
+                	break;
+                }
+                for (i = 0; i < inputs.length; i++) {
+                    elem = inputs[i];
+                    att  = elem.getAttributeNode("name");
+                    if (att.nodeValue.slice (0,reference.length) == reference && elem.checked) {
+                        to_ref_id = att.nodeValue.slice(reference.length);
+                        //alert (to_ref_id);
+                        position  = orig.added_references.length;
+                        //alert (position);
+                        orig.added_references.options[position]     = null;
+		        	    newEntry  = new Option ('Note (ref. #'+to_ref_id+')','note_'+to_ref_id,true, true);
+						
+        		        orig.added_references.options[position]     = newEntry;
+                        orig.new_references.value += 'note_'+to_ref_id+'|';
+                    } 
+                }  
+                window.close();
+                break;
+            case "clear filter":
+                link = "index.php?command=clear_filter&parent="+parent;
+                document.location.href=link;
+                break;
+            case "move":
+                link = "index.php?command=move_view&parent="+parent;
+                //document.location.href=link;
+                window.open (link, "folders", "location=no,menubar=no,width=330,height=330,resizable=yes");
+                break;
+            case "export view":
+                link = "index.php?command=export_view";
+                //document.location.href=link;
+                window.open (link, "folders", "location=no,menubar=no,width=330,height=330,resizable=yes");
+                break;
+            case "":
+                break;
+            default:
+                alert (document.formular.select_action[selected].value);
+                break;
+        }   
+    }    
+
+	function addEntry (obj) {
+		alert (obj);
+	}
+	
+    function clone_me (show_text) {
+        document.formular.command.value="add_entry";
+        alert(show_text);
+    }  
+    
+    function run_apply (goto_tab) {
+        something_changed=false;    
+        document.formular.goto_tab.value=goto_tab;
+    }    
+    
+    function search (command) {
+        var keyword = document.formular.search.value;
+        if (keyword == "") return;
+        link = "index.php?command="+command+"&keyword="+keyword;
+        document.location.href=link;
+    }
+    
+    /*function checkForm () {
+        var elem = document.getElementsByName('search')[0];
+        alert (elem.checked);
+    } */       
