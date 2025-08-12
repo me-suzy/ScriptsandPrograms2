@@ -1,0 +1,1 @@
+ALTER TABLE al_redir CHANGE aff ref char(16);
