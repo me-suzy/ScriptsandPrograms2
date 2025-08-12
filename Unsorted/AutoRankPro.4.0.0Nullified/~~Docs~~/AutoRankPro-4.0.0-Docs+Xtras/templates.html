@@ -1,0 +1,717 @@
+<html>
+<head>
+	<title>Using the Templates</title>
+  <link rel="stylesheet" href="http://www.jmbsoft.com/css/style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#003366" alink="#003366" vlink="#003366" text="#000000">
+
+<font face="Verdana,Arial" size="4">
+
+<div align="center">
+
+<b>
+Using Templates With AutoRank Pro
+</b>
+
+<br><br>
+
+<table width="700" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+
+<font face="Arial" size="2">
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Quick Overview</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+The template feature of AutoRank Pro makes the script extremely easy to integrate into your site.
+These templates are very easy to edit, but you need to follow a few guidelines.  AutoRank Pro allows
+you to edit the template files through a web-based editor in the administrative script, but you can 
+also edit them in your normal HTML editor.  You should use whichever you feel more comfortable with.
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Rejection E-mails In admin.cgi</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+
+These are used as templates for the e-mails that are sent when a post is rejected.  You can add any
+number of rejection e-mail templates as you like, and select which one should be sent for each post.  They follow a
+certain format which needs to be maintained in order for the e-mails to be sent.  That order is:<br><br>
+
+To: #%EMAIL%#<br>
+From: #%ADMIN_EMAIL%#<br>
+Subject: The subject<br><br>
+The body of the message
+
+<br><br>
+
+Note that there <b>must</b> be a blank line between the Subject line and the body of the message.  Failure
+to leave that blank line will result in e-mails not being sent.
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>The .htmlt Files</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+These files are used to generate the HTML that the scripts output.
+In each of the files you will find standard HTML and pieces of text surrounded by #%%#.  Anything 
+surrounded by #%%# should not be edited.  These are items that will be inserted by the script. You can
+move it around all you want, but do not change the value inside the #%%#. 
+
+<br><br>
+
+Basically you can use any HTML you want.  You should first use the script with the default templates
+so you can get a feel of what each #%%# item is replaced with.  Once you have a feel for how they are
+working, you can go in and put your HTML in. 
+
+<br><br>
+
+Be sure to watch out for hidden form fields in these templates.  In almost all cases, those hidden fields
+are required in order for the software to function correctly, so be sure to leave all of them in place.
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>The .etmpl Files</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+These files are used as templates for the e-mails that are sent when a member signs up, or when
+a member needs reminded of their password.  All of the .etmpl files will be located in the templates
+directory of your installation.  You can download them in ASCII mode when you want to make changes to
+them.  They follow a certain format which needs to be maintained in order for the e-mails to be sent.
+That order is:
+
+<br><br>
+
+To: #%EMAIL%#<br>
+From: #%ADMIN_EMAIL%#<br>
+Subject: The subject<br><br>
+The body of the message
+
+<br><br>
+
+Note that there <b>must</b> be a blank line between the Subject line and the body of the message.  Failure
+to leave that blank line will result in e-mails not being sent.
+
+<br><br>
+
+The same format is used in the .etmpl files as is used in the .htmlt files.  All items that the script
+will insert are surrounded by #%%#.  Again, do not edit these.  You can move them around all you want
+within the e-mail.  Make sure you edit these files in an ASCII text editor such as Notepad if you are
+not using the built in template file editor.
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>After Editing The Templates</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+If you are editing the templates through the web based interface, you do not need to do anything else after you
+have made the changes you want.  However, if you are editing in your HTML editor, you will need to upload the 
+template files to the server in ASCII mode when you have completed editing them.
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Descriptions of Each Template</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+<font face="Verdana">
+
+<ul>
+<li> <b>"Edit HTML For [page]" template in admin.cgi</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the HTML that will be used for the selected page.
+<br><br>
+
+<b>Header HTML and Footer HTML Options</b>
+<br><br>
+These values are only recognized in the header or footer HTML
+<br><br>
+#%MEMBERS%# - The total number of sites in the database<br>
+#%NEXT_RERANK%# - The time and date when the list will next be reranked<br>
+#%LAST_RERANK%# - The time and date when the list was last reranked<br>
+#%LAST_RESET%# - The time and date when the list was last reset<br>
+#%NEXT_RESET%# - The time and date when the list will next be reset<br>
+#%CGI_URL%# - The full URL to the directory where the cgi files are located<br>
+#%CURRENT_CAT%# - The category for this page (works on category pages only)<br>
+#%CAT_OPTIONS%# - The category selection field for the search engine<br>
+#%SOM_SITE_URL%# - The site of the moment URL which does not track hits<br>
+#%SOM_OUT_URL%# - The site of the moment URL which does track hits<br>
+#%SOM_TITLE%# - The site of the moment title<br>
+#%SOM_BANNER_HTML%# - The site of the moment banner<br>
+#%SOM_DESCRIPTION%# - The site of the moment description<br>
+#%SOM_ICONS%# - The site of the moment icons<br>
+#%SOM_CATEGORY%# - The site of the moment category 
+<br><br>
+For each of your categories, you can display the number of sites that are currently rankable.<br>
+To do this, place the name of the category inside #%%#. Examples:<br><br>
+#%Category%#<br>
+#%Category Name%#<br><br>
+The text inside #%%# should match exactly what you have entered in setup.cgi 
+<br><br>
+<b>Template HTML Options</b>
+<br><br>
+These values are only recognized in the template HTML.
+<br><br>
+See the <a href="HTML.html" class="orange">HTML.html</a> documentation file.
+
+<br><br>
+   
+</font>
+
+<li> <b>_account_add.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see when adding their account 
+<br><br>
+#%CAT_OPTIONS%# - The category selection field<br>
+#%FIELD_1_NAME%# - The name of user defined field 1<br>
+#%FIELD_2_NAME%# - The name of user defined field 2<br>
+#%FIELD_3_NAME%# - The name of user defined field 3
+<br><br>
+
+</font>
+
+<li> <b>_account_added.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see after adding their account (not reviewing new accounts). 
+<br><br>
+#%EMAIL%# - The submitted e-mail address<br>
+#%USERNAME%# - The submitted username<br>
+#%PASSWORD%# - The submitted password<br>
+#%SITE_URL%# - The submitted site URL<br>
+#%DESCRIPTION%# - The submitted site description<br>
+#%TITLE%# - The submitted site title<br>
+#%BANNER_URL%# - The submitted banner URL<br>
+#%HEIGHT%# - The banner height<br>
+#%WIDTH%# - The banner width<br>
+#%RECIP_URL%# - The submitted reciprocal URL<br>
+#%FIELD_1%# - The submitted user defined field 1<br>
+#%FIELD_2%# - The submitted user defined field 2<br>
+#%FIELD_3%# - The submitted user defined field 3<br>
+#%CATEGORY%# - The submitted user category<br>
+#%TRACK_URL%# - The URL the member should send hits to<br>
+#%LOGIN_URL%# - The URL to login to account maintenance
+<br><br>
+
+</font>
+
+<li> <b>_account_edit.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see when editing their account details. 
+<br><br>
+#%EMAIL%# - The account's e-mail address<br>
+#%PASSWORD%# - The account's password<br>
+#%SITE_URL%# - The account's site URL<br>
+#%DESCRIPTION%# - The account's site description<br>
+#%TITLE%# - The account's site title<br>
+#%BANNER_URL%# - The account's banner URL<br>
+#%HEIGHT%# - The banner height<br>
+#%WIDTH%# - The banner width<br>
+#%RECIP_URL%# - The account's reciprocal URL<br>
+#%FIELD_1%# - The account's user defined field 1<br>
+#%FIELD_2%# - The account's user defined field 2<br>
+#%FIELD_3%# - The account's user defined field 3<br>
+#%CAT_OPTIONS%# - The category selection field<br>
+#%FIELD_1_NAME%# - The name of user defined field 1<br>
+#%FIELD_2_NAME%# - The name of user defined field 2<br>
+#%FIELD_3_NAME%# - The name of user defined field 3
+<br><br>
+
+</font>
+
+<li> <b>_account_edited.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters see confirming their account has been updated.
+<br><br>
+#%EMAIL%# - The submitted e-mail address<br>
+#%USERNAME%# - The submitted username<br>
+#%PASSWORD%# - The submitted password<br>
+#%SITE_URL%# - The submitted site URL<br>
+#%DESCRIPTION%# - The submitted site description<br>
+#%TITLE%# - The submitted site title<br>
+#%BANNER_URL%# - The submitted banner URL<br>
+#%HEIGHT%# - The banner height<br>
+#%WIDTH%# - The banner width<br>
+#%RECIP_URL%# - The submitted reciprocal URL<br>
+#%FIELD_1%# - The submitted user defined field 1<br>
+#%FIELD_2%# - The submitted user defined field 2<br>
+#%FIELD_3%# - The submitted user defined field 3<br>
+#%CATEGORY%# - The submitted user category<br>
+#%TRACK_URL%# - The URL the member should send hits to
+<br><br>
+
+</font>
+
+<li> <b>_account_farm.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see when getting valid link syntax.
+<br><br>
+#%TRACK_URL%# - The URL the member should send hits to
+<br><br>
+
+</font>
+
+<li> <b>_account_login.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see to login to their accounts. 
+<br><br>
+This template has no template values
+<br><br>
+
+</font>
+
+<li> <b>_account_remind.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see if they need their password sent.
+<br><br>
+This template has no template values
+<br><br>
+
+</font>
+
+<li> <b>_account_reminded.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see once their password has been sent. 
+<br><br>
+#%EMAIL%# - The e-mail address the reminder was sent to
+<br><br>
+
+</font>
+ 
+<li> <b>_account_review.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see after adding their account (reviewing new accounts).
+<br><br>
+#%EMAIL%# - The submitted e-mail address<br>
+#%USERNAME%# - The submitted username<br>
+#%PASSWORD%# - The submitted password<br>
+#%SITE_URL%# - The submitted site URL<br>
+#%DESCRIPTION%# - The submitted site description<br>
+#%TITLE%# - The submitted site title<br>
+#%BANNER_URL%# - The submitted banner URL<br>
+#%HEIGHT%# - The banner height<br>
+#%WIDTH%# - The banner width<br>
+#%RECIP_URL%# - The submitted reciprocal URL<br>
+#%FIELD_1%# - The submitted user defined field 1<br>
+#%FIELD_2%# - The submitted user defined field 2<br>
+#%FIELD_3%# - The submitted user defined field 3<br>
+#%CATEGORY%# - The submitted user category<br>
+#%TRACK_URL%# - The URL the member should send hits to
+<br><br>
+
+</font>
+
+<li> <b>_account_statst.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the top portion of the account statistics page where overall stats are displayed 
+<br><br>
+#%SIGNUP%# - The signup date of the account<br>
+#%INOUT_RESET%# - The time of the last in/out hit count reset<br>
+#%TOTAL_RESET%# - The time of the last total hit count reset<br>
+#%HITS_IN%# - The number of hits in since the last reset<br>
+#%HITS_OUT%# - The number of hits out since the last reset<br>
+#%TOTAL_IN%# - The total number of hits in<br>
+#%TOTAL_OUT%# - The total number of hits out<br>
+#%IN_PER_DAY%# - The average hits in per day<br>
+#%IN_PER_WEEK%# - The average hits in per week<br>
+#%IN_PER_MONTH%# - The average hits in per month<br>
+#%OUT_PER_DAY%# - The average hits out per day<br>
+#%OUT_PER_WEEK%# - The average hits out per week<br>
+#%OUT_PER_MONTH%# - The average hits out per month
+<br><br>
+
+</font>
+
+<li> <b>_account_statstb.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the bottom portion of the account statistics page 
+<br><br>
+This template has no template values
+<br><br>
+
+</font>
+
+<li> <b>_account_statsm.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the middle portion of the account statistics page where detailed stats are displayed 
+<br><br>
+#%DATE%# - The date the stats were compiled<br>
+#%HITS_IN%# - The number of hits in since the last reset<br>
+#%HITS_OUT%# - The number of hits out since the last reset<br>
+#%TOTAL_IN%# - The total number of hits in<br>
+#%TOTAL_OUT%# - The total number of hits out<br>
+#%IN_PER_DAY%# - The average hits in per day<br>
+#%IN_PER_WEEK%# - The average hits in per week<br>
+#%IN_PER_MONTH%# - The average hits in per month<br>
+#%OUT_PER_DAY%# - The average hits out per day<br>
+#%OUT_PER_WEEK%# - The average hits out per week<br>
+#%OUT_PER_MONTH%# - The average hits out per month<br>
+<br><br>
+
+</font>
+
+<li> <b>_error_data.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page surfers/webmasters will see if there is a data error
+<br><br>
+#%ERROR%# - A description of the error
+<br><br>
+
+</font>
+
+<li> <b>_error_http.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the page webmasters will see if there is an error connecting to their server
+<br><br>
+#%ERROR%# - The error message<br>
+#%URL%# - The URL causing the error
+<br><br>
+
+</font>
+
+<li> <b>_quick_header.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the top portion of the quick list page
+<br><br>
+This template has no template values
+<br><br>
+
+</font>
+
+<li> <b>_quick_template.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the middle portion of the quick list page
+<br><br>
+#%SITE_URL%# - The URL to the site that does not track hits<br>
+#%OUT_URL%# - The URL to the site that does track hits<br>
+#%TITLE%# - The site's title
+<br><br>
+
+</font>
+
+<li> <b>_quick_footer.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the bottom portion of the quick list page
+<br><br>
+This template has no template values
+<br><br>
+
+</font>
+
+<li> <b>_search_header.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the top portion of the search page
+<br><br>
+#%KEY%# - The search term
+<br><br>
+
+</font>
+
+<li> <b>_search_template.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the middle portion of the search page
+<br><br>
+#%TITLE%# - The site's title<br>
+#%DESCRIPTION%# - The site's description<br>
+#%CATEGORY%# - The site's category<br>
+#%OUT_URL%# - The outgoing URL to the site which does track hits<br>
+#%SITE_URL%# - The outgoing URL to the site which does not track hits<br>
+#%OVERALL_RANK%# - The site's current overall rank<br>
+#%CATEGORY_RANK%# - The site's current category rank
+<br><br>
+
+</font>
+
+
+<li> <b>_search_footer.htmlt</b><br><br>
+<font size="1" style="font-size: 11px;">
+This is the bottom portion of the search page
+<br><br>
+#%RESULTS%# - The total number of results
+<br><br>
+
+</font>
+
+<li> <b>_email_added.etmpl</b><br><br>
+<font size="1" style="font-size: 11px;">
+The e-mail that is sent when a member account is added
+<br><br>
+#%ADMIN_EMAIL%# - The administrator's e-mail address<br>
+#%TRACK_URL%# - The URL the site should send hits to<br>
+#%LOGIN_URL%# - The URL to login to accounts.php <br>
+#%USERNAME%# - The username of the account<br>
+#%EMAIL%# - The e-mail address of the account<br>
+#%SITE_URL%# - The site URL for the account<br>
+#%BANNER_URL%# - The banner URL for the account<br>
+#%HEIGHT%# - The banner height for the account<br>
+#%WIDTH%# - The banner width for the account<br>
+#%RECIP_URL%# - The reciprocal URL for the account<br>
+#%TITLE%# - The site title for the account<br>
+#%DESCRIPTION%# - The site description for the account<br>
+#%PASSWORD%# - The password for the account<br>
+#%FIELD_1%# - User defined field 1 for the account<br>
+#%FIELD_2%# - User defined field 2 for the account<br>
+#%FIELD_3%#  - User defined field 3 for the account 
+<br><br>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+<br><br>
+
+<li> <b>_email_review.etmpl</b><br><br>
+<font size="1" style="font-size: 11px;">
+The e-mail that is sent when a member account is added for review
+<br><br>
+#%ADMIN_EMAIL%# - The administrator's e-mail address<br>
+#%TRACK_URL%# - The URL the site should send hits to<br>
+#%LOGIN_URL%# - The URL to login to accounts.php <br>
+#%USERNAME%# - The username of the account<br>
+#%EMAIL%# - The e-mail address of the account<br>
+#%SITE_URL%# - The site URL for the account<br>
+#%BANNER_URL%# - The banner URL for the account<br>
+#%HEIGHT%# - The banner height for the account<br>
+#%WIDTH%# - The banner width for the account<br>
+#%RECIP_URL%# - The reciprocal URL for the account<br>
+#%TITLE%# - The site title for the account<br>
+#%DESCRIPTION%# - The site description for the account<br>
+#%PASSWORD%# - The password for the account<br>
+#%FIELD_1%# - User defined field 1 for the account<br>
+#%FIELD_2%# - User defined field 2 for the account<br>
+#%FIELD_3%#  - User defined field 3 for the account 
+<br><br>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+<br><br>
+
+<li> <b>_email_admin.etmpl</b><br><br>
+<font size="1" style="font-size: 11px;">
+The e-mail that is sent to the administrator when a member account is added
+<br><br>
+#%ADMIN_EMAIL%# - The administrator's e-mail address<br>
+#%TRACK_URL%# - The URL the site should send hits to<br>
+#%LOGIN_URL%# - The URL to login to accounts.php <br>
+#%USERNAME%# - The username of the account<br>
+#%EMAIL%# - The e-mail address of the account<br>
+#%SITE_URL%# - The site URL for the account<br>
+#%BANNER_URL%# - The banner URL for the account<br>
+#%HEIGHT%# - The banner height for the account<br>
+#%WIDTH%# - The banner width for the account<br>
+#%RECIP_URL%# - The reciprocal URL for the account<br>
+#%TITLE%# - The site title for the account<br>
+#%DESCRIPTION%# - The site description for the account<br>
+#%PASSWORD%# - The password for the account<br>
+#%FIELD_1%# - User defined field 1 for the account<br>
+#%FIELD_2%# - User defined field 2 for the account<br>
+#%FIELD_3%#  - User defined field 3 for the account 
+<br><br>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+<br><br>
+
+<li> <b>_email_edit.etmpl</b><br><br>
+<font size="1" style="font-size: 11px;">
+The e-mail that is sent when a member account is edited
+<br><br>
+#%ADMIN_EMAIL%# - The administrator's e-mail address<br>
+#%TRACK_URL%# - The URL the site should send hits to<br>
+#%LOGIN_URL%# - The URL to login to accounts.php <br>
+#%USERNAME%# - The username of the account<br>
+#%EMAIL%# - The e-mail address of the account<br>
+#%SITE_URL%# - The site URL for the account<br>
+#%BANNER_URL%# - The banner URL for the account<br>
+#%HEIGHT%# - The banner height for the account<br>
+#%WIDTH%# - The banner width for the account<br>
+#%RECIP_URL%# - The reciprocal URL for the account<br>
+#%TITLE%# - The site title for the account<br>
+#%DESCRIPTION%# - The site description for the account<br>
+#%PASSWORD%# - The password for the account<br>
+#%FIELD_1%# - User defined field 1 for the account<br>
+#%FIELD_2%# - User defined field 2 for the account<br>
+#%FIELD_3%#  - User defined field 3 for the account 
+<br><br>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+<br><br>
+
+<li> <b>_email_approved.etmpl</b><br><br>
+<font size="1" style="font-size: 11px;">
+The e-mail that is sent when a member account is approved by the administrator
+<br><br>
+#%ADMIN_EMAIL%# - The administrator's e-mail address<br>
+#%TRACK_URL%# - The URL the site should send hits to<br>
+#%LOGIN_URL%# - The URL to login to accounts.php <br>
+#%USERNAME%# - The username of the account<br>
+#%EMAIL%# - The e-mail address of the account<br>
+#%SITE_URL%# - The site URL for the account<br>
+#%BANNER_URL%# - The banner URL for the account<br>
+#%HEIGHT%# - The banner height for the account<br>
+#%WIDTH%# - The banner width for the account<br>
+#%RECIP_URL%# - The reciprocal URL for the account<br>
+#%TITLE%# - The site title for the account<br>
+#%DESCRIPTION%# - The site description for the account<br>
+#%PASSWORD%# - The password for the account<br>
+#%FIELD_1%# - User defined field 1 for the account<br>
+#%FIELD_2%# - User defined field 2 for the account<br>
+#%FIELD_3%#  - User defined field 3 for the account 
+<br><br>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+<br><br>
+
+<li> <b>_email_remind.etmpl</b><br><br>
+<font size="1" style="font-size: 11px;">
+The e-mail that is sent when a member requests their login information
+<br><br>
+#%ADMIN_EMAIL%# - The administrator's e-mail address<br>
+#%EMAIL%# - The e-mail address of the account<br>
+#%TRACK_URL%# - The URL the site should send hits to<br>
+#%LOGIN_URL%# - The URL to login to accounts.php <br>
+#%USERNAME%# - The username of the account<br>
+#%PASSWORD%# - The password for the account
+
+<br><br>
+
+<b>Remember</b> to leave a blank line between the subject line and the message body!
+</font>
+
+<br><br>
+
+</ul>
+
+</td>
+</tr>
+</table>
+
+</div>
+</font>
+
+</body>
+</html>
