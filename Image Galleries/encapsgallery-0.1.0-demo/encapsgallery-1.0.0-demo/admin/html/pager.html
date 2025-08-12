@@ -1,0 +1,41 @@
+<?
+
+//var_dump($html['pager']);
+
+$prefix = '?cat='.$html['cat']['id'];
+if($html['pager']['link']['f'] == '1'){?>
+<a href="<?=$prefix?>&direction=f&offset=<?=$html['pager']['offset']?>">&lt;&lt;</a>&nbsp;
+<?}else{?>
+&lt;&lt;&nbsp;
+<?}if($html['pager']['link']['p'] == '1'){?>
+<a href="<?=$prefix?>&direction=p&offset=<?=$html['pager']['offset']?>">&lt;</a>&nbsp;
+<?}else{?>
+&lt;&nbsp;
+<?}?>
+
+&nbsp;&nbsp;&nbsp;
+
+<?
+$i = 0;
+if(sizeof($html['pager']['pages']))
+foreach ($html['pager']['pages'] as $item){
+	$i++;
+	//$item['title'] .= ($i < count($html['pager']['pages']))?',':'';
+	if($item['active']=='true'){?>
+	<a href="<?=$prefix?>&offset=<?=$item['offset']?>" style="text-decoration: none;">&nbsp;<?=$item['title']?>&nbsp;</a>
+	<?}else{?>
+		<?='['.$item['title'].']'?>
+	<?}?>
+<?}?>
+
+&nbsp;&nbsp;&nbsp;
+
+<?if($html['pager']['link']['n'] == '1'){?>
+<a href="<?=$prefix?>&direction=n&offset=<?=$html['pager']['offset']?>">&gt;</a>&nbsp;
+<?}else{?>
+&gt;&nbsp;
+<?}if($html['pager']['link']['l'] == '1'){?>
+<a href="<?=$prefix?>&direction=l&offset=<?=$html['pager']['offset']?>">&gt;&gt;</a>
+<?}else{?>
+&gt;&gt;
+<?}?>
