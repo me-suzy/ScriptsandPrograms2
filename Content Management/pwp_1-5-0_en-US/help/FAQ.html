@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+	<meta name="Keywords" content="PWP, PHP, Wiki, WikiWiki, Community, Edit, Download, Software, Content Management, Documentation, CMS">
+	<meta name="Description" content="PWP Wiki Processor, a GPL based PHP software.">
+	<meta name="Language" content="en">
+	<meta name="Generator" content="PWP Wiki Processor">
+	<meta name="robots" content="index,follow">
+	<title>PWP Wiki Processor &raquo; FAQ</title>
+	<style type="text/css">@import url(../css/standard.css);</style>
+</head>
+<body>
+	<div id='uppermenu'>
+		<img src='../img/wiki.jpg' align='right' alt='PWP wiki processor' border='0'>
+		<h1>FAQ</h1>
+		<p> <a href='TextRules.html'>TextRules</a> .   <a href='SimpleTextRules.html'>SimpleTextRules</a> .   <a href='Installation.html'>Installation</a> .   <a href='Configuration.html'>Configuration</a>   <br>   <a href='UserManual.html'>UserManual</a> .   <a href='FAQ.html'>FAQ</a> .   <a href='http://www.lars-ackermann.de/wiki/static/index.html'>&raquo;find more online</a> </p>
+	</div>
+	<div id='contents'><div id='textcolumn'>
+&nbsp;&middot;&nbsp;<a href="#How safe are the text translations?">How safe are the text translations?</a><br>&nbsp;&middot;&nbsp;<a href="#My text got cut! I lost data!">My text got cut! I lost data!</a><br>&nbsp;&middot;&nbsp;<a href="#What about cookies, sessions and user tracking?">What about cookies, sessions and user tracking?</a><br>&nbsp;&middot;&nbsp;<a href="#Does PWP work with SSL proxys?">Does PWP work with SSL proxys?</a><br>&nbsp;&middot;&nbsp;<a href="#Can I rename run.php?">Can I rename run.php?</a><br>&nbsp;&middot;&nbsp;<a href="#The shown Wiki page size is wrong!">The shown Wiki page size is wrong!</a><br>&nbsp;&middot;&nbsp;<a href="#What is the file Config.backup.inc for?">What is the file Config.backup.inc for?</a><br>&nbsp;&middot;&nbsp;<a href="#What about HTML tags ADDRESS, CODE, CITE, Q, etc?">What about HTML tags ADDRESS, CODE, CITE, Q, etc?</a><br>&nbsp;&middot;&nbsp;<a href="#Is the generated HTML in compliance to the W3C?">Is the generated HTML in compliance to the W3C?</a><br>&nbsp;&middot;&nbsp;<a href="#What about XHTML?">What about XHTML?</a><br>&nbsp;&middot;&nbsp;<a href="#Is a wipe out attack possible on an open PWP?">Is a wipe out attack possible on an open PWP?</a><br>&nbsp;&middot;&nbsp;<a href="#What is the cache for?">What is the cache for?</a><br><hr size="1" noshade><!--content begin-->
+<a name="How safe are the text translations?"><h2>How safe are the text translations?</h2></a>
+Translation will work well on ordinary text. Problems might arise if you have tricky text, e.g. with formulas in it - I cannot test every constellation of characters. In most cases you will be able to use a different formatting rule. Maybe you can replace '' by / or vice versa? This is especially necessary when you want to format an hyperlink italic; the :// will interfer with the '/' italic syntax. And stuff like C++ should be made fat by using the ''' syntax.
+<p>
+Just tell me if there are several things not working as expected!
+<p>
+<a name="My text got cut! I lost data!"><h2>My text got cut! I lost data!</h2></a>
+<p>
+You have probably allowed HTML tags defined in your config file:
+<pre>$this-&gt;mProp['AllowedTags'] = '&lt;b&gt;&lt;i&gt;';</pre>
+and somewhere in your text are character combinations like '&lt;0'. The 'AllowedTags' setting unequal to an empty string '' will invoke the strip_tags() function. This function removes all unknown tags, and '&lt;0' is like the start of a very long unknown tag. Your text gets truncated. Consider writing ' &lt; 0' with spaces around the less than sign - PWP takes care of this case (Only a single ' &lt; ' or ' &gt; '!). Or set 'AllowedTags' to an empty string '' and forget about HTML tags in your input box.
+<p>
+<a name="What about cookies, sessions and user tracking?"><h2>What about cookies, sessions and user tracking?</h2></a>
+<p>
+There are <strong>no cookies</strong> being set from PWP. Because PWP doesn't support the concept of page ownership, there are no sessions required. PWP doesn't log any user action, your webserver will do this for you.
+<p>
+<a name="Does PWP work with SSL proxys?"><h2>Does PWP work with SSL proxys?</h2></a>
+<strong>Yes.</strong> Some provider offer a proxy server for SSL access to their customers webpages. As PWP will work within any subdirectory, a proxy SSL solution is not a problem.
+<p>
+<a name="Can I rename run.php?"><h2>Can I rename run.php?</h2></a>
+<strong>Yes.</strong> The script name is only referenced by a server provided variable; its name is not hard coded. Make sure to adapt the HTML forwarding in the  corresponding 'index.html'.
+<p>
+<a name="The shown Wiki page size is wrong!"><h2>The shown Wiki page size is wrong!</h2></a>
+The size of the Wiki pages shown in several lists (index, etc.) doesn't match the HTML file size and the size of the Wiki mark-up in the edit box. What's wrong there?
+<p>
+The size of Wiki pages as displayed in list views, etc. is <em>the size of your data files at server side</em>. The data file at server side will be a little bit bigger than the amount of data you wrote into the edit box due to some server side formatting operations.
+<p>
+Wiki pages get much larger when they are converted into HTML: All variables are replaced by their values. The HTML mark-up requires more characters than the Wiki mark-up. You can roughly add 20..25%. And a HTML page gets composed with header and footer.
+<p>
+The size printed in list views should give you a rough idea about how much information are stored in a certain Wiki page. In most cases you have to cope with simple numbers form 0..9 KB.
+<p>
+The size of uploaded files is always the real and right size.
+<p>
+<a name="What is the file Config.backup.inc for?"><h2>What is the file Config.backup.inc for?</h2></a>
+This file gets created or replaced every time you save variables or InterWiki link targets via web interface. It contains the contents of your Config.inc before the save action took place.
+<p>
+<a name="What about HTML tags ADDRESS, CODE, CITE, Q, etc?"><h2>What about HTML tags ADDRESS, CODE, CITE, Q, etc?</h2></a>
+The answer is <strong>KISS</strong>: Keep it simple and stupid. The idea behind a Wiki is not to provide a complete replacement for HTML mark-up. It should be simple community tool - and PWP has more text rules than I intended to give it. Adding further rules would require the WikiEngine to do more translations which would consume more time on each  request and slow  down PWP.
+<p>
+<a name="Is the generated HTML in compliance to the W3C?"><h2>Is the generated HTML in compliance to the W3C?</h2></a>
+The short answer: <strong>95%</strong>. The longer explanation:
+<p>
+PWP is targeting towards HTML 4.0.
+<p>
+<em>Blockquote</em> is recognized by the W3C as a way of indenting text but style sheets are recommended. The original meaning of BLOCKQUOTE is, surprise, a long quote. PWP uses BLOCKQUOTE to indent text. This might be changed in later releases but it will not collide with your existing Wiki pages in any way.
+<p>
+<em>Underline</em> is deprecated, but supported by PWP since most Wiki solutions use this, too. Underline might become replaced by a style sheet solution in a later release. This will not collide with your existing Wiki pages in any way.
+<p>
+PWP does not check for wrong user input, like ' + / ' closed wrongly ' + / '.
+<p>
+<a name="What about XHTML?"><h2>What about XHTML?</h2></a>
+PWP cannot generate a well formed XML document structure. It uses only opening tags for paragrapghs and list items, which is allowed by the HTML 4.0 specification but violates the XHTML specification.
+<p>
+<a name="Is a wipe out attack possible on an open PWP?"><h2>Is a wipe out attack possible on an open PWP?</h2></a>
+The Wiki pages and uploaded files might become deleted into the trash bin. But they can be restored from there. The older revisions won't get lost either. Physically, a file can be deleted from trash or from the history if it has been a certain time of X days (configurable) in the trash bin or in the history.
+<p>
+<a name="What is the cache for?"><h2>What is the cache for?</h2></a>
+As of PWP 1.5.0, it stores lists of Wiki pages and uploaded files as well as file name search results and full text search results. Wiki pages itself are not cached any longer; the performance benefit was too low.<!--content end-->
+
+</div>	</div>
+	<p>&nbsp;&nbsp;&nbsp;<small>(Powered by <a href='http://www.lars-ackermann.de/wiki/static'>PWP Version 1-5-0</a>)</small></p>
+</body>
+</html>
