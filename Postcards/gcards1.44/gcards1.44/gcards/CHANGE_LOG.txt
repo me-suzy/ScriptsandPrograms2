@@ -1,0 +1,78 @@
+CHANGES......
+
+
+1.44
+
+	Fixed the problem with the news section still using the HTMLArea instead of FCKeditor
+	Upgraded to FCKeditor 2RC3
+	Fixed some problems where slashes might be removed when magic quotes is disabled
+
+1.43
+
+	Fixed a problem in the installer where the music column wasn't being added for new installs
+	Replaced HTMLArea with FCKeditor - now WYSIWYG editing is available in Mozilla based browsers as well - tested with IE and Firefox.  Smilies are integrated in the editor and can be modified by changing 'FCKConfig.SmileyImages' in the inc/FCKeditor/fckconfig.js file
+
+1.42
+
+	Changes to make gCards work better with spam filters:
+		If sending a card to one user, the email address will be in the 'To' field instead of the 'BCC' field
+		When sending to multiple recipients the senders email gets put in the 'To' field
+	Fixed a bug with the stats on index.php
+	Added some error messaging when language files cannot be found
+	Security fix to prevent cross-site scripting vulnerability on the showcard.php page	
+
+1.41
+
+	Merged preview.php and sendcard.php into processCompose to workaround problems on certain systems
+	Fixed bug in Statistics page where JavaScript error would be shown when viewing cards
+	Email recipients are all BCC'd instead of being put in the To field
+
+1.4
+
+	Added background music option - admins can now upload midi files and users can choose which sound to attach to card
+	Security fix to prevent malicious users from sending cards with outrageous amounts of text
+	Many changes to processCompose.php in effort to fix headers already sent bug
+	Fixed bug where 'reply to' feature wouldn't work if user chose a card not on first page
+	Language file updates: $preview05-06, $compose09, $admin19, $music01-07
+	Changes to database schema to support background music require you to run setup.php
+
+1.31
+
+	Fixed bug where editCard.php would not load correctly
+	Fixed bug where user couldn't change language on getCard.php
+	Updated email validation so that domains that end in 4 letters like .info work
+	Modified UIfunctions.php to support languages that read right to left
+	Added optional variable to language file to handle the text direction
+	
+
+1.3
+
+	Added statistics page accessible via Administration Console
+	Added Localization - change the current language on the fly.  Choose the flag in the top right to pick your language.
+	Added option to send card without previewing it
+	gCards now requires PHP 4.1.0 or greater - switched to autoglobals for post, get, session, server, and files variables.
+	Created pagebuilder class (UIFunctions.php) - easier to modify and maintain headers and footers
+	Major refactoring of entire codebase for greater code reuse and efficiency
+	Added new variable in config.php file - $dateFormat allows you to specify the date format for the news section
+	Fixed a bug where the variable $deleteDays in the config.php wasn't working
+	Updated so that gCards runs fine when error notices are enabled
+	Updated ADODB database abstraction class from 3.0 to 3.6.  Changed directory name from inc/adodb300 to inc/adodb.
+	Updated PHPMailer from version 1.65 to 1.7
+	Language files must now be placed in inc/lang directory 
+	Changes to language file: $nav13, $upload09-19, $admin17-18, $stat01-10.  Also, you must switch the double quotes (") to single quotes (') in $getcard02 and $getcard03
+	
+
+1.21
+	Replaced mail() function with PHPMailer script for enhanced email and SMTP
+
+1.2
+
+	Added dropShadow visual option for cards
+	Added post-card look that requires dropShadow option
+	Added template files (photoshop and gif) for creating dropshadow images, smilies, or stamps
+
+1.13
+	Added support for magic_quotes_gpc = off
+	Added number of cards in category in category maintenance screen
+	Added reply to sender feature
+	2 changes to language file - added getcard03 and cat03
