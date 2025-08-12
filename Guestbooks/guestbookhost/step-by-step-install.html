@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>GuestBookHost - Step-By-Step Installation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<p><b><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">GuestBookHost 
+  Installation Instructions</font></b></p>
+<p><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">Okay, let's just 
+  dive right in. The first thing you'll need to do is configure your MySQL settings. 
+  Open <b>config.php</b> in Notepad or another text editor. The first 4 variables 
+  ($sqlhost, $sqllogin, $sqlpass, $sqldb) need to be configured with your MySQL 
+  settings. These settings are your MySQL Hostname, Username, Password, and Database 
+  Name. The other three variables are the table names to be created, and can be 
+  left as they are unless you really need to change them.</font></p>
+<p><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">Save <b>config.php</b> 
+  and upload it to the root of your website. Also upload <b>create_tables.php</b> 
+  to the same place. Now access your website through your browser, and access 
+  /create_tables.php. You'll be prompted with further instructions from there.</font></p>
+<p><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">Now, let's open 
+  <b>config.php</b> again. The next set of variables to be edit, are right under 
+  the MySQL settings.<b><br>
+  $adminpass</b> needs to be set to a password you'll remember. This is used when 
+  accessing admin.php.<b><br>
+  $signup_filename, $edit_filename</b> and <b>$guestbook_filename</b> should be 
+  left as they are unless you really need to rename signup.php, edit.php and gb.php.<b><br>
+  $gbtitle</b> will be the name of your guestbook service. You may call it GuestBookHost 
+  if you wish, or you may use the name of your own existing website.<br>
+  <b>$gburl</b> should point to the URL where GuestBookHost is located. This is 
+  used in several places in the script, an is given to a guestbook owner in their 
+  HTML code when they sign up.<b><br>
+  $purgedays</b> -- This is for the Inactive Account Pruning feature. The script 
+  can automatically delete accounts that have never had any posts in the last 
+  xx days.<br>
+  <b>$gb_popwin_width / $gb_popwin_height</b> - The script gives javascript code 
+  to the user for displaying their guestbook on their site. These settings specify 
+  the window size when displaying their guestbook. These settings are also used 
+  in the Member Area when previewing the guestbook.<br>
+  <br>
+  <b>Appearance and Design Variables<br>
+  </b>These settings are used to configure how GuestBookHost will look, and apply 
+  mostly only to the signup and edit pages. The first two, <b>$headerfile</b> 
+  and <b>$footerfile</b> will hold the HTML that appears at the top and bottom 
+  (and sides, if you're using tables) of the signup.php and edit.php pages. Some 
+  code has already been put into these files, and you may change them any way 
+  you'd like, just keep one thing in mind: Notice the PHP code between &lt;title&gt; 
+  and &lt;/title&gt;. That code needs to appear in your template in order for 
+  the page titles to be automatically inserted. The rest of the variables in this 
+  section decide the font name/size, table cell text color, background color, 
+  table properties, page titles, button texts, etc. The default settings should 
+  be okay, but I would suggest you change the colors to anything you'd like. ;)<br>
+  <br>
+  </font><b><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">The Example 
+  index.php Page<br>
+  </font></b><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">An example 
+  main page has been included. This page is JUST AN EXAMPLE of how you could design 
+  your main page for this service, and how to include the create links to the 
+  edit and signup pages. Again, keep in mind, this file is just an example, however 
+  you may use it and customize it in an HTML editor if you wish. :)</font></p>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">Multiple Post 
+  Blocking<br>
+  </font></b><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">This 
+  feature won't take long to explain. The script doesn't allow a poster to post 
+  a message on a guestbook more than once a day <i>per guestbook</i>. They can 
+  however post on more than one guestbook in a day. The script matches the poster's 
+  IP address against posts made that day to that guestbook, instead of using cookies, 
+  which can be circumvented. :)<br>
+  <br>
+  Now upload the rest of the filesd to your site. Don't upload this help file 
+  or create_tables.php, those aren't needed. Once you've finished, you're ready 
+  to start using GuestBookHost. :)</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="-1">Questions or Comments? 
+  <a href="http://www.nukedweb.com/board/forumdisplay.php?s=&forumid=21" target="other">NukedWeb 
+  PHP Scripts Messageboard</a></font></p>
+</body>
+</html>
