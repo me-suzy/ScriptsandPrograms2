@@ -1,0 +1,92 @@
+
+
+NOTE:   These instructions are for v4.0.x
+
+
+------------------
+SETUP.CGI SETTINGS
+------------------
+
+Overall Sites To List:
+50
+
+Split List At:
+25
+
+Break List At:
+5,10,15,20,30,35,40,45
+
+Maximum Banner Height:
+150
+
+Maximum Banner Width:
+100
+
+
+All of the other settings are up to you, and of course you can adjust the
+ones above if you want to display more or fewer sites.  The setup above will
+generate two pages of 25 friends each, with 5 friends in each row.
+
+
+---------------
+LIST BREAK HTML
+---------------
+</tr>
+<tr>
+
+
+Use the above HTML for all of your list breaks.  Basically what this does is
+start a new row of friends.  Remember, if you add more list breaks at a future
+time, you will have to setup this HTML for each of the new ones you create.
+
+
+-----------
+HEADER HTML
+-----------
+<html>
+  <head>
+    <title>Friends Page</title>
+  </head>
+<body bgcolor="#ffffff" text="#000000" link="#000000" vlink="#000000" alink="#afbbee">
+                            
+<div align="center">
+
+<font size="2" face="Arial">
+
+<b><font size="6">Friends Page</font></b>
+   
+<br><br>
+
+</font>
+
+<table width="600" border="0" cellpadding="3" cellspacing="0">
+<tr>
+
+
+
+-------------
+TEMPLATE HTML
+-------------
+<td align="center" width="100">
+<font size="2" face="arial">
+<a href="#%OUT_URL%#" target="_blank">
+#%BANNER_HTML%#
+<b>#%TITLE%#</b></a>
+</font>
+</td>
+
+
+
+-----------
+FOOTER HTML
+-----------
+</tr>
+</table>
+
+<br><br>
+                   
+<font face="Verdana" size="1">
+#%MEMBERS%# Sites In Our Database<br>
+Last Updated: #%LAST_RERANK%#
+</font>
+
