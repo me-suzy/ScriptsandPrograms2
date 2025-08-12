@@ -1,0 +1,33 @@
+<script>
+
+
+gradualfadeObjects = new Object();
+gradualfadeTimers = new Object();
+
+
+function gradualfade(object, final, speed, change){
+if (!document.all)
+return
+    if (object != "[object]"){
+        setTimeout("gradualfade("+object+","+final+","+speed+","+change+")",0);
+        return;
+    }
+        
+    clearTimeout(gradualfadeTimers[object.sourceIndex]);
+    
+    diff = final-object.filters.alpha.opacity;
+    direction = 1;
+    if (object.filters.alpha.opacity > final){
+        direction = -1;
+    }
+    change=Math.min(direction*diff,change);
+    object.filters.alpha.opacity+=direction*change;
+
+    if (object.filters.alpha.opacity != final){
+        gradualfadeObjects[object.sourceIndex]=object;
+        gradualfadeTimers[object.sourceIndex]=setTimeout("gradualfade(gradualfadeObjects["+object.sourceIndex+"],"+final+","+speed+","+change+")",speed);
+        gradualfadeTimers[object.sourceIndex]=setTimeout("gradualfade(gradualfadeObjects["+object.sourceIndex+"],"+final+","+speed+","+change+")",speed);
+    }
+}
+
+</script>
