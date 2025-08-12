@@ -1,0 +1,46 @@
+<Br />
+<h3 style="color:{$msg_color}">{$msg}</h3>
+<Br />
+<div style="clear:both">
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="install">
+<table width="100%">
+<tr>
+	<th colspan="2">TimeSheet Admin Setup</th>
+</tr>
+<tr>
+	<td>Firstname</td>
+	<td><input type="text" name="form[firstname]" value="{$smarty.session.install.form.firstname}"></td>
+</tr>
+<tr>
+	<td>Lastname</td>
+	<td><input type="text" name="form[lastname]" value="{$smarty.session.install.form.lastname}"></td>
+</tr>
+<tr>
+	<td>Email</td>
+	<td><input type="text" name="form[email]" value="{$smarty.session.install.form.email}"></td>
+</tr>
+<tr>
+	<td>Password</td>
+	<td><input type="text" name="form[password]" value="{$smarty.session.install.form.password}"></td>
+</tr>
+<tr>
+	<th colspan="2">Setup Configuration</th>
+</tr>
+{foreach from=$config key=confKey item=value}
+<tr>
+	<td>{$confKey}</td>
+	<td>
+		<input type="text" name="conf[{$confKey}]" value="{$value|htmlentities}"></td>
+{/foreach}
+<tr>
+	<td colspan="2" align="right"><input type="submit" class="btn" value="Create Admin User"></td>
+</tr>
+</table>
+</form>
+</div>
+{literal}
+<script>
+	document.forms[0].elements[1].focus();
+</script>
+{/literal}
