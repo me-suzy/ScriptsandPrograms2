@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class spell_checker</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class spell_checker</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Simple PHP MySQL Spell checker class.</p>
+<p class="description"><p>MySQL SQL to make the word table:
+<pre>
+CREATE TABLE `words` (
+   `WORD` char(50) NOT NULL default '',
+   PRIMARY KEY  (`WORD`)
+  ) TYPE=MyISAM;</pre><br><br>
+You can download the dictionary:
+<a href="http://www.free-php.org.uk/spellchecker/cgi-bin/dictionary.txt.gz">TAR.GZ version</a>
+<a href="http://www.free-php.org.uk/spellchecker/cgi-bin/dictionary.txt.zip">ZIP version</a>
+</p></p>
+	<ul class="tags">
+				<li><span class="field">copyright:</span> Copyright (C) 2005, Sam Clarke.</li>
+				<li><span class="field">example:</span> <a href="../__examplesource/exsource_ree-php.org.uk_public_html_documentor__example.php_5e65fee486ed73e9ae36e577f6d3ec5c.html">example</a></li>
+				<li><span class="field">version:</span> 1.0</li>
+				<li><span class="field">author:</span> Sam Clarke &lt;<a href="mailto:admin@free-php.org.uk">admin@free-php.org.uk</a>&gt;</li>
+				<li><span class="field">license:</span> <a href="http://opensource.org/licenses/gpl-license.php">GNU Public License</a></li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_documentor__spell-checker-class_php.html">/spell-checker-class.php</a> (line <span class="field">33</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#add_word_to_ignore" title="details" class="method-name">add_word_to_ignore</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#check_word" title="details" class="method-name">check_word</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$word</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#close_db" title="details" class="method-name">close_db</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#db_connect" title="details" class="method-name">db_connect</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#get_all_wrong_words" title="details" class="method-name">get_all_wrong_words</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#get_next_wrong_word" title="details" class="method-name">get_next_wrong_word</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">bool</span>
+										<a href="#get_words_from_str" title="details" class="method-name">get_words_from_str</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#replace_all" title="details" class="method-name">replace_all</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$rf</span> = <span class="var-default">'<span style="color:#FF0000">'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$re</span> = <span class="var-default">'</span>'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#reset_get_next_wrong_word" title="details" class="method-name">reset_get_next_wrong_word</a>
+										()
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#set_mysql_info" title="details" class="method-name">set_mysql_info</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$user</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$pass</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$db</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$table</span> = <span class="var-default">'words'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$host</span> = <span class="var-default">'localhost'</span>])
+									</div>
+								
+				<div class="method-definition">
+											<span class="method-result">mixed</span>
+										<a href="#suggest" title="details" class="method-name">suggest</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$word</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$max</span> = <span class="var-default">20</span>])
+									</div>
+							</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodadd_word_to_ignore" id="add_word_to_ignore"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">add_word_to_ignore</span> (line <span class="line-number">317</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds a word to the ignore array.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			add_word_to_ignore
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$word</span><span class="var-description">: the word to ignore</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodcheck_word" id="check_word"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">check_word</span> (line <span class="line-number">162</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Checks if a word is in the dictionary table</p>
+<p class="description"><p>Checks if a word is in the MySQL dictionary table.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> returns true if it can match some words or it returns false</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			check_word
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$word</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$word</span><span class="var-description">: the word to check</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodclose_db" id="close_db"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">close_db</span> (line <span class="line-number">124</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Closes the link to MySQL</p>
+<p class="description"><p>Closes the link to MySQL that was opened by db_connect()</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			close_db
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methoddb_connect" id="db_connect"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">db_connect</span> (line <span class="line-number">103</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">connects to the db and selects the db</p>
+<p class="description"><p>Opens a connection with MySQL and selects the database.  You must call set_mysql_info() first!</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> returns true if can open a connection and sellect the db or it returns false</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			db_connect
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodget_all_wrong_words" id="get_all_wrong_words"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_all_wrong_words</span> (line <span class="line-number">259</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets all the worng words and puts them in an array.</p>
+<p class="description"><p>Gets all the worng words from the array of words made  by get_words_from_str() and returns them in an array.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			get_all_wrong_words
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodget_next_wrong_word" id="get_next_wrong_word"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_next_wrong_word</span> (line <span class="line-number">193</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets the next wrong word</p>
+<p class="description"><p>Gets the next wrong word from the array of words made  by get_words_from_str().</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> returns the wrong word or returns false if there are no more words to check</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			get_next_wrong_word
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodget_words_from_str" id="get_words_from_str"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">get_words_from_str</span> (line <span class="line-number">139</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">matches all the words and puts them in the word array</p>
+<p class="description"><p>Matches all the words in the string it is passed  and puts them in the word array ready for checking.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> returns true if it can match some words or it returns false</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">bool</span>
+		<span class="method-name">
+			get_words_from_str
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: // the string to get the words from</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodreplace_all" id="replace_all"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">replace_all</span> (line <span class="line-number">295</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Replaces all the words in str.</p>
+<p class="description"><p>Replaces all the words in str from the array of words made  by get_words_from_str() that this function calls. It  will add what ever you put as $rf at the front of of all the  wrong words and add what ever you put as $re to the end of  them so you could make $rf = '&lt;span style=&quot;color:#FF0000&quot;&gt;'  and $re = '&lt;/span&gt;' so that people can see the spelling mistakes.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> returns the string with the wring wirds replaced</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			replace_all
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$str</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$rf</span> = <span class="var-default">'<span style="color:#FF0000">'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$re</span> = <span class="var-default">'</span>'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$str</span><span class="var-description">: the string you want the wrong words replaced in</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$rf</span><span class="var-description">: what you want to put infront of the wrong words</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$re</span><span class="var-description">: what you want to put at the end of the wrong words</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodreset_get_next_wrong_word" id="reset_get_next_wrong_word"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">reset_get_next_wrong_word</span> (line <span class="line-number">223</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Resets the place for get_next_wrong_word()</p>
+<p class="description"><p>Resets the place for get_next_wrong_word() so it starts  at the begining.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			reset_get_next_wrong_word
+		</span>
+				()
+			</div>
+	
+		
+		
+	</div>
+<a name="methodset_mysql_info" id="set_mysql_info"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">set_mysql_info</span> (line <span class="line-number">241</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the MySQL infomation</p>
+<p class="description"><p>Sets the MySQL infomation used in this spellcheck class.</p></p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_mysql_info
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$user</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$pass</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$db</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$table</span> = <span class="var-default">'words'</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$host</span> = <span class="var-default">'localhost'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$user</span><span class="var-description">: The username to use for MySQL</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$pass</span><span class="var-description">: The password to use for MySQL</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$db</span><span class="var-description">: The db name to use for MySQL</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$table</span><span class="var-description">: The MySQL table name with the spellcheck words in.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$host</span><span class="var-description">: The MySQL hostname to use</span>			</li>
+				</ul>
+		
+		
+	</div>
+<a name="methodsuggest" id="suggest"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">suggest</span> (line <span class="line-number">335</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Finds any words with the same soundex as the word and returns them  in an array.</p>
+<p class="description"><p>Finds any words with the same soundex as the word and returns them  in an array it takes a secound param the limits how many results are  returned.</p></p>
+	<ul class="tags">
+				<li><span class="field">return:</span> returns flase if there was an error searching or returns an array  of words that have the same soundex of $word</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">mixed</span>
+		<span class="method-name">
+			suggest
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$word</span>, [<span class="var-type">mixed</span>&nbsp;<span class="var-name">$max</span> = <span class="var-default">20</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$word</span><span class="var-description">: word to find words with the same soundex of</span>			</li>
+				</ul>
+		
+		
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 01 Oct 2005 20:44:16 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0RC3</a>
+	</p>
+	</div></body>
+</html>
