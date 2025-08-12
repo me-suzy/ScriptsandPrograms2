@@ -1,0 +1,850 @@
+<HTML>
+<HEAD>
+<TITLE>ClickseeAdnow Version 2.0</TITLE>
+</HEAD>
+<BODY vLink=#800080 link=#0000ff bgcolor="#ffffff" text="#000000">
+<P align="center"><TT>README.HTM VERSION 2.2.7 |</TT>&nbsp; <TT>April 19, 2002</TT></P>
+<p align="center"><font size="2" face="Arial">Please be advised that you must keep your order receipt in order to receive future
+update.</font></p>
+<div align="center">
+  <center>
+  <table border="1" cellpadding="2" cellspacing="0" width="100%" bgcolor="#0066cc">
+    <tr>
+      <td width="100%" align="middle">
+        <h1><font color="#ffffff" face="Arial">Clicksee Adnow Version 2.2.7</font></h1>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="0" cellpadding="12" cellspacing="12" width="100%">
+    <tr>
+      <td width="50%" valign="top">
+    <p align="left"><b><font face="Arial" size="2">Minimum Systems Requirements</font></b>
+      <UL>
+        <LI><font face="Arial" size="2">Windows NT 4.0/Windows 2000.</font> 
+        <LI><font face="Arial" size="2">IIS 3.0 or later</font> 
+        <LI><font face="Arial" size="2">ODBC for MS Access or MS SQL database</font></LI></UL>
+      </td>
+      <td width="50%" valign="top">
+    <p align="left"><b><font face="Arial" size="2">Minimum Web Browser Requirements</font></b>
+      <UL>
+        <LI><font face="Arial" size="2">Internet Explorer Version 4.0 (or newer).</font>  
+        <LI><font face="Arial" size="2">Netscape Navigator Version 4.0 (or newer).</font> </LI></UL>
+        </td>
+    </tr>
+	<tr>
+		<td colspan=2><p><font face="Arial" size="2">Note: If you would like to test on your local server, you must have Personal Web Server and ODBC for Microsoft Access installed on your computer.</font></p>
+		</td>
+	</tr>
+</table>
+  </center>
+</div>
+
+<div align="center">
+<table border="1">
+	<tr>
+		<td><font face="Arial" size="2"><b>UPGRADE USERS</b></font></td>
+	</tr>
+	<tr>
+		<td>
+		<p><font face="Arial" size="2">If you are upgrading from version 2.x, please follow the instruction in version.txt</font></p>
+		<p><font face="Arial" size="2">
+		If you are upgrading from version 1.0, please follow the instructions for installation in Part I, noting the only change in Part 1 Section 2.1 in the <A href="#upgrade" >Note to Upgrade Users</A>.</font></p>
+		</td>
+	</tr>
+</table>
+</div>
+
+<p>&nbsp;</p>
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#99ccff">
+  <tr>
+    <td width="100%">
+<h2><a name=top><font face="Arial">PART I - INSTALLATION</font></a>
+
+</h2>
+    </td>
+  </tr>
+</table>
+    <p align="left"><font face="Arial"><b>1. </b><a name=step1><B>UNZIP THE <I>adnow2.zip</I> AND EXTRACT TO THE HARD
+    DRIVE
+    </B></a>
+    </font>
+<p align="left"><font size="2" face="Arial">Note: Make you extract the zip file with the unzip option that maintains the integrity of the folders in the zipped archive. For example: if you are using WinZip, you should check the <i>Use folder names</i> box. WinZip will use folder names (also known as path names) stored in the archive. If you don't do this, all files will be extracted to the same
+folder.</font><p>
+ <font face="Arial" size="2">
+ Once extracted, a directory <i>AdNow2</i> is created and the folders created within the <i>AdNow2</i> directory are:<br>
+ Admanager<br>
+ CreateDB<br>
+ Customer<br>
+ Data_Connection<br>
+ Images2<br>
+ Redirect</font><p><font face="Arial" size="2">There are also readme.htm (this file),
+license.txt, version.txt, and
+adnow.mdb outside <i>Adnow2</i>
+directory.</font>
+<p>
+<p><font face="Arial"><b>2. </b><a name=step2><B>CREATING THE DATABASE</B></a>
+</font>
+<blockquote>
+  <p><font face="Arial"><b>
+2.1 MS Access Database Users:</b><br><font size="2" face="Arial">Please upload the file <i>Adnow.mdb</i>
+  (provided in the zip) to a server. This Microsoft Access database file contains ALL the necessary statistical and advertising data. You don't want anyone to view, have access or download it from your server.</font></font>
+  <p>
+<font size="2" face="Arial">
+At this point, you basically have three alternatives to ensure nobody has access to this file.</font></p>
+  <p><font size="2" face="Arial"> We would recommend you to FTP the file <I>adnow.mdb</I> to a secure directory. Ideally it should be somewhere under the root directory that is not accessible from the Web.</font><p>
+<font size="2" face="Arial">
+ You can use Microsoft FrontPage 2000 to upload the <I>adnow.mdb</I> file by using the "import" function. FrontPage will ask you "Would you like to create a new database connection for this imported file?".&nbsp; Choose "Yes" and let FrontPage put the file in the <I>fpdb</I> directory.</font><p>
+<font size="2" face="Arial">
+ If you are unable to place the file in a directory that is not accessible
+from the web, or use MS FrontPage to upload the file, please ask your web host
+or your server administrator for the secure directory.</font><p>
+<font face="Arial">
+<b><a name=upgrade>Note to Upgrade</a>
+  Users: </b><font size="2">If you are upgrading from Clicksee Adnow Version 1.0 and would like
+  to carry the advertising data to Version 2.0, please see <A href="#Appendix A">
+  Appendix A</A> on how to upgrade the database from Version 1.0 to Version 2.&nbsp;<br>
+<i>&gt; UPGRADERS <A href="#top" >Start Installation</A>
+</i></font></font>
+  <p><font face="Arial">
+<b>2.2 MS SQL Database Users:</b><br> <font size="2"> If you are going to use Microsoft SQL 7.0
+database. You will have to create a blank database on your web server and save it as <i>AdNowSQL</i>. (or save it as anything you like; just be aware that we shall reference this database as <i>AdNowSQL</i>.) In order to set up
+Clicksee Adnow Version2, you need the following:<br>
+ USERNAME<br>
+ PASSWORD<br>
+ DATABASE NAME<br>
+    Read <a href="#step6">Step 6</a> for CONFIGURE THE MS SQL DATABASE</font></font></p>
+</blockquote>
+<p>&nbsp;</p>
+
+<p><font face="Arial"><b>3. DSN OR DSNLess?</b></font></p>
+
+<p><font face="Arial"><b>3.1 DSNLess</b></font><br>
+<font face="Arial" size="2">If you know the local path of your server, we recommend you to use the DSNLess method. You can skip to <A href="#DSN_Connection">step 4</A>.</font></p>
+
+<p><font face="Arial"><b>3.2 DSN (setup an ODBC system data source )</b></font><br>
+<font face="Arial" size="2">If you do not want to use the DSNLess, you will need to set up the DSN (data source name). You can name it anything you like. If you rent a web space from a web hosting provider, just tell them to setup an ODBC system data source for you.
+Some web hosts offer online utility that allows you to setup an ODBC by
+yourself. If you maintain your own server, you can do it yourself. Please see <A href="#Appendix B">Appendix B</A> on how to setup an ODBC data source from the Windows Control Panel.</font></p>
+
+<P>&nbsp;</P>
+<p><font face="Arial"><b>4. </b><a name="DSN_Connection"><b>SET UP DSN_Connection.asp FILE</b></a>
+</font>
+<blockquote>
+  <p><b><font face="Arial">4.1 SETTING THE DATA SOURCE NAME</font></b></p>
+<p><font face="Arial" size="2">Open the file <i>DSN_Connection.asp</i>  (located in <I>Data_Connection</I> folder) with any HTML/Text Editor. (Ex.
+  NotePad) and look under the topic "SET UP DATABASE CONNECTION"
+you will find 4 blocks of codes: DSN MS Access, DSN MS SQL, DSNLess MS Access,
+and DSNLess MS SQL.</font></p>
+<p><font face="Arial" size="2">You will be editing only ONE block of code.</font></p>
+</blockquote>
+
+<table border=1>
+<tr>
+    <td nowrap style="FONT-FAMILY: Courier New; FONT-SIZE: 9pt"> 
+      <p> <br>
+        '******** DSN MS Access ********<br>
+        'Const DSNad=""<br>
+        'Const UID=""<br>
+        'Const PWD=""<br>
+        '*******************************<br>
+        <br>
+        '******** DSN MS SQL ***********<br>
+        'Const DSNad=""<br>
+        'Const UID="your_username"<br>
+        'Const PWD="your_password"<br>
+        '*******************************<br>
+        <br>
+        '***** DSNLess MS Access *******<br>
+         'ConstDSNad="driver={Microsoft Access Driver (*.mdb)};DBQ=c:\yourdirectory\adnow2\csdb\adnow.mdb;"<br>
+        'Const UID=""<br>
+        'Const PWD=""<br>
+        '*******************************<br>
+        <br>
+        '***** DSNLess MS SQL **********<br>
+        'ConstDSNad="driver={SQL Server};server=SQLservername;uid=SQLusername;pwd=SQLpassword;database=SQLdatabasename;"<br>
+        'Const UID=""<br>
+        'Const PWD=""<br>
+        '*******************************</p>
+</td>
+</tr>
+</table>	
+
+<blockquote>
+
+<p>
+<font face="Arial" size="2">
+Notice that all the lines are commented out with a single quote (').&nbsp; The <b><i>'</i></b> signifies that the line of code is NOT read and processed by the server. You will have to decide which of the 4 categories your particular situation fits within, then fill in your required information, uncomment your selected block and DO NOT uncomment the other 3 blocks.</font>
+</p>
+<p><font face="Arial" size="2">Please select ONE category that fit your situation.</font></p>
+  <blockquote>
+  <p><font face="Arial"><b>4.1.1 DSN with Microsoft Access database<br>
+  </b><font size="2">Use this option if you setup an ODBC system data source in the previous step.</font></font></p>
+<p><font face="Arial" size="2">*** Edit the block <i>DSN MS Access</i> as follows. ***</font></p>
+
+<ul>
+<li><font face="Arial" size="2">Type the Data Source Name within the quote <i>Const DSNad</i>.
+For example, Const DSNad="ClickseeAdnow2"&nbsp;This is the data source name that you set up in the previous step.<br>
+NOTE: You can name it anything you want using alphabet and numbers ONLY. </font>
+<font face="Arial" size="2">
+&nbsp;&nbsp;</font><li><font face="Arial" size="2">Remove the single quote mark in front of Const DSNad, Const UID, and Const
+  PWD.</font></li>
+</ul>
+<p><font face="Arial" size="2">You will get something like this</font></p>
+  </blockquote>
+</blockquote>
+<div align="center">
+  <center>
+  <table border="0" cellpadding="2" cellspacing="0">
+    <tr>
+      <td nowrap>
+<TT><font color="#0000cc">'******** DSN MS Access ********<br>
+Const DSNad="ClickseeAdnow2"<br>
+Const UID=""<br>
+Const PWD=""<br>
+	'*******************************</font></TT>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<blockquote>
+&nbsp;
+<blockquote>
+<p><font face="Arial"><b>4.1.2 DSN with Microsoft SQL database<br>
+</b><font size="2">Use this option if you setup an ODBC system data source in the previous step.</font></font></p>
+<p><font face="Arial" size="2">*** Edit the the block <i>DSN MS SQL</i> as follows. ***</font></p>
+<ul>
+<li><font face="Arial" size="2">Type in the Data Source Name within the quote <i>Const DSNad</i>.
+For example, Const DSNad="ClickseeAdnow2"&nbsp;<br>
+NOTE: You can name it anything you want using alphabet and numbers ONLY.</font>
+<font face="Arial" size="2">
+&nbsp;&nbsp;</font><li><font face="Arial" size="2">Type in a user name and a password that you use to access your SQL
+&nbsp;&nbsp;&nbsp;&nbsp;database in "Const UID" field and "Const PWD" field</font>
+<font face="Arial" size="2">
+&nbsp;&nbsp;</font><li><font face="Arial" size="2">Remove the single quote mark in front of Const DSNad, Const UID, and Const
+  PWD.</font></li>
+</ul>
+<p><font face="Arial" size="2">You will get something like this</font></p>
+</blockquote>
+</blockquote>
+<div align="center">
+  <center>
+  <table border="0" cellpadding="2" cellspacing="0">
+    <tr>
+      <td nowrap>
+<TT>
+<font color="#0000cc">
+	'******** DSN MS SQL ***********<br>
+Const DSNad="ClickseeAdnow2"<br>
+Const UID="John"<br>
+Const PWD="1234"<br>
+	'*******************************</font></TT>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<blockquote>
+&nbsp;
+<blockquote>
+  <p><font face="Arial"><b>4.1.3 DSNLess with Microsoft Access database<br>
+  </b><font size="2">Use this option if you know the local path of the files on the server.</font></font></p>
+<p><font face="Arial" size="2">*** Edit the the block <i>DSNLess MS Access</i> as follows. ***</font></p>
+<ul>
+<li><font face="Arial" size="2">You must change <TT><i>DBQ=c:\yourdirectory\adnow2\csdb\adnow.mdb;</i></TT> to point to your MS Access database located on the web server.<br>
+NOTE: The database should be kept in the directory that is not accessible from the web.</font>
+<font face="Arial" size="2">
+&nbsp;&nbsp;</font><li><font face="Arial" size="2">Remove the single quote mark in front of Const DSNad, Const UID, and Const
+  PWD.</font></li>
+</ul>
+<p><font face="Arial" size="2">You will get something like this</font></p>
+</blockquote>
+</blockquote>
+<div align="center">
+  <center>
+  <table border="0" cellpadding="2" cellspacing="0">
+    <tr>
+      <td nowrap>
+<TT>
+<font color="#0000cc">
+'***** DSNLess MS Access *******<br>
+ ConstDSNad="driver={Microsoft Access Driver (*.mdb)};DBQ=c:\yourdirectory\adnow2\csdb\adnow.mdb;"<br>
+Const UID=""<br>
+Const PWD=""<br>
+'*******************************</font>
+</TT>
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+<blockquote>
+&nbsp;
+<blockquote>
+<p><font face="Arial"><b><a name="4.1.4 DSNLess with Microsoft SQL database">4.1.4 DSNLess with Microsoft SQL database</a><br>
+</b><font size="2">Use this option if you know the local path of the files on the server.</font></font></p>
+<p><font face="Arial" size="2">*** Edit the the block <i>DSNLess MS SQL</i> as follows. ***</font></p>
+<ul>
+<li> <font face="Arial" size="2"> Change the <TT>server=SQLservername</TT> to the name of your SQL server.</font>
+<font face="Arial" size="2">
+&nbsp;&nbsp;</font><li> <font face="Arial" size="2"> Change the <TT>uid=SQLusername
+</TT> to your user name.</font>
+<font face="Arial" size="2">
+&nbsp;&nbsp;</font><li><font face="Arial" size="2">Change the <TT>pwd=SQLpassword </TT> to your user name.</font>
+<font face="Arial" size="2">
+&nbsp;&nbsp;</font><li><font face="Arial" size="2">Change the <TT>database=SQLdatabasename
+</TT> to the database name that you created in the previous step.</font>
+<font face="Arial" size="2">
+&nbsp;&nbsp;</font><li><font face="Arial" size="2">Remove the single quote mark in front of Const DSNad.</font></li>
+</ul>
+<p><font face="Arial" size="2">You will get something like this</font></p>
+</blockquote>
+</blockquote>
+<div align="center">
+  <center>
+  <table border="0" cellpadding="2" cellspacing="0">
+    <tr>
+        <td nowrap><TT><font color="#0000cc"> '***** DSNLess MS SQL **********<br>
+          ConstDSNad="driver={SQL Server};server=SQL01.domain.com;uid=John;pwd=1234;database=AdNowSQL;"<br>
+          Const UID=""<br>
+          Const PWD=""<br>
+          '*******************************</font> </TT></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>&nbsp;</p>
+<blockquote>
+<p><b><font face="Arial">4.2 SET UP REDIRECT CONSTANT</font></b></p>
+<p><font face="Arial" size="2">You will need to tell Clicksee Adnow where's the file CSANV2_redirect.asp
+located on your server. When you extract the <i>AdNow2.zip</i>, the <i>CSANV2_redirect.asp</i> is in the <i>redirect</i> folder.</font></p>
+<p><font face="Arial" size="2">The constant <i>Const redirectLocation=""</i> must reflect the location of your CSANV2_redirect.asp. (Ex. <i>Const
+redirectLocation="http://www.adnow.com/AdNow2/redirect/"</i>)</font></p>
+<p><font face="Arial" size="2">NOTE: End the URL with "/"</font></p>
+</blockquote>
+<p><font face="Arial">&nbsp;&nbsp;</font></p>
+<blockquote>
+  <p align="left">
+<B><font face="Arial">4.3 SET UP EMAIL CONSTANT</font></B><p align="left">
+<font face="Arial" size="2">
+If you want to use the email report function, your web server must have ASPMail
+  or ASPQMail installed on your server.&nbsp;</font>
+  <p align="left"> <font face="Arial" size="2"> Please tell Clicksee Adnow the 
+    name of the SMTP server.<br>
+    <i>Const Remote_Mail_Host=""</i> <br>
+    (Ex. <i>Const Remote_Mail_Host="mail.adnow.com"</i>)</font>
+    <!--
+  <p><font face="Arial" size="2">To activate the email report function:</font>
+  <ul>
+    <li><font face="Arial" size="2"> Open CSANV2_run.asp in adnow2/redirect folder 
+      with any HTML/Text Editor. (Ex. NotePad)</font>
+    <li><font face="Arial" size="2"> Delete the single quote in front of the sentence 
+      at line number 137 </font>
+    <table border="1" cellspacing="1" cellpadding="3">
+      <tr> 
+        <td width="20%"><font face="Arial" size="2"><b>Line number</b></font></td>
+        <td width="80%"><font face="Arial" size="2"><b>Content</b></font></td>
+      </tr>
+      <tr> 
+        <td width="20%"><font face="Arial" size="2">136</font></td>
+        <td width="80%"><font face="Arial" size="2">IF NOT ad_dataRS.EOF THEN 
+          </font></td>
+      </tr>
+      <tr> 
+        <td width="20%"><font face="Arial" size="2">137</font></td>
+        <td width="80%">&nbsp;&nbsp;&nbsp;&nbsp;<font color="#cc0000" face="Arial" size="2">'</font><font face="Arial" size="2"> 
+          Check_mailserver_By_IMP ad_dataRS("customerid"),ad_dataRS("adid") </font></td>
+      </tr>
+      <tr> 
+        <td width="20%"><font face="Arial" size="2">138</font></td>
+        <td width="80%"><font face="Arial" size="2">END IF </font></td>
+      </tr>
+    </table>
+    <li><font face="Arial" size="2"> Save the file.</font></li>
+  </ul>
+      <br>-->
+  <p align="left"><font face="Arial" size="2">NOTE: ASPMail
+  and ASPQMail are popular email components. ASPQMail is actually an advanced
+  version of ASPMail. Most web hosts have these email components. They are
+  products of Server Objects (http://www.serverobjects.com). Other email
+  components are not currently supported.</font></p>
+</blockquote>
+<P>
+<font face="Arial">
+&nbsp;</font>
+<blockquote>
+  <p align="left"><b><font face="Arial">4.4 <a name="SECURITY"> SET UP SECURITY (OPTIONAL)</a></font></b></p>
+<table border=1 cellspacing="1" cellpadding="5">
+<tr>
+<td width="35%"><center><b><font face="Arial" size="2">Constant</font></b></center></td>
+<td width="65%"><center><b><font face="Arial" size="2">Explanation</font></b></center></td>
+</tr>
+<tr>
+<td width="35%"> <i><font face="Arial" size="2">Const HostName = ""</font></i> 
+  <p><i><font face="Arial" size="2">&nbsp;</font></i></p>
+  <p><font face="Arial" size="2">The constant <i>Const HostName = ""</i>  needs to reflect the
+  address of your website. (Ex. <i>Const HostName =   "adnow.com"</i>.)</font></p>
+  <p><font face="Arial" size="2">&nbsp;</font></p></td>
+<td width="65%"><font face="Arial" size="2">This constant is used to prevent clicks from the location other
+  than your web site. For example, if someone saved your web page and the
+  banners and later click on the banner (on the same day or other days),
+  Clicksee Adnow won't record the click.</font>
+  <p><font face="Arial" size="2">This function will detect where the origin of the clicks. If your web site
+  is www.adnow.com, you should put only adnow.com into the field. This function
+  will work.</font></p>
+  <p><font face="Arial" size="2">Please be careful when using this feature. Make sure that your visitors are
+  not viewing your web site in any other names such as viewing your web site
+  using an IP address.</font></p></td>
+</tr>
+<tr>
+<td width="35%"><i><font face="Arial" size="2">Const Count_check = ""</font></i> 
+  <p><i><font face="Arial" size="2">&nbsp;</font></i></p>
+        <p><font face="Arial" size="2">(Example, <i>Const Count_check =     "30"</i>)</font></p>
+      </td>
+<td rowspan="2" width="65%"> <font face="Arial" size="2"> This security feature can protect you from someone
+  that keeps reloading your single web page in a specific amount of time.</font>
+  <p><font face="Arial" size="2">Both Constants <i>Const Count_check = "" </i>and <i>Const Time_check =         ""</i> work together and therefore you MUST place a numeric value in the
+  both fields.&nbsp;</font></p>
+  <p><font face="Arial" size="2">Here's how it works.&nbsp;</font></p>
+  <p><font face="Arial" size="2">Const Count_check = "30" and Const Time_check =                     "1"&nbsp;</font></p>
+  <p><font face="Arial" size="2">If a spammer keeps reloading your web page for more than 30 times in one
+  minute, the banners still show up, but no impressions will be recorded on the
+  31st request onward.</font></p></td>
+</tr>
+<tr>
+<td width="35%"><i><font face="Arial" size="2">Const Time_check = ""</font></i> 
+  <p>&nbsp;</p>
+        <p> <font face="Arial" size="2">(Example, <i>Const Time_check =     "1"</i>)</font></p>
+      </td>
+</tr>
+  </table>
+  <p align="left"><font face="Arial">&nbsp;</font></p>
+  <p align="left"><b><font face="Arial">4.5 SAVE DSN_Connection.asp AND EXIT</font></b></p>
+</blockquote>
+<P>
+<font face="Arial">
+&nbsp;</font>
+<p><B><font face="Arial">5. UPLOAD (FTP) CLICKSEE ADNOW TO A SERVER</font></B>
+<p><font face="Arial" size="2">FTP the whole <I>AdNow2</I>  directory to your web server.</font>
+<p><font face="Arial">&nbsp;</font></p>
+<p><b><font face="Arial"><a name="step6"></a>6. CONFIGURE THE MS SQL DATABASE 
+  </font> </b><font face="Arial">(skip if you're using Access)</font></p>
+<p><font face="Arial" size="2">The blank MS SQL database that you created in step 2.2 needs some tables
+inside. We have built the utility that will generate the tables for you.</font></p>
+<p><font face="Arial" size="2">Access your web site and point your browser to the file SQLcreate.asp
+in&nbsp; <i>createdb </i>directory. For example, <i>http://www.yourwebsite.com/adnow2/createdb/sqlcreate.asp</i>&nbsp;</font></p>
+<p><font face="Arial" size="2">You will need to enter SQL User Name, Password, Data Source Name, and File
+Name. Click "next" to finish the process.</font></p>
+<p><font face="Arial" size="2">NOTE: If you use DSNLess, you will need to enter 
+  <TT><font color="#0000cc">driver={SQL Server};server=SQL01.domain.com;uid=John;pwd=1234;database=AdNowSQL;&nbsp;</font></TT>in 
+  step <A href="#4.1.4 DSNLess with Microsoft SQL database"> 4.1.4</A> into the 
+  "Data Source Name" field.</font></p>
+<p>&nbsp;</p>
+<table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#99ccff">
+  <tr>
+    <td width="100%">
+<h2><font face="Arial">PART II - USING CLICKSEE ADNOW V.2</font>
+
+</h2>
+    </td>
+  </tr>
+</table>
+<p><font face="Arial"><b>1. FIRST TIME SETTING UP OF THE ADMINISTRATOR USERNAME AND PASSWORD</b><o:p>
+</O:P>
+</font>
+</p>
+<ul>
+  <li><font face="Arial" size="2">Using your web browser, open the file <I>default.asp</I>. This file is in 
+  <I>Admanager</I> directory. For example, <i>http://www.yourwebsite.com/adnow2/Admanager/default.asp</i></font>
+  <li><font face="Arial" size="2">Type in the user name and password that you will use to admin the ads. 
+  This is a one-time setup. Next time when you login to <I>admin.asp</I>, you will 
+  need to type the USERNAME and PASSWORD.&nbsp;</font></li>
+</ul>
+<p><font face="Arial" size="2">Don't loose the USERNAME and PASSWORD.&nbsp; The only way to retrieve
+them is to manually open the database.</font></p>
+
+<p><font face="Arial">&nbsp;</font></p>
+
+<p align="left"><b><font face="Arial">2. MANAGING THE ADVERTISEMENTS (FOR THE ADMINISTRATOR)</font></b></p>
+<blockquote>
+  <p align="left"><b><font face="Arial">2.1 Set up your first advertisement</font></b></p>
+  <blockquote>
+    <p align="left"><font face="Arial"><b>2.1.1 Add company</b><br>
+    <font size="2">
+    After logging in, you will see the Admin Center page, click "Add New Company." Fill out all the necessary information in the provided 
+  fields, then click <i>Add Campaign</i>.</font></font></p>
+    <blockquote>
+      <p align="left"><font size="2" face="Arial">NOTE: A campaign can contain one
+      advertisement or more. It gives you a convenience of ad tracking. For
+      example, you may sell one order that contains 1 banner and 1 button to an
+      advertiser in January. Later when the campaign expire at the end of the
+      month, you can setup a new campaign for February.</font></p>
+    </blockquote>
+    <font face="Arial">
+    <b>2.1.2 Add Campaign</b><br>
+    <font size="2">
+    Type in a Campaign Name and Campaign Description (Optional) then click <i>Next</i>
+    to continue to add the advertisement.</font></font> <p>
+  <font face="Arial">
+  <b>2.1.3 Add New Advertisement<br>
+  </b><font size="2"><u>
+Image Characteristics</u><br>Type in the name of the ad and then continue to add Image URL, Image width, Image height, Image border, Image ALT.  These fields are optional if you want to set up a graphical link, they are not required for the text link ad (no graphic).</font></font><p>
+<font face="Arial" size="2">
+<u>
+Link to URL</u><br>
+The "Link to URL" field should be identified with the entire URL that you want the ad to link to.  Always put the http:// in this field.</font><p>
+
+<font face="Arial" size="2">
+
+<u>
+
+The Link Target</u><br>
+With this option, you can specify how you want an ad's URL to open. (Ex. You want to open a new window when someone clicks on a specified link, just place "_blank" in this field. If your homepage contains frames, you can specify a frame name in this field too.)</font>
+    <p>
+<font face="Arial" size="2">
+<u>
+The Location</u><br>
+Location refers to just the name, not a physical location, you give to the ad(s), and you will use this name to indicate where you want to put the ad(s). For example, you may have the banner on the top of your page and 
+  the button on the left of your page. You use "Location" to tell Adnow Version 2 that 
+  some ads will appear only at the "banner" location and some ads will appear 
+  only at the "button" location. You can name the location anything you want. The words "banner" and "button" are used as examples here only. This "Location" 
+  is also helpful when you want to sell the ad space on the front page and other 
+  pages separately. You may name the banner on the front page as "banner1" and 
+  the banner on another page as "banner2." 
+
+
+The location name is not case-sensitive.</font>
+    <P><font face="Arial" size="2"><u>
+The Weight</u><br>
+The weight is the way to setup the frequency of the ads. Here's how it works.
+    There are 10 levels of "weight." 10 is the highest and 1 is the
+    lowest. If you have two ads and you give the weight of "2" to one
+    ad and the weight of "1" to another ad, the ad that is assigned
+    the weight of "2" will run for 2 times more than the ad that is
+    assigned the weight of "1." For example, if the total impressions
+    of the day is 1,500, the ad with the weight of "2" will be
+    displayed for 1,000 impressions and the ad with the weight of "1"
+    will be displayed for 500 impressions.</font><p>
+
+
+
+<font face="Arial" size="2">
+
+
+
+<u>
+
+
+
+The Text Message Box.</u><br> Whatever you type into this box will appear under the image. You can place HTML tags in the text message box to customize the fonts. If you want to setup the text-only ad, please type in the text into this box and leave the Image URL field blank.<br>NOTE: If you are going to setup Rich Media Banners, Flash Banners, Java Applet Banners and HTML Banners, you must place the code in this text box.</font><p>
+
+<font face="Arial" size="2">
+
+<u>
+
+Status</u><br>
+Please select your appropriate category:<br>
+1. Active<br>
+2. Expired<br>
+3. Hold<br>
+4. Hold to launch</font><p>
+
+<font face="Arial" size="2">
+
+<u>
+
+Date Start</u><br>
+This is the actual start date of the campaign/ad.</font><p>
+
+<font face="Arial" size="2">
+
+<u>
+
+Expiration Method:</u><br>
+You must select one of the three options available: Date End, Click Expire or # of Impressions Purchased.</font>
+    <blockquote>
+      <p>
+<font face="Arial" size="2"><b>
+Date End</b><br>
+With this option, you are allowing the advertiser to advertise on your website with an expiration date. (Ex. You sell the advertising space with an expiration date of 21 September 2020, when 21 September 2020 arrives, the ad will expire, regardless of the number of clicks or views)</font> <p>
+
+<font face="Arial" size="2"><b>
+
+Click Expire</b><br>
+With this option, the advertiser purchases a certain number of clicks on the ad, when a number of clicks on the advertisement has been reached, the ad will expire. (Ex. An advertiser purchases 10,000 clicks, when the advertisement has been clicked on for the 10,000th time, the advertisement expires.)</font> <p>
+
+<font face="Arial" size="2"><b>
+
+# of Impression Purchased</b><br>
+With this option, you are allowing the advertiser to basically purchase the number of times an ad appears on your website. (Ex. When 10,000 impressions are purchased on the index.asp page, when the index.asp page is viewed for the 10,000th time, the ad expires, regardless if the user clicks on the ad.)</font> 
+
+
+
+ </p>
+
+  
+    </blockquote>
+  </blockquote>
+</blockquote>
+<font face="Arial" size="2">
+After submit "Add New Company" and "Add New Advertisement", you can now start tracking your ad(s) through the TOOL: STATISTICS OF AVERAGE CLICK THRU BY LOCATION and TOOL: STATISTICS OF AVERAGE IMPRESSION BY LOCATION. You can Edit and Delete your advertisement and company
+information at will.</font>
+<P>
+
+<font face="Arial">
+
+&nbsp;</font>
+<blockquote>
+<P>
+
+<b><font face="Arial">2.2 Clicksee Adnow Functions</font></b>
+
+<p align="center"><b><font face="Arial">ADMINISTRATOR CENTER</font></b></p>
+<p><u><font face="Arial" size="2">Add New Company</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>
+This option allows the administrator to add companies.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Administrator Center, click on <i>Add New Company</i> and fill all the required and optional fields. After filling in the fields, click either <i>Done</i> or <i>Add Campaign.</i></font></p>
+  <p><font face="Arial" size="2">You can assign the user name and the password for the advertiser here.
+  These are the user name and the password that the advertiser will use for
+  viewing online statistics.</font></p>
+</blockquote>
+
+<p><u><font face="Arial" size="2">LogOut</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>
+The Administrator uses this function when all the necessary taskings are complete and the administrator is ready to close this program</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Administrator Center, click on <i>Log Out</i>.</font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">Advertisement Management</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This area allows the Administrator to create different views based on such factors as Company, Location and Status. From this screen, the Administrator will be taken to the Client Profile screen where the Administrator can administer the Advertisers' Accounts.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Administrator Center, select the preferred view mode (Company, Location and/or Status) and click <i>view</i></font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">Expiration Meter</font></u></p>
+<blockquote>
+  <p><font face="Arial" size="2">Explanation:<br>This is the search function that allows the administrator to view ads
+  that are about to expire within the time, number of clicks, or number of
+  impressions specified.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Administrator Center:</font> 
+</p>
+<OL>
+<LI> <font face="Arial" size="2"> Select the timeframe (Last Month, This Month or Next Month) and click <i>view</i> 
+  </font> 
+<LI> <font face="Arial" size="2"> Select the ads that have less than ___ (insert a number) impressions and click <i>view</i>
+  </font>
+<LI> <font face="Arial" size="2"> Select the ads that have less than ___ (insert a number) days remaining and click <i>view</i>
+  </font>
+<LI> <font face="Arial" size="2"> Select the ads that have less than ___ (insert a number) clicks and click <i>view</i></font></LI></OL>
+</blockquote>
+<p><u><font face="Arial" size="2">Statistics of Average Click Thru by Location</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This section allows the administrator to view the
+average click-thru of ads in each location.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Administrator Center, select the location from the drop down menu and click <i>view</i>.</font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">Statistics of Average Impression by Location</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This section allows the administrator to view the
+average impressions of ads in each location.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Administrator Center, select the location from the drop down menu and enter a number in the past ___ days space and click
+view</font></p>
+</blockquote>
+<H3><font face="Arial">&nbsp;</font></H3>
+<p align="center"><b><font face="Arial">CLIENT PROFILE SCREEN</font></b></p>
+<font face="Arial" size="2">
+NOTE: Please recognize that we provide the features listed below at the company, campaign and individual ad levels.</font>
+<p><u><font face="Arial" size="2">Add New Campaign</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This option allows the administrator to create a new campaign for an advertiser.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Client Profile Screen, click <i>Add New Campaign</i> fill in the fields Campaign Name and Campaign Description and click <i>Next</i></font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">Add, Edit or Delete ads</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This option allows the administrator total flexibility in the realm of ad management. The Administrator has the ability to add a new ad, edit an ad that already exists or delete a current ad.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Client Profile Screen, select <i>add new ads</i>, <i>edit</i> or <i>delete</i></font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">Add a Note to Advertiser</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This option allows the administrator to contact the advertiser directly. When the administrator types and sends a note, the advertiser will receive that note on the front page of the advertiser's center.</font> </p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Client Profile Screen, click <i>Note</i>. From the Note Screen fill in the Company Note field and click <i>Finish</i></font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">Email Report</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This option allows the advertiser to receive detailed statistics on the advertisements based on certain predefined number of days. (NOTE: Must use in conjunction with  ASP Mail or ASP QMail components. Please ask your server administrator if your server has one
+of them installed.)</font> </p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Client Profile Screen, click <i>Email Report</i>. From the Stats Report by Email Screen, fill in the appropriate fields and click <i>Done</i> </font> </p>
+</blockquote>
+<p><u><font face="Arial" size="2">Clone</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This option allows the administrator to create new ads and/or new campaigns with the same information from an expired ad/campaign.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Client Profile Screen, click <i>Clone</i>. From the Clone Campaign Screen, fill in the following information: Campaign Name, Campaign Description and <i>select</i> the ads to be added  to the new campaign and click <i>Clone</i>.</font></p>
+</blockquote>
+</blockquote>
+<p><font face="Arial">&nbsp;</font></p>
+<p><b><font face="Arial">3. VIEWING THE ADVERTISEMENTS STATISTICS (FOR THE ADVERTISERS)</font></b></p>
+<p><font face="Arial" size="2">Advertisers of your web site can view the statistics of their advertising
+campaign from <i>http://www.yourwebsite.com/adnow2/</i>customer/</font></p>
+<p align="left">
+
+
+
+
+<p align="center">
+
+
+
+<b><font face="Arial">ADNOW ADVERTISING CENTER</font></b>
+<p><u><font face="Arial" size="2">Ad Name</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This option allows the advertiser to view each ad individually. It allows a view of such features as Ad name, Status, Location, Date Start, Date End, images available and expiration method.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the View All Ads Screen, click <i>Ad Name</i>.</font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">Update Information</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This option allows the advertiser to keep company information current by making the changes here as they occur.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the View All Ads Screen, click <i>Click here to update your information</i>. From the Company Profile Screen, fill in the fields and click <i>Submit</i>.</font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">Change Password</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>This option allows the advertiser to maintain the integrity of the
+Adnow Advertising Center by making the necessary changes to the password.</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the View All Ads Screen, click <i>Click to change your password</i>. From the Change Password Screen, fill in the fields and click <i>Submit</i>.</font></p>
+</blockquote>
+<p><u><font face="Arial" size="2">LogOut</font></u></p>
+<blockquote>
+<p><font face="Arial" size="2">Explanation:<br>
+The Advertiser uses this function when all the necessary taskings are complete and the advertiser is ready to close this program</font></p>
+<p><font face="Arial" size="2">How to do:<br>
+From the Adnow Advertising Center, click on <i>Log Out</i>.</font></p>
+</blockquote>
+<p><font face="Arial">&nbsp;</font></p>
+<table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#99ccff">
+  <tr>
+    <td width="100%">
+<h2><font face="Arial">PART III - DISPLAYING ADVERTISEMENTS</font>
+
+</h2>
+    </td>
+  </tr>
+</table>
+<P><font face="Arial" size="2">We recommend you to view the file <I>testad.asp</I> in <i>Redirect</i> folder that is included in the zip for an 
+example.</font> </P>
+<P><b><font face="Arial">1. INSERT THE LINE(S) TO CALL THE INCLUDED FILE(S)</font></b> </P>
+<P><font face="Arial" size="2">Your web pages have to be in .asp extension.</font> </P>
+<P><font face="Arial" size="2">To display a banner on a particular page, simply insert this statement on the 
+top of your page.</font></P><FONT color=#ff0000><TT>
+<P align=center><font face="Arial" size="2">&lt;!--#include
+file="adnow2/redirect/CSANV2_run.asp"--&gt;</font></P></TT>
+</FONT>
+<P><font face="Arial" size="2">Make sure that it points to the correct directory that the file 
+<I>CSANV2_run.asp</I> is in.</font></P>
+<P><font face="Arial" size="2">NOTE: If you set up the security (<A href="#SECURITY">PART I, step 4.4</A>),
+you will need to <b>add</b> this line on the 
+top of your page.</font></P>
+<P align="center"><TT><FONT color=#ff0000 size="2" face="Arial">&lt;!--#include
+file="adnow2/redirect/check_click.asp"--&gt;
+</FONT></TT>
+</P>
+<P><font face="Arial">&nbsp;</font></P>
+<P><b><font face="Arial">2. INSERT THE LINE TO CALL AN AD</font></b></P>
+<P><font face="Arial" size="2">Insert the following line into your .asp web pages where you want the banner to appear.</font></P>
+<FONT 
+color=#ff0000>
+<P align=center><TT><font face="Arial" size="2">&lt;%adnow "Location_Name"%&gt;</font></TT></P>
+</FONT><font face="Arial" size="2">Replace Location_Name with the name of each location.</font>
+<blockquote>
+<p>
+<b>
+<font face="Arial" color="#666666">
+Banner Filtering</font></b></p>
+<p><font face="Arial" size="2" color="#666666">Clicksee Adnow V.2 also comes with the banner filtering feature. In some cases, you may want to have more than one banner in one web page.
+For example, you have one banner at the top and one banner at the bottom of the
+page. You don't want the same banner to appear in both top and bottom positions. You can use the banner filtering feature to accomplish
+this.</font></p>
+<p align="center">
+<FONT 
+color=#ff0000 face="Arial" size="2">
+&lt;%adnowv2 "Location_Name"%&gt;</FONT></p>
+<p>
+<font face="Arial" size="2" color="#666666">
+The Clicksee Adnow Version 2 provides the <i>&lt;%adnowv2 "Location_Name"%&gt;</i> which contains a
+filtering feature. You can insert a special code, <i>&lt;%adnowv2 "Location_Name"%&gt;</i> to instruct Clicksee
+Adnow to remember the 
+first banner at the top and avoid displaying the same banner again at the bottom.&nbsp;</font></p>
+<p>
+ <font face="Arial" size="2" color="#666666">
+ Clicksee Adnow will
+ try its best to not display the same ad. However, in some cases, 
+the same ad may appear. For example, if there's only one banner in your web site, 
+the software won't know what else to display and it will display 
+the same banner on the top and bottom. If you have 2 banners on 
+your web site and one banner is assigned the weight of 1 and the other banner is assigned the weight of 2, it's possible that the banner that has the weight of 2 will appear both on the top and the bottom. Tips: If you have a few banners on your web site, a weight of "1" should be set to all banners to avoid the repeating of banners caused by improper weight. If you have many banners (10 banners for example), the repetition is almost impossible to happen and you can assign the different levels of weights to each banner without worrying about the repeated banner. Clicksee
+Adnow will try its best to screen the repetition for you.</font></p>
+</blockquote>
+<p><font face="Arial" size="2"><b>NOTE: Always use&nbsp; <FONT 
+color=#ff0000>&lt;%adnow "Location_Name"%&gt;
+</FONT> unless you want
+filtering.</b></font></p>
+<p><font face="Arial">&nbsp;</font></p>
+<hr>
+<h2 align="center"><a name="Appendix A"><font face="Arial">Appendix A</font></a><font face="Arial"><br>Upgrading the database from Adnow version 1.0 to Adnow version 2</font></h2>
+<h2 align="center"><font face="Arial" size="2">Please backup your database before using the database upgrade utility.</font></h2>
+<p><font face="Arial" size="2">Access your web site and point your browser to the file <i>accessupgrade.asp</i>&nbsp;
+in&nbsp; <i>createdb </i>directory. For example, <i>http://www.yourwebsite.com/adnow2/createdb/accessupgrade.asp</i>&nbsp;</font></p>
+<p><font face="Arial" size="2">Enter the ODBC data source name of Clicksee Adnow V.1.0 and click next to
+finish the process.</font></p>
+<hr>
+<h2 align="center"><font face="Arial"><a name="Appendix B">Appendix B</a><br>Setup ODBC</font></h2>
+
+  <P> <font face="Arial"><b> An
+  instruction on how to setup an ODBC data source for Microsoft Access.</b></font></P>
+<OL>
+  <LI><font face="Arial" size="2">Open ODBC Data Sources in Control Panel.</font> 
+  <LI><font face="Arial" size="2">Select System DSN tab, click Add.</font> 
+  <LI><font face="Arial" size="2">Select <i> Microsoft Access Driver (*.mdb)</i>, click Finish.</font> 
+  <LI><font face="Arial" size="2">Type in the name in the Data Source Name field. You can name the data
+    source anything you want, <I>ClickseeAdnow2</I> for example.</font>
+  <LI><font face="Arial" size="2">Under Database, click Select.</font> 
+  <LI><font face="Arial" size="2">Point to the directory that you create to store adnow.mdb in step 2.</font> 
+  <LI><font face="Arial" size="2">Under Database Name, highlight <I>adnow.mdb</I>, click OK.</font> 
+  <LI><font face="Arial" size="2">Click OK and OK again to exit.</font></LI></OL>
+<P> <b><font face="Arial"> An
+  instruction on how to setup an ODBC data source for Microsoft SQL.</font></b></P>
+<OL>
+<LI><font face="Arial" size="2">Open ODBC Data Sources in Control Panel.</font> 
+<LI><font face="Arial" size="2">Click on System DSN tab</font>
+<LI><font face="Arial" size="2">Click Add button, you will go to the ODBC Data Source Administrator page</font>
+<LI><font face="Arial" size="2">Select SQL Server, click Finish</font> 
+<LI><font face="Arial" size="2">Enter the Data Source Name of your choice in Name field</font> 
+<LI><font face="Arial" size="2">Enter Data Source description in Description field (Optional)</font> 
+<LI><font face="Arial" size="2">Select the SQL server where your database resides, click Next</font> 
+<LI><font face="Arial" size="2">Check with SQL Server authentication using a login ID and password entered by the user</font>
+<LI><font face="Arial" size="2">Enter SQL username in Login ID field, and SQL password in Password field, click Next</font> 
+<LI><font face="Arial" size="2">Check change the default database to: option if the database name in the field below is not the one your database resided, then choose the database name from the dropdown list, click Next, click Finish</font> 
+<LI><font face="Arial" size="2">Click Test Data Source button to test your SQL database setting</font>
+<LI><font face="Arial" size="2">You should receive TEST COMPLETED SUCCESSFULLY! message, if not please try to repeat the instruction again, click OK</font> 
+<LI><font face="Arial" size="2">Click OK, then your will return to ODBC Data Source Administrator page again</font> 
+<LI><font face="Arial" size="2">Click OK then you finished setting up ODBC for SQL Server</font></LI></OL>
+<hr>
+</BODY>
+</HTML>
