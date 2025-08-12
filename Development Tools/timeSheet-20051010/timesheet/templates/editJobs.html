@@ -1,0 +1,77 @@
+<div style="margin:auto;text-align:center">
+<h2>Jobs for {$client.clientDesc}</h2>
+<a href="index.php">Home</a><br /><br />
+</div>
+
+{if !$shared}
+{include file="showSharing.html"}
+{/if}
+
+<table cellpadding="3" width="100%">
+	<Tr>
+		<th width="100%">Add a new job</th>
+		<th>Rate</th>
+		<th></th>
+	</tr>
+	<form action="index.php" method="POST">
+	<input type="hidden" name="action" value="newJob">
+	<input type="hidden" name="client_id" value="{$client.id}">
+	<tr>
+		<td><input type="Text" style="width:100%" name="jobDesc"></td>
+		<td><input type="text" size="6" name="rate"></td>
+		<td align="right"><input type="submit" value="New Job" class="btn"></td>
+	</tr>
+	</form>
+
+</table>
+
+{if $jobs}
+<table cellpadding="3" width="100%">
+<tr>
+	<th></th>
+	<th>Job</th>
+	<th>Rate</th>
+	<th>Time & Rev</th>
+	<th>Work Dates</th>
+	<th>Tasks</th>
+	<th>Notes</th>
+</tr>
+<form action="index.php" method="post">
+<input type="hidden" name="action" value="renJobs">
+{foreach from=$jobs item=job}
+<tr {if $job.isRunning}class="runningJobs"{/if}>
+	<td>{if $job.user_id == $smarty.session.id OR $smarty.session.id == 1}<a href="javascript:confirmDel('job','index.php?action=delJob&id={$job.id}','{$job.jobDesc|escape:"quotes"}')"><img src="img/trash.gif" border="0" align="middle" alt="delete"></a>{else}<img src="img/shared.gif" title="This is a shared client" alt="shared">{/if}</td>
+	<td><input class="editMe" name="desc[{$job.id}]" type="text" value="{$job.jobDesc|stripslashes}" style="width:200px"></td>
+	<td><input class="editMe" style="text-align:right" type="text" name="rate[{$job.id}]" value="{$job.rate}" size="6"></td>
+	<td align="right">{if $job.time.days}{$job.time.days}D {/if}{$job.time.hours}:{$job.time.minutes}:{$job.time.seconds}<br/>
+	${$job.revenue|number_format:2}</td>
+	<td align="center"><sub>{$job.start|date_format:"%D %T"}<br />
+	{if $job.finished != '0000-00-00 00:00:00'}<font color="green">{$job.finished|date_format:"%D %T"}</font>{else} <font color="red">Work In Progress</font> {/if}</sub></td>
+	<td align="center"><a href="index.php?page=showTasks&id={$job.id}">{$job.numTasks} <img src="img/tasks.gif" border="0" align="middle"></a></td>
+	<td align="center"><a href="index.php?action=showNotes&job_id={$job.id}">{$job.numNotes} <img src="img/notes.gif" border="0" align="middle"></a></td>
+</tr>
+{if $smarty.session.showNotes == $job.id}
+{include file="showNotes.html"}
+{/if}
+{/foreach}
+
+	<tr style="background:#F3F3F3">
+		<td colspan="5" align="right"><b><i>Total</i>: {if $totals.time.days}{$totals.time.days}D {/if}{$totals.time.hours}:{$totals.time.minutes}:{$totals.time.seconds} = ${$totals.revenue|number_format:2}</b></td>
+		<td colspan="2"></td>
+	</tr>
+
+{if !$smarty.session.showNotes}
+	<tr>
+		<td colspan="3" align="right"><input class="btn" type="submit" value="Update Jobs"></td>
+		<td colspan="9"></td>
+	</tr>
+{else}
+	<tr>
+		<td colspan="5" align="right"><input type="button" class="btn" value="Close Notes" onClick="javascript:document.location.href='index.php?action=showNotes&job_id={$smarty.session.showNotes}'"></td>
+	</tr>
+{/if}
+</table>
+</form>
+{else}
+<h2 align="center">No jobs yet</h2>
+{/if}
