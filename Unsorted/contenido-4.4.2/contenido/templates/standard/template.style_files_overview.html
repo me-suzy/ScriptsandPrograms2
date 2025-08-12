@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="styles/contenido.css" />
+    <script type="text/javascript" src="scripts/rowMark.js"></script>
+    <script type="text/javascript" src="scripts/general.js"></script>
+    <script type="text/javascript" src="scripts/messageBox.js.php?contenido={SID}"></script>
+    <script type="text/javascript">
+
+        window.onerror = foo;
+        function foo(){return true;}
+
+        /* Session-ID */
+        var sid = "{SID}";
+
+        /* Create messageBox
+           instance */
+        box = new messageBox("", "", "", 0, 0);
+
+        /* Function for deleting
+           modules */
+
+        function deleteStyle(idmod) {
+
+            url  = 'main.php?area=style';
+            url += '&action=style_delete';
+            url += '&frame=2';
+            url += '&delfile=' + idmod;
+            url += '&contenido=' + sid;
+            window.location.href = url;
+
+        }
+
+    </script>
+</head>
+<body>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+
+    <!-- BEGIN:BLOCK -->
+    <tr style="background-color: {BGCOLOR}" onmouseover="row.over(this)" onmouseout="row.out(this)" onclick="row.click(this)">
+        <td>
+            <table width="100%" cellspacing="0" cellpadding="3" border="0">
+                <tr>
+                <td align=left class="text_medium"><img src="images/ordner_normal.gif" width="15" height="13" alt="">&nbsp;{FILENAME}</td>
+                <td align="right">{DELETE}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- END:BLOCK -->
+
+</table>
+
+</body>
+</html>
