@@ -1,0 +1,162 @@
+<?php
+	
+  /**
+    * $Id: docs_ctrl.php,v 1.2 2005/08/04 19:56:32 carsten Exp $
+    *
+    * controler for handling documents 
+    *
+    * @author       Carsten Graef <evandor@gmx.de>
+    * @copyright    evandor media 2005
+    * @package      docs
+    */
+        
+   /**
+    * Documents Controler
+    *
+    * controler for handling documents
+    *
+    * @author       Carsten Graef <evandor@gmx.de>
+    * @copyright    evandor media 2005
+    * @package      docs
+    */    
+	class docs_script extends easy_controller {
+
+      /**
+        * array holds current parameters
+        *
+        * @access public
+        * @var array
+        */  
+        var $params            = null;
+        
+      /**
+        * Handles the parameters command and view.
+        *
+        * Dispatches according to current command
+        * 
+        * @access       public
+        * @since        0.4.4
+        * @version      0.4.4
+        */
+        function handleModel() {
+            global $easy;
+                        
+			// === request vars ======================================
+        	$params       = $this->get_params();
+            $this->params =& $params;
+
+            // === Initialization ====================================
+			if (isset($params['command']))
+				$this->model->command->set ($params['command']);
+
+			isset ($params['order'])     ? 
+				$this->model->order = $params['order']    : 
+				$this->model->order = 1;
+			
+			isset ($params['direction']) ? 
+				$this->model->direction =  $params['direction'] : 
+				$this->model->direction =  "";
+
+			isset ($params['pagenr']) ? 
+				$this->model->pagenr =  $params['pagenr'] : 
+				$this->model->pagenr =  "";
+
+			if (isset ($params['entries_per_page']))  
+				$_SESSION['easy_datagrid']['entries_per_page'] =  $params['entries_per_page'];
+
+            $result = "success";
+
+			// === Dispatch Part depending on command ================
+			switch($this->model->command->get()){
+
+                case "create_doc": 
+                	// name must not to be empty
+	                $this->model->entry['name']->set_empty_allowed (false);
+					// do action: create document
+                    $result = $this->model->create_doc ();
+                    // handle return code
+                    if ($result == "success") {
+                        //$this->add_quicklink ($this->model);
+                        $this->model->show_entries ($params);
+                        // --- set default --------------------------
+						set_defaults ($_REQUEST);	
+	                }
+	                else
+                        $this->model->entry['command']->set('add_doc');
+					break;
+                case "add_doc": 
+                    $this->model->entry['command']->set('create_doc');
+                    $this->model->entry['parent']->set($params['parent']);
+					break;
+                case "add_folder": 
+                    $result = $this->model->add_folder ($params);
+                    if ($result == "success") {
+                        //$this->add_quicklink ($this->model);
+                        $this->model->show_entries ($params);
+	                }
+	                else
+                        $this->model->entry['command']->set('add_folder');
+					break;
+                case "add_folder_view": 
+                    $this->model->entry['command']->set('add_folder');
+                    $this->model->entry['parent']->set($params['parent']);
+					break;
+				case "delete_entry": 
+                    $result = $this->model->delete_entry ($params);
+                    $this->model->show_entries ($params);
+					break;
+                case "edit_entry": 
+                    //$this->model->entry['command']->set('update_entry');
+                    //$this->model->entry['parent']->set($params['parent']);
+                    $this->model->show_entry ($params);
+					break;
+                case "show_doc": 
+                    //$this->model->entry['command']->set('update_contact');
+                    $result = $this->model->show_doc ($params);
+                    $this->add_quicklink ($this->model);
+					break;
+                case "show_entries": 
+                    $this->model->update_filter ($params);
+                    $result = $this->model->show_entries ($params);
+					break;
+				case "unset_current_view":
+                    $this->model->unset_view ($params);
+				    break;
+				case "copy_from_dg":
+				    $result = $this->model->copyFromDG ($params);
+				    $this->model->entry['command']->set('show_entries');
+                    $this->model->show_entries($params);
+                	break;
+				case "help":
+				    $result = $_REQUEST['about'];
+				    break;
+				default:
+					die ("unrecognized command");
+			} // switch
+			
+			$this->setViewByTransition ($params['command'], $result);	
+					
+		} // end handleModel        
+		
+       /**
+        * Add quicklink
+        *
+        * Creates a quicklinkg for given entry
+        * 
+        * @access       private
+        * @param        class current model
+        * @since        0.4.4
+        * @version      0.4.4
+        */
+		function add_quicklink (&$model) {
+
+		    create_quicklink ('document', 
+                              $model->entry['doc_id']->get(), 
+                              $model->entry['name']->get(), 
+                              'modules/docs/index.php?command=show_doc&doc_id='.
+                              $model->entry['doc_id']->get());
+        }
+		
+    } // end class
+
+?>
