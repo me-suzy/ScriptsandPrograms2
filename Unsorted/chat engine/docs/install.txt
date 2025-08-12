@@ -1,0 +1,39 @@
+
+	Installing PHP Chatengine
+	=========================
+	
+	I have not supplied a decent installer (yes, yes, I suck :-)) so you will have
+	to do some manual work. If you know your way around the MySQL prompt, this will
+	all be very easy. And if you happen to be able to use a copy of PhpMyAdmin, this
+	will also be a piece of cake. If not, erm... you have a small problem ;-) But you
+	can always write a simple PHP script that will import the database_structure.sql file
+	and let MySQL handle it. 
+	
+	You basically need the following tables:
+	
+	chat_users		The table that contains all chat users
+	chat_session_ids	The table that contains currently active sessions
+	chat_text_db		The table that contains the text that is being said
+	chat_stats		The table that logs a lot of user information
+	chat_images		The table that contains references to usable user icons
+	ipbans			The table that contains IP numbers that have been banned
+	
+	chat_users, chat_session_ids, chat_text_db and chat_images are the tables that
+	actually "display something" to the users. The chat_stats table is only used to
+	store information, but I have not supplied a decent front-end to present this
+	information. It's up to you to make that. Ipbans is something I don't use anymore
+	myself because of the proxy problem. If a school uses a proxy, it will show one
+	IP-address for a lot of computers. Meaning that if you ban one IP-address, you will
+	ban a group of users. And my visitors happened to be on the same schools a lot...
+	So you know what happened ;-) 
+	
+	If you created these tables using the database_structure.sql file, all you will have
+	to do to finish the process, is to copy all files to a webserver (and please keep
+	the same directory structure - "icons" and "images" on the same place, or change it
+	but don't forget to update the references in the scripts too). Then you will need
+	to modify the mysql.php3 file to fit your MySQL database account. The includes.php3
+	file contains more settings that can be altered. Play around with them to see
+	what they do exactly. Don't forget to add a user account for yourself, which has
+	sysop rights (group 2). Now surf to the URL where you placed the engine and have
+	a lot of fun :-)
+	
