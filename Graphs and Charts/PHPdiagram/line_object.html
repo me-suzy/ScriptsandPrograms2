@@ -1,0 +1,59 @@
+<HTML><HEAD></HEAD>
+<BODY bgcolor="#eeeeee">
+<table border=1><tr><td><IMG src="line_object.png" usemap="#map1" border=0></td></tr></table>
+<map name="map1"> 
+<area shape=polygon coords='485,107,522,128,518,134,481,113'  title='temperature' alt='temperature' href='javascript:alert("26.5 -> 25.5")'>
+<area shape=polygon coords='447,106,483,106,483,114,447,114'  title='temperature' alt='temperature' href='javascript:alert("26.5 -> 26.5")'>
+<area shape=polygon coords='412,85,449,107,445,113,408,91'  title='temperature' alt='temperature' href='javascript:alert("27.6 -> 26.5")'>
+<area shape=polygon coords='373,83,410,84,410,92,373,91'  title='temperature' alt='temperature' href='javascript:alert("27.7 -> 27.6")'>
+<area shape=polygon coords='337,86,373,83,373,91,337,94'  title='temperature' alt='temperature' href='javascript:alert("27.5 -> 27.7")'>
+<area shape=polygon coords='299,97,336,86,338,94,301,105'  title='temperature' alt='temperature' href='javascript:alert("26.9 -> 27.5")'>
+<area shape=polygon coords='263,98,300,97,300,105,263,106'  title='temperature' alt='temperature' href='javascript:alert("26.9 -> 26.9")'>
+<area shape=polygon coords='226,106,262,98,264,106,228,114'  title='temperature' alt='temperature' href='javascript:alert("26.5 -> 26.9")'>
+<area shape=polygon coords='188,125,225,106,229,114,192,133'  title='temperature' alt='temperature' href='javascript:alert("25.5 -> 26.5")'>
+<area shape=polygon coords='150,156,187,126,193,132,156,162'  title='temperature' alt='temperature' href='javascript:alert("24 -> 25.5")'>
+<area shape=polygon coords='116,165,152,155,154,163,118,173'  title='temperature' alt='temperature' href='javascript:alert("23.5 -> 24")'>
+<area shape=polygon coords='77,197,114,166,120,172,83,203'  title='temperature' alt='temperature' href='javascript:alert("22 -> 23.5")'>
+</map>
+<code><font color="#000000">
+<font color="#0000BB">&lt;?php
+<br /></font><font color="#007700">include (</font><font color="#DD0000">"diagram.php"</font><font color="#007700">);
+<br />
+<br />function </font><font color="#0000BB">Fahrenheit</font><font color="#007700">(</font><font color="#0000BB">$vv</font><font color="#007700">){ return(</font><font color="#0000BB">round</font><font color="#007700">(</font><font color="#0000BB">$vv</font><font color="#007700">*</font><font color="#0000BB">18</font><font color="#007700">+</font><font color="#0000BB">320</font><font color="#007700">)/</font><font color="#0000BB">10 </font><font color="#007700">.</font><font color="#DD0000">"° F"</font><font color="#007700">); }
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">=new </font><font color="#0000BB">Diagram</font><font color="#007700">();
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">=@</font><font color="#0000BB">ImageCreate</font><font color="#007700">(</font><font color="#0000BB">600</font><font color="#007700">, </font><font color="#0000BB">300</font><font color="#007700">) or die(</font><font color="#DD0000">"Cannot create a new GD image."</font><font color="#007700">); 
+<br /></font><font color="#0000BB">ImageColorAllocate</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">); </font><font color="#FF8000">//background color
+<br />
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetFrame</font><font color="#007700">(</font><font color="#0000BB">80</font><font color="#007700">, </font><font color="#0000BB">40</font><font color="#007700">, </font><font color="#0000BB">520</font><font color="#007700">, </font><font color="#0000BB">240</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetBorder</font><font color="#007700">(</font><font color="#0000BB">6</font><font color="#007700">, </font><font color="#0000BB">18</font><font color="#007700">, </font><font color="#0000BB">20</font><font color="#007700">, </font><font color="#0000BB">30</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetText</font><font color="#007700">(</font><font color="#DD0000">""</font><font color="#007700">,</font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#DD0000">"temperature measured during the day"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">XScale</font><font color="#007700">=</font><font color="#DD0000">" h"</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">YScale</font><font color="#007700">=</font><font color="#DD0000">"° C"</font><font color="#007700">;
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">SetGridColor</font><font color="#007700">(</font><font color="#DD0000">"#cccccc"</font><font color="#007700">, </font><font color="#DD0000">""</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Draw</font><font color="#007700">(</font><font color="#DD0000">"#FFEECC"</font><font color="#007700">, </font><font color="#DD0000">"#663300"</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">);
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">GetYGrid</font><font color="#007700">();
+<br /></font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">BFont</font><font color="#007700">=</font><font color="#0000BB">4</font><font color="#007700">;
+<br />for (</font><font color="#0000BB">$t</font><font color="#007700">=</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">YGrid</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">]; </font><font color="#0000BB">$t</font><font color="#007700">&lt;=</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">YGrid</font><font color="#007700">[</font><font color="#0000BB">2</font><font color="#007700">]; </font><font color="#0000BB">$t</font><font color="#007700">+=</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">YGrid</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">])
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">right</font><font color="#007700">+</font><font color="#0000BB">6</font><font color="#007700">, </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">$t</font><font color="#007700">)-</font><font color="#0000BB">9</font><font color="#007700">, </font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#0000BB">Fahrenheit</font><font color="#007700">(</font><font color="#0000BB">$t</font><font color="#007700">), </font><font color="#DD0000">"#663300"</font><font color="#007700">);
+<br /></font><font color="#0000BB">$T1</font><font color="#007700">=</font><font color="#0000BB">22</font><font color="#007700">;
+<br />for (</font><font color="#0000BB">$t</font><font color="#007700">=</font><font color="#0000BB">6</font><font color="#007700">; </font><font color="#0000BB">$t</font><font color="#007700">&lt;</font><font color="#0000BB">18</font><font color="#007700">; </font><font color="#0000BB">$t</font><font color="#007700">++)
+<br />{ </font><font color="#0000BB">$T0</font><font color="#007700">=</font><font color="#0000BB">$T1</font><font color="#007700">;
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$T1</font><font color="#007700">=</font><font color="#0000BB">23</font><font color="#007700">-</font><font color="#0000BB">4</font><font color="#007700">*</font><font color="#0000BB">cos</font><font color="#007700">(</font><font color="#0000BB">$t</font><font color="#007700">/</font><font color="#0000BB">4</font><font color="#007700">)+</font><font color="#0000BB">rand</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">,</font><font color="#0000BB">1000</font><font color="#007700">)/</font><font color="#0000BB">1000</font><font color="#007700">;
+<br />&nbsp;&nbsp;</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Line</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenX</font><font color="#007700">(</font><font color="#0000BB">$t</font><font color="#007700">), </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">$T0</font><font color="#007700">), </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenX</font><font color="#007700">(</font><font color="#0000BB">$t</font><font color="#007700">+</font><font color="#0000BB">1</font><font color="#007700">), </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ScreenY</font><font color="#007700">(</font><font color="#0000BB">$T1</font><font color="#007700">), </font><font color="#DD0000">"#cc9966"</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">, </font><font color="#DD0000">"temperature"</font><font color="#007700">, </font><font color="#DD0000">"alert(\""</font><font color="#007700">.</font><font color="#0000BB">round</font><font color="#007700">(</font><font color="#0000BB">$T0</font><font color="#007700">,</font><font color="#0000BB">1</font><font color="#007700">).</font><font color="#DD0000">" -&gt; "</font><font color="#007700">.</font><font color="#0000BB">round</font><font color="#007700">(</font><font color="#0000BB">$T1</font><font color="#007700">,</font><font color="#0000BB">1</font><font color="#007700">).</font><font color="#DD0000">"\")"</font><font color="#007700">);
+<br />}
+<br />
+<br /></font><font color="#0000BB">ImagePng</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">, </font><font color="#DD0000">"line_object.png"</font><font color="#007700">);
+<br /></font><font color="#0000BB">ImageDestroy</font><font color="#007700">(</font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">Img</font><font color="#007700">);
+<br /></font><font color="#0000BB">?&gt;
+<br /></font>&lt;HTML&gt;&lt;HEAD&gt;&lt;/HEAD&gt;
+<br />&lt;BODY bgcolor="#eeeeee"&gt;
+<br />&lt;table border=1&gt;&lt;tr&gt;&lt;td&gt;&lt;IMG src="line_object.png" usemap="#map1" border=0&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+<br />&lt;map name="map1"&gt; 
+<br /><font color="#0000BB">&lt;?</font><font color="#007700">echo </font><font color="#0000BB">$D</font><font color="#007700">-&gt;</font><font color="#0000BB">ImgMapData?&gt;
+<br /></font>&lt;/map&gt;
+<br />&lt;/BODY&gt;
+<br />&lt;/HTML&gt;</font>
+</code>
+</BODY>
+</HTML>
