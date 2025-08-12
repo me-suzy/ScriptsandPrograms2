@@ -1,0 +1,85 @@
+Installation of FileFusian 2.0
+------------------------------
+
+Welcome and thank you for choosing the new and most latest version of FileFusian from eFusian.co.uk // Hybrid Systems.
+
+This guide is a basic guideline for installing the new version until the installer package is available.  If you have any questions please either use the forums, http://www.efusian.co.uk/forum or email me at mail@efusian.co.uk
+
+
+Basic Install
+-------------
+
+This guide is aimed at those using Unix or its seritive webservers running PHP 4+.  FileFusian does work on Windows servers but it is unsupported and will require some modification to FileFusian variables and code etc.
+
+* FTP // SSH the files amd folders to your server.
+* In the logs directory, CHMOD the txt file to 666 // rw|rw|rw.
+* CHMOD the uploads directory to 666 // rw|rw|rw.
+
+This is the basic install completed, you must now configure the config.php file.
+
+
+
+Config.php
+----------
+
+This is the main section, and is very important, here I will go through each option and give a brief explanation of what it does, to prevent errors, all options need to be filled in, where possible I have left for security purposes the ability to NULL an option, this is effectively missing the option out, but the value set at NULL makes it secure.
+
+* $file_dir // Absolute Path
+  This is the absolute path to the uploads folder, it must be specified as a valid path from root, if you are unsure of either what this means or how the path to your directory is composed from root, then you will need to contact your server admin as only they will know how this is composed, although I will help in the forums as much as I can.  
+Example:  /usr/local/psa/home/vhosts/efusian.co.uk/web_users/filefusian/cvs/uploads
+
+
+* $file_url // Uploads URL
+  This is the web side translation of the above, effectively the URL to the uploads directory.
+
+Example:  http://www.efusian.co.uk/~filefusian/cvs/uploads
+
+
+* $logo_file // Path to logo
+  Should you wish to change the default logo of FileFusian, then this option will allow you to do just that.  All that is needed here is either the absolute path, the relative path or URL of your new image file.
+
+Example:  http://www.efusian.co.uk/~filefusian/images/v2logo.gif
+
+
+* $max_file_size // Maximum Allowed Upload Size
+  This is the maximum file size you want to allow to be uploaded by FileFusian, specified in bytes, remember 1000 bytes does not = 1kb, 1kb is equal to 1024 bytes and 1mb is equal to 1024 kb's.
+
+Example:  102400 (100kb's)
+
+
+* $skin // Skin File
+  More or less self explanatory, this is the relative path to the skin file you want to use, these should be placed in the skins directory.
+
+Example:  skins/white.css
+
+
+* $logfile // Logging File
+  This should be left as is unless you understand this, you set this file up earlier in the logs directory where you CHMOD'd it to 666, this file to work must be CHMOD'd as 666.  Again this is the relative path to the text file.
+
+Example:  logs/uplog.txt
+
+
+* $logs_active // Logging On/Off
+  This is the on / off switch for the log file, if you do not wish to log the uplaods to your server then set this to 0 and it will not happen, set it to 1 and all uploaded files will be logged on the logfile.
+
+
+* $listsize // Size of Directory Listing
+  This is how many files will be shown in the directory listing function, specified simply of a number.
+
+
+* $filetype(x) // Allowed File Types
+  This is the most important element, you must here select the types of files to allow by using the extension of the file, there is one extension to an option and there are 5 options, should you not wish to use an option please just anter NULL in captitals as it will keep it secure, failing to do so will allow any file to be uploaded.
+
+Example:  .jpg
+
+
+
+Thank you for choosing FileFusian 2.0 and I hope you enjoy it.  Please leave feedback and suggestions for future releases in the forums which can bne both accessed now off the main FileFusian interface and also by going to http://www.efusian.co.uk/forum
+
+Also if you find this useful, please donate using the link from the homepage, as every little helps keep me releasing free software like FileFusian.
+
+
+Regards,
+
+Fusian // Oliver Ibbotson
+mail@efusian.co.uk
