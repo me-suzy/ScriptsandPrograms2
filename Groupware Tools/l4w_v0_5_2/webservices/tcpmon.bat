@@ -1,0 +1,2 @@
+java -cp ".;D:\development\axis-1_2RC2\lib\axis.jar;D:\development\axis-1_2RC2\lib\saaj.jar;D:\development\axis-1_2RC2\lib\jaxrpc.jar;D:\development\axis-1_2RC2\lib\commons-logging.jar;D:\development\axis-1_2RC2\lib\commons-discovery.jar;D:\development\axis-1_2RC2\lib\wsdl4j.jar;D:\development\jaf-1.0.2\activation.jar;D:\development\xerces-2_5_0\xmlParserAPIs.jar;D:\development\xerces-2_5_0\xml-apis.jar;D:\development\xerces-2_5_0\xercesImpl.jar;" org.apache.axis.utils.tcpmon 1234 127.0.0.1 80
+pause 
