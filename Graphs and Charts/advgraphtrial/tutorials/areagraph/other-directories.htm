@@ -1,0 +1,505 @@
+<html>
+<head>
+<TITLE>2D/3D Area Graph Software for PHP by JPowered.com</TITLE>
+<META NAME="description" content="JPowered is a leading provider of Java & Javascript Software. With our Java & Javascript software you will be quickly adding great looking components to your web pages and applications.">
+<META NAME="keywords" content="bar,graph,graphs,chart,charts,area graph,area graphs,area chart,area charts,php,php graph,php chart,php script,area graph graph,area graph chart">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK REL=STYLESHEET TYPE="text/css" HREF="../../images/jpowered_style.css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<BR>
+
+  <!-- One big table contain only one cell -->
+<table width="730" border="0" cellspacing="0" cellpadding="1" bgcolor="#FFAA00" align="center">
+  <tr>
+    <td>
+<table width="730" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center">
+  <tr>
+    <td> <!-- Heading section that includes Logo, Title and Links -->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+                <td class="heading_cell" rowspan="2" bgcolor="#FFCC00"><img src="../../images/jpowered.gif" width="270" height="60" align="left" alt="area graph"></td>
+          <td class="heading_cell" bgcolor="#FFCC00">
+                  <h1 class="heading"> 2D/3D Area Graph for PHP</h1>
+          </td>
+        </tr>
+        <tr>
+          <td class="menu_cell" bgcolor="#F0F0B0" valign="top"> <img src="../../images/curve.gif" width="22" height="18" vspace="0" hspace="0" align="left" alt="area chart">
+                [<a href="http://www.jpowered.com"> Home </a>]
+                [<a href="http://www.jpowered.com/products.htm"> Products </a>]
+                [<a href="http://www.jpowered.com/downloads.htm"> Downloads </a>]
+                [<a href="http://www.jpowered.com/purchase.htm"> Purchase </a>]
+                [<a href="http://www.jpowered.com/free_java_applet/index.htm"> Free Applets </a>]
+                [<a href="http://www.jpowered.com/support.htm"> Support </a>]<br>
+                [<a href="http://www.jpowered.com/aboutus.htm"> About Us </a>]
+                [<a href="http://www.jpowered.com/java_sitemap.htm"> Site Map </a>]
+                [<a href="http://www.jpowered.com/java_resources.htm"> Java Resources </a>]
+          </td>
+        </tr>
+      </table>
+      <!-- Content section that includes Main left hand column 430 pixels wide with right hand column taking remaining 200 pixels. -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="2">
+              <tr>
+                <td width="560" valign="top"> <!-- begin content -->
+                  <table width="100%" border="0" cellpadding="5">
+                    <tr valign="top" align="left" bgcolor="#99CCFF">
+                      <td colspan="4"> [ <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/index.htm">
+                        Graph Home</a> ] [ <a href="../../quick-set-up.htm">Set-Up</a>
+                        ] [ <a href="../../tutorials/index.htm">Tutorials</a> ] [
+                        <a href="../../documentation/index.htm"> Documentation</a>
+                        ] [ <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/buy-now.htm">
+                        Buy Now</a> ] [ <a href="http://www.jpowered.com/support.htm">
+                        Support</a> ] </td>
+                    </tr>
+                    <tr align="left" valign="top">
+                      <td colspan="4">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                          <tr>
+                            <td colspan="2">
+                              <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                                <tr>
+                                  <td width="87%">
+                                    <h2><font color="#009900"><b><font face="Arial, Helvetica, sans-serif" color="#FF9933">2D/3D
+                                      Area Graph for PHP  </font></b></font></h2>
+                                    <p><font color="#009900"><b><font color="#666666">Tutorials
+                                      - Connecting the Graph to files and scripts
+                                      located in other directories or servers.</font></b></font></p>
+                                  </td>
+                                  <td width="60" valign="middle" align="center"><img src="../../images/area-graph-icon.gif" width="50" height="50"></td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr valign="top" align="center">
+                            <td colspan="2">
+                              <div align="left">
+                                <p>Before following this tutorial it is essential
+                                  that the graph software has been installed.
+                                  If you have not yet done so then you should
+                                  complete the install procedure now,<br>
+                                  <b><a href="../../quick-set-up.htm">Quick Set-Up
+                                  and Install &raquo;</a></b></p>
+                                <p>For simplicity, all of the preceding tutorials
+                                  have assumed that the files and scripts have
+                                  been located in the same directory as the web
+                                  page containing the graph. However in real implementations
+                                  this is generally not the case and so this tutorial
+                                  is designed to show how to connect to files
+                                  located elsewhere.</p>
+                                <table width="550" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600">
+                                  <tr>
+                                    <td>
+                                      <table width="100%" border="0" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF">
+                                        <tr>
+                                          <td>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                              <tr bgcolor="#CCCCAA">
+                                                <td colspan="2"><b><font color="#555500">Step
+                                                  1 - Place files in different
+                                                  directories </font></b></td>
+                                              </tr>
+                                              <tr bgcolor="#EEEEDD" valign="top" align="left">
+                                                <td colspan="2" bgcolor="#FFFFEE">
+                                                  <p>Create the following 2 directories
+                                                    on your web server:-</p>
+                                                  <table width="100%" border="0" cellspacing="0" cellpadding="8" bgcolor="#FFFFFF">
+                                                    <tr>
+                                                      <td>
+                                                        <p><font face="Courier New, Courier, mono" color="#006600">/graphinfo/</font></p>
+                                                        <p><font face="Courier New, Courier, mono" color="#006600">/graphpage/</font></p>
+                                                      </td>
+                                                    </tr>
+                                                  </table>
+                                                  <p>Place the 2 files data.txt
+                                                    and config.txt in the /graphinfo/
+                                                    directory. </p>
+                                                  <p>&nbsp;</p>
+                                                </td>
+                                              </tr>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                              <tr bgcolor="#CCCCAA">
+                                                <td colspan="2"><b><font color="#555500">Step
+                                                  2 - Add the &lt;IMG&gt; tag
+                                                  to your web page.</font></b></td>
+                                              </tr>
+                                              <tr bgcolor="#EEEEDD" valign="top" align="left">
+                                                <td colspan="2" bgcolor="#FFFFEE">
+                                                  <p>The URL's for your data and
+                                                    config are now:-</p>
+                                                  <table width="100%" border="0" cellspacing="0" cellpadding="8" bgcolor="#FFFFFF">
+                                                    <tr>
+                                                      <td>
+                                                        <p><font face="Courier New, Courier, mono" color="#006600">http://www.yourdomain.com/graphinfo/data.txt</font></p>
+                                                        <p><font face="Courier New, Courier, mono" color="#006600">http://www.yourdomain.com/graphinfo/config.txt</font></p>
+                                                      </td>
+                                                    </tr>
+                                                  </table>
+                                                  <p>Therefore the &lt;IMG tag
+                                                    to be added is:-</p>
+                                                  <table width="100%" border="0" cellspacing="0" cellpadding="8" bgcolor="#FFFFFF">
+                                                    <tr>
+                                                      <td><font face="Courier New, Courier, mono" color="#006600">&lt;img
+                                                        src=&quot;http://www.<font color="#000099">yourdomain.com</font>/jpowered/areagraph/area-graph.php?<br>
+                                                        data=http://www.<font color="#000099">yourdomain.com</font>/graphinfo/data.txt&amp;<br>
+                                                        config=http://www.<font color="#000099">yourdomain.com</font>/graphinfo/config.txt&quot;
+                                                        <br>
+                                                        width=300 <br>
+                                                        height=300&gt;</font></td>
+                                                    </tr>
+                                                  </table>
+                                                  <p>Replacing <font face="Courier New, Courier, mono" color="#006600"><font color="#000099">yourdomain.com</font></font>
+                                                    with the actual domain of
+                                                    your site.</p>
+                                                <p>&nbsp;</p>
+                                                </td>
+                                              </tr>
+                                              <tr bgcolor="#EEEEDD" valign="top" align="left">
+                                                <td colspan="2">
+                                                  <p><font color="#009999"><b><font color="#990099">Notes:</font></b></font></p>
+                                                  <p><font color="#990099">If
+                                                    the data and/or config URL's
+                                                    contain parameters themselves
+                                                    (eg. if a parameter was being
+                                                    passed to a data script) then
+                                                    these URL's should be encoded.
+                                                    This is because they will
+                                                    be added inside the URL of
+                                                    the &lt;IMG&gt; tag.</font></p>
+                                                  <p><font color="#990099">For
+                                                    example if your data process
+                                                    was a php script which accepted
+                                                    a parameter &quot;year&quot;
+                                                    then the URL for this would
+                                                    be:-</font></p>
+                                                  <p><font face="Courier New, Courier, mono" color="#006600">http://www.<font color="#000099">yourdomain.com</font>/graphinfo/data.php?year=2005</font><font face="Courier New, Courier, mono" color="#006600">
+                                                    </font></p>
+                                                  <p><font color="#990099">The
+                                                    encoded version of this would
+                                                    be:-</font></p>
+                                                  <p><font face="Courier New, Courier, mono" color="#006600">http://www.<font color="#000099">yourdomain.com</font>/graphinfo/data.php<font color="#3333FF">%3F</font>year<font color="#3333FF">%3D</font>2005</font></p>
+                                                  <p><font color="#990099">If
+                                                    they are not encoded then
+                                                    a browser will not interpret
+                                                    them correctly.</font></p>
+                                                  <p><font color="#990099">If
+                                                    you need to encode your URL's
+                                                    then a good tool can be found
+                                                    at:-</font></p>
+                                                  <p><a href="http://www.w3schools.com/html/html_ref_urlencode.asp" target="_blank">http://www.w3schools.com/html/html_ref_urlencode.asp</a></p>
+                                                  <p>&nbsp;</p>
+                                                </td>
+                                              </tr>
+                                            </table>
+                                            <p>&nbsp;</p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                              <tr bgcolor="#CCCCAA">
+                                                <td colspan="2"><b><font color="#555500">Step
+                                                  3 -Upload the page to your Web
+                                                  Server </font></b></td>
+                                              </tr>
+                                              <tr bgcolor="#EEEEDD" valign="top" align="left">
+                                                <td colspan="2" bgcolor="#FFFFEE">
+                                                  <p>Upload the web page to the
+                                                    following directory on your
+                                                    web server:-</p>
+                                                  <table width="100%" border="0" cellspacing="0" cellpadding="8" bgcolor="#FFFFFF">
+                                                    <tr>
+                                                      <td>
+                                                        <p><font face="Courier New, Courier, mono" color="#006600">/graphpage/</font></p>
+                                                      </td>
+                                                    </tr>
+                                                  </table>
+                                                  <p>&nbsp;</p>
+                                                </td>
+                                              </tr>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="5">
+                                              <tr bgcolor="#CCCCAA">
+                                                <td colspan="2"><b><font color="#555500">Final
+                                                  Step - View the page in a browser</font></b></td>
+                                              </tr>
+                                              <tr bgcolor="#EEEEDD" valign="top" align="left">
+                                                <td width="320" bgcolor="#FFFFEE">
+                                                  <p>Open your web browser and
+                                                    view the page.</p>
+                                                  <p>You should see a Area Graph with 12 points plotted (6 for each series).</p>
+                                                  <p>This graph now contains many
+                                                    more features including:-</p>
+                                                  <ul>
+                                                    <li> Titles</li>
+                                                    <li>Legend</li>
+                                                    <li>Trend &amp; Target Areas</li>
+                                                    <li>Custom Text </li>
+                                                    <li>etc.</li>
+                                                  </ul>
+                                                  <p>&nbsp;</p>
+                                                </td>
+                                                <td>
+                                                  <p><font color="#990099"><b>Follow-Up
+                                                    Suggestion:</b></font></p>
+                                                  <p><font color="#990099">Try
+                                                    placing the web page in other
+                                                    directories on your web server.</font></p>
+                                                  <p><font color="#990099">In
+                                                    the &lt;IMG&gt; tag we have
+                                                    used absolute URL addressing
+                                                    and therefore the graph will
+                                                    always be able to pick up
+                                                    the data and config from the
+                                                    /graphinfo/ directory, irrespective
+                                                    of which directory the page
+                                                    resides. <a href="../../documentation/areagraph/areagraph-parameters.htm"></a></font></p>
+                                                  </td>
+                                              </tr>
+                                            </table>
+
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+<table width="95%" border="0" cellspacing="0" cellpadding="3" align="center" bgcolor="#EEEECC">
+                                              <tr> 
+                                                <td><a href="../../GettingStarted.htm">&laquo; back to Getting Started</a></td>
+                                                <td align="center"> 
+                                                  <div align="center"><b><a href="../quick-set-up.htm"> </a><a href="index.htm">Tutorial Index &raquo;</a></b></div>
+                                                </td>
+                                                <td align="right"><b><a href="data-script.htm">next Tutorial &raquo;</a></b></td>
+                                              </tr>
+                                            </table>
+                                            <p><br>
+                                            </p>
+                                            <table width="550" border="0" cellspacing="0" cellpadding="3" align="center">
+                                              <tr bgcolor="#006666">
+                                                <td><b><font color="#FFFFFF">Any
+                                                  Problems ? </font></b></td>
+                                              </tr>
+                                              <tr bgcolor="#EEFFEE">
+                                                <td>
+                                                  <p>In the vast majority of cases
+                                                    (over 95%) the above is all
+                                                    that is required. However
+                                                    if you experience any problems
+                                                    please feel free to tell us
+                                                    and we will be happy to assist.
+                                                  </p>
+                                                  <p align="left"><a href="http://www.jpowered.com/support.htm">Contact
+                                                    us here &raquo;</a></p>
+                                                  <p>Please remember to include
+                                                    the URL of your web page.</p>
+                                                </td>
+                                              </tr>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </table>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr valign="top" align="left" bgcolor="#99CCFF">
+                      <td colspan="4"> [ <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/index.htm">
+                        Graph Home</a> ] [ <a href="../../quick-set-up.htm">Set-Up</a>
+                        ] [ <a href="../../tutorials/index.htm">Tutorials</a> ] [
+                        <a href="../../documentation/index.htm"> Documentation</a>
+                        ] [ <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/buy-now.htm">
+                        Buy Now</a> ] [ <a href="http://www.jpowered.com/support.htm">
+                        Support</a> ] </td>
+                    </tr>
+                  </table>
+                  <blockquote>
+<p> <!-- end content --> </p>
+                    </blockquote>
+                  </td>
+                <td valign="top" align="right">
+                  <table width="182" border="0" cellspacing="0" cellpadding="3">
+                    <tr>
+                      <td>
+                        <table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+                          <tr>
+                            <td>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+                                <tr bgcolor="#CCCCAA">
+                                  <td><b><a href="../../how-it-works.htm">How it Works
+                                    &raquo;</a></b></td>
+                                </tr>
+                                <tr valign="top" bgcolor="#EEEEDD">
+                                  <td>
+                                    <p>How the graphing software works. </p>
+                                    <p align="right"><a href="../../how-it-works.htm"><img src="../../images/arrow-green.gif" width="24" height="21" border="0"></a></p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+                          <tr>
+                            <td>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+                                <tr bgcolor="#CCCCAA" valign="middle">
+                                  <td><b><a href="../../quick-set-up.htm">Quick Set-Up
+                                    and Install &raquo; </a></b></td>
+                                </tr>
+                                <tr valign="top" bgcolor="#EEEEDD">
+                                  <td>
+                                    <p>step-by- step guide to add graphing for
+                                      your site. </p>
+                                    <p align="right"><a href="../../quick-set-up.htm"><img src="../../images/arrow-green.gif" width="24" height="21" border="0"></a></p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+                          <tr>
+                            <td>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+                                <tr bgcolor="#CCCCAA">
+                                  <td><b><a href="../../tutorials/index.htm">Tutorials
+                                    &raquo;</a></b></td>
+                                </tr>
+                                <tr valign="top" bgcolor="#EEEEDD">
+                                  <td>
+                                    <p>Introducing many powerful features.</p>
+                                    <p align="right"><a href="../../tutorials/index.htm"><img src="../../images/arrow-green.gif" width="24" height="21" border="0"></a></p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+                          <tr>
+                            <td>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+                                <tr bgcolor="#CCCCAA">
+                                  <td><b><a href="http://www.jpowered.com/php-scripts/adv-graph-chart/buy-now.htm">Licensing
+                                    and Purchase Options &raquo;</a></b></td>
+                                </tr>
+                                <tr valign="top" bgcolor="#EEEEDD">
+                                  <td>
+                                    <p>Click the 'Buy &amp; Download' button to
+                                      review options.</p>
+                                    <p align="right"> <a href="http://www.jpowered.com/php-scripts/adv-graph-chart/buy-now.htm"><img src="../../images/buy-download.gif" width="141" height="30" border="0" alt="buy and download area graph graph for php"></a></p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+                          <tr>
+                            <td>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+                                <tr bgcolor="#CCCCAA">
+                                  <td><b><a href="../../documentation/index.htm">Documentation
+                                    &raquo;</a></b></td>
+                                </tr>
+                                <tr valign="top" bgcolor="#EEEEDD">
+                                  <td>
+                                    <p>Full documentation </p>
+                                    <p align="right"><a href="../../documentation/index.htm"><img src="../../images/arrow-green.gif" width="24" height="21" border="0"></a></p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CC6600" height="100">
+                          <tr>
+                            <td>
+                              <table width="100%" border="0" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" height="100%">
+                                <tr bgcolor="#CCCCAA">
+                                  <td><a href="http://www.jpowered.com/support.htm">Help
+                                    and Support &raquo;</a></td>
+                                </tr>
+                                <tr valign="top" bgcolor="#EEEEDD">
+                                  <td>
+                                    <p>If at any stage you require help or advice
+                                      then please feel free to ask.</p>
+                                    <p align="right"><a href="http://www.jpowered.com/support.htm">Contact
+                                      us here &raquo;</a></p>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+
+                </td>
+        </tr>
+      </table>
+      <!-- Footer section that includes Links, Horizontal Rule and Copyright image -->
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr>
+          <td class="menu_cell" bgcolor="#FFCC00">
+              <p class="bottom_menu">
+                [<a href="http://www.jpowered.com"> Home </a>]
+                [<a href="http://www.jpowered.com/products.htm"> Products </a>]
+                [<a href="http://www.jpowered.com/downloads.htm"> Downloads </a>]
+                [<a href="http://www.jpowered.com/purchase.htm"> Purchase </a>]
+                [<a href="http://www.jpowered.com/free_java_applet/index.htm"> Free Applets </a>]
+                [<a href="http://www.jpowered.com/support.htm"> Support </a>]<br>
+                [<a href="http://www.jpowered.com/aboutus.htm"> About Us </a>]
+                [<a href="http://www.jpowered.com/java_sitemap.htm"> Site Map </a>]
+                [<a href="http://www.jpowered.com/java_resources.htm"> Java Resources </a>]
+               <p>
+          </td>
+        </tr>
+        <tr bgcolor="#FFCC00">
+          <td class="heading_cell">
+            <div align="center"><img src="../../images/copyright.gif" width="450" height="25"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>
