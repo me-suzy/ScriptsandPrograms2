@@ -1,0 +1,57 @@
+#vnav, #vnav ul { /* all lists */
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		float : left;
+		width : 13em;
+	}
+	
+	#vnav li { /* all list items */
+		position : relative;
+		float : left;
+		line-height : 1.25em;
+		margin-bottom : -1px;
+		width: 13em;
+	}
+	
+	#vnav li ul { /* second-level lists */
+		position : absolute;
+		background-color: maroon;
+		left: -999em;
+		margin-left : 13.05em;
+		margin-top : -1.35em;
+	}
+	
+	#vnav li ul ul { /* third-and-above-level lists */
+		left: -999em;
+	}
+	
+	#vnav li a {
+		width: 13em;
+		w\idth : 12em;
+		display : block;
+		color : #CCC;
+		font-weight : bold;
+		text-decoration : none;
+		background-color : maroon;
+		border : 1px solid #CCC;
+		padding : 0 0.5em;
+	}
+	
+	#vnav a.sublev	{
+	background: url(images/rightarrow.gif) center right no-repeat;
+}
+	
+	#vnav li a:hover {
+		color : white;
+		background-color : black;
+	}
+	
+	#vnav li:hover ul ul, #vnav li:hover ul ul ul, #vnav li.sfhover ul ul, #vnav li.sfhover ul ul ul {
+	    
+		left: -999em;
+	}
+	
+	#vnav li:hover ul, #vnav li li:hover ul, #vnav li li li:hover ul, #vnav li.sfhover ul, #vnav li li.sfhover ul, #vnav li li li.sfhover ul { /* lists nested under hovered list items */
+		left: auto;
+	}
