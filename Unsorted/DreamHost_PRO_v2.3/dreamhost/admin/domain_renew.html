@@ -1,0 +1,131 @@
+<p align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"> 
+  <?if ($action=="renew_domain") {
+$ret = renew_domain_2($account_id,$domain_id,$new_term,$billing_id);
+echo $ret . "<BR>";
+}
+ 
+?>
+  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+  </b></font> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  </font></b></p>
+<form name="form1" method="post" action="">
+  <b><font face="Verdana, Arial, Helvetica, sans-serif">Renew Domain Registration 
+  Term</font></b><font face="Verdana, Arial, Helvetica, sans-serif"><b>:</b></font> 
+  <br>
+  <br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif"> 
+  <?if (!isset($account_id)) {
+ echo show_account_list($account_id);
+}?>
+  </font></b><br>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+if (isset($account_id)) {
+  echo show_domain_exp_list($account_id,$domain_id);
+  }?>
+  <br>
+  <br>
+  <input type="submit" name="Submit223" value="Renew -&gt;">
+  <input type="hidden" name="page" value="domain_renew">
+  <input type="hidden" name="account_id" value="<? echo $account_id ?>">
+  </font></b> 
+</form>
+<b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+<br>
+</font></b> 
+<p align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <?
+if (isset($domain_id))  {
+?>
+  </font></b></p>
+<form action="" name="nameMe" onSubmit="return runVerification(this);">
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+  <?
+	$db = new ps_DB;
+	$q = "SELECT * FROM domains WHERE domain_id='$domain_id'"; 
+	$db->query($q);
+	if ($db->num_rows()==0) {
+		echo "<BR><BR><B>There were no results for this search</B>";
+		} else {
+	$db->next_record();
+	$account_id = $db->f("domain_account_id");
+?>
+  </b></font><font face="Verdana, Arial, Helvetica, sans-serif"><b><font size="3" color="#990000">Renew 
+  Domain (</font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="3" color="#990000"><b> 
+  <? $db->p("domain_name"); ?>
+  ):</b></font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                <tr> 
+                  <td width="235"> 
+                    <div align="left"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">New 
+                      Registration Term:</font></b></div>
+                  </td>
+                  <td width="396"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font size="2"> 
+                    </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                    <? echo show_domain_menu_2($db->f("domain_name")); ?>
+                    </font></font></font></font></b></font></td>
+                  <td width="325">&nbsp;</td>
+                </tr>
+                <tr> 
+                  <td width="235"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Registration 
+                    Expiration:</font></b></td>
+                  <td width="396"><font size="-1" face="ARIAL,HELVETICA"> </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                    <? 
+$days = check_domain_status($domain_id); 
+$years = $days / 364;
+$months = $years * 12;
+
+if ($days=="1111111") { 
+	echo "Hosting Only"; 
+} elseif (($months <= 12) && ($days >= 31)) { 
+	printf("%.1f",$months); echo " months"; 
+} elseif ($days <= 31) {
+	echo $days . " days"; 
+} elseif ($months >= 12) {
+	printf("%.1f",$years); echo " years"; 
+}
+?>
+                    </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></td>
+                  <td width="325">&nbsp;</td>
+                </tr>
+              </table>
+              <font face="Verdana, Arial, Helvetica, sans-serif" color="#CC0000"><b><br>
+              </b></font><font face="Verdana, Arial, Helvetica, sans-serif" color="#333333">Please 
+              select a credit card below:</font><font face="Verdana, Arial, Helvetica, sans-serif" color="#CC0000"><br>
+              <br>
+              </font><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+              <? 
+
+  echo show_cc_list($account_id,"1");
+  ?>
+              </font><font color="#666666"><b><font color="#666666"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+              </font></b></font></b></font></b> 
+              <p><font size="-1" face="ARIAL,HELVETICA"> 
+                <input type="submit" name="submit" value="Update Domain Hosting Plan -&gt;">
+                </font> 
+                <input type="hidden" name="page" value="domain_renew">
+                <input type="hidden" name="domain_id" value="<? echo $domain_id; ?>">
+                <input type="hidden" name="action" value="renew_domain">
+                <input type="hidden" name="account_id" value="<? echo $account_id ?>">
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+<? 
+
+}
+}
+
+?>
+</font><font color="#666666"> </font></b></font> <br>
