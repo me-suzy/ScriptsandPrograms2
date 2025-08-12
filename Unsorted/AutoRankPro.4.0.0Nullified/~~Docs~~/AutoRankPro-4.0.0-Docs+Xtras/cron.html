@@ -1,0 +1,291 @@
+<html>
+<head>
+	<title>Updates With Cron</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<div align="center">
+
+<font face="Verdana,Arial" size="4">
+
+<b>
+Updates With Cron
+</b>
+
+<br><br>
+
+<table width="650" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Before You Begin</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+<font face="Arial" size="2">
+
+Before you begin working with cron, it is imparitive that you have at least a basic understanding
+of several concepts, and have the proper access to your server.  Without knowing these things, you
+will have an extremely difficult time getting the cron scripts to work properly.
+
+<br><br>
+
+Your server must allow the following:
+
+<br><br>
+
+- Telnet or SSH access<br>
+- crontab access<br>
+- Ability to setup multiple cron jobs
+
+<br><br>
+
+If you are not sure that your hosting company allows the above access on their servers, contact them
+before you begin.  You will not want to spend the time getting everything configured, if you do not 
+have the proper priveleges to run the cron jobs on your server.
+
+<br><br>
+
+You must understand each of the following:
+
+<br><br>
+
+- Unix commands (cd, chmod, etc)<br>
+- Uploading files in ASCII mode<br>
+- Setting variables in perl scripts<br>
+- Editing ASCII text files<br>
+- Full Unix directory paths<br>
+- Using telnet or SSH to access your server
+
+<br><br>
+
+If there is anything you do not understand in the list above, you will need to educate yourself on that
+item(s) before you proceed.  Our tech support staff will assist you if you run into problems, however we
+simply do not have the resources to educate people about the items above.  There are many tutorials available
+on the WWW covering most of the items above.  Take the time to learn about them if you don't already understand
+them.
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Crontab Entries</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+An entry consists of two parts - a time to run, and a command to run. 
+
+<br><br>
+
+The time to run (the first part of the entry) is broken up into 5 fields:<br> 
+1. minute of the hour <br>
+2. hour of the day (on the 24 hour clock) <br>
+3. day of the month <br>
+4. month of the year (1 = January, 2 = February, etc.) <br>
+5. day of the week (0 = Sunday, 1 = Monday, 2 = Tuesday, ..., 6 = Saturday) <br>
+
+<br><br>
+
+A * in one of these fields indicates that the job should be executed 
+at any or every one of these, so for instance a * in the month of the 
+year field means that this task should be carried out every month at the 
+time specified in the other fields. A * in the day of the week field, 
+when there is something in the day of the month field, does not mean that 
+this task should be carried out every day, but rather that it should be 
+carried out on the appointed day of the month regardless of what weekday 
+it is. Only *s in the day of the week field, and the day of the month 
+field, and the month of the year field would indicate a daily task. 
+
+<br><br>
+
+Examples:<br>
+In the examples, [command] represents the full path and filename of the file you want
+to execute.
+
+<br><br>
+
+The job with this time to run would run every Sunday at 12:20 am. <br>
+20 0 * * 0 [command]<br>
+This job would run at midnight on any Friday the 13th. <br>
+0 0 13 * 5 [command]
+
+<br><br>
+
+You don't have to put just one time in a field. This job, for instance, would 
+run every day at 12:30am, 2:30am, 4:30am, 6:30am, 6:30pm, 8:30pm, and 10:30pm: <br>
+30 0,2,4,6,18,20,22 * * * [command]
+<br><br>
+This one would run every Tuesday and Friday at 5:30 am: <br>
+30 5 * * 2,5 [command]
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Cronfiguring AutoRank Pro</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+To get started you will need to edit the cron.cgi file included with the AutoRank Pro distribution.  This file can 
+be edited in a text file editor of your choice.  Locate the line that looks like the following:
+
+<br><br>
+
+$CDIR = '/home/soft/cgi-bin/arp';
+
+<br><br>
+
+You will need to change this variable so that it points to the full path to the directory where you have installed
+the software.  You only need to edit the portion inside the single quotes.  Once you have setup the correct directory
+path, you can save this file.  Note that if perl is not located at /usr/bin/perl on your server, you will need to adjust
+the first line of this file to point to the correct location of perl on your server.
+
+<br><br>
+
+Next you need to open the sample cronfile included with the software distribution.  The default setup has the script
+reranking every 30 minutes at 15 and 45 past the hour, resetting the list at midnight server time daily, and clearing 
+the IP log files at 10 after midnight daily. If you would like them to run at different times than this, you will need
+to adjust the entries according to the information provided above. It is highly recommended that you do not have any
+of the scripts run at the same time. 
+
+<br><br>
+
+Next you will need to change the following portion of each command:
+
+<br><br>
+
+/path/to/cron.cgi
+
+<br><br>
+
+This will need to be changed so that it points to the cron.cgi file on your server.
+If you have any other cron jobs running on your server, make sure to include those
+in the cronfile as well. 
+
+<br><br>
+
+Once your cronfile is setup how you want it, you can save that file.  Now you need to upload these two files to your server.
+They should be uploaded in ASCII mode to the same directory where the cgiworks.pm and arp.pl files are located.  Once uploaded,
+change the permissions on the cron.cgi file to 755.
+
+<br><br>
+
+Now you need to telnet (or SSH) into your server, and change into the directory where you have uploaded cronfile. Once in that
+directory, issue the following command: 
+
+<br><br>
+
+crontab cronfile
+
+<br><br>
+
+This will enter all of the commands in cronfile, and the server will begin executing them at the selected times. To double check
+your crontab entries, you can issue the following command (note the character following the - is a lower case L): 
+
+<br><br>
+
+crontab -l
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Testing Your Setup</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+To test your setup, you will need to login to your server via telnet or SSH.  Once logged in, make sure you are not in the directory
+where the cron.cgi file is located.  Copy the full command to rerank the list from the cronfile you are using, but do not include the
+time settings.  For example if your cronfile looks like this:
+
+<br><br>
+
+15,45 * * * * /home/myaccount/cgi-bin/toplist/cron.cgi --mode=rerankList
+
+<br><br>
+
+You would run the following command:
+
+<br><br>
+
+/home/myaccount/cgi-bin/toplist/cron.cgi --mode=rerankList
+
+<br><br>
+
+Running this command should result in no output, and return you directly to the command prompt.  You can then login to your administrative
+interface to verify that the list has been reranked.  It should also indicate that cron was used for the most recent rerank.
+
+</tr>
+</td>
+</table>
+
+
+</body>
+</html>
