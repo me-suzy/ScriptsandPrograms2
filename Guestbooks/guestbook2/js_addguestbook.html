@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Add To My Guestbook</title>
+<script language="JavaScript" type="text/JavaScript"> 
+function add(e, text) 
+{ 
+  e.value=e.value + text  
+} 
+</script> 
+</head> 
+<body bgcolor="#ffffff" text="#000000" link="#0000ff" vlink="#0000ff" alink="#ff0000" onLoad="statusMessage()">
+<table  width="100%" border="0" cellspacing="0" cellpadding="4">
+<tr>
+<td width="20%" align="center"> 
+</td>
+<td width="60%" align="center">
+<br><b><u><font size="6">Add To My Guestbook</font><br></b></u><br>
+</td>
+<td align="center">
+<script language=JavaScript 
+      src="time.js"></script>
+</td>
+</tr>
+<tr>
+<td width="20%" valign="top">
+<font size="4"> 
+<?php
+$data= "map.txt"; 
+$data1 = fopen ($data, "r"); 
+$done = fread ($data1, filesize ($data));
+fclose ($data1);
+echo "$done";
+?>
+</font>
+</td>
+<td width="60%" align="center">
+       <div align="center"> 
+        <form name="form1" method="post" action="addguestbook.php">
+        <P><B>Name:<br /><input name="name" type="text" size="30" maxlength="40" /><br /><br />
+        Email:<br /><input name="email" type="text" size="30" maxlength="40" /><br /><br />
+        Home Page:<br /><input name="site" type="text" size="30" value="http://" maxlength="40" /><br /><br />
+        To add an emoticon to your message just click on it<br /><br />
+        <img src="smile.gif" class="altimg" name="smilie1" width="23" height="23" onClick="add(document.form1.mes, 'SsmileS')">
+        <img src="sad.gif" class="altimg" name="smilie2" width="23" height="23" onClick="add(document.form1.mes, 'SsadS')">
+        <img src="disappointed.gif" class="altimg" name="smilie3" width="23" height="23" onClick="add(document.form1.mes, 'SdisappointedS')">
+        <img src="confused.gif" class="altimg" name="smilie4" width="23" height="23" onClick="add(document.form1.mes, 'SconfusedS')">
+        <img src="thumbdown.gif" class="altimg" name="smilie5" width="23" height="23" onClick="add(document.form1.mes, 'SthumbdownS')">
+        <img src="thumbup.gif" class="altimg" name="smilie6" width="23" height="23" onClick="add(document.form1.mes, 'SthumbupS')"><br /><br />
+        Message:<br /><textarea name="msg" cols="30" rows="5" id="mes"></textarea><br /><br /></P></B>
+        <input type="submit" name="ADD" value="ADD" class="altButtonFormat">
+        </div> 
+      </form>
+</td>
+<td valign="top" align="center">	
+</td>
+</tr>
+</table>
+</body>
+</html>
