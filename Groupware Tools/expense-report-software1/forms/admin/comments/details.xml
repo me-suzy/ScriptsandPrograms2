@@ -1,0 +1,50 @@
+<form>
+	<title>Comment Details</title>
+	<action>index.php?sub=comments&action=store&FORMvalidate=false</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+
+	<vars>
+		<task import="$_GET[comment_task] ? $_GET[comment_task] : $_POST[comment_task]" type="eval" />
+	</vars>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="return" >
+			<location>index.php?sub=reports&action=details&report_id={COMMENT_REPORT}</location>
+		</return>
+
+		<save onclick="" button="edit">
+			<location>index.php?sub=comments&action=edit&comment_id={COMMENT_ID}&comment_report={COMMENT_REPORT}</location>
+		</save>
+
+	</buttons>
+
+	<redirect>index.php?sub=tasks&action=det&task_id={COMMENT_TASK}</redirect>
+
+	<fields>
+
+		<comment_id type="hidden" hidden="true"/>
+		<comment_task type="hidden" hidden="true"/>
+		<new_admin type="hidden" forcevalue="0" />
+
+		<comment_title type="text">
+			<title>Comment Title</title>
+		</comment_title>
+
+		<comment_body type="text">
+			<title>Comment Body</title>
+		</comment_body>
+
+		<subtitle title="Details" type="subtitle" />
+
+		<comment_date title="Post Date" type="text" action="date" params="m.d.Y g:i a" width="130" align="center" />
+	</fields>
+</form>
