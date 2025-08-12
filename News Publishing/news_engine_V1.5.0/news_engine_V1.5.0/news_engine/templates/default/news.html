@@ -1,0 +1,98 @@
+{header}    
+      <br /> <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td class="catrow"><img src="{GRAFURL}/img_arrow_right.gif" alt="" width="14" height="14" border="0" align="middle" /> 
+		  	{breadcrumb} 
+          </td>
+        </tr>
+      </table>
+      <br /> <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr> 
+          <td valign="top" width="80%"> <table width="100%" cellspacing="2" cellpadding="2" border="0">
+              <tr> 
+                <td valign="top"> <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr> 
+                      <td width="100%" valign="top">
+					  	<span class="cat_subcat_info">{news_date}</span>
+					  </td>	
+                    </tr>					  	
+                    <tr> 					  			
+                      <td width="100%" class="cat_main_headline" valign="top">
+					  	{image_headline}{news_headline}
+					  </td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr> 
+                <td> 
+                  <!-- Zeile Kategorie 1 -->
+                  <script language="Javascript" type="text/javascript">
+                  <!--
+                  var neu = null;
+                  function Print() {
+                    neu = window.open('', 'Neues', 'width=600,height=500,resizable=0,scrollbars=1');
+                    if (neu != null) {
+                      if (neu.opener == null) neu.opener = self;
+                      neu.location.href = '{MAINURL}/print.php?newsid={newsid}&amp;{SESS_NAME}={SESS_ID}';
+                    }
+                  }
+                  //-->
+                  </script>				  
+                  <table width="99%" cellspacing="2" cellpadding="2" border="0">
+                    <tr>
+                      <td valign="top" class="cat_content">
+					  {image_text} {news_home_text}
+					  </td>
+                      <td valign="top" nowrap="nowrap" class="cat_content" rowspan="2">
+					  	<IF NAME="author_information_block">
+					  	<fieldset>
+						<legend>{news_author}</legend>
+							<IF NAME="parse_profile_link">
+							<a href="{profile_link}"><img src="{GRAFURL}/img_profile.gif" alt="{news_profile_of}" border="0" align="middle" />{news_profile_of}</a><br />
+							</IF NAME="parse_profile_link">
+							
+							<IF NAME="parse_homepage_link">
+							<a href="{homepage_link}"><img src="{GRAFURL}/img_homepage.gif" alt="{news_homepage_of}" border="0" align="middle" />{news_homepage_of}</a><br />
+							</IF NAME="parse_homepage_link">
+							
+							<IF NAME="parse_email_link">
+							<a href="{MAINURL}/misc.php?action=formmailer&amp;memberid={news_userid}&amp;{SESS_NAME}={SESS_ID}"><img src="{GRAFURL}/img_email.gif" alt="{news_email_to}" border="0" align="middle" />{news_email_to}</a><br />
+							</IF NAME="parse_email_link">
+					  	</fieldset>					  
+						<br />
+						</IF NAME="author_information_block">
+						
+					  	<fieldset>
+						<legend>{news_options}</legend>
+							<IF NAME="parse_recommend_link">
+							<a href="{MAINURL}/recommend.php?newsid={newsid}&amp;{SESS_NAME}={SESS_ID}"><img src="{GRAFURL}/img_mail.gif" alt="{news_send_news_by_mail}" border="0" align="middle" />{news_send_news_by_mail}</a><br />
+							</IF NAME="parse_recommend_link">							
+							<a href="JavaScript:Print()"><img src="{GRAFURL}/img_print.gif" alt="{news_print_news}" border="0" align="middle" />{news_print_news}</a><br />
+							<IF NAME="parse_comment_link">
+							<a href="{MAINURL}/newscomments.php?newsid={newsid}&amp;{SESS_NAME}={SESS_ID}"><img src="{GRAFURL}/img_comments.gif" alt="{news_comments}" border="0" align="middle" />{news_comments}</a> ({number_of_comments})<br />
+							</IF NAME="parse_comment_link">
+					  	</fieldset>							
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="cat_content"><hr />
+                        <p> 
+						{news_text}
+						</p>
+						<IF NAME="related_links_block">
+                        <p><fieldset><legend>{news_more_links}</legend>
+						<LOOP NAME="links_loop">
+                        &raquo; <a {target} href="{link_url}">{link_name}</a><br />
+						</LOOP NAME="links_loop">
+                        </fieldset> </p>
+						</IF NAME="related_links_block">
+                      </td>
+                    </tr>
+                  </table>
+				  </td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+      <br /> 
+{footer}    
