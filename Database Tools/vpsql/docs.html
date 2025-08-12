@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+</head>
+<body>
+<a name="top"><h1 align="center">vp_sql</h1></a>
+<u><b>Table of Contents</b></u><br>
+<a href="#Functions">Functions</a><br>
+<a href="#differences">Differences in SQL</a><br>
+<a href="#Features">Features</a><br>
+<a href="#installation">Installation</a><br>
+<a href="#using">Using</a><br>
+  <P>
+   vpSQL is a flatfile, comma delimited database which utilizes a subset of SQL for interaction. In developing vpSQL I wanted to mimic php's mySQL functions mysql_query and mysql_fetch_array. This is accomplished with vp_query and vp_fetch_array as well as a couple of others.<BR>
+   <BR>
+   <A NAME="Functions"></A><b><u> Functions:</b></u><BR>
+   <BR>
+<ul>
+<li>   <b>vp_query($sql):</b><br>
+   vp_query accepts the the following sql statements:<BR>
+   select fields from table[where][order by][limit]<BR>
+   insert fields,data into table<BR>
+   update table fields/data where<BR>
+   delete from table where<p>
+<ul>
+<li>   Used with the select statement vp_query returns on success a resource pointer that can be used with vp_fetch_array function as in php. On failure it returns false.<BR>
+</li>
+<li>   Used with the insert statement it will return true on success and false on failure.You can use the insert statement with the fields indicate or just the values. if you use the fields and values you can insert fewer fields than the record holds and the order is not critical. If you just use values the number of values has to equal the fields in the record and the order has to be the same.<BR>
+</li>
+<li>   Used with the update statement it will return the number of updated records on success or false on failure.<BR>
+</li>
+<li>   Used with the delete statement it will return the number of deleted records on success or false on failure. If the where clause is not included all records wll be deleted<BR>
+</li>
+</ul></li>
+   <BR>
+<li>   <b>vp_fetch_array($Reourceid):</b><br>
+   The vp_fetch_array function is passed the resource id returned by a select statement. It works the same as the php function except that it will only return associated arrays. It can then be used in a while loop to access each record in a returned dataset.</li><p>
+<li>
+<li>   <b>vp_num_rows($Reourceid):</b><br>
+   The vp_fetch_array function is passed the resource id returned by a select statement. It works the same as the php function mysql_num_rows returning the number of records returned by the select statement.</li><p>
+<li><p>
+                <b>vp_insert_id($table)</b><br>
+vp_insert_id is similar in function to the mysql_insert_id except with mysql_insert_id you pass a resource id and with vp_insert_id you pass a table name. the function returns the last vpid numbe inserted into the table.
+</li><p>
+<li>
+<b>vp_createtable($tablename,$fields)</b><br>
+Create table creates the table of course. The tablename is passed (no extension vp add the .vpd to all tables) and the fields are passed as a comma delimited string. Returns true or false on success or failure.
+</li><p>
+<li>
+<b>vp_delete_table($table)</b><br>
+Delete_table does what it implies deletes the dable. Returns true or false on success or failure.
+</li><p>
+<li>
+<b>vp_getfields($table)</b><br>
+Vp_getfields returns and array with the names of fields of the passed table on success or false on failure.
+</li>
+</ul>
+<a href="#top"><big><b>Top</b></big></a>
+<p>
+   <A NAME="differences"><b><u>The differences with normal sql are:</u></b></A><p>
+<ul>
+<li>   In a select statement all fields will be returned no matter what is specified. I decieded that the amount of overhead involved in selecting individual fields was not worth the benifit. You can request certain fields vpSQL will just ignore the request.</li>
+<li>   You must submit all values in insert and update statements enclosed in single qoutes. This is appropriate as it is a string based database, but more importantly it is neccassary for the parsing of the sql statements. Comparative values in the where clause should likewise be enclosed in single qoutes.Example: INSERT INTO thetable (string,number) VALUES ('astring','3') would be correct while INSERT INTO thetable (string,number) VALUES ('astring',3) is incorrect and will not parse.</li>
+<li>    You must keep whitespace on both sides of both comparison and logical operators in the where clause. ie id = '3' is correct while id= '3' will not work.</li>
+ <li>The where clause only recognizes and,or,not and xor logical operators.</li>
+</ul>
+<a href="#top"><big><b>Top</b></big></a>
+
+<P>
+
+  <A NAME="Features"><b><u>Features of vp_sql</u></b><BR></A>
+  <UL>
+   <LI>
+    An autoinc field named vpid which is transparently created
+    whti each table. This gives the advantage of having a unique
+    field for searches.
+   <LI>
+    Uses character substitution for semi colons and linefeeds
+    which allows you to store full page texts.
+   <LI>
+    It is small and uses only one file which can be included anywher in your script.
+  </UL>
+<a href="#top"><big><b>Top</b></big></a>
+
+        <p>
+<a name="installation"><u><b>Installation</b></u></a><p>
+Installation is relatively simple. create a directory which will be your database directory. On some servers php does not have write permision. If this is the case you must chmod the database directory to 777. <br>Then change the first variable in the script "$DBname" to point to the database directory relative to the root of your site, with leading and trailing slashes. For example if you created your database named data in a dirctory named admin which is one level up from your root directory you would set this variable to /admin/data/. All tables which you create will be stored and accessed automaticaly in this directory. You should remember that this is a <u>text</u> database and as such can be read  by any one who has acess to the database directory. On apache servers you can password protect the directory which will make it fairly secure.<p>
+<a href="#top"><big><b>Top</b></big></a>
+
+<p>
+
+<a name="Using"><u><b>Using vp_sql</b></u></a><p>
+Once you are set up and if you are at all familiar with sql and php then using vp_sql should be simple. Just include the vp_sql.php in your script before you call any of the functions. Be sure to read the <a href="#Functions">functions</a> section and especialy the section on differences between vp_sql and normal sql. The <a href="#differences">difference</a> are minor but could save you from having a very bad day. In addition it should be noted that any attempt to assign a vaue to the vpid autoinc field will cause an error and terminate the sql statement. This field is read only.
+<p>
+<a href="#top"><big><b>Top</b></big></a>
+
+</body>
+</html>
