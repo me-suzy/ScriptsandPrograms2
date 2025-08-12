@@ -1,0 +1,108 @@
+Every path used below is relative from this dir:
+
+FH3/FHTML/FCKeditor/editor/filemanager/
+browser/mcpuk
+
+::: FormHandler uses the MCPUK browser! :::
+
+To use the FCKeditor in combination with FormHandler I
+had to change the way how the directory is set which the
+user wants to browse. By default, this is set in the
+config file which is located in the /connectors/php
+directory.
+
+However, if the user wants to set the dir in the Editor()
+arguments, this had to change.
+
+I've changed the connector.php so that the UserFilesPath
+(the path which the users can browse) can be retrieved
+from the URL as 1 of the parameters. For this, I had to
+do the following:
+
+File: /connectors/php/connector.php
+Line: +/- 24
+Just below the require of the "config.php" file, add
+the following:
+-----------------------------------
+if(isset($_GET['UserFilesPath']))
+{
+    $fckphp_config['UserFilesPath'] = $_GET['UserFilesPath'];
+}
+
+Next, we have to change 3 javascript files which handle the
+arguments for the connector.php file.
+
+File: /js/common.js
+Line: +/- 65
+Here is the arguments string generated for the connector.php
+file. Just change the ? into an &
+-----------------------------------
+var sUrl = this.ConnectorUrl + '&Command=' + command ;
+becomes:
+var sUrl = this.ConnectorUrl + '?Command=' + command ;
+
+File: /frmresourceslist.html
+Line: +/- 121
+Here is the URL being generated which is used to get the thumb
+for the images. The file which is called is the connector.php
+file. Again, just change the ? into an &
+-----------------------------------
+'?Command=Thumbnail&Type=' +
+becomes
+'&Command=Thumbnail&Type=' +
+
+File: /frmupload.html
+Line: +/- 34
+Here is the URL being generated which is used for uploading.
+Again, just change the ? into an  &
+-----------------------------
+var sUrl = oConnector.UploadHandler +'?uploadID='+ ...
+becomes
+var sUrl = oConnector.UploadHandler +'&uploadID='+ ...
+
+Now the browser should work fine in combination with
+FormHandler.
+
+
+/**********************************/
+/******* EXTRA FEATURE ************/
+/**********************************/
+
+In the FCKeditor version which comes with FormHandler there are
+no "file type dirs" used (/Image, /Flash, /File and /Media).
+IMHO (In My humble Opinion) this is just not necessary. To remove
+this "option", just do the following:
+
+Open all the files in the directory /connectors/php/Commands/
+
+In every file, in the contructor of the class, there is a line just
+like this one:
+
+$this->actual_cwd=str_replace("//","/",($this->fckphp_config
+['UserFilesPath']."/$type/".$this->raw_cwd));
+
+Just remove the $type var and a slash from it like this:
+
+$this->actual_cwd=str_replace("//","/",($this->fckphp_config
+['UserFilesPath']."/".$this->raw_cwd));
+
+
+Next, we have to change the uploader so it does not check the
+resourcetype dirs. 
+
+File: /connectors/php/Commands/FileUpload.php
+Line: +/- 89
+Here you see an if statement like below:
+
+if ($this->fckphp_config['DiskQuota']['Global']!=-1) {
+
+In that if statement, the ResourceTypes direcory's are checked
+for their sizes. Just escape the whole if statement:
+
+/*
+if ($this->fckphp_config['DiskQuota']['Global']!=-1) {
+   
+...
+
+}
+*/
