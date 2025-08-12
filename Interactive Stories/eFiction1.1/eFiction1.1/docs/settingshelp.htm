@@ -1,0 +1,253 @@
+<html>
+<head>
+<title>
+Settings Help File
+</title>
+</head>
+<body>
+<font face="Arial"> 
+<center>
+  <b>Admin Help</b> 
+</center>
+<br>
+<br>
+An explanation of all the lovely settings.<br>
+<br>
+<b><a name="sitename">Sitename</a></b><br>
+<br>
+Shows in the title bar and a few other places.<br>
+<br>
+<hr>
+<br>
+<br>
+<b><a name="slogan">Site Slogan</a></b><br>
+<br>
+Shows in the title bar. Not really required, but looks nice.<br>
+<br>
+<hr>
+<br>
+<br>
+<b><a name="url">Site URL</a></b><br>
+<br>
+The URL for the site. This is used in a few places, such as e-mails that are sent 
+out.<br>
+<br>
+<hr>
+<br>
+<br>
+<b><a name="siteemail">Site E-mail</a></b><br>
+<br>
+The main e-mail address for the site. Most e-mails that are sent show this address 
+as the from and reply to address.<br>
+<br>
+<hr>
+<br>
+<br>
+<b><a name="databasepath">Database Config Path</a></b><br>
+<br>
+This is the direct server path for the folder where the database login and password 
+reside (dbconfig.php). For security reasons, it's a good idea to put it outside 
+of your html directory where it can't be easily accessed. <br>
+<br>
+<hr>
+<b><br>
+<a name="storiespath">Stories Path</a></b><br>
+<br>
+This is the direct server path for the folder where the stories folder is located. 
+This is only applicable if &quot;How to Store Stories&quot; is set to &quot;files&quot;. 
+Most of the time, you can just set this setting to &quot;stories&quot; (no quotes).<br>
+<br>
+<hr>
+<b><br>
+<a name="tableprefix">Table Prefix</a></b><br>
+<br>
+It is possible to run multiple instances of the script off of one database, by 
+setting the table prefix during install (this causes whatever prefix you set to 
+be appended to the beginning of the tables, i.e. <i>prefix_</i>fanfiction_authors). 
+You must indicate that prefix here in the settings.<br>
+<br>
+<hr>
+<br>
+<b><a name="storing">How to Store Stories</a></b><br>
+<br>
+You have a choice about how to store the text of the stories. Both ways have their 
+pros and cons:<br>
+<br>
+MySQL: This doesn't require writing to the server, and if safe-mode is on, then 
+this is really your only option. If you have a lot of stories, though, it can 
+really fill up your database and make things run slowly. <br>
+<br>
+Files: This choice will store the text of the stories to .txt files on the server, 
+in the stories folder. Safe-mode must be off for this to occur. This will take 
+up less server and mySQL resources.<br>
+<br>
+Regardless of which you go with, pick one and stay with it! Changing to a new 
+mode will completely mess up your archive, as the stories stored in the old way 
+will not display with the new setting.<br>
+<br>
+<hr>
+<br>
+<br>
+<b><a name="validate">Validate all stories</a></b><br>
+<br>
+Setting this to yes, means that stories submitted to the archive will not be moderated 
+in any way. Setting it to no makes it so that stories submitted by unvalidated 
+authors are put in the queue to be reviewed by an admin.<br>
+<br>
+<hr>
+<br>
+<br>
+<b><a name="numcats">Number of Categories</a></b><br>
+<br>
+If you have only one category, you should set this to "Only One". Doing so will 
+create shortcuts in a few areas of the site, where category selection is required 
+when there are more than one category.<br>
+<br>
+<hr>
+</font> 
+<p><font face="Arial"><br>
+  <b><a name="catscolumn">Number of Category Columns</a></b><br>
+  <br>
+  The number of columns when displaying the categories on categories.php and index.php. 
+  The code will insert a &lt;/tr&gt;&lt;tr&gt; into the code, so that the categories 
+  will start to print onto the next row. Note that your skin must be using tables 
+  for the categories display, and must have the {<font face="Arial"><font color="#000000">categorycolumn} 
+  attribute input in the appropriate place for this to work.</font></font><br>
+  <br>
+  </font></p>
+<hr>
+<p><font face="Arial"><b><a name="newscomments">Turn on News Comments</a></b><br>
+  <br>
+  Allows people to make comments to news stories. You must be sure to include 
+  the appropriate attribute in the newsbox.tpl file (the attribu<font face="Arial, Helvetica, sans-serif">te 
+  is </font></font><font face="Arial, Helvetica, sans-serif" color="#800080">{newscomments}</font><font face="Arial, Helvetica, sans-serif">) 
+  for people to be able to click and then add a comment.</font> </p>
+<hr>
+<p><font face="Arial"><b><a name="favorites">Allow Favorites</a></b><br>
+  <br>
+  Allows members to list their favorite stories and authors under viewuser.php.</font></p>
+<hr>
+<p><font face="Arial"><b><a name="numupdated">Number of Updated Stories</a></b><br>
+  <br>
+  Sets the number of recently updated stories listed on the index page.</font></p>
+<hr>
+<p><font face="Arial"><b><a name="dateformat">Date Format Stories/News</a></b><br>
+  <br>
+  Sets the date formats used in several places on the site. Story blocks can have 
+  a different date format than the news items. Should you not like any of the 
+  date formats listed, take a look at the file called timefunctions.php. You can 
+  modify one of the settings to display in whatever format you want there.</font> 
+</p>
+<hr>
+<font face="Arial"><br>
+<b><a name="reviews">Turn on Reviews</a></b><br>
+<br>
+Reviews, of course, allow for people to submit public reviews that stay permanently 
+on the site (readers can also submit personal reviews through an e-mail form).<br>
+<br>
+</font><font face="Arial"> </font><font face="Arial"> 
+<hr><br><br>
+
+<b><a name="anonreviews">Anonymous Reviews</a></b><br><br>
+
+This only applies if reviews are turned on, of course. Setting this to yes allows readers
+to submit reviews without being logged in.<br><br>
+
+<hr><br><br>
+
+<b><a name="ratings">Ratings System</a></b><br><br>
+
+This only applies if reviews are turned on. Readers can only submit a rating if
+they submit a review. You can turn this off, or turn it to stars (one through 5 stars),
+or a like/dislike setting.<br><br>
+
+<hr><br><br>
+
+<b><a name="roundrobins">Round Robins</a></b><br><br>
+
+Round robins are stories in which multiple people can add to it. If you don't want
+people submitting this kind of story, be sure to turn this setting off.<br><br>
+
+<hr><br><br>
+
+<b><a name="submissions">No Unsolicited Submissions</a></b><br><br>
+
+Essentially, what this means is that no one can submit a fanfiction to your
+archive. Only you as the admin would be able to add fics. This will turn off the Login link, so 
+that people can not create new accounts or login.<br><br>
+
+<hr><br><br>
+
+<b><a name="itemspage">Default Items Per Page</a></b><br><br>
+
+The number of items per page that display when people search, or a list of stories
+display.<br><br>
+
+<hr><br><br>
+
+<b><a name="uploads">Allow Image Uploads</a></b><br><br>
+
+If you'd like people to have the ability to upload images to include with their
+stories, set this to yes. The images are stored in each author's folder in the stories 
+folder.<br><br>
+
+<hr><br><br>
+
+<b><a name="maximage">Max Image Width & Height</a></b><br><br>
+
+These only apply if image uploads is set to on. The max size is set in pixels.<br><br>
+
+<hr><br><br>
+
+<b><a name="layout">Default Skin</a></b><br><br>
+
+This is the skin that will show to non-members or guests just browsing the site. <br><br>
+
+<hr><br><br>
+
+
+<b><a name="welcome">Front Page Message</a></b><br><br>
+
+This is the welcome message displayed on your index page. You can essentially use this
+to say whatever you want, or highlight stories, or whatever.<br><br>
+
+<hr><br><br>
+
+<b><a name="rules">Submission Rules</a></b><br><br>
+
+Your submission rules. You may use html here.<br><br>
+
+<hr><br><br>
+
+<b><a name="thankyou">Thank You Letter</a></b><br><br>
+
+Your default acceptance letter for fics. This prevents you having to write the same thing
+over and over every time you accept a fic into the archive. You can edit it when you
+validate the fic.<br><br>
+
+<hr><br><br>
+
+<b><a name="nothankyou">No Thank You Letter</a></b><br><br>
+
+Your default refusal letter for fics. This prevents you having to write the same thing
+over and over every time you refuse a fic. You can edit it when you
+delete the fic.<br><br>
+
+<hr><br><br>
+
+<b><a name="copyright">Copyright Footer</a></b><br><br>
+
+This will display at the bottom of every page. You can leave it blank if you so choose.<br><br>
+
+<hr><br><br>
+
+<b><a name="help">Help Text</a></b><br><br>
+
+This is the text for the Help page, although you could theoretically use it for anything 
+you wanted. <br><br>
+
+<hr><br><br>
+
+</font>
+</body>
+</html>
