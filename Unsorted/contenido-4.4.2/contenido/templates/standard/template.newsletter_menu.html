@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="scripts/rowMark.js"></script>
+    <script type="text/javascript" src="scripts/infoBox.js"></script>
+    <script type="text/javascript" src="scripts/general.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/contenido.css" />
+    <script type="text/javascript" src="scripts/messageBox.js.php?contenido={SID}"></script>
+    <script type="text/javascript">
+
+        window.onerror = foo;
+        function foo(){return true;}
+
+        /* Session-ID */
+        var sid = "{SID}";
+
+        /* Create messageBox
+           instance */
+        box = new messageBox("", "", "", 0, 0);
+
+        /* Function for deleting
+           modules */
+
+        function sendNews(idnews) {
+            url  = 'main.php?area=news_send';
+            url += '&action=news_send';
+            url += '&frame=4';
+            url += '&newsid=' + idnews;
+            url += '&contenido=' + sid;
+            parent.right_bottom.location.href = url;
+
+        }
+        
+        function deleteNews(idnews) {
+            url  = 'main.php?area=news';
+            url += '&action=news_delete';
+            url += '&frame=2';
+            url += '&newsid=' + idnews;
+            url += '&contenido=' + sid;
+            window.location.href = url;
+
+        }
+
+    </script>    
+</head>
+<body>
+
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+
+    <!-- BEGIN:BLOCK -->
+    <tr bgcolor="{BGCOLOR}">
+        <td class="textw_small">&nbsp;{NEWSNAME}</td>
+        <td align="right">{SEND}&nbsp;{DELETE}&nbsp;</td>
+    </tr>
+    <!-- END:BLOCK -->
+    
+
+</table>
+</body>
+</html>
