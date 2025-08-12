@@ -1,0 +1,32 @@
+{PROJECT}   ./template/search.en.ini
+{MENU}      00.05
+{TITLE}     phpCMS Demo - Comprehensive Search Facility
+
+{CONTENT}
+<h2>Here is the comprehensive search facility for these web pages.</h2>
+<p>You can search these pages for any words or phrases occurring in them.
+Results with exact matches will be rated higher than partial matches. If, for example, "love" is entered it could be that "love", "lover" and "lovesick" will be found.
+If so they will be listed exactly in that order as the first term is an exact match and the second is shorter than the third.</p>
+<p>If several matches are found on one page that page will be rated higher than pages with fewer matches.</p>
+<p>If more than one term is entered, e.g. "holiday house", a search will be carried out for all of them (logical OR). If however, to keep to this example, you are more interested in the entries including "holiday" but excluding "house" enter "holiday <strong>-</strong>house". <br />
+(<b>Caution:</b> space <em>before</em> but <em>not after</em> the minus sign / hyphen!)</p>
+<p><SPACE></p>
+<form action="$home/result.en.htm" method="post">
+  <!-- method "post" for non-stealth-mode use "get" in stealth-mode because resultpages should be cached by clients -->
+  <input type="hidden" name="phpcms_rc" value="2" />
+  <!-- how many results should be displayed on one page? -->
+  <input type="hidden" name="datadir" value="$home/search" />
+  <!-- path to the directory where the index is stored -->
+  <input name="query" value="" type="text" size="20" maxlength="30" />&nbsp;&nbsp;
+  <!-- the search-term -->
+  <input type="submit" name="submit" value="Search" />
+</form>
+
+
+
+
+
+
+
+
+
