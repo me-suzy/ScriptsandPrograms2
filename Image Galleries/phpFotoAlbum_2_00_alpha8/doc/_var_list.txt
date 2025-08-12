@@ -1,0 +1,68 @@
+*** SEZNAM PROMENNYCH ***
+
+Sessions - "s_data":
+
+lang - Id jazyka (cz,en,...) - pouziva to include
+skin - skin id - ./skin/-skin-/*.*
+show - styl zobrazeni (list, thumb)
+sort - sortovani souboru (name,type,date)
+sort2 - -||- (asc,desc)
+page - stranka, ktera se zobrazi v hlavnim okne
+file - jmeno obrazku, ktery se ma zobrazit... Je-li definovan, zavola se image_show.php a provede se zobrazeni
+dir - aktualni adresar
+rotate - rotace obrazku o ??? stupnu (uplatnuje se pri pouziti image_show_gen.php)
+
+---
+ostatni promenne
+
+$lang[???] - texty, nacitaji se z ./lang/???.php
+
+$content_type - meta tag
+$content_language - meta tag
+
+
+$default_skin - default skin
+$default_language - ID jazyka nebo "select" - uzivatel si musi jazyk zvolit pri vstupu na stranku
+$image_save_thumb - ukladat nahledy (T/F)
+$delete_old_thumbs=mktime(00,00,00,04,15,2004); - smaze vsechny nahledy starsi nez urceny datum (v UNIXovem formatu). Pouzijte mktime() pro snazsi zadani data (hh,mm,ss,dd,mm,YYYY)
+$thumb_quality - kvalita nahledove obrazju (JPEG komprese) 0-100 (%)
+$thumb_resample - pouít resampe místo resise (T/F)
+$thumb_show_info - zobrazit informace na nahledovem obrazku (0 - zadne, 1 - jen jmeno, 2 - vsechny).
+$thumb_use_truecolor - pouít imagecreatetruecolor (T/F)
+$allow_direct_original - image_show.php - povoli pouít pøímo pùvodní obrázek bez zpracování pomocí php (T/F)
+$image_resample - image_show.php - resample místo resize (T/F)
+$default_quality - image_show.php - kvalita zpracovaného obrázku 0-100 (%)
+$default_show - jak prochazet soubory (default) ("list" nebo "thumbs")
+$default_res - image_show.php - rozliení obrázku (640x480, 800x600, ... nebo "orig")
+$slideshow_enabled - zapne / vypne slideshow (true / false)
+$slideshow_timer - cas mezi obrazky pri slideshow (cas v sekundach)
+
+$home_url - "auto" NEBO absolutni URL do rootu galerie
+$galver - verze galerie
+
+$files - pole
+	$files[-id-]["name"] - jmeno souboru
+	$files[-id-]["size"] - velikost souboru
+	$files[-id-]["type"] - typ souboru (jpg/gif/png/-unknown)
+	$files[-id-]["time"] - cas zalozeni souboru
+	$files[-id-]["res"] - rozliseni obrazku
+
+$dirs - pole
+	$dirs[-id-]["name"] - jmeno adresare
+	$dirs[-id-]["type"] - jen kvuli kompaktibilite... - obsahuje to same, jako polozka "name"
+	$dirs[-id-]["time"] - cas zalozeni adresare
+
+
+---
+set.php
+
+Slouzi k nastaveni jednoho parametru v sessions...
+
+set.php?var=-variable-&val=-value-
+
+var = $_SESSION["s_data"][var]
+val - hodnota :)
+
+set_post.php
+
+Podobnì jako set.php, jen uloení vechny hodnoty pøedávané polem POST...
