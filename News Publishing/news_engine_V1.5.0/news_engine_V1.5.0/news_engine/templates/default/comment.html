@@ -1,0 +1,220 @@
+{header}    
+      <br /> <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td class="catrow"><img src="{GRAFURL}/img_arrow_right.gif" alt="" width="14" height="14" border="0" align="middle" /> 
+            {breadcrumb} 
+          </td>
+        </tr>
+      </table>
+      <br /> 
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr> 
+          <td valign="top" width="80%"> <table width="100%" cellspacing="2" cellpadding="2" border="0">
+              <tr> 
+                <td> <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                      <td width="100%" valign="top" class="cat_main_headline">{comment_comments} </td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr> 
+                <td> 
+                  <!-- Zeile Kategorie 1 -->
+	                <table width="99%" cellspacing="2" cellpadding="2" border="0">
+	                  <tr> 
+	                    <td>{image_headline} <span class="cat_subcat_info">{fulldate}</span><br />{newshead}</td>
+	                  </tr>
+	                  <tr>
+	                    <td class="cat_content" style="text-align : justify;">
+	                    {image_text} {hometext}
+	                    {morenews}
+	                    {linkshow}
+	                    </td>
+	                  </tr>
+	                  <tr> 
+	                    <td class="cat_content">
+	                    {writerlink}
+	                    {recommend_link}
+	                    {commentlink}
+	                    </td>
+	                  </tr>
+	                </table>
+                  <br />  
+                  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                          <td align="left">{pagecount}</td>
+                          <td align="right"><a href="{MAINURL}/newscomments.php?newsid={newsid}&amp;{SESS_NAME}={SESS_ID}#post"><img src="{GRAFURL}/img_comments.gif" alt="{comment_button_alt_answer}" width="16" height="16" border="0" align="middle" />{comment_link_write_answer}</a><a name="comm"></a></td>
+                      </tr>
+                  </table>  
+                  <table width="100%"  border="0" cellpadding="0" cellspacing="0" bgcolor="{CONTENT_BORDER_COLOR}">
+                      <tr>
+                          <td><table width="100%"  border="0" cellspacing="1" cellpadding="0">
+                              <tr>
+                                  <td width="20%" class="list_headline">{comment_author}</td>
+                                  <td width="80%" class="list_headline">{comment_message}</td>
+                              </tr>
+                              {comments}
+                          </table></td>
+                      </tr>
+                  </table>
+                  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                          <td align="left">{pagecount}</td>
+                      </tr>
+                  </table>                  
+                  <br />
+                  <a name="post"></a>
+                  <IF NAME="user_can_post_comments">
+                  <form method="post" action="{MAINURL}/newscomments.php" name="alp" id="alp" onsubmit="return validate(this)">
+                  <input type="hidden" name="comment" value="send" />
+                  <input type="hidden" name="newsid" value="{newsid}" />
+                  <input type="hidden" name="{SESS_NAME}" value="{SESS_ID}" />
+                  <input type="hidden" name="user_ip" value="{user_ip}" />                  
+                  {hidden}
+                  <table width="100%"  border="0" cellpadding="0" cellspacing="0" bgcolor="{CONTENT_BORDER_COLOR}">
+                      <tr>
+                          <td><table width="100%"  border="0" cellspacing="1" cellpadding="0">
+                              <tr>
+                                  <td colspan="2" class="list_headline">{comment_write_your_comment_here}</td>
+                                  </tr>
+                              <tr>
+                                  <td width="25%" valign="top" class="list_light"><p><strong>{comment_username}</strong></p></td>
+                                  <td width="75%" class="list_light">{input}</td>
+                              </tr>
+                              <tr>
+                                  <td valign="top" class="list_dark"><p><strong>{comment_topic}</strong></p></td>
+                                  <td class="list_dark"><input name="comment_head" type="text" class="input" id="comment_head" size="100" /> 
+                                <table width="80%"  border="0" cellspacing="0" cellpadding="3">
+                                  <tr> 
+                                    <td><fieldset>
+                                      <legend>{comment_posticons}</legend>
+                                      <table width="80%"  border="0" align="center" cellpadding="1" cellspacing="0">
+                                        <tr> 
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/ausrufezeichen.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/ausrufezeichen.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/biggrin.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/biggrin.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/boese.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/boese.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/cool.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/cool.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/eek.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/eek.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/frage.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/frage.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/frown.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/frown.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/icon1.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/icon1.gif" alt="" width="15" height="15" align="middle" /></td>
+                                        </tr>
+                                        <tr> 
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/lampe.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/lampe.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/mad.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/mad.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/sad.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/sad.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/smilie.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/smilie.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/thumb_down.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/thumb_down.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/thumb_up.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/thumb_up.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/wink.gif" /> 
+                                            <img src="{SMILIEURL}/posticons/wink.gif" alt="" width="15" height="15" align="middle" /></td>
+                                          <td align="center"><input name="posticon" type="radio" value="{SMILIEURL}/posticons/noicon.gif" checked="checked" /> 
+                                            <img src="{SMILIEURL}/posticons/noicon.gif" alt="" width="15" height="15" align="middle" /></td>
+                                        </tr>
+                                      </table>
+                                      </fieldset></td>
+                                  </tr>
+                                </table>								  
+								  </td>
+                              </tr>
+                              <tr>
+                                  <td colspan="2" valign="top" class="list_headline">{comment_your_message}</td>
+                                  </tr>
+                              <tr>
+                                  <td colspan="2" valign="top" class="list_light" align="center">
+                                  <div id="bbeditor" style="width:95%;">	
+                                  <table width="100%" border="0" cellpadding="5" cellspacing="0"> 
+                                  <tr> 
+                                    <td align="left" valign="middle" colspan="2">
+                                      <div id="toolbar"><img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbcodeh(alp,'b','')"  src="{GRAFURL}/editor_bold.gif" alt="{comment_bold}" title="{comment_bold}" width="21" height="20" border="0" align="middle" /> 
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbcodeh(alp,'i','')"  src="{GRAFURL}/editor_italic.gif" alt="{comment_italic}" title="{comment_italic}" width="21" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbcodeh(alp,'u','')"  src="{GRAFURL}/editor_underline.gif" alt="{comment_underline}" title="{comment_underline}" width="21" height="20" border="0" align="middle" />
+                                      <img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="namedlinkh(alp,'email')"  src="{GRAFURL}/editor_email.gif" alt="{comment_email}" title="{comment_email}" width="21" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="namedlinkh(alp,'url')"  src="{GRAFURL}/editor_createlink.gif" alt="{comment_url}" title="{comment_url}" width="21" height="20" border="0" align="middle" />
+                                      <img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbcodeh(alp,'code','')"  src="{GRAFURL}/editor_code.gif" alt="{comment_code}" title="{comment_code}" width="21" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbcodeh(alp,'quote','')"  src="{GRAFURL}/editor_quote.gif" alt="{comment_quote}" title="{comment_quote}" width="21" height="20" border="0" align="middle" />
+                                      <img src="{GRAFURL}/editor_separator.gif" alt="" width="6" height="20" border="0" align="middle" />
+                                      <img class="button"  onmouseover="mouseover(this);" onmouseout="mouseout(this);" onmousedown="mousedown(this);" onmouseup="mouseup(this);" onclick="bbcodeh(alp,'center','')"  src="{GRAFURL}/editor_justifycenter.gif" alt="{comment_center}" title="{comment_center}" width="21" height="20" border="0" align="middle" />
+                                      </div>
+                                    </td> 
+                                  </tr> 
+                                  <tr> 
+                                    <td width="80%"><textarea class="message_area" name="comment_message" cols="" rows="10" style="width:99%; height:160px; background-color: #FFFFFF; "></textarea><br /><a href="javascript:checkmesslength(document.alp)">{comment_check_message_length}</a></td>
+                                    <td>
+                                    <fieldset><legend>{comment_click_smilies}</legend>
+                                        <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+                                        <tr> 
+                                          <td><div align="center"><img onclick="standard(alp,':D')" alt="" style="cursor: hand;" src="{SMILIEURL}/biggrin.gif" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,';-(')" alt="" style="cursor: hand;"  src="{SMILIEURL}/sly.gif" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':-(')" alt="" style="cursor: hand;"  src="{SMILIEURL}/confused.gif" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':-O')" alt="" style="cursor: hand;"  src="{SMILIEURL}/cry.gif" width="15" height="15" border="0" align="middle" /></div></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><div align="center"><img onclick="standard(alp,'(?)')" alt="" style="cursor: hand;"  src="{SMILIEURL}/sneaky2.gif" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,'(!)')" alt="" style="cursor: hand;"  src="{SMILIEURL}/notify.gif" width="15" height="21" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':baaa:')" alt="" style="cursor: hand;"  src="{SMILIEURL}/baaa.gif" width="40" height="45" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':stupid:')" alt="" style="cursor: hand;"  src="{SMILIEURL}/withstupid.gif" width="40" height="45" border="0" align="middle" /></div></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><div align="center"><img onclick="standard(alp,'8-)')" alt="" style="cursor: hand;"  src="{SMILIEURL}/music.gif" width="21" height="22" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':O')" alt="" style="cursor: hand;"  src="{SMILIEURL}/wow.gif" width="15" height="15" border="0" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':zzz:')" alt="" style="cursor: hand;"  src="{SMILIEURL}/sleepy.gif" width="15" height="20" border="0" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':xmas:')" alt="" style="cursor: hand;"  src="{SMILIEURL}/xmas.gif" width="21" height="22" border="0" /></div></td>
+                                        </tr>
+                                        <tr> 
+                                          <td><div align="center"><img onclick="standard(alp,';-)')" alt="" style="cursor: hand;"  src="{SMILIEURL}/wink.gif" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':-)')" alt="" style="cursor: hand;"  src="{SMILIEURL}/smile.gif" width="15" height="15" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':!')" alt="" style="cursor: hand;"  src="{SMILIEURL}/thumbs-up.gif" width="23" height="18" border="0" align="middle" /></div></td>
+                                          <td><div align="center"><img onclick="standard(alp,':inlove:')" alt="" style="cursor: hand;"  src="{SMILIEURL}/inlove.gif" width="16" height="27" border="0" align="middle" /></div></td>
+                                        </tr>
+                                      </table>
+                                      </fieldset>                                   
+                                    </td> 
+                                  </tr> 
+                                  </table></div>                                  
+                                  </td>
+                              </tr>
+                          </table></td>
+                      </tr>
+                  </table>
+				  <div align="center">
+				      <input name="" type="submit" class="input" value=" {comment_add_comment_btn} " />
+				      &nbsp;                      
+				      <input name="Reset" type="reset" class="input" value=" {comment_reset_btn} " />
+				  </div>
+				  </form>
+                  </IF NAME="user_can_post_comments">
+                  <IF NAME="user_can_post_no_comments">
+                  <table width="100%"  border="0" cellpadding="0" cellspacing="0" bgcolor="{CONTENT_BORDER_COLOR}">
+                      <tr>
+                          <td><table width="100%"  border="0" cellspacing="1" cellpadding="0">
+                              <tr>
+                                  <td class="list_headline"><img src="{GRAFURL}/img_caution.gif" alt=""  width="16" height="16" border="0" align="middle" />{comment_not_allowed_to_post_comment}</td>
+                              </tr>
+                          </table></td>
+                      </tr>
+                  </table>                   
+                  </IF NAME="user_can_post_no_comments">
+                  </td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+      <br /> 
+{footer}    
