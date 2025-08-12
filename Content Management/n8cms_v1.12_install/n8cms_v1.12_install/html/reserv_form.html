@@ -1,0 +1,35 @@
+			<h2>Reserve Your Float</h2>
+			<p>We will hold your float reservation until 9:am of the day you specify</p>
+		<table border=0 cellpadding=0 cellspacing=5>	
+			<tr><td>
+			<form name='rental_reserve' action='rent_reserve.php' method='POST'>
+			<input type="hidden" name="form_name" value="rental_reserve">
+			Contact Name (who's doing the renting?)<br>
+			<input class='button' type="text" name="first_name"  tabindex=1><br>
+			<input class='button' type="text" name="last_name"  tabindex=2>
+			</td><td>
+			We need your e-mail address too<br>
+			<input class='button' type="text" name="email_address" value="e-mail address" tabindex=3><br>
+			</td></tr>
+			<tr><td>
+			Phone number<br> (we may need to contact you to verify)<br>
+			(<input class='button' type="text" name="area_code" size=3 tabindex=4>)&nbsp;
+			<input class='button' type="text" name="ph_num1" size=3 tabindex=5>&nbsp;
+			<input class='button' type="text" name="ph_num2" size=4 tabindex=6><br>
+			</td><td>
+			what day do you want to float?<br>
+			<?php monthPullDown(date(m), $lang['months']); dayPullDown(date(d)); yearPullDown($y); ?><br>
+			</td></tr>
+			<tr><td>
+	How Many in your Party?<br><table><tr><td>
+			Adults</td><td><input class='button' type="text" name="adult_party_num" size=3 tabindex=10></td></tr>
+			<tr><td>
+			Children (under 12)</td><td><input class='button' type="text" name="child_party_num" size=3 tabindex=11></td></tr></table>
+			</td><td>
+			How many Rafts?&nbsp;&nbsp;&nbsp;&nbsp;<input class='button' type="text" name="raft_num" size=2 tabindex=12><br>
+			How many Canoes? <input class='button' type="text" name="canoe_num" size=2 tabindex=13><br>
+			</td></tr><tr><td colspan=2>
+			any special instructions or comments?<br>
+			<textarea cols="65" rows="6" name="other_info" class='button' tabindex=14></textarea><br>
+			<input type="submit" name="submit" value="Submit" class='button' tabindex=15>&nbsp;<input type="Reset" class='button' tabindex=16></form>
+</td></tr>		</table>
