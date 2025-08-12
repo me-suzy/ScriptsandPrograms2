@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0054)http://www.jmbsoft.com/owners/ags/bdocs/utilities.html -->
+<HTML><HEAD><TITLE>AutoGallery SQL - Utilities</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251"><LINK 
+href="AutoGallery SQL - Utilities_files/style.css" type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY text=#000000 vLink=#003366 aLink=#003366 link=#003366 
+bgColor=#ffffff><FONT face=Verdana,Arial size=4>
+<DIV align=center><B>AutoGallery SQL - Utilities </B><BR><BR>
+<TABLE cellSpacing=0 cellPadding=0 width=700>
+  <TBODY>
+  <TR>
+    <TD><FONT face=Arial size=2><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Important Notes</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>The 
+      utilities included with the software are considered experimental, and you 
+      will be using them at your own risk. They are not an official part of the 
+      software at this time, and are not yet fully supported by the tech support 
+      staff. These tools are intended for advanced users who understand how to 
+      use the command line interface of a Unix system. By using these utilities 
+      you acknowledge that you will be doing so at your own risk, and will be 
+      responsbile for your own troubleshooting should you run into problems. 
+      <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Link Checking Utility</B> 
+          </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR><I>The 
+      linkcheck utility is still in development, and will be completed in a 
+      future release of the beta version.</I> <!--<b>Setup</b>
+
+      <br><br>
+
+      Before you can begin using this utilty, you will need to setup a few items.  First off, edit the linkcheck file and set the $CDIR variable.  You should
+      also make sure that the first line of this file and the delete.cgi file point to the correct location of Perl on your server.
+      Next you can upload the linkcheck file to the same directory as your ags.pl file, the lcheck.dat file to the data directory, and the delete.cgi file
+      to the admin directory in ASCII mode.  Set the permissions on the linkcheck and delete.cgi files to 755.
+
+      <br><br>
+
+      <b>Running the Program</b>
+
+      <br><br>
+
+      Please note that this program will take a significant amount of time to run.  Under good conditions it should be able to check about 750 URLs in 20 minutes.
+      You should be advised that some server administrators do not like users executing long running programs, or leaving programs running in the background.  Although
+      it uses very little server resources, you should be aware of your web host's policies before you use this software.
+
+      <br><br>
+
+      Once you have the setup complete, you can run the program from the command line of your server.  Telnet or SSH into your server and change into the directory
+      where you uploaded the linkcheck file.  You can run the program by typing the following command:
+
+      <br><br>
+
+      ./linkcheck
+
+      <br><br>
+
+      This program also will take several command line arguments that tell it how it should run.  An example of running the program with command line arguments
+      is:
+
+      <br><br>
+
+      ./linkcheck -vgr output.html
+
+      <br><br>
+
+      Each of the command line options will be described below.  The basic usage of the software is:
+      
+      <br><br>
+      
+      ./linkcheck [OPTIONS] [FILE]
+
+      <br><br>
+
+      Both the options and file values are optional.  If you do not provide any options, the software will run with the -g option and generate
+      the HTML report in a file named report.html.  If you provide options but no filename, the software will use your options and generate the HTML
+      report in a file named report.html if you have specified the -g option.
+
+      <br><br>
+
+      <b>Command Line Arguments</b>
+
+      <br><br>
+
+      Below is a description of all of the available command line arguments.
+
+      <br><br>
+
+      -v
+
+      <ul>
+      Verbose mode.  With this option enabled, the software will display the URLs it is checking and the status code reported
+      by the webserver.
+      </ul>
+
+      -V
+
+      <ul>
+      Verbose mode with even more information.  With this option enabled you will receive even more information about each
+      connection that is made.  Details on the status of each connection are displayed including the hostname, URI, Port, and
+      server response.  Generally you will not want to use this option unless you are having problems with the program.
+      </ul>
+
+      -S
+
+      <ul>
+      Automatically remove URLs with status code of 400+.  With this option enabled, the program will delete galleries from your
+      database that have an HTTP status code of 400 or higher.  These status codes include 403 Forbidden, 404 Not Found, 500 Server Error
+      and many more.
+      </ul>
+
+      -r
+
+      <ul>
+      Check URLs for valid reciprocal links.  With this option enabled, the software will check each gallery to see if it has a reciprocal link
+      back to you based on the reciprocal links you have setup in AutoGallery SQL.
+      </ul>
+
+      -R
+
+      <ul>
+      Automatically remove URLs without a reciprocal link.  This option will only work when the -r option is also enabled.  When the software
+      finds a gallery without a reciprocal link, it will immediately remove it from your database.
+      </ul>
+
+      -b 
+
+      <ul>
+      Check URLs for banned HTML.  With this option enabled, the software will check each gallery to see if it has any banned HTML on it
+      based on the banned HTML you have setup in AutoGallery SQL.
+      </ul>
+
+      -B
+
+      <ul>
+      Automatically remove URLs with banned HTML.  This option will only work when the -b option is also enabled.  When the software
+      finds a gallery with banned HTML, it will immediately remove it from your database.
+      </ul>
+
+      -g
+
+      <ul>
+      Generate an HTML report of link checking session.  With this option enabled, the program will generate an HTML file with complete details
+      on each gallery it checked.  If you are using the -r option and <i>not</i> the -R option you will definately want to enable this option.
+      It will allow you to manually delete galleries that you select.  This is the same if you are using the -b option and <i>not</i> the -B option.
+      </ul>
+
+      -d
+
+      <ul>
+      Display only bad links, no recip, or banned HTML in report.  With this option enabled, the HTML report will only show galleries which are broken links,
+      have no reciprocal link on them (requires the -r option), or have banned HTML on them (requires the -b option).  All of the good galleries will not be
+      displayed in the report.
+      </ul>
+
+      -q
+
+      <ul>
+      Check only the queue database.  With this option enabled, the program will only check galleries in the queue database.  By default, the software
+      checks all galleries in all databases.
+      </ul>
+
+      -c
+
+      <ul>
+      Check only the current database.  With this option enabled, the program will only check galleries in the current database.  By default, the software
+      checks all galleries in all databases.
+      </ul>
+
+      -a
+
+      <ul>
+      Check only the archived galleries.  With this option enabled, the program will only check galleries in the archives.  By default, the software
+      checks all galleries in all databases.
+      </ul>
+
+      -t
+
+      <ul>
+      Rebuild TGP pages when complete.  With this option enabled, the program will rebuild all of your TGP pages when it is completed checking the links.
+      You will only want to use this option if you are using any of the automatic removal options.
+      </ul>
+
+      <b>Combining Command Line Options</b>
+
+      <br><br>
+
+      There are two ways to use multiple command line options.  Either way works fine, so it is up to your personal preference.  The first method
+      has all of the options together in one string following a hyphen.  The second method has each option by itself preceeded by a hyphen.  Examples
+      of each:
+
+      <br><br>
+
+      ./linkcheck -vgrb filename.html
+
+      <br><br>
+
+      or
+
+      <br><br>
+
+      ./linkcheck -v -g -r -b filename.html
+
+      <br><br>
+
+      <b>Viewing the HTML Report</b>
+
+      <br><br>
+
+      The easiest way to view your HTML report is to FTP into your server and download the file from your data directory.  You can then open it in your favorite
+      web browser to view the output.  Each of the galleries will have a link to 'Remove Now'.  Clicking that link will immediately delete the gallery from your
+      database, so make sure that is what you want to do.  You will need to enter your administrative username and password to access the deletion program, so make
+      sure you login as a moderator who has the correct access rights to delete submissions.
+
+      <br><br>
+
+      <b>Using The Link Checker With Cron</b>
+
+      <br><br>
+
+      It is possible to setup a cron job to run the linkcheck program at a specified time.  It is expected that you understand how to use cron on your server and
+      know how to setup crontab entries.  An example crontab entry for this program would be:
+
+      <br><br>
+
+      0 0 * * * /full/path/to/linkcheck -grb output.html
+
+      <br><br>
+
+      The above command would run the linkcheck program daily at midnight with the -g, -r, and -b options and outputting a report to the output.html file.  When
+      running the program through cron you should <i>not</i> use the -v or -V options.--><BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Backup Utility</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>
+      <OL>
+        <LI>Open the backup file from the software zip file, set the $CDIR 
+        variable, and make sure the correct Perl path appears at the top of the 
+        file. You can then upload it to your server in ASCII mode to the same 
+        directory as agp.pl. Set the permissions on the backup file to 755. 
+        <BR><BR>
+        <LI>You can now telnet or SSH into your server and change into the 
+        directory where you uploaded the backup file. <BR><BR>
+        <LI>There are two options for naming your backup files. You can either 
+        have the data backed up to the same file all the time, or you can create 
+        a seperate backup file for each day that the backup function is run. 
+        Either way, the data file will always be created in your data directory. 
+        <BR><BR>
+        <UL>
+          <LI>./backup data.txt <BR><BR>Using this command will always backup 
+          your data to the data.txt file. You can choose whatever filename you 
+          want, just replace data.txt with the file you want the data stored in. 
+          <BR><BR>
+          <LI>./backup <BR><BR>If you leave the filename off the end, each time 
+          the backup function is run it will create a filename based on the 
+          current date. For example, it will create a file named 10-01-2001.txt 
+          for the backup that was run on October 1st of 2001. </LI></UL><BR><BR>
+        <LI>Once you execute either of the above commands, the backup will be 
+        run. You can then retrieve the backup datafile from the data directory 
+        and download it to your local computer in ASCII mode for safe keeping. 
+        <BR><BR>
+        <LI>To use this tool with cron, all you need to do is setup a crontab 
+        entry with the full path to the backup file as the command. It is 
+        expected that you know how to use cron and setup crontab entries. An 
+        example crontab entry would be: <BR><BR>0 0 * * * 
+        /home/username/public_html/cgi-bin/tgp/backup <BR><BR>This would run the 
+        backup command once a day at midnight, and create a backup filename 
+        based on the current date. 
+</LI></OL></FONT></TD></TR></TBODY></TABLE></DIV></FONT></BODY></HTML>
