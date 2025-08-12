@@ -1,0 +1,1 @@
+This page viewed <?php include 'hits.php'; ?> times
