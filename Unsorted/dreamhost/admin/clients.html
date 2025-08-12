@@ -1,0 +1,135 @@
+
+<form method="post" action="">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td valign="middle"> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="230" valign="middle"> <font class="form_text"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333">ACCOUNT 
+              SEARCH:</font></b></font> 
+              <input type="text" name="keyword" maxlength="50" size="10" style="border: 1 solid #666666" value="<?php echo $keyword ?>">
+            </td>
+            <td valign="middle"> 
+              <input type="image" border="0" name="submit2" value="submit" src="images/button_go.gif" width="21" height="20" onClick="verify(this.form);">
+              <input type="hidden" name="page" value="<? echo $page ?>">
+              <font class="form_text"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+              </font></b><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#666666">Searches 
+              for Name, Email, and Phone matches.</font></font> </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form method="post" action="" >
+  <font face="Verdana, Arial, Helvetica, sans-serif"> 
+  <? 
+    $today=date("Y-m-d");
+    $today_date=strtotime($today);
+	$i="0";	
+	$db = new ps_DB;
+
+	if ($keyword) {
+	$q  = "SELECT * FROM account 
+			WHERE account_name LIKE '$keyword'
+			OR account_email LIKE '%$keyword%' 
+			OR account_phone LIKE '%$keyword' 
+			ORDER BY account_name";
+	} else {
+	$q  = "SELECT * FROM account ORDER BY account_name";
+	}
+                    if ($count) {
+					$q.= " LIMIT ";
+					$q.= $max_results;
+					$q.= ",";
+					$q.= $count;
+					$next=$count+$max_results;
+					$last=$count-$max_results;
+					} else {
+                    $q.= " LIMIT $max_results";
+					$next=$count+$max_results;
+					$last=$count-$max_results;
+					}
+	$db->query($q);
+		while ($db->next_record()) {
+?>
+  </font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC" vspace="1" hspace="1">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#E4E4E4" height="10">
+          <tr> 
+            <td width="36" height="5"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><i><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <?  $db->p("account_id");  ?>
+              </font></font></b></font><font color="#003399"> </font></i></font></td>
+            <td height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><i><font color="#003399"> 
+              </font></i><font color="#003399"> </font><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <?  $db->p("account_name");  ?>
+              </font></font></b></font></td>
+            <td width="100" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <? 
+$orders = show_client_orders($db->f("account_id"));
+if ($orders == 0) {
+echo " No Orders";
+} else {
+?>
+              </font><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?page=orders&amp;account_id=<? $db->p("account_id") ?>"><font color="#660000">Orders</font></a></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"><font color="#000000">(</font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#000000"> 
+              <? 
+echo $orders;
+?>
+              )</font><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <?  } ?>
+              </font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></td>
+            <td width="100" height="5"> <font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <? 
+$domains = show_client_domains($db->f("account_id"));
+if ($orders == 0) {
+echo " No Domains";
+} else {
+?>
+              </font><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?page=domains&amp;account_id=<? $db->p("account_id") ?>"><font color="#660000">Domains</font></a></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"><font color="#000000">(</font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#000000"> 
+              <? 
+			echo $domains;
+			 ?>
+              )</font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#000000"> 
+              <? 
+			}
+			 ?>
+              </font> 
+            <td width="125" height="5"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <? 
+			$bill = count_billing($db->f("account_id"));
+			if ($bill == 0) {
+			echo " Not Billed";
+			} else {
+?>
+              </font><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?page=billing_history&account_id=<? $db->p("account_id") ?>"><font color="#660000">Billing 
+              Records </font></a></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"><font color="#000000"> 
+              (</font></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#000000"> 
+              <? 
+			echo $bill;
+			?>
+              ) </font> 
+              <? 
+			   }
+			   ?>
+            </td>
+            <td width="35" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?page=add_clients&amp;set_action=client_update&amp;account_id=<? echo $db->p("account_id"); ?>">edit</a></font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><br>
+  <?   
+$i++;
+ } 
+if ($i=="0") { echo "<BR>NO RESULTS FOR THIS SEARCH"; }  ?>
+  </font><br>
+  <a href="?page=add_clients&amp;set_action=add_account"><img src="images/button_add.gif" width="80" height="23" border="0"></a> 
+  <div align="center"><br>
+    <a href="?page=clients&amp;count=<? if($next <= 0) { echo $last; } else { echo "0"; } ?>"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>PREV</b></font></a><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+    | <a href="?page=clients&amp;count=<? echo $next; ?>">NEXT</a></font></b> 
+  </div>
+</form>
