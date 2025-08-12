@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+  <head>
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<link rel="STYLESHEET" href="img/css.css" type="text/css" />
+	<title>phpFotoAlbum - README (cz)</title>
+  </head>
+<body>
+<div align="right" style="float: right;">
+<img src="img/xhtml.gif" alt="Valid XHTML 1.0!" height="31" width="88" border="0" />
+<img src="img/css.gif" alt="Valid CSS!" height="31" width="88" border="0" />
+<img src="img/php.gif" alt="PHP" height="31" width="88" border="0" />
+</div>
+<h1>phpFotoAlbum 2.x</h1>
+<p>
+<hr />
+<h2>Poadavky na server</h2>
+<hr />
+* Webový server (Apache, IIS,...)<br />
+* PHP 4.0+ (doporuèeno PHP 4.3.0+)<br />
+* GD knihovna 2.0+ (podpora pro ètení GIFù)(teoreticky mùe fungovat i s GD 1.6)<br />
+* Volitelnì povolit zápis do adresáøe ./images/ a vech jeho podadresáøù (jen pokud je povoleno ukládání náhledù)<br />
+<br />
+<hr />
+<h2>INSTALACE</h2>
+<hr />
+Ve nakopírujte na webový server.<br />
+V souboru "config.php" mùete (a doporuèuji) nastavit hodnotu promìnné "$image_create_thumb" na "true". Tím dojde k znaènému urychlení a sníí se zátì serveru. Toto nastavení vak vyaduje povolení zápisu pro PHP do adresáøe images a do vech jeho podadresáøù. Jinak nemùe PHP ukládat vytvoøené náhledové obrázky. 
+Promìnná "$image_update_thumb" zajiuje aktualizaci náhledù pøi nahrání nového obrázku.<br />
+<br />
+<hr />
+<h2>Obrázky a galerie</h2>
+<hr />
+Vechny obrázky musí být uloeny v adresáøi "images". V tomto adresáøi je mono (a silnì to doporuèuji) vytváøet dalí adrsáøe. Hloubka zanoøení podadresáøù není limitována (moná operaèní systéme a délkou URI). Kadý podadresáø se chová jako samostatná galerie. Kadý adresáø mùe obsahovat svùj vlastní informaèní soubor (viz dále) a libovolný poèet obrázkù.
+Pokud hodláte pouívat automatické generování náhledù, je nutné kadému novì zaloenému adresáøi nastavit práva pro zápis pro PHP. Upozoròuji, e povolit zápis do adresáøe pro vechny mùe být potenciálním bezpeènostním rizikem. Pokud si nejste jisti, zeptejte se svého administrátora jak povolit zápis do adresáøe pouze pro PHP.<br />
+<br />
+<hr />
+<h2>Skiny</h2>
+<hr />
+to-do: Dodat popis...<br />
+<br />
+<hr />
+<h2>"info" soubor  - momentálnì není implementováno -</h2>
+<hr />
+V kadém adresáøi s fotkami mùe být uloen i informaèní soubor. Informaèní soubor obsahuje nìkteré základní informace o danné galerii. Soubor se musí jmenovat "_info.txt". Jedná se o textový soubor s následujícím obsahem:<br />
+&lt;--zaèátek souboru--&gt;<br />
+download=true<br />
+text=<br />
+autor=Ladislav Soukup<br />
+email=soukupl@programatori.cz<br />
+url=<br />
+icq=146857164<br />
+datum=31.12.2002 - 1.1.2003<br />
+&lt;--konec souboru--&gt;<br />
+<br />
+Poloka "download" - &lt;true / false&gt; - Povoluje / zakazuje stahování celé galerie jako jeden soubor ZIP. Standartnì FALSE!<br />
+<br />
+Poloka "text" - &lt;string&gt; - Libovolný text popisující galerii.<br />
+<br />
+Poloka "autor" - &lt;string&gt; - Jméno autora.<br />
+<br />
+Poloka "email" - &lt;string&gt; - E-mail autora. Není zobrazen, pouze jméno se zmìní v odkaz... &lt;a href="mailto:*email*"&gt;*autor*&lt;/a&gt;.<br />
+<br />
+Poloka "url" - &lt;string&gt; - URL autora. V popisu se objeví odkaz na domovskou stránku autora.<br />
+<br />
+Poloka "icq" - &lt;int&gt; - Vytvoøí odkaz na ICQ. Také ukazuje aktuální stav uivatele.<br />
+<br />
+Poloka "datum" - &lt;string&gt; - Datum poøízení fotek.<br />
+<br />
+<br />
+Pokud nebude nìjaká poloka zadána, nebo nebude vùbec definována, nebude zobrazena. ádná poloka není povinná. Pouze poloky "email", "icq" a "url" jsou vázány na poloku "autor". Bez poloky "autor" nebudou zobrazeny.<br />
+<br />
+Ukázkový soubor "_info.txt" je pøiloen.<br />
+<br />
+<hr />
+<h2>HISTORIE</h2>
+<hr />
+2.00alpha2 - první funkèní verze :)<br />
+2.00alpha - Kompletnì pøepracovaný kód phpFotoAlba 1.36, nový design, ...<br />
+1.x - pùvodní verze phpFotoAlba (ke staení na http://php.soundboss.cz)<br />
+<br />
+<hr />
+<h2>LICENCE</h2>
+<hr />
+Tato aplikace je distibuována "tak jak je" bez jakékoliv záruky. Autor nenese ádnou odpovìdnost za pøípadné kody vzniklé pouíváním této aplikace.<br />
+Tato aplikace je distribuována pod licencí GNU/GPL (viz gnu_gpl.htm). Mùete jej íøit a modifikovat podle ustanovení Obecné veøejné licence GNU, vydávané Free Software Foundation; a to buï verze 2 této licence anebo (podle vaeho uváení) kterékoli pozdìjí verze. Autor si vyhrazuje právo na uvedení svého jména.<br />
+Tato aplikace je roziøována v nadìji, e bude uiteèná, avak BEZ JAKÉKOLI ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO URÈITÝ ÚÈEL. Dalí podrobnosti hledejte v Obecné veøejné licenci GNU.<br />
+<br /><br />
+Autor:  Ladislav Soukup<br />
+e-mail: soukupl@programatori.cz<br />
+e-mail: root@soundboss.cz<br />
+URL: http://php.soundboss.cz<br />
+URL: http://www.soundboss.cz<br />
+URL: http://www.webguru.cz<br />
+URL: http://www.programatori.cz<br />
+</p>
+</body></html>
