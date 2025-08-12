@@ -1,0 +1,79 @@
+{PROJECT}
+./template/home.en.ini
+
+{MENU}
+00.01
+
+{SCRIPT}
+user.php?test=Coocoo!
+
+{TITLE}
+phpCMS Demo - Home &raquo; Start Page
+
+{CONTENT}
+<phpcms:ignore>
+<p>This text is commented-out.</p>
+</phpcms:ignore>
+<h2>Welcome to <strong><em>php</em>CMS</strong>!</h2>
+<p>If you can see this page including the menu at the top, your parser is working!</p>
+
+<phpcms:ignore>
+<p>Here is more commented-out text.</p>
+</phpcms:ignore>
+
+<p><STRONG>With the menus you can switch to the other pages.</STRONG></p>
+
+<phpcms:noindex>
+<p>This line of text is enclosed in a no-index tag and should not be indexed by the HTTP indexer.</phpcms:noindex></p>
+<p>This (dummy) <phpcms:nofollow><a href="$home/deadlink.htm">link</a></phpcms:nofollow> is enclosed int a no-follow tag and should not be spidered by the HTTP indexer.</p>
+
+<!-- PLUGIN:TAG -->
+
+<p>Have fun with <strong><em>php</em>CMS</strong>!</p>
+<hr />
+<h2 style="text-align:center"><strong>phpMail2Crypt</strong></h2>
+<p style="text-align:center">SPAM protection using automatic &#8222;crypting&#8221; of e-mail addresses.</p>
+<p style="text-align:center"><span style="color:red">NEW!</span> phpMail2Crypt now works indedepentently of PAX! <span style="color:red">NEW!</span></p>
+<p>phpMail2Crypt uses a combination of different techniques to make it harder for so-called spambots to harvest e-mail addresses:</p>
+<ul>
+<li>JavaScript encrypting and decrypting</li>
+<li>ASCII encrypting</li>
+<li>image file</li>
+</ul>
+<p>There can be no 100% protection against spambots, but with phpMail2Crypt you make their work much harder!</p>
+<p>A simple example:</p>
+<dl>
+   <dt>
+      <strong>Step 1:</strong>Write e-mail address (e.g. "nospam@phpcms.de") in content file:
+   </dt>
+      <dd><br /><strong>&lt;!-- MAIL2CRYPT nospam@phpcms.de --&gt;</strong><br />
+      </dd>
+
+   <dt>
+      <br /><strong>Step 2:</strong>Automatic transformation:<br /><br />
+   </dt>
+      <dd>&lt;script type="text/javascript" &gt;&lt;!--//--&gt;&lt;![CDATA[//&gt;&lt;!--
+            <br /><strong>showmail( "87889289748641898189768692237778")</strong>
+            <br />//--&gt;&lt;!]]&gt;&lt;/script&gt;<br /><br /></dd>
+
+      <dt>
+         <strong>Step 3:</strong>Display in browser:<br /><br />
+      </dt>
+          <dd>Variant A: <strong>&lt;!-- MAIL2CRYPT nospam@phpcms.de --&gt;</strong>
+         <br />Display: <!-- MAIL2CRYPT nospam@phpcms.de --><br /><br />
+         </dd>
+         <dd>Variant B: <strong>&lt;!-- MAIL2CRYPT nospam@phpcms.de,Schreib mir --&gt;</strong>
+         <br />Display: <!-- MAIL2CRYPT nospam@phpcms.de,Write me --><br /><br />
+         </dd>
+         <dd>Variant C: <strong>&lt;!-- MAIL2CRYPT nospam@phpcms.de,Schreib mir,icon --&gt;</strong>
+         <br />Display: <!-- MAIL2CRYPT nospam@phpcms.de,Write me,icon --><br /><br />
+         </dd>
+         <dd>&lt;noscript&gt; &#110;&#111;&#115;&#112;&#97;&#109;<img src="gif/at.gif" width="11" height="12" align="bottom" border="0" alt="&#64;" />&#112;&#104;&#112;&#99;&#109;&#115;&#46;&#100;&#101;</dd>
+</dl>
+<p>If "Mail2Crypt" is switched off in the GUI, e-mail addresses will be displayed the normal way in the text.</p>
+<hr />
+
+
+
+
+
