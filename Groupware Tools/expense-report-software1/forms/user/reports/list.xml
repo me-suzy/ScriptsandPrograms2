@@ -1,0 +1,55 @@
+<form>
+	
+	<title>Expenses Reports</title>
+	<width>580</width>
+	<border>true</border>
+	
+	<fields>
+		<_count header="No" suffix="." width="30" align="center" />
+		<report_name header="Report" align="left" />
+<!--		<report_date type="date" params="m.d.Y" width="100" header="Date" />-->
+
+		<report_user header="Assigned User" type="relation" align="left">
+			<relation table="users" id="user_id">
+				<text> 
+					<field name="user_login">user_login</field>
+					<field name="user_name">user_name</field>
+				</text>
+				<separator>&nbsp;,&nbsp;</separator>
+			</relation>
+		</report_user>
+	</fields>
+
+	<header>
+		<titles>true</titles>
+		<buttons>
+			<delete onclick="" button="addnew" >
+				<location>index.php?sub=reports&action=add</location>
+			</delete>
+
+		</buttons>
+	</header>
+
+	<buttons>
+
+		<details onclick="" button="details" >
+			<location>index.php?sub=reports&action=details&report_id={REPORT_ID}</location>
+		</details>
+
+	</buttons>
+
+	
+	<sql>
+		<vars>
+			<table import="$this->tables[reports]" type="eval"/>
+			<user import="$_SESSION[minibase][raw][user_id]" type="eval" />
+		</vars>
+
+		<query>SELECT * FROM {TABLE} WHERE report_user = {USER}</query>
+	</sql>
+
+
+
+	<items>20</items>
+
+</form>
