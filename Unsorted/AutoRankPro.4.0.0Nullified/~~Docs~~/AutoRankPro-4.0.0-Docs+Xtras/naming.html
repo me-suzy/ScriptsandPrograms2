@@ -1,0 +1,109 @@
+<html>
+<head>
+	<title>CGI File Renaming</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<div align="center">
+
+<font face="Verdana,Arial" size="4">
+
+<b>
+CGI File Renaming
+</b>
+
+<br><br>
+
+<table width="650" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Renaming rankem.cgi and out.cgi </b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+<br>
+
+<font face="Arial" size="2">
+
+In this file, we will give you a quick overview of how to rename rankem.cgi and out.cgi.  Note that those are the
+only two files which can be renamed - all others need to keep their default filename.
+
+<br><br>
+
+<b>The Basics</b>
+
+<br><br>
+
+Really, this is a very simple task.  All you need to do is decide on the name you want to give the files, then
+rename the original files to their new names.  If you want rankem.cgi to be named in.cgi, just rename rankem.cgi to
+in.cgi.  Once you have done that, you will need to update the In and Out URL fields in setup.cgi to reflect the
+new names you have given the files.  After you have renamed or created a copy of rankem.cgi or out.cgi, make sure you
+set the permissions on those files to 755 (Unix).
+
+<br><br>
+
+<b>If you already have members sending hits to rankem.cgi</b>
+
+<br><br>
+
+If you already have a few members who are sending hits to rankem.cgi, you will want to keep a copy of that script
+on your server until all of your members have udpated their links with the new filename.  It is perfectly fine to
+have several copies of rankem.cgi with different names.  Each one will track hits as normal, and they will share
+the IP logs and gateway session information.
+
+<br><br>
+
+As an example, say you started out and got 10 members signed up.  They all got HTML code that linked them to rankem.cgi,
+but now you want your members to link to in.cgi.  What you will do is make a copy of rankem.cgi and name it in.cgi.  Place
+it in the same directory as rankem.cgi and make sure it is set to 755 for permissions (on Unix).  Now update setup.cgi so 
+that the In URL field points to in.cgi.  From now on, all members that signup will get code that links them to in.cgi.  For
+your other members, you can e-mail them and tell them of the new linking code.  The rankem.cgi script will continue to function
+as long as you keep the file in place.
+
+<br><br>
+
+<b>Tips and Tricks</b>
+
+<br><br>
+
+On some servers, it is not necesary to name the file with a .cgi extension.  If you are running the software out of a cgi-bin
+you may be able to name the files whatever you want.  You could, for example, rename 'rankem.cgi' to 'in'.  All of your members would then
+be given code that would link them to:
+</font>
+
+<pre>http://www.yoursite.com/cgi-bin/top100/in?id=username</pre>
+
+<font face="Arial" size="2">
+
+Before you start removing the .cgi file extension and telling your members to change their code, make sure this will work on your
+server.  Not all servers allow this, and most only allow it inside the cgi-bin directory.
+
+<br><br>
+
+Giving the hit tracking scripts your own name allows you to brand the software to your site, and can often make your site look more
+professional.  There are a lot of options, so give it a try.
+
+</font>
+</td>
+</tr>
+</table>
+
+</body>
+</html>
