@@ -1,0 +1,81 @@
+<!--&
+
+
+my ($H, @Rec) = Browse($Q{file});
+local %nav = %{ CalcNavigation({ Records=>0+@Rec, Count => $Q{Count}, From => $Q{From} }) };
+-->
+<HTML>
+<HEAD>
+<TITLE>Expired Domain Finder</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="expireddomain.css">
+</HEAD>
+<BODY>
+
+<center>
+<H1><B>E</B>xpired<B> D</B>omain <B>F</B>inder</H1>
+
+<table class=menu> <tr><td><a href='index.html'> Home </a><td>
+<a href="Search.html">	Make a new file </a> </table>
+
+<table class=info>
+<tr><td>Keyword:<td>@~$H->{keyword}~@
+<tr><td>MetaSearch time, sec:<td>@~$H->{metasearch_time}~@
+<tr><td>DNS check time, sec:<td>@~$H->{ip_time}~@
+<tr><td>Whois check time, sec:<td>@~$H->{whois_time}~@
+<tr><td>Records fetched:<td>@~$H->{total}~@
+<tr><td>Domains fetched:<td>@~$H->{domains}~@
+<tr><td>nxdomains: <td>@~$H->{nxdomain}~@
+<tr><td>Expired: <td>@~$H->{expire}~@
+</table>
+
+<BR>
+<TABLE calss=info><TR><TD>
+<!--& if ($nav{Records}) { -->
+Found @~$nav{Records}~@, shown @~$nav{From}~@-@~$nav{To}~@
+<!--& } else { -->
+No records exists
+<!--& } -->
+</TD></TR></TABLE>
+<p>
+
+<!--& if ($nav{Records}) { -->
+<TABLE class=list>
+<TR>
+<TH rowspan=2>N
+<TH rowspan=2> Host 
+<TH colspan=@~scalar POWER::MetaSearch::engines_list()~@>Rank
+<TR>
+<!--& for $e (POWER::MetaSearch::engines_list()) { -->
+	<TH ALIGN=LEFT>@~$e~@
+<!--& } -->
+<!--& for $num ($nav{From}..$nav{To}) { $_ = $Rec[$num-1]; -->
+<TR>
+<TD ALIGN=LEFT>@~$num~@
+<TD ALIGN=LEFT <!--& if ($_->{expire}) {--> bgcolor=red <!--& } -->>@~$_->{host}~@
+<!--& for $e (POWER::MetaSearch::engines_list()) { -->
+<TD ALIGN=LEFT>@~$_->{rank}{$e} || ''~@&nbsp;
+<!--& } -->
+<!--& } #for-->
+</TABLE>
+<!--& } -->
+
+<BR>
+<TABLE><TR>
+<!--& if (defined $nav{Prev}) { -->
+<TD><A HREF="?From=^~$nav{Prev}~^&file=^~$Q{file}~^">Prev</A></TD>
+<!--& } -->
+<!--& for (@{$nav{Pages}}) { -->
+<TD>
+<!--& if ($_->{Page} == $nav{Page}) { -->
+<B>@~$_->{Page}~@</B>
+<!--& } else { -->
+<A HREF="?From=^~$_->{From}~^&file=^~$Q{file}~^">@~$_->{Page}~@</A>
+<!--& } -->
+</TD>
+<!--& } -->
+<!--& if (defined $nav{Next}) { -->
+<TD><A HREF="?From=^~$nav{Next}~^&file=^~$Q{file}~^">Next</A></TD>
+<!--& } -->
+</TR></TABLE>
+
+</html>
