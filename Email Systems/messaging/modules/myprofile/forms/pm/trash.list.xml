@@ -1,0 +1,80 @@
+<form>
+	
+	<title>Deleted Messages</title>
+	<width>580</width>
+	<border>true</border>
+	<formtag>true</formtag>
+	<action>index.php?mod=myprofile&sub=myprofile.delete&returnurl={CURRENT_PAGE}</action>
+		
+	<fields>
+		<_count header="No" suffix="." width="30" align="center" />
+		<msg field="msg_id" value="msg_id" align="center" title="T" width="20" type="multiple" />
+		<msg_title header="Title" align="left" />
+		<msg_to type="relation" header="To">
+			<relation table="users" id="user_id">
+				<text>
+					<user_name>user_name</user_name>
+					<user_surname>user_surname</user_surname>
+				</text>
+			</relation>
+		</msg_to>
+
+		<msg_from type="relation" header="From">
+			<relation table="users" id="user_id">
+				<text>
+					<user_name>user_name</user_name>
+					<user_surname>user_surname</user_surname>
+				</text>
+			</relation>
+		</msg_from>
+<!--
+		<undelete type="button" width="20" align="center" button="ac_undelete" title="Undelete Message">
+			<location>javascript:if(confirm('Are you sure you want to RECOVER this message ?')) window.location='index.php?mod=myprofile&sub=myprofile.undelete&msg_id={MSG_ID}&returnURL={CURRENT_PAGE}'</location>
+		</undelete>
+
+		<delete type="button" width="20" align="center" button="ac_delete" title="Delete Message">
+			<location>javascript:if(confirm('Are you sure you want to delete this record ?')) window.location='index.php?mod=myprofile&sub=myprofile.delete&msg_id={MSG_ID}&returnURL={CURRENT_PAGE}'</location>
+		</delete>
+-->
+		<forward type="button" width="20" align="center" button="ac_forward" title="Forward Message">
+			<location>index.php?mod=myprofile&sub=myprofile.compose&msg_id={MSG_ID}&returnurl={CURRENT_PAGE}</location>
+		</forward>
+
+		<details type="button" width="20" align="center" button="ac_details" title="View Message">
+			<location>index.php?mod=myprofile&sub=myprofile.inbox&action=details&msg_id={MSG_ID}&returnurl={CURRENT_PAGE}</location>
+		</details>		
+
+	</fields>
+
+	<header>
+		<titles>true</titles>
+
+
+		<buttons>
+		<undelete type="button" width="20" align="center" button="ac_undelete" title="Undelete Message">
+			<location>javascript:if(confirm('Are you sure you want to RECOVER this message ?')) document.forms[0].action='index.php?mod=myprofile&sub=myprofile.undelete&returnurl={CURRENT_PAGE}' ; document.forms[0].submit();</location>
+		</undelete>
+
+			<delete type="button" width="20" align="center" button="ac_delete" title="Delete Message">
+				<location>javascript:if(confirm('Are you sure you want to delete selected records ?')) document.forms[0].action='index.php?mod=myprofile&sub=myprofile.trash&action=delete&returnurl={CURRENT_PAGE}' ; document.forms[0].submit();</location>
+			</delete>
+		</buttons>
+
+	</header>
+
+	<SQL>
+		<vars>
+			<sql_page type="page"/>
+			<sql_items type="form" var="items" />
+			<sql_table import="$this->tables['mb_msg']" type="eval"/>
+			<user import="$_SESSION['minibase']['raw']['user_id']" type="eval" />
+			<sql_condition import="WHERE msg_user='{USER}' AND msg_delete=1" type="var" />	
+		</vars>
+
+		<query>SELECT * FROM `{SQL_TABLE}` {SQL_CONDITION} ORDER BY msg_date desc LIMIT {SQL_PAGE},{SQL_ITEMS} </query>
+		<count table="{SQL_TABLE}" condition="{SQL_CONDITION}" />
+	</SQL>
+
+	<items>25</items>
+
+</form>
