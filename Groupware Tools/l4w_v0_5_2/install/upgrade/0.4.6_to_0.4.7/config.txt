@@ -1,0 +1,38 @@
+Added 
+
+	// ==============================================================
+    // Email Settings
+    // Setting USE_PHP_MAIL_FUNCTION to true results in using php's
+    // mail () function whenever leads4web sends emails. Setting this
+    // value to false forces the use of phpmailer
+    // see http://phpmailer.sourceforge.net/ which uses the variables
+    // SMTP_HOST and SMTP_FROM.
+    // ==============================================================
+
+	define ("USE_PHP_MAIL_FUNCTION", true);
+
+	define ("SMTP_HOST", "smtp.server.com");
+	define ("SMTP_FROM", "someuser@somewhere.com");
+	
+after logging definition
+
+	@define ("APPLICATION",   "treemanager");
+
+    // ==============================================================
+    // Allow guest user? This user can login without authorization
+    // and belongs to the group "guest".
+    // This feature is not supported in leads4web, but in some
+    // other applications which depend on leads4web, like 
+    // treemanager
+    // ==============================================================
+	@define ("ALLOW_GUEST_USER",   false); 
+
+after version_name
+
+	@define ("FRAME_PAGE", 'frames.php');
+
+after start_page
+
+	@define ("TABLE_PREFIX", "");
+
+after table definitions
