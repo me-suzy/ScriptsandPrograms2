@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="styles/contenido.css" />
+    <script type="text/javascript" src="scripts/rowMark.js"></script>
+    <script type="text/javascript" src="scripts/general.js"></script>
+    <script type="text/javascript" src="scripts/messageBox.js.php?contenido={SID}"></script>
+    <script type="text/javascript">
+
+        window.onerror = foo;
+        function foo(){return true;}
+
+        /* Session-ID */
+        var sid = "{SID}";
+
+        /* Create messageBox
+           instance */
+        box = new messageBox("", "", "", 0, 0);
+
+        /* Function for deleting
+           modules */
+
+        function deleteDirectory(path) {
+
+            url  = 'main.php?area=upl';
+            url += '&action=upl_delete';
+            url += '&frame=2';
+            url += '&path=' + path;
+            url += '&contenido=' + sid;
+            
+            window.location.href = url;
+
+        }
+
+    </script>
+</head>
+<body>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr id="{PATH_0}" style="background-color: {BGCOLOR_0}" onmouseover="upl.over(this)" onmouseout="upl.out(this)" onclick="upl.click(this)">
+        <td style="padding-left: {INDENT_0}px">
+            <table width="100%" cellspacing="0" cellpadding="3" border="0">
+                <tr>
+                <td align=left class="text_medium">{DIRNAME_0}</td>
+                <td align="right">{EDITBUTTON_0}{DELETEBUTTON_0}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- BEGIN:BLOCK -->
+    <tr id="{PATH}" style="background-color: {BGCOLOR}" onmouseover="upl.over(this)" onmouseout="upl.out(this)" onclick="upl.click(this)">
+        <td style="padding-left: {INDENT}px">
+            <table width="100%" cellspacing="0" cellpadding="3" border="0">
+                <tr>
+                <td align=left class="text_medium">{DIRNAME}</td>
+                <td align="right">{EDITBUTTON}{DELETEBUTTON}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- END:BLOCK -->
+
+</table>
+
+<script language="javascript">
+
+    if (parent.frames['left_top'].document.forms[0].path.value != "")
+    {
+        elm = parent.frames['left_top'].document.forms[0].path.value;
+        marked = document.getElementById(elm);
+        
+        upl.over(marked);
+        upl.click(marked);
+    }
+
+</script>
+
+</body>
+</html>
