@@ -1,0 +1,66 @@
+
+<form method="post" action="">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td valign="middle"> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="230" valign="middle"> <font class="form_text"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333">CHECKOUT 
+              ATTRIBUTES:</font></b></font> </td>
+            <td valign="middle"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">This 
+              is the area to add/remove customized checkout options. </font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+    <? 
+
+	$i="0";	
+	$db = new ps_DB;
+	$q  = "SELECT * FROM attributes";
+	$db->query($q);
+		while ($db->next_record()) {
+?>
+  <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC" vspace="1" hspace="1">
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#E4E4E4" height="10">
+          <tr> 
+            <td width="36" height="5"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <?  $db->p("attribute_id");  ?>
+              </font></font></b></font></td>
+            <td height="5" width="201"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><i><font color="#003399"> 
+              </font></i><font color="#003399"> </font><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <? $db->p("attribute_name");  ?>
+              </font></font></b></font></td>
+            <td width="520" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <?  $db->p("credit_date_added");  ?>
+              </font></font></b></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              </font></font></td>
+            <td width="270" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              </font><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <? $s = $db->f("attribute_type");  
+if($s == 0) echo "Collect User Input";
+if($s == 1) echo "Checkbox (Y/N)";
+if($s == 2) echo "Display Custom Menu";?>
+              </font></font></b></font></font></font></b></font></td>
+            <td width="50" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?page=attribute_admin&id=<? $db->p("attribute_id") ?>&edit=Y">edit</a></font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <font face="Verdana, Arial, Helvetica, sans-serif"><br>
+  <?   
+$i++;
+ } 
+if ($i=="0") { echo "<BR>NO RESULTS FOR THIS SEARCH"; }  
+?>
+  <br>
+  <br>
+  <a href="?page=attribute_admin"><img src="images/button_add.gif" width="80" height="23" border="0"></a> 
+  </font> 
+</form>
