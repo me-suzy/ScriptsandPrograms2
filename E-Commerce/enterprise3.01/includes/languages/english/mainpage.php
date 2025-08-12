@@ -1,0 +1,3 @@
+<P><FONT face="Georgia, Times New Roman, Times, Serif">This is the Demo Version of the shopping cart. The text here can be changed to anything using the built in<U><FONT style="BACKGROUND-COLOR: #00ff00"><FONT color=#0000ff> <STRONG>WYSIWYG editor</STRONG></FONT></FONT></U> or pasting in html code.</FONT></P>
+<P><FONT face="Georgia, Times New Roman, Times, Serif" size=5></FONT>&nbsp;</P>
+<P>&nbsp;</P>
