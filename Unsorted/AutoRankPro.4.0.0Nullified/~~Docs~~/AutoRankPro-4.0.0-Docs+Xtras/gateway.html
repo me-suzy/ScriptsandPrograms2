@@ -1,0 +1,137 @@
+<html>
+<head>
+	<title>Editing The Gateway Page</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<div align="center">
+
+<font face="Verdana,Arial" size="4">
+
+<b>
+Editing The Gateway Page
+</b>
+
+<br><br>
+
+<table width="650" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Required HTML</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+<font face="Arial" size="2">
+
+There is certain HTML which must appear on the gateway page.  The current version of the software uses a form to process all
+of the incoming hits.  This means you cannot use a standard HTML link for your surfers to click on.   The required portion
+of the gateway is listed below.
+
+</font>
+
+<xmp>
+<form name="click" action="#%URL%#" method="POST">
+<input type="hidden" name="ses" value="#%SESSION%#">
+<input type="hidden" name="id" value="#%USERNAME%#">
+<script language="JavaScript">
+ <!--
+ document.write('<a href="javascript:document.click.submit()">Enter This Site</a>');
+ //-->
+</script>
+<noscript>
+<input type="submit" value="Click Here To Enter">
+</noscript>
+</form>
+</xmp>
+
+<font face="Arial" size="2">
+
+You can change the "Click Here To Enter" and "Enter This Site" text, but all of the other items must remain unchanged.  The above
+code will produce a text link for browsers which support JavaScript and a submit button for those which do not.  You need to leave
+both of these options so that all surfers can click into your site.
+
+<Br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Remaining HTML &amp; rankem.cgi</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+The rest of the HTML is completely up to you.  We do recommend that you use as little HTML as possible in order to maintain the performance
+of the software.  The more HTML it has to process, the slower it will be.
+
+<br><br>
+
+Once you have generated a custom version of the gateway through the administrative interface, you are not finished.  A copy of rankem.cgi will
+be placed in the data directory - this will be the new version of rankem.cgi with your gateway HTML.  Until you replace your old copy of rankem.cgi
+with this new one, your gateway will not be updated.
+
+<br><br>
+
+The easiest way to replace your old copy of rankem.cgi with the new one is with the following steps.
+
+<br>
+
+<ol>
+
+<li> FTP into your server and change into the data directory of the AutoRank Pro installation.  Locate the rankem.cgi file and download it to your computer
+     in ASCII mode.
+
+     <Br><br>
+
+<li> In your FTP client change into the main AutoRank Pro installation directory where the old rankem.cgi file is located.  Do <i>not</i> delete this file!
+     Simply upload the new rankem.cgi file to that directory in ASCII mode.  If you are asked if you want to replace the current rankem.cgi file, select yes.
+     Double check to make sure the rankem.cgi file has 755 permissions.
+
+     <br><br>
+
+<li> Finally, you will want to visit rankem.cgi in your browser to check the new gateway.
+
+</ol>
+
+</font>
+
+</tr>
+</td>
+</table>
+
+
+</body>
+</html>
