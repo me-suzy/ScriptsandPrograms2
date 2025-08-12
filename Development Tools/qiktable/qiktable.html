@@ -1,0 +1,344 @@
+<html>
+<head>
+<title>QikTable Manual</title>
+</head>
+
+<body bgcolor = "white" >
+<basefont face = "sans-serif, Verdana, Arial, Helvetica" />
+
+
+<h1><font color="blue">class QikTable:</font></h1>QikTable Class<br />Version: 2.3<br />Last Update: September 8, 2002<br />Author: Dennis Shearin<br />Copyright Dennis Shearin, 2001, 2002<br /><br />This class can be used to quickly and easily create an HTML table. Many of the tables parameters (border, alignment, color, etc.) can be set for the table as a whole or for individual rows, columns or cells. Several methods are provided to aid in importing data from various types of databases. There is also support for CSS and templates, which can be used to give tables a consistent look.<br /><br />See <a href="http://www.qiktable.com/license.txt">license.txt</a> for terms of use.<br /><a name="sectionMethods"></a><h2><font color="blue">Methods:</font></h2><a name="subsectConstructor"></a><h3><font color="blue">Constructor:</font></h3><a name="QikTable"></a><blockquote><b>QikTable($contents = NULL, $headings = NULL, $comment = NULL, $parameters = NULL, $data = NULL)<br />
+</b></blockquote>
+The constructor takes five optional parameters.<br />The first, $contents,  must be a two dimensional indexed array representing the row and column data for the table.<br />The second, $headings, is a one dimensional indexed array containing the text for the headings. Various methods are provided to set, reset or clear these parameters after instantiation.<br />The third, $comment, is a string that will be output as an HTML comment immediately above the table.<br /><br />The last two, $parameters and $data, are not used by QikTable or any of its methods. Their purpose is to provide a way of passing parameters to templates - eliminating the need for using global variables. While there are no restrictions on the type or content of these variables, $parameters is intended to be an associative array containing the name/values pairs of parameters to be used by the template. $data can be used for storing raw data to be processed by the template.<br /><br />Nothing is output at the time the QikTable object is instantiated. Methods are provided to print the table once all parameters have been set.<br /><a name="subsectTemplates"></a><h3><font color="blue"> Templates:</font></h3><a name="includeTemplate"></a><blockquote><b>includeTemplate($templatefile)<br />
+</b></blockquote>
+This method allows you to apply preconfigured templates to QikTable objects, making it easy to create tables with a consistent look. This method can be used alone or in conjuction with other QikTable methods. QikTable does not check for conflicts between the parameters in the template and the other methods called. It is the job of the browser to reconcile these conflicts and the results will depend, in part, on the order in which the methods were called.<br /><br />Template files are simply standard PHP files. Any valid PHP command can be included and all these commands must be contained within a PHP script tag. QikTable methods can be invoked by preceding the method call with the keyword "$this->" (i.e., $this->setBorder(2);). Anything that appears outside of PHP tags will be interpreted as HTML. This makes it possible to add titles or captions to your tables using templates.<br /><br />6/2/02 - This method will pass the return value of a template back to the calling program.<br /><a name="useTemplate"></a><blockquote><b>useTemplate($templatefile)<br />
+</b></blockquote>
+This is an alias for includeTemplate which reflects its more active role (i.e. macro capability). This method allows you to apply preconfigured templates to QikTable objects, making it easy to create tables with a consistent look. This method can be used alone or in conjuction with other QikTable methods. QikTable does not check for conflicts between the parameters in the template and the other methods called. It is the job of the browser to reconcile these conflicts and the results will depend, in part, on the order in which the methods were called.<br /><br />Template files are simply standard PHP files. Any valid PHP command can be included and all these commands must be contained within a PHP script tag. QikTable methods can be invoked by preceding the method call with the keyword "$this->" (i.e., $this->setBorder(2);). Anything that appears outside of PHP tags will be interpreted as HTML. This makes it possible to add titles or captions to your tables using templates.<br /><a name="subsectQikTableProperties"></a><h3><font color="blue"> QikTable Properties:</font></h3><a name="setComment"></a><blockquote><b>setComment($comment)<br />
+</b></blockquote>
+This method sets the comment to be printed before the QikTable. A string is expected.<br /><a name="addComment"></a><blockquote><b>addComment($comment)<br />
+</b></blockquote>
+This method appends text to the comment to be printed before the QikTable. A string is expected.<br /><a name="getComment"></a><blockquote><b>getComment()<br />
+</b></blockquote>
+This method returns the comment to be printed before the QikTable.<br /><a name="setParameters"></a><blockquote><b>setParameters($parameters)<br />
+</b></blockquote>
+This method sets the contents of the Parameters variable. It is expected to be an associative array containing name/value pairs of parameters to be used in a template.<br /><br />V.2/25: If $parameters is not an array, it will be converted to an array. If the $parameters argument is not supplied, then the $paramters array will be reset to an empty array.<br /><a name="getParameters"></a><blockquote><b>getParameters()<br />
+</b></blockquote>
+This method returns the contents of the Parameters variable.<br /><a name="addParameters"></a><blockquote><b>addParameters($parameters)<br />
+</b></blockquote>
+This method adds values to the Parameters array. If the $parameters argument is not an array, it will be converted to an array before merging it with the existing parameters.<br /><br />Values for any matching key will be overwritten with the new value.<br /><a name="setParameter"></a><blockquote><b>setParameter($value, $key = NULL)<br />
+</b></blockquote>
+This method sets the value of a single parameter. If the parameter already exists, its value is overwritten. Otherwise, a new parameter is added.<br /><br />Note the order of the arguments - value is first, followed by the key. While this might not seem intuitive, there is a reason for this order. It enables you to pass values without keys. Those values then have numerical indexes in the parameters array.<br /><a name="getParameter"></a><blockquote><b>getParameter($key)<br />
+</b></blockquote>
+This method returns the value of a single parameter.<br /><a name="setData"></a><blockquote><b>setData($data)<br />
+</b></blockquote>
+This method sets the contents of the Data section. This data storage area is intended for raw data to be processed by a template and can be in any format.<br /><a name="getData"></a><blockquote><b>getData()<br />
+</b></blockquote>
+This method returns the comment to be printed before the QikTable.<br /><a name="subsectAddData"></a><h3><font color="blue"> Add Data:</font></h3><a name="addRow"></a><blockquote><b>addRow($newrow)<br />
+</b></blockquote>
+This method adds one row of data to the end of the table. The parameter is expected to be an indexed array.<br /><br />This method is ideal for building an HTML table from an SQL table. The output of each mysql_fetch_row statement can be used as the argument to the addRow method.<br /><a name="addArray"></a><blockquote><b>addArray($inArray)<br />
+</b></blockquote>
+This method also takes an array as input and adds one row of data to the end of the table. Unlike addRow, this method will also process associative arrays, as well as non-sequential or non-zero-based indexed arrays. It can be used in conjunction with the mysql_fetch_assoc function.<br /><a name="addLine"></a><blockquote><b>addLine($line, $sep = "\t")<br />
+</b></blockquote>
+Like the above methods, this adds one row of data to the end of the table, but it extracts that data from a string rather than an array. The second parameter is an optional separator character which is used to break the string into array elements. If the separator is not specified, then the default character (tab) is used.<br /><br />This method is ideal for building an HTML table from CSV (comma separated values) or tab-delimited flat file databases.<br /><a name="addItem"></a><blockquote><b>addItem($item, $newRow = FALSE)<br />
+</b></blockquote>
+This method adds one data item the end of a table row. If the second optional parameter evaluates to TRUE, then a new row is started before the item is added.<br /><a name="setItem"></a><blockquote><b>setItem($item, $row, $col)<br />
+</b></blockquote>
+This method sets the contents of a specific cell to the value passed in $item. If that cell does not exist in the table, it is added. Otherwise, the current contents are overwritten.<br /><a name="getItem"></a><blockquote><b>getItem($row, $col)<br />
+</b></blockquote>
+This method gets the contents of a specific cell.<br /><a name="setContents"></a><blockquote><b>setContents($contents)<br />
+</b></blockquote>
+This method fills the Contents array. The argument passed must be a two-dimensional indexed array containing the data that will fill the rows and columns of the table's body. The previous contents of the table are overwritten.<br /><a name="addContents"></a><blockquote><b>addContents($contents)<br />
+</b></blockquote>
+This method is exactly like the method above except that it appends the new contents to the end of any data that has already been added to the table.<br /><a name="clearContents"></a><blockquote><b>clearContents()<br />
+</b></blockquote>
+This method clears all data in the body of the table.<br /><a name="getContents"></a><blockquote><b>getContents()<br />
+</b></blockquote>
+This method can be used to retrieve the current contents of the QikTable. It returns a two-dimensional array representing the rows and columns of the table, or NULL if the contents have been cleared or not set.<br /><a name="setHeadings"></a><blockquote><b>setHeadings($headings)<br />
+</b></blockquote>
+This method can be used to set the headings for the table. It accepts an array containing the headings. The previous contents of the headings array are overwritten.<br /><a name="clearHeadings"></a><blockquote><b>clearHeadings()<br />
+</b></blockquote>
+This method clears the headings for the table.<br /><a name="setHeadingsFromKeys"></a><blockquote><b>setHeadingsFromKeys($assocArray)<br />
+</b></blockquote>
+This is a qik and easy way to set up the headings from the keys in an associative array. The keys are extracted and the first letter of each key is capitalized. The result from the mysql_fetch_assoc function can be used as an argument to this function.<br /><a name="getHeadings"></a><blockquote><b>getHeadings()<br />
+</b></blockquote>
+This method can be used to retrieve the current headings for the QikTable. It returns a one-dimensional indexed array containing the column headings, or NULL if the headings have been cleared or not set.<br /><a name="subsectSetNumberofColumns"></a><h3><font color="blue"> Set Number of Columns:</font></h3><a name="setColCount"></a><blockquote><b>setColCount($numOfCols)<br />
+</b></blockquote>
+This method can be used to set the number of columns to be displayed in the table. If the number of columns is not set by calling one of these methods, then each row of the table will contain the number of entries in that row of the array. No checking is done to make sure that the number of cells is the same in each row of the table. The major browsers don't seem to have a problem formatting uneven rows, but it's not good form.<br /><br />This method can also be used to limit the number of columns printed. For example, if your array contains five elements per row, but you are only interested in the first two, setting the Column Count to 2 will hide the last three columns.<br /><br />Do NOT set the number of columns if you are planning on using the rowspan or colspan attributes.<br /><a name="setColCountFromHeadings"></a><blockquote><b>setColCountFromHeadings()<br />
+</b></blockquote>
+This method sets the number of columns to be displayed based on the number of entries in the Headings array. To qikly set up a table from a MySQL table, first take the results of the mysql_fetch_assoc function and call setHeadingsFromKeys(), followed by setColCountFromHeadings().<br /><a name="setColCountFromContents"></a><blockquote><b>setColCountFromContents()<br />
+</b></blockquote>
+This method sets the number of columns to be displayed based on the longest row in the Contents array. This is the least effective way to set the Column Count. If the Contents array is large, this could be time consuming. Also, if every row in the array contains at least one NULL value, then the results will not be accurate, as NULL values are not counted.<br /><br />This method will only set the Column Count if the result it gets is greater than the current value of the Column Count. For example, if every row of the Contents array has three elements and the Column Count has been manually set to 4, a blank column will be output at the end of the table. When using this method, it's best to explicitly set the Column Count to zero first.<br /><a name="getColCount"></a><blockquote><b>getColCount()<br />
+</b></blockquote>
+This method gets the number of columns currently in the table. It does this by counting the number of entries in the largest row of the Contents array. It ignores the Headings array.<br /><br />This method can be used in conditional statements in a QikTable template file.<br /><a name="getRowCount"></a><blockquote><b>getRowCount()<br />
+</b></blockquote>
+This method gets the number of rows currently in the table. It does this by counting the number of entries in the Contents array. It does not count the Headings array.<br /><br />This method can be used in conditional statements in a QikTable template file.<br /><a name="subsectOutputTable"></a><h3><font color="blue"> Output Table:</font></h3><a name="startTable"></a><blockquote><b>startTable($toBrowser = TRUE)<br />
+</b></blockquote>
+This method returns the initial TABLE tag with the parameters that have been set. If the optional parameter is omitted or evaluates to TRUE, then the output will also be sent to the browser.<br /><a name="endTable"></a><blockquote><b>endTable($toBrowser = TRUE)<br />
+</b></blockquote>
+This method simply returns the closing TABLE tag and sends it to the browser if the optional parameter is omitted or evaluates to TRUE.<br /><a name="printHeadings"></a><blockquote><b>printHeadings($toBrowser = TRUE)<br />
+</b></blockquote>
+This method returns the headings for the table. They are also sent to the browser if the optional parameter is omitted or evaluates to TRUE.<br /><a name="printContents"></a><blockquote><b>printContents($toBrowser = TRUE)<br />
+</b></blockquote>
+This method returns the complete contents of the table as defined in the Contents array.  They are also sent to the browser if the optional parameter is omitted or evaluates to TRUE.<br /><a name="printTable"></a><blockquote><b>printTable($toBrowser = TRUE)<br />
+</b></blockquote>
+This method calls each of the above methods to return the complete table.  The table is also sent to the browser if the optional parameter is omitted or evaluates to TRUE.<br /><a name="getTable"></a><blockquote><b>getTable()<br />
+</b></blockquote>
+This method returns the complete table as a string. This can be useful for nesting QikTables or saving a dynamically generated table as a static HTML file. This is an alias for printTable(FALSE).<br /><a name="subsectSetTableAttributes"></a><h3><font color="blue"> Set Table Attributes:</font></h3><a name="setTableAttrib"></a><blockquote><b>setTableAttrib($attribute, $value)<br />
+</b></blockquote>
+This method can be used to set any attribute for the table - for example setTableAttrib("border", 3). The first parameter is a string containing the name of the HTML Table attribute to be set. The second parameter is the value associated with that attribute, which can vary in type.<br /><a name="setBorder"></a><blockquote><b>setBorder($border)<br />
+</b></blockquote>
+This method sets the border parameter of the table. An integer parameter is expected and behavior is undefined for any other argument type.<br /><a name="setCellSpacing"></a><blockquote><b>setCellSpacing($cellspacing)<br />
+</b></blockquote>
+This method sets the cellspacing parameter of the table (the amount of whitespace between adjacent table cells). An integer parameter is expected and behaviour is undefined for any other argument type.<br /><a name="setCellPadding"></a><blockquote><b>setCellPadding($cellpadding)<br />
+</b></blockquote>
+This method sets the cellpadding parameter of the table (the amount of whitespace surrounding the contents of a table cell). An integer parameter is expected and behaviour is undefined for any other argument type.<br /><a name="setTableWidth"></a><blockquote><b>setTableWidth($width)<br />
+</b></blockquote>
+This method can be used to set the width of the table. Values can be entered in pixels or percentages. Obviously, there is the potential for a conflict between this setting and the value passed to the setColumnWidth method. QikTable does not check for these conflicts, but leaves that to the user and browser to resolve.<br /><a name="setTableAlign"></a><blockquote><b>setTableAlign($tableAlign)<br />
+</b></blockquote>
+This determines how the table will be aligned with respect to the page (i.e., "left", "right", "center").<br /><a name="setTableColor"></a><blockquote><b>setTableColor($color)<br />
+</b></blockquote>
+This method can be used to set the background color for the table. Standard color names can be used or the colors can be entered in hex notation (i.e., #FFFFFF, #9900FF, etc.). If not called or called with a NULL argument, the table will be the same color as the page.<br /><a name="setTableBackground"></a><blockquote><b>setTableBackground($background)<br />
+</b></blockquote>
+This method can be used to specify the URL of an image file to be used as a background for the table. Typically, this takes precedence over the background color.<br /><a name="setTableClass"></a><blockquote><b>setTableClass($className)<br />
+</b></blockquote>
+This method can be used to specify the CSS class that applies to the table as a whole. All the characteristics of the table can be set in that class. The appearance of the table can be changed by simply redefining the class or linking to a different stylesheet.<br /><a name="setTableID"></a><blockquote><b>setTableID($ID)<br />
+</b></blockquote>
+This method allows you to uniquely identify the table with a CSS ID. This can be combined with a stylesheet to set attributes for this table or it can make it possible to dynamically manipulate the table via DHTML.<br /><a name="setTableStyle"></a><blockquote><b>setTableStyle($style)<br />
+</b></blockquote>
+This method can be used to directly enter the contents of a STYLE attribute that applies to the table as a whole. No stylesheet or class definition is necessary (or this can be used to override some attributes of a class). The argument passed to this method is in the same form as the value of a STYLE attribute - for example, setTableStyle("background-color: blue; font-family: sans-serif").<br /><br />In a CSS enabled browser, styles typically take precedence over HTML attributes. This may be true even if the HTML attribute has a higher precedence in the QikTable scheme. For example, Setting a Cell color to "blue" may not work if the Table color has been set to "red" using setTableStyle.<br /><a name="addTableStyle"></a><blockquote><b>addTableStyle($style)<br />
+</b></blockquote>
+The method is the same as setTableStyle except that the new style information is appended to the end of the current style definition, rather than overwriting it.<br /><a name="subsectSetCellAttributes"></a><h3><font color="blue"> Set Cell Attributes:</font></h3>Cell attributes apply only to the cells in the content area of the table (not in the heading area). Cell attributes take precedence over all other attributes (Table, Row, Column).<br /><br />The Cell is uniquely identified by the last 2 parameters - $rowNum and $colNum. These are the zero-based indices for the row and column, so the cell in the upper left-hand corner would be 0,0.<br /><a name="setCellAttrib"></a><blockquote><b>setCellAttrib($attribute, $value, $rowNum, $colNum)<br />
+</b></blockquote>
+This method can be used to set any HTML attribute for a cell - for example setCellAttrib("bgcolor", "blue", 0, 2). The first parameter is a string containing the name of the HTML Table attribute to be set. The second parameter is the value associated with that attribute, which can vary in type.<br /><a name="setCellAlign"></a><blockquote><b>setCellAlign($cellAlign, $rowNum, $colNum)<br />
+</b></blockquote>
+This methods sets the alignment of the contents within the cell indicated by $rowNum and $colNum. The first parameter should be a string representing the alignment (i.e., "right", "left", "center").<br /><a name="setCellVAlign"></a><blockquote><b>setCellVAlign($cellVAlign, $rowNum, $colNum)<br />
+</b></blockquote>
+This methods sets the vertical alignment of the contents within the cell indicated by $rowNum and $colNum. The first parameter should be a string representing the vertical alignment (i.e., "top", "bottom", "middle").<br /><a name="setCellColor"></a><blockquote><b>setCellColor($color, $rowNum, $colNum)<br />
+</b></blockquote>
+Sets the background color for the indicated cell. $color can be any named color (i.e., "red", "blue", etc.) or in hex notation (i.e., "#663399","#99CCFF", etc.). This setting will take precedence over the settings for the row and column that the cell appears in.<br /><a name="setCellBackground"></a><blockquote><b>setCellBackground($background, $rowNum, $colNum)<br />
+</b></blockquote>
+Sets the background image for the cell. The first parameter should be the URL of an image file. Support for this function varies between browsers.<br /><a name="setCellClass"></a><blockquote><b>setCellClass($className, $rowNum, $colNum)<br />
+</b></blockquote>
+This method sets the CSS class for the cell.<br /><a name="setCellStyle"></a><blockquote><b>setCellStyle($style, $rowNum, $colNum)<br />
+</b></blockquote>
+Sets the CSS style for this cell. The cell inherits all style attributes that are defined in lower level components (i.e., Table, Row, Column) and overrides any attributes that are set by this method.<br /><a name="addCellStyle"></a><blockquote><b>addCellStyle($style, $rowNum, $colNum)<br />
+</b></blockquote>
+This method is the same as setCellStyle except that it appends the new style information to the end of the current Cell Style definition, rather than overwriting it.<br /><a name="setCellID"></a><blockquote><b>setCellID($id, $rowNum, $colNum)<br />
+</b></blockquote>
+This method allows you to uniquely identify the cell with a CSS ID. This can be combined with a stylesheet to set attributes for the cell or it can make it possible to dynamically manipulate the cell via DHTML.<br /><a name="subsectSetHeadingCellAttributes"></a><h3><font color="blue"> Set Heading Cell Attributes:</font></h3>Since headings are printed out one line at a time, heading cells are uniquely identified by the zero-based index of the column they appear in. Heading cell settings take precedence over heading attribute settings.<br /><a name="setHeadingCellAttrib"></a><blockquote><b>setHeadingCellAttrib($attribute, $value, $colNum)<br />
+</b></blockquote>
+This method can be used to set any HTML attribute for a heading cell - for example setHeadingCellAttrib("bgcolor", "blue", 2). The first parameter is a string containing the name of the HTML Table attribute to be set. The second parameter is the value associated with that attribute, which can vary in type.<br /><a name="setHeadingCellAlign"></a><blockquote><b>setHeadingCellAlign($headingCellAlign, $colNum)<br />
+</b></blockquote>
+This methods sets the alignment of the contents within the heading cell indicated by $colNum. The first parameter should be a string representing the alignment (i.e., "right", "left", "center").<br /><a name="setHeadingCellVAlign"></a><blockquote><b>setHeadingCellVAlign($headingCellVAlign, $colNum)<br />
+</b></blockquote>
+This methods sets the vertical alignment of the contents within the cell indicated by $colNum. The first parameter should be a string representing the vertical alignment (i.e., "top", "bottom", "middle").<br /><a name="setHeadingCellColor"></a><blockquote><b>setHeadingCellColor($color, $colNum)<br />
+</b></blockquote>
+Sets the background color for the indicated cell. $color can be any named color (i.e., "red", "blue", etc.) or in hex notation (i.e., "#663399","#99CCFF", etc.).<br /><a name="setHeadingCellBackground"></a><blockquote><b>setHeadingCellBackground($background, $colNum)<br />
+</b></blockquote>
+Sets the background image for the heading cell. The first parameter should be the URL of an image file. Support for this function varies between browsers.<br /><a name="setHeadingCellClass"></a><blockquote><b>setHeadingCellClass($className, $colNum)<br />
+</b></blockquote>
+This method sets the CSS class for this heading cell.<br /><a name="setHeadingCellStyle"></a><blockquote><b>setHeadingCellStyle($style, $colNum)<br />
+</b></blockquote>
+Sets the CSS style for this heading cell. The cell inherits all style attributes that are defined in the Table component and overrides any attributes that are set by this method.<br /><a name="addHeadingCellStyle"></a><blockquote><b>addHeadingCellStyle($style, $colNum)<br />
+</b></blockquote>
+This method is the same as setHeadingCellStyle except that it appends the new style information to the end of the current HeadingCell Style definition, rather than overwriting it.<br /><a name="setHeadingCellID"></a><blockquote><b>setHeadingCellID($id, $colNum)<br />
+</b></blockquote>
+Sets the CSS ID for the heading cell. This can be used to uniquely identify the cell for the purpose of applying SCC attributes or manipulating the cell via DHTML.<br /><a name="subsectSetRow/ColumnPriority"></a><h3><font color="blue"> Set Row/Column Priority:</font></h3><a name="setRowPriority"></a><blockquote><b>setRowPriority($rowPriority = TRUE)<br />
+</b></blockquote>
+By default, if an attribute is set for a row and a column, the cell where they intersect will take on the column attribute. This method can be used to change the Row/Column precedence.<br /><br />It takes one optional boolean argument. If the argument is omitted or if it equals TRUE, then Row attributes will have priority over Column attributes. If it is set to FALSE, then the opposite will be true.<br /><a name="setColPriority"></a><blockquote><b>setColPriority($colPriority = TRUE)<br />
+</b></blockquote>
+By default, Column attributes thake precedence over Row attributes. If that default behaviour has been changed, this method can be used to restore it.<br /><br />It takes one optional boolean argument. If the argument is omitted or if it equals TRUE, then Column attributes will have priority over Row attributes. If it is set to FALSE, then the opposite will be true. Note that setColPriority(FALSE) is equivalent to setRowPriority().<br /><a name="subsectSetColumnAttributes"></a><h3><font color="blue"> Set Column Attributes:</font></h3><a name="setColAttrib"></a><blockquote><b>setColAttrib($attribute, $value, $colNum)<br />
+</b></blockquote>
+This method can be used to set any attribute for a column - for example setColumnAttrib("width", 80, 2). The first parameter is a string containing the name of the HTML Table attribute to be set. The second parameter is the value associated with that attribute, which can vary in type. The last parameter is the zero-based index of the column.<br /><br />By default, columns take precedence over rows. This means that if an attribute is set for a row and a column, the cell where they intersect will take on the attribute setting of the column - unless rowPriority has been set or the attribute is also set for the Cell (which always takes precedence of rows and columns).<br /><a name="setColWidth"></a><blockquote><b>setColWidth($colWidth, $colNum = NULL)<br />
+</b></blockquote>
+This method can be used to set the width of the column indicated by the $colNum parameter. Column width can be given in pixels or percentages.<br /><br />If the second parameter is omitted, then the width given by $colWidth is applied to all of the columns. QikTable does no checking to prevent invalid values (i.e., applying a width of 50% each of the 3 columns in a table).<br /><a name="setColAlign"></a><blockquote><b>setColAlign($align, $colNum = NULL)<br />
+</b></blockquote>
+This method can be used to set the alignment of the contents of the column indicated by the $colNum parameter. The first parameter should be a string indicating the alignment (i.e., "left", "right", "center").<br /><br />If the second parameter is omitted, then the alignment given by the first parameter is applied to all of the columns.<br /><a name="setColVAlign"></a><blockquote><b>setColVAlign($align, $colNum = NULL)<br />
+</b></blockquote>
+This method can be used to set the vertical alignment of the contents of the column indicated by the $colNum parameter. The first parameter should be a string indicating the vertical alignment (i.e., "top", "bottom", "middle").<br /><br />If the second parameter is omitted, then the vertical alignment given by the first parameter is applied to all columns.<br /><a name="setColColor"></a><blockquote><b>setColColor($color, $colNum = NULL)<br />
+</b></blockquote>
+Sets the background color for the indicated column. $color can be any named color (i.e., "red", "blue", etc.) or in hex notation (i.e., "#663399","#99CCFF", etc.).<br /><br />If the second parameter is omitted, then the background color given by the first parameter is applied to all columns.<br /><a name="setColBackground"></a><blockquote><b>setColBackground($background, $colNum = NULL)<br />
+</b></blockquote>
+Sets the background image for the column. The first parameter should be the URL of an image file. Support for this function varies between browsers.<br /><br />If the second parameter is omitted, then the background given by the first parameter is applied to all columns.<br /><a name="setColClass"></a><blockquote><b>setColClass($class, $colNum = NULL)<br />
+</b></blockquote>
+This method sets the CSS class for the column.<br /><br />If the second parameter is omitted, then the CSS class is applied to all columns.<br /><a name="setColStyle"></a><blockquote><b>setColStyle($style, $colNum = NULL)<br />
+</b></blockquote>
+Sets the CSS style for this column. The column inherits all style attributes that are defined in lower level components (i.e., Table, Contents, and Row - if rowPriority is FALSE) and overrides any attributes that are set by this method.<br /><br />If the second parameter is omitted, then the style given by the first parameter is applied to all columns.<br /><a name="addColStyle"></a><blockquote><b>addColStyle($style, $colNum)<br />
+</b></blockquote>
+This method is the same as setColStyle except that it appends the new style information to the end of the current Column Style definition, rather than overwriting it.<br /><br />The second parameter, $colNum, is required. This method cannot be used to add style information to all columns (use addContentStyle instead).<br /><a name="subsectSetRowAttributes"></a><h3><font color="blue"> Set Row Attributes:</font></h3><a name="setRowAttrib"></a><blockquote><b>setRowAttrib($attribute, $value, $rowNum)<br />
+</b></blockquote>
+This method can be used to set any attribute for a row - for example setRowAttrib("align", "left", 2). The first parameter is a string containing the name of the HTML Table attribute to be set. The second parameter is the value associated with that attribute, which can vary in type. The last parameter is the zero-based index of the row.<br /><a name="setRowAlign"></a><blockquote><b>setRowAlign($align, $rowNum = NULL)<br />
+</b></blockquote>
+This method can be used to set the alignment of the contents of the row indicated by the $rowNum parameter. The first parameter should be a string indicating the alignment (i.e., "left", "right", "center").<br /><br />If the second parameter is omitted, then the alignment given by the first parameter is applied to all rows.<br /><a name="setRowVAlign"></a><blockquote><b>setRowVAlign($align, $rowNum = NULL)<br />
+</b></blockquote>
+This method can be used to set the vertical alignment of the contents of the row indicated by the $rowNum parameter. The first parameter should be a string indicating the alignment (i.e., "top", "bottom", "middle").<br /><br />If the second parameter is omitted, then the alignment given by the first parameter is applied to all rows.<br /><a name="setRowColor"></a><blockquote><b>setRowColor($color, $rowNum = NULL)<br />
+</b></blockquote>
+Sets the background color for the indicated row. $color can be any named color (i.e., "red", "blue", etc.) or in hex notation (i.e., "#663399","#99CCFF", etc.).<br /><br />If the second parameter is omitted, then the background color given by the first parameter is applied to all rows.<br /><a name="setRowBackground"></a><blockquote><b>setRowBackground($background, $rowNum = NULL)<br />
+</b></blockquote>
+Sets the background image for the row. The first parameter should be the URL of an image file. Support for this function varies between browsers.<br /><br />If the second parameter is omitted, then the background given by the first parameter is applied to all rows.<br /><a name="setRowClass"></a><blockquote><b>setRowClass($class, $rowNum = NULL)<br />
+</b></blockquote>
+This method sets the CSS class for the row.<br /><br />If the second parameter is omitted, then the CSS class is applied to all rows.<br /><a name="setRowStyle"></a><blockquote><b>setRowStyle($style, $rowNum = NULL)<br />
+</b></blockquote>
+Sets the CSS style for this row. The row inherits all style attributes that are defined in lower level components (i.e., Table, Contents, and Column - if rowPriority is TRUE) and overrides any attributes that are set by this method.<br /><br />If the second parameter is omitted, then the style given by the first parameter is applied to all rows.<br /><a name="addRowStyle"></a><blockquote><b>addRowStyle($style, $rowNum)<br />
+</b></blockquote>
+This method is the same as setRowStyle except that it appends the new style information to the end of the current style definition for the row, rather than overwriting it.<br /><br />The second parameter, $rowNum, is required. This method cannot be used to add style information to all rows (use addContentStyle instead).<br /><a name="subsectSetHeadingAttributes"></a><h3><font color="blue"> Set Heading Attributes:</font></h3><a name="setHeadingAttrib"></a><blockquote><b>setHeadingAttrib($attribute, $value)<br />
+</b></blockquote>
+This method can be used to set any attribute for the Heading section of the table - for example setHeadingAttrib("bgcolor", "white"). The first parameter is a string containing the name of the HTML Table attribute to be set. The second parameter is the value associated with that attribute, which can vary in type.<br /><a name="setHeadingAlign"></a><blockquote><b>setHeadingAlign($headingAlign)<br />
+</b></blockquote>
+This determines how the headings will be aligned with respect to the columns of the table (i.e., "left", "right", "center").<br /><a name="setHeadingVAlign"></a><blockquote><b>setHeadingVAlign($headingVAlign)<br />
+</b></blockquote>
+This determines how the headings will be vertically aligned within the cells of the heading row (i.e., "top", "bottom", "middle").<br /><a name="setHeadingColor"></a><blockquote><b>setHeadingColor($color)<br />
+</b></blockquote>
+This method can be used to set the background color for the headings. Standard color names can be used or the colors can be entered in hex notation (i.e., #FFFFFF, #9900FF, etc.).When not called or called with a NULL argument, the background color of the headings will be the same as the underlying table.<br /><a name="setHeadingBackground"></a><blockquote><b>setHeadingBackground($background)<br />
+</b></blockquote>
+This method can be used to specify the URL of an image file to be used as a background for the headings. Typically, this takes precedence over the background color. Support for this varies between browsers.<br /><a name="setHeadingClass"></a><blockquote><b>setHeadingClass($className)<br />
+</b></blockquote>
+This method sets the CSS class for the headings.<br /><a name="setHeadingStyle"></a><blockquote><b>setHeadingStyle($style)<br />
+</b></blockquote>
+Sets the CSS style for this Heading area. The headings inherit all style attributes that are assigned to the Table and overrides any attributes that are set by this method.<br /><a name="addHeadingStyle"></a><blockquote><b>addHeadingStyle($style)<br />
+</b></blockquote>
+This method is the same as setHeadingStyle except that it appends the new style information to the end of the current Heading Style definition, rather than overwriting it.<br /><a name="subsectSetContentAttributes"></a><h3><font color="blue"> Set Content Attributes:</font></h3><a name="setContentAttrib"></a><blockquote><b>setContentAttrib($attribute, $value)<br />
+</b></blockquote>
+This method can be used to set any attribute for a content area of the table - for example setContentAttrib("align", "right"). The first parameter is a string containing the name of the HTML Table attribute to be set. The second parameter is the value associated with that attribute, which can vary in type.<br /><a name="setContentAlign"></a><blockquote><b>setContentAlign($align)<br />
+</b></blockquote>
+This determines how the content in the body of the table will be aligned with respect to the table's columns (i.e., "left", "right", "center").<br /><a name="setContentVAlign"></a><blockquote><b>setContentVAlign($align)<br />
+</b></blockquote>
+This determines how the contents will be vertically aligned within the cells of the table body (i.e., "top", "bottom", "middle").<br /><a name="setContentColor"></a><blockquote><b>setContentColor($color)<br />
+</b></blockquote>
+This method can be used to set the background color for the body content. Standard color names can be used or the colors can be entered in hex notation (i.e., #FFFFFF, #9900FF, etc.).If not called or called with a NULL argument, the background color of the content will be the same as the underlying table.<br /><a name="setContentBackground"></a><blockquote><b>setContentBackground($background)<br />
+</b></blockquote>
+This method can be used to specify the URL of an image file to be used as a background for the table's content. Typically, this takes precedence over the background color. Support for this varies between browsers.<br /><a name="setContentClass"></a><blockquote><b>setContentClass($className)<br />
+</b></blockquote>
+This method sets the CSS class for the content area of the table.<br /><a name="setContentStyle"></a><blockquote><b>setContentStyle($style)<br />
+</b></blockquote>
+Sets the CSS style for the table's contents. All style attributes defined in the Table are inherited, then this method overrides any of the same elements.<br /><a name="addContentStyle"></a><blockquote><b>addContentStyle($style)<br />
+</b></blockquote>
+This method is the same as setContentStyle except that it appends the new style information to the end of the current Content Style definition, rather than overwriting it.<br /><a name="subsectClearAttributes"></a><h3><font color="blue"> Clear Attributes:</font></h3>Any property that has been set using any of the above methods can be cleared using one of the clear methods. The clear methods remove all reference to the attribute, rather than just setting it to NULL, 0 or an empty string.<br /><br />The clear methods only work on attributes that have been set at the same level as the clear method. For example, if the method setTableColor("blue") is called, every cell in the table will have a blue background. calling clearCellColor() for a specific cell will not remove the blue background. It will only remove a background that has been set with setCellColor().<br /><a name="clearTableAttribs"></a><blockquote><b>clearTableAttribs()<br />
+</b></blockquote>
+This method clears ALL the attributes that have been set for the table as a whole. It has no effect on attributes that have been set for rows, columns, cells, etc.<br /><a name="clearTableAttrib"></a><blockquote><b>clearTableAttrib($attribute)<br />
+</b></blockquote>
+This method clears the specified attribute that has been set for the table as a whole.<br /><a name="clearBorder"></a><blockquote><b>clearBorder()<br />
+</b></blockquote>
+This method clears the border attribute of the table.<br /><a name="clearCellSpacing"></a><blockquote><b>clearCellSpacing()<br />
+</b></blockquote>
+This method clears the cell spacing attribute of the table.<br /><a name="clearCellPadding"></a><blockquote><b>clearCellPadding()<br />
+</b></blockquote>
+This method clears the cell padding attribute of the table.<br /><a name="clearTableWidth"></a><blockquote><b>clearTableWidth()<br />
+</b></blockquote>
+This method clears the width attribute of the table.<br /><a name="clearTableAlign"></a><blockquote><b>clearTableAlign()<br />
+</b></blockquote>
+This method clears the alignment attribute of the table.<br /><a name="clearTableColor"></a><blockquote><b>clearTableColor()<br />
+</b></blockquote>
+This method clears the background color of the table. The color of the table will be the same as the color of the page it is on.<br /><a name="clearTableBackground"></a><blockquote><b>clearTableBackground()<br />
+</b></blockquote>
+This method clears the background image of the table.<br /><a name="clearTableClass"></a><blockquote><b>clearTableClass()<br />
+</b></blockquote>
+This method clears the CSS class associated with the table.<br /><a name="clearTableID"></a><blockquote><b>clearTableID()<br />
+</b></blockquote>
+This method clears the CSS ID associated with the table.<br /><a name="clearTableStyle"></a><blockquote><b>clearTableStyle()<br />
+</b></blockquote>
+This method clears the CSS style associated with the table.<br /><a name="clearCellAttribs"></a><blockquote><b>clearCellAttribs($rowNum, $colNum)<br />
+</b></blockquote>
+This method clears ALL the attributes that have been set for the cell indicated by $rowNum, $colNum. It has no effect on attributes that have been set for the table, rows, columns, etc.<br /><a name="clearCellAttrib"></a><blockquote><b>clearCellAttrib($attribute, $rowNum, $colNum)<br />
+</b></blockquote>
+This method clears the specified attribute that has been set for the cell indicated by $rowNum, $colNum. It has no effect on an attribute that has been set for the table, row, column, etc.<br /><a name="clearCellAlign"></a><blockquote><b>clearCellAlign($rowNum, $colNum)<br />
+</b></blockquote>
+This method clears the alignment attribute that was set with setCellAlign($cellAlign, $rowNum, $colNum).<br /><a name="clearCellVAlign"></a><blockquote><b>clearCellVAlign($rowNum, $colNum)<br />
+</b></blockquote>
+This method clears the vertical alignment attribute that was set with setCellVAlign($cellVAlign, $rowNum, $colNum).<br /><a name="clearCellColor"></a><blockquote><b>clearCellColor($rowNum, $colNum)<br />
+</b></blockquote>
+This method clears the background color that was set with setCellColor($color, $rowNum, $colNum).<br /><a name="clearCellBackground"></a><blockquote><b>clearCellBackground($rowNum, $colNum)<br />
+</b></blockquote>
+This method clears the background image that was set with setCellBackground($background, $rowNum, $colNum).<br /><a name="clearCellClass"></a><blockquote><b>clearCellClass($rowNum, $colNum)<br />
+</b></blockquote>
+This method clears the CSS class that was set with setCellClass($className, $rowNum, $colNum).<br /><a name="clearCellStyle"></a><blockquote><b>clearCellStyle($rowNum, $colNum)<br />
+</b></blockquote>
+This method clears the CSS style that was set with setCellStyle($style, $rowNum, $colNum).<br /><a name="clearCellID"></a><blockquote><b>clearCellID($rowNum, $colNum)<br />
+</b></blockquote>
+This method clears the CSS ID that was set with setCellID($id, $rowNum, $colNum).<br /><a name="clearHeadingCellAttribs"></a><blockquote><b>clearHeadingCellAttribs($colNum)<br />
+</b></blockquote>
+This method clears ALL the attributes that have been set for the heading cell indicated by $colNum. It has no effect on attributes that have been set for the heading area as a whole.<br /><a name="clearHeadingCellAttrib"></a><blockquote><b>clearHeadingCellAttrib($attribute, $colNum)<br />
+</b></blockquote>
+This method clears a specific attribute that has been set for the heading cell indicated by $colNum. It has no effect on an attribute that has been set for the heading area as a whole.<br /><a name="clearHeadingCellAlign"></a><blockquote><b>clearHeadingCellAlign($colNum)<br />
+</b></blockquote>
+This method clears the alignment attribute that was set with setHeadingCellAlign($cellAlign, $colNum).<br /><a name="clearHeadingCellVAlign"></a><blockquote><b>clearHeadingCellVAlign($colNum)<br />
+</b></blockquote>
+This method clears the vertical alignment attribute that was set with setHeadingCellVAlign($cellVAlign, $colNum).<br /><a name="clearHeadingCellColor"></a><blockquote><b>clearHeadingCellColor($colNum)<br />
+</b></blockquote>
+This method clears the background color that was set with setHeadingCellColor($color, $colNum).<br /><a name="clearHeadingCellBackground"></a><blockquote><b>clearHeadingCellBackground($colNum)<br />
+</b></blockquote>
+This method clears the background image that was set with setHeadingCellBackground($background, $colNum).<br /><a name="clearHeadingCellClass"></a><blockquote><b>clearHeadingCellClass($colNum)<br />
+</b></blockquote>
+This method clears the CSS class that was set with setHeadingCellClass($className, $colNum).<br /><a name="clearHeadingCellStyle"></a><blockquote><b>clearHeadingCellStyle($colNum)<br />
+</b></blockquote>
+This method clears the CSS style that was set with setHeadingCellStyle($style, $colNum).<br /><a name="clearHeadingCellID"></a><blockquote><b>clearHeadingCellID($colNum)<br />
+</b></blockquote>
+This method clears the CSS ID that was set with setHeadingCellID($id, $colNum).<br /><a name="clearColAttribs"></a><blockquote><b>clearColAttribs($colNum)<br />
+</b></blockquote>
+This method clears ALL the attributes that have been set for the column indicated by $colNum. It has no effect on attributes that have been set for the table, rows, cells, etc.<br /><a name="clearColAttrib"></a><blockquote><b>clearColAttrib($attribute, $colNum)<br />
+</b></blockquote>
+This method clears a specific attribute that has been set for the column indicated by $colNum. It has no effect on an attribute that has been set for the table, row, cell, etc.<br /><a name="clearColWidth"></a><blockquote><b>clearColWidth($colNum)<br />
+</b></blockquote>
+This method clears the width attribute that was set with setColWidth($colWidth, $colNum).<br /><a name="clearColAlign"></a><blockquote><b>clearColAlign($colNum)<br />
+</b></blockquote>
+This method clears the alignment attribute that was set with setColAlign($align, $colNum).<br /><a name="clearColVAlign"></a><blockquote><b>clearColVAlign($colNum)<br />
+</b></blockquote>
+This method clears the vertical alignment attribute that was set with setColVAlign($VAlign, $colNum).<br /><a name="clearColColor"></a><blockquote><b>clearColColor($colNum)<br />
+</b></blockquote>
+This method clears the background color that was set with setColColor($color, $colNum).<br /><a name="clearColBackground"></a><blockquote><b>clearColBackground($colNum)<br />
+</b></blockquote>
+This method clears the background image that was set with setColBackground($background, $colNum).<br /><a name="clearColClass"></a><blockquote><b>clearColClass($colNum)<br />
+</b></blockquote>
+This method clears the CSS class that was set with setColClass($className, $colNum).<br /><a name="clearColStyle"></a><blockquote><b>clearColStyle($colNum)<br />
+</b></blockquote>
+This method clears the CSS style that was set with setColStyle($style, $colNum).<br /><a name="clearRowAttribs"></a><blockquote><b>clearRowAttribs($rowNum)<br />
+</b></blockquote>
+This method clears ALL the attributes that have been set for the row indicated by $rowNum. It has no effect on attributes that have been set for the table, columns, cells, etc.<br /><a name="clearRowAttrib"></a><blockquote><b>clearRowAttrib($attribute, $rowNum)<br />
+</b></blockquote>
+This method clears a specific attribute that has been set for the row indicated by $rowNum. It has no effect on attributes that have been set for the table, columns, cells, etc.<br /><a name="clearRowAlign"></a><blockquote><b>clearRowAlign($rowNum)<br />
+</b></blockquote>
+This method clears the alignment attribute that was set with setRowAlign($align, $rowNum).<br /><a name="clearRowVAlign"></a><blockquote><b>clearRowVAlign($rowNum)<br />
+</b></blockquote>
+This method clears the vertical alignment attribute that was set with setRowVAlign($VAlign, $rowNum).<br /><a name="clearRowColor"></a><blockquote><b>clearRowColor($rowNum)<br />
+</b></blockquote>
+This method clears the background color that was set with setRowColor($color, $rowNum).<br /><a name="clearRowBackground"></a><blockquote><b>clearRowBackground($rowNum)<br />
+</b></blockquote>
+This method clears the background image that was set with setRowBackground($background, $rowNum).<br /><a name="clearRowClass"></a><blockquote><b>clearRowClass($rowNum)<br />
+</b></blockquote>
+This method clears the CSS class that was set with setRowClass($className, $rowNum).<br /><a name="clearRowStyle"></a><blockquote><b>clearRowStyle($rowNum)<br />
+</b></blockquote>
+This method clears the CSS style that was set with setRowStyle($style, $rowNum).<br /><a name="clearHeadingAttribs"></a><blockquote><b>clearHeadingAttribs()<br />
+</b></blockquote>
+This method clears ALL the attributes that have been set for the heading area. It has no effect on attributes that have been set for a specific heading cell.<br /><a name="clearHeadingAttrib"></a><blockquote><b>clearHeadingAttrib($attribute)<br />
+</b></blockquote>
+This method clears a specific attribute that has been set for the heading area. It has no effect on attributes that have been set for a specific heading cell.<br /><a name="clearHeadingAlign"></a><blockquote><b>clearHeadingAlign()<br />
+</b></blockquote>
+This method clears the alignment attribute that was set with setHeadingAlign($align).<br /><a name="clearHeadingVAlign"></a><blockquote><b>clearHeadingVAlign()<br />
+</b></blockquote>
+This method clears the vertical alignment attribute that was set with setHeadingVAlign($VAlign).<br /><a name="clearHeadingColor"></a><blockquote><b>clearHeadingColor()<br />
+</b></blockquote>
+This method clears the background color that was set with setHeadingColor($color).<br /><a name="clearHeadingBackground"></a><blockquote><b>clearHeadingBackground()<br />
+</b></blockquote>
+This method clears the background image that was set with setHeadingBackground($background).<br /><a name="clearHeadingClass"></a><blockquote><b>clearHeadingClass()<br />
+</b></blockquote>
+This method clears the CSS class that was set with setHeadingClass($className).<br /><a name="clearHeadingStyle"></a><blockquote><b>clearHeadingStyle()<br />
+</b></blockquote>
+This method clears the CSS style that was set with setHeadingStyle($style).<br /><a name="clearContentAttribs"></a><blockquote><b>clearContentAttribs()<br />
+</b></blockquote>
+This method clears ALL the attributes that have been set for the content area of the table. It has no effect on attributes that have been set for the table, rows, cells, etc.<br /><a name="clearContentAttrib"></a><blockquote><b>clearContentAttrib($attribute)<br />
+</b></blockquote>
+This method clears a specific attribute that has been set for the content area of the table. It has no effect on attributes that have been set for the table, rows, cells, etc.<br /><a name="clearContentAlign"></a><blockquote><b>clearContentAlign()<br />
+</b></blockquote>
+This method clears the alignment attribute that was set with setContentAlign($align).<br /><a name="clearContentVAlign"></a><blockquote><b>clearContentVAlign()<br />
+</b></blockquote>
+This method clears the vertical alignment attribute that was set with setContentVAlign($VAlign).<br /><a name="clearContentColor"></a><blockquote><b>clearContentColor()<br />
+</b></blockquote>
+This method clears the background color that was set with setContentColor($color).<br /><a name="clearContentBackground"></a><blockquote><b>clearContentBackground()<br />
+</b></blockquote>
+This method clears the background image that was set with setContentBackground($background).<br /><a name="clearContentClass"></a><blockquote><b>clearContentClass()<br />
+</b></blockquote>
+This method clears the CSS class that was set with setContentClass($className).<br /><a name="clearContentStyle"></a><blockquote><b>clearContentStyle()<br />
+</b></blockquote>
+This method clears the CSS style that was set with setContentStyle($style).<br />
+</body>
+</html>
