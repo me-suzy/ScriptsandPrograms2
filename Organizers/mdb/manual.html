@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+p {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+-->
+</style>
+<style type="text/css">
+<!--
+li {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+<body link="#0000FF" vlink="#0000FF" alink="#0000FF" leftmargin="20" topmargin="20" marginwidth="20" marginheight="20">
+<p><font size="4"><strong>My DataBook</strong> Manual</font></p>
+<ol>
+  <li>Introduction</li>
+  <li>Requirements</li>
+  <li>Installation</li>
+  <li>Manual Installation</li>
+  <li>Cron settings</li>
+</ol>
+<p>&nbsp;</p>
+<p><strong>1. Introduction</strong><br>
+  We'd first like to thank you for your interest in My DataBook and look forward 
+  to being able to assist you with managing your time. My DataBook will assist 
+  you with everyday time consuming appointments, tasks and scheduling. We hope 
+  you'll enjoy the feature rich application and help us improve on it's functionality 
+  and reliability by providing valuable feed back on it's performance and ease 
+  of use. Once You have the application installed you can access help for any 
+  assistance you might need by clicking on the &quot;support/ help&quot; link 
+  thats located at the top of the main login screen.</p>
+<p><strong>2. Requirements</strong><br>
+  Before we can start the installation of My DataBook you'll need to meet some 
+  minimum requirements. You must have PHP 4.3 or high istalled on your server. 
+  You must also have access to MySQL 4.0 or higher installed on your server or 
+  a server that you are able to connect with. MySQL is required due to the database 
+  holding all the information that you'll have in your DataBook. While PHP is 
+  required to bring all the data to you via the internet.</p>
+<p><strong>3. Installation</strong><br>
+  First thing you want to do is create a directory named &quot;mdb&quot; to install 
+  My DataBook into. If you need assistance with creating a directory please consult 
+  your hosting service for assistance. But you should be able to do this with 
+  any FTP program. After the creation of the directory (&quot;mdb&quot;) you'll 
+  want to password it so that nobody will have access to your DataBook without 
+  the username and password. My DataBook doe's not have built in user authentication 
+  so it is important that you make your new directory password protected. For 
+  assistance on this you will again want to consult your hosting service. If you 
+  are familure with scripting and want to try and create your own .htaccess file 
+  you can find a tutorial on it <a href="http://javascriptkit.com/howto/htaccess3.shtml" target="_blank">here</a> 
+  There are also a number of sites and tutorials to assist you with the creation 
+  of a .htaccess file. For more tutorials on this click <a href="http://www.theadminshop.com/search/index.php?REQ=htaccess" target="_blank">here</a>. 
+  After you have protected your &quot;mdb&quot; directory you'll need to create 
+  another directory inside the &quot;mdb&quot; directory called &quot;images&quot;. 
+  It <font color="#FF0000">must</font> be named exactly the same way or none of 
+  your images will appear in My DataBook.</p>
+<p>Once you have the directory &quot;mdb&quot; created and protected you can start 
+  transfering the files that came in the zip file. You must upload all the files 
+  in the zip, leaving one out will result in failure when trying to run My DataBook. 
+  After unzipping the file you'll find 28 files and a images directory containing 
+  a number of images. Upload all the files to your &quot;mdb&quot; directory and 
+  all the images to the &quot;images&quot; directory. </p>
+<p>Ok now before we can run the install script you'll need to set the permissions 
+  on the &quot;mdb&quot; directory to 666 in order for the install script to be 
+  able to create the needed files.</p>
+<p>With all that completed all you have to do now is run the setup.php file and 
+  let My DataBook complete it's own installation. (e.g. http://www.yoursite_url.com/mdb/setup.php) 
+  The script will ask you some questions and all you have to do is answer the 
+  questions and you'll be up and running in now time.</p>
+<p>After the setup is completed you'll want to <font color="#FF0000">delete</font> 
+  the setup.php file.</p>
+<p><strong>4. Manual Installation</strong><br>
+  If for some reason the setup script did not work for you please let us know 
+  by clicking <a href="http://board.theadminshop.com/viewforum.php?f=5" target="_blank">here</a> 
+  so that we can make the needed changes in the next release. Your feed back is 
+  important the improvements of My DataBook. </p>
+<p>In order to install My DataBook manually your going to follow the above instructions 
+  aside from running the setup.php file. Instead of running that your going to 
+  need to create the database tables manually by running the sql statements included 
+  in the tables.sql file. If you are running phpMyAdmin on your site then all 
+  you have to do is upload the file to phpMyAdmin and it will create all the needed 
+  tables for you. If you don't have phpMyAdmin then i would suggest getting it 
+  <a href="http://www.phpmyadmin.net/" target="_blank">here</a>.</p>
+<p> Now with the tables created you'll have to create a file named &quot;data.inc.php&quot; 
+  and enter the following information into it,</p>
+<p>$DB_host=&quot;localhost&quot;; // this being the MySQL server location. Normally 
+  localhost works fine<br>
+  $DB_name=&quot;Database Name&quot;; // the name of the database that holds all 
+  your tables<br>
+  $DB_pass=&quot;Password&quot;; // the password to connect to the MySQL database<br>
+  $DB_user=&quot;User Name&quot;; // the user name that you would use to connect 
+  to the MySQL database</p>
+<p>$YOU=&quot;Your Name&quot;; // Yep Your name<br>
+  $YOUR_EMAIL=&quot;Your@Email.You&quot;; // Your email address</p>
+<p>// These names should match the tables that where created in your MySQL database<br>
+  // Change them if needed but they <font color="#FF0000">MUST MATCH</font> incorrect 
+  names will result in failure<br>
+  // when trying to run My DataBook<br>
+  $Table_notes=&quot;MDB_notes&quot;;<br>
+  $Table_contacts=&quot;MDB_contacts&quot;;<br>
+  $Table_groups=&quot;MDB_groups&quot;;<br>
+  $Table_reminders=&quot;MDB_reminders&quot;;<br>
+  $Table_diary=&quot;MDB_diary&quot;;<br>
+  $Table_tasks=&quot;MDB_tasks&quot;;<br>
+  $Table_task_updates=&quot;MDB_tasks_update&quot;;<br>
+  $Table_appointments=&quot;MDB_appointments&quot;;<br>
+  $Table_scheduled_notes=&quot;MDB_scheduled_notes&quot;;</p>
+<p>Assuming you followed all the above directions you should be able to run My 
+  DataBook without any problems. If you still experience problems let us know 
+  by clicking <a href="http://board.theadminshop.com/viewforum.php?f=5" target="_blank">here</a> 
+  and we will do everything we can to make sure it works.</p>
+<p><strong>5. Cron Settings</strong><br>
+  In order for the email reminders to work you must start a cron job and have 
+  it exicute the cronjob.php file every night at midnight (or whenever you want 
+  the emails to be sent to you). If you need assistance with creating a cronjob 
+  you can click <a href="http://www.theadminshop.com/search/index.php?REQ=cron%20setup" target="_blank">here</a> 
+  and locate a tutorial. For those who have access to the cron settings via control 
+  panel your want to run the following comand,</p>
+<p>lynx -dump http://www.your.com/path/to/mdb/cronjob.php</p>
+<p>Make the intervals every 24 hours at midnight and your done. If you don't have 
+  access to creating cronjobs then you'll have to consult your hosting company 
+  and have them set it up for you.<br>
+</p>
+<p>Again we would like to that you for your interest in My DataBook.<br>
+  <a href="http://www.theadminshop.com" target="_blank">the Admin Shop</a></p>
+</body>
+</html>
