@@ -1,0 +1,517 @@
+<?PHP
+$cgress = "UP";
+$result = mysql_query ("SELECT * FROM Links
+                         WHERE nl LIKE '$id'
+                                                 AND link LIKE '$link'
+                                                ");
+$numrows=mysql_num_rows($result);
+$row = mysql_fetch_array($result);
+?>
+<html>
+<head>
+<title>Link Stats</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<p><font size="2" face="Arial, Helvetica, sans-serif"><a href="javascript:window.history.go(-1);"><?PHP print $lang_417; ?></a>
+  | <a href="javascript:window.print()"><?PHP print $lang_416; ?></a><font size="3"></font><b><font size="3"><br>
+  <br>
+  <?PHP if ($link == "open"){
+  ?>
+  </font></b></font></p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#D5E2F0">
+  <tr>
+    <td> <div align="center"></div>
+      <table width="100%" border="0" cellspacing="1" cellpadding="6">
+        <tr valign="top">
+          <td width="50%" bgcolor="#FFFFFF"> <div align="left"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $lang_148; ?>
+              <?PHP
+                                                    $result = mysql_query ("SELECT * FROM Messages
+                         WHERE id LIKE '$id'
+                                                 limit 1
+                       ");
+                                $row = mysql_fetch_array($result);
+
+                                $resulttrack = mysql_query ("SELECT * FROM Links
+                         WHERE nl LIKE '$id'
+                                                 AND link LIKE 'open'
+                                                ");
+                                $rowtrack = mysql_fetch_array($resulttrack);
+                                $trackid = $rowtrack["id"];
+                                $resulttrack2 = mysql_query ("SELECT id FROM 12all_LinksD
+                         WHERE lid LIKE '$trackid'
+                                                ");
+                                $tracknum=mysql_num_rows($resulttrack2);
+                                if ($tracknum == ""){
+                                $tracknum = 0;
+                                }
+                                print $tracknum;
+                                ?>
+              <?PHP print $lang_578; ?> <?PHP print $lang_149; ?>.
+              <?PHP
+                          $totamt = "0";
+  $result3 = mysql_query ("SELECT * FROM 12all_LinksD
+                                                WHERE lid LIKE '$lid'
+                               ORDER BY sdate DESC, stime DESC
+");
+if ($row3 = mysql_fetch_array($result3)) {
+
+do {
+        $totamt = $totamt + $row3["times"];
+
+  } while($row3 = mysql_fetch_array($result3));
+
+}
+print "$totamt total non-unique ";
+
+print $lang_149; ?>
+              . (
+              <?PHP
+                                $ntotal = $row["amt"];
+                                @$nvs = round(($tracknum / $ntotal),4);
+                                @$nvs = round(($nvs * 100),4);
+                                print $nvs;
+                                ?>
+              % )<b><br>
+              </b></font><font size="4" face="Arial, Helvetica, sans-serif"><b><font size="1">
+              <?PHP if($nvs >= 5){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 10){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 15){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 20){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 25){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 30){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 35){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 40){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 45){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 50){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 55){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 60){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 65){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 70){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 75){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 80){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 85){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 90){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 95){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 100){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              </font></b></font></div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr bgcolor="#D5E2F0">
+    <td><font size="1" face="Arial, Helvetica, sans-serif"><?PHP print $lang_394; ?></font></td>
+    <td width="115"><font size="1" face="Arial, Helvetica, sans-serif"><?PHP print $lang_29; ?></font></td>
+    <td width="115"><font size="1" face="Arial, Helvetica, sans-serif"><?PHP print $lang_30; ?></font></td>
+    <td width="60"><div align="center"><font size="1" face="Arial, Helvetica, sans-serif"><?PHP print $lang_581; ?></font></div></td>
+  </tr>
+  <?PHP
+  $result3 = mysql_query ("SELECT * FROM 12all_LinksD
+                                                WHERE lid LIKE '$lid'
+                               ORDER BY sdate DESC, stime DESC
+");
+if ($row3 = mysql_fetch_array($result3)) {
+
+do {
+?>
+  <tr>
+    <td><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $row3["email"]; ?></font></td>
+    <td width="115"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $row3["sdate"]; ?></font></td>
+    <td width="115"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $row3["stime"]; ?></font></td>
+    <td width="60"><div align="center"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $row3["times"]; ?></font></div></td>
+  </tr>
+  <?PHP
+  } while($row3 = mysql_fetch_array($result3));
+
+}
+?>
+</table>
+<p>
+  <?PHP if ($row_admin["m_cre_del"] == 1){ ?>
+</p>
+<div align="left">
+<table width="450" border="0" cellpadding="1" cellspacing="0" bgcolor="#BFD2E8">
+    <tr>
+      <td><div align="center"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"></font></div>
+        <table width="100%" border="0" cellpadding="4" cellspacing="0" bgcolor="#F3F3F3">
+          <tr>
+            <td bgcolor="#D5E2F0"><div align="center"><font size="2" face="Arial, Helvetica, sans-serif"><strong><?PHP print $lang_324; ?>
+                <?PHP print $lang_583; ?></strong></font></div></td>
+          </tr>
+          <tr>
+            <td height="27" bgcolor="#FFFFFF"><form action="main.php" method="post" name="" id="">
+                <br>
+                <table width="90%" border="0" align="center" cellpadding="2" cellspacing="0">
+                  <tr valign="top">
+                    <td width="100"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $lang_325; ?>
+                      <a href="#"  onclick="MM_openBrWindow('http://www./support/docs/12all/view.php?id=3152','Help','scrollbars=yes,width=316,height=350')">[?]</a></font></td>
+                    <td><font size="2" face="Arial, Helvetica, sans-serif">
+                      <input name="name" type="text" id="name">
+                      </font></td>
+                  </tr>
+                  <tr valign="top">
+                    <td width="100"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $lang_5; ?></font></td>
+                    <td><font size="2" face="Arial, Helvetica, sans-serif">
+                      <input name="email" type="text" id="email">
+                      <br>
+                      <font size="1">^ <?PHP print $lang_284; ?></font></font></td>
+                  </tr>
+                  <tr>
+                    <td width="100">&nbsp;</td>
+                    <td><br> <input type="submit" name="Submit" value="<?PHP print $lang_21; ?>">
+                      <input name="page" type="hidden" id="page" value="list_add">
+                      <input name="ltadd" type="hidden" id="ltadd" value="<?PHP print $lid; ?>">
+                      <input name="nlold" type="hidden" id="nlold" value="<?PHP print $nl; ?>">
+                    </td>
+                  </tr>
+                </table>
+              </form></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <?PHP
+}
+?>
+</div>
+<p><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="3"><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="3">
+  <?PHP } ?>
+  </font></b></font>
+  <?PHP if ($link != "open"){
+  ?>
+  </font></b></font></p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#D5E2F0">
+  <tr>
+    <td> <div align="center"></div>
+      <table width="100%" border="0" cellspacing="1" cellpadding="6">
+        <tr valign="top">
+          <td width="50%" bgcolor="#FFFFFF"> <div align="left"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $lang_580; ?>
+              <?PHP
+                                                    $result = mysql_query ("SELECT * FROM Messages
+                         WHERE id LIKE '$id'
+                                                 limit 1
+                       ");
+                                $row = mysql_fetch_array($result);
+
+                                $resulttrack = mysql_query ("SELECT * FROM Links
+                         WHERE nl LIKE '$id'
+                                                 AND link LIKE '$link'
+                                                ");
+                                $rowtrack = mysql_fetch_array($resulttrack);
+                                $trackid = $rowtrack["id"];
+                                $resulttrack2 = mysql_query ("SELECT id FROM 12all_LinksD
+                         WHERE lid LIKE '$trackid'
+                                                ");
+                                $tracknum=mysql_num_rows($resulttrack2);
+                                if ($tracknum == ""){
+                                $tracknum = 0;
+                                }
+                                print $tracknum;
+                                ?>
+              <?PHP print $lang_578; ?> <?PHP print $lang_149; ?>.
+              <?PHP
+                          $totamt = "0";
+  $result3 = mysql_query ("SELECT * FROM 12all_LinksD
+                                                WHERE lid LIKE '$lid'
+                               ORDER BY sdate DESC, stime DESC
+");
+if ($row3 = mysql_fetch_array($result3)) {
+
+do {
+        $totamt = $totamt + $row3["times"];
+
+  } while($row3 = mysql_fetch_array($result3));
+
+}
+print "$totamt total non-unique ";
+
+print $lang_149; ?>
+              . (
+              <?PHP
+                                $ntotal = $row["amt"];
+                                @$nvs = round(($tracknum / $ntotal),4);
+                                @$nvs = round(($nvs * 100),4);
+                                print $nvs;
+                                ?>
+              % )<b><br>
+              </b></font><font size="4" face="Arial, Helvetica, sans-serif"><b><font size="1">
+              <?PHP if($nvs >= 5){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 10){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 15){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 20){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 25){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 30){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 35){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 40){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 45){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 50){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 55){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 60){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 65){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 70){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 75){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 80){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 85){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 90){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 95){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              <?PHP if($nvs >= 100){ ?>
+              <img src="media/box1.gif" width="8" height="6">
+              <?PHP } else { ?>
+              <img src="media/box2.gif" width="8" height="6">
+              <?PHP } ?>
+              </font></b></font></div></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr bgcolor="#D5E2F0">
+    <td><font size="1" face="Arial, Helvetica, sans-serif"><?PHP print $lang_394; ?></font></td>
+    <td width="115"><font size="1" face="Arial, Helvetica, sans-serif"><?PHP print $lang_29; ?></font></td>
+    <td width="115"><font size="1" face="Arial, Helvetica, sans-serif"><?PHP print $lang_30; ?></font></td>
+    <td width="60"><div align="center"><font size="1" face="Arial, Helvetica, sans-serif"><?PHP print $lang_582; ?></font></div></td>
+  </tr>
+  <?PHP
+  $result3 = mysql_query ("SELECT * FROM 12all_LinksD
+                                                WHERE lid LIKE '$lid'
+                               ORDER BY sdate DESC, stime DESC
+");
+if ($row3 = mysql_fetch_array($result3)) {
+
+do {
+?>
+  <tr>
+    <td><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $row3["email"]; ?></font></td>
+    <td width="115"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $row3["sdate"]; ?></font></td>
+    <td width="115"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $row3["stime"]; ?></font></td>
+    <td width="60"><div align="center"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $row3["times"]; ?></font></div></td>
+  </tr>
+  <?PHP
+  } while($row3 = mysql_fetch_array($result3));
+
+}
+?>
+</table>
+<p>
+  <?PHP if ($row_admin["m_cre_del"] == 1){ ?>
+</p>
+<div align="left">
+  <table width="450" border="0" cellpadding="1" cellspacing="0" bgcolor="#BFD2E8">
+    <tr>
+      <td><div align="center"><font color="#FFFFFF" size="2" face="Arial, Helvetica, sans-serif"></font></div>
+        <table width="100%" border="0" cellpadding="4" cellspacing="0" bgcolor="#F3F3F3">
+          <tr>
+            <td bgcolor="#D5E2F0"><div align="center"><font size="2" face="Arial, Helvetica, sans-serif"><strong><?PHP print $lang_324; ?>
+                <?PHP print $lang_583; ?></strong></font></div></td>
+          </tr>
+          <tr>
+            <td height="27" bgcolor="#FFFFFF"><form action="main.php" method="post" name="" id="">
+                <br>
+                <table width="90%" border="0" align="center" cellpadding="2" cellspacing="0">
+                  <tr valign="top">
+                    <td width="100"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $lang_325; ?>
+                      <a href="#"  onclick="MM_openBrWindow('http://www./support/docs/12all/view.php?id=3152','Help','scrollbars=yes,width=316,height=350')">[?]</a></font></td>
+                    <td><font size="2" face="Arial, Helvetica, sans-serif">
+                      <input name="name" type="text" id="name">
+                      </font></td>
+                  </tr>
+                  <tr valign="top">
+                    <td width="100"><font size="2" face="Arial, Helvetica, sans-serif"><?PHP print $lang_5; ?></font></td>
+                    <td><font size="2" face="Arial, Helvetica, sans-serif">
+                      <input name="email" type="text" id="email">
+                      <br>
+                      <font size="1">^ <?PHP print $lang_284; ?></font></font></td>
+                  </tr>
+                  <tr>
+                    <td width="100">&nbsp;</td>
+                    <td><br> <input name="Submit" type="submit" id="Submit" value="<?PHP print $lang_21; ?>">
+                      <input name="page" type="hidden" id="page" value="list_add">
+                      <input name="ltadd" type="hidden" id="ltadd" value="<?PHP print $lid; ?>">
+                      <input name="nlold" type="hidden" id="nlold" value="<?PHP print $nl; ?>">
+                    </td>
+                  </tr>
+                </table>
+              </form></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <?PHP
+}
+?>
+</div>
+<p><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="3"><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="3">
+  <?PHP } ?>
+  </font></b></font></font></b></font></p>
+<p><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="3"><font size="2" face="Arial, Helvetica, sans-serif"><b><font size="3">
+  </font></b></font> </font></b></font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="2"> </font> </p>
+</body>
+</html>
