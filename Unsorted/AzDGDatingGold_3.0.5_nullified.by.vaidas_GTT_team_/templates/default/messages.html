@@ -1,0 +1,17 @@
+<!--@ BEGIN messages -->
+<form action=index.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}&page=view&vaction=delmes method=post enctype="post"><Table Border="1" CellSpacing="0" CellPadding="4" bordercolor=black><tr class=head align=center><td width=10>N</td><td width=100>{W_FROM}</td><td width=200>{W_SUBJECT}</td><td>{W_DATE}</td><td>{W_DELETE}</td></tr>
+<!--@ BEGIN readed_messages -->
+<tr class=mes align=center><td>{COUNT}</td><td><a href="../view.php?l={LANGUAGE}&id={FROMID} target="_blank">{FROMUSER}</a></td><td><a href="index.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}&page=view&vaction=viewid&mid={MID}">{SUBJECT}</a></td><td>{DATE}</td><td><input type="checkbox" class="checkbox" name="c[{COUNT}]" value="{MID}"></td></tr>
+<!--@ END readed_messages -->
+<!--@ BEGIN unreaded_messages -->
+<tr class=mes align=center><td>{COUNT}</td><td><a href="../view.php?l={LANGUAGE}&id={FROMID} target="_blank">{FROMUSER}</a></td><td><a href="index.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}&page=view&vaction=viewid&mid={MID}">{SUBJECT}</a></td><td>{DATE}</td><td><input type="checkbox" class="checkbox" name="c[{COUNT}]" value="{MID}"></td></tr>
+<!--@ END unreaded_messages -->
+<!--@ END messages -->
+<!--@ BEGIN if_pages -->
+<tr bgcolor="#F0E8A0" align=center><td colspan=7 align=center>{W_PAGE} : <!--@ BEGIN if_cycle -->{PAGES}<!--@ END if_cycle --></td></tr>
+<!--@ END if_pages -->
+<!--@ BEGIN end -->
+</table><br>
+<tr class=mes align=right><td colspan=5><input type="button" value="{W_BACK_EDIT}" class=input OnClick="location.href='index.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}'"> <input type=hidden value="{COUNT}" name=count><input type="submit" value="{W_DEL_SEL_MES}" class=input></td></tr></table></form>
+<!--@ END end -->
+
