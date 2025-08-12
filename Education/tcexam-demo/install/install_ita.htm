@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it" dir="ltr">
+
+<head>
+<title>Installazione TCExam</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="phpmyexam_level" content="0" />
+<meta name="description" content="TCExam Installazione" />
+<meta name="author"      content="Nicola Asuni" />
+<meta name="reply-to"    content="info@tecnick.com" />
+<meta name="keywords"    content="TCExam, eExam, installazione" />
+<link rel="stylesheet" href="../admin/styles/default.css" type="text/css" />
+</head>
+
+<body style="{margin-left:10px; margin-right:10px; margin-top:0px; margin-bottom:0px;}">
+
+<a name="topofdoc" id="topofdoc"></a>
+<h1>TCExam :: Installazione</h1>
+<a name="index" id="index"></a><h2>Indice</h2><ul><li><a href="#install1">Requisiti minimi</a></li><li><a href="#install2">Configurazione dell'ambiente operativo</a></li><li><a href="#install3">Installazione TCExam</a><ul><li><a href="#install3_1">Installazione automatica</a></li><li><a href="#install3_2">Installazione manuale</a><ul><li><a href="#install3_2_1">Modifica dei file di configurazione</a></li><li><a href="#install3_2_2">Installazione del database</a></li></ul></li><li><a href="#install3_3">Post installazione</a></li></ul></li><li><a href="#install4">Configurazione del sistema</a></li><li><a href="#install5">Accesso e Sicurezza</a></li></ul>
+
+<a name="install1" id="install1"></a><h2>Requisiti minimi</h2>Prima di procedere all'installazione di TCExam &egrave; necessario verificare i requisiti minimi del sistema:<ul><li>Un web server (es: Apache [<a href="http://httpd.apache.org/" target="_blank" title="this link will open a new browser window">http://httpd.apache.org/</a>], Microsoft<sup>&reg;</sup> IIS [<a href="http://www.microsoft.com" target="_blank" title="this link will open a new browser window">http://www.microsoft.com</a>]).</li><li>PHP 5 (<a href="http://www.php.net" target="_blank" title="this link will open a new browser window">http://www.php.net</a>) - indispensabile</li><li>Le seguenti librerie:<ul><li>PHP GD Library 2.0.1 (<a href="http://www.boutell.com/gd" target="_blank" title="this link will open a new browser window">http://www.boutell.com/gd</a>) - necessaria per le immagini ed i grafici in true color<br />Questa libreria andr&agrave; installata con:<ul><li>libpng 1.2.2 - supporto immagini PNG</li><li>jpegsrc.v6b - supporto immagini JPEG</li></ul></li></ul></li><li>Uno dei seguenti database:
+<ul>
+<li>MySQL 4.1 (<a href="http://www.mysql.com" target="_blank" title="this link will open a new browser window">http://www.mysql.com</a>)
+<ul><li>Controlla il link seguente in caso di problemi di autenticazione: <a href="http://dev.mysql.com/doc/mysql/en/Old_client.html" target="_blank" title="this link will open a new browser window">http://dev.mysql.com/doc/mysql/en/Old_client.html</a></li></ul></li>
+<li>PostgreSQL 7.4 (<a href="http://www.postgresql.org" target="_blank" title="this link will open a new browser window">http://www.postgresql.org</a>)</li>
+</ul>
+</li><li><a href="http://www.zend.com/store/products/zend-optimizer.php" target="_blank" title="this link will open a new browser window">Zend Optimizer<sup>TM</sup></a> 2.5.7 per eseguire i file codificati (non richiesto per la versione non codificata).</li><li>Almeno 20MB per i file ed almeno 10MB per il database</li></ul>Per l'installazione e la configurazione del server web e delle librerie richieste consultate i rispettivi manuali.<br /><br />I client dovranno essere dotati di un comune Web-browser che supporti XHTML 1.0 e JavaScript 1.2.<br /><br />[<a href="#topofdoc">indice</a>]
+
+<a name="install2" id="install2"></a><h2>Configurazione dell'ambiente operativo</h2>Per il corretto funzionamento di TCExam &egrave; necessario configurare il PHP in modo che supporti i sistemi e le librerie sopra indicate, &egrave; necessario inoltre che alcuni parametri di PHP siano impostati come segue:<br /><br />su <b>php.ini</b><ul><li>safe_mode = Off</li><li>arg_separator.output = "&amp;amp;"</li></ul><br />oppure su modulo Apache (<b>/etc/httpd/conf/httpd.conf</b>):<br /><pre>
+&lt;IfModule mod_php4.c&gt;
+	php_admin_flag safe_mode off
+	php_value arg_separator.output "&amp;amp;"
+&lt;/IfModule&gt;</pre>Per la configurazione degli aspetti generali del PHP o per diverse modalit&agrave; di configurazione, fate riferimento alla guida ed alle annotazioni ufficiali sul sito <a href="http://www.php.net" target="_blank" title="this link will open a new browser window">www.php.net</a>.<br /><br />Sar&agrave; inoltre necessario controllare le quote disco degli utenti che dovranno essere sufficienti a gestire i file ed il database.<br /><br /><b>NOTA:</b>Se utilizzate IIS su una versione di Microsoft&reg; Windows non Server, utilizzate l'applicativo software di Microsoft <i>MetaEdit 2.2</i> per modificare il numero di massime connessioni contemporanee consentite ed i timeout di IIS:<ul><li>LM/W3SVC/MaxConnections 40</li><li>LM/W3SVC/CGITimeout 300</li><li>LM/W3SVC/ROOT/CGITimeout 300</li></ul>  
+Nota: 300 rappresenta il numero di secondi in 5 minuti.<br /><br />[<a href="#topofdoc">indice</a>]
+
+<a name="install3" id="install3"></a><h2>Installazione</h2>Verificate che l'ambiente operativo sia correttamente installato e configurato cos&igrave; come descritto nei paragrafi precedenti.<br /><br />Copiate tutto il contenuto della cartella TCExam nella web root del vostro server o in una sottocartella.<br />Se utilizzate un FTP per trasferire la versione encoded di TCExam, assicuratevi di impostare il trasferimento dei file in modalit&agrave; binaria prima di inviare i file al server.<br /><br />A questo punto &egrave; possibile procedere in due modi:<br />
+
+<a name="install3_1" id="install3_1"></a><h3>Installazione automatica</h3>Attraverso questo processo &egrave; possibile installare automaticamente il database e configurare i parametri di sistema principali.<br /><br />Modificate i permessi dei seguenti file e directory in modo tale che siano scrivibili dal software (chmod 666 su sistemi unix-like):<ul><li>install/</li><li>shared/config/tce_db_config.php</li><li>shared/config/tce_paths.php</li><li>admin/phpMyAdmin/config.inc.php</li><li>admin/phpPgAdmin/conf/config.inc.php</li></ul>Questi file potranno essere reimpostati su <i>sola lettura</i> al termine dell'installazione.<br />Nel caso in cui il programma di installazione non riuscisse a modificare questi file, sar&agrave; sempre possibile modificarli manualmente come descritto nel paragrafo successivo.<br /><br />Usando un comune web browser (programma di navigazione internet come Microsoft&reg; Internet Explorer, Mozilla o Netscape&reg;) collegatevi all'indirizzo in cui si trova il programma di installazione di TCExam: <b>http://&lt;host&gt;/install/install.php</b><br /><br />Se l'ambiente operativo &egrave; correttamente configurato dovreste vedere il modulo di installazione di TCExam.<br />
+
+
+
+<br />Nota che:<br />Data la criticit&agrave; di questo componente, il programma di installazione si presenta solo ed esclusivamente in lingua inglese.<br />Il processo di installazione eliminer&agrave; qualsiasi dato delle precedenti installazioni di TCExam, se ci si trova in questo caso sar&agrave; quindi opportuno fare delle copie (backup) dei dati.<br /><br />Per procedere all'installazione sar&agrave; necessario compilare opportunamente il modulo e premere il pulsante INSTALL.<br /><br />Di seguito l'elenco dei campi richiesti dal modulo di installazione:<ul><li><b>db type</b>: tipo di database utilizzato (il predefinito &egrave; <i>MySQL</i>)</li><li><b>db host</b>: nome dell'host del database (solitamente <i>localhost:3306</i> per MySQL o <i>localhost:5432</i> per PostgreSQL)</li><li><b>db user</b>: nome dell'utente del database (solitamente &egrave; <i>root</i>)</li><li><b>db password</b>: password utente per l'accesso al database </li><li><b>db name</b>: nome del database (solitamente TCExam). Sar&agrave; necessario cambiare il nome solo nel caso in cui nello stesso sistema esistano altre copie di TCExam.</li><li><b>tables prefix</b>: prefisso da aggiungere al nome delle tabelle (solitamente <i>tce_</i>)</li><li><b>host URL</b>: il nome di dominio del vostro sito (ad es: <i>http://www.host.com</i>)</li><li><b>relative URL</b>: percorso a partire dalla root del webserver dove sono stati copiati i file di TCExam (solitamente / oppure /&lt;percorso ad TCExam&gt;/)</li><li><b>TCExam path</b>: percorso reale completo della directory dove &egrave; stato installato TCExam (ad esempio: <i>/usr/local/apache/htdocs/TCExam/</i> oppure <i>c:/Inetpub/wwwroot/TCExam/</i>)</li><li><b>TCExam port</b>: porta di connessione http predefinita (solitamente 80).</li></ul>Se l'installazione &egrave; andata a buon fine il sistema sar&agrave; pronto per la sua prima esecuzione.<br />A questo punto si potr&agrave; rimuovere la cartella <i>install</i> dal server e ripristinare i permessi di sola lettura nei file di configurazione.<br />In caso contrario si potr&agrave; completare o ripetere l'installazione usando la procedura manuale descritta di seguito.<br /><br />[<a href="#topofdoc">indice</a>]
+
+<a name="install3_2" id="install3_2"></a><h3>Installazione manuale</h3>Per installare manualmente TCExam occorre modificare i file di configurazione ed installare il database.
+
+<a name="install3_2_1" id="install3_2_1"></a><h4>Modifica file di configurazione</h4>I file e le costanti di configurazione essenziali per l'avvio di TCExam sono:<ul><li>shared/config/tce_db_config.php<ul><li>K_DATABASE_TYPE (tipo di database, solitamente <i>MYSQL</i> oppure <i>POSTGRESQL</i>)</li><li>K_DATABASE_HOST (nome dell'host del database, solitamente <i>localhost</i>)</li><li>K_DATABASE_NAME (nome del database, solitamente <i>TCExam</i>)</li><li>K_DATABASE_USER_NAME (nome dell'utente del database,  solitamente &egrave; <i>root</i>)</li><li>K_DATABASE_USER_PASSWORD (password per l'accesso al database)</li><li>K_TABLE_PREFIX (prefisso da aggiungere al nome delle tabelle, solitamente <i>tce_</i>)</li></ul></li><li>shared/config/tce_paths.php<ul><li>K_PATH_HOST (il nome di dominio del vostro sito ad es: <i>http://www.host.com</i>)</li><li>K_PATH_PHPMYEXAM (percorso a partire dalla root del webserver dove sono stati copiati i file di TCExam, solitamente / oppure /&lt;percorso a TCExam&gt;/)</li><li>K_PATH_MAIN (percorso reale completo della directory dove &egrave; stato installato TCExam, ad esempio: <i>/usr/local/apache/htdocs/TCExam/</i> oppure <i>c:/Inetpub/wwwroot/TCExam/</i>)</li><li>K_STANDARD_PORT (porta di comunicazione http, solitamente 80)</li></ul></li>
+
+<li>admin/phpMyAdmin/config.inc.php
+<ul><li>cfg['PmaAbsoluteUri'] (indirizzo internet completo dove si trova installato il programma phpMyAdmin, solitamente <i>http://&lt;host&gt;/admin/phpMyAdmin/</i>)</li><li>cfg['Servers'][$i]['host'] (nome dell'host del database MySQL, solitamente <i>localhost</i>)</li><li>cfg['Servers'][$i]['user'] (nome dell'utente del database MySQL, solitamente &egrave; <i>root</i>)</li><li>cfg['Servers'][$i]['password'] (password utente per l'accesso al database MySQL)</li>
+</ul></li>
+<li>admin/phpPgAdmin/conf/config.inc.php
+<ul>
+<li>$conf['servers'][0]['host'] (nome dell'host del database PostgreSQL, solitamente <i>localhost</i>)</li>
+<li>$conf['servers'][0]['port'] (port del database sul server, solitamente 5432)</li>
+</ul></li>
+</ul>
+
+<a name="install3_2_2" id="install3_2_2"></a><h4>Installazione del database</h4>All'interno della cartella <i>install</i> sono contenuti i file SQL che contengono lo schema ed i dati del database:
+<ul>
+<li>mysql_db_structure.sql - contiene la struttura del database MySQL</li>
+<li>mysql_db_data.sql - contiene i dati del database MySQL</li>
+<li>pgsql_db_structure.sql - contiene la struttura del database PostgreSQL</li>
+<li>pgsql_db_data.sql - contiene i dati del database PostgreSQL</li>
+</ul>
+
+Se si desidera cambiare il prefisso delle tabelle sar&agrave; necessario usare un editor di testi che abbia una funzione <i>cerca e sostituisci</i> e operare le seguenti sostituzioni:<ul><li>Nel file ..._db_structure.sql sostituire <i>CREATE TABLE tce_</i> con <i>CREATE TABLE vostroprefisso</i></li><li>Nel file ..._db_data.sql sostituire <i>INSERT INTO tce_</i> con <i>INSERT INTO vostroprefisso</i></li></ul>
+Per eseguire i file SQL potete usare i comandi di shell dei rispettivi database.<br />
+Esempio MySQL:<pre>
+mysql
+mysql&gt; CREATE DATABASE TCExam;
+shell&gt; mysql TCExam &lt; db_structure.sql
+shell&gt; mysql TCExam &lt; db_data.sql
+</pre>
+Nell'esempio precedente si &egrave; supposto che il nome del database fosse <i>TCExam</i>.<br /><br />In alternativa (se avete gi&agrave; configurato il config.inc.php</i>) potete usare l'utility <b>http://&lt;host&gt;/admin/phpMyAdmin/index.php</b> per MySQL o <b>http://&lt;host&gt;/admin/phpPgAdmin/index.php</b> per PostgreSQL con la quale potete creare il database ed eseguire i file SQL attraverso l'apposito comando.<br /><br />[<a href="#topofdoc">indice</a>]
+
+<a name="install3_3" id="install3_3"></a><h3>Post installazione</h3>Una volta terminato il processo di installazione occorre:<ul><li>eliminare la cartella <i>install</i> che non &egrave; pi&ugrave; necessaria e rappresenta un pericolo per la sicurezza dell'attuale installazione</li><li>impostare a sola lettura (chmod -R 644 su sistemi unix-like) i permessi dei file nelle cartelle:<ul><li>admin/config/</li><li>shared/config/</li><li>public/config/</li></ul></li><li>impostare opportunamente i permessi per quelle cartelle che dovranno essere accessibili in scrittura dal software TCExam (chmod -R 666):<ul><li>admin/log</li><li>cache</li><li>images</li><li>public/log</li></ul></li><li>impostare nel dettaglio i file di configurazione come indicato nel paragrafo successivo</li></ul>[<a href="#topofdoc">indice</a>]
+
+<a name="install4" id="install4"></a><h2>Configurazione del sistema</h2>Terminata l'installazione automatica, TCExam dovrebbe essere in grado di sfruttare tutte le sue funzioni.<br />&Egrave; possibile personalizzare alcune impostazioni e caratteristiche di base, modificando i seguenti file di configurazione:<ul><li>shared/config/tce_config.php - configurazione generale del sistema</li><li>shared/config/tce_db_config.php - configurazione database</li><li>shared/config/tce_extension.inc - estensione dei file usata dal sistema (.php)</li><li>shared/config/tce_general_constants.php - costanti di uso generale</li><li>shared/config/lang/***/ - cartelle contenenti i file di lingua</li><li>shared/config/tce_paths.php - percorsi file e directory all'interno del sistema</li><li>shared/config/tce_pdf.php - configurazione del formato dei documenti PDF e delle intestazioni</li><li>admin/config/tce_config.php - configurazione generale pannello di amministrazione</li><li>admin/config/tce_auth.php - impostazione livello di accesso ai moduli di amministrazione</li><li>public/config/tce_config.php - configurazione generale dell'area pubblica</li></ul>[<a href="#topofdoc">indice</a>]
+
+<a name="install5" id="install5"></a><h2>Accesso e Sicurezza</h2>Una volta terminate le fasi di installazione e configurazione sopra descritte potete accedere al sistema collegandovi col browser all'indirizzo http://&lt;host&gt;/admin/code/index.php ed usando i seguenti dati:<ul><li>nome: admin</li><li>password: 1234</li></ul>Al fine di proteggere il vostro sistema e garantirvi un accesso esclusivo, ricordatevi di cambiare la password tramite il modulo <i>Utenti</i>. Sempre tramite questo modulo potete anche inserire i vostri dati e le vostre preferenze.<br /><br />Per ottenere un maggior livello di sicurezza si consiglia vivamente di proteggere l'intera cartella <i>admin</i> con un sistema di autenticazione utente web-based.<br />Uno dei modi pi&ugrave; semplici e sicuri per proteggere una cartella su un server <a href="http://www.apache.org" target="_blank" title="this link will open a new browser window">Apache</a> consiste nell'utilizzare l'autenticazione Htaccess. Per maggiori informazioni consultate <a href="http://httpd.apache.org/docs/howto/htaccess.html" target="_blank" title="this link will open a new browser window">http://httpd.apache.org/docs/howto/htaccess.html</a>.<br />Se usate un diverso web server consultate la relativa documentazione.<br /><br />[<a href="#topofdoc">indice</a>]
+
+</body>
+</html>
