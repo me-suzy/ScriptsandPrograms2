@@ -1,0 +1,506 @@
+ 
+
+<div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#660033"><br>
+
+  </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+
+  <font size="3"> 
+
+  <?php
+
+     $func="functions.conf";
+
+	include("$path$func");
+
+	if ($action=="member_update_account") { $message= member_update_account($path,$account_password,$account_email,$account_name,$account_company,$account_address,$account_city,$account_state,$account_zip,$account_country,$account_fax,$account_phone,$account_membership_id,$account_status, $account_pmt_type,$account_acct_no,$account_acct_exp,$account_check_no,$account_check_rt,$account_id); }
+
+
+
+
+
+    $connection = mysql_connect("$host","$user","$pass") or die("Couldn't make connection.");
+
+    $db = mysql_select_db("$database", $connection) or die("Couldn't select database.");
+
+    $sql = "SELECT * FROM account WHERE account_email='$PHP_AUTH_USER'";
+
+    $sql_result = mysql_query($sql,$connection) or die("Couldn't Check if this email already exsist in the database");
+
+    $row = mysql_fetch_array($sql_result);
+
+	$account_id=$row["account__id"];
+
+    $membership=$row["account_membership_id"];
+
+    $password=$row["account_password"];
+
+    $email=$row["account_email"];
+
+    $phone=$row["account_phone"];
+
+    $fax=$row["account_fax"];
+
+    $name=$row["account_name"];
+
+    $company=$row["account_company"];
+
+    $address=$row["account_address"];
+
+    $city=$row["account_city"];
+
+    $state=$row["account_state"];
+
+    $zip=$row["account_zip"];
+
+    $country=$row["account_country"];
+
+    $pmt_type=$row["account_pmt_type"];
+
+    $acct_no=$row["account_acct_no"];
+
+    $acct_exp=$row["account_acct_exp"];
+
+    $check_no=$row["account_check_no"];
+
+    $check_rt=$row["account_check_rt"];
+
+    $acct_status=$row["account_status"];
+
+    $country=$row["account_country"];
+
+
+
+?>
+
+  </font></font><font size="3" color="#660033">Welcome back</font><font size="3"> 
+
+  <? echo $name; ?>
+
+  </font><font size="3" color="#660033">!</font><br>
+
+  <br>
+
+  <font color="#666666">You have been logged in to the password protected member 
+
+  area.<br>
+
+  <br>
+
+  From this area, you will have access to all the member pages granted to this 
+
+  membership type from the admin area.</font></b></font> 
+
+  <hr width="95%" size="1" noshade>
+
+  <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#666666"><br>
+
+  <br>
+
+  </font></b></font><font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font color="#333333">UPDATE 
+
+  ACCOUNT INFORMATION:</font></b></font> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font size="3">
+
+  <? 
+
+  	echo "<BR> $message";
+
+	 ?>
+
+  </font></b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+
+  </font> 
+
+  <form method="post" action="" onSubmit="validate();return returnVal;">
+
+    <table width="93%" border="0" cellspacing="0" cellpadding="0" class="form_text" bgcolor="#F3F3F3">
+
+      <tr> 
+
+        <td width="22%">&nbsp;</td>
+
+        <td width="78%">&nbsp;</td>
+
+      </tr>
+
+    </table>
+
+    <table width="93%" border="0" cellspacing="0" cellpadding="0" class="form_text" bgcolor="#F3F3F3">
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Country:</font></div>
+
+        </td>
+
+        <td width="78%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <?php
+
+    $connection = mysql_connect("$host","$user","$pass") or die("Couldn't make connection.");
+
+    $db = mysql_select_db("$database", $connection) or die("Couldn't select database.");
+
+    $sql = "SELECT country_id,country_name FROM country
+
+            ORDER BY country_name ASC";
+
+    $sql_result = mysql_query($sql,$connection) or die("Couldn't execute query.");
+
+    echo "<select name=account_country>";
+
+    echo $country_op;
+
+    while ($row = mysql_fetch_array($sql_result))  {
+
+        echo "<option value=";
+
+        echo $row["country_id"];
+
+        if ($row["country_id"]=="$country") { echo " selected"; }
+
+		echo ">";
+
+        echo $row["country_name"];
+
+        echo "</option>
+
+        ";
+
+    }
+
+    echo "</select>";
+
+    ?>
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Name:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_name" maxlength="50" size="30" style="border: 1 solid #666666" value="<?php echo $name ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Company:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_company" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $company ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Address:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_address" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $address ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">City:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_city" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $city ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">State:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_state" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $state ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Zip:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_zip" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $zip ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Phone:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_phone" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $phone ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Fax:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_fax" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $fax ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Email:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_email" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $email ?>">
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Password:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="password" name="account_password" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $password ?>">
+
+          </font></td>
+
+      </tr>
+
+	  
+
+	  <? if(($accept_checks=="N") && ($accept_cards=="N")) { } else { ?>
+
+	  
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Payment 
+
+            Type:</font></div>
+
+			</td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <select name="account_pmt_type"  style="border: 0 solid #666666">
+
+            <? if($accept_cards=="Y") { ?> <option value="1" <? if ($pmt_type=="1") echo " selected"; ?>>Credit Card</option> <? } ?>
+
+            <? if($accept_checks=="Y") { ?> <option value="2" <? if ($pmt_type=="2") echo " selected"; ?>>Check Online</option> <? } ?>
+
+          </select>
+
+          </font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Account 
+
+            Number:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_acct_no" size="30" style="border: 1 solid #666666" value="<? echo $acct_no ?>">
+
+          (if check, enter the bank acct. no. here)</font></td>
+
+      </tr>
+
+	  
+
+	   <? if($accept_checks=="N") { ?> 
+
+	   
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Expiration 
+
+            Date:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_acct_exp" maxlength="50" size="10" style="border: 1 solid #666666" value="<? echo $acct_exp ?>">
+
+          Example: 0501 (if check, leave this empty)</font></td>
+
+      </tr>
+
+	  <? } ?>
+
+	  <? if($accept_checks=="Y") { ?> 
+
+	  
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Routing 
+
+            Number:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_check_rt" maxlength="50" size="30" style="border: 1 solid #666666" value="<? echo $check_rt ?>">
+
+          (if check, enter the bank routing no. here)</font></td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%"> 
+
+          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Check 
+
+            Number:</font></div>
+
+        </td>
+
+        <td width="78%"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+
+          <input type="text" name="account_check_no" maxlength="50" size="10" style="border: 1 solid #666666" value="<? echo $check_no ?>">
+
+          Optional (if check, enter the check number here)</font></td>
+
+      </tr>
+
+	  
+
+	  
+
+	  <? } ?>
+
+	  
+
+	  
+
+	  <? } ?>
+
+	  
+
+      <tr> 
+
+        <td width="22%">&nbsp;</td>
+
+        <td width="78%">&nbsp;</td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%">&nbsp;</td>
+
+        <td width="78%"> 
+
+          <input type="image" border="0" name="submit" value="submit" src="http://dreamcost.com/dreamaccount/images/button_continue.gif" width="80" height="23" onClick="verify(this.form);">
+
+          <input type="hidden" name="action" value="member_update_account">
+
+          <input type="hidden" name="account_id" value="<? echo $account_id ?>">
+
+        </td>
+
+      </tr>
+
+      <tr> 
+
+        <td width="22%">&nbsp;</td>
+
+        <td width="78%">&nbsp;</td>
+
+      </tr>
+
+    </table>
+
+  </form>
+
+</div>
+
