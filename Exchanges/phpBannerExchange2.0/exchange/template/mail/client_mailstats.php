@@ -1,0 +1,4 @@
+<?
+$subject = "Stats for account ".$login." on ".$exchangename."";
+	$content = "Hello $name,\n\nYour stats for $exchangename are as follows:\n\nStats are cumulative from $startdate\n\nExposures: $exposures\nExposures per day: $expday\nBanners shown on your site: $totviews\nCredits: $credits\nClicks to your site: $clicks\nClicks from your site: $siteclicks\nExposure/Click ratio for your banner: $inratio:1 or $inpercent % \nExposure/Click ratio for banners displayed on your site: $outratio or $outpercent % \n\n As always, you may check your stats at any time by going to:\n\n$baseurl \n\n$ownername\n\nYou are recieving this email because someone requested that we email their stats for $exchangename.  If you did not sign up for this service or did not request this information, please accept our apologies.";
+?>
