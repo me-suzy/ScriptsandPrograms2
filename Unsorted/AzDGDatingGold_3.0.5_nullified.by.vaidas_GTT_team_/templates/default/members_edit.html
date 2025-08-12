@@ -1,0 +1,36 @@
+<!--@ BEGIN members_edit -->
+
+<form action=index.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}&page=update method=post enctype="post">
+<center><span class=head>{W_CHANGE_INFO}</span></center><Table Border="1" CellSpacing="0" CellPadding="4" bordercolor=black><tr class=desc><td width=100>{W_GENDER}</td><td><select class=select name=gender>
+<option value="{GENDERNUM}">{GENDER}
+<OPTION value=1>{W_LANGGENDER1}
+<OPTION value=2>{W_LANGGENDER2}
+</select></td></tr>
+<tr><td><span class=mes>{W_CATEGORY}</td><td><select class=select name=purposes>
+<option value="{CATNUM}">{CATEGORY}
+<!--@ BEGIN category_cycle --><OPTION value="{CAT_NUM}">{CATEGORIES}<!--@ END category_cycle -->
+</select></td></tr>
+<tr><td><span class=mes>{W_MAIL}</td><td><input class=input type=text name=email maxlength="{C_MAIL_L}" value="{R_MAIL}"></td></tr>
+<tr><td><span class=mes>{W_COUNTRY}</td><td>
+<select class=select name="country">
+<option value="{COUNTRY}" selected>{COUNTRY}
+<!--@ FILE ../templates/countries.php -->
+</td></tr>
+<tr><td><span class=mes>{W_CITY}</td><td><input class=input type=text name=city maxlength="{C_CITY_L}" value="{R_CITY}"></td></tr>
+<tr><td><span class=mes>{W_HOBBY}</td><td><textarea class=textarea cols=20 rows=4 name=hobby>{R_HOBBY}</textarea></td></tr>
+<tr><td><span class=mes>{W_DESCR}</td><td><textarea class=textarea cols=20 rows=8 name=Description>{R_DESCR}</textarea></td></tr>
+<tr><td><span class=mes>{W_HEIGHT}</td><td><select class=select name=height>
+<option value="{R_HEIGHT}" selected>{R_HEIGHT}
+<!--@ BEGIN height_cycle --><option>{HEIGHT}<!--@ END height_cycle -->
+</select></td></tr>
+<tr><td><span class=mes>{W_WEIGHT}</td><td><select class=select name=weight>
+<option value="{R_WEIGHT}" selected>{R_WEIGHT}
+<!--@ BEGIN weight_cycle --><option>{WEIGHT}<!--@ END weight_cycle -->
+</select></td></tr>
+<tr><td><span class=mes>{W_AGE}</td><td><input class=input type=text name=age maxlength=3 value="{R_AGE}"></td></tr>
+<tr><td align=right colspan=2><input class=input type=submit value="{W_CHANGE_INFO}"></td></tr>
+<tr><td align=center colspan=2><a href="pic.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}">{PICAV}</a></td></tr>
+</table>
+</form>
+<center><input type="button" value="{W_BACK_EDIT}" class=input OnClick="location.href='index.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}'"></center><br>
+<!--@ END members_edit -->
