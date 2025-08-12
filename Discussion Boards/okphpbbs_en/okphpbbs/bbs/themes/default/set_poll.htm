@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>{head_title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset={lang_code}">
+<link href="{css_folder}/css.css" rel="stylesheet" type="text/css">
+</head>
+
+<body><center>
+  <table border="0" cellspacing="0" cellpadding="4" class="tableline">
+    <tr> 
+      <td height="300" align="center" valign="top"> 
+        <p>&nbsp;</p>
+        <table width="500" border="0" cellspacing="1" cellpadding="3" class="forumline2">
+          <form name="form1" method="post" action="">
+            <tr class="row1"> 
+              <th height="16" colspan="2"> {set_poll} </th>
+            </tr>
+            <tr class="row1"> 
+              <td colspan="2" align="center"> {poll_question}: 
+                <input type="text" name="question" size="60" value="{question}">
+                <br>
+                {allow_multi} 
+                <input type="text" name="multiple" size="5" value="{multiple}">
+                (0: {no}, 1:{yes}) <br>
+                {poll_timeout}: 
+                <input type="text" name="timeout" size="5" value="{timeout}">
+                {days} (0:{no_limit}) </td>
+            </tr>
+            <!-- BEGIN option -->
+            <tr class="{row}"> 
+              <td align="right" width="102">{poll_option}:</td>
+              <td width="383"> 
+                <input type="text" name="options[]" size="60" value="{option}">
+              </td>
+            </tr>
+            <!-- END option -->
+            <tr class="row1" align="center"> 
+              <td colspan="2">
+                <input type="submit" name="Submit" value="Submit">
+                <input type="hidden" name="action" value="set_poll">
+                <input type="hidden" name="step" value="2">
+              </td>
+            </tr>
+          </form>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</center>
+</body>
+</html>
