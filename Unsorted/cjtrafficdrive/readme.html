@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>Traffic-Drive CJ/TGP v5.14 free - setup and uninstall instructions</title>
+<style type="text/css">
+<!--
+BODY{font-size:x-small;font-family:arial;color:black;background-color:white;}
+a { color:black;text-decoration:none;font-weight:bold} 
+-->
+</style>
+</head>
+<body>
+<table align=center width=90% bgcolor=silver border=1 bordercolor=black cellspacing=0><tr><td width=100% align=center>
+<font size=2><b>Traffic-Drive CJ/TGP v5.14 free - setup and uninstall instructions</b></font>
+</td></tr></table><br><br>
+<table align=center width=90%><tr><td width=100% align=left>
+<b>Requirements: PHP4, MYSQL</b><br><br>
+<b>Files:</b><br><br>
+<b>readme.html</b> - this file<br>
+<b>setup.php</b> - setup<br>
+<b>uninst.php</b> - uninstall<br><br>
+<b>index.php</b> - main page<br>
+<b>o.php</b> - out file<br>
+<b>a.php</b> - admin interface<br>
+<b>w.php</b> - traders interface<br>
+<b>vars.php</b> - general settings<br>
+<b>wmvars.php</b> - traders interface settings<br>
+<b>admvars.php</b> - admin interface settings<br>
+<b>wm1.txt</b> - included in traders interface before signup<br>
+<b>wm2.txt</b> - included in traders interface after signup<br>
+<b>top.txt</b> - top list<br>
+<b>toptpl.txt</b> - template for top list row<br><br>
+<b>User files:</b><br><br>
+<b>InPage(s)</b> - will be included in your main page (or redirected from main page to InPage)<br>
+<b>topbrN.txt</b> - top list breaker(s)<br><br>
+<b>MYSQL Tables:</b><br><br>
+<b>mset, tr, hr, sts, gal, bl, rf, ipfrom, ipto, hurl</b><br><br>
+<b>Setup order:</b><br><br>
+<ol>
+<li>Edit files <b>wm1.txt</b> and <b>wm2.txt</b> - this is part of traders signup form.<br>
+<b>wm1.txt</b> will be show before traders signup, <b>wm2.txt</b> - after.</li>
+<li>Edit file <b>toptpl.txt</b> - template for top list row.<br>
+Available variables:<br>
+<b>%num%</b> - rank<br>
+<b>%dom%</b> - domain<br>
+<b>%name%</b> - title of site<br>
+<b>%rin%</b> - previous hour raw in<br>
+<b>%uin%</b> - previous hour unique in<br>
+<b>%cl%</b> - previous hour clicks to trades<br>
+<b>%gcl%</b> - previous hour clicks to real content<br>
+<b>%out%</b> - previous hour out<br>
+<b>%drin%</b> - last 23 hours raw in<br>
+<b>%duin%</b> - last 23 hours unique in<br>
+<b>%dcl%</b> - last 23 hours clicks to trades<br>
+<b>%dgcl%</b> - last 23 hours clicks to real content<br>
+<b>%dout%</b> - last 23 hours out<br>
+If you want to add breakers to top list, just create file <b>topbrN.txt</b>, where <b>N</b> - number of rows after which this breaker will apply. For example, create file <b>topbr5.txt</b> and put html code into him. This html code will be inserted after 5 rows of top list. You can create as many breakers, as you wish.</li>
+<li>
+Create your default InPages: <b>1.[ext], 2.[ext], 3.[ext] ...</b><br>
+<b>[ext]</b> - extension, default is <b>html</b>, you can change it in admin interface<br>
+InPage will be included in your main page (or redirected from main page to InPage).<br>
+Each unique visitor will see <b>1.[ext]</b> page.<br>
+Each non-unique visitor will see next page, if it exists.<br><br>
+You can create other InPages for any trade:<br>
+<b>[prefix]1.[ext], [prefix]2.[ext], [prefix]3.[ext] ...</b><br>
+<b>[prefix]</b> - any alphabetical symbols.<br>
+You should set the prefix for trade in admin interface in this case.
+</li>
+<li>Upload all files EXCLUDE <b>uninst.php</b> to one folder in your server in text mode.</li>
+<li>Chmod files <b>vars.php</b>, <b>wmvars.php</b>, <b>admvars.php</b>, <b>top.txt</b> to 777.</li>
+<li>Run <b>setup.php</b>. After setup is complete DELETE <b>setup.php</b> FROM YOUR SERVER!</li>
+<li>Use <b>index.php</b> as your main page.</li>
+<li>Your can use top list<br>
+Insert code <b>&lt;?php include("top.txt"); ?&gt;</b> in your included InPage<br>
+or<br>
+Insert code <b>&lt;!--#include file="top.txt" --&gt;</b> in your redirected .shtml InPage
+</li>
+</ol><br>
+<b>Setup Note:</b><br>
+If  there is no need to have multiple InPages and no need to redirect, you can use old-style (4.05 version) main page:<br>
+<b>index.shtml</b>(or any .shtml) file with <b>&lt;!--#include file="index.php" --&gt;</b> first string.<br><br><br>
+<b>Out options:</b><br><br>
+You can use options with out file.<br>
+Syntax:<br>
+<b>o.php?option</b><br>
+or<br>
+<b>o.php?option1&option2&option3...</b> - you can use at one time as many options, as you wish<br><br>
+Available options (examples):<br><br>
+<b>site=trade.com</b><br>
+- permanent out to trade with trade.com domain<br><br>
+<b>grp=1</b><br>
+- out to group of traders 1 only<br>
+<b>grp=2-3-7</b><br>
+- out to groups of traders 2, 3 or 7 only<br><br>
+<b>ln=a (ln=p, ln=m)</b><br>
+- out to all sites (pictures only sites, movies only sites)<br><br>
+<b>lnk=blabla</b><br>
+- out tracking, mark click as "blabla" (you can analyze the results of tracking in admin interface)
+<br><br>
+TGP and real content options:<br><br>
+<b>url=http://www.mygalleries.com/page.html</b><br>
+- out to http://www.mygalleries.com/page.html by percent (defined in admin interface or defined by gpr option)
+<br><br>
+<b>hurl=gallery1</b><br>
+- gallery1 is url-alias located in hurl-table. You can add,edit,delete url-aliases in admin interface ("hurl" button).
+If url for alias "gallery1" is found in hurl-table, this option work as url=... option, else hurl option is ignored<br>
+example:<br>
+hurl-table have record: gallery1 - http://www.mysite.com/g1.html<br>
+hurl=gallery1 work as url=http://www.mysite.com/g1.html<br>
+<br><br>
+<b>gpr=63</b><br>
+- percent (63%) outs to url(hurl), can be used with url,hurl options only
+<br><br>
+<b>htg=1<br>
+gpr=100</b><br>
+- permanent out to url(hurl), can be used with url,hurl options only
+<br><br>
+<b>gtr=1 (gtr=0)</b><br>
+- count (don't count) out to url(hurl) as first to real content, can be used with url,hurl options only
+<br><br>
+<b>gfc=1 (gfc=0)</b><br>
+- out to url(hurl) permanently, if it is the first click to url(hurl) (out to url(hurl) by percent only), can be used with url,hurl options only
+<br><br><br><br><br>
+<b>Uninstall order:</b><br><br>
+<ol>
+<li>Upload file <b>uninst.php</b> to script folder in your server in text mode.</li>
+<li>Run <b>uninst.php</b>. After uninstall complete DELETE ALL SCRIPT FILES FROM YOUR SERVER.</li>
+</ol><br><br>
+</td></tr></table><br><br>
+<table align=center width=90% bgcolor=silver border=1 bordercolor=black cellspacing=0><tr><td width=100% align=center>
+<font size=2><b>Traffic-Drive CJ/TGP v5.14 free - setup and uninstall instructions</b></font>
+</td></tr></table>
+</body>
+</html>
