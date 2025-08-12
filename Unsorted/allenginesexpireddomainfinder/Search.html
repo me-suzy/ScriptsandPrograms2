@@ -1,0 +1,25 @@
+<!--&
+$Q{timeout}||=30; $Q{results} ||= 100 ; 
+redirect_to("Browse.html?file=".EncUri(Search(\%Q))) if $Q{Action};
+-->
+<HTML>
+<HEAD>
+<TITLE>Aaron's All Engine Expired Domain Finder</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="expireddomain.css">
+</HEAD>
+<BODY>
+
+<center>
+<H1><B>A</B>aron's <B>E</B>xpired<B> D</B>omain <B>F</B>inder</H1>
+
+<FORM METHOD=GET>
+<TABLE>
+<TR><TD ALIGN=CENTER>Query: <INPUT TYPE=TEXT NAME="query" VALUE="@~$Q{query}~@" SIZE=40 MAXLENGTH=200>
+<INPUT TYPE=SUBMIT VALUE="Search" name=Action></TD></TR>
+<TR><TD>
+Timeout: <INPUT TYPE=TEXT NAME="timeout" VALUE="@~$Q{timeout}~@" SIZE=5 MAXLENGTH=5> sec.
+Max results per engine: <INPUT TYPE=TEXT NAME="results" VALUE="250" SIZE=5 MAXLENGTH=5>
+<HR>
+
+</BODY>
+</HTML>
