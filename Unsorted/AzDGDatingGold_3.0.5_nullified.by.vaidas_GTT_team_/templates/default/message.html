@@ -1,0 +1,14 @@
+<!--@ BEGIN message -->
+<br><span class=head>{W_MES_FROM} {FROMUSER}</span><br>
+<Table Border="1" CellSpacing="0" CellPadding="4" bordercolor=black width=500>
+<tr class=mes>
+<td width=100>{W_FROM}</td><td width=400><a href="../view.php?l={LANGUAGE}&id={FROMID}" target="_blank">{FROMUSER}</a></td></tr>
+<tr class=mes><td width=100>{W_DATE}</td><td width=400>{DATE}</td></tr>
+<tr class=mes><td width=100>{W_SUBJECT}</td><td width=400>{SUBJECT}</td></tr>
+<tr class=mes><td width=100>{W_MESSAGE}</td><td width=400>{MESSAGE}</td></tr>
+<tr class=head align=center><td colspan=2><form action="index.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}&page=view&vaction=sendid" method=post enctype=post>{W_USE_FOR_RE}</td></tr>
+<tr class=mes><td>{W_SUBJECT}</td><td><input class=input type=text name=subject value="{W_RE} {SUBJECT}"></td></tr>
+<tr class=mes><td>{W_YOUR_MES}</td><td><textarea class=textarea name=message cols=40 rows=15></textarea></td></tr>
+<tr><td colspan=2 align=left><input type="checkbox" name="confirm" checked> {W_NOTIFY_} <b>{FROMUSER}</b> {W_READ_MES}</td></tr>
+<tr class=mes><input type=hidden name=login value="{TOUSER}"><input type=hidden name=toid value=".{FROMID}."><input type=hidden name=touser value="{FROMUSER}"><td colspan=2 align=right><input class=input type=button value="{W_BACK_MES}" OnClick="location.href='index.php?l={LANGUAGE}&username={USERNAME}&password={PASSWORD}&page=view'"> <input class=input type=submit value="{W_SEND_RE}"></td></tr></table></form>
+<!--@ END message -->
