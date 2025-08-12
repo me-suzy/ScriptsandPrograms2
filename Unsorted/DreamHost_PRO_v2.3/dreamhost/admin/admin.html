@@ -1,0 +1,80 @@
+<?
+
+
+//EMAIL ALL ACCOUNTS
+if  ($admin_action=="email_all") {
+        $O_M=$email_message;
+        $O_S=$subject;
+        $i=0;
+        $db = new ps_DB;
+        $q  = "SELECT account_email,account_name FROM account";
+        $db->query($q);
+        while ($db->next_record()) {
+              $pat = "<CUSTNAME>";
+              $repl= $db->f("account_name");
+              $message1 = ereg_replace($pat, $repl, $O_M);
+              $subject1 = ereg_replace($pat, $repl, $O_S);
+$pat1="
+";
+              $repl1="\n";
+              $message2=ereg_replace($pat1, $repl1, $message1);
+              $recipient = $db->f("account_email");
+              $headers = "From: $from_name <$from_email>\n";
+              $headers .= "X-Sender: <$from_email>\n";
+              if ($high_priority=="Y") { $headers .= "X-Priority: 1\n";  }
+              $headers .= "Return-Path: <$from_email>\n";
+              mail($recipient, $subject1, $message2, $headers);
+              $i++;
+              }
+include ("email.html");
+}
+
+
+
+
+
+
+//CVS EXPORT
+if  ($admin_action=="cvs_export") {
+        $q = "SELECT ";
+        $db = new ps_DB;
+        $cvs_output="";
+        $i=0;
+
+        while($i <= 20) {
+            if($count[$i]=="Y") {
+                if (isset($prev)) {
+                $q .= ",";
+                $q .= $db_name[$i];
+            } else {
+                $q .= $db_name[$i];
+                $prev=" ";
+            }
+        }
+        $i++;
+        
+        
+        }
+        $q .= " FROM account ORDER by $order_by";
+        $db->query($q);
+        while ($db->next_record()) {
+              $i=0;
+              while($i <= 20) {
+                       if($count[$i]=="Y") {
+                       $cvs_output.=$db->f($db_name[$i]);
+                       $cvs_output.=$delimiter;
+              }
+              $i++;
+        }
+        $cvs_output.= "\n";
+        $rc++;
+    }
+$message.="Found $rc accounts in the database... exporting...<BR><BR>";
+echo $message;
+$admin_action="cvs_export_done";
+include("cvs.html");
+}
+
+
+?>
+
