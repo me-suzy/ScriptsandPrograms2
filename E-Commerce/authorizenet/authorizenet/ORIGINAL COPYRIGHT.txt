@@ -1,0 +1,39 @@
+/******************************************************************************* 
+Sample AIM (Advanced Integration Method) PHP Script For Authorize.net 
+
+* Source by Jon Olawski - www.spiderwt.com 
+* Free to use, modify, distribute! 
+* Provided with no warranty (if it doesn`t work, sorry) 
+* Download from http://www.spiderwt.com/authorizenet.php 
+* Donations are greatly appreciated -> https://www.paypal.com/xclick/business=paypal% 
+40spiderwt.com 
+
+Requirements 
+* PHP 4.0.2 or higher with CURL 7.0.2-beta or higher 
+* PHP 4.2.3 or higher with CURL 7.9.0 or higher 
+* Secure Server 
+* See http://www.php.net/manual/en/ref.curl.php for full PHP & CURL documentation 
+
+Introduction 
+Typically, when using this type of advanced integration you would open up a 
+socket connection using fsockopen on port 443, then post your fields, and 
+finally read the response. For whatever reason, I can not seem to get this 
+to work with Authorize.net. The alternative now is to use CURL (Client URL 
+Library Functions). This is direct from php.net: 
+
+"PHP supports libcurl, a library created by Daniel Stenberg, that allows you to 
+connect and communicate to many different types of servers with many different 
+types of protocols. libcurl currently supports the http, https, ftp, gopher, 
+telnet, dict, file, and ldap protocols. libcurl also supports HTTPS certificates, 
+HTTP POST, HTTP PUT, FTP uploading (this can also be done with PHP`s ftp 
+extension), HTTP form based upload, proxies, cookies, and user+password 
+authentication." 
+
+Authorize.net does provide sample scripts for the SIM (Simple Integration method) 
+for PHP, but doesn`t seem to provide any documentation for the AIM. I hope that 
+this short sample can help! The AIM allows you, in your script, to process the 
+transaction and get a response back without the user ever leaving your website. 
+With the SIM the user posts the information to authorize.net, and then redirects 
+back to your website. 
+
+*******************************************************************************/ 
