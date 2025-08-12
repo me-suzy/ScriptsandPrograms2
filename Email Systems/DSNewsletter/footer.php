@@ -1,0 +1,1 @@
+<table bgcolor=#679767 width=100% height=25><td><center><a href=index.php>Main</a> | <a href=archive.php>Archives</a> | <a href=usrsub.php>Submit</a> | <a href=logviewer.php>ID Search</a> | <a href=admin.php>Admin</a></center></td></table><center>Powered by <a href=http://www.dvondrake.com>DSNewsletter 1.0</a></center>
