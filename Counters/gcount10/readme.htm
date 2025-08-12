@@ -1,0 +1,271 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+<title>PHPGcount - README</title>
+<style>
+BODY, TD {
+color: black;
+font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+P {
+color : black;
+font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+A:HOVER {
+color : Red;
+text-decoration : none ! important;
+}
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h3><font color="#FF0000">PHPGcount</font> 1.0<br>
+<font size="3">PHP graphical hit counter</font></h3>
+
+<p>PHP graphical hit counter (PHPGcount)<br>
+Version: 1.0<br>
+File name: graphcount.php<br>
+Written 10th May 2004 by Klemen Stirn (info AT phpjunkyard DOT com)<br>
+<a href="http://www.phpjunkyard.com">PHPJunkYard.com - Free PHP scripts</a><br>
+<a href="http://www.phpjunkyard.com/php-graphical-hit-counter.php">PHP
+graphical hit counter</a><br>
+<a href="http://developers.phpjunkyard.com/">Support and developers forum</a></p>
+
+<b>PLEASE NOTE:</b> I <font color="#FF0000">cannot</font> provide free installation
+support for this free script! Please use the above e-mail address to contact me
+ONLY about possible bug reports, suggestions or comments! Thank you!</p>
+
+<hr>
+
+<p><b>COPYRIGHT NOTICE</b></p>
+<p>Copyright 2004 Klemen Stirn. All Rights Reserved.</p>
+<p>The PHPGcount may be used and modified free of charge by anyone so long as
+this copyright notice and the comments above remain intact. By using this
+code you agree to indemnify Klemen Stirn from any liability
+that might arise from it's use.</p>
+<p>Selling the code for this program without prior written consent is
+expressly forbidden. In other words, please ask first before you try and
+make money off this program.</p>
+<p>Obtain permission before redistributing this software over the Internet or
+in any other medium. In all cases copyright and header must remain intact.
+This Copyright is in full effect in any country that has International
+Trade Agreements with the United States of America or with
+the European Union.</p>
+
+
+<hr>
+
+<p>DESCRIPTION</p>
+
+<p>PHPGcount is a simple yet effective PHP hit counter which displays
+result in a graphical manner (with images). It uses flat-text database
+so no SQL databases are necessary. It can count hits for multiple pages of your website or even
+websites on other servers. To prevent others taking advantage of your script a
+HTTP referer validation has been included as an option.</p>
+
+<hr>
+
+<p>Requirements</p>
+
+<ul>
+    <li>PHP4 support</li>
+    <li>FTP access and a FTP program</li>
+</ul>
+
+<hr>
+
+<p><b>&gt;&gt; Quick installation</b></p>
+
+<p>Open file graphcount.php in your favorite <b>PLAIN TEXT</b> editor (like Notepad or
+Wordpad on Windows systems, DO NOT use MS Word or similar editor), scroll down to
+where it says &quot;SETUP YOUR COUNTER&quot; and set these variables:</p>
+
+<ul>
+<li><b>$base_url</b> - Set this to the URL of the folder where you will install
+PHPGcount. Make sure you add a &quot;/&quot; at the end of the folder URL.<br><br>
+EXAMPLE (let's say you want to install the counter in a folder called &quot;phpgcount&quot;)<br>
+Correct: http://www.yourdomain.com/phpgcount/<br>
+Wrong: http://www.yourdomain.com/phpgcount<br><br>
+NOTE: For the first installation (to get it up and running as easy as possible)
+you may leave other variables (displayed below) as they are set by default.
+<br><br></li>
+<li><b>$default_style</b> - Default style of the images displayed by the counter. More
+info on styles further down.<br><br></li>
+<li><b>$default_ext</b> - Default image extension of your counter. If your default style
+consists of .jpeg images set it to &quot;jpeg&quot;, if from .gif leave as it is etc.<br>
+NOTE: If you want to use any style that comes with PHPGcount by default, you should leave
+this variable set to &quot;gif&quot;.<br><br></li>
+<li><b>$check_referer</b> - Enable referer validation (more inf further down).<br><br></li>
+<li><b>$referers</b> - Domains that are allowed to use the counter.<br><br></li>
+</ul>
+
+<p>Save and close the graphcount.php file.</p>
+
+<p>Upload graphcount.php file into a folder in your public directory (where the rest
+of your website is; usually &quot;public_html&quot;, &quot;www&quot; or &quot;site&quot;).<br>
+Example: /public_html/phpgcount<br>
+Corresponding URL: http://www.yourdomain.com/phpgcount/graphcount.php</p>
+
+<p>Upload the &quot;styles&quot; folder to the same directory.<br>
+Example: public_html/phpgcount/styles<br>
+Corresponding URL: http://www.yourdomain.com/phpgcount/styles</p>
+
+<p>Within the phpgcount folder create a new folder called &quot;logs&quot; (on many servers names are CaSe SeNsiTiVE).
+Make sure this folder is world-writable (on UNIX servers issue command CHMOD 777 (rwx-rwx-rwx))<br>
+Example: public_html/graphcount/logs<br>
+Corresponding URL: http://www.yourdomain.com/phpgcount/logs</p>
+
+<p>Now to make your counter work just use this piece of code on your site:</p>
+<p>&lt;SCRIPT LANGUAGE=&quot;Javascript&quot; SRC=&quot;http://www.domain.com/phpgcount/graphcount.php?page=PAGENAME&quot;&gt;&lt;!--<br>
+//--&gt;&lt;/SCRIPT&gt;</p>
+<p>Change the SRC parameter accordingly (to your graphcount.php URL)! Change PAGENAME to a unique name for each page you want
+track hits on (use numbers and letter only, no spaces or other chars).<br>
+Example:<br>
+On index.html you would use http://www.domain.com/phpgcount/graphcount.php?page=index<br>
+On someotherpage.html you would use http://www.domain.com/phpgcount/graphcount.php?page=otherpage<br>
+etc...</p>
+
+<p>Try this and make sure your counter work before configuring it any more with
+options discussed below.</p>
+
+<hr>
+
+<p><b>&gt;&gt; Changing style of the counter</b></p>
+
+<p>PHPGcount comes with these image styles by default: 57chevy, 7seg, bbldotg, bellbtm,
+blgrv, cntdwn, computer, ds9, fdb, led, links, marsil, sbgs and web1.</p>
+
+<p>You may set (test) these styles by adding &quot;&amp;style=STYLENAME&quot;
+to the SCRIPT SRC parameter. Replace STYLENAME with the name of the style (names are
+CaSe SeNSiTiVE on most servers!). For example, if you want to test how style
+&quot;led&quot; looks you would use this code to display the counter:</p>
+
+<p>&lt;SCRIPT LANGUAGE=&quot;Javascript&quot; SRC=&quot;http://www.domain.com/phpgcount/graphcount.php?page=PAGENAME<b>&amp;style=led</b>&quot;&gt;&lt;!--<br>
+//--&gt;&lt;/SCRIPT&gt;</p>
+
+<p>As easy as that. If no &amp;style=STYLENAME is added to the SRC parameter PHPGcount
+will use the default style, as set in the $default_style variable in the graphcount.php
+file. If you for example want to use the &quot;57chevy&quot; as the default style
+you can just open graphcount.php file and set<br>
+$default_style = &quot;57chevy&quot;<br>
+and this style will be used by default.</p>
+
+<p>By adding the &amp;style=STYLENAME you may use the same script on multiple
+pages, each with its own style of display! You may even add your own styles to
+the counter, more info on that further down.</p>
+
+<p></p>
+
+<hr>
+
+<p><b>&gt;&gt; Enabling HTTP referer validation</b></p>
+
+<p>Enabling HTML validation will prevent other people from using the script
+installed on your server to count hits on their site.</p>
+
+<p>Open graphcount.php file and set <b>$check_referer = 0;</b> to <b>1</b> to enable HTML referer validation.<br>
+In <b>$referers = array (&quot;domain.com&quot;,&quot;someotherdomain.com&quot;);</b> set the domains
+you allow to use the counter.</p>
+
+<p>Example of a correctly configured counter which will only allow counting hits on
+pages under PHPJUNKYARD.COM domain:<br><br>
+$check_referer = 1;<br>
+$referers = array (&quot;phpjunkyard.com&quot;);<br>
+</p>
+
+<p>Save the file and upload it to server.</p>
+
+<hr>
+
+<p><b>&gt;&gt; Adding custom styles to the counter</b></p>
+
+<p>If you want to add your style to PHPGCount that's easy. All you need is ten (10)
+images (equall height and widht), each with one number (0,1,2,3,4,5,6,7,8,9). Save
+image with number 0 as 0.gif (or 0.jpg or 0.png or whatever format you use), image
+with 1 to 1.gif, image with 2 to 2.gif etc... so you have 10 images, each with one number.
+Now just create a new folder in the &quot;styles&quot; directory - the name of the folder will
+be the name of your style. For example if you want to call the style &quot;myblue&quot;
+you would create folder &quot;gcount/styles/myblue&quot; and upload all ten images
+to that folder. Then you could just set the myblue style as the default style or
+use &amp;style=myblue (as explained above) where you want the myblue to be used.</p>
+
+<p>If your style images are different type then the default image extension (as
+set in graphcount.php in <b>$default_ext</b>) you can add <b>&amp;ext=EXTENSION</b>
+to the SCRIPT SRC parameter. Replace extension with the file extension (<b>without
+a dot!</b>) of the images of your style.</p>
+
+<p>That probably sounded a bit confusing, but it really isn't, here's an example:<br><br>
+Let's say you are using style web1 by default, which has GIF file format images
+with <b>.gif</b> extension. That's why you have <b>$default_ext</b> set to:<br>
+$default_ext = &quot;gif&quot; (&quot;.gif&quot; extensions, but without the dot (.)).<br><br>
+Now you created your own style myblue. You saved images as JPEG files meaning they
+have <b>.jpg</b> extension, which is different from the default one (.gif). That's why
+you must add <b>&amp;ext=jpg</b> (.jpg without the dot!) to the counter code in order to use your style counter:</p>
+
+<p>&lt;SCRIPT LANGUAGE=&quot;Javascript&quot; SRC=&quot;http://www.domain.com/phpgcount/graphcount.php?page=PAGENAME<b>&amp;style=myblue&amp;ext=jpg</b>&quot;&gt;&lt;!--<br>
+//--&gt;&lt;/SCRIPT&gt;</p>
+
+<p>If you saved the images as GIF (.gif) you would simply use http://www.domain.com/phpgcount/graphcount.php?page=PAGENAME<b>&amp;style=myblue</b></p>
+
+<p><b>NOTE:</b> All the styles that come with PHPGCount by default are GIF type!</p>
+
+<hr>
+
+<p><b>&gt;&gt; Troubleshooting</b></p>
+
+<p><b>What is CHMOD and FTP?</b></p>
+
+<p>I have prepared a simple <a href="http://www.phpjunkyard.com/ftp-chmod-tutorial.php" target="_blank">
+FTP and CHMOD tutorial</a> which will help you FTP files to your server and
+set correct CHMOD settings.</p>
+
+<p><b>My counter doesn't work, HELP!</b></p>
+
+<p>Here are a few things to check:</p>
+<ol>
+<li>did you create the &quot;logs&quot; folder (not Logs, not LOGS, not LoGs, but logs)?</li>
+<li>is the logs folder in the same folder where graphcount.php file is?</li>
+<li>is logs folder world writable? CHMOD it to 777 (rwx-rwx-rwx) if you are on a UNIX server</li>
+<li>if you enabled HTTP referer validation make sure you have also setup allowed domain(s).</li>
+<li>make sure you used the right code on your page. Change the URL in the code in this readme
+to the URL of your graphcount.php script.</li>
+<li>If images don't display properly (you get the [X] broken image sign) check
+image names, extensions and if the styles folder has been uploaded to the PHPGcount folder.
+Keep in mind that on most servers names are CaSe SeNSiTiVE!</li>
+</ol>
+
+<p>Since these scripts are free no support is guaranteed. If you can't get the script to work please go
+through this readme file again carefully and repeat the installation step-by-step (also delete old
+files and folders from the server). Also please feel free to post any questions or problems you might have
+in <a href="http://developers.phpjunkyard.com">PHPJunkyard forum</a>!</p>
+
+<hr>
+
+<p><b>&gt;&gt; Stay updated!</b></p>
+
+<p>Join my FREE newsletter and you will be notified about new scripts, new versions of the existing scripts
+and other important news from PHPJunkYard.<br>
+<a href="http://www.phpjunkyard.com/newsletter.php">Click here for more info</a></p>
+
+<hr>
+
+<p><b>&gt;&gt; What else?</b></p>
+
+<p>That's it! If you use PHPJunkYard free scripts or any portion of their code  please place a link
+to PHPJunkYard.com on your website. I won't sue you if you don't, but
+I believe it is a fair trade for a free script/code. Think about it. You can
+find link suggestions <a href="http://www.phpjunkyard.com/link2us.php">here</a>.</p>
+
+<p><b>Best regards,<br><br>
+Klemen Stirn<br>
+PHP JunkYard<br>
+<a href="http://www.phpjunkyard.com">http://www.PHPJunkYard.com</a></b></p>
+
+<p>&nbsp;</p>
+
+</body>
+</html>
