@@ -1,0 +1,793 @@
+<html>
+
+<head>
+<title>Creating Skins</title>
+</head>
+
+<body>
+
+<h3 align="center"><font face="Arial">Creating Skins</font></h3>
+<p align="left"><font face="Arial">You could theoretically offer as many skins
+as you wanted to your visitors -- there is no limit to the number. The creation
+of skins is fairly simple, but requires some attention to certain details when
+working on some of the template files. This document is intended to serve as a
+guide for those looking to create new skins for their site -- please read it
+carefully as you create them.</font></p>
+<p align="left"><font face="Arial">You may see examples of some sample skins
+that are included with the ___ download (in the skins folder). To create a new
+skin, simply copy one of the skin folders, and give it a new name that reflects
+the style of your skin. Then begin modifying the following template files:</font></p>
+<p align="left"><font face="Arial"><a href="#categories">categories.tpl</a><br>
+  <a href="#default">default.tpl</a><br>
+  <a href="#index">index.tpl</a><br>
+  <a href="#newsbox">newsbox.tpl</a><br>
+  <a href="#reviews">reviews.tpl</a><br>
+  <a href="#search">search.tpl</a><br>
+  <a href="#storyblock">storyblock.tpl</a><br>
+  <a href="#storyindex">storyindex.tpl</a> <br>
+  <a href="#user">user.tpl</a><br>
+  <a href="#viewstory">viewstory.tpl</a><br>
+  <a href="#style">style.css</a></font></p>
+<p align="left"><font face="Arial">Three important things to pay attention to 
+  when modifying the template files:</font></p>
+<p align="left"><font face="Arial">1) <b>Attributes:</b> Items in curly brackets
+are attributes, i.e. {output} or {authors}. This contains the actual content that will
+be printed out on the page. You can surround these attributes with any kind of
+html that you want -- font tags, tables, whatever. Some attributes are required
+on some of the template pages, and some are optional.&nbsp;</font></p>
+<p align="left"><font face="Arial">2) <b>Blocks:</b> These are items that
+generate multiple instances of content in a loop -- for example, in your
+index.tpl template file,
+you only need to indicate where the news items should display on the page with
+the following:</font></p>
+<p align="left"><font face="Arial">&lt;!-- INCLUDE BLOCK : newsbox --></font></p>
+<p align="left"><font face="Arial">This line is telling the script to include
+the newsbox.tpl file, and the template files will understand that it should
+print out several news stories in a loop, with just that one line of code.
+Another kind of block you may see is the following:</font></p>
+<blockquote>
+  <p align="left"><font face="Arial">&lt;!-- START BLOCK : categoriesblock --><br>
+  <br>
+  Content goes here, which will also include attributes, such as {category} or
+  {description}<br>
+  <br>
+  &lt;!-- END BLOCK : categoriesblock --></font></p>
+</blockquote>
+<p align="left"><font face="Arial">This is similar to the included block, except 
+  that rather than pulling in the block from another file, as in the case of the 
+  newsbox.tpl, this one is just defining the block at this very moment. As you 
+  read through the individual template file instructions below and look at the 
+  actual templates, all of this will make more sense. Text in purple is the actual 
+  attribute or block code you need to use -- green text is used for explanation.</font></p>
+<p align="left"><font face="Arial">3) The .tpl files do not have some of the usual 
+  tags at the beginning, such as &lt;head&gt; or &lt;title&gt;. That is because 
+  those tags are included in the header files (header.php or adminheader.php). 
+  Most of the template files begin with the &lt;body&gt; tag, except for a couple 
+  of the blocks (newsblock.tpl and storyblock.tpl)</font></p>
+<p align="left"><font face="Arial"><b><a name="categories">A.categories.tpl</a></b></font><b>&nbsp;</b>
+-- <font face="Arial">This template file is used when people are viewing the
+category pages.&nbsp;</font></p>
+<blockquote> 
+  <p align="left"><font face="Arial"><i>Required Blocks &amp; Attributes:&nbsp;</i></font></p>
+  <blockquote> 
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- START BLOCK : categoriesblock 
+      --> </font><font face="Arial" color="#008000">The start of the categories 
+      block, that outputs the categories.</font></p>
+    <blockquote> 
+      <p align="left"><font face="Arial" color="#800080">{categorytitle} </font><font face="Arial" color="#008000">Outputs 
+        the category name</font><font face="Arial" color="#800080"><br>
+        {categorydescription} </font><font face="Arial" color="#008000">Outputs 
+        the category description<br>
+        </font><font face="Arial" color="#800080">{categoryimage} </font><font face="Arial" color="#008000">Outputs 
+        the category image, if it has one (must be put in img tag)<br>
+        </font><font face="Arial" color="#800080">{numstories} </font><font face="Arial" color="#008000">Outputs 
+        the number of stories within that category</font><font face="Arial" color="#008000"> 
+        (only shows if there are stories within)</font></p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- END BLOCK : categoriesblock 
+      --> </font><font face="Arial" color="#008000">The end of the categories 
+      block.</font></p>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- INCLUDE BLOCK : 
+      storyblock --> </font><font face="Arial" color="#008000">The storyblock 
+      (storyblock.tpl) which outputs the title, summary, etc.</font></p>
+    <p align="left"><font color="#800080" face="Arial">{sortbegin} </font><font face="Arial" color="#008000">This 
+      begins the sorting dropdown form on the categories page</font><font color="#800080" face="Arial"><br>
+      {charactermenu1} </font><font face="Arial" color="#008000">The first character 
+      dropdown menu</font><font color="#800080" face="Arial"><br>
+      {charactermenu2} </font><font face="Arial" color="#008000">The second character 
+      dropdown menu</font><font color="#800080" face="Arial"><br>
+      {genremenu} </font><font face="Arial" color="#008000">The genres dropdown 
+      menu</font><font color="#800080" face="Arial"><br>
+      {ratingmenu} </font><font face="Arial" color="#008000">The ratings dropdown 
+      menu</font><font color="#800080" face="Arial"><br>
+      {warningmenu} </font><font face="Arial" color="#008000">The warnings dropdown 
+      menu</font><font color="#800080" face="Arial"><br>
+      {chaptersmenu} </font><font face="Arial" color="#008000">The chapters to 
+      search dropdown menu</font><font color="#800080" face="Arial"> <br>
+      {sortend} </font><font face="Arial" color="#008000">The end of the sorting 
+      dropdown form</font></p>
+    <p align="left"><font face="Arial"><font color="#800080">{output}</font> <font color="#008000">This 
+      outputs the page number links, so people can page through the category results<br>
+      </font><font face="Arial"><font color="#800080">{pagelinks}</font><font color="#008000"> 
+      Pages through results</font></font><font color="#008000"><br>
+      </font><font color="#800080">{topcategorytitle}</font><font color="#008000"> 
+      Displays the category name that you are currently viewing</font></font></p>
+  </blockquote>
+  <p align="left"><font face="Arial"><i>Optional Attributes:</i></font></p>
+  <blockquote> 
+    <p align="left"><font face="Arial"><font face="Arial"><font color="#800080">{categorycolumn}</font><font color="#008000"> 
+      This is used by the script to know where to place the &lt;/tr&gt;&lt;tr&gt; 
+      tags that indicate a new row for the columns of categories. You must be 
+      using tables to display your categories for this to work, and each category 
+      should be placed within an individual cell. Example:</font></font></font></p>
+    <blockquote>
+      <p><font color="#800080" face="Arial, Helvetica, sans-serif">&lt;table&gt;</font></p>
+      <p><font color="#800080" face="Arial, Helvetica, sans-serif">&lt;!-- START 
+        BLOCK : categoriesblock --&gt;<br>
+        &lt;td&gt;<br>
+        &lt;img src=&quot;{categoryimage}&quot; align=&quot;left&quot;&gt;<br>
+        {categorytitle} ({numstories})&lt;br&gt;<br>
+        {categorydescription}&lt;br&gt;&lt;br&gt;<br>
+        &lt;/td&gt;<br>
+        {categorycolumn}<br>
+        &lt;!-- END BLOCK : categoriesblock --&gt;</font></p>
+      <p><font color="#800080" face="Arial, Helvetica, sans-serif">&lt;/table&gt;</font></p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">{home} </font><font face="Arial" color="#008000">A 
+      link that takes you back to the main index<br>
+      </font><font face="Arial" color="#800080">{catslink} </font><font face="Arial" color="#008000">A 
+      link that takes you to the categories page - really only necessary if you 
+      have more than one category</font><font face="Arial" color="#800080"><br>
+      {recent} </font><font face="Arial" color="#008000">A link that goes to a 
+      page that displays the most recent additions to the archive</font><font face="Arial" color="#800080"><br>
+      {authors} </font><font face="Arial" color="#008000">A link that goes to 
+      a membership/authors list</font><font face="Arial" color="#800080"><br>
+      {help} </font><font face="Arial" color="#008000">A link that goes to the 
+      help page</font><font face="Arial" color="#800080"><br>
+      {search} </font><font face="Arial" color="#008000">A link that goes to a 
+      search page</font><font face="Arial" color="#800080"><br>
+      {login} </font><font face="Arial" color="#008000">A link that shows either 
+      &quot;Log in&quot; or &quot;My account&quot; (if someone is logged in)<br>
+      </font><font face="Arial" color="#800080">{logout}</font><font face="Arial" color="#008000"> 
+      The logout link<br>
+      </font><font face="Arial" color="#800080">{titles}</font><font face="Arial" color="#008000"> 
+      A link to the titles page</font><font face="Arial" color="#008000"> <br>
+      </font><font face="Arial" color="#800080">{adminarea} </font><font face="Arial" color="#008000">Link 
+      to the admin area, if the admin is logged in<br>
+      </font><font face="Arial" color="#800080">{footer}</font><font face="Arial" color="#008000"> 
+      Text of the footer message</font></p>
+  </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="default">B. default.tpl</a></b> This is a generic
+template this is used in several places by the script.&nbsp;</font></p>
+<blockquote>
+  <p align="left"><font face="Arial"><i>Required Attributes:</i></font></p>
+  <blockquote>
+    <p align="left"><font face="Arial" color="#800080">{output} </font><font face="Arial" color="#008000">Prints
+    out the output required for that page. Depending on the page in question, it
+    could be just about anything.</font></p>
+  </blockquote>
+  <p align="left"><font face="Arial"><i>Optional Attributes:</i></font></p>
+  <blockquote> 
+    <p align="left"><font face="Arial" color="#800080">{home} </font><font face="Arial" color="#008000">A 
+      link that takes you back to the main index<br>
+      </font><font face="Arial" color="#800080">{catslink} </font><font face="Arial" color="#008000">A 
+      link that takes you to the categories page - really only necessary if you 
+      have more than one category</font><font face="Arial" color="#800080"><br>
+      {recent} </font><font face="Arial" color="#008000">A link that goes to a 
+      page that displays the most recent additions to the archive</font><font face="Arial" color="#800080"><br>
+      {authors} </font><font face="Arial" color="#008000">A link that goes to 
+      a membership/authors list</font><font face="Arial" color="#800080"><br>
+      {help} </font><font face="Arial" color="#008000">A link that goes to the 
+      help page</font><font face="Arial" color="#800080"><br>
+      {search} </font><font face="Arial" color="#008000">A link that goes to a 
+      search page</font><font face="Arial" color="#800080"><br>
+      {login} </font><font face="Arial" color="#008000">A link that shows either 
+      &quot;Log in&quot; or &quot;My account&quot; (if someone is logged in)<br>
+      </font><font face="Arial" color="#800080">{adminarea} </font><font face="Arial" color="#008000">Link 
+      to the admin area, if the admin is logged in <br>
+      </font><font face="Arial" color="#800080">{logout}</font><font face="Arial" color="#008000"> 
+      The logout link<br>
+      </font><font face="Arial" color="#800080">{titles}</font><font face="Arial" color="#008000"> 
+      A link to the titles page<br>
+      </font><font face="Arial" color="#800080">{footer}</font><font face="Arial" color="#008000"> 
+      Text of the footer message</font></p>
+  </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="index">C. index.tpl</a></b> The main page of the
+site, that can include news, featured stories, the categories list, and a
+welcome message.</font></p>
+<blockquote>
+  <p align="left"><font face="Arial"><i>Required Attributes: </i>really only
+  required if you have multiple categories. If you have only category, you can
+  just link directly to categories.php</font></p>
+  <blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- START BLOCK : categoriesblock -->
+    </font><font face="Arial" color="#008000">The start of the categories block,
+    that outputs the categories.</font></p>
+    <blockquote> 
+      <p align="left"><font face="Arial" color="#800080">{categorytitle} </font><font face="Arial" color="#008000">Outputs 
+        the category name</font><font face="Arial" color="#800080"><br>
+        {categorydescription} </font><font face="Arial" color="#008000">Outputs 
+        the category description<br>
+        </font><font face="Arial" color="#800080">{categoryimage} </font><font face="Arial" color="#008000">Outputs 
+        the category image, if it has one<br>
+        </font><font face="Arial" color="#800080">{numstories} </font><font face="Arial" color="#008000">Outputs 
+        the number of stories within that category</font></p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- END BLOCK : categoriesblock -->
+    </font><font face="Arial" color="#008000">The end of the categories block.</font></p>
+  </blockquote>
+  <p align="left"><font face="Arial"><i>Optional Attributes &amp; Blocks:</i></font></p>
+  <blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- INCLUDE BLOCK : newsbox -->
+    </font><font face="Arial" color="#008000">If you want to display news or
+    updates on the front page</font></p>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- START BLOCK : featuredblock -->
+    </font><font face="Arial" color="#008000">The start of the featured stories
+    block</font></p>
+    <blockquote> 
+      <p align="left"><font face="Arial" color="#800080">{featuredtitle} </font><font face="Arial" color="#008000">Outputs 
+        the featured story's title</font><font face="Arial" color="#800080"><br>
+        {featuredauthor} </font><font face="Arial" color="#008000">Outputs the 
+        featured story's author</font><font face="Arial" color="#800080"><br>
+        {featuredsummary} </font><font face="Arial" color="#008000">Outputs the 
+        featured story's summary (up to 75 characters)<br>
+        </font><font face="Arial" color="#800080">{featuredrating} </font><font face="Arial" color="#008000">Outputs 
+        the featured story's rating<br>
+        </font><font face="Arial" color="#800080">{featuredcategory} </font><font face="Arial" color="#008000">Outputs 
+        the featured story's category</font></p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- END BLOCK : featuredblock 
+      --> </font><font face="Arial" color="#008000">The end of the featured stories 
+      block</font></p>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- START BLOCK : recentblock 
+      --> </font><font face="Arial" color="#008000">The start of the recently 
+      updated/added block</font></p>
+    <blockquote> 
+      <p align="left"><font face="Arial" color="#800080">{recenttitle} </font><font face="Arial" color="#008000">Outputs 
+        the recent story's title</font><font face="Arial" color="#800080"><br>
+        {recentauthor} </font><font face="Arial" color="#008000">Outputs the recent 
+        story's author</font><font face="Arial" color="#800080"><br>
+        {recentsummary} </font><font face="Arial" color="#008000">Outputs the 
+        recent story's summary (up to 75 characters)<br>
+        </font><font face="Arial" color="#800080">{recentrating} </font><font face="Arial" color="#008000">Outputs 
+        the recent story's rating</font><br>
+        <font face="Arial" color="#800080">{recentcategory} </font><font face="Arial" color="#008000">Outputs 
+        the recent story's category</font> </p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- END BLOCK : recentblock 
+      --> </font><font face="Arial" color="#008000">The end of the recently updated/added 
+      block</font></p>
+    <p align="left"><font face="Arial"><font face="Arial"><font color="#800080">{categorycolumn}</font><font color="#008000"> 
+      This is used by the script to know where to place the &lt;/tr&gt;&lt;tr&gt; 
+      tags that indicate a new row for the columns of categories. You must be 
+      using tables to display your categories for this to work, and each category 
+      should be placed within an individual cell. Example:</font></font></font></p>
+    <blockquote> 
+      <p><font color="#800080" face="Arial, Helvetica, sans-serif">&lt;table&gt;</font></p>
+      <p><font color="#800080" face="Arial, Helvetica, sans-serif">&lt;!-- START 
+        BLOCK : categoriesblock --&gt;<br>
+        &lt;td&gt;<br>
+        &lt;img src=&quot;{categoryimage}&quot; align=&quot;left&quot;&gt;<br>
+        {categorytitle} ({numstories})&lt;br&gt;<br>
+        {categorydescription}&lt;br&gt;&lt;br&gt;<br>
+        &lt;/td&gt;<br>
+        {categorycolumn}<br>
+        &lt;!-- END BLOCK : categoriesblock --&gt;</font></p>
+      <p><font color="#800080" face="Arial, Helvetica, sans-serif">&lt;/table&gt;</font></p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">{welcome} </font><font face="Arial" color="#008000">Outputs 
+      a welcome message (defined in Settings in Admin panel)</font><font face="Arial" color="#008000"><br>
+      </font><font face="Arial" color="#800080">{newspageprev} </font><font face="Arial" color="#008000">Previous 
+      page of news stories</font><font face="Arial" color="#800080"><br>
+      {newspagenext} </font><font face="Arial" color="#008000">Next page of news 
+      stories</font><font face="Arial" color="#800080"> <br>
+      {totalstories} </font><font face="Arial" color="#008000">Total number of 
+      stories in the archive</font><font face="Arial" color="#800080"><br>
+      {totalauthors} </font><font face="Arial" color="#008000">Total number of 
+      authors </font><font face="Arial" color="#800080"> <br>
+      {home} </font><font face="Arial" color="#008000">A link that takes you back 
+      to the main index<br>
+      </font><font face="Arial" color="#800080">{catslink} </font><font face="Arial" color="#008000">A 
+      link that takes you to the categories page - really only necessary if you 
+      have more than one category</font><font face="Arial" color="#800080"><br>
+      {recent} </font><font face="Arial" color="#008000">A link that goes to a 
+      page that displays the most recent additions to the archive</font><font face="Arial" color="#800080"><br>
+      {authors} </font><font face="Arial" color="#008000">A link that goes to 
+      a membership/authors list</font><font face="Arial" color="#800080"><br>
+      {help} </font><font face="Arial" color="#008000">A link that goes to the 
+      help page</font><font face="Arial" color="#800080"><br>
+      {search} </font><font face="Arial" color="#008000">A link that goes to a 
+      search page</font><font face="Arial" color="#800080"><br>
+      {login} </font><font face="Arial" color="#008000">A link that shows either 
+      &quot;Log in&quot; or &quot;My account&quot; (if someone is logged in)<br>
+      </font><font face="Arial" color="#800080">{logout}</font><font face="Arial" color="#008000"> 
+      The logout link<br>
+      </font><font face="Arial" color="#800080">{titles}</font><font face="Arial" color="#008000"> 
+      A link to the titles page <br>
+      </font><font face="Arial" color="#800080">{adminarea} </font><font face="Arial" color="#008000">Link 
+      to the admin area, if the admin is logged in <br>
+      </font><font face="Arial" color="#800080">{footer}</font><font face="Arial" color="#008000"> 
+      Text of the footer message</font></p>
+    </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="newsbox">D. newsbox.tpl</a></b> 
+  The block for the news stories -- NOTE: most of the other template files are 
+  full html files, with &lt;body&gt; tags. This file is one of the exceptions. 
+  Only input the code for the individual block itself, which can include &lt;table&gt; 
+  tags or whatever you want, but should not have the following tags: &lt;html&gt;&lt;body&gt;&lt;head&gt;&lt;title&gt;</font></p>
+<blockquote>
+  <p align="left"><font face="Arial"><i>Required Attributes &amp; Blocks:</i></font></p>
+  <blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- START BLOCK : newsbox -->
+    </font><font face="Arial" color="#008000">Starts the news story block. <i>Must</i>
+    be at the beginning of the file.</font></p>
+    <blockquote> 
+      <p align="left"><font face="Arial" color="#800080">{newstitle} </font><font face="Arial" color="#008000">The 
+        title of the news story</font><font face="Arial" color="#800080"><br>
+        {newsstory} </font><font face="Arial" color="#008000">The text of the 
+        news story</font><font face="Arial" color="#800080"><br>
+        {newsauthor} </font><font face="Arial" color="#008000">The author of the 
+        story</font><font face="Arial" color="#800080"><br>
+        {newsdate} </font><font face="Arial" color="#008000">The date it was written<br>
+        </font><font face="Arial" color="#800080">{newscomments} </font><font face="Arial" color="#008000">The 
+        number of comments, and link to them</font></p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- END BLOCK : newsbox -->
+    </font><font face="Arial" color="#008000">Ends the news story block. <i>Must</i>
+    be at the end of the file.</font></p>
+  </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="reviews"></a>E. reviews.tpl </b>This 
+  template is used to display the reviews page.&nbsp;</font></p>
+  <p align="left"><font face="Arial"><i>Required Attributes &amp; Blocks:</i></font></p>
+  <blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- START BLOCK : reviewsblock-->
+    </font><font face="Arial" color="#008000">Starts the reviews block.</font></p>
+    
+  <blockquote> 
+    <p align="left"><font face="Arial" color="#800080">{reviewer} </font><font face="Arial" color="#008000">The 
+      name of the reviewer</font><font face="Arial" color="#800080"><br>
+      {reviewdate} </font><font face="Arial" color="#008000">The date of the review</font><font face="Arial" color="#800080"><br>
+      {member} </font><font face="Arial" color="#008000">If the person is a member, 
+      it says so. If not, then it says anonymous.</font><font face="Arial" color="#800080"><br>
+      {chapter} </font><font face="Arial" color="#008000">The name of the chapter 
+      for that review.</font><font face="Arial" color="#800080"> <br>
+      {chapternumber} </font><font face="Arial" color="#008000">The number of 
+      the chapter for that review.</font><font face="Arial" color="#800080"> <br>
+      {review} </font><font face="Arial" color="#008000">The text of the review</font></p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- END BLOCK : reviewsblock-->
+    </font><font face="Arial" color="#008000">Ends the reviews block.</font></p>
+    
+  <p align="left"><font face="Arial" color="#800080">{jumpmenu} </font><font face="Arial" color="#008000">A 
+    jumpmenu to view the reviews for other chapters.</font><font face="Arial" color="#800080"><br>
+    {reviewslink} </font><font face="Arial" color="#008000">A link for people 
+    to submit their own review.<br>
+    </font><font face="Arial" color="#800080">{reviewpagelinks} </font><font face="Arial" color="#008000">Page 
+    links for the reviews.<br>
+    </font><font face="Arial" color="#800080">{title} </font><font face="Arial" color="#008000">You 
+    can output the title at the top of the reviews page or wherever.</font></p>
+  </blockquote>
+  <p align="left"><font face="Arial"><i>Optional Attributes:</i></font></p>
+  
+<blockquote> 
+  <p align="left"><font face="Arial" color="#800080">{home} </font><font face="Arial" color="#008000">A 
+    link that takes you back to the main index<br>
+    </font><font face="Arial" color="#800080">{catslink} </font><font face="Arial" color="#008000">A 
+    link that takes you to the categories page - really only necessary if you 
+    have more than one category</font><font face="Arial" color="#800080"><br>
+    {recent} </font><font face="Arial" color="#008000">A link that goes to a page 
+    that displays the most recent additions to the archive</font><font face="Arial" color="#800080"><br>
+    {authors} </font><font face="Arial" color="#008000">A link that goes to a 
+    membership/authors list</font><font face="Arial" color="#800080"><br>
+    {help} </font><font face="Arial" color="#008000">A link that goes to the help 
+    page</font><font face="Arial" color="#800080"><br>
+    {search} </font><font face="Arial" color="#008000">A link that goes to a search 
+    page</font><font face="Arial" color="#800080"><br>
+    {login} </font><font face="Arial" color="#008000">A link that shows either 
+    &quot;Log in&quot; or &quot;My account&quot; (if someone is logged in)<br>
+    </font><font face="Arial" color="#800080">{logout}</font><font face="Arial" color="#008000"> 
+    The logout link<br>
+    </font><font face="Arial" color="#800080">{titles}</font><font face="Arial" color="#008000"> 
+    A link to the titles page</font><font face="Arial" color="#008000"> <br>
+    </font><font face="Arial" color="#800080">{adminarea} </font><font face="Arial" color="#008000">Link 
+    to the admin area, if the admin is logged in</font><font face="Arial" color="#008000"> 
+    <br>
+    </font><font face="Arial" color="#800080">{footer}</font><font face="Arial" color="#008000"> 
+    Text of the footer message</font></p>
+  </blockquote>
+<p align="left"><font face="Arial"><b><a name="search">F. search.tpl</a></b> This is the template
+used for the various search functions.&nbsp;</font></p>
+<blockquote>
+  <p align="left"><font face="Arial"><i>Required Attributes &amp; Blocks:</i></font></p>
+  <blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- INCLUDE BLOCK : storyblock -->
+    </font><font face="Arial" color="#008000">When needed, outputs story
+    summary, title, etc.</font></p>
+    <p align="left"><font face="Arial" color="#800080">{output} </font><font face="Arial" color="#008000">Outputs 
+      the content of the page, such as the search box<br>
+      </font><font face="Arial" color="#800080">{pagelinks} </font><font face="Arial" color="#008000">Page 
+      links for the results</font></p>
+  </blockquote>
+  <p align="left"><font face="Arial"><i>Optional Attributes:</i></font></p>
+  <blockquote> 
+    <p align="left"><font face="Arial" color="#800080">{home} </font><font face="Arial" color="#008000">A 
+      link that takes you back to the main index<br>
+      </font><font face="Arial" color="#800080">{catslink} </font><font face="Arial" color="#008000">A 
+      link that takes you to the categories page - really only necessary if you 
+      have more than one category</font><font face="Arial" color="#800080"><br>
+      {recent} </font><font face="Arial" color="#008000">A link that goes to a 
+      page that displays the most recent additions to the archive</font><font face="Arial" color="#800080"><br>
+      {authors} </font><font face="Arial" color="#008000">A link that goes to 
+      a membership/authors list</font><font face="Arial" color="#800080"><br>
+      {help} </font><font face="Arial" color="#008000">A link that goes to the 
+      help page</font><font face="Arial" color="#800080"><br>
+      {search} </font><font face="Arial" color="#008000">A link that goes to a 
+      search page</font><font face="Arial" color="#800080"><br>
+      {login} </font><font face="Arial" color="#008000">A link that shows either 
+      &quot;Log in&quot; or &quot;My account&quot; (if someone is logged in)<br>
+      </font><font face="Arial" color="#800080">{logout}</font><font face="Arial" color="#008000"> 
+      The logout link<br>
+      </font><font face="Arial" color="#800080">{titles}</font><font face="Arial" color="#008000"> 
+      A link to the titles page</font><font face="Arial" color="#008000"> <br>
+      </font><font face="Arial" color="#800080">{adminarea} </font><font face="Arial" color="#008000">Link 
+      to the admin area, if the admin is logged in</font><font face="Arial" color="#008000"> 
+      <br>
+      </font><font face="Arial" color="#800080">{footer}</font><font face="Arial" color="#008000"> 
+      Text of the footer message</font></p>
+  </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="storyblock">G. storyblock.tpl</a></b> The template file
+for the individual story summaries. This is another example where you don't want
+to use &lt;body&gt; tags, as it isn't outputting a whole page --
+it's just one element of the overall page.</font></p>
+<blockquote>
+  <p align="left"><font face="Arial"><i>Required Attributes &amp; Blocks:</i></font></p>
+  <blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- START BLOCK :
+    storyblock --> </font><font face="Arial" color="#008000">Starts the news
+    story block. <i>Must</i> be at the beginning of the file.</font></p>
+    <blockquote> 
+      <p align="left"><font face="Arial" color="#800080">{title}</font><font face="Arial" color="#008000"> 
+        The title of the story<br>
+        </font><font face="Arial" color="#800080">{author}</font><font face="Arial" color="#008000"> 
+        The author of the story<br>
+        </font><font face="Arial" color="#800080">{ratingpics}</font><font face="Arial" color="#008000"> 
+        If you have ratings turned on, it will display the appropriate rating 
+        (stars, thumbs)<br>
+        </font><font face="Arial" color="#800080">{reviews}</font><font face="Arial" color="#008000"> 
+        The reviews link, to view the reviews<br>
+        </font><font face="Arial" color="#800080">{roundrobin}</font><font face="Arial" color="#008000"> 
+        If the story is a roundrobin, it will display a robin graphic<br>
+        </font><font face="Arial" color="#800080">{summary}</font><font face="Arial" color="#008000"> 
+        The summary of the story<br>
+        </font><font face="Arial" color="#800080">{category}</font><font face="Arial" color="#008000"> 
+        The category the story is located in<br>
+        </font><font face="Arial" color="#800080">{characters}</font><font face="Arial" color="#008000"> 
+        The characters within that story<br>
+        </font><font face="Arial" color="#800080">{genres} </font><font face="Arial" color="#008000">The 
+        genres that the story falls under<br>
+        </font><font face="Arial" color="#800080">{rating}</font><font face="Arial" color="#008000"> 
+        The rating of the story<br>
+        </font><font face="Arial" color="#800080">{warnings}</font><font face="Arial" color="#008000"> 
+        The warnings for the story (prints &quot;none&quot; if there are none)<br>
+        </font><font face="Arial" color="#800080">{numchapters}</font><font face="Arial" color="#008000"> 
+        The number of chapters in the story<br>
+        </font><font face="Arial" color="#800080">{published}</font><font face="Arial" color="#008000"> 
+        The date the story was published<br>
+        </font><font face="Arial" color="#800080">{updated}</font><font face="Arial" color="#008000"> 
+        The date the story was updated<br>
+        </font><font face="Arial" color="#800080">{completed}</font><font face="Arial" color="#008000"> 
+        If the story is completed or not <br>
+        </font><font face="Arial" color="#800080">{numreviews}</font><font face="Arial" color="#008000"> 
+        The number of reviews for that story<br>
+        </font><font face="Arial" color="#800080">{wordcount}</font><font face="Arial" color="#008000"> 
+        The number of words in the chapter</font><font face="Arial" color="#008000"> 
+        </font></p>
+    </blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- END BLOCK :
+    storyblock --> </font><font face="Arial" color="#008000">Ends the news story
+    block. <i>Must</i> be at the end of the file.</font></p>
+  </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="storyindex">H. storyindex.tpl</a></b> 
+  The template file used by the script when someone is viewing a story with multiple 
+  chapters. You can think of the story index as working two ways: you can just 
+  print out all the information for each individual chapter, using the storyindexblock 
+  on this page, OR if you tend to input all the pertinent information for the 
+  entire story in the first chapter, you could include all that info at the top 
+  of the page using the {first***} attributes, with the storyindexblock below 
+  only outputting the chapter title, reviews, wordcount, and any other specific 
+  attributes you want only to show for the chapters.</font></p>
+<blockquote> 
+  <p align="left"><font face="Arial"><i>Required Attributes &amp; Blocks:</i></font></p>
+  <blockquote> 
+    <p align="left"><font face="Arial, Helvetica, sans-serif" color="#800080">&lt;!-- 
+      START BLOCK : storyindexblock --&gt;</font><font face="Arial, Helvetica, sans-serif"><font color="#800080"> 
+      </font></font><font face="Arial" color="#008000">Starts the story index 
+      block</font></p>
+    <blockquote> 
+      <p><font face="Arial" color="#800080">{title}</font><font face="Arial" color="#008000"> 
+        The chapter of the story<br>
+        </font><font face="Arial" color="#800080">{author}</font><font face="Arial" color="#008000"> 
+        The author of the chapter<br>
+        </font><font face="Arial" color="#800080">{reviews}</font><font face="Arial" color="#008000"> 
+        The reviews link, to view the reviews<br>
+        </font><font face="Arial" color="#800080">{summary}</font><font face="Arial" color="#008000"> 
+        The summary of the chapter<br>
+        </font><font face="Arial" color="#800080">{category}</font><font face="Arial" color="#008000"> 
+        The category the story is located in<br>
+        </font><font face="Arial" color="#800080">{characters}</font><font face="Arial" color="#008000"> 
+        The characters within that chapter<br>
+        </font><font face="Arial" color="#800080">{genres} </font><font face="Arial" color="#008000">The 
+        genres that the chapter falls under<br>
+        </font><font face="Arial" color="#800080">{rating}</font><font face="Arial" color="#008000"> 
+        The rating of the chapter<br>
+        </font><font face="Arial" color="#800080">{warnings}</font><font face="Arial" color="#008000"> 
+        The warnings for the chapter (prints &quot;none&quot; if there are none)<br>
+        </font><font face="Arial" color="#800080">{published}</font><font face="Arial" color="#008000"> 
+        The date the chapter was published<br>
+        </font><font face="Arial" color="#800080">{wordcount}</font><font face="Arial" color="#008000"> 
+        The number of words in the chapter<br>
+        </font><font face="Arial" color="#800080">{numreviews}</font><font face="Arial" color="#008000"> 
+        The number of reviews for the chapter <br>
+        </font><font face="Arial" color="#800080">{chapternumber}</font><font face="Arial" color="#008000"> 
+        The chapter number</font></p>
+      </blockquote>
+    <p align="left"><font face="Arial, Helvetica, sans-serif" color="#800080">&lt;!-- 
+      END BLOCK : storyindexblock --&gt;</font><font face="Arial, Helvetica, sans-serif"> 
+      Ends the story index block</font></p>
+    <p align="left"><font face="Arial" color="#800080">{completephrase} </font><font face="Arial" color="#008000">Outputs 
+      whether or not the overall story is completed. </font><br>
+      <font face="Arial" color="#800080">{firsttitle}</font><font face="Arial" color="#008000"> 
+      The title of the first chapter (i.e. the title of the overall story)<br>
+      </font><font face="Arial" color="#800080">{firstauthor}</font><font face="Arial" color="#008000"> 
+      The author of the first chapter<br>
+      </font><font face="Arial" color="#800080">{firstsummary}</font><font face="Arial" color="#008000"> 
+      The summary of the first chapter<br>
+      </font><font face="Arial" color="#800080">{firstcharacters}</font><font face="Arial" color="#008000"> 
+      The characters within that first chapter<br>
+      </font><font face="Arial" color="#800080">{firstgenres} </font><font face="Arial" color="#008000">The 
+      genres that the first chapter falls under<br>
+      </font><font face="Arial" color="#800080">{firstrating}</font><font face="Arial" color="#008000"> 
+      The rating of the first chapter<br>
+      </font><font face="Arial" color="#800080">{firstwarnings}</font><font face="Arial" color="#008000"> 
+      The warnings for the first chapter<br>
+      </font><font face="Arial" color="#800080">{firstcategory}</font><font face="Arial" color="#008000"> 
+      The category for the first chapter<br>
+      </font><font face="Arial" color="#800080">{addtofaves}</font><font face="Arial" color="#008000"> 
+      Allows a logged in member to add the story to their favorites list</font><font face="Arial" color="#008000"> 
+      </font></p>
+    </blockquote>
+  <p align="left"><font face="Arial"><i>Optional Attributes:</i></font></p>
+  <blockquote> 
+    <p align="left"><font face="Arial" color="#800080">{home} </font><font face="Arial" color="#008000">A 
+      link that takes you back to the main index<br>
+      </font><font face="Arial" color="#800080">{catslink} </font><font face="Arial" color="#008000">A 
+      link that takes you to the categories page - really only necessary if you 
+      have more than one category</font><font face="Arial" color="#800080"><br>
+      {recent} </font><font face="Arial" color="#008000">A link that goes to a 
+      page that displays the most recent additions to the archive</font><font face="Arial" color="#800080"><br>
+      {authors} </font><font face="Arial" color="#008000">A link that goes to 
+      a membership/authors list</font><font face="Arial" color="#800080"><br>
+      {help} </font><font face="Arial" color="#008000">A link that goes to the 
+      help page</font><font face="Arial" color="#800080"><br>
+      {search} </font><font face="Arial" color="#008000">A link that goes to a 
+      search page</font><font face="Arial" color="#800080"><br>
+      {login} </font><font face="Arial" color="#008000">A link that shows either 
+      &quot;Log in&quot; or &quot;My account&quot; (if someone is logged in)<br>
+      </font><font face="Arial" color="#800080">{logout}</font><font face="Arial" color="#008000"> 
+      The logout link<br>
+      </font><font face="Arial" color="#800080">{titles}</font><font face="Arial" color="#008000"> 
+      A link to the titles page</font><font face="Arial" color="#008000"> <br>
+      </font><font face="Arial" color="#800080">{adminarea} </font><font face="Arial" color="#008000">Link 
+      to the admin area, if the admin is logged in</font><font face="Arial" color="#008000"> 
+      <br>
+      </font><font face="Arial" color="#800080">{footer}</font><font face="Arial" color="#008000"> 
+      Text of the footer message</font></p>
+  </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="user">I. user.tpl</a></b> The template 
+  file used by the script when someone is viewing a user's page. It's pretty much 
+  the same as search.tpl, but if you wanted to include something else on this 
+  template, you could.</font></p>
+<blockquote>
+  <p align="left"><font face="Arial"><i>Required Attributes &amp; Blocks:</i></font></p>
+  <blockquote>
+    <p align="left"><font face="Arial" color="#800080">&lt;!-- INCLUDE BLOCK : storyblock -->
+    </font><font face="Arial" color="#008000">When needed, outputs story
+    summary, title, etc.</font></p>
+    <p align="left"><font face="Arial" color="#800080">{output} </font><font face="Arial" color="#008000">Outputs
+    the content of the page, such as the user's name, bio info, and so on</font></p>
+  </blockquote>
+  <p align="left"><font face="Arial"><i>Optional Attributes:</i></font></p>
+  <blockquote> 
+    <p align="left"><font face="Arial" color="#800080">{home} </font><font face="Arial" color="#008000">A 
+      link that takes you back to the main index<br>
+      </font><font face="Arial" color="#800080">{catslink} </font><font face="Arial" color="#008000">A 
+      link that takes you to the categories page - really only necessary if you 
+      have more than one category</font><font face="Arial" color="#800080"><br>
+      {recent} </font><font face="Arial" color="#008000">A link that goes to a 
+      page that displays the most recent additions to the archive</font><font face="Arial" color="#800080"><br>
+      {authors} </font><font face="Arial" color="#008000">A link that goes to 
+      a membership/authors list</font><font face="Arial" color="#800080"><br>
+      {help} </font><font face="Arial" color="#008000">A link that goes to the 
+      help page</font><font face="Arial" color="#800080"><br>
+      {search} </font><font face="Arial" color="#008000">A link that goes to a 
+      search page</font><font face="Arial" color="#800080"><br>
+      {login} </font><font face="Arial" color="#008000">A link that shows either 
+      &quot;Log in&quot; or &quot;My account&quot; (if someone is logged in)<br>
+      </font><font face="Arial" color="#800080">{logout}</font><font face="Arial" color="#008000"> 
+      The logout link<br>
+      </font><font face="Arial" color="#800080">{titles}</font><font face="Arial" color="#008000"> 
+      A link to the titles page</font><font face="Arial" color="#008000"> <br>
+      </font><font face="Arial" color="#800080">{adminarea} </font><font face="Arial" color="#008000">Link 
+      to the admin area, if the admin is logged in</font><font face="Arial" color="#008000"> 
+      <br>
+      </font><font face="Arial" color="#800080">{footer}</font><font face="Arial" color="#008000"> 
+      Text of the footer message</font></p>
+  </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="viewstory">J. Viewstory.tpl</a></b> 
+  The template file used when viewing the text of a story.&nbsp;</font></p>
+<blockquote>
+  <p align="left"><font face="Arial"><i>Required Attributes:</i></font></p>
+  <blockquote>
+    <blockquote> 
+      <p align="left"><font face="Arial" color="#800080">{title}</font><font face="Arial" color="#008000"> 
+        The title of the story<br>
+        </font><font face="Arial" color="#800080">{author}</font><font face="Arial" color="#008000"> 
+        The author of the story<br>
+        </font><font face="Arial" color="#800080">{story}</font><font face="Arial" color="#008000"> 
+        The text of the story<br>
+        </font><font face="Arial" color="#800080">{jumpmenu}</font><font face="Arial" color="#008000"> 
+        The jumpmenu to view the chapters<br>
+        </font><font face="Arial" color="#800080">{reviews}</font><font face="Arial" color="#008000"> 
+        Link to the reviews for the story<br>
+        </font><font face="Arial" color="#800080">{adminlinks}</font><font face="Arial" color="#008000"> 
+        If you're an admin and viewing the story, you'll see edit and delete links<br>
+        </font><font face="Arial" color="#800080">{roundrobin}</font><font face="Arial" color="#008000"> 
+        If the story is a roundrobin, this will show a link asking people if they'd 
+        like to contribute<br>
+        <br>
+        </font><i><font face="Arial">The following could be optional:</font></i><font face="Arial" color="#008000"><br>
+        </font><font face="Arial" color="#800080">{summary}</font><font face="Arial" color="#008000"> 
+        The summary of the story<br>
+        </font><font face="Arial" color="#800080">{category}</font><font face="Arial" color="#008000"> 
+        The category the story is located in<br>
+        </font><font face="Arial" color="#800080">{characters}</font><font face="Arial" color="#008000"> 
+        The characters within that story<br>
+        </font><font face="Arial" color="#800080">{genres} </font><font face="Arial" color="#008000">The 
+        genres that the story falls under<br>
+        </font><font face="Arial" color="#800080">{rating}</font><font face="Arial" color="#008000"> 
+        The rating of the story<br>
+        </font><font face="Arial" color="#800080">{warnings}</font><font face="Arial" color="#008000"> 
+        The warnings for the story (prints &quot;none&quot; if there are none)<br>
+        </font><font face="Arial" color="#800080">{numreviews}</font><font face="Arial" color="#008000"> 
+        The number of reviews for that story 
+        <br>
+        </font><font face="Arial" color="#800080">{addtofaves}</font><font face="Arial" color="#008000"> 
+        Allows a logged in member to add the story to their favorites list</font></p>
+    </blockquote>
+  </blockquote>
+  <p align="left"><font face="Arial"><i>Optional Attributes:</i></font></p>
+  <blockquote> 
+    <p align="left"><font face="Arial" color="#800080">{home} </font><font face="Arial" color="#008000">A 
+      link that takes you back to the main index<br>
+      </font><font face="Arial" color="#800080">{catslink} </font><font face="Arial" color="#008000">A 
+      link that takes you to the categories page - really only necessary if you 
+      have more than one category</font><font face="Arial" color="#800080"><br>
+      {recent} </font><font face="Arial" color="#008000">A link that goes to a 
+      page that displays the most recent additions to the archive</font><font face="Arial" color="#800080"><br>
+      {authors} </font><font face="Arial" color="#008000">A link that goes to 
+      a membership/authors list</font><font face="Arial" color="#800080"><br>
+      {help} </font><font face="Arial" color="#008000">A link that goes to the 
+      help page</font><font face="Arial" color="#800080"><br>
+      {search} </font><font face="Arial" color="#008000">A link that goes to a 
+      search page</font><font face="Arial" color="#800080"><br>
+      {login} </font><font face="Arial" color="#008000">A link that shows either 
+      &quot;Log in&quot; or &quot;My account&quot; (if someone is logged in)<br>
+      </font><font face="Arial" color="#800080">{logout}</font><font face="Arial" color="#008000"> 
+      The logout link<br>
+      </font><font face="Arial" color="#800080">{titles}</font><font face="Arial" color="#008000"> 
+      A link to the titles page</font><font face="Arial" color="#008000"> <br>
+      </font><font face="Arial" color="#800080">{adminarea} </font><font face="Arial" color="#008000">Link 
+      to the admin area, if the admin is logged in</font><font face="Arial" color="#008000"> 
+      <br>
+      </font><font face="Arial" color="#800080">{footer}</font><font face="Arial" color="#008000"> 
+      Text of the footer message</font></p>
+  </blockquote>
+</blockquote>
+<p align="left"><font face="Arial"><b><a name="style">K. style.css</a></b> The 
+  stylesheet used by the skin. If you've never played around with Cascading Style 
+  Sheets before, there's no time like the present to learn! A few sites worth 
+  checking out if you're new to CSS: <a href="http://www.lissaexplains.com/css.shtml">http://www.lissaexplains.com/css.shtml</a> 
+  or <a href="http://www.echoecho.com/css.htm">http://www.echoecho.com/css.htm</a> 
+  or <a href="http://www.html4newbies.com/css/index.shtml">http://www.html4newbies.com/css/index.shtml</a>&nbsp;</font></p>
+<p align="left"><font face="Arial">If you take a look at the stylesheet included
+with the sample skin(s), it should be fairly obvious. Basically, you're defining
+the attributes of each kind of page element, such as the overall font, the
+different kinds of form elements, and so on. It lets you define the font that is
+used, the color, and other nifty things. I stuck to basics with the sample CSS
+files -- it's important that if you do any major modifications or additions,
+that you check and make sure that things work in the major browsers.&nbsp;</font></p>
+<p align="left"><font face="Arial">There are a few CSS classes that are required 
+  by the script:</font></p>
+<blockquote>
+  <p align="left"><font face="Arial" color="#800080">.tblborder </font><font face="Arial" color="#008000">This 
+    class is used in several places, mainly to make things display with a nice, 
+    clean 1-width border.</font></p>
+  <p align="left"><font face="Arial" color="#800080">.tblbackground </font><font face="Arial" color="#008000">This 
+    class is used the viewuser page, to color some cell backgrounds (only needed 
+    if favorites are turned on.)</font></p>
+  <p align="left"><font face="Arial" color="#800080">.A.tbllink:link </font><font face="Arial" color="#008000">This 
+    class, and the related and the active, visited, and hover versions of it display 
+    as a different color than most links on the site, and is used in conjunction 
+    with .tblbackground (only needed if favorites are turned on).</font></p>
+  <p align="left"><font face="Arial" color="#800080">. locked</font><font face="Arial" color="#008000"> 
+    This class is used by the text of locked categories in the drop down menu 
+    when a member tries to add a story -- it's important to pick a color that 
+    makes it clear that this item should not be selected (i.e. gray). Including 
+    a note about this in your submission rules is probably a good idea, too, so 
+    people aren't confused (i.e. &quot;Greyed out items in menu are not open to 
+    submission&quot; or something similar.)</font></p>
+  <p align="left"><font face="Arial" color="#800080">.notlocked</font><font face="Arial" color="#008000"> 
+    The color of the text in the &quot;Add Story&quot; drop down menu for categories 
+    that are not locked. </font></p>
+  <p align="left"><font face="Arial" color="#800080">A.menu:link</font><font face="Arial" color="#008000">
+  This class, and the related and the active, visited, and hover versions of it
+  display as a different color than the rest of the links on the site, and are
+  used by the {home}, {recent}, {authors}, {help}, {search} and {login} template
+  attributes. You can set this to have exactly the same color, font, etc. as the
+  standard a:link elements, but it needs to be part of the CSS file regardless.</font></p>
+</blockquote>
+<p align="left"><font face="Arial">You can also add whatever CSS classes you
+want to the style.css file for each skin. For example, in the test skin, I added a <font color="#800080">.news</font>
+class that allowed me to show the title and author of the newstory in a
+different color font than is used by the rest of the page. To tell the page to
+use that class, I simply put the following in the newsbox.tpl file: <font color="#800080">&lt;span class="news">{newstitle}&lt;/span>&nbsp;
+</font></font></p>
+<p align="left"><b><font face="Arial">Other Tips</font></b></p>
+<p align="left"><font face="Arial">- You can use whatever html, images, or text
+you want outside of the attributes and block codes -- this allows for you to
+make your site look like anything you want it to, although the layout of the
+individual attributes are somewhat confined by the code of the script.&nbsp;
+Still, try to be creative and think about what you can do that would be
+different, useful, or interesting to make your archive stand out.</font></p>
+<p align="left"><font face="Arial">- Probably the best way to make a new skin,
+especially if you're new to html, is to go into your favorite WYSIWIG editor
+such as Frontpage or Dreamweaver, and create a skin that looks nice there. You
+can then start plugging in the different attributes where you want them to go on
+the page. Be sure to edit the actual HTML to add the block tags, though (i.e. </font><font face="Arial" color="#800080">&lt;!-- INCLUDE BLOCK : storyblock --></font><font face="Arial">)
+because the editor won't input the code properly otherwise.</font></p>
+<p align="left"><font face="Arial">- If you have some javascript you want to
+use, feel free to add it to the file javascript.js as this file is called on
+every page -- just don't remove what is already there, as that will affect
+certain areas of your site</font></p>
+<p align="left"><font face="Arial">- Once you upload a skin to your site, it is 
+  strongly recommended that you not remove it. If you do, members&nbsp; who have 
+  selected that&nbsp; skin may have difficulty viewing the site, since their skin 
+  no longer exists!</font></p>
+<p align="left"><font face="Arial">- If you use images for your categories, you
+need to place the images in your skins/images folder -- they all must have the
+same name within each skin/images folder that you indicated when you created
+your category, but the images can be different for each skin.</font></p>
+<p align="left"><font face="Arial">Have questions, or have a really cool skin
+you want to show off? Come tell us in the forums at <a href="http://orodruin.sourceforge.net">http://orodruin.sourceforge.net</a></font></p>
+<p align="left">&nbsp;</p>
+<blockquote>
+  <p align="left">&nbsp;</p>
+  <p align="left">&nbsp;</p>
+</blockquote>
+<p align="left">&nbsp;</p>
+<blockquote>
+  <blockquote>
+    <p align="left">&nbsp;</p>
+  </blockquote>
+</blockquote>
+
+</body>
+
+</html>
