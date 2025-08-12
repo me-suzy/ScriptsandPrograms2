@@ -1,0 +1,214 @@
+                            ActualScripts, Company.
+
+                    DIRECT ACCESS TO ACTUALANALYZER INFORMATION
+
+
+
+Access to visitings statistics for groups/pages
+
+For access to the ActualAnalyzer visitings information from any external script
+it is necessary:
+
+1. add $rf value and the required source script:
+
+$rf='<path>';
+require $rf.'direct.php';
+
+<path> - should contain full path to the root's folder of ActualAnalyzer and
+  crowns with "/"
+  (for example: $rf='/var/www/analyzer/pro/';)
+
+2. add requested values and function which will receive statistics:
+
+$vals=array();
+$vals[1]='<ID>,<type>,<time>';
+$vals[2]='<ID>,<type>,<time>';
+$vals[3]='<ID>,<type>,<time>';
+...
+$rez = $dbaccess->getVisitings($vals);
+
+<ID> - ID of group/page: should be received browsing
+  'http://your.domain/pro/direct.php?action=getids'
+  (for example: 1)
+<type> - type of statistics: visitors, hosts, reloads, hits
+  (for example: visitors)
+<time> - time interval: total, totalm_2004, lastmonth, month, lastweek, week,
+  yesterday, today
+  (for example: total)
+
+3. Congratulations! The array $rez contain requested values.
+
+The sample of PHP script for receiving of total's visitors statistics and total's
+hits statistics for page with ID=1:
+
+<?php
+
+$rf='<path>';
+require $rf.'direct.php';
+
+$vals=array();
+$vals[1]='1,visitors,total';
+$vals[2]='1,hits,today';
+
+$rez = $dbaccess->getVisitings($vals);
+
+//variable $rez[1] have number of visitors
+//variable $rez[2] have number of hits
+echo "<br>today's visitors=".$rez[1];
+echo "<br>today's hits=".$rez[2];
+
+?>
+
+
+
+Access to visitings statistics for time intervals
+
+1. add $rf value and the required source script:
+
+$rf='<path>';
+require $rf.'direct.php';
+
+<path> - should contain full path to the root's folder of ActualAnalyzer and
+  crowns with "/"
+  (for example: $rf='/var/www/analyzer/pro/';)
+
+2. add requested values and function which will receive statistics:
+
+$rez = $dbaccess->getVisTim('<ID>,<type>,<time>');
+
+<ID> - ID of group/page: should be received browsing
+  'http://your.domain/pro/direct.php?action=getids'
+  (for example: 1)
+<type> - type of statistics: visitors, hosts, reloads, hits
+  (for example: visitors)
+<time> - time interval: total, totalm_2004, lastmonth, month, lastweek, week,
+  yesterday, today
+  (for example: total)
+
+3. Congratulations! The array $rez contain requested values.
+
+The sample of PHP script for receiving of total's visitors statistics on hours 
+for page with ID=1:
+
+<?php
+
+$rf='<path>';
+require $rf.'direct.php';
+
+$rez = $dbaccess->getVisTim('1,visitors,total');
+
+reset($rez);
+//rotate subintervals for total time interval
+while($e=each($rez)) {
+  //variable $e[1]  have statistics for one of time intervals separated by comma
+  $temp=split(",",$e[1]);
+  //variable $temp[1] have time interval
+  //variable $temp[0] have value of visiors
+  echo "<br>".$temp[1]."=".$temp[0];
+}
+
+?>
+
+
+
+Access to visitings statistics from referring servers
+
+1. add $rf value and the required source script:
+
+$rf='<path>';
+require $rf.'direct.php';
+
+<path> - should contain full path to the root's folder of ActualAnalyzer and
+  crowns with "/"
+  (for example: $rf='/var/www/analyzer/pro/';)
+
+2. add requested values and function which will receive statistics:
+
+$rez = $dbaccess->getRefServ('<ID>,<type>,<time>,<length>');
+
+<ID> - ID of group/page: should be received browsing
+  'http://your.domain/pro/direct.php?action=getids'
+  (for example: 1)
+<type> - type of statistics: visitors, hosts, reloads, hits
+  (for example: visitors)
+<time> - time interval: total, totalm_2004, lastmonth, month, lastweek, week,
+  yesterday, today
+  (for example: total)
+<length> - number of returned records
+  (for example: 10)
+
+3. Congratulations! The array $rez contain requested values.
+
+The sample of PHP script for receiving of top 10 referring servers by visitors
+for page with ID=1:
+
+<?php
+
+$rf='<path>';
+require $rf.'direct.php';
+
+$rez = $dbaccess->getRefServ('1,visitors,total,10');
+
+reset($rez);
+//rotate subintervals for total time interval
+while($e=each($rez)) {
+  //variable $e[1]  have statistics for one of referring server separated by comma
+  $temp=split(",",$e[1]);
+  //variable $temp[1] have referring server
+  //variable $temp[0] have value of visitors
+  echo "<br>".$temp[1]."=".$temp[0];
+}
+
+?>
+
+
+
+Access to visitings statistics from external referring pages
+
+1. add $rf value and the required source script:
+
+$rf='<path>';
+require $rf.'direct.php';
+
+<path> - should contain full path to the root's folder of ActualAnalyzer and
+  crowns with "/"
+  (for example: $rf='/var/www/analyzer/pro/';)
+
+2. add requested values and function which will receive statistics:
+
+$rez = $dbaccess->getExtRefPages('<ID>,<type>,<time>,<length>');
+
+<ID> - ID of group/page: should be received browsing
+  'http://your.domain/pro/direct.php?action=getids'
+  (for example: 1)
+<type> - type of statistics: visitors, hosts, reloads, hits
+  (for example: visitors)
+<time> - time interval: total, totalm_2004, lastmonth, month, lastweek, week,
+  yesterday, today
+  (for example: total)
+<length> - number of returned records
+  (for example: 10)
+
+3. Congratulations! The array $rez contain requested values.
+
+The sample of PHP script for receiving of top 10 external referring pages
+by visitors for page with ID=1:
+
+<?php
+
+$rf='<path>';
+require $rf.'direct.php';
+
+$rez = $dbaccess->getExtRefPages('1,visitors,total,10');
+
+reset($rez);
+//rotate subintervals for total time interval
+while($e=each($rez)) {
+  //variable $e[1]  have statistics for one of referring page separated by comma
+  $temp=split(",",$e[1]);
+  //variable $temp[1] have external referring page
+  //variable $temp[0] have value of visitors
+  echo "<br>".$temp[1]."=".$temp[0];
+}
+
+?>
