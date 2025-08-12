@@ -1,0 +1,81 @@
+
+#%info%#
+
+<span class="text13blue"><b>Purchase/Manage Funds</b></span><br><br>
+<table border="0" width="300" cellspacing="0" cellpadding="4" class="table1">
+<TR>
+<td align="left" nowrap><span class="text13">&nbsp;</span></td>
+<td align="center" nowrap><span class="text13blue">&nbsp;&nbsp;Ad size 1 (#%w1%# x #%h1%#)&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+<td align="center" nowrap><span class="text13blue">&nbsp;&nbsp;Ad size 2 (#%w2%# x #%h2%#)&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+<td align="center" nowrap><span class="text13blue">&nbsp;&nbsp;Ad size 3 (#%w3%# x #%h3%#)&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+</tr>
+<TR>
+<td align="left" nowrap><span class="text13">Price for 100 clicks</span></td>
+<td align="center" nowrap><span class="text13">#%pr_clicks1%#</span></td>
+<td align="center" nowrap><span class="text13">#%pr_clicks2%#</span></td>
+<td align="center" nowrap><span class="text13">#%pr_clicks3%#</span></td>
+</tr>
+<TR>
+<td align="left" nowrap><span class="text13">Price for 1000 impressions</span></td>
+<td align="center" nowrap><span class="text13">#%pr_imp1%#</span></td>
+<td align="center" nowrap><span class="text13">#%pr_imp2%#</span></td>
+<td align="center" nowrap><span class="text13">#%pr_imp3%#</span></td>
+</tr>
+<TR>
+<td align="left" nowrap><span class="text13">Clicks balance</span></td>
+<td align="center" nowrap><span class="text13">#%clicks1%#</span></td>
+<td align="center" nowrap><span class="text13">#%clicks2%#</span></td>
+<td align="center" nowrap><span class="text13">#%clicks3%#</span></td>
+</tr>
+<TR>
+<td align="left" nowrap><span class="text13">Impressions balance</span></td>
+<td align="center" nowrap><span class="text13">#%imp1%#</span></td>
+<td align="center" nowrap><span class="text13">#%imp2%#</span></td>
+<td align="center" nowrap><span class="text13">#%imp3%#</span></td>
+</tr>
+<form action="s_user.php" method="POST">
+<INPUT type="hidden" name="action" value="funds_refund">
+<INPUT type="hidden" name="userid" value="#%userid%#">
+<INPUT type="hidden" name="userpass" value="#%userpass%#">
+<TR><TD align=center colSpan="4"><span class="text13">
+If you don't want to use any of the clicks or impressions above and want to return the used funds on your account for another use, select it here 
+<select name="refund" class="field1">
+<option value="clicks_1">Clicks - size 1</option><option value="clicks_2">Clicks - size 2</option><option value="clicks_3">Clicks - size 3</option>
+<option value="imp_1">Impressions - size 1</option><option value="imp_2">Impressions - size 2</option><option value="imp_3">Impressions - size 3</option>
+</select>
+<INPUT type="submit" value="&nbsp;Submit&nbsp;" name="B1" class="button1">
+</TD></TR></form>
+
+<form action="s_user.php" method="POST">
+<INPUT type="hidden" name="action" value="funds_use">
+<INPUT type="hidden" name="userid" value="#%userid%#">
+<INPUT type="hidden" name="userpass" value="#%userpass%#">
+<TR><TD align=center colSpan="4">
+<span class="text13">Total funds balance available: <b>#%balance%#</b>. You can use this balance to add impressions or clicks to your ads.</span></TD></TR>
+<TR><TD align=center colSpan="4"><span class="text13">
+I want to use these funds to add <input size="10" maxlength="10" class="field1" name="number">
+<select name="what" class="field1"><option value="clicks">Clicks</option><option value="imp">Impressions</option></select> 
+to my ads of size 
+<select name="size" class="field1"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select> 
+<INPUT type="submit" value="&nbsp;Submit&nbsp;" name="B1" class="button1">
+</TD></TR></form>
+
+<form action="s_user.php" method="POST">
+<INPUT type="hidden" name="action" value="order_created">
+<INPUT type="hidden" name="userid" value="#%userid%#">
+<INPUT type="hidden" name="userpass" value="#%userpass%#">
+<TR><TD align=center colSpan="4"><span class="text13">
+You can purchase new funds by selecting a package here 
+<select name="package" class="field1">#%packages%#</select> 
+<INPUT type="submit" value="&nbsp;Submit&nbsp;" name="B1" class="button1">
+</TD></TR></FORM>
+
+</TABLE>
+
+<br><br>
+<form action="s_user.php" method="POST">
+<INPUT type="hidden" value="#%userid%#" name="userid">
+<INPUT type="hidden" value="#%userpass%#" name="userpass">
+<input type="submit" name="B1" value="Back to home" class="button1">
+</form>
+<br>
