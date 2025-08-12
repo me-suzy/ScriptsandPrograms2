@@ -1,0 +1,2606 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="stylesheet" href="doc.css" type="text/css">
+<title>OpenBiz Document</title>
+
+</head>
+
+<body class="body">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" >
+  <tr>
+    <td width="100%" height="55" bgcolor="#0B326B"><a href="index.html"><img border="0" src="openbiz.gif" width="476" height="58"></a></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFCC00"> &nbsp; </td>
+  </tr>
+</table>
+
+<p>This document is OpenBiz 2.0 manual. You can access OpenBiz 1.x manual at <a href="manual11.html">
+manual11.html </a>and <a href="manual12.html">manual12.html</a></p>
+
+<p>Other links: <a href="designTool.html">Openbiz Eclipse plug-in designer
+manual</a></p>
+
+<h4>Overview of Openbiz 2.0</h4>
+<ul>
+  <li><a href="#arch">Openbiz 2.0 architecture</a>
+    <ul>
+      <li><a href="#metadata">Metadata-driver framework</a></li>
+      <li><a href="#mvc">Openbiz's implementation of MVC</a></li>
+      <li><a href="#orm">Openbiz's implementation of persistent object and ORM</a></li>
+      <li><a href="#security">Openbiz security model</a></li>
+    </ul>
+  </li>
+  <li> <a href="#pkg_org"> Openbiz 2.0 package organization</a></li>
+  <li> <a href="#cls_diagram"> Class diagram of multi-layer architecture</a></li>
+  <li> <a href="#seq_diagram"> Sequence diagram of a typical RPC call</a></li>
+</ul>
+<h4>Openbiz Installation</h4>
+<ul>
+  <li><a href="#run_env">Running environment</a></li>
+  <li><a href="#ist_ob">Install openbiz</a></li>
+  <li><a href="#ist_3rd">Install third-party libraries</a></li>
+  <li><a href="#start_demo">Start demo application</a></li>
+</ul>
+<h4>Build Applications with Openbiz</h4>
+<ul>
+  <li><a href="#bld_req">Specify requirement of your application</a></li>
+  <li><a href="#plan_app">Plan your web applications</a></li>
+  <li>
+<a href="#bld_data">
+Create your database model</a></li>
+  <li><a href="#bld_fit">Fit system design in Openbiz</a></li>
+  <li><a href="#bld_sample">Sample implementation - Calendar</a></li>
+</ul>
+<h4>Openbiz Configuration Guide</h4>
+<ul>
+  <li> <a href="#cfg_pkg"> Organize metadata by package</a></li>
+  <li> <a href="#cfg_inherit"> Use object metadata inheritance</a></li>
+  <li><a href="#cfg_bdo">Configuration of BizDataObj</a></li>
+  <li><a href="#cfg_orm">Object Relational (O/R) Mapping</a></li>
+  <li><a href="#cfg_form">BizView and BizForm Configuration</a></li>
+</ul>
+<h4>Openbiz Development Guide</h4>
+<ul>
+  <li><a href="#dev_view">Show openbiz views (pages)</a></li>
+  <li><a href="#dev_tpl">Build view and form web templates</a></li>
+  <li><a href="#dev_dbo">Using BizDataObj functionalities</a></li>
+  <li><a href="#dev_form">Using BizForm functionalities</a></li>
+  <li><a href="#dev_ext">Build your application by extending OpenBiz</a></li>
+  <li><a href="#dev_svc">Implement plug-in services</a>
+    <ul>
+      <li>Write a plug-in service</li>
+      <li>Call plug-in services</li>
+    </ul>
+  </li>
+  <li><a href="#dev_access">Implement authentication, view and data access control</a>
+    <ul>
+      <li>User authentication</li>
+      <li>Role-based view access control</li>
+      <li>Attribute-based data access control</li>
+    </ul>
+  </li>
+  <li> <a href="#dev_cal"> Make your own calendar and timestamp picker</a></li>
+  <li><a href="#dev_debug">Debug strategies</a></li>
+  <li><a href="#dev_api">API document</a></li>
+</ul>
+<h4><b><a href="#apx_dtd">Appendix - metadata DTD files</a></b></h4>
+<hr>
+<h2><b>Overview of Openbiz 2.0</b></h2>
+<p>Openbiz 2.0 is a metadata-driven framework. All openbiz objects are declared
+in their own metadata files. Openbiz 2.0 architecture follows Model-View-Controller
+(MVC) design pattern, it also implements Object/Relational Mapping.</p>
+<h3>Openbiz 2.0 architecture<a name="arch"></a></h3>
+<h4>Metadata-driver framework<a name="metadata"></a></h4>
+<p>The goal of Openbiz framework is to make design, development and maintenance
+of software applications easy. Openbiz is XML metadata-driven framework, which
+means openbiz objects are constructed based on description in their metadata
+files. Building an application means design and development of metadata files.
+Due to the self-explanation nature of XML language, the application is easy to
+maintain. Meanwhile Openbiz is an extensible framework due to the extensible
+nature of XML.</p>
+<p>The diagram below shows metadata based objects in Openbiz framework. These
+objects cover most functional needs of web application development.</p>
+<p><img border="0" src="metaobjs.jpg" width="556" height="327"></p>
+<h4>Openbiz's implementation of MVC<a name="mvc"></a></h4>
+<p> One of the key advantages of Openbiz is that it is a framework that follows the Model-View-Controller
+(MVC) design pattern. This makes
+Openbiz applications much more manageable because the presentation code (View) is cleanly separated from the application data and logic (Model).
+All user interactions with the application are handled by a front-end
+controller.</p>
+<p><img border="0" src="mvc.jpg" width="600" height="250"></p>
+<p>Comparing Openbiz MVC with existing MVC frameworks in market such as JSF and Struts,
+Openbiz is more close to JSF because both are component based architecture.
+Openbiz's View layer comprises components of BizView, BizForm and ojects within
+BizForm. These components are accessible during request processing. The
+following table lists the openbiz implementation of top 6 advantages of <a href="http://jroller.com/page/dgeary?entry=top_ten_reasons_to_prefer">Top Ten Reasons to Prefer JSF over Struts</a>.&nbsp;</p>
+<table border="1" width="58%" cellspacing="0" height="124">
+  <tr>
+    <td width="23%" height="14" bgcolor="#EAEAEA"><b>JSF's advantages&nbsp;<br>
+      over Struts</b></td>
+    <td width="77%" height="14" bgcolor="#EAEAEA"><b>Openbiz implementation</b></td>
+  </tr>
+  <tr>
+    <td width="23%" height="14">  Components</td>
+    <td width="77%" height="14">BizView and BizForm as persistent UI
+      objects&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="23%" height="14"> Render Kits</td>
+    <td width="77%" height="14">Associate different templates to UI objects</td>
+  </tr>
+  <tr>
+    <td width="23%" height="14"> Renderers</td>
+    <td width="77%" height="14">Customer class to implement Render() method</td>
+  </tr>
+  <tr>
+    <td width="23%" height="14"> Value Binding</td>
+    <td width="77%" height="14">Support static and dynamic value bindings</td>
+  </tr>
+  <tr>
+    <td width="23%" height="14">Event Model</td>
+    <td width="77%" height="14">Associate client event to server function,
+      communicate with HTTP RPC</td>
+  </tr>
+  <tr>
+    <td width="23%" height="12"> Extensibility</td>
+    <td width="77%" height="12">Developers can link their own class to openbiz
+      object</td>
+  </tr>
+  <tr>
+    <td width="23%" height="12">other four ....</td>
+    <td width="77%" height="12">Not applicable</td>
+  </tr>
+</table>
+<h4>Openbiz's implementation of persistent object and ORM<a name="orm"></a></h4>
+<p>Similar with popular Hibernate approach, Openbiz uses session to maintain the
+persistency of objects. Unlike J2EE web container who has objects pool in
+memory, PHP objects are be constructed and released for each request (this is
+called shared-nothing architecture). To keep the persistency of objects, openbiz
+persistent objects (BizDataObj, BizForm ...) save a set of states in session,
+then reconstruct the object with these states. Also to avoid multiple object
+instances of same class in the same session, openbiz use ObjectFactory to ensure
+object singleton.</p>
+<p><img border="0" src="persistent.jpg" width="556" height="249"></p>
+<p>Openbiz implements necessary object/relational mapping (ORM) features to
+allow BizDataObj represents the data and relationships of database tables. The
+following table list the features of Openbiz ORM.</p>
+<table border="1" width="58%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="23%"><b>Flexible mapping</b></td>
+    <td width="77%">table-per-class, N table to 1 class<br>
+      Many to one, one to many, many to many, one to one</td>
+  </tr>
+  <tr>
+    <td width="23%"><b>Query facilities</b></td>
+    <td width="77%">SQL like query language - support SQL functions and operators,
+      support SQL aggregate functions, support group by, having and order by</td>
+  </tr>
+  <tr>
+    <td width="23%"><b>Metadata facilities</b></td>
+    <td width="77%">XML metadata describe the mapping</td>
+  </tr>
+</table>
+<h4>Openbiz security model<a name="security"></a></h4>
+<p>Openbiz supports web security in three ways - user authentication, view
+access control and data access control. Openbiz mainly uses plugin services to
+control security. This implementation allows customers to plugin their own logic
+to the services. The details will discussed in the developer guide - <a href="#dev_access">Implement
+authentication, view and data access control</a>.</p>
+<p><u>User authentication flow:</u><br>
+<img border="0" src="authen.gif" width="422" height="204"></p>
+<p><u>View access control flow:<br>
+</u><img border="0" src="viewaccess.gif" width="522" height="265"></p>
+<table border="1" width="58%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="23%" bgcolor="#EAEAEA"><b>Security concept</b></td>
+    <td width="77%" bgcolor="#EAEAEA"><b>Openbiz implementation with plugin
+      services</b></td>
+  </tr>
+  <tr>
+    <td width="23%"><b>User authentication</b></td>
+    <td width="77%">Openbiz uses authentication service (bin/service/authService.php)
+      to authenticate username and password</td>
+  </tr>
+  <tr>
+    <td width="23%"><b>Role-based view access control&nbsp;</b></td>
+    <td width="77%">Openbiz uses profile service (bin/service/profileService.php) to
+      get user profile that includes &quot;role&quot;.&nbsp;<br>
+      Then match this role to access service (bin/service/accessService.php) to
+      determine the users' accessibility to the view</td>
+  </tr>
+  <tr>
+    <td width="23%"><b>Attribute-based data access control</b></td>
+    <td width="77%">Openbiz uses profile service (bin/service/profileService.php) to
+      get user profile that includes attributes.&nbsp;<br>
+      Then based on these attributes to determine browser/update/delete
+      permission of data record. The data access permissions are controlled in
+      BizDataObj.</td>
+  </tr>
+</table>
+<h3><b> Openbiz 2.0 package organization<a name="pkg_org"></a></b></h3>
+<p>OpenBiz provides a PHP framework that assists you to build complicated web
+application in an easy way.&nbsp;</p>
+<p>OpenBiz is designed as a multi-layer architecture as the figure below.</p>
+<p><img border="0" src="threelayer.gif" width="511" height="169"></p>
+<p>Usually a business application can be modulated to 3 layers - Data layer,
+Business Logic layer and Presentation layer. In OpenBiz architecture, these 3
+layers map to 3 packages, Presentation layer is refined to logic which is implemented by BizView
+package and GUI layers which is implemented by jbForm javascript package.
+Business Logic layer is implemented by BizDataObj package. 3rd party package ADODB
+handles Database layer. Plugin services provide functional service components
+that can be invoked by both presentation and data layer objects.</p>
+<table border="1" cellspacing="0" cellpadding="3" width="782">
+  <tr>
+    <td bgcolor="#C0C0C0" width="58"><b>Package</b></td>
+    <td bgcolor="#C0C0C0" width="710"><b>Class</b></td>
+  </tr>
+  <tr>
+    <td rowspan="6" width="58"><b>BizSystem</b></td>
+    <td width="710"><b>BizSystem</b><br>
+      - Provide a global variable accessed anywhere in openbiz application<br>
+      - Provide the Get method for ObjectFactory, SessionContext, TypeManager,
+      ClientProxy and Configuration<br>
+      - Provide static methods for accessing XML metadata, logging and error
+      reporting.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>ObjectFactory</b>&nbsp;<br>
+      - It's a factory class to get metadata-driven objects (BizView, BizForm,
+      BizdataObj and their extended classes)&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="710"><b>SessionContext</b><br>
+      - Session management class that has additional methods to save/get session variables of metadata-driven
+      stateful objects through their GetSessionVars|SetSessionVars interfaces</td>
+  </tr>
+  <tr>
+    <td width="710"><b>TypeManager</b><br>
+      - Type management class that has help methods to format data to UI and unformat UI input to
+      data</td>
+  </tr>
+  <tr>
+    <td width="710"><b>ClientProxy</b><br>
+      - It's a class that is treated as the bi-direction proxy of client. Through this class,
+      others can get client form inputs, redraw client form or call client javascript functions.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>Configuration</b><br>
+      - A class that has help methods to get data from config.xml</td>
+  </tr>
+  <tr>
+    <td rowspan="7" width="58"><b>BizDataObj</b></td>
+    <td width="710"><b>BizDataObj</b><br>
+      - It's the base class of all data object classes. Before Openbiz 1.2,
+      BizDataObj was called BizObj. Since BizObj means Business Object, but it
+      acts as business data unit, in 1.2 it is changed as BizDataObj.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>BizRecord</b><br>
+      - BizRecord class implements basic function of handling record</td>
+  </tr>
+  <tr>
+    <td width="710"><b>BizField</b><br>
+      - BizField is the class of a logic field which mapps to a table column</td>
+  </tr>
+  <tr>
+    <td width="710"><b>BizDataSql</b><br>
+      - BizObjSql is the class to construct SQL statement for BizDataObj</td>
+  </tr>
+  <tr>
+    <td width="710"><b>CacheRecordList</b><br>
+      - CacheRecordList implements the cache for BizDataObj</td>
+  </tr>
+    <tr>
+    <td width="710"><b>ObjRefernces</b><br>
+      - ObjReferences contains a list of BizDataObj whose relationship to this
+      object is defined in the ObjReference</td>
+  </tr>
+    <tr>
+    <td width="710"><b>TableJoins</b><br>
+      - Table Joins contains a list of table joins to the main table of this
+      object</td>
+  </tr>
+  <tr>
+    <td rowspan="8" width="58"><b>BizView</b></td>
+    <td width="710"><b>BizView</b><br>
+      - BizView is the class that contains list of forms. View is same as html page.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>BizForm</b><br>
+      - BizForm is the base class that contains UI controls. BizForm is a html form that is included in a BizView which is a html page.</td>
+  </tr>
+  <tr>
+    <td width="710"><b>RecordRow</b><br>
+      - RecordRow is the class that contains FieldControls</td>
+  </tr>
+  <tr>
+    <td width="710"><b>ToolBar</b><br>
+      - ToolBar is the class that contains HTMLControls</td>
+  </tr>
+  <tr>
+    <td width="710"><b>NavBar</b><br>
+      - NavBar is the class that contains navigation buttons</td>
+  </tr>
+  <tr>
+    <td width="710"><b>HTMLControl</b><br>
+      - HTMLControl is the base class of HTML controls</td>
+  </tr>
+  <tr>
+    <td width="710"><b>FieldControl</b><br>
+      - FieldControl is the base class of field control who binds with a bizfield</td>
+  </tr>
+  <tr>
+    <td width="710"><b>DisplayMode</b><br>
+      - contains the BizForm display mode information</td>
+  </tr>
+  <tr>
+    <td width="58"><b>jbForm&nbsp;</b></td>
+    <td width="710"><b>jbForm</b> (javascript bizForm)<b>&nbsp;<br>
+      </b>- the base class that handles RPC function call and callback</td>
+  </tr>
+  <tr>
+    <td width="58"><b>ADODB</b></td>
+    <td width="710">This is an abstract database connection package
+which can connects to all major databases from different vendors. It can be
+downloaded from <a href="http://php.weblogs.com/ADODB">http://php.weblogs.com/ADODB</a></td>
+  </tr>
+</table>
+<h3> Class diagram of multi-layer architecture<a name="cls_diagram"></a></h3>
+<h3><img border="0" src="classdiagram.gif" width="671" height="579"></h3>
+<h3><b> Sequence diagram of a typical RPC call<a name="seq_diagram"></a></b></h3>
+<p>Openbiz client browser communicates with server through AJAX JS-based RPC
+invocation.</p>
+<p><a href="seq_chart.GIF" target="seq_chart"><img border="0" src="seq_chart.GIF" width="600" height="460"></a></p>
+
+<hr>
+
+<h2>Openbiz Installation</h2>
+<h3>Running environment<a name="run_env"></a></h3>
+<p>OpenBiz (2.0 or later) is written by PHP5 scripts, it won't work in PHP4.x web server. We
+recommend platforms as</p>
+<ul>
+  <li>Apache HTTP Server 1.3.x or 2.x + PHP 5.x</li>
+  <li>Internet Information Server (IIS) 5.x + PHP 5.x</li>
+</ul>
+<p>Installation directory is openbiz, or you can configure apache using
+Alias.</p>
+<p>Windows installer is not in Openbiz 2.0 so far.</p>
+<p>Support web browsers - IE5.x, Netscape 7.x and Mozillar/FireFox 1.x</p>
+<h3> Install OpenBiz<a name="ist_ob"></a></h3>
+<p>Download the zip file and unzip it to a directory under your web access root.</p>
+<p><b>Please read through the sysheader.inc under openbiz/bin directory and
+app.inc under demoapp/bin.</b></p>
+<ul>
+  <li>Openbiz core path &quot;<b>OPENBIZ_HOME</b>&quot; can be specified in both
+    syshearder.inc and app.inc. The value in app.inc will override the value in
+    sysheader.inc.</li>
+  <li>sysheader.inc defines the paths of 3rd party php packages including Smarty
+    &quot;<b>SMARTY_DIR</b>&quot;,
+    Adodb &quot;<b>ADODB_DIR</b>&quot; and so on. If you have same packages installed in other
+    directories and you don't want to use the packages installed with openbiz,
+    please modify the proper paths.&nbsp;</li>
+  <li>Application home &quot;<b>APP_HOME</b>&quot;, metadata file path &quot;<b>META_PATH</b>&quot;, log file path
+    &quot;<b>LOG_PATH</b>&quot; and session file path &quot;<b>SESSION_PATH</b>&quot;
+    and smarty template files path &quot;<b>SMARTY_TPL_PATH</b>&quot; are specified in app.inc</li>
+  <li>&quot;<b>DEBUG</b>&quot; flag indicates whether print debug infomation or not</li>
+  <li>&quot;<b>CHECKUSER</b>&quot; flag checks whether user logged in</li>
+  <li>&quot;<b>TIMEOUT</b>&quot; is the session timeout seconds</li>
+</ul>
+<h4><b>Source tree structure:</b></h4>
+<p>From Openbiz 2.0 RC2, two main directories are included in the package.&nbsp;They are Openbiz core
+library and demo application.&nbsp;</p>
+<p>The demo application is an openbiz-based web application. Because openbiz
+provides metadata-driven framework, bin and metadata directories are required.
+The rest of the directories are suggested structure, not required. Users may
+have their own way to arrange the web application structure.&nbsp;Please modify
+demoapp/bin/app.inc to change constant definition.</p>
+<p>As you observe from the bin and metadata structures, each subdirectory under
+bin has a matching subdirectory under metadata. This is <b> code/metadata match-up
+rule</b>, say if you have an object's metadata under /metadata/aaa/ directory, if
+the object implementing code is a user-defined class (not openbiz core class),
+the class code file must be under /bin/aaa/ directory.</p>
+<table border="0" width="600" cellspacing="1" cellpadding="2">
+  <tr>
+    <td width="100%"><b>Openbiz core library</b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#EAEAEA"><font face="Courier New" size="2"><b>openbiz_root/&nbsp;<br>
+  ---bin/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz core php
+      source - required)<b><br>
+      ------service/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>(openbiz core service library
+  directory)<br>
+      <b>---document/</b>&nbsp;&nbsp;&nbsp; (openbiz documents - optional)<b><br>
+      ------apidoc/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz core API)<b><br>
+      ---medata/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(openbiz metadata files -
+      required)<b><br>
+      ------service/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>(service package)<br>
+      <b>---others/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>(third party
+      libraries - optional)<b><br>
+      ------adodb/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(adodb package)<b><br>
+  ------Smarty/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(smarty package)</font></td>
+  </tr>
+</table>
+&nbsp;
+<table border="0" width="600" cellpadding="2">
+  <tr>
+    <td width="100%"><b>demo application</b></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#EAEAEA"><font face="Courier New" size="2"><b>demoapp/</b>&nbsp;&nbsp;&nbsp;&nbsp;
+      (demoapp web pages)<br>
+      <b>
+  ---bin/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp php
+  source)<b><br>
+      ------demo/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</b>(demapp demo library)<b><br>
+      ------shared/&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</b>(demoapp shared library)<b><br>
+      ------service/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>(demoapp service library)<b><br>
+      ---css/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp style
+  sheets)<b><br>
+  ---images/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp images)<b><br>
+  ---log/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp logs)<b><br>
+      ---medata/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp metadata files)<b><br>
+      ------demo/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp demo package)<b><br>
+      ------shared/&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</b>(demoapp shared package)<b><br>
+      ------service/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>(demoapp service package)<b><br>
+  ---session&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp session files)<br>
+      <b>---templates&nbsp;&nbsp;&nbsp; </b>(demoapp smarty templates files)<br>
+      <b>------cpl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp
+      smarty compiled templates)<br>
+      ---<b>---cfg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </b>(demoapp
+      smarty configuration files)<br>
+      <b>---tmpfiles&nbsp;&nbsp;&nbsp;&nbsp; </b>(temporary files)</font></td>
+  </tr>
+</table>
+<p>In Unix or Linux box, you need to give write permission to web users on log,
+metadata, session, tmpfiles and templates directories.</p>
+<h3> Install necessary third party packages<a name="ist_3rd"></a></h3>
+<p>The following package are necessary - they are included in openbiz package.</p>
+<ul>
+  <li>ADODB, <a href="http://php.weblogs.com/ADODB">http://php.weblogs.com/ADODB</a>.</li>
+  <li>Smarty
+    template engine, <a href="http://smarty.php.net/">http://smarty.php.net/</a>.</li>
+</ul>
+<p>We
+recommend you install PHP optimization packages.</p>
+<ul>
+  <li>Zend Performance Suite <a href="http://www.zend.com/store/products/zend-performance-suite.php">http://www.zend.com/store/products/zend-performance-suite.php</a>&nbsp;</li>
+</ul>
+<h3>Start demo application<a name="start_demo"></a></h3>
+<p>Populate the demo database. Find gendb.sql under openbiz root directory, apply it against your
+    database. Notes this&nbsp;gendb.sql is for mysql database, please adjust
+    the syntax according to different database type.</p>
+<p> Open demoapp/clientUtil.js. Change the <b> var binPath = &quot;/demoapp/bin/&quot;</b>;
+to the appropriate bin directory under demoapp installation root. Remember the should be absolute path which begins
+with &quot;/&quot;.</p>
+<p>Then start a browser, open url <a href="http://localhost/openbiz/EventMgr.htm">http://localhost/demoapp/demo.html</a></p>
+<hr>
+<h2>Build Applications with Openbiz</h2>
+<h3> Specify requirement of your application<a name="bld_req"></a></h3>
+<p>OpenBiz is a perfect tool that help you develop your complicated web
+application easily and comprehensively. Based on its 3-layer architecture, your
+application will be on a clear logic model. It takes care the basic and advanced
+features of the data-oriented application. In order to tell whether OpenBiz can
+help building your application, you need ask these questions:</p>
+<ul>
+  <li>Is your application web-based application or can be converted to web-based
+    application?</li>
+  <li>Is your application need manipulate different types of data using
+    database?</li>
+</ul>
+<p>If the answers are YES, OpenBiz is the right framework for developing your
+application!</p>
+<h3>Plan your web applications<a name="plan_app"></a></h3>
+<p>When you install the Openbiz package, you would notice there are two main
+directories &quot;openbiz&quot; and &quot;demoapp&quot; in the zip file. &quot;openbiz&quot;
+directory contains the openbiz core library and metadata. &quot;demo&quot;
+directory contains the source for a demo application (event management&nbsp; and
+calendar demo).&nbsp;</p>
+<p>The above structure is different with that of Openbiz 2.0 RC1 and prior
+version where you can see demo
+application was in the openbiz directory. Why does Openbiz has this
+change?&nbsp;</p>
+<ul>
+  <li>It brings developers a clear logic picture - openbiz core library and
+    application code are under different locations.</li>
+  <li>Openbiz core library is more portable than the openbiz application, it can
+    be shared by multiple applications.</li>
+  <li>If openbiz core has new release, it's easy to upgrade.</li>
+</ul>
+<h4>Develop web application with your own directory</h4>
+<table border="1" cellspacing="0" cellpadding="3" width="500">
+  <tr>
+    <td width="177"><b>Your own development</b></td>
+    <td width="305"><b>Where to put</b></td>
+  </tr>
+  <tr>
+    <td width="177">Your source code</td>
+    <td width="305">your_app_root/bin/</td>
+  </tr>
+  <tr>
+    <td width="177">Your metadata files</td>
+    <td width="305">your_app_root/metadata/your_package/</td>
+  </tr>
+  <tr>
+    <td width="177">Your web templates</td>
+    <td width="305">your_app_root/templates/</td>
+  </tr>
+  <tr>
+    <td width="177">Your web pages</td>
+    <td width="305">your_app_root/</td>
+  </tr>
+  <tr>
+    <td width="177">Your style sheet files</td>
+    <td width="305">your_app_root/css/</td>
+  </tr>
+  <tr>
+    <td width="177">You image files</td>
+    <td width="305">your_app_root/images/</td>
+  </tr>
+  <tr>
+    <td width="177">Your log files</td>
+    <td width="305">your_app_root/log/</td>
+  </tr>
+  <tr>
+    <td width="177">Your session files</td>
+    <td width="305">your_app_root/session/</td>
+  </tr>
+  <tr>
+    <td width="177">Your temporary files</td>
+    <td width="305">your_app_root/tmpfiles/</td>
+  </tr>
+</table>
+<p>This is a more organized way to develop an openbiz-based web application.
+Your application specific files are in a separate directory, not mixed with
+openbiz core files. You can build multiple web applications based on single
+openbiz core. You need to do some extra steps to set up your own application
+directory. The following steps are suggested.</p>
+<ol>
+  <li>Copy demoapp directory and rename it to your application name, say &quot;testapp&quot;</li>
+  <li>Open testapp/bin/app.inc, change the constants appropriately. If the
+    default values may work for you, no change is needed.</li>
+  <li>Open testapp/bin/login.php, change the $application_homepage to the first
+    web page shown to users after they login.</li>
+</ol>
+<p>In the app.inc file, OPENBIZ_HOME has to be define to point to the installed
+path of openbiz core library. Your applications will use the openbiz core library as well as core
+objects defined in metadata directory.</p>
+<p><b>Another important change from RC2 is that metadata and code have to match
+up under /metadata and /bin directories</b>. If you have an object's metadata
+under /metadata/aaa/ directory, if the object implementing code is a
+user-defined class (not openbiz core class), the class code file must be under
+/bin/aaa/ directory. For example, /metadata/shared/FMCalendar.xml has a special
+implementing class &quot;FMCalendar&quot;, this FMCalendar class must be located
+in /bin/shared/FMCalendar.php. If the object's implementing class is openbiz
+core class, no special code is needed, thus there's no matching code under /bin.
+This match-up rule is to give a clear view of the metadata and code.&nbsp;&nbsp;</p>
+<p><b>How to upgrade to the new structure if you are using the structure in RC1
+or prior version?</b> In Openbiz RC1 and prior version, application code is
+under bin/usrlib/ directory. Based on the metadata/code match-up rule, you need
+to create subdirectories with the same names of the metadata packages under /bin
+directory and move the code under /bin/usrlib to those subdirectories.</p>
+<h3><b>Create your database model<a name="bld_data"></a></b></h3>
+<p>Modeling your business data with Relational database tables is the necessary
+base for building your whole application.</p>
+<h4>Create a new database</h4>
+<ul>
+  <li>Assign the new database to be Default database in config.xml</li>
+  <li>Create &quot;ob_users&quot; table which stores user id and password. Since
+    2.0, openbiz counts on authentication service to authentiate user and
+    password, so the user id and password can be stored in the storage that is
+    queried by the authentication service.</li>
+  <li>Create &quot;ob_sysids&quot; table which stores SYSID information for all
+    tables who have SYSID column</li>
+  <li>Create customer tables. Each table must have a SYSID column and add a
+    record in ob_sysids table (TABLE=your table name, PREFIX=prefix of sysid,
+    IDBODY=starting integer)</li>
+</ul>
+<h4>Use existing database (assume each table has single auto-generated id
+column)</h4>
+<ul>
+  <li>Assign the new database to be Default database in config.xml</li>
+  <li>Create &quot;ob_users&quot; table or reuse an existing table which
+    contains userid and password columns</li>
+  <li>Since each table has single auto-generated id column, no need to create
+    &quot;ob_sysids&quot;</li>
+</ul>
+<h3>Fit your system design in Openbiz<a name="bld_fit"></a></h3>
+
+<p>Fit your design in Openbiz framework, you leverage the power of the
+framework. Your design will have</p>
+
+<ul>
+  <li>Clear three-layer architecture stack</li>
+  <li>XML metadata driven application</li>
+  <li>MVC (Model-View-Controller) design pattern</li>
+  <li>Rich set libraries and valuable crafts</li>
+  <li>Common application features</li>
+</ul>
+
+<p><b>Build new application</b></p>
+
+<p>Business requirement -&gt; UI design + data modeling + objects design</p>
+
+<p>User Interface: Pages, forms, interactivities</p>
+
+<p>Data Modeling: Database table schema</p>
+
+<p>Objects Design: </p>
+
+<ul>
+  <li>UI objects - BizView, BizForm</li>
+  <li>Data objects - BizDataObj with object/relational mapping</li>
+  <li>Functional objects - Plugin services</li>
+</ul>
+<p><b>Convert existing application</b></p>
+
+<p>Convert existing UI to BizViews, BizForms</p>
+
+<p>Map existing database tables to BizDataObjs</p>
+
+<p>Port existing business functionalities to plugin services</p>
+
+<h3>Sample implementation - Calendar<a name="bld_sample"></a></h3>
+
+<h4>Requirement: </h4>
+
+<ul>
+  <li>users can see their calendar in day, week, month formats</li>
+  <li>users can create/delete/edit an event on calendar</li>
+  <li>users can invite attendees to an event and see the schedule of attendees</li>
+</ul>
+<h4>Step 1. Data Modeling with table schemas</h4>
+<p><b>Step 2. Map tables to BizDataObjs</b></p>
+<ul>
+  <li>Map driving table columns to BizFields</li>
+  <li>Join other table columns to BizFields</li>
+  <li>Map table relationship using ObjReference</li>
+</ul>
+<h4>Step 3. Bind UI controls with data</h4>
+<ul>
+  <li>Associate a BizDataObj to a BizForm</li>
+  <li>Map FieldControl of BizForm to BizField of BizDataObj</li>
+  <li>Configure drilldown link on FieldControl</li>
+  <li>Configure value picker form on FieldControl</li>
+</ul>
+<h4>Step 4. User Interactions</h4>
+<ul>
+  <li>Map action to UI control (usually a button)</li>
+  <li>Associate UI control to a function</li>
+  <li>Implement the function as a BizForm method</li>
+</ul>
+<p><b>Step 5. Implement special logic by extending openbiz</b></p>
+<ul>
+  <li>Write special data logic by extending BizDataObj</li>
+  <li>Write special presentation logic by extending BizForm</li>
+</ul>
+<p><b>Calendar view: event navigation</b></p>
+<table border="1" width="49%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td width="22%"><b>User Interface Objects</b></td>
+    <td width="78%">Calendar form <br>
+      &nbsp; - day, week, month and all events display modes<br>
+      &nbsp; - FieldControls: Id, Subject, Location, Type, Notes, Start, End,
+      RepeatCycle, RepeatEnd</td>
+  </tr>
+  <tr>
+    <td width="22%"><b>Data Objects</b></td>
+    <td width="78%">Calendar data object<br>
+      &nbsp; - Fields: Id, Subject, Location, Type, Notes, Start, End,
+      RepeatCycle,
+      RepeatEnd</td>
+  </tr>
+  <tr>
+    <td width="22%"><b>Tables</b></td>
+    <td width="78%">calevts table<br>
+      &nbsp; - Columns: SYSID, SUBJECT, LOCATION, TYPE, NOTES, STARTTIME.
+      ENDTIME, REPEATCYCLE, REPEATEND</td>
+  </tr>
+</table>
+<p><img border="0" src="cal_dayview.gif" width="700" height="481"></p>
+<p><b>Calendar Detail view: event editing and invite attendees</b></p>
+<table border="1" width="64%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td width="16%"><b>User Interface Objects</b></td>
+    <td width="43%">Calendar Detail form<br>
+      &nbsp; - SubForm is Event Attendee form<br>
+      &nbsp; - New, Edit modes<br>
+      &nbsp; - FieldControls: Id, Subject, Location, Type, Notes, Start, End,
+      RepeatCycle, RepeatEnd, AttendeeId, AttendeeName</td>
+    <td width="41%" valign="top">Event Attendee form<br>
+      &nbsp; - Parent form is &quot;Calendar Detail form&quot;<br>
+      &nbsp; - List and Schedule modes<br>
+      &nbsp; - FieldControls: Id, LastName, FirstName, ... </td>
+  </tr>
+  <tr>
+    <td width="16%"><b>Data Objects</b></td>
+    <td width="43%">Calendar detail data object<br>
+      &nbsp; - Fields: Id, Subject, Location, Type, Notes, Start, End,
+      RepeatCycle,
+      RepeatEnd<br>
+      &nbsp; - ObjReference: Calendar Attendee data object<br>
+      &nbsp; - Joined Fields: Attendee Id, AttendeeName (from calattds table)</td>
+    <td width="41%" valign="top">Calendar Attendee data object<br>
+      &nbsp; Fields: Id, LName, FName, ...</td>
+  </tr>
+  <tr>
+    <td width="16%"><b>Table</b></td>
+    <td width="43%">calevts table<br>
+      &nbsp; - Columns: SYSID, SUBJECT, LOCATION, TYPE, NOTES, STARTTIME.
+      ENDTIME, REPEATCYCLE, REPEATEND<br>
+      <br>
+      calevts_attds table (intersection table of calevts and calattds)</td>
+    <td width="41%" valign="top">calattds table<br>
+      &nbsp; Columns: SYSID, LASTNAME, FIRSTNAME, ...</td>
+  </tr>
+</table>
+<h4>Class Diagram:</h4>
+<p><img border="0" src="classdiagram_cal.gif" width="703" height="425"></p>
+<p>Note: Calendar Form and Calendar Detail Form have special rendering logic,
+they are based on FMCalendar and FMCalAttendee classes which are extended from
+BizForm base class.</p>
+<p><b>User interaction - UI controls maps to server functions</b></p>
+<table border="1" width="70%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td width="48%" bgcolor="#CCCCCC"><b>User action</b></td>
+    <td width="14%" bgcolor="#CCCCCC"><b>UI Control</b></td>
+    <td width="20%" bgcolor="#CCCCCC"><b>Function</b></td>
+    <td width="33%" bgcolor="#CCCCCC"><b>Method implementation</b></td>
+  </tr>
+  <tr>
+    <td width="48%">Show Day calendar: switch to day mode, draw the day calendar</td>
+    <td width="14%">Day button</td>
+    <td width="20%">ShowDay()</td>
+    <td width="33%">class FMCalendar<br>
+      public function ShowDay()</td>
+  </tr>
+  <tr>
+    <td width="48%">Show Week calendar: switch to week mode, draw the week
+      calendar</td>
+    <td width="14%">Week button</td>
+    <td width="20%">ShowWeek()</td>
+    <td width="33%">class FMCalendar<br>
+      public function ShowWeek()</td>
+  </tr>
+  <tr>
+    <td width="48%">Show Month calendar: switch to month mode, draw the month
+      calendar</td>
+    <td width="14%">Month button</td>
+    <td width="20%">ShowMonth()</td>
+    <td width="33%">class FMCalendar<br>
+      public function ShowMonth()</td>
+  </tr>
+  <tr>
+    <td width="48%">Show all calendar events: switch to list mode, list all
+      events page by page</td>
+    <td width="14%">All Events button</td>
+    <td width="20%">ShowList()</td>
+    <td width="33%">class FMCalendar<br>
+      public function ShowList()</td>
+  </tr>
+  <tr>
+    <td width="48%">New a calendar event: Click New button on Calendar View,
+      jump to Calendar Detail View with new mode</td>
+    <td width="14%">New Event button</td>
+    <td width="20%">NewEvent()</td>
+    <td width="33%">class FMCalendar<br>
+      public function NewEvent()</td>
+  </tr>
+  <tr>
+    <td width="48%">Delete a calendar event: In Calendar Detail View, click
+      Delete button to delete an event</td>
+    <td width="14%">Delete button</td>
+    <td width="20%">DeleteRecord()</td>
+    <td width="33%">class BizForm<br>
+      public function DeleteRecord()</td>
+  </tr>
+  <tr>
+    <td width="48%">Edit a calendar event: Click an event link on the Calendar
+      view, jump to Calendar Detail with edit mode</td>
+    <td width="14%">Drill down link</td>
+    <td width="20%">URL = &quot;bizController.php? view=shared.CalDetailView &amp;amp;form=shared.FMCalDetail
+      &amp;amp;mode=NEW&quot;</td>
+    <td width="33%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="48%">Add event attendees: In Calendar Detail View, click Add
+      button on the Calendar Attendee form to pick an attendee</td>
+    <td width="14%">Add button</td>
+    <td width="20%">ShowPopup (shared.FMAttendeePopup)</td>
+    <td width="33%">class BizForm<br>
+      public function ShowPopup()</td>
+  </tr>
+  <tr>
+    <td width="48%">Remove event attendees: In Calendar Detail View, click
+      Remove button on the Calendar Attendee form to remove an attendee</td>
+    <td width="14%">Delete button</td>
+    <td width="20%">RemoveRecord()</td>
+    <td width="33%">class BizForm<br>
+      public function RemoveRecord()</td>
+  </tr>
+  <tr>
+    <td width="48%">Show attendees' schedule: In Calendar Detail View, click
+      Show Schedule button to switch to schedule mode</td>
+    <td width="14%">Schedule button</td>
+    <td width="20%">ShowSchedule()</td>
+    <td width="33%">class FMCalAttendee<br>
+      public function ShowSchedule()</td>
+  </tr>
+</table>
+<p>To see the sample calendar, open <a href="http://http://localhost/openbiz/bin/BizController.php?view=shared.CalendarView">http://localhost/openbiz/bin/BizController.php?view=shared.CalendarView</a>
+in your browser.</p>
+<hr>
+<h2>Openbiz Configuration Guide</h2>
+<p>Developers can choose use XML editor to edit metadata files. Openbiz Eclipse
+Plug-in is recommended to be used as a design and configuration tool. Please
+refer to <a href="designTool.html">Openbiz Eclipse plug-in designer
+manual</a>.</p>
+<h3> Organize metadata by package<a name="cfg_pkg"></a></h3>
+<p>In a big application, user may need to build lots of objects, therefore they
+have big metadata file list. If they put these files under a single metadata
+directory, managing the metadata files is a painful thing. From openbiz 1.1,
+metadata files can be organized by package name. Bear in mind, metadata package
+is different with the (BizObj, BizView ...) packages which are the code units.
+Metadata package is a naming system, different package maps to different
+directory. It is like the package concept used in Java.&nbsp;</p>
+<p><font color="#0000FF">PackageX</font><b>.</b><font color="#008000">PackageY</font><b>.</b><font color="#800080">metaA.xml</font>
+refers to the <font color="#800080">metaA.xml</font> under <b>META_PATH/</b><font color="#0000FF">PackageA</font><b>/</b><font color="#008000">PackageB</font>
+directory. Where <b>META_PATH</b> is the root metadata directory. This macro is
+defined in sysheader.inc and app.inc.&nbsp;</p>
+<p><b>How to configure&nbsp; package in metadata files?</b></p>
+<p>Let's explain it with the demo example. After you unzip the source, find the
+demo directory under metadata directory. Open FMRegist.xml file with a text
+editor. You'll see a Package=&quot;demo&quot; attribute in the BizForm element.
+This attribute is to say the default package of any type of openbiz object is
+under &quot;demo&quot; package. Here the openbiz objects refer to the following
+object types.</p>
+<table border="1" width="478">
+  <tr>
+    <td width="94" bgcolor="#C0C0C0"><b>Object Type</b></td>
+    <td width="368" bgcolor="#C0C0C0"><b>Referred as attributes in metadata
+      files</b></td>
+  </tr>
+  <tr>
+    <td valign="top">BizObj</td>
+    <td valign="top">BizForm[BizObj]<br>
+      BizObj-&gt;BizFieldList-&gt;BizField[SelectBizObj]</td>
+  </tr>
+  <tr>
+    <td valign="top">BizForm</td>
+    <td valign="top">BizView-&gt;ControlList-&gt;Control[Form]<br>
+      BizView-&gt;ControlList-&gt;Control[SubCtrl]<br>
+      BizForm-&gt;BizCtrlList-&gt;BizCtrl[SelectFrom]</td>
+  </tr>
+  <tr>
+    <td valign="top">BizView</td>
+    <td valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top">BizPopup</td>
+    <td valign="top">BizForm-&gt;BizCtrlList-&gt;BizCtrl[SelectBizForm]</td>
+  </tr>
+  <tr>
+    <td valign="top">BizFormTree</td>
+    <td valign="top">Same as BizForm</td>
+  </tr>
+</table>
+<p>If an object name doesn't contain dot symbol (&quot;.&quot;), the system uses
+the package attribute defined in the object root element as its package.
+Otherwise, if an object name has format as aaa.objectname, the system thinks
+such object under package &quot;aaa&quot; and will locate such object under aaa
+directory.</p>
+<p>Go back to the example, you can find &lt;BizForm Name=&quot;FMRegist&quot; Package="demo"
+... <font color="#0000FF"><i>BizObj=&quot;BORegist&quot;</i></font>...&gt;, &lt;BizCtrl
+Name=&quot;reg_attdln&quot;
+...&nbsp; <font color="#0000FF"><i>SelectBizForm=&quot;AttendeePopup&quot;</i></font>...&gt;
+and &lt;BizCtrl Name=&quot;reg_fee&quot; ... <font color="#0000FF"><i>SelectFrom=&quot;Selection(Fee)&quot;</i></font>...&gt;.
+They all use default package, so the system will try to locate the metadata
+files as <font color="#0000FF"><i>demo/BORegist.xml,</i></font> <i><font color="#0000FF">demo/AttendeePopup.xml</font>
+</i>and <font color="#0000FF"><i>demo/Selection.xml.</i></font></p>
+<p>If you want to refer to an object under other package, just add the package
+name as the prefix of the object name. Notice, there're a Selection.xml under
+/demo directory and another Selection.xml under /design directory, they belong
+to different packages. In FMRegist, whose package is &quot;demo&quot;, you can
+use &lt;BizCtrl ...&nbsp; <font color="#0000FF"><i>SelectFrom=&quot;design.Selection(Mode)&quot;
+</i></font>...&gt; to configure a comboBox whose values are from the
+&quot;Mode&quot; element of &quot;design/Selection.xml&quot;.</p>
+<p>You cannot refer to an object in different application. But you can refer to
+any object in openbiz core application. For example, the core application has
+refer to objects under metadata/shared/ directory. Openbiz tries to locate
+objects in same application and then in core application. If no object is found,
+it reports an error.</p>
+<h3>Use object metadata inheritance<a name="cfg_inherit"></a></h3>
+<p>If you have a complex application, you want to reuse the existing object to
+different places, but you want the object behave a little differently in
+different scenarios. Object inheritance will solve the above problem. Since in
+openbiz framework objects maps to metadata file, object inheritance becomes
+metadata file inheritance.</p>
+<p><b>How to specify inheritance between metadata files?</b></p>
+<p>Specify an object attribute, InheritFrom = "parent object name". For example,
+in demo application, BOEventX has &lt;BizObj Name=&quot;BOEventX&quot; Description="Event BizObj Extended from
+BOEvent&quot; Package="demo" Class=&quot;BizObj&quot;
+<b>InheritFrom=&quot;demo.BOEvent&quot;</b>...&gt;. This indicates that is
+BOEventX is inherited from BOEvent.&nbsp;</p>
+<p>Metadata file inheritance is similar with class inheritance in programming
+languages, child object can inherit (if not defined in child object, but defined
+in parent object)&nbsp; or override (if same attribute defined in both child
+object and parent object) the parent object attributes.</p>
+<table border="1" width="626">
+  <tr>
+    <td width="157" bgcolor="#C0C0C0"><b>Object Type which can has inheritance</b></td>
+    <td width="229" bgcolor="#C0C0C0"><b>What CAN be inherited or overridden</b></td>
+    <td width="218" bgcolor="#C0C0C0"><b>What CANNOT be inherited - must be
+      specified in child metadata file</b></td>
+  </tr>
+  <tr>
+    <td valign="top" width="157"><b>BizObj</b></td>
+    <td valign="top" width="229"><b>Object Attributes:</b> Description, DBName,
+      Table, SearchRule, SortRule, OtherSQLRule, CacheMode
+      <p><b>Object BizFieldList</b>: BizField</p>
+    </td>
+    <td valign="top" width="218"><b>Object Attributes:</b> Name, Package, Class,
+      InheritFrom, DesignProfile</td>
+  </tr>
+  <tr>
+    <td valign="top" width="157"><b>BizForm</b></td>
+    <td valign="top" width="229"><b>Object Attributes:</b> Description, jsClass,
+      Title, BizObj, PageSize, Width, Height, SearchRule
+      <p><b>Object BizCtrlList</b>: BizCtrl<br>
+      <b>Object DisplayModes</b>: Mode<br>
+      <b>Object Toolbar</b>: Control<br>
+      <b>Object Navbar</b>: Control</p>
+    </td>
+    <td valign="top" width="218"><b>Object Attributes:</b> Name, Package, Class,
+      InheritFrom, DesignProfile</td>
+  </tr>
+</table>
+<h3><b>Configuration of BizDataObj<a name="cfg_bdo"></a></b></h3>
+
+<p><a href="#a-a1">The DTD file of the BizDataObj xml is listed in Appendix A.1</a></p>
+
+<ul>
+  <li>
+<p><b>Specify the implementing class</b><br>
+&lt;BizObj Name=&quot;BOCalendar&quot; Description="Calendar BizObj&quot; Package="shared" <font color="#0000FF">Class=&quot;MyClass&quot;
+</font>...&gt;</p>
+  </li>
+  <li>
+<p><b>Specify the base table</b><br>
+&lt;BizObj Name=&quot;BOCalendar&quot; Description="Calendar BizObj&quot; Package="shared"
+Class=&quot;MyClass&quot; <font color="#0000FF">Table=&quot;calevts&quot; </font>...&gt;</p>
+  </li>
+  <li><p><b>Specify the parent metadata file (inheritance)</b><br>
+    <font color="#008080">// child metadata file inherits all properties from
+    its parent metadata file. child can redefine and add new properries</font><br>
+    &lt;BizObj Name=&quot;BOCalendar&quot; Description="Calendar BizObj&quot; Package="shared"
+    Class=&quot;MyClass&quot; Table=&quot;calevts&quot; <font color="#0000FF">InheritFrom=&quot;BOBaseCalendar&quot;
+    ...&gt;</font></p>
+  </li>
+  <li>
+<p><b>Specify the default query</b><br>
+&lt;BizObj Name=&quot;BOCalendar&quot; Description="Calendar BizObj&quot; Package="shared"
+Class=&quot;MyClass&quot; Table=&quot;calevts&quot; <font color="#0000FF">SearchRule=&quot;[Start]&gt;'1999-10-20'&quot;</font>
+...&gt;</p>
+  </li>
+  <li>
+<p><b>Specify the default sort</b><br>
+&lt;BizObj Name=&quot;BOCalendar&quot; Description="Calendar BizObj&quot; Package="shared"
+Class=&quot;MyClass&quot; Table=&quot;calevts&quot; <font color="#0000FF">SortRule=&quot;[Start]
+ASC&quot;</font> ...&gt;</p>
+  </li>
+  <li><p><b>Specify additional SQL statement</b><br>
+    &lt;BizObj Name=&quot;BOCalendar&quot; Description="Calendar BizObj&quot; Package="shared"
+    Class=&quot;MyClass&quot; Table=&quot;calevts&quot; <font color="#0000FF">OtherSQLRule = &quot;GROUP BY
+    [EvtId] HAVING [Fee]&gt;10&quot; </font>...&gt;</p>
+  </li>
+  <li>
+<p><b>Map Columns to BizFields</b><br>
+&lt;BizField Name=&quot;FieldName&quot; Column=&quot;ColumnName&quot;...&gt;</p>
+  </li>
+  <li>
+<p><b>Use the SQL functions&nbsp;</b></p>
+<p>You can assign a BizField with SQL
+      functions provided by the database engine.&nbsp;The syntax is</p>
+<p>&lt;BizField Name=&quot;FieldName&quot; Column=&quot;&quot; <font color="#0000FF">SQLExpr=&quot;FUNC([FieldName1]...[FieldName2]...)&quot;</font>&gt;.
+Make sure that the Column attribute is empty.</p>
+<p>For example:</p>
+<p>&lt;BizField Name=&quot;FullName&quot; Column=&quot;&quot; <font color="#0000FF">SQLExpr=&quot;CONCAT([FirstName],'
+',[LastName])&quot;</font>...&gt;</p>
+  </li>
+  <li><p><b>Data type, format and validation for BizField</b></p>
+  </li>
+</ul>
+<blockquote>
+<p>To configure the mapping between BizFields and table columns, please refer to
+<a href="#orm">2.4 Object Relational (O/R) Mapping</a>.</p>
+<p><font color="#0000FF">One BizField must have name as &quot;Id&quot;. This is
+required.</font> This Id field usually map to the primary key column of a table.</p>
+  <p>
+BizField supports following data types and formats by modifing the Type and
+  Format attributes.</p>
+<table border="1" width="800" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="73" bgcolor="#C0C0C0"><b>Type</b></td>
+    <td width="325" bgcolor="#C0C0C0"><b>Format</b></td>
+    <td width="267" bgcolor="#C0C0C0"><b>Syntax</b></td>
+    <td width="370" bgcolor="#C0C0C0"><b>Format Example</b></td>
+  </tr>
+  <tr>
+    <td width="73"><b>Text</b></td>
+    <td width="325">none</td>
+    <td width="267">&nbsp;</td>
+    <td width="370">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA"><b>Number</b></td>
+    <td width="325" bgcolor="#EAEAEA">format supported by printf</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Number&quot;
+      Format=&quot;%...&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">%5.2f to print a float number</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="325" bgcolor="#EAEAEA">&quot;Int&quot; - integer format according
+      locale</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Number&quot;
+      Format=&quot;Int&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">If locale=enu, 12345.678 is displayed as
+      12,346</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="325" bgcolor="#EAEAEA">&quot;Float&quot;- float format according
+      locale</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Number&quot;
+      Format=&quot;Float&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">If locale=enu, 12345.678 is displayed as
+      12,345.68</td>
+  </tr>
+  <tr>
+    <td width="73"><b>Date</b></td>
+    <td width="325">In default read-only mode, a date can be formatted according
+      to the <a href="http://www.php.net/manual/en/function.strftime.php">Date
+      format</a>.</td>
+    <td width="267">&lt;BizField ... Type=&quot;Date&quot; Format=&quot;date
+      format&quot; ...&gt;</td>
+    <td width="370">6/21/2003 can be formatted as<br>
+      %A, %b %d %Y - Saturday, Jun 21 2003 if system locale is enu</td>
+  </tr>
+  <tr>
+    <td width="73">&nbsp;</td>
+    <td width="325">In edit/query mode, a date is formatted as YYYY-MM-DD (ISO
+      8601)</td>
+    <td width="267">&nbsp;</td>
+    <td width="370">12/31/2003 can be formatted as 2003-12-31</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA"><b>Datetime</b></td>
+    <td width="325" bgcolor="#EAEAEA">In default read-only mode, a date can be
+      formatted according to the <a href="http://www.php.net/manual/en/function.strftime.php">Date
+      format</a>.</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Datetime&quot;
+      Format=&quot;datetime format&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">6/22/2003 9:30am can be formatted as<br>
+      %m/%d/%Y %H:%M:%S - 06/22/2003 09:30:00 if system locale is enu</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="325" bgcolor="#EAEAEA">In edit/query mode, a date is formatted as
+      YYYY-MM-DD hh:mm:ss (ISO 8601)</td>
+    <td width="267" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="370" bgcolor="#EAEAEA">6/22/2003 9:30am can be formatted as<br>
+      2003-06-22 09:30:00</td>
+  </tr>
+  <tr>
+    <td width="73"><b>Currency</b></td>
+    <td width="325">Formatted according to locale setting</td>
+    <td width="267">&lt;BizField ... Type=&quot;Currency&quot;
+      Format=&quot;Currency&quot; ...&gt;</td>
+    <td width="370">1456.89 is formatted as $1,456.89 (enu)<br>
+      1456.89 is formatted as F1&nbsp;456,89 (fra)</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA"><b>Phone</b></td>
+    <td width="325" bgcolor="#EAEAEA">Formatted according to given mask #</td>
+    <td width="267" bgcolor="#EAEAEA">&lt;BizField ... Type=&quot;Phone&quot;
+      Format=&quot;mask string&quot; ...&gt;</td>
+    <td width="370" bgcolor="#EAEAEA">1234567890 is formatted as&nbsp;<br>
+      mask=(###) ###-####,&nbsp;<br>
+      phone=(123) 456-7890<br>
+      mask=###-###-####, phone=123-456-7890</td>
+  </tr>
+  <tr>
+    <td width="73" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="325" bgcolor="#EAEAEA">If a phone number starting with
+      &quot;*&quot;, it represents international phone number, it won't be
+      formatted</td>
+    <td width="267" bgcolor="#EAEAEA">&nbsp;</td>
+    <td width="370" bgcolor="#EAEAEA">*123 4567890 is treated as international
+      number</td>
+  </tr>
+</table>
+<p>
+BizField also supports following data validations</p>
+<table border="1" width="686" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="161" bgcolor="#C0C0C0"><b>Validation Type</b></td>
+    <td width="509" bgcolor="#C0C0C0"><b>Example</b></td>
+  </tr>
+  <tr>
+    <td width="161"><b>Required</b> - indicates the field can not be empty</td>
+    <td width="509">&lt;BizField Name="Name" <b> Required="Y"</b> Column=&quot;NAME&quot;/&gt;</td>
+  </tr>
+  <tr>
+    <td width="161" bgcolor="#EAEAEA"><b>Validator</b> - simple expression
+      language&nbsp;</td>
+    <td width="509" bgcolor="#EAEAEA">&lt;BizField Name="Fee" Type="Currency" Format="Currency"
+      <b> Validator=&quot;{[Fee]&gt;=15}&quot;</b>      Column=&quot;FEE&quot;&gt;</td>
+  </tr>
+</table>
+</blockquote>
+<p>&nbsp;</p>
+<h3>Object Relational (O/R) Mapping<a name="cfg_orm"></a></h3>
+
+<p>To support O/R mapping, TableJoin and ObjectReference are introduced to
+BizDataObj metadata file.</p>
+
+<p>To understand the O/R mapping, a sample is listed below:</p>
+
+<p><img border="1" src="sampletables.gif" width="313" height="234"></p>
+
+<p>attendee:regist = 1:M (one to many), regist:attendee = M:1 (many to one)</p>
+
+<p>events:regist = 1:M (one to many), regist:events = M:1 (many to one)</p>
+
+<p>attendee:events = M:M (many to many)</p>
+
+<p><b>Map a table to a BizDataObj</b></p>
+
+<p>To map a table to a BizDataObj, users only need to configure the BizFieldList
+part in the metadata.&nbsp;</p>
+
+<p>&lt;BizDataObj Name=&quot;BOEvent&quot; Description="Event BizDataObj&quot; Package="demo"
+Class=&quot;BizDataObj&quot; Table="events" ...&gt;<br>
+	&lt;BizFieldList&gt;<br>
+&nbsp; &lt;BizField Name=&quot;Id&quot; Column=&quot;SYSID&quot;/&gt;<br>
+&nbsp; &lt;BizField Name="Name" Column="NAME"/><br>
+	&lt;/BizFieldList&gt;<br>
+&lt;/BizDataObj&gt;</p>
+
+<p><b>Map multiple tables to a BizdataObj</b></p>
+<p>User can map multiple tables to a BizDataObj through Join. Joined table is
+referred by a foreign key column in the base table of the BizDataObj, that says
+the base table has a foreign key points to joined table's column.</p>
+
+<p align="left">&lt;BizObj Name=&quot;BORegist&quot; Package="demo" Class=&quot;BizObj&quot;
+Table=&quot;regist&quot; ...&gt;<br>
+	&lt;BizFieldList&gt;<br>
+&nbsp; &lt;BizField Name="Id" Column=&quot;SYSID&quot;/&gt;<br>
+&nbsp; &lt;BizField Name=&quot;EvtId&quot; Column=&quot;EVENT_ID&quot;/&gt;<br>
+&nbsp; &lt;BizField Name=&quot;AttendeeId&quot; Column=&quot;ATTENDEE_ID&quot;/&gt;<br>
+&nbsp; &lt;BizField Name=&quot;AttdLName&quot; <font color="#0000FF"> Join="attendee"</font> 
+Column=&quot;LASTNAME&quot;/&gt;<br>
+&nbsp; &lt;BizField Name=&quot;AttdFName&quot; <font color="#0000FF"> Join="attendee"</font> 
+Column=&quot;FIRSTNAME&quot;/&gt;<br>
+   &lt;/BizFieldList&gt;<br>
+<font color="#0000FF">   &lt;TableJoins&gt;<br>
+&nbsp; &lt;Join Name="attendee" Table="attendee" Column=&quot;SYSID&quot;
+ColumnRef=&quot;ATTENDEE_ID&quot; JoinType=&quot;INNER JOIN"/><br>
+   &lt;/TableJoins&gt;</font></p>
+<table border="1" width="37%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="30%" bgcolor="#C0C0C0" align="left"><b>Join Attribute</b></td>
+    <td width="70%" bgcolor="#C0C0C0" align="left"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td width="30%" align="left">Name</td>
+    <td width="70%" align="left">The name of the join. It is referred in the Join attribute
+      of BizField</td>
+  </tr>
+  <tr>
+    <td width="30%" align="left">Table</td>
+    <td width="70%" align="left">The joined table name</td>
+  </tr>
+  <tr>
+    <td width="30%" align="left">Column</td>
+    <td width="70%" align="left">The joined column name</td>
+  </tr>
+  <tr>
+    <td width="30%" align="left">JoinRef</td>
+    <td width="70%" align="left">If JoinRef is empty, the joined table joins to the base
+      table. User can specify the JoinRef in the 2-level join.</td>
+  </tr>
+  <tr>
+    <td width="30%" align="left"> ColumnRef</td>
+    <td width="70%" align="left">ColumnRef refers to the column of the base table (or the
+      JoinRef table). It contains the foreign key of the Join column.</td>
+  </tr>
+  <tr>
+    <td width="30%" align="left"> JoinType</td>
+    <td width="70%" align="left">INNER JOIN, LEFT JOIN, RIGHT JOIN, or FULL OUTER JOIN.</td>
+  </tr>
+</table>
+
+<p>The query SQL is like &quot;SELECT ... FROM BaseTable INNER JOIN JoinedTable
+ON BaseTable.ColumnRef=JoinedTable.JoinedColumn ...&quot;. In the above example,
+the SQL is&nbsp;</p>
+
+<p>SELECT T0.SYSID, T0.EVENT_ID, T0.ATTENDEE_ID, T1.LASTNAME, T1.FIRSTNAME&nbsp;<br>
+FROM regist as T0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INNER JOIN attendee as T1 ON
+T0.ATTENDEE_ID = T1.SYSID</p>
+
+<p><b>Many to one relationship between BizDataObjs</b></p>
+
+<p>Many to one relationship between two tables means table 1 has a column that
+contains the foreign key pointing to a key/unique column in table 2. To map such
+relationship between two BizDataObjs, use an Object in ObjectReference section.</p>
+
+<p>&lt;BizObj Name=&quot;BORegist&quot; Package="demo" Class=&quot;BizObj&quot;
+Table=&quot;regist&quot; ...&gt;<br>
+	&lt;BizFieldList&gt;<br>
+&nbsp;      &lt;BizField Name="Id" Column=&quot;SYSID&quot;/&gt;<br>
+&nbsp;      &lt;BizField Name=&quot;EvtId&quot; Column=&quot;EVENT_ID&quot;/&gt;<br>
+&nbsp;      &lt;BizField Name=&quot;AttendeeId&quot; Column=&quot;ATTENDEE_ID&quot;/&gt;<br>
+&nbsp;      &lt;BizField Name=&quot;AttdLName&quot; Join="attendee"
+Column=&quot;LASTNAME&quot;/&gt;<br>
+&nbsp;      &lt;BizField Name=&quot;AttdFName&quot; Join="attendee"
+Column=&quot;FIRSTNAME&quot;/&gt;<br>
+   &lt;/BizFieldList&gt;<br>
+   &lt;TableJoins&gt;<br>
+&nbsp;      &lt;Join Name="attendee" Table="attendee" Column=&quot;SYSID&quot;
+ColumnRef=&quot;ATTENDEE_ID&quot; JoinType=&quot;INNER JOIN"/><br>
+   &lt;/TableJoins&gt;<br>
+<font color="#0000FF">   &lt;ObjReferences&gt;<br>
+&nbsp; &lt;Object Name=&quot;BOEvent&quot; Description=&quot;&quot; Relationship="M-1" Table="events"
+Column=&quot;SYSID&quot; FieldRef=&quot;EvtId&quot;/&gt;<br>
+   &lt;/ObjReferences&gt;</font><br>
+&lt;/BizObj&gt;</p>
+
+<table border="1" width="37%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="30%" bgcolor="#C0C0C0"><b>Object</b><b> Attribute</b></td>
+    <td width="70%" bgcolor="#C0C0C0"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td width="30%">Name</td>
+    <td width="70%">The name of the referred BizDataObj</td>
+  </tr>
+  <tr>
+    <td width="30%">Description</td>
+    <td width="70%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="30%">Relationship</td>
+    <td width="70%">Relationship between this dataobj and the referred dataobj</td>
+  </tr>
+  <tr>
+    <td width="30%">Table</td>
+    <td width="70%">The table of the referred dataobj</td>
+  </tr>
+  <tr>
+    <td width="30%">Column</td>
+    <td width="70%">The column of the referred dataobj's table</td>
+  </tr>
+  <tr>
+    <td width="30%">FieldRef</td>
+    <td width="70%">The field mapping to the foreign key column in base table</td>
+  </tr>
+</table>
+
+<p>To get the referred dataobj (child dataobj), call GetRefObject($objame)
+method from parent dataobj. The referred dataobj instance will have the
+restriction according to the parent dataobj.</p>
+
+<p><b>One to many relationship between BizDataObjs</b></p>
+
+<p>One to many relationship between two tables means table 2 has a column that
+contains the foreign key pointing to a key/unique column in table 1. To map such
+relationship between two BizDataObjs, use an Object in ObjectReference section.</p>
+
+<p>&lt;BizDataObj Name=&quot;BOEvent&quot; Description="Event BizDataObj&quot; Package="demo"
+Class=&quot;BizDataObj&quot; Table="events" ...&gt;<br>
+	&lt;BizFieldList&gt;<br>
+&nbsp;   &lt;BizField Name=&quot;Id&quot; Column=&quot;SYSID&quot;/&gt;<br>
+&nbsp;   &lt;BizField Name="Name" Column="NAME"/><br>
+	&lt;/BizFieldList&gt;<br>
+<font color="#0000FF">&lt;ObjReferences&gt;<br>
+&nbsp; &lt;Object Name=&quot;BORegist&quot; Description=&quot;&quot; Relationship="1-M"
+Table=&quot;regist&quot; Column=&quot;EVENT_ID&quot; FieldRef=&quot;Id&quot;
+CascadeDelete=&quot;Y&quot;/&gt;<br>
+&lt;/ObjReferences&gt;</font><br>
+&lt;/BizDataObj&gt;</p>
+
+<table border="1" width="37%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="30%" bgcolor="#C0C0C0"><b>Object</b><b> Attribute</b></td>
+    <td width="70%" bgcolor="#C0C0C0"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td width="30%">Name</td>
+    <td width="70%">The name of the referred BizDataObj</td>
+  </tr>
+  <tr>
+    <td width="30%">Description</td>
+    <td width="70%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="30%">Relationship</td>
+    <td width="70%">Relationship between this dataobj and the referred dataobj</td>
+  </tr>
+  <tr>
+    <td width="30%">Table</td>
+    <td width="70%">The table of the referred dataobj</td>
+  </tr>
+  <tr>
+    <td width="30%">Column</td>
+    <td width="70%">The column of the referred dataobj's table. This column
+      contains the foreign key to the base table</td>
+  </tr>
+  <tr>
+    <td width="30%">FieldRef</td>
+    <td width="70%">The field mapping to the column in base table</td>
+  </tr>
+  <tr>
+    <td width="30%">CascadeDelete</td>
+    <td width="70%">Indicate whether deleting a record in base table will cause
+      the deletion of all related record in referred table.</td>
+  </tr>
+</table>
+
+<p>To get the referred dataobj (child dataobj), call GetRefObject($objame)
+method from parent dataobj. The referred dataobj instance will have the
+restriction according to the parent dataobj.</p>
+
+<p><b>One to one relationship between BizDataObjs</b></p>
+
+<p>One to one relationship is a special case of many to one or one to many
+relationship.</p>
+
+<p><b>Many to many relationship between BizDataObjs</b></p>
+
+<p>Many to many relationship between two tables means an intersection table
+(also called cross reference table, or correlation table) contains the foreign
+key columns pointing to a key/unique column in table 1 and table 2. To map such
+relationship between two BizDataObjs, use an Object in ObjectReference section.</p>
+
+<p>&lt;BizDataObj Name=&quot;BOEvent&quot; Description="Event BizDataObj&quot; Package="demo"
+Class=&quot;BizDataObj&quot; Table="events" ...&gt;<br>
+	&lt;BizFieldList&gt;<br>
+&nbsp;   &lt;BizField Name=&quot;Id&quot; Column=&quot;SYSID&quot;/&gt;<br>
+&nbsp;   &lt;BizField Name="Name" Column="NAME"/><br>
+	&lt;/BizFieldList&gt;<br>
+<font color="#0000FF">&lt;ObjReferences&gt;<br>
+&nbsp; &lt;Object Name=&quot;BOAttendee&quot; Description=&quot;&quot; Relationship="M-M" Table="attendee"
+Column=&quot;SYSID&quot; FieldRef=&quot;Id&quot; CascadeDelete=&quot;Y&quot;
+</font><font color="#008080">XTable=&quot;regist&quot; XColumn1=&quot;EVENT_ID&quot;
+XColumn2=&quot;ATTENDEE_ID&quot;</font><font color="#0000FF">/&gt;<br>
+&lt;/ObjReferences&gt;</font><br>
+&lt;/BizDataObj&gt;</p>
+
+<table border="1" width="37%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="30%" bgcolor="#C0C0C0"><b>Object</b><b> Attribute</b></td>
+    <td width="70%" bgcolor="#C0C0C0"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td width="30%">Name</td>
+    <td width="70%">The name of the referred BizDataObj</td>
+  </tr>
+  <tr>
+    <td width="30%">Description</td>
+    <td width="70%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="30%">Relationship</td>
+    <td width="70%">Relationship between this dataobj and the referred dataobj</td>
+  </tr>
+  <tr>
+    <td width="30%">Table</td>
+    <td width="70%">The table of the referred dataobj</td>
+  </tr>
+  <tr>
+    <td width="30%">Column</td>
+    <td width="70%">The column of the referred dataobj's table. This column
+      contains the foreign key to the base table</td>
+  </tr>
+  <tr>
+    <td width="30%">FieldRef</td>
+    <td width="70%">The field mapping to the column in base table</td>
+  </tr>
+  <tr>
+    <td width="30%">CascadeDelete</td>
+    <td width="70%">Indicate whether deleting a record in base table will cause
+      the deletion of all related record in intersection table.</td>
+  </tr>
+  <tr>
+    <td width="30%">XTable</td>
+    <td width="70%">The intersection table name</td>
+  </tr>
+  <tr>
+    <td width="30%">XColumn1</td>
+    <td width="70%">The intersection table column that has the foreign key of
+      the base table</td>
+  </tr>
+  <tr>
+    <td width="30%">XColumn2</td>
+    <td width="70%">The intersection table column that has the foreign key of
+      the referred table</td>
+  </tr>
+  <tr>
+    <td width="30%">XKeyColumn</td>
+    <td width="70%">The primary key column name of the intersection table. If
+      this attribute doesn't have value, openbiz won't generate the ID column in
+      the table. The intersection table should auto-generate the ID column or
+      there's no such ID column in the table.</td>
+  </tr>
+</table>
+
+<p>To get the referred dataobj (child dataobj), call GetRefObject($objame)
+method from parent dataobj. The referred dataobj instance will have the
+restriction according to the parent dataobj.</p>
+<h3>BizView and BizForm Configuration&nbsp;<a name="cfg_form"></a></h3>
+<p><a href="#a-a2">BizView metadata DTD file can be found in Appendix A.2.</a></p>
+
+<p><a href="#a-a3">BizForm metadata DTD file can be found in Appendix A.3.</a></p>
+<p>The sample application has three views.</p>
+<p><b>Sample Event View:</b></p>
+<table border="1" width="30%" bgcolor="#CCCCCC" cellspacing="0" cellpadding="3" bordercolor="#000080">
+  <tr>
+    <td width="100%"><b>EventView (Event-Attendee as M-M)</b>
+      <table border="1" width="100%" cellspacing="0" cellpadding="3">
+        <tr>
+          <td width="100%" bgcolor="#FFFFFF">FMEvent as BizForm<br>
+            &nbsp;|-- BOEvent as BizDataObj</td>
+        </tr>
+        <tr>
+          <td width="100%" bgcolor="#FFFFFF">FMAttendeeChild as BizForm<br>
+            &nbsp;|-- BOAttendee as BizDataObj</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>Event popup of FMAttendeeChild form:</p>
+      <table border="1" width="30%" bgcolor="#CCCCCC" cellspacing="0" cellpadding="3" bordercolor="#000080">
+        <tr>
+          <td width="100%">FMAttendeePopup as record picking popup form<br>
+            &nbsp;|-- BOAttendeeX as BizDataObj</td>
+        </tr>
+      </table>
+<p><b>Sample Registration View:</b></p>
+<table border="1" width="45%" bgcolor="#CCCCCC" cellspacing="0" cellpadding="3" bordercolor="#000080">
+  <tr>
+    <td width="100%"><b>RegistView (Regist-Event as M-1)</b>
+      <table border="1" width="100%" cellspacing="0" cellpadding="3">
+        <tr>
+          <td width="100%" bgcolor="#FFFFFF">FMRegist as BizForm<br>
+            FMAttendeePopup as value picking popup to pick an Attendee to join
+            Regist<br>
+            AttendeeView is the DrillDownLink on LastName field<br>
+            &nbsp;|-- BORegist as BizDataObj</td>
+        </tr>
+        <tr>
+          <td width="100%" bgcolor="#FFFFFF">FMEventChild as BizForm<br>
+            EventPopup as record picking popup form<br>
+            &nbsp;|-- BOEvent as BizDataObj</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p>Attendee popup of FMRgist form:</p>
+      <table border="1" width="44%" bgcolor="#CCCCCC" bordercolor="#000080" cellspacing="0" cellpadding="3">
+        <tr>
+          <td width="100%">
+            FMAttendeePopup as value picking popup to pick an Attendee to join
+            Regist<br>
+            &nbsp;|-- BOAttendeeX as BizDataObj</td>
+        </tr>
+      </table>
+<p>Event popup of FMEventChild form :</p>
+      <table border="1" width="44%" bgcolor="#CCCCCC" bordercolor="#000080" cellspacing="0" cellpadding="3">
+        <tr>
+          <td width="100%">
+            EventPopup as record picking popup form<br>
+            &nbsp;|-- BOEventX as BizDataObj</td>
+        </tr>
+      </table>
+<p><b>Sample Attendee View:</b></p>
+<table border="1" width="30%" bgcolor="#CCCCCC" cellspacing="0" cellpadding="3" bordercolor="#000080">
+  <tr>
+    <td width="100%"><b>AttendeeView</b>
+      <table border="1" width="100%" cellspacing="0" cellpadding="3">
+        <tr>
+          <td width="100%" bgcolor="#FFFFFF">FMAttendee as BizForm<br>
+            &nbsp;|-- BOAttendee as BizDataObj</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p><b>- Present BizDataObj by BizForm</b></p>
+<p>First, map set the BizObj attribute of BizForm to the BizDataObj name. Then
+map BizCtrls in the BizForm to the BizFields in BizDataObj.</p>
+<p>&lt;BizForm Name=&quot;FMRegist&quot; ... <font color="#0000FF">BizObj=&quot;BORegist&quot;
+</font>...&gt;<br>
+&lt;BizCtrlList&gt;<br>
+&nbsp; &lt;BizCtrl Name=&quot;reg_id&quot; <font color="#0000FF"> FieldName=&quot;Id&quot;</font> 
+ DisplayName=&quot;Registration Id"/><br>
+&nbsp; &lt;BizCtrl Name=&quot;reg_evtid&quot; <font color="#0000FF"> FieldName=&quot;EvtId&quot;</font> 
+ DisplayName=&quot;Event Id"/><br>
+&nbsp; &lt;BizCtrl Name=&quot;reg_attdid&quot; <font color="#0000FF"> FieldName=&quot;AttendeeId&quot;</font> 
+ DisplayName=&quot;Attendee Id"/><br>
+&nbsp; &lt;BizCtrl Name=&quot;reg_attdfn&quot; <font color="#0000FF">FieldName=&quot;AttdFName&quot;</font>
+ DisplayName=&quot;First Name"/><br>
+&nbsp; &lt;BizCtrl Name=&quot;reg_attdln&quot;<font color="#0000FF">   FieldName=&quot;AttdLName&quot;</font>
+ DisplayName=&quot;Last Name"/><br>
+&lt;/BizCtrlList&gt;<br>
+&lt;/BizForm&gt;</p>
+<p><b>- Layout BizForms and BizView</b></p>
+<p>Users can put BizCtrls and other HTML controls on the BizForm and layout
+their positions by editing smarty templates</p>
+<p>BizView is the physical web page that contains multiple BizForms and other
+HTML elements. Its layout is also based on smarty template enginee.</p>
+<p><b>- Map BizDataObj relationship on BizForms</b></p>
+<p>If more than one BizForm is placed in z BizView and they are linked by
+specifying Parent-Child relationship in BizView, the BizForms will have the
+relationship of their underline BizDataObj.</p>
+<p>&lt;BizView Name=&quot;EventView&quot; ...&gt;<br>
+   &lt;ControlList&gt;<br>
+&nbsp; &lt;Control Name=&quot;fm_event&quot; Form=&quot;FMEvent&quot; <font color="#0000FF"> SubCtrls=&quot;FMAttendeeChild&quot;</font>/&gt;<br>
+&nbsp; &lt;Control Name=&quot;fm_attd&quot; Form=&quot;<font color="#0000FF">FMAttendeeChild</font>&quot;/&gt;<br>
+   &lt;/ControlList&gt;<br>
+&lt;/BizView&gt;</p>
+<p>Because BOEvent and BOAttendee have many to many relationship, the event form
+and attendee form will take the M-M as their relationship. They present the data
+relationship on user interface.</p>
+<p><b>- Select records in popup BizForm&nbsp;</b></p>
+<p>Users can pick record from a different form on the following cases:</p>
+<ul>
+  <li>Add/change the child record (parent-child is M-1) by picking another child
+    record.</li>
+  <li>Add a child record in the child form (parent-child is M-M) by picking an
+    existing child record</li>
+  <li>Add/change the joined fields by picking a record from joined dataobj.</li>
+</ul>
+<p><b>Note</b>: Openbiz keeps only one instance of a metadata object (of
+BizDataObj, BizForm, BizView) in a user session, so always configure a different
+object when two instances of same entity needed in one view. For example, on an
+Event form (FMEvent / BOEvent), we usually configure an event popup as (FMEventPopup
+/ BOEventX).&nbsp;</p>
+<ul>
+  <li><b> Configure a html control to show popup</b></li>
+</ul>
+<blockquote>
+<p>To configure a html control to show popup form, users can set &quot;ShowPopup($popupFormName)&quot;
+in the control Function attribute and set FunctionTarget=&quot;POPUP&quot;. This
+configuration can be used in picking a child record (M-1 or M-M) in the child
+form.</p>
+<p>&lt;Control Name=&quot;btn_new&quot; Caption="Add" Type="Button" <font color="#0000FF">Function=&quot;ShowPopup(demo.FMAttendeePopup)&quot;
+FunctionTarget=&quot;Popup&quot;</font>/&gt;</p>
+<p>On the popup form, add a button to call AddToParent() to add the current
+selected record to the parent form (the form trigger the popup).&nbsp;</p>
+</blockquote>
+<ul>
+  <li><b> Configure a BizCtrl to show popup</b></li>
+</ul>
+<blockquote>
+<p>To configure a BizCtrl to show popup from, user ValuePicker attribute.</p>
+<p>&lt;BizCtrl Name=&quot;reg_attdln&quot; FieldName=&quot;AttdLName&quot;
+DisplayName=&quot;Last Name" <font color="#0000FF">ValuePicker=&quot;FMAttendeePopup&quot;</font>/&gt;</p>
+<p>On the popup form, add a button to call JoinToParent() to join the current
+selected record to the parent form (the form trigger the popup).</p>
+
+</blockquote>
+
+<p><b> Configure drilldown link to another view</b></p>
+
+<p>You can configure a BizCtrl associated with a hyperlink (drilldown link) which changes current
+view to another view who has the detailed information of that BizCtrl.</p>
+<p>In a BizForm, set a DillDownLink attribute of a BizCtrl. Syntax is<b>  
+ DrillDownLink=&quot;OtherView,OtherBizForm.OtherBizCtrl=MyBizCtrl&quot;.</b><br>
+<b>OtherView</b> - a view name the link takes to;<br>
+<b>OtherBizForm</b> - an independent BizForm, which is not a subforml of any other
+BizForm, in OtherView;<br>
+<b>OtherBizCtrl</b> - a BizCtrl of OtherBizForm<br>
+<b>MyBizCtrl</b> - a BizCtrl in current BizForm&nbsp;</p>
+<h4><b> Select field data from comboBox or ListBox</b></h4>
+<p><b>- Bind static list to comboBox</b></p>
+<p>In your BizForm, you assign SelectFrom=&quot;Selection(Fee)&quot; for a
+BizCtrl, which means this
+field control is a comboBox whose data is from the &quot;Fee&quot; elements in Selection.xml file. Please see example in
+demo FMRegist.xml where BizCtrl reg_fee is defined as a comboBox.<br>
+&lt;Selection&gt;<br>
+&nbsp; &lt;Fee Value=&quot;&quot;/&gt;<br>
+&nbsp; &lt;Fee Value=&quot;15&quot;/&gt;<br>
+&nbsp; &lt;Fee Value=&quot;20&quot;/&gt;<br>
+&lt;/Selection></p>
+<p>Also, you can give both value and text. If only give value, openbiz uses the
+value as the display text.<br>
+&lt;Selection&gt;<br>
+&nbsp;&nbsp; &lt;ChartOption Value="AAA" Text=&quot;BarLine Chart"/><br>
+&nbsp;&nbsp; &lt;ChartOption Value="BBB" Text="Pie Chart"/><br>
+&nbsp;&nbsp; &lt;ChartOption Value=&quot;CCC&quot; Text=&quot;GroupBar Chart"/><br>
+&lt;/Selection><br>
+You can make up your own xml file that has list of values for selection.</p>
+<p><b>- Bind dynamic list (Table column) to comboBox</b></p>
+<p>In your BizForm, you assign <b> SelectFrom=&quot;BizObjName[BizFieldName]&quot;</b> for a
+BizCtrl, which means this
+field control is a comboBox whose data is from the table column mapping to the
+BizFieldName of the BizObjName. To avoid same values appear in the comboBox, you
+need to make sure the BizObj query returns an unique list.</p>
+<p>Format <b>SelectFrom=&quot;BizObjName[BizFieldName4Text:BizFieldName4Value]&quot;</b>
+is supported too. So users can show BizFieldName4Text field in comboBox and set BizFieldName4Value for value.</p>
+<h4>Controlling page navigation</h4>
+<p>Openbiz has an unique concept of display mode. BizForm can have more than one
+display modes. Basically each display mode is a rendering mode of the BizForm. A
+Bizform presents a BizDataObj data to UI, the same data set can be rendered in
+different modes which is called &quot;display modes&quot;.</p>
+<p><b>- Display modes in a BizForm</b></p>
+<p>Display modes are specified in &lt;DisplayModes&gt; section of BizForm
+metadata file. You can associate smarty template with each mode. For detail
+please refer to <a name="dev_tpl" href="#dev_tpl">build view and form web templates</a>.</p>
+<p>Usually a BizForm can have READ, NEW, EDIT, QUERY display modes. But no limit
+to associate any display mode to the BizForm. An example is under /demoapp/metadata/shared/FMCalendar.xml.
+It has display modes as &quot;LIST&quot;, &quot;DAY&quot;, &quot;WEEK&quot;,
+&quot;MONTH&quot;.</p>
+<p>Switching between display modes in a BizForm is done in code by calling
+BizForm method SetDisplayMode($mode). Code may be applied to each display mode
+to implement special logic.</p>
+<p><b>- Page redirection after an action is finished</b></p>
+<p>It's very common that users click on a button to trigger an action on server
+side and after the action is finished the page is redirected to another page.
+Page redirection can be specified as a post action in BizForm metadata file. The
+syntax is</p>
+<p>&lt;Control Name=&quot;...&quot; Function=&quot;...&quot; PostAction=&quot;url|view&quot;/&gt;
+PostAction can accept <font color="#0000FF">url:url_string </font>or <font color="#0000FF">view:view_name</font>.</p>
+<p>An example is the login form demoapp/metadata/shared/FMAuth.xml</p>
+<p>&lt;Control Name="btn_submit" Image="" Caption="Submit" Type="HTMLButton" Function="Login()"
+<font color="#0000FF"> PostAction="url:login.php?login=success&quot;</font>/&gt;</p>
+<p>If the action errors out, application should return error page or error popup
+to browser.</p>
+<h4><b> Present data with various HTML elements</b></h4>
+<p>HTMLControl or FieldControl can present its data with various HTML elements by
+specifying element type and attributes. HTML elements are
+displayed in edit/query modes</p>
+<table border="1" width="800" cellspacing="0" cellpadding="2">
+  <tr>
+    <td bgcolor="#C0C0C0" colspan="9">
+      <p align="center"><b>Attributes of HTMLControl or FieldControl element in BizForm</b></td>
+    <td bgcolor="#EAEAEA" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#C0C0C0"><b>Type</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Width</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Height</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>HTMLAttr*</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Style**</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>SeclectFrom</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Caption</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Function</b></td>
+    <td bgcolor="#C0C0C0" align="center"><b>Image</b></td>
+    <td bgcolor="#EAEAEA" align="center"><b>Comments</b></td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Text</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T1"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Limit
+      the input length</font></a></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnChange</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top" bgcolor="#EAEAEA">Single line text input.
+      Default type</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Textarea</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnChange</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Multi-line Text input</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>ListBox</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T2"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Show
+      ListBox or ComboBox</font></a></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T3"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Set
+      list of values</font></a></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnChange</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">ListBox or ComboBox</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>CheckBox</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T4"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Set
+      True value</font></a></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">CheckBox</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Radio</b></td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Arrange
+      radio list&nbsp;</font></a></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T3"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Set
+      list of values</font></a></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Radio buttons</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>HTMLButton</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Standard HTML Button</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>SubmitButton</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Standard HTML Submit
+      Button</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>ResetButton</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Standard HTML Reset Button</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Password</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">HTML password</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Button</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x<br>
+      <font size="2">OnClick</font></td>
+    <td align="center" valign="top">x</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">OpenBiz image button</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Date</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Textbox with date picker
+      icon</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Datetime</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Textbox with datetime
+      picker icon</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>HTMLBlock</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x<br>
+      <a href="#Note_T6"><img border="0" src="pin.gif" width="13" height="15"><font size="2">Special
+      Characters</font></a></td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">Caption is treated as HTML
+      block</td>
+  </tr>
+  <tr>
+    <td valign="top"><b>FunctionColumn</b></td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td align="center" valign="top">x</td>
+    <td align="center" valign="top">x</td>
+    <td bgcolor="#EAEAEA" align="center" valign="top">This type doesn't map to a
+      data field</td>
+  </tr>
+</table>
+<p>* HTMLAttr field can contain any valid additional HTML attribute applied on
+the HTML element type</p>
+<p>** Style field can contain any valid style properties (css)</p>
+<p><b><a name="Note_T1"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Limit
+the input length:</b>&nbsp;</i></p>
+<p>HTMLAttr=&quot;maxlength=N&quot; to limit the maximum number of characters
+that the user can enter in a text control.&nbsp;</p>
+<p><b><a name="Note_T2"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Show
+ListBox or ComboBox:</b>&nbsp;</i></p>
+<p>By default show comboBox. If HTMLAttr=&quot;size=N&quot;, show N-row listbox.</p>
+<p><b><a name="Note_T3"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Set
+list of values:</b>&nbsp;</i></p>
+<p> SelectFrom=&quot;XmlFile(Key)&quot; means this field control is a listbox or radio
+buttons whose data is from the &quot;Key&quot; elements in XmlFile.</p>
+<p><b><a name="Note_T4"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Set
+True value:</b>&nbsp;</i></p>
+<p> SelectFrom=&quot;Value&quot; means this checkbox returns the Value when user
+check the checkbox.</p>
+<p><b><a name="Note_T5"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Arrange
+radio list:&nbsp;</b></i></p>
+<p>By default the radion buttons are arranged horiztionally. If HTMLAttr=&quot;wide=1&quot;,
+you can force them arranged vertically.</p>
+<p><b><a name="Note_T6"></a></b><i><a href="#Note_T5"><img border="0" src="pin.gif" width="13" height="15"></a><b>Special
+characters:&nbsp;</b></i></p>
+<p>&quot;&lt;&quot; and &quot;&gt;&quot; used in HTML block have to be replaced
+by &quot;&amp;lt;&quot; and &quot;&amp;gt;&quot;.</p>
+<p>&nbsp;</p>
+<h2>Openbiz Development Guide</h2>
+
+<h3>Show openbiz views (pages)<a name="dev_view"></a></h3>
+<p><b>- User URL string as</b>   controller.php?view=...&amp;form=...&amp;rule=...&amp;mode=...&amp;OtherInputs...</p>
+<p>- <b>Use client javascript GoToView(</b>view, rule,
+loadPageTarget<b>)</b></p>
+<table border="1" width="72%" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="7%" bgcolor="#C0C0C0"><b>Input</b></td>
+    <td width="23%" bgcolor="#C0C0C0"><b>Description</b></td>
+    <td width="25%" bgcolor="#C0C0C0"><b>Sample</b></td>
+  </tr>
+  <tr>
+    <td width="7%"><b>view</b></td>
+    <td width="23%">bizview name</td>
+    <td width="25%">shared.CalDetailView</td>
+  </tr>
+  <tr>
+    <td width="7%"><b>form</b></td>
+    <td width="23%">bizform name. This form must not depend on (a subform
+      of) another bizform
+    </td>
+    <td width="25%">shared.FMCalDetail</td>
+  </tr>
+  <tr>
+    <td width="7%"><b>rule</b></td>
+    <td width="23%">the search rule of a bizform
+      <p>syntax is &quot;<b>form.ctrl operator value</b>&quot;.<br>
+      <b>operator</b> can be =,>,>=,&lt;,&lt;=,!=. "LIKE %" SQL format is also valid rule.
+      &quot;AND&quot;, &quot;OR&quot; can be used to add more restriction.</p>
+    </td>
+    <td width="25%">FMSponsor.spr_exp&gt;=12000&nbsp;
+      <p>FMSponsor.spr_name=\'Midas Auto\' OR FMSponsor.spr_id=\'SPSR_2\'</p>
+      <p>FMSponsor.spr_name LIKE \'S%\'</td>
+  </tr>
+  <tr>
+    <td width="7%"><b>loadPageTarget</b></td>
+    <td width="23%">the window or frame target to load the page</td>
+    <td width="25%">&nbsp;</td>
+  </tr>
+</table>
+<h3>Build view and form web templates<a name="dev_tpl"></a></h3>
+
+<p>Smarty
+template engine is used in OpenBiz to render the HTML output. We provides some
+basic templates for render BizForm and BizView. You can create your own
+templates. <font color="#FF0000"> Remember that an openbiz form must begin with a form tag &lt;form id={$name} name={$name}&gt;</font>.
+For detail, please refer to <a href="http://smarty.php.net/docs.php">http://smarty.php.net/docs.php</a>&nbsp;</p>
+<h4>- Draw BizForm as a html table</h4>
+<p>In
+BizForm xml file, you need give DataFormat as &quot;<b>block</b>&quot; and
+FormatStyle as &quot;table style, table header style, table odd row style, table
+even row style, table selected row style&gt;<br>
+&lt;Mode ... TemplateFile=&quot;list.tpl&quot; ... DataFormat=&quot;htmltable&quot;
+FormatStyle=&quot;tbl,tbl_head,tbl_rowodd,tbl_roweven,tbl_rowsel,tbl_cell&quot;/&gt;</p>
+<p>In
+template file, {$fmttable}represents form whole html table.</p>
+<p>Please
+refer to demo files FMEvent.xml and list.tpl</p>
+<h4>- Draw BizForm as a set of controls</h4>
+<p>Since the <b> array</b> dataformat output to smarty template is associated array,
+user can easily layout controls by their names. The associated array has format
+as fields[control_name][label] and fields[control_name][control].</p>
+<p>Please
+refer to demo files FMEvent.xml and edit.tpl</p>
+<p><b>Three DataFormats decide what data is passed to templates</b></p>
+<table border="1" width="75%" cellspacing="0" height="124">
+  <tr>
+    <td width="12%" height="14" bgcolor="#EAEAEA"><b>DisplayMode DataFormat</b></td>
+    <td width="60%" height="14" bgcolor="#EAEAEA"><b>Data passed to template</b></td>
+    <td width="15%" height="14" bgcolor="#EAEAEA"><b>Controllability on template</b></td>
+    <td width="13%" height="14" bgcolor="#EAEAEA"><b>Example</b></td>
+  </tr>
+  <tr>
+    <td width="12%" height="14"><b>array</b></td>
+    <td width="60%" height="14">- Variable name to use in template is <b>$fields</b><br>
+      - associated array of single record<br>
+      - array (control_name=&gt;array (&quot;label&quot;=&gt;label_text,
+      &quot;control&quot;=&gt;control_html))</td>
+    <td width="15%" height="14">Highly controllable in template</td>
+    <td width="13%" height="14">edit.tpl</td>
+  </tr>
+  <tr>
+    <td width="12%" height="14"><b>table</b></td>
+    <td width="60%" height="14">- Variable name to use in template is <b>$table</b><br>
+      - 2D array of multiple records<br>
+      - array (index=&gt;array (control1_name=&gt;value1,
+      control2_name=&gt;value2, ...))<br>
+      &nbsp; array[0] is column header<br>
+      &nbsp; array[1-n] are the 1st record to nth record</td>
+    <td width="15%" height="14">Highly controllable in template</td>
+    <td width="13%" height="14">rptlist.tpl</td>
+  </tr>
+  <tr>
+    <td width="12%" height="14"><b>block</b></td>
+    <td width="60%" height="14">- Variable name to use in template is <b>$block</b><br>
+      - HTML string</td>
+    <td width="15%" height="14">lowly controllable in template</td>
+    <td width="13%" height="14">list.tpl</td>
+  </tr>
+</table>
+<h3>Using BizDataObj functionalities<a name="dev_dbo"></a></h3>
+<p>Only basic usage of BizDataObj is listed below. Please refer to the API doc
+for details.</p>
+<h4><b>Query and get results</b></h4>
+<blockquote>
+  <p>1.x BizObj is renamed as BizDataObj in 2.0, because it mainly acts as
+  business data unit.&nbsp;</p>
+  <p>1.x use GetField and SetField to do get and set field values. In 2.0, no
+  field level methods, but using GetRecord() and UpdateRecord() method to do
+  record level operations. The idea behind is to make easier coding to retrieve
+  query results and provide coarse-grained interfaces between 2 layers.</p>
+  <p><b>1.x way to query and get records</b></p>
+  <p>$bizobj-&gt;SetSearchRule(&quot;...&quot;);&nbsp;&nbsp;&nbsp; <font color="#008080">//
+  set search rule</font><br>
+  $bizobj-&gt;RunSearch(-1);&nbsp;&nbsp;&nbsp; <font color="#008080">// run
+  query against the database tables.&nbsp;</font><br>
+  $bizobj-&gt;Home();&nbsp;&nbsp;&nbsp; <font color="#008080">// reset the
+  result record set</font><br>
+  $hasVal = $bizobj-&gt;MoveFirst();&nbsp;&nbsp;&nbsp; <font color="#008080">//
+  move cursor to first record</font><br>
+  while ($hasVal)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp; foreach ($fieldlist as $field)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $field_val[] = $bizobj-&gt;GetField($field);<font color="#008080"><br>
+  &nbsp;&nbsp;&nbsp;</font> <font color="#008080">// user logic code can be put
+  here.&nbsp;</font><br>
+  &nbsp;&nbsp;&nbsp; $hasVal = $bizobj-&gt;MoveNext();&nbsp;&nbsp;&nbsp; <font color="#008080">//
+  move cursor to next record</font><br>
+  }</p>
+  <p><b>2.0 way to query and get records - option 1</b></p>
+  <p>$bizobj-&gt;SetSearchRule(&quot;...&quot;);&nbsp;&nbsp;&nbsp; <font color="#008080">//
+  set search rule</font><br>
+  $bizobj-&gt;RunSearch(-1);&nbsp;&nbsp;&nbsp; <font color="#008080">// run
+  query against the database tables.&nbsp;query results can be cached<br>
+  </font>while ($recArray = $bizobj-&gt;GetRecord(1))&nbsp;&nbsp;&nbsp; <font color="#008080">//
+  get current record and move the cursor to the next record&nbsp;<br>
+  </font>{<br>
+  &nbsp;&nbsp;&nbsp; <font color="#008080">// user logic code can be put here.
+  recArray is an associated array whose key is &quot;fieldname&quot; and value
+  is value of the field<br>
+  </font>}</p>
+<p><b>2.0 way to query and get records - option 2</b></p>
+  <p>$bizobj-&gt;FetchRecords ($searchRule, $resultSet, $numRecords);&nbsp;&nbsp;&nbsp;
+  <font color="#008080">// get the whole recordset (list of recArray), query
+  results won't be cached</font></p>
+</blockquote>
+<h4>Insert, Update and Delete a record&nbsp;</h4>
+<blockquote>
+  <p><font color="#008080">// Insert Record</font><br>
+  $recArr = $boUser-&gt;NewRecord();&nbsp;&nbsp;&nbsp; <font color="#008080">//
+  NewRecord returns an empty record array with a generate Id field</font><br>
+  $recArr[&quot;LastName&quot;] = &quot;Test&quot;;<br>
+  $recArr[&quot;FirstName&quot;] = &quot;Add&quot;;<br>
+  $ok = $boUser-&gt;InsertRecord($recArr);<br>
+  if (!$ok)&nbsp;&nbsp;&nbsp;&nbsp; <font color="#008080">// handle error
+  message</font><br>
+  &nbsp; print $boUser-&gt;GetErrorMessage();<br>
+  <br>
+  <font color="#008080">// Update a record</font><br>
+  $boUser-&gt;SetSearchRule(&quot;[Id]='USER-1006'&quot;);<br>
+  $boUser-&gt;RunSearch();<br>
+  $recArray = $bizobj-&gt;GetRecord(0);<br>
+  $recArray[&quot;FirstName&quot;] = &quot;Update&quot;;<br>
+  $ok = $boUser-&gt;UpdateRecord($recArray);<br>
+  if (!$ok)&nbsp;&nbsp;&nbsp;&nbsp; <font color="#008080">// handle error
+  message</font><br>
+  &nbsp; print $boUser-&gt;GetErrorMessage();<br>
+  <br>
+  <font color="#008080">// Delete a record</font><br>
+  $boUser-&gt;SetSearchRule(&quot;[Id]='USER-1006'&quot;);<br>
+  $boUser-&gt;RunSearch();<br>
+  $recArray = $bizobj-&gt;GetRecord(0);<br>
+  $ok = $boUser-&gt;DeleteRecord($recArray);<br>
+  if (!$ok)&nbsp;&nbsp;&nbsp;&nbsp; <font color="#008080">// handle error
+  message</font><br>
+  &nbsp; print $boUser-&gt;GetErrorMessage();</p>
+</blockquote>
+<h3>Using BizForm functionalities<a name="dev_form"></a></h3>
+<p>User can configure function in BizForm metadata file to invoke appropriate
+action on server side. The commonly used BizForm methods are listed below.
+Please refer to the API doc for details.</p>
+<p><b>Query and show results</b></p>
+<ul>
+  <li>SearchRecord - show the query record mode</li>
+  <li>RearchRecord - Issue the query with user input in query mode and return to
+    read mode</li>
+</ul>
+<p><b>Insert a new record</b></p>
+<ul>
+  <li>NewRecord - show the new record mode</li>
+  <li>SaveRecord - Save current edited record with user input in query mode and
+    return to read mode</li>
+</ul>
+<p><b>Update a record</b></p>
+<ul>
+  <li>EditRecord - show the edit record mode on current focus record</li>
+  <li>SaveRecord - Save current edited record with user input in query mode and
+    return to read mode</li>
+</ul>
+<p><b>Delete a record</b></p>
+<ul>
+  <li>DeleteRecord - delete the current focus record</li>
+</ul>
+<p><b>Copy a record</b></p>
+<ul>
+  <li>CopyRecord - copy the current focus record to new record</li>
+</ul>
+<p><b>Page Navigation</b></p>
+<ul>
+  <li>MoveNext - show next page records</li>
+  <li>MovePrev - show previous page records</li>
+</ul>
+<h3>Extend OpenBiz classes<a name="dev_ext"></a></h3>
+<p>OpenBiz provide many functionalities to building a complicated web
+application. But different application has different requirement, so you may
+extend OpenBiz packages to build customer oriented application.</p>
+<p>Because OpenBiz packages are based on object-oriented design, you can easily
+build up your own object by extending these packages and inherit all useful
+functions provided by them.</p>
+<p>Extended classes are automatically loaded on demand. Extended
+class&nbsp; must be included in a file with format as ClassName.php.</p>
+<p>Use can specify class name for BizDataObj, BizField, BizView, BizForm,
+BizCtrl, Control and PluginService by filling the &quot;Class&quot; attribute of in metadata
+file</p>
+<table border="1" width="38%" cellspacing="0" cellpadding="3">
+  <tr>
+    <td width="23%" bgcolor="#CCCCCC"><b>Base Class</b></td>
+    <td width="77%" bgcolor="#CCCCCC"><b>Where to specify the extend class</b></td>
+  </tr>
+  <tr>
+    <td width="23%">BizDataObj</td>
+    <td width="77%">&lt;BizDataObj ... Class=&quot;&quot; ...&gt;</td>
+  </tr>
+  <tr>
+    <td width="23%">BizField</td>
+    <td width="77%">&lt;BizField ... Class=&quot;&quot; ...&gt;</td>
+  </tr>
+  <tr>
+    <td width="23%">BizView</td>
+    <td width="77%">&lt;BizView ... Class=&quot;&quot; ...&gt;</td>
+  </tr>
+  <tr>
+    <td width="23%">BizForm</td>
+    <td width="77%">&lt;BizForm ... Class=&quot;&quot; ...&gt;</td>
+  </tr>
+  <tr>
+    <td width="23%">FieldControl</td>
+    <td width="77%">&lt;BizCtrl ... Class=&quot;&quot; ...&gt;</td>
+  </tr>
+  <tr>
+    <td width="23%">HTMLControl</td>
+    <td width="77%">&lt;Control ... Class=&quot;&quot; ...&gt;</td>
+  </tr>
+</table>
+<h4>Example: Extend BizObj and BizForm</h4>
+<p><font face="Courier New" size="2"><font color="#008080">/**<br>
+ * class BOUser is the BizDataObj class to implement USER logic object<br>
+ */</font><br>
+<font color="#0000FF">class</font> BOUser <font color="#0000FF"> extends</font> 
+BizDataObj&nbsp;<br>
+ {<br>
+<font color="#0000FF">&nbsp;&nbsp;&nbsp;</font> <font color="#0000FF">function</font>
+BOUser(<font color="#800000">$xmlFile</font>=<font color="#0000FF">null</font>) {}&nbsp;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;<font face="Courier New">&nbsp;&nbsp; <font color="#0000FF">function</font>
+ my_special_function() {}&nbsp;&nbsp;&nbsp; <font color="#008080">// new function</font><br>
+}&nbsp;</font></font></p>
+<p><font face="Courier New" size="2"><font color="#008080">/**<br>
+ * class FMUser is the BizForm class to implement USER UI object<br>
+ */</font><br>
+<font color="#0000FF">class</font> FMUser <font color="#0000FF"> extends</font>
+BizForm&nbsp;<br>
+ {<br>
+<font color="#0000FF">&nbsp;&nbsp;&nbsp;</font> <font color="#0000FF">   function</font>
+FMUser(<font color="#800000">$xmlFile</font>=<font color="#0000FF">null</font>) {}&nbsp;</font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;<font face="Courier New">&nbsp;&nbsp; <font color="#0000FF">function</font>
+ my_special_function() {}&nbsp;&nbsp;&nbsp; <font color="#008080">// new function</font></font></font></p>
+<p><font size="2">&nbsp;&nbsp;&nbsp;<font face="Courier New">&nbsp;&nbsp; <font color="#0000FF">function</font>
+Render() {}&nbsp;&nbsp;&nbsp;<font color="#008000">  </font><font color="#008080"> // override Render()</font><br>
+}</font></font></p>
+<h3> Implement Plug-in Service<a name="dev_svc"></a></h3>
+<p>Openbiz customer can write their special logic by implement Plug-in
+Service. Plugin services are also metadata-driven objects. Service code is under
+bin/service and metadata is under /metadata/service. The plugin service metadata
+only gives the service name, package and implementing class. Any xml elements
+can be child of the root PluginService element. This is because different services may
+have different metadata configuration. Please refer to the Appendix to see the
+DTD of plugin service metadata xml file.</p>
+<p>Openbiz core library includes services under&nbsp;openbiz/bin/service/ and their
+metadata files under openbiz/metadata/service/.</p>
+<ul>
+  <li>pdfService.php -&nbsp; prints PDF report</li>
+  <li>excelService.php - print Excel output with HTML or CSV formats</li>
+  <li>authService.php - authentication service, please refer to next <a href="#dev_access">chapter
+    </a>for usage</li>
+  <li>accessService.php - view access control service, please refer to next <a href="#dev_access">chapter
+    </a>for usage</li>
+  <li>profileService.php - user profile service, please refer to next <a href="#dev_access">chapter
+    </a>for usage</li>
+  <li>logService.php - write log to file</li>
+  <li>chartService.php - draw business charts based on chart xml definition
+    file. Use Jpgraph library <a href="http://www.aditus.nu/jpgraph/">http://www.aditus.nu/jpgraph/</a>&nbsp;<br>
+    <i>
+    Please refer to the <a href="chartdoc.html">chart
+    service document</a> to understand how to configure chart xml file.</i></li>
+</ul>
+<p>In the application, you can specify your own plugin service implementation
+with following methods.</p>
+<ol>
+  <li>Change the service metadata content under your_app/metadata/service/,
+    still use the core service. For example, you can write different
+    accessService.xml to control the view access rule, but the implementing
+    class is accessService.php in core library. The accessService.xml is
+    like&nbsp;<br>
+    <font color="#0000FF">&lt;PluginService Name="accessService" Package="service"
+    Class=&quot;accessService&quot;&gt;<br>
+    </font><font color="#008000">&nbsp;&nbsp; <i>application specific view
+    access definition</i></font><font color="#0000FF"><br>
+    &lt;/PluginService&gt;</font></li>
+  <li>Specify the service implementing class. For example, different
+    applications have different profile service. The profileService.xml is
+    like&nbsp;<br>
+    <font color="#0000FF">&lt;PluginService Name="profileService" Package="service"
+    Class=&quot;</font><font color="#008000"><i>your_own_service_class</i></font><font color="#0000FF">&quot;&gt;<br>
+    &lt;/PluginService&gt;</font></li>
+  <li>Combine the above 2 methods.</li>
+</ol>
+<p><b>Write a plug-in service</b></p>
+Implement the class and method in the ClassName.php<br>
+    A input argument of the method are the caller's object name (a BizForm name)
+    and the input data string (a collection of form values from client browser).
+    It implements the user-specific business logic and returns void. See the
+    following code snippet.
+  <p><font face="Courier New" size="2"><font color="#0000FF">class</font> pdfService<br>
+  {<br>
+  &nbsp;<font color="#0000FF">function</font> pdfService() {}<br>
+  <br>
+  &nbsp;<font color="#0000FF">function</font> renderView($viewName)<br>
+  &nbsp;{<br>
+  &nbsp; <font color="#0000FF">global</font> $g_BizSystem;<br>
+  &nbsp; <font color="#008080">// get the view object and render the view to a
+  html string</font><br>
+  &nbsp; $viewobj = $g_BizSystem->GetObjectFactory()->GetObject($viewName);<br>
+  &nbsp; <font color="#0000FF">if</font>($viewobj) {<br>
+  &nbsp;&nbsp;&nbsp; $viewobj-&gt;SetConsoleOutput(false);<br>
+  &nbsp; $sHTML = $viewobj-&gt;Render();<br>
+  &nbsp; <font color="#008080">// convert HTML to PDF<br>
+  </font>&nbsp; <font color="#008080">// ... customer code to do the convert</font>&nbsp;<br>
+  </font>&nbsp;<font face="Courier New" size="2">}<br>
+   }</font></p>
+<p><b>Call a plug-in service method</b></p>
+<ul>
+  <li>Call service in form. Define the caller function in BizForm metadata file<br>
+    &lt;... Function=&quot;CallService(ClassName,MethodName)&quot;...&gt; is to
+    call a method &quot;MethodName&quot; of the service &quot;ClassName&quot;.
+    ClassName is a class which defined in ClassName.php under bin/usrlib/
+    directory</li>
+  <li>Call service with url. Use url like bin/BizController.php?F=Invoke&amp;P0=[servicename]&amp;P1=[methodname]&amp;P2=[parameter1]...
+    The example is bin/BizController.php?F=Invoke&amp;P0=[pdfService]&amp;P1=[renderView]&amp;P2=[demo.ReportView]</li>
+  <li>Call service in code.&nbsp;<br>
+    <font face="Courier New" size="2"><font color="#0000FF">global</font> $g_BizSystem;<br>
+    $svcobj = $g_BizSystem-&gt;GetService($class);<br>
+    $svcobj-&gt;$method($this-&gt;m_Name);</font></li>
+</ul>
+<h3>Implement authentication, view and data access control<a name="dev_access"></a></h3>
+<h4>User authentication</h4>
+<p>Openbiz uses authentication service (usrlib/authService.php) to authenticate
+username and password</p>
+<p><font color="#0000FF">public function</font> AuthenticateUser (<font color="#800080">$userid,
+$password</font>) is called to authenticate user.&nbsp;</p>
+<ul>
+  <li>AuthenticateUser by default querys on &quot;User Id&quot; and
+    &quot;Password&quot; fields defined in metadata/shared/BOAuth.xml. If input
+    user id and password is found in in BOAuth, AuthenticateUser returns true.
+    AuthenticateUser method is to be modified to fit customer logic.</li>
+  <li>metadata/shared/SignupView.xml is the default login view. This view can be
+    configured for change the login look and feel.</li>
+</ul>
+<h4>Role-based view access control</h4>
+<p>View access control depended on the AccessControl attribute in view metadata
+file in Openbiz 1.x. From Openbiz RC1, openbiz implements role-based view access
+control in its new security architecture.&nbsp;</p>
+<p>Openbiz uses profile service (usrlib/profileService.php) to get user profile
+that includes &quot;role&quot;. Then match this role to access service (usrlib/accessService.php)
+to determine the users' accessibility to the view</p>
+<p><font color="#0000FF">public function</font> GetProfile (<font color="#800080">$userid=null</font>)
+is called to get user profile array which is an associated array with profile
+key and profile value pairs.</p>
+<ul>
+  <li>Customer must replace the default GetProfile method in openbiz package,
+    because the default GetProfile method returns some randomly made array.</li>
+</ul>
+<p><font color="#0000FF">public function</font> AllowViewAccess (<font color="#800080">$viewName,
+$role=null</font>) is called to check the accessibility of a view</p>
+<ul>
+  <li>accessService has a configuration file (accessService.xml) that defines
+    the view access permission. Please see an example below.</li>
+</ul>
+<blockquote>
+  <p><img border="0" src="accessCfg.gif" width="300" height="222"></p>
+</blockquote>
+<ul>
+  <li>The xml configuration file is easy to understand. Customer needs to put
+    their own logic in the accessService.xml.</li>
+</ul>
+<h4>Attribute-based data access control</h4>
+<p>Openbiz uses profile service (usrlib/profileService.php) to get user profile
+that includes attributes. Then based on these attributes to determine
+browse/update/delete permission of data record. The data access permissions are
+controlled in BizDataObj.</p>
+<p>User can refer to attributes by <font color="#0000FF">@profile:attribute</font>
+in BizDataObj metadata files. Profile attributes are all from profileService.
+When user first login, profileService returns a profile array that is saved in
+session. If an attribute is found in the profile array, the attribute value is
+returned. If the profile array doesn't contain such attribute, profileService
+method GetAttribute ($userid, $attr) is called to return the attribute value.
+Customer must implement GetAttribute method with their own logic.</p>
+<p><b>- Data browse permission</b>. A typical access control requirement is to limit the accessibility of table
+record to different users. This feature can be achieved by configuring
+AccessRule in BizDataObj metadata file. We do the configuration with the following two scenario.</p>
+<table border="1" cellspacing="0" width="609">
+  <tr>
+    <td align="left" bgcolor="#C0C0C0" width="257"><b>Scenario&nbsp;</b></td>
+    <td align="left" bgcolor="#C0C0C0" width="342"><b>Configuration</b></td>
+  </tr>
+  <tr>
+    <td align="left" width="257">Event can be only accessed by the owner
+      <p>(personal access control)</td>
+    <td align="left" width="342">&lt;BizDataObj Name=&quot;Event&quot; ...
+      AccessRule=&quot;[OwnerId]='@profile:ORGID'&quot; ...&gt;
+      <p>&lt;BizField Name=&quot;OwnerId&quot; Column=&quot;OWNER_ID&quot;/&gt;</td>
+  </tr>
+  <tr>
+    <td align="left" width="257">Event can be accessed by all invited
+      attendees&nbsp;
+      <p>(if the login user is one of the attendees, he can access the event)</td>
+    <td align="left" width="342">&lt;BizDataObj Name=&quot;Event&quot; ...
+      AccessRule=&quot;[AttendeeId]='@profile:USERID'&quot;
+      ...&gt;
+      <p>&lt;BizField Name=&quot;AttendeeId&quot; Column=&quot;ATTD_ID&quot;
+      Join=&quot;Attendee&quot;/&gt;</p>
+      <p>&lt;Join Name=&quot;Attendee&quot; Table=&quot;evts_attds&quot;
+      Column=&quot;EVT_ID&quot; ColumnRef=&quot;SYSID&quot; JoinType=&quot;LEFT JOIN"/&gt;</td>
+  </tr>
+</table>
+<p><b>- Data update permission</b>. UpdateCondition is to control the record
+update permission. UpdateCondition expects true or false. A sample is
+UpdateCondition = &quot;{[OrgId]==@profile:ORGID}&quot;. {} is the evaluated as simple expression.</p>
+<p><b>- Data delete permission</b>. DeleteCondition is to control the record
+delete permission. DeleteCondition expects true or false. A sample is
+DeleteCondition = &quot;{'admin'==@profile:ROLEID}&quot;</p>
+<h3> Simple Expression support<a name="dev_sel"></a></h3>
+For the Value attribute of BizField, openbiz accepts <b>simple expression</b>.
+The syntax is &lt;BizField ... Value=&quot;expression&quot;&gt;. If users need
+more complicated logic which can't be put in a simple expression, they can
+assign a user-defined BizField class and override GetValue method.<br>
+The simple expression is a single PHP statement which return a value.
+[fieldname] in the expression stands for the value of the BizField. (todo: user
+should be able to refer BizDataObj's varible in the expression). Following
+operators are valid.
+<ul>
+  <li>Arithmetic: +, - (binary), *, / and div, % and mod, - (unary)
+  <li>Logical: and, &amp;&amp;, or, ||, not, !
+  <li>Relational: ==, !=, &lt;, &gt;, &lt;=, &gt;=.&nbsp; Comparisons can be
+    made against other values, or against boolean, string, integer, or floating
+    point literals.
+  <li>Empty: The empty operator is a prefix operation that can be used to
+    determine whether a value is null or empty.
+  <li>Conditional: A ? B : C. Evaluate B or C, depending on the result of the
+    evaluation of A.&nbsp;</li>
+</ul>
+<p>Simple expression is not only used in BizField Value, also can be used in
+other place. Here's the list</p>
+<table border="1" cellspacing="0" width="539">
+  <tr>
+    <td align="left" bgcolor="#C0C0C0" width="179"><b>Where to use simple
+      expression&nbsp;</b></td>
+    <td align="left" bgcolor="#C0C0C0" width="350"><b>Sample usage</b></td>
+  </tr>
+  <tr>
+    <td align="left" width="179">Value of BizField</td>
+    <td align="left" width="350">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" width="179">Validator of BizField</td>
+    <td align="left" width="350">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" width="179">SearchRule, SortRule, OtherSQLRule of
+      BizDataObj</td>
+    <td align="left" width="350">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" width="179">AccessRule, UpdateCondition, DeleteCondition od
+      BizDataObj</td>
+    <td align="left" width="350">&nbsp;</td>
+  </tr>
+</table>
+<h3> Make your own calendar and timestamp picker<a name="dev_cal"></a></h3>
+Change the look-and-feel of calendar and timestamp picker<br>
+    <i>Modify the stylesheet file popcalendar.css under openbiz_root/css.</i>
+<p>&nbsp;Change the text shown on the calendar and timestamp picker<br>
+    <i>Modify the variables definition part of popcalendar.js under openbiz_root/.</i>
+<h3>Debug strategies<a name="dev_debug"></a></h3>
+<p>- <b>Logging</b>. BizSystem::log() method&nbsp; can be called to log 4
+priority levels LOG_EMERG, LOG_ERR, LOG_WARNING and LOG_DEBUG. Also a subject
+can be specified to give log messages different categories. The error is logged under
+/log/log_error.html, open it and you may find
+    out what's wrong</p>
+<p>- <b>Debugging</b>. Other than the DEBUG flag in 1.1.x is still valid,
+developers can turn on other 2 debug flags.<br>
+&nbsp; 1) Open the sysheader.inc under /bin, turn on debug log by changing&nbsp;<strong>define(&quot;DEBUG&quot;,
+    1);</strong> Then you'll see some debug information in /log/log_debug.html.
+    This debug file records mainly the database calls and other operations<br>
+&nbsp; 2) Turn on SQL debug flag. Uncomment <font color="#008080">//$this-&gt;m_DbConnection[$rDBName]-&gt;debug
+= true;</font> in BizSystem::GetDBConnection().<br>
+&nbsp; 3) Turn on RPC debug flag, each RPC response is printed in a separate
+window. Set <b>var RPC_DEBUG = <font color="#ff0000">true</font></b>; in
+clientUtil.js.</p>
+<h3>API document<a name="dev_api"></a></h3>
+<p><a href="apidoc20/index.html">Openbiz 2.0 API document</a></p>
+<h2>Appendix&nbsp; - metadata DTD files<a name="apx_dtd"></a></h2>
+<p><b>BizDataObj metadata DTD file</b></p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td width="100%">
+        <pre><font size="2">&lt;!--OpenBiz BizObj metadata DTD--&gt;
+
+&lt;!ELEMENT BizObj (BizFieldList) &gt;
+&lt;!ATTLIST BizObj    Name                        CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizObj    Description                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizObj    Package                     CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    Class                       CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizObj    InheritFrom                 CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    Table                       CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizObj    SearchRule                  CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    SortRule                    CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    OtherSQLRule                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizObj    CacheMode                   CDATA  #IMPLIED &gt;
+
+&lt;!ELEMENT BizFieldList (BizField+) &gt;
+&lt;!ELEMENT BizField EMPTY &gt;
+&lt;!ATTLIST BizField    Name                      CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizField    Class                     CDATA  #IMPLIED &gt;
+<font color="#0000ff">&lt;!ATTLIST BizField    Join                      CDATA  #IMPLIED &gt;</font><font color="#ff0000"><strike>
+</strike></font><font color="#0000ff">&lt;!ATTLIST BizField    Column                    CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizField    SQLExpr                   CDATA  #</font><font color="#0000FF">IMPLIED</font> <font color="#0000ff">&gt;
+</font>&lt;!ATTLIST BizField    Type                      CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Format                    CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Required                  CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Validator                 CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizField    Value                     CDATA  #IMPLIED &gt;</font></pre>
+        <pre><font color="#0000ff" size="2">&lt;!ELEMENT TableJoins (Join+) &gt;
+&lt;!ELEMENT Join EMPTY &gt;
+&lt;!ATTLIST Join    Name                      CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Join    Table                     CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Join    Column                    CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Join    JoinRef                   CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Join    ColumnRef                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Join    JoinType                  CDATA  #REQUIRED &gt;
+
+&lt;!ELEMENT ObjReferences (Object+) &gt;
+&lt;!ELEMENT Object  EMPTY &gt;
+&lt;!ATTLIST Object  Name                      CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Object  Description               CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Object  Relationship              CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Object  Table                     CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Object  Column                    CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Object  FieldRef                  CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Object  CascadeDelete             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Object  XTable                    CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Object  XColumn1                  CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Object  XColumn2                  CDATA  #IMPLIED &gt;</font></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><b>BizView metadata DTD file.</b></p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td width="100%">
+        <pre><font size="2">&lt;!--OpenBiz BizView metadata DTD--&gt;
+      
+&lt;!ELEMENT BizView (ControlList) &gt;
+&lt;!ATTLIST BizView    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizView    Description          CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizView    Package              CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizView    Class                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizView    Template             CDATA  #IMPLIED &gt;
+
+&lt;!ELEMENT ControlList (Control+) &gt;
+&lt;!ELEMENT Control EMPTY &gt;
+&lt;!ATTLIST Control    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    Form                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    SubCtrls             CDATA  #IMPLIED &gt;</font></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><b>BizForm metadata DTD file.</b></p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td width="100%">
+        <pre><font size="2">&lt;!--OpenBiz BizForm metadata DTD--&gt;
+
+&lt;!ELEMENT BizForm (BizCtrlList, DisplayModes, Toolbar, Navbar) &gt;
+&lt;!ATTLIST BizForm    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    Description          CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    Package              CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizForm    Class                CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    InheritFrom          CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizForm    jsClass              CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    Title                CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    BizDataObj           CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    PageSize             CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizForm    SearchRule           CDATA  #IMPLIED &gt;
+
+&lt;!ELEMENT BizCtrlList (BizCtrl+) &gt;
+&lt;!ELEMENT BizCtrl EMPTY &gt;
+&lt;!ATTLIST BizCtrl    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizCtrl    Class                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    FieldName            CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizCtrl    DisplayName          CDATA  #REQUIRED &gt;
+&lt;!ATTLIST BizCtrl    Type                 CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Width                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Height               CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    HTMLAttr             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Function             CDATA  #IMPLIED &gt;
+<font color="#0000ff">&lt;!ATTLIST BizCtrl    FunctionTarget       CDATA  #IMPLIED &gt;
+</font>&lt;!ATTLIST BizCtrl    Image                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Hidden               (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST BizCtrl    Enabled              (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST BizCtrl    Sortable             (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST BizCtrl    Order                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST BizCtrl    Style                CDATA  #IMPLIED &gt;
+<font color="#0000ff">&lt;!ATTLIST BizCtrl    ValuePicker          CDATA  #IMPLIED &gt;
+</font>&lt;!ATTLIST BizCtrl    SelectFrom           CDATA  #IMPLIED &gt;
+<font color="#0000ff">&lt;!ATTLIST BizCtrl    DrillDownLink        CDATA  #IMPLIED &gt;</font>
+&lt;!ATTLIST BizCtrl    DisplayMode          CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Access               (READ|WRITE) &quot;&quot; &gt;
+<font color="#0000FF">&lt;!ATTLIST Control    PostAction           CDATA  #IMPLIED &gt;</font>
+
+&lt;!ELEMENT Toolbar (Control+) &gt;
+&lt;!ELEMENT Navbar (Control+) &gt;
+&lt;!ELEMENT Control EMPTY &gt;
+&lt;!ATTLIST Control    Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    Class                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Image                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Caption              CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    Type                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Control    Width                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Height               CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    HTMLAttr             CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Function             CDATA  #IMPLIED &gt;
+<font color="#0000ff">&lt;!ATTLIST </font><font color="#0000FF">Control</font><font color="#0000ff">    FunctionTarget       CDATA  #IMPLIED &gt;</font>
+&lt;!ATTLIST Control    Style                CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Hidden               (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST Control    Enabled              (Y|N) &quot;&quot; &gt;
+&lt;!ATTLIST Control    SelectFrom           CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    DisplayMode          CDATA  #IMPLIED &gt;
+&lt;!ATTLIST Control    Access               (READ|WRITE) &quot;&quot; &gt;
+<font color="#0000FF">&lt;!ATTLIST Control    PostAction           CDATA  #IMPLIED &gt;</font></font></pre>
+        <pre><font size="2">&lt;!ELEMENT DisplayModes (Mode+) &gt;
+&lt;!ELEMENT Mode EMPTY &gt;
+&lt;!ATTLIST Mode       Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Mode       TemplateFile         CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Mode       DataFormat           CDATA  #REQUIRED &gt;
+&lt;!ATTLIST Mode       FormatStyle          CDATA  #IMPLIED &gt;</font></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><b>Plugin service metadata DTD file.</b></p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td width="100%">
+        <pre><font size="2">&lt;!--OpenBiz Plugin service metadata DTD--&gt;
+      
+&lt;!ELEMENT PluginService ANY &gt;
+&lt;!ATTLIST PluginService Name                 CDATA  #REQUIRED &gt;
+&lt;!ATTLIST PluginService Description          CDATA  #IMPLIED &gt;
+&lt;!ATTLIST PluginService Package              CDATA  #REQUIRED &gt;
+&lt;!ATTLIST PluginService Class                CDATA  #REQUIRED &gt;</font></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
