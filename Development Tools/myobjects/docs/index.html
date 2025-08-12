@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
+  <head>
+
+    <title> [MyObjects]</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+
+    <meta name="generator" content="DokuWiki" />
+
+    <link rel="stylesheet" media="screen" type="text/css" href="./style.css" />
+
+    <link rel="stylesheet" media="print" type="text/css" href="./print.css" />
+
+    <link rel="shortcut icon" href="./images/favicon.ico" />
+
+    <link rel="start" href="./doku.php?id=" />
+
+    <link rel="contents" href="./doku.php?id=&amp;do=index" title="" />
+
+    <link rel="alternate" type="application/rss+xml" title="Recent Changes" href="./feed.php" />
+
+    <link rel="alternate" type="application/rss+xml" title="Current Namespace" href="./feed.php?mode=list&amp;ns=" />
+
+    <link rel="alternate" type="text/html" title="Plain HTML" href="./doku.php?id=&amp;do=export_html" />
+
+    <link rel="alternate" type="text/plain" title="Wiki Markup" href="./doku.php?id=&amp;do=export_raw" />
+
+        <meta name="robots" content="noindex,nofollow" />
+
+
+    <script language="JavaScript" type="text/javascript" src="./script.js"></script>
+
+
+
+    <script language="JavaScript" type="text/javascript">
+
+    var alertText   = 'Please enter the text you want to format.\nIt will be appended to the end of the document.';
+
+    var notSavedYet = 'There are unsaved changes that will be lost.\nReally continue?';
+
+    var baseURL     = './';
+
+    </script>
+
+
+
+    <!--[if gte IE 5]>
+
+    <style type="text/css">
+
+      /* that IE 5+ conditional comment makes this only visible in IE 5+ */
+
+      img { behavior: url("./pngbehavior.htc"); } /* IE bugfix for transparent PNGs */
+
+    </style>
+
+    <![endif]-->
+
+	</head><body>
+<div class="toc"><div class="tocheader">Table of Contents <script type="text/javascript">showTocToggle("+","-")</script></div><div id="tocinside">
+<ul class="toc">
+<li class="level1"><span class="li"><a href="#myobjects_documentation" class="toc">MyObjects Documentation</a></span>
+<ul class="toc">
+<li class="level2"><span class="li"><a href="#features" class="toc">Features</a></span></li>
+<li class="level2"><span class="li"><a href="#requirements" class="toc">Requirements</a></span></li>
+<li class="level2"><span class="li"><a href="#api_documentation" class="toc">Api Documentation</a></span></li>
+<li class="level2"><span class="li"><a href="#license" class="toc">License</a></span></li>
+<li class="level2"><span class="li"><a href="#download" class="toc">Download</a></span></li>
+<li class="level2"><span class="li"><a href="#getting_started" class="toc">Getting Started</a></span></li></ul>
+</li></ul>
+</div></div>
+
+<a name="myobjects_documentation"></a><h1>MyObjects Documentation</h1><div class="level1">
+<p>
+MyObjects is a set of tools for class generation, database schema generation and object persistence for Php 5 and MySql. It is divided into two sub projects, a <a href="code_generator.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">code generator</a> for class generation and <a href="runtime.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">runtime</a> classes for object mapping. Objects can be mapped to MySql tables and <acronym title="Extensible Markup Language">XML</acronym> files, and can be created from database and xml sources easily.
+</p>
+<p>
+A key feature of MyObjects is generating <em>validation code</em> in your classes depending on the constraints that you have defined. Here is an example code that you can write after creating a class named User in MyObjects:
+</p>
+<pre class="code">try <span class="br0">&#123;</span>
+    <span class="re0">$usr</span> = User::get<span class="br0">&#40;</span><span class="nu0">15</span><span class="br0">&#41;</span>; <span class="co1">// Get the User object with id = 15 from the database</span>
+    <span class="re0">$usr</span>-&gt;<span class="me0">setEmail</span><span class="br0">&#40;</span><span class="st0">'some invalid email'</span><span class="br0">&#41;</span>; <span class="co1">// Throws an InvalidValueException</span>
+    DbModel::update<span class="br0">&#40;</span><span class="re0">$usr</span><span class="br0">&#41;</span>; <span class="co1">// Does not reach this step</span>
+<span class="br0">&#125;</span> catch <span class="br0">&#40;</span>ObjectNotFoundException <span class="re0">$e</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <a target="_blank"  href="http://www.php.net/die"><span class="kw3">die</span></a><span class="br0">&#40;</span><span class="st0">'User with id = 15 could not be found'</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span> catch <span class="br0">&#40;</span>InvalidValueException <span class="re0">$e</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <a target="_blank"  href="http://www.php.net/die"><span class="kw3">die</span></a><span class="br0">&#40;</span><span class="st0">"Error :"</span> . <span class="re0">$e</span>-&gt;<span class="me0">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span> .<span class="st0">' is invalid'</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>
+
+<p>
+<!-- SECTION [0-15] --></p>
+</div><a name="features"></a><h2>Features</h2><div class="level2">
+
+
+<ul>
+<li class="level1"><span class="li">Automatic database schema generation from existing databases</span></li>
+<li class="level1"><span class="li">Web based database schema generation from scratch</span></li>
+<li class="level1"><span class="li">Command line based database and class generation</span></li>
+<li class="level1"><span class="li">Generation of Sql statements from the designed database schema</span></li>
+<li class="level1"><span class="li">Generation of Classes that will map to the database tables. (A seperate class for each table is created)</span></li>
+<li class="level1"><span class="li">Full validation code through setter methods in generated classes</span></li>
+<li class="level1"><span class="li"><a href="http://www.phpdoc.org" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">phpDoc</a> style comments in generated classes</span></li>
+<li class="level1"><span class="li">Minimizes runtime operations by providing many features in generated classes</span></li>
+<li class="level1"><span class="li">Xml serialization of the objects of generated classes and deserializing of the objects from Xml files</span></li>
+<li class="level1"><span class="li">Inplemented in new Php 5 object model</span></li>
+<li class="level1"><span class="li">Uses the new MySqli extension for php to support new features of MySql</span></li>
+<li class="level1"><span class="li">Uses the new libXml based <acronym title="Document Object Model">DOM</acronym> extension to provide generation, parsing and validation of database schema files. (<a href="database_description_language.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Database Description Language</a> Files (DDL)) </span></li>
+</ul>
+
+
+<p>
+<!-- SECTION [16-29] --></p>
+</div><a name="requirements"></a><h2>Requirements</h2><div class="level2">
+
+
+<ul>
+<li class="level1"><span class="li"><a href="http://www.php.net" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">Php 5</a></span></li>
+<li class="level1"><span class="li"><acronym title="Document Object Model">DOM</acronym> Extension for Php 5</span></li>
+<li class="level1"><span class="li">Improved MySql Extension for Php 5</span></li>
+<li class="level1"><span class="li"><acronym title="Practical Extraction and Report Language">Perl</acronym> Type Regular Expressions Support</span></li>
+<li class="level1"><span class="li"><a href="http://www.mysql.com" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">MySql</a> server (Version &gt; 4.1 is needed for prepared statements support)</span></li>
+</ul>
+
+
+<p>
+<!-- SECTION [30-36] --></p>
+</div><a name="api_documentation"></a><h2>Api Documentation</h2><div class="level2">
+<p>
+MyObjects has a full <a href="api/" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">api documentation</a> for the developers who want to get used to the <a href="runtime.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">runtime</a> classes and for the people who want to extend MyObjects. You should especially be familiar with the <a href="api/MyObjectsRuntime/DbModel.html" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">DbModel</a> and <a href="api/MyObjectsRuntime/XmlModel.html" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">XmlModel</a> classes.
+</p>
+<p>
+<!-- SECTION [37-39] --></p>
+</div><a name="license"></a><h2>License</h2><div class="level2">
+<p>
+MyObjects has been released under a BSD-style <a href="licence.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">licence</a>. This essentially means free for any use,
+with the one condition that the author of this software be credited in appropriate documentation.
+</p>
+<p>
+<!-- SECTION [40-43] --></p>
+</div><a name="download"></a><h2>Download</h2><div class="level2">
+<p>
+You can download MyObjects from <a href="http://sourceforge.net/project/showfiles.php?group_id=118271&amp;package_id=128781&amp;release_id=265368" class="urlextern" target="_blank" onclick="return svchk()" onkeypress="return svchk()">Sourceforge Project Page</a>.
+</p>
+<p>
+<!-- SECTION [44-46] --></p>
+</div><a name="getting_started"></a><h2>Getting Started</h2><div class="level2">
+<p>
+To get started with MyObjects you can read the documentation in the following order.
+</p>
+
+<ul>
+<li class="level1"><span class="li"><a href="installation.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Installation</a></span></li>
+<li class="level1"><span class="li"><a href="creating_database_schema.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Creating Database Schema</a></span></li>
+<li class="level1"><span class="li"><a href="generating_classes.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Generating Classes</a></span></li>
+<li class="level1"><span class="li"><a href="runtime.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Using Generated Classes</a></span></li>
+<li class="level1"><span class="li"><a href="deploying_applications.html" class="wikilink1" onclick="return svchk()" onkeypress="return svchk()">Deploying Applications</a></span></li>
+<li class="level1"><span class="li"><a href="tutorial.html" class="wikilink2" onclick="return svchk()" onkeypress="return svchk()">Tutorial</a></span></li>
+</ul>
+
+
+<!-- SECTION [47-] --></div>
+<!-- cachefile ./data/.cache/faa06961ecc2fdf2bfb077c6b9aaf190 used -->
+</body>
+</html>
