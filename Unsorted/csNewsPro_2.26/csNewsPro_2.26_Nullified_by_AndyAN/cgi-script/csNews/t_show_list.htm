@@ -1,0 +1,323 @@
+<html>
+
+<head>
+<title>csNewsPro Management</title>
+<style type="text/css"><!--
+body, p, div, span, th, td{font-family:verdana,arial,sans-serif;font-size:10pt}
+INPUT.button { background-color:#eeeeee;font:verdana;font-weight:bold;color:#000080;font-size:10pt; }
+
+--></style>
+</head>
+
+<body>
+
+<form name="form1" action="in(cgiurl)">
+<input type="hidden" name="command" value="manage">
+<div align="center">
+  <center>
+  <table border="0" width="100%" cellpadding="0" height="100%" cellspacing="0">
+    <tr>
+      <td width="100%" valign="top" align="center">
+      <div align="center">
+        <center>
+        <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0">
+          <tr>
+            <td width="100%">
+            <table border="0" width="100%" cellspacing="0" cellpadding="3">
+              <tr>
+                <td width="100%">
+                <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+                  <tr>
+                    <td width="100%">
+                    <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                      <tr>
+                        <td align="left"><font face="Tahoma" size="5"><b>
+                        csNewsPro Management</b></font></td>
+                        <td align="right">
+                        <p align="right"><font face="Tahoma">
+                        <input class="button" type="button" value="Logout" onClick="window.location='in(cgiurl)?command=login';"></font></p>
+                        </td>
+                      </tr>
+                    </table>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+              <tr>
+                <td width="100%">
+                <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+                  <tr>
+                    <td width="100%">
+                    <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td>
+                        <table border="1" width="100%" bordercolor="#000000" cellspacing="0" cellpadding="5">
+                          <tr>
+                            <td width="100%">
+                            <p align="center"><font face="Tahoma"><b>
+                            <font size="3">Category Management</font></b> </font>
+                            </p>
+                            </td>
+                          </tr>
+                        </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                        <div align="left">
+                          <table border="0" cellpadding="3" cellspacing="0" width="100%">
+                            <tr>
+                              <td>
+                              <p align="right"><font size="2" face="Tahoma"><b>Selected
+                              Category:</b></font></p>
+                              </td>
+                              <td><font face="Tahoma">
+                              <select size="1" name="database" onChange="javascript:document.form1.submit();">
+                              in(databases)in(databasesb)</select></font></td>
+                              <td><font face="Tahoma">
+                              <input class="button" type="button" value="Rename" onClick="ShowRenameDB();">
+                              </font><font face="Tahoma">
+                              <input class="button" type="button" value="Copy" onClick="ShowCopyDB();">
+                              <input class="button" type="button" value="Add New" onClick="ShowAdd();">
+                              <input class="button" type="button" value="Delete" onClick="CheckDelete();"></font></td>
+                            </tr>
+                          </table>
+                        </div>
+                        </td>
+                      </tr>
+                    </table>
+                    </td>
+                  </tr>
+                </table>
+                </td>
+              </tr>
+              </form>
+              <form method="post" action="in(cgiurl)" name="lowform">
+                <tr>
+                  <td width="100%">
+                  <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+                    <tr>
+                      <td width="100%">
+                      <table border="0" width="100%" cellspacing="0" cellpadding="2">
+                        <tr>
+                          <td valign="middle" align="center">
+                          <table border="1" width="100%" bordercolor="#000000" cellspacing="0" cellpadding="5">
+                            <tr>
+                              <td width="100%" valign="middle" align="center">
+                              <p align="center"><font face="Tahoma"><b>
+                              <font size="3">News Item Management</font></b>
+                              </font></p>
+                              </td>
+                            </tr>
+                          </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center" valign="middle">
+                          <p align="center"><font face="Tahoma">
+                          <input class="button" type="button" value="Add News" onClick="javascript:window.location='in(cgiurl)?database=in(database)&amp;command=showadd';"><input class="button" type="button" value="Advanced Settings/Security" onClick="javascript:ShowAdv();"><input class="button" type="button" value="Preview" onClick="javascript:ShowPrev();"><input class="button" type="button" value="Link Wizard" onClick="javascript:ShowLinks('in(database)',null);">
+                          </font></p>
+                          </td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="100%">
+                  <table border="1" cellpadding="5" cellspacing="0" bordercolorlight="#000000" bordercolordark="#FFFFFF" bgcolor="#C0C0C0" width="100%">
+                    <tr>
+                      <td align="center">
+                      <p align="center"><font face="Tahoma"><b><font size="3">in(alabel)</font></b></font></p>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="100%" style="font-family: verdana,arial,sans-serif; font-size: 10pt">
+                  <table cellSpacing="0" borderColorDark="#ffffff" cellPadding="5" width="100%" bgColor="#c0c0c0" borderColorLight="#000000" border="1">
+                    <tr>
+                      <td vAlign="top" align="center" style="font-family: verdana,arial,sans-serif; font-size: 10pt">
+                      <table border="0" cellpadding="2" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+                        <tr>
+                          <td align="center">
+                          <p align="right"><b><font size="2" face="Tahoma">Delete
+                          Selected Items:</font></b></p>
+                          </td>
+                          <td align="center">
+                          <p align="left"><font face="Tahoma">
+                          <input class="button" onclick="Delete();" type="button" value="Delete"></font></p>
+                          </td>
+                          <td align="center">
+                          <p align="right"><b><font face="Tahoma" size="2">Move to:</font></b></p></td>
+                          <td align="center">
+                          <p align="left"><font face="Tahoma">
+                          <select size="1" name="movedatabase">
+                          in(databases)in(databasesa)</select>
+                          <input class="button" onclick="document.lowform.command.value='moveto';document.lowform.submit();" type="button" value="Move"></font></p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center" colspan="4">
+                          <font face="Tahoma"><font size="2">Select Item</font><font size="1">(s)</font><font size="2">
+                          Below then Choose Action Above</font></font></td>
+                        </tr>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="100%" style="font-family: verdana,arial,sans-serif; font-size: 10pt">
+                  <table cellSpacing="0" borderColorDark="#ffffff" cellPadding="5" width="100%" bgColor="#c0c0c0" borderColorLight="#000000" border="1">
+                    <tr>
+                      <td vAlign="top" align="left" style="font-family: verdana,arial,sans-serif; font-size: 10pt">
+                      <table border="1" cellpadding="3" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+                        <tr>
+                          <td width="50" align="center"><b>
+                          <font face="Tahoma" size="1">S</font></b><font face="Tahoma"><b><font size="1">elect</font></b></font></td>
+                          <td width="50" align="center">
+                          <font size="1" face="Tahoma"><b>Item #<br>
+                          </b>(reorder)</font></td>
+                          <td width="50" align="center">
+                          <font size="1" face="Tahoma"><b>Action</b></font></td>
+                          <td><font size="1" face="Tahoma"><b>News Item </b>(
+                          title, date, and description)</font></td>
+                        </tr>
+                        <font face="Tahoma">in(line)</font>
+                      </table>
+                      </td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="100%" style="font-family: verdana,arial,sans-serif; font-size: 10pt">
+                  <table cellSpacing="0" borderColorDark="#ffffff" cellPadding="5" width="100%" bgColor="#c0c0c0" borderColorLight="#000000" border="1">
+                    <tr>
+                      <td width="100%" style="font-family: verdana,arial,sans-serif; font-size: 10pt">
+                      <font face="Verdana" size="2">
+                      <font face="Tahoma" color="#3366ff" size="1">
+                      <p align="center"><font size="2"><b>
+                      <a href="http://www.localhost">
+                      <font color="#3366ff" size="1" face="Tahoma">Powered by csNewsPro
+                      - © 2000,2001 localhost</font></a></b></font></font></p>
+                      </font></td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>
+             </table>
+            </td>
+          </tr>
+        </table>
+        </center>
+      </div>
+      <input type="hidden" name="database" value="in(database)">
+      <input type="hidden" name="command" value="reorder">
+      </td>
+    </tr>
+  </table>
+  </center>
+</div>
+</form>
+
+<a name="lowform"></a><script language="javascript">
+window.location="#in(w)";
+
+function ShowRenameDB(){
+var newName = prompt("Please enter new category name:","new category");
+if(!newName){
+return;
+}
+var rndURL = (1000*Math.random());
+window.location = "in(cgiurl)?database=in(database)&command=rendb&nm="+escape(newName)+"&rnd="+rndURL;
+return true;
+}
+function ShowCopyDB(id){
+var newName = prompt("Please enter new name to copy to:","category copy");
+if(!newName){
+return;
+}
+var rndURL = (1000*Math.random());
+window.location = "in(cgiurl)?database=in(database)&command=copydb&nm="+escape(newName)+"&rnd="+rndURL;
+return true;
+}
+function CheckDelete(){
+var rndURL = (1000*Math.random());
+if (document.form1.database.selectedIndex < 0){
+alert("Error. Please select a list to delete.");
+return true;
+}
+var list = document.form1.database.options[document.form1.database.selectedIndex].text;
+var db = document.form1.database.options[document.form1.database.selectedIndex].value;
+if(confirm("Are you sure you want to delete "+list+"?")){
+window.location = "in(cgiurl)?command=deletedb&database="+db+"&rnd="+rndURL;
+return true;
+}
+else{
+return false;
+}
+}
+
+function CopyItem(id){
+var rndURL = (1000*Math.random());
+window.location = "in(cgiurl)?database=in(database)&command=copyitem&id="+id+"&rnd="+rndURL;
+}
+
+function Delete(){
+if(confirm("Are you sure you want to delete these items?")){
+document.lowform.command.value="deleteitems";
+document.lowform.submit();
+}
+return true;
+}
+function Edit(id){
+var rndURL = (1000*Math.random());
+window.location = "in(cgiurl)?database=in(database)&command=showedit&id="+id+"&rnd="+rndURL;
+return true;
+}
+function View(id){
+var rndURL = (1000*Math.random());
+var windowURL = "in(cgiurl)?database=in(database)&command=viewone&id="+id+"&rnd="+rndURL;
+newWindow = window.open(windowURL,null,'location=0,directories=0,status=0,menuBar=1,scrollBars=yes,resizable=yes');
+newWindow.focus();
+}
+function ShowAdd(){
+var rndURL = (1000*Math.random());
+var windowURL = "in(cgiurl)?database=in(database)&command=showadddb&rnd="+rndURL;
+newWindow = window.open(windowURL,null,'width=500,height=300,location=0,directories=0,status=0,menuBar=1,scrollBars=yes,resizable=yes');
+newWindow.focus();
+return true;
+}
+function ShowPrev(){
+var rndURL = (1000*Math.random());
+var windowURL = "in(cgiurl)?database=in(database)&command=viewnews&rnd="+rndURL;
+newWindow = window.open(windowURL,null,'width=500,height=300,location=0,directories=0,status=0,menuBar=1,scrollBars=yes,resizable=yes');
+newWindow.focus();
+return true;
+}
+function ShowAdv(){
+var rndURL = (1000*Math.random());
+window.location = "in(cgiurl)?database=in(database)&command=showadv&rnd="+rndURL;
+return true;
+}
+function ShowLinks(d,i){
+var rndURL = (1000*Math.random());
+var windowURL = "in(cgiurl)?database=in(database)&command=showlinks&d="+d+"&i="+i+"&rnd="+rndURL;
+var height=600;
+var width=600;
+newWindow = window.open(windowURL,null,'width='+width+',height='+height+',location=0,directories=0,status=0,menuBar=0,scrollBars=yes,resizable=yes');
+newWindow.focus();
+return true;
+}
+</script>
+
+</body>
+
+</html>
