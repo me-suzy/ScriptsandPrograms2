@@ -1,0 +1,43 @@
+<TABLE border="0" width="100%" cellspacing="0">
+<tr>
+
+<td><b>Blogs</b></td>
+
+<td align="right" valign="bottom">
+|
+<?
+//echo "$page";
+$html["links"] = array(
+//		array("title"=>"Categories","href"=>"cats.php",'page'=>'cats'),
+		array("title"=>"Blogs","href"=>"blogs.php",'page'=>'blogs'),
+		array("title"=>"Reinstall","href"=>'blogs_install.php','page'=>'install'),
+	);
+$active_link="";
+//var_dump($_SERVER["REQUEST_URI"]);
+
+foreach ($html["links"] as $item) {
+	if($page != $item['page'] ){
+		$style="	
+			color: #004080;
+			text-decoration: underline;
+			border: none;
+			font-weight: bold;
+			background-color: white;";
+	}
+	else {
+		$style="	
+			padding: 2px;
+			color: white;
+			text-decoration: none;
+			font-weight: bold;
+			background-color: #004080;";
+		$active_link=$item["title"];
+	}
+	?><a href="<?=$item["href"]?>" style="<?=$style?>"><?=$item["title"]?></a> | <?
+}?>
+</td>
+
+</tr>
+<tr><td colspan="2" bgcolor="#004080" height="10"></td></tr>
+</TABLE>
+<br>
