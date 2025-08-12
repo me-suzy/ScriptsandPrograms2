@@ -1,0 +1,23 @@
+<noscript>
+<iframe FRAMEBORDER="0" allowtransparency=true src="random.htm" width="400" height="140" scrollbar=no></iframe>
+</noscript>
+
+<script>
+
+var timer = 0;
+
+var album = "Usa";
+document.write("<a href='?twg_random=1'>");
+document.write("<img id='twg_rand_img' name='twg_rand_img' src='image.php?twg_album=" + album + "&twg_random=1&twg_type=random&twg_random_size=160' border='0' alt='' />");
+document.write("</a>");
+
+window.setTimeout("changeImage()",5000);
+	var timer = 0;
+	function changeImage() {
+	 document.images.twg_rand_img.src='image.php?twg_album=' + album + '&twg_random=1&twg_type=random&twg_random_size=160&timer=' + (timer++);
+	 window.setTimeout("changeImage()",5000);
+	}
+
+</script>
+<br/>
+Random image (overview.htm)
