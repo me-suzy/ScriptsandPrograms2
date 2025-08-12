@@ -1,0 +1,47 @@
+<?php
+require_once('../common.php');
+require_once("../core/documentclass.php");
+			
+?>
+<html>
+<head>
+	<title>Indsæt Bogm&aelig;rke</title>
+	<style type="text/css">
+	body { background-color: buttonface; font-family: Tahoma; font-size: 8pt; }
+	select { font-family: Tahoma; font-size: 8pt; }
+	input { font-family: Tahoma; font-size: 8pt; }
+	td { font-family: Tahoma; font-size: 8pt; }
+	</style>
+	<script language="JavaScript" for="window" event="onload">
+		var url = window.dialogArguments;
+		document.forms[0].name.value = url;
+	</script>
+	
+	<script language="JavaScript" for="OK" event="onclick">
+		window.returnValue = document.forms[0].name.value;
+		window.close();
+	</script>
+
+	<script language="JavaScript" for="CANCEL" event="onclick">
+		window.close();
+	</script>
+</head>
+<body>
+<form>
+<table style="margin: 10px; border-collapse: collapse">
+<tr>
+	<td style="padding: 5px; border-left: 1px solid black; border-top: 1px solid #cccccc; border-bottom: 1px solid black">Navn:</td>
+	<td style="padding: 5px; border-right: 1px solid black; border-top: 1px solid #cccccc; border-bottom: 1px solid black"><input type="text" name="name" ID="NAME" style="width: 200px"></td>
+</tr>
+<tr>
+<td></td>
+	<td align="right" style="padding-top: 5px">
+		<input type="button" id="OK" value="OK" style="width: 80px; height: 22px" default>&nbsp;
+		<input type="button" id="CANCEL" value="Cancel" style="width: 80px; height: 22px">
+	</td>
+</tr>
+</table>
+
+</form>
+</body>
+</html>
