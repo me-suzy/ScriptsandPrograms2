@@ -1,0 +1,51 @@
+<?php
+allow_comments!1
+allow_paragraphs!0
+cat-default!admin
+cat-linkdump!admin
+cats!default|linkdump
+chmod!0644
+cookie_length!1814400
+debug!0
+deflang!eng_utf8
+deftheme!default
+emoticons!1
+encode_email_addresses!0
+extensions_path!extensions/
+installed!0
+log!0
+maxhrefs!5
+mod_rewrite!0
+overview_entriesperpage!20
+ping!0
+ping_urls!rpc.pingomatic.com
+rebuild_threshold!28
+search_index!0
+selfreg!0
+session_length!86000
+sessions!xd5D7mv75jtL|admin|b071e649daac28b31e3740903a18d0b1|1124217494
+sitename!Pivot Powered
+siteurl!http://169.254.196.79/dev/
+targetblank!0
+text_processing!1
+timeoffset!0
+timeoffset_unit!h
+uf-aim!type|0|-|size|15|-|maxlen|25|-|disp|AIM screenname|-|minlevel|1
+uf-email!type|0|-|size|35|-|maxlen|35|-|disp|Email|-|minlevel|1
+uf-heading!disp|User Information Fields|-|size|2|-|type|8
+uf-nick!type|0|-|size|15|-|maxlen|35|-|disp|Nickname|-|minlevel|1
+uf-nickname!type|0|-|size|15|-|maxlen|25|-|disp|Nickname|-|minlevel|1
+uf-wysiwyg!type|0|-|size|15|-|maxlen|25|-|disp|Use Wysiwyg Editor?|-|minlevel|1
+unlink!0
+upload_autothumb!1
+upload_extension!.jpg
+upload_file_name!userfile
+upload_make_safe!0
+upload_max_filesize!5000000
+upload_path!images/
+upload_save_mode!2
+upload_thumb_height!180
+upload_thumb_width!240
+userfields!email|nick
+wysiwyg_editor!0
+?>
