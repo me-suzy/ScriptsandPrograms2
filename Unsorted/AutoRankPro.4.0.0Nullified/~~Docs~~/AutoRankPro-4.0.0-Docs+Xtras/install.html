@@ -1,0 +1,424 @@
+<html>
+<head>
+  <title>AutoRank Pro v4.0.x Installation</title>
+  <link rel="stylesheet" href="http://www.jmbsoft.com/css/style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#003366" alink="#003366" vlink="#003366" text="#000000">
+
+<div align="center">
+
+<font face="Verdana,Arial" size="4">
+
+<b>
+AutoRank Pro v4.0.x Installation
+</b>
+
+<br><br>
+
+<table width="700" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Unix/Linux Installation Instructions</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+<font face="Arial" size="2">
+
+<b>If you need assistance with this software you must use the resources in the CGI Works owners lounge.  See the
+bottom of this file for more details on obtaining technical support.</b>
+
+<br><br>
+
+<b>
+Unless otherwise noted, you are licensed to use the software on a single domain.  If you would like to use the software on more than one domain,
+you will need to purchase additional licenses.  Additional licenses may be purchased though the My Account interface in the owners lounge at
+a discounted rate.
+</b>
+
+<ol>
+<li> At this point it is assumed you have extracted the archive containing AutoRank Pro.  If you have not yet done so,
+you should do that now.
+
+<br><br>
+
+<li> Now you will want to locate Perl 5 on your server.  If you are not sure where to find it, contact your server
+administrator and ask them.  Generally it can be found at /usr/bin/perl or /usr/local/bin/perl
+
+<br><br>
+
+<li> If Perl 5 is located at /usr/bin/perl on your server, you may skip this step.  If it is not, you will need to 
+open each of the .cgi files in a text editor such as Notepad.  Change the first line of each file to point to Perl
+5 on your server.  For example, if Perl 5 is at /usr/local/bin/perl, then the first line will be #!/usr/local/bin/perl
+
+<br><br>
+
+<li> You will now need to login to your server and create some directories for AutoRank Pro.  First off, decide where you
+want the .cgi files installed.  Generally it is a good idea to keep them in a cgi-bin (or equivalent) directory.  Once
+you have decided where you want the .cgi files, change into that directory.  Inside that directory you will need to create
+3 subdirectories; name them templates, data, and admin.  <b>Note:</b> The only files you should place in these directories are the
+ones indicated in this documentation.  Uploading other files can and will cause problems.
+
+<br><br>
+
+Now, you need to decide where you want the HTML files written to.  This will need to be outside of the cgi-bin directory.
+Once you have decided where you want them to go, record that information for later use.
+
+<br><br>
+
+<b>Example Directory Structure:</b>
+
+<br><br>
+
+<table width="100%" cellspacing="1" cellpadding="1" border="0">
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">/home/username/cgi-bin/toplist</font></td>    
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">location of arp.pl and rankem.cgi files</font></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">/home/username/cgi-bin/toplist/admin</font></td>          
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">location of admin.cgi and setup.cgi files</font></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">/home/username/cgi-bin/toplist/data</font></td>          
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">location of script data files</font></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">/home/username/cgi-bin/toplist/templates</font></td>        
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">location of all template files</font></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">/home/username/toplist</font></td>      
+<td bgcolor="#ffffff"><font face="Verdana" size="2" style="font-size: 11px;">where the main HTML files will be generated</font></td>
+</tr>
+</table>
+
+<br><br>
+
+<li> You now need to edit the .htaccess file from the admin directory of the archive.  This is the file that will enable the password
+protection of the admin directory once it is on your server.  A description of what needs to be edited and how to do it can be found 
+in the .htaccess file.  This file should be edited in a text editor.
+
+<br><br>
+
+<li> Now you are ready to begin uploading the files to your server.  <b>VERY IMPORTANT:</b> You must upload <b>ALL</b> of
+the AutoRank Pro files in ASCII mode, or it will not function properly.  If you are not sure how to do this, consult the
+documentation for your FTP client.  If you get a Script Error message saying you may not have stripped the carriage returns,
+this means you did not upload all the files in ASCII mode - try again.
+
+<br><br>
+
+Below is a table of where each file should be uploaded, using the example directory structure above:
+
+<br><br>
+
+<b>/cgi-bin/toplist</b><br>
+accounts.cgi<br>
+arp.pl<br>
+cgiworks.pm<br>
+http.pl<br>
+imgsize.pm<br>
+init.cgi<br>
+out.cgi<br>
+quick.cgi<br>
+random.cgi<br>
+rankem.cgi<br>
+search.cgi<br>
+sort.pl      
+
+<br><br>
+
+<b>/cgi-bin/toplist/admin</b><br>
+.htaccess<br>
+admin.cgi<br>
+setup.cgi
+
+<br><br>
+
+<b>/cgi-bin/toplist/data</b><br>
+.htaccess<br>
+def.html<br>
+errors.dat<br>
+lang.dat
+
+<br><br>
+
+<b>/cgi-bin/toplist/templates</b><br>
+All .htmlt, .etmpl, and .cgit files
+
+<br><br>
+
+<li> Next, you will need to set permissions on the directories and files that AutoRank Pro will be using.  If you are not
+sure how to set permissions, consult the documentation for your FTP client and/or contact your server administrator for
+more information.  Below is a table containing the permissions you will need to set on each directory or file.
+
+<br><br>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="350"><tr><td bgcolor="#aaaaaa">
+
+<table width="100%" cellspacing="1" cellpadding="3" border="0">
+<tr>
+<td bgcolor="#cccccc" align="center"><font face="Verdana" size="2" style="font-size: 11px;"><b>File or Directory</b></font></td>
+<td bgcolor="#cccccc" align="center"><font face="Verdana" size="2" style="font-size: 11px;"><b>Permissions</b></font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">All .cgi Files</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">755</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">arp.pl</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">sort.pl</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">http.pl</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">cgiworks.pm</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">imgsize.pm</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">def.html</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">lang.dat</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">666</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">errors.dat</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">666</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">.htaccess</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">644</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">All .htmlt, .etmpl, &amp; .cgit Files</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">666</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">data directory</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">777</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">admin directory</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">777</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">templates directory</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">755</font></td>
+</tr>
+<tr>
+<td bgcolor="#ececec"><font face="Verdana" size="2" style="font-size: 11px;">Directory where HTML files will be written</font></td>
+<td bgcolor="#ececec" align="center"><font face="Verdana" size="2" style="font-size: 11px;">777</font></td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+These are only the <b>recommended</b> file permissions, and may need to be altered depending on your
+server configuration.  Once you have all permissions set, continue to the next step.
+
+<br><br>
+
+<li>You are now ready to begin the web based portion of the setup.  In your browser, type in 
+the full URL to the init.cgi file on your server. This will initialize the installation, and
+prepare the administrative directory.  Once you have run init.cgi, and received a message indicating
+you may proceed, you can bring up setup.cgi in your browser.  It is also now safe to remove the init.cgi
+file from your server - it is no longer needed.  The default login info to access the
+password protected administrative area is:
+
+<br><br>
+
+Username: admin<br>
+Password: admin
+
+<br><br>
+
+You will then be presented with a page where you will fill in variables and options for the software.  
+After you have set all of the variables, click the button near the bottom of the page.
+If everything went well, you will be presented with a page telling you that the variables have been
+recorded, and some self tests will be done by the script.  If all the tests pass, you are ready to go
+on.  If any of them fail, you will need to check file permissions and directory settings.  If you get
+any error messages after you press the button, you most likely have either a permissions setting wrong
+or one of the variables in arp.cgi is incorrectly set.
+
+<br><br>
+
+<li> You should now be ready to begin using the software.  The first thing you will want to do is
+point your browser to admin.cgi.  Use the same login information as is listed above.
+
+<br><br>
+
+Once inside the admin script you can start exploring the features, but make sure that you change the username/password
+combination soon after your initial installation.  This can be done by selecting the Change Admin Password function
+from the first pull down menu.  Make sure you use a password that contains a combination of letters, numbers, and symbols
+so that it is very difficult to guess.
+
+<br><br>
+
+<li> <font color="red"><b>Help Prevent Software Piracy</b></font>
+
+<br><br>
+
+If you have uploaded the AutoRank Pro zip (or tar or tar.gz) file to your server, remove it now.  Leaving it on your server
+provides a chance for other users to steal it from your web space.  Make sure you never leave a copy of the software where
+other people can access it.
+
+<br><br>
+
+Never share your software with anyone.  The license you purchased is for your use only - you may not give the software to anyone
+under any circumstances.  If you are caught doing this, you will be charged with software piracy and face fines up to $100,000.
+
+<br><br>
+
+Never share your owners lounge username or password with anyone.  Again, that is for your use only.  We will never ask for you
+to send your password to us, so if you ever get an e-mail requesting it you should not send it.
+
+<br><br>
+
+Do not upload the software documentation to your server or share it with anyone.  We keep the documentation in the owners lounge
+so only legitimate customers can access it.  This makes it much more difficult for users of pirated software to figure out how
+to use it.
+
+<br><br>
+
+If you ever find a site that is offering our software for download, please contact us immediately so we can have the site shut 
+down.  Every time our software is pirated instead of purchased, it means less money for us to continue the development of that
+and future software.
+
+</ol>
+
+<br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>After Installation is Complete</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+Once you have completed the installation you will want to get your ranking page setup and ready to accept new members.  You should
+begin reading the <a href="overview.html" class="orange">overview.html</a> documentation file so you can get an understanding of how
+the software works.  This document includes all of the information you will need to begin working with the software.
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#aaaaaa">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#ececec" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Getting Tech Support For Your Software</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+
+<br>
+
+If you need any assistance with this software, you must use the resources in the CGI Works owners lounge.
+This is the only way to contact the tech support department.  Use the following URL, and the login information
+you selected when you purchased the software:
+
+<br><br>
+
+<a href="http://www.jmbsoft.com/owners/" class="orange">http://www.jmbsoft.com/owners/</a>
+
+<br><br>
+
+<b><font color="Red">Important Tech Support Notes:</font></b>
+
+<br><br>
+
+If you edit the scripts in any way other than described above, you will no longer be eligible for technical support.
+We absolutely cannot provide support for edited copies of our software.
+
+<br><br>
+
+The only way we provide support for our commercial scripts is through the owners lounge.
+We do it this way to make sure we are providing support only to those who have paid
+for the scripts and deserve it.  If you post a message at the Freeware Help Board
+it will be deleted - you must post on the Owners Lounge board.  Also, sending
+a plain e-mail to us will be ignored, you must use the tech support request form in the
+Owners Lounge.
+
+<br><br>
+
+These methods also help to ensure that we are not wasting our time providing
+support for illegal copies of our software, and will result in faster responses
+to legitimate owners questions.
+
+<br><br>
+
+Thank You, and enjoy your new software!
+
+</font>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+</body>
+</html>
