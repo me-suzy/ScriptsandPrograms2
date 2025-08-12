@@ -1,0 +1,328 @@
+<?php
+/***************************************************************************
+ * (c)2001-2005 Boesch IT-Consulting (info@boesch-it.de)
+ ***************************************************************************/
+$cookieexpire=time()+(365*24*60*60);
+$cookiermtime=time()-(365*24*60*60);
+if($page=="faqemail")
+{
+	if(isset($filterlang))
+		setcookie($admcookiename."[faqemail_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faqemail_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[faqemail_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faqemail_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="banlist")
+{
+	if(isset($sorting))
+		setcookie($admcookiename."[ban_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[ban_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="mimetype")
+{
+	if(isset($sorting))
+		setcookie($admcookiename."[mimetypes_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[mimetypes_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="hostcache")
+{
+	if(isset($sorting))
+		setcookie($admcookiename."[hc_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[hc_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="files")
+{
+	if(isset($sorting))
+		setcookie($admcookiename."[files_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[files_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="users")
+{
+	if(isset($sorting))
+		setcookie($admcookiename."[adm_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[adm_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="loginfailures")
+{
+	if(isset($sorting))
+		setcookie($admcookiename."[lf_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[lf_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="kb_cats")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[kbc_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbc_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[kbc_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbc_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[kbc_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbc_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="kb_subcats")
+{
+	if(isset($filtercat))
+		setcookie($admcookiename."[kbsc_filtercat]",$filtercat,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbsc_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterprog))
+		setcookie($admcookiename."[kbsc_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbsc_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[kbsc_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbsc_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[kbsc_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbsc_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="kb")
+{
+	if(isset($filtercat))
+		setcookie($admcookiename."[kb_filtercat]",$filtercat,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kb_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterprog))
+		setcookie($admcookiename."[kb_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kb_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[kb_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kb_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[kb_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kb_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($hideunassigned))
+		setcookie($admcookiename."[kb_hideunassigned]",$hideunassigned,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kb_hideunassigned]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="usercomments")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[uc_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[uc_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[uc_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[uc_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[uc_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[uc_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="userquestions")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[uq_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[uq_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[uq_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[uq_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($addfilters))
+		setcookie($admcookiename."[uq_addfilter]",$addfilters,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[uq_addfilter]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[uq_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[uq_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($statefilter))
+		setcookie($admcookiename."[uq_statefilter]",$statefilter,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[uq_statefilter]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="faq")
+{
+	if(isset($filtercat))
+		setcookie($admcookiename."[faq_filtercat]",$filtercat,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faq_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterprog))
+		setcookie($admcookiename."[faq_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faq_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[faq_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faq_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[faq_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faq_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($hideunassigned))
+		setcookie($admcookiename."[faq_hideunassigned]",$hideunassigned,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faq_hideunassigned]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="faq_download")
+{
+	if(isset($filtercat))
+		setcookie($admcookiename."[faqdl_filtercat]",$filtercat,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faqdl_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterprog))
+		setcookie($admcookiename."[faqdl_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faqdl_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[faqdl_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faqdl_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[faqdl_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[faqdl_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="subcategories")
+{
+	if(isset($filtercat))
+		setcookie($admcookiename."[subcat_filtercat]",$filtercat,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[subcat_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterprog))
+		setcookie($admcookiename."[subcat_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[subcat_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[subcat_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[subcat_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[subcat_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[subcat_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="categories")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[cat_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[cat_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[cat_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[cat_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[cat_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[cat_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="program")
+{
+	if(isset($filterlang))
+		setcookie($admcookiename."[prog_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[prog_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[prog_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[prog_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="subscribers")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[sub_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[sub_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[sub_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[sub_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[sub_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[sub_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if($page=="kb_download")
+{
+	if(isset($filterprog))
+		setcookie($admcookiename."[kbdl_filterprog]",$filterprog,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbdl_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($filterlang))
+		setcookie($admcookiename."[kbdl_filterlang]",$filterlang,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbdl_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	if(isset($sorting))
+		setcookie($admcookiename."[kbdl_sorting]",$sorting,$cookieexpire,$cookiepath,$cookiedomain,$cookiesecure);
+	else
+		setcookie($admcookiename."[kbdl_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+if(($page=="settings") && ($newstorefaqfilters==0))
+{
+	setcookie($admcookiename."[faq_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faq_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faq_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faq_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faq_hideunassigned]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[cat_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[cat_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[cat_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_addfilter]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[subcat_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[subcat_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[subcat_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[subcat_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faqdl_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faqdl_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faqdl_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faqdl_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbdl_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbdl_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbdl_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_addfilter]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uq_statefilter]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uc_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uc_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[uc_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kb_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kb_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kb_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kb_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbsc_filtercat]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbsc_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbsc_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbsc_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbc_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbc_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[kbc_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[lf_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[adm_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[files_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[mimetypes_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faqemail_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[faqemail_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[sub_filterprog]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[sub_filterlang]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[sub_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[ban_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+	setcookie($admcookiename."[hc_sorting]","",$cookiermtime,$cookiepath,$cookiedomain,$cookiesecure);
+}
+?>
