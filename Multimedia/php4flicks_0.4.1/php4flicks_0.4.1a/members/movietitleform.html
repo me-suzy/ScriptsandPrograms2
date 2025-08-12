@@ -1,0 +1,57 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1"/>
+		<title>Enter Movie Title</title>
+		<link rel="stylesheet" type="text/css" href="../config/flicks.css"/>
+		<!-- another ugly hack because microsoft thinks standards are not for them -->
+		<!--[if IE]>
+			<style>
+			#footer{
+				position:absolute;
+				left:0px;
+				bottom:0px;
+			}		
+			</style>
+		<![endif]-->
+		<script type="text/javascript">
+			go = new Image();		go.src = '../pics/go.gif';
+			go_a = new Image(); 	go_a.src = '../pics/go_a.gif';
+
+			stop = new Image();	stop.src = '../pics/stop.gif';
+			stop_a = new Image(); 	stop_a.src = '../pics/stop_a.gif';
+
+			function swap(imgID,img) {
+				//imgID: img name, imgObjName: new image!
+				document.images[imgID].src = eval(img + ".src");
+			}
+
+			function resize(x,y){
+				if(navigator.userAgent.indexOf('MSIE')>-1)
+					window.resizeTo(x+20,y+40) //stupid ie thinks window size are outer measures
+				else
+					{window.innerWidth = x; window.innerHeight = y+10;}
+					//the +10 is to correct a strange bug in moz, which otherwise changes the window size on each reload...
+			}
+		</script>
+	</head>
+
+	<body onload="resize(250,140); document.titleform.title.focus();">
+		<div id="header">Movie Title</div>
+		<div id="content">
+			<form name="titleform" action="add.php" method="get">
+				<input type="text" class="inputmed" name="title"/>
+				<input type="hidden" name="action" value="search"/>
+			</form>
+			<a href="add.php?action=import">import movies from file...</a>
+		</div>
+		<div id="footer">
+			<img name="stop" alt="abort" src="../pics/stop.gif" onmouseover="swap('stop','stop_a')" onmouseout="swap('stop','stop')" onclick="window.close();"/>
+			<img name="go" alt="next" src="../pics/go.gif" onclick="if(document.titleform.title.value==''){alert('please enter a title!'); return false;} document.titleform.submit();" onmouseover="swap('go','go_a')" onmouseout="swap('go','go')"/>&nbsp;
+		</div>
+	</body>
+
+</html>
