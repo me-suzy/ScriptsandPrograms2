@@ -1,0 +1,24 @@
+<center><a href="index.php?action=showShared&id={$smarty.get.client_id}">{if $smarty.session.showShared==1}Close{else}Show{/if} User Share</a>
+{if $smarty.session.showShared == 1 }
+<table cellpadding="3">
+<form action="index.php" method="POST">
+<input type="hidden" name="action" value="saveShare">
+<input type="hidden" name="client_id" value="{$smarty.get.client_id}">
+	<tr>
+		<th>Share</th>
+		<th>Name</th>
+	</tr>
+{foreach from=$users item=user}
+	<tr>
+		<td><input type="checkbox" {if $user.shared}CHECKED{/if} name="share[]" value="{$user.id}"></td>
+		<td>{$user.firstname|ucfirst} {$user.lastname|ucfirst}</td>
+	</tr>
+{/foreach}
+	<tr>
+		<td colspan="2" align="right"><input type="submit" class="btn" value="Save"></td>
+	</tr>
+</form>
+</table>
+
+{/if}
+</center>
