@@ -1,0 +1,54 @@
+<form>
+	<title>General Settings</title>
+	<subtitle>Status Change Email</subtitle>
+	<action>index.php?sub=settings&action=store</action>
+	<name>edit</name>
+	<width>540</width>
+
+	<formtag>true</formtag>
+	<border>true</border>
+	
+	<buttons>		
+		<set>
+			<footer>true</footer>
+			<header>true</header>
+		</set>
+
+		<return onclick="" button="cancel">
+			<location>javascript:document.forms[0].reset();</location>
+		</return>
+
+		<save onclick="" button="saveall">
+			<location>javascript:document.forms[0].submit();</location>
+		</save>
+
+	</buttons>
+
+	<fields>
+
+		<status_on type="droplist">
+			<title>Send Notice</title>
+			<description>Select yes if you want email to be sent to users when the report's status is changed or not.</description>
+			<options>
+				<option name="1">yes</option>
+				<option name="0">no</option>
+			</options>
+		</status_on>
+
+		<status_address type="textbox" size="30" validate="E:2:200" required="true">
+			<title>Reply-To</title>
+			<description>Enter the email address where you want to receive replies from users.</description>
+		</status_address>
+
+		<status_title type="textbox" size="30" validate="A:2:200" required="true">
+			<title>Subject</title>
+			<description>Enter the subject for the sent emails.</description>
+		</status_title>
+
+		<status_mail type="textarea" size="40:6" required="true" validate="A:1:20000">
+			<title>Content</title>
+			<description>Enter the email content you want to be sent to users when the report status was changed by an admin. You can use the following varibles inside the mail body {USER_NAME} {USER_EMAIL} {REPORT_NAME} {EXPENSE_LOCATION} {EXPENSE_DATE} {EXPENSE_AMOUNT} {EXPENSE_NEW_STATUS} {EXPENSE_OLD_STATUS}.</description>
+		</status_mail>
+
+	</fields>
+</form>
