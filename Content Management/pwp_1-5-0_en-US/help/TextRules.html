@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+	<meta name="Keywords" content="PWP, PHP, Wiki, WikiWiki, Community, Edit, Download, Software, Content Management, Documentation, CMS">
+	<meta name="Description" content="PWP Wiki Processor, a GPL based PHP software.">
+	<meta name="Language" content="en">
+	<meta name="Generator" content="PWP Wiki Processor">
+	<meta name="robots" content="index,follow">
+	<title>PWP Wiki Processor &raquo; TextRules</title>
+	<style type="text/css">@import url(../css/standard.css);</style>
+</head>
+<body>
+	<div id='uppermenu'>
+		<img src='../img/wiki.jpg' align='right' alt='PWP wiki processor' border='0'>
+		<h1>TextRules</h1>
+		<p> <a href='TextRules.html'>TextRules</a> .   <a href='SimpleTextRules.html'>SimpleTextRules</a> .   <a href='Installation.html'>Installation</a> .   <a href='Configuration.html'>Configuration</a>   <br>   <a href='UserManual.html'>UserManual</a> .   <a href='FAQ.html'>FAQ</a> .   <a href='http://www.lars-ackermann.de/wiki/static/index.html'>&raquo;find more online</a> </p>
+	</div>
+	<div id='contents'><div id='textcolumn'>
+&nbsp;&middot;&nbsp;<a href="#Supported Text Rules">Supported Text Rules</a><br>&nbsp;&middot;&nbsp;<a href="#Unsupported text rules">Unsupported text rules</a><br>&nbsp;&middot;&nbsp;<a href="#Features of an edit box (under Windows)">Features of an edit box (under Windows)</a><br><hr size="1" noshade><!--content begin-->
+<a name="Supported Text Rules"><h2>Supported Text Rules</h2></a>
+<p>
+<a name="Introduction"><h3>Introduction</h3></a>
+<p>
+In a Wiki there are (special) characters like # * ; : = and their position in a line applied to format text. The Wiki mark-up is converted at server site into HTML. If you edit a page again, you will see exactly what you typed: text with Wiki mark-up chars - not HTML. It will take beginners roughly 20 minutes to get used to write the Wiki mark-up chars.
+<p>
+<strong>To create a new page</strong>, just type its name on an existing page inside a Wiki link (see below). If the page does not exist, PWP will display the name with a question mark link (<u>?</u>). A simple click on this link will create the page.
+<p>
+<a name="Plain HTML Input"><h3>Plain HTML Input</h3></a>
+<p>
+Per default, PWP is configured NOT to accept HTML input. The chars &amp; &gt; &lt; become silently converted into HTML entities '&...;'. You can also configure PWP to accept plain HTML as input. Which HTML tags are allowed, is defined in the config file. PWP uses strip_tags() to get rid of unwanted HTML. If you want to use &lt; and &gt; in a mathematical meaning, simply leave a space on either side or the strip_tags() function may strip whole parts of the text! Signs like &lt;&lt; and &gt;&gt; are not allowed if PWP is configured to accept HTML input.
+<p>
+<a name="Sample of Wiki Text"><h3>Sample of Wiki Text</h3></a>
+<p>
+A sample of Wiki mark-up can be found among the uploaded files: <a href="upload/text_rules_test.txt">&raquo;file:text_rules_test.txt</a>. Just copy'n'paste it's contents into the edit box of a Wiki page.
+<p>
+<a name="Inkine Markup and Paragraphs"><h3>Inkine Markup and Paragraphs</h3></a>
+<p>
+<ul><li><strong>Fat, italic and underline</strong> is achieved by enclosing single words or groups of words in '++', '//' and '__'. The alternative syntax of two single quotes '' for italic and three ''' single quotes for fat text on each side of the word(s) is also supported. Consequently, words between five singel quotes  '''''  become fat and italic. 
+<li>Enclosing one or more words in between double hyphens creates a <strong>strike through</strong> layout:  --This is done.--  gets translated into <strike>This is done.</strike> 
+<li>You can use <strong>super<sup>9</sup></strong> and <strong>sub<sub>i</sub></strong> by enclosing the text in '^9^' for super and '^^i^^' sub lined. Left of the first '^' must be a word character or a parenthesis.  
+<li>One hyphen directly followed by an underscore '-_' marks a forced <strong>line break</strong> BR. Usually, the editor does't take care of line breaks. It's the task of the visitor's browser to wrap HTML at the end of the screen. 
+<li>An empty line is converted into a <strong>paragraph</strong> P. There must not be tabs or spaces on such a line. PWP will not create closing paragraph tags. 
+<li>Four or more hyphens '-' at the beginning of a line will become a horizontal <strong>ruler</strong> HR.</ul>
+<p>
+<a name="Headings"><h3>Headings</h3></a>
+<p>
+<ul><li><strong>Headings</strong> are defined by writing an equal sign '=' at the beginning of a line. One '=' will result in a heading H1, six '=' in H6. Headings must not contain a double quote, a single quote is ok. Otherwise the table of contents will not work. The heading may be followed by 0..N equal signs at the end of the line. Just the equal signs in front of the heading determine its level.</ul>
+<p>
+PWP creates a named anchor for each heading. See in the link section below how to address them.
+<p>
+<a name="Block Markup and Block Alignment"><h3>Block Markup and Block Alignment</h3></a>
+<p>
+<ul><li>A line starting with a colon ':' will be <strong>indented</strong> by BLOCKQUOTE; two ':' will indented further; three and more ':' are not supported. 
+<li>Lines starting with '~' will be <strong>centred</strong>; '~~' causes a <strong>right alignment</strong>. Using this, you can center plain text, images, headings and table cell content.</ul>
+<p>
+In order to center a multiline block like tables, comments, blockquote, etc. one has to use the char '~' on an empty line above and below the block - and of course in front of each line of the block, too. Alignment is done using a DIV.
+<p>
+<a name="Line Concatenation"><h3>Line Concatenation</h3></a>
+<p>
+<ul><li>In the case you want to use multiple lines for one list item <em>in the edit view</em> you can use <strong>line concatenation</strong>. Just press return and start the next line with a dot '.'. This line gets appended to its predecessor. Line concatenation also works within every other Wiki mark-up section. It provides a clearer view of the page structure for the editor. <em>Use this feature often</em>.</ul>
+<p>
+<a name="Lists"><h3>Lists</h3></a>
+<em>New in 1.5.0: PWP now supports three list levels. All three list types can be mixed at different levels.</em>
+<p>
+<ul><li>One up to three asterik '*' at the beginning of a line mark an <strong>unnumbered list</strong> of the first, second or third level. Deeper levels are not supported.  
+<li>Likewise, '#' or '##' or '###' forms a <strong>numbered list</strong>. 
+<li>A <strong>definition list</strong> is made by using ;Term:Definition at the beginning of a line. And as expected, ;;SubTerm:SubDefinition will result in a second level definition list.</ul>
+<p>
+<a name="Preformatted Text and Source Code"><h3>Preformatted Text and Source Code</h3></a>
+<p>
+<ul><li>A comma ',' at the beginning of a line will result in <strong>preformatted text</strong> PRE. Alternatively you can use a space ' ' at the beginning of a line. However, a space is not visible and an editor cannot distinguish if there should be a paragraph or preformatted text. 
+<li>One can combine preformatted text with the Wiki escape sequence described below to force a whole block of source code into a preformatted section: ,! - source code - !.</ul>
+<p>
+<a name="Links and Images"><h3>Links and Images</h3></a>
+<p>
+Basically, links and images are identical from PWP's point of view. Both are internet addresses. An image is distinguished from a link just by its extension, e.g. '.gif'. If PWP finds an image extension within an address, it uses the image tag IMG instead of the link tag A HREF. 
+<p>
+<ul><li>A word between <em>two</em> square bracket pairs <strong>'[[WikiPage]]'</strong> will mark a <strong>link to a Wiki page</strong>. On a click, the page gets created if it does not exist. The usual Wiki syntax of MixedCase names is <em>not</em> supported. You will get a different link text if you separate the Wiki page name by a bar '|' or by a space ' ' from the link text, like: <strong>[[WikiPage|LinkText]]</strong>. <br> <br> Inside Wiki links you may include icons by using a variable: <strong>[[WikiPage|{{IconVar }} Text]]</strong> or <em>new in 1.5.0</em> an image link: <strong>[[WikiPage|[/icon_image.gif My Icon] ]]</strong> (Note the space between the brackets.) <br> <br> <em>New in 1.5.0</em> PWP supports anchors or targets on Wiki pages: Each heading and each definition term in a definition list become a named anchor. In order to link to such an anchor, use the syntax <strong> [[MyPage#Definition]] </strong>. This feature does not work if the heading or definition consists of mor than one word separated by spaces. <br> <br> <em>New in 1.5.0</em> All links pointing to files modified within the last three days will be marked with an asterik*.</ul>
+<p>
+There are three choices for linking external content and including images:
+<p>
+<ul><li><strong>Inline Links</strong> are done by typing a fully qualified URL, like <strong><a href="http://">&raquo;http://</a></strong> or <a href="mailto:">&raquo;mailto:</a> Images will be recognized automatically. 
+<li><strong>Links</strong> can also be achieved by enclosing an URL or a relative path into square brackets <strong>'[/myPath/myfile.html]'</strong>. Here you may specify an alternative link text separated by a space or a bar '|': <strong>'[/myPath/myfile.html MyFile]'</strong>. This square bracket syntax is useful for relative URLs <em>not</em> starting with any protocol like <a href="http://">&raquo;http://</a> . Again, images will be recognized and included automatically. <em>New in 1.5.0</em> In order to <strong>link to an image but not to include the image</strong> in the Wiki page, use a hyphen as first character after the opening square bracket: <strong>'[-/my_image.gif My Image]'</strong>. 
+<li><em>Changed in 1.5.0</em> <strong>InterWiki links</strong> act like a macro: You type a short text defining the target website (or local path) and a page name. PWP expands this link to an URL or embeds an image if the page name points to an image file ending on 'gif', 'jp(e)g' or 'png'. Use <strong>[{name|page}]</strong> to get such a link. Using InterWiki links, you can link uploaded files and images without having to care about the server name upon moving your data. As described above, you may link to images instead of including them with the text rule: <strong>[-{name|image.gif}]</strong> <br> <br> Note: InterWiki targets are defined in your config file. The old syntax [wiki:name|page] or shorter [w:name|page] is deprectaded but still supported.</ul>
+<p>
+<a name="Comments, Wiki Markup Escaping"><h3>Comments, Wiki Markup Escaping</h3></a>
+<p>
+<ul><li>Put an exclamation mark '!' at the beginning of a line to mark a <strong>comment</strong>. This may be useful to track changes or to write annotations into the text. Comments may be stripped off in static files (see config file). Comments are also achieved by using a DIV tag. 
+<li>There is a special kind of comment: '!?' at the beginning of a line marks this page as to be <strong>&quot;under construction&quot;</strong>. Its contents will not become published on exporting static pages. Instead, in order to avoid dead links, either the message following '!?' will be appear on the static page or - if there is no message - a pre-configured message is shown on the static page. '!?' must be a single line comment whereas the usual syntax of a comment '!' may be used as a multiline block. 
+<li>PWP is able to <strong>escape text passages</strong>. Text within an exclamation mark followed by an hyphen: <strong>'! - +[[WikiMarkup]]+ - !'</strong> won't become translated into HTML mark-up. Note that the sample leaves a space between the two signs which must not appear in 'real' use. Escaping text is an 'inline' issue, this type of comment can be applied anywhere within the text, just like fat and italic. It may also span multiple rows.  In order to paste some source code in a Wiki page, use <strong>',!-'</strong> at the beginning of a new line an close the comment below the source code. 
+<li>One more type of comments is left, the invisible comment: '! -- invisible text -- !'. This comment will be visible for an editor only, it gets stripped of in dynamic and static pages. The syntax is close to HTML comments. Again, note the spaces required to display the sample. 
+<li>There is a special kind of an editor comment: ! - -(+)- - ! marks a position where &quot;QuickEdit&quot; can insert new text. Only one such comment is allowed in a page. Again, there are spaces in the sample.</ul>
+<p>
+<a name="Variables"><h3>Variables</h3></a>
+<ul><li><em>Changed in 1.5.0</em> <strong>Variables</strong> are included inside a Wiki page using the syntax <strong>'{{Name}}'</strong>. A variable gets replaced by its contents at the moment of the page delivery. Variables may contain text, HTML and even Wiki mark-up. The contents of a variable is defined in your config file. See also <a href='UserManual.html'>UserManual</a> for more details and samples. The old syntax '{v:Name}' or '{var:Name}' is deprecated but supported as well.
+<li><em>New in 1.5.0</em> PWP provides four invisible pre-defined variables for a <strong>multi column layout</strong>:  {{||--}} opens an invisible table, {{||}} shifts a cell, {{--}} shifts a table row and {{--||}} closes a table . It is recommended (but not required) to fill each row with the same number off cells.</ul>
+<p>
+<a name="Tables"><h3>Tables</h3></a>
+<ul><li><em>Changed in 1.5.0</em> '||-' will start a row of table heads TH, '-||' closes it. TH cells are separated by '-||-'. One table row of simple cells (TD) is done by typing '|| cell#1 || cell#2 ||'. 
+<li>Tables cannot contain lists, comments, headings, etc. They are just a simple tool for arranging text blocks or numbers. 
+<li><em>New in 1.5.0</em> Within both, cells and heading cells, the contents may be forced to center or right layout using the same text rule as described above: '||~' centers a table cell and '||-~~' creates a right aligned table heading cell. 
+<li>The old syntax required explicit opening and closing of tables: '||--' at the first line and  '--||' at the last line in order to close a table. This is deprectaded but supported as well.</ul>
+<p>
+<a name="Unsupported text rules"><h2>Unsupported text rules</h2></a>
+<p>
+<ul><li><strong>MixedCase</strong> (also called CamelCase) linking is not supported. (Personally, I do not like the idea of MixedCase linking. We've got to many mixed case expressions in your writing, like product or company names, and, of course source code samples.)
+<li>Lists with a depth of four levels and deeper. (Would be quite difficult to read, anyway. Consider using headings for the first list levels instead.)
+<li>Lists with the 'TAB*' syntax. (It's quite hard to enter tabs in browser edit boxes!)</ul>
+<p>
+<a name="Features of an edit box (under Windows)"><h2>Features of an edit box (under Windows)</h2></a>
+<p>
+<ul><li><strong>CTRL-C</strong> copies highlighted text into the clipboard.
+<li><strong>CTRL-X</strong> cuts highlighted text and leaves a copy of it in the clipboard.
+<li><strong>CTRL-V</strong> pastes the text contained in the clipboard.
+<li><strong>CTRL-A</strong> highlights all text within the edit box.
+<li><strong>CTRL-F</strong> brings up a text search.
+<li><strong>CTRL-Z</strong> makes the last action undone. You can undo more than one action by pressing CTRL-Z more than once.
+<li><strong>CTRL-Y</strong> works as a kind of redo. It makes the last CTRL-Z undone. (Got confused?)</ul>
+<!--content end-->
+
+</div>	</div>
+	<p>&nbsp;&nbsp;&nbsp;<small>(Powered by <a href='http://www.lars-ackermann.de/wiki/static'>PWP Version 1-5-0</a>)</small></p>
+</body>
+</html>
