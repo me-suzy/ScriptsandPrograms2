@@ -1,0 +1,159 @@
+<form method="post" action="">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr valign="top"> 
+      <td width="74%"> 
+        <table width="250" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="210" valign="middle" height="51"> <font class="form_text"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333">ORDER 
+              SEARCH:</font></b></font> <br>
+              <input type="text" name="keyword" maxlength="30" size="15" style="border: 1 solid #666666" value="<?php echo $keyword ?>">
+              <input type="image" border="0" name="submit2" value="submit" src="images/button_go.gif" width="21" height="20" onClick="verify(this.form);">
+              <input type="hidden" name="page2" value="<? echo $page ?>">
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td width="26%">
+        <table width="250" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#CCCCCC">
+                <tr> 
+                  <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=orders"><font color="#990033">All</font></a> 
+                    orders:</font></td>
+                  <td width="96" height="5"> 
+                    <div align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"><?
+$orders = get_total_orders();
+echo $orders;
+?> </span></span></span></span></font></b></div>
+                  </td>
+                  <td width="6" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=orders&amp;today=Y"><font color="#990033">Today's</font></a> 
+                    orders:</font></td>
+                  <td width="96" height="5"> 
+                    <div align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"><?
+$orders_t = get_total_orders_today();
+echo $orders_t;
+?> </span></span></span></span></font></b></div>
+                  </td>
+                  <td width="6" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=orders&amp;status=0"><font color="#990033">Pending</font></a> 
+                    orders:</font></td>
+                  <td width="96" height="5"> 
+                    <div align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><font color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"><?
+$orders_p = get_total_pending_orders();
+echo $orders_p;
+?> </span></span></span></span></font></font></b></div>
+                  </td>
+                  <td width="6" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+                <tr> 
+                  <td width="146" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">&gt;</font><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><a href="?page=orders&amp;status=1"><font color="#990033">Complete</font></a> 
+                    orders:</font></td>
+                  <td width="96" height="5"> 
+                    <div align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="-2"><font color="#990033"><span class="fields_title"><span class="domains"><span class="fields_title"><span class="form_label"><?
+$orders_c = get_total_complete_orders();
+echo $orders_c;
+?> </span></span></span></span></font></font></b></div>
+                  </td>
+                  <td width="6" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="-2" color="#CCCCCC">d</font></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  </form>
+<form method="post" action="" onSubmit="validate();return returnVal;">
+  <font face="Verdana, Arial, Helvetica, sans-serif"> </font> <font face="Verdana, Arial, Helvetica, sans-serif"><? 
+    $date=date("Y-m-d");
+	$i="0";	
+	$db = new ps_DB;
+	if(isset($keyword)) {
+	$q  = "SELECT * FROM orders WHERE order_id='$keyword' ORDER BY order_datea";
+	} elseif (isset($account_id)) {
+	$q  = "SELECT * FROM orders WHERE order_account_id='$account_id' ORDER BY order_date";
+	} elseif (isset($status)) {
+	$q  = "SELECT * FROM orders WHERE order_status='$status' ORDER BY order_date";
+	} elseif (isset($today)) {
+	$q  = "SELECT * FROM orders WHERE order_date='$date' ORDER BY order_date";
+	} else {
+	$q  = "SELECT * FROM orders ORDER BY order_date";
+	}
+                    if ($count) {
+					$q.= " LIMIT ";
+					$q.= $max_results;
+					$q.= ",";
+					$q.= $count;
+					$next=$count+$max_results;
+					$last=$count-$max_results;
+					} else {
+                    $q.= " LIMIT $max_results";
+					$next=$count+$max_results;
+					$last=$count-$max_results;
+					}
+	$db->query($q);
+		while ($db->next_record()) {
+?></font> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC">
+    <tr>
+      <td>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#E4E4E4" height="10">
+          <tr> 
+            <td width="43" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#006699"><i><font color="#003399"> 
+              </font></i><font color="#003399"> </font><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#006699"><font color="#003399"> 
+              <?  $db->p("order_id");  ?>
+              </font></font></b></font></td>
+            <td width="138" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+              </font><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <?
+ $amount = $db->f("order_amount");  
+echo setup("currency");
+printf("%.2f",$amount);
+?>
+              </font></b></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              </font></b></td>
+            <td width="138" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <? $db->p("order_date"); ?>
+              </font></b></font></b></font></td>
+            <td width="138" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <? $status = $db->f("order_status");
+if ($status=="0") echo  "Pending";
+if ($status=="1") echo  "Complete";
+if ($status=="2") echo  "Voided";
+if ($status=="3") echo  "Canceled";
+if ($status=="4") echo  "Declined";
+ ?>
+              </font></b></font></b></font></td>
+            <td width="190" height="5"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><b><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#003399"> 
+              <a href="?page=add_clients&set_action=client_update&account_id=<? echo $db->f("order_account_id"); ?>"> 
+              <? $name = show_client_name($db->f("order_account_id"));
+echo $name;
+ ?>
+              </a></font></b></font></b></font></td>
+            <td width="84" height="5"> 
+              <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?page=orders_view&amp;set_action=client_update&amp;order_id=<? echo $db->p("order_id"); ?>">view 
+                order</a></font></div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><b><br>
+    </b></font> <font face="Verdana, Arial, Helvetica, sans-serif"><b><?   
+$i++;
+ } 
+if ($i=="0") { echo "<BR>NO RESULTS FOR THIS SEARCH"; }  ?> </b></font></div>
+  <p align="center"><a href="?page=<? echo $page ?>&amp;count=<? if($next <= 0) { echo $last; } else { echo "0"; } ?>"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b> 
+    <font size="1">PREV</font></b></font></a><font size="1"><b><font face="Verdana, Arial, Helvetica, sans-serif"> 
+    | <a href="?page=<? echo $page ?>&amp;count=<? echo $next; ?>">NEXT</a></font></b> 
+    </font> </p>
+</form>
+
