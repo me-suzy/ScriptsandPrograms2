@@ -1,0 +1,659 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html"; charset="iso-8859-1">
+  <title>TCExam Database Documentation</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="simple_blue.css" title="report">
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="20" topmargin="10" marginwidth="20" marginheight="10">
+<a name = "Relation_6"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_answer_logs (rel_answer_logs)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_answers    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs_answers   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > RESTRICT    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > answer_id    </td>    <td class="tabdata" > logansw_answer_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Several answers can be combined for a single multiple-choice question.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_4"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_question_answers (rel_question_answers)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_questions    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_answers   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > CASCADE    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > question_id    </td>    <td class="tabdata" > answer_question_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each multiple-choice question can have an unlimited number of alternative answers.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_5"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_question_logs (rel_question_logs)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_questions    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > RESTRICT    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > question_id    </td>    <td class="tabdata" > testlog_question_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each test-log is relative to one question.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_1"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_subject_questions (rel_subject_questions)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_subjects    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_questions   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > CASCADE    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > subject_id    </td>    <td class="tabdata" > question_subject_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each subject (topic) can have an unlimited number of questions.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_2"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_subject_tests (rel_subject_tests)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_subjects    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_test_subjects   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > RESTRICT    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > subject_id    </td>    <td class="tabdata" > tsubj_subject_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Several topics can be combined in a single test.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_9"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_test_id_subjects (rel_test_id_subjects)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_test_subjects   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > CASCADE    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > test_id    </td>    <td class="tabdata" > tsubj_test_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each test can contain several topics.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_8"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_test_users (rel_test_users)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_users   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > RESTRICT    </td>    <td class="tabdata" > CASCADE    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > test_id    </td>    <td class="tabdata" > testuser_test_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each test can be executed by an unlimited number of users.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_11"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_testlog_answers (rel_testlog_answers)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs_answers   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > CASCADE    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > testlog_id    </td>    <td class="tabdata" > logansw_testlog_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each multiple-choice question can have several alternative answers.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_10"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_testuser_logs (rel_testuser_logs)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests_users    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > CASCADE    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > testuser_id    </td>    <td class="tabdata" > testlog_testuser_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each user-test can contain an unlimited number of questions.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_3"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_user_tests (rel_user_tests)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_users   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > RESTRICT    </td>    <td class="tabdata" > CASCADE    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > user_id    </td>    <td class="tabdata" > testuser_user_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each user may execute several tests.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_7"></a>
+<table border="0" width="100%" class="caption1"><tr><td>rel_useranswer_logs (rel_useranswer_logs)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_answers    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > RESTRICT    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > answer_id    </td>    <td class="tabdata" > testlog_answer_id   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > The user's answer can be one of the alternatives of a multiple-answer question.   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_12"></a>
+<table border="0" width="100%" class="caption1"><tr><td>session_data (session_data)</td></tr></table>
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;General info</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> informative    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_sessions   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Referential integrity</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > RESTRICT    </td>    <td class="tabdata" > RESTRICT    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Keys</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > user_id    </td>    <td class="tabdata" > ???   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;Description</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Some user's information (id, level,...) are stored as serialized data on tce_sessions.cpsession_data field   </td>  </tr>
+</table>
+
+<table border="0" width="100%" class="caption2"><tr><td><br><img src="Img/arrow.gif" align="absmiddle">&nbsp;User-defined variables</td></tr></table>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+</body><br><br> 
+
