@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+<style type="text/css">
+<!--
+.style1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+.style4 {
+	font-family: "Microsoft Sans Serif", Tahoma;
+	font-size: 15px;
+	font-weight: bold;
+}
+.style6 {color: #FF3300}
+.style7 {color: #FF0000}
+.style8 {
+	font-family: "Microsoft Sans Serif", Tahoma;
+	font-size: 12px;
+}
+.style9 {
+	font-family: "Microsoft Sans Serif", Tahoma;
+	font-weight: bold;
+}
+.style10 {font-family: "Microsoft Sans Serif", Tahoma}
+.style11 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style12 {color: #009900}
+.style13 {color: #000000}
+.style14 {color: #000000; font-weight: bold; }
+.style15 {
+	font-size: 16px;
+	font-weight: bold;
+}
+.style17 {font-size: 15px}
+.style18 {font-size: 14px}
+.style19 {font-size: 15px; color: #009900; }
+.style20 {font-size: 14px; color: #009900; }
+.style21 {color: #FF6600}
+.style22 {color: #0066FF}
+.style23 {font-size: 15px; color: #0066FF; }
+.style24 {font-size: 14px; color: #000000; }
+-->
+</style>
+</head>
+
+<body>
+<p class="style1"><img src="logo.gif" width="281" height="97" /><br />
+  <br />
+  <span class="style15">[<a href="#top">First Time Setup</a>]  [<a href="#about">About</a>]  [<a href="#demo">Demo</a>] [<a href="#functionsandsyntax">Functions / Syntax</a>] </span></p>
+<ul>
+  <li><span class="style4">First Time Setup </span><br />
+    <span class="style8"><br /> 
+  To setup this engine correctly, please follow the directions below.  <br />
+    <br />
+    <span class="style6"><span class="style11">VERY IMPORTANT: </span><span class="style13">YOU WILL NEED PERMISSIONS TO CREATE DATABASES &amp; TABLES THROUGH PHP</span><span class="style14"> <br />
+    <br />
+    </span><span class="style13"><strong>For each type of HyperStorage, you will need a new database. The KEY database is called &quot;locations&quot;.</strong> </span><span class="style7"><br />
+    </span><span class="style12"><br />
+    <strong> These databases will be automatically created for you as long as you have permissions. Please be sure to have full permissions through PHP. You should try to run the testdbcreate.php script to see if you are able to setup databases on your server, using the login information you provided in your config.php file. </strong></span><br />
+<br />
+    <br />
+    <strong>If you think you're ok with the above IMPORTANT notice, continue below. Otherwise, it would be a waste of time.</strong> <br />
+    <br />
+    1. Make sure you have <strong>MySQL + PHP + Apache / IIS</strong> installed, and tested.</span></span> <span class="style8">A server can be IIS, Apache, or whatever you use to serve web pages and content. This freeware can be run on a localhost too. <br />
+    <br />
+    <span class="style7">2. Configure your scripts to work with MySQL: </span></span> <span class="style8"><br />
+    <br />
+    <strong>config.php</strong>: [Edit User/Pass/Server/Host <strong>(easy)</strong>] <br />
+  <strong>templates.php</strong>: [You need to make your own table templates <strong>(easy)</strong>]<br />
+    <br />
+    </span></li>
+  <li><span class="style9"><a name="about"></a>About HyperStorage <br />
+  </span><br />
+    <span class="style8">First off, it's freeware, so if you can't get it to work the way you want, you are probably doing something that's more complex than just million row data libraries, or you didn't set it up correctly. Remember that the purpose of this program is to prepare for large data build up, for your future online business or forums; this engine will prepare you. <br />
+        <br />
+      Once you learn how powerful the technology is, you can extend the power by interacting with the coding which drives the engine. The coding is extremely short, but the technology &amp; idea is extremely extensive. It's like having the full power of MySQL in one script. Although, this isn't a magical 'dream-machine' code, it does have it's limits, and you must code carefully.<br />
+<br />
+<strong><strong>What's the purpose of this engine?</strong><br />
+<br />
+</strong>This<strong> engine </strong>will make data storage &amp; data locating much faster for your scripts and MySQL. Just remember to keep your KEY table as small as possible, which is why we only have KEY, EXTRA, and ID in the key table. The Key table is sort of like a table which holds many different doorways. And with the doorway information, you can specifically locate where the Data you are looking for, is stored in your MySQL. When you are using different <strong>HyperTypes</strong>, new key tables are created. You do not want to combine your key tables, because the test limit for key tables is 180 million rows, with indexing, it causes a very bad performance issue. So try not to exceed 100 million key rows. Remember, the entire purpose of this engine is to keep your data in seperate tables, to make data returns &amp; operations go much faster. <br />
+<br />
+Consider this <strong>Indexing </strong>for Tables, similar to Indexing for Columns and Rows, except this finds tables, where the key you are looking for is located.<br />
+ <br />
+ <em>MySQL does not offer Indexing for Tables, which is why I built this engine! </em><strong><br />
+<br />
+<strong>Power of Indexing &amp; HyperStorage  </strong> <br />
+<br />
+</strong>If you haven't learned about indexing, then    <strong>there is a lot </strong>about mysql that you don't know. Let me explain. Lets say for example, you have 500,000 Users in a table, and the information stored in this table is stuff like User Name, Password, Email Address, Profile information, saved information, things that the user needs when they are logged into your site. <br />
+<br />
+If you haven't indexed this information, MySQL could take as long as 1 to 10 seconds to return with the needed data, depending on how many rows, and how much data is stored in your table. <br />
+<br />
+So to speed this up to say 0.005 seconds (extremely fast), you need to create an index on the column you use to find and return data. Remember to only index columns you use to find data (for <strong>example:</strong> SELECT firstname FROM users WHERE <em><strong>username</strong></em>='jimmysticks'). You would need <em><strong>username</strong></em> indexed in order to perform a fast search. Indexing makes searching go very fast, however indexing doesn't always go extremely fast, because you may take on so much data, regardless of indexing, your searches can slow down. And the entire reason this engine was built is to speed that up. <strong><br />
+<br />
+</strong>Please note, if you are indexing a column on a large table, it could take as long as 20 minutes. So be patient when you performing any kind of indexing, or FULLTEXT alterations. <strong> <br />
+<br />
+</strong><span class="style13"><strong>Templates</strong> [Your table design] <br />
+<br />
+You must have templates for each different $type. When you make a location, you are creating a new place for data to be stored. If you were to make $type 'users', it would create a database called users (if it doesn't exist), and a new identifier (500) if it doesn't exist. So you could find table 500 in the database $type 'users', and this is where you would store your data. Automatically, HyperStorage engine will detect when table 500 is reaching it's 500,000 row limit (or whatever your limit is set to - see config.php to set a limit) , and create 501. This is what makes this engine so unique: it's ability to keep track of your data, and not let tables build up. SEE templates.php TO MAKE YOUR OWN TEMPLATES. SOME EXAMPLES OF ACTUAL TEMPLATES ARE USED. RECOMMENDED TO KEEP YOUR DEFAULT TO MyISAM and UTF8. </span><span class="style21"></span><strong><span class="style21"><br />
+</span><br /> 
+So what will the engine do?
+</strong> <br />
+    <br />
+    Once you have learned how the engine works (you can learn using the demo below), you will see that several tables are created, as well as a databases. <br />
+    <br />
+    <a name="functionsandsyntax"></a>
+    <span class="style15">Functions, Syntax, and Details</span><br />
+    <br />
+    <strong>To use these functions, please Include the following files at the beginning of your script:</strong><br />
+    <br />
+    include &quot;locations.php&quot;; <br />
+    <br />
+    </span>
+    <table width="100%" border="1" cellspacing="0" cellpadding="0" bordercolordark="#FFFFFF">
+      <tr>
+        <td class="style9"><strong><br />
+        &nbsp;&nbsp;&nbsp;MakeLocation</strong>()<br />
+        <br /></td>
+      </tr>
+      <tr>
+        <td><span class="style8"><strong><span class="style12"><span class="style18"> Syntax</span></span><span class="style12"><span class="style18"><br />
+              </span></span> </strong><span class="style18"><br />
+$returnlocation = MakeLocation($type,$thekey,<em>$extra[optional]</em>);</span><strong><br />
+</strong><br />
+<strong><span class="style20">Returns </span></strong><br />
+<br />
+<span class="style18">Brings back  a location of the created location. The engine will decide where to store the data, depending on certain factors specified in your <span class="style22">config.php</span> file. You use the $returnlocation to store your actual data. The engine takes care of making the necessary tables &amp; databases and key locations; you on the otherhand are responsible to store / retrieve the actual data you put into these location tables, not the engine. </span><strong><br />
+</strong><br />
+<strong><span class="style20">Requirements <br />
+</span></strong><br />
+<strong>TEMPLATES: </strong><span class="style22">See templates.php to make your templates.</span>  <br />
+<br />
+When you make a location, you are creating a new place for data to be stored. If you were to make $type 'users', it would create a database called users (if it doesn't exist), and a new identifier (500) if it doesn't exist. The table 500 has to be created under database $type 'users'. So where do you think it will get the actual table design? <span class="style22">You have to make it, and put it into the templates.php file for use.</span> If it doesn't exist, the table users.500 will never be made, and the operation will abort with a return 'no template'. You need to do this for any $type you make. <br />
+<strong><span class="style20"><br />
+Safeties </span></strong><br />
+<br />
+<span class="style18">The engine will not delete / overwrite existing databases, tables, or rows, it will only Create/Insert. If you experience issues with your templates, you must go and remove the key from location.$type table, or your MakeLocation will return &quot;exists&quot;, causing you to have an aborted function. MakeLocation may also return &quot;no template&quot;, &quot;exists&quot;, &quot;failure&quot;, etc, depending on the problem. You may need to add different return failures, however the included abort messages seem to be fine the way they are. <br />
+</span><strong></strong><br />
+<strong><span class="style20"> Purpose</span></strong><br />
+<br />
+<span class="style18">Creates a new location for a $type, and creates the key inside of the $type table, and stores the key's new physical location in the ID column of your locations.$type table. The ID column tells you where the table is stored, for example: INSERT INTO $type.$returnlocation SET email='$thekey';&quot;. This would be proper usage of the &quot;made&quot; location. $type defines the data type, such as users, orders, forums, etc, and $thekey defines a specific piece of information used to find the data.</span><br />
+<br />
+<strong><span class="style19"> Fields</span><em><br />
+</em><span class="style17"><br />
+$type *</span> : </strong><span class="style18">This is more important than the actual key. This is the type of system you are creating a location for. It can be ANYTHING. In our demo, we use it for 'users'. So if you wanted to make a location for 'users', you would specify syntax: $type='users';. You can store many different types of locations, 'users', 'orders', 'dvd', 'cd', 'products', 'mailinglist'. <strong>Try not to use spaces,</strong> MySQL may not be compatible with it. Any time you make a location with a $type='users', if you need to find a location, you must specify $type='users' as well, because it will not know where to find the location otherwise. <strong>Example</strong> of doing this is below. </span><br />
+<br />
+<strong><span class="style17">$thekey *</span> : </strong><span class="style18">This is the key. Without a key, you can't find your data, and without your data, nothing happens. A key can be a specificly identifyable piece of information. For example, bobsmith@aol.com would be unique in this case, because you wouldn't want 500 bobsmith@aol.com emails in your databases, unless they were different types. For 'users', you would only want 1 bobsmith@aol.com, but you could also have 1 bobsmith@aol.com for other types, such as 'forums', 'wishlists', 'carts', etc. Make sure it's unique for that specific $type, because you don't want two of the same key in the same $type table, as mentioned in the Fields informaiton for $type. For the key, you should use an identifiable piece of information, associated with a row you intend to insert into the created location table. <strong>Example</strong> of doing this is below. </span></span><br />
+<br />
+<span class="style8"><span class="style17"><strong>$extra </strong><em>[optional]</em> </span><strong>: </strong><span class="style18">This is an extra field, sometimes you may provide nicknames here, or a password, however, this field is only an extra storage tool used in MakeLocation. This field is OPTIONAL. You are not required to use this field when making a location, however it's there as an additional identification field, <strong>but it is not used with FindLocation() function. <br />
+<br />
+</strong><span class="style23">&nbsp;&nbsp;&nbsp;An example is show below in the Examples section</span> <br />
+<br />
+</span></span></td>
+      </tr>
+    </table>
+    <br />
+      <br />
+      <table width="100%" border="1" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="style9"><strong><br />
+          &nbsp;&nbsp;&nbsp;<span class="style17"><strong>FindLocation</strong>()</span></strong><br />
+          <br /></td>
+        </tr>
+        <tr>
+          <td><span class="style8"><strong><span class="style12"><span class="style18">Syntax</span></span><span class="style12"><span class="style18"><br />
+          </span></span> </strong><span class="style18"><br />
+$mylocation = FindLocation($type,$thekey);</span><strong><br />
+</strong><br />
+<strong><span class="style20">Purpose</span></strong><br />
+<br />
+Finds a location identifier of a key. Returns with the location, so you don't have to search through several tables to find it. <br />
+<br />
+<strong><span class="style19"> Fields</span><em><br />
+</em></strong><strong><span class="style17"><br />
+$type *</span> : </strong>As explained in MakeLocation, this is the same $type you will use to find your key. <br />
+<br />
+<strong><span class="style17">$thekey *</span> : </strong>As explained in MakeLocation, this is the same key you will use to find where your data is stored. <br />
+          <br />
+          <br />
+          <span class="style23">&nbsp;&nbsp;&nbsp;An example is show below in the Examples section</span><br />
+          <br />
+          </span></td>
+        </tr>
+      </table>
+      <br />
+    <span class="style8"><br />
+    </span>
+    <table width="100%" border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <td class="style9"><strong><br />
+            <span class="style22">&nbsp;&nbsp;&nbsp;<span class="style17"><strong>Examples of using the above functions </strong></span></span></strong><br />
+        <br /></td>
+      </tr>
+      <tr>
+        <td valign="top"><p class="style8"><strong><span class="style12"><span class="style18"><br />
+          </span></span></strong><span class="style12"><span class="style24">In this example, you can learn how to MakeLocations, and FindLocations. </span></span><strong><span class="style12"><span class="style18"><br />
+          <br />
+          EXAMPLE FOR MakeLocation() - FindLocation is not used in this example. <br />    
+              <br />
+              <span class="style21"><br />
+            &lt;?</span><br />  
+            </span></span></strong><span class="style12"><span class="style18"><br />
+          include &quot;locations.php&quot;; <span class="style21"># You will need this to make the functions below work </span><br />
+          <br />
+          $type = 'users'; <span class="style21"># This is the database created to store your users. </span> <br />
+          $mykey = 'bob@aol.com'; <span class="style21"># This is the key, his unique identifier in 'users'. </span><br />
+            </span></span><strong><span class="style12"><span class="style18"><br />
+          </span></span></strong><span class="style12"><span class="style18"><span class="style21"># Lets make a nice spot for bob@aol.com to be stored. </span><br />
+          $mylocation = MakeLocation(<strong>$type</strong>,<strong>$mykey</strong>); </span></span><strong><span class="style12"><span class="style18"><br />
+          <br />
+          </span></span></strong><span class="style12"><span class="style18"><span class="style21"><span class="style12">&nbsp;&nbsp;&nbsp;if ($mylocation &gt; 0) {</span><br />
+          &nbsp;&nbsp;&nbsp;# Location was created!<br />
+          <span class="style12">&nbsp;&nbsp;&nbsp;echo &quot;Location for bob@aol.com is now $mylocation &lt;br&gt;&lt;br&gt;&quot;; </span><br />
+          <br />
+          &nbsp;&nbsp;&nbsp;            &nbsp;&nbsp;&nbsp;# since the location was created, we will continue our code here.<br />
+          <span class="style12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           echo &quot;Inserting some data into table $type.$mylocation &lt;b&gt;(Database: $type, Table: $mylocation)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&quot;; <br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <span class="style21"># Insert some dummie data into the location, as a test. </span><br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SmartQuery(&quot;INSERT INTO $type.$mylocation SET email='$mykey', password='test', firstname='Bob', lastname='Smith';&quot;);<br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <span class="style21"># Pull back his information, so we can see what happened... </span><br />
+          <span class="style21">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; # You can use my SmartQuery to pull back single data, or an Array, ARR before the command does arrays. </span><br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $myinfo = SmartQuery(&quot;ARR SELECT email, password, firstname, lastname FROM $type.$mylocation WHERE email='$mykey';&quot;);<br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $myemail = $myinfo[0];<span class="style21"> # pulls back from array</span> <br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $mypassword = $myinfo[1];  <span class="style21"># pulls back from array</span><br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $myfirstname = $myinfo[2];  <span class="style21"># pulls back from array</span><br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; $mylastname = $myinfo[3];  <span class="style21"># pulls back from array</span><br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;if ($myemail==&quot;&quot;) { <br />
+          <span class="style21"><br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;# It did not work... Somewhere, something is not working. <br />
+          </span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; echo &quot;Problem: Failed to return inserted data. Most likely there was a failure creating the database 'locations' and database '$type'. There then may have been an error creating the table '$mylocation' under database '$type'. Please verify that everything was created by viewing your MySQL Databases &amp; Tables, using the MySQL command prompt or PHP Administration Tool&lt;br&gt;&quot;; <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } ELSE { <br />
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+          <span class="style21">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; # Data came back! <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; # Success! The engine worked 100%! </span><br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; echo &quot;This shows you that it worked correctly. '$mykey' in table '$mylocation' in database '$mytype' were created successfully. Here is some details about the created information: &lt;br&gt;&lt;br&gt;Password: $mypassword&lt;br&gt;E-Mail:$myemail&lt;br&gt;First Name:$myfirstname&lt;br&gt;Last Name:$mylastname&lt;br&gt;&lt;br&gt;Please review scripts on how this happened.  &quot;; <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } </span><br />
+          <span class="style12">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br />
+&nbsp;&nbsp;&nbsp;} ELSE {</span><br />
+          &nbsp;&nbsp;&nbsp;# Location had an error.
+          <br />
+            <span class="style12">&nbsp;&nbsp;&nbsp;echo &quot;Had an error while trying to make a location. The error is [$mylocation].&quot;;             <br />
+&nbsp;&nbsp;&nbsp;            } </span><br />
+            <br />
+            # This is the end of the example. See output below.</span></span></span><strong><span class="style12"><span class="style18"><span class="style21">  <br />
+            <br />
+            ?&gt;</span><br />
+            <br />
+            <br />
+            Run the above script and output will be generated.</span></span></strong></p>
+          <p class="style8"><strong><span class="style12"><span class="style18"><br />
+            <br />
+            EXAMPLE FOR FindLocation() <br />
+                  <br />
+                  <span class="style21"><br />
+&lt;?</span><br />
+          </span></span></strong><span class="style12"><span class="style18"><br />
+include &quot;locations.php&quot;; <span class="style21"># You will need this to make the functions below work </span><span class="style18"><br />
+<br />
+$type = 'users'; <span class="style21"># This is the database created to store your users. </span></span> <span class="style18"><br />
+$mykey = 'bob@aol.com'; <span class="style21"># This is the key, his unique identifier in 'users'. </span><br />
+          </span></span></span><span class="style18"><strong><span class="style12"><br />
+          </span></strong><span class="style12"><span class="style21"># Find where this person is by their E-Mail Address </span><br />
+$mylocation = FindLocation(<strong>$type</strong>,<strong>$mykey</strong>); </span><strong><span class="style12"><br />
+<span class="style21"> <br />
+</span></span></strong><span class="style12"><span class="style21"><span class="style12">if ($mylocation &gt; 0) {</span></span><br />
+<span class="style21"># Found him...</span><br />
+echo &quot;Found him in '$type' database, in table '$mylocation'. You can access his data with mysql, or php script by doing this: &lt;br&gt;&lt;br&gt;&quot; . 'SELECT * FROM $type.$mylocation WHERE email=&quot;' . $mykey . '&quot;;&lt;br&gt;&lt;br&gt;Congratulations!'; <br />
+} ELSE { </span></span><span class="style20"><br />
+<span class="style21"># Not Found - He probably doesn't exist. Or he there was an error when you used MakeLocation.</span><br />
+echo &quot;Sorry, '$mykey' was not found in '$type'.&quot;;
+<br />
+            } <br />
+            </span><strong><span class="style12"><span class="style18"><span class="style21"><br />
+            ?&gt;</span><br />
+            <br />
+            <br />
+          Run the above script and output will be generated.</span></span></strong></p>
+        </td>
+      </tr>
+    </table>
+    <br />
+      <br />
+      <br />
+  </li>
+  <li><span class="style9"><a name="demo"></a>Demo</span><span class="style10"> [hyperstorage/demo]</span> <br />
+    <span class="style8"><br />
+    The best way to learn, is to actually use the demo.. After you have configured the scripts, try using the demo.. You can find it in the 'hyperstorage/demo', which will show you how it works on screen. <br />
+    </span><br />
+    <br />
+  </li>
+</ul>
+</body>
+</html>
