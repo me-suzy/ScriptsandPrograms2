@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://www.jmbsoft.com/owners/ags/bdocs/autogallerysql.html -->
+<HTML><HEAD><TITLE>Upgrading AutoGallery SQL v2.0.0 to v2.1.x</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff>
+<DIV align=center><FONT face=Verdana,Arial size=4><B>Upgrading AutoGallery SQL 
+v2.0.0 to v2.1.x </B><BR><BR>
+<TABLE cellSpacing=0 cellPadding=2 width=650 border=0>
+  <TBODY>
+  <TR>
+    <TD><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Upgrade Instructions</B> 
+          </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR><FONT 
+      face=Arial size=2>These instructions are for upgrading from AutoGallery 
+      SQL v2.0.0 only. 
+      <OL>
+        <LI>The first thing you should do is login to your AutoGallery SQL 
+        administrative interface and run the database backup function. This will 
+        create two backup files which you can use to get AutoGallery SQL running 
+        again if you encounter any problems with the conversion. Make sure you 
+        download the backup files to your local computer in ASCII mode before 
+        continuing to the next step. <BR><BR>
+        <LI>Upload the autogallerysql.cgi file from the v2.1.x distribution to 
+        the directory on your server where AutoGallery SQL is currently 
+        installed, and the tables.dat file to the data directory of your current 
+        AutoGallery SQL installation. Make sure you upload in ASCII mode and 
+        change the permissions on the autogallerysql.cgi file to 755. You can 
+        now point your browser to this file, and it will convert your MySQL 
+        database to the new format. <BR><BR>
+        <LI>Edit the ags.pl file included with the 2.1.x distribution and setup 
+        the MySQL username, password, and database name. <BR><BR>
+        <LI>Next you can upload all of the files from the v2.0.x distribution to 
+        your server in the corresponding folders. Complete details on what 
+        folders each file goes into and file permissions can be found in the 
+        install.html documentation file. Files you <I>do not</I> need to upload 
+        are: <BR><BR><B>In the templates directory</B><BR>All _post_*.htmlt 
+        files<BR>All _partner_*.htmlt files<BR>All _email_*.etmpl files<BR>All 
+        _report_*.htmlt files<BR><BR>All other files need to be uploaded. 
+        <B><FONT color=red>Make sure you upload all of the other files, 
+        including the _admin_*.htmlt and _extern_*.htmlt templates. Failure to 
+        upload the new files will result in the software not functioning 
+        correctly</FONT></B> <BR><BR>
+        <LI>Log into your administrative interface and click on the Edit 
+        Variables and Options link. You will need to go through and make sure 
+        all of the setup options are how you want them. If you are using a 
+        custom sorting string, it will need to be changed. See the display.html 
+        documentation for the new sorting values. Once you have done this, the 
+        upgrade is complete. 
+</FONT></LI></OL></TD></TD></TR></TBODY></TABLE></FONT></DIV></BODY></HTML>
