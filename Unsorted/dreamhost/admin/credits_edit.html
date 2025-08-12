@@ -1,0 +1,101 @@
+
+<p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><b> 
+  </b></font><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"> 
+  <?if ($action=="update_domain") {
+update_domain_2($account_id,$domain_id,$membership_id);
+echo "<BR>Domain  Information Updated  Updated!<BR>";
+}
+ 
+?>
+  </font> 
+<form name="form2" method="post" action="">
+  <b><font face="Verdana, Arial, Helvetica, sans-serif"> </font></b> 
+  <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif"><b>Customer 
+    To Credit:</b></font> </div>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif"> 
+  <?  echo show_account_list($account_id); ?>
+  </font></b> 
+  <input type="submit" name="Submit" value="Select to continue">
+</form>
+<p align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#666666"> 
+  </font> 
+<form name="form1" method="post" action="">
+  <div align="left"><br>
+    <br>
+    <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+    <? if (isset($account_id))  { ?>
+    </font></b> <font face="Verdana, Arial, Helvetica, sans-serif"><b> Credit 
+    Information:</b></font> <font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+    </b></font> 
+    <table width="450" border="0" cellspacing="0" cellpadding="1">
+      <tr> 
+        <td> 
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr> 
+              <td> 
+                <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                  <tr> 
+                    <td width="121"> 
+                      <div align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Refund 
+                        Type:</font></b></div>
+                    </td>
+                    <td width="319"> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"> 
+                      <select name="type">
+                        <option value="0" selected>For an Order</option>
+                        <option value="1">For a Domain</option>
+                        <option value="3">Misc/Other</option>
+                      </select>
+                      </font></b></font></td>
+                  </tr>
+                  <tr> 
+                    <td width="121"> 
+                      <div align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Domain: 
+                        </font></b></div>
+                    </td>
+                    <td width="319"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                      <b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                      <? echo show_domain_list($account_id,$domain_id);?>
+                      </font></font></font></font></b> </font></font></font></font></b></font><font size="2"> 
+                      </font></font></font></font></b></font></td>
+                  </tr>
+                  <tr> 
+                    <td width="121"> 
+                      <div align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Amount:</font></b></div>
+                    </td>
+                    <td width="319"><font size="-1" face="ARIAL,HELVETICA"> </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                      <input type="text" name="amount" maxlength="10" size="6" style="border: 1 solid #666666" value="<? echo $amount ?>">
+                      </font></font></font></font></b></font></font></font></font></b></font></font></font></font></b></font></td>
+                  </tr>
+                  <tr> 
+                    <td width="121" valign="top"> 
+                      <div align="right"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Notes:</font></b></div>
+                    </td>
+                    <td width="319"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#990000"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                      <textarea name="notes" cols="20" style="border: 1 solid #666666" rows="4"><?php echo $keyword ?></textarea>
+                      </font></font></font></font></b></font></font></font></font></b></font></td>
+                  </tr>
+                </table>
+                <p><font size="-1" face="ARIAL,HELVETICA"> 
+                  <input type="submit" name="submit" value="Credit Account Now">
+                  </font> 
+                  <input type="hidden" name="page" value="credits">
+                  <input type="hidden" name="domain_id" value="<? echo $domain_id; ?>">
+                  <input type="hidden" name="account_id" value="<? echo $account_id; ?>">
+                  <input type="hidden" name="action" value="add_credit">
+                  <input type="hidden" name="status" value="0">
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <font color="#FFFFFF" size="2" face="Verdana, Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+    <? } ?>
+    </font><font color="#666666"> </font></b></font> <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+    </font></b> </div>
+</form>
+<b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"><br>
+</font></b> 
+<p align="center"><br>
+</p>
