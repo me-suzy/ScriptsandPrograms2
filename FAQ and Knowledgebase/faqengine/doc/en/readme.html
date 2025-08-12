@@ -1,0 +1,422 @@
+<HTML>
+<head>
+<style>
+        body{
+                font-size : 10pt;
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-weight : normal;
+                background-color : #FFFFF0;
+                border : thin solid Black;
+        }
+        li.paramlist{
+                margin-top : 5px;
+        }
+        table.example{
+                margin-top : 5px;
+                margin-bottom : 5px;
+                background-color : #F0F8FF;
+                border : 1 solid Black;
+                color : #444444;
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+                padding-left : 5px;
+                padding-right : 5px;
+                padding-top : 5px;
+                padding-bottom : 5px;
+                max-width : 85%;
+                float : none;
+                vertical-align : middle;
+        }
+        .remark{
+                font-size : 8pt;
+        }
+        .footnote{
+                font-size : 8pt;
+        }
+        a.footnote{
+                text-decoration : none;
+                color : #191970;
+        }
+        a.footnote:hover{
+                background-color : Yellow;
+        }
+        PRE {
+                font-family : "Courier New", Courier, monospace;
+                font-size : 10pt;
+                color : Black;
+        }
+        tr.params{
+                background-color : #DCDCDC;
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 10pt;
+        }
+        tr.params_heading{
+                background-color : #A9A9A9;
+        }
+        td.paramname{
+                font-style : italic;
+                text-align : center;
+                width : 20%;
+                vertical-align : top;
+        }
+        td.paramdesc{
+                text-align : left;
+                padding-left : 2pt;
+                padding-right : 2pt;
+                vertical-align : top;
+                width : 50%
+        }
+        td.paramdefval{
+                text-align : left;
+                padding-left : 2pt;
+                vertical-align : top;
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+        }
+        table.code{
+                background-color : #F0F8FF;
+                border : 1 solid Black;
+                color : #444444;
+                font-family : "Courier New", Courier, monospace;
+                font-size : 9pt;
+                padding-left : 2px;
+                padding-right : 2px;
+        }
+        th{
+                font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+                font-size: 10pt;
+        }
+</style>
+<title>FAQEngine - ReadMe</title>
+</head>
+<body>
+<a id="install"><h1>Installation</h1></a>
+<strong>Important installation note:</strong> the database you define in config.php must still exist. The
+install script does not create the database for security reasons.
+<ol>
+<li>Copy config.dist.php to config.php and edit it to fit your needs (only recommended for people with PHP knowledge) or call admin/mkconfig.php to generate a config.php
+<span class="remark">(if you're using PHP version &gt;= 4.2.0, you have to set <em>$new_global_handling=true;</em>
+in mkconfig.php)</span>.<br>
+<em>Note</em>: You can have multiple instances of FAQEngine in the same database.
+Just set <em>tableprefix</em> in config.php to different values for each installation.
+<em>Do this before calling install.php.</em></li>
+<li>Upload all files (.php, inc. ...) to your webhoster. <em>Please maintain subdirectory structure.</em><br>
+<span class="remark"><em>Important:</em>
+Use binary mode in ftp to transfer files in /gfx and /admin/gfx !!!!</span>
+</li>
+<li>
+<ol type=A>
+<li><strong>1st time installation:</strong><br>
+Now you can call <pre>http://your.host.com/installdir/admin/install.php</pre> to create the tables and the 1st admin
+</li>
+<li TYPE=A><strong>Upgrade:</strong><br>
+<span class="remark">THIS ARCHIVE ONLY CONTAINS DB UPDATE SCRIPTS FOR V4.05+. TO UPDATE OLDER VERSION PLEASE
+DONWLOAD UPDATE PACKAGE TO 4.05 FROM WEBSITE !!!</span><br>
+<em>Please replace all files (.php, .inc ...) on your server !!</em><br>
+<em>This way you determine which script you need:</em><ul>
+<li>Take the actually installed versionnumber (e.g. 3.10).</li>
+<li>Remove the point in the versionnumber (in our example this results in 310).<br>
+Now you have the upgrade version.</li>
+<li>After this you need to sequentially use all upgrade scripts from this version to the actual version.<br>
+For our example the actual version should be 3.22 (short 322). Use upgrade_310_to_311.php
+than upgrade_311_to_312.php and so on until you reach upgrade_321_to_322.php<br>
+<span class="remark">If one script in the sequence does not exists, for this upgrade step
+no database changes were necessary. In this case just continue with the next one in the sequence.</span></li>
+</ul>
+</li></ol></li>
+<li>After installation remove mkconfig.php, install.php, upgrade_* and fill_* and set filemode for <em>config.php</em> to disable
+PHP from writing to this file <span class="remark">(on most server configurations this will be <em>chmod 644</em>)</span>.</li>
+<li>Now you can enter the admininterface by calling
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/admin/index.php</TD></TR></TABLE>
+and login using the adminuser created during the installprogress.
+</li>
+</ol>
+<a id="calling"><h1>Calling different user views</h1></a>
+<ul>
+<li class="paramlist">FAQ frame:
+<ul><li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faqframe.php?limitprog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+
+</TD></TR></TABLE>
+to display the list of the newest FAQ for the defined program in frame mode (with the treeview)
+</li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faqframe.php?&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display the list of the newest FAQ for all programs in frame mode (with the treeview)
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faqframe.php?list=categories&amp;prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display the list of the defined categories for this program in frame mode (with the treeview)<br>
+To limit treeview to a single program use <em>limitprog=&lt;progid&gt;</em> instead of <em>prog=&lt;progid&gt;</em>
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faqframe.php?list=all&amp;prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display a list of all FAQ headings in all categories for this program in frame mode (with the treeview)<br>
+To limit treeview to a single program use <em>limitprog=&lt;progid&gt;</em> instead of <em>prog=&lt;progid&gt;</em>
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faqframe.php?list=progs&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display a list of all programs (show programlist in the layout must be enabled) in frame mode
+</li></ul>
+</li>
+<li class="paramlist">FAQs:<ul><li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faq.php?prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display the list of the newest FAQ for the defined program
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faq.php?list=categories&amp;prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display the list of the defined categories for this program</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faq.php?list=all&amp;prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display a list of all FAQ headings in all categories as a treeview for this program
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/faq.php?list=progs&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display a list of all programs (show programlist in the layout must be enabled)
+</li></ul></li>
+<li class="paramlist">Knowledge Base:<ul>
+<li><table class="example"><tr><td nowrap>
+http://your.host.com/installdir/kb.php?prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+display Knowledge Base.<br>
+This uses the default mode choosen on admin interface.
+You also can use an other mode by defining it on the URL:
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/kb.php?prog=&lt;progid&gt;&amp;&lt;langvar&gt;=&lt;language&gt;&amp;mode=&lt;mode&gt;&amp;layout=&lt;layoutid&gt;
+</TD></TR></TABLE>
+</li></ul>
+</li>
+</ul>
+<a id="scriptparams"><h3>URL parameters for scripts</h3></a>
+<table width="85%" border="0" cellspacing="0" cellpadding="1" align="left" bgcolor="black">
+<tr bgcolor="black"><td><table width="100%" cellspacing="1" cellpadding="1" align="center">
+<tr class="params_heading">
+    <th>Parametername</th>
+    <th>Description</th>
+        <th>default Value<sup><a class="footnote" href="#defval">1</a></sup></th>
+</tr>
+<tr class="params">
+    <td class="paramname">langvar</td>
+    <td class="paramdesc">language variable defined in config.php.<br><span class="remark">($langvar)</span></td>
+        <td class="paramdefval"></td>
+</tr>
+<tr class="params">
+    <td class="paramname">language</td>
+    <td class="paramdesc">Language to use for interface<br><span class="remark">(Valid language settings are those, for which a language file is available in language subdir.<br>
+        <td class="paramdefval"><em>$default_lang</em> from config.php</td>
+</tr>
+<tr class="params">
+    <td class="paramname">layoutid</td>
+    <td class="paramdesc">ID of layout to be used</td>
+        <td class="paramdefval">layout marked as <em>default</em> in admin interface</td>
+</tr>
+<tr class="params">
+    <td class="paramname">progid</td>
+    <td class="paramdesc">ID of program to use for display</td>
+        <td class="paramdefval"></td>
+</tr>
+<tr class="params">
+    <td class="paramname">mode</td>
+    <td class="paramdesc">Mode to start Knowledge Base with.<br>
+        valid values:<ul>
+        <li><em>wizard</em>: starts with the wizard interface</li>
+        <li><em>search</em>: starts with the keyword search</li>
+        <li><em>proglist</em>: starts with the program list</li>
+        </ul>
+        </td>
+        <td class="paramdefval">mode defined in admin interface</td>
+</tr>
+</table>
+</td></tr></table>
+<br clear="all">
+<a id="defval"><span class="footnote"><sup class="footnote">1</sup> default Value used if parameter is not supplied</span></a>
+<h3>Calling FAQ userview in alternate mode (less URL params)</h3>
+<ul><li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/newfaq.php?id=&lt;progid&gt;|&lt;language&gt;|&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display the list of the newest FAQ for the defined program
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/listcats.php?id=&lt;progid&gt;|&lt;language&gt;|&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display the list of the defined categories for this program</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/listallfaq.php??id=&lt;progid&gt;|&lt;language&gt;|&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display a list of all FAQ headings in all categories as a treeview for this program
+</li>
+<li>
+<table class="example"><tr><td nowrap>
+http://your.host.com/installdir/listprogs.php??id=&lt;language&gt;|&lt;layoutid&gt;
+</TD></TR></TABLE>
+to display a list of all programs (show programlist in the layout must be enabled)
+</li></ul>
+<h3>Include subscription form for newsletter in own pages</h3>
+Example code for using external form to subscribe to newsletter:<br>
+Please replace <em>{desired program}</em> with the ID of the program to use for this newsletter
+, <em>{installpath}</em> with the URL path to the scripts, <em>{desired lang}</em> with the desired language and <em>{langvar}</em> with
+the language variable ($langvar) defined in config.php.
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td>
+<pre>
+&lt;!-- --------- Start of subscription code --------- --&gt;
+&lt;table width="80%" align="center"&gt;
+&lt;form method="post" action="/{installpath}/subscription.php"&gt;
+&lt;input type="hidden" name="{langvar}" value="{desired lang}"&gt;
+&lt;input type="hidden" name="mode" value="subscribe"&gt;
+&lt;tr&gt;&lt;td align="right" width="30%"&gt;Email:&lt;/td&gt;
+&lt;td&gt;&lt;input type="text" name="email" size="40" maxlength="240"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td align="right" valign="top"&gt;Email type:&lt;/td&gt;&lt;td&gt;
+&lt;input type="radio" name="emailtype" value="0" checked&gt; HTML&lt;br&gt;
+&lt;input type="radio" name="emailtype" value="1"&gt; plain text&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td align="right" valign="top"&gt;send compressed:&lt;/td&gt;&lt;td&gt;
+&lt;input type="radio" name="compress" value="1" checked&gt; yes&lt;br&gt;
+&lt;input type="radio" name="compress" value="0"&gt; no&lt;/td&gt;&lt;/tr&gt;
+&lt;input type="hidden" name="prog" value="{desired program}"&gt;
+&lt;td align="center" colspan="2"&gt;&lt;input type="submit" value="subscribe"&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/form&gt;&lt;/table&gt;
+&lt;!-- --------- End of subscription code --------- --&gt;
+</pre></TD></TR></TABLE></TD></TR></TABLE><br>
+Example code for using external form to unsubscribe:
+<TABLE BORDER=0 ALIGN=CENTER WIDTH=85%><TR><TD><table width="100%" class="code" cellspacing="1" cellpadding="3"><tr><td>
+<pre>
+&lt;!-- --------- Start of unsubscription code --------- --&gt;
+&lt;table width="80%" align="center"&gt;
+&lt;form method="post" action="/{installpath}/subscription.php"&gt;
+&lt;input type="hidden" name="{langvar}" value="{desired lang}"&gt;
+&lt;input type="hidden" name="mode" value="unsubscribe"&gt;
+&lt;tr&gt;&lt;td align="right" width="30%"&gt;Email:&lt;/td&gt;
+&lt;td&gt;&lt;input type="text" name="email" size="40" maxlength="240"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;input type="hidden" name="prog" value="{desired program}"&gt;
+&lt;td align="center" colspan="2"&gt;&lt;input type="submit" value="unsubscribe"&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/form&gt;&lt;/table&gt;
+&lt;!-- --------- End of unsubscription code --------- --&gt;
+</pre></TD></TR></TABLE></TD></TR></TABLE><br>
+<h1>Admin interface</h1>
+<h2>Text templates</h2>
+You can use different placeholders for the different text templates. These placeholders on runtime will be
+replaced by the actual, asociated values.<br>
+The following list shows the placeholders available for the various texts and what values will be used
+to replace.<br>
+<ul>
+<li>"Mail: notification for new user question"<ul>
+<li>{qnr} --&gt; in the text will be replaced by the actual question number.</li>
+<li>{qlink} --&gt; will be replaced by a direct link to this question in the admin interface.</li>
+</ul></li></ul>
+<h2>FAQ upload by textfile</h2>
+You can upload a textfile containing heading, question and answer of a FAQ,
+as generated by the offline editor.
+You can use BBCode in the text for question and answer,
+just as if you enter them online using the form.
+<h2>Authentitication of admin users</h2>
+There are 3 ways to get authentication for admin users.
+<ol>
+<li>Using the internal authentication method. This is based on the data in the admin table and uses
+cookies for session handling.</li>
+<li>Using the internal authentication method. Sessionid sent by get and post requests.</li>
+<li>Using authentication by webserver via .htaccess</li>
+</ol>
+<h3>Method #1</h3>
+You have to set <em>$enable_htaccess</em> and <em>$sessid_url</em> in config.php to <strong>false</strong>.<br>
+In this case please ensure the following settings in config.php are correct:<ul>
+<li>$url_faqengine</li>
+<li>$cookiename</li>
+<li>$cookiepath</li>
+<li>$cookiesecure</li>
+<li>$sesscookiename</li>
+<li>$sesscookietime</li>
+</ul>
+This method uses username and password stored in the database and because of this you can
+change the password within the admin interface.
+<h3>Method #2</h3>
+You have to set <em>$enable_htaccess</em> to <strong>false</strong> and <em>$sessid_url</em> to <strong>true</strong> in config.php.<br>
+This method uses no cookie for storing the sessionid, but instead sends the sessionid in every
+get and post request.
+Because of this, everybody who can look on your screen also can see your sessionid.<br>
+<span class="remark">We think
+this is not really secure and recommend to use method 1 or 3. But you decide yourself.</span><br>
+Please ensure <em>$sesscookiename</em> is set to an value not used in an other way by FAQEngine <span class="remark">(best
+would be to let the default name, because this ensures avoiding conflicts with other
+HTTP-variables FAQEngine uses)</span>.<br><br>
+This method uses username and password stored in the database and because of this you can
+change the password within the admin interface.
+<h3>Method #3</h3>
+You have to set <em>$enable_htaccess</em> to <strong>true</strong> in config.php.<br>
+For every user set up in the admin interface, you also have to set up an user in .htpasswd.
+Username in database and .htpasswd must be the same, so the program can do assignment of
+external and internal userdefinition <span class="remark">(Note: usernames are not case sensitiv
+in FAQEngine, but may be in .htaccess)</span>.<br>
+Because of security reasons the admin interface <em>does not</em> update .htpasswd. So if you use
+this kind of authentication changes of the password in the admin interface <em>will not</em> have
+any effects. Also if you generate a new user in the admin interface be sure to also add
+this user to .htpasswd. You still have to provide a password while creating a new user,
+so no security whole appears if you change from Method 3 to Method 1 or 2.<br>
+<span class="remark">Remark: Using this method the internal login and failed login tracking is not available.
+Also the logout function does not work.</span>
+<h1>Changing storing mode for attachments</h1>
+<strong>Important:</strong> Don't just change storing mode for attachments in config.php ($attach_in_fs), if you allready have
+used attachments in FAQEngine. Before you change storing type from database to filesystem (and vice versa),
+use the function <em>transfer files to database</em> or <em>transfer files to filesystem</em> in <em>manage files</em>
+in admin interface. This will transfer binary data of attachments from database to filesystem (or vice versa) and
+update database entries. <em>After this</em> and <em>before uploading new files</em>, you can switch the storing mode
+in config.php
+<h1>Encoding translated language files to HTML entities</h1>
+Included in the archive is a script to convert language files containing foreign characters to
+HTML entities. To convert your translated language file to one with HTML entities, follow these steps:
+<ol>
+<li>Translate the language file and store your translated version in the appropriate <em>language</em> subdirectory</li>
+<li>Call <em>admin/encode_langfile.php</em></li>
+<li>Select the language file to be encoded</li>
+<li>Store the downloaded file (replacing <em>_enc</em> with appropriate language marker, e.g. nl) in the appropriate <em>language</em> subdirectory</li>
+<li>Now you can start the admin interface/user interface with the new language</li>
+</ol>
+<span class="remark">Remark: After encoding your language files, you should remove <em>admin/encode_langfile.php</em> from the server</span>
+<h1>Tested browser</h1>
+For actual list see our <a href="http://www.boesch-it.de/sw/php-scripts/english/prgversions.php">website</a>
+<h1><a name="lizenz">Licence</a></h1>
+This program is Freeware. You are allowed to use this for free in non commercial
+and commercial environments. You are not allowed to do any changes to the code.
+Except of the following files:<ul>
+<li>language/*</li>
+<li>admin/language/*</li>
+<li>stylesheets (*.css)</li>
+<li>metadata.php</li>
+<li>the marked parts in the files in the main directory. Changes only allowed between <pre>// begin user editable part</pre>
+and <pre>// end user editable part</pre></li>
+</ul>
+If you are using this program on your website, please enter your site as a
+reference on our homepage.
+<br><br>
+If you are using this program in a commercial environment, it would be very kind to
+provide our work with a little donation.
+<br><br>
+Newest version can be found at
+<a href="http://www.boesch-it.de">http://www.boesch-it.de</a>
+<br><br>
+<span class="remark">(Uses HTML Mime Mail class by Richard Heyes &lt;richard@phpguru.org&gt;)</span>
+<br><hr>
+<span class="remark">
+&copy; 2001-2005 B&ouml;sch IT-Consulting<br>
+Last updated: 08/10/2005
+</span>
+</body>
+</HTML>
