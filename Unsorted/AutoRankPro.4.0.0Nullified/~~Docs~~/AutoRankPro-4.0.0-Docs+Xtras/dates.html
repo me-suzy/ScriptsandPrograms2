@@ -1,0 +1,156 @@
+<html>
+<head>
+	<title>AutoRank Pro - Date & Time Format</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000">
+
+<div align="center">
+
+<font face="Verdana,Arial" size="4">
+
+<b>
+Date &amp; Time Documentation
+</b>
+
+<br><br>
+
+<table width="650" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Understanding Date &amp; Time Formats</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+<font face="Arial" size="2">
+
+This software allows you to enter your own custom date and time formats so they may displayed how
+you would like them.  This document explains all of the available format possibilities, and gives 
+several examples on how to get you going.  If you would rather not mess with this, you can leave
+the format fields in setup.cgi blank, and the script will use a default value.
+
+<br><br>
+
+A quick explanation of how the formatting works is:  The script will look at the format string that
+is passed to it.  When it finds a character preceded by a percent sign, it will try to replace that
+with a date or time value.  All other characters in the string are ignored, and returned unchanged.
+For example, if the string '%d-%w-%m' were passed in, the script would 
+find three distinct values - %d, %w, %m - and replace them with the appropriate values.  Below is a
+table listing all of the valid percent-character combinations.
+
+<br><br>
+
+<b>Date Formats</b>
+
+<br><br>
+
+</font>
+
+<pre>
+%d - day of the month, 2 digits with leading zeros; i.e. "01" to "31"
+%j - day of the month without leading zeros; i.e. "1" to "31"
+%D - day of the week, textual, 3 letters; i.e. "Fri"
+%w - day of the week, textual, long; i.e. "Friday"
+%M - month, textual, 3 letters; i.e. "Jan"
+%F - month, textual, long; i.e. "January"
+%m - month, 2 digits with leading zeros; i.e. "01" to "12"
+%n - month without leading zeros; i.e. "1" to "12"
+%Y - year, 4 digits; i.e. "1999"
+%y - year, 2 digits; i.e. "99"
+</pre>
+
+<font face="Arial" size="2">
+
+<b>Time Formats</b>
+
+<br><br>
+
+</font>
+
+<pre>
+%a - "am" or "pm"
+%h - hour, 12-hour format; i.e. "01" to "12"
+%H - hour, 24-hour format; i.e. "00" to "23"
+%g - hour, 12-hour format without leading zeros; i.e. "1" to "12"
+%G - hour, 24-hour format without leading zeros; i.e. "0" to "23"
+%i - minutes; i.e. "00" to "59"
+%s - seconds; i.e. "00" to "59"
+</pre>
+
+<font face="Arial" size="2">
+
+Now that we have covered the allowable format characters, we'll give you some examples.  Below are a few
+valid format strings, and three examples of the output they would produce.
+
+<br><br>
+
+<b>Date Examples</b>
+
+<br><br>
+
+</font>
+
+<pre>
+Format String          Sample Output
+-------------          -------------
+%n-%j-%y               1-5-00
+                       10-7-99
+                       11-29-00
+
+%d/%m/%Y               01/05/2000
+                       10/07/1999
+                       11/29/2000
+
+%w, %M %d %Y           Wednesday, Jan 5 2000
+                       Thursday, Oct 10 2000
+                       Wednesday, Nov 29 2000
+</pre>
+
+<font face="Arial" size="2">
+
+<b>Time Examples</b>
+
+<br><br>
+
+</font>
+
+<pre>
+Format String          Sample Output
+-------------          -------------
+%g:%i%a                1:25pm
+                       12:13am
+                       7:05pm
+
+%H:%i                  13:25
+                       00:13
+                       19:05
+</pre>
+
+<font face="Arial" size="2">
+That should be enough to get you going.  You can experiment with these formats until you get a result
+you like.  Each time you make a change in setup.cgi, an example of the new date and time formats will
+be displayed on the verification page.
+</font>
+
+</tr>
+</td>
+</table>
