@@ -1,0 +1,457 @@
+<body>
+<font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+Checkout &amp; Order Confirmation:</font></b></font></font> 
+<hr width="450" size="1" noshade align="left">
+<table width="450" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><font face="Arial, Helvetica, sans-serif" size="2">This is the final step 
+      of the checkout procedure. Please review all the information below before 
+      submitting your order. </font></td>
+  </tr>
+</table>
+<br>
+<form method="post" action="members<? echo $ext ?>">
+  <?
+$i=0;
+$db = new ps_DB;
+$q="SELECT * FROM sessions WHERE session_ip = '$REMOTE_ADDR' ";
+$q.="ORDER BY session_domain";
+$db->query($q);
+         while($db->next_record()) {
+?>
+  <table width="450" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC">
+    <tr> 
+      <td align="right"> 
+        <table border="0" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC" width="100%">
+          <tr> 
+            <td width="6"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#333333"> 
+              <font color="#FFFFFF"> <font size="1"> </font> </font></font></b></font> 
+            </td>
+            <td width="167" valign="middle"> <font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?page=signup_3&amp;action=remove_domain&amp;domain=<? $db->p("session_id"); ?>&amp;session_id=<? echo $session_id ?>"></a></font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font color="#333333"><font color="#FFFFFF"><font size="1"> 
+              <font color="#000066"> 
+              <?
+			  $domain =  $db->f("session_domain"); 
+			  $domain = ereg_replace("a","A",$domain);
+			  $domain = ereg_replace("b","B",$domain);
+			  $domain = ereg_replace("c","C",$domain);
+			  $domain = ereg_replace("d","D",$domain);
+			  $domain = ereg_replace("e","E",$domain);
+			  $domain = ereg_replace("f","F",$domain);
+			  $domain = ereg_replace("g","G",$domain);
+			  $domain = ereg_replace("h","H",$domain);
+			  $domain = ereg_replace("i","I",$domain);
+			  $domain = ereg_replace("j","J",$domain);
+			  $domain = ereg_replace("k","K",$domain);
+			  $domain = ereg_replace("l","L",$domain);
+			  $domain = ereg_replace("m","M",$domain);
+			  $domain = ereg_replace("n","N",$domain);
+			  $domain = ereg_replace("o","O",$domain);
+			  $domain = ereg_replace("p","P",$domain);
+			  $domain = ereg_replace("q","Q",$domain);
+			  $domain = ereg_replace("r","R",$domain);
+			  $domain = ereg_replace("s","S",$domain);
+			  $domain = ereg_replace("t","T",$domain);
+			  $domain = ereg_replace("u","U",$domain);
+			  $domain = ereg_replace("v","V",$domain);
+			  $domain = ereg_replace("w","W",$domain);
+			  $domain = ereg_replace("x","X",$domain);
+			  $domain = ereg_replace("y","Y",$domain);
+			  $domain = ereg_replace("z","Z",$domain);
+			  echo $domain;
+?>
+              </font></font></font></font></b></font></td>
+            <td width="26" align="right" valign="middle"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?page=signup_3&amp;action=remove_domain&amp;domain=<? $db->p("session_id"); ?>&amp;session_id=<? echo $session_id ?>"><font color="#666666">delete</font></a></font></td>
+            <td width="249" align="right" valign="middle"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><font color="#E6E6E6" size="1"><b><font color="#666666">Registration 
+              Fees:</font></b></font> 
+              <input type="hidden" name="d_id[<? echo $i ?>]" value="<? $db->p("session_id"); ?>">
+              <?
+if($db->f("session_1") == "0") {
+echo "Hosting Only";
+} else {
+show_domain_menu($db->f("session_domain"),$i,$db->f("session_id"));
+}
+?>
+              </font></td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="1" bgcolor="#F2F2F2">
+          <tr> 
+            <td align="right" bgcolor="#F5F5F5"> <font size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Hosting:</b></font> 
+              <? show_hosting_menu($db->f("session_domain"),$i++,$db->f("session_id")); ?>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p> 
+    <?
+}
+?>
+    <br>
+  </p>
+  <p> 
+    <input type="hidden" name="page2" value="signup_3">
+    <input type="hidden" name="action2" value="update_domain">
+    <input type="hidden" name="session_id2" value="<? echo $session_id ?>">
+  </p>
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr valign="top"> 
+      <td width="245"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+        <?
+$account_id  = get_account_id($session_id);
+	$db = new ps_DB;
+	$q = "SELECT * FROM account WHERE account_id = '$account_id'"; 
+	$db->query($q);
+	$db->next_record();
+?>
+        </b></font> 
+        <table width="225" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+          <tr> 
+            <td width="193"> <font color="#FFFFFF"><b><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Your 
+              Account Info: </font></b></font></td>
+            <td width="28"><b><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="members.php?page=account&next_page=account&session_id=<? echo $session_id ?>"><font color="#CCCCCC">edit</font></a></font></b></td>
+          </tr>
+        </table>
+        <font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+        </b></font> 
+        <table width="225" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
+                <tr> 
+                  <td width="542" bgcolor="#E6E6E6"> 
+                    <div align="left"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                      <? $db->p("account_name"); ?>
+                      </font></div>
+                  </td>
+                </tr>
+                <tr bgcolor="#E4E4E4"> 
+                  <td width="542" bgcolor="#F5F5F5"> 
+                    <div align="left"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                      <? $db->p("account_address"); ?>
+                      </font></div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="542" bgcolor="#E6E6E6"> 
+                    <div align="left"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                      <? $db->p("account_city"); ?>
+                      </font></div>
+                  </td>
+                </tr>
+                <tr bgcolor="#E4E4E4"> 
+                  <td width="542" bgcolor="#F5F5F5"> 
+                    <div align="left"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                      <? $db->p("account_state"); ?>
+                      </font></div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="542" bgcolor="#E6E6E6"> 
+                    <div align="left"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                      <? $db->p("account_zip"); ?>
+                      </font></div>
+                  </td>
+                </tr>
+                <tr bgcolor="#E4E4E4"> 
+                  <td width="542" bgcolor="#F5F5F5"> 
+                    <div align="left"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"> 
+                      <? $db->p("account_email"); ?>
+                      </font></div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td align="right" width="205"> 
+        <table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#666666">
+          <tr> 
+            <td width="142"> <font color="#FFFFFF"><b><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Order 
+              </font><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Totals: 
+              </font></b></font></td>
+            <td width="29"><font color="#FFFFFF"><b><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="members.php?page=signup_3&session_id=<? echo $session_id ?>"><font color="#CCCCCC">edit</font></a></font></b></font></td>
+          </tr>
+        </table>
+        <table width="175" border="0" cellspacing="0" cellpadding="1" bgcolor="#CCCCCC">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                <tr> 
+                  <td bgcolor="#E6E6E6"> 
+                    <table width="100%" border="0" cellpadding="1" cellspacing="0" bgcolor="#CCCCCC">
+                      <tr bgcolor="#E6E6E6"> 
+                        <td bgcolor="#E6E6E6"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>Domain 
+                          Fees:</b></font></td>
+                        <td> 
+                          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+                            <?
+$domain_cost = show_registration_cost($REMOTE_ADDR);
+echo $currency;
+printf("%.2f",$domain_cost);
+?>
+                            </b></font></div>
+                        </td>
+                      </tr>
+                      <tr bgcolor="#F5F5F5"> 
+                        <td><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>Hosting 
+                          Fees:</b></font></td>
+                        <td> 
+                          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+                            <?
+$hosting_cost = show_hosting_cost($REMOTE_ADDR);
+echo $currency;
+printf("%.2f",$hosting_cost);
+?>
+                            </b></font></div>
+                        </td>
+                      </tr>
+                      <tr bgcolor="#E6E6E6"> 
+                        <td><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>Setup 
+                          Fees: </b></font></td>
+                        <td> 
+                          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+                            <?
+$setup_cost =  show_setup_cost($REMOTE_ADDR);
+echo $currency;
+printf("%.2f",$setup_cost);
+?>
+                            </b></font></div>
+                        </td>
+                      </tr>
+                      <tr bgcolor="#F5F5F5"> 
+                        <td bgcolor="#F5F5F5"><font color="#666666" face="Verdana, Arial, Helvetica, sans-serif" size="1"><b>Tax 
+                          ( 
+                          <?
+				$tax_rate=setup("tax_rate");
+				echo $tax_rate;
+?>
+                          )</b></font><font color="#000000" size="1" face="Verdana, Arial, Helvetica, sans-serif"></font></td>
+                        <td> 
+                          <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+                            <?
+					  $tax = setup("tax");
+$subtotal = $hosting_cost + $domain_cost + $setup_cost;
+if ($tax=="Y") { $tax = $subtotal*$tax_rate; }
+echo $currency;
+printf("%.2f",$tax);
+$total = $subtotal + $tax;
+
+?>
+                            </b></font><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#000000"><b> 
+                            </b></font></div>
+                        </td>
+                      </tr>
+                      <tr bgcolor="#E6E6E6"> 
+                        <td><font color="#000099" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>GRAND 
+                          TOTAL:</b></font></td>
+                        <td> 
+                          <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#000099"><b> 
+                            <?
+echo $currency;
+printf("%.2f",$total);
+?>
+                            </b></font></div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<form action="members<? echo $ext ?>" name="nameMe">
+  <p><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+    <?
+	$dba = new ps_DB;
+	$q = "SELECT * FROM attributes WHERE attribute_active = 'Y' ORDER by attribute_type ASC"; 
+	$dba->query($q);
+	$attr = $dba->num_rows();
+	if ($attr >=1) {
+	?>
+    </b></font>
+  <p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+    Order Options:</font></b></font></font> 
+  <hr width="450" size="1" noshade align="left">
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">Below 
+        <?
+
+	if ($attr == 1) echo " is one last option you must complete before submitting the order. Please fill it out and continue to the credit card section below. ";
+	if ($attr > 1) echo " are several options you must complete before submitting the order. Please provide the requested information and continue to the credit card section below. ";
+
+	?>
+        <b> 
+        <input type="hidden" name="attr" value="<? echo $attr ?>">
+        </b></font></td>
+    </tr>
+  </table>
+  <p><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+    <? 	
+  $i = 0;
+  while ($dba->next_record()) { ?>
+    </b></font> 
+  <table width="450" border="0" cellspacing="0" cellpadding="1">
+    <tr> 
+      <td width="125"><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"><b> 
+        <? if ($dba->f("attribute_type")==1) { ?>
+        <input type="checkbox" name="value[<? echo $i ?>]" value="YES" <? if ($dba->f("attribute_value") == Y) echo " checked"; ?>>
+        <? } elseif ($dba->f("attribute_type")==0) { ?>
+        <input type="text" style="border: 1 solid #666666; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold" size="15" value="<? echo $dba->f("attribute_value") ?>" maxlength="32" name="value[<? echo $i ?>]">
+        <? } elseif ($dba->f("attribute_type")==2) { 
+         show_attribute_list($i,$dba->f("attribute_id"));
+  }
+  
+   ?>
+        </b></font></td>
+      <td><font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#666666"> 
+        <font color="#990000"> &lt; - 
+        <? $dba->p("attribute_desc");?>
+        </font> </font><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b> 
+        <input type="hidden" name="name[<? echo $i ?>]" value="<? echo $dba->f("attribute_name") ?>">
+        </b></font></td>
+    </tr>
+  </table>
+  <? 
+$i++;
+}
+}
+
+ ?>
+  <p>&nbsp;</p>
+  <p> 
+    <? 
+if (check_cc_list($account_id)<>0) {
+  ?>
+    <font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+    Use a credit card on file:</font></b></font></font> 
+  <hr width="450" size="1" noshade align="left">
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td><font face="Arial, Helvetica, sans-serif" size="2">You may use a credit 
+        card already on file, or you can enter a new credit card below.<br>
+        <br>
+        <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+        </font></b></font> 
+        <table width="450" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td><font face="Arial, Helvetica, sans-serif" size="2"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+              <?   echo show_cc_list(get_account_id($session_id),"1");  ?>
+              </font></b></font></td>
+            <td width="50"><font face="Arial, Helvetica, sans-serif" size="2"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+              <input type="submit" name="old_card" value="Checkout -&gt;" class="menu">
+              </font></b></font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+  <? 
+}
+  ?>
+  </font></b> 
+  <p><br>
+    <br>
+    <font color="#666666"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990033"> 
+    </font></b></font> </p>
+  <p><font size="3" face="Verdana, Arial, Helvetica, sans-serif" color="#0066CC"><font face="Arial, Helvetica, sans-serif" size="2"><b><font size="3" color="#000066">&gt; 
+    Place order using a new card:</font></b></font></font> 
+  <hr width="450" size="1" noshade align="left">
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td><font face="Arial, Helvetica, sans-serif" size="2">Please enter your 
+        credit card information below. This card will be placed on file for any 
+        recurring billing.<br>
+        <br>
+        </font> 
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td width="100"><font color="#333333" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Card 
+              Type:</b></font></td>
+            <td> <font face="Verdana, Arial, Helvetica, sans-serif" size="1" color="#333333"> 
+              <select name="payment">
+                <option><b>Visa </b> 
+                <option><b>MasterCard </b> 
+                <option><b>Amex </b> 
+                <option><b>Discover/Novus </b><b></b> 
+              </select>
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="100"><font color="#333333" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b>Card 
+              Number:</b></font></td>
+            <td><font color="#333333" size="1" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="ccnum" style="border: 1 solid #666666" size="16" value="<? echo $account_card_num ?>" maxlength="16">
+              <font color="#999999">(Eg: 4111111111111111) </font></font></td>
+          </tr>
+        </table>
+        <table width="450" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                <tr> 
+                  <td width="100"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><font color="#666666"><b><font color="#666666"><b><font color="#333333"><b>Expiration:</b></font></b></font></b></font></font></td>
+                  <td><font color="#333333" size="1" face="Verdana, Arial, Helvetica, sans-serif"> 
+                    <select name="ccexp">
+                      <option value="01">Jan (1)</option>
+                      <option value="02">Feb (2)</option>
+                      <option value="03">Mar (3)</option>
+                      <option value="04">Apr (4)</option>
+                      <option value="05">May (5)</option>
+                      <option value="06">Jun (6)</option>
+                      <option value="07">Jul (7)</option>
+                      <option value="08">Aug (8)</option>
+                      <option value="09">Oct (9)</option>
+                      <option value="10">Sep (10)</option>
+                      <option value="11">Nov (11)</option>
+                      <option value="12">Dec (12)</option>
+                    </select>
+                    <select name="ccexp_year">
+                      <option value="2001">2001</option>
+                      <option value="2002">2002</option>
+                      <option value="2003">2003</option>
+                      <option value="2004">2004</option>
+                      <option value="2005">2005</option>
+                      <option value="2006">2006</option>
+                      <option value="2007">2007</option>
+                      <option value="2008">2008</option>
+                      <option value="2009">2009</option>
+                      <option value="2010">2010</option>
+                    </select>
+                    <b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"></font></b></font></td>
+                </tr>
+              </table>
+            </td>
+            <td width="50"><font color="#333333" size="1" face="Verdana, Arial, Helvetica, sans-serif"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+              </font><font face="Arial, Helvetica, sans-serif" size="2"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003366"> 
+              <input type="submit" name="new_card" value="Checkout -&gt;" class="menu">
+              </font></b></font></b></font></td>
+          </tr>
+        </table>
+        <font size="1" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+        <input type="hidden" name="page" value="signup_6">
+        <input type="hidden" name="action" value="complete_order">
+        <font color="#666666"><b> 
+        <input type="hidden" name="account_name" value="<? $db->p("account_name"); ?>">
+        <font color="#666666"><b> 
+        <input type="hidden" name="account_zip" value="<? $db->p("account_zip"); ?>">
+        <input type="hidden" name="account_address" value="<? $db->p("account_address"); ?>">
+        <input type="hidden" name="method" value="new_card">
+        </b></font></b></font></font><font face="Arial, Helvetica, sans-serif" size="2"> 
+        </font></td>
+    </tr>
+  </table>
+  <div align="left"> </div>
+</form>
+<div align="left"> </div>
+</body>
