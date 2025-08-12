@@ -1,0 +1,358 @@
+<html>
+<head>
+<title>Welcome to <? echo setup("company") ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.menu {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: <? echo setup("topmenu_font"); ?>; background-color: <? echo setup("topmenu_bg"); ?>; text-decoration: none}
+.leftmenu {  font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; font-variant: normal; color: <? echo setup("leftmenu_font"); ?>; text-decoration: none}
+a:hover {  font-weight: bold; text-decoration: none; text-transform: capitalize}
+a:link {  font-weight: bold; text-decoration: none; text-transform: capitalize}
+a:visited {  font-weight: bold; text-decoration: none; text-transform: capitalize}
+a:active {  font-weight: bold; text-decoration: none; text-transform: capitalize}
+.cart {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8.5px; font-weight: normal}
+
+
+
+-->
+</style>
+</head>
+<body rightmargin="0" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"> 
+
+
+
+<?
+
+echo setup("header");
+$topmenu_font = setup("topmenu_font");
+$topmenu_bg = setup("topmenu_bg");
+$leftmenu_font= setup("leftmenu_font");
+$leftmenu_bg  = setup("leftmenu_bg");
+
+?> 
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td valign="top" bgcolor="<? echo $leftmenu_bg; ?>" width="<? echo setup("leftmenu_width"); ?>"> 
+      <font color="#660033"> 
+      <?
+if (setup("leftmenu_search")==Y) {
+?>
+      </font> <font color="#660033"> </font> 
+      <form method="post" action="members<? echo $ext ?>">
+        <br>
+        <table width="165" border="0" cellspacing="0" cellpadding="2" align="center" class="leftmenu">
+          <tr> 
+            <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"><b><font color="<? echo $leftmenu_font ?>"><span class="leftmenu">DOMAIN 
+              SEARCH &gt;</span></font></b><br>
+              <input type="hidden" name="page" value="signup_2">
+              <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+              </font> 
+              <table width="140" border="0" cellspacing="0" cellpadding="2" align="center">
+                <tr> 
+                  <td width="144"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+                    <input type="text" name="desired_domain" maxlength="50" size="15" style="border: 1 solid <? echo $leftmenu_font ?>; background-color: <? echo $leftmenu_bg ?>; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: <? echo setup("leftmenu_font"); ?>;">
+                    </font></td>
+                  <td width="56"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+                    <input type="submit" name="Submit" value="GO" style="border: 1 solid <? echo $leftmenu_font ?>; background-color: <? echo $leftmenu_bg ?>; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: <? echo setup("leftmenu_font"); ?>;">
+                    </font></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        </font><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        </font> 
+      </form>
+      <p><font color="#660033"> 
+        <?
+}
+?>
+        </font></p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td valign="top" align="right"> 
+            <table width="150" border="0" cellspacing="0" cellpadding="0" align="right" class="leftmenu">
+              <tr> 
+                <td height="25" valign="middle"><a href="members.php?page=signup_1&session_id=<? echo $session_id ?>"><font color="<? echo $leftmenu_font ?>">Purchase 
+                  Domain</font></a></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFFFF" valign="middle"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+              <tr> 
+                <td height="25" valign="middle"><a href="members.php?page=signup_1_transfer&session_id=<? echo $session_id ?>"><font color="<? echo $leftmenu_font ?>">Purchase 
+                  Hosting</font></a></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFFFF" valign="middle"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+              <tr> 
+                <td height="25" valign="middle"><a href="members.php?page=signup_hosting&session_id=<? echo $session_id ?>"><font color="<? echo $leftmenu_font ?>">Hosting 
+                  Options</font></a></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFFFF" valign="middle"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+              <tr> 
+                <td height="25" valign="middle"><a href="members.php?page=service&session_id=<? echo $session_id ?>&next_page=service"><font color="<? echo $leftmenu_font ?>">Customer 
+                  Service</font></a></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFFFF" valign="middle"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+              <tr> 
+                <td height="25" valign="middle"><a href="members.php?page=static&content=company_info&session_id=<? echo $session_id ?>"><font color="<? echo $leftmenu_font ?>">Company 
+                  Information </font></a></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFFFF"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+              <tr> 
+                <td height="25"><a href="members.php?page=static&content=faq&session_id=<? echo $session_id ?>"><font color="<? echo $leftmenu_font ?>">FAQ 
+                  Section </font></a></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFFFF"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+              <tr> 
+                <td height="25"><a href="members.php?page=static&content=privacy_policy&session_id=<? echo $session_id ?>"><font color="<? echo $leftmenu_font ?>">Privacy 
+                  Policy </font></a> </td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFFFF"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+              <tr> 
+                <td height="25"><a href="members.php?page=static&content=acceptable_use&session_id=<? echo $session_id ?>"><font color="<? echo $leftmenu_font ?>">Acceptable 
+                  Use Policy</font></a></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFFFF"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+			  
+			  <? if (setup("affiliate")==Y) { ?>
+              <tr> 
+                <td height="25"><a href="<? echo setup("url"); ?>"><font color="#CCCCCC"> 
+                  
+                  </font></a><a href="members.php?page=affiliates&session_id=<? echo $session_id ?>&next_page=affiliates"><font color="<? echo $leftmenu_font ?>">Affiliate 
+                  Opportunity</font></a> 
+                 
+                </td>
+              </tr>
+			  
+			   
+			   
+              <tr> 
+                <td bgcolor="#FFFFFF"><img src="images/invisible.gif" width="1" height="1"></td>
+              </tr>
+			   <? }?>
+			   
+              <tr> 
+                <td height="25"><a href="<? echo setup("url"); ?>admin/?"><font color="#CCCCCC"> 
+                  <?
+$login = setup("login");
+$pass  = setup("password");
+
+if (isset($PHP_AUTH_USER)) {
+        if (($PHP_AUTH_USER == "$login") && ($PHP_AUTH_PW == "$pass")) { 
+?>
+                  </font><font color="<? echo $leftmenu_font ?>">Administration</font></a> 
+                  <? } 
+  }?>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <p align="center"><font color="#660033"> 
+        <?
+if (setup("leftmenu_cart")==Y) {
+?>
+        </font></p>
+      <table width="150" border="0" cellspacing="0" cellpadding="1" bgcolor="<? echo $leftmenu_font ?>" align="center">
+        <tr> 
+          <td> 
+            <table width="150" border="0" cellspacing="0" cellpadding="1" bgcolor="<? echo $leftmenu_bg ?>">
+              <tr> 
+                <td> 
+                  <div align="center"><span class="cart"> <font color="#CCFFFF"> 
+                    <?
+$i=0;
+$db = new ps_DB;
+$q="SELECT * FROM sessions WHERE session_ip = '$REMOTE_ADDR' ";
+$q.="ORDER BY session_domain";
+$db->query($q);
+if ($db->num_rows()=="0") { echo "Your shopping cart is empty."; }
+         while($db->next_record()) {
+?>
+                    </font></span> </div>
+                  <table width="150" border="0" cellpadding="2" cellspacing="0" class="cart" align="center">
+                    <tr> 
+                      <td width="162" class="cart"> <font color="<? echo $leftmenu_font ?>"> 
+                        <? $domain =  $db->f("session_domain"); 
+			  $domain = ereg_replace("a","A",$domain);
+			  $domain = ereg_replace("b","B",$domain);
+			  $domain = ereg_replace("c","C",$domain);
+			  $domain = ereg_replace("d","D",$domain);
+			  $domain = ereg_replace("e","E",$domain);
+			  $domain = ereg_replace("f","F",$domain);
+			  $domain = ereg_replace("g","G",$domain);
+			  $domain = ereg_replace("h","H",$domain);
+			  $domain = ereg_replace("i","I",$domain);
+			  $domain = ereg_replace("j","J",$domain);
+			  $domain = ereg_replace("k","K",$domain);
+			  $domain = ereg_replace("l","L",$domain);
+			  $domain = ereg_replace("m","M",$domain);
+			  $domain = ereg_replace("n","N",$domain);
+			  $domain = ereg_replace("o","O",$domain);
+			  $domain = ereg_replace("p","P",$domain);
+			  $domain = ereg_replace("q","Q",$domain);
+			  $domain = ereg_replace("r","R",$domain);
+			  $domain = ereg_replace("s","S",$domain);
+			  $domain = ereg_replace("t","T",$domain);
+			  $domain = ereg_replace("u","U",$domain);
+			  $domain = ereg_replace("v","V",$domain);
+			  $domain = ereg_replace("w","W",$domain);
+			  $domain = ereg_replace("x","X",$domain);
+			  $domain = ereg_replace("y","Y",$domain);
+			  $domain = ereg_replace("z","Z",$domain);
+			  echo $domain; ?>
+                        </font></td>
+                      <td width="6" class="cart"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="members.php?page=signup_3&action=remove_domain&domain=<? $db->p("session_id"); ?>&session_id=<? echo $session_id ?>"><font color="<? echo $leftmenu_font ?>" class="cart">DEL</font></a></font></td>
+                    </tr>
+                  </table>
+                  <?
+} 
+?>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <table width="115" border="0" cellspacing="0" cellpadding="0" bgcolor="<? echo $leftmenu_font ?>" align="center">
+        <tr> 
+          <td class="cart"> 
+            <div align="center">YOUR SHOPPING CART<font color="<? echo $leftmenu_bg ?>"><font color="#CCFFFF"> 
+              <font color="#CC0000"> </font></font></font></div>
+          </td>
+        </tr>
+      </table>
+      <p align="center"><font color="#660033"> 
+        <?
+}
+?>
+        <br>
+        </font></p>
+    </td>
+    <td valign="top"><font color="#660033"> </font> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td bgcolor="<? echo setup("topmenu_bg"); ?>"> 
+            <table width="500" border="0" cellspacing="0" cellpadding="0" class="menu" height="15">
+              <tr valign="middle" align="center"> 
+                <td width="10" height="10">&nbsp;</td>
+                <td class="menu" width="92" height="15"><a href="members.php?session_id=<? echo $session_id ?>"><font color="<? echo $topmenu_font; ?>">HOME</font></a></td>
+                <td width="10" class="menu" height="15"> 
+                  <div align="center">|</div>
+                </td>
+                <td class="menu" width="92" height="15"><a href="members.php?page=account&session_id=<? echo $session_id ?>&next_page=account"><font color="<? echo $topmenu_font; ?>">MY 
+                  ACCOUNT</font></a></td>
+                <td width="10" class="menu" height="15"> 
+                  <div align="center">|</div>
+                </td>
+                <td class="menu" width="92" height="15"><a href="members.php?page=static&content=contact_info&session_id=<? echo $session_id ?>"><font color="<? echo $topmenu_font; ?>">CONTACT</font></a></td>
+                <td width="10" class="menu" height="15"> 
+                  <div align="center">|</div>
+                </td>
+                <td class="menu" width="92" height="15"><a href="members.php?page=signup_3&session_id=<? echo $session_id ?>"><font color="<? echo $topmenu_font; ?>">MY 
+                  CART</font></a></td>
+                <td width="10" class="menu" height="15"> 
+                  <div align="center">|</div>
+                </td>
+                <td class="menu" width="92" height="15"> 
+                  <? if ($cart <> 0) { ?>
+                  <a href="members.php?page=signup_4&session_id=<? echo $session_id ?>&next_page=signup_4"><font color="<? echo $topmenu_font; ?>">CHECKOUT</font></a> 
+                  <? } ?>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="<? echo $leftmenu_bg ?>">
+        <tr> 
+          <td><img src="images/invisible.gif" width="1" height="1"></td>
+        </tr>
+      </table>
+      <table width="550" border="0" cellspacing="0" cellpadding="10">
+        <tr> 
+          <td valign="top"><font color="#660033"> 
+            <?
+if ($message) {
+echo $message;
+echo "<BR><BR>";
+}
+?>
+            <?
+include("member_$page.html"); 
+?>
+            </font></td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" bgcolor="<? echo $leftmenu_bg; ?>" width="<? echo setup("leftmenu_width"); ?>">&nbsp;</td>
+    <td valign="top" bgcolor="<? echo $topmenu_bg; ?>"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="<? echo $leftmenu_bg ?>">
+        <tr> 
+          <td><img src="images/invisible.gif" width="1" height="1"></td>
+        </tr>
+      </table>
+      <table width="500" border="0" cellspacing="0" cellpadding="0" class="menu" height="15">
+        <tr valign="middle" align="center"> 
+          <td width="10" height="15">&nbsp;</td>
+          <td class="menu" width="92" height="15"><a href="members.php?session_id=<? echo $session_id ?>"><font color="<? echo $topmenu_font; ?>">HOME</font></a></td>
+          <td width="10" class="menu" height="15"> 
+            <div align="center">|</div>
+          </td>
+          <td class="menu" width="92" height="15"><a href="members.php?page=account&session_id=<? echo $session_id ?>&next_page=account"><font color="<? echo $topmenu_font; ?>">MY 
+            ACCOUNT</font></a></td>
+          <td width="10" class="menu" height="15"> 
+            <div align="center">|</div>
+          </td>
+          <td class="menu" width="92" height="15"><a href="members.php?page=static&content=contact_info&session_id=<? echo $session_id ?>"><font color="<? echo $topmenu_font; ?>">CONTACT</font></a></td>
+          <td width="10" class="menu" height="15"> 
+            <div align="center">|</div>
+          </td>
+          <td class="menu" width="92" height="15"><a href="members.php?page=signup_3&session_id=<? echo $session_id ?>"><font color="<? echo $topmenu_font; ?>">MY 
+            CART</font></a></td>
+          <td width="10" class="menu" height="15"> 
+            <div align="center">|</div>
+          </td>
+          <td class="menu" width="92" height="15"> 
+            <? if ($cart <> 0) { ?>
+            <a href="members.php?page=signup_4&session_id=<? echo $session_id ?>&next_page=signup_4"><font color="<? echo $topmenu_font; ?>">CHECKOUT</font></a> 
+            <? } ?>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="<? echo $leftmenu_bg ?>">
+        <tr> 
+          <td><img src="images/invisible.gif" width="1" height="1"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<span class="domains"><span class="domains"><span class="domains"><span class="form_text"> 
+<? echo setup("footer");?>
+</span></span></span><span class="form_text"></span></span> 
+</body>
+
+</html>
