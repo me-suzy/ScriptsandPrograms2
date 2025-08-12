@@ -1,0 +1,40 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>OpenBiz</title>
+</head>
+
+<body>
+<pre>
+<b><a name="B10109"></a>Change from B10108 to B10109
+</b>1. BizForm xml schema
+   - Replace Template element with DisplayMode element
+     * Mode can be declared as READ | NEW | EDIT | QUERY
+     * If the InitMode attribute of a mode is &quot;Y&quot;, this mode is first display mode when user enter the Form
+   - Add &quot;htmltable&quot; one of DataFormat type, and FormatStyle as new attribute of DisplayMode element
+     * BizForm provide a default render for html table, user can specify table style in FormatStyle
+       i.e. FormatStyle=&quot;tbl,tbl_head,tbl_rowodd,tbl_roweven,tbl_rowsel,tbl_cell&quot;
+       Since only html string instead of 2D array are returned by render function, template file needs to be changed as well
+   - Output associated array to array-based templates EDIT/NEW/QUERY
+     * User can easily layout controls by their names
+   - Replace the Template attribute of BizCtrl and Control element with DisplayMode attribute
+   - Add Order attribute for BizCtrl element. User can specify the display order of BizCtrls
+   - Add RedirectView function in BizForm
+     * Example: RedirectView(RegistView,FMRegist.reg_evtid=#evt_id) in FMEvent will redirect current view to
+       RegistView, and FMRegist shows the records whose reg_evtid is same as the evt_id of current record in FMEvent
+   - Add RefreshQuery function in BizForm
+     * This function will display query results using default SearchRule and SortRule.
+
+2. BizObj xml schema
+   - Add SortRule attribute for BizObj element
+     * Example: SortRule = &quot;[Id] ASC&quot; or SortRule = &quot;[Id] DESC&quot;
+     
+3. History back and forward support
+   - When user returns to visited view, the record which the user worked on before he went to another will be highlighted
+</pre>
+</body>
+
+</html>
