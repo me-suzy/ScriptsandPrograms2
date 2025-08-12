@@ -1,0 +1,27 @@
+<?
+include("../conf.inc.php");
+include("import_banners.php");
+include("import_emails.php");
+include("import_redeem.php");
+include("import_ptc.php");
+include("user_convert.php");
+include("import_users_step_1.php");
+mysql_query("delete from CAC_import_users_tmp where password=''");
+mysql_query("update users set upline='',referrer='' where upline=username");
+include("import_users_step_2.php");
+include("import_gold.php");
+include("makepages.php");
+exec("cp ../../pages/cac*/index* ../../pages/index.php");
+exec("cp ../../pages/cac*/rlinks* ../../pages/reflinks.php");
+exec("cp ../../pages/cac*/terms* ../../pages/terms.php");
+exec("cp ../../pages/cac*/help* ../../pages/help.php");
+exec("cp ../../pages/cac*/privacy* ../../pages/privacy.php");
+exec("cp *.cgi ../../cgi-bin/");
+//exec("rm -R ../../pe/*");
+exec("cp click.php ../../pe");
+exec("cp page.php ../../pe");
+exec("cp signup.php ../../pe");
+exec("rm ../../index.*");
+exec("mv ../../top.html ../../top.old");
+exec("mv ../../bottom.html ../../bottom.old");
+exec("echo \"<? header('location: /pages/index.php');?>\"> ../../index.php");
