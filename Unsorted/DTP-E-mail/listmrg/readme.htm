@@ -1,0 +1,788 @@
+<html>
+
+<head>
+<title>Welcome to the ListMerge</title>
+</head>
+
+<body LINK="#0000FF" BGCOLOR="#ffffff" text="#000000" vlink="#0000FF" alink="#FF0000">
+
+<p align="center"><font FACE="arial,geneva,helvetica" size="2">Welcome to the
+www.dtp-aus.com ListMerge script - version 2.0<br>
+  </font><small><font color="#000099" face="arial,geneva,helvetica" size="2">IMPORTANT
+INFORMATION THAT <b>MUST BE READ</b> IF YOU WANT TO USE THESE SCRIPTS</font></small></p>
+<div align="center">
+  <center>
+
+    <table WIDTH="590" CELLPADDING="0" CELLSPACING="0" BORDER="0">
+      <tr>
+        <td>
+          <p><font face="arial, geneva, helvetica" size="2">The program &quot;LSTMRGE.CGI&quot; was written (c) by Ron F Woolley, Melbourne      
+             Australia. Copyright 1998'99 2000. This script can be altered for private  
+             site use or commercial site use, EXCEPT THAT:                              <br>
+             ALL COPYRIGHT NOTICES must remain in the code, visible on all output pages,<br>
+             AND ALL of the header notices MUST REMAIN intact as is,                    <br>
+             AND using the script without first reading the README.HTM, is prohibited.</font></p>
+          <p align="center"><font face="arial, geneva, helvetica" size="2"><b>Australian copyright</b> is recognised/supported in over 130 countries...      <br>
+             per the Berne Convention and other treaties ( including USA! ) <i>registration NOT required </i></font>            
+              
+          <p align="center"><font face="arial, geneva, helvetica" size="2"><b>The code, scripts and associated files REMAIN the property of Ron F Woolley.</b> </font>   
+
+            
+          <p><font size="2" face="arial, geneva, helvetica">NO PROFIT what so ever is to be gained from users of these scripts for    
+              installation of these scripts, except that a reasonable minimal charge    
+              for installation MAY be allowed. Supply, per installation, is directly    
+              from dtp-aus.com ONLY. Remote hosting of this program/resources is        
+              strictly not allowed. Installation on anothers behalf of altered          
+              ListMerge code or copy of parts of ListMerge code is strictly forbidden.  
+              Ron Woolley, the author, MUST be notified via the addresses/URLs below    
+              if any charge is to be applied for the installation of these scripts. </font>         
+                                                                                        
+            
+             
+          <p><font size="2" face="arial, geneva, helvetica">NOTE: If you use these files, you do so entirely at your own risk, and     
+             take on full responsibility for the consequences of using the described    
+             files. You must first agree that Ron Woolley / HostingNet, the only        
+             permitted supplier of this and/or accompanying files is exempt from any    
+             responsibility for all or any resulting problems, losses or costs caused   
+             by your using these or any associated files. If you disagree with ANY of   
+             the included requirements, you must IMMEDIATELY DESTROY ALL FILES. </font>        
+            
+              
+          <p align="center"><font size="2" face="arial, geneva, helvetica">This programs scripts are free to use -   Copyright notices must remain visible as is.</font>
+          <p><font size="2" face="arial, geneva, helvetica">This programs scripts are free-to-use, but if you use them, a donation to  
+             the author would be appreciated and help in continuing support for         
+             ListMerge and the creation of other scripts for users of the internet.<br>
+                 
+            &nbsp;&nbsp;&nbsp;
+            <b><a name="hlp"></a></b>On line Visa / MasterCard payments are available for donations and low cost installations.</font></p>
+          <ul>
+            <dl>
+              <dt><font face="arial,helvetica,geneva" size="2"><b>Help / Advice</b> Information is available at: </font></dt>
+              <dd><font face="arial,helvetica,geneva" size="2"><a
+          href="http://www.dtp-aus.com/cgiscript/scrpthlp.htm">http://www.dtp-aus.com/cgiscript/<b>scrpthlp.htm</b></a>
+          </font></dd>
+              <dt><font face="arial,helvetica,geneva" size="2">Files from: </font></dt>
+              <dd><font face="arial,helvetica,geneva" size="2"><a href="http://www.dtp-aus.com/cgiscript/lmrgscpt.shtml">http://www.dtp-aus.com/cgiscript/lmrgscpt.shtml</a>
+          </font></dd>
+              <dt><font face="arial,helvetica,geneva" size="2">An outline of all dtp-aus scripts is at: </font></dt>
+              <dd><font face="arial,helvetica,geneva" size="2"><a
+          href="http://www.dtp-aus.com/cgiscript/allcgi.shtml">http://www.dtp-aus.com/cgiscript/allcgi.shtml</a>
+          </font></dd>
+            </dl>
+          </ul>
+          <p align="center"><font color="#ff0000" face="arial,helvetica,geneva" size="2"><b>These
+    files</b> can only be obtained via the above web addresses, and<br>
+    <b><a name="menu"></a>must not be passed on to others</b> in any form by any means what so ever.<br>
+    This does not contradict any other statements above - ensure you have the latest.</font></p>
+          <font face="arial,geneva">
+            
+          <hr width="100%" size="1" noshade>
+          </font>
+            
+          <center>
+            <font face="arial,geneva,helvetica" size="2"><font face="arial, geneva, helvetica"><b><font size="2" color="#6600CC">Low cost installations</font></b><font size="2" color="#6600CC"> can be carried out by the author; see program page for details link.</font></font><br>
+          <font face="arial, geneva, helvetica" size="2"><b>This program is written to be compiled by Perl versions 5+ on Unix servers</b></font>
+</font>
+            <table border="1" cellspacing="0" cellpadding="5" width="100%">
+              <tr bgcolor="#FFD599">
+                
+                <th><font face="verdana, arial, geneva, helvetica" size="2"> <a href="#vars">VARIABLES</a> &#149; <a href="#safe">SAFE BATCH MAILING</a> &#149; <a href="#frm">SETTING UP</a> &#149; <a href="#post">INSTALLING</a> &#149;  <a href="#utils">UTILITIES</a></font></th>
+              </tr>
+            
+            </table>
+          </center>
+          <font face="arial,geneva,helvetica" size="3" color="#000099"> </font>
+          <table width="100%" border="0" cellspacing="0" cellpadding="1">
+            <tr align="center" bgcolor="#F5F5F5"> 
+              <td> 
+                <center>
+                </center>
+                <p align="center"></p>
+                <p align="center"> <b><font color="#0000ff" size="2" face="arial, geneva, helvetica">major</font><font size="2" face="arial, geneva, helvetica">** 
+                  Version 2.0, March 4, 2000 **</font><font color="#0000ff" size="2" face="arial, geneva, helvetica">changes</font></b><font size="2"><b><font
+     color="#0000ff" face="arial,geneva"><br>
+                  </font></b><font face="verdana, arial, geneva, helvetica" size="1">check 
+                  every few months for upgrades </font></font></p>
+          </td>
+            </tr>
+            <tr align="center"> 
+              <td><font face="arial,geneva,helvetica" size="3" color="#000099"> 
+                <p align="center"><font face="arial,geneva,helvetica" size="2"><b><font color="#666666">REQUIRES 
+                  UNIX and SENDMAIL!</font></b></font></p>
+                </font></td>
+            </tr>
+            <tr align="center" bgcolor="#E5E5E5"> 
+              <td><font face="arial,geneva,helvetica" size="2"><b><font color="#FF0000">Users 
+                of </font>**E-Lists prior to v2.2<font color="#FF0000"> will need 
+                to upgrade E-Lists also<br>
+                </font> <font size="1" face="Verdana, Arial, Geneva, Helvetica">**E-Lists 
+                v2.2 re-released mid June 2000</font></b></font></td>
+            </tr>
+            <tr align="center"> 
+              <td>
+                <p align="center"><font face="arial,geneva,helvetica" size="3" color="#000099"><b>ABOUT</b></font></p>
+                </td>
+            </tr>
+          </table>
+          <font face="arial,geneva,helvetica" size="3" color="#000099"> </font>
+          <p><font face="Arial, Geneva, Helvetica" size="2">( version 2.0 <font color="#000099"><b><a href="#upgrd">major 
+            upgrade</a></b></font> )<b><br>
+            v2.0 includes NEW variables, NEW file names,</b> allowing you to choose 
+            the delimiter used to separate the address list feilds (ListMerge 
+            copy of original) - AND enables the detection of other mail lists 
+            using one of four different delimiters. E-Lists 2.0 (when available) 
+            and the next upgrade to ennyForms will allow user selection of either 
+            plain text e-mails OR HTML e-mails. ListMerge v2 now detects those 
+            list fields and can send plain text or HTML as appropriate to each 
+            list address.</font></p>
+          <table width="100%" border="0" cellspacing="0" cellpadding="8">
+            <tr>
+              <td><font size="2" face="Arial, Geneva, Helvetica"><b>Help dtp-aus.com 
+                if you can! - <font color="#990000">a major free www tutorial 
+                resource</font></b><i>... June 2000</i></font><font size="1" face="Verdana, Arial, Geneva, Helvetica"><br>
+                Soon after v2.0 was released ListMerge climbed near the top three 
+                or four in its listing at the cgi.resourceindex. Soon after AND 
+                4 or 5 times since after steady climbing back from user support 
+                ListMerge receives several uncharacteristic 1 and 2 votes to repeatedly 
+                trash it well back down the list. We do not promote ListMerge 
+                as the best of its type but users have tried to support the program.<br>
+                <b>Should you use this program and find it useful</b>, and to 
+                help combat this idiot (or opposition organisation?), I would 
+                ask you to not only vote for ListMerge but if a <b>Registered 
+                Voter</b> submit a written registered comment. Written registered 
+                comments are the only way to help combat such stupidity. We do 
+                not like to ask for extra help but you the www users are the only 
+                ones able to help keep a sense of reality/honesty amongst all 
+                the trashy happenings that occur on the Internet - and the cgi.resourceindex 
+                site is looked upon for honest appraisals; not childish prejudice 
+                - <i>and thanks to Matt Wright for his recent enlightning letter 
+                14th June.</i></font></td>
+            </tr>
+          </table>
+          <p><b><font color="#CC0000" face="Arial, Geneva, Helvetica" size="2">ListMerge 
+            has ONE main requirement for names of original lists that it copies</font></b><font face="Arial, Geneva, Helvetica" size="2">. 
+            They <b>MUST NOT</b> contain an hyphen character &quot;<b>-</b>&quot;, 
+            also called the &quot;minus sign&quot;.</font></p>
+          <font face="arial,geneva,helvetica" size="2">
+<p><b><a href="#upgrd">upgrading</a></b> - see below<br>
+            Except for the data files that have to be deleted and recreated by 
+            the program, ALL files have been renamed so the older program can 
+            remain until installation is proved.</p>
+          <p>ListMerge has always created its own safe copies of E-Mail lists.</p>
+          <p><b>Two new list formats have been added to v2.+</b><br>
+            List &quot;formats&quot; are an E-Lists and ennyForms subscriber thing 
+            where original lists can be created with extra subscriber/program 
+            input for personalising merged mail-outs via PC or ListMerge. See 
+            the new formats &quot;4&quot; and &quot;5&quot; below (<i>blue E-Lists 
+            info box</i>).</p>
+          <p>The lack of HTML code in the texts saving HTML box in the &quot;sending&quot; 
+            window will cause the program to send only plain text e-mails OR all 
+            can be overridden to send only HTML e-mails.</p>
+          <p>It is expected that a site is tidy with all mail list saving programs 
+            saving to the one directory (preferably secure as a sub of the true 
+            cgi-bin). ListMerge is pointed to this directory and attempts to detect 
+            the format of the lists it finds <b>with file name extensions matching</b> 
+            those in the new<b> $elst_exten</b> variable. ListMerge then looks 
+            for any <b>delimiters in those lists matching</b> the new <b>@seps</b> 
+            array. </p>
+          <p>A list with a delimiter matching the default <b>$sep</b> variable 
+            between fields in the original list will be treated as an E-Lists 
+            or ennyForms saved list with possible &quot;name&quot; and &quot;date&quot; 
+            and &quot;htm&quot; fields saved with the &quot;address&quot;. Lists 
+            with other delimiters from other porgrams will be recorded as &quot;address 
+            only&quot; lists with the new format marker of &quot;<b>5</b>'. </p>
+          <p>Plain address only lists will be recorded with the original (earlier 
+            versions of ListMerge) format marker of &quot;<b>3</b>&quot;. These 
+            marker values can be changed - but only <b>IF</b> really necessary.</p>
+          <p>A marked list of &quot;3&quot; can be changed to &quot;5&quot; even 
+            if the original list contains possible user &quot;htm&quot; fields 
+            (E-Lists v2+ and ennyForms) to slightly speed up the mailing process 
+            BUT only do this if the first fields of each record in the original 
+            list are addresses!</p>
+          <p>ListMerge v2+ allows the <b>sending of test mails</b> to the default 
+            site address of one plain text letter and one HTML page formatted 
+            letter - if the latter has been saved via the texts saving form.</p>
+          <p><b> </b>All relevant files are supplied in one compressed .zip file 
+            that includes the recommended directory structure. It is assumed that 
+            the Zip file has been uncompressed to the root directory creating 
+            the default directory structure included in the Zip file, and described 
+            below. A utility to create the default recommended cgi-bin subdirectories, 
+            file names, plus chmod permissions is included.</p>
+          </font> 
+          <p><font FACE="arial,geneva,helvetica" size="2">ListMerge is designed to bulk mail to
+    elists.cgi created e-mail lists, AND/OR basic address-only e-mail lists. All you need for
+    the latter is the list(s) file name extension and directory path where all lists reside. </font></p>
+          <p><font FACE="arial,geneva,helvetica" size="2">ListMerge previously read information from the E-Lists config file and
+    enable the additional merging of list member names and subscription dates - if those extra
+    options were enabled in E-Lists. Now ListMerge attempts to detect the list type without reading the E-Lists config set up.</font></p>
+          <p><font FACE="arial,geneva,helvetica" size="2">Which ever list types are used, it is assumed that all
+    e-mail lists reside in one directory. By command, <b>ListMerge creates a copy of original
+    lists</b> leaving the originals secure, <b>keeps track of addresses not yet mailed to</b> in a session, and allows for updating of new
+    subscribers should any appear in the original lists before the current mail-out is
+    completed (this latter option can be slow on very large lists).</font></p>
+          <font face="arial,geneva,helvetica" size="2">
+          <p>For each original e-mail list found on your site,
+    three files are created. One is the above mentioned copy of the original, and another is
+    the data and texts associated with each list. Therefore the <b>body text</b>, a <b>header
+    or introduction</b> text, <b>signature</b> text, the '<b>from</b>' address, the '<b>Subject</b>'
+    line, and an <b>HTML page</b> can be created differently for each list. <i>ie</i> one might be in reference to price list
+    upgrades with a 'from' address for sales@yourdomain.name and another for a monthly
+    newsletter 'from' editor@yourdomain.name.... blah blah.</p>
+          <p>Once the mailing of all addresses for any
+    list is completed and another later mail-out is ready, <i>ie</i> once a month or when a new
+    upgrade is to be announced, the ListMerge copy of addresses can be recreated (over
+    written) with the latest version of the original list (with new additions or deletions).</p>
+          <p><b><font COLOR="#ff0000" FACE="arial,geneva,helvetica">NOTE</font></b><font
+    FACE="arial,geneva,helvetica">: <b><u>Very</u> large mass mail-outs</b> should only be performed
+    by a dedicated mail server. If your lists become so successful, consider leasing one for your business. The basic cgi methods of sending mail are inefficient for <u>very</u> large
+    mail-outs on shared servers, and some programs <b>including ListMerge</b> offer an <b>option to send mail in
+    blocks</b> to reduce the load on the Mail Server of your Hosting service.</font></p>
+          <p><font
+    FACE="arial,geneva,helvetica"><b>You control the mail-out quantity by 'batch' sending</b><br>
+            This simply means that
+    once a nominated number of addresses have been mailed to, the &quot;Send&quot; page
+    reappears ready for the next batch to be sent thus allowing the Mail Server CPU to perform
+    other tasks in between. This will help prevent you from being banned by the host service (<i>reports have confirmed this happens and people welcome the ListMerge batch option, but all it takes is contact with your host and they will mostly respond positively with perhaps a suggested &quot;batch' figure</i>).</font></p>
+          <p>Because ListMerge records addresses sent and those not sent (ready) per session,
+    if the server is very slow you can return anytime later and continue where you left off
+    with the next 'batch' without having to remain logged on while the full list is exhausted. If the program is &quot;time terminated&quot; by the server - <b>the most common reason for mailing crashes</b> - the last successful mailed address is recorded allowing you to continue again with possibly only one address sent twice.</p>
+          </font>
+          <table width="100%" border="0" cellspacing="0" cellpadding="4">
+            <tr bgcolor="#FFFFE5">
+              <td>
+                <p><font face="arial,geneva,helvetica" size="2"><b><font color="#FF0000">NOTE</font></b>: Too often the actual mail server alone is blamed for mailing crashes. Most servers have timed &quot;life&quot; limits on CGI programs primarily for the very good reason of trapping &quot;runaway&quot; programs. True, a mail server might be (usually is) very busy and slow in time slicing the many many accesses, but a good thing about Unix &quot;SENDMAIL&quot; is that it queues mail if the actual mail server is busy or even down. Therefore whatever the reason, terminated CGI is the biggest problem, followed by browser time out if no program response is detected (while it is working).</font></p>
+                <p><font face="arial,geneva,helvetica" size="2">There are programs that use a &quot;child&quot; process to quickly refresh your browser, BUT the above still applies to the child process and if it crashes/is terminated you have NO way of knowing!! Be cautious of these methods because perhaps only a portion of your subscribers received any thing at all!!</font></p>
+              </td>
+            </tr>
+          </table>
+          <font face="arial,geneva,helvetica" size="2">
+          <p><b>Your Domain.Name<br>
+    <font COLOR="#990000" FACE="arial,geneva,helvetica">You MUST alter</font></b><font
+    FACE="arial,geneva,helvetica"> all reference to &quot;yourdomain.name&quot; in the
+    &quot;lmrgeset.pl&quot; 'require' file and supplied webmasters page (see below), and
+    change the configuration variables in &quot;lmrgeset.pl&quot;, also described in this
+    Readme text.</font></p>
+          </font>
+          <p><font face="arial, geneva, helvetica" size="2"><b>No List viewing. Why?</b><br>
+            Viewing of address lists is handled by E-Lists or whatever program you use to create your list. Once lists grow very large, list viewing becomes mostly useless although E-Lists does also offer a search and delete option. As ListMerge requires another program to harvest the subscribers addresses and those programs often have that option included, list viewing would be just a duplication of management facilities. </font></p>
+          <p><font face="arial, geneva, helvetica" size="2">ListMerge not only <b>mass mails</b> to e-mail list addresses, and <b>allows &quot;batch&quot; mailing</b> to appease the wrath of mail server hosts, but the program also <b>&quot;merges&quot; names and dates</b> into each letter... <br>
+            <i>if E-List / ennyForms options are used to create the lists</i>.</font></p>
+          <center>
+            <table width="98%" border="0" cellspacing="0" cellpadding="4">
+              
+              <tr bgcolor="#F5F5FF">
+                
+                <td>
+                  
+                  <p><b><font color="#000099" face="arial,geneva,helvetica" size="2">About E-Lists</font><font face="arial,geneva,helvetica" size="2">.<br>
+                    </font></b><font color="#000099" face="arial,geneva,helvetica" size="2">Offered as a separate program at dtp-aus.com, E-Lists is
+    designed to save multiple lists of visitor submitted e-mail addresses to separate files
+    created in a secure directory (ie a subdirectory of the system protected cgi-bin), via
+    simple subscriber forms throughout your site. E-Lists can be configured to create as many different
+    lists as there are forms by a simple change in the form code, and include not only the
+    address, but the visitors name plus the submission date if required for mail-merging. Options such as
+    joining newsletter lists, information or software upgrade notification or regular club
+    updates etc can be considered - each with an 'un-subscribe' facility.</font></p>
+                  <font face="arial,geneva,helvetica" size="2">
+                  
+                  <dl>
+                    
+                    <dt><font color="#000099" face="arial,geneva,helvetica">You can configure the E-Lists program
+        to save addresses in one of four different formats:</font> </dt>
+                    <dd><font color="#000099" face="arial,geneva,helvetica">address,name,date</font><i> - +htm option</i></dd>
+                    <dd><font color="#000099" face="arial,geneva,helvetica">address,name</font><font face="arial,geneva,helvetica" size="2"><i> - +htm option</i></font> </dd>
+                    <dd><font color="#000099" face="arial,geneva,helvetica">name,address</font><font face="arial,geneva,helvetica" size="2"><font face="arial,geneva,helvetica" size="2"><i> - +htm option</i></font></font> </dd>
+                    <dd><font color="#000099" face="arial,geneva,helvetica">address only</font><font face="arial,geneva,helvetica" size="2"><font face="arial,geneva,helvetica" size="2"><font face="arial,geneva,helvetica" size="2"><i> - +htm option</i></font></font></font><font color="#000099" face="arial,geneva,helvetica"><br>
+                      address,date</font><font face="arial,geneva,helvetica" size="2"><font face="arial,geneva,helvetica" size="2"><font face="arial,geneva,helvetica" size="2"><font face="arial,geneva,helvetica" size="2"><i> - +htm option</i></font></font></font></font><font color="#000099" face="arial,geneva,helvetica">
+                      </font></dd>
+                    <dt><font color="#000099" face="arial,geneva,helvetica">
+                      This allows users to create mail lists not only for ListMerge
+to merge and &quot;batch&quot; send, but also for FTP uploading / access by popular PC software that merges names,addresses, and dates localy before mailing. E-Lists</font><font face="arial,geneva,helvetica" size="2" color="#000099"> versatility</font><font color="#000099" face="arial,geneva,helvetica"> has caused it to become very popluar with serious users.<br>
+                      &#149; <i>NOTE</i>: ListMerge now also allows for another format, format &quot;5&quot; - address only. This is just a ListMerge thing
+mainly for lists created by non dtp-aus.com programs.                                           </font></dt>
+                  </dl>
+                  </font></td>
+              </tr>
+            
+            </table>
+          </center>
+          <p><font FACE="arial,geneva,helvetica" size="2"><b>ListMerge can detect the E-Lists
+    formats</b> and enables the &quot;merging&quot; of E-List's fields into your mail outs for
+    a simple but effective personal touch.</font></p>
+          <font face="arial,geneva,helvetica" size="2">
+          
+          <p><b><font COLOR="#000099" FACE="arial,geneva,helvetica">With or
+    Without E-lists</font></b><br>
+    There is a sample <a HREF="sample.htm" target="_blank"><b>Admin page</b></a> and <a HREF="sample1.htm" target="_blank"><b>Sending/Editing
+    page</b></a> supplied. Familiarise yourself with these before starting and you will soon
+    understand how easy the program is to use. To add another list, all you have to do is
+    create a form on one of your pages that saves the list via your subscriber program (ie E-Lists) with a common file name extension
+    to the directory ListMerge will search. The matching list directory and file name extension is set-up in the ListMerge config file - &quot;lmrgeset.pl&quot;.</p>
+          </font>
+          
+            
+          <center>
+            <table width="96%" border="0" cellspacing="0" cellpadding="3">
+              
+              <tr>
+                
+                <td><font size="2"><b><font color="#990000" face="arial,geneva">Please NOTE</font></b><font
+     face="arial,geneva">:</font></font></td>
+              </tr>
+              
+              <tr bgcolor="#EFEFFF">
+                
+                <td><font size="2"><font
+     face="arial,geneva">If you install and use this script, please contact us at <a
+    href="mailto:listmergereport@dtp-aus.com?subject=ListMerge_report">listmergereport@dtp-aus.com</a> with server
+    type detailsand how the script installed and worked etc,
+    for a report base assisting others.<br>
+          <a name="safe"></a>( <font color="#000099">a <b>vote</b> at cgi.resourceindex.com - via red form <a href="http://www.dtp-aus.com/cgiscript/lmrgscpt.shtml">on the ListMerge program page</a> - or any other cgi links site would also be appreciated to help &quot;spread the word&quot;</font> )<br>
+                </font><font size="2" face="arial,geneva"> <i>&nbsp;&nbsp;Thank you</i>.</font></font></td>
+              </tr>
+            
+            </table>
+          </center>
+          <p align="right"><font face="verdana, arial, geneva, helvetica" size="2"><b><a href="#menu">MENU</a></b></font></p>
+          <font face="arial,geneva,helvetica" size="2"><font face="arial,geneva">
+          <hr width="100%" size="1" noshade>
+          </font>
+          <p align="center"><b><font size="3" color="#000099">SAFE &quot;Batch&quot; Mail-List MAILING</font></b></p>
+          <p>
+            Wherever your lists are situated <b>ListMerge creates safe copies of the originals</b> and works the mailing from them. ListMerge has the very rare but immensely popular facility of allowing you to send only the number e-mails you think/know your mail server can handle at one time. Then the program is ready to send the next batch and so forth until the current mail out is complete. </p>
+          <p>Because ListMerge keeps track of which addresses have been sent and which are ready to send, during a mail out the list copy can be refreshed with new arrivals without upsetting the &quot;sent&quot; tracking. With the &quot;batch&quot; method employed, addresses canot receive extra copies because the program knows where it left off. You have to reset the list when later ready to perform another mail out!</p>
+          <p>Each mail list Listmerge copies is acompanied by a data file that holds the letter information and texts and/or HTM page sent to each address in the list. The &quot;sending and editing&quot; admin page includes areas for entry of the From Address, Subject wording, Organisation name if desired, Header portion of the letter, Main body portion of the letter, Signature portion of the letter, AND a complete HTML page. <b>An unsubscribe URL</b> should now be included by you </p>
+          <p><font color="#FF0000">NOTE</font>: <b>LnkinLite</b> is ideal for creating permanent or temporary &quot;named&quot; hyperlinks  that can be quickly created, generated and copied into your mail letter. This way not only subscribers can be given a special hidden html page to view, but responses can be judged by LnkinLite's link-click counting feature.</p>
+          <p>Already described above, if ListMerge detects the E-Lists file format when mail lists are saved with the subscribers name and subscription date then ListMerge can add that extra info to each letter by a simple process of you including field markers in the head/body/signature/HTML areas of the letter.</p>
+          <p>And as already mentioned each list accessed by Listmerge retains its own letter data file, so at the next mail out the new body text can be edited from the previous and perhaps the head and signature sections left as is.... <i>designed with the user in mind</i>.</p>
+          <p>Resetting or refreshing of each list is perfomed on the first admin page. Each list name is dsiplayed and from there the individual letter data and &quot;batch mailing&quot; form is accessed.</p>
+          <p>The program has an in built password
+    administration page for changing your desired GMTime zone, admin page access password,
+    and a further encrypted password authorising editing changes and mail-outs. Therefore, even
+    if another person discovers your 'access' password in the browsers cache (all generated pages use the no-cache meta-tag), they cannot
+    change or send any data, and if remote from your server loft, the prefered remote time is reflected in all output AND now <b>displays your local time in the visible e-mail header in standard email time format</b>!!</p>
+          <p>The cgi-bin directory and any
+    subdirectories of it should be protected from user access by system default, so they are
+    an ideal place for maximum security (<i>nothing can be done if your server is hacked into</i>).
+    the programs can access info files, but files cannot be accessed from outside.</p>
+          <p><b><font color="#CC0000" size="3"><a name="upgrd"></a>Upgrades</font></b><br>
+            <b>YOU MUST DELETE ALL PREVIOUS DATA FILES FROM THE MRGLISTS DIRECTORY</b> so they can be rebuilt with important file detection data - which is only created once.... read next praragraph
+          </p>
+          <p>ALL FILES have now been renamed EXCEPT for the data files. So by first backing them up and then later &quot;copy and pasting&quot; the previous texts in to the new text windows the new data files can be (MUST BE) recreated with little fuss. </p>
+          <b><font color="#CC0000">ListMerge has ONE main requirement for names of original lists that it copies</font></b>. They <b>MUST NOT</b> contain an hyphen character &quot;<b>-</b>&quot;, also called the &quot;minus sign&quot;.
+<p><font face="verdana, arial, geneva, helvetica" size="2"><b><font face="arial,geneva,helvetica" size="2"><font face="verdana, arial, geneva, helvetica" size="2"><b><font face="arial, geneva, helvetica"><a name="vars"></a></font></b></font></font><font face="arial, geneva, helvetica" color="#CC0000">The rest of the program has been completely renamed except for the password file, so the old version can remain until confident with v2.0 </font></b><font face="arial, geneva, helvetica" color="#CC0000">- list data files are incompatible.</font></font>
+          
+          </p>
+          </font>
+          <div align="right"><font face="verdana, arial, geneva, helvetica" size="2"><b><a href="#menu">MENU</a></b></font>
+</div>
+          <hr size="1" noshade width="100%">
+          <font FACE="arial,geneva,helvetica" size="2">
+          <p align="center"><b><font face="arial,helvetica,geneva" size="2"><b>For INTERMEDIATE installation experience</b> - <b><a href="#hlp">Help / Advice</a></b> information is available.</font><br>
+            <font size="3" face="arial,geneva,helvetica" color="#000099">CONFIGURATION VARIABLES in DETAIL</font></b></p>
+          <p><b>GMT TIME ZONE reference</b><i> - set via ListMerge pages.</i><b><br>
+    </b>As with www.dtp-aus.com, Hosting services are used now &quot;remote&quot; from ones local ISP service. Normally this means that all of our
+    scripts etc report dates and times are different to that of our local access points, ie our
+    home locality from where we view our sites. To overcome this I use a Perl facility that
+    allows us to use (G)reenwich (M)ean (T)ime with an offset reference reporting in my local
+    time and date. One of the perl &quot;require&quot; files, 'gmtset.pl', contains a variable
+    name - <font FACE="courier new,courier">$gmtPlusMinus</font><font
+    FACE="arial,geneva,helvetica"> - whose value MUST be set for your local GMT offset. I live
+    in a world time zone 15 hours ahead of that of my Host Servers. Therefore, when I set the
+    variable to 36000 (</font><font COLOR="#990000" FACE="arial,geneva,helvetica">+10hrs</font><font
+    FACE="arial,geneva,helvetica"> = Melbourne Australia GMTime), the lists record, and I
+    view, all dates and times relevant to my locality irrespective of where my Hosting service
+    is. With this method I can move my Domain and the results would not change.</font></p>
+          <p>ListMerge now takes advantage of the GMT method for all visible e-mail headers too.</p>
+          <p><b>Most home / business computer systems have the GMT value listed in the system clock control panel... <i>simple</i>.</b></p>
+          <p>The calculation is also simple. Your local GMT
+    time, multiplied by 60, and multiplied by 60 again. ie 10X60X60. Therefore my variable
+    entry is &quot;<font FACE="courier new,courier">$gmtPlusMinus = 36000</font><font
+    FACE="arial,geneva,helvetica">&quot;. If your GMT zone is a negative value, simply include
+    a negative value ie &quot;</font><font FACE="courier new,courier">$gmtPlusMinus = -36000</font><font
+    FACE="arial,geneva,helvetica">&quot;. If you want the dates/times to be the same as the
+    servers, simply enter the value for the servers GMT zone.</font></p>
+          <p><b>US AND BRITISH DATE reporting<br>
+    </b>ListMerge can save the e-mail address submission time using either the US mm/dd/yyyy
+    format, or the BRITISH dd/mm/yyyy format. In the configuration file, 'lmrgeset.pl', you
+    will find a variable named <font FACE="courier new,courier">$dtUS</font><font
+    FACE="arial,geneva,helvetica">. Leaving this variable value as null, ie '</font><font
+    FACE="courier new,courier">$dtUS = &quot;&quot;</font>' will cause the scripts to use &quot;dd/mm/yyyy&quot;. Setting this variable to
+    '<font FACE="courier new,courier">$dtUS = &quot;1&quot;</font>' will force 'mm/dd/yyyy'.</p>
+          <p><b>CHECKING FOR CORRECT REFERRERS</b> - <font color="#CC0000">this can block even YOU...<b> &quot;Bad Referrer&quot;</b></font><b><br>
+    </b>This option in the 'lmrgeset.pl' file allows you create an &quot;array&quot; of Domain
+    names and IP numbers that lstmrge.cgi will respond positively to. By including the
+    acceptable calls to your pages and/or your IP#, ie 'www.yourdomain.com' and
+    yourdomain.com' you effectively stop improper additions to your lists from distant sites
+    (entries are only accepted from pages on your site, not remote copies of your pages
+    elsewhere <i>&#150; they try all the time</i>). The array is named &quot;<font
+    FACE="courier new,courier">@referers</font>&quot;
+    and you simply (MUST) enter your preferences in place of the examples. NOTE: The brackets,
+    quotes and commas enclosing each item must be included else an error will occur, ie:</p>
+          </font>
+          <table width="100%" border="0" cellspacing="0" cellpadding="5">
+            <tr bgcolor="#FFFFE5">
+              <td><font face="arial,geneva,helvetica" size="2"><b><font color="#FF0000">NOTE</font></b>: <b>You cannot access the program</b> via a browser command line OR a link on a remote copy of a page containing the access link... <b><font color="#CC0000">this includes YOU</font></b>!
+<br>
+                &#149; 
+                You must use a site based password form or link that will generate a password form.</font></td>
+            </tr>
+          </table>
+          <font FACE="arial,geneva,helvetica" size="2">          
+          <p>('www.yourdomain.com','yourdomain.com','000.000.000.000',).
+    Leave out the IP# if you do not have a true domain name with a static IP#.
+    &quot;www.ahost.net/mysite/&quot; etc will also work for second level site calls etc, but
+    not the IP#. If your scripts are called from the cgi-bin of a domain that is housing your
+    site and your specific scripts are in that domains cgi-bin, you may have to include the
+    cgi-bin also in relevant urls ie: &quot;ahost.net/cgi-bin/&quot;.</p>
+          <p>At this point I will bring your <b><font
+    COLOR="#ff0000" FACE="arial,geneva,helvetica">attention</font></b><font
+    FACE="arial,geneva,helvetica"> to the semi colons ( <b>; </b>) appearing at the end of
+    each line in the config files. These MUST remain else an error will occur.</font></p>
+          <p><b>PATHS TO FILES ACCESSED BY SCRIPTS<br>
+    </b>The defaults used in the ' lmrgeset.pl ' file assume you will place these files in
+    your cgi-bin and add directories to it called &quot;sets&quot; and &quot;mrglists&quot;.
+    If you have to use other directory names, or your &quot;cgi-bin&quot; has a different
+    name, then you will have to change the paths accordingly; &quot;cgi-yourdomain&quot; is
+    not uncommon. There are three path types that can be used at various times with in a
+    program or script. A full URL is the same as the path you enter in your browsers address
+    box when typing in a site path that you wish to go to: ie 'http://www.wooz.com/harry.htm'.
+    A relative path is a path description to a source, relative to the directory of the
+    program, file or web page that is calling it: ie &quot;jimbo.htm&quot; means that the file
+    being called should be in the same directory. &quot;inone/jimbo.htm&quot; refers to a file
+    that should be in a directory named 'inone' which is a subdirectory within the current
+    directory, and &quot;../jimbo.htm&quot; means that the file should be in a directory one
+    above the current directory, and &quot;../../jimbo.htm&quot; is in a directory two above
+    etc.</p>
+          <p>For some servers, a simple relative path
+    called by a script is unacceptable, so an absolute path relative to the sites root
+    directory must be called. There are also variations to this description but &quot;<font
+    FACE="courier new,courier">web/yourdomain/yourdirectory/jimbo.htm</font><font
+    FACE="arial,geneva,helvetica">&quot; (example only) is a relative root path description
+    that works on many servers. Another root path is &quot;</font><font
+    FACE="courier new,courier">/home/yourdomain/www/yourdirectory/jimbo.htm</font><font
+    FACE="arial,geneva,helvetica">&quot;. If you have trouble with accessing the default
+    simple relative paths included in the 'lmrgeset.pl' file, try the root reference ie &quot;</font><font
+    FACE="courier new,courier">web/yourdomain/cgi-bin/mrglists/mrgml.pw</font><font
+    FACE="arial,geneva,helvetica">&quot; etc. If this is still a problem, look in any
+    installed scripts on your server for a reference, or contact your hosting support staff.</font></p>
+          <p><b><i>NOTE</i></b>: If you have problems,
+    double check ALL permission's (below) before changing the default paths, unless you know
+    in advance what the paths should be, <b>and reload files to double check that you used
+    ASCII transfer mode for all text files</b>.</p>
+          <p><b>&quot;SENDMAIL&quot; MAIL PROGRAM server path</b> <font
+    FACE="courier new,courier">$mailprog<br>
+    </font>Similar to the Perl program path, this
+    path has to be known for ListMerge to send submitted mail. If you do not know what it is
+    or cannot find reference to in other installed scripts, ask your Host service support
+    staff - <b>the utility &quot;testbin.cgi&quot; may report this path for you</b>.<br>
+            The default is <font FACE="courier new,courier">$mailprog =
+    &quot;/usr/sbin/sendmail&quot;;</font></p>
+          <p><b>ADMIN Password </b>$adminword_pth<br>
+    The file path relative to the script that will be created when you create an Admin
+    Password. DO NOT edit this file &#150; the new password will be encrypted. When you first
+    start the script successfully from a form using the Access Password, create a new Admin
+    password immediately via the 'passwords' page link to secure your data from visitors. The
+    current password will be nothing (null) and you enter the new word twice to be sure. Once
+    accepted you have to enter the admin password in the editing forms next to the submit
+    buttons whenever you try to edit any options.</p>
+          <p><b>GMT Path </b><font
+    FACE="courier new,courier">$gmt_pth</font><br>
+    When you edit the GMT zone value from the passwords admin page, the script needs to know
+    the path to the gmtset.pl file. The default is the &quot;sets&quot; sub directory and file
+    name relative to the scripts directory.</p>
+          <p><b>CONFIGURATION Path </b><font
+    FACE="courier new,courier">$cnfg_pth</font><br>
+    When you edit any configuration values or data files from the admin pages, the script
+    needs to know the path to the 'lmrgeset.pl' file. The default is the &quot;sets&quot; sub
+    directory and file name relative to the scripts directory. <font color="#CC0000">The &quot;sets&quot; directory is used by almost ALL dtp-aus.com programs and will have even more significance in the future</font>.</p>
+          <p><b>The DATA FILES DIRECTORY </b><font
+    FACE="courier new,courier">$mrgdatdir_pth</font><br>
+    This is the directory path (not file) for the files created when copies of the lists are
+    created or updated, and data files are created or amended. The default is
+    &quot;mrglists&quot;.</p>
+          <p><font FACE="arial,geneva,helvetica" size="2"><b>DEFAULT MAIL ADDRESS </b><font
+    face="courier new,courier">$deflt_mail</font><br>
+    <font color="#FF0000">NEW v2</font>. This is the default mail address used by the new &quot;Mail Test&quot; option.</font></p>
+          </font>
+          <p><font face="arial,geneva,helvetica" size="2"><b>RETURN PAGE URL </b><font
+    face="courier new,courier">$hm_url</font><br>
+    The value for this variable in the ' lmrgeset.pl ' file needs to be altered to include the
+    FULL URL Path to your home page or any page that you wish to return to after finishing
+    with the admin pages. Perhaps back to the webmster.html page.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>FULL URL to LSTMRGE.CGI </b><font
+    face="courier new,courier">$theScrpt</font><br>
+    The value for the variable named &quot;$theScript&quot; in the config file needs to be
+    altered to include the FULL URL Path to the lstmrge.cgi script. It is suggested that the
+    script is placed in your cgi-bin or equivalent secure directory.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>ACCESS PASSWORD</b> <font
+    face="courier new,courier">$theword</font><br>
+    You can enter an Access Password in the lmrgeset.pl file before installing the program, or
+    later from the admin page. To display the admin page, simply enter your access password
+    into the form in the webmasters page, or via a hyperlink to the script that includes an
+    embedded access password. Both of these options will be explained below.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>ISO CHARACTER SET</b> <font face="Courier New, Courier, mono">$ISO</font><br>
+            <font face="arial,geneva,helvetica" size="2"><font color="#FF0000">NEW v2</font>. </font><b></b>This can be left as is for most users. It defines the character set used by you, commonly also seen in the head section of HTML pages. This is used in the (generally) hidden mail
+headers. </font></p>
+          <p><font face="arial, geneva, helvetica" size="2"><b>RECOGNISED RECORD FIELD DELIMITERS </b>@seps <i>- original lists</i> <br>
+            </font><font face="arial,geneva,helvetica" size="2"><font face="arial,geneva,helvetica" size="2"><font color="#FF0000">NEW v2</font>. </font><b></b></font><font face="arial, geneva, helvetica" size="2">This array includes various delimiters ListMerge may come across when parsing lists not native to E-Lists or ennyForms. The array MUST include the default delimiter (<font face="Courier New, Courier, mono">$sep</font> below) and if changes are made the format and &quot;|&quot; divider MUST remain as is.</font></p>
+          <p><font FACE="arial,geneva,helvetica" size="2"><b>The MAIL LISTS DIRECTORY </b><font
+    face="courier new,courier">$mailistdir_pth</font><br>
+    <font face="arial,geneva,helvetica" size="2"><font color="#FF0000">CHANGED v2</font>. </font><b></b>This is the directory path (not file) to the ORIGINAL e-mail lists (ListMerge works off a safe copy of each). The default is
+    &quot;mailfrms&quot;.
+If using a program other than E-Lists to create the original lists, then
+    change its defaults to this directory and simply copy the lists to this directory via FTP, <i>OR</i> change this default to the existing directory,
+     when ever you want ListMerge to find them.<br>
+            &#149; 
+            This variable name has been changed to be compatible with E-Lists and ennyForms.         
+          </font></p>
+          <font FACE="arial,geneva,helvetica" size="2">
+          <p><b>ORIGINAL LIST-FILES File Name Extension
+    </b><font FACE="courier new,courier">$elst_exten</font><br>
+            <font face="arial,geneva,helvetica" size="2"><font color="#FF0000">CHANGED v2</font>. </font>If you want to use lists
+    other than / as well as E-Lists list files, add their file name extension (including the dot) to this variable. The &quot;.elf&quot; extension is the dfault for E-List and ennyForms subscriber lists. If changes are made the format and &quot;|&quot; divider MUST remain as is.</p>
+          <p><b>ADDRESS,NAME,DATE SEPARATOR </b><font
+    face="courier new,courier">$sep</font><br>
+    This is the default delimiter ListMerge uses to divide record filelds when merge list data is detected. It would be wise to keep this the same as E-Lists and ennyForms if those programs are used to create subscriber lists.<a name="frm"></a></p>
+          </font>
+          <div align="right"><font face="verdana, arial, geneva, helvetica" size="2"><b><a href="#menu">MENU</a></b></font>
+          </div>
+          <hr WIDTH="100%" size="1" noshade>
+          
+          <p align="center"><font face="arial,geneva,helvetica" size="3" color="#000099"><b>SETTING UP and USE</b></font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>INCLUDED or REQUIRED FILES<br>
+    </b>The Perl language allows the inclusion of extra files containing libraries of commonly
+    accessed sub routines or common lists of script variables etc. The script lstmrge.cgi
+    &quot;require&quot;s several such files. One includes a variable used by the date/time
+    routines and another contains script variables that you need to adjust before
+    installation. changeable program defaults are accessed by the admin pages. If you use other dtp-aus.com / HostingNet programs, I have included the GMT reference variable
+    in a separate file as used by all my scripts on dtp-aus.com. If I need to change this
+    common variable for daylight savings or domain moves etc, then I only have to change one
+    file, not many. The GMT value can be set simply via the admin page.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b><font color="#CC0000">ListMerge has ONE main requirement for names of original lists that it copies</font></b>. They <b>MUST NOT</b> contain an hyphen character &quot;<b>-</b>&quot;, also called the &quot;minus sign&quot;.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>SAMPLE FILES</b><br>
+    Once the script is uploaded and runs for the first time, setting the password(s) will also
+    test the installation. Then alter and ASCII upload the sample files I have included into the &quot;mailfrms&quot; directory. &quot;<b>mytest.elf</b>&quot; etc would represent an e-mail address
+    list. The extensions must match those of lists you are using (and set in the config
+    file). Place these sample lists in your
+    E-MAIL LISTS DIRECTORY. DO NOT manually create any data files in the &quot;mrglists&quot; directory as was possible in previous versions</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>CHANGE THE SAMPLES</b><br>
+    If there are already some mail addresses, so <b>before uploading</b>, change the
+    addresses in the sample files to yours. If you have multiple or unlimited email
+    address names, enter several bogus names (ie fred@yourdomain.nme and bill@yourdomain.nme
+    etc) OR just repeat the same one in each record.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b><font color="#CC0000">NOTE</font></b>: It is common-sense to aslo ALWAYS add your self to all real mail lists so you will receive and see just what your subscribers are getting!!</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>USING THE SAMPLES</b><br>
+    Click on the radio button next to &quot;mytest&quot; listed in the first form, and click
+    on the form button to take you to the Editing and Sending page for that list. You should
+    see a screen like the second sample html page. </font></p>
+          <p><font face="arial,geneva,helvetica" size="2">Create some texts (garbage will do), from address, subject line, add some HTML code etc and save the data. Use the &quot;TEST&quot; form to send your self a test letter of plain and HTML letters. If all goes well, set the &quot;Batch Number&quot; to 2 or 3,
+    enter your admin password and click on the form button. If all goes well the script will
+    find, talk to and send 2 or three e-mails to you (because the list contain your addresses). If they arrive without error then all should have
+    been installed correctly (the time it takes for mail to arrive to yourself can be instant
+    or minutes - this depends entirely on the Host Mail Server and Receiving Mail Server). Now you can send another two
+    to check that the numbers displayed are incrementing/decreasing correctly.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">There are four simple test texts supplied you can copy and paste into the text saving box for each test list you want to use. They are not brain intensive but will do for test purposes.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">Depending on the traffic pressures on the
+    Host Server, and to some degree whether they have a separate server for e-mail, you might
+    have to wait a minute for just one e-mail to be sent whereas at other times it will be
+    quicker even if you are sending fifty at once etc.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">When all have been sent and received, try
+    changing the texts and successfully saving changes several times. Close the window and
+    come back a few minutes later and view the edit/send page again to make sure all changes
+    appear as you would expect. DON'T forget you have to refresh a list with the first page &quot;<b>New</b>&quot; option to start again once a mail-out is complete.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">You can try the above with all the lists as most have different formats and this will check the ListMerge parsing of the originals.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">On the left of the second form on the first page are the last counted number of subscribers (recounts every time the first page is accessed). When the list has changed (subscribed to or UN-Subscribed to) the counted number will appear in red. This will indicate changes during a mail-out too (if batches are used) allowing you to use the &quot;<b>u/d</b>&quot; update option that will add new addresses to the current ListMerge list from the master (but not remove deleted ones). For very large lists this can be a bit slow so perhaps only use this if many addresses have been added to the original master list before a mailout is complete.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>DELETING</b><br>
+            Should a mail lists data files are not needed any more then the &quot;delete&quot; option can be used. THIS WILL ONLY DELETE all ListMerge data files and NOT touch the original list IF it still exists.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>THE &quot;BOX WIDTH&quot; OPTION</b><br>
+    When creating your own texts (header, body and signature), you can create long lines by
+    simply typing and only hitting the enter key for a change of paragraph (hitting the enter
+    key twice). However you might have noticed over time that many received e-mails are preset
+    for easy reading with formatted narrow line widths. This is quite an important issue if
+    you want the e-mails to be received well by all recipients, because many e-mail programs
+    only have small viewing windows AND many people still using 640X480 resolution video can
+    only read short lines without horizontal scrolling.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">As a simple guide you can preset for your
+    own preference, I have included a variable &quot;box width&quot; (40 to 66 characters)
+    that helps by allowing you to hit the enter key just once as your lines approach the right
+    hand window limit, forcing the lines to wrap with easy visual control. ListMerge will
+    detect single and multiple hidden enter key characters and send your texts accordingly.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>SIMPLE PREVIEW</b><br>
+            Also included is the simple mono spaced
+    sample view of the combined texts as they will be sent, displayed below the editing boxes,
+    and this preview can be switched off if so desired.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>HTML ENTRY BOX</b><br>
+            The HTML entry box is for pasting a complete HTML page and saving with the plain text options also. The program will detect, from E-Lists and ennyForms subscriber lists, an &quot;htm&quot; field the user has selected to accept HTML formatted list mail-outs. Should there not be any message box text OR the &quot;Use ALL HTML&quot; button has been selected then every letter will actually be an HTML page.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">If there is no HTML text then only the plain text message etc will be sent.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>HTML PAGES</b><br>
+            Be sensible creating HTML pages for transmission. Make all hyperlinks FULL URLs. Any images included must also contain their FULL URL back to your site (remembering that images are useless when viewed off-line).... in fact use NO or as few images as possible. NEVER use SSI pages - they just don't work remotely! Make the page neat, informative and do not try to impress with heaps of nested tables - think file size.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b><font color="#CC0000">NOTE</font></b>: The merging field markers appearing above the message box can be included in the HTML pages as well as the message, header, signature boxes; BUT if using wysiwyg editors then you may have to manually change ISO characters (&amp;lt; and &amp;gt;) to the hard coded &lt;&lt; &gt;&gt; characters. <i>See the supplied simple sample htm page text.</i></font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>QUICKEST MAILING</b><br>
+            Probably the quickest mailing will be performed with a standard address only list, format marked to &quot;5&quot;, and with the &quot;No MERGING&quot; option box ticked. This will all avoid some of the programs logic checking..... BUT make sure the merging field markers do not exist in the texts because they will not be parsed / replaced and the subscribers will wonder what the heck! they mean.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">The &quot;<b>Stay Alive</b>&quot; button may or may not help if you experience too many Browser Time-outs. With this option selected the program attempts to send back a single invisible character every 50 letters. <b>Please give us feedback on this and other options of v2.+</b> as this is a very different program than the earlier versions and it would be appreciated.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2">That's just about it. Repeatedly reset
+    (using the &quot;new&quot; radio button again) and send the sample addresses to yourself
+    until you feel confident, and then create the ListMerge copies and data files for any real
+    e-mail lists you have, ready for transmission. If you see the displayed number of records
+    on the left of each original e-mail list name appear in bold (view sample html), you will
+    know that the list has received new additions since you last updated the copies because
+    the totals will be different. If a mail-out is not yet complete you can select the second
+    radio button (u/d) to add only those new additions <b>without resetting the list</b> - if
+    you would like to include them in that current mail-out.</font></p>
+          <p><font face="arial,geneva,helvetica" size="2"><b>NOTE</b>: <font color="#CC0000">When a list is renewed
+    (via a &quot;<b>new</b>&quot; radio button), all addresses are reset to the 'not sent' state, <b>and doing
+    this before a mail-out is finished</b> will cause multiple e-mails to be sent to many
+    recipients with possible nasty comments and requests for un-subscribing! We all hate what
+    appears to be mass spamming. <b>The &quot;update&quot; buttons allow safe inclusion</b> of newly added addresses during a mail-out session <i>ie between batch sending</i>.<a name="post"></a></font></font></p>
+          <div align="right"><font face="verdana, arial, geneva, helvetica" size="2"><b><a href="#menu">MENU</a></b></font>
+</div>
+          <hr width="100%" size="1" noshade>
+          <center>
+            <font face="arial,helvetica,geneva" size="2">For INTERMEDIATE installation experience - <a href="#hlp">Help / Advice</a> information is available.</font><font face="arial,geneva,helvetica" size="3" color="#000099">
+</font><font face="arial,geneva,helvetica" size="3" color="#000099">          </font>
+          </center>
+          <font face="arial,geneva,helvetica" size="3" color="#000099">
+          <p align="center"><b>INSTALLING</b></p>
+          </font>
+          <div align="right"><font face="arial,geneva,helvetica" size="2">
+          </font></div>
+          <font face="arial,geneva,helvetica" size="2">
+          <p><b>THE PATH TO PERL<br>
+    </b>At the top of each perl script (and must remain as the first line) is a default path
+    to the Perl program on your host server. This can vary slightly between UNIX servers. If
+    you have problems running the scripts, check with your host support staff about the
+    correct path described in this line. The default entry is &quot;#!/usr/bin/perl&quot; and another common variation is &quot;#!/usr/local/bin/perl&quot;.
+    In Perl scripts the hash sign &quot;<b>#</b>&quot; character comments out the code on a
+    line starting with this character. <b>Here it has a special meaning</b> to Perl and MUST
+    remain. Check with other installed scripts also if you do not know what this line should
+    look like.</p>
+          </font>
+          <p><font FACE="arial,geneva,helvetica" size="2"><b>SCRIPT and FILES PERMISSIONS<br>
+    </b>Each list copy must be given read and write permissions (chmod 766). The directory
+    that they are placed in (mrglists) will also need read and write permissions. Either read
+    and write chmod 766 (r+w) or possibly chmod 777 (r+w+x) will work - try the first before
+    the latter. The &quot;sets&quot; directory and the ?.set files in it must also be given
+    the same permissions as the &quot;mrglists&quot; directory and files.</font></p>
+          <font face="arial,geneva,helvetica" size="2">
+          <p><b>UP LOADING FILES (Posting)<br>
+    </b>The script must be given chmod 755 read and execute permissions (r+x).</p>
+          <p>CGI-BIN permissions are set by the server
+    and no attempt should be made to change them. Should you have to use another directory,
+    AND your server allows the execution of Perl CGI scripts in other directories, then that
+    directory should be set with read and execute permissions - chmod 755 (r+x).</p>
+          <p>By far the biggest problems faced when
+    installing scripts are firstly the file transport encoding used and secondly the
+    permissions settings set for both files and new directories. Bitmap images must be sent to
+    the server using the &quot;Binary&quot; protocol. Text files, ie html pages, CGI SCRIPTS
+    and require files, MUST be sent in &quot;ASCII&quot; format. Failure to do this will
+    result in a server failing to recognise and execute the scripts. Although often referred
+    to as programs, scripts must be compiled before they do anything. As an example, files
+    with the .EXE extension on programs that are installed on Wintel machines are pre-compiled
+    binary executable programs. Perl scripts on the other hand are compiled in memory by Perl
+    each time before they can be executed. The script (text) must be in ASCII text format for
+    the interpreter to be able to read it.</p>
+          <p><b><font color="#FF0000">CALLING THE SCRIPT</font></b> from a hyperlink<br>
+    <font FACE="courier new,courier">&lt;a
+    href=&quot;http://www.yourdomain.path/cgi-bin/lstmrge.cgi<b>?accwrd=***</b>&quot;&gt;
+    ListMerge &lt;/a&gt;</font> where *** = your
+    access password (<i>NOT your admin password</i>),<br>
+    OR from a simple form as viewed in the <a href="#utils">webmstr.html</a> code.</p>
+          <p align="center">
+    I REPEAT: <b>Up load scripts and other text files as &quot;ASCII&quot; files, images as
+    &quot;Binary&quot;</b>.</p>
+          <p><b>So, assuming the default directory
+    structure is used, you will up load into:<br>
+            </b><font color="#CC0000">&#149; CHANGED v2.0+
+</font></p>
+          <blockquote>
+            <dl>
+              <dt><i>Directory:</i> </dt>
+              <dt>cgi-bin (server) </dt>
+              <dd>lstmrge.cgi (chmod 755) </dd>
+              <dt>cgi-bin/sets (chmod 766<i> or 777</i>) </dt>
+              <dd>lmrgeset.pl, gmtset.pl (chmod 766<i> or 777</i>) </dd>
+              <dt>cgi-bin/mrglists (chmod 766<i> or 777</i>) </dt>
+              <dd>mrgml.pw, admn1.pl, admn21.pl, admn3.pl, admn4.pl, admn5.pl <i><br>
+                plus</i> [list / data files created by
+          program], (chmod 766<i> or 777</i>) </dd>
+            </dl>
+          </blockquote>
+          <p>If you must use another directory for the
+    ??.set files, <b>you must also change the path to those files at the top of the code in
+    lstmrge.cgi</b>. ie::</p>
+          <p><font FACE="courier new,courier">#--- Alter these two paths (TWICE EACH) only, if needed!
+    -----#<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (-s &quot;sets/</font><font face="arial,geneva,helvetica" size="2"><font face="courier new,courier">lmrgeset.pl</font></font><font FACE="courier new,courier">&quot;) {require &quot;sets/lmrgeset.pl&quot; ..etc etc<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (-s &quot;sets/gmtset.pl&quot;) {require &quot;sets/gmtset.pl&quot;</font><font face="arial,geneva,helvetica" size="2"><font face="courier new,courier"> ..etc etc</font></font><font FACE="courier new,courier"><br>
+    #--- Do Not make any changes below this line. ----------------#</font></p>
+          <p align="center"><font face="arial, geneva, helvetica"><b><font color="#006666">To help keep the program free</font></b><font color="#006666">, we need your support on link and resource listing sites!</font><a name="utils"></a></font></p>
+          </font>
+          <div align="right"><font face="verdana, arial, geneva, helvetica" size="2"><b><a href="#menu">MENU</a></b></font><font face="arial,geneva,helvetica" size="2">
+          </font></div>
+          <font face="arial,geneva,helvetica" size="2">
+          <hr WIDTH="100%" align="right" size="1" noshade>
+          </font>
+          <p align="center"><font face="arial,geneva,helvetica" size="3" color="#000099">
+          <b>UTILITIES
+</b></font></p>
+          <center>
+            <p align="left"><font size="2"><b><font face="arial,geneva,helvetica">Webmasters Page -</font></b><font face="arial,geneva,helvetica"> <i>the
+    2 methods to Admin</i></font><font face="arial,geneva,helvetica"><br>
+    I have supplied a sample webmasters page ( webmster.html ) that
+    can be used to access the admin page, or copy the required link
+    (form or hyperlink) to your own webmasters utility page. You
+    will have to change the path in the links to suit your own. This
+    page should ideally be placed in a secure directory. If not,
+    use the form method of accessing admin and DELETE the hyperlink.
+    Else if secure you can use the simple link with the embedded
+    password.</font></font></p>
+            <p align="left"><font face="arial,geneva,helvetica" size="2"><b><font color="#FF0000">NOTE</font></b>: <b>You cannot access the program</b> via a browser command line OR a link on a remote copy of a page containing the access link... <b>this includes YOU</b>!</font></p>
+            <p align="left"><font face="arial,helvetica,geneva" size="2"><b>UTILITY testbin.cgi</b><br>
+    I have created a simple utility script that can be placed in your cgi-bin and run from
+    your browsers command line. This script will, in almost all cases, detect the Perl version
+    you are using and report its findings. If it reports version 4 as the only default, then you must
+    ask your Host Service for the correct path to Perl 5 (Always top and FIRST line in all
+    scripts). <b>ListMerge is a Perl 5 script, for Unix servers using Sendmail</b>.</font></p>
+            <p align="left"><font face="arial,helvetica,geneva" size="2">The new version of tesbin.cgi attempts to ascertain server<b> paths to all Perl versions</b> and <b>paths to Sendmail</b>. Either or both of these may not be listed depending on server set-up. Testbin.cgi also now allows you to check your path to perl by attempting a mail out. To do this change in the code near the top the URL to the testbin.cgi program.</font></p>
+            <p align="left"><font face="arial,helvetica,geneva" size="2"><b><i>So</i></b>!<br>
+          Change the program URL in the code -<i> only variable to change</i>.
+          <br>
+    Place &quot;testbin.cgi&quot; in your cgi-bin directory and chmod 755 (7=r+w+x, 5=r+x).<br>
+    Then run from a browser command line, ie http://www.yourdomain.path/cgi-bin/testbin.cgi</font></p>
+            <font face="arial,geneva,helvetica">
+          </font>
+          </center>
+          <p></p>
+          <p><font face="arial, geneva, helvetica" size="2"><b>UTILITY makedir.cgi
+</b><br>
+          I have created a simple utility script that can be placed in your cgi-bin and run from your browsers command line. If your server allows directory creation via cgi scripts, then this utility will attempt to create the default (recommended) directories and file names for you, and set the permissions. It is unprotected and there is no guarantee that it will work; try it at your own risk (<i>disclaimer only</i>). It has worked well on many sites.
+
+</font></p>
+          <p><font face="arial, geneva, helvetica" size="2">Try installing and running this script first. It will report success or failure when creating the files/directories and prove the correctness of your Perl Path", plus indicate that the default relative paths will work OK. If the default urls/paths are not used, then you will have to change them first.</font></p>
+          <p><font face="arial, geneva, helvetica" size="2">
+
+To use it, make sure the "Perl Path" at the top of the script is correct. <font color="#FF0000"><b>NOTE</b></font>: the default Dir/File permissions are set to 766. Change these values to 777 if your site so requires BEFORE running the script. If running the script is successful, you only have to FTP your supplied files over the new empty ones. (note: for security reasons, makedir does NOT prepare an empty file for the cgi scripts, you must upload them (as ascii) and set chmod 755 your self)
+
+</font></p>
+          <p><font face="arial, geneva, helvetica" size="2">Once run, delete the file immediately because it has no input protection and could be run again by some low-life wanting to cause mischief. </font></p>
+          <p><font face="arial, geneva, helvetica" size="2">If by chance you select the wrong values and you are locked out of directories, simply change the chmod values and re-run.
+</font></p>
+          <p><font face="arial, geneva, helvetica" size="2">So!
+Place "makedir.cgi" in your cgi-bin directory and chmod 755 (7=r+w+x, 5=r+x).
+Then run from a browser command line, ie:
+http://www.yourdomain.path/cgi-bin/makedir.cgi
+</font></p>
+          <p><font face="arial,helvetica,geneva" size="2"><b>Enjoy</b> - &amp; please let me know
+    how you get on with this script, how/what server type it installed to.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>&nbsp;Ron</i></font></p>
+          <div align="right"><font face="verdana, arial, geneva, helvetica" size="2"><b><a href="#menu">MENU</a></b></font>
+          </div>
+          <hr width="100%" size="1" noshade>
+        </td>
+      </tr>
+    </table>
+  </center>
+</div>
+</body>
+</html>
