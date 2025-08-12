@@ -1,0 +1,717 @@
+<font size="3" color="#666666" face="Arial, Helvetica, sans-serif"><b><font color="#333333">ADMINISTRATION 
+OPTIONS:</font></b></font><br>
+<br>
+<font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990000"> 
+<?	
+if ($update==Y) { echo update_administration($form); }
+
+$db = new ps_DB;
+	$q  = "SELECT * FROM setup WHERE setup_id='1'";
+	$db->query($q);
+	$db->next_record();
+
+
+?>
+<br>
+</font> 
+<form method="post" action="">
+  <table width="450" border="0" cellspacing="0" cellpadding="2" class="form_text">
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">DreamHost 
+          Username:</font></div>
+      </td>
+      <td width="48%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_login" size="15" style="border: 1 solid #666666" value="<? $db->p("setup_login"); ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">DreamHost 
+          Password:</font></div>
+      </td>
+      <td width="48%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_password" maxlength="20" size="15" style="border: 1 solid #666666" value="<? $db->p("setup_password"); ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">DreamHost 
+          Path:</font></div>
+      </td>
+      <td width="48%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#990000"> 
+        </font><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_path" maxlength="100" size="41" style="border: 1 solid #666666" value="<? $db->p("setup_path"); ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">DreamHost 
+          URL:</font></div>
+      </td>
+      <td width="48%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#990000"> 
+        </font><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_url" maxlength="75" size="41" style="border: 1 solid #666666" value="<? $db->p("setup_url"); ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Company 
+          Email: </font></div>
+      </td>
+      <td width="48%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_email" maxlength="50" size="41" style="border: 1 solid #666666" value="<? $db->p("setup_email"); ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Company 
+          Name: </font></div>
+      </td>
+      <td width="48%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_company" maxlength="50" size="41" style="border: 1 solid #666666" value="<? $db->p("setup_company"); ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Email 
+          Admin:</font></div>
+      </td>
+      <td width="48%"> <font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="checkbox" name="setup_email_admin" value="Y" <? if ($db->f("setup_email_admin")=="Y") { echo "checked"; } ?>>
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Email 
+          Shopper: </font></div>
+      </td>
+      <td width="48%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="checkbox" name="setup_email_signup" value="Y" <? if ($db->f("setup_email_signup")=="Y") { echo "checked"; } ?>>
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Currency 
+          Symbol:</font></div>
+      </td>
+      <td width="48%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_currency" maxlength="5" size="2" style="border: 1 solid #666666" value="<? $db->p("setup_currency"); ?>">
+        </font> </td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Calculate 
+          Sales Tax:</font></div>
+      </td>
+      <td width="48%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="checkbox" name="setup_tax" value="Y" <? if ($db->f("setup_tax")=="Y") { echo "checked"; } ?>>
+        </font> </td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Tax 
+          Rate (Percent): </font></div>
+      </td>
+      <td width="48%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_tax_rate" maxlength="5" size="5" style="border: 1 solid #666666" value="<? $db->p("setup_tax_rate"); ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Max 
+          Search Results:</font></div>
+      </td>
+      <td width="48%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="text" name="setup_max_results" maxlength="5" size="5" style="border: 1 solid #666666" value="<? $db->p("setup_max_results"); ?>">
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Suggest 
+          Domains:</font></div>
+      </td>
+      <td width="48%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="checkbox" name="setup_domain_suggest" value="Y" <? if ($db->f("setup_domain_suggest")=="Y") { echo "checked"; } ?>>
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Allow 
+          Affiliates:</font></div>
+      </td>
+      <td width="48%"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="checkbox" name="setup_affiliate" value="Y" <? if ($db->f("setup_affiliate")=="Y") { echo "checked"; } ?>>
+        </font></td>
+    </tr>
+    <tr> 
+      <td width="52%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Affiliates 
+          Payment Method:</font></div>
+      </td>
+      <td width="48%"> 
+        <select name="setup_aff_type">
+          <option value="0" <? if ($db->f("setup_aff_type") == 0) { echo "selected"; } ?>>Let 
+          the Affiliate Decide</option>
+          <option value="1" <? if ($db->f("setup_aff_type") == 1) { echo "selected"; } ?>>Credit 
+          the Affiliate's Account</option>
+          <option value="2" <? if ($db->f("setup_aff_type") == 2) { echo "selected"; } ?>>Send 
+          the Payout Via Mail</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <? if ($db->f("setup_affiliate")=="Y") { 
+if (($db->f("setup_aff_type") == 0) || ($db->f("setup_aff_type") == 1)) {?>
+  <br>
+  <br>
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td> <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000"><b>P</b></font><b><font face="Verdana, Arial, Helvetica, sans-serif" color="#000000"><font size="2">ayout 
+        Options for Crediting Affiliate's Payouts:</font> </font></b> </td>
+    </tr>
+    <tr> 
+      <td> 
+        <table width="450" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="189"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Payout 
+                Formula:</font></div>
+            </td>
+            <td width="261"> 
+              <select name="setup_aff_pay_1">
+                <option value="0" <? if ($db->f("setup_aff_pay_1") == 0) { echo "selected"; } ?>>Percentage 
+                of the Order Total</option>
+                <option value="1" <? if ($db->f("setup_aff_pay_1") == 1) { echo "selected"; } ?>>Pre-defined 
+                Refferal Fee</option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td width="189"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Amount 
+                or Percentage:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="setup_aff_pay_1a" maxlength="5" size="5" style="border: 1 solid #666666" value="<? $db->p("setup_aff_pay_1a"); ?>">
+              </font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <?}
+if (($db->f("setup_aff_type") == 0) || ($db->f("setup_aff_type") == 2)) {?>
+  <br>
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td> <font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#CCCCCC"><b><font color="#000000">Payout 
+        Options for Mailing Affiliate Payouts:</font></b></font></td>
+    </tr>
+    <tr> 
+      <td> 
+        <table width="450" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="189"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Payout 
+                Formula:</font></div>
+            </td>
+            <td width="261"> 
+              <select name="setup_aff_pay_2">
+                <option value="0" <? if ($db->f("setup_aff_pay_2") == 0) { echo "selected"; } ?>>Percentage 
+                of the Order Total</option>
+                <option value="1" <? if ($db->f("setup_aff_pay_3") == 1) { echo "selected"; } ?>>Pre-defined 
+                Refferal Fee</option>
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td width="189"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Amount 
+                or Percentage:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="setup_aff_pay_2a" maxlength="5" size="5" style="border: 1 solid #666666" value="<? $db->p("setup_aff_pay_2a"); ?>">
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Payout 
+                Date: </font></div>
+            </td>
+            <td width="261"> 
+              <select name="setup_aff_pay_2b">
+                <option value="31" <? if ($db->f("setup_aff_pay_2b") == 31) { echo "selected"; } ?>>Every 
+                1 Month</option>
+                <option value="61" <? if ($db->f("setup_aff_pay_2b") == 61) { echo "selected"; } ?>>Every 
+                2 Months</option>
+                <option value="91" <? if ($db->f("setup_aff_pay_2b") == 91) { echo "selected"; } ?>>Every 
+                3 Months</option>
+                <option value="121" <? if ($db->f("setup_aff_pay_2b") == 121) { echo "selected"; } ?>>Every 
+                4 Months</option>
+                <option value="152" <? if ($db->f("setup_aff_pay_2b") == 152) { echo "selected"; } ?>>Every 
+                5 Months</option>
+                <option value="182" <? if ($db->f("setup_aff_pay_2b") == 182) { echo "selected"; } ?>>Every 
+                6 Months</option>
+                <option value="212" <? if ($db->f("setup_aff_pay_2b") == 212) { echo "selected"; } ?>>Every 
+                7 Months</option>
+                <option value="242" <? if ($db->f("setup_aff_pay_2b") == 242) { echo "selected"; } ?>>Every 
+                8 Months</option>
+                <option value="273" <? if ($db->f("setup_aff_pay_2b") == 273) { echo "selected"; } ?>>Every 
+                9 Months</option>
+                <option value="303" <? if ($db->f("setup_aff_pay_2b") == 303) { echo "selected"; } ?>>Every 
+                10 Months</option>
+                <option value="333" <? if ($db->f("setup_aff_pay_2b") == 333) { echo "selected"; } ?>>Every 
+                11 Months</option>
+                <option value="364" <? if ($db->f("setup_aff_pay_2b") == 364) { echo "selected"; } ?>>Every 
+                12 Months</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <? } 
+}?>
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td> <font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#CCCCCC"><b><font color="#000000"><br>
+        Payment Processor Information:</font></b></font></td>
+    </tr>
+    <tr> 
+      <td> 
+        <table width="450" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="189" height="4"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Gateway:</font></div>
+            </td>
+            <td width="261" height="4"> 
+              <select name="gateway">
+                <option value="0" <? if($db->f("setup_gateway") == 0) echo " selected"; ?>>Test Mode</option>
+                <option value="25" <? if($db->f("setup_gateway") == 25) echo " selected"; ?>>Store CC Info</option>
+                <option value="1" <? if($db->f("setup_gateway") == 1) echo " selected"; ?>>Authorize.net</option>
+                <option value="2" <? if($db->f("setup_gateway") == 2) echo " selected"; ?>>Echo</option>
+                <option value="3" <? if($db->f("setup_gateway") == 3) echo " selected"; ?>>ECX</option>
+                <option value="4" <? if($db->f("setup_gateway") == 4) echo " selected"; ?>>IBill</option>
+                <option value="5" <? if($db->f("setup_gateway") == 5) echo " selected"; ?>>Netbilling</option>
+                <option value="6" <? if($db->f("setup_gateway") == 6) echo " selected"; ?>>PlanetPayment</option>
+                <option value="7" <? if($db->f("setup_gateway") == 7) echo " selected"; ?>>RTWare</option>
+                <option value="8" <? if($db->f("setup_gateway") == 8) echo " selected"; ?>>Verisign</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <?if (($db->f("setup_gateway") != 0) && ($db->f("setup_gateway") != 25)) {
+$gateway = "merchant_account_";
+$gateway .= $db->f("setup_gateway");
+$gateway .= ".html";
+ include($gateway);
+}?>
+      </td>
+    </tr>
+  </table>
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td> <font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#CCCCCC"><b><font color="#000000"><br>
+        Email Options &amp; Templates:<br>
+        </font></b><font size="1" color="#333333">Each checkbox below represents 
+        an automatic email that can be sent. To the right of each checkbox is 
+        the action name. If you are not sure what a particular action does, click 
+        on it to view more details. To edit an email template, click on its name.</font><font color="#000000"></font><b><font color="#000000"><br>
+        <br>
+        </font></b></font></td>
+    </tr>
+    <tr> 
+      <td> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="25%" bgcolor="#CCCCCC"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><b><font size="2">Admin</font></b></font></div>
+            </td>
+            <td width="25%" bgcolor="#CCCCCC"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Affiliates</b></font></div>
+            </td>
+            <td width="25%" bgcolor="#CCCCCC"> 
+              <div align="center"><b><font color="#000000" size="2" face="Verdana, Arial, Helvetica, sans-serif">Customers</font></b></div>
+            </td>
+            <td width="25%" bgcolor="#CCCCCC"> 
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Registrar</b></font></div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="25%" valign="top"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=1&page=email_admin" target="_blank">Registration</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" value="Y" name="1"  <? if ($db->f("setup_email_1")=="Y") { echo " checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=2&page=email_admin" target="_blank">New 
+                    Order </a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" value="Y" name="2"  <? if ($db->f("setup_email_2")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=3&page=email_admin" target="_blank">New 
+                    Affiliate</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="3" value="Y" <? if ($db->f("setup_email_3")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=4&page=email_admin" target="_blank">Domain 
+                    Renewal</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="4" value="Y" <? if ($db->f("setup_email_4")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=5&page=email_admin" target="_blank">Hosting 
+                    Update</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="5" value="Y" <? if ($db->f("setup_email_5")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">not 
+                    used </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="6" value="Y" <? if ($db->f("setup_email_6")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">not 
+                    used </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="7" value="Y" <? if ($db->f("setup_email_7")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="25%" valign="top"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=8&page=email_admin" target="_blank">Registration</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="8" value="Y" <? if ($db->f("setup_email_8")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?id=9&page=email_admin" target="_blank">New 
+                    Credit </a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="9" value="Y" <? if ($db->f("setup_email_9")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=10&page=email_admin" target="_blank">New 
+                    Referral</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="10" value="Y" <? if ($db->f("setup_email_10")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="25%" valign="top"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=11&page=email_admin" target="_blank">Registration</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="11" value="Y" <? if ($db->f("setup_email_11")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=12&page=email_admin" target="_blank">New 
+                    Order</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="12" value="Y" <? if ($db->f("setup_email_12")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=13&page=email_admin" target="_blank">Acct. 
+                    Updated</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="13" value="Y" <? if ($db->f("setup_email_13")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font face="Verdana, Arial, Helvetica, sans-serif" size="1"><a href="?id=14&page=email_admin" target="_blank">CC. 
+                    Updated</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="14" value="Y" <? if ($db->f("setup_email_14")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=15&page=email_admin" target="_blank">Acct. 
+                    Credited</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="15" value="Y" <? if ($db->f("setup_email_15")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=16&page=email_admin" target="_blank">Billing 
+                    Notice</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="16" value="Y" <? if ($db->f("setup_email_16")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=17&page=email_admin" target="_blank">Billing 
+                    Reciept</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="17" value="Y" <? if ($db->f("setup_email_17")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=18&page=email_admin" target="_blank">Domain 
+                    Expired</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="18" value="Y" <? if ($db->f("setup_email_18")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=19&page=email_admin" target="_blank">Card 
+                    Declined</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="19" value="Y" <? if ($db->f("setup_email_19")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=20&page=email_admin" target="_blank">Domain 
+                    Renewed</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="20" value="Y" <? if ($db->f("setup_email_20")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=21&page=email_admin" target="_blank">Hosting 
+                    Updated</a> </font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="21" value="Y" <? if ($db->f("setup_email_21")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="25%" valign="top"> 
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=22&page=email_admin" target="_blank">New 
+                    Domain</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="22" value="Y" <? if ($db->f("setup_email_22")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="90%"><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><a href="?id=23&page=email_admin" target="_blank">Renew 
+                    Domain</a></font></td>
+                  <td width="10%"> 
+                    <input type="checkbox" name="23" value="Y" <? if ($db->f("setup_email_23")=="Y") { echo "checked"; } ?>>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td width="25%" valign="top" height="10">&nbsp;</td>
+            <td width="25%" valign="top" height="10">&nbsp;</td>
+            <td width="25%" valign="top" height="10">&nbsp;</td>
+            <td width="25%" valign="top" bgcolor="#CCCCCC" height="10">
+              <div align="center"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b><font size="1">Registrar's 
+                Email:</font></b></font></div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="25%" valign="top">&nbsp;</td>
+            <td width="25%" valign="top">&nbsp;</td>
+            <td width="25%" valign="top">&nbsp;</td>
+            <td width="25%" valign="top"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="registrar" maxlength="32" size="15" style="border: 1 solid #666666" value="<? $db->p("setup_registrar"); ?>">
+              </font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td> <font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#CCCCCC"><b><font color="#000000">Headers, 
+        Footers &amp; Member Pages:<br>
+        </font></b><font size="1" color="#333333">Define the header &amp; footer 
+        for your members area below. <br>
+        HTML and JavaScript markup are both acceptable.<br>
+        <br>
+        </font></font></td>
+    </tr>
+    <tr> 
+      <td> 
+        <table width="450" border="0" cellspacing="0" cellpadding="2">
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Header:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <textarea name="header" cols="45" style="border: 1 solid #666666" rows="3"><? $db->p("setup_header"); ?></textarea>
+              </font> </td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Footer:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <textarea name="footer" cols="45" style="border: 1 solid #666666" rows="3"><? $db->p("setup_footer"); ?></textarea>
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">FAQ:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <textarea name="faq" cols="45" style="border: 1 solid #666666" rows="3"><? $db->p("setup_faq"); ?></textarea>
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Company 
+                Information:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <textarea name="company_info" cols="45" style="border: 1 solid #666666" rows="3"><? $db->p("setup_company_info"); ?></textarea>
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Contact 
+                Information:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <textarea name="contact_info" cols="45" style="border: 1 solid #666666" rows="3"><? $db->p("setup_contact_info"); ?></textarea>
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Acceptable 
+                Use: </font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <textarea name="acceptable_use" cols="45" style="border: 1 solid #666666" rows="3"><? $db->p("setup_acceptable_use"); ?></textarea>
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Privacy 
+                Policy: </font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <textarea name="privacy_policy" cols="45" style="border: 1 solid #666666" rows="3"><? $db->p("setup_privacy_policy"); ?></textarea>
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Topmenu 
+                Color:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="topmenu_bg" maxlength="7" size="7" style="border: 1 solid #666666" value="<? $db->p("setup_topmenu_bg"); ?>">
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Topmenu 
+                Font Color:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="topmenu_font" maxlength="7" size="7" style="border: 1 solid #666666" value="<? $db->p("setup_topmenu_font"); ?>">
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Leftmenu 
+                Color:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="leftmenu_bg" maxlength="7" size="7" style="border: 1 solid #666666" value="<? $db->p("setup_leftmenu_bg"); ?>">
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Leftmenu 
+                Font Color:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="leftmenu_font" maxlength="7" size="7" style="border: 1 solid #666666" value="<? $db->p("setup_leftmenu_font"); ?>">
+              </font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Leftmenu 
+                Width:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="text" name="leftmenu_width" maxlength="3" size="3" style="border: 1 solid #666666" value="<? $db->p("setup_leftmenu_width"); ?>">
+              <font size="1">Pixels</font></font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Show 
+                Search Box:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="checkbox" name="leftmenu_search" value="Y" <? if ($db->f("setup_leftmenu_search")=="Y") { echo "checked"; } ?>>
+              <font color="#333333" size="1">Show/Hide the domain search box.</font></font></td>
+          </tr>
+          <tr> 
+            <td width="189" valign="top"> 
+              <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Show 
+                Cart Details:</font></div>
+            </td>
+            <td width="261"><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+              <input type="checkbox" name="leftmenu_cart" value="Y" <? if ($db->f("setup_leftmenu_cart")=="Y") { echo "checked"; } ?>>
+              <font color="#333333" size="1">Show/Hide the shopping cart details.</font></font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <table width="450" border="0" cellspacing="0" cellpadding="2" class="form_text">
+    <tr> 
+      <td width="43%" valign="middle"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Superuser 
+          Password:</font></div>
+      </td>
+      <td width="57%"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="password" name="superuser" maxlength="20" size="15" style="border: 1 solid #666666">
+        <font color="#990000" size="1">Required!</font></font> </b></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top"> 
+        <div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">Update 
+          Superuser Password</font></div>
+      </td>
+      <td width="57%"><b><font size="2" face="Verdana, Arial, Helvetica, sans-serif"> 
+        <input type="password" name="setup_superuser" maxlength="20" size="15" style="border: 1 solid #666666">
+        </font></b></td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top">&nbsp;</td>
+      <td width="57%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top">&nbsp;</td>
+      <td width="57%">&nbsp; </td>
+    </tr>
+    <tr> 
+      <td width="43%" valign="top">&nbsp;</td>
+      <td width="57%"> 
+        <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23" >
+        <input type="hidden" name="update" value="Y">
+      </td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+</form>
