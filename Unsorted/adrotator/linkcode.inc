@@ -1,0 +1,3 @@
+<a href="http://www.advertising.com" target="_blank" ><img src="http://www.advertising.com/image-1240896-02020202" width="468" height="60" alt="Support Our Website!" border="0"></a>
+<a href="http://www.advertising.com" target="_blank" ><img src="http://www.advertising.com/image-1240896-02020202" width="468" height="60" alt="Support Our Website!" border="0"></a>
+<a href="http://www.advertising.com" target="_blank" ><img src="http://www.advertising.com/image-1240896-02020202" width="468" height="60" alt="Support Our Website!" border="0"></a>
