@@ -1,0 +1,226 @@
+<html>
+	<head>
+		<title>Body</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+		<style type="text/css">
+		body {background-color: white;}
+		a {font-family: monospace;}
+		ul {list-style-type: none;}
+		.classTitle {color: blue;}
+		.name {color: black;}
+		.version {color: black;}
+		.requires {color: red;}
+		.extends {color: black;}
+		.description {color: black;font-family: sans-serif;}
+		.author {color: blue;}
+		.methodsTitle {color: blue;}
+		.methodList {color: blue;}
+		.methodName {color: blue;font-weight: bold;}
+		.returns {color: black;}
+		.param {color: black;font-weight: bold;font-family: monospace;}
+		</style>
+	</head>
+	<body>
+		<h1 class="classTitle">Body Class</h1>
+		<br />
+		<span class="name">Name: Body</span>
+		<br />
+		<span class="description">Description:</span>
+		<ul class="description">
+			<li>* Class that reprensents the html body of an html document.</li>
+			<li>*</li>
+		</ul>
+		<br />
+		<span class="package">Package: moebius2.xhtml.base</span>
+		<br />
+		<span class="author">Author: Alejandro Espinoza <aespinoza@structum.com.mx></span>
+		<br />
+		<span class="version">Version: 1.1</span>
+		<br />
+		<span class="extends">Extends: ObjectManager</span>
+		<br />
+		<span class="requires">Requires: ObjectManager, XML</span>
+		<br />
+		<span class="see">See: XML</span>
+		<hr />
+		<h2 class="methodsTitle">All Methods</h2>
+		<span class="methodList">
+			<a href="#Body">Body</a>
+			<br />
+			<a href="#AddAttrib">AddAttrib</a>
+			<br />
+			<a href="#GetAttrib">GetAttrib</a>
+			<br />
+			<a href="#GetAttribsXml">GetAttribsXml</a>
+			<br />
+			<a href="#SetContent">SetContent</a>
+			<br />
+			<a href="#GetContent">GetContent</a>
+			<br />
+			<a href="#AddStringBranch">AddStringBranch</a>
+			<br />
+			<a href="#AddXmlBranch">AddXmlBranch</a>
+			<br />
+			<a href="#Generate">Generate</a>
+			<br />
+		</span>
+		<hr />
+		<p>
+			<a name="Body">
+				<span class="methodName">Body</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Constructor, initializes the html body.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<hr />
+		<p>
+			<a name="AddAttrib">
+				<span class="methodName">AddAttrib</span>
+				<span> ( string attribName, string attribVal )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Adds 1 or several attributes to the document's body.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string attribName</li>
+				<li class="param">string attribVal</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetAttrib">
+				<span class="methodName">GetAttrib</span>
+				<span> ( int returnType )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the attributes added to the body tag; depending on the 'returnType' selected, this method can</li>
+			<li>* return an array, an XMLBranch Object array or even an string.</li>
+			<li>*</li>
+			<li>* Return types :</li>
+			<li>* RET_ARRAY : returns an array. (Default)</li>
+			<li>* RET_XML : returns an XMLBranch object.</li>
+			<li>* RET_TEXT : returns a string with the html code.</li>
+			<li>*</li>
+			<li>* The structure of the returning array is :</li>
+			<li>*</li>
+			<li>* array[index][0] = attribute name.</li>
+			<li>* array[index][1] = attribute value.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: body tag; depending on the returnType selected : array, XMLBranch or string.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">int returnType</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetAttribsXml">
+				<span class="methodName">GetAttribsXml</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns an XMLBranch object referencing to the body and attributes in XML format.</li>
+			<li>*</li>
+		</ul>
+		<p class="returns">Returns: XMLBranch object referencing to the body tag.</p>
+		<hr />
+		<p>
+			<a name="SetContent">
+				<span class="methodName">SetContent</span>
+				<span> ( string content )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Changes the body's content.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string content</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="GetContent">
+				<span class="methodName">GetContent</span>
+				<span> (  )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the html code for the body's content; either in XMLBranch object or string.</li>
+		</ul>
+		<p class="returns">Returns: XML object or string containing the body's content</p>
+		<hr />
+		<p>
+			<a name="AddStringBranch">
+				<span class="methodName">AddStringBranch</span>
+				<span> ( string stringBranch )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Adds an String Branch to the body's content.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">string stringBranch</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="AddXmlBranch">
+				<span class="methodName">AddXmlBranch</span>
+				<span> ( object xmlBranch )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Adds an XML Branch to the body's content.</li>
+		</ul>
+		<p class="returns">Returns: none</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">object xmlBranch</li>
+			</ul>
+		</p>
+		<hr />
+		<p>
+			<a name="Generate">
+				<span class="methodName">Generate</span>
+				<span> ( optional bool autoGenerate )</span>
+			</a>
+		</p>
+		<p class="description">Description:</p>
+		<ul class="description">
+			<li>* Returns the xhtml code; it can also build the Xhtml code for the body if autoGenerate is set to true (Default).</li>
+		</ul>
+		<p class="returns">Returns: object of type XMLBranch containing the body.</p>
+		<p>
+			<span>Arguments:</span>
+			<ul>
+				<li class="param">optional bool autoGenerate</li>
+			</ul>
+		</p>
+	</body>
+</html>
