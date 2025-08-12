@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tsep3docs.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>TSEP</title>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="TSEP is an open source (free) website PHP search engine. Easy to install, fast, supports logging and user defined stopwords. It uses CSS formating, is localized (multiple languages)" />
+<meta name="keywords" content="TSEP full text PHP search engine searchengine opensource free boolean mysql php stopword logging crawl spider open source" />
+<link href="css/general.css" rel="stylesheet" type="text/css" />
+<link href="css/medium.css" rel="stylesheet" type="text/css" />
+<!-- InstanceParam name="notes" type="text" value="notcurrent" --><!-- InstanceParam name="install" type="text" value="notcurrent" --><!-- InstanceParam name="usage" type="text" value="notcurrent" --><!-- InstanceParam name="advconf" type="text" value="current" --><!-- InstanceParam name="extensions" type="text" value="notcurrent" --><!-- InstanceParam name="faq" type="text" value="notcurrent" --><!-- InstanceParam name="errors" type="text" value="notcurrent" --><!-- InstanceParam name="links" type="text" value="notcurrent" --><!-- InstanceParam name="help" type="text" value="notcurrent" --><!-- InstanceParam name="contents" type="text" value="notcurrent" -->
+<link href="css/docs.css" rel="stylesheet" type="text/css" />
+<link href="css/links.css" rel="stylesheet" type="text/css" />
+<link href="css/urlimg.css" rel="stylesheet" type="text/css" />
+</head>
+<body><a name="topofpage" id="topofpage"></a> 
+<div id="container"> 
+  <div id="header"> 
+    <div class="HeaderLogo"><img src="graphics/tsep-glow.gif" alt="TSEP - The Search Engine Project" width="310" height="70" /></div> 
+    <div class="HeaderText">
+      <h1>Documentation</h1>
+    </div> 
+  </div> 
+  <div id="sidebar-a"> 
+    <div id="navcontainer"> 
+      <ul id="navlist-verti"> 
+        <li><a href="index.htm" class="notcurrent">Contents</a></li> 
+        <li><a href="note.htm" class="notcurrent">Notes</a></li>
+        <li><a href="install.htm" class="notcurrent">Install &amp; Upgrade</a></li> 
+        <li><a href="usage.htm" class="notcurrent">Usage</a></li> 
+      <li><a href="advanced.htm" class="current">Advanced Configuration</a></li>
+      <li><a href="extensions.htm" class="notcurrent">Extensions &amp; Plug-ins</a></li>
+      <li><a href="help.htm" class="notcurrent">Help TSEP </a></li>
+      <li><a href="faq.htm" class="notcurrent">FAQ</a></li>
+      <li><a href="error.htm" class="notcurrent">Problems &amp; Errors</a></li>
+      <li><a href="links.htm" class="notcurrent">Links</a></li>
+      </ul> 	  
+    </div> 
+  </div> 
+  <div id="sidebar-b">      
+  </div> 
+  <div id="content"><!-- InstanceBeginEditable name="middle" --><div id="navcontainer-hori"> 
+      <ul id="navlist-hori"> 
+        <li><a href="#external">Using external data supply</a></li> 
+        <li><a href="#tseptags">TSEP Tags for your code</a></li> 
+		<li><a href="#cron">Scheduling: cron / at</a></li>
+      <li><a href="#contentimages">ContentImages</a></li>
+      </ul> 	  
+    </div>
+	<h1>Advanced Configuration</h1>
+	<h1><a name="external" id="external"></a>Using external data supply</h1>
+	<h2><a name="external" id="external"></a>What's meant by external Datasupply?</h2>
+	<p> This was introduced in version 0.927. Building the index (using the indexer) needs an algorithm to find the files to be indexed. The <span class="tsep">TSEP</span>-integrated filefind-algorithm reads each (sub)-directory, starting at the given starting-directory, to collect the filenames found there, to be indexed.<br />
+  In addition to this integrated filefind-algorithm, <span class="tsep">TSEP</span> gives the ability to build the index for files, whose filenames (urls) are supplied from outside of <span class="tsep">TSEP</span> (e.g. a simple file(url)list, a filelist returned by a crawler/spider-process,...). </p>
+	<p>Also see:</p>
+	<ul>
+      <li><a href="extensions.htm#ext">Extensions, Plug-ins</a></li>
+      <li><a href="http://sourceforge.net/forum/forum.php?thread_id=1258790&amp;forum_id=369628">Thread 1258790 in TSEP forum (external link)</a> </li>
+    </ul>
+	<h3> How to use external Datasupply:</h3>
+	<h4> How to send data to <span class="tsep">TSEP</span></h4>
+	<p> The external datasupply has to be a .php-script, which has to communicate with <span class="tsep">TSEP</span> in the following way:<br />
+  At the <span class="tsep">TSEP</span>-admin-page &quot;build-new-index&quot;, the (fully qualified) name of this .php-script has to be given.<br />
+  Urls,... are returned to <span class="tsep">TSEP</span> via</p>
+	<p> <span class="HTMLcode">call_user_func(&quot;TSEP_ExternalCallBack&quot;, </span><span class="urlparameter">returnstring</span><span class="HTMLcode">);</span> </p>
+	<p><span class="urlparameter">returnstring</span> has to be one of the following:</p>
+	<dl>
+      <dt>&quot;<span class="urlparameter">URL&gt;</span><span class="variablename">an_url</span>&quot; </dt>
+      <dd><span class="variablename">an_url</span> will be indexed by TSEP</dd>
+      <dd>&nbsp;</dd>
+      <dt>&quot;<span class="urlparameter">ERR&gt;</span><span class="variablename">an_errormessage</span>&quot; </dt>
+      <dd><span class="variablename">an_errormessage</span> will be echoed to the browser as error</dd>
+      <dt>&quot;<span class="urlparameter">INF&gt;</span><span class="variablename">an_errormessage</span>&quot; </dt>
+      <dd><span class="variablename">an_errormessage</span> will be echoed to the browser as information</dd>
+      <dd>&nbsp;</dd>
+      <dt>&quot;<span class="urlparameter">ALL&gt;</span><span class="variablename">an_url</span><span class="urlparameter">&lt;tsepcontent&gt;</span><span class="variablename">content_of_the_file</span>&quot; </dt>
+      <dd><span class="variablename">an_url</span> will be indexed by <span class="tsep">TSEP</span>, but <span class="tsep">TSEP</span> does not read the file. The file-content is taken from <span class="variablename">content_of_the_file</span>.</dd>
+    </dl>
+	<p> <a name="exampleurllist" id="exampleurllist"></a>In the <span class="directoryname">admin/example</span>-directory you can find examples, how this external datasupply feature can be used. Try using &quot;<span class="directoryname">examples/</span><span class="filename">urllist.php</span>&quot; as external datasupply for your first tests (it's a very simple datasupply and makes it easy to understand, how this feature works).</p>
+	<p><span class="directoryname"><a name="examplephpcrawl" id="examplephpcrawl"></a>examples/</span><span class="filename">phpcrawl4tsep.php</span> is an up-and-running samplescript to communicate with an installed <a href="http://phpcrawl.sourceforge.net" target="_blank">PHPCrawl</a>. Just place the <span class="filename">phpcrawl4tsep.php</span> into the same directory as PHPCrawl (there where the <span class="filename">example.php</span> from PHPCrawl is) and call it from the <span class="tsep">TSEP</span> indexer.</p>
+	<p> <span class="importantNote">Attention: </span></p>
+	<ul>
+      <li><span class="importantNote">Do not forget</span> to add a starting page where the crawling process should start from in the text field labeled &quot;<span class="formfieldlabel">Enter parameter to be sent to datasupply-script</span>&quot; in the &quot;Create new index&quot; page! </li>
+      <li>Also make sure your <span class="importantNote">page is being displayed correctly</span> in your browser, otherwise the crawler will also have problems to follow links. Example: We encountered a problem in a PHP file which required another file that could not be found. Therefore nothing showed up in the browser - and the crawler could not follow any URLs because it simply did not find any. </li>
+      <li>You can <span class="importantNote">not give an URL</span> to the script. This if for security reasons!</li>
+    </ul>
+	<p>Example of how to correctly configure to run <span class="filename">phpcrawl4tsep.php</span> from within <span class="tsep">TSEP</span>:<br />
+  assume:<br />
+  <span class="completeurl">www.mydomain.de/index.php</span> entry-page of your site<br />
+  <span class="completeurl">www.mydomain.de/php/tsepsearch</span> installation-directory of <span class="tsep">TSEP</span><br />
+  <span class="completeurl">www.mydomain.de/php/tsepsearch/admin/indexer.php</span> <span class="tsep">TSEP</span>-<span class="filename">indexer.php</span>-script (&quot;build-new-index&quot;-startpage)<br />
+  <span class="completeurl">www.mydomain.de/php/phpcrawl/</span> install-directory of PHPCRAWL<br />
+  <span class="completeurl">www.mydomain.de/php/phpcrawl/phpcrawl4tsep.php</span> our samplescript</p>
+	<p>The <a href="install.htm#index">picture</a> of the installation shows our example with it's settings.</p>
+	<h3> <a name="definitionsfromtsep" id="definitionsfromtsep"></a>Definitions, made available by <span class="tsep">TSEP</span></h3>
+	<p> Parameter, entered at <span class="tsep">TSEP</span>-admin-page &quot;build-new-index&quot;, are made available for the external datasupply script via public variables:</p>
+	<dl>
+      <dt class="variablename">$TSEPdirname</dt>
+      <dd> Directory given as first entry in the &quot;build-new-index&quot;-startpage</dd>
+      <dt class="variablename"> $TSEPwebdir</dt>
+      <dd> WebDirectory given as first entry in the &quot;build-new-index&quot;-startpage</dd>
+      <dt class="variablename"> $TSEPdirexclude</dt>
+      <dd> directory-excludes given in the &quot;build-new-index&quot;-startpage</dd>
+      <dt class="variablename"> $TSEPfileexclude</dt>
+      <dd> file-excludes given in the &quot;build-new-index&quot;-startpage</dd>
+      <dt class="variablename"> $TSEPlistFilenamesOnly</dt>
+      <dd>&quot;1&quot;, if the '&quot;would-be-indexed&quot;-filelist only'-checkbox is checked</dd>
+      <dt class="variablename"> $TSEPparmsexternalphp</dt>
+      <dd> this is the value entered on the &quot;build-new-index&quot;-startpage in the field &quot;<span class="formfieldlabel">Enter parameter to be sent to datasupply-script</span>&quot; This can be any string, which the external datasupply script needs.<br />
+    e.g. if the external datasupply script is a crawler, this normally needs an entry-html-filename, where the search has to start. This filename can be passed to the script via the field &quot;<span class="formfieldlabel">Enter parameter to be sent to datasupply-script</span>&quot; at <span class="tsep">TSEP</span>s &quot;build-new-index&quot;-startpage and can be read by the external datasupply script via variable <span class="variablename">TSEPparmsexternalphp</span>.</dd>
+      <dt class="variablename"> $TSEPextinclude</dt>
+      <dd>this is the value entered on the "build-new-index"-startpage in the field "Fileextensions to be included". In <span class="variablename">$TSEPextinclude</span>, whitespace are removed and the extension-list is pipe-separated (e.g. "htm|html|php")</dd>
+    </dl>
+	<h1><a name="tseptags" id="tseptags"></a><span class="tsep">TSEP</span> Tags for your code</h1>
+	<p>In version 0.938 we introduced the first tags.</p>
+	<p>You can simply add those to your pages which will be indexed to give <span class="tsep">TSEP</span> instructions.</p>
+	<p>At this time there are 3 different tags:</p>
+	<dl>
+      <dt> <span class="tseptag">&lt;!-- tsep:cmd:start/ --&gt;</span></dt>
+      <dd>Ignore (do not index) all before this tag.</dd>
+      <dt class="tseptag">&lt;!-- tsep:cmd:end/ --&gt;</dt>
+      <dd>Ignore (do not index) all after this tag.</dd>
+      <dt><span class="tseptag">&lt;!-- tsep:cmd:noindex --&gt;</span> and <span class="tseptag">&lt;!-- /tsep:cmd:noindex --&gt;</span></dt>
+      <dd>Ignore all inbetween those two tags (the word &quot;and&quot; in this case)</dd>
+    </dl>
+	<h1><a name="cron" id="cron"></a>Scheduling: cron / at </h1>
+	<p><span class="filename">TSEPautoIndexing.sh </span>should be placed in the <span class="directoryname">admin/examples</span> directory. This shellscript should be called by cron (Linux). The equivalent for windows systems is a new script, <span class="filename">TSEPautoIndexing.cmd</span>. Some detailes instructions: </p>
+	<p>How to initiate indexing via unix-command <span class="DirectCommand">curl</span> (intended to be combined with cron):</p>
+	<dl>
+      <dt>launching indexer using current IndexingProfile:</dt>
+      <dd> <span class="DirectCommand">curl</span> <span class="completeurl">http://.../admin/indexer.php</span> <span class="urlparameter">-d startindexing=startindexing -o &lt;out.htm&gt;</span></dd>
+      <dt>launching indexer using specific IndexingProfile:</dt>
+      <dd><span class="DirectCommand">curl</span> <span class="completeurl">http://.../admin/indexer.php</span> <span class="urlparameter">-d startindexing=startindexing -d profile=&lt;name-of-profile&gt; -o &lt;<span class="filename">out.htm</span>&gt;</span> </dd>
+    </dl>
+	<p>Examples:</p>
+	<ul>
+      <li> <span class="DirectCommand">curl</span> <span class="completeurl">http://.../admin/indexer.php</span> <span class="urlparameter">-d startindexing=startindexing -d profile=demo -o &lt;<span class="filename">out.htm</span>&gt;</span></li>
+    </ul>
+	<p> or</p>
+	<ul>
+      <li> <span class="DirectCommand">curl</span> <span class="completeurl">http://.../admin/indexer.php</span> <span class="urlparameter">-d startindexing=startindexing -d profile=&quot;my demoprofile&quot; -o &lt;<span class="filename">out.htm</span>&gt;</span></li>
+    </ul>
+	<p>Important Notes:</p>
+	<ul>
+      <li>Do <span class="importantNote">not forget to embed &lt;name-of-profile&gt; in quotes</span>, if it contains blanks!</li>
+      <li><span class="DirectCommand">curl</span> writes the <span class="filename">indexer.php</span>-generated output into this file: &lt;<span class="filename">out.htm</span>&gt; </li>
+    </ul>
+	<p>Hint:</p>
+	<p>Use the shell-script <span class="directoryname">admin/examples/</span><span class="filename">TSEPautoIndexing.sh</span></p>
+	<p>Please adjust the two variables within that script to your needs first (see there). This script can be called without parameter to launch indexer using the current Indexingprofile. Examples: </p>
+	<ul>
+      <li> <span class="directoryname">.../admin/examples/</span><span class="filename">TSEPautoIndexing.sh</span></li>
+    </ul>
+	<p> or</p>
+	<p> simply use the name of the IndexingProfile to be indexed as parameter:</p>
+	<ul>
+      <li><span class="directoryname">.../admin/examples/</span><span class="filename">TSEPautoIndexing.sh</span> &quot;my demoprofile&quot;</li>
+    </ul>
+	<p>This script runs the indexing-process and stores the resulting html-outputfile into the tsep-subdirectory &quot;<span class="directoryname">bgindexing.log</span>&quot; using a filename <span class="filename">containing current date/time and indexingprofilename</span>. You can later browse the desired file using your favorite browser to check the results</p>
+	<h1><a name="contentimages" id="contentimages"></a>ContentImages</h1>
+	<h2>In general</h2>
+	<p> Usually, searchresults are shown in textformat as page title, part of the content and the link to the page. ContentImages can be shown in addition. This, what we call ContentImages are images of your webpages! More or less tiny screenshots, you might know such things as thumbnails for example from <a href="http://www.thumbshots.org/" target="_blank">Thumbshots.org</a> ( <a href="http://www.thumbshots.org/" target="_blank">http://www.thumbshots.org/</a> ) </p>
+	<ul>
+	  <li> Each indexed page can have an associated ContentImage.</li>
+	  <li> A default-ContentImage can be defined, which is shown, if a page does not have &quot;it's own&quot; ContentImage.</li>
+	  <li> definable maximum width and height</li>
+	  <li> automatism to create and upload images (via creation of &quot;ContentImage File Lists&quot; in conjunction with the indexer)</li>
+	  <li> ContentImage filenames are the md5-hash retrieved from the url of the page + the defined &quot;Image-Filename-Extension&quot;</li>
+	  <li> ContentImages are removed, if the indexer does not find an url anymore, which has previously been defined</li>
+	  <li> Within &quot;Edit the data stored in the index&quot; you can maintain the image associated to the page</li>
+    </ul>
+	<h4>ToDo:</h4>
+	<p> If <span class="useraction">Delete an Image</span> or <span class="useraction">ContentImage File List</span> or <span class="useraction">Upload an Image</span>, currently you have to refresh the window (F5) afterwards manually. We are working on a solution for this &quot;user unfriendliness&quot;.</p>
+	<h2> Configure ContentImages</h2>
+	<dl>
+	  <dt>Use ContentImages</dt>
+	  <dd> Switch on or off, if ContentImages should be used in your <span class="tsep">TSEP</span> installation</dd>
+	  <dt> Images-Path for Web-Access</dt>
+	  <dd> Path, where ContentImages are located at (used by html-img-tag to show the images)</dd>
+	  <dt> Images-Path for PHPscript-Access</dt>
+	  <dd> Path, where ContentImages are located at (used by php-script's file-access)</dd>
+	  <dt> Root path for ContentImage File Lists for Web-Access</dt>
+	  <dd> Path, where ContentImage File Lists are located at (used by html within &quot;Configure/Manage ContentImages&quot;)</dd>
+	  <dt> Root path for ContentImage File Lists for PHPscript-Access</dt>
+	  <dd> Path, where ContentImage File Lists are located at (used by php-script's file-access)</dd>
+	  <dt> Image-Filename-Extension</dt>
+	  <dd> FileExtension to be used for ContentImages: preferably use &quot;<span class="fileextension">.jpg</span>&quot; or &quot;<span class="fileextension">.png</span>&quot;</dd>
+	  <dt> Default image</dt>
+	  <dd> Filename (<span class="importantNote">Name only no path and no extension!</span>). You may upload the defaultimage via the button on the right side. But before, you have to enter the name of the file (don't have to equal to the &quot;pc-file&quot; you are uploading) - if you want to upload a file, all Paths (above) have to be defined AND saved (via &quot;update values above&quot;-button).</dd>
+	  <dt> maximal display-height</dt>
+	  <dd> Maximal height of the image to be shown on the result-pages (aspect ratio is kept in association with the &quot;maximal display-width&quot;)</dd>
+	  <dt> maximal display-width</dt>
+	  <dd> Maximal height of the image to be shown on the result-pages (aspect ratio is kept in association with the &quot;maximal display-height&quot;)</dd>
+	  <dt> The indexer should create ContentImage File Lists</dt>
+	  <dd> If the indexer is run and this option is switched on, a ContentImage File List (associated to the indexing profile) is created.</dd>
+	  <dt> Only for pages having no ContentImage</dt>
+	  <dd> If &quot;The indexer should create ContentImage File Lists&quot;, a file list entry is written into the ContentImage File List only, if no ContentImage exist for the page.</dd>
+	  <dt> Automatically run transformation</dt>
+	  <dd> Transformation is run automatically after the indexer.</dd>
+	  <dt> Transformations</dt>
+	  <dd> ContentImage File List entries can be transformed using a transformation-template into <span class="fileextension">.bat</span>-files, .shell-scripts,... This output can e.g. be used to run an external program for building the screenshots or upload the screenshots.<br />
+	    <br />
+  There are three <span class="importantNote">template examples delivered with</span> <span class="tsep">TSEP</span> (located in<br />
+  <span class="directorystructure">&lt;tsepinstalldir&gt;</span><span class="directoryname">/contentimages/filelists/transformation_templates</span>).<br />
+  <br />
+  1. <span class="filename">toWebswoon</span><span class="fileextension">.bat</span><br />
+  create <span class="fileextension">.bat</span>-file, which runs <a href="http://www.intellitamper.com/webswoon/" target="_blank">Webswoon</a> (<a href="http://www.intellitamper.com/webswoon/" target="_blank">http://www.intellitamper.com/webswoon/</a>) to create screenshots of each page<br />
+  <br />
+  2. <span class="filename">WebswoonCopy2Host</span><span class="fileextension">.bat</span><br />
+  create a <span class="fileextension">.bat</span>-file, which copies the created screenshots (<a href="http://www.intellitamper.com/webswoon/" target="_blank">Webswoon</a>-results) into the directory, where the ContentImages resides (&quot;Images-Path for PHPscript-Access&quot;)<br />
+  <br />
+  3. <span class="filename">WebswoonFtp2Host</span><span class="fileextension">.bat</span><br />
+  create a <span class="fileextension">.bat</span>-file, which uploads the created screenshots (<a href="http://www.intellitamper.com/webswoon/" target="_blank">Webswoon</a>-results) into the directory, where the ContentImages resides (&quot;Images-Path for PHPscript-Access&quot;)<br />
+  These templates are examples, which has to be adjusted to your needs before use. These examples are thought to be used with <a href="http://www.intellitamper.com/webswoon/" target="_blank">Webswoon</a> and are designed to be used under Windows.<br />
+  <br />
+  Please have a look into the directory <span class="directorystructure">&lt;tsepinstalldir&gt;</span><span class="directoryname">/admin/examples</span>, where you can find two shell-scripts to be used to create screenshots under *nix systems: <span class="filename">wwws.sh</span> and <span class="filename">wwwshot.sh</span>.<br />
+  <br />
+  We will add an example-template for creating <span class="filename">wwws.sh</span> in future.<br />
+  <span class="tsep">TSEP</span> currently support up to two transformations.</dd>
+	  <dt> Templatefilename</dt>
+	  <dd> Filename+Extension. Do not enter a path.<br />
+  Currently, template files has to be located under <span class="directorystructure">&lt;Root path for ContentImage File Lists for PHPscript-Access&gt;</span><span class="directoryname">/transformation_templates</span>.<br />
+  The extension of the generated outputfile is gathered from this template filename.</dd>
+	  <dt> Active</dt>
+	  <dd> You may deactivate a templateexpansion here.</dd>
+	  <dt> Commentline starts with</dt>
+	  <dd> Cause the transformation writes additional comments into the generated outputfiles, you have to define the prefix to be used, to retrieve a commentline (e.g. '@REM' for <span class="fileextension">.bat</span>-files, '#' for <span class="fileextension">.sh</span>-scripts).</dd>
+	</dl>
+	<h2>Manage ContentImages</h2>
+	<dl>
+	  <dt> ContentImage File Lists</dt>
+	  <dd> In this area, all existing ContentImage File Lists and all associateded transformation-outpufiles are shown. <br />
+	    You may open, download or delete every file.<br />
+        On ContentImage File Lists you may launch a transformation.</dd>
+	  <dt> Manually create ContentImage File List, from currently indexed Pages</dt>
+	  <dd> In this area you may select an existing Indexing Profile and create a ContentImage File List manually.</dd>
+    </dl>
+  <!-- InstanceEndEditable --></div>
+  <div id="footer">
+  <p>This file is part of <span class="tsep">TSEP</span> (<span class="tsep">The Search Engine Project</span>), Version: TSEP 0.9nnn</p>
+<p>This file has been last modified (SubVersion Data):<br />
+    $LastChangedDate: 2005-09-08 20:24:25 +0200 (Do, 08 Sep 2005) $<br />
+    $LastChangedBy: olaf $<br />
+    $LastChangedRevision: 324 $</p>
+<p><a href="http://www.tsep.info" title="TSEP Website" class="copyright">&copy; 2002-2005 by TSEP - The Search Engine Project</a></p>
+  </div>
+</div> 
+</body>
+<!-- InstanceEnd --></html>
