@@ -1,0 +1,55 @@
+<table width="100%" cellspacing="1" cellpadding="4" class="outborder">
+	<tr>
+		<td class="breadcrumb"><img src='templates/{$site_config['template']}/images/nav.gif' width='18px' height='9px' alt='current location' title='current location'><a href="index.php">Index</a> &gt;&gt; <a href="index.php?act=viewforum&f={$forum_info['id']}">{$forum_info['name']}</a> 
+&gt;&gt; <a href="index.php?act=viewtopic&t={$topic_info['id']}&f={$_GET['f']}">{$topic_info['topic']}</a></td>
+	</tr>
+</table>
+
+<br />
+
+<table width='100%' border='0' cellspacing='0' cellpadding='0'>
+	<tr>
+		<td width='100%'>
+<a href='index.php?act=newreply&t={$_GET['t']}&f={$_GET['f']}'><img src="templates/{$site_config['template']}/images/reply.gif" border="0" alt='Reply'></a>  <a href='index.php?act=newtopic&f={$_GET['f']}'><img src="templates/{$site_config['template']}/images/new_topic.gif" border="0" alt='New Topic'></a>  <a href='index.php?act=newpoll&f={$_GET['f']}'><img src="templates/{$site_config['template']}/images/new_poll.gif" border="0" alt='New Poll'></a>
+		</td>
+	</tr>
+</table>
+
+<br />
+
+<table width="100%" cellspacing="1" cellpadding="4" class="outborder">
+	<tr>
+		<td class='row2' colspan="2">{$lang['text']['post_subject']} {$topic_info['topic']}</td>
+	</tr>
+	<tr>
+		<td width='90%' class='head_block2' height='3' colspan='2' align='right'>
+{$moderator_tools} {$topic_edit_link}
+</td>
+	</tr>
+	<tr>
+		<td width='17%' valign='top' class='contentbox1'> 
+<div align='center'><a href="index.php?act=member&m={$info['id']}"><b><u>{$info['user']}</u></b></a></div><br />
+<div align='center'><img src='{$info['avatar_link']}' width='80' height='80' alt='avatar'> 
+</div>	  
+		</td>
+		<td width='83%' valign='top' class='contentbox1'>
+{$post_body['body']}<br /><br />
+-------------------<br />
+{$info['sig']}
+		</td>
+	</tr>
+	<tr>
+		<td width='100%' colspan='2' class='blockend'><img src='templates/{$site_config['template']}/images/spacer.gif' width='2px' height='1px' alt="" title="" /></td>
+	</tr>
+	<tr>
+		<td width='100%' class='contentbox' colspan='2'>
+{$lang['text']['posted_on']} 
+{$topic_info['date']} {$lang['text']['at']} {$topic_info['time']}
+		</td>
+	</tr>
+	<tr>
+		<td width='100%' colspan='2' class='blockend'><img src='templates/{$site_config['template']}/images/spacer.gif' width='2px' height='1px' alt="" title="" /></td>
+	</tr>
+</table>
+
+<br />
