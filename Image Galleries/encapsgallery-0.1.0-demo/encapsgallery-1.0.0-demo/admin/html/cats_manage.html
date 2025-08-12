@@ -1,0 +1,121 @@
+<table border=1 width="150"  cellspacing="0" class="block" >
+<FORM method="POST">
+<tr>
+<th colspan="6">Category:</th>
+</tr>
+
+<tr>
+<th>Id#</th>
+<th>Title</th>
+<th>Sort order</th>
+<th>Visible</th>
+<th>Delete</th>
+<th>Parent</th>
+</tr>
+
+<?show_items($html['cats'],'',$html['cats'],$html);?>
+
+<tr><th colspan="6">Add new:</th></tr>
+<tr align="" onmouseover="setPointer(this, 1, 'over', '#E5E5E5', '#CCFFCC', '#FFCC99');" onmouseout="setPointer(this, 10, 'out', '#E5E5E5', '#CCFFCC', '#FFCC99');" onmousedown="setPointer(this, 10, 'click', '#E5E5E5', '#CCFFCC', '#FFCC99');">
+		<td></td>
+		<td><input type="text" name="title_new" value=""></td>
+		<td><select name="pos_new">
+		<?for($i=1;$i<sizeof($html['cats'])+2;$i++){?>
+			<option value="<?=$i?>" <?if($i==sizeof($cats->html['cats'])+2)echo 'selected'?> ><?=$i?></option>
+		<?}?>
+		</select></td>
+		<td ><input type="checkbox" name="vis_new" checked></td>
+		<td></td>
+		<td>
+		<select name="anch_new">
+		<option value="0">-= top =-</option>
+		<?show_anchors($html['cats'])?>
+		</select>
+		</td>
+		
+		<input type="hidden" name="id_new" value="0">
+</td></tr>
+
+<tr>
+<td align="center" colspan="6" bgcolor="Silver">
+<input type="submit" value="Submit" >
+<input type="hidden" name="action" value="cats_update" >
+</td>
+</tr>
+</form>
+</table>
+<SCRIPT language="JavaScript">
+function row_color(src,_color,_cursor) {
+  if (src!=-1) {
+    src.style.cursor = _cursor;
+    src.bgColor = _color;
+    }
+  }
+</SCRIPT>
+<?//---------------------------------------------?>
+
+<?function show_items($items,$deep='',$roots,$html=array())
+{
+
+if(sizeof($items)==0)
+{
+	//><tr><td colspan="6" align="center">&nbsp;</td></tr><?	
+	return;
+}
+
+if($deep=='')
+{
+	//><tr><td colspan="6" align="center">&nbsp;</td></tr><?
+}
+
+foreach($items as $item){?>
+
+<tr <?if( $html['page']['id']==$item["id"])echo 'bgcolor="#FFFF99"'?> >
+<!--onmouseover="row_color(this,'#FFFF99','pointer')" onmouseout="row_color(this,this.bgColor,'default'"-->
+<td ><a href="?page_id=<?=$item["id"]?>"><?=$item["id"]?></a></td>
+
+<td>
+<nobr>
+<?=$deep?>
+<INPUT type="text" name="title_<?=$item["id"]?>" value="<?=$item["title"]?>" size="15">
+</nobr>
+</td>
+
+<td><select name="pos_<?=$item["id"]?>">
+		<?for($i=1;$i<sizeof($items)+2;$i++){?>
+			<option value="<?=$i?>" <?if($i == $item['pos'])echo 'selected'?> ><?=$i?></option>
+		<?}?>
+</select></td>
+
+<td ><input type="checkbox" name="vis_<?=$item["id"]?>" <?if($item["vis"]=='on')echo 'checked'?> ></td>
+
+<td ><input type="checkbox" name="del_<?=$item["id"]?>" ></td>
+
+<td>
+<select name="anch_<?=$item["id"]?>">
+<option value="0">-= top =-</option>
+<?show_anchors($roots,'',$item)?>
+</select>
+</td>
+
+<input type="hidden" name="id_<?=$item["id"]?>" value="<?=$item["id"]?>">
+</tr>
+
+<?show_items($item['childs'],$deep.'&nbsp;&nbsp;&nbsp;',$roots,$html);?>
+
+<?}
+
+}?>
+
+<?//-----------------------------------------------?>
+
+<?function show_anchors($items,$deep='',$item = array()){?>
+		<?foreach($items as $root){
+			//if($root['id']==$item['id'])continue;
+			?>
+		<option value="<?=$root['id']?>" <?if($root['id']==$item['anch'])echo 'selected'?>><?=$deep.$root['title']?></option>
+		<?show_anchors($root['childs'],$deep.'&nbsp;&nbsp;&nbsp;',$item)?>
+		<?}?>
+
+
+<?}?>
