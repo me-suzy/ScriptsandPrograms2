@@ -1,0 +1,738 @@
+<html>
+<head>
+	<title>AutoRank Pro - Software Overview</title>
+  <link rel="stylesheet" href="http://www.jmbsoft.com/css/style.css" type="text/css">
+</head>
+<body bgcolor="#ffffff" link="#003366" alink="#003366" vlink="#003366" text="#000000">
+
+<div align="center">
+
+<font face="Verdana,Arial" size="4">
+
+<b>
+AutoRank Pro v4.0.x - Software Overview 
+</b>
+
+<br><br>
+
+<table width="650" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Adding Accounts</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+<br>
+
+<font face="Arial" size="2">
+
+To signup new accounts you will need to use the accounts.cgi interface.  Just point your browser to the URL of accounts.cgi
+on your server and you will see a page that collects the user information.  This page is controlled by the _account_add.htmlt
+template, so you can make changes to it's look by editing that template.
+
+<br><br>
+
+<b>If You Are Reviewing New Accounts</b>
+
+<br><br>
+
+Once the user has filled in all the fields and pressed the button, they will be taken to a page confirming that their data
+has been recorded.  It will also inform them that their data will be reviewed before it is added to your list.  This page
+is controlled through the _account_review.htmlt template.  If you have the option enabled to e-mail members when they signup,
+the contents of the _email_review.etmpl e-mail template will be sent to the user.
+
+<br><br>
+
+You will want to regularly check in your administrative interface to see if there are new accounts to review.  You can view
+the accounts which are awaiting approval by using the Review New Accounts function from the first pull down menu in the administrative
+interface.  On the review new accounts page you will see a listing of all the new accounts.  You can put a check in the box next to each
+account you want to approve, and then choose the function to approve the selected accounts from the drop down menu.  All approved accounts
+will be sent the contents of the _email_approved.etmpl e-mail template.
+
+<br><br>
+
+For the accounts you want to reject, put a check next to each.  You can then select which rejection e-mail you want to send to them.  There
+will be a drop down selection menu for each account from which you can select the rejection e-mail.  The default is None which will not send
+an e-mail to the user.  To setup your own rejection e-mails, use the Edit Reject E-mails function in the administrative interface.
+
+<br><br>
+
+Once an account has been approved, it will be added to the ranking list the next time it is updated if they have sent the minimum required hits.
+
+<br><br>
+
+<b>If You Are <i>not</i> Reviewing New Accounts</b>
+
+<br><br>
+
+Once the user has filled in all the fields and pressed the button, they will be taken to a page confirming that their data
+has been recorded.  This page is controlled through the _account_added.htmlt template.  If you have the option enabled to
+e-mail members when they signup, the contents of the _email_added.etmpl e-mail template will be sent to the user.
+
+<br><br>
+
+The account will be instantly added to your database, and ranked among the other sites the next time the list is updated.  Remember,
+sites must send the minimum required hits before they will be listed.
+
+<br><br>
+
+<!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Link Syntax</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  One of the things you want to make sure you do is to provide your members with the types of links that you
+	  want them to use when sending visitors to your site.  Each member will have their a unique URL which they need
+	  to send hits to, and that URL will include their username.
+
+      <br><br>
+
+	  There are several places where you can provide your members with link syntax.  The first is the page that they see immediately
+	  after signing up.  If you are reviewing new accounts, this is the _account_review.htmlt template;  if you are not it is the _account_added.htmlt
+	  template.  The software also includes a banner farm feature where you can add your link syntax.  The HTML for the banner farm is controlled with
+	  the _account_farm.htmlt template.  The banner farm is accessed through the account maintenance inteface, which you can get to by pointing your browser to accounts.cgi?login
+	  
+	  <br><br>
+	  
+	  On these pages you can use whatever types of links you want, from plain text links to banners, and even javascript.  Deciding
+	  on and creating your links will be your responsibility.  Once you have them created, you can add them to the template of your choice.
+	  To get the correct URL that all your member links should point to, use the #%TRACK_URL%# template value.
+
+	  <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>User Defined Fields</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  These fields allow you to collect your own information about the sites that signup for accounts.  For example, if you want your members
+	  to submit the URL to a sample image from their site, you can use one of those fields.  In order for your members to know what these fields are
+	  for, you will need to enter information about them in setup.cgi.  In setup.cgi, you can enter the name of the field, and it will then appear
+	  on the accounts.cgi pages and in your administrative script.  You can also require that these fields be filled in by checking the appropriate
+	  box in setup.cgi.
+
+	  <br><br>
+
+	  Any information can be collected with these fields, however there is a restriction on the type of form fields you can use.  You are not allowed
+	  to use a &lt;textarea&gt; field to collect this information.  Any other fields (select boxes, checkboxes, radio buttons, text fields, password fields)
+	  are allowed.
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Reranks and Resets</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  <b>Reranks</b>
+
+	  <br><br>
+
+	  Lets start off with reranks.  A rerank is when your HTML pages are updated with the current members and hit counts in the database.  All of the sites will 
+	  be ranked against each other, and the results will be printed out to your HTML pages.  Your reranks should happen more often than your resets.  A fairly common
+	  setup is to have a rerank occur every hour, and a reset every 24 hours.
+
+	  <br><br>
+
+	  <b>Resets</b>
+
+	  <br><br>
+
+	  Resets are when the in and out hit counts are reset to zero.  This does not affect the total in, total out, or average hit counts - it only affects the current
+	  in and out hit count.  Generally, these occur once a day, week, or month, but you can have them happen whenever you want.  They should occur less frequently
+	  than reranks.  It is possible to have the list never reset by entering a -1 (minus one) in the reset time field of setup.cgi.  If you are using cron for updates,
+	  and do not want the list to ever reset, simply remove the crontab entry that runs the reset.cgi script.  This "no reset" feature has been included, however it
+	  is really not necessary.  The script tracks total hits in and out, and can rank based on those values, so there really is no point in never having the list
+	  reset.  You should also be aware that if the list never resets, there will not be detailed stats for the administrator or members to view.
+
+	  <br><br>
+
+	  <b>Total Resets</b>
+
+	  <br><br>
+
+      This is not an automatic feature, but you can manually reset the total in, total out, and average hit counts.  This function can be accessed from the first
+	  pull down menu of the administrative interface.  The function will not reset the current in and out hit count, only totals and averages.
+
+	  <br><br>
+
+      <b>Why isn't my list updating?</b>
+
+	  <br><br>
+
+	  If you are not using cron to update the list, you will need a steady stream of traffic
+	  coming through rankem.cgi in order to see regular updates (this includes both reranks and resets).  The rankem.cgi script must be executed in order for the software
+	  to check the time and see if it needs to update.  If no hits are coming through rankem.cgi, it is not being executed, and updates cannot occur.  Until you have
+	  a steady stream of traffic coming through rankem.cgi, you may need to do manual reranks and resets from admin.cgi.  We define a steady stream of traffic as at least
+	  one hit coming in every x minutes, where x is the number of minutes between reranks.
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Suspended and Locked Accounts</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  When you suspend an account, it will be removed from the rankings and the account holder will not be allowed to login to their account.
+	  When you lock an account, it will still be displayed in the rankings, but the account holder will not be able to edit their account.
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Hit Weighting</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  With AutoRank Pro it is possible to adjust the rankings by using a hit weight.  When an account signs up, their hit weight is automatically set to 1.000.  This means
+	  for every one hit they send, they are credited with one hit.  Only incoming hits can be weighted, and weights are taken into effect when calculating the total hits in
+	  and hits in per day/week/month.
+
+	  <br><br>
+
+	  The weight value is pretty easy to understand. All the software does is take the hit weight and multiply it by the real number of hits sent.  If an account has
+	  a hit weight of 2.000, they will be credited with 2 hits for every one real hit they send.  On the other hand, if their hit weight is 0.500 they will only get
+	  credited with 1 hit for every 2 real hits they send.
+
+	  <br><br>
+
+	  The hit ratio has nothing to do with how many hits the script will send to a site.  It is only used to increase or decrease an account's actual incoming hit count
+	  so you can boost one of your friend's sites or lower the hit count for a site which you feel may be cheating.
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Site of the Moment</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  The software allows you to highlight a random site in your header or footer.  Each time the list is reranked, a new site of the moment will be selected
+	  for each of your ranking pages.  The site of the moment is selected from all of the sites which have sent the minimum required hits.  On the overall
+	  ranking pages, the site can be from any category.  On the category ranking pages, the site will be one from that category.
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Search Engine and Random Link</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+      This will give a quick overview of how the search engine and random link features work.  Each time the list is reranked, the software will build a list
+	  of the sites which are displayed on your ranking pages.  This includes all sites on your overall ranking pages, as well as those sites which are only on the
+	  category ranking pages.  When a search is done, or the random link is clicked, the software will use that list to determine the results.
+
+      <br><br>
+
+	  For the search engine, the software will search through the list and pull out those sites which match.  The software will search all of the database
+	  fields for a match.  When a match is found, it is displayed in the search results.  All search results are displayed starting at the highest rank then
+	  working in decreasing order.
+
+	  <br><br>
+
+	  The random link script will choose a completely random site from the list.  There is not a way to force the script to choose one site more often than the
+	  others - that is why it is called a random link.
+
+	  <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Up/Down/Unchanged Icons</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  If you setup up, down, and unchanged images in setup.cgi, you will be able to display them next to sites in the rankings.  Those images will show which
+	  direction the site has moved since the last reset.  When you first install the software, they will all be the unchanged image, until the list is first
+	  reset.  To display the images, you must add the #%MOVE%# value to your ranking page template where you want them to appear.
+
+	  <br><br>
+
+	  During a reset, the site's ranking at the time of the reset is calculated and stored.  Then, when the list reranks, the script will compare the site's
+	  current rank with the rank it was at during the last reset.  If it is at a higher rank, the up image will be shown.  If it is at a lower rank, the down
+	  image will be shown.  If it is at the exact same rank, the unchanged image will be displayed.
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Ranking Options</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+      AutoRank Pro offers a total of ten ranking options for you to choose from.  Here we will describe each one, and let you know which template value
+      corresponds to each ranking option.  You will use setup.cgi to select which ranking method to use.  Any time you change that ranking option, you 
+      need to change your template value as well so you are displaying the value which the sites are ranked by.
+
+      <br><br>
+
+      <ul>
+
+      <li> <b>Hits In Since Last Reset</b> - This will rank sites based on the number of hits they have sent since the list was last reset.  Use the #%IN%#
+                            value in your template when sorting by Hits In.  This value is set back to 0 during all resets.
+
+      <br><br>
+
+      <li> <b>Hits Out Since Last Reset</b> - This will rank sites based on the number of hits that have been sent to their site since the last reset.
+                             Use the #%OUT%# value in your template when sorting by Hits Out.   This value is set back to 0 during all resets.
+
+      <br><br>
+
+      <li> <b>Total Hits In</b> - This will rank sites based on the total number of hits they have sent you since the last total hit count reset.  Use the #%TIN%#
+                                  value in your template when sorting by Total Hits In.  This value is only reset back to 0 when you use the reset total
+								  hit counts function in the administrative interface.
+
+      <br><br>
+
+      <li> <b>Total Hits Out</b> - This will rank sites based on the total number of hits you have sent to their site since the last total hit count reset.  Use the #%TOUT%#
+                                   value in your template when sorting by Total Hits In.  This value is only reset back to 0 when you use the reset total
+								   hit counts function in the administrative interface.
+
+      <br><br>
+
+
+      <li> <b>Average Hits In/Day</b> - This will rank sites based on the average number of hits they send each day.  The script will take the total number
+                                of hits the site has sent since the last total hit count reset, and divide that by the number of days their account has existed.  When
+                                sorting by this value, use #%IPDAY%# in your template.  This value is only reset back to 0 when you use the reset total
+								hit counts function in the administrative interface.
+
+      <br><br>
+
+      <li> <b>Average Hits In/Week</b> - This will rank sites based on the average number of hits they send each week.  The script will take the total number
+                                 of hits the site has sent since the last total hit count reset, and divide that by the number of weeks their account has existed.  When
+                                 sorting by this value, use #%IPWEK%# in your template.  This value is only reset back to 0 when you use the reset total
+								 hit counts function in the administrative interface.
+
+      <br><br>
+
+      <li> <b>Average Hits In/Month</b> - This will rank sites based on the average number of hits they send each month.  The script will take the total number
+                                  of hits the site has sent since the last total hit count reset, and divide that by the number of months their account has existed.  When
+                                  sorting by this value, use #%IPMTH%# in your template.  This value is only reset back to 0 when you use the reset total
+								  hit counts function in the administrative interface.
+
+      <br><br>
+
+      <li> <b>Average Hits Out/Day</b> - This will rank sites based on the average number of hits sent to them each day.  The script will take the total number
+                                 of hits you have sent the site since the last total hit count reset, and divide that by the number of days their account has existed.  When
+                                 sorting by this value, use #%OPDAY%# in your template.  This value is only reset back to 0 when you use the reset total
+								 hit counts function in the administrative interface.
+
+      <br><br>
+
+      <li> <b>Average Hits Out/Week</b> - This will rank sites based on the average number of hits sent to them each week.  The script will take the total number
+                                  of hits you have sent the site since the last total hit count reset, and divide that by the number of weeks their account has existed.  When
+                                  sorting by this value, use #%OPWEK%# in your template.  This value is only reset back to 0 when you use the reset total
+								  hit counts function in the administrative interface.
+
+      <br><br>
+
+      <li> <b>Average Hits Out/Month</b> - This will rank sites based on the average number of hits sent to them each month.  The script will take the total number
+                                   of hits you have sent the site since the last total hit count reset, and divide that by the number of months their account has existed.  When
+                                   sorting by this value, use #%OPMTH%# in your template.  This value is only reset back to 0 when you use the reset total
+								   hit counts function in the administrative interface.
+
+      </ul>
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Managing Accounts</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  You can manage all of your member accounts through the administrative interface.  If you know the username of the account you want to
+	  work with, you can use the feature to display the account details for the username you enter.  If you do not know the username, you can
+	  either do a search of your database, or view all of your accounts.
+
+      <br><br>
+
+	  <b>Viewing All Accounts</b>
+
+	  <br><br>
+
+      <center>
+	  <img src="all.gif" border="1" align="center">
+	  </center>
+
+	  <br><br>
+
+      From the screenshot above you can see the function you need to use to view all of your member accounts.  When using this function we
+	  recommend that you limit your viewing to 40 accounts per page.  When you run this function you will be taken to a page with a list
+	  of your member accounts.  From there you can put a checkbox next to any of the accounts, and then edit, delete, or e-mail them.
+
+	  <br><br>
+
+	  <b>Viewing a Specific Account</b>
+
+	  <br><br>
+
+      <center>
+	  <img src="username.gif" border="1" align="center">
+	  </center>
+
+	  <br><br>
+
+	  From the screenshot above you can see the function you need to use to view details on a specific account.  When you run this function
+	  you will be taken to a page that will display all of the current information on file for the account.  From there you can select to
+	  edit, delete, or e-mail the account holder with the drop down menu of selections at the bottom of the page.
+
+	  <br><br>
+
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Member Banners</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  Coming soon...
+
+      <br><br>
+
+	  <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Timezone Offset</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  The timezone offset allows you to setup the list so that it displays the current date and time in sync with the timezone you are located in.
+	  Many times you will not be located in the same timezone as your server, so this can be useful for you to more easily track the time on your
+	  site.  The easiest way to calculate your timezone offset is to do the following. 
+
+      <ol>
+      <li> Set the timezone offset to 0 
+      <li> Make sure your ranking page includes the #%LAST_RERANK%# template value. 
+      <li> Rerank your list. 
+      <li> View the ranking page and look at the time inserted for #%LAST_RERANK%# 
+      <li> Compare this time with your local time, and insert the difference between the
+	       two in your timezone offset field. Example: If the #%LAST_RERANK%# value says 10:00am
+		   and it is currently 9:00am where you are located, the offset would be -1. If #%LAST_RERANK%#
+		   is 9:00am and it is currently 11:00am where you are located, the offset would be 2.
+	  </ol>
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Reciprocal Link URL</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  The reciprocal link URL field is for your use only, the software doesn't do anything with this URL at this time.  A reciprocal URL is the
+	  URL on your member's site where they are planning on adding the link to your site.  For accounts which are not sending many hits, you can
+	  look at this URL to make sure they have a link pointing to your site.
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>Link Breaks and List Splits</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+      A list break is a position where the list should stop so you can insert your own HTML.  This is often used to place banner ads in the middle of the
+      ranking list, but can also be used to place HTML which assists in the formatting of the list.  If you have a page setup with ranks 1-10 and you have
+      a list break setup at position 5, you will be able to insert your own HTML between the 5 and 6 ranks on that page.  Notice that you must setup HTML
+      for your list breaks before they will appear - this is done by using the "Edit the list breaks for" function in admin.cgi.
+
+      <br><br>
+
+      A list split tells the software that the rankings on this page should stop, and it should move on to the next page.  You will tell the script where to
+      split by editing the "Split List At" field in setup.cgi.  If you enter 10,50 in that field, this will create three ranking pages.  Keep in mind that you
+      must also fill in the total number of sites to list, and that value must be larger than the last value in your list split field (50 in this case).  For 
+      this example we'll say that a value of 100 was entered for the total sites to list.  The three pages would contain rankings 1-10, 11-50, and 51-100 
+      respectively.
+
+      <br><br>
+
+      <!-- HEADER -->
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td bgcolor="#000000">
+
+            <table width="100%" cellpadding="2" cellspacing="1" border="0">
+              <tr>
+                <td bgcolor="#dcdcdc" align=center>
+                  <font face="Verdana,Arial" size="2">
+                  <b>The Blacklist</b>
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+      <!-- END HEADER -->
+
+      <br>
+
+	  The blacklist feature allows you to ban words, e-mail addresses, URLs, and IP addresses from your site.  When someone tries to signup for your list
+	  or edit their account, the data they submit will be checked against the blacklist.  If any of the items are found to be banned, they will receive
+	  an error message indicating the problem.
+
+      <br><br>
+
+	  The blacklist feature is very flexible and allows you to use partial items to ban large groups.  For example, if you do not want anyone to signup
+	  using a hotmail.com e-mail address, just enter hotmail.com in your e-mail blacklist.  On the other hand, you can restrict only an individual e-mail
+	  address from a domain.  If you don't want the e-mail address john@website.com to be used, enter the entire address in your blacklist.
+
+	  <br><br>
+
+	  This same partial matching works with all of the blacklist items.  You can ban an entire domain from being used in a website URL by just entering the
+	  domain name.  If you want to ban a block of IP addresses, say 205.214.23.0-205.214.23.255, just enter 205.214.23. in the blacklist.
+
+</font>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>
