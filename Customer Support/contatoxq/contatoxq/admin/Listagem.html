@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Listagem</title>
+<link href="../Styles/{CCS_Style}/Style_Components.css" type="text/css" rel="stylesheet">
+<link href="../Styles/{CCS_Style}/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+{TopoAdmin}<br>
+<!-- BEGIN EditableGrid x_contato1 -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <input type="hidden" value="{FormState}" name="FormState">{FormScript} 
+  <table cellspacing="0" cellpadding="0" width="419" align="center" border="0">
+    <tr>
+      <td valign="top">
+        <table class="Header{CCS_Style}" cellspacing="0" cellpadding="0" border="0">
+          <tr>
+            <td class="HeaderLeft{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td> 
+            <th>Contato</th>
+ 
+            <td class="HeaderRight{CCS_Style}"><img src="../Styles/{CCS_Style}/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+ 
+        <table class="Grid{CCS_Style}" cellspacing="0" cellpadding="0">
+          <!-- BEGIN Error -->
+          <tr class="Error{CCS_Style}">
+            <td colspan="4">{Error}</td>
+          </tr>
+          <!-- END Error -->
+          <tr class="Row{CCS_Style}">
+            <td colspan="4">&nbsp; {x_contato1_TotalRecords} </td>
+          </tr>
+ 
+          <tr class="Caption{CCS_Style}">
+            <th>
+            <!-- BEGIN Sorter Sorter_x_conassunto --><a href="{Sort_URL}">Assunto</a><!-- END Sorter Sorter_x_conassunto --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_x_constatus --><a href="{Sort_URL}">Status</a><!-- END Sorter Sorter_x_constatus --></th>
+ 
+            <th>
+            <!-- BEGIN Sorter Sorter_x_condata --><a href="{Sort_URL}">Condata</a><!-- END Sorter Sorter_x_condata --></th>
+ 
+            <th>Apagar </th>
+          </tr>
+ 
+          <!-- BEGIN Row -->
+          <!-- BEGIN RowError -->
+          <tr class="Error{CCS_Style}">
+            <td colspan="4">{Error}</td>
+          </tr>
+          <!-- END RowError -->
+          <tr class="Row{CCS_Style}">
+            <td>{x_conassunto}</td> 
+            <td>{x_constatus}</td> 
+            <td>{x_condata}</td> 
+            <td>
+              <!-- BEGIN CheckBox CheckBox_Delete --><input type="checkbox" value="1" name="{CheckBox_Delete_Name}" {CheckBox_Delete}><!-- END CheckBox CheckBox_Delete -->&nbsp;</td>
+          </tr>
+ <!-- END Row -->
+          <!-- BEGIN NoRecords -->
+          <tr class="NoRecords{CCS_Style}">
+            <td colspan="4">Nao ha registros </td>
+          </tr>
+          <!-- END NoRecords -->
+          <tr class="Footer{CCS_Style}">
+            <td style="TEXT-ALIGN: right" colspan="4">
+              <!-- BEGIN Navigator Navigator -->
+              <!-- BEGIN First_On --><a href="{First_URL}">Prim</a> <!-- END First_On -->
+              <!-- BEGIN First_Off -->Prim <!-- END First_Off -->
+              <!-- BEGIN Prev_On --><a href="{Prev_URL}">Anter</a> <!-- END Prev_On -->
+              <!-- BEGIN Prev_Off -->Anter <!-- END Prev_Off -->&nbsp; 
+              <!-- BEGIN Pages -->
+              <!-- BEGIN Page_On --><a href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+              <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->&nbsp;{Total_Pages}&nbsp; 
+              <!-- BEGIN Next_On --><a href="{Next_URL}">Prox</a> <!-- END Next_On -->
+              <!-- BEGIN Next_Off -->Prox <!-- END Next_Off -->
+              <!-- BEGIN Last_On --><a href="{Last_URL}">Ultimo</a> <!-- END Last_On -->
+              <!-- BEGIN Last_Off -->Ultimo <!-- END Last_Off --><!-- END Navigator Navigator -->
+              <!-- BEGIN Button Button_Submit --><input type="image" src="../Styles/{CCS_Style}/Images/en-US/ButtonUpdate.gif" value="Atualizar" border="0" name="{Button_Name}"><!-- END Button Button_Submit --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!-- END EditableGrid x_contato1 -->
+</body>
+</html>
