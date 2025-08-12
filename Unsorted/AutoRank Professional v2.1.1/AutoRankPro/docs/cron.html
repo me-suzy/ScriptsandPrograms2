@@ -1,0 +1,175 @@
+<html>
+<head>
+	<title>Cron With AutoRank Pro</title>
+</head>
+
+<body>
+
+<center>
+
+<font face="Verdana,Arial" size="2">
+
+<h2>Cron With AutoRank Pro</h2>
+
+<table width="600"><tr><td>
+<font face="Verdana,Arial" size="1">
+<ul>
+<li><b>What Is Cron?</b>
+
+<p>
+
+Cron jobs are a way of automating tasks that you 
+want done every week/month/day and at a certain time.
+
+<p>
+
+NOTE: cron needs full paths for everything, so you 
+must use full paths in the variables in a cgi script
+
+<p>
+
+<li><b>A Quick Overview Of Crontab Entries</b>
+
+<p>
+
+An example of a crontab entry could be:<br>
+25 0 1 * * /usr/web1/home/html/cgi-bin/update.cgi
+
+<p>
+
+which runs a script in /usr/web1/home/html/cgi-bin called update.cgi
+at 12:25 am on the first of every month. 
+
+<p>
+
+<li><b>In Depth Explanation of A Crontab Entry</b>
+
+<p>
+
+An entry consists of two parts - a time to run, and a command to run. 
+
+<p>
+
+The time to run (the first part of the entry) is broken up into 5 fields:<br> 
+1. minute of the hour <br>
+2. hour of the day (on the 24 hour clock) <br>
+3. day of the month <br>
+4. month of the year (1 = January, 2 = February, etc.) <br>
+5. day of the week (0 = Sunday, 1 = Monday, 2 = Tuesday, ..., 6 = Saturday) <br>
+
+<p>
+
+A &quot;*&quot; in one of these fields indicates that the job should be executed 
+at any or every one of these, so for instance a &quot;*&quot; in the month of the 
+year field means that this task should be carried out every month at the 
+time specified in the other fields. A &quot;*&quot; in the day of the week field, 
+when there is something in the day of the month field, does not mean that 
+this task should be carried out every day, but rather that it should be 
+carried out on the appointed day of the month regardless of what weekday 
+it is. Only &quot;*&quot;s in the day of the week field, and the day of the month 
+field, and the month of the year field would indicate a daily task. 
+
+<p>
+
+Examples:
+
+<p>
+
+The job with this time to run would run every Sunday at 12:20 am. <br>
+20 0 * * 0<br>
+This job would run at midnight on any Friday the 13th. <br>
+0 0 13 * 5
+
+<p>
+
+You don't have to put just one time in a field. This job, for instance, would 
+run every day at 12:30am, 2:30am, 4:30am, 6:30am, 6:30pm, 8:30pm, and 10:30pm: <br>
+30 0,2,4,6,18,20,22 * * *
+<p>
+This one would run every Tuesday and Friday at 5:30 am: <br>
+30 5 * * 2,5
+<p>
+<li><b>Using Cron Jobs With AutoRank Pro</b>
+<p>
+The first thing you will need to do is setup all of the scripts to work with cron.
+By default, the scripts do not use full directory paths, however they are required
+for use with cron.  So, you will need to edit a few of the CGI scripts.  
+<p>
+In functions.cgi edit the following variables:<br>
+<b>The full path to sdata:</b><br>
+$fnct::sd_dir = "./sdata";<br>
+<b>The full path to members:</b><br>
+$fnct::md_dir = "./members";<br>
+<b>The full path to templates:</b><br>
+$fnct::tp_dir = "./templates";
+<p>
+In cron_rr.cgi edit the following variable:<br>
+<b>The full path to the directory that holds functions.cgi:</b><br>
+$rr::cgi_dir = "/path/to/autorank/cgi";
+<p>
+In cron_rs.cgi edit the following variable:<br>
+<b>The full path to the directory that holds functions.cgi:</b><br>
+$rs::cgi_dir = "/path/to/autorank/cgi";
+<p>
+Create a new plain text file named cronfile (or you can edit the sample included with the software).
+Any other cron jobs you are running should also be placed in this file.
+In this file you will put the following lines:
+<p>
+0 0 * * * /full_path_to/cgi-bin/cron_rs.cgi<br>
+30 * * * * /full_path_to/cgi-bin/cron_rr.cgi
+<p>
+This will run cron_rs.cgi every night at 12:00:00 AM
+and cron_rr.cgi every hour on the half hour.
+<p>
+cron_rs.cgi resets all counters to zero, and cron_rr.cgi re-ranks the list. 
+<p> 
+If you want these scripts to be run at times other than those, just edit
+the times according to how you want it set up.  However, you should have it 
+set so that the re-rank and reset script do NOT run at the same time or else
+you will have a blank list until the next re-rank.
+<p>
+If you haven't already, upload the cron_rr.cgi and cron_rs.cgi scripts to the
+directory where all the other AutoRank Pro scripts reside.  Set their permissions
+to 755.  You can test them by running them from the command line.  Just type in:
+/full_path_to/cgi-bin/cron_rr.cgi<br>
+If any output is produced, there is a problem - most likely something with permissions.
+Make sure all of your list pages are set to 666 for permissions.
+<p>
+Now upload cronfile to your server in ASCII mode.
+Telnet into your account and go to the dir you uploaded cronfile into.
+<p>
+Type: crontab cronfile
+<p>
+This should set your cron job.
+<p>
+If you want to check to make sure it was entered correctly you can type:
+crontab -l 
+<p>
+If you want to remove all cron jobs you can type:
+crontab -r
+<p>
+<li><b>Why should I use cron?</b>
+<p>
+Cron will give you extremely accurate update times, whereas with
+regular cgi you will probably not have this.  With regular cgi updates
+the only time the list can be updated or reset is when someone activates
+the scripts by clicking on a link to your top list.  So say you have your
+list set to re-rank every 30 minutes, but no one clicks on a link to your
+list for 45 minutes.  Then the list will not be updated for a period of 45
+minutes.  An even bigger problem is with reseting the list.  If someone
+doesn't click on your link at the time you want the list to reset it will
+throw it totally off.  For example, say the first time the list is set to
+reset is at midnight, but no one clicks until 12:30.  That will change
+the next reset to 12:30 the next night instead of 12:00.
+
+<p>
+Put simply, cron will make your list much more accurate, and can reduce the load
+on your server.  If you have it available on your system, please use it.  It is
+very simple to set up, and if you need any help you can always get it from us!
+
+</ul>
+
+</td></tr></table>
+
+</body>
+</html>
