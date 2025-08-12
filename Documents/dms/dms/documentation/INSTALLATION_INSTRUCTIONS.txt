@@ -1,0 +1,68 @@
+KarlCore's "Simple Document Management System" wasn't exactly simple to make, but it *is* simple to upload and install. Follow these instructions completely and everything should be fine. 
+
+Comments should be sent to karl@karlcore.com
+
+This software is licensed to you according to the GNU Public License. Please visit http://www.karlcore.com/programming/license/ for info
+
+PART A - Introduction
+
+Every effort has been made to create a very simple system that requires little effort and knowledge on the part of the user. 
+I do not recommend buggering around with the HTML or PHP code on any of these items unless you know WTF you're doing (at which point you'd probably have already written your own PHP guestbook, right?)
+
+This is freeware. As such, you get the level of tech support you've paid for: none. With the growing popularity of my scripts, I've recently been bombarded with e-mails by people needing help with the scripts.
+I'm sorry, but I just don't have time to answer them all - ESPECIALLY since 99% of them are from people who either didn't follow the below directions, or who decided to modify the script to their own liking and ended up screwing it all up.
+I will not answer e-mails from the aforementioned classes of people.  However, if you have a comment on a way I can improve the script or documentation, or find a special situation that needs a workaround, please feel free to e-mail me. Sometimes mistakes are made and I am always thankful to those who are kind enough to alert me.
+
+This setup is dependent upon the user's server having PHP installed.  If you do not have a PHP-enabled server, you should not use this system, as it will not work.
+Additionally, it is dependent upon your PHP.ini settings having 'register_globals' set to ON.  If you test this thing and everything's empty, that's probably why.
+I have created an .htaccess file for you which fixes this problem. Go to the 'script' folder and move the .htaccess file to the *document root* for your site. (Document root is the folder where the homepage for your entire site resides)
+
+The form this system uses is XHTML 1.0 transitional.  This is why you may see the weird "/" in the break tags and input tags. 
+
+PART B - Installation
+
+Step-by-step installation guide for PHP newbies or people who just want to upload it and go:
+1) Create a database on your server.  I cannot go into how to set-up a database here. Either you know how or you don't.
+	If you're a geek and know how to access MySQL to enter commands directly, you can use create_db.sql which will create the db and all the tables
+	If you're a newbiw and you're on a host with PHPMyAdmin, I've made things a little easier for you.  
+	a. You still need to know how to create the database
+	b. I've included a file called "create_db_new.sql" that will allow you to easily create the tables. You can use that to create the tables by plugging it into PHPMyAdmin or using whatever method you're used to in creating a tables. This file contains JUST the SQL queries to create the tables as well as to insert the admin user's login info
+	c. Once you've created your database, you need to change the values of the variables in the config file. This file is located in the 'lib' folder and is named 'config.inc'.
+
+2) While you're in 'config.inc', change the other values there. The file is well-commented, so you should figure it out pretty easily
+
+3) After you've created the database, the tables, and modified the config file, go ahead and upload the thing to your server.
+
+4) Access the Document Management System's index page (i.e. http://www.yoursite.com/dms.index.php) You will be presented with a login screen. Enter "Admin" as the username and "docmgr" as the password. Congratulations, you're now in!
+
+5) If you want to set up your own username and password (other than admin), click "Users" in the top navigation and add the new username and password.
+	***NOTE: one weakness is that these new users aren't really allowed to do a whole lot.  The 'Admin' user is considered a 'God' user and can do whatever it wants to.  Users you add here cannot do that much.  However, you are able to change any user into a 'God' user. Here's how:
+	Go into the 'users' table of the database and find the 'id' of the user you want to turn into a 'god' user. Then, insert that value into the 'gods' table. Viola! The user is now a 'god' user
+
+PART C - Known Weaknesses/ Tasks for future developers
+1. No method for validating anything
+	Currently, there is no validation of anything except for permission control and login. There should be validation in a lot of other areas throughout the system.	
+	
+2. No method for editing user details.
+	Currently, all you can do is add and delete users.  You should be able to edit their information. It would also be great if you could select whether or not someone is a 'God' user	
+
+3. Interaction Flow Modifications
+	From a usability standpoint, it would be best if the files area had ONE landing screen (same goes for the users). The list of files would give options to "View", "Edit", and "Delete" each file as well as an "Add New" option, all from the same screen.
+
+4. Allowable files
+	This thing lets your users upload any file they want. This includes potentially harmful executable files. DO NOT give access to this system to anyone you do not trust.
+
+5. More granular per-user permissions
+	IMO, the user management should give global permissions to whether the user is set to "Read-Only", "Read/Write", or "God"
+
+6. Needs Better Messageboard
+	The messageboard should have a few usability enhancements, such as threading and displaying replies when viewing the messages, etc.
+
+PART D - A little bit o' capitalism
+If you like this thing, it would be awesome for you to send me a little cash. Just go to http://karlcore.com/programming/ and hit "Make a Donation"
+You can also cut to the chase by venturing over to my Amazon.com wishlist at http://amazon.com/gp/registry/2CEXZS8GPRGMO
+
+
+Thanks!
+
+I appreciate that you've taken the time to download my small little web app. and appreciate any comments you may have. Please send them to karl@karlcore.com
