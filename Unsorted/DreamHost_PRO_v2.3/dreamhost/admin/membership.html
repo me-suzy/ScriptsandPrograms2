@@ -1,0 +1,93 @@
+
+<font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>VIEW HOSTING OPTIONS 
+&gt; </b> </font> 
+<form method="post" action="" onSubmit="validate();return returnVal;">
+  <?    $today=date("Y-m-d");
+    $today_date=strtotime($today);
+	$account_count=0;
+
+	$db = new ps_DB;
+	$q  = "SELECT * FROM membership ORDER BY membership_name ASC";
+	$db->query($q);
+	while ($db->next_record()) {?>
+  <span class="domains"><span class="form_text"></span></span> 
+  <table width="100%" cellspacing="0" cellpadding="0" class="form_text" align="center">
+    <tr> 
+      <td> <span class="domains"><span class="form_text"><font color="#660033"> 
+        </font></span></span> 
+        <table width="100%" border="0" cellspacing="0" cellpadding="5">
+          <tr bgcolor="#F3F3F3"> 
+            <td width="214"><font face="Arial, Helvetica, sans-serif" size="2" color="#000066"> 
+              <span class="domains"><span class="fields_title"><span class="form_label">
+              <?$db->p("membership_name");?>
+              </span></span></span></font></td>
+            <td width="408" bgcolor="#F3F3F3"><font color="#000066" size="2" face="Arial, Helvetica, sans-serif"><span class="fields_title"><span class="form_text"> 
+              <? 
+
+$price =  $db->f("membership_price");
+
+$recurring =  $db->f("membership_recurring");
+
+$frequency =  $db->f("membership_frequency");
+
+$periods =  $db->f("membership_periods");
+
+
+
+if ($recurring=="Y") {
+
+echo setup("currency") . "<B>"; 
+
+echo $price;
+
+echo "</B> billed every <B>";
+
+echo $frequency;
+
+echo "</B> days for <B> ";
+
+echo $periods;
+
+echo " periods</B>. (" . setup("currency");
+
+printf ("%.2f",$price*$periods);
+
+echo ")";
+
+} else {
+
+echo setup("currency") . "<B>";
+
+printf ("%.2f",$price); 
+
+echo "</B> billed once.";
+
+}
+
+
+
+
+
+   ?>
+              </span></span></font></td>
+            <td width="27" class="fields_title"><font class="domains" color="#000066" face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="?page=add_membership&set_action=update_membership&membership_id=<? echo $db->f("membership_id"); ?>"><span class="form_text">edit 
+              </span></a></font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <font color="#003399"><span class="domains"><font color="#0099CC">
+  <? } ?>
+  </font></span></font> <br>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td width="31%"><a href="?page=add_membership&amp;set_action=add_membership"><img src="images/button_add.gif" width="80" height="23" border="0"></a></td>
+      <td width="69%">&nbsp;</td>
+    </tr>
+  </table>
+  <br>
+  <font color="#990000" face="Verdana, Arial, Helvetica, sans-serif" size="3"><b><font color="#FFFFFF" size="2"><span class="fields_title"><span class="form_text"><b> 
+  </b></span></span></font></b></font> <font color="#990000" face="Verdana, Arial, Helvetica, sans-serif" size="3"><b><font color="#FFFFFF" size="2"><span class="fields_title"><span class="form_text"><b> 
+  </b></span></span></font></b></font> 
+</form>
