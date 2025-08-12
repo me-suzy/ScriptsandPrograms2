@@ -1,0 +1,5 @@
+<?php
+
+$css = "default.css";
+
+?>
