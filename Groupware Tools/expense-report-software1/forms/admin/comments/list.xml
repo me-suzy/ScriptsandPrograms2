@@ -1,0 +1,42 @@
+<form>
+	
+	<subtitle>Administrative Comments</subtitle>
+	<width>540</width>
+	<fields>
+		<comment_title header="Title" align="left" />
+		<comment_date type="date" header="Date" params="m.d.Y g:i a" width="130" align="left" />
+
+	</fields>
+
+	<header>
+		<titles>true</titles>
+		<buttons>
+			<delete onclick="" button="addnew" >
+				<location>index.php?sub=comments&action=add&comment_report={REPORT_ID}</location>
+			</delete>
+		</buttons>
+	</header>
+
+	<buttons>
+
+		<delete onclick="" button="delete" >
+			<location>javascript:if(confirm('Are you sure you want to delete this record ?')) window.location='index.php?sub=comments&action=delete&comment_id={COMMENT_ID}&returnURL={CURRENT_PAGE}'</location>
+		</delete>
+
+		<details onclick="" button="details" >
+			<location>index.php?sub=comments&action=det&comment_id={COMMENT_ID}</location>
+		</details>
+
+	</buttons>
+	<sql>
+		<vars>
+			<table import="$this->tables[comments]" type="eval" />
+			<product import="$_GET[report_id]" type="eval" />
+		</vars>
+
+		<query>SELECT * FROM {TABLE} WHERE comment_report='{PRODUCT}' order by comment_date desc</query>
+	</sql>
+
+	<items>99999</items>
+
+</form>
