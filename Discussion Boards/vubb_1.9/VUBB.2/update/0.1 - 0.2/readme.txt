@@ -1,0 +1,1 @@
+To update please upload all files except config.php and then upload update.php to where the main index.php is and run it, then delete the update.php
