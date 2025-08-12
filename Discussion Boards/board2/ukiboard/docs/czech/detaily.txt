@@ -1,0 +1,39 @@
+tabulka ub_admin (pøihlaovací údaje administrátora)
+================
+admin_name	varchar(255)	- jméno
+admin_pasw	varchar(255)	- heslo
+admin_level	tinyint(1)	- uivatelský level (k pøidìlení práv) ('1' = administrátor)
+admin_control	varchar(128)	- session id (identifikace pøi pøihláení)
+admin_time	varchar(15)	- èas aktuálního pøihláení
+
+tabulka ub_config (informace o UKiBoardu)
+=================
+config_name	varchar (255)	- konfigurovaná poloka
+config_value	varchar (255)	- hodnota poloky
+
+	board_title	- název diskuzního fóra
+	board_char	- krátký popis diskuzního fóra
+	board_email	- kontaktní email
+	board_lang	- jazyk fóra
+	board_themes	- vzhled fóra
+	board_page	- poèet pøíspìvkù na 1 stránku
+	board_admin	- zobrazovat na úvodní stránce pøíhláení administrátora
+
+tabulka ub_head (názvy vech sekcí fóra)
+===============
+head_id		int (10)	- jednoznaèné identifikaèní èíslo sekce fóra
+head_name	varchar (255)	- název sekce fóra
+head_order	int (10)	- poøadí sekce ve výpisu
+head_number	int (10)	- poèet pøíspìvkù v sekci
+head_char	varchar (255)	- popis sekce
+
+
+tabulka ub_topic (jednotlivé pøíspìvky)
+================
+topic_id	int (10)	- jednoznaèné identifikaèní èíslo pøíspìvku
+topic_head	int (10)	- identifikaèní èíslo sekce fóra
+topic_user	varchar (255)	- jméno autora
+topic_email	varchar (255)	- autorùv email
+topic_time	datetime	- datum a èas podání pøíspìvku
+topic_title	varchar (255)	- pøedmìt pøíspìvku
+topic_text	text		- text pøíspìvku
