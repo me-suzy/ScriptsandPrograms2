@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<title>phpJobScheduler installer</title>
+<link rel="stylesheet" type="text/css" href="pjs.css">
+</head>
+
+<body>
+<div align="center"><center>
+
+<table cellSpacing="3" cellPadding="0" border="0" width="380">
+  <tr bgColor="#000000">
+    <td height="1" bgcolor="#808080" width="369" colspan="4"></td>
+  </tr>
+  <tr bgColor="#334873">
+    <td align="middle" bgcolor="#FFFFFF" width="17"></td>
+    <td align="middle" bgcolor="#FFFFFF" width="171"><p align="center"><a
+    href="http://www.seiretto.com/"><img src="pjslogo.gif" width="165" height="75"
+    alt="phpJobScheduler" border="0"></a><strong><br>
+    </strong></td>
+    <td align="middle" bgcolor="#FFFFFF" width="160"><p align="center"><strong><font
+    color="#008000">INSTALLER</font><font color="#400040"><br>
+    </font></strong><small>Please refer to the <a href="readme.html" target="_new">readme.html</a>
+    file for assistance</small></td>
+    <td align="middle" bgcolor="#FFFFFF" width="16"></td>
+  </tr>
+  <tr bgColor="#000000">
+    <td height="1" bgcolor="#808080" width="369" colspan="4"></td>
+  </tr>
+</table>
+</center></div>
+
+<form action="install.php" method="POST" NAME="I_F" align="center">
+  <input type="hidden" name="install" value="1"><div align="center"><center><table
+  class="cborder" cellSpacing="0" cellPadding="3">
+<TBODY>
+    <tr>
+      <th align="left" colSpan="2"><div align="center"><center><p><b>Database Parameters</b></th>
+    </tr>
+    <tr bgColor="#ffffff" align="center">
+      <td vAlign="top" align="right"><small><b>Database Host:</b></small></td>
+      <td align="left"><input class="box" size="18" value="localhost" name="dbhost"><br>
+      <font size="2">MySQL host address - localhost is fine if you host with <a
+      href="http://www.seiretto.com">Seiretto</a></font></td>
+    </tr>
+    <tr bgColor="#ffffff" align="center">
+      <td vAlign="top" align="right"><small><b>Database Name:</b></small></td>
+      <td align="left"><input class="box" size="18" name="dbname"><br>
+      <font size="2">The database must already exist before installation<br>
+      - this is the same as your username for FTP if you host with <a
+      href="http://www.seiretto.com">Seiretto</a></font></td>
+    </tr>
+    <tr bgColor="#ffffff" align="center">
+      <td vAlign="top" align="right"><small><b>Database Username:</b></small></td>
+      <td align="left"><input class="box" size="18" name="dbuser"><br>
+      <font size="2">Username to access MySQL<br>
+      - this is the same as your username for FTP if you host with <a
+      href="http://www.seiretto.com">Seiretto</a></font></td>
+    </tr>
+    <tr bgColor="#ffffff" align="center">
+      <td vAlign="top" align="right"><small><b>Database Password:</b></small></td>
+      <td align="left"><input class="box" type="password" size="18" value name="dbpass"><br>
+      <font size="2">Password to access MySQL.&nbsp; <br>
+      </font><p><input class="button" type="button" onclick="warn_backup()"
+      value="Install  phpJobScheduler" name="button"></td>
+    </tr>
+</TBODY>
+  </table>
+  </center></div>
+</form>
+
+<p align="center">When the form is complete click the button above.<br>
+If the details are entered correctly and a connection is made to your database the
+following <strong><font color="#FF8000">tables</font></strong> will be created:</p>
+
+<p align="center"><font color="#FF8000"><strong><big>phpJobScheduler</big><br>
+</strong></font></p>
+
+<hr width="85%" color="#808080" align="center">
+<script language="JavaScript"><!--
+var msg="You are about to install or re-install phpJobScheduler \n\nThis will remove any previous data\nwithin the phpJobScheduler database table.\n\nPlease backup your existing database data BEFORE continuing.\n\nARE YOU READY to continue?";
+function warn_backup()
+{
+ if (confirm(msg)) document.I_F.submit();
+}
+// --></script>
+
+</body>
+</html>
