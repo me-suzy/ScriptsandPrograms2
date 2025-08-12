@@ -1,0 +1,152 @@
+<html><head><title>MailChek Version 2.00</title></head>
+<body> <basefont face="arial,verdana,helvetica" size=2>
+
+		<center><h2>MailChek Version 2.00</h2></center><p>
+<a name=top>
+<table width=80% cellpadding=5><tr><td><font face="arial,verdana,helvetica" size=2>
+<h3>Table of contents</h3><p>
+<DL>
+<DT><a href="#1.">1. Description</a>
+<DT><a href="#2.">2. Other features</a>
+<DT><a href="#3.">3. System requirements</a>
+<DT><a href="#4.">4. Configuration</a>
+<DT><a href="#5.">5. Installation</a>
+<DT><a href="#6.">6. Maintenance and upgrades</a>
+</DL><hr><p>
+
+<a name=1.>
+<DL>
+<DT><h3>1. Description</h3>
+
+<DD>1.1 MailChek is a web-based email service which provides access to your POP email 
+account from anywhere in the world using any computer which can connect to the 
+internet. It can check for mail; read, reply to, forward and delete messages and
+attachments; and compose and send new email messages with attachments.<p>
+
+<DD>1.2. MailChek does not initially download messages from your mail server but only
+reads headers (to, from, subject etc.) and displays them in the inbox. Therefore
+it also acts as an anti-spam, anti-virus agent by permitting you to delete messages
+from the mail server before they are downloaded and opened.<p>
+
+<DD>1.3. Email is sent using the script server's internal "sendmail" program therefore
+a SMTP mail server is not required. All you need is the login information for 
+accessing the POP account i.e logon ID (or username), password and name of the POP 
+server.<p>
+
+<DD>1.4. MailChek keeps track of each unique user by setting a cookie containing POP 
+account login data on the user's computer. This method is efficient, accurate and safer
+than other methods commonly employed.<p>
+
+<center><a href="#top">[top]</a></center><p>	
+
+<a name=2.>
+<DT><h3>2. Other features</h3>
+<UL>
+   <LI> full MIME support for sending and receiving attachments.<p>
+
+   <LI> can be configured for one person's use or for multi-user support.<p>
+
+   <LI> attractive web pages with side menu can be mostly configured by user. Font and
+     colors can be specified for the script to use and a web page template is provided
+     through which user can control overall page style and content (banners, text etc. 
+     permitted). Any number of different styles can be created and rotated by one
+     configuration setting.<p>
+
+   <LI> An HTML help page is included which may be used as is or modified by the user.<p>
+
+   <LI> Since most POP account login information is non-trivial, MailChek provides a
+     'remember' option during login by saving it in a persistent cookie on your computer.
+     A 'forget' option is also available to erase the cookie on logout. Otherwise it is 
+     always erased when you logout. For one-person use, the login data can be specified 
+     in the configuration file.<p>
+</UL>
+<center><a href="#top">[top]</a></center><p>	
+
+<a name=3.>
+<DT><h3>3. System requirements</h3>
+
+<DD>3.1. MailChek uses cookies to isolate and keep track of individual users and login data.
+It also requires the Perl modules Net::POP3 and MIME::Base64 in order to operate. These
+modules should already be installed on unix/linux systems. They are available free from
+ <a href="http://www.cpan.org" target="new">CPAN</a>. MailChek has been tested with Linux, Apache server and Perl
+5.005+. Detailed installation instructions appear below.<p>
+<center><a href="#top">[top]</a></center><p>	
+
+<a name=4.>
+<DT><h3>4. Configuration</h3>
+
+<DD>4.1. The zipped archive 'mailchek200.zip' contains the following files. Place them on 
+your server as shown:
+</DL>
+
+<font face="courier new" size=3><B><PRE>
+FILE			CONTENT				LOCATION
+mailchek.cgi		main script		cgi-bin or equivalent
+attach.cgi		attachment script		"
+mailchek.cfg		configuration file		"
+mailchek.lib		supplementary routines		"
+cookies.lib			"
+template.html		page styling			"
+help.html		sample help file	cgi-bin or web pages
+login.html		sample login page		"
+readme.html		this file
+</PRE></b></font>
+
+<DL>
+<DD>4.2 Open mailchek.cfg in a text editor and set the global values as appropriate for
+your website. Examples are included. If you are uncertain of pathnames to use on your
+server try the ones that appear in the location bar of your ftp client.<p>
+
+<DD>4.3 If you use login.html make sure you set the &lt;FORM ACTION=...&gt; to access 
+the script in accordance with where you have located login.html. If you install it with the scripts 
+it would be simply &lt;FORM ACTION="login.html" METHOD=POST&gt;. if you install it with 
+your web pages:<br>
+ &lt;FORM ACTION="your-domain/path-to-mailchek/mailchek.cgi" METHOD=POST&gt;.<p>
+
+<DD>4.4 If you wish to change the style and/or content of the web pages that MailChek
+generates this can be done using two methods:<p>
+
+<UL>
+<LI>Fonts, colors and table backgrounds can be specified in mailchek.cfg. This is an
+easy method of coordinating MailChek's text and colors with your own page content.<p>
+
+<LI>Open template.html in a text editor like Wordpad (not a HTML editor) and follow the
+instructions provided in the HTML comment tags (&lt;!-- --&gt;). Be careful not to change
+the content or position of any MailChek tags e.g. &lt;!-- MAILCHEK etc. --&gt;. Do not
+add a &lt;title&gt;&lt;/title&gt; pair because MailChek does this. Otherwise you are free
+to add any content as instructed e.g. page body attributes, background, banners, text 
+articles, multimedia etc.<p>
+
+<LI>You can design any number of templates from the original, assign each a unique name
+and specify the one you wish to use by assigning the name to '$template' in mailchek.cfg.<p>
+<center><a href="#top">[top]</a></center><p>
+</UL>
+
+<a name=5.>
+<DT><h3>5. Installation</h3>
+<DD>5.1 Upload all the files in ASCII mode and set permissions (chmod) as follows:
+</DL>
+<font face="courier new" size=3><B><PRE>
+mailchek.cgi	0755
+attach.cgi	0755
+</PRE></b></font>
+
+The other files will normally be set to read-only by the server which is fine.<p>
+<DL>
+<DD>5.2 In your cgi directory (with the scripts) create a sub-directory with the name
+you chose for '$tempdir' in the configuration file. Permissions of 0755 should be
+sufficient on servers which run scripts under your userid. With others you may have
+to chmod 0777.<p>
+<center><a href="#top">[top]</a></center><p>	
+
+<a name=6.>
+<DT><h3>6. Support and maintenance</h3>
+
+<DD>6.1 Support is free and may be obtained at: http://www.chezsurette.com/support . There you will find FAQs, a private forum for 
+MailChek customers, a download page for script updates and a contact form where customers
+can reach us for urgent matters. Please do not use email, it is the slowest method for 
+getting help.<p>
+
+<DD>6.2 Upgrades are free for all releases of this version (2.xx).
+</DL><center><a href="#top">[top]</a></center>
+</td></tr></table></body></html>
