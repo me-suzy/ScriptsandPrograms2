@@ -1,0 +1,319 @@
+---------------------------------------
+Änderungen zur 1.6.1
+---------------------------------------
+- Auto-Login gilt auch für Control Panel (ADMIN_SAFE_LOGIN auf 1 setzen in constants.php macht diese Änderung rückgängig)
+- Stylesheet für Clickstream
+- beim Hinzufügen/Bearbeiten von Bildern User wählbar
+- Statistiken zurücksetzen für einzelne Kategorien
+- System-Buttons (Leuchtkasten, Download etc.) können jetzt sprachabhängig angezeigt werden.
+  Einen neue Ordner erstellen ("templates/<template_pack>/images_<language_name>") und Bilder darin plazieren.
+  Darüberhinaus kann nun das Tag {template_lang_image_url} in den Templates verwendet werden welches den Pfad 
+  zu diesem Ordner sprachabhängig erzeugt.
+- Bilder freischalten: Bilddateien werden nun beim vom Server gelöscht wenn "löschen" gewählt wurde
+- Nächstes/vorheriges Bild auf der Detailseite werde nun abhängig davon abgezeigt woher der User kommt 
+  (Kategorien, Leuchtkasten, Suche)
+- Auto-Thumbaniler und Auto-Resizer erlauben nun Bildverkleinerung proportional oder mit fester Höhe oder Breite.
+- Es gibt jetzt drei Optionen für die Userfreischaltung: Keine, per Email, durch den Admin
+- Es wird nun auch eine Email mit den Zugangsdaten an neu registrierte User gesendet,
+  wenn Account Aktivierung auf "Keine" steht.
+- Charset und direction können nun in den Sprachdateien für einzelne Sprachen festgelegt werden.
+- User können nun ihre eigenen Bilder un zugehörigen Kommentare bearbeiten/löschen.
+  Jede Funktion kann einzeln in den Einstellungen deaktiviert werden.
+- Es könne nun mehrere Bilder/Kommentare/User auf einmal gelöscht werden.
+
+
+Geänderte Dateien:
+---------------------------------------
+- admin/admin_functions.php
+- admin/admin_global.php
+- admin/backup.php
+- admin/categories.php
+- admin/checkimages.php
+- admin/comments.php
+- admin/email.php
+- admin/home.php
+- admin/images.php
+- admin/index.php
+- admin/resizer.php
+- admin/settings.php
+- admin/stats.php
+- admin/templates.php
+- admin/thumbnailer.php
+- admin/usergroups.php
+- admin/users.php
+- admin/validateimages.php
+- includes/auth.php
+- includes/constants.php
+- includes/db_utils.php
+- includes/email.php
+- includes/functions.php
+- includes/image_utils.php
+- inlcudes/page_footer.php
+- inlcudes/page_header.php
+- includes/search_utils.php
+- includes/sessions.php
+- includes/template.php
+- includes/upload.php
+- includes/upload_definitions.php
+- includes/zip.php
+- categories.php
+- details.php
+- download.php
+- global.php
+- index.php
+- install.php
+- lightbox.php
+- login.php
+- member.php
+- postcards.php
+- register.php
+- search.php
+- top.php
+
+Sprache:
+---------------------------------------
+main.php
+  neu: $lang['charset']
+  neu: $lang['direction']
+  gelöscht: $lang['invalid_username'] und $lang['invalid_passwort']
+  neu: $lang['invalid_login']
+  neu: $lang['image_edit']
+  neu: $lang['image_edit_success']
+  neu: $lang['image_edit_error']
+  neu: $lang['image_delete']
+  neu: $lang['image_delete_success']
+  neu: $lang['image_delete_error']
+  neu: $lang['image_delete_confirm']
+  neu: $lang['comment_edit']
+  neu: $lang['comment_edit_success']
+  neu: $lang['comment_edit_error']
+  neu: $lang['comment_delete_success']
+  neu: $lang['comment_delete_error']
+  neu: $lang['comment_delete_confirm']
+  geändert: $lang['register_success']
+  neu: $lang['register_success_none']
+  neu: $lang['register_success_admin']
+
+admin.php
+  geändert: $lang['resize_dimension_desc']
+  geändert: $lang['convert_thumbnail_dimension']
+  neu: $lang['resize_proportions_desc']
+  neu: $lang['resize_proportionally']
+  neu: $lang['resize_fixed_width']
+  neu: $lang['resize_fixed_height']
+  neu: $setting['user_edit_image']
+  neu: $setting['user_delete_image']
+  neu: $setting['user_edit_comments']
+  neu: $setting['user_delete_comments']
+  geändert: $setting['auto_thumbnail_dimension']
+  neu: $setting['auto_thumbnail_resize_type']
+  neu: $auto_thumbnail_resize_type_optionlist
+  geändert: $setting['account_activation']
+  neu: $account_activation_optionlist
+
+Email templates:
+  neu: register_activation_none.html
+  neu: activation_success.html
+  neu: admin_activation.html
+  neu: register_activation_admin.html
+  geändert: upload_notify.html ({validation_url} hinzugefügt)
+ 
+Templates:
+---------------------------------------
+- style.css (.clickstream hinzugefügt)
+- header.html
+  {charset} und {direction} hinzugefügt
+- comment_bit.html
+    bild tags angepasst
+- neu: member_editimage.html
+- neu: member_deleteimage.html
+- neu: member_editcomment.html
+- neu: member_deletecomment.html
+
+
+------------------------------------------------
+Änderungen zur Version 1.6
+------------------------------------------------
+- Bugs in search.php gefixt
+  http://www.4homepages.de/forum/viewtopic.php?t=839 
+  http://www.4homepages.de/forum/viewtopic.php?t=840
+- Bugfix bei der Suche mit "AND"
+- Bug beim Upload von mehreren verschiedenen Dateien über das CP gefixt
+- Sprachausgabe gefixt wenn Account-Aktivierung abgeschaltet ist
+- Bildbeschreibung erlaubt wieder HTML-Code
+- Bugfix bei der Überprüfung der Dateigröße bei Bilderupload
+- Bugfix beim Auslesen der Bildgröße und der IPTC-Tags 
+- Bugfix beim Parsen der Email-Templates
+- Bugfix beim Verkleinern von Thumbnails
+- Bugfix bei "Check new images" bei Hinzufügen aus dem media-Verzeichnis
+
+  Geänderte Dateien:
+  ---------------------------------------
+  - includes/functions.php
+  - includes/upload.php
+  - includes/email.php
+  - includes/db_utils.php
+  - includes/constants.php
+  - search.php
+  - member.php
+  - admin/admin_global.php
+  - admin/admin_functions.php
+  - admin/images.php
+  - admin/resizer.php
+  
+  Neue oder geänderte Teile in den Sprachdateien:
+  ---------------------------------------
+  - main.php
+      gesplittet: $lang['edit_profile_msg'] zu $lang['edit_profile_msg'] und $lang['edit_profile_email_msg']
+
+
+------------------------------------------------
+Änderungen zur Version 1.5
+------------------------------------------------
+- Bugs beim Download von Medien mit aktiviertem Safe Mode gefixt
+- User können wählen ob Sie Emails von den Administratoren empfangen wollen
+- Administratoren können nun einstellen, ob User nach der Registrierung 
+  Ihren Account per Email aktivieren müssen
+- In der Suchmaske kann jetzt auch nach Usernamen gesucht werden
+- Individuelle Befugnisse für jeden User
+- Leichtes Hinzufügen von neuen User-Feldern (siehe "includes/db_field_definitions.php")
+- URL Felder bei Bildern und Download URL akzeptieren relative Pfade
+- Automatische Thumbnailerstellung bei User-Uploads
+- Optimierung bezüglich des Suchindex
+
+  Geänderte Dateien:
+  ---------------------------------------
+  - includes/constants.php
+  - includes/db_field_definitions.php
+  - includes/db_mysql.php
+  - includes/db_utils.php
+  - includes/email.php
+  - includes/functions.php
+  - includes/search_utils.php
+  - includes/sessions.php
+  - includes/template.php
+  - includes/upload.php
+  - includes/upload_definitions.php  
+  - download.php
+  - global.php
+  - lightbox.php
+  - login.php
+  - member.php
+  - postcards.php
+  - register.php
+  - search.php
+  - admin/admin_functions.php
+  - admin/admin_global.php
+  - admin/backup.php
+  - admin/categories.php
+  - admin/checkimages.php
+  - admin/email.php
+  - admin/home.php
+  - admin/images.php
+  - admin/resizer.php
+  - admin/settings.php
+  - admin/thumbnailer.php
+  - admin/usergroups.php
+  - admin/users.php
+  - admin/validateimages.php
+
+  Neue Dateien:
+  ---------------------------------------
+  - includes/image_utils.php
+
+  Neue oder geänderte Teile in den Sprachdateien:
+  ---------------------------------------
+  - admin.php 
+      neu: $setting['account_activation'] 
+      neu: $setting['auto_thumbnail'] 
+      neu: $setting['auto_thumbnail_dimension'] 
+      neu: $setting['auto_thumbnail_quality'] 
+      geändert: $setting['im_convert_path'] zu $setting['convert_tool_path']
+
+  - main.php 
+      neu: $lang['allow_admin_emails'] 
+      neu: $lang['search_by_username'] 
+      zusammengefasst: $lang['keyword'] und $lang['search_desc'] zu $lang['search_by_keyword']
+
+  Geänderte Templates:
+  ---------------------------------------
+  - search_form.html
+      Name der "search_field" Radios geändert
+      Neues Textfeld für die Suche nach Usernamen
+  - member_editprofile.html
+      Zeile hinzugefügt für die Einstellung ob der User Emails vom Admin erhalten will
+  - member_profile.html
+      Schreibfehler: tarbet zu target
+
+
+------------------------------------------------
+Änderungen zur Version 1.0
+------------------------------------------------
+- Geschwindigkeits-Optimierung
+- Poskarten-Modul
+- Usergruppenverwaltung mit detailierter Rechtevergabe für jede Kategorie
+- Upload durch User möglich
+- Parsen von IPTC-Tags (http://www.iptc.org)
+- vereinfachte Integration von neuen Datenbankfelder für Bilder
+  (siehe "inludes/db_field_definitions.php" für nähere Informationen)
+- Freies Anordnen der Kategorie-Reihenfolge
+- Statt Upload von Bilder können URLs als Quelle angegeben werden 
+- Optionale Angabe einer URL für den Download-Link (z.B. zur Verlinkung auf Websites) 
+- Medien können optional gezippt heruntergeladen werden 
+- Alle im Leuchtkasten befindlichen Medien können in einem .zip heruntergeladen werden 
+
+  Geänderte Templates:
+  ---------------------------------------
+  - category_bit.html
+  - details.php
+  - header.html
+  - home.html
+  - lightbox.html
+  - member.html
+  - member_profile.html
+  - rate_form.html
+  - register.html
+  - search.html
+  - thumbnail_bit.html
+  
+  Neue Templates:
+  ---------------------------------------
+  - iptc_bit.html
+  - member_upload_form.html
+  - postcard_create.html
+  - postcard_preview.html
+  - postcard_send.html
+  - top.html
+
+
+------------------------------------------------
+Änderungen zur Version 1.0 RC-2
+------------------------------------------------
+- Bug bezüglich Erkennung von Dateiendungen in Großbuchstaben 
+  gefixt.
+- In der Detailansicht der Bilder kann nun bei den Links zum 
+  nächsten oder vorherigen Bild zusätzlich zum Link die Bilddatei 
+  angezeigt werden.
+- Bug bezüglich doppelter Session Variablen in der Datenbank gefixt
+- Anzeige der neue Bilder erfolgt nun über die Suchfunktion.
+  Datei new.php und entsprechendes Template new.html wurden entfernt.
+- Bilddateien werden bei fehlgeschlagener Bildverkleinerung
+  nicht mehr gelöscht.
+
+
+------------------------------------------------
+Änderungen zur Version 1.0 RC-1
+------------------------------------------------
+- Language File und Template Verwaltung umgestellt.
+  Keine Sprachausgabe mehr in den Templates.
+- Englisches Sprach-File hinzugefügt.
+- Eigene Templates für JPG, GIF und PNG
+- Suche komplett umgestellt. Suche erfolgt nun über einen
+  Index und nicht mehr über die komplette Datenbank.
+- Kategorieverwaltung umgestellt. Es wird nun ein Ordner für jede
+  Kategorie erstellt (Name ist identisch mit der ID der Kategorie).
+  Grund: Linux hat einen erhöhten Verwaltungswaufwand bei Ordner
+  mit mehr als 1024 Dateien.
+- Auf manchen Servern ging die Weiterleitung nach dem Einloggen
+  ins Control Panel ins Leere. Dieser Bug ist (hoffentlich) gefixt.
+- Bugfix bezüglich MimeType-Erkennung bei Opera gefixt.
