@@ -1,0 +1,15 @@
+ALTER TABLE `clicks` ADD INDEX(`cid`);
+ALTER TABLE `clicks` ADD INDEX(`bid`);
+ALTER TABLE `clicks` ADD INDEX(`ref`);
+ALTER TABLE `clicks` ADD INDEX(`idate`);
+ALTER TABLE `clicks` ADD INDEX(`ifrom`);
+ALTER TABLE `previews` ADD INDEX(`cid`);
+ALTER TABLE `previews` ADD INDEX(`ref`);
+ALTER TABLE `previews` ADD INDEX(`idate`);
+ALTER TABLE `previews` ADD INDEX(`ifrom`);
+ALTER TABLE `previews` ADD INDEX(`camp_id`);
+ALTER TABLE `campaigns` ADD INDEX(`user_id');
+ALTER TABLE `campaigns` ADD INDEX(`status');
+ALTER TABLE `prev` ADD INDEX(`cid`);
+ALTER TABLE `banners` ADD INDEX(`cid');
+ALTER TABLE `banners` ADD INDEX(`status');
