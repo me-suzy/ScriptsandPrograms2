@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/tsep3docs.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>TSEP</title>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="TSEP is an open source (free) website PHP search engine. Easy to install, fast, supports logging and user defined stopwords. It uses CSS formating, is localized (multiple languages)" />
+<meta name="keywords" content="TSEP full text PHP search engine searchengine opensource free boolean mysql php stopword logging crawl spider open source" />
+<link href="css/general.css" rel="stylesheet" type="text/css" />
+<link href="css/medium.css" rel="stylesheet" type="text/css" />
+<!-- InstanceParam name="notes" type="text" value="notcurrent" --><!-- InstanceParam name="install" type="text" value="notcurrent" --><!-- InstanceParam name="usage" type="text" value="notcurrent" --><!-- InstanceParam name="advconf" type="text" value="notcurrent" --><!-- InstanceParam name="extensions" type="text" value="notcurrent" --><!-- InstanceParam name="faq" type="text" value="notcurrent" --><!-- InstanceParam name="errors" type="text" value="current" --><!-- InstanceParam name="links" type="text" value="notcurrent" --><!-- InstanceParam name="help" type="text" value="notcurrent" --><!-- InstanceParam name="contents" type="text" value="notcurrent" -->
+<link href="css/docs.css" rel="stylesheet" type="text/css" />
+<link href="css/links.css" rel="stylesheet" type="text/css" />
+<link href="css/urlimg.css" rel="stylesheet" type="text/css" />
+</head>
+<body><a name="topofpage" id="topofpage"></a> 
+<div id="container"> 
+  <div id="header"> 
+    <div class="HeaderLogo"><img src="graphics/tsep-glow.gif" alt="TSEP - The Search Engine Project" width="310" height="70" /></div> 
+    <div class="HeaderText">
+      <h1>Documentation</h1>
+    </div> 
+  </div> 
+  <div id="sidebar-a"> 
+    <div id="navcontainer"> 
+      <ul id="navlist-verti"> 
+        <li><a href="index.htm" class="notcurrent">Contents</a></li> 
+        <li><a href="note.htm" class="notcurrent">Notes</a></li>
+        <li><a href="install.htm" class="notcurrent">Install &amp; Upgrade</a></li> 
+        <li><a href="usage.htm" class="notcurrent">Usage</a></li> 
+      <li><a href="advanced.htm" class="notcurrent">Advanced Configuration</a></li>
+      <li><a href="extensions.htm" class="notcurrent">Extensions &amp; Plug-ins</a></li>
+      <li><a href="help.htm" class="notcurrent">Help TSEP </a></li>
+      <li><a href="faq.htm" class="notcurrent">FAQ</a></li>
+      <li><a href="error.htm" class="current">Problems &amp; Errors</a></li>
+      <li><a href="links.htm" class="notcurrent">Links</a></li>
+      </ul> 	  
+    </div> 
+  </div> 
+  <div id="sidebar-b">      
+  </div> 
+  <div id="content"><!-- InstanceBeginEditable name="middle" --><div id="navcontainer-hori"> 
+      <ul id="navlist-hori"> 
+        <li><a href="#indextext">Indexing</a></li> 
+        <li><a href="#searchtext">Searching</a></li> 
+      <li><a href="#otherpage">Other</a></li>    
+      </ul> 	  
+    </div>
+	<h1>Problems &amp; Errors</h1>
+	<p>If encounter any error which seems to be caused by <span class="tsep">TSEP</span> please <a href="note.htm#credit">let us know</a>!</p>
+	<ul>
+	  <li><a name="index" id="index"></a><a href="#indextext">Indexing</a>
+	    <ul>
+	      <li> <a href="#contentnotresulterror">Content of a script is indexed, not result</a></li>
+        <li> <a href="#memorylimit">Memory Limit Error</a></li>
+	    <li> <a href="#maxexecprohibit">I can not index!</a></li>
+	    <li> <a href="#maxexecution">Maximum Execution Time eceeded</a></li>
+	    </ul>
+	  </li>
+    <li> <a name="search" id="search"></a><a href="#searchtext">Searching
+    </a>      <ul>
+        <li> <a href="#phpfileexists">PHP safety denies: Check if file exists
+        </a> </li>
+      </ul>
+    </li>
+	<ul>
+	    <li> <a href="#jserror">JavaScript shows up in pages</a>
+        </li>
+      </ul>
+	<ul>
+	    <li> <a href="#noresults">no results on search but indexing ok</a></li>
+      </ul>
+	<li> <a name="other" id="other"></a><a href="#otherpage">Other    </a>	  <ul>
+	    <li> <a href="#newpath">TSEP does not work correctly after I moved it to another path / domain</a></li>
+	    <li><a href="#timelimit">I get an error with &quot;set_time_limit()&quot;
+        </a> </li>
+	</ul>
+	</li>
+	<ul>
+	    <li><a href="#problemsmysql">MySQL</a></li>
+      </ul>
+	</ul>
+	<h1><a name="indextext" id="indextext"></a>Indexing</h1>
+	<h2><a name="contentnotresulterror" id="contentnotresulterror"></a>Content of a script is indexed, not result</h2>
+	<p>Please see the FAQ topic about this: <a href="faq.htm#contentnotresult">When trying to index a (php) script the contents, not the result of the script is indexed - why?</a> </p>
+	<h2><a name="memorylimit" id="memorylimit"></a>&quot;Memory Limit&quot; Error </h2>
+	<p>This could have probably 2 reasons: Either your pages are really large - or you are trying to index too many pages at the same time.</p>
+	<p>&quot;The same time&quot; means here with the same profile. You should try to split the indexing of your site into different profiles. Each profile could handle specific files and/or directories of your site.</p>
+	<p>For example you could index all pages in <span class="directoryname">/catalog</span> with the profile called &quot;Catalog&quot; and all pages in <span class="directoryname">/staff</span> with the profile called &quot;Staff&quot; - thus splitting the workload, the time and memory <span class="tsep">TSEP</span> needs to create an index for the pages in question.</p>
+	<p>If your pages are very large for example you could encounter a memory error. This is due to the memory restriction for php scripts set by the php.ini.</p>
+	<p>If you have access and are allowed to make changes to the <span class="filename">php.ini</span> file, you can change the value for <span class="variablename">memory_limit</span>. The value is the number megabytes a single script is allowed to allocate. Example: <span class="variablename">memory_limit</span> = <span class="variablevalue">8</span></p>
+	<h2><a name="maxexecprohibit" id="maxexecprohibit"></a>I can not index! </h2>
+	<p>Since version 0941 we have introduced a what could be called protection state. Since in future of <span class="tsep">TSEP</span> it could be fatal to the indexed data if the indexer is run twice at the same time we write a timestamp to the database once indexing begins. When indexing finished, you can index again as the value is set back. If the script stalls, e.g. the browser is closed the value can not be reset of course. You will have to wait a few minutes (see the maximum execution time of scripts on your server in configuration.php) before you can run the indexer again.</p>
+	<p>Please remember, that we did not put this check into the indexer to bug you but to ensure safety of your <span class="tsep">TSEP</span> database (index). </p>
+	<p>Related topics / See also: <a href="#maxexecution">&quot;Maximum Execution Time Exceeded&quot; error</a> </p>
+	<h2><a name="maxexecution" id="maxexecution"></a>&quot;Maximum Execution Time Exceeded&quot; error </h2>
+	<p>This happens when you are trying to index a site but the indexing process takes too long. Too long means the script (in this case <span class="filename">indexer.php</span>) would need more time to complete running than allowed by PHP. There are several solutions to this:</p>
+	<ol>
+      <li>If you have access and are allowed to make changes to the <span class="filename">php.ini</span> file, you can change the value for <span class="variablename">max_execution_time</span>. The value is the number of seconds a single script is allowed to run. Example: <span class="variablename">max_execution_time </span>= <span class="variablevalue">1200</span></li>
+      <li>You can split the indexing process by defining several profiles and index those one by one. </li>
+    </ol>
+	<p>Related topics / See also: <a href="#maxexecprohibit">I can not index!</a> </p>
+	<h1><a name="searchtext" id="searchtext"></a>Searching</h1>
+	<h2><a name="phpfileexists" id="phpfileexists"></a>PHP safety denies: Check if file exists</h2>
+	<p>We have been told that it can occur that you must switch of the &quot;<span class="formfieldlabel">Before showing file in results test if it really exists?</span>&quot; setting in the configuration. This is probably due to a PHP safety setting (allow_url_open is probably disabled).</p>
+	<h2><a name="jserror" id="jserror"></a>JavaScript shows up in pages </h2>
+	<p>In case that JavaScript in your pages is in the index of the pages - you probably have an error in your JavaScript code. Please check that your JavaScript is between the HTML comment tags. See the following picture for details. The comment tags have been marked yellow.</p>
+	<p><img src="graphics/jserror.png" alt="JavaScript erors" width="500" height="518" /> </p>
+	<h2><a name="noresults" id="noresults"></a>Indexing is ok, but no results turn up on search</h2>
+	<p>Please see <a href="#phpfileexists">PHP safety denies: Check if file exists</a></p>
+	<h1><a name="otherpage" id="otherpage"></a>Other</h1>
+	<h2><span class="tsep"><a name="newpath" id="newpath"></a>TSEP</span> does not work correctly after I moved it to another path / domain </h2>
+	<p>You need to open <span class="filename">configuration.php</span> once again - no changes are needed, but you must <span class="importantNote">open</span> the file once! That is where the <span class="tsep">TSEP</span> path is saved. Now your installation should work fine again. </p>
+	<h2><a name="timelimit" id="timelimit"></a>I get an error with &quot;set_time_limit()&quot; </h2>
+	<p>(probably outdated) </p>
+	<div class="quotedtext">
+      <p>&quot;Warning: set_time_limit(): Cannot set time limit in safe mode in /..../tsep/admin/indexer.php on line 110&quot; </p>
+    </div>
+	<p>This is nothing really important. It shows only in the admin area. The error occurs when the safe-mode on the server is on. No problems except this are known at this time (concerning the safe-mode).</p>
+	<h2><a name="problemsmysql" id="problemsmysql"></a>MySQL</h2>
+	<p>You might run into problems with MySQL v3.23 or lower. If you are running such a version <a href="note.htm#credit">we would be happy to hear</a> if <span class="tsep">TSEP</span> is working for you or and what kind of problems you have encountered.</p>
+	<p class="importantNote">We strongly recommend a MySQL database version &gt;=4 !</p>
+	<p>Also see other <a href="faq.htm#restrictions">FAQ: MySQL restrictions</a></p>
+	<h3>Problem</h3>
+	<p>It seems that with MySQL 5 alpha there are problems concerning the <span class="filename">indexer.php</span>. We will assume for now that is an issue of the new MySQL version and has nothing to to with <span class="tsep">TSEP</span>.</p>
+	<h3>Possible solution</h3>
+	<p>Try populating the $db_table_prefix.<span class="tablename">config</span> table by hand (using phpMyAdmin for example) with the values you find in the SQL scripts in the <span class="directoryname">admin</span> directory.</p>
+	<!-- InstanceEndEditable --></div>
+  <div id="footer">
+  <p>This file is part of <span class="tsep">TSEP</span> (<span class="tsep">The Search Engine Project</span>), Version: TSEP 0.9nnn</p>
+<p>This file has been last modified (SubVersion Data):<br />
+    $LastChangedDate: 2005-09-01 22:04:39 +0200 (Do, 01 Sep 2005) $<br />
+    $LastChangedBy: olaf $<br />
+    $LastChangedRevision: 307 $</p>
+<p><a href="http://www.tsep.info" title="TSEP Website" class="copyright">&copy; 2002-2005 by TSEP - The Search Engine Project</a></p>
+  </div>
+</div> 
+</body>
+<!-- InstanceEnd --></html>
