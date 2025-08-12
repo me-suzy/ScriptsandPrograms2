@@ -1,0 +1,70 @@
+<table width="100%">
+ <tr>
+  <td>
+   <table width="100%">
+    <tr>
+     <td><h3>##LNG['_PAGE_TITLE']##</h3></td>
+     <td nowrap width="1%" valign="top" align="right">##ADM_PATH##</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+ <tr>
+  <td>
+  <form method="post" action="##REQUEST_URI##">
+   <select name="active">##active_menu##</select>
+   <input type="Submit" name="go" value="##LNG['_BTN_SHOW']##" />
+  </form>
+  </td>
+ </tr>
+ <tr>
+  <td width="100%" valign="top" align="right">
+   <a href="##URL_MOD_NAME##&amp;action=add">##LNG['_HEADER_ADDNEW_PAGE']##</a><br /><br />
+   <table class="txt12" width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#999999" align="left">
+    <tr class="tha">
+     <th width="1%">#</th>
+     <th>##LNG['_TBL_NEWS']##</th>
+     <th width="1%" nowrap>##LNG['_TBL_VISIBLE']##</th>
+     <th width="1%" nowrap>##LNG['_TBL_DATE']##</th>
+     <td width="1%">##LNG['_TBL_SHOWED']##</td>
+     <th width="1%" nowrap>##LNG['_TBL_ACTION']##</th>
+    </tr>
+    <!-- LOOP news -->
+    <tr class="row##news['row_alt']##" <!-- IF !##news['is_visible']## --> style="background-color:#ffc1c1"<!-- ENDIF -->>
+     <td align="center">
+     ##news['num']##
+     </td>
+     <td>
+      ##news['title']##
+     </td>
+     <td align="center">
+      <!-- IF ##news['is_visible']## -->
+      <a href="#" onClick="GoURL('##URL_MOD_NAME##&amp;action=hide&amp;id=##news['id']##');">
+      <img src="##URL_IMG##/icons/ok.gif" width="16" height="16" alt="##LNG['_MSG_VISIBLE']##" title="##LNG['_MSG_VISIBLE']##" border="0" />
+      <!-- ELSE -->
+      <a href="#" onClick="GoURL('##URL_MOD_NAME##&amp;action=show&amp;id=##news['id']##');">
+      <img src="##URL_IMG##/icons/remove.gif" width="16" height="16" alt="##LNG['_MSG_HIDDEN']##" title="##LNG['_MSG_HIDDEN']##" border="0" />
+      <!-- ENDIF -->
+      </a>
+     </td>
+     <td width="1%" nowrap align="center">
+       ##news['date_added']##
+     </td>
+     <td align="center">##news['hits']##</td>
+     <td align="center" width="1%" nowrap>
+      <a href="##URL_MOD_NAME##&amp;action=edit&amp;id=##news['id']##" title="##LNG['_CMD_EDIT']##"><img src="##URL_IMG##/icons/edit.gif" width="16" height="16" border="0" alt="##LNG['_CMD_EDIT']##" /></a>
+      <a href="#" onClick="if(confirm('##LNG['_MSG_CONFIRM_DELETE']## ?')) GoURL('##URL_MOD_NAME##&amp;action=delete&amp;id=##news['id']##'); else return false;" title="##LNG['_CMD_DELETE']##"><img src="##URL_IMG##/icons/remove.gif" width="16" height="16" border="0" alt="##LNG['_CMD_DELETE']##" /></a>
+     </td>
+    </tr>
+    <!-- /LOOP -->
+    <!-- IF !##news## -->
+    <tr>
+     <td class="row1" align="center" colspan="6"><br />##LNG['_MSG_NO_NEWS']##<br /><br /></td>
+    </tr>
+    <!-- ENDIF -->
+   </table>
+
+  </td>
+ </tr>
+ <tr><td align="center">##nav##</td></tr>
+</table>
