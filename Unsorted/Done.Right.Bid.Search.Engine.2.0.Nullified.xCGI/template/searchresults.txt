@@ -1,0 +1,179 @@
+<html>
+<head>
+  <title>Bid Search Engine</title>
+  <style>
+    #hidepage{position:absolute; width:100%; top:250; right:0; z-index:10;}
+  </style>
+  <SCRIPT LANGUAGE="JavaScript">
+    <!-- Begin
+    function loadImages() {
+      if (document.getElementById) {  // DOM3 = IE5, NS6
+        document.getElementById('hidepage').style.visibility = 'hidden';
+      } else {
+        if (document.layers) {  // Netscape 4
+          document.hidepage.visibility = 'hidden';
+        } else {  // IE 4
+          document.all.hidepage.style.visibility = 'hidden';
+        }
+      }
+    }
+    //  End -->
+  </script>
+</head>
+<BODY OnLoad="loadImages()">
+<div id="hidepage">
+  <table cellpadding=0 cellspacing=0 width="100%">
+    <tr valign="middle">
+      <td align="center" valign="middle" class="FlyerHeaderText">
+        <font color="#000099" face="verdana"><b>Gathering Results for <!-- [keys] -->...</b></font>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<center>
+<font face="verdana"><B>Bid Search Engine</B> - <font color="#000099">Search</font></font><P><BR>
+
+<!-- [banner] -->
+<table width=90% border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <center>
+      <table border="0" width=100% cellspacing="1" cellpadding="1" bgcolor="#000000">
+        <tr>
+          <td>
+            <table border="0" width=100% cellspacing="0" cellpadding="3" bgcolor=#E0DCC0>
+              <tr>
+                <td>
+                  <table BORDER=0 CELLSPACING=0 CELLPADDING=0 width="100%">
+                    <tr>
+                      <td width="5%" align=left>&nbsp;</td>
+                      <td align=left width=55%>
+                        <p>
+                        <!-- [BoxTop] -->
+                        <form METHOD="POST" ACTION="search.[ext]?page=1">
+                        <input type=text name=keywords size=25 value="<!-- [keys] -->">
+                        <input type=hidden name=member value="[member]">
+                        &nbsp;&nbsp;&nbsp;<input type=submit value=" Search ">
+                        <BR><font face="verdana, helvetica" size="-1">Search within Results:&nbsp;&nbsp;&nbsp;<input type="checkbox" name="searchwithin">
+                        <input type="hidden" name="oldkeys" value="<!-- [oldkeys] -->"><BR>
+                        <font face="verdana, helvetica" size="-1">
+                        <input type="radio" name="method" value="1" [method1]> any
+                        &nbsp;<input type="radio" name="method" value="0" [method0]> all
+                        &nbsp;<input type="radio" name="method" value="2" [method2]> phrase<BR>
+                        </font><BR>
+                        <!-- [BoxTop] -->
+                      </td>
+                      <td width=40%>
+                        <!-- [EnginesTop] -->
+
+                        <!-- [EnginesTop] -->
+                      </td>
+                    </tr>
+                  </table>
+                  <BR>
+                  <input TYPE="hidden" NAME="descrip" VALUE="0">
+                  <input TYPE="hidden" NAME="timeout" value="<!-- [timeout] -->">
+                  <input TYPE="hidden" NAME="perpage" value="<!-- [perpage] -->">
+                  </form>
+<!-- [break] -->
+                  <font face="verdana, helvetica" size=-1><B>&nbsp;<!-- [relatedtitle] --></B></font>
+                  <center>
+                  <table BORDER=0 CELLSPACING=0 CELLPADDING=0 width=100%>
+                    <tr>
+                      <!-- [relatedbreak] -->
+                      <td>
+                        <font face="verdana, helvetica" size=-1>&nbsp;<!-- [relatedrow] -->
+                      </td>
+                      <!-- [relatedbreak] -->
+                    </tr>
+                  </table>
+                  <BR>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor=#000099></td>
+              </tr>
+              <tr>
+                <td bgcolor=#FFFFFF>
+                  <table BORDER=0 CELLSPACING=0 CELLPADDING=0 width="100%">
+                    <tr>
+                      <td width="2">&nbsp;</td>
+                      <td>
+                        <B><FONT FACE=verdana size="-1">Displaying:</b> <!-- [first] --> to <!-- [last] --> of 
+                        <!-- [found] --></font>
+                        <BR><B><FONT FACE=verdana size="-1">View by: </B><!-- [view] --></font>
+                        <font FACE=verdana size="-1"><!-- [wordfilter] --></font>
+                        <BR><font FACE=verdana size="-1"><!-- [description] --></font>
+<!-- [target] -->
+<!-- [break] -->
+                        <dl>
+                          <dt></font></b><b><font size="-1"><!-- [number] -->. </font></b>
+                          &nbsp;<font face="verdana, helvetica" size="-1">
+                          <A HREF="<!-- [url] -->"><!-- [title] --></A> <!-- [image] --></font>
+                          <font face="verdana, helvetica" size="-1"><!-- [description] --></font>
+                          <i><font size="-1" color="#666666" face="verdana, helvetica">
+                          <!-- [printurl] --></font></i>&nbsp;<font color="#000000" size="-2">
+                          (</font><font size="-2"><!-- [source] --><font color="#000000" size="-2">) | 
+                          <A HREF="<!-- [morelikethis] -->">More Like This</A></font><BR></i>
+                        </dl>
+<!-- [break] -->
+                        <P>
+                        <font face="verdana" size="-1"><B><!-- [prevform] --> <!-- [numberform] --> <!-- [nextform] --></B></font>
+                        <BR><font face="verdana" size="-1"><!-- [EngTimedout] --></font>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor=#FFFFFF></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td bgcolor=#000099></td>
+              </tr>
+              <tr>
+                <td>
+                  <BR></form>
+                  <table BORDER=0 CELLSPACING=0 CELLPADDING=0 width="100%">
+                    <tr>
+                      <td width="5%" align=left>&nbsp;</td>
+                      <td align=left width="55%">
+                        <!-- [BoxBottom] -->
+                        <form METHOD="POST" ACTION="search.[ext]?page=1">
+                        <input type=text name=keywords size=25 value="<!-- [keys] -->">
+                        <input type=hidden name=member value="[member]">
+                        &nbsp;&nbsp;&nbsp;<input type=submit value=" Search ">
+                        <BR><font face="verdana, helvetica" size="-1">Search within Results:&nbsp;&nbsp;&nbsp;<input type="checkbox" name="searchwithin">
+                        <input type="hidden" name="oldkeys" value="<!-- [oldkeys] -->"><BR>
+                        <font face="verdana, helvetica" size="-1">
+                        <input type="radio" name="method" value="1" [method1]> any
+                        &nbsp;<input type="radio" name="method" value="0" [method0]> all
+                        &nbsp;<input type="radio" name="method" value="2" [method2]> phrase<BR>
+                        </font><BR><BR>
+                        <!-- [BoxBottom] -->
+                      </td>
+                      <td width="40%">
+                        <!-- [EnginesBottom] -->
+
+                        <!-- [EnginesBottom] -->
+                      </td>
+                    </tr>
+                  </table>
+                  <BR>
+                  <input TYPE="hidden" NAME="descrip" VALUE="0">
+                  <input TYPE="hidden" NAME="timeout" value="<!-- [timeout] -->">
+                  <input TYPE="hidden" NAME="perpage" value="<!-- [perpage] -->">
+                  </form>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</BODY>
+</HTML>
