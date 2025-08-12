@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="toko.css" type="text/css"/>
+	</head>
+	<body onmouseover="OnMouseOverHandler();" onmouseout="OnMouseOutHandler();" onmousedown="OnMouseDown();" onmouseup="OnMouseUp();">
+		<table class="Content" width="100%" cellspacing="0" cellpadding="0">
+			<tr bgcolor="#384655">
+				<td class="title" width="100%">
+					<b>Edit Areas</b>
+				</td>
+				<td><img src="Images/Save.gif" class="kewlButton" onclick="Save();"/></td>
+				<td><img src="Images/Reload.gif" class="kewlButton" onclick="Reload();"/></td>
+				<td><img src="Images/Help.gif" class="kewlButton" onclick="ShowHelp();"/></td>
+				<td><img src="Images/Logout.gif" class="kewlButton" onclick="Logout();"/></td>
+				</td>
+			</tr>
+		</table>
+		<script language="javascript">
+
+			function Save()
+			{
+				top.frames[ "edit" ].Save();
+			}
+
+			function Logout()
+			{
+				top.frames[ "edit" ].Logout();
+			}
+
+			function Reload()
+			{
+				top.frames[ "edit" ].Reload();
+			}
+
+			function ShowHelp()
+			{
+				window.open( "http://toko-contenteditor.pageil.net/page007OnlineHelp.shtml", "HelpWin" );
+			}
+
+			function IsKewlButton( elem )
+			{
+				return ( elem.className == "kewlButton" );
+			}
+
+			function OnMouseOverHandler()
+			{
+				var elem = event.srcElement;
+
+				if ( IsKewlButton( elem ) )
+				{
+					elem.style.borderTop    = "solid 1px #ffffff";
+					elem.style.borderLeft   = "solid 1px #ffffff";
+					elem.style.borderBottom = "solid 1px #000000";
+					elem.style.borderRight  = "solid 1px #000000";
+				}
+			}
+
+			function OnMouseOutHandler()
+			{
+				var elem = event.srcElement;
+
+				if ( IsKewlButton( elem ) )
+				{
+					elem.style.border = "solid 1px #ece9d8";
+				}
+			}
+
+			function OnMouseDown()
+			{
+				var elem = event.srcElement;
+
+				if ( IsKewlButton( elem ) )
+				{
+					elem.style.borderBottom = "solid 1px #ffffff";
+					elem.style.borderRight  = "solid 1px #ffffff";
+					elem.style.borderTop    = "solid 1px #000000";
+					elem.style.borderLeft   = "solid 1px #000000";
+				}
+			}
+
+			function OnMouseUp()
+			{
+				var elem = event.srcElement;
+
+				if ( IsKewlButton( elem ) )
+				{
+					elem.style.borderTop    = "solid 1px #ffffff";
+					elem.style.borderLeft   = "solid 1px #ffffff";
+					elem.style.borderBottom = "solid 1px #000000";
+					elem.style.borderRight  = "solid 1px #000000";
+				}
+			}
+
+		</script>
+	</body>
+</html>
