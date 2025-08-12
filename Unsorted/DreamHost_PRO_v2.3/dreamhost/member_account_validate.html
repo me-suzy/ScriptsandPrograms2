@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<br>
+<br>
+<form method="post" action="members<? echo $ext ?>">
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <? 
+	    $u_email = validate_email_unused($email); 
+		$vi_email = validate_email($email);
+		if (($vi_email == "Y") && ($u_email == "Y")) {
+		$v_email = validate_email($email);
+		echo "<input type=\"hidden\" name=\"email\" value=\"$email\">";
+		} else {
+	?>
+    <tr> 
+      <td width="150"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Email 
+        Address:</font></b></font></td>
+      <td><font color="#666666"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="text" name="email" maxlength="32" size="20" style="border: 1 solid #666666">
+        </font><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990033">&lt;- 
+        Email Address is Invalid or Already Registered</font></font></td>
+    </tr>
+    <? } 
+	if ($password <> "") {
+		$v_password = "Y";
+		echo "<input type=\"hidden\" name=\"password\" value=\"$password\">";
+		} else {
+	?>
+    <tr> 
+      <td width="150"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Password:</font></b></font></td>
+      <td><font color="#666666"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="password" name="password" maxlength="20" size="20" style="border: 1 solid #666666">
+        </font><font color="#666666"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990033">&lt;- 
+        Please enter a Password</font></font></font></td>
+    </tr>
+    <? }
+	if ($name <> "") {
+		$v_name = "Y";
+		echo "<input type=\"hidden\" name=\"name\" value=\"$name\">";
+		} else {
+	?>
+    <tr> 
+      <td width="150"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Name:</font></b></font></td>
+      <td><font color="#666666"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="text" name="name" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $name ?>">
+        </font><font color="#666666"><font color="#666666"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990033">&lt;- 
+        Please enter your name</font></font></font></font></td>
+    </tr>
+    <? }
+	if ($address <> "") {
+		$v_address = "Y";
+		echo "<input type=\"hidden\" name=\"address\" value=\"$address\">";
+		} else {
+	 ?>
+    <tr> 
+      <td width="150"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Address:</font></b></font></td>
+      <td><font color="#666666"><font color="#666666"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="text" name="address" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $address ?>">
+        </font><font color="#666666"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990033">&lt;- 
+        Please enter your address</font></font></font></font></td>
+    </tr>
+    <? }
+	if ($city <> "") {
+		$v_city = "Y";
+		echo "<input type=\"hidden\" name=\"city\" value=\"$city\">";
+		} else {
+	 ?>
+    <tr> 
+      <td width="150"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">City:</font></b></font></td>
+      <td><font color="#666666"><font color="#666666"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="text" name="city" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $city ?>">
+        </font><font color="#666666"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990033">&lt;- 
+        Please enter your city</font></font></font></font></td>
+    </tr>
+    <? }
+	if ($state <> "") {
+		$v_state = "Y";
+		echo "<input type=\"hidden\" name=\"state\" value=\"$state\">";
+		} else {
+	 ?>
+    <tr> 
+      <td width="150"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">State/Province:</font></b></font></td>
+      <td><font color="#666666"><font color="#666666"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="text" name="state" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $state ?>">
+        </font><font color="#666666"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990033">&lt;- 
+        Please enter your state/province</font></font></font></font></td>
+    </tr>
+    <? }
+	if ($zip <> "") {
+		$v_zip = "Y";
+		echo "<input type=\"hidden\" name=\"zip\" value=\"$zip\">";
+		} else {
+	 ?>
+    <tr> 
+      <td width="150"><font color="#000000"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Zip:</font></b></font></td>
+      <td><font color="#666666"><font color="#666666"><font size="2" face="Verdana, Arial, Helvetica, sans-serif" color="#333333"> 
+        <input type="text" name="zip" maxlength="50" size="20" style="border: 1 solid #666666" value="<? echo $zip ?>">
+        </font><font color="#666666"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#990033">&lt;- 
+        Please enter your zip code</font></font></font></font></td>
+    </tr>
+    <? } ?>
+    <tr> 
+      <td width="150">&nbsp;</td>
+      <td> <br>
+        <font color="#666666"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+        <? 
+if ((((((($v_email=="Y") && ($v_password=="Y") && ($v_name=="Y") && ($v_address=="Y") && ($v_city=="Y") && ($v_state=="Y") && ($v_zip=="Y"))))))) {
+	add_new_user_account($session_id,$email,$password,$name,$company,$address,$city,$state,$zip,$country,$phone,$fax);
+	login_user($email,$password,$session_id);
+                    echo "YOUR ACCOUNT HAS BEEN ADDED!";
+                    include("member_account.html");
+	} else {
+	echo "PLEASE FILL IN ALL THE REQUIRED FEILDS";
+
+?>
+        </font></b></font> <br>
+        <br>
+        <input type="image" border="0" name="submit" value="submit" src="images/button_continue.gif" width="80" height="23">
+        <input type="hidden" name="page" value="account_validate">
+        <input type="hidden" name="session_id" value="<? echo $session_id ?>">
+        <input type="hidden" name="company" value="<? echo $company ?>">
+        <input type="hidden" name="phone" value="<? echo $phone ?>">
+        <input type="hidden" name="fax" value="<? echo $fax ?>">
+        <input type="hidden" name="country" value="<? echo $country ?>">
+        <font color="#666666"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>
+        <? 
+}
+?>
+        </font></b></font> </td>
+    </tr>
+  </table>
+</form>
+<p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> </font></b></p>
+<p><br>
+</p>
+</body>
+</html>
