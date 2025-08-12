@@ -1,0 +1,73 @@
+<form method="post" action="{url_member}" enctype="multipart/form-data" onsubmit="uploadbutton.disabled=true;">
+  <input type="hidden" name="action" value="uploadimage" />
+  <input type="hidden" name="cat_id" value="{cat_id}" />
+  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+    <tr> 
+      <td valign="top" class="head1"> 
+        <table width="100%" border="0" cellpadding="4" cellspacing="0">
+          <tr> 
+            <td colspan="2" valign="top" class="head1">{lang_user_upload}</td>
+          </tr>
+          <tr> 
+            <td class="row1"><b>{lang_category}</b></td>
+            <td class="row1">{cat_name}</td>
+          </tr>
+          <tr> 
+            <td class="row2" valign="top">
+			  <b>{lang_media_file}</b><br />
+			  <span class="smalltext">
+			  {lang_max_filesize}<b>{max_media_filsize}</b><br />
+			  {lang_max_imagewidth}<b>{max_media_imagewidth}</b><br />
+			  {lang_max_imageheight}<b>{max_media_imageheight}</b><br />
+			  </span>
+			</td>
+            <td class="row2">
+              <b>Upload:</b><br />
+			  <input type="file" name="media_file" class="input" /><br />
+			  <b>URL:</b><br />
+			  <input type="text" name="remote_media_file"  size="30" value="{remote_file}" class="input" /><br />
+			  <span class="smalltext"><b>{lang_allowed_file_types}</b> {allowed_media_types}</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="row1" valign="top">
+			  <b>{lang_thumb_file}</b><br />
+			  <span class="smalltext">
+			  {lang_max_filesize}<b>{max_thumb_filsize}</b><br />
+			  {lang_max_imagewidth}<b>{max_thumb_imagewidth}</b><br />
+			  {lang_max_imageheight}<b>{max_thumb_imageheight}</b><br />
+			  </span>
+			</td>
+            <td class="row1">
+              <b>Upload:</b><br />
+			  <input type="file" name="thumb_file" class="input" /><br />
+			  <b>URL:</b><br />
+			  <input type="text" name="remote_thumb_file"  size="30" value="{remote_thumb_file}" class="input" /><br />
+			  <span class="smalltext"><b>{lang_allowed_file_types}</b> {allowed_thumb_types}</span>
+            </td>
+          </tr>
+          <tr> 
+            <td class="row2"><b>{lang_image_name}</b></td>
+            <td class="row2"><input type="text" name="image_name"  size="30" value="{image_name}" class="input" /></td>
+          </tr>
+          <tr> 
+            <td class="row1" valign="top"><b>{lang_description}</b></td>
+            <td class="row1">
+              <textarea name="image_description" cols="30" class="textarea" rows="10" wrap="VIRTUAL">{image_description}</textarea>
+            </td>
+          </tr>
+          <tr> 
+            <td class="row2" valign="top"><b>{lang_keywords}</b></td>
+            <td class="row2">
+              <textarea cols="30" class="textarea" rows="10" wrap="VIRTUAL" name="image_keywords">{image_keywords}</textarea>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <p align="center"> 
+    <input type="submit" name="uploadbutton" value="{lang_submit}" class="button" />
+    <input type="reset" value="{lang_reset}" class="button" />
+  </p>
+</form>
