@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0051)http://www.jmbsoft.com/owners/ags/bdocs/import.html -->
+<HTML><HEAD><TITLE>Importing Galleries</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY text=#000000 bgColor=#ffffff>
+<DIV align=center><FONT face=Verdana,Arial size=4><B>AutoGallery SQL - Importing 
+Galleries</B> <BR><BR>
+<TABLE cellSpacing=0 cellPadding=2 width=650 border=0>
+  <TBODY>
+  <TR>
+    <TD><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Quick Overview</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><FONT 
+      face=Arial size=2><BR>This feature of the software will allow you to 
+      import galleries from a text file. The text file containing your galleries 
+      will need to be properly setup in order to import galleries from it, and 
+      this document will explain all of the necessary steps. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>File Format</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>The 
+      gallery importer can read galleries only from standard text files. The 
+      text file should have one gallery per line, and each line should contain a 
+      delimited string with all of the information for one gallery. An <A 
+      href="http://www.jmbsoft.com/owners/ags/bdocs/example.txt">example import 
+      file</A> is available for you to view, and your files should have a 
+      similar format. <BR><BR>In the example file, each value is delimited by a 
+      | character. We recommend using that character, as it is not often found 
+      in everyday use. You can, however, use any character you want to delimit 
+      the fields in each line. Just make sure that the character you choose 
+      appears only as a delimiter - if it appears elsewhere in the string the 
+      software will not be able to tell the difference. <BR><BR>We will be using 
+      the first line of the sample file as an example: <BR><BR><FONT 
+      style="FONT-SIZE: 11px" 
+      face=Arial>15|example@email.com|Amateur|http://www14.smutserver.com/teen/eryg/0823/24hztetlme.html|Young 
+      amateur! </FONT><BR><BR>If you separate this string into pieces based on 
+      the | character, you will find that there are 5 bits of data: 
+      <BR><BR><FONT style="FONT-SIZE: 11px" 
+      face=Arial>15<BR>example@email.com<BR>Amateur<BR>http://www14.smutserver.com/teen/eryg/0823/24hztetlme.html<BR>Young 
+      amateur! </FONT><BR><BR>Each of the pieces represents one bit of 
+      information about the gallery. Your file can have these pieces in any 
+      order, they do not need to be in the same order as the sample file. 
+      However, each line of the file must have the pieces in the same order. 
+      Once you have a file that is properly formatted, you can continue on to 
+      the next section for details on using the gallery importer. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Using the Importer</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>To 
+      begin with, you will need to upload your text file. Make sure you upload 
+      in ASCII mode, and place the file in the data directory of your 
+      AutoGallery SQL installation. <BR><BR>In the administrative interface 
+      select the Import Galleries function from the first drop down menu. This 
+      will bring you to a page where you can enter the name of your text file 
+      and the delimiting character. Enter the name of the file you just 
+      uploaded, and the character used to delimit the fields. Once you have done 
+      that you can press the analyze file button. <BR><BR>The software will pull 
+      the first line from the file to see what data it can find. It will 
+      separate out the data based on the delimiting character you provided, and 
+      then display a page with the data it has found. On this page, you will 
+      need to identify what each field's type is. <BR><BR><IMG 
+      src="Importing Galleries_files/import.gif" border=1> <BR><BR>From the drop 
+      down menus you will need to select the type of each field. If there is a 
+      field in your file that does not match up with any of the allowed types, 
+      select the IGNORE option and the software will ignore that field. Once you 
+      have selected the type for each field, you will need to decide whether you 
+      want these galleries to go in the queue or current database. Select the 
+      option you want, and then press the import galleries button. <BR><BR>Once 
+      completed, you will be returned to the main administrative page, and a 
+      count of the number of imported galleries will be listed at the top of the 
+      page. We recommend that you limit your imports to 1000 galleries per file. 
+      Many servers place a time limit on the execution time of CGI scripts, and 
+      trying to import too many galleries may result in a timeout in the middle 
+      of the process. <BR><BR><!-- HEADER -->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#aaaaaa>
+            <TABLE cellSpacing=1 cellPadding=2 width="100%" border=0>
+              <TBODY>
+              <TR>
+                <TD align=middle bgColor=#ececec><FONT face=Verdana,Arial 
+                  size=2><B>Field Type Notes</B> 
+        </FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><!-- END HEADER --><BR>The 
+      only two field types you need to worry about format with is the Submit 
+      Date and Approve Date. If you have these two types in your gallery import 
+      file, they must be in YYYY-MM-DD format. If a Submit Date and Approve Date 
+      are not provided, the software will use the current date when importing. 
+      </FONT></TD></TR></TBODY></TABLE></FONT></DIV></BODY></HTML>
