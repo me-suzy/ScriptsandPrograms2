@@ -1,0 +1,108 @@
+<!-- BEGIN main_block -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Browse Media</title>
+
+<style type="text/css">
+body,td,th,input,textarea {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+body {
+	background-color: #FFFFFF;
+	margin: 0px;
+}
+hr {
+	margin: 0px;
+	color: #003366;
+	height: 1px;
+}
+.hide {
+	display: none;
+}
+a:link, a:visited, a:active {
+	color: #003366;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+	color: #336699;
+}
+</style>
+
+<script language="javascript" type="text/javascript">
+function confirm_link(message, url) {
+	if(confirm(message)) location.href = url;
+}
+</script>
+
+</head>
+<body>
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%" style="border-bottom: 1px solid #666666; width: 100%;">
+<tr style="background-color: #DDDDDD;">
+	<td width="16" align="center" style="padding-left: 10px;">
+		<a href="{PARENT_DIR_LINK}">
+			<img src="../images/up_folder_16.png" border="0" class="{DISPLAY_UP_ARROW}" alt="^" />
+		</a>
+	</td>
+	<td width="50">
+		<a href="{PARENT_DIR_LINK}" class="{DISPLAY_UP_ARROW}">
+			{TEXT_UP}
+		</a>
+	</td>
+	<td align="center">
+		{TEXT_CURRENT_FOLDER}: {MEDIA_DIRECTORY}{CURRENT_DIR}
+	</td>
+	<td width="16">
+		<a href="browse.php?dir={CURRENT_DIR}">
+			<img src="../images/reload_16.png" border="0" alt="" />
+		</a>
+	</td>
+	<td width="50">
+		<a href="browse.php?dir={CURRENT_DIR}">
+			{TEXT_RELOAD}
+		</a>
+	</td>
+</tr>
+</table>
+
+<table cellpadding="4" cellspacing="0" border="0" width="100%" class="{DISPLAY_LIST_TABLE}">
+<!-- BEGIN list_block -->
+<tr style="background-color: #{ROW_BG_COLOR};">
+	<td width="18" style="padding-left: 10px;">
+		<a href="{LINK}" target="{LINK_TARGET}">
+			<img src="{FILETYPE_ICON}" class="{DISPLAY_ICON}" border="0" alt="" />
+		</a>
+	</td>
+	<td>
+		<a href="{LINK}" target="{LINK_TARGET}">
+			{NAME}
+		</a>
+	</td>
+	<td width="85" align="right" class="{DISPLAY_RENAME}">
+		<a href="rename.php?dir={CURRENT_DIR}&id={TEMP_ID}">
+			<img src="../images/modify_16.png" alt="" border="0" /> {TEXT_RENAME}
+		</a>
+	</td>
+	<td width="70" style="padding-right: 15px;" align="right" class="{DISPLAY_DELETE}">
+		<a href="#" onclick="javascript: confirm_link('{CONFIRM_DELETE}\n {NAME_SLASHED}', 'delete.php?dir={CURRENT_DIR}&id={TEMP_ID}');">
+			<img src="../images/delete_16.png" alt="" border="0" /> {TEXT_DELETE}
+		</a>
+	</td>
+</tr>
+<!-- END list_block -->
+</table>
+
+<font class="{DISPLAY_NONE_FOUND}">
+<br />
+&nbsp; &nbsp; 
+{NONE_FOUND}
+</font>
+
+</body>
+</html>
+
+<!-- END main_block -->
