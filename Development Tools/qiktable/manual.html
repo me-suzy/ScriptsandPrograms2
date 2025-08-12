@@ -1,0 +1,338 @@
+<html>
+<head>
+<title>QikTable Manual</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="PHP object-oriented HTML table SQL MySQL ">
+<meta name="description" content="The QikTable class uses object-oriented PHP to enable you to build HTML tables quickly and easily. It provides a great deal of control over the appearance of the table (borders, colors, alignment, etc.) and has a number of methods that aid in importing data from sources like SQL tables, CSV and tab-delimited flat file databases. Extensive documentation contains the full API and several examples - including displaying the contents of any SQL table and extending the generic QikTable class to generate more specialized tables. ">
+</head>
+
+<frameset cols="220,692*" frameborder="YES" border="2" framespacing="2" rows="1"> 
+  <frame name="contents" scrolling="AUTO" src="manual-toc.html" frameborder="YES">
+  <frame name="mainFrame" src="qiktable.html" scrolling="AUTO" frameborder="YES">
+</frameset>
+
+<noframes>
+<body bgcolor="#FFFFFF">
+
+
+<p><font size="5" color="#3333FF"><b><a name="top"></a>QikTable Class<br>
+  </b></font> <font size="3" color="#000000"> &copy; 2001, Dennis Shearin<br>
+  <b>Author:</b> Dennis Shearin <br>
+  <b>Version: </b><!--version-->1.1<!--version--><br>
+  <b>Last Updated:</b> <!--lastupdate-->October 11, 2001<!--lastupdate--> <br>
+  <b>Terms of Use: </b> See <a href="license.txt">license.txt</a></font> </p>
+<p><font size="4"><b><font color="#3333FF"><a name="intro">Introduction: </a></font></b></font></p>
+<p><font color="#000000">This class provides a simple, yet very flexible way to
+  generate HTML tables. It contains methods that make it easy to import data from
+  a number of different sources, including SQL tables, CSV files and tab-delimited
+  databases. </font></p>
+<p><font size="4"><b><font color="#3333FF"><a name="file"></a>File: </font></b></font></p>
+<p><font color="#000000">This class is defined in the file <i><b>qiktable.php</b></i>.
+  This file must be included in any PHP file that attempts to use this class.
+  The <i>require </i>statement <b>must </b>appear before any instantiation of
+  this class. </font></p>
+<p><font size="4"><b><font color="#3333FF"><a name="constructor"></a>Constructor:</font></b></font></p>
+<blockquote>
+  <p><font color="#000000">object <b>QikTable</b>([array content] [, array headings])</font></p>
+</blockquote>
+<p>The QikTable constructor accepts two optional arguments and returns a QikTable
+  object. The first argument is expected to be a two-dimensional array representing
+  the table's rows and columns respectively. The second argument should be an
+  array containing the text for the headings. Omitting either of these parameters
+  results in a NULL value for that parameter. Methods are provided for setting
+  these parameters after instantiation. </p>
+<p>Nothing is output at the time the QikTable object is instatiated. Methods
+  are provided to print the table once all parameters have been set. </p>
+<p><font size="4"><b><font color="#3333FF"><a name="methods"></a>Methods: </font></b></font></p>
+<p><b><i>Adding data:</i></b></p>
+<blockquote>
+  <p><b><a name="addRow"></a>addRow</b>(array newrow)</p>
+</blockquote>
+<p>This method adds one row of data to the end of the table. The parameter is
+  expected to be an indexed array. </p>
+<p>This method is ideal for building an HTML table from an SQL table. The output
+  of each mysql_fetch_row statement can be used as the argurnent to the <i>addRow</i>
+  method. </p>
+<blockquote>
+  <p><b><a name="addArray"></a>addArray</b>(array newrow)</p>
+</blockquote>
+<p>This method also takes an array as input and adds one row of data to the end
+  of the table. Unlike <i>addRow,</i> this method will also process associative
+  arrays, as well as non-sequential or non-zero-based indexed arrays. It can be
+  used in conjunction with the <i>mysql_fetch_assoc</i> function. </p>
+<blockquote>
+  <p><b>addLine</b><a name="addLine"></a>(String line [, String separator])</p>
+</blockquote>
+<p>Like the above methods, this adds one row of data to the end of the table,
+  but it extracts that data from a string rather than an array. The second parameter
+  is an optional separator character which is used to break the string into array
+  elements. If the separator is not specified, then the default character (tab)
+  is used. </p>
+<p>This method is ideal for building an HTML table from CSV or tab-delimited flat
+  file databases. </p>
+<blockquote>
+  <p><b><a name="setHeadings"></a>setHeadings</b>(array headings)</p>
+</blockquote>
+<p>This method can be used to set the headings for the table. It accepts an array
+  containing the headings. The previous contents of the headings array are overwritten.
+  To remove headings from a table, use: </p>
+<blockquote>
+  <blockquote>
+    <p><font face="Courier New, Courier, mono">MyTable-&gt;setHeadings(NULL);</font></p>
+  </blockquote>
+  <p><b><a name="setHeadingsFromKeys"></a>setHeadingsFromKeys</b>(assocArray inArray)</p>
+</blockquote>
+<p>This is a qik and easy way to set up the headings from the keys in an associative
+  array. The keys are extracted and the first letter of each key is capitalized.
+  The result from the <i>mysql_fetch_assoc</i> function can be used as an argument
+  to this function. </p>
+<p><font size="4"><b><font size="3"><i>Setting up columns:</i></font></b></font></p>
+<blockquote>
+  <p><b><a name="setColCount"></a>setColCount</b>(int numOfCols)</p>
+</blockquote>
+<p>This method can be used to set the number of columns to be displayed in the
+  table. If the number of columns is not set by calling one of these methods,
+  then each row of the table will contain the number of entries in that row of
+  the array. No checking is done to make sure that the number of cells is the
+  same in each row of the table. The major browsers don't seem to have a problem
+  formatting uneven rows, but it's not good form. </p>
+<p>This method can also be used to limit the number of columns printed. For example,
+  if your array contains five elements per row, but you are only interested in
+  the first two, setting the Column Count to 2 will hide the last three columns.
+</p>
+<blockquote>
+  <p><b><a name="setColCountFromHeadings"></a>setColCountFromHeadings</b>()</p>
+</blockquote>
+<p>This method sets the number of columns to be displayed based on the number
+  of entries in the Headings array. To qikly set up a table from a MySQL table,
+  first take the results of the mysql_fetch_assoc function and call setHeadingsFromKeys(),
+  followed by setColCountFromHeadings(). </p>
+<blockquote>
+  <p><b><a name="setColCountFromContents"></a>setColCountFromContents</b>()</p>
+</blockquote>
+<p>This method sets the number of columns to be displayed based on the longest
+  row in the Contents array. This is the least effective way to set the Column
+  Count. If the Contents array is large, this could be time consuming. Also, if
+  every row in the array contains at least one NULL value, then the results will
+  not be accurate, as NULL values are not counted. </p>
+<p>This method will only set the Column Count if the result it gets is greater
+  than the current value of the Column Count. For example, if every row of the
+  Contents array has three elements and the Column Count has been manually set
+  to 4, a blank column will be output at the end of the table. When using this
+  method, it's best to explicitly set the Column Count to zero first. </p>
+<p><font size="4"><b><font size="3"><i>Setting up the table:</i></font></b></font></p>
+<blockquote>
+  <p><b><a name="setBorder"></a>setBorder</b>(int borderwidth)</p>
+</blockquote>
+<p>This method sets the border parameter of the table. An integer parameter is
+  expected and behavior is undefined for any other argument type. </p>
+<blockquote>
+  <p><b><a name="setCellPadding"></a>setCellPadding</b>(int padding)</p>
+</blockquote>
+<p>This method sets the cellpadding parameter of the table (the amount of whitespace
+  surrounding the contents of a table cell). An integer parameter is expected
+  and behaviour is undefined for any other argument type. </p>
+<blockquote>
+  <p><b><a name="setCellSpacing"></a>setCellSpacing</b>(int spacing)</p>
+</blockquote>
+<p>This method sets the cellspacing parameter of the table (the amount of whitespace
+  between adjacent table cells). An integer parameter is expected and behaviour
+  is undefined for any other argument type. </p>
+<blockquote>
+  <p> <b><a name="setTableAlign"></a>setTableAlign</b>(string Alignment) </p>
+</blockquote>
+<p>This determines how the table will be aligned with respect to the page (i.e.,
+  left, right, center).</p>
+<blockquote>
+  <p><b><a name="setTableColor"></a>setTableColor</b>(color backgroundColor)</p>
+</blockquote>
+<p>This method can be used to set the background color for the table. Standard
+  color names can be used or the colors can be entered in hex notation (i.e.,
+  #FFFFFF, #9900FF, etc.).When called with a NULL argument, the table will be
+  the same color as the page. </p>
+<blockquote>
+  <p><b><a name="setTableBackground"></a>setTableBackground</b>(URL backgroundImage)
+  </p>
+</blockquote>
+<p>This method can be used to specify the URL of an image file to be used as a
+  background for the table. Typically, this takes precedence over the background
+  color. </p>
+<blockquote>
+  <p> <b><a name="setHeadingAlign"></a>setHeadingAlign</b>(string Alignment) </p>
+</blockquote>
+<p>This determines how the headings will be aligned with respect to the columns
+  of the table (i.e., left, right, center).</p>
+<blockquote>
+  <p><b><a name="setHeadingColor"></a>setHeadingColor</b>(color backgroundColor)</p>
+</blockquote>
+<p>This method can be used to set the background color for the headings. Standard
+  color names can be used or the colors can be entered in hex notation (i.e.,
+  #FFFFFF, #9900FF, etc.).When called with a NULL argument, the background color
+  of the headings will be the same as the underlying table. </p>
+<blockquote>
+  <p><b><a name="setHeadingBackground"></a>setHeadingBackground</b>(URL backgroundImage)
+  </p>
+</blockquote>
+<p>This method can be used to specify the URL of an image file to be used as a
+  background for the headings. Typically, this takes precedence over the background
+  color. Support for this varies between browsers. </p>
+<blockquote>
+  <p><b><a name="setContentAlign"></a>setContentAlign</b>(string Alignment) </p>
+</blockquote>
+<p>This determines how the content in the body of the table will be aligned with
+  respect to the table's columns (i.e., left, right, center).</p>
+<blockquote>
+  <p><b><a name="setContentColor"></a>setContentColor</b>(color backgroundColor)</p>
+</blockquote>
+<p>This method can be used to set the background color for the body content. Standard
+  color names can be used or the colors can be entered in hex notation (i.e.,
+  #FFFFFF, #9900FF, etc.).When called with a NULL argument, the background color
+  of the content will be the same as the underlying table. </p>
+<blockquote>
+  <p><b><a name="setContentBackground"></a>setContentBackground</b>(URL backgroundImage)
+  </p>
+</blockquote>
+<p>This method can be used to specify the URL of an image file to be used as a
+  background for the table's content. Typically, this takes precedence over the
+  background color. Support for this varies between browsers. </p>
+<p><font size="4"><b><font size="3"><i>Outputting the table:</i></font></b></font></p>
+<blockquote>
+  <p><b><a name="startTable"></a>startTable</b>()</p>
+</blockquote>
+<p>This method will print out the initial &lt;table&gt; tag with the parameters
+  that have been set. </p>
+<blockquote>
+  <p><b><a name="endTable"></a>endTable</b>()</p>
+</blockquote>
+<p>This method simply outputs the closing &lt;/table&gt; tag. </p>
+<blockquote>
+  <p><b><a name="printHeadings"></a>printHeadings</b>()</p>
+</blockquote>
+<p>This method outputs the headings for the table. </p>
+<blockquote>
+  <p><b><a name="printContents"></a>printContents</b>()</p>
+</blockquote>
+<p>This method outputs the complete contents of the table as defined in the content
+  array. </p>
+<blockquote>
+  <p><b><a name="printTable"></a>printTable</b>()</p>
+</blockquote>
+<p>This method calls each of the above methods to print out the complete table.
+  Using the individual methods allows the flexibility to add a title, comments
+  or other info to the table. </p>
+<p><font size="4"><b><font color="#3333FF"><a name="examples"></a>Examples:</font></b></font></p>
+
+<p><b><i>Viewing a Database:</i></b></p>
+
+<p>The following example shows how easy it is to display the contents of a MySQL
+  database: </p>
+
+<pre>
+&lt;?php
+
+// Create QikTable object
+require("qiktable.php");			// Use full path if not local
+$yourQikTable = new QikTable();
+
+// Open database and send query
+// $user, $password, $database and $tablename can be:
+// -> Set in an include file
+// -> Passed in an HTML query string
+// -> Set in a form whose action is this PHP file
+// -> Replaced with hardcoded values
+
+$dbconn = @mysql_pconnect("localhost", "$user", "$password") or die("Can't open database");
+mysql_select_db("$database") or die("Can't open database");
+$result = mysql_query("SELECT * FROM $tablename ") or die("Error processing query");
+
+// Extract headings and first line of table from the first row of the database
+$row = mysql_fetch_assoc($result);		// NOT mysql_fetch_array($result)!
+$yourQikTable->setHeadingsFromKeys($row);
+$yourQikTable->addArray($row);
+
+// Get the rest of the table
+while ($row = mysql_fetch_row($result)) $yourQikTable->addRow($row);
+
+// Set desired parameters
+$yourQikTable->setHeadingAlign("left");
+
+// And display it
+$yourQikTable->printTable();
+
+mysql_free_result($result);
+
+?&gt;
+</pre>
+
+<p><b><i>Inheritance - Extending QikTable:</i></b></p>
+
+<p>
+This example shows how to extend the generic QikTable class to create one that is more specialized. I use the LogTable class to display the change log for QikTable. This class inherits all the member variables and methods of the parent class.
+</p>
+
+<p>
+As you can see, there are only two overridden methods: the constructor (because the constructor of the parent is not automatically called) and the method that outputs the contents (which allows the log to be formatted differently than a generic table). QikTable's <span class="qtmethodname">addLine</span> method is used to input the data from the tab-delimited log file.
+</p>
+
+<p>
+Click <a href="showlog.php" target="_blank">here</a> to see the results.
+</p>
+
+<pre>
+&lt;?php
+
+require("qiktable.php");		// Use full path if not local
+
+class LogTable extends QikTable
+{
+    var $fields = array("Date", "Hours", "Version");
+
+    // Constructor
+    function LogTable($contents = NULL, $headings = NULL)
+    {
+        $this->contents = $contents;
+        $this->headings = $headings;
+    }
+
+    function printContents()
+    {
+        for ($i = 0; $i < count($this->contents); $i++)
+        {
+            echo "&lt;tr&gt;\n";
+            for ($j = 0; $j < 3 ; $j++)
+            {
+                echo "&lt;td align = \"$this-&gt;headingAlign\" ";
+                echo "background = \"$this-&gt;headingBackground\"  ";
+                echo "bgcolor = \"$this-&gt;headingColor\" &gt;";
+                echo "&lt;b&gt;".$this-&gt;fields[$j].": &lt;/b&gt;";
+                echo $this-&gt;contents[$i][$j];
+                echo "&lt;/td&gt;\n";
+            }
+
+            echo "&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=\"3\"  ";
+            echo "align = \"$this-&gt;contentAlign\" ";
+            echo "background = \"$this-&gt;contentBackground\"  ";
+            echo "bgcolor = \"$this-&gt;contentColor\" &gt;";
+            echo $this-&gt;contents[$i][3];
+            echo "&lt;/td&gt;\n";
+            echo "&lt;/tr&gt;\n";
+            echo "&lt;tr&gt;&lt;td colspan=\"3\"&gt;&lt;/td&gt;&lt;/tr&gt;";  // Spacer
+        }
+    }
+}
+?&gt;
+</pre>
+
+<p><b><i>Interactive Table Builder:</i></b></p>
+
+<p>
+This example lets you use QikTable to dynamically change the appearance of a table. Once you have a design you like, press the "Show Code" button to display a script that you can cut and paste into your own PHP file.
+</p>
+
+<p>
+Click <a href="tablebuilder.html" target="_blank">here</a> to see this example.
+</p>
+
+</body>
+</noframes>
+</html>
