@@ -1,0 +1,76 @@
+
+------------------------------------------------------------------------
+                         NETJUKE: Known Issues
+------------------------------------------------------------------------
+
+- Affected versions: all (?)
+- Affected OS: all (?)
+
+Some people are experiencing problems with connecting the netjuke to
+their database server.
+
+This can be due to network settings, or permissions settings, or the
+fact that your php install might not have the appropriate db libraries.
+
+There is no fix-all solution to these issues, so your best bet is to
+post to the mailing list or the forum and see if someone can help you
+figuring out what the source of your problem is.
+
+------------------------------------------------------------------------
+
+- Affected versions: all (?)
+- Affected OS: Linux
+
+Some browsers on linux are experiencing problems with the M3U playlist
+generation.
+
+Make sure Plugger isn't installed, and all should now work fine, even
+under galeon and Konqueror.  
+
+------------------------------------------------------------------------
+
+- Affected versions: all
+- Affected Audio Format: Ogg Vorbis
+
+When the "PROTECT MEDIA" feature is enabled in the admin section, Ogg
+Vorbis files will not play in XMMS, Audion, and potentially all players.
+
+Error: no error shows in the audio player or the logs of the http
+server, which makes it difficult to troubleshoot at this time.
+
+- Opt. Fix: Turn off the "Protect Media" option in Admin -> Pref. File
+  Edit (or just stick to mp3 for now)
+
+------------------------------------------------------------------------
+
+- Affected versions: all
+- Affected OS: Windows
+
+When accessing tracks from a Netjuke playlist generated from Windows,
+your audio player might not play the tracks if their respective filenames
+contain parentheses (). Other platforms do not seem to be affected.
+
+Error: winamp says 404 not found; MSIE6 media player says Error# 8007000D
+
+There is no known solution to this problem.
+
+- Opt. Fix: remove the parentheses from the filenames (and update the
+  associated netjuke record).
+
+------------------------------------------------------------------------
+
+- Affected versions: all (with jukebox feature)
+- Affected OS: Windows
+
+When using Windows as the server OS, and using winanmp as a player with
+the jukebox (server-play) feature, the netjuke has problems adding tracks
+to the playlist (replace should be fine), and killing the process of the
+background winamp player. The latter leads to too many winamp processes
+being started.
+
+- Opt. Fix: restart the server to kill all current winamp bg processes.
+
+- Looking for: proper way to add files t playlist, and how to get the
+  process id and kill it by pid on Windows.
+
+------------------------------------------------------------------------
