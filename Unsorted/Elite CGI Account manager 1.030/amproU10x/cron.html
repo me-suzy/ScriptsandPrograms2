@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>using cron</title>
+</head>
+
+<body bgcolor=#440007 text=#ffffcc link=#ff9966 vlink=#ff6633>
+<p>
+<h1 align=center>Using Cron</h1>
+
+Cron is a great, easy to use (once you know the notation) way of automating
+tasks that you want done every week/month/day at a certain time.
+<p>
+The jobs that cron is expected to do are stored in a file called the
+crontab, which you can view by typing (as root):
+<pre>
+crontab -l
+</pre>
+(That's a small L.)  When you display the crontab, you will see entries like
+this one:
+<pre>
+# rotate staff diary every month
+25 0 1 * *           /usr/forum/bin/monthly-diary-rotate.csh
+</pre>
+which runs a script in /usr/forum/bin called monthly-diary-rotate.csh at
+12:25 am on the first of every month.
+<p>
+<h4>How can we tell that's what it does?</h4>
+<p>
+An entry consists of two parts-- a time to run, and a command to run. (The
+top line beginning with a # mark is a comment, and is only there to remind
+people reading the file what the entry is there for.)
+<p>
+The time to run (the first part of the entry) is broken up into 5 fields:
+<ul>
+<li>minute of the hour
+<li>hour of the day (on the 24 hour clock)
+<li>day of the month
+<li>month of the year (1 = January, 2 = February, etc.)
+<li>day of the week (0 = Sunday, 1 = Monday, 2 = Tuesday, ..., 6 = Saturday)
+</ul>
+<p>
+A "*" in one of these fields indicates that the job should be executed at
+any or every one of these, so for instance a "*" in the month of the year
+field means that this task should be carried out every month at the time
+specified in the other fields.  A "*" in the day of the week field, when
+there is something in the day of the month field, does not mean that this
+task should be carried out every day, but rather that it should be carried
+out on the appointed day of the month regardless of what weekday it is.
+Only "*"s in the day of the week field,<em>and</em> the day of the month
+field, <em>and</em> the month of the year field would indicate a daily task.
+<p>
+Examples:
+The job with this time to run would run every Sunday at 12:20 am.
+<pre>
+20 0 * * 0
+</pre>
+This job would run at midnight on any Friday the 13th.
+<pre>
+0 0 13 * 5
+</pre>
+<p>
+ <br>
+You don't have to put just one time in a field.  This job, for instance,
+would run every day at 12:30am, 2:30am, 4:30am, 6:30am, 6:30pm, 8:30pm, and 
+10:30pm:
+<pre>
+30 0,2,4,6,18,20,22 * * *
+</pre>
+and this one would run every Tuesday and Friday at 5:30 am:
+<pre>
+30 5 * * 2,5
+</pre>
+<p>
+ <br>
+The command to run is simply what you would type at the command line if you
+were doing it manually.
+<p>
+<h4>Adding/Changing entries in the crontab:</h4>
+<p>
+To edit the crontab, simply type (as root):
+<pre>
+crontab -e
+</pre>
+What you will actually have open and be editing is a temporary file, but as
+soon as you save it the crontab will reflect your changes.  If you are
+making major changes or are worried that you might screw it up somehow you
+might want to save the old version like this:
+<pre>
+crontab -l > ~yourname/crontab.old
+</pre>
+(The ">" redirects the output of a command, in this case crontab -l into a
+file.) There it is.  Hope using cron to automate tasks makes your life
+easier.
+<p>
+<a href="admindex.html">Back to the System Administration tips page</a><br>
+<a href="index.html">Back to the UNIX Tips main page</a><br>
+<a href="../index.html">Back to my home page</a>  
