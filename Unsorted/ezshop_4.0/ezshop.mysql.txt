@@ -1,0 +1,193 @@
+# MySQL dump 4.0
+#
+# Host: www.eyekon.com    Database: easyshop
+#--------------------------------------------------------
+
+#
+# Table structure for table 'billto'
+#
+CREATE TABLE billto (
+  user_id varchar(8) DEFAULT '0' NOT NULL,
+  lname varchar(64) DEFAULT '' NOT NULL,
+  fname varchar(64),
+  addr1 varchar(128),
+  addr2 varchar(128),
+  city varchar(128),
+  province varchar(64) DEFAULT 'CA',
+  pcode varchar(16),
+  country varchar(64) DEFAULT 'USA',
+  email varchar(128),
+  phone varchar(128),
+  fax varchar(128),
+  PRIMARY KEY (user_id)
+);
+
+#
+# Table structure for table 'camera'
+#
+CREATE TABLE camera (
+  product_id varchar(32) DEFAULT '' NOT NULL,
+  category varchar(64) DEFAULT 'N/A',
+  sub_category varchar(64) DEFAULT 'N/A',
+  status varchar(8),
+  sub_category2 varchar(64),
+  description text,
+  price double(10,2),
+  PRIMARY KEY (product_id)
+);
+
+#
+# Table structure for table 'cart'
+#
+CREATE TABLE cart (
+  session varchar(32) DEFAULT '0' NOT NULL,
+  merchant_id tinyint(4) DEFAULT '0' NOT NULL,
+  item_id varchar(64) DEFAULT '0' NOT NULL,
+  quantity tinyint(4) DEFAULT '0' NOT NULL,
+  create_time int(11) DEFAULT '0' NOT NULL,
+  KEY session (session)
+);
+
+#
+# Table structure for table 'cart_user'
+#
+CREATE TABLE cart_user (
+  user_id varchar(8) DEFAULT '' NOT NULL,
+  upass varchar(8) DEFAULT '' NOT NULL,
+  email varchar(128) DEFAULT '' NOT NULL,
+  PRIMARY KEY (user_id)
+);
+
+#
+# Table structure for table 'merchant'
+#
+CREATE TABLE merchant (
+  merchant_id tinyint(4) DEFAULT '0' NOT NULL auto_increment,
+  company varchar(128) DEFAULT '' NOT NULL,
+  address varchar(255) DEFAULT '' NOT NULL,
+  postal_code varchar(8) DEFAULT '' NOT NULL,
+  city varchar(255) DEFAULT '' NOT NULL,
+  country varchar(255) DEFAULT '' NOT NULL,
+  tech_contact varchar(255) DEFAULT '' NOT NULL,
+  tech_phone varchar(24) DEFAULT '' NOT NULL,
+  tech_fax varchar(24) DEFAULT '' NOT NULL,
+  sales_contact varchar(255),
+  sales_phone varchar(24),
+  sales_fax varchar(24),
+  tech_email varchar(255),
+  sales_email varchar(255),
+  province varchar(255),
+  PRIMARY KEY (merchant_id)
+);
+
+#
+# Table structure for table 'order_cart'
+#
+CREATE TABLE order_cart (
+  invoice_num int(11) DEFAULT '0' NOT NULL,
+  merchant_id tinyint(4) DEFAULT '0' NOT NULL,
+  item_id varchar(64) DEFAULT '0' NOT NULL,
+  quantity tinyint(4) DEFAULT '0' NOT NULL,
+  description varchar(255) DEFAULT '0' NOT NULL,
+  price float(8,2) DEFAULT '0.00' NOT NULL
+);
+
+#
+# Table structure for table 'order_completed'
+#
+CREATE TABLE order_completed (
+  invoice_num int(11) DEFAULT '0' NOT NULL auto_increment,
+  merchant_id tinyint(4) DEFAULT '0' NOT NULL,
+  user_id varchar(8) DEFAULT '0' NOT NULL,
+  billto_lname varchar(64),
+  billto_fname varchar(64),
+  billto_addr1 varchar(128),
+  billto_addr2 varchar(128),
+  billto_city varchar(128),
+  billto_province varchar(64) DEFAULT 'CA',
+  billto_pcode varchar(16),
+  billto_country varchar(64) DEFAULT 'USA',
+  billto_email varchar(128),
+  billto_phone varchar(128),
+  billto_fax varchar(128),
+  shipto_lname varchar(64),
+  shipto_fname varchar(64),
+  shipto_addr1 varchar(128),
+  shipto_addr2 varchar(128),
+  shipto_city varchar(128),
+  shipto_province varchar(64) DEFAULT 'CA',
+  shipto_pcode varchar(16),
+  shipto_country varchar(64) DEFAULT 'USA',
+  shipto_email varchar(128),
+  shipto_method varchar(128),
+  shipto_phone varchar(64),
+  shipto_fax varchar(64),
+  pay_method varchar(32) DEFAULT '' NOT NULL,
+  card_number varchar(64) DEFAULT '0',
+  exp_month tinyint(4) DEFAULT '0',
+  exp_year smallint(6) DEFAULT '0',
+  session varchar(32) DEFAULT '' NOT NULL,
+  order_date int(11) DEFAULT '0' NOT NULL,
+  ship_cost float(4,2) DEFAULT '0.00' NOT NULL,
+  tax float(4,2) DEFAULT '0.00' NOT NULL,
+  credit_surcharge float(4,2) DEFAULT '0.00' NOT NULL,
+  card_name varchar(64),
+  PRIMARY KEY (invoice_num)
+);
+
+#
+# Table structure for table 'payment'
+#
+CREATE TABLE payment (
+  user_id varchar(8) DEFAULT '0' NOT NULL,
+  pay_method varchar(32) DEFAULT '' NOT NULL,
+  card_number varchar(64) DEFAULT '0',
+  exp_month tinyint(4) DEFAULT '0',
+  exp_year smallint(6) DEFAULT '0',
+  card_name varchar(128) DEFAULT '' NOT NULL,
+  PRIMARY KEY (user_id)
+);
+
+#
+# Table structure for table 'shipto'
+#
+CREATE TABLE shipto (
+  user_id varchar(8) DEFAULT '0' NOT NULL,
+  lname varchar(64),
+  fname varchar(64),
+  addr1 varchar(128),
+  addr2 varchar(128),
+  city varchar(128),
+  province varchar(64) DEFAULT 'CA',
+  pcode varchar(16),
+  country varchar(64) DEFAULT 'USA',
+  email varchar(128),
+  method varchar(128),
+  phone varchar(64),
+  fax varchar(64),
+  shipto_billto char(3) DEFAULT 'Yes' NOT NULL,
+  PRIMARY KEY (user_id)
+);
+
+#
+# Table structure for table 'zaks'
+#
+CREATE TABLE zaks (
+  winery varchar(32) DEFAULT '' NOT NULL,
+  state varchar(32) DEFAULT '' NOT NULL,
+  varietal varchar(64) DEFAULT '' NOT NULL,
+  appellation varchar(64) DEFAULT '' NOT NULL,
+  vintage varchar(8) DEFAULT 'N/V',
+  price float(10,2) DEFAULT '0.00' NOT NULL,
+  note blob,
+  unit varchar(32) DEFAULT '' NOT NULL,
+  quantity tinyint(4) DEFAULT '0' NOT NULL,
+  rep tinyint(4) DEFAULT '0' NOT NULL,
+  record_id smallint(6) DEFAULT '0' NOT NULL auto_increment,
+  new_release tinyint(1) DEFAULT '0' NOT NULL,
+  red tinyint(1) DEFAULT '0' NOT NULL,
+  KEY winery (winery),
+  KEY varietal (varietal),
+  PRIMARY KEY (record_id)
+);
+
