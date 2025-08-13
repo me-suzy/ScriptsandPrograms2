@@ -1,0 +1,219 @@
+
+------------------------------------------------------------------------
+                 NETJUKE: Software Installation Notes
+------------------------------------------------------------------------
+
+
+IMPORTANT NOTES
+
+1. Existing users should refer to the provided UPGRADING.txt instead.
+
+2. The netjuke is now only compatible with PHP 4.1 or over. PHP 4.07
+   or prior is not supported because of major changes since PHP 4.1
+   in how global variables are handled. 
+
+3. Mac OS X users might want to read the following if they are new to
+   PHP and MySQL, and want a step-by-step help on how to install both,
+   as well as the netjuke itself: http://homepage.mac.com/oddball/
+   (Thanks Ethan for this great doc!).
+
+4. On Windows, make sure to select "Advanced" when you install PHP,
+   and select "Show all errors" (3rd choice) when prompted by the
+   PHP installer for the level of error reporting. Not doing so will
+   result in not being able to install or run the netjuke.
+
+
+------------------------------------------------------------------------
+
+
+NEW INSTALL: SHORT VERSION:
+
+1. Download the latest release of the netjuke package.
+   
+2. Create and/or make sure you have access to a database.
+
+3. Unpack the Netjuke files in a web accessible directory.
+
+4. Go to http://.../netjuke/installer/installer.php and proceed with
+   the appropriate installation steps (license + docs + web form).
+
+5. Save the resulting text file as netjuke/etc/inc-prefs.php
+
+6. Make the inc-prefs.php file and netjuke/var/data/ directory owned
+   by the web server user, or world-writable (Read/Write privileges
+   for all. Less secure).
+
+7. You can now login to your new Netjuke using the admin account you
+   just created. Refer to the admin section once logged-in to setup
+   your site preferences, users, and import your audio files.
+
+8. READ THE IMPORTANT MAINTAIN.txt DOCUMENTATION
+
+   
+FOR INCREASED SECURITY, remove the "installer/" directory from
+within the netjuke when you are done installing.
+
+
+------------------------------------------------------------------------
+
+
+NEW INSTALL: DESCRIPTIVE VERSION:
+
+
+1. Download the latest release of the netjuke package.
+   
+   - Preferred Site: http://netjuke.sourceforge.net/
+   -  Official Site: http://netjuke.artekopia.org/
+   - Alternate Site: http://netjuke.tekartists.com/
+
+
+2. Create and/or make sure you have access to a database.
+
+   Examples:
+   
+   + PostgreSQL:
+     shell: createdb <database_name>
+     shell: psql <database_name>
+   
+   + MySQL:
+     shell: mysql -u your_user -p
+     mysql: create database <database_name>;
+     mysql: use <database_name>;
+   
+   The netjuke doesn't require for the database instance to be dedicated
+   to its application. All the DB objects (tables, indexes, etc.) are
+   prefixed with "netjuke_" so that they do not conflict with others you
+   might have created for another software and/or data repository.
+
+   Portability being a primary focus, this hopes to help insure keeping
+   a low footprint for the overall solution, as well as insure that
+   people with most basic hosting accounts can still host their data
+   in a shared database.
+
+
+3. Unpack the Netjuke files in a web accessible directory.
+
+   If you are upgrading, be sure to backup a copy of your existing
+   preference file before you overwrite anything...
+   
+   The web server must have PHP installed and running, and PHP must
+   have the appropriate libraries for the database type you will be
+   connecting to.
+   
+   The web application, the database, and the media files can all be
+   hosted on different servers/networks to allow for multiple apps
+   connecting to a single data source, streaming files from multiple
+   servers, etc.
+   
+   If your user privileges allow for such tasks, we do advise to use
+   whatever extra security measures you have access to.
+   
+   Suggestions:
+   
+   - Leave the server(s) behind a firewall.
+   
+   - Use host-based authentication at the http server level for the
+     application and streaming servers (.htaccess, etc.).
+   
+   - Use host-based authentication at the database server level.
+   
+   - Use SSL for browser access, and tunneling for server-side
+     connections.
+   
+   - Use bandwidth and/or disc space quotas for the streaming server.
+
+
+4. Go to http://.../netjuke/installer/installer.php and proceed with
+   the appropriate installation steps (license + docs + web form).
+
+   If you want to access the netjuke from more than one computer
+   right away, make sure to connect to the installer using a valid
+   hostname or ip address (IE: not just 127.0.0.1 or localhost).
+   
+   The installer will ultimately generate the required database
+   objects, as well as provide you with the vital "inc-prefs.php"
+   file that will host all your preferences and configurations
+   based on the answers you provide.
+   
+   FOR INCREASED SECURITY, remove the "installer/" directory from
+   within the netjuke when you are done installing.
+
+
+5. Save the resulting text file as netjuke/etc/inc-prefs.php
+
+   This file must be saved as /etc/inc-prefs.php, the leading slash
+   being the root of the netjuke application.
+   (eg: http://your.domain.dom/netjuke/etc/inc-prefs.php
+
+   IMPORTANT: After saving the resulting file, we strongly advise
+   to verify it in a text editor to make sure there are no empty
+   characters or blank line before the top "<?php" and after the
+   bottom "?>" as they may generate errors when the file is used
+   by the freshly installed application.
+
+   Some browser will prompt you to save the file (as inc-prefs.php),
+   while some will save it to your default download folder, or
+   even display the content of the file. Just make sure to verify
+   the file afterward. If unsure or unsucessful, you can download
+   the netjuke-toolkit package, and generate the database and/or
+   preference file manually by referring to PHP/master-inc-prefs.php
+   (to be edited, not run), obfuscate-db-passwd.php, and SQL/install/.   
+
+   To install multiple copies of the Netjuke application that would
+   connect to a centralized db and/or stream server (virtual hosts,
+   server farms, load or geographic balancing, etc.), the easiest
+   way is to simply clone the provided preference file and modify
+   it as needed.
+   
+   FOR INCREASED SECURITY, remove the "installer/" directory from
+   within the netjuke when you are done installing.
+
+
+6. Make the inc-prefs.php file and netjuke/var/data/ directory owned
+   by the web server user, or world-writable (Read/Write privileges
+   for all. Less secure).
+   
+   If you omit to do so, you will encounter permissions errors when
+   importing your music, or running the database maintenance tools.
+   
+   Make sure that not web server doesn't display directory listings
+   of you don't want users to download the tracks. This is a matter
+   of how your web server software is setup on your machine though,
+   not part of the netjuke application itself.
+
+
+7. You can now login to your new Netjuke using the admin account you
+   just created. Refer to the admin section once logged-in to setup
+   your site preferences, users, and import your audio files.
+
+
+8. READ THE IMPORTANT MAINTAIN.txt DOCUMENTATION   
+
+
+HAPPY STREAMING!
+
+
+------------------------------------------------------------------------
+
+
+If you need help with using or installing this software, please refer
+to the web site(s) listed above to get in touch with the related user
+and developer communities directly, through the provided public forums
+and mailing lists. These are the best ways to get quick technical
+support, or to get involved with the development of the Netjuke and
+its related custom components.
+
+For critical operations, we advise to get commercial support or
+integration services from people actually involved in the development
+of this software application (TekArtists, or other individuals and
+organizations officially listed in the provided credits document).
+
+
+Thank you for trying and/or using the Netjuke.
+
+We hope you will enjoy this software as much as we do!
+
+
+------------------------------------------------------------------------
+
+
