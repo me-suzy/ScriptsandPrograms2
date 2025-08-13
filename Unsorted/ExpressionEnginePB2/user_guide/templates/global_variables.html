@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Global Variables &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="var_MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Global Variables</h1>
+
+	<p>Some variables are global in scope, meaning they are not limited to a particular tag.  You can use global variables anywhere in any template.</p>
+
+	<ul class="minitoc">
+		<li><a href="#var_stylesheet">{stylesheet=weblog/weblog_css}</a></li>
+		<li><a href="#var_path">{path=weblog/comments}</a></li>
+		<li><a href="#var_ifloggedin">{if logged_in}</a></li>
+		<li><a href="#var_ifloggedin">{if logged_in}</a></li>
+		<li><a href="#var_app_version">{app_version}</a></li>
+		<li><a href="#var_char_encoding">{char_encoding}</a></li>
+		<li><a href="#var_current_time">{current_time format="%Y %m %d %H:%i:%s"}</a></li>
+		<li><a href="#var_debug_mode">{debug_mode}</a></li>
+		<li><a href="#var_encode">{encode=you@yoursite.com}</a></li>
+		<li><a href="#var_gzip_mode">{gzip_mode}</a></li>
+		<li><a href="#var_hits">{hits}</a></li>
+		<li><a href="#var_ip_address">{ip_address}</a></li>
+		<li><a href="#var_ip_hostname">{ip_hostname}</a></li>
+		<li><a href="#var_member_profile_link">{member_profile_link}</a></li>
+		<li><a href="#var_url_segments">URL Segments</a></li>
+		<li><a href="#var_user-defined">User-Defined Variables</a></li>
+	</ul>
+
+
+
+	<h2><a name="var_stylesheet">Stylesheets</a></h2>
+
+	<code>{stylesheet=weblog/weblog_css}</code>
+
+	<p>The stylesheet variables is used exclusively in the CSS declaration in your pages.  It must contain the template group/template name where your stylesheet is located.</p>
+
+	<code>&lt;link rel="stylesheet" type="text/css" media="all" href="{stylesheet=weblog/weblog_css}" /></code>
+
+
+
+	<h2><a name="var_path">Paths</a></h2>
+
+	<code>{path="template_group/template"}</code>
+
+	<p>The path variable is substituted with the template group and template name you specify, and it will automatically include your base site path.  For example if your base site is at <samp>http://www.yoursite.com/</samp> and your site index page is <var>index.php</var>, then this variable:</p>
+
+	<code>{path="weblog/comments"}</code>
+
+	<p>Will be substituted with:</p>
+
+	<code>http://www.yoursite.com/index.php/weblog/comments/</code>
+
+	<p>You can also use <samp>SITE_INDEX</samp> in your path to point to your main site index:</p>
+
+	<code>{path="SITE_INDEX"}</code>
+
+	<p>Additionally, you can use <samp>LOGOUT</samp> in your path to point to the member logout link:</p>
+
+	<code>{path="LOGOUT"}</code>
+
+
+
+	<h2><a name="var_ifloggedin">Current Logged In Status</a></h2>
+
+	<p>There are two tag pairs that can be used to check whether the person viewing a page is currently a logged in member or not:</p>
+
+	<code>{if logged_in}<br />
+<br />
+content<br />
+<br />
+{/if}</code>
+
+	<p>This tag pair will display content within the pair if the person viewing the page is currently a logged in member.</p>
+
+	<code>{if logged_out}<br />
+<br />
+content<br />
+<br />
+{/if}</code>
+
+	<p>This tag pair will display content within the pair if the person viewing the page is <strong>not</strong> currently a logged in member.</p>
+
+	<p><b>Note:</b> These only test whether or not someone is logged in.  If you want to restrict a particular page based on the member group assignment you'll do that in your Template preferences in the Control Panel.</p>
+
+	<p>By default, these tag pairs are used with the "login/logout" links, like this:</p>
+
+	<code>{if logged_in}<br />
+&lt;a href="{path="LOGOUT"}">Logout&lt;/a><br />
+{/if}</code>
+
+	<code>{if logged_out}<br />
+&lt;a href="{path="member/login"}">Login&lt;/a>  | &lt;a href="{path="member/register"}">Register&lt;/a><br />
+{/if}</code>
+
+	<p>These tags are not limited to only those uses, though; they can be used anywhere, or even in multiple places on the same page, to limit content based on the log-in status.</p>
+
+	<p>You'll notice in the "logout" link above that a special path is used: <samp>{path="LOGOUT"}</samp>.  This is a special-case path value that will automatically render the correct path for someone to log out.</p>
+
+
+
+	<h2>Other Global Variables</h2>
+
+	<h3><a name="var_app_version">app_varsion</a></h3>
+
+		<code>{app_version}</code>
+
+		<p>This variable will be substituted with the currently installed software version.</p>
+
+
+	<h3><a name="var_char_encoding">char_encoding</a></h3>
+
+		<code>{char_encoding}</code>
+
+		<p>This variable will be substituted for the global character encoding preference.</p>
+
+
+	<h3><a name="var_current_time">current_time</a></h3>
+
+		<code>{current_time}</code>
+
+		<p>This variable displays the current server time localized to each user's particular setting.  As with other date variables, you use the standard <a href="date_variable_formatting.html">date variable formatting</a>:</p>
+
+		<code>{current_time format="%Y %m %d %H:%i:%s"}</code>
+
+
+	<h3><a name="var_debug_mode">debug_mode</a></h3>
+
+		<code>{debug_mode}</code>
+
+		<p>This variable will be substituted with either "on" or "off" based on your debug mode settings.</p>
+
+
+	<h3><a name="var_encode">encode</a></h3>
+
+		<code>{encode=you@yoursite.com}</code>
+
+		<p>This variable will automatically encode the specified email address to make it more difficult for spam harvesters to grab an email address.</p>
+
+
+	<h3><a name="var_gzip_mode">gzip_mode</a></h3>
+
+		<code>{gzip_mode}</code>
+
+		<p>This variable will be substituted with either "on" or "off" based on your output compression settings mode settings.</p>
+
+
+	<h3><a name="var_hits">hits</a></h3>
+
+		<code>{hits}</code>
+
+		<p>This variable will be substituted with the number of hits that any given template containing the variable has received.</p>
+
+
+	<h3><a name="var_ip_address">ip_address</a></h3>
+
+		<code>{ip_address}</code>
+
+		<p>This variable will be substituted with the IP address of the currently logged in user.</p>
+
+
+	<h3><a name="var_ip_hostname">ip_hostname</a></h3>
+
+		<code>{ip_hostname}</code>
+
+		<p>This variable will be substituted with the host name that corresponds to the IP address of the currently logged in user.</p>
+
+
+	<h3><a name="var_member_profile_link">member_profile_link</a></h3>
+
+		<code>{member_profile_link}</code>
+
+		<p>This variable will be substituted with a link to the public profile page for the currently logged in user.  The text of the link will be the member's screen name.  For instance, the output might be:</p>
+
+		<code>&lt;a href="http://www.example.com/index.php/member/1/">Joe Smith&lt;/a></code>
+
+
+	<h3><a name="var_url_segments">URL Segments</a></h3>
+
+		<code>{segment_1}<br />
+	{segment_2}<br />
+	{segment_3}<br />
+	{segment_4}<br />
+	{segment_5}<br />
+	{segment_6}</code>
+
+		<p>These global variables represent data stored in the various segments of your page URL.  By "segments", we mean the segments of the URL that appear after your standard <var>index.php</var> file (or whatever you might have changed the name to be).  A standard URL might look like:</p>
+
+		<code>http://www.example.com/index.php/products/shirts/</code>
+
+		<p>In the above URL, "products" is the Template Group, which happens to be in the "segment 1" position.  "shirts" is the Template and is segment 2.  If needed, you could access the values of either of those segments ("products" or "shirts") using <samp>{segment_1}</samp> or <samp>{segment_2}</samp>.  The real power, however, will appear if you add additional information.  For example:</p>
+
+		<code>http://www.example.com/index.php/products/shirts/large/blue/</code>
+
+		<p>With this, you can pass a shirt size ("large") as well as color ("blue") and access those values with <samp>{segment_3}</samp> and <samp>{segment_4}</samp>, respectively.  You can use the data in any Template.</p>
+
+
+	<h2><a name="var_user-defined">User-Defined Variables</a></h2>
+
+	<p>Custom, user-defined global variables can be created for use in any Template.  In the Control Panel, access the "Global Variables" link in the <dfn>Templates</dfn> section.  User-defined global variables can hold any static information you need.  User-defined global variables can be useful for things like site footers, copyright notices, etc.</p>
+
+	<p><b>Note:</b> User-defined global variables are not parsed by the ExpressionEngine script, so you cannot place tags or variables inside them.  If you need something to hold tags or variables, use a regular Template and then <a href="sub_templates.html">{embed=}</a> that Template where you need it.</p>
+
+	<div class="important">
+		<p>You cannot give a user-defined global variable the same name as an existing variable.  This includes variables native to ExpressionEngine.</p>
+	</div>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
