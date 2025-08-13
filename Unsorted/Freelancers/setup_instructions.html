@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<title>Freelancers Setup</title>
+</head>
+
+<body>
+
+<p align="center"><big><strong>Freelancers (v1.001) Setup Instructions</strong></big>
+<br>
+<small><a href="#upgrade">Skip to bottom for upgrading instructions...</a></small>
+</p>
+
+<strong>Setup:</strong> 
+
+<ol>
+  <li>Unless your path to Perl is <b>/usr/bin/perl</b>, change it at the top of all CGI files, by opening them in a text editor like Wordpad.</li>
+  <li>Open <b>vars.cgi</b> and follow the instructions inside to set 2 simple variables.</li>
+  <li>Open <b>cron.cgi</b> amd specify the full path to the script near the top.</li>
+  <li>Create a directory in your cgi-bin (the one you specified in vars.cgi) for this script. Such as "/cgi-bin/free".</li>
+  <li>Upload all files with a .cgi extension to that directory, in ASCii mode. Upload the "html" and "data" folders with their contents too.</li>
+  <li>Set the permissions of all CGI files to CHMOD 755.</li>
+  <li>Set the permissions of the "html" ("/cgi-bin/free/html") and "data" ("/cgi-bin/free/data") directories to CHMOD 777, do the same with all files inside those 2 sub-directories.</li>
+  <li>Create the following sub-directories inside "/cgi-bin/free": "freelancers", "buyers", "projects", and "forum". Change the permissions of these directories to CHMOD 777.</li>
+  <li>Create a directory outside your cgi-bin for graphics (such as "/graphics"). Change the permission of this directory to CHMOD 777. Then upload all graphics into that directory, in Binary mode</li>
+  <li>If you want to allow people to attach files to a project, create a directory outside your cgi-bin for them (such as "/files"). Change the permission of this directory to CHMOD 777</li>
+  <li>Now run admin.cgi in your browser, and you will finish setting up the script.</li>
+  <li>Setup Cron to run the file <b>cron.cgi</b> once a day. If your server doesn't have Cron, either do it manually every day, or check out our free <a href="http://www.smartcgis.com/cron" target="_blank">"Fake Cron" CGI</a>. It's no big deal if you accidently run this file more or less often, but for the best results you should only run it once a day.</li>
+</ol>
+
+<p>
+
+<strong>How to use:</strong> 
+
+<ul>
+<li>You can change the settings of the script and edit the html templates anytime you want from the admin, just click on the "customize" button.</li>
+<li>You can find examples in /html/header.html on how to link to parts of the script (signing up, creating projects, etc...)</li>
+<li>If you want to use your own graphics, just make sure the filenames are the same, and upload them to the directory you put graphics in for this script.</li>
+<li>If you are using <a href="http://www.2checkout.com/cgi-bin/aff.2c?sid=13221" target="_blank" onmouseover="window.status='http://www.2checkout.com';return true;" onmouseout="window.status=' ';return true;">2checkout.com</a> for credit card deposits, make sure to login to your 2checkout.com account, go to "Shopping Cart >> Cart Details" and for the return URL enter the URL to your deposit_2checkout.cgi file.</li>
+<li>If you want, backup all files inside the "data" directory every once in a while, it holds all the important data.</li>
+<li>You can display information using SSI or Javascript tags.<p>
+<i>SSI Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_top.cgi&quot; --&gt;<p>
+Javascript Example: &lt;script src=&quot;http://www.mysite.com/d_top.cgi?show=5&java=1&quot;&gt;&lt;/script&gt;</i>
+<p>
+<small>Note: You must add <i>&java=1</i> to the URL when using the Javascript tag.</small><p>
+
+	<ul>
+		<li>d_top.cgi displays freelancers in order of highest rating to lowest. Give a value to the variable "show" to specify how many freelancers should be displayed.<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_top.cgi?show=10&quot; --&gt;</i>
+		</li>
+		<li>d_count.cgi displays the total number of freelancers or buyers which have signed up. Add b=1 to get the buyer count, or f=1 for the freelancer account.<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_count.cgi?b=1&quot; --&gt;</i>
+		</li>
+		<li>d_projects.cgi displays projects, from newest to oldest. Give a value to the variable "show" to specify how many projects should be displayed.<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_projects.cgi?show=20&quot; --&gt;</i>
+		</li>
+		<li>d_topprojects.cgi displays projects, from the highest average bid to the lowest. Give a value to the variable "show" to specify how many projects should be displayed.<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_topprojects.cgi?show=20&quot; --&gt;</i>
+		</li>
+	</ul>
+</li>
+</ul>
+
+<p>
+<p><strong><a name="upgrade"></a>Upgrade Instructions:</strong></p>
+Just replace the admin.cgi file, that's all.
+<p>
+
+
+<br>
+<p><strong>Special Notice to Resellers:</strong></p>
+You can use this script on any site of yours, but if you sell one
+of these sites, you are required to FIRST purchase a new copy for
+the new owner. If you don't, it's considered copyright infringement
+and we will prosecute any offenders. If you want to work out any
+reseller deals with us, contact webmaster@smartcgis.com
+Thanks
+
+
+<p><strong>Support:</strong></p>
+
+<p>Technical support is not provided, but if you have small problems, send<br>
+questions to <a href="mailto:webmaster@smartcgis.com">webmaster@smartcgis.com</a><br>
+<br>
+
+Check out <a href="http://www.smartcgis.com">http://www.smartcgis.com</a> for updates to
+the CGI.<br>
+Send suggestions for future versions to <a href="mailto:webmaster@smartcgis.com">webmaster@smartcgis.com</a></p>
+</body>
+</html>
