@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Caching &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+
+<div id="content">
+
+	<h1>Caching</h1>
+
+	<p>The caching technology in ExpressionEngine is comprised of three independent data caching systems:</p>
+
+	<ol>
+		<li>Query Caching</li>
+		<li>Tag Caching</li>
+		<li>Dynamic Page Caching</li>
+	</ol>
+
+
+	<h2>Query Caching</h2>
+
+	<p>Query Caching caches the output of your database, saving each query as a text file.  When your visitors access your web pages, the cache files are examined to see if the particular queries being requested exist in cached form.  If they do, ExpressionEngine uses the cached data instead of querying your database. This provides a significant reduction in your overall database load.  The query caching system is completely dynamic, meaning it automatically updates itself when new information is added to your database.</p>
+
+	<p>Some queries can not be cached because the syntax of the query changes dynamically every time the query is run.  The main weblog display query, for example, always matches the expiration date against the current time in order to determine if entries have expired.  This causes the query to change slightly with each page load, making it impossible to cache.</p>
+
+	<p>The query caching system will provide anywhere from a 30% to 90% reduction in the total number of queries depending on how your pages are constructed.</p>
+
+	<p>This feature can be manually turned off from within your <dfn>General Preferences</dfn> page in the Control Panel.</p>
+
+
+
+	<h2>Tag Caching</h2>
+
+	<p>Our Tag Caching system lets you cache the output of individual tags.  This enables you to display sections of your pages completely dynamically while leaving others to display statically.  By caching individual tags you will reduce the amount of scripting and server resources needed to display any given page while maintaining a fully dynamic presentation for things that require it.</p>
+
+	<p>Tag caching is time-based, meaning the cache is used for a user-definable time interval.  When the time expires, the cache is automatically refreshed.</p>
+
+	<p>To enable tag caching, add these two parameters to <strong>any</strong> tag:</p>
+
+	<code>cache="yes" refresh="10"</code>
+
+	<p><b>Note:</b> <samp>refresh</samp> indicates the time, in minutes, between cache refreshes.</p>
+
+	<p>For example, to cache your weblog tag in 30 minute intervals you'll do this:</p>
+
+	<code>{exp:weblog:entries cache="yes" refresh="30"}</code>
+
+
+
+	<h2>Dynamic Page Caching</h2>
+
+	<p>Dynamic Page Caching lets you cache entire templates, making your pages almost as light-weight as static pages.  Because ExpressionEngine requires some scripting and a few database queries in order to manage core resources, we can't achieve 100% static pages, but we can get close.</p>
+
+	<p>Page caching, like tag caching, is time-based.  To enable page caching, click the "Prefs" link in your <dfn>Templates</dfn> page.  There you will enable caching as well as set the time interval of the refreshes.</p>
+
+	<p>We call it Dynamic Page Caching because the system will clear itself automatically when certain events happen.  For example, if you cache your comments page, when someone submits a comment, the cache will be cleared, momentarily overriding the normal caching preferences.</p>
+
+	<p>Our goal was to make the page caching system produce static pages, while retaining the benefits of a dynamic presentation.</p>
+
+	<p><b>Note:</b> Page (template) caching will supersede all other types of caching.  There is no increased benefit to using tag caching and page caching together.  When page caching is on, no other caching setting matters.  Therefore, if you want to cache individual tags, turn off page caching.</p>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address>
+</div>
+
+</body>
+</html>
