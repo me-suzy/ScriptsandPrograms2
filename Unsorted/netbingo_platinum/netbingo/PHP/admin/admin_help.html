@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Admin Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFBF0">
+<div align="center"> 
+  <p><b><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">NetBingo 
+    Admin Help Page </font></b></p>
+  <p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399"><b><a href="#config">Configuration</a><br>
+    <a href="#awards">Awards</a><br>
+    <a href="#chat">Chat</a><br>
+    <a href="#db">Database Admin</a></b><br>
+    </font></p>
+  <p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399"><b><a name="config"></a>Configuration</b></font></p>
+  <p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">This 
+    page controls the contents of two files, config.inc in your PHP directory 
+    and multiconfig.pl in your cgi-bin/multiplay directory.</font></p>
+  <p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">You 
+    should not attempt to change these files directly for two reasons: you may 
+    lose compatibility between the two and your admin configuration page may stop 
+    working.</font></p>
+  <p align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">Hopefully, 
+    the meaning of the parameters here is adequately documented in the page. Some 
+    things to watch out for are:</font></p>
+</div>
+<ul>
+  <li> 
+    <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">trailing 
+      slashes on directory names - some need them some don't - follow the instructions 
+      on each carefully</font></div>
+  </li>
+  <li> 
+    <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">retention 
+      of game files - You need to keep the game files for at least as long as 
+      a game can last. This is the total of<br>
+      - maximum time for the game to start (game frequency)<br>
+      - delay between balls * 75</font></div>
+  </li>
+  <li> 
+    <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">session 
+      expiry - This is how we measure how many users are logged into the site. 
+      The user's session keeps getting refreshed as long as they are waiting for 
+      a game or playing a game. You can set this to be quite short so the number 
+      of users logged on the bottom of the frame is fairly accurate.</font></div>
+  </li>
+  <li> 
+    <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">game 
+      frequency - this is how frequently a game can start. It's possible to have 
+      several games going simulteneously. For example, if the game frequency is 
+      600 (5 minutes) and the ball delay is 10, then there can be two games going 
+      simulteneously.</font></div>
+  </li>
+  <li> 
+    <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">computer 
+      can draw bingo - This is actually a bit of smoke and mirrors. After this 
+      number of balls the computer draws a random number in the range 1 - 75 on 
+      each ball drawing. If the random number is less than the current ball sequence 
+      number, then the computer is deemed to have won. In other words, the longer 
+      the game goes on, the more likely it is that the computer will win.</font></div>
+  </li>
+  <li> 
+    <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">show 
+      winners for current week - if &quot;no&quot;, then the top x winners for 
+      all time are displayed. If &quot;yes&quot; then the top winners for the 
+      current week (starts on Sunday) are displayed.</font></div>
+  </li>
+  <li> 
+    <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">total 
+      number of cards to display - 5 fits nicely into 640 x 480 display on one 
+      line (using default graphics). You may need to change this if you change 
+      the cell dimensions.</font></div>
+  </li>
+  <li> 
+    <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">number 
+      of cards on one line - number of cards horizontally across the screen.</font></div>
+  </li>
+</ul>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399"><b><a name="awards"></a>Awards</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">Use 
+  this page to modify, add or delete awards.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">When 
+  a player wins or when they log in, the awards table is referenced to see if 
+  they qualify for an award based on the number of wins accumulated. If so a table 
+  is displayed showing all the awards and the levels at which they qualify. For 
+  example if you have 4 levels for 25,50 75 100 wins and they have accumulated 
+  55 wins, then they can claim an award at the 25 and 50 level, or &quot;let it 
+  ride&quot; to go on for 75 or 100.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">If 
+  they claim an award, then the number of wins is decremented by the amount of 
+  the claim and they are taken to a claim page (claim_page.html) in the game docs 
+  directory. You must customize this page yourself according to your own claim 
+  processing requirements. Follow the instructions in claim_page.html.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399"><b><a name="chat"></a>Chat</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">Should 
+  be self evident.</font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399"><b><a name="db"></a>Database 
+  Admin</b></font></p>
+<p><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#003399">This 
+  is adapted from phpMyAdmin by Tobias Ratschiller <a href="http://www.phpwizard.net">http://www.phpwizard.net</a>. 
+  You can use this to look inside your database and see what's going on with your 
+  users. Use carefully!!!</font></p>
+<p>&nbsp;</p>
+<p><br>
+</p>
+</body>
+</html>
