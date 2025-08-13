@@ -1,0 +1,37 @@
+&nbsp;<span class="error">{error_message}</span>
+<form action="post.php" method="post">
+&nbsp;<span class="bold" >{_myngfill_form2post}.</span><br />
+&nbsp;<span class="small" >{_myngemail_mustbe_real}.</span><br />
+<table>
+<tr>
+        <td class="normal" align="left"><b>{_myngsubject}:</b></td>
+        <td><input type="text" class="post" name="subject" value="{subject}" size="40" maxlength="80" /></td>
+</tr>
+<tr>
+        <td class="normal" align="left"><b>{_myngname}:</b></td>
+        <td align="left"><input class="post" {is_readonly} type="text" name="name" value="{name}" size="40" maxlength="40" /></td>
+</tr>
+<tr>
+        <td class="normal" align="left"><b>{_myngemail}:</b></td>
+        <td align="left"><input class="post" {is_readonly} type="text" name="email" value="{email}" size="40" maxlength="40" /></td>
+</tr>
+</table>
+<table>
+<tr>
+<td>&nbsp;<textarea name="body" rows="20" cols="80" wrap="physical" class="post">
+{body}
+</textarea></td>
+</tr>
+<tr>
+<td><input class="normal" type="submit" value="{_myngpost}" /></td>
+</tr>
+</table>
+<input type="hidden" name="type" value="post" />
+<input type="hidden" name="newsgroups" value="{newsgroups}" />
+<input type="hidden" name="references" value="{references}" />
+<input type="hidden" name="group" value="{group}" />
+<input type="hidden" name="grp_id" value="{grp_id}" />
+<!--
+<input type="hidden" name="server" value="{server}" />
+-->
+</form>
