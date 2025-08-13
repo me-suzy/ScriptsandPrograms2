@@ -1,0 +1,555 @@
+<html>
+<head>
+<title>Untitled Document</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript">
+<!--
+function arc_flipflop(myID,op) {
+  	if (((eval("document.all."+myID+".style.display")=='none') && (op == 'flipflop')) || op == 'show') {
+		eval("document.all."+myID+".style.display='block'");
+	} else {
+	eval("document.all."+myID+".style.display='none'");
+	}
+}
+
+function MM_goToURL() { //v3.0
+  var i, args=MM_goToURL.arguments; document.MM_returnValue = false;
+  for (i=0; i<(args.length-1); i+=2) eval(args[i]+".location='"+args[i+1]+"'");
+}
+
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+
+function MM_findObj(n, d) { //v4.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_dragLayer(objName,x,hL,hT,hW,hH,toFront,dropBack,cU,cD,cL,cR,targL,targT,tol,dropJS,et,dragJS) { //v3.0
+  //Copyright 1998 Macromedia, Inc. All rights reserved.
+  var i,j,aLayer,retVal,curDrag=null,NS=(navigator.appName=='Netscape'), curLeft, curTop;
+  if (!document.all && !document.layers) return false;
+  retVal = true; if(!NS && event) event.returnValue = true;
+  if (MM_dragLayer.arguments.length > 1) {
+    curDrag = MM_findObj(objName); if (!curDrag) return false;
+    if (!document.allLayers) { document.allLayers = new Array();
+      with (document) if (NS) { for (i=0; i<layers.length; i++) allLayers[i]=layers[i];
+        for (i=0; i<allLayers.length; i++) if (allLayers[i].document && allLayers[i].document.layers)
+          with (allLayers[i].document) for (j=0; j<layers.length; j++) allLayers[allLayers.length]=layers[j];
+      } else for (i=0;i<all.length;i++) if (all[i].style&&all[i].style.position) allLayers[allLayers.length]=all[i];}
+    curDrag.MM_dragOk=true; curDrag.MM_targL=targL; curDrag.MM_targT=targT;
+    curDrag.MM_tol=Math.pow(tol,2); curDrag.MM_hLeft=hL; curDrag.MM_hTop=hT;
+    curDrag.MM_hWidth=hW; curDrag.MM_hHeight=hH; curDrag.MM_toFront=toFront;
+    curDrag.MM_dropBack=dropBack; curDrag.MM_dropJS=dropJS;
+    curDrag.MM_everyTime=et; curDrag.MM_dragJS=dragJS;
+    curDrag.MM_oldZ = (NS)?curDrag.zIndex:curDrag.style.zIndex;
+    curLeft= (NS)?curDrag.left:curDrag.style.pixelLeft; curDrag.MM_startL = curLeft;
+    curTop = (NS)?curDrag.top:curDrag.style.pixelTop; curDrag.MM_startT = curTop;
+    curDrag.MM_bL=(cL<0)?null:curLeft-cL; curDrag.MM_bT=(cU<0)?null:curTop -cU;
+    curDrag.MM_bR=(cR<0)?null:curLeft+cR; curDrag.MM_bB=(cD<0)?null:curTop +cD;
+    curDrag.MM_LEFTRIGHT=0; curDrag.MM_UPDOWN=0; curDrag.MM_SNAPPED=false; //use in your JS!
+    document.onmousedown = MM_dragLayer; document.onmouseup = MM_dragLayer;
+    if (NS) document.captureEvents(Event.MOUSEDOWN|Event.MOUSEUP);
+  } else {
+    var theEvent = ((NS)?objName.type:event.type);
+    if (theEvent == 'mousedown') {
+      var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+      var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+      var maxDragZ=null; document.MM_maxZ = 0;
+      for (i=0; i<document.allLayers.length; i++) { aLayer = document.allLayers[i];
+        var aLayerZ = (NS)?aLayer.zIndex:aLayer.style.zIndex;
+        if (aLayerZ > document.MM_maxZ) document.MM_maxZ = aLayerZ;
+        var isVisible = (((NS)?aLayer.visibility:aLayer.style.visibility).indexOf('hid') == -1);
+        if (aLayer.MM_dragOk != null && isVisible) with (aLayer) {
+          var parentL=0; var parentT=0;
+          if (!NS) { parentLayer = aLayer.parentElement;
+            while (parentLayer != null && parentLayer.style.position) {
+              parentL += parentLayer.offsetLeft; parentT += parentLayer.offsetTop;
+              parentLayer = parentLayer.parentElement; } }
+          var tmpX=mouseX-(((NS)?pageX:style.pixelLeft+parentL)+MM_hLeft);
+          var tmpY=mouseY-(((NS)?pageY:style.pixelTop +parentT)+MM_hTop);
+          var tmpW = MM_hWidth;  if (tmpW <= 0) tmpW += ((NS)?clip.width :offsetWidth);
+          var tmpH = MM_hHeight; if (tmpH <= 0) tmpH += ((NS)?clip.height:offsetHeight);
+          if ((0 <= tmpX && tmpX < tmpW && 0 <= tmpY && tmpY < tmpH) && (maxDragZ == null
+              || maxDragZ <= aLayerZ)) { curDrag = aLayer; maxDragZ = aLayerZ; } } }
+      if (curDrag) {
+        document.onmousemove = MM_dragLayer; if (NS) document.captureEvents(Event.MOUSEMOVE);
+        curLeft = (NS)?curDrag.left:curDrag.style.pixelLeft;
+        curTop = (NS)?curDrag.top:curDrag.style.pixelTop;
+        MM_oldX = mouseX - curLeft; MM_oldY = mouseY - curTop;
+        document.MM_curDrag = curDrag;  curDrag.MM_SNAPPED=false;
+        if(curDrag.MM_toFront) {
+          eval('curDrag.'+((NS)?'':'style.')+'zIndex=document.MM_maxZ+1');
+          if (!curDrag.MM_dropBack) document.MM_maxZ++; }
+        retVal = false; if(!NS) event.returnValue = false;
+    } } else if (theEvent == 'mousemove') {
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+        var mouseX = (NS)?objName.pageX : event.clientX + document.body.scrollLeft;
+        var mouseY = (NS)?objName.pageY : event.clientY + document.body.scrollTop;
+        newLeft = mouseX-MM_oldX; newTop  = mouseY-MM_oldY;
+        if (MM_bL!=null) newLeft = Math.max(newLeft,MM_bL);
+        if (MM_bR!=null) newLeft = Math.min(newLeft,MM_bR);
+        if (MM_bT!=null) newTop  = Math.max(newTop ,MM_bT);
+        if (MM_bB!=null) newTop  = Math.min(newTop ,MM_bB);
+        MM_LEFTRIGHT = newLeft-MM_startL; MM_UPDOWN = newTop-MM_startT;
+        if (NS) {left = newLeft; top = newTop;}
+        else {style.pixelLeft = newLeft; style.pixelTop = newTop;}
+        if (MM_dragJS) eval(MM_dragJS);
+        retVal = false; if(!NS) event.returnValue = false;
+    } } else if (theEvent == 'mouseup') {
+      document.onmousemove = null;
+      if (NS) document.releaseEvents(Event.MOUSEMOVE);
+      if (NS) document.captureEvents(Event.MOUSEDOWN); //for mac NS
+      if (document.MM_curDrag) with (document.MM_curDrag) {
+        if (typeof MM_targL =='number' && typeof MM_targT == 'number' &&
+            (Math.pow(MM_targL-((NS)?left:style.pixelLeft),2)+
+             Math.pow(MM_targT-((NS)?top:style.pixelTop),2))<=MM_tol) {
+          if (NS) {left = MM_targL; top = MM_targT;}
+          else {style.pixelLeft = MM_targL; style.pixelTop = MM_targT;}
+          MM_SNAPPED = true; MM_LEFTRIGHT = MM_startL-MM_targL; MM_UPDOWN = MM_startT-MM_targT; }
+        if (MM_everyTime || MM_SNAPPED) eval(MM_dropJS);
+        if(MM_dropBack) {if (NS) zIndex = MM_oldZ; else style.zIndex = MM_oldZ;}
+        retVal = false; if(!NS) event.returnValue = false; }
+      document.MM_curDrag = null;
+    }
+    if (NS) document.routeEvent(objName);
+  } return retVal;
+}
+
+function MM_callJS(jsStr) { //v2.0
+  return eval(jsStr)
+}
+
+function MM_changeProp(objName,x,theProp,theValue) { //v3.0
+  var obj = MM_findObj(objName);
+  if (obj && (theProp.indexOf("style.")==-1 || obj.style)) eval("obj."+theProp+"='"+theValue+"'");
+}
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" text="#000000">
+<div id="Layer1" style="position:absolute; left:704px; top:9px; width:245px; height:0px; z-index:1; background-color: #CCCCCC; layer-background-color: #CCCCCC; border: 1px none #000000; visibility: visible"> 
+  <table width="100%" border="0" cellspacing="1" cellpadding="1">
+    <tr> 
+      <td bgcolor="#666666"  onMouseOver="MM_dragLayer('Layer1','',0,0,0,0,true,false,-1,-1,-1,-1,false,false,0,'',false,'')" onDblClick="MM_callJS('arc_flipflop(\'helpmenu\',\'flipflop\');')"><b><font color="#FFFFFF">Help</font></b></td>
+    </tr>
+</table>
+<div id="helpmenu" style="position:relative;  display: block">
+        <ol type="I">
+          <li><a href="#I">Introduction</a></li>
+          <li><a href="#II">Requirements</a></li>
+          <li><a href="#III">Installation</a></li>
+          
+      <li><a href="#" onDblClick="MM_goToURL('parent','#IV');return document.MM_returnValue" onClick="MM_callJS('arc_flipflop(\'iv\',\'flipflop\')')">Upgrading</a></li>
+          <div id="iv" style="position:relative;  display: none"> 
+            <ol type="1">
+              <li><a href="#IV1">In-link 1.x</a></li>
+              <li><a href="#IV2">Gossamer Threads Links 2.x</a></li>
+              <li><a href="#IV3">Gossamer Threads Links 2.x SQL</a></li>
+              <li><a href="#IV4">Sentramer Indexu 2.x</a></li>
+              <li><a href="#IV5">Custom CSV File</a></li>
+            </ol>
+          </div>
+          <li><a href="#" onClick="arc_flipflop('v')" onDblClick="MM_goToURL('parent','#V');return document.MM_returnValue">Features</a></li>
+          <div id="v" style="position:relative;  display: none"> 
+            <ol type="1">
+              <li><a href="#V1">Templates</a></li>
+              <li><a href="#V2">Unlimited Number of Levels</a></li>
+              <li><a href="#V3">Advanced Search</a></li>
+              <li><a href="#V4">Link Voting</a></li>
+              <li><a href="#V5">Category Permission</a></li>
+              <li><a href="#V6">Full Featured Admin Utility</a></li>
+              <li><a href="#V7">Nested Categories</a></li>
+              <li><a href="#V8">Category Descriptions</a></li>
+              <li><a href="#V9">Unlimited Links</a></li>
+              <li><a href="#V10">Advanced Search</a></li>
+              <li><a href="#V11">Sorting by Any Field</a></li>
+              <li><a href="#V12">Multiple Columns</a></li>
+              <li><a href="#V13">Number of Links Count</a></li>
+              <li><a href="#V14">Number of Categories Count</a></li>
+              <li><a href="#V15">Database Visitor Count</a></li>
+              <li><a href="#V16">Link Visitor Count</a></li>
+              <li><a href="#V17">Link Rating & Voting</a></li>
+              <li><a href="#V18">Link Date of Addition</a></li>
+              <li><a href="#V19">Graphical Rating</a></li>
+              <li><a href="#V20">New Links Marker</a></li>
+              <li><a href="#V21">Top Links Marker</a></li>
+              <li><a href="#V22">Popular Links Marker</a></li>
+              <li><a href="#V23">Addition of New Links</a></li>
+              <li><a href="#V24">Permissions for Categories</a></li>
+              <li><a href="#V25">Online Administration Utility</a></li>
+              <li><a href="#V26">Configuration Editor</a></li>
+              <li><a href="#V27">Template Editor</a></li>
+              <li><a href="#V28">Pending Links Checker </a></li>
+              <li><a href="#V29">Reviewing of Links</a></li>
+              <li><a href="#V30">Custom Fields</a></li>
+              <li><a href="#V31">User Systems</a></li>
+              <li><a href="#V32">Move Links</a></li>
+              <li><a href="#V33">Sorting on any Page</a></li>
+              <li><a href="#V34">Language Files</a></li>
+              <li><a href="#V35">Backup and Importing</a></li>
+              <li><a href="#V36">Server Logs</a></li>
+            </ol>
+          </div>
+          <li><a href="#VI"">Licensing</a></li>
+          <li><a href="#" onClick="arc_flipflop('vii')">Version History</a> 
+            <div id="vii" style="position:relative;  display: none"> 
+              <ol type="1">
+                <li><a href="#VI1">1.x</a></li>
+                <li><a href="#VI2">2.x</a></li>
+              </ol>
+            </div>
+          </li>
+          
+      <li><a href="#VIII" onClick="MM_changeProp('Layer1','','style.top','50px','DIV')">File 
+        List</a></li>
+        </ol>
+	</div>
+</div>
+<p><b><a name="I"></a>I. Introduction</b></p>
+<p>In-Link is a revolutionary SQL directory engine allowing you to effortlessly 
+  run a Yahoo-style directory directly from your web site. All of the information 
+  is stored in an SQL database and therefore is easily updateable. The engine 
+  features dynamic presentation of data and includes multiple customizable features. 
+  This engine can be used for many purposes, including storing and sorting of 
+  information of any kind. In-link requires very little configuration and is fully 
+  equipped with advanced features.</p>
+<p>One of the strongest features of In-link is that it is completely template-based, 
+  meaning that the entire engine's look and its output can be modified, customized 
+  and integrated into any web site. In simple words, you can take In-link and 
+  easily make it look like a part of your web site! In-link has built-in template 
+  editors that allow you to modify any visual element of the engine, as well as 
+  a configuration editor that allows you to modify system parameters.</p>
+<p>In-link is entirely based on SQL, making it a very flexible directory engine 
+  allowing for instantaneous updates and feeding live data directly into your 
+  web site. In-link is a truly dynamic engine that pulls, processes and displays 
+  all of the data on the fly directly from the database. SQL allows for smooth 
+  performance even on websites associated with large volumes of data and traffic. 
+  In-link places no limitations on the volume of data, data structural depth or 
+  complexity.</p>
+<p>In-link includes a number of features that make this directory engine stand 
+  out. In-link stores detailed information about all the links in the database, 
+  including data the link was added, number of hits, number of votes and its overall 
+  rating. In-link allows to perform advanced search on all links and categories, 
+  set permissions for adding new links, add new links and rate the existing links. 
+  In-link displays top rated, new, and the most popular links, maintains a count 
+  on all the categories and links and keeps permissions for every category.</p>
+<p><b><a name="II"></a>II. Requirements</b></p>
+<p>Apache web server - In-Link was built and tested on UNIX based server. Windows 
+  based apache server should also work but has not been tested.</p>
+<p>PHP version 3 or above - PHP must be compiled with MySQL support. The latest 
+  version of PHP is 4.0.4.</p>
+<p>MySQL version 3.22 or above - In-Link was built and tested on MySQL 3.22. Newer 
+  version of MySQL should work flawlessly.</p>
+<p>You can get the software necessary at the following URLs:</p>
+<p>Apache - <a href="http://www.apache.org">www.apache.org</a><br>
+  PHP - <a href="http://www.php.net">www.php.net</a><br>
+  MySQL - <a href="http://www.mysql.com">www.mysql.com</a></p>
+<p><b><a name="III"></a>III. Installation</b></p>
+<ol>
+  <li><font color="#FF00FF">Download and unpack all the files that came with the 
+    inlink1.7.0.zip file.</font></li>
+  <li><font color="#FF00FF">Upload all of the files to a directory on your server.</font></li>
+  <li><font color="#FF00FF">Create a MySQL database for In-Link to use.</font></li>
+  <li><font color="#FF00FF">Set the permission of the setup.php file in the admin 
+    directory to 777.</font></li>
+  <li><font color="#FF00FF">Set the permission of the searchlog.dat file in the 
+    main directory to 777. <br>
+    </font></li>
+  <li><font color="#FF00FF">Set the permission of all the template files (in the 
+    admin directory also) to 777. <br>
+    </font></li>
+  <li><font color="#FF00FF">Run setup.php from the admin directory and follow 
+    the directions.<br>
+    </font></li>
+  <li><font color="#FF00FF">If installation was successful, you should now be 
+    able to edit your template files from the admin utility.</font><br>
+  </li>
+</ol>
+<p><b><a name="IV"></a>IV. Upgrading</b></p>
+<ol>
+  <li><font color="#FF00FF"><a name="IV1"></a>In-link 1.x </font> 
+    <ol type="a">
+      <li><font color="#FF00FF">Download and unpack all the files that came with 
+        the inlink1.7.0.zip file.<br>
+        </font></li>
+      <li><font color="#FF00FF">Upload all of the files to your In-Link directory, 
+        overwriting any old files.<br>
+        </font></li>
+      <li><font color="#FF00FF">Either run setup.php again or goto the In-Link 
+        support site to generate a new setup file.<br>
+        </font></li>
+      <li><font color="#FF00FF">In-Link should be running perfectly with your 
+        old database.</font></li>
+    </ol>
+  </li>
+  <li><font color="#FF00FF"><a name="IV2"></a>Gossamer Threads Links 2.x</font></li>
+  <li><font color="#FF00FF"><a name="IV3"></a>Gossamer Threads Links 2.x SQL</font></li>
+  <li><font color="#FF00FF"><a name="IV4"></a>Sentramer Indexu 2.x</font></li>
+  <li><font color="#FF00FF"><a name="IV5"></a>Custom CSV File</font></li>
+</ol>
+<p>&nbsp;</p>
+<p><b><a name="V"></a>V. Features</b></p>
+<p>In-Link includes a number of features that make it stand out. Some of the most 
+  notable features of In-Link are:</p>
+<ol>
+  <li><a name="V1"></a>Templates<br>
+    Everything on In-Link uses a template. Each page has a template and every 
+    element on In-Link, such as the search box, the add link box, has a template. 
+    The template for each category can be unique. By placing a file named x.txt, 
+    where x is the id number of the category, that category will use the x.txt 
+    file as its template instead.</li>
+  <li><a name="V2"></a>Unlimited number of levels<br>
+    Categories can go as deep as you want. The number of links is limited by only 
+    the capacity of your server.</li>
+  <li><a name="V3"></a>Advanced search<br>
+    Users can search through your In-Link database using keyword and Boolean search.</li>
+  <li><a name="V4"></a>Link voting<br>
+    Links can be voted and ranked based on their rating or hits.</li>
+  <li><a name="V5"></a>Category permission<br>
+    Admin can set the permission of a category to either allow users to add links, 
+    not allow, or allow add with approval. The links submitted will be placed 
+    in a pending links database until the admin approves the link.</li>
+  <li><a name="V6"></a>Full featured admin utility<br>
+    The admin utility is password protected and can administer categories and 
+    links. Links can be moved between categories. All values of a category and 
+    link can be modified.</li>
+  <li><a name="V7"></a>Nested Categories<br>
+    Categories can contain nested levels of subcategorizes.</li>
+  <li><a name="V8"></a>Category Descriptions<br>
+    Users can approve a description for each category.</li>
+  <li><a name="V9"></a>Unlimited Links<br>
+    The number of links within the system is not limited by the In-link engine.</li>
+  <li><a name="V10"></a>Advanced Search<br>
+    An advanced search with the abilities/limits specified by the admin.</li>
+  <li><a name="V11"></a>Sorting by Any Field<br>
+    Search results can be sorted by any field.</li>
+  <li><a name="V12"></a>Multiple Columns<br>
+    The output of categories and links can be specified by the admin.</li>
+  <li><a name="V13"></a>Number of Links Count<br>
+    In-link tracks the total number of links within the system and has the ability 
+    to output this number within the user templates.</li>
+  <li><a name="V14"></a>Number of Categories Count<br>
+    In-link tracks the total number of categories within the system and has the 
+    ability to output this number within the user templates.</li>
+  <li><a name="V15"></a>Database Visitor Count<br>
+    In-link tracks the total number of database visitors within the system and 
+    has the ability to output this number within the user templates.</li>
+  <li><a name="V16"></a>Link Visitor Count<br>
+    In-link tracks the total number of visitors to each link within the system 
+    and has the ability to output this number within the user templates.</li>
+  <li><a name="V17"></a>Link Rating & Voting<br>
+    Users can rate individual links. Totaled averages can be output in the user 
+    templates <BR>
+  </li>
+  <li><a name="V18"></a>Link Date of Addition<br>
+    In-link tracks when a link is submitted to the database. This value can be 
+    output in the user templates.</li>
+  <li><a name="V19"></a>Graphical Rating<br>
+    The average rating of a link can be output as a number or as a graphical rating 
+    value. </li>
+  <li><a name="V20"></a>New Links Marker<br>
+    New links are marked as new for an amount of time specified by the admin.</li>
+  <li><a name="V21"></a>Top Links Marker<br>
+    Links that fall in a certain top percent of vote averages specified by the 
+    admin are marked as top.</li>
+  <li><a name="V22"></a>Popular Links Marker<br>
+    Links receiving a certain percent of hits on the site specified by the admin 
+    are marked as popular.</li>
+  <li><a name="V23"></a>Addition of New Links<br>
+    New links can be added by users either in an automated process, or by requiring 
+    admin approval before being posted.</li>
+  <li><a name="V24"></a>Permissions for Categories<br>
+    Posting permission levels can be set for each category.</li>
+  <li><a name="V25"></a>Online Administration Utility<br>
+    The In-link engine can be fully administered from the web anywhere you have 
+    an Internet connection.</li>
+  <li><a name="V26"></a>Configuration Editor<br>
+    <font color="#FF00FF">????????????????????????????????????????????</font></li>
+  <li><a name="V27"></a>Template Editor<br>
+    User templates are editable from the admin interface, no additional software 
+    is required.</li>
+  <li><a name="V28"></a>Pending Links Checker<br>
+    The admin can easily approve or deny pending links either via a bulk approve/deny 
+    or individually</li>
+  <li><a name="V29"></a>Reviewing of Links<br>
+    Users can write reviews for individual links.</li>
+  <li><a name="V30"></a>Custom Fields<br>
+    Custom fields are available for customized use and future updates.</li>
+  <li><a name="V31"></a>User Systems<br>
+    <font color="#FF00FF">?????????????????????????????????????????????</font> 
+  </li>
+  <li><a name="V32"></a>Move Links<br>
+    Links can be moved from category to category by the admin.</li>
+  <li><a name="V33"></a>Sorting on any Page<br>
+    Search queries are fully sortable by many criteria.</li>
+  <li><a name="V34"></a>Language Files<br>
+    The front-end and back-end of In-link can be easily customized to any language.</li>
+  <li><a name="V35"></a>Backup and Importing<br>
+    The SQL database can be easily backed-up for off-site storage. In-link can 
+    import from previous In-link engines, other directory engines, or CSV files.</li>
+  <li><a name="V36"></a>Server Logs<br>
+    Full statistics of user access and activities are tracked and available to 
+    the admin.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b><a name="VI"></a>VI. Licensing</b></p>
+<p>If you did not purchase a license for In-Link, a small In-Link logo and a link 
+  to the In-Link website will be automatically added to the bottom of every page. 
+</p>
+<p>If you purchased a license for In-Link, there will not be a link and you are 
+  not required to display the logo or the link to the In-Link website.</p>
+<p>To purchase a license for In-Link, you can goto the Intechnic Store to purchase 
+  a license for $195. If you have already installed In-Link on your website, you 
+  can go to the Licensing and Support page in the Admin Utility and purchase a 
+  license through its built in utility.</p>
+<p>A license will give you full technical support and setup help for In-Link.</p>
+<p><b><a name="VII"></a>VII. Version History</b></p>
+<p><font color="#FF00FF"><b><a name="VII1"></a>1.x</b><br>
+  </font><font color="#FF00FF">1.7.2 - 5/22/91<br>
+  - Fixed bug footer links not showing up.<br>
+  - Fixed a bug with search which would not work if more than one keyword was 
+  used.<br>
+  1.7.1 - 4/16/01 <br>
+  - Fixed bug with pending link descriptions disappearing when edited.<br>
+  - Fixed a bug with the admin search page.<br>
+  1.7.0 - 4/15/01<br>
+  - Brand new installation script. No longer need paths. <br>
+  - Password protected Admin Utility. <br>
+  - New setup file. No more config.cfg. Easier to setup In-Link options. <br>
+  - Displays sub-categories under category link. <br>
+  - New search query log. See what users are searching for.<br>
+  1.6.1 - 3/25/01<br>
+  - Fixed a counter error when approving a pending link.<br>
+  1.6.0 - 3/20/01<br>
+  - All text elements for the main sections have been moved to static.txt for 
+  easy translation into a different language.<br>
+  - New header and footer capabilities. Header and footer currently do not support 
+  embedded php code.<br>
+  - Custom template for each category by placing x.txt in the templates folder 
+  where x is the category number.<br>
+  - Fixed error with Today's hits.<br>
+  - Links can now be moved to a different category from Admin.<br>
+  - Added a recount links function to recount the number of links that a category 
+  shows.<br>
+  1.5.6 - 3/9/01 <br>
+  - Fixed an error for Netscape that would display hidden tags.<br>
+  - Fixed rating image error and an error with pending link approval.<br>
+  1.5.5 - 2/27/01 <br>
+  - New admin features, allows editing of pending links information and category 
+  location. <br>
+  - Can no longer add blank entries to links or categories. <br>
+  - Fixed a bug that allows rating to be above 5. <br>
+  - Fixed a bug that would return &quot;In-Link not licensed for this server&quot;.<br>
+  1.5.2 - 2/22/01 <br>
+  - Moved config.cfg to the admin directory for security reasons, improved support 
+  and licensing.<br>
+  1.5 - 1/10/01 <br>
+  - Changed description field to textbox. Prevent multiple votings on same site.<br>
+  1.4 - 10/6/00 <br>
+  - Made new template for the root category. <br>
+  - Licensing utility from the admin page.<br>
+  1.3.4 - 9/6/00 <br>
+  - Changed template system for section templates so each field has its own tag.<br>
+  1.3.3 - 9/1/00 <br>
+  - Added confirmation page for deletions and counter resets.<br>
+  1.3 <br>
+  - Major update. Added new/pop/top markers for links. <br>
+  - Multiple columns for category display. <br>
+  - Created individual templates for sections of the page, Ex. the search box.<br>
+  1.2 <br>
+  - Added image generation for counter display and the ability to choose between 
+  text counter and graphical counter. <br>
+  1.1 <br>
+  - Updated search engine with and/or Boolean and limiting of search results. 
+  <br>
+  - Added template editor and config editor.<br>
+  1.0 <br>
+  - Initial In-Link release. Most basic functions included. </font></p>
+<p><font color="#FF00FF"><b><a name="VII2"></a>2.x</b></font></p>
+<p><b><a name="VIII"></a>VIII. File List</b></p>
+<p><br>
+  <font color="#FF00FF">-In-Link-<br>
+  addlink.php<br>
+  confirm.php<br>
+  go.php<br>
+  index.php<br>
+  new.php<br>
+  rate.php<br>
+  readme.html &lt;- the file you are reading right now.<br>
+  search.php<br>
+  searchlog.dat<br>
+  searchlog.php<br>
+  style.ccs<br>
+  top.php<br>
+  |<br>
+  +------func- <br>
+  | functions.txt<br>
+  | static.txt<br>
+  |<br>
+  +------templates-<br>
+  | addlinkform.txt<br>
+  | addlinktemplate.txt<br>
+  | cattemplate.txt<br>
+  | conftemplate.txt<br>
+  | footer.txt<br>
+  | header.txt<br>
+  | linktemplate.txt<br>
+  | maintemplate.txt<br>
+  | newtemplate.txt<br>
+  | rateform.txt<br>
+  | ratetemplate.txt<br>
+  | roottemplate.txt<br>
+  | searchform.txt<br>
+  | searchtemplate.txt<br>
+  | toptemplate.txt<br>
+  |<br>
+  +------admin-<br>
+  config.php<br>
+  confirm.php<br>
+  edit.php<br>
+  go.php<br>
+  index.php<br>
+  license.php<br>
+  login.php<br>
+  pcat.php<br>
+  pending.php<br>
+  search.php<br>
+  setup.php<br>
+  template.php<br>
+  top.php<br>
+  | <br>
+  +------func-<br>
+  | afunctions.txt<br>
+  | astatic.txt<br>
+  |<br>
+  +------templates-<br>
+  admintemplate.txt<br>
+  admsearchtemplate.txt<br>
+  atoptemplate.txt<br>
+  cattemplate.txt<br>
+  configtemplate.txt<br>
+  conftemplate.txt<br>
+  edittemplate.txt<br>
+  licensetemplate.txt<br>
+  linktemplate.txt<br>
+  logintemplate.txt<br>
+  pcattemplate.txt<br>
+  pendcattemplate.txt<br>
+  pendtemplate.txt<br>
+  plinktemplate.txt<br>
+  roottemplate.txt<br>
+  templtemplate.txt</font></p>
+<p></p>
+<p><br>
+</p>
+</body>
+</html>
