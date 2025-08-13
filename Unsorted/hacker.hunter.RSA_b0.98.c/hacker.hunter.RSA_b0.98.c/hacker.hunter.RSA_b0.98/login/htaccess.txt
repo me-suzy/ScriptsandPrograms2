@@ -1,0 +1,14 @@
+ErrorDocument 403 #auth_web_path#err_redirect.php
+ErrorDocument 404 #auth_web_path#err_redirect.php
+Deny from all
+#ip_str#
+
+AuthUserFile #protected_path#.hunter
+AuthGroupFile /dev/null
+AuthName "#site_name#"
+AuthType Basic
+Require valid-user
+
+<Files ~ "^\."> 
+Deny from all 
+</Files>
