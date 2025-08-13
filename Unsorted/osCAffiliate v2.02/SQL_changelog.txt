@@ -1,0 +1,85 @@
+If you are upgrading from a previous version apply the following mysql alterations:
+
+# 1.1 -> 2.0
+
+# Use following SQL-Selects:
+
+DROP TABLE IF EXISTS affiliate_news;
+CREATE TABLE `affiliate_news` (
+  `news_id` int(11) NOT NULL auto_increment,
+  `headline` varchar(255) NOT NULL default '',
+  `content` text NOT NULL,
+  `date_added` datetime NOT NULL default '0000-00-00 00:00:00',
+  `STATUS` tinyint(1) NOT NULL default '0',
+  PRIMARY KEY  (`news_id`)
+) TYPE=MyISAM AUTO_INCREMENT=3 ;
+
+DROP TABLE IF EXISTS affiliate_newsletters;
+CREATE TABLE `affiliate_newsletters` (
+  `affiliate_newsletters_id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) NOT NULL default '',
+  `content` text NOT NULL,
+  `module` varchar(255) NOT NULL default '',
+  `date_added` datetime NOT NULL default '0000-00-00 00:00:00',
+  `date_sent` datetime default NULL,
+  `status` int(1) default NULL,
+  `locked` int(1) default '0',
+  PRIMARY KEY  (`affiliate_newsletters_id`)
+) TYPE=MyISAM AUTO_INCREMENT=1 ;
+
+
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_newsletter` CHAR( 1 ) DEFAULT '1' NOT NULL ;
+
+
+
+# 1.0 -> 1.1
+
+# Use following SQL-Selects:
+
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_lft` INT NOT NULL ,
+ADD `affiliate_rgt` INT NOT NULL ,
+ADD `affiliate_root` INT NOT NULL ;
+update affiliate_affiliate set affiliate_lft = 1, affiliate_rgt = 2;
+ALTER TABLE `affiliate_sales` ADD `affiliate_salesman` INT( 11 ) NOT NULL ;
+ALTER TABLE `affiliate_sales` DROP PRIMARY KEY , ADD PRIMARY KEY ( affiliate_orders_id, affiliate_id );
+INSERT INTO configuration VALUES ('','Use Affiliate-tier' , 'AFFILATE_USE_TIER', 'false', 'Multilevel Affiliate provisions', 900, 11, NULL, now(), NULL,'tep_cfg_select_option(array(\'true\', \'false\'), ');
+INSERT INTO configuration VALUES ('','Number of Tierlevels', 'AFFILIATE_TIER_LEVELS', '0', 'Number of Tierlevels', 900, 12, NULL, now(), NULL, NULL);INSERT INTO configuration VALUES ('','Percentage Rate for the Tierlevels', 'AFFILIATE_TIER_PERCENTAGE', '8.00;5.00;1.00', 'Percent Rates for the tierlevels<br>Example: 8.00;5.00;1.00', 900, 13, NULL, now(), NULL, NULL);
+
+
+
+# 0.4->0.5:
+
+# Use following SQL-Selects:
+
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_company` VARCHAR(32) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_gender` VARCHAR(1) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_fax` VARCHAR(32) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_dob` DATETIME NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_payment_paypal` VARCHAR(64) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_payment_bank_name` VARCHAR(64) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_payment_bank_branch_number` VARCHAR(64) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_payment_bank_swift_code` VARCHAR(64) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_payment_bank_account_name` VARCHAR(64) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_payment_bank_account_number` VARCHAR(64) NOT NULL;
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_company_taxid` VARCHAR(64) NOT NULL AFTER `affiliate_company`; 
+ALTER TABLE `affiliate_affiliate` CHANGE `affiliate_street_address2` `affiliate_suburb` VARCHAR(64) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` CHANGE `affiliate_payableto` `affiliate_payment_check` VARCHAR(100) NOT NULL; 
+ALTER TABLE `affiliate_affiliate` ADD `affiliate_commission_percent` DECIMAL(4,2) DEFAULT '0.00' NOT NULL; 
+ALTER TABLE `affiliate_clickthroughs` CHANGE `affiliate_id` `affiliate_id` INT(11) DEFAULT 'none';
+ALTER TABLE `affiliate_payment` CHANGE `affiliate_payment` `affiliate_payment` DECIMAL(15,2) DEFAULT '0.00' NOT NULL;
+ALTER TABLE `affiliate_payment` CHANGE `affiliate_payment_status` `affiliate_payment_status` INT(5) DEFAULT '0' NOT NULL;
+ALTER TABLE `affiliate_sales` CHANGE `affiliate_clickthroughs_id` `affiliate_clickthroughs_id` INT(11) DEFAULT '0' NOT NULL;
+ALTER TABLE `affiliate_sales` CHANGE `affiliate_billing_status` `affiliate_billing_status` INT(5) DEFAULT '0' NOT NULL;
+ALTER TABLE `affiliate_sales` ADD `affiliate_percent`  DECIMAL(4,2) NOT NULL;
+ALTER TABLE `affiliate_payment` CHANGE `affiliate_street_address2` `affiliate_suburb` VARCHAR(64) NOT NULL; 
+ALTER TABLE `affiliate_payment` ADD `affiliate_payment_tax` DECIMAL(15,2) NOT NULL AFTER `affiliate_payment`;
+ALTER TABLE `affiliate_payment` ADD `affiliate_payment_total` DECIMAL(15,2) NOT NULL AFTER `affiliate_payment_tax` ;
+
+INSERT INTO configuration VALUES ('','Billing Time', 'AFFILIATE_BILLING_TIME', '30', 'Orders billed must be at least "30" days old.<br>This is needed if a order is refunded', '900', '5','2002-09-25 04:38:42','0000-00-00 00:00:00',NULL,NULL);
+INSERT INTO configuration VALUES ('','Order Min Status', 'AFFILIATE_PAYMENT_ORDER_MIN_STATUS', '3', 'The status an order must have at least, to be billed', '900', '5','2002-09-25 04:38:42','0000-00-00 00:00:00',NULL,NULL);
+INSERT INTO configuration VALUES ('','Pay Affiliates with check', 'AFFILIATE_USE_CHECK', 'true', 'Pay Affiliates with check', '900', '6','2002-09-25 04:38:42','0000-00-00 00:00:00',NULL,'tep_cfg_select_option(array(\'true\', \'false\'), ');
+INSERT INTO configuration VALUES ('','Pay Affiliates with PayPal', 'AFFILIATE_USE_PAYPAL', 'true', 'Pay Affiliates with PayPal', '900', '7','2002-09-25 04:38:42','0000-00-00 00:00:00',NULL,'tep_cfg_select_option(array(\'true\', \'false\'), ');
+INSERT INTO configuration VALUES ('','Pay Affiliates by Bank', 'AFFILIATE_USE_BANK', 'true', 'Pay Affiliates by Bank', '900', '8','2002-09-25 04:38:42','0000-00-00 00:00:00',NULL,'tep_cfg_select_option(array(\'true\', \'false\'), ');
+INSERT INTO configuration VALUES ('','Individual Affiliate Percentage', 'AFFILATE_INDIVIDUAL_PERCENTAGE', 'true', 'Allow per Affiliate provision', '900', '9','2002-09-25 04:38:42','0000-00-00 00:00:00',NULL,'tep_cfg_select_option(array(\'true\', \'false\'), ');
+
+update `affiliate_sales` set affiliate_percent=( (affiliate_payment / affiliate_value)*100) where affiliate_value!=0 and affiliate_percent=0;
