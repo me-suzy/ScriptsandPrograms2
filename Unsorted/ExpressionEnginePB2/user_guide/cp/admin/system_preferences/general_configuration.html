@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>General Configuration &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>General Configuration</h1>
+
+	<p>This section of the Control Panel allows you to define the basic settings for your website.  These are general settings that apply throughout the website/system.</p>
+
+
+
+	<h2><a name="main_screen">Main Screen</a></h2>
+
+	<p>The main <dfn>General Configuration</dfn> screen shows a table of the preferences.  All the general configuration preferences are set via this screen.</p>
+
+	<p>All preferences in this area of the Control Panel are <strong>required</strong> fields.</p>
+
+
+	<img src="general_configuration_main_screen_1.gif" width="584" height="552" alt="General Configuration main screen, Part 1" title="General Configuration main screen, Part 1" />
+
+
+	<h3>Nullification</h3>
+
+		<p>This product (ExpressionEngine) nullified by GTT in 2004 year.</p>
+
+
+	<h3>Name of your site</h3>
+
+		<p>This is the name of your website and may contain spaces and punctuation.</p>
+
+
+	<h3>Name of your site's index page</h3>
+
+		<p>This is the filename of your site's "index" page.  By default, this will be <var>index.php</var>, which is located in the base directory.  You will only need to alter this setting if you have changed the filename.</p>
+
+
+	<h3>URL to the root directory of your site</h3>
+
+		<p>The full URL to the directory containing the above file.  For example, if the file was located at <samp>http://www.example.com/index.php</samp> then the correct setting would be <samp>http://www.example.com/</samp>.</p>
+
+
+	<h3>URL to your Control Panel index page</h3>
+
+		<p>The full URL to your main system Control Panel.  In most cases, this will be <samp>http://www.yoursite.com/system/index.php</samp>.</p>
+
+
+	<h3>URL to Documentation Directory</h3>
+
+		<p>The full URL to root directory of the User Guide you wish to use.  The URL <strong>must</strong> contain the trailing slash.  So, if you downloaded the documentation and placed it in the <kbd>user_guide</kbd> subdirectory off of your root, then the setting would look like <samp>http://www.yoursite.com/user_guide/</samp>.</p>
+
+
+	<h3>Is system on?</h3>
+
+		<p>This indicates whether or not your site is "live" and displayed to the public.  If you set this preference to "No" only Super Admin group users will be able to see the site.  All other users will be shown the <a href="../specialty_templates/system_offline_template.html">System Offline</a> page.</p>
+
+
+	<h3>Default Control Panel Theme</h3>
+
+		<p>This setting specifies the default theme to use for the Control Panel.  This is the theme that will be shown unless an admin user specifies another theme for themselves in their My Profile settings.</p>
+
+
+
+	<img src="general_configuration_main_screen_2.gif" width="583" height="439" alt="General Configuration main screen, Part 2" title="General Configuration main screen, Part 2" />
+
+	<h3>Debug Preference</h3>
+
+		<p>This setting determines how PHP/database error messages are displayed.  Error messages are often very useful during initial development, but they can be very confusing to regular site visitors.  There are three options:</p>
+
+		<ol>
+			<li><b>No PHP/SQL error messages generated</b>: As the name suggests, all error messages and warnings are suppressed from view.</li>
+			<li><b>PHP/SQL error messages shown only to Super Admins</b>: Error messages and warnings are shown only to logged members of the Super Admin group.  All other users will not see anything.</li>
+
+			<li><b>PHP/SQL error messages shown to anyone - NOT SECURE</b>: As the name suggests, error messages and warnings are shown to all site visitors.  These messages can sometimes have configuration information in them, making this option a security risk.</li>
+		</ol>
+
+
+	<h3>Enable GZIP Output?</h3>
+
+		<p>Setting this preference to "Yes" will cause the web server to send out your pages in the compressed gzip format.  Browsers will automatically decompress the pages and display them as normal; there will be no visible difference to your users apart from a decreased loading time.  Your server must support serving in the gzip format in order to be able to use this option.</p>
+
+
+	<h3>Enable SQL Query Caching</h3>
+
+		<p>Here you can determine whether or not Query Caching is enabled for your site.  Query caching is one of several ways that ExpressionEngine can increase performance for your site.  Read more in the <a href="../../../general/caching.html">Data Caching</a> section.</p>
+
+
+	<h3>Query Cache Pruning</h3>
+
+		<p>This preference sets the number of days to keep old cache files.  This does not apply to the cache files that have been updated within the specified time period.  30 days is a typical setting value for most sites.</p>
+
+
+	<h3>Display SQL Queries?</h3>
+
+		<p>If this preference is set to "Yes", all members of the Super Admin group will see, at the bottom of the page, a list of the database queries used to generate the page.  All other users will see nothing.  This output can be useful during site development or for debugging purposes.</p>
+
+
+	<img src="general_configuration_main_screen_3.gif" width="584" height="429" alt="General Configuration main screen, Part 3" title="General Configuration main screen, Part 3" />
+
+	<h3>Force URL query strings?</h3>
+
+		<p>By default, this preference is set to "No".  Setting this to "Yes" will force the system to use a standard query string in the URL so that it might look something like <samp>http://www.example.com/index.php?data=value&amp;data2=value2</samp>.  When set to "Yes", the system uses a much more friendly format similar to <samp>http://www.example.com/index.php/blog/joe/</samp>.</p>
+
+		<p>The majority of servers will be able to use the default ("No") method, which is almost universally preferred by users.  Occasionally, though, a server will not support this feature and will have to be set to "Yes".  This is the case if the server does not support the <samp>PATH_INFO</samp> variable.</p>
+
+
+	<h3>Generate HTTP Page Headers?</h3>
+
+		<p>This setting determines whether or not the server should automatically send HTTP page headers when it serves the pages to a user.  Setting this preference to "Yes" causes headers to be explicitly sent by the server.  Sending explicit headers is generally considered to be a good practice.</p>
+
+
+	<h3>Redirection Method</h3>
+
+		<p>This setting determines what method is used for page redirections.  These redirections are used relatively frequently throughout the system, especially with things like logging in/out and other membership related functions.  There are two options:</p>
+
+		<ol>
+			<li><b>Location (faster)</b>: This is the preferred method, which uses PHP's "location" functionality.</li>
+			<li><b>Refresh (Windows servers)</b>: The "refresh" method is often necessary for windows-based servers due to the poor way they handle PHP's "location" functionality.  This method is usually slightly slower than the other method.</li>
+		</ol>
+
+
+	<h3>Is your server running PHP in Safe Mode?</h3>
+
+		<p>If your server is running PHP in <a href="http://us4.php.net/features.safe-mode">Safe Mode</a>, you will need to set this preference to "Yes".  If you are unsure about your server, contact your Host or server admin.</p>
+
+
+	<h3>Default XML Language</h3>
+
+		<p>This preference determines the XML language setting used for the Control Panel pages.  A drop-down list is available for selection.</p>
+
+
+	<h3>Default Character Set</h3>
+
+		<p>This setting determines the character set used in the &lt;meta> tag for Control Panel pages.  A drop-down list is available for selection.</p>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
