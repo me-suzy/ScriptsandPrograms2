@@ -1,0 +1,2 @@
+<?PHP
+  function Error($ErrorMessage) { global $CONFIG; global $CONN; global $Lang; $LangInclude = Load_Language("error.php"); require_once($LangInclude); if ($CONN) { db_close($CONN); } $ErrorMessage = rawurlencode(base64_encode($ErrorMessage)); header("Location: index.php?ErrorMessage=$ErrorMessage&Lang=$Lang"); echo "    <SCRIPT LANGUAGE=\"JavaScript\" TYPE=\"text/JavaScript\">\n"; echo "      <!--\n"; echo "         parent.frameNav('parent', 'index.php?ErrorMessage=$ErrorMessage&Lang=$Lang');\n"; echo "      //-->\n"; echo "    </SCRIPT>\n"; exit; } ?>
