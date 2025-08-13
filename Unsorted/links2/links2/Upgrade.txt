@@ -1,0 +1,361 @@
+#               -------------
+#                  Links
+#               -------------
+#               Links Manager
+#
+#         File: Upgrade.txt
+#  Description: Upgrading from Links 1.x
+#       Author: Alex Krohn
+#        Email: alex@gossamer-threads.com
+#          Web: http://www.gossamer-threads.com/
+#      Version: 2.01
+#
+# Copyright 1998 Gossamer Threads Inc.  All Rights Reserved.
+#
+
+1. Upgrade Instructions
+====================================================
+Because of the significant changes in 2.0 (almost all the code has
+changed from 1.x), you will need to install 2.0 completely. Don't
+try and merge the changes! 
+
+PLEASE NOTE: With Links 2.0 you are required to include the link:
+
+"Links Engine Powered By: Gossamer Threads Inc." 
+
+and have it linked to "http://gossamer-threads.com/scripts/links/". Please
+see the README for more details.
+
+To upgrade:
+
+    1. Install 2.0 as outlined in the README.
+    2. Copy your links.db, categories.db and site_html.pl
+       overtop of of the new versions. 
+    3. If you are upgrading from Links 2.0 beta 5, please use update_beta.pl.
+       For all other versions use update.pl:
+       
+       Links 2.0 now has ratings, and you no longer need the word
+       NULL everywhere. You can run the supplied update.pl script to
+       add the two fields to your links.db file and remove the NULL
+       from links.db. Just copy the script to your data directory
+       and run it either from the web or telnet. A links2.db file will be
+       created, once you've checked that it is ok, you can replace your
+       old links.db file with this new one.
+    4. Edit your category.db and remove the word 'NULL' (as well as your links.db
+       if the script hasn't already removed them). The new database
+       engine doesn't need this.
+    5. You will need to cut and paste the following into
+       your site_html.pl. These are for screens that didn't
+       appear in 1.x. You might want to give templates a try if you found
+       editing the site_html.pl file painful.
+       
+# BEGIN
+# ------------------------------------------------------------
+sub site_html_mailing {
+# --------------------------------------------------------
+# This routine displays your mailing list subscribe/unsubscribe form.
+#
+    my $action = shift;
+    my $message;
+    ($action eq 'subscribe')   and ($message = qq~You've been successfully subscribed to the mailing list!~);
+    ($action eq 'unsubscribe') and ($message = qq~You've been successfully removed from the mailing list!~);
+    
+    &html_print_headers;
+    print qq~
+<html>
+
+<head>
+<title>$site_title: Email Updates</title>
+</head>
+
+<body>
+
+<h1>$site_title: Email Updates</h1>
+
+    $site_menu
+    
+    <form action="$build_email_url" method="POST">
+        <div class="margin">        
+            <p><strong class="error">$message</strong></p>
+            <p>Keep informed of new additions to $site_title, by subscribing to our low-volume
+               newsletter that will deliver new listings straight to your inbox!<br><br>        
+              <select name="action"><option value="subscribe">Subscribe<option value="unsubscribe">Unsubscribe</select> to the list<br>
+               Name: <input name="name" size=15> Email: <input name="email" size=15> <input type="submit" value="Subscribe">
+            </p>
+        </div>
+    </form>
+    
+    $site_footer
+
+</body>
+</html>
+    ~;  
+}
+
+sub site_html_mailing_error {
+# --------------------------------------------------------
+# This routine is displayed if there was a problem subscribing.
+#
+    my $error = shift;
+    
+    &html_print_headers();
+    print qq~
+<html>
+<head>
+<title>User Error</title>
+</head>
+<body>
+<h1>Oops, there was a problem!</h1>
+<p>Error: <strong class="error">$error</strong></p>
+   
+<p>Please <a href="javascript:history.go(-1)">go back</a> to fix the
+problem.</p>
+
+</body>
+</html>     
+    ~;  
+}
+
+sub site_html_detailed {
+# --------------------------------------------------------
+# This routine will build a single page per link. It's only
+# really useful if you have a long review for each link --
+# or more information then can be displayed in a summary.
+#
+
+    my %rec = @_;
+
+$output = qq~ 
+<html>
+
+<head>
+<title>$site_title: $rec{'Title'}</title>
+</head>
+
+<body>
+
+<p><strong class="title">$title_linked</strong></p>
+
+<h1>$site_title: Detailed View!</h1>
+
+    $site_menu
+
+    <h2>$rec{'Title'}</h2>
+    <p>$rec{'Description'}</p>
+    <p><small>Submitted by: $rec{'Contact Name'} -- <a href="mailto:$rec{'Contact Email'}">$rec{'Contact Email'}</a><br>Hits: $rec{'Hits'}</small></p>
+    <p><a class="link" href="$build_jump_url?$db_key=$rec{$db_key}">Visit this link</a>.
+
+    $site_search
+    $site_footer
+
+</body>
+</html>
+~;
+
+    return $output;
+}
+
+##########################################################
+##                    Rate Resources                    ##
+##########################################################
+
+sub site_html_ratings {
+# --------------------------------------------------------
+# This routine determines how the top rated page will look like.
+# You can use:
+#       $top_rated : a three column table without <table> and </table> tags.
+#       $top_votes : a three column table without <table> and </table> tags.
+#
+#
+    my %rec = @_;
+    
+    &html_print_headers;    
+    my $output = qq~   
+<$dtd>
+<html>
+
+<head>
+<title>$site_title: Top Rated</title>
+<$css>
+</head>
+
+<$site_body>
+
+<h1>$site_title: Top Rated</h1>
+
+    $site_menu
+    
+    <p><strong>Top 10 Resources (by Rating)</strong></p>
+
+    <div class=margin>
+        <table border=0>
+            <tr><th><strong>Rating</strong></th><th><strong># Votes</strong></th><th align=left><strong>Resource</strong></th></tr>
+            $top_rated
+        </table>
+    </div>
+    
+    <p><strong>Top 10 Resources (by Votes)</strong></p>
+    <div class=margin>
+        <table border=0>
+        <tr><th><strong>Rating</strong></th><th><strong># Votes</strong></th><th align=left><strong>Resource</strong></th></tr>
+        $top_votes
+        </table>
+    </div>
+
+    $site_search
+    $site_footer
+
+</body>
+</html>
+~;
+    return $output;
+
+}
+
+sub site_html_rate_form {
+# --------------------------------------------------------
+# This routine determines how the rate form page will look like. 
+#
+    my %rec = @_;
+    
+    &html_print_headers;    
+    print qq~   
+<$dtd>
+<html>
+
+<head>
+<title>$site_title: Rate a Resource</title>
+<$css>
+</head>
+
+<$site_body>
+
+<h1>$site_title: Rate a Resource</h1>
+
+    $site_menu
+
+    <form action="$build_rate_url" method="POST">   
+        <input type=hidden name="$db_key" value="$in{$db_key}">
+        <p>Please rate the link <strong><a href="$rec{'URL'}">$rec{'Title'}</a></strong> between one and ten, with ten being tops.</p>
+        <div class="margin">    
+            <p><select name=rate>
+                <option>---
+                <option>1
+                <option>2
+                <option>3
+                <option>4
+                <option>5
+                <option>6
+                <option>7
+                <option>8
+                <option>9
+                <option>10
+               </select>
+               <input type=submit value="Rate this Link">
+            </p>
+        </div>
+    </form>
+
+    $site_search
+    $site_footer
+
+</body>
+</html>
+~;
+
+}
+
+sub site_html_rate_success {
+# --------------------------------------------------------
+# This routine determines how the add failure page will look like. You have
+# access to the following variables:
+#
+#   %in     : the variables used to add the link, useful in confirming what was
+#             added.
+#
+
+    &html_print_headers;
+    print qq~
+<$dtd>
+<html>
+
+<head>
+<title>$site_title: Resource Rated</title>
+<$css>
+</head>
+
+<$site_body>
+
+<h1>$site_title: Resource Rated</h1>
+
+    $site_menu
+
+    <p>Thank you for your vote.</p>
+    
+    $site_search
+    $site_footer
+
+</body>
+</html>
+~;
+}
+
+sub site_html_rate_failure {
+# --------------------------------------------------------
+# This routine determines how the rate failure page will look like. You have
+# access to the following variables:
+#
+#   $errormsg       : A bulleted list of the problems.
+#
+
+    my $errormsg = shift;
+
+    &html_print_headers;
+    print qq~
+<$dtd>
+<html>
+
+<head>
+<title>$site_title: Error Rating Resource.</title>
+<$css>
+</head>
+
+<$site_body>
+
+<h1>$site_title: Error Rating Resource</h1>
+
+    $site_menu
+
+        <p>Sorry, but we were unable to rate the resource for the following reason:
+        <p><strong class="error">
+            $errormsg
+        </strong></p>
+        <p>Please contact the site administrator if you have any questions.</p>
+
+    $site_search
+    $site_footer
+
+</body>
+</html>
+~;
+
+}
+
+# ------------------------------------------------------------
+# END 
+
+There are also some minor site_html.pl issues:
+
+    1. In search results page, $next is no longer just a URL, but rather a series
+       of links. So replace '<a href="$next">$next_hits</a>' with just 'Pages: $next'.
+    2. You will need to add a link to the email update script somewhere in your toolbar:
+             http://yoursite.com/cgi-bin/subscribe.cgi
+    
+That should be it! If you have any troubles, please post a message
+on the Links beta forum at:
+
+        http://gossamer-threads.com/scripts/forum/
+        
+Cheers,
+
+Alex
