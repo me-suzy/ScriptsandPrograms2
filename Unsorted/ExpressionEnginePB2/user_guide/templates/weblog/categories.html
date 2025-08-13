@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Weblog Categories &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Weblog Categories</h1>
+
+	<p>The "weblog categories tag" enables you to show your categories in a list.  Here is the basic syntax:</p>
+
+	<code>{exp:weblog:categories}<br />
+<br />
+{category_name}<br />
+<br />
+{/exp:weblog:categories}</code>
+
+	<p>Everything contained between the opening and closing tag will be repeated for each category, so if you want to wrap each category with some markup, like a div tag, you'll do this:</p>
+
+	<code>{exp:weblog:categories}<br />
+<br />
+&lt;a href="{path=weblog/index}">{category_name}&lt;/a><br />
+<br />
+{/exp:weblog:categories}</code>
+
+
+
+	<h2>Parameters</h2>
+
+	<ul class="minitoc">
+		<li><a href="#par_backspace">backspace="6"</a></li>
+		<li><a href="#par_parent_only">parent_only="yes"</a></li>
+		<li><a href="#par_style">style="nested"</a></li>
+		<li><a href="#par_weblog">weblog="news"</a></li>
+	</ul>
+
+
+	<h3><a name="par_backspace">backspace=</a></h3>
+
+		<code>backspace="6"</code>
+
+		<p>Backspacing removes characters from the last iteration of the loop.  For example, if you put a <samp>&lt;br /></samp> tag between each category you'll have this layout:</p>
+
+		<code>Local News&lt;br /><br />
+Health News&lt;br /><br />
+Science News&lt;br /></code>
+
+		<p>You might, however, not want the <samp>&lt;br /></samp> tag after the final item.  By adding backspacing you can remove it.  Simply count the number of characters and spaces in the item you want to remove and add it to the tag.  A <samp>&lt;br /></samp> tag has 6 characters, so you would do this:</p>
+
+		<code>{exp:weblog:categories backspace="6"}<br />
+<br />
+{category_name}&lt;br /><br />
+<br />
+{/exp:weblog:categories}</code>
+
+		<p>That will produce code like this:</p>
+
+		<code>Local News&lt;br /><br />
+Health News&lt;br /><br />
+Science News</code>
+
+	<p>The "backspace" parameter is only allowed if you are using the "linear" style.  It is not applicable if you use the "nested" style for the display of the list.
+
+
+	<h3><a name="par_parent_only">parent_only=</a></h3>
+
+		<code>parent_only="yes"</code>
+
+		<p>This parameter allows you to limit the category display to only "parent" categories; no sub-categories will be displayed.</p>
+
+
+	<h3><a name="par_style">style=</a></h3>
+
+		<code>style="nested"</code>
+
+		<p>There are two list "styles" for your categories:  "nested" and "linear".</p>
+
+		<p>A "nested" category is one that shows the parent/child hierarchy.  It will display the categories as nested "unordered lists" and will automatically enclose the contents in <samp>&lt;li></samp> tags and nest them correctly to show the hierarchy:</p>
+
+		<pre><code>&lt;ul>
+  &lt;li>News&lt;/li>
+    &lt;ul>
+      &lt;li>Regional&lt;/li>
+      &lt;li>World&lt;/li>
+    &lt;/ul>
+  &lt;li>Sports&lt;/li>
+    &lt;ul>
+      &lt;li>National&lt;/li>
+        &lt;ul>
+          &lt;li>Football&lt;/li>
+          &lt;li>Basketball&lt;/li>
+            &lt;ul>
+              &lt;li>Lakers&lt;/li>
+              &lt;li>Knicks&lt;/li>
+            &lt;/ul>
+        &lt;/ul>
+    &lt;/ul>
+&lt;/ul></code></pre>
+
+		<p>A "linear" category is one that shows a pure list:</p>
+
+		<code>News<br />
+Regional<br />
+World<br />
+Sports<br />
+National<br />
+Football<br />
+Basketball<br />
+Lakers<br />
+Knicks</code>
+
+		<p>By default, if you do not specify the "style" parameter then you will get a "nested" list.</p>
+
+		<p>If you do use the nested list, there are two additional parameters:</p>
+
+
+	<h3><a name="par_weblog">weblog=</a></h3>
+
+		<code>weblog="weblog_name"</code>
+
+		<p>The name (short name) of the weblog to which the categories are assigned.  <b>Note:</b>  You can only list one weblog name, since each weblog can only have one category list.  This variable is <strong>required</strong> unless you only have a single weblog.</p>
+
+
+
+
+	<h2>Variables</h2>
+
+	<ul class="minitoc">
+		<li><a href="#var_category_name">{category_name}</a></li>
+		<li><a href="#var_path">{path=weblog/index}</a></li>
+	</ul>
+
+
+	<h3><a name="var_category_name">category_name</a></h3>
+
+		<code>{category_name}</code>
+
+		<p>This variable simply displays the name of the category.</p>
+
+
+	<h3><a name="var_path">path=</a></h3>
+
+		<code>{path=template_group/template}</code>
+
+		<p>The path (template_group/template) where you want to show the categories.  This is typically used within a standard HTML link tag:</p>
+
+		<code>&lt;a href="{path=weblog/index}">{category_name}&lt;/a></code>
+
+		<p>You can also use <samp>SITE_INDEX</samp> in your path to point to your main site index page.  If you show your blog on your home page, using <samp>SITE_INDEX</samp> is preferable since it will make the URL cleaner.</p>
+
+		<code>&lt;a href="{path=SITE_INDEX}">{category_name}&lt;/a></code>
+
+
+	<h2>Examples</h2>
+
+	<p>Here are a few examples of the categories tag in use:</p>
+
+	<code>{exp:weblog:categories weblog="news" backspace="6"}<br />
+<br />
+&lt;a href="{path=news/entry"}>{category_name}&lt;/a>&lt;br /><br />
+<br />
+{/exp:weblog:categories}</code>
+
+	<p>This code would create a list of the categories in the "news" weblog and link to the "news/entry" Template.  It would also remove the <samp>&lt;br /></samp> from the last entry.</p>
+
+	<code>{exp:weblog:categories weblog="politics" style="nested"}<br />
+<br />
+&lt;a href="{path=SITE_INDEX"}>{category_name}&lt;/a><br />
+<br />
+{/exp:weblog:categories}</code>
+
+	<p>This code would create a nested, unordered list of the categories from the "politics" weblog as links to the main weblog page.</p>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
