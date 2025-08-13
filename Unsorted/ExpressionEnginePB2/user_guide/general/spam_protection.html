@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Spam Protection &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Spam Protection</h1>
+
+	<p>Comment spamming and other types of spamming have become common problems for   systems that permit user-submitted information.  If you are not familiar with comment spamming, it is when someone repeatedly submits malicious comments into your system.  This can be done by someone manually, or if the person is more sophisticated, it can be done using scripts designed to insert hundreds, or even thousands of comments automatically.</p>
+
+	<p>ExpressionEngine has several security features aimed at preventing spamming.  There is no "silver bullet", as spammers adapt their tactics to new deterrents, but the combination of security features in ExpressionEngine should provide a high degree of safety, particularly against the automated spamming methods.</p>
+
+
+
+	<h2>Secure Form Mode</h2>
+
+	<p>When this feature is enabled, all forms will contain a hidden field with a random 32 character alpha-numeric encrypted hash. When any form is submitted, the security table is queried to see if the hash exists (and has not expired).  If so, the form data is processed normally.</p>
+
+	<p>Secure Form Mode prevents automated scripts from repeatedly sending raw POST requests with comment or other form data.  A submission is only allowed when a user manually loads a page and submits the form from your site, not when POST data is transmitted through some other channel.  And once the form data is received, the user has to manually reload the page before they can submit again.</p>
+
+	<p>The setting is located at: <dfn>Admin > Security Settings > Process all forms in secure mode</dfn></p>
+
+
+
+	<h2>Deny Duplicate Data</h2>
+
+	<p>The "Deny Duplicate Data" feature is similar to the one above, but matches the submitted data instead of relying on the existence of a unique hash.  This feature will reject any form submission if identical data already exists in the database.  A malicious person can't submit the same information twice.</p>
+
+	<p>The setting is located at: <dfn>Admin > Security Settings > Deny Duplicate Data</dfn></p>
+
+
+
+	<h2>Comment Time Interval</h2>
+
+	<p>This setting defines the amount of time that must lapse between comment postings.  A malicious user will have to wait until the time has lapsed before being able to post again.</p>
+
+	<p>The setting is located at: <dfn>Admin > Weblog Management > Edit Preferences > Comment Time Interval</dfn></p>
+
+
+
+	<h2>Trackback Pings Per Hour</h2>
+
+	<p>This setting defines the number of Trackback pings you will accept in one hour.  Trackback spamming can be a concern as well.  By limiting your site to receiving a finite number of trackbacks per hour, this limits the number of malicious trackbacks you can receive.</p>
+
+	<p>The setting is located at: <dfn>Admin > Weblog Management > Edit Preferences > Trackback Pings Per Hour</dfn></p>
+
+
+
+	<h2>Site Membership</h2>
+
+	<p>Although this isn't technically a security feature, requiring your users to be members of your site provides additional safety against spamming since you have better control over the people posting on your site.</p>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
