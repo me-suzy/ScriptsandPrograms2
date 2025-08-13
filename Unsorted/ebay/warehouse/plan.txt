@@ -1,0 +1,26 @@
+DATA WAREHOUSE PLAN
+-------------------
+
+We will create a table for each of the tables listed below on python, then
+export those new tables, and import to algebra. Indexes will then be created
+on algebra. Note: the column MARKETPLACE has been excluded from all tables
+which contain it since the value so far is always zero.
+
+A one-time copy of the tables (all rows) will need to be done initially,
+after that we can append new rows based on date. (I'm not sure if this will
+work for ebay_items_arc.)
+
+Table Naming Convention:
+
+Table naming convention will be the original name with '_move' appended. This
+will be the in-transit table name. Once on algebra, we will insert rows from
+the in-transit table to the actual table. That way the names will be the same
+on python and algebra. This will allow existing reports which were run on
+python to be run on algebra with no changes.
+
+Exceptions to the naming convention are:
+ - The ebay_users and ebay_user_info tables which are combined into one table:
+   ebay_combined_users_move. This table will be named: ebay_combined_users on
+   algebra.
+ - ebay_historical_data: This will be a one-time export and import to algebra.
+ - ebay_reg_dates: This will be a one-time export and import to algebra.
