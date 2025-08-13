@@ -1,0 +1,115 @@
+<!--page type 2-->
+<html><head><title>eBay Classifieds Search</title>
+<meta http-equiv="Expires" content="Jan 1, 1980">
+</head>
+<!--header-->
+
+<p><strong>eBay Search Menu: &nbsp;</strong><a href="#TitleSearch">Title Search</a> - <a
+href="#item">Item Lookup</a> - <a href="#SellerSearch">Seller Search</a> - <a
+href="#BidderSearch">Bidder Search</a> </p>
+
+<form method="get" action="http://gecko.ebay.com/scripts/ebaySearch/search.idq">
+  <input type="hidden" name="CiTemplateChoice1" value="search.htx"><input type="hidden"
+  name="CategoryID" value=""><input type="hidden" name="maxRecordsPerPage" value="100"><input
+  type="hidden" name="maxRecordsReturned" value="300"><input type="hidden" name="whichIndex"
+  value="current"><table border="1" width="590" cellspacing="0" cellpadding="4">
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF"><a name="TitleSearch"><font size="4"><strong>Title
+      Search</strong></font></a><br>
+      <font size="2">Find all items by title</font></td>
+      <td width="75%"><input type="text" NAME="TextRestriction" SIZE="40" MAXLENGTH="100"
+      VALUE> <input type="submit" value="Search"><br>
+      <font size="2">Words to search for in title <em>(e.g. &quot;brown bear&quot; and not teddy</em>)&nbsp;&nbsp;
+      <a HREF="http://mudpuppy.ebay.com/scripts/ebaySearch/tips.htm">more tips</a></font></td>
+    </tr>
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF"><font size="2">Order by</font></td>
+      <td width="75%"><select NAME="SortProperty" size="1">
+        <option SELECTED VALUE="MetaEndSort">Ending Date </option>
+        <option VALUE="MetaCurrentPriceSort">Bid Price </option>
+        <option VALUE="rank">Search Ranking </option>
+      </select><font size="2">&nbsp; <input type="radio" checked name="SortOrder" value="[a]">ascending
+      <input type="radio" name="SortOrder" value="[d]">descending </font></td>
+    </tr>
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF">&nbsp;</td>
+      <td width="75%"><font size="2"><input TYPE="checkbox"
+      NAME="CiTemplateChoice1" VALUE="search_lynx.htx">Text-only results</font></td>
+    </tr>
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF">&nbsp;</td>
+      <td width="75%"><font size="2">Where is the option for searching <a
+      href="\${HTMLPATH}search_completed.html">completed</a> auctions?<!--<br>
+      You can also try our <a href="http://anaconda.ebay.com/search.html">test search</a>
+      engine.--></font></td>
+    </tr>
+  </table>
+</form>
+
+<form method="get" action="\${CGIPATH}eBayISAPI.dll">
+  <input type="hidden" name="MfcISAPICommand" value="ViewItem"><table border="1" cellpadding="4" cellspacing="0" width="590">
+  <tr>
+    <td width="25%" valign="middle" bgcolor="#EFEFEF"><a name="item"><font size="4"><strong>Item
+    Lookup</strong></font></a><br>
+    <font size="2">Find an item by item #</font></td>
+    <td width="75%" valign="middle"><font size="2">Item
+      #</font>&nbsp; <input type="text" name="item" size="9">&nbsp;&nbsp; <input type="submit"
+      value="Look up">
+    </td>
+  </tr>
+</table>
+</form>
+
+<form method="get" action="\${CGIPATH}eBayISAPI.dll">
+  <input type="hidden" name="MfcISAPICommand" value="ViewListedItems"><table border="1"
+  width="590" cellspacing="0" cellpadding="4">
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF"><a name="SellerSearch"><font size="4"><strong>Seller
+      Search</strong></font></a><br>
+      <font size="2">Find all items by a seller</font></td>
+      <td width="75%"><input type="text" name="userid" size="40"> <input
+      type="submit" value="Search"><br>
+      <font size="2">User ID of seller</font></td>
+    </tr>
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF"><font size="2">Completed auctions too?</font></td>
+      <td width="75%"><font size="2"><input type="radio" name="since"
+      value="-1" checked>No <input type="radio" name="since" value="30">All <input type="radio"
+      name="since" value="1">Last Day <input type="radio" name="since" value="2">Last 2 Days <input
+      type="radio" name="since" value="7">Last Week <input type="radio" name="since" value="14">Last
+      2 Weeks </font></td>
+    </tr>
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF"><font size="2">Order by</font></td>
+      <td width="75%"><font size="2"><input type="radio" name="sort" value="8">Newest
+      first <input type="radio" name="sort" value="2" checked>Oldest first <input type="radio"
+      name="sort" value="3">Auction end <input type="radio" name="sort" value="4">Current price </font></td>
+    </tr>
+  </table>
+</form>
+
+<form method="get" action="\${CGIPATH}eBayISAPI.dll">
+  <input type="hidden" name="MfcISAPICommand" value="ViewBidItems"><table border="1"
+  width="590" cellspacing="0" cellpadding="4">
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF"><a name="BidderSearch"><font size="4"><strong>Bidder
+      Search</strong></font></a><br>
+      <font size="2">Find all items by a bidder</font></td>
+      <td width="75%"><input type="text" name="userid" size="40"> <input
+      type="submit" value="Search"><br>
+      <font size="2">User ID of bidder</font></td>
+    </tr>
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF"><font size="2">Completed auctions too?</font></td>
+      <td width="75%"><input type="radio" name="completed" value="1">yes <input
+      type="radio" name="completed" value="0" checked>no</td>
+    </tr>
+    <tr>
+      <td width="25%" bgcolor="#EFEFEF"><font size="2">Even if not high bidder?</font></td>
+      <td width="75%"><font size="2"><input type="radio" name="all" value="1"
+      checked>Yes, even if not the high bidder <input type="radio" name="all" value="0">No, only
+      if high bidder</font></td>
+    </tr>
+  </table>
+</form>
+<!--footer-->
