@@ -1,0 +1,2 @@
+<?PHP
+  if ($STATUS[Admin] == "yes") { if (!empty($rgMatches[3])) { $rgMatches[3] = Clean_Variable($rgMatches[3], "html"); Post_System($rgMatches[3], "global", $Room); } else { Post_System("<B>$LOCALE[DIALOG_Syntax_Error]</B> - /$rgMatches[1] { $LOCALE[COMMON_Text] }", "syntax", $Room); } } else { Post_System("<B>$LOCALE[DIALOG_Syntax_Error]</B> - /$rgMatches[1] $LOCALE[COMMON_Function_Invalid]", "syntax", $Room); } ?>
