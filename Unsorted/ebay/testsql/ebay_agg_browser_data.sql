@@ -1,0 +1,33 @@
+/*	$Id: ebay_agg_browser_data.sql,v 1.2 1999/02/21 02:55:48 josh Exp $	*/
+/*
+ * ebay_agg_browser_data
+ *
+ *	This table contains a daily total of 'number of hits'
+ *  from each browser by partner.
+ *
+ */
+
+drop table ebay_agg_browser_data;
+
+create table ebay_agg_browser_data
+(
+	partner_id int
+	constraint nn_agg_browser_partner_id
+		not null,
+	covers_day date
+	constraint nn_agg_browser_date
+		not null,
+	browser_id int
+	constraint nn_agg_browser_browser
+		not null,
+	num_views int
+	constraint nn_agg_browser_views
+		not null
+		CHECK (num_views >= 0),
+	constraint agg_browser_pk
+	primary key (covers_day, partner_id, browser_id)
+		using index tablespace tbizdevi01
+		storage (initial 1K next 1K)
+	)
+tablespace tbizdevd01
+storage (initial 10K next 1K);
