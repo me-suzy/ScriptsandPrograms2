@@ -1,0 +1,109 @@
+<!DOCTYPE	html PUBLIC	"-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html	xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta	http-equiv="content-type"	content="text/html;	charset=iso-8859-1"	/>
+	<meta	name="author"	content="Paul	Burdick" />
+
+	<title>Email Configuration &#8211; ExpressionEngine	Documentation</title>
+
+	<meta	name="MSSmartTagsPreventParsing" content="TRUE"	/>
+	<link	rel="contents" href="../../../index.html"	/>
+	<style type="text/css" media="screen,print">@import	url(../../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a	href="../../../index.html">Table of	Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Email	Configuration</h1>
+
+	<p>This	section	of the Control Panel allows	an administrator to	set	the	preferences	relating to	how	email	is sent	within an	ExpressionEngine	site.	 These settings	affect not only	how	emails are sent	via	the	<dfn>Communicate</dfn> section of	the	Control	Panel	but	also how emails	are	sent for comment and admin notifications and any other email sendings.</p>
+
+
+	<h2><a name="main_screen">Main Screen</a></h2>
+
+	<p>The main	<dfn>Email Configuration</dfn> screen	shows	a	table	of all the email preference	options.	Be sure	to contact your	host if	you	have any questions regarding the correct email protocol	or settings	for	your server. </p>
+
+
+	<img src="email_configuration_main_screen.gif" width="581" height="694"	alt="Email Configuration main	screen"	title="Email Configuration main	screen"	/>
+
+
+	<h3>Return email address for auto-generated	emails</h3>
+
+		<p>This	setting	specifies	the	"From" or	"Reply-To" email address to	use	with system	generated	emails.	 With	the	increase in	spam on	the	internet,	many email servers will	not	accept emails	without	a	valid	From or	Reply-to address.	If you wish	to use these various modules and abilities,	we strongly	recommend	filling	this field out to	prevent	your emails	from being marked	as spam.</p>
+
+
+	<h3>Email	Protocol</h3>
+
+		<p>Email can be	sent by	ExpressionEngine	by one of	three	protocols.</p>
+
+		<ul>
+			<li><b>PHP Mail</b>: This	is PHP's	native method	of sending email,	the	<a href="http://us2.php.net/mail">mail</a> function.	It is	compatible with	most servers.	 ExpressionEngine uses the "PHP	mail"	setting	by default.	 For most	people,	this is	the	best choice. It	is not the most	efficient	way	to send	email, so	if you are maintaining a large mailing list	you	might	consider using one of	the	following	two	other	methods, if	possible.</li>
+
+			<li><b>SMTP</b>: This	protocol is	recommended	in cases where your	host requires	it,	if your	host runs	a	dedicated	mail server, or	if you want	to use your	normal POP3	email	account.	<a href="http://www.webopedia.com/TERM/S/SMTP.html"><acronym title="Simple Mail	Transfer Protocol">SMTP</acronym></a>	usually	requires authentication, so	you	will likely	need to	fill out the three fields	following	it to	use	this protocol.</li>
+
+			<li><b>Sendmail</b>:	This is	more efficient than	using	"PHP Mail" since a direct	socket connection	is opened	to the <a	href="http://www.sendmail.org/">Sendmail</a> server.	However, not all hosting providers allow a socket	connection to	Sendmail.	 To	determine	if this	protocol is	allowed	on your	server,	select Sendmail	as your	email	protocol,	update your	<dfn>Email Configuration</dfn> preferences,	and	attempt	to send	an email via the <dfn>Communicate</dfn>	section	of the Control Panel.</li>
+		</ul>
+
+
+	<h3>SMTP Server	Address</h3>
+
+		<p>If	you	chose	SMTP as	your email protocol	above, then	you	will need to fill out this field, which specifies the server address of the SMTP server.  This setting is ignored if "SMTP" is not selected as the email protocol.</p>
+
+
+	<h3>SMTP Username</h3>
+
+		<p>The username used to log in to your SMTP server.  Not all SMTP servers require you to <i>authenticate</i>, but many of them do.  In those cases you will need to specify the username and password (below).</p>
+
+
+	<h3>SMTP Password</h3>
+
+		<p>The password used to log in to your SMTP server.  Not all SMTP servers require you to <i>authenticate</i>, but many of them do.  In those cases you will need to specify the username (above) and password.</p>
+
+
+	<h3>Use	Batch	Mode?</h3>
+
+		<p>The system's mail	handling routine allows	the	use	of a "batch	mode"	whenever it	sends	email	via	the	<dfn>Communicate</dfn> section of	your Control Panel.	 This	mode splits	up large numbers of	emails into	small	batches	which	get	sent at	short	intervals. This	gives	you	the	ability	to send	email	to very	large	lists	without	being	in danger	of a server	time out.	By default,	PHP	limits any process to	30 seconds,	which	is not enough	time to	send a large amount	of email.	By sending email in	small	batches and reloading a special handler page between batches,	server timeouts	can	be prevented.	A	secondary	benefit	is that	it is	less taxing	on your	mail server and, in	the	case of	people on	shared hosting accounts, less	likely to	cause	problems with	your server	administrator.</p>
+
+	<p>Batch mode	is turned	off	by default in	ExpressionEngine.	To enable	batch	mode,	you	must change	the	"Use Batch Mode" preference	to "Yes" and then	set	the	number of	emails per batch in	the	"Number	of Emails	Per	Batch" preference (below). Please	make sure	to click the update	button to	confirm	these	additions.</p>
+
+
+	<h3>Number of	Emails Per Batch</h3>
+
+		<p>This setting is used in conjunction with the "Use Batch Mode?" preference above.  This setting determines how many emails will be sent in each batch.  The batch size you will be able to use will depend on many things; among them the email protocol you have chosen, the server configuration, and the server power.</p>
+
+		<p>If	you	are	using	one	of the more	robust mail	protocols, like	Sendmail or	SMTP,	the	batch	total	can	be set quite large,	possibly as	high as	several	hundred, as	these	protocols	are	more efficient.	 A batch size of 300 in these cases is typical.  However, the speed gain in doing so is not significant unless your mailing list numbers in the thousands.  If you are using the less efficient "PHP mail" protocol then you will usually need to set a lower batch size; 50-100 is typical.</p>
+
+
+<h3>Default	Mail Format</h3>
+
+		<p>When	you	send email via the <dfn>Communicate</dfn>	section	of your	Control	Panel, you are able	to send	HTML formatted emails.	This preference	sets whether the <dfn>Communicate</dfn> section	has	"Plain text" or	"HTML" selected	by default.</p>
+
+
+<h3>Enable Word-wrapping by	Default?</h3>
+
+		<p>When	you	send email via the <dfn>Communicate</dfn>	section	of your	Control	Panel, you are able	to choose	whether	to have	the	email	sending	routine	word wrap	the	message.	This preference	sets whether the <dfn>Communicate</dfn>	section	has	"Word	Wrapping"	on by	default.	For	more information about word	wrapping please	see	the	<dfn><a	href="../../communicate/index.html">Communicate</a></dfn> section of	the	manual</p>
+
+
+
+
+</div>
+
+
+<div id="footer">
+	<address>ExpressionEngine	&#8211;	Copyright	&#169; 2003-2004	&#8211;	pMachine, Inc.</address>
+</div>
+
+</body>
+</html>
