@@ -1,0 +1,734 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>IPTC-NAA format for picture captioning</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1251">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY>
+<DIV align=left>
+<TABLE width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="13%" bgColor=#0000ff></TD>
+    <TD></TD>
+    <TD width="87%" bgColor=#ffffff><STRONG><BIG><BIG><BIG>Digital Picture 
+      Captioning</BIG></BIG></BIG><BR>
+        A discussion of some of the issues associated with the captioning of digital 
+        images.</STRONG> 
+        <P><EM>I. Lynch, Jan '99 (source: <a href="http://www.cepic.org/iptc.htm">http://www.cepic.org/iptc.htm</a>)</EM></P>
+      <DIV align=left>
+      <TABLE width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="100%" bgColor=#3f6cf5><BIG><STRONG><BIG>The 
+            Need.</BIG></STRONG></BIG></TD></TR></TBODY></TABLE></DIV>
+      <P>Unlike textual data whos content can be indexed and hence searched at 
+      a later time, digital picture data is nothing more than a representation 
+      of the pixels that make up the image. There are currently no methods - 
+      beyond some purely experimental projects, to distinguish a picture of say 
+      a cup from a spaceship by examining just the pixel data. Hence we 
+      typically associate or 'bind' some text to a digital image file such that 
+      searching for words within the bound text can locate its associated image. 
+      </P>
+      <P>For small quantities of image files this text association may not be 
+      necessary as we can simply give each picture file a descriptive file name. 
+      (Even so there are an increasing number of publishers who insist that all 
+      digital pictures be supplied with a textual description.) However, this 
+      method rapidly becomes impracticable as the quantity of files increases. 
+      For larger quantities of files it is necessary to employ a database in 
+      order to manage their archiving and retrieval. Such databases - known as 
+      media archives in the above context, 'catalogue' large numbers of image 
+      files by recording in lists (indexing) each word in the associated textual 
+      description. </P>
+      <P>For a digital picture archive whos content is used exclusively 
+      'in-house' the textual description can take any form so long as sufficient 
+      information is recorded for images to be successfully retrieved. But for 
+      archives whos content is destined for 'outside' consumers, such as in the 
+      publishing industry, a non-structured or proprietary description structure 
+      is not sufficient as many consumers today maintain their own digital 
+      archives. </P>
+      <P>It is therefore necessary to not only caption digital pictures 
+      adequately but to also caption them with a structure that is acceptable to 
+      the widest possible audience.</P>
+      <DIV align=left>
+      <TABLE width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="100%" bgColor=#3f6cf5><STRONG><BIG><BIG>The 
+            Choices.</BIG></BIG></STRONG></TD></TR></TBODY></TABLE></DIV>
+      <P>Whenever information technology is adopted by a market sector its 
+      growth is always followed by a need for standardisation so that data can 
+      be easily interchanged between differing systems. The Internet for example 
+      has only been able to embrace a phenomenal rate of growth because data is 
+      interchanged using a platform-independent standard known as 'HTML'. In 
+      medicine digitised X-rays and other medical images can be interchanged 
+      across platforms because they are captioned with a format known as 
+      'DICOM'. </P>
+      <P>In the publishing industry however things are not so well defined. 
+      Perhaps this is because publishing is such a diverse activity that no one 
+      standard will cover all needs. For digital still pictures however there 
+      are two possible standards - one ratified jointly by the International 
+      Press Telecommunications Council and the Newspaper Association of America 
+      (IPTC -NAA); and a sub-set of the IPTC standard that has become itself a 
+      de facto standard because of the widespread use of Adobe's PhotoShop. </P>
+      <DIV align=left>
+      <TABLE width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="100%" bgColor=#3f6cf5><STRONG><BIG>IPTC 
+            -NAA</BIG></STRONG></TD></TR></TBODY></TABLE></DIV>
+      <P>This standard was developed by a consortium of world-wide 'content' 
+      providers such as Reuters and AP whos services deliver a range of 
+      products including news, financial data, graphics, still pictures, movie 
+      and audio clips, over a range of transport mechanisms such as satellite, 
+      wide area networks, cable and direct links. The standard is therefore 
+      constructed in two parts - the first dealing with the routing and delivery 
+      of the content, and the second dealing with how the content is described. 
+      </P>
+      <P>In IPTC terms, what gets delivered is known, not as a picture, text 
+      file, audio clip or anything else that specific. It is known simply as an 
+      'Object', and the addressing information needed in order to route and 
+      deliver the object is known as that object's 'envelope'. </P>
+      <P><STRONG>Part One</STRONG> of the IPTC standard - the format of the 
+      envelope, is really only of interest to the likes of Reuters and end users 
+      such as national newspapers, broadcasters and financial institutions as it 
+      aides in the automatic delivery of items to the right 'desk'. It has a 
+      lesser relevance in the context of captioning digital pictures for Photo 
+      libraries. </P>
+      <P>It is to <STRONG>Part Two </STRONG>of the standard that many picture 
+      suppliers turn in order to structure their captions. This is by no means 
+      universal but since, as we shall see later, PhotoShop uses a subset of 
+      part two, it's about the nearest thing available to common practice. </P>
+      <P><STRONG>Table 1</STRONG> below lists the complete IPTC standard fields. 
+      Although this might look complicated, remember that all we are trying to 
+      do here is to bring some standardisation to how we structure the fields of 
+      a database. Columns one and two represent the field names - the numbers 
+      are used by the database and the names used for the field headings. Column 
+      three gives a brief description of how the field should be used - ie what 
+      sort of content the field should hold. The fourth column defines what type 
+      of data the field should contain - text, dates etc. Notice that many 
+      fields do not contain 'words' but codes which represent entries in 
+      standardised lists. For example, the Category field is not a text string 
+      but three Alpha characters.</P>
+      <P><STRONG><BIG>Table 1. THE IPTC STANDARD FIELDS</BIG></STRONG></P>
+      <P><STRONG><BIG>PART 1</BIG></STRONG></P>
+      <DIV align=left>
+      <TABLE borderColor=#0000ff height=321 cellSpacing=0 cellPadding=5 
+      width="100%" border=1>
+        <TBODY>
+        <TR>
+          <TD width="9%" bgColor=#3f6cf5 height=40><STRONG>ID</STRONG></TD>
+          <TD width="28%" bgColor=#3f6cf5 height=40><STRONG>FIELD 
+          NAME</STRONG></TD>
+          <TD width="63%" bgColor=#3f6cf5 height=40><STRONG>DESCRIPTION/ 
+            TYPE</STRONG></TD></TR>
+        <TR>
+          <TD width="9%" height=19>1:00</TD>
+          <TD width="28%" height=19>Model Version</TD>
+          <TD width="63%" height=19></TD></TR>
+        <TR>
+          <TD vAlign=top width="9%" height=19>1:05</TD>
+          <TD vAlign=top width="28%" height=19>Destination</TD>
+          <TD width="63%" height=19>Optional / Used by some providers who need 
+            additional routing information</TD></TR>
+        <TR>
+          <TD width="9%" height=19>1:20</TD>
+          <TD width="28%" height=19>File Format</TD>
+          <TD width="63%" height=19>Mandatory / </TD></TR>
+        <TR>
+          <TD width="9%" height=19>1:22</TD>
+          <TD width="28%" height=19>File Format Version</TD>
+          <TD width="63%" height=19>Mandatory / </TD></TR>
+        <TR>
+          <TD vAlign=top width="9%" height=19>1:30</TD>
+          <TD vAlign=top width="28%" height=19>ServiceId</TD>
+          <TD width="63%" height=19>Mandatory / Identifies the provider and 
+            the product</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%" height=19>1:40</TD>
+          <TD vAlign=top width="28%" height=19>EnvelopeNumber</TD>
+          <TD width="63%" height=19>Mandatory / Used with 1:30 and 1:170 to 
+            identify a same record</TD></TR>
+        <TR>
+          <TD width="9%" height=19>1:50</TD>
+          <TD width="28%" height=19>ProductId</TD>
+          <TD width="63%" height=19>Optional / Used to identify a subset of 
+            providers overall service</TD></TR>
+        <TR>
+          <TD width="9%" height=19>1:60</TD>
+          <TD width="28%" height=19>EnvelopePrior</TD>
+          <TD width="63%" height=19>Optional / Priority of the transmission 
+            (not the editoria priority) 1 / 5 / 8</TD></TR>
+        <TR>
+          <TD width="9%" height=19>1:70</TD>
+          <TD width="28%" height=19>DateSent</TD>
+          <TD width="63%" height=19>Mandatory / Date the service sent the 
+            material</TD></TR>
+        <TR>
+          <TD width="9%" height=19>1:80</TD>
+          <TD width="28%" height=19>TimeSent</TD>
+          <TD width="63%" height=19>Optional / Time the service sent the 
+            material</TD></TR>
+        <TR>
+          <TD width="9%" height=19>1:90</TD>
+          <TD width="28%" height=19>Coded Character Set</TD>
+          <TD width="63%" height=19>Optional / </TD></TR></TBODY></TABLE></DIV>
+      <P><STRONG><BIG>PART 1</BIG></STRONG></P>
+      <DIV align=left>
+      <TABLE borderColor=#0000ff cellSpacing=0 cellPadding=6 width="100%" 
+      border=1>
+        <TBODY>
+        <TR>
+          <TD width="9%" bgColor=#5353ff height=40><STRONG>ID</STRONG></TD>
+          <TD width="28%" bgColor=#5353ff height=40><STRONG>FIELD 
+          NAME</STRONG></TD>
+          <TD width="63%" bgColor=#5353ff height=40><STRONG>DESCRIPTION/ 
+            TYPE</STRONG></TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:00</TD>
+          <TD vAlign=top width="28%">Record Version</TD>
+          <TD vAlign=top width="63%">Mandatory / The current IPTC Information 
+            Interchange Model = 4</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:03</TD>
+          <TD vAlign=top width="28%">Object Type Ref.</TD>
+          <TD vAlign=top width="63%">eg, 1:News, 2:Data, 3:Advisory x:yy</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:04</TD>
+          <TD vAlign=top width="28%">Object Attribute Ref</TD>
+          <TD vAlign=top width="63%">eg, 1:Current, 2:Analysis, 3: Archive .. 
+            more<BR>x:yy</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:05</TD>
+          <TD vAlign=top width="28%">ObjectName</TD>
+          <TD vAlign=top width="63%">Eg Diana at the Proms<BR>64 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:07</TD>
+          <TD vAlign=top width="28%">EditStatus</TD>
+          <TD vAlign=top width="63%">Status of the objectdata accoding to the 
+            provider eg Correction<BR>64 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:08</TD>
+          <TD vAlign=top width="28%">Editorial Update</TD>
+          <TD vAlign=top width="63%">(To a previous object)<BR>x:yyy 
+        (Num)</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:10</TD>
+          <TD vAlign=top width="28%">Urgency</TD>
+          <TD vAlign=top width="63%">Editorial urgency 1 = most, 5 = normal, 8 
+            = least x</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:12</TD>
+          <TD vAlign=top width="28%">Subject Reference</TD>
+          <TD vAlign=top 
+            width="63%">IPTC:SubRefNum:SubName:SubMatter:SubDetailName<BR>13 to 
+            236 bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:15</TD>
+          <TD vAlign=top width="28%">Category</TD>
+          <TD vAlign=top width="63%">Identifies the subject of the object in 
+            the opinion of the provider <BR>AAA (Alpha)</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:20</TD>
+          <TD vAlign=top width="28%">SupplCategory</TD>
+          <TD vAlign=top width="63%">Further dentifies the subject of the 
+            object in the opinion of the provider <BR>32 bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:22</TD>
+          <TD vAlign=top width="28%">FixtureId</TD>
+          <TD vAlign=top width="63%">Identifies freequently occuring object 
+            data eg Euroweather<BR>32 bytes (Alpha)</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:25</TD>
+          <TD vAlign=top width="28%">Keywords</TD>
+          <TD vAlign=top width="63%">64 bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:26</TD>
+          <TD vAlign=top width="28%">Content Location Code</TD>
+          <TD vAlign=top width="63%">3 char code indicating which country the 
+            event took place eg XEU<BR>AAA (Alpha)</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:27</TD>
+          <TD vAlign=top width="28%">Content Location Name</TD>
+          <TD vAlign=top width="63%">Name of the country the event took place 
+            eg Europe<BR>64 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:30</TD>
+          <TD vAlign=top width="28%">ReleaseDate</TD>
+          <TD vAlign=top width="63%">The earliest date the provider intends 
+            the object is to be used<BR>Date</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:35</TD>
+          <TD vAlign=top width="28%">ReleaseTime</TD>
+          <TD vAlign=top width="63%">The earliest time the provider intends 
+            the object is to be used<BR>Time</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:37</TD>
+          <TD vAlign=top width="28%">Epiration Date</TD>
+          <TD vAlign=top width="63%">The latest date the provider intends the 
+            object is to be used<BR>Date</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:38</TD>
+          <TD vAlign=top width="28%">Epiration Time</TD>
+          <TD vAlign=top width="63%">The earliest time the provider intends 
+            the object is to be used<BR>Time</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:40</TD>
+          <TD vAlign=top width="28%">SpecialInstru</TD>
+          <TD vAlign=top width="63%">text<BR>256 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:42</TD>
+          <TD vAlign=top width="28%">Action Advised</TD>
+          <TD vAlign=top width="63%">2 Digits - provider defined. eg 01 = Kill 
+            object<BR>xx</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:45</TD>
+          <TD vAlign=top width="28%">RefService</TD>
+          <TD vAlign=top width="63%">Only used to refer to a previous 1:30 
+            (Reference Service)<BR>10 Bytes (Alpha)</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:47</TD>
+          <TD vAlign=top width="28%">RefDate</TD>
+          <TD vAlign=top width="63%">Only ollowed if 2:45 used</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:50</TD>
+          <TD vAlign=top width="28%">RefNumber</TD>
+          <TD vAlign=top width="63%">Only ollowed if 2:45 used<BR>8 Bytes 
+          (Num)</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:55</TD>
+          <TD vAlign=top width="28%">DateCreated</TD>
+          <TD vAlign=top width="63%">Date of the actual event - not when it 
+            was digitisedDate<BR>Date</TD></TR></TBODY></TABLE></DIV>
+      <DIV align=left>
+      <TABLE borderColor=#0000ff cellSpacing=0 cellPadding=6 width="100%" 
+      border=1>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="9%">2:60</TD>
+          <TD vAlign=top width="28%">TimeCreated</TD>
+          <TD vAlign=top width="63%">Time of the actual event - not when it 
+            was digitised<BR>Time</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:62</TD>
+          <TD vAlign=top width="28%">Digital Creation Date</TD>
+          <TD vAlign=top width="63%">Date the digital representation of the 
+            objectdata was creatred<BR>Date</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:63</TD>
+          <TD vAlign=top width="28%">Digital Creation Time</TD>
+          <TD vAlign=top width="63%">Time the digital representation of the 
+            objectdata was creatred<BR>Time</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:65</TD>
+          <TD vAlign=top width="28%">OrigProgram</TD>
+          <TD vAlign=top width="63%">eg PhotoShop<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:70</TD>
+          <TD vAlign=top width="28%">ProgramVersion</TD>
+          <TD vAlign=top width="63%">Only use if 2:65 used eg 5.0<BR>10 
+          Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:75</TD>
+          <TD vAlign=top width="28%">ObjectCycle</TD>
+          <TD vAlign=top width="63%">Virtually only used in US for Morning 
+            Evening or both</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:80</TD>
+          <TD vAlign=top width="28%">Byline</TD>
+          <TD vAlign=top width="63%">Photographer<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:85</TD>
+          <TD vAlign=top width="28%">BylineTitle</TD>
+          <TD vAlign=top width="63%">Eg House photographer, correspondent 
+            etc<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:90</TD>
+          <TD vAlign=top width="28%">City</TD>
+          <TD vAlign=top width="63%">According to the practices of the 
+            provider eg London<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:92</TD>
+          <TD vAlign=top width="28%">SubLocation</TD>
+          <TD vAlign=top width="63%">According to the practices of the 
+            provider eg Soho<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:95</TD>
+          <TD vAlign=top width="28%">ProvinceState</TD>
+          <TD vAlign=top width="63%">According to the practices of the 
+            provider eg Midlands Surrey<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:100</TD>
+          <TD vAlign=top width="28%">CountryCode</TD>
+          <TD vAlign=top width="63%">The country code of the subject matter eg 
+            USA GBR<BR>AAA (Alpha)</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:101</TD>
+          <TD vAlign=top width="28%">CountryName</TD>
+          <TD vAlign=top width="63%">The country code of the subject matter eg 
+            Great Britain<BR>64 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:103</TD>
+          <TD vAlign=top width="28%">OriginalRef</TD>
+          <TD vAlign=top width="63%">A code meaning where the object was 
+            transmitted from <BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:105</TD>
+          <TD vAlign=top width="28%">HeadLine</TD>
+          <TD vAlign=top width="63%">Synopsis of the subject matter<BR>256 
+            Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:110</TD>
+          <TD vAlign=top width="28%">Credit</TD>
+          <TD vAlign=top width="63%">Identifies the provider - not necessarily 
+            the owner / creator<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:115</TD>
+          <TD vAlign=top width="28%">Source</TD>
+          <TD vAlign=top width="63%">Identifies the original owner / 
+            creator<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:116</TD>
+          <TD vAlign=top width="28%">Copyright Notice</TD>
+          <TD vAlign=top width="63%">The providers own copyright notice<BR>128 
+            Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:118</TD>
+          <TD vAlign=top width="28%">Contact</TD>
+          <TD vAlign=top width="63%">For further info on the object<BR>128 
+            Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:120</TD>
+          <TD vAlign=top width="28%">Caption</TD>
+          <TD vAlign=top width="63%">Full version / rest of the 
+            headline<BR>2000 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:122</TD>
+          <TD vAlign=top width="28%">CaptionWriter</TD>
+          <TD vAlign=top width="63%">Who wrote the caption<BR>32 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:125</TD>
+          <TD vAlign=top width="28%">Rasterised Caption</TD>
+          <TD vAlign=top width="63%">&nbsp;</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:130</TD>
+          <TD vAlign=top width="28%">ImageType</TD>
+          <TD vAlign=top width="63%">Code representing B/w, Y comp of seps 
+            etc.Contact<BR>x:A</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:131</TD>
+          <TD vAlign=top width="28%">Image orientation</TD>
+          <TD vAlign=top width="63%">P = Portrait, L = landscape, S = 
+            Square<BR>1 Byte</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:135</TD>
+          <TD vAlign=top width="28%">LanfIdentifier</TD>
+          <TD vAlign=top width="63%">&nbsp;</TD></TR></TBODY></TABLE></DIV>
+      <DIV align=left>
+      <TABLE borderColor=#0000ff cellSpacing=0 cellPadding=6 width="100%" 
+      border=1>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="9%">2:150</TD>
+          <TD vAlign=top width="28%">AudioType</TD>
+          <TD vAlign=top width="63%">&nbsp;</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:151</TD>
+          <TD vAlign=top width="28%">Audio Sampling Rate</TD>
+          <TD vAlign=top width="63%">&nbsp;</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%">2:152</TD>
+          <TD vAlign=top width="28%">Audio Sampling Res</TD>
+          <TD vAlign=top width="63%">&nbsp;</TD></TR></TBODY></TABLE></DIV>
+      <DIV align=left>
+      <TABLE borderColor=#0000ff height=125 cellSpacing=0 cellPadding=6 
+      width="100%" border=1>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="9%" height=21>2:153</TD>
+          <TD vAlign=top width="28%" height=21>Audio Duration</TD>
+          <TD vAlign=top width="63%" height=21></TD></TR>
+        <TR>
+          <TD vAlign=top width="9%" height=21>2:154</TD>
+          <TD vAlign=top width="28%" height=21>Audio Autocue</TD>
+          <TD vAlign=top width="63%" height=21>64 Bytes</TD></TR>
+        <TR>
+          <TD vAlign=top width="9%" height=21>2:200</TD>
+          <TD vAlign=top width="28%" height=21>ObDataPreviewFileFormat</TD>
+          <TD vAlign=top width="63%" height=21></TD></TR>
+        <TR>
+          <TD vAlign=top width="9%" height=21>2:201</TD>
+          <TD vAlign=top width="28%" 
+          height=21>ObDataPreviewFileFormatVersion</TD>
+          <TD vAlign=top width="63%" height=21></TD></TR>
+        <TR>
+          <TD vAlign=top width="9%" height=21>2:202</TD>
+          <TD vAlign=top width="28%" height=21>ObDataPreviewData</TD>
+          <TD vAlign=top width="63%" height=21></TD></TR></TBODY></TABLE></DIV>
+      <DIV align=left>
+      <TABLE width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="100%"></TD></TR></TBODY></TABLE></DIV>
+      <DIV align=left>
+      <TABLE width="100%" bgColor=#4848ff border=0>
+        <TBODY>
+        <TR>
+          <TD 
+        width="100%"><STRONG><BIG><BIG>PhotoShop</BIG></BIG></STRONG></TD></TR></TBODY></TABLE></DIV>
+      <P>The<STRONG> IPTC standard</STRONG> is now so well established in the 
+      digital picture business that it was considered important enough by 
+      <STRONG>Adobe</STRONG> to be incorporated into 
+      <STRONG>PhotoShop</STRONG> - the industry's prime digital picture 
+      manipulation application. PhotoShop though uses only a small percentage of 
+      the total number of IPTC fields available. To access its IPTC facilities 
+      users open a picture and select 'File Info'. The fields then made 
+      available are grouped into sections as follows. </P>
+      <P><STRONG><BIG>Table 2. Adobe Photoshop 'File Info' 
+      Fields</BIG></STRONG></P>
+      <DIV align=left>
+      <TABLE cellSpacing=0 cellPadding=6 width="100%" border=1>
+        <TBODY>
+        <TR>
+          <TD width="16%" 
+          bgColor=#4848ff><STRONG><BIG>Caption</BIG></STRONG></TD>
+          <TD width="16%" 
+          bgColor=#4848ff><STRONG><BIG>Keywords</BIG></STRONG></TD>
+          <TD width="17%" 
+            bgColor=#4848ff><STRONG><BIG>Categories</BIG></STRONG></TD>
+          <TD width="17%" 
+          bgColor=#4848ff><STRONG><BIG>Credits</BIG></STRONG></TD>
+          <TD width="17%" 
+bgColor=#4848ff><STRONG><BIG>Origin</BIG></STRONG></TD>
+          <TD width="17%" bgColor=#4848ff><STRONG><BIG>Copyright 
+            Notice</BIG></STRONG></TD></TR>
+        <TR>
+          <TD width="16%">Caption</TD>
+          <TD width="16%">Keyword 1</TD>
+          <TD width="17%">Category Number</TD>
+          <TD width="17%">Byline</TD>
+          <TD width="17%">Object Name</TD>
+          <TD width="17%">Copyright Notice</TD></TR>
+        <TR>
+          <TD width="16%">Caption Writer</TD>
+          <TD width="16%">Keyword 2</TD>
+          <TD width="17%">Supplemental Cat</TD>
+          <TD width="17%">Byline Title</TD>
+          <TD width="17%">Date Created</TD>
+          <TD width="17%">URL</TD></TR>
+        <TR>
+          <TD width="16%">Headline</TD>
+          <TD width="16%">etc.</TD>
+          <TD width="17%">Urgency</TD>
+          <TD width="17%">Credit</TD>
+          <TD width="17%">City</TD>
+          <TD width="17%">&nbsp;</TD></TR>
+        <TR>
+          <TD width="16%">Special Instructions</TD>
+          <TD width="16%">&nbsp;</TD>
+          <TD width="17%">&nbsp;</TD>
+          <TD width="17%">Source</TD>
+          <TD width="17%">Province-State</TD>
+          <TD width="17%">&nbsp;</TD></TR>
+        <TR>
+          <TD width="16%">&nbsp;</TD>
+          <TD width="16%">&nbsp;</TD>
+          <TD width="17%">&nbsp;</TD>
+          <TD width="17%">&nbsp;</TD>
+          <TD width="17%">Country Name</TD>
+          <TD width="17%">&nbsp;</TD></TR>
+        <TR>
+          <TD width="16%">&nbsp;</TD>
+          <TD width="16%">&nbsp;</TD>
+          <TD width="17%">&nbsp;</TD>
+          <TD width="17%">&nbsp;</TD>
+          <TD width="17%">Original Ref </TD>
+          <TD width="17%">&nbsp;</TD></TR></TBODY></TABLE></DIV>
+      <P>Given the almost universal use of PhotoShop by picture consumers it 
+      makes sense to consider its captioning structure when constructing 
+      databases for use in phot libraries. </P>
+      <P><BIG><STRONG>Which fields to use?</STRONG></BIG></P>
+      <P>As a sub-set of the full standard the PhotoShop fields are a good place 
+      to start but there are some significant drawbacks and limitations for 
+      photo libraries. </P>
+      <P>Firstly the scope of the headings is often insufficient. Libraries 
+      often need to record additional information such as 'Restrictions' whereby 
+      images may have limitations imposed upon their sale due to copyright, 
+      content, exclusivity or other commercial reasons. Although the 'Special 
+      Instructions' field might seem appropriate for this use oftentimes 
+      additional fields are required.&nbsp; </P>
+      <P>Secondly, the type and length of data that can be entered into each 
+      field can lead to problems - the 'Caption' fields for example can only 
+      take up to 255 characters; and whilst we might want to use some text in 
+      the 'Category' field we can't because this field will only accept a 
+      three-character code. </P>
+      <P>And finally the IPTC standard has moved on since PhotoShop incorporated 
+      this scheme and the standard now officially discourages the use of the 
+      "Category' and "Sub-Category' fields. Rather than continuing to let 
+      picture suppliers define their own categories and sub-categories, the 
+      standard now attempts to predefine what these categorisations should be. 
+      It's debatable whether or not this is an improvement but the fact remains 
+      that the standard and PhotoShop are now in conflict.</P>
+      <P><BIG><STRONG>Storing the caption information.</STRONG></BIG></P>
+      <P>There are three principal places to store a picture's caption 
+      information; as a separate text file, as part of the JPEG data stream or 
+      for Macintosh files as one or more 'resources'. </P>
+      <P>Saving the caption as a separate text file is the most flexible method 
+      as it imposes no particular limitations on the textual data and text files 
+      can be read on all computer platforms. Its drawback though is that two 
+      files must be delivered and managed for each picture. </P>
+      <P>Saving the caption as part of the JPEG data stream avoids having two 
+      files and is potentially suitable for both Macintosh and PCs. But the 
+      problem is where precisely in the data stream to store the information? 
+      PhotoShop stores its caption at the start of the stream, other products 
+      and the end of the data stream - and just about any other place can be 
+      encountered. Whilst PhotoShop is widespread and itself can import picture 
+      files from a number of other applications, it is not always certain that 
+      the caption data will be in a place that PhotoShop can understand. </P>
+      <P>Saving the caption as a resource is common practice but only in as much 
+      as image manipulation has until recently been done mostly on Macintosh 
+      computers. But what do we mean by a 'resource'. Unlike files generated on 
+      PC's, Macintosh files are actually made up of two parts - even though to 
+      the outside world they look like single files. These two parts are known 
+      in programming terms as 'forks' - one for the data and one for the file's 
+      'resources'. </P>
+      <P>Resources may at first seem to be a rather abstract concept due to 
+      their invisibility at the operating system level. But consider for a 
+      moment a file that is an application or programme. Programmes need to put 
+      up dialogue boxes and messages. They need to open windows and have buttons 
+      etc. It is convenient to gather all these functions together in the 
+      resource fork as it makes it easier to both maintain and edit them - 
+      translating all the English into another language for example. For data 
+      files the situation is far less complicated but non the less useful. </P>
+      <P>File resource forks can contain such things as custom icons, file 
+      version information and in our case, the caption for the picture data. If 
+      a file is opened with an application that is capable of displaying the 
+      resource fork, various resources would be observed, each with a name and a 
+      number. The icons that you see on your Mac for example vary according to 
+      the view that you have selected - list, small icons or large icons. These 
+      mini pictures are stored in a file's icon resource which would have a 
+      number something like -16455. </P>
+      <P>We might expect therefore that our caption will be contained in some 
+      sort of a caption resource. This is true - and it's not. Unfortunately, 
+      although PhotoShop stores its caption information mostly in a resource 
+      known as the ANPA (IPTC) resource, not all of it is stored there and 
+      furthermore other applications may store their captions in entirely 
+      different resources altogether. </P>
+      <P><BIG><STRONG>Why the Category field is a problem.</STRONG></BIG></P>
+      <P>The current IPTC standard defines categories (ie picture categories) in 
+      such a way that it is up to the service providers to come up with schemes 
+      of their own. What the standard originally provided was a three character 
+      code followed by a 64 character description field plus one other 64 
+      character field intended to refine these categories - the Supplemental 
+      Category field.&nbsp; Thus a provider would design its own scheme along 
+      the lines of say ..</P>
+      <P>AAA = Sport<BR>AAB = Politics<BR>AAC = Personalities etc.<BR><BR>And 
+      whatever they liked in the supplemental category field. It doesn't take 
+      much to see that this soon degenerates into a pretty non-standard standard 
+      with each picture supplier categorising their content differently.&nbsp; 
+      Revision 4 of the standard provides for an alternative way to standardise 
+      categories and sub categories whereby the IPTC now defines what these 
+      should be and calls the field the Subject Reference field. And furthermore 
+      it advises on the use of the Category and Sub Category fields as follows 
+      .. </P>
+      <P>"Use of these fields is deprecated. It is likely that these fields will 
+      not be included in further versions of the standard". </P>
+      <P>Note: PhotoShop still uses this scheme! </P>
+      <P>Subject Reference fields </P>
+      <P>A typical Subject Reference field would like like ..</P>
+      <P>IPTC : 10170100 : Arts, Culture &amp; Entertainment : Theatre : 
+      Actors</P>
+      <P>Notice that there are five parts to this field each separated by a 
+      colon. The first two parts are mandatory and the remaining three are 
+      optional. </P>
+      <P>Subject Reference Part 1 - IPR</P>
+      <P>This part provides a mandatory 'Information Provider Reference'. Unless 
+      Camera Press becomes a registered provider with the IPTC, along with the 
+      likes of Agence</P>
+      <P>France Presse - 'AFP', Associated Press - 'AP', or Reuters - 'Reuters', 
+      this field should contain 'IPTC'. </P>
+      <P>Subject Reference Part 2 - SRN</P>
+      <P>The Subject Reference number is an 8 digit number which completely 
+      takes over from the 'Category' and 'Sub-Category' fields. However, not any 
+      old number will do here. The IPTC maintains a list of approved numbers 
+      which relate to specific subjects and hence to use an approved number this 
+      list needs to be consulted each time a picture is captioned - and it's a 
+      long list! Furthermore, unless you as a picture supplier become a 
+      registered provider with the IPTC you has no say in what the list of 
+      subject matter contains - you must use those already defined. </P>
+      <P>The Subject Reference Number is itself built up from three parts. </P>
+      <P>The first two digits come form a list of subject numbers which match 
+      broad categories of subject matter. eg <BR>10 = Arts, Culture &amp; 
+      Entertainment</P>
+      <P>The next three digits are taken from a table which further classifies 
+      the preceding section<BR>eg 170 = Theatre</P>
+      <P>The last three digits are taken from a table which provides more detail 
+      to the preceding section<BR>eg 100 = Actors</P>
+      <P>(this is actually a fictitious example as the table of classifications 
+      was not available) And so our Subject Reference number would look as 
+      follows ... </P>
+      <P>Subject Reference Field Example<BR>IPR (Information Provider 
+      Reference)<BR>SRN<BR>(Subject Reference Number)<BR>SN<BR>(Subject 
+      Name)<BR>SMN<BR>(Subject Matter Name)<BR>SDN<BR>(Subject Detail 
+      Name)<BR>IPTC<BR>:<BR>10170100<BR>:<BR>Arts, Culture &amp; 
+      Entertainment<BR>:Theatre<BR>:Actors</P>
+      <P>Now, it would be perfectly legitimate when captioning a picture to 
+      enter in the Subject Reference field nothing more than .. 
+      <BR><BR>IPTC:10170100</P>
+      <P>The computers of customers with automated picture reception facilities 
+      would be able to understand the subject matter and detail of this picture 
+      exactly. But those less fortunate customers would have no idea what the 
+      heck '10170100' meant. For this reason the Subject Reference field can 
+      have three optional parameters - each separated by a colon, which provide 
+      textual interpretations of the Subject Reference Number. </P>
+      <P>Subject Reference Part 3 - Subject Name</P>
+      <P>Up to 64 characters eg 'Arts, Culture &amp; Entertainment' </P>
+      <P>Subject Reference Part 4 - Subject Matter Name</P>
+      <P>Up to 64 characters eg 'Theatre' </P>
+      <P>Subject Reference Part 5 - Subject Detail Name </P>
+      <P>Up to 64 characters eg 'Actors'</P>
+      <P>Hence we get our full entry which both computers and people can 
+      understand ... <BR><STRONG>IPTC : 10170100 : Arts, Culture &amp; 
+      Entertainment : Theatre : Actors</STRONG></P>
+      <P><STRONG><BIG>In conclusion</BIG></STRONG></P>
+      <P>It might seem from the above that there is little about the IPTC 
+      standard that is in fact standard and to some extent this is true. But 
+      many end-user's systems such as those used in the newspaper and magazine 
+      markets expect to receive digital pictures captioned under the IPTC 
+      format. What can be concluded from the above is that in order to implement 
+      the standard, picture libraries need to compromise. On the one hand 
+      sufficient captioning information needs to be provided so that images can 
+      be readily identified and catalogued. On the other hand too much 
+      information slows down the time it takes to ready pictures for delivery. 
+      At Camera Press in London England, for example, the scope of the PhotoShop 
+      fields available has proven to be insufficient for internal use and extra 
+      fields - both IPTC and fields specific to Camera Press have had to be 
+      used. Internally all images are catalogued in a Phraséa database which 
+      creates a separate text file for the caption but Phraséa is also able to 
+      read PhotoShop's internal caption during the archiving process. Those who 
+      access the Phraséa database directly to download pictures can get the best 
+      of both worlds, the full text file and the picture file's internal caption 
+      which can be read by PhotoShop. Accessing pictures via the world wide web 
+      however only delivers the file's internal caption. </P>
+      <P>It is unfortunate that many end-users underestimate the significance of 
+      captioning structures - after all it's the digital image that they are 
+      interested in. But designing suitable captioning structures, as we have 
+      seen above, is a tricky business. Get it wrong at the outset and it 
+      becomes increasingly difficult to correct your mistakes as your archive 
+      grows. Reworking thousands of captions is not something that you want to 
+      do too often! </P>
+      <P>If you are about to design a caption structure it is important to bear 
+      in mind the following ... </P>
+      <P>1. The overwhelming majority of your customers will download the 
+      picture file ONLY - and many will not even bother to read the text within 
+      PhotoShop's 'File Info' window. eg, special prices! </P>
+      <P>2. If you define fields that are additional to those that PhotoShop can 
+      understand they will most likely not be transmitted to the end user. This 
+      can be either a problem or a benefit depending on your caption structure. 
+      </P>
+      <P>3. It is not advisable to use the 'Category' and 'Sub-Category' fields 
+      as these are no longer supported by the standard. Since these fields are 
+      potentially so important it is essential to understand how the new 
+      'Subject Reference' field works. The full standard can be obtained from <A 
+      href="http://www.iptc.org/iptc">http://www.iptc.org/iptc</A> </P>
+      <P><STRONG>Ian Lynch is an independent Phrasea Specialist in the UK and 
+      can be contacted at <A 
+      href="mailto:ian@lanmarque.co.uk">ian@lanmarque.co.uk</A></STRONG></P></TD></TR></TBODY></TABLE></DIV></BODY></HTML>
