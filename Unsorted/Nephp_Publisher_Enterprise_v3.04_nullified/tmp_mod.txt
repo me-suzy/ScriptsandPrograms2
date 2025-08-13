@@ -1,0 +1,88 @@
+Here are the tips for the customers who purchased the enterprise edition.
+Those tips will give you at least some ideas on template modification.
+The important thing that you have to remember is that each template
+contains variables. Those variables are declared as "{%varname%}.
+Each variable represent an data output.
+
+Template Tip:
+
+a. General Template ()
+
+- First of all, you should take a look at the default template and
+  take notes of the variables. 
+
+- Then, You can start to construct your new template. Don't forget
+  to back up the default one. For example:
+
+  browse_main.html   -> backup to -> browse_main.bak
+
+  then save the newly template as -> browse_main.html
+
+Note: don't forget to verify all the variables to make sure that the
+new template contains all the variables from the default one.
+
+b. Template for each category:
+
+- In order to apply a template for a category. Here is what you need
+  to do:
+
+  1. Admin Panel > Category
+  2. Click on the category to see its settings.
+  3. Under the category setting, you will see
+     "Select template: "
+  4. Look for the pre-defined template. If you want to make a new template,
+     Click on "New".
+	
+  5. Paste your HTML code in there. Please note that just like the general
+     template modification, it contains "variables". You have to include
+     the varialbles.
+
+For example: ( from predefined template called "style1_redirect.txt" ). It locates
+in 
+
+  Admin Panel - > Category -> Click on one of the categories -> Select template
+  -> Under "Select Category Template" you will see "style1_redirect.txt". Select it
+  then click on edit. You will see:
+   
+   <script>
+   document.location='{%var_browse_complete%}';
+   </script>
+
+   {%var_browse_complete%} represents the URL to the category complete display.
+   
+   The code in "style1_redirect.txt" will redirect that normal category to
+   a complete category display.
+
+Here are the variables you must know for the template category:
+
+Those are the variables that exist in  browse_cat.html
+
+{%var_browse_complete%} = the url the to category complete display
+{%var_features%}        = Category features
+{%var_span%}            = Display Pages
+{%var_listings%}        = Article listings
+{%var_cats%}            = Sub categories
+{%url_php%}             = Nephp Script URL
+{%tpl_template_url%}    = Template URL
+{%var_browse_url%}      = Return to browse.php
+{%tpl_nav%}             = Navigate bar
+{%offset%}              = Off set variable
+{%catid%}               = Current Category ID
+{%booltp%}              = to tell the category, where it complete display or not
+
+Please note that you have use the variables that locate in browse_cat.html for
+template by category.
+
+You have to go through the default template ( the ones come with the package )
+to understand how the default template works before you start to define a new
+template.
+
+Good luck. If you have any questions, please feel free to leave us a message.
+
+
+
+
+
+
+
+
