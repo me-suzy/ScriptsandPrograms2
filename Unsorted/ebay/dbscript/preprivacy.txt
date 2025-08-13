@@ -1,0 +1,105 @@
+/* script to update user's emails from their userid - 
+run before running past_aliases */
+
+update ebay_user_info a
+set email = (select userid
+from ebay_users b
+where b.id = a.id)
+where email != (select userid
+from ebay_users c
+where c.id = a.id);
+
+update ebay_users set userid = 'calvin' where userid = 'calvin@ebay.com';
+update ebay_users set userid = 'gracie' where userid = 'gracie@ebay.com';
+update ebay_users set userid = 'tony' where userid = 'tony@ebay.com';
+update ebay_users set userid = 'support' where userid = 'support@ebay.com';
+update ebay_users set userid = 'safeharbor' where userid = 'safeharbor@ebay.com';
+update ebay_users set userid = 'tm' where userid = 'tm@ebay.com';
+
+/* reservations script */
+update ebay_users set userid = 'angie' where userid = 'angie@ebay.com';
+update ebay_users set userid = 'anne' where userid = 'anne@ebay.com';
+update ebay_users set userid = 'beth' where userid = 'beth@ebay.com';
+update ebay_users set userid = 'bridget' where userid = 'bridget@ebay.com';
+update ebay_users set userid = 'colleen' where userid = 'colleen@ebay.com';
+update ebay_users set userid = 'gail' where userid = 'gail@ebay.com';
+update ebay_users set userid = 'gus' where userid = 'gus@ebay.com';
+update ebay_users set userid = 'holly' where userid = 'holly@ebay.com';
+
+update ebay_users set userid = 'jenny' where userid = 'jenny@ebay.com';
+update ebay_users set userid = 'jesse' where userid = 'jesse@ebay.com';
+update ebay_users set userid = 'justin' where userid = 'justin@ebay.com';
+update ebay_users set userid = 'kelley' where userid = 'kelley@ebay.com';
+update ebay_users set userid = 'linda' where userid = 'linda@ebay.com';
+update ebay_users set userid = 'lisa' where userid = 'lisa@ebay.com';
+update ebay_users set userid = 'mac' where userid = 'mac@ebay.com';
+update ebay_users set userid = 'malcolm' where userid = 'malcolm@ebay.com';
+update ebay_users set userid = 'morgan' where userid = 'morgan@ebay.com';
+update ebay_users set userid = 'pat' where userid = 'pat@ebay.com';
+
+update ebay_users set userid = 'phil' where userid = 'phil@ebay.com';
+update ebay_users set userid = 'robin' where userid = 'robin@ebay.com';
+update ebay_users set userid = 'sonny' where userid = 'sonny@ebay.com';
+update ebay_users set userid = 'keith' where userid = 'keith@ebay.com';
+update ebay_users set userid = 'dale' where userid = 'dale@ebay.com';
+update ebay_users set userid = 'louise' where userid = 'louise@ebay.com';
+update ebay_users set userid = 'laura' where userid = 'laura@ebay.com';
+update ebay_users set userid = 'wes' where userid = 'wes@ebay.com';
+update ebay_users set userid = 'shari' where userid = 'shari@ebay.com';
+
+update ebay_users set userid = 'janette' where userid = 'janette@ebay.com';
+update ebay_users set userid = 'lulu' where userid = 'llaursen@ebay.com';
+update ebay_users set userid = 'eileen' where userid = 'eileen@ebay.com';
+update ebay_users set userid = 'dan' where userid = 'dan@ebay.com';
+update ebay_users set userid = 'rock' where userid = 'rock@ebay.com';
+update ebay_users set userid = 'chad' where userid = 'chad@ebay.com';
+update ebay_users set userid = 'brad' where userid = 'brad@ebay.com';
+update ebay_users set userid = 'alex' where userid = 'poon@ebay.com';
+update ebay_users set userid = 'poon' where userid = 'bubbafish@yahoo.com';
+update ebay_users set userid = 'spawn' where userid = 'wjcomp2000@yahoo.com';
+update ebay_users set userid = 'vicki' where userid = 'vicki@ebay.com';
+
+update ebay_users set userid = 'pierre' where userid = 'pierre@ebay.com';
+update ebay_users set userid = 'tholo' where userid = 'thorsten@ebay.com';
+update ebay_users set userid = 'woody' where userid = 'wen@ebay.com';
+update ebay_users set userid = 'wwen' where userid = 'wwen@yahoo.com';
+update ebay_users set userid = 'wen' where userid = 'wwen@dnai.com';
+update ebay_users set userid = 'pete' where userid = 'pete@ebay.com';
+update ebay_users set userid = 'lesliek' where userid = 'leslie@ebay.com';
+update ebay_users set userid = 'michael' where userid = 'michael@ebay.com';
+update ebay_users set userid = 'skippy' where userid = 'skippy@ebay.com';
+update ebay_users set userid = 'tini' where userid = 'tini@ebay.com';
+update ebay_users set userid = 'josh' where userid = 'josh@ebay.com';
+update ebay_users set userid = 'lena' where userid = 'lena@ebay.com';
+
+update ebay_users set userid = 'aw' where userid = 'aw@ebay.com';
+
+/* the following are for reservations - need email? */
+seller
+buyer
+user
+
+update ebay_items set sale_end = sale_end + 1 where sale_end >=
+TO_DATE('1998-04-06 00:00:00', 'YYYY-MM-DD HH24:MI:SS') 
+and sale_end <= TO_DATE('1998-04-06 23:59:59', 'YYYY-MM-DD HH24:MI:SS'); 
+
+update ebay_seller_item_lists set item_list_valid = 'N' where
+id in (select seller from ebay_items
+where sale_end >= TO_DATE('1998-04-07 00:00:00', 'YYYY-MM-DD HH24:MI:SS') 
+and sale_end <= TO_DATE('1998-04-07 23:59:59', 'YYYY-MM-DD HH24:MI:SS')); 
+
+update ebay_bidder_item_lists set item_list_valid = 'N' where
+id in (select high_bidder from ebay_items
+where sale_end >= TO_DATE('1998-04-07 00:00:00', 'YYYY-MM-DD HH24:MI:SS') 
+and sale_end <= TO_DATE('1998-04-07 23:59:59', 'YYYY-MM-DD HH24:MI:SS')); 
+
+update ebay_items set last_modified = sysdate where sale_end >=
+TO_DATE('1998-04-07 00:00:00', 'YYYY-MM-DD HH24:MI:SS') 
+and sale_end <= TO_DATE('1998-04-07 23:59:59', 'YYYY-MM-DD HH24:MI:SS'); 
+
+/* script to reverse ebay_rename_pending with fromuserid field */
+
+update ebay_rename_pending a
+set fromuserid = (select email
+from ebay_user_info b
+where b.id = a.id);
