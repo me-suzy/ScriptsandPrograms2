@@ -1,0 +1,107 @@
+<!-- Call to the functin that calculates the password's hash-->
+<script language="javascript" src="lib/md5.js"></script>
+
+<!-- Encrypt the password before sending it-->
+ <script language="javascript">
+  <!--
+  function doAddUser() {
+     //The "foo" form is the used for the password, and it's not sent
+     document.registro.hashpasswd.value = MD5(document.foo2.passwd.value);
+     document.registro.hashpasswd2.value = MD5(document.foo2.passwd2.value);     
+     document.foo2.passwd.value=''
+     document.foo2.passwd2.value=''
+     document.registro.submit();
+  }
+  // -->
+</script>
+
+<table width="642" border="0" cellspacing="0" cellpadding="0" height="188">
+  <tr>
+    <td align="left" valign="top" class="normal" bgcolor="#F3F3F3">
+      <div align="left" class="normal">
+        <p><font color="#000000"><b>&nbsp;MyNewsGroups :)</b></font> <b><font color="#CC0000">{_myngregistration_form}Registration
+          Form</font></b> <br />
+          <br />
+          &nbsp;{_myngfill_form}<br />
+          &nbsp;<b><font color="#000000">{_myngall_fields} <font color="#CC0000">{_myngrequired}</font></font></b><font color="#000000">.</font><br />
+          &nbsp;<span class="error">{error}</span>
+        <table width="400" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="left" valign="top" height="59">
+                <form name="registro" method="post" action="register.php" onSubmit="doAddUser(); return false;">
+				
+                <table width="200" border="0" cellspacing="0" cellpadding="0" >
+                  <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/icon19.gif" width="15" height="15">&nbsp;{_mynguser_name}
+                      <input type="text" class="normal" name="id_user" size="10" maxlength="15" value="{id_user}">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/email.gif" width="16" height="14">&nbsp;{_myngemail}
+                      <input type="text" class="normal" name="email" size="20" maxlength="100" value="{email}">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/env.gif" width="16" height="15">
+                      {_myngvisible} {_myngyes}
+                      <input type="radio" name="visible" value="yes" checked>
+                      {_myngno}
+                      <input type="radio" name="visible" value="no">
+                      <img src="{images_dir}/icon41.gif" width="15" height="15">
+                    </td>
+                  </tr>                
+                  <tr>
+                    <td class="normal"><br />
+
+                    <input type="hidden" name="registro_usuario" value="ok">
+                    <input type="hidden" name="hashpasswd" value="">
+                    <input type="hidden" name="hashpasswd2" value="">
+
+                      &nbsp;<input type="submit" class="normal" name="Submit" value="Submit">
+                      <input type="reset" class="normal" name="Submit2" value="Reset">
+                    </td>
+                  </tr>
+                </table>
+				
+        </form>
+            </td>
+            <td align="left" valign="top" height="59">
+			<form name="foo2">
+              <table border="0" width="250" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/security.gif" width="15" height="16">&nbsp;{_myngpassword}
+                      <input type="password" class="normal" name="passwd" size="10" maxlength="15">
+                      <img src="{images_dir}/icon41.gif" width="15" height="15"><img src="{images_dir}/icon41.gif" width="15" height="15">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/security.gif" width="15" height="16">
+                      {_myngpassword_again}
+                      <input type="password" class="normal" name="passwd2" size="10" maxlength="15">
+                    </td>               
+                </tr>
+                <tr>
+                  <td class="normal"></td>
+                </tr>
+              </table>
+			   </form>
+
+            </td>
+          </tr>
+        </table>
+
+
+        <br />
+        &nbsp;<span class="small"><img src="{images_dir}/icon41.gif" width="15" height="15">
+        {_mynginsert_valid_email} <br />
+        &nbsp;&nbsp;{_myngspam_protected}</span><br />
+        &nbsp;<span class="small"><img src="{images_dir}/icon41.gif" width="15" height="15"><img src="{images_dir}/icon41.gif" width="15" height="15">
+        {_myngpassword_transfer}<br />
+        &nbsp;&nbsp;{_myngsecure_login}</span><br />
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+
