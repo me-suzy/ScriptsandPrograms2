@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>File Upload Preferences &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>File Upload Preferences</h1>
+
+	<p>This section of the Control Panel is for the management of file upload destinations.  It is where upload directories are created and deleted.  File upload destinations determine where you will be able to upload files.  You can create a separate destination for each weblog or use the same destination on multiple weblogs to ensure that they all store their files in the same location.</p>
+
+
+
+	<h2><a name="main_screen">Main Screen</a></h2>
+
+	<p>The main <dfn>File Upload Preferences</dfn> screen shows a table of all the existing upload destinations.  It lists the destination name and provides links to edit and delete the destinations.</p>
+
+	<img src="file_upload_preferences_main_screen.gif" width="542" height="195" alt="File Upload Preferences main screen" title="File Upload Preferences main screen" />
+
+	<ul>
+		<li><a href="#edit">Edit</a>: Edit the name and preferences of the existing upload destination.</li>
+		<li><a href="#delete">Delete</a>: Delete the upload destination.</li>
+	</ul>
+
+	<p>The <dfn><a href="#create_a_new_upload_destination">Create a New Upload Destination</a></dfn> link takes you to a screen allowing you to create a file upload destination.</p>
+
+
+
+
+	<h2><a name="create_a_new_upload_destination">Create a New Upload Destination</a></h2>
+
+	<p>A link off of the main <dfn>File Upload Preferences</dfn> page brings up this screen.  On this screen you define the new upload destination.</p>
+
+
+	<img src="file_upload_preferences_new_upload_destination.gif" width="562" height="1034" alt="Create a New Upload Destination screen" title="Create a New Upload Destination screen" />
+
+	<h3>Descriptive name of upload directory</h3>
+
+		<p>This is the descriptive name of the upload destination.  It is a <strong>required</strong> field and must be unique, but spaces are allowed.  This is the name of the choice that will appear when uploading files.</p>
+
+
+	<h3>Server Path to Upload Directory</h3>
+
+		<p>This is the path to the upload directory for this destination.  It is a <strong>required</strong> setting.  It may either be the server path (ex: <samp>/home/user/example.com/http_docs/uploads/newdestination</samp>) or a relative path from the perspective of the Control Panel (ex: <samp>../uploads/newdestination/</samp>).</p>
+
+		<div class="important">
+			<p><b>Important:</b><br />
+			The directory you specify here is <strong>not</strong> created automatically (the system would need to have permissions on the server in order to create and set up the directory).  Therefore, you will need to set up the directory yourself:</p>
+
+			<ol>
+				<li>Create the specified directory on the server.  This is often done either through FTP or through a control panel on your web host.</li>
+				<li>If you are on a Unix-based server, you must set the permissions of the new directory to 777. (For Windows-based servers you do not need to do this.)</li>
+			</ol>
+		</div>
+
+
+	<h3>URL of Upload Directory</h3>
+
+		<p>You will also need to supply the full URL to the new destination.  For example, <samp>http://www.example.com/uploads/newdestination/</samp>  It is a <strong>required</strong> setting.</p>
+
+
+	<h3>Allowed File Types</h3>
+
+		<p>This preference will determine how the system handles the uploaded files.  You have two choices for this preference:</p>
+
+		<ol>
+			<li><b>Images only</b>: With this preference set, the system will only allow image files of the type GIF, JPG, JPEG, or PNG.</p>
+			<li><b>All file types</b>: This option will allow you to upload files of any type to the system.  <strong>Be careful</strong> with this setting since it could be possible for someone to upload a malicious file.</li>
+		</ol>
+
+
+	<h3>Maximum File Size (in bytes)</h3>
+
+		<p>You can optionally set a maximum allowed size for uploaded file.  Leave the setting blank if you do not wish to impose a limit.  The size is defined in bytes; 1 kilobyte = 1024 bytes.  Example: to limit each upload to 30 kilobytes, you'll put 30720 in the field.</p>
+
+
+	<h3>Maximum Image Height (in pixels)</h3>
+
+		<p>You can optionally set the maximum allowed height for uploaded images.  Leave the setting blank if you do not with to impose a limit.  The size is defined in pixels.  This option only applies to uploaded images and not other file types.</p>
+
+
+	<h3>Maximum Image Width</h3>
+
+		<p>You can optionally set the maximum allowed width for uploaded images.  Leave the setting blank if you do not with to impose a limit.  The size is defined in pixels.  This option only applies to uploaded images and not other file types.</p>
+
+
+	<h3>Image Properties</h3>
+
+		<p>These properties will be added inside the image tag (if an image is uploaded) or the hyperlink (if a non-image file is uploaded).  Leave this setting blank if you do not wish for any properties to be added.</p>
+
+		<p>If you have <samp>border="0" alt="image" name="image"</samp> set and upload an image file, then the resulting tag might look like this:</p>
+
+		<code>&lt;img src="http://www.example.com/uploads/newdestination/rose.jpg" border="0" alt="image" name="image" width="124" height="98" /></code>
+
+
+	<h3>Pre Formatting</h3>
+
+		<p>This setting lets you specify data to be placed <em>before</em> the HTML for the uploaded file.  Using this (and the following) setting you can easily "wrap" your file code.  For example, you could use <samp>&lt;div class="thumb"></samp>.</p>
+
+
+	<h3>Post Formatting</h3>
+
+		<p>This setting lets you specify data to be placed <em>after</em> the HTML for the uploaded file.  Using this (and the previous) setting you can easily "wrap" your file code.  For example, you could use <samp>&lt;/div></samp>.  Together with the previous setting you would get this output:</p>
+
+		<code>&lt;div class="thumb">&lt;img src="http://www.example.com/uploads/newdestination/rose.jpg" border="0" alt="image" name="image" width="124" height="98" />&lt;/div></code>
+
+
+	<h3>Restrict file uploading to select member groups</h3>
+
+		<p>This setting allows you to specify which member groups have permission to upload files to this file upload destination.  By default, Guests, Members and any user-created member groups are listed.  Super Admins can always upload files.</p>
+
+
+
+
+	<h2><a name="edit">Edit</a></h2>
+
+	<p>The <dfn>Edit</dfn> link in the main <dfn>File Upload Preferences</dfn> table allows you to edit the preferences for an existing upload destination.</p>
+
+
+	<img src="file_upload_preferences_edit.gif" width="564" height="1032" alt="Edit screen" title="Edit screen" />
+
+	<h3>Descriptive name of upload directory</h3>
+
+		<p>This is the descriptive name of the upload destination.  It is a <strong>required</strong> field and must be unique, but spaces are allowed.  This is the name of the choice that will appear when uploading files.</p>
+
+
+	<h3>Server Path to Upload Directory</h3>
+
+		<p>This is the path to the upload directory for this destination.  It is a <strong>required</strong> setting.  It may either be the server path (<samp>/home/user/example.com/http_docs/uploads/newdestination</samp>) or a relative path from the perspective of the Control Panel (<samp>../uploads/newdestination/</samp>).</p>
+
+		<div class="important">
+			<p><b>Important:</b><br />
+			The directory you specify here is <strong>not</strong> created automatically (the system would need to have permissions on the server in order to create and set up the directory).  Therefore, you will need to set up the directory yourself:</p>
+
+			<ol>
+				<li>Create the specified directory on the server.  This is often done either through FTP or through a control panel on your web host.</li>
+				<li>If you are on a Unix-based server, you must set the permissions of the new directory to 777. (For Windows-based servers you do not need to do this.)</li>
+			</ol>
+		</div>
+
+
+	<h3>URL of Upload Directory</h3>
+
+		<p>You will also need to supply the full URL to the new destinations.  For example, <samp>http://www.example.com/uploads/newdestination/</samp>  It is a <strong>required</strong> setting.</p>
+
+
+	<h3>Allowed File Types</h3>
+
+		<p>This preference will determine how the system handles the uploaded files.  You have two choices for this preference:</p>
+
+		<ol>
+			<li><b>Images only</b>: With this preference set, the system will only allow image files of the type GIF, JPG, JPEG, or PNG.</p>
+			<li><b>All file types</b>: This option will allow you to upload files of any type to the system.  <strong>Be careful</strong> with this setting since it could be possible for someone to upload a malicious file.</li>
+		</ol>
+
+
+	<h3>Maximum File Size (in bytes)</h3>
+
+		<p>You can optionally set a maximum allowed size for uploaded file.  Leave the setting blank if you do not wish to impose a limit.  The size is defined in bytes; 1 kilobyte = 1024 bytes.  Example: to limit each upload to 30 kilobytes, you'll put 30720 in the field.</p>
+
+
+	<h3>Maximum Image Height (in pixels)</h3>
+
+		<p>You can optionally set the maximum allowed height for uploaded images.  Leave the setting blank if you do not with to impose a limit.  The size is defined in pixels.  This option only applies to uploaded images and not other file types.</p>
+
+
+	<h3>Maximum Image Width</h3>
+
+		<p>You can optionally set the maximum allowed width for uploaded images.  Leave the setting blank if you do not with to impose a limit.  The size is defined in pixels.  This option only applies to uploaded images and not other file types.</p>
+
+
+	<h3>Image Properties</h3>
+
+		<p>These properties will be added inside the image tag (if an image is uploaded) or the hyperlink (if a non-image file is uploaded).  Leave this setting blank if you do not wish for any properties to be added.</p>
+
+		<p>If you have <samp>border="0" alt="image" name="image"</samp> set and upload an image file, then the resulting tag might look like this:</p>
+
+		<code>&lt;img src="http://www.example.com/uploads/newdestination/rose.jpg" border="0" alt="image" name="image" width="124" height="98" /></code>
+
+
+	<h3>Pre Formatting</h3>
+
+		<p>This setting lets you specify data to be placed <em>before</em> the HTML for the uploaded file.  Using this (and the following) setting you can easily "wrap" your file code.  For example, you could use <samp>&lt;div class="thumb"></samp>.</p>
+
+
+	<h3>Post Formatting</h3>
+
+		<p>This setting lets you specify data to be placed <em>after</em> the HTML for the uploaded file.  Using this (and the previous) setting you can easily "wrap" your file code.  For example, you could use <samp>&lt;/div></samp>.  Together with the previous setting you would get this output:</p>
+
+		<code>&lt;div class="thumb">&lt;img src="http://www.example.com/uploads/newdestination/rose.jpg" border="0" alt="image" name="image" width="124" height="98" />&lt;/div></code>
+
+
+	<h3>Restrict file uploading to select member groups</h3>
+
+		<p>This setting allows you to specify which member groups have permission to upload files to this file upload destination.  By default, Guests, Members and any user-created member groups are listed.  Super Admins can always upload files.</p>
+
+
+
+	<h2><a name="delete">Delete</a></h2>
+
+	<p>The <dfn>Delete</dfn> link in the main <dfn>File Upload Preferences</dfn> table allows you to delete the upload destination.  Upload destination deletion is permanent and irreversible, so <strong>be very careful before deleting a file upload destination</strong>.  <b>Note</b>: Any existing files within the destination directory will <strong>not</strong> be deleted.</p>
+
+	<img src="file_upload_preferences_delete.gif" width="581" height="184" alt="Delete screen" title="Delete screen" />
+
+	<p>You will be prompted to confirm your decision before you can delete the upload destination.</p>
+
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
