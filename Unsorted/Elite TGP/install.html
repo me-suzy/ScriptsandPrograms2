@@ -1,0 +1,485 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Jeremy Skeels">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; I) [Netscape]">
+   <title>install</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+&nbsp;
+<table BORDER=0 CELLSPACING=0 CELLPADDING=8 COLS=1 WIDTH="100%" >
+<tr BGCOLOR="#FF0000">
+<td><b><font color="#FFFFFF">&nbsp;EliteTGP 2.0 - Users Manual</font></b></td>
+</tr>
+
+<tr>
+<td>
+<ul>
+<li>
+<a href="#PO">Program Overview</a></li>
+
+<li>
+<a href="#SR">Requirements</a></li>
+
+<li>
+<a href="#II">Installation</a></li>
+
+<li>
+<a href="#PC">Configuration</a></li>
+
+<li>
+<a href="#T">Templates</a></li>
+
+<li>
+<a href="#S">Support</a></li>
+
+<br>&nbsp;</ul>
+</td>
+</tr>
+
+<tr BGCOLOR="#000000">
+<td><a NAME="PO"></a><b><font color="#FFFFFF">Program Overview:</font></b></td>
+</tr>
+
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp; EliteTGP is the premier thumb gallery script
+on the internet. However it has a twist, it is also a topmast program rating
+all galleries by the number of hits they send you per day. This eliminates
+you from sending traffic to people&nbsp; If you are looking to start a
+TGP or currently run one this software is defiantly worth checking out!&nbsp;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; The program was created to be easy to maintain
+and very customizable. A web based administration program provides you
+with all the tools you need to update every aspect of your TGP. EliteTGP
+also includes an optional gateway program to prevent users cheating. When
+new users sign up they are given a snippet of code to place on there gallery
+page(s) this code automatically tracks all votes for the uses site.&nbsp;
+<p>&nbsp;&nbsp;&nbsp;&nbsp; The freeware version of this script places
+advertisements in a few places but is fully functional in every way. Users
+who do not wish to display our ads may purchase the professional version
+for only $59.95 from our site.
+<p>&nbsp;</td>
+</tr>
+
+<tr BGCOLOR="#000000">
+<td><a NAME="SR"></a><b><font color="#FFFFFF">System Requirements:</font></b></td>
+</tr>
+
+<tr>
+<td>
+<br>- Ability to run perl cgi scripts.&nbsp;
+<br>- Unix/Linux based server (It will probably run on Windows NT, but
+has not been tested)
+<br>- PERL 4+ (Most servers have this installed)&nbsp;
+<br>- FTP/Telnet access (telnet not required, but recommend)
+<br>&nbsp;</td>
+</tr>
+
+<tr BGCOLOR="#000000">
+<td><a NAME="II"></a><b><font color="#FFFFFF">Installation Instructions:</font></b></td>
+</tr>
+
+<tr>
+<td><font face="Arial,Helvetica">Installation is fairly easy but does require
+some knowledge of your system. Just follow the instructions carefully and
+you should have no problems. <b>If you do run into problems I will <a href="http://www.elitecgi.com/install.html">set
+it up</a> for you free of charge, this usually only takes about 10 minutes.</b></font>
+<p><font face="Arial,Helvetica"><b><font size=+2>1. </font></b>Unzip EliteTGP&nbsp;
+to a directory, you should see 2 directories.</font>
+<p><font face="Arial,Helvetica">&nbsp;&nbsp; -scripts</font>
+<br><font face="Arial,Helvetica">&nbsp;&nbsp; -templates</font>
+<br><font face="Arial,Helvetica">&nbsp;&nbsp; -data</font>
+<br><font face="Arial,Helvetica">&nbsp;</font>
+<br><font face="Arial,Helvetica"><font size=+2><b>2.</b> </font>In the
+scripts directory there are 5 files with the extention ".cgi" that you
+may need to modify.</font>
+<p><font face="Arial,Helvetica">&nbsp;&nbsp;&nbsp; -admin.cgi</font>
+<br><font face="Arial,Helvetica">&nbsp;&nbsp;&nbsp; -click.cgi</font>
+<br><font face="Arial,Helvetica">&nbsp;&nbsp;&nbsp; -qud.cgi</font>
+<br><font face="Arial,Helvetica">&nbsp;&nbsp;&nbsp; -new.cgi</font>
+<br><font face="Arial,Helvetica">&nbsp;&nbsp;&nbsp; -gallery.cgi</font>
+<p><font face="Arial,Helvetica">If your path to perl is "<b>/usr/bin/perl</b>"
+you don't need to modify ANYTHING in any of these programs. If not you
+need to change the first line each file to your perl path. <font color="#FF0000"><font size=-1>*You
+will get a 500 error message if the perl path is wrong.</font></font></font>
+<p><font face="Arial,Helvetica"><font size=+2><b>3.</b> </font>Connect
+to your server and <b><font color="#CC0000">create the following directories</font></b>
+and chmod them accordingly. </font><b><tt>(directory names are <font color="#FF0000">ALL
+lower case</font>)</tt></b>
+<p><font face="Arial,Helvetica">-Under your <b><i>Cgi-bin</i></b> directory
+you need to create the directory "<b>elitetgp</b>" and chmod it <b>755</b>.</font>
+<br><font face="Arial,Helvetica">-Under the "<b>elitetgp</b>" directory
+you just created, create a directory called "<b>data</b>" and <font color="#FF0000">chmod
+it
+<b>777</b></font>.</font>
+<br><font face="Arial,Helvetica">-Under the "<b>elitetgp</b>" directory
+you just created, create a directory called "<b>templates</b>" and <font color="#FF0000">chmod
+it
+<b>777</b></font>.</font>
+<br><font face="Arial,Helvetica">-Create the directory where you wish the
+TGP site to be generated and chmod it <b>777</b>.</font>
+<p><font face="Arial,Helvetica"><font size=+2><b>4.</b> </font>FTP in to
+your server and upload the following files to the correct directories and
+chmod them correctly.
+<b><font color="#FF0000">( UPLOAD IN ASCII FORMAT
+)</font></b></font>
+<p><font face="Arial,Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To the "<b>elitetgp</b>"
+directory upload the following :</font>
+<ul>
+<li>
+<tt>admin.cgi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>click.cgi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>qud.cgi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>new.cgi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>gallery.cgi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>shared.pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>admin.pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>make.pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>menu.pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>new.pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt>elite.cfg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b><font color="#FF0000">777</font></b></tt></li>
+</ul>
+<font face="Arial,Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To the "<b>templates</b>"
+directory upload the following :</font>
+<ul>
+<li>
+<tt><font color="#000000">default.tpl</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt><font color="#000000">sdefault.tpl</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt><font color="#000000">mail.txt</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt><font color="#000000">new.tpl</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt><font color="#000000">gateway.tpl</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt><font color="#000000">post.tpl</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+
+<li>
+<tt><font color="#000000">terms.tpl</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b>755</b></tt></li>
+</ul>
+<font face="Arial,Helvetica">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To the "<b>data</b>"
+directory upload the following :</font>
+<ul>
+<li>
+<tt>apa.dat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b><font color="#FF0000">777</font></b></tt></li>
+
+<li>
+<tt>spa.dat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b><font color="#FF0000">777</font></b></tt></li>
+
+<li>
+<tt>account.dat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+chmod it : <b><font color="#FF0000">777</font></b></tt></li>
+</ul>
+
+<p><br><tt><font color="#000000">&nbsp;&nbsp; </font></tt><font face="Arial,Helvetica"><b>5.</b>
+Finally to get everything started continue on to program configuration.</font>
+<br>&nbsp;</td>
+</tr>
+
+<tr BGCOLOR="#000000">
+<td><a NAME="PC"></a><b><font color="#FFFFFF">Program Configuration:</font></b></td>
+</tr>
+
+<tr>
+<td><b>1. Open your web browser and point it to <font color="#FF0000">admin.cgi</font>
+on your web server. (If you get an error you probably chmod'd something
+incorrectly!)&nbsp;</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; - You should get a password prompt enter :
+ADMIN&nbsp;
+<p><b>&nbsp;2. After you get to the main menu select "Configure EliteTGP"
+and hit submit.&nbsp;</b>
+<p><b><i><font color="#FF0000">- The main program configuration page should
+appear.&nbsp;</font></i></b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Site Title -</b> This is what your
+TGP site will be called.&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Email Address - </b>Your email address.&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Password -</b> Change This! DO NOT
+LEAVE IT AS ADMIN!&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Index File -</b> This is the name
+of the html file that will be created as your main tgp page the extention
+of this file will be used for all sub pages as well.&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>CGI Path -</b> The server path to
+your elitetgp cgi files.&nbsp; <b><font size=-1>( <font color="#FF0000">example
+: /home/you/public_html/cgi-bin/elitetgp/</font> ) WITH TRAILING SLASH&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>CGI URL -</b> This is the url to
+your elitetgp cgi files.&nbsp; <b><font size=-1>( <font color="#FF0000">example
+: http://www.yoursite.com/cgi-bin/elitetgp/</font> ) WITH TRAILING SLASH&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>HTML Path -</b> The server path to
+your elitetgp html directory. <b><font size=-1>( <font color="#FF0000">example
+: /home/you/public_html/mytgpsite/</font> ) WITH TRAILING SLASH&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>HTML URL -</b> The URL to your elitetgp
+html directory. <b><font size=-1>( <font color="#FF0000">example : http://www.yoursite.com/mytgpsite/</font>
+) WITH TRAILING SLASH&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Sendmail Path -</b> The server path
+to your mail program. <b><font size=-1>( <font color="#FF0000">example
+: /usr/sbin/sendmail</font> ) NO TRAILING SLASH&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Min Hits -</b> Number of hits a site
+must send per day before being listed <b><font size=-1>(<font color="#FF0000">Set
+to "0" to disable. </font>)</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Expire -</b> Remove site if it is
+inactive for "X" days <b><font size=-1>( <font color="#FF0000">Set to "0"
+to disable. </font>)&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Send Email</b> - Send user an email
+after he signs up with linkcode &amp; details. <b><font size=-1>( <font color="#FF0000">Recommended</font>
+)&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Auto Validate - </b>Set program to
+auto validate all posts. <b>(<font size=-1><font color="#FF0000">Good when
+just starting out.</font> )&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Use Gateway -</b> Stops fake voting/cheaters
+<b><font size=-1>(
+<font color="#FF0000">Recomended
+if there is a cheating problem only</font> )&nbsp;</font></b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Use Frame -</b> Load gallery pages
+in a frame?
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Return Link -</b> This is the image
+or text that will be given to new members to link back to you. <b>You do
+not put the &lt;A HREF tags in this box!</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Only place the text or the image you
+wish to use.
+<br><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Examples)
+</font><font color="#000000">If
+you wanted the text link that said CLICK HERE simply type </font><font color="#FF0000">CLICK
+HERE</font><font color="#000000"> in the box.</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; However if you
+want to use the image, logo.gif you would type
+</font><font color="#FF0000">&lt;IMG
+SRC=logo.jpg></font>.
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Frame URL -</b> If your using a frame,
+this is the url to the html page that will be loaded into the bottom of
+the frame.
+<p><b>Once you have entered all information correctly you may hit the Update
+Configuration button.</b>
+<br><b>&nbsp;</b>
+<br><b><font color="#FF0000">&nbsp;You should now add all the categories
+you wish to add, you can do this from the category editor option on the
+main menu.</font></b>
+<p><b>If you wish to block out sites coming from certain places or people&nbsp;
+you can add blacklist entries. </b>Blacklist entries are global so be carefull
+when using them, creating a blacklist entry of .com would eliminate 90%
+of people on the net from submitting to your gallery post. However if you
+just wanted to block sites from geocities you could add geocities.com and
+they would not be accepted.
+<br>&nbsp;</td>
+</tr>
+
+<tr BGCOLOR="#000000">
+<td><a NAME="T"></a><b><font color="#FFFFFF">Templates:&nbsp;</font></b></td>
+</tr>
+
+<tr>
+<td><b>EliteTGP creates all pages from a series of template files. This
+enables the webmaster to have complete control of the entire site layout
+and design. Each template has a series of tags that can be used to place
+specific script generated content. <font color="#FF0000">If this seems
+confusing just look at included template files. It is really VERY simple.</font></b>
+<p><b><font size=+2><font color="#FF0000">Category Templates :</font> </font></b>These
+are the main templates you will want to edit, they control the layout of
+the actual gallery pages. There are two ways to handle category templates.
+<p><b>1. Two Default Files -</b> This is the most common setup, there are
+two default templates one called <b><font color="#FF0000">default.tpl</font></b>
+and the other called <b><font color="#FF0000">sdefault.tpl</font></b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; default.tpl - This file is used for the main
+"overall" category this will always be used for the index page.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; sdefault.tpl - This file is the default template
+for all sub categories.
+<p><b>2. Separate Category Files -</b> In this setup you will make a separate
+template file for each category. The template files will be named according
+to the category names they must be in all lower and can only contain letters
+&amp; numbers. So if you had a category called <b><font color="#FF0000">Cars</font></b>
+the template file you would create would be called <b><font color="#FF0000">cars.tpl
+</font></b>.
+However if the category was called <b><font color="#FF0000">Car Pics</font></b>
+then the template file would be named <b><font color="#FF0000">carpics.tpl
+</font></b><font color="#000000">.
+The same would be true if the category was called </font><b><font color="#FF0000">Car-Pics</font></b><font color="#000000">
+the template would be </font><b><font color="#FF0000">carpics.tpl </font></b><font color="#000000">.
+<b>Notice
+that spaces &amp; non alpha-numeric characters are removed in the template
+file names.</b></font>
+<p>In both of the above cases you have the ability to use the following
+tags in the templates. These tags will be replaced with the appropriate
+content when the html is generated. <b>Remember when placing these tags
+that they are all lower case.</b>
+<p><b>Category Template Tags :</b>
+<br><tt>&lt;!--rank<font color="#FF0000">#</font>-->&nbsp;&nbsp; : This
+prints the rank of site #. (Replace the <font color="#FF0000"># </font><font color="#000000">with
+the number)</font></tt>
+<br><tt>&lt;!--cat<font color="#FF0000">#</font>-->&nbsp;&nbsp;&nbsp; :
+This prints the category of site #. (Replace the <font color="#FF0000">#
+</font><font color="#000000">with
+the number)</font></tt>
+<br><tt><font color="#000000">&lt;!--desc</font><font color="#FF0000">#</font><font color="#000000">-->&nbsp;&nbsp;
+: This prints the description of site #. </font>(Replace the <font color="#FF0000">#
+</font><font color="#000000">with
+the number)</font></tt>
+<br><tt><font color="#000000">&lt;!--images</font><font color="#FF0000">#</font><font color="#000000">-->
+: This prints the number of images for site #. </font>(Replace the <font color="#FF0000">#
+</font><font color="#000000">with
+the number)</font></tt>
+<br><tt><font color="#000000">&lt;!--votes</font><font color="#FF0000">#</font><font color="#000000">-->&nbsp;
+: This prints the number of votes for site #. </font>(Replace the <font color="#FF0000">#
+</font><font color="#000000">with
+the number)</font></tt>
+<br><tt><font color="#000000">&lt;!--join-->&nbsp;&nbsp;&nbsp; : This places
+a link to your gallery submission page.</font></tt>
+<br><tt><font color="#000000">&lt;!--tjoin-->&nbsp;&nbsp; : This places
+a link to your gallery submission page but displays your terms page first.</font></tt>
+<br><tt><font color="#000000">&lt;!--navbox-->&nbsp; : This generates a
+drop down nav box to every category you have.</font></tt>
+<br><tt><font color="#000000">&lt;!--page-->&nbsp;&nbsp;&nbsp; : This prints
+the category name.</font></tt>
+<br><tt><font color="#000000">&lt;!--list-->&nbsp;&nbsp;&nbsp; : This ouputs
+the list in "Classic TGP" list mode.&nbsp; </font><b><blink><font color="#FF0000">NEW!!!</font></blink></b></tt>
+<p><b><font color="#000000">So if you wanted a page that ranked only your
+top 5 galleries in a simple list you would do something like the following.</font></b>
+<p><b><font color="#000000">&lt;HTML>&lt;HEAD>&lt;/HEAD>&lt;BODY></font></b>
+<br><b><font color="#000000">&lt;!--rank1--> |&nbsp; &lt;!--cat1-->&nbsp;
+|&nbsp;&nbsp; &lt;!--desc1-->&nbsp;&nbsp; | &lt;!--images1--> | &lt;!--votes1-->
+&lt;BR></font></b>
+<br><b><font color="#000000">&lt;!--rank2--> |&nbsp; &lt;!--cat2-->&nbsp;
+|&nbsp;&nbsp; &lt;!--desc2-->&nbsp;&nbsp; | &lt;!--images2--> | &lt;!--votes2-->
+&lt;BR></font></b>
+<br><b><font color="#000000">&lt;!--rank3--> |&nbsp; &lt;!--cat3-->&nbsp;
+|&nbsp;&nbsp; &lt;!--desc3-->&nbsp;&nbsp; | &lt;!--images3--> | &lt;!--votes3-->
+&lt;BR></font></b>
+<br><b><font color="#000000">&lt;!--rank4--> |&nbsp; &lt;!--cat4-->&nbsp;
+|&nbsp;&nbsp; &lt;!--desc4-->&nbsp;&nbsp; | &lt;!--images4--> | &lt;!--votes4-->
+&lt;BR></font></b>
+<br><b><font color="#000000">&lt;!--rank5--> |&nbsp; &lt;!--cat5-->&nbsp;
+|&nbsp;&nbsp; &lt;!--desc5-->&nbsp;&nbsp; | &lt;!--images5--> | &lt;!--votes5-->
+&lt;BR></font></b>
+<br><b><font color="#000000">&lt;/BODY>&lt;/HTML></font></b>
+<p><b><font color="#000000">The output would look similar to :</font></b>
+<p><tt><font color="#000000">1&nbsp; |&nbsp; Cars&nbsp;&nbsp; | 92 Chevy
+Camaro
+RS | 10 | 10056</font></tt>
+<br><tt><font color="#000000">2&nbsp; |&nbsp; Celebs | Nev Campbell&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| 30 | 100</font></tt>
+<br><tt><font color="#000000">3&nbsp; |&nbsp; Plants | Some palm trees&nbsp;&nbsp;&nbsp;
+| 5&nbsp; | 30</font></tt>
+<br><tt><font color="#000000">4&nbsp; |&nbsp; Cars&nbsp;&nbsp; | 99 Chevy
+Corvette&nbsp; | 12 | 11</font></tt>
+<br><tt><font color="#000000">5&nbsp; |&nbsp; Cars&nbsp;&nbsp; | 98 Chevy
+Camaro SS | 10 | 1</font></tt><tt><font color="#000000"></font></tt>
+<p><b><font color="#000000">Or if you wanted the classic TGP look you would
+simply use the &lt;!--list--> tag the output would look similar to:</font></b><tt><font color="#000000">&nbsp;
+</font><b><blink><font color="#FF0000">NEW!!!</font></blink></b></tt>
+<ul>
+<li>
+13 Pics Cars Description of first</li>
+
+<li>
+25 Pics Cars Description of second... ect ect..</li>
+</ul>
+
+<p><br><b><font color="#000000">This is a very simplified example for more
+examples of what you can do, I suggest you see the <a href="http://www.elitecgi.com/elitetgp/demo.html">demo</a>,
+or look at the included template files.</font></b>
+<p><b><font size=+2><font color="#FF0000">Terms Template :</font> </font></b>This
+template is very simple, it is a standard HTML file called <b><font color="#FF0000">terms.tpl</font></b>
+.
+<p><b>The only tag that is used in this template is :</b>
+<br>&lt;!--join-->&nbsp;&nbsp; : This places a link to the submission form
+after they have agreed to your terms &amp; conditions.
+<p><b><font size=+2><font color="#FF0000">Gateway Template :</font> </font></b>This
+template is very simple, it is a standard HTML file called <b><font color="#FF0000">terms.tpl</font></b>
+.
+<p><b>The only tag that is used in this template is :</b>
+<br>&lt;!--enter-->&nbsp;&nbsp; : This places a link to count the vote
+and enter the tgp.
+<p><b><font color="#FF0000"><font size=+2>New Gallery Template : </font></font></b><font color="#000000">The
+</font><b><font color="#FF0000">new.tpl</font></b><font color="#000000">
+file controls the layout of the gallery submission form.</font>
+<p><b>New Gallery Template Tags :</b>
+<br><tt><font color="#000000">&lt;!--start-->&nbsp; : This tag is required
+and starts the form.</font></tt>
+<br><tt><font color="#000000">&lt;!--email-->&nbsp; : This tag places a
+box for the uses to input his email.</font></tt>
+<br><tt><font color="#000000">&lt;!--cats-->&nbsp;&nbsp; : This tag places
+a drop down box of available categories.</font></tt>
+<br><tt><font color="#000000">&lt;!--pics-->&nbsp;&nbsp; : This allows
+the user to select the number of pics in his gallery.</font></tt>
+<br><tt><font color="#000000">&lt;!--url-->&nbsp;&nbsp;&nbsp; : This tag
+places a box for the users gallery URL.</font></tt>
+<br><tt><font color="#000000">&lt;!--desc-->&nbsp;&nbsp; : This tag places
+a box for the users gallery description.</font></tt>
+<br><tt><font color="#000000">&lt;!--mlist-->&nbsp; : This tag places a
+check box that allows the user to be added to your mailing list.</font></tt>
+<br><tt><font color="#000000">&lt;!--finish--> : This is required &amp;
+finishes the html form</font></tt>
+<p><b><font size=+2><font color="#FF0000">Post Template :</font> </font></b>The
+<b><font color="#FF0000">post.tpl</font></b>
+file controls the page that is shown to the webmaster after completing
+the sign up process.&nbsp;
+<p><b>The only tag that is used in this template is :</b>
+<br><tt>&lt;!--link-->&nbsp;&nbsp; : This displays the users unique link
+code.</tt>
+<p><b><font size=+2><font color="#FF0000">Mail Template :</font> </font></b>The
+<b><font color="#FF0000">mail.txt</font></b>
+file is the email message that is sent to the new user after they submit
+there gallery.
+<p><b>New Gallery Template Tags :</b>
+<br><tt>&lt;!--title--> : This prints the title or your TGP.</tt>
+<br><tt>&lt;!--link-->&nbsp; : This prints a copy of the users return link
+code.</tt>
+<br><tt>&lt;!--email--> : This prints your email address.</tt>
+<br>&nbsp;</td>
+</tr>
+
+<tr BGCOLOR="#000000">
+<td><a NAME="S"></a><b><font color="#FFFFFF">Support:</font></b></td>
+</tr>
+
+<tr>
+<td>If you have any problems, questions, or comments simply email me: <a href="mailto:EliteCGI@EliteCGI.com">EliteCGI@EliteCGI.com</a></td>
+</tr>
+</table>
+
+</body>
+</html>
