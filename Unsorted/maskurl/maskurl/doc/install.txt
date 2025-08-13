@@ -1,0 +1,114 @@
+PerlCoders MaskURL Installation Documentation
+-----------------------------------------------
+
+1] Preparing Installation
+-------------------------
+
+Unzip the file containing the MaskURL script to a directory 
+and make sure to extract with directories. You should now
+see the following directory structure:
+
+[ extraction path ]
+|
+new.cgi	
+|
+admin.cgi
+|
+mask.cgi
+|
+account.cgi
+|
++- doc/
+|
++- tools/
+|
++- templates/
+   |
+   +- admin
+   |
+   +- new
+   |
+   +- account
+
+Now go into the doc/ director and read the install.txt document
+(which you are doing right now). Depending on your webserver
+different methods of installation are needed, they are all
+covered below.
+
+MaskURL uses the MySQL database system to store information, so you
+will have to create a database. You can use the 'install-db.sh' script for
+this which you can find in the 'tools' directory/ -- to run this script
+you will need to have 'create' and 'grant' permission on the database.
+
+If you can't create the database yourself, you can send an e-mail to
+your administrator. Please include the install-db script and ask the
+administrator to return to you the database name, the database server,
+the user name and the password to use.
+
+
+2] Configuring MaskURL
+----------------------
+
+Before uploading anything, copy doc/example.conf to maskurl.conf and place it
+in the same directory as the .cgi files. Then edit the configuration. 
+
+Enter the correct values for the dbserver, dbname, dbuser and dbpass settings.
+
+Also edit the templates found in the 'templates/new' and 'templates/account'
+directories to your own liking but *make sure* all the <form> tags and all the
+<input> tags REMAIN THE SAME. Including the % codes found in those fields.
+
+
+3] Uploading
+------------
+
+Upload all the .cgi files to your server in ASCII mode, and make sure to
+set the right mode (755) on them. Also upload the entire 'templates' directory
+and place that directory in the same directory as the cgi scripts.
+
+
+4] Configuring your webserver
+-----------------------------
+
+4.1] Standard Configuration for Apache
+--------------------------------------
+
+To use the MaskURL package, you have to put the included apache-htaccess
+file in the directory you want to use for the masking. E.g. if you want to
+have http://myhost.com/mask/<username> as the masking URL, put the apache-htaccess
+in the 'mask' directory in your documentroot as .htaccess. Then edit this file
+and point it to the right path for the mask.cgi
+
+Installation is now complete.
+
+4.2] Standard Configuration for Roxen Challenger
+------------------------------------------------
+
+To use the MaskURL package, ask your administrator to add the Redirect v2.0 module
+to your virtual server (if it hasn't already been done) and ask him to include
+the following RegExp in the Redirection table:
+
+/mask/(.*) 	/cgi-bin/maskurl/mask.cgi?$1
+
+Replace "mask" with the correct directory you want to mask from (see Standard
+Apache Installation) and /cgi-bin/maskurl.. etc. with the correct path to
+your mask.cgi
+
+Installation is now complete
+
+4.3] Member Site Installation
+-----------------------------
+
+If you run a site where members have to pay to get access to various services
+and you want to offer MaskURL as a service, you have to take a few special steps.
+Installation is as above, but place the account.cgi and new.cgi inside your
+members area. Be sure to point the scripturl to this location as well. Be sure
+to place the mask.cgi *outside* any password protected area. Now proceed
+with the installation as above (4.1/4.2).
+
+
+5] Maintenance
+--------------
+
+Using the admin.cgi script you can delete users and edit their details. You
+can also modify the configuration from here.
