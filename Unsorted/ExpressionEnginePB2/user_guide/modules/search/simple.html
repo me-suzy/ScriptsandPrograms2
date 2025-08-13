@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Simple Search Form Tag &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Simple Search Form Tag</h1>
+
+	<p>The Simple Search Form tag allows you to easily add a single-form search field to your site.  This allows you to have a simple search box in a sidebar of your site.  Example:</p>
+
+	<code>{exp:search:simple_form weblog="news"}<br />
+<br />
+&lt;p>&lt;label for="keywords">Search:&lt;/label>&lt;br /><br />
+&lt;input type="text" name="keywords" id="keywords" value="" size="18" maxlength="100" />&lt;/p><br />
+<br />
+&lt;p>&lt;a href="{path=search/index}">Advanced Search&lt;/a>&lt;/p><br />
+<br />
+&lt;p>&lt;input type="submit" value="submit" class="submit" />&lt;/p><br />
+<br />
+{/exp:search:simple_form}</code>
+
+	<p>The search results are displayed on the page you specify as the <samp><a href="#par_results">results=</a></samp> page.  Results are displayed with the <a href="results.html">Search Results</a> tag.</p>
+
+
+
+	<h2>Input Fields</h2>
+
+	<ul class="minitoc">
+		<li><a href="#field_keywords">Keywords</a></li>
+		<li><a href="#field_member_name">Member Name</a></li>
+		<li><a href="#field_exact_match">Exact Matching</a></li>
+	</ul>
+
+
+	<h3><a name="field_keywords">Keywords</a></h3>
+
+		<p>The primary search method is to search by keyword.  If you change the form field, you need to be sure to leave the <samp>name="keywords"</samp> attribute alone.</p>
+
+		<code>&lt;label for="keywords">Keywords:&lt;/label>&lt;br /><br />
+&lt;input type="text" name="keywords" id="keywords" maxlength="100" size="20"  /></code>
+
+
+	<h3><a name="field_member_name">Member Name</a></h3>
+
+		<p>You may <em>optionally</em> search by member name (the screen name) by adding this field to your form.  If you change the form field, you need to be sure to leave the <samp>name="member_name"</samp> attribute alone.</p>
+
+		<code>&lt;label for="member_name">Member Name:&lt;/label>&lt;br /><br />
+&lt;input type="text" name="member_name" id="member_name" maxlength="100" size="40"  /></code>
+
+
+	<h3><a name="field_exact_match">Exact Matching</a></h3>
+
+		<p>If you offer the ability to search by member name, then you may also offer the option of matching partial member names or exact member names.    If you change the form field, you need to be sure to leave the <samp>name="exact_match"</samp> attribute alone.</p>
+
+		<code>&lt;input type="checkbox" name="exact_match" id="exact_match" value="y"
+/> &lt;label for="exact_match">Match Name Exactly&lt;/label></code>
+
+
+
+
+	<h2>Parameters</h2>
+
+	<ul class="minitoc">
+		<li><a href="#par_result_page">result_page="news/searches"</a></li>
+		<li><a href="#par_results">results="20"</a></li>
+		<li><a href="#par_search_in">search_in="entries"</a></li>
+		<li><a href="#par_status">status="open"</a></li>
+		<li><a href="#par_weblog">weblog="news"</a></li>
+	</ul>
+
+
+	<h3><a name="par_result_page">result_page=</a></h3>
+
+		<code>result_page="news/searches"</code>
+
+		<p>The Template_Group/Template to which you would like the search results to point.  If you do not specify this parameter, then it will default to "search/results", which is the default location of the search results Template.</p>
+
+
+	<h3><a name="par_results">results=</a></h3>
+
+		<code>results="20"</code>
+
+		<p>The number of results to show per page on the search results.</p>
+
+
+	<h3><a name="par_search_in">search_in=</a></h3>
+
+		<code>search_in="entries"</code>
+		<code>search_in="everywhere"</code>
+		<code>search_in="titles"</code>
+
+		<p>This parameter specifies which fields you would like to include in the searching.  There are three possible values:</p>
+
+		<ol>
+			<li><b>entries</b>: The search will be conducted in the entry fields of your weblog.  The entry titles and any associated comments will not be included.</li>
+			<li><b>everywhere</b>: The search will be conducted in the title, entry fields, and in associated comments.</li>
+			<li><b>titles</b>: The search will be conducted in the title of your entries.  The weblog entry fields and any associated comments will not be included.</li>
+		</ol>
+
+		<p>If this parameter is not set, the search will default to only search by "titles".</p>
+
+
+	<h3><a name="par_status">status=</a></h3>
+
+		<code>status="open"</code>
+
+		<p>The weblog <a href="../cp/admin/weblog_administration/custom_entry_statuses.html">status</a> to which you would like to restrict searching.  You can choose multiple statuses using a pipe:</p>
+
+		<code>status="draft|reviewed|published"</code>
+
+		<p>Or exclude statuses using "not"</p>
+
+		<code>status="not submitted|processing|closed"</code>
+
+
+	<h3><a name="par_weblog">weblog=</a></h3>
+
+		<code>weblog="which"</code>
+
+		<p>From which <a href="../cp/admin/weblog_administration/weblog_management.html">weblog</a> to search the entries.  Additionally, you can use the pipe character to separate multiple weblogs:</p>
+
+		<code>weblog="weblog1|weblog2|weblog3"</code>
+
+		<p>Or you can add the word "not" (with a space after it) to exclude weblogs:</p>
+
+		<code>weblog="not weblog1|weblog2|weblog3"</code>
+
+
+
+
+	<h2>Variables</h2>
+
+	<p>There are no specific variables associated with the Simple Search Form.  You may use the <samp><a href="../../templates/global_variables.html#var_path">{path=}</a></samp> Global Variable to create a link to an Advanced Search Form if you wish.</p>
+
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
