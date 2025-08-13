@@ -1,0 +1,113 @@
+Upgrading from BETA 2 to BETA 3
+-------------------------------
+
+STEP ONE:
+---------
+
+You must move your post icons from the "PostIcons" directory into the root images
+directory.
+Example:
+
+If your post icons are in 'style_images/1/PostIcons' move them to 'style_images/1/'
+
+##################################################################
+
+STEP TWO:
+---------
+
+Upload the script 'upgade1.php' to your root IBF installation (the same directory that index.php is in).
+Run it via your webbrowser. When the script has completed, remove it from your server
+
+##################################################################
+
+STEP THREE:
+-----------
+
+Simply upload the following files from this zip archive (found in the 'uploads' directory) to
+your server, replacing them.
+
+
+Files to update
+----------------
+
+index.php
+admin.php
+
+lang/en/lang_global.php
+lang/en/lang_ucp.php
+lang/en/lang_post.php
+
+Skin/s1/skin_ucp.php
+Skin/s1/skin_post.php
+Skin/s1/skin_boards.php  (HTML fix)
+
+sources/Admin/ad_forums.php
+sources/Admin/ad_member.php
+sources/Admin/ad_settings.php
+sources/Admin/ad_templates.php
+sources/Admin/ad_imagemacros.php
+
+sources/misc/attach.php
+sources/misc/contact_member.php
+sources/misc/forward_page.php
+sources/misc/print_page.php
+sources/misc/stats.php
+
+sources/Login.php
+sources/Forums.php
+sources/functions.php
+sources/Memberlist.php
+sources/Moderate.php
+sources/mod_cp.php
+sources/Online.php
+sources/Profile.php
+sources/Search.php
+sources/Topics.php
+sources/Usercp.php
+
+sources/lib/*.*  (All files)
+
+sources/Driver/mySQL.php
+
+
+Bugs Fixed
+----------
+
+HTML not allowed in forum descriptions
+Time zone problems fixed
+Mulitple categories showing up when position duplicated
+Sub forums not showing (PHP 4.0.3 fix only)
+DB query count showing (PHP 4.0.3 fix only)
+UserCP: wrong number of closing table tags called
+Wrong messenger folders created when pre-reg via ACP
+GZIP status wrongly shown
+Custom member title not showing in UCP
+AIM console breaks on AIM with spaces
+Resynch forum counts wrong
+Added: Ability to hide the session id in links
+Reworked session management
+HTML bug fixes
+Editing posts with embedded tags
+Forum log in cookies not being removed on log out
+JS check added for empty messenger titles
+Template tags parsing in preview bug fix
+Post icon not updating in topic when first post edited
+Languages not shown when forwarding topics
+Topic images still showing when turned off from UCP
+Wrong filename used when attempting to download files sent via upload
+Links to moved topics not removed when topic deleted.
+Search not returning all results bug fix
+Timezones with 30min increments fix
+URLs that don't begin with http:// show HTML code in edits
+Wrong posts showing up in MCP post queues
+Wrong reply count showing when approving moderated posts
+Safe mode "catch" for creating/removing images and macros
+Safe mode "catch" for creating/removing and editing templates
+Viewing Profile: users time not updated with board offsets
+Searching for username w/exact match returns matches inc. partial
+Uploaded avatars not changing dimensions
+Clicking "delete all cookies" creates new guest sessions fixed
+Admins that are global moderators showing in both sections in 'View Moderating Team'
+Sub categories not working on some mySQL versions fix
+Print Page: Incorrect tag parsing
+Print Page: Not all topics shown
