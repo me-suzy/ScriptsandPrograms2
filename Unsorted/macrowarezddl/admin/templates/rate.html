@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+
+<head>
+<title><%site_title%>: Rate a Resource</title>
+</head>
+
+<body bgcolor="##2D4253" link="#000000" alink="#000000" vlink="#000000">
+
+<h1><%site_title%>: Rate a Resource</h1>
+
+
+
+	<form action="<%db_cgi_url%>/rate.cgi" method="POST">	
+		<input type=hidden name="ID" value="<%ID%>">
+		<p>Please rate the link <strong><a href="<%Program URL%>"><%Program Name%></a></strong> between one and ten, with ten being tops.</p>
+		<div class="margin">	
+			<p><select name=rate>
+				<option>---
+				<option>1
+				<option>2
+				<option>3
+				<option>4
+				<option>5
+				<option>6
+				<option>7
+				<option>8
+				<option>9
+				<option>10
+			   </select>
+			   <input type=submit value="Rate this Link">
+			</p>
+		</div>
+	</form>
+
+	<form action="<%db_cgi_url%>/search.cgi" method="GET">
+		<h2>Search</h2>
+			<div class="margin">
+				<table border="0" cellspacing="0" cellpadding="0">
+				<tr><td><strong class="search">Looking for something in particular?</strong></td></tr>
+				<tr><td><input type="text" size=15 name="query"> <input type=submit value="Search!"></td></tr>
+				<tr><td><small class="more"><a href="<%db_cgi_url%>/search.cgi">More search options</a></small></td></tr>
+				</table>
+		</div>
+	</form>
+	
+	
+<p><small class="update">Pages Updated On: <%date%> - <%time%> </small></p>		
+
+</body>
+</html>
