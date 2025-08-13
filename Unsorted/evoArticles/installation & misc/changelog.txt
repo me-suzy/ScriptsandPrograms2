@@ -1,0 +1,92 @@
+-- bugs: fix clear all cache bugs if caching mode is disabled
+-- added: article sorting when viewing a category 
+
+-- ALTER TABLE `evoart`.`article_art` ADD `usecomment` TINYINT(1) DEFAULT '1' NOT NULL; 
+-- ALTER TABLE `evoart`.`article_cat` ADD `usecomment` TINYINT(1) DEFAULT '1' NOT NULL;
+-- ALTER TABLE `uart`.`article_comment` ADD `date` INT(50) NOT NULL;  
+-- settings : INSERT INTO settings VALUES (42, 15, 'internal_censor', 'shit\r\nfuck\r\ncrap\r\nfuckers\r\nasshole\r\nbullshit\r\nass', '', 'Internal: Words Filter', 'Filter unwanted words in comments. <br />Saparated by line breaks like so:<br />\r\nshit <br />\r\ncrap', 'textarea', 0);
+
+
+-- alpha 2.5 build 1
+// changes to class.articles for Allow Comments in Category / Article
+// changes to css file template for highlighting
+// fix [ ] bug
+// added new template -> article_preview (new feature: Preview Article)
+// template addarticle and editarticle edited
+// fixed rss bug
+
+-- alpha 2.5 build 2
+// removed Upload Settings usergroup
+// added new feature: Import HTML File
+// added back : Add Bookmark but now with IE Detection js
+// moved templates/admin/ *.* to admin/templates/default/ (so there can be more than 1 admin styles)
+// sql : ALTER TABLE `uart`.`article_comment` ADD `approved` TINYINT(1) DEFAULT '1' NOT NULL;  
+// new feature : Ability to Enable Validation for comments.
+// new option in admin : Enable Validation for comments
+// fixed mozilla js bug
+// ALTER TABLE `uart`.`article_art` ADD `userating` TINYINT(1) DEFAULT '1' NOT NULL;  
+// new feature: Option in Add Article & Edit Article -> Allow Rating for this article.
+// new feature: Subcategories listing now shows total articles in a category/subcategory
+// new feature: Access Mask for users/authors. Admin can restrict users to specific categories
+// -- CREATE TABLE article_access (
+	  userid int(50) NOT NULL default '0',
+	  cat_id varchar(255) NOT NULL default '0'
+	) TYPE=MyISAM;
+ 
+// updated admin/lib/db_tables.php
+// new class -> admin/lib/class_access.php 
+// ALTER TABLE 'article_art' CHANGE 'article' 'article' LONGTEXT NOT NULL  
+// changed article row type to LONGTEXT from TEXT
+// changed manage articles in admin to use search function and added paging results
+// added new setting: Enable Article Image
+// rearraged setting groups
+// fixed: author caching bug
+// ALTER TABLE `uart`.`article_art` ADD `artimg` VARCHAR(250) NOT NULL; for article image row
+// new template : bits_articleimage
+
+-- alpha 2.5 build 3
+// new table : cat_field
+// new feature: Custom Category Field
+// new setting: Enable Related Article field?
+// new feature: related article choices
+// ALTER TABLE `uart`.`article_art` ADD `related` VARCHAR(250) NOT NULL; 
+// 2 new template for related article feature: article_related and article_relatedloop
+
+-- beta 1 build 1
+// 1 new template for comments forum integration : bits_forumlink
+// remove ability to delete Global Default Style (id:1)
+// fix cache bug
+
+-- beta 1 build 2
+// minor tweakings
+// added category name into document title when viewing articles
+// fixed wysiwyg: now works in Edit Articles
+// added error_reporting(E_ALL & ~E_NOTICE); into common.php
+// removed usergroup "guest"
+// added new setting, "use Gzip"
+// cleaned up functions library
+// admin: add article now forwards to manage article page
+// cleaned up user end to make valid xhtml transitional 1.0 output
+
+-- 1.0 build 1
+//added new setting: List Articles in Sitemap?
+//fixed slashed in settings bug
+//added new integration : vBulletin 3
+//fixed search bug in user-end
+//added new template: home_nav_catloop
+//added css class tag for pagebreak titles in print articles' page
+//optimized pagebreak's coding
+//fix preview article in usercp
+//fixed sitemap bug, thanks steve
+//when viewing a category, category name is shown in the title
+-- build 2
+//fixed some js problem in ssi.php
+//fixed search() function bug for manual query
+//added notice and redirection after using Clear Caches in Admin Panel
+
+
+-- 1.01
+- fixed a few bugs from 1.0 final build
+- upgraded FCKEditor (WYSIWYG) to latest version, 1.4
+- fixed known cp.php bugs
+- minor tweaks for search function
