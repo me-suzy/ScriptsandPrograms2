@@ -1,0 +1,398 @@
+<HTML><!-- #BeginTemplate "/Templates/template.dwt" -->
+<HEAD>
+<!-- #BeginEditable "doctitle" --> 
+<TITLE>In-Link 2.0.4 SQL Directory Engine Documentation</TITLE>
+<!-- #EndEditable -->
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" href="style.css" type="text/css">
+<SCRIPT language="javascript">
+<!--
+function arc_flipflop(myID) {
+  	if (eval("document.all."+myID+".style.display")=='none') {
+		eval("document.all."+myID+".style.display='block'");
+	} else {
+	eval("document.all."+myID+".style.display='none'");
+	}
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFFFFF" text="#000000">
+
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+  <TR> 
+    <TD rowspan="2" width="0"><IMG src="images/icon1-.gif" width="32" height="32"></TD>
+    <TD class="title" width="100%">Help </TD>
+    <TD rowspan="2" width="0" align="right"><A href="manual.pdf"><IMG src="images/doc.gif" width="18" height="18" border="0"></A></TD>
+  </TR>
+  <TR> 
+    <TD width="100%"><IMG src="file:///G|/admin/images/line.gif" width="354" height="2"></TD>
+  </TR>
+</TABLE>
+
+<!-- #BeginEditable "body" --> 
+<h4>Miscellaneous Tags</h4>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%insert_title%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the title of the site, set by administrator</p>
+
+<p class=MsoNormal>Scope:              Anywhere
+in the system</p>
+
+<p class=MsoNormal>Result:             Text</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal>Example:         &lt;TITLE&gt;&lt;%insert_title%&gt;&lt;/TITLE&gt;
+will properly name the pages</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%preserve_order%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     This tag does not produce any output. It
+exists to indicate to the system that the current template is the top-level
+template. The sort order will be preserved in all other templates linked from
+the current one, until this tag is encountered again.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              The first tag in top-level
+templates</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             No output</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%preserve_order%&gt; used in
+some.tpl will store the Cat Sort, Link Sort and Number of results variables, so
+when users rate links, review links and use other forms on the site, when they
+come back to some.tpl, all of them will be preserved. The live example can be
+observed in the index.tpl, top.tpl, etc., while the tag is not used in
+box_search.tpl and add_review.tpl.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%insert_login%&gt;</h5>
+
+<p class=MsoBodyTextIndent style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the box_login.tpl if user is not
+logged in, or nothing if the user is logged in</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Anywhere in the system</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             box_login.tpl output (login form)
+or nothing</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short/Medium</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%insert_login%&gt; used on the
+front page will make the site interactive by showing the login box to new
+users, and not showing it to the logged in users. Should be used in conjunction
+with the &lt;%msg_welcome%&gt; tag.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%msg_welcome%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays a welcome user message, or not
+logged in message depending on whether the user is logged in or not.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Anywhere in the system</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             lu_welcome language variable
+followed by user name or lu_not_logged_in language variable</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%msg_welcome%&gt; will display
+welcome intechnic to a user with user name intechnic and default English
+language.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%stats_hits%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sum of all clicks made on the
+links displayed by In-link. Not to be confused with the number of hits to the
+site itself, which is currently not tracked by the system.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Anywhere in the system</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Number</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%stats_hits%&gt; will display
+46321, where 46321 is the total clicks on all links in the system.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%insert_navbar%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the navigation bar with the category tree.</p>
+
+<p class=MsoNormal>Scope:              Top-level
+templates</p>
+
+<p class=MsoNormal>Result:             String
+of text</p>
+
+<p class=MsoNormal>Processing:      Medium</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%insert_navbar%&gt; will display
+Home &gt; Business and Economy &gt; Business to Business &gt; Marketing and
+Advertising &gt; Advertising &gt; Outdoor Advertising &gt; with appropriate
+links in directory with above categories.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%insert_pagenav%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays page navigation in chunks of 10.
+The links to first 10 pages are displayed at ones. If more pages are available,
+a sign &gt;&gt; will appear. If it is clicked, next 10 pages are displayed,
+and the sign &lt;&lt; appears to go back. Otherwise clicking on a page number
+will lead to that page.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Templates displaying lists of
+links such as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Text with variable number of pages
+depending on the amount of output and number or results to display setting.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Medium</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%insert_pagenav%&gt; will display
+Go To Page 1 2 3 4 5 6 7 8 9 10 &gt;&gt; if the number of results exceeds 10
+pages. The page you are currently on is not a link, the rest are links to
+appropriate pages.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%action_logout%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Logs out a user and navigates to Home.
+Should be used within a HTML &lt;A&gt; tag, HREF option</p>
+
+<p class=MsoNormal>Scope:              Anywhere
+in the system</p>
+
+<p class=MsoNormal>Result:             relative
+path to a script</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;a href=&lt;action_logout%&gt;&gt;
+Logout &lt;/a&gt; - if the user clicks on the link, they will be logged out and
+the front page of the site will be displayed</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%error_message%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the text message passed to the template</p>
+
+<p class=MsoNormal>Scope:              error.tpl
+</p>
+
+<p class=MsoNormal>Result:             text</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%error_message%&gt; will show
+Login Incorrect on the error.tpl if the login fails under default English
+language.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%insert_base_ref%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Resets the HTML base reference to the
+current theme. Enables usage of relative paths for theme-specific images,
+rating, style sheet, etc.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Any template, before any path is
+used</p>
+
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             base reference tag</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%insert_base_ref%&gt; will produce
+&lt;base href=&quot;http://www.yoursite.com/inlink/themes/default/&quot;&gt; on
+a domain yoursite.com and default theme.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%getting_rated_link%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the code that other people can use
+on their sites to rate a link resource on your site. Should be included in
+&lt;PRE&gt; &lt;/PRE&gt; tags or in a text area in order to escape HTML.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              getting_rated.tpl</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             HTML code</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Medium</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;textarea rows=&quot;20&quot;
+name=&quot;&lt;%textarea_name%&gt;&quot; cols=&quot;60&quot;&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>                         &lt;%getting_rated_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>                         &lt;/textarea&gt; will display the copy/paste
+ready HTML code.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_getting_rated%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the link to getting_rated.tpl,
+page that shows HTML code to rate your links on other sites. To be used in the
+HTML &lt;A&gt; tag, HREF option.</p>
+
+<p class=MsoNormal>Scope:              Anywhere
+in the system</p>
+
+<p class=MsoNormal>Result:             relative
+path </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;a
+href=&lt;%link_getting_rated%&gt;&gt; click here to get code &lt;/a&gt; will
+go to the template that will display HTML code for getting rated.</p>
+
+<h5>&lt;% confirm_message %&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the message at the confirm screen.</p>
+
+<p class=MsoNormal>Scope:              Only
+in the confirm template</p>
+
+<p class=MsoNormal>Result:             Text
+</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;% confirm_message %&gt; will return
+the message</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%confirm_action%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Form action tag for the confirm page.</p>
+
+<p class=MsoNormal>Scope:              Only
+in the confirm template</p>
+
+<p class=MsoNormal>Result:             URL
+</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;form
+action=&lt;%confirm_action%&gt;&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%confirm_action%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Form action tag for the confirm page.</p>
+
+<p class=MsoNormal>Scope:              Only
+in the confirm template</p>
+
+<p class=MsoNormal>Result:             URL
+</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;form
+action=action=../../index.php?&lt;%confirm_ attach%&gt;&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%
+confirm_attach%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Form hidden value for the confirm page.</p>
+
+<p class=MsoNormal>Scope:              Only
+in the confirm template</p>
+
+<p class=MsoNormal>Result:             Text
+</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;input type=&quot;hidden&quot;
+name=&quot;action&quot; value=&quot;&lt;%confirm_action%&gt;&quot;&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%insert_sid
+%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Returns the session ID in a form
+sid=$sid&amp; for all links</p>
+
+<p class=MsoNormal>Scope:              In
+every link</p>
+
+<p class=MsoNormal>Result:             Text
+</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;a href=../../index.php?&lt;
+%insert_sid %&gt;&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%insert_current_cat_id
+%&gt; and  &lt;%insert_cat_id%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Returns the category id you are in.</p>
+
+<p class=MsoNormal>Scope:              sub_pages.tpl</p>
+
+<p class=MsoNormal>Result:             Text
+</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%insert_current_cat_id%&gt; will
+give you the value of the cat which was passed in the url.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%getSearchKeyword
+%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Returns the keyword a user searched for.</p>
+
+<p class=MsoNormal>Scope:              display_
+link _search.tpl and display_ cats_search.tpl</p>
+
+<p class=MsoNormal>Result:             Text
+</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         You search for &lt;%getSearchKeyword
+%&gt; return N results</p>
+<!-- #EndEditable -->
+<CENTER>
+<P><IMG src="images/inlinksmall.gif" width="75" height="27"></P>
+<P class="footer">Intechnic Corporation, 2001. All Rights Reserved.</P>
+</CENTER>
+</BODY>
+<!-- #EndTemplate --></HTML>
