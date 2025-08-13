@@ -1,0 +1,143 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Article Database Listings</title>
+<script>
+function del_confirm(id,url)
+{
+	cbool=confirm("Do you want to delete article ID "+id+"?");
+	if(cbool!=0)
+	{
+			document.location=url;
+	}	
+}
+</script>
+</head>
+
+<body>
+<br><br>
+      <form method="POST" action="admin.php" name="jackalz">
+      <input type=hidden name="mod" value="articles">
+      <input type=hidden name="opt" value="view">
+      <input type=hidden name="show" value="{%var_show%}">
+<div align="left">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="704" id="AutoNumber1" height="161">
+    <tr>
+      <td valign="top" height="15" colspan="2">
+      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber3">
+        <tr>
+          <td>
+      <font color="#000080" size="1" face="Verdana"><b>Article Database 
+      Listings:</b></font></td>
+          <td>
+      <p align="right">
+      <font size="1" face="Verdana">
+      <a href="admin.php?mod=articles&opt=view&show=details">
+      <img border="0" src="{%tpl_template_url%}/gfx/nephp_showdetails.gif" width="70" height="13"></a>&nbsp;<a href="admin.php?mod=articles&opt=view"><img border="0" src="{%tpl_template_url%}/gfx/tinyicons/no_details.gif" width="70" height="13"></a>
+      <a href="admin.php?mod=articles&opt=add">
+      <img border="0" src="{%tpl_template_url%}/gfx/tinyicons/_addz.gif" width="70" height="13"></a>
+      <a href="admin.php?mod=articles&opt=approval">
+      <img border="0" src="{%tpl_template_url%}/gfx/tinyicons/approve.gif" width="70" height="13"></a>
+      <a href="admin.php?mod=articles">
+      <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_main.gif" width="70" height="13"></a></font></td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td width="348" height="10" bgcolor="#CACBCD" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1"></td>
+      <td width="356" height="10" bgcolor="#CACBCD" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1"></td>
+    </tr>
+    <tr>
+      <td width="348" bgcolor="#E8E9E9" height="31">
+<p>
+        <font size="1">
+        &nbsp;<select size="1" name="by" style="font-size: 8pt; font-family: Verdana">
+        <option value="nnet_aid">Article ID</option>
+        <option value="nnet_title">Article Name</option>
+        <option value="nnet_cid">Article Category</option>
+        <option value="nnet_feature">Article Feature</option>
+        <option value="nnet_uid">Author</option>
+        </select></font><font size="1" face="Verdana"> </font><font size="1">
+        <select size="1" name="type" style="font-size: 8pt; font-family: Verdana">
+        <option value="ASC">Asc</option>
+        <option value="DESC">Desc</option>
+        </select></font><font size="1" face="Verdana"> </font><font size="1">
+        <input type="submit" value="sort" name="B1" style="font-size: 8pt; font-family: Verdana; font-weight: bold"></font></p>
+
+      </td>
+      <td width="356" bgcolor="#E8E9E9" height="31">
+      <p align="right"><font size="1" face="Verdana">{%tpl_span%}</font></td>
+    </tr>
+    <tr>
+      <td width="704" valign="top" height="22" colspan="2">
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="0" cellspacing="1" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber2">
+  		         <tr>
+            <td width="3%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1">&nbsp;</td>
+            <td width="37%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1">
+            <b><font size="1" face="Trebuchet MS">&nbsp;Article Name</font></b></td>
+            <td width="11%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1">
+            <p align="center"><b><font face="Trebuchet MS" size="1">Options</font></b></td>
+            <td width="6%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1">
+            <p align="center"><b><font face="Trebuchet MS" size="1">Reviews</font></b></td>
+            <td width="6%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1">
+            <p align="center"><b><font face="Trebuchet MS" size="1">Polls</font></b></td>
+            <td width="6%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1" align="center">
+            <p align="center"><b><font face="Trebuchet MS" size="1">Features</font></b></td>
+            <td width="4%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1" align="center">
+            <b><font face="Trebuchet MS" size="1">&nbsp;Icons</font></b></td>
+            <td width="6%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1" align="center">
+            <b><font face="Trebuchet MS" size="1">Pictures</font></b></td>
+            <td width="3%" background="{%tpl_template_url%}/gfx/nephp_articles_listingbg.gif" valign="bottom" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1" align="center">
+            <b><font face="Trebuchet MS" size="1">Info</font></b></td>
+          </tr>
+  		{%tpl_listings%}
+        </table>
+        </center>
+      </div>
+      </td>
+    </tr>
+    <tr>
+      <td width="704" height="35" colspan="2"><font size="2" face="Verdana">
+      &nbsp;
+      <img border="0" src="{%tpl_template_url%}/gfx/tinyicons/_active.gif" width="6" height="6">&nbsp; 
+      Unapproved Article&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img border="0" src="{%tpl_template_url%}/gfx/tinyicons/_inactive.gif" width="6" height="6">&nbsp; 
+      Approval Article</font></td>
+    </tr>
+    <tr>
+      <td width="704" height="48" colspan="2">
+      <table style="BORDER-COLLAPSE: collapse" borderColor="#111111" height="36" cellSpacing="0" cellPadding="0" width="100%" border="0">
+        <tr>
+          <td vAlign="top" height="17">
+          <table id="AutoNumber2" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" width="100%" border="0">
+            <tr>
+              <td vAlign="top" width="43%"><font face="Verdana" size="2">Are you 
+              looking for a spectacular document? Search command is <b>enabled</b>.<br>
+              &nbsp;&nbsp; </font></td>
+              <td vAlign="top" width="57%">
+              <input name="keywords" size="20">
+              <input style="FONT-WEIGHT: bold; FONT-SIZE: 8pt; FONT-FAMILY: Verdana" type="submit" value="SEACH" name="action" onclick="this.location='admin.php?mod=articles&opt=view&keywords='+document.jackalz.keywords.value;"></td>
+            </tr>
+          </table>
+          </td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<script>
+if(document.jackalz.keywords.value=='')
+{
+	document.jackalz.keywords.value="{%keywords%}";
+}</script>
+      </form>
+<p>&nbsp;</p>
+</body>
+
+</html>
