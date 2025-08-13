@@ -1,0 +1,103 @@
+{header_menu_template}
+<!-- Include the Admin JavaScript Library -->
+<script language="JavaScript" src="{home_dir}admin/includes/admin.js"></script>
+
+<body>
+<table width="800" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td> <br>
+      <table width="600" border="0" cellspacing="0" cellpadding="0" align="left">
+        <tr>
+          <td class="title"><div align="center"> <span class="title">&nbsp;&nbsp;NewsGroups </span></div></td>
+        </tr>
+      </table>
+      <br>
+      <form name="form" method="post" action="add.php">
+        <br>
+        <table width="600" border="0" cellspacing="0" cellpadding="3" align="center">
+          <!-- NewsGroup Name-->
+          <tr> 
+            <td valign="top" class="top_link"> <div align="right">Server:&nbsp;</div></td>
+            <td> <select name="grp_serv_host" class="form_admin">
+                <!-- BEGIN block_servers -->
+                <option value="{serv_host}" {is_selected}>{serv_host}</option>
+                <!-- END block_servers -->
+              </select> </td>
+          </tr>
+          <!-- NewsGroups list -->
+          <tr>
+            <td width="172" class="top_link" valign="top"><div align="right">NewsGroups Name:&nbsp;</div></td>            
+            <td>
+              <input type="text" name="grp_name" value="{file_name}" class="form_admin">
+              <br><a class="top_link" href="javascript:onclick=pick_group(document.form.grp_name,document.form.grp_serv_host.value)">Choose a NewsGroup! </a><br>
+            </td>
+          </tr>
+          <!-- Old articles to download -->
+          <tr>
+            <td width="172" class="top_link" valign="top"><div align="right">Articles to import:&nbsp;</div></td>            
+            <td>
+              <input type="text" name="num_articles" value="0" class="form_admin">              
+              <br><a class="top_link" href="javascript:onclick=import_all(document.form.num_articles)">All! </a><br>
+            </td>
+          </tr>
+
+          <!-- NewsGroup Allow Post yes or no-->          
+          <tr> 
+            <td valign="top" class="top_link"><div align="right">Allow Post:&nbsp;</div></td>
+           </tr>
+           <tr>
+            <td class="top_link"><div align="right"> Yes <input type="radio" name="grp_allow_post_yn" value="Y" {is_checked_yes}> </div></td>
+           </tr>
+           <tr>
+            <td class="top_link"><div align="right"> No <input type="radio" name="grp_allow_post_yn" value="N" {is_checked_no}> </div></td>
+          </tr>
+          <!--
+          <tr>
+            <td width="172" align="right" class="texto_azulnegr" valign="top">Foto:&nbsp;</td>
+            <td width="307"> <img src="{foto}" border="0"><br>
+              <!input type="text" name="foto" value="{nombre_foto}" class="campos_gestion">
+              <input name="fichero" value="{nombre_foto}" class="campo_ficha">
+              <a href="javascript:onclick=ftp(document.formulario.fichero)" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('adjun','','/gestion/images/botones/adjuntar2.gif',1)"><img name="adjun" border="0" src="/gestion/images/botones/adjuntar1.gif" width="70" height="16"></a><br>
+            </td>
+          </tr>
+          <tr>
+            <td width="172" align="right" class="texto_azulnegr" valign="top">Foto
+              Pequeña:&nbsp;</td>
+            <td width="307"> <img src="{foto_peque}" border="0"><br>
+              <!input type="text" name="foto_peque" value="{nombre_foto_peque}" class="campos_gestion">
+              <input name="fichero2" value="{nombre_foto_peque}" class="campo_ficha">
+              <a href="javascript:onclick=ftp(document.formulario.fichero2)" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('adjun1','','/gestion/images/botones/adjuntar2.gif',1)"><img name="adjun1" border="0" src="/gestion/images/botones/adjuntar1.gif" width="70" height="16"></a><br>
+            </td>
+          </tr>
+          -->
+          <tr> 
+            <td colspan="2"> <table width="0%" border="0" cellspacing="0" cellpadding="2" align="center">
+                <tr> 
+                  <td> 
+                    <!-- BEGIN add_block -->
+                    <a class="top_link" href="{add_link}">Add</a> 
+                    <!-- END add_block -->
+                  </td>
+                  <td> 
+                    <!-- BEGIN modify_block -->
+                    <a class="top_link" href="{modify_link}">Modify</a> 
+                    <!-- END modify_block -->
+                  </td>
+                  <td> 
+                    <!-- BEGIN del_block -->
+                    <a class="top_link" href="{del_link}">Delete</a> 
+                    <!-- END del_block -->
+                  </td>
+                </tr>
+              </table>
+              <div align="center"></div></td>
+          </tr>
+        </table>
+        <br>
+            <input type="hidden" name="grp_id" value="{grp_id}">
+            <input type="hidden" name="action">
+      </form>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
