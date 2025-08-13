@@ -1,0 +1,140 @@
+<? 
+ if (!isset($HTTP_SESSION_VARS[u_loggedin]) or !($HTTP_SESSION_VARS[u_loggedin]=='yes')) {
+  SessionError();
+  exit;
+ }
+ ?>
+<link rel="stylesheet" href="/p4cms/style/style.css">
+
+<?
+if ($HTTP_SESSION_VARS[u_gid] == 1) {
+if($_REQUEST['act']=="edit"){
+
+if($_REQUEST['send']=="1"){
+if($_REQUEST['name']!=""){
+$sql =& new MySQLq();
+$sql->Query("UPDATE " . $sql_prefix . "bannerzone SET name='".strip_tags($_REQUEST['name'])."' WHERE id='$_REQUEST[id]'");
+}
+$rel="module.php?module=banner&page=mod.zone.php&d4sess=$d4sess&act=";
+header("location:$rel");
+}
+
+?>
+<table width=100%  border="1" cellpadding="4" cellspacing="0" bordercolorlight="#DCDEE4" bordercolordark="#FFFFFF">
+
+  <tr>
+    <td align="left" valign="top" class="boxstandart">
+      <table width="100%">
+        <tr>
+          <td valign="top"><b><font size="+1">Banner-Zone bearbeiten </font></b></td>
+        </tr>
+        <tr>
+          <td valign="top">&nbsp;</td>
+        </tr>
+        <tr>
+		<?
+		$sql =& new MySQLq();
+		$sql->Query("SELECT * FROM " . $sql_prefix . "bannerzone where id='$_REQUEST[id]'");
+		$row=$sql->FetchRow();
+		?>
+          <td valign="top"><form name="form1" method="post" action="">
+            <input name="name" type="text" id="name" value="<?=$row->name;?>" size="45">
+            <input type="submit" class="button" value="ändern">
+            <input name="id" type="hidden" id="id" value="<?=$_REQUEST['id'];?>">
+            <input name="send" type="hidden" id="send" value="1">
+          </form></td>
+        </tr>
+      </table>
+      </td>
+  </tr>
+</table>
+<? } 
+if($_REQUEST['act']=="del"){
+if($_REQUEST['id']!=1){
+	$sql =& new MySQLq();
+	$sql->Query("DELETE FROM " . $sql_prefix . "bannerzone WHERE id='$_REQUEST[id]'");
+	
+	
+	$sql =& new MySQLq();
+	$sql->Query("UPDATE " . $sql_prefix . "banner SET bannerzone='1' WHERE bannerzone='$_REQUEST[id]'");
+	$rel="module.php?module=banner&page=mod.zone.php&d4sess=$d4sess&act=";
+	header("location:$rel");
+
+	}
+	
+	}
+		
+if($_REQUEST['act']==""){
+if($_REQUEST['send']==1 && $_REQUEST['name']!="")
+{
+$sql =& new MySQLq();
+$sql->Query("INSERT INTO " . $sql_prefix . "bannerzone (id,name) VALUES ('','".strip_tags($_REQUEST['name'])."')");
+}
+ ?>
+<table width=100%  border="1" cellpadding="4" cellspacing="0" bordercolorlight="#DCDEE4" bordercolordark="#FFFFFF">
+
+              <tr> 
+                <td align="left" valign="top" class="boxstandart">
+                <table width="100%">
+                  <tr>
+                    <td valign="top"><b><font size="+1">Banner-Zonen</font></b></td>
+                    <td><div align="right">
+                      <form name="form2" method="post" action="">
+                        neue Bannerzone
+                        <input name="name" type="text" id="name" size="45">
+                        <input type="submit" class="button" value="anlegen">
+                        <input name="send" type="hidden" id="send" value="1">
+                      </form>
+                    </div></td>
+                  </tr>
+                  <tr>
+                    <td valign="top">&nbsp;</td>
+                    <td valign="top">&nbsp;</td>
+                  </tr>
+                </table>     
+              <table width=100%  border="1" cellpadding="4" cellspacing="0" bordercolorlight="#DCDEE4" bordercolordark="#FFFFFF">
+
+                <tr>
+                <td height="17" class="boxheader">Zone-Name</td>
+                <td width="1%" nowrap class="boxheader" alt="Abonenten der Liste anzeigen">enthaltene Banner </td>
+                <td width="1%" class="boxheader" alt="Abonenten der Liste anzeigen"><div align="center">Aktionen</div></td>
+                </tr>
+                <?
+                $sql =& new MySQLq();
+                $sql->Query("SELECT * FROM " . $sql_prefix . "bannerzone ORDER BY id DESC");
+                while ($row = $sql->FetchRow()) {
+				
+				 $sql2 =& new MySQLq();
+				 $sql2->Query("SELECT * FROM " . $sql_prefix . "banner where bannerzone='$row->id'");
+				 $num = $sql2->Numrows();
+                	?>
+                	<tr bgcolor="#FAFAFB">
+                	<td height="17">
+					<?=$row->name;
+					?>
+					
+					</td>
+					<td>
+					  <div align="center"><?=$num;?></div></td>
+					<td nowrap>
+					  <div align="center">
+					<a href="module.php?module=banner&page=mod.zone.php&d4sess=<?=$d4sess;?>&act=edit&id=<?=$row->id;?>"><img src="gfx/edit.gif" alt="Bearbeiten" border="0" align="absmiddle"></a>
+					<? if($row->id!=1){?>
+					<a href="module.php?module=banner&page=mod.zone.php&d4sess=<?=$d4sess;?>&act=del&id=<?=$row->id;?>"><img src="gfx/del.gif" alt="L&ouml;schen" border="0" align="absmiddle"></a>
+					<? } ?>
+					</div></td>
+                	</tr>
+                	<?
+                }
+                $sql->Close();
+                ?>
+               </table>
+               </td>
+            </tr>
+</table>
+
+<? } } else {
+	$msg = "<center>Diese Seite darf nur von Administratoren aufgerufen werden.</center>";
+	MsgBox($msg);
+ }
+?>
