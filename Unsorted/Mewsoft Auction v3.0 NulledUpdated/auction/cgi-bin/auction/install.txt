@@ -1,0 +1,374 @@
+Mewsoft Software Installation Instructions
+-----------------------------------------------------------
+#==========================================================
+#                                                   Mewsoft 
+#----------------------------------------------------------
+#   Program Name    : Mewsoft Auction Software
+#   Program Version : 3.0
+#   Program Author  : Elsheshtawy, Ahmed Amin.
+#   Home Page       : http://www.mewsoft.com
+#   Nullified By    : TNO (T)he (N)ameless (O)ne
+#----------------------------------------------------------
+# Copyrights © 2001 Mewsoft. All rights reserved.
+#==========================================================
+# This software license prohibits selling, giving away, or otherwise distributing 
+# the source code for any of the scripts contained in this SOFTWARE PRODUCT,
+# either in full or any subpart thereof. Nor may you use this source code, in full or 
+# any subpart thereof, to create derivative works or as part of another program 
+# that you either sell, give away, or otherwise distribute via any method.You must
+# not (a) reverse assemble, reverse compile, decode the Software or attempt to 
+# ascertain the source code by any means, to create derivative works by modifying 
+# the source code to include as part of another program that you either sell, give
+# away, or otherwise distribute via any method, or modify the source code in a way
+# that the Software looks and performs other functions that it was not designed to; 
+# (b) remove, change or bypass any copyright or Software protection statements 
+# embedded in the Software; or (c) provide bureau services or use the Software in
+# or for any other company or other legal entity.
+#==========================================================
+#              ___                         ___    ___    ____  _______
+#  |\      /| |     \        /\         / |      /   \  |         |
+#  | \    / | |      \      /  \       /  |     |     | |         |
+#  |  \  /  | |-|     \    /    \     /   |___  |     | |-|       |
+#  |   \/   | |        \  /      \   /        | |     | |         |
+#  |        | |___      \/        \/       ___|  \___/  |         |
+#
+#==========================================================
+
+This file contains the installation instructions for Mewsoft Auction Software.
+-------------------------------------------------------------------------------------------------
+
+Quick Guide
+-----------------
+
+1. Unzip the file "auction.zip".
+2. Edit the first line of all *.cgi files to point to location of Perl on your server.
+3. Rename *.cgi to *.pl if your server requires the .pl extension for Perl scripts(or to any other extension).
+4. Edit the file "path.setup" with any text editor and the file "autoclose.cgi"
+5. Transfere all files and directories with the same directory structure on your computer.
+6. Change permissions on all files and directories.
+7. Run the Admin program from your web browser and setup the program configuration.
+8. Run the auction program from your broswer.
+9. Register as a user and test the program settings.
+10. If you have any problems contact Mewsoft Support.
+11. Congratulations.
+
+
+Details of the installation instructions
+============================
+
+1. Unzip the file "auction.zip".
+---------------------------------
+Place the file "auction.zip" in any directory on your computer and then unzip it. The unzipped directory structure is
+the same structure of the program as it should installed on your server.  The file unzip under two main directroies 
+as follows:
+unzip directory/cgi-bin/auction
+                        /html/auction
+The directory /cgi-bin/auction and all its subdirectories and files should be transferred to your server cgi
+directory. The directory /html/auction and all its subdirectories and files should be transferred to your server non
+ cgi directory (also called documents directory or html directory or root directory). 
+
+
+2. Edit the first line of all *.cgi files to point to location of Perl on your server.
+--------------------------------------------------------------------------------------
+Open all *.cgi files only with any text editor and change the first line only in each file to point to perl 
+location on your server. Normally it should be one of the following:
+
+#!/usr/bin/perl
+#!/usr/local/bin/perl
+#!/usr/local/bin/perl5
+#!C:\perl\bin\perl.exe -w 
+
+If you do not know where perl is located, ask you system adminstarator, or if you have a Telnet you may run 
+these commands to find where is perl located as well as sendmail program only if your are on a unix server:
+
+which perl5
+whereis perl5
+
+also for the mail program location:
+
+which sendmail
+whereis sendmail
+
+Remember to insert "#!"  in front of the perl location directory as follows:
+#!/usr/user/perl
+
+You can also download the free script file "testserver.cgi" from our site and install it on your server, it will 
+display all your server information.
+
+3. Rename *.cgi to *.pl if your server requires the .pl extension for Perl scripts(or to any other extension).
+---------------------------------------------------------------------------------------------
+The executable files comes with *.cgi extension only. This is the extension required on most servers for 
+executable files. If your server requires Perl programs to use the ".pl" extension or any other extension, 
+you should rename *.cgi files to *.pl. 
+
+
+4. Edit the file "path.setup" with any text editor and the file "autoclose.cgi"
+---------------------------------------------------------------------------------------------
+Open the file "path.setup" with any text editor or notepad and edit these four variables in the file:
+Set the variable "$Program_CGI_Directory" to your server CGI Directory Path
+$Program_CGI_Directory="/www/mewsoft/cgi-bin/auction";
+
+Set the variable "CGI Directory URL" to your system URL to the cgi-bin directory
+$Program_CGI_Directory_URL="http://www.mewsoft.com/cgi-bin/auction";
+
+Set the variable "$Program_HTML_Directory" to your server htdoc (html) directory
+$Program_HTML_Directory="/www/mewsoft/auction";
+
+Set the variable "$Program_HTML_Directory_URL" to your server htdoc (html) directory URL
+$Program_HTML_Directory_URL="http://www.mewsoft.com/auction";
+
+Now Open the file "autoclose.cgi" with your text editor, look for the line that looks like
+this at the top part of the file:
+
+#Set this variable to point to the directory"auction" on your cgi-bin directory 
+$Program_CGI_Directory="/home/www/mewsoft/cgi-bin/auction";
+
+Edit this variable $Program_CGI_D.irectory also to point to your auction directory
+on your server cgi-bin directory
+
+5. Transfere all files and directories with the same directory structure on your computer.
+------------------------------------------------------------------------------------------
+These instructions assume that you have FTP access to the server and that you have some basic knowledge of
+how to use an FTP program to go to different directories on your site, create directories when necessary,
+and to upload files to your server.  If you do not have this basic knowledge, we recommend getting an FTP
+program such as WS_FTP (http://www.ipswitch.com/), CuteFTP (http://www.cuteftp.com/), BulletProof FTP 
+(http://www.bpftp.com/), or FTP Voyager (http://ftpvoyager.com/ , the best) and reading its documentation 
+thoroughly in order to learn how to use such programs.
+
+When uploading all of the text files for the software, be sure to set your FTP program to 
+transfer in ASCII mode (the graphics files, such as those ending in ".gif" and ".jpg", should be transferred in Binary mode).
+The scripts, Templates, Language files and setup files will NOT work properly if you transfer it in binary mode.
+
+If your FTP program allows you to transfer the directory and all its subdirectories (such as FTP Voyager, 
+BulletProof FTP) then you can in one step transfer all the /cgi-bin/auction directory and all its subdirectories
+and files to your cgi directory and also in one step transfer /html/auction and all its subdirectories
+and files to your html directory, in this case you can scip to the next step.
+
+Use any FTP program to connect to your server.  Then, change directory to your "cgi-bin" 
+directory and create the following subdirectories
+
+auction
+auction/data
+auction/data/archive
+auction/data/custom
+auction/data/database
+auction/data/database/archive
+auction/data/database/items
+auction/data/database/maillists
+auction/data/export
+auction/data/items
+auction/data/language
+auction/data/language/English
+auction/data/lock
+auction/data/maillists
+auction/data/secure
+auction/data/temp
+auction/data/templates
+
+Important note, when creating the language directory "auction/data/language/English", use the first letter
+captalized for the language name "English". You will be able to create other languages from the admin menus.
+
+Now change directory to your document directory(your HTML directory or non CGI directory), and then create 
+the following subdirectories:
+
+auction
+auction/backup
+auction/images
+auction/upload
+
+Now transfere the files from your computer to the corresponding directories on your server.
+Transfere all *.cgi, *.pm, *.setup, and *.txt files in ASCII mode.
+Transfere all other files in Binary mode.
+here is the directory structure tree as it should be:
+
+cgi-bin directory:
+
+/cgi-bin/
+       |-auction
+                |
+                |-custom
+                |-data
+                      |-archive
+		      |-custom
+                      |-database
+                                 |-archive
+                                 |-items
+                                 |-maillists
+		      |-export	
+                      |-items
+                      |-language
+                                    |-English
+                      |-lock
+		      |-maillists
+                      |-secure
+                      |-temp
+                      |-templates
+
+
+html direcory:
+
+/html/
+           |-auction
+                    |-backup
+	            |-images
+                    |-upload
+
+
+
+6. Change permissions on all files and directories.
+---------------------------------------------------
+
+Setting permissions is the very important for the program to run correctly. Changing files permissions is 
+different from operating system to onther. Here is the a comparison between Unix and Windows permissions 
+values and meaning:
+
+Unix Permissions values:
+===================================================
+Owner                Group                Other
+----------------------------------------------------
+Read (4)             Read (4)            Read (4)
+Write (2)            Write (2)            Write (2)
+Execute (1)        Execute (1)        Execute (1)	
+=====================================================
+
+If you are on a Unix server, use your FTP program to change files and directories permissions.
+You may also set permissions from your Telnet program, log into your server using "chmod" command.
+Here are the required permissions on each directory and file:
+
+The cgi directory:
+
+auction (unix : 0755, windows executable)
+auction/data (unix : 0777, windows writable)
+auction/data/archive (unix : 0777, windows writable)
+auction/data/custom (unix : 0777, windows writable)
+auction/data/database (unix : 0777, windows writable)
+auction/data/database/archive (unix : 0777, windows writable)
+auction/data/database/items (unix : 0777, windows writable)
+auction/data/database/maillists (unix : 0777, windows writable)
+auction/data/export (unix : 0777, windows writable)
+auction/data/items (unix : 0777, windows writable)
+auction/data/language (unix : 0777, windows writable)
+auction/data/language/English (unix : 0777, windows writable)
+auction/data/lock (unix : 0777, windows writable)
+auction/data/maillists (unix : 0777, windows writable)
+auction/data/secure (unix : 0777, windows writable)
+auction/data/temp (unix : 0777, windows writable)
+auction/data/templates (unix : 0777, windows writable)
+
+The HTML directory:
+
+auction (unix : 0755, windows executable)
+auction/backup (unix : 0777, windows writable)
+auction/images (unix : 0755, windows executable)
+auction/upload (unix : 0777, windows writable)
+
+Now change permissions for files in the cgi-directory/auction to (755) using FTP or Telnet,
+/cgi-bin/auction> chmod 755 *.cgi, *.pm
+
+Change permissions for files in all subdirectories under the data directory to writables files (777):
+auction/data/custom/  chmod 777 *.pm
+auction/data/  chmod 777 *.*
+auction/data/archive/  chmod 777 *.*
+auction/data/database/ chmod 777 *.*
+auction/data/items/ chmod 777 *.*
+auction/data/language/ chmod 777 *.*
+auction/data/language/English/ chmod 777 *.*
+auction/data/maillists/chmod 777 *.*
+auction/data/temp/chmod 777 *.*
+auction/data/templates/chmod 777 *.*
+
+Most subdirectories are empty at the installation time, these directories will be used later by the program.
+
+
+7. Run the Admin program from your web browser and setup the program configuration.
+----------------------------------------------------------------------------------
+Now before you go further, you need to know if the following perl modules installed on your server or not.
+If not installed, you need to install first:
+I)- perl module "DB_File"
+2)- perl module "cwd"
+3)-perl module "File:Copy"
+
+To help you determine if these modules installed or not, run the program "testserver.cgi" from your web browser,
+this file is available with the auction package in the same cgi files directory.
+
+Now you have done a great gob. If you have carefully followed all of the instructions above, you are now ready
+to start the admin program to complete the program confoguration and installation. Please point your browser 
+to the URL of the "admin.cgi" file as follows:
+
+http://www.yourdomain.com/cgi-bin/auction/admin.cgi
+
+where "www.yourdomain.com" would be replaced by your actual domain name. Please note that if you renamed
+the "admin.cgi" file to "admin.pl" or to any other name, you would need to adjust this URL accordingly. 
+Only each time you run the admin program you need to login as the system admin, the default login "User ID"
+is "admin", and the default password is "admin". Change these login information once you login for your system security.
+
+If the "admin" program runs now, the great gob, the remaining part is very easy. You should see now the admin
+program main menu.
+
+From the admin menu run the "Configuration" utility by clicking on "Configuration". Change all path's and URL's
+to point to your server and all other information. These information are very important to run the "auction.cgi"
+program and all the auction software.
+
+The next step is from the admin menu also to set the default language for the auction program to start properly.
+To do so, click on "Language Manager" from the admin main menu, then set the default language to "English"
+by selecting the "English" language and click on "Submit", then click on "Initialize languages".
+
+The last step in the configuration is loading the default database, defalut categories and configuration.
+To do so, from the admin main menu, click on "Database", from the database menu click on 
+"Load  System Database From The ASCII Backup", this will do all the job for you.
+
+Now if everything done as it should be you have finished the installation.
+
+
+8. Run the auction program from your broswer.
+---------------------------------------------
+
+If you finished all the previous installation steps correctly, you will be able to run the auction program from 
+your browser. To to so, please point your browser to the "auction.cgi" program on your server as follows:
+
+http://www.yourdomain.com/cgi-bin/auction/auction.cgi
+
+where "www.yourdomain.com" would be replaced by your actual domain name. Please note that if you renamed
+the "auction.cgi" file to "auction.pl" or to any other name, you would need to adjust this URL accordingly.
+
+If the program run and you see the main categories page, the congratulations, and thanks for this great gob.
+
+
+9. Register as a user and test the program settings.
+---------------------------------------------------
+Now the program is runing, but to make sure that all the installation process completed correctly, you need to test
+all the program functions. To to so, Please register as a user and test every single function as it requires the use
+to do. For example, submit it, edit your registration information, create auction Alerts, check the emails sent out.
+This will help you detect any problems with the program installation, for example, files not transfered in the correct
+mode, permisssions not set, directories not created. To automate the process of resubmitting and closing the items see
+the online manual for installing the program "autoclose.cgi" as a cronjob using your unix crontab program or similar
+utilities on Windows systems.
+
+
+10. If you have any problems contact Mewsoft Support.
+---------------------------------------------------
+In case you were unable to complete the installation process succefully, please contact the Mewsoft technical
+support at "support@mewsoft.com" or visit Mewsoft website at "http://www.mewsoft.com".
+
+
+11. Congratulations.
+---------------------------
+Congratulations for purchasing the Mewsoft auction software and thank you for your bussines.
+-------------------------------------------------------------------------------------------------
+
+Best regards,
+Elsheshtawy, Ahmed A.
+Mewsoft President
+http://www.mewsoft.com
+info@mewsoft.com
+FAX: 1-(865)-946-5287 (USA)
+June 15, 2000
+Update for version 3.00 March 12, 2001
+
+Mewsoft
+2521 Kingston Pike, 310
+Knoxville, TN 37919
+U.S.A
+
+----------------------End of installation File-------------
+-----------------------------------------------------------
