@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Multi Forums Pro Host Install Guide</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style1 {color: #0000FF}
+-->
+</style>
+</head>
+
+<body>
+<p><font color="#FF9900"><strong>Multi Forums Pro Host Install Guide</strong></font></p>
+<p><strong>------------------------<br>
+  <font color="#FF9900">Step 1 of 2 - Setting up</font><br>
+  ------------------------</strong></p>
+<ol>
+  <li>Create a new database</li>
+  <li>Open up <em>conf_global/multiforums.config.inc.php</em> in a text editor 
+    and change the Database Connection Details</li>
+  <li>Upload the Invision Power Board uploads folder with your edited files (see 
+    step 2 and 3), do not upload <em>sm_install.php</em>, <em>conf_global.php</em>, 
+    <em>css.php</em>, <em>show.php</em> also don't upload the cache folder</li>
+  <li>If you have uploaded the files above in 2. delete them</li>
+  <li>Make a folder called <em>conf_global</em> and chmod that folder to 777, 
+    upload the<em> index.php</em>, <em>multiforums.config.inc.php</em> and <em>settings.sql</em> 
+    file and chmod to 777</li>
+  <li>Upload <em>new_forum.php</em>, <em>directory.php</em>, <em>multiforums_default_db.sql 
+    </em>and <em>conf_global_default.php</em> in the root dir</li>
+  <li>Goto to: <strong>http://www.your-web-site.com/forums/conf_global</strong></li>
+  <li>Fill out the options</li>
+  <li>Test it: <strong>http://www.your-web-site.com/forums/new_forum.php</strong></li>
+  <li>Admin control panel can be access from: <strong>http://www.your-web-site.com/forums/conf_global</strong></li>
+  <li>Board Directory can be access from: <strong>http://www.your-web-site.com/forums/directory.php</strong> 
+  </li>
+</ol>
+<p><strong>------------------------<br>
+  <font color="#FF9900">Step 2 of 2 - File editing (editing 8 files)</font><br>
+  ------------------------</strong><br>
+  <strong>File 1 of 8</strong><em><strong>:</strong></em><font color="#666666"><em><strong><br>
+  </strong></em></font> <strong><em><font color="#666666">uploads/index.php</font></em><br>
+  ----------------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">require ROOT_PATH.&quot;conf_global.php&quot;;</font><br>
+  <strong>--------</strong><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font></p>
+<p class="style1">include &quot;conf_global/multiforums.config.inc.php&quot;;<br>
+  if ($master_offline == true) {<br>
+  header(&quot;Location: $offline_error_url&quot;);<br>
+  exit;<br>
+  }</p>
+<p class="style1">if ($mforum==true) {<br>
+  setcookie (&quot;ForumSetCookie&quot;, $mforum, time()+31536000);<br>
+  }<br>
+  else<br>
+  {<br>
+  $mforum = $ForumSetCookie;<br>
+  }</p>
+<p class="style1">if ($mforum==false) {<br>
+  header(&quot;Location: $noforum_error_url&quot;);<br>
+  exit;<br>
+  }<br>
+  else<br>
+  {<br>
+  if(is_file(&quot;conf_global/&quot;.$mforum.&quot;.php&quot;)) {</p>
+<p class="style1">$resultlink = mysql_query(&quot;SELECT * FROM `multiforums_forums` WHERE 1 AND `access_name` LIKE '$mforum' LIMIT 0 , 1&quot;);<br>
+  if ($forum = mysql_fetch_array($resultlink)) {<br>
+  if ($forum[online] == false) {<br>
+  header(&quot;Location: $offline_error_url&quot;);<br>
+  exit;<br>
+  }<br>
+  }</p>
+<p><span class="style1">require ROOT_PATH.&quot;conf_global/$mforum.php&quot;;<br>
+  }<br>
+  else<br>
+  {<br>
+  include &quot;conf_global/multiforums.config.inc.php&quot;;<br>
+  header(&quot;Location: $exist_error_url&quot;);<br>
+  exit;<br>
+  }<br>
+}</span><br>
+<strong>----------------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">if ($ibforums-&gt;session_type == 'cookie' )<br>
+  {<br>
+  $ibforums-&gt;session_id = &quot;&quot;;<br>
+  $ibforums-&gt;base_url = $ibforums-&gt;vars['board_url'].'/index.'.$ibforums-&gt;vars['php_ext'].'?';<br>
+  }<br>
+  else<br>
+  {<br>
+  $ibforums-&gt;base_url = $ibforums-&gt;vars['board_url'].'/index.'.$ibforums-&gt;vars['php_ext'].'?s='.$ibforums-&gt;session_id.'&amp;amp;';<br>
+  }</font></p>
+<p><font color="#FF0000">$ibforums-&gt;js_base_url = $ibforums-&gt;vars['board_url'].'/index.'.$ibforums-&gt;vars['php_ext'].'?s='.$ibforums-&gt;session_id.'&amp;';</font><br>
+  <strong>----------------</strong><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font></p>
+<p><font color="#0000FF">if ( $ibforums-&gt;session_type == 'cookie' )<br>
+  {<br>
+  $ibforums-&gt;session_id = &quot;&quot;;<br>
+  $ibforums-&gt;base_url = $ibforums-&gt;vars['board_url'].'/index.'.$ibforums-&gt;vars['php_ext'].&quot;?mforum=$mforum&amp;&quot;;<br>
+  }<br>
+  else<br>
+  {<br>
+  $ibforums-&gt;base_url = $ibforums-&gt;vars['board_url'].'/index.'.$ibforums-&gt;vars['php_ext'].&quot;?mforum=$mforum&amp;s=&quot;.$ibforums-&gt;session_id.'&amp;amp;';<br>
+  }</font></p>
+<p><font color="#0000FF">$ibforums-&gt;js_base_url = $ibforums-&gt;vars['board_url'].'/index.'.$ibforums-&gt;vars['php_ext'].&quot;?mforum=$mforum&amp;s=&quot;.$ibforums-&gt;session_id.'&amp;';</font><br>
+  <strong>----------------<br>
+  File 2/3 of 8</strong><em><strong>:</strong></em><font color="#666666"><em><strong></strong></em></font><strong> 
+  <br>
+  <font color="#666666"><em>uploads/admin.php, and uploads/ipchat.php (if you 
+  want them to be able to use ipchat)</em></font><br>
+  ----------------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">require ROOT_PATH.&quot;conf_global.php&quot;;</font><br>
+  <strong>--------</strong><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font></p>
+<p><font color="#0000FF">include &quot;conf_global/multiforums.config.inc.php&quot;;<br>
+  if ($master_offline == true) {<br>
+  header(&quot;Location: $offline_error_url&quot;);<br>
+  exit;<br>
+  }</font></p>
+<p><font color="#0000FF">if ($ForumSetCookie==true) {<br>
+  if(is_file(&quot;conf_global/&quot;.$ForumSetCookie.&quot;.php&quot;)) { <br>
+  $resultlink = mysql_query(&quot;SELECT * FROM `multiforums_forums` WHERE 1 AND 
+  `access_name` LIKE '$ForumSetCookie' LIMIT 0 , 1&quot;);<br>
+  if ($forum = mysql_fetch_array($resultlink)) {<br>
+  if ($forum[online] == false) {<br>
+  header(&quot;Location: $offline_error_url&quot;);<br>
+  exit;<br>
+  }<br>
+  }<br>
+  <br>
+  require ROOT_PATH.&quot;conf_global/$ForumSetCookie.php&quot;;<br>
+  }<br>
+  else<br>
+  { <br>
+  include &quot;conf_global/multiforums.config.inc.php&quot;;<br>
+  setcookie (&quot;ForumSetCookie&quot;);<br>
+  header(&quot;Location: $exist_error_url&quot;);<br>
+  exit;<br>
+  }<br>
+  }<br>
+  else<br>
+  {<br>
+  include &quot;conf_global/multiforums.config.inc.php&quot;;<br>
+  header(&quot;Location: $noforum_error_url&quot;);<br>
+  exit;<br>
+  }</font></p>
+<p> <strong>----------------<br>
+  File 4 of 8</strong><em><strong>:</strong></em><font color="#666666"><em><strong></strong></em></font><strong> 
+  <br>
+  <font color="#666666"><em>upload/sources/functions.php</em></font><br>
+  ----------------</strong><br>
+  <strong><font color="#FF0000">Find: </font></strong></p>
+<p><font color="#FF0000">$DB-&gt;query(&quot;SELECT s.*, t.template, c.css_text<br>
+  FROM ibf_skins s<br>
+  LEFT JOIN ibf_templates t ON (t.tmid=s.tmpl_id)<br>
+  LEFT JOIN ibf_css c ON (c.cssid=s.css_id)<br>
+  WHERE s.sid=$id&quot;.$extra);<br>
+  <strong><font color="#000000">--------</font></strong><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font></font></p>
+<p> <font color="#0000FF">$DB-&gt;query(&quot;SELECT s.*, t.template, c.css_text<br>
+  FROM ibf_skins s<br>
+  LEFT JOIN multiforums_templates t ON (t.tmid=s.tmpl_id)<br>
+  LEFT JOIN ibf_css c ON (c.cssid=s.css_id)<br>
+  WHERE s.sid=$id&quot;.$extra);</font><br>
+  <strong>----------------</strong><br>
+  <strong><font color="#FF0000">Find: (please note this code is found 3 times 
+  in the script and all of them must be found and replaced)</font></strong></p>
+<p> <font color="#FF0000">$DB-&gt;query(&quot;SELECT s.*, t.template, c.css_text<br>
+  FROM ibf_skins s<br>
+  LEFT JOIN ibf_templates t ON (t.tmid=s.tmpl_id)<br>
+  LEFT JOIN ibf_css c ON (s.css_id=c.cssid)<br>
+  WHERE s.default_set=1&quot;);<br>
+  </font><strong>--------</strong><font color="#FF0000"><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font> </font></p>
+<p> <font color="#0000FF">$DB-&gt;query(&quot;SELECT s.*, t.template, c.css_text<br>
+  FROM ibf_skins s<br>
+  LEFT JOIN multiforums_templates t ON (t.tmid=s.tmpl_id)<br>
+  LEFT JOIN ibf_css c ON (s.css_id=c.cssid)<br>
+  WHERE s.default_set=1&quot;);<br>
+  </font><strong>----------------</strong><font color="#0000FF"><br>
+  <strong><font color="#FF0000">Find: </font></strong> </font></p>
+<p> <font color="#FF0000"> $DB-&gt;query(&quot;SELECT s.*, t.template, c.css_text<br>
+  FROM ibf_skins s<br>
+  LEFT JOIN ibf_templates t ON (t.tmid=s.tmpl_id)<br>
+  LEFT JOIN ibf_css c ON (s.css_id=c.cssid)<br>
+  WHERE s.default_set=1&quot;);<br>
+  </font><strong>--------</strong><font color="#FF0000"><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font> </font></p>
+<p> <font color="#0000FF">$DB-&gt;query(&quot;SELECT s.*, t.template, c.css_text<br>
+  FROM ibf_skins s<br>
+  LEFT JOIN multiforums_templates t ON (t.tmid=s.tmpl_id)<br>
+  LEFT JOIN multiforums_templates c ON (s.css_id=c.cssid)<br>
+  WHERE s.default_set=1&quot;);</font></p>
+<p><strong>----------------<br>
+  File 5 of 8</strong><em><strong>:</strong></em><font color="#666666"><em><strong></strong></em></font><strong> 
+  <br>
+  <font color="#666666"><em>upload/sources/Admin/admin_functions.php</em></font><br>
+  ----------------</strong></p>
+<p><strong><font color="#FF0000">Find:</font></strong></p>
+<p> <font color="#FF0000">function rebuild_config( $new = &quot;&quot; )<br>
+  {<br>
+  global $IN, $std, $ADMIN, $root_path<br>
+  </font><strong>--------</strong><br>
+  <font color="#FF9900"><strong><font color="#CC33CC">Change to:</font></strong></font></p>
+<p><font color="#CC33CC">function rebuild_config( $new = &quot;&quot; )<br>
+  {<br>
+  global $IN, $std, $ADMIN, $root_path, $ForumSetCookie;</font></p>
+<p><strong>--------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">require ROOT_PATH.'conf_global.php';</font><br>
+  <strong>--------</strong><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font></p>
+<p><font color="#0000FF">require ROOT_PATH.&quot;conf_global/&quot;.$ForumSetCookie.&quot;.php&quot;;</font><br>
+  <strong>--------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">@rename( ROOT_PATH.'conf_global.php', ROOT_PATH.'conf_global-bak.php' 
+  );<br>
+  @chmod( ROOT_PATH.'conf_global-bak.php', 0777);</font><br>
+  <strong>--------</strong><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font></p>
+<p><font color="#0000FF">@rename( ROOT_PATH.&quot;conf_global/$ForumSetCookie.php&quot;, 
+  ROOT_PATH.&quot;conf_global/$ForumSetCookie-bak.php&quot; );<br>
+  @chmod( ROOT_PATH.&quot;conf_global/$ForumSetCookie-bak.php&quot;, 0777);</font><br>
+  <strong>--------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">if ( $fh = fopen( ROOT_PATH.'conf_global.php', 'w' ) 
+  )</font><br>
+  <strong>--------</strong><br>
+  <font color="#0000FF"> <strong>Replace with:</strong></font></p>
+<p><font color="#0000FF">if ( $fh = fopen( ROOT_PATH.&quot;conf_global/$ForumSetCookie.php&quot;, 
+  'w' ) )</font></p>
+<p><strong>----------------<br>
+  File 6 of 8</strong><em><strong>:</strong></em><font color="#666666"><em><strong></strong></em></font><strong> 
+  <br>
+  <font color="#666666"><em>upload/sources/Admin/ad_settings.php</em></font><br>
+  ----------------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">phpinfo();<strong><br>
+  </strong></font><strong>--------</strong><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font></p>
+<p><font color="#0000FF">$ADMIN-&gt;error(&quot;For security reasons phpinfo has 
+  been disabled&quot;);<br>
+  </font><strong>----------------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000"> $this-&gt;save_config( array ( 'number_format', 'html_dir','safe_mode_skins', 
+  'board_name','board_url','home_name','home_url', 'disable_gzip',<br>
+  'html_url','upload_url', 'upload_dir', 'print_headers', 'header_redirect', 'debug_level', 
+  'sql_debug' ) );<strong><br>
+  </strong></font><strong>--------</strong><br>
+  <font color="#0000FF"><strong>Replace with:</strong></font></p>
+<p><font color="#0000FF"> $this-&gt;save_config( array ( 'number_format', 'safe_mode_skins', 
+  'board_name', 'home_name', 'home_url', 'disable_gzip',<br>
+  'html_url', 'print_headers', 'header_redirect', 'debug_level', 'sql_debug' ) 
+  );</font></p>
+<p><strong>----------------<br>
+  File 7 of 8</strong><em><strong>:</strong></em><font color="#666666"><em><strong></strong></em></font><strong> 
+  <br>
+  <font color="#666666"><em>upload/sources/Admin/ad_wrappers.php</em></font><br>
+  ----------------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">function ad_settings() {<br>
+  global $IN, $INFO, $DB, $SKIN, $ADMIN, $std, $MEMBER, $GROUP;</font><br>
+  <strong>--------</strong><br>
+  <font color="#009933"><strong>Under that add this:</strong></font></p>
+<p><font color="#009933">$ADMIN-&gt;error(&quot;Board Wrappers have been disabled, 
+  please use HTML Templates, Style Sheets and Macros to change the layout and 
+  colours&quot;);</font></p>
+<p><strong>----------------<br>
+  File 8 of 8</strong><em><strong>:</strong></em><font color="#666666"><em><strong></strong></em></font><strong> 
+  <br>
+  <em><font color="#666666">upload/sources/Admin/ad_mysql.php</font></em><br>
+  ----------------</strong><br>
+  <font color="#FF0000"><strong>Find:</strong></font></p>
+<p><font color="#FF0000">function ad_mysql() {<br>
+  global $IN, $INFO, $DB, $SKIN, $ADMIN, $std, $MEMBER, $GROUP, $HTTP_POST_VARS, 
+  $HTTP_GET_VARS;</font><br>
+  <strong>--------</strong><br>
+  <font color="#009933"><strong>Under that add this:</strong></font></p>
+<p><font color="#009933">$ADMIN-&gt;error(&quot;For security reasons SQL Management 
+  has been disabled, if you need a backup of your database please contact the 
+  host&quot;)</font></p>
+<p>
+  <br>
+  <strong>----------------</strong><br>
+  <font color="#336699"><strong>And your done!</strong> :) Just re-read Step 1 
+  and make sure everything is ok</font></p>
+</body>
+</html>
