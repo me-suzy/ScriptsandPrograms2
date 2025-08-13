@@ -1,0 +1,118 @@
+version 1.7: (Released: 05-10-03)
+----------------
+ - In netscape on the client side the text box was refreshing because the 
+   onkeypress was not being recorded. Fixed this.
+ - Needed to add more close database connections thoughout the code to 
+   ensure that the connections is being closed some users were getting 
+   max connection errors.. 
+ - Added an "EXIT chat" link on the user end so that the user can close the 
+   chat session. 
+ - added a shorter timout for the admin user so that if the admin operator
+   closes their admin without logging out their status will turn to offline
+   2 minutes later.. 
+ - Added error codes to the log in screen so that if the wrong username 
+   or password is entered it tells you you entered the wrong username/password
+ - added a forgot your password screen for thoes who forget their password.
+ - added code that refreshes the admin chat after 30 seconds of inactivity
+   to avoid script timeout errors.. 
+ - Added a display so that the operators can tell is another operator
+   is online.
+ - reversed the way the messages are shown in the refresh mode to match
+   the way it is shown in continous mode.
+ 
+version 1.6: (Released: 05-02-03)
+----------------
+ - Added some extra javascript code to the users list frame to make
+   sure that it keeps reloading.. for some reason it stops after
+   an hour or so. The javascript is a double check..
+ - Added the txt-db-api database option for the type of database.
+ - added a css style sheet and date and time to the user list frame.
+ - added close database connections in the image display script to 
+   try to avoid max connections errors..     $mydatabase->close_connect();
+
+version 1.5: (Released: 05-02-03)
+----------------
+ - Added Manual installation directions and sql dump of initial 
+   database for users who have a hard time running the setup.
+ - changed livehelp.js to use a global webpath var that is easily changed at the 
+   top of the file.
+ - Fixed the issue with the text area not getting selected if 
+   the window focus is called. 
+ - Fixed issue with color staying Red for the users rather then 
+   alternating to a new color.
+ - Had to remove the txt-db-api database option until I have a chance
+   to fully de-bug it.
+ - did a little bit of general code cleaning    
+
+version 1.4: (Released: 05-01-03)
+----------------
+ - Auto focus to textarea box after submitting message
+ - Auto select last person who was sent a message for send to:
+ - Auto Submit send when Return is pressed. 
+ - Auto focus chat window when they type something. This way you 
+   can minmize the window and so something else while they type.
+ - fixed issue with user end chat not scrolling to absolute bottom of page.
+ - Added a Clear button to clear out the chat screen.
+ - fixed version field type (should be float) in config also fixed upgrade script.
+ 
+
+version 1.3: (Released: 04-30-03)
+----------------
+ - combined chatting users and current visitors frames into one frame.
+   Tried to use DHTML to now have to re-load the users frame but as it
+   turns out IE does not like to load two frames infinitly at the same
+   time.. WTF.. I have the code there but commented out.  
+ - added a field to `livehelp_config` ADD `use_flush ` VARCHAR( 10 ) DEFAULT 'YES' NOT NULL ;
+ - fixed upgrade in setup.php so that older version users can upgrade to new version.
+ - added support for non-flush() servers. Servers that insist on buffering the output
+   until the entire page is loaded...
+ - When you click on log out it marks your status now as offline.. 
+ - 
+
+---------------- ---------------- ---------------- ----------------  
+version 1.2: (Released: 04-28-03)
+----------------
+ - As it turns out The HTTP Authentication hooks in PHP are only available 
+   when it is running as an Apache module and is hence not available in 
+   the CGI version which was causing internal server error on a few peoples
+   installations. I re-programmed user_access.php to use a cookie login. 
+ - get_magic_quotes_gpc is now used instead of get_ini to see if the user
+   has magic quotes on or off and a new extraction is used in config.php 
+   to extract the global vars and add slashes. (I like magic quotes) 
+ - Added a LOG OUT button to allow operators to close the admin.
+ - took out javascript alert for new user in chat and replaced with 
+   java sound wav.
+ - added referer to the details of the user.. I will make it look better in 
+   a later version...
+ - Fixed issue with leave a messsage window always poping up if the user 
+   was requested for a chat then went away and then came back again when 
+   the operator was not around.. 
+ - added additional check in setup to make sure users with txt-db-api can 
+   write to their text database.
+
+---------------- ---------------- ---------------- ---------------- 
+version 1.1: (Released: 04-27-03)
+----------------
+ - Added installation directions and change log txt files.
+ - Added support for new $_POST $_GET and $_COOKIE that 
+   replace the $HTTP_*_VARS in newer versions of php.
+ - Created a new field in livehelp_operator_channels table
+   called "bgcolor" of type varchar (10). This field allows
+   me to color code the users to allow it to be easier to 
+   separate the chatting users.. 
+ - Fixed bug with the leave a message script where the 
+   e-mail from address was not being sent.
+ - Fixed bug with users entering in the same username or name as
+   an already exisiting user.
+ - Fixed issue with the "new user in chat"
+   prompt showing before the user enters their name if 
+   ask for name option is selected.
+ - magic quotes for words with apostrophes
+ - If user selects not to have the leave the message option on
+   and no one is online the credit line remained. Took that image
+   out if leave a message is not enabled.
+
+---------------- ---------------- ---------------- ---------------- 
+version 1.0: (Released: 04-21-03)
+---------------- 
+- This was the first release of the program everything was new :-) 
