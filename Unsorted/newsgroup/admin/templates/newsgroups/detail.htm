@@ -1,0 +1,155 @@
+{header_menu_template}
+
+<link rel="stylesheet" href="/gestion/includes/admin.css" type="text/css">
+<!-- Include the Admin JavaScript Library -->
+<script language="JavaScript" src="{home_dir}admin/includes/admin.js"></script>
+<script language="JavaScript">
+	function minus(){
+	
+		if(document.form.downloaded_articles.value >= 10){
+			document.form.downloaded_articles.value -= 10;
+		}
+		
+	}
+	function reset_cleanup(){
+		document.form.grp_MAX_days.value = 0;
+		document.form.grp_MAX_articles.value = 0;			
+	}
+	function apply_cleanup(){
+		if (confirm("Are you sure you want to delete old articles?")){
+			//document.form.action.value="Modify";
+			document.form2.submit();
+		}			
+	}	
+</script>
+
+
+<div id="Layer1" style="position:absolute; left:125px; top:79px; width:373px; height:111px; z-index:1">
+<table width="400" border="0" cellspacing="0" cellpadding="0" class="menu_table">
+  <tr>
+    <td>
+      <table width="500" border="0" cellspacing="0" cellpadding="0" align="left">
+        <tr>
+          <td class="code"><div align="center"> <span class="title">&nbsp;&nbsp;NewsGroups </span></div></td>
+        </tr>
+      </table>
+      <br>
+      <form name="form" method="post" action="detail.php">
+        <br>
+                <table width="400" border="0" cellspacing="0" cellpadding="3" align="center">
+                    <!-- NewsGroup Name-->
+                    <tr> 
+                        <td width="241" align="right" class="top_link">NewsGroup:&nbsp;</td>
+                        <td colspan="2"> <input type="text" length="20" name="grp_name" value="{grp_name}" class="form_admin" readonly> 
+                        </td>
+                    </tr>
+                    <!-- NewsGroup Description-->
+                    <tr> 
+                        <td valign="top" class="top_link"> <div align="right">Description:&nbsp;</div></td>
+                        <td colspan="2"> <textarea cols="20" rows="7" name="grp_description" class="form_admin">{grp_description}</textarea> 
+                        </td>
+                    </tr>
+                    <!-- NewsGroup Allow Post yes or no-->
+                    <tr> 
+                        <td valign="top" class="top_link"><div align="right">Allow 
+                                Post:&nbsp;</div></td>
+                        <td width="96" class="top_link">Yes 
+                            <input type="radio" name="grp_allow_post_yn" value="Y" {is_checked_yes}> 
+                        </td>
+                        <td width="245" class="top_link">No 
+                            <input type="radio" name="grp_allow_post_yn" value="N" {is_checked_no}></td>
+                    </tr>
+                    <!-- Articles Available at the server 
+          <tr> 
+            <td valign="top" class="top_link"> <div align="right">Available Articles:&nbsp;</div></td>
+            <td> <input type="text" size="3" name="available_articles" class="form_admin" value="{available_articles}" readonly> </td>
+          </tr>
+          -->
+                    <!-- Articles Downloaded -->
+                    <tr> 
+                        <td valign="top" class="top_link"> <div align="right">Downloaded 
+                                Articles:&nbsp;</div></td>
+                        <td colspan="2" valign="top" class="top_link"> <input type="text" size="7" name="downloaded_articles" class="form_admin" value="{downloaded_articles}"> 
+                            <a href="javascript:minus();" class="top_link"> --</a></td>
+                    </tr>
+                    <!-- Articles available -->
+                    <tr>
+                        <td width="241" align="right" class="top_link">MAX. Days 
+                            saving Articles:&nbsp;</td>
+                        <td colspan =2><input type="radio" name="clean_up" value="days" {clean_days_yes}>
+                            &nbsp; 
+                            <input type="text" size="6" length="6" name="grp_MAX_days" value="{grp_MAX_days}" class="form_admin" >&nbsp;&nbsp;<a class="top_link" href="javascript:apply_cleanup();">Apply!</a> 							
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" class="top_link"><div align="right">MAX. 
+                                Number of Articles:&nbsp;</div></td>
+                        <td colspan =2 > <input type="radio" name="clean_up" value="articles" {clean_articles_yes}>
+                            &nbsp; 
+                            <input type="text" size="6" length="6" name="grp_MAX_articles" value="{grp_MAX_articles}" class="form_admin" >&nbsp;&nbsp;<a class="top_link" href="javascript:apply_cleanup();">Apply!</a></td>
+                    </tr>
+                    <tr>
+                        <td align="right" class="top_link">No Clean Up:&nbsp;</td>
+                        <td colspan =2 ><input type="radio" name="clean_up" value="no" onClick="reset_cleanup()" {clean_no}> 
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td valign="top" class="top_link"> <div align="right">Articles 
+                                at Server:&nbsp;</div></td>
+                        <td colspan="2" valign="top" class="top_link"> <input type="text" size="7" name="grp_num_available" class="form_admin" value="{grp_num_available}" readonly></td>
+                    </tr>
+                    <!--
+          <tr>
+            <td width="172" align="right" class="texto_azulnegr" valign="top">Foto:&nbsp;</td>
+            <td width="307"> <img src="{foto}" border="0"><br>
+              <!input type="text" name="foto" value="{nombre_foto}" class="campos_gestion">
+              <input name="fichero" value="{nombre_foto}" class="campo_ficha">
+              <a href="javascript:onclick=ftp(document.formulario.fichero)" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('adjun','','/gestion/images/botones/adjuntar2.gif',1)"><img name="adjun" border="0" src="/gestion/images/botones/adjuntar1.gif" width="70" height="16"></a><br>
+            </td>
+          </tr>
+          <tr>
+            <td width="172" align="right" class="texto_azulnegr" valign="top">Foto
+              Pequeña:&nbsp;</td>
+            <td width="307"> <img src="{foto_peque}" border="0"><br>
+              <!input type="text" name="foto_peque" value="{nombre_foto_peque}" class="campos_gestion">
+              <input name="fichero2" value="{nombre_foto_peque}" class="campo_ficha">
+              <a href="javascript:onclick=ftp(document.formulario.fichero2)" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('adjun1','','/gestion/images/botones/adjuntar2.gif',1)"><img name="adjun1" border="0" src="/gestion/images/botones/adjuntar1.gif" width="70" height="16"></a><br>
+            </td>
+          </tr>
+          -->
+                    <tr> 
+                        <td colspan="3"><table width="0%" border="0" cellspacing="0" cellpadding="2" align="center">
+                                    <tr> 
+                                        <td> 
+                                            <!-- BEGIN add_block -->
+                                            <input type="button" onClick="{add_link}" value="Add" class="button"> 
+                                            <!-- END add_block -->
+                                        </td>
+                                        <td> 
+                                            <!-- BEGIN modify_block -->
+                                            <input type="button" onClick="{modify_link}" value="Modify" class="button"> 
+                                            <!-- END modify_block -->
+                                        </td>
+                                        <td> 
+                                            <!-- BEGIN del_block -->
+                                            <input type="button" onClick="{del_link}" value="Delete" class="button"> 
+                                            <!-- END del_block -->
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div align="center"></div></td>
+                    </tr>
+                </table>
+        <br>
+            <input type="hidden" name="grp_id" value="{grp_id}">
+            <input type="hidden" name="downloaded_articles_old" value="{downloaded_articles}">
+            <input type="hidden" name="action">
+      </form>
+    </td>
+  </tr>
+</table>
+<form name="form2" action="../../cron/cron_cleanup.php" method ="POST">
+<input type="hidden" name="apply_cleanup" value="yes">
+<input type="hidden" name="return_page" value="{return_page}">
+</form>
+</div>
