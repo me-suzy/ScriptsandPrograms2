@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+
+<head>
+<title><%site_title%>: Add a Resource</title>
+</head>
+
+<body bgcolor="##2D4253" link="#000000" alink="#000000" vlink="#000000">
+
+<h1><%site_title%>: Add a Resource</h1>
+
+	
+<form action="<%db_cgi_url%>/add.cgi" method="POST">
+  <p align="center"><font face="Arial, Helvetica, sans-serif" size="2">Please 
+    fill out the form completely, and we'll add your resource as soon as possible.</font></p>
+    <div class="margin"> 
+      <div align=center> 
+        <table width=600 cellspacing=1 cellpadding=0 bgcolor=#222222 height="50" align="center">
+          <tr> 
+            <td width=580> 
+              
+            <table cellpadding=2 cellspacing=1 border=0 bgcolor=#000000 width="100%" height="100%">
+              <tr bgcolor=#CCCCCC> 
+                <td align=right valign=top width=20% bgcolor="#444444"><font color="#FFFFFF"><b><font face="verdana,arial,helvetica" size="2">Program 
+                  Name:</font></b></font></td>
+                <td width=80% bgcolor="#333333"> 
+                  <input type=text name="Program Name" value="" size="40" maxlength="75">
+                </td>
+              </tr>
+              <tr bgcolor=#CCCCCC> 
+                <td align=right valign=top width=20% bgcolor="#444444"><font color="#FFFFFF"><b><font face="verdana,arial,helvetica" size="2">Program 
+                  URL:</font></b></font></td>
+                <td width=80% bgcolor="#333333"> 
+                  <input type=text name="Program URL" value="http://" size="40" maxlength="75">
+                </td>
+              </tr>
+              <tr bgcolor=#CCCCCC> 
+                <td align=right valign=top width=20% bgcolor="#444444"><font color="#FFFFFF"><b><font face="verdana,arial,helvetica" size="2">Site 
+                  Name:</font></b></font></td>
+                <td width=80% bgcolor="#333333"> 
+                  <input type=text name="Site Name" size="40" maxlength="75">
+                </td>
+              </tr>
+              <tr bgcolor=#CCCCCC> 
+                <td align=right valign=top width=20% bgcolor="#444444"><font color="#FFFFFF"><b><font face="verdana,arial,helvetica" size="2">Site 
+                  URL:</font></b></font></td>
+                <td width=80% bgcolor="#333333"> 
+                  <input type=text name="Site URL" size="40" maxlength="75" value="http://">
+                </td>
+              </tr>
+              <tr bgcolor=#CCCCCC> 
+                <td align=right valign=top width=20% bgcolor="#444444"><font color="#FFFFFF"><b><font face="verdana,arial,helvetica" size="2">Category:</font></b></font></td>
+                <td width=80% bgcolor="#333333"> <%Category%> 
+                  <input type="hidden" name="Date" value="<%date%>">
+                </td>
+              </tr>
+              <tr bgcolor=#CCCCCC> 
+                <td align=right valign=top width=20% bgcolor="#444444"><font color="#FFFFFF"><b><font face="verdana,arial,helvetica" size="2">Language:</font></b></font></td>
+                <td width=80% bgcolor="#333333"> 
+                  <select name="Language"  size=1>
+                    <option>--- 
+                    <option SELECTED>English 
+                    <option>Deutsch 
+                  </select>
+                </td>
+              </tr>
+              <tr bgcolor=#CCCCCC> 
+                <td align=right valign=top width=20% bgcolor="#444444"><font color="#FFFFFF"><b><font face="verdana,arial,helvetica" size="2">Contact 
+                  Name:</font></b></font></td>
+                <td width=80% bgcolor="#333333"> 
+                  <input type=text name="Contact Name" value="" size="40" maxlength="75">
+                </td>
+              </tr>
+              <tr bgcolor=#CCCCCC> 
+                <td align=right valign=top width=20% bgcolor="#444444"><font color="#FFFFFF"><b><font face="verdana,arial,helvetica" size="2">Contact 
+                  Email:</font></b></font></td>
+                <td width=80% bgcolor="#333333"> 
+                  <input type=text name="Contact Email" value="" size="40" maxlength="75">
+                </td>
+              </tr>
+              <tr> 
+                <td align="right" valign="top" bgcolor="#444444"> <font face="Verdana" size="2"><b>Receive 
+                  Email Updates:</b></font></td>
+                <td bgcolor="#333333"> <font face="Verdana" size="1">(Select "Yes" 
+                  if you want to receive timely updates on the status of your 
+                  link. <br>
+                  Select "No" if you do not want to receive timely updates on 
+                  the status of your link.)</font> <br>
+                  <font face="Verdana" size="2"> 
+                  <input type="RADIO" name="ReceiveMail" value="Yes" CHECKED>
+                  Yes 
+                  <input type="RADIO" name="ReceiveMail" value="No">
+                  No </font></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p></p>
+      <p></p>
+      <p> 
+        <center>
+          <input type="SUBMIT" name="process_form" value="Add Link">
+          <input type="RESET" value="Reset Form" name="RESET">
+        </center>
+      </p>
+    </div>
+  </form>
+	
+	<form action="<%db_cgi_url%>/search.cgi" method="GET">
+		<h2>Search</h2>
+			<div class="margin">
+				<table border="0" cellspacing="0" cellpadding="0">
+				<tr><td><strong class="search">Looking for something in particular?</strong></td></tr>
+				<tr><td><input type="text" size=15 name="query"> <input type=submit value="Search!"></td></tr>
+				<tr><td><small class="more"><a href="<%db_cgi_url%>/search.cgi">More search options</a></small></td></tr>
+				</table>
+		</div>
+	</form>
+	
+	
+<p><small class="update">Pages Updated On: <%date%> - <%time%> </small></p>		
+
+</body>
+</html>
