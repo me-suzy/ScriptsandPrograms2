@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Custom Weblog Fields &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Custom Weblog Fields</h1>
+
+	<p>This section of the Control Panel is for the management of weblog field groups.  It is where fields and field groups are created, deleted, and preferences are set.  Field groups determine what fields and types of fields will appear for each weblog.  You can create a separate group for each weblog or use the same group on multiple weblogs to ensure that they all have the same fields.</p>
+
+
+
+	<h2><a name="main_screen">Main Screen</a></h2>
+
+	<p>The main <dfn>Custom Weblog Fields</dfn> screen shows a table of all the existing field groups.  It lists the field group name and provides links to edit the preferences.</p>
+
+	<img src="custom_weblog_fields_main_screen.gif" width="575" height="177" alt="Custom Weblog Fields main screen" title="Custom Weblog Fields main screen" />
+
+	<ul>
+		<li><a href="#add_edit_custom_fields">Add/edit Custom Fields</a>: Create and edit the fields that belong to the field group.</li>
+		<li><a href="#edit_field_group">Edit Field Group</a>: Edit the name of the existing field group.</li>
+		<li><a href="#delete_field_group">Delete Field Group</a>: Delete the field group.</li>
+	</ul>
+
+	<p>The <dfn><a href="#create_a_new_weblog_field_group">Create a New Weblog Field Group</a></dfn> link takes you to a screen allowing you to create a new field group.</p>
+
+
+
+	<h2><a name="create_a_new_weblog_field_group">Create a New Weblog Field Group</a></h2>
+
+	<p>A link off of the main <dfn>Custom Weblog Fields</dfn> page brings up this screen.  On this screen you define the new field group.</p>
+
+	<img src="custom_weblog_fields_new_field_group.gif" width="576" height="157" alt="Create a New Custom Weblog Field Group screen" title="Create a New Custom Weblog Field Group screen" />
+
+	<p>The only field on this screen is to input the name of the field group.  The name must be unique, but spaces are allowed.</p>
+
+
+
+	<h2><a name="add_edit_custom_fields">Add/edit Custom Fields</a></h2>
+
+	<p>This screen allows you to add new fields to the field group or to edit existing fields.  The screen lists the existing fields along with their field display order.  You may also use the <dfn><a href="#edit_field_order">edit field order</a></dfn> link to easily change the display order of multiple fields at once.</p>
+
+
+	<img src="custom_weblog_fields_add_edit_custom_fields.gif" width="556" height="699" alt="Add/edit Custom Fields screen" title="Add/edit Custom Fields screen" />
+
+	<h3>Field Group</h3>
+
+		<p>This box displays the existing fields that belong to this field group.  Next to the field names are links to <a href="#edit_field">edit</a> or <a href="#delete_field">delete</a> the field.</p>
+
+
+	<h3>Field Name</h3>
+
+		<p>This is the internal or "short name" for the field.  This is a <strong>required</strong> field and must be a single word with no spaces or punctuation.  The field name must be unique within the system, which means that you cannot have two field groups each containing a field with the field name of "body".</p>
+
+
+	<h3>Field Label</h3>
+
+		<p>This is the descriptive name for the field.  This is a <strong>required</strong> field and it may contain spaces or punctuation.  Unlike the Field Name, the label does not need to be unique within the system, so you can use the same descriptive label on multiple fields in different field groups.  The label is what will actually be displayed next to the field on the entry form for the weblog.</p>
+
+
+	<h3>Field Type</h3>
+
+		<p>You may choose what type of field this is.  There are three choices:</p>
+
+		<ol>
+			<li><b>Text Input</b>: This is a single input line for text.  It is the type of field you might use for a title, name, or other short information.</li>
+			<li><b>Textarea</b>: This is a standard text entry box with multiple lines (you set the number of lines later).  This is what you would use for a main entry body.</li>
+			<li><b>Drop-down List</b>: This creates a standard HTML &lt;select> drop-down list.  Users will be able to select one choice from among a list.  The options are defined later.</li>
+		</ol>
+
+
+	<h3>Is this a required field?</h3>
+
+		<p>You may determine whether this field will be required in order to submit an entry.  If the field is required and the user leaves it blank upon submitting the entry, they will receive a message and must entry information in the field before the entry can be submitted.  If you select "No" then the entry may be submitted without content in this field.</p>
+
+
+	<h3>Field Formatting</h3>
+
+		<p>This option only applies if you have selected the "Textarea" option for Field Type.  It determines the default formatting selection for this field.  (The formatting option can be changed on a per-entry basis when creating new entries if needed.)  There are three possible choices:</p>
+
+		<ol>
+			<li><b>None</b>: No automatic formatting is done; the comment is left as-is.  This could be useful if you want people to be able to use full HTML in this field.</li>
+			<li><b>xhtml</b>: The field content will be formatted as valid XHTML.  Text blocks with double line breaks will be turned into paragraphs, line breaks will be replaced by <samp>&lt;br /></samp> tags, special characters will be formatted as character entities, etc.</li>
+			<li><b>Auto &lt;br /></b>: All line breaks in the field content will be converted into <samp>&lt;br /></samp> tags.  This includes any line breaks that may occur inside HTML code, which could cause unexpected displays.</li>
+		</ol>
+
+
+	<h3>Maxlength</h3>
+
+		<p>This option is only applicable if you have selected the "Text Input" option for the Field Type.  It sets the maximum number of characters that will be accepted as input for this field.  This will allow you to limit the amount of data that someone submits.  For instance, if you wanted to have a field where the user input an age, then you might want to limit it to only 2 (or 3) characters.</p>
+
+
+	<h3>Textarea Rows</h3>
+
+		<p>This option only applies if you have selected the "Textarea" option for Field Type.  It sets the number of text rows to display for the text entry area.  If you are inputting a shipping address then you may want to display 4-6 rows, whereas if it is a main content field then you may want a large entry area of 10 or more rows.</p>
+
+		<p><b>Note</b>: This does not limit the maximum amount of data that can be submitted, it just determines the actual size of the &lt;textarea> input box on the screen.  Content will still scroll within the box to allow for greater data entry.</p>
+
+
+	<h3>Select Options</h3>
+
+		<p>This option only applies if you have selected the "Drop-down List" option for Field Type.  This is where you will list all of the possible options for your drop-down list.  Simply place each option on a separate line.  You can see an example on the screenshot image.</p>
+
+
+	<h3>Field Display Order</h3>
+
+		<p>You can determine the order in which the fields appear on your weblog entry screen.  If you decide that the fourth field you created should really be displayed first then you simply need to define the order as such.  If you want to more easily rearrange the order of multiple fields then it would be better to use the <dfn><a href="#edit_field_order">edit field order</a></dfn> screen.</p>
+
+
+
+	<h2><a name="edit_field">Edit Field</a></h2>
+
+	<p>You may edit an existing field by following the <dfn>Edit</dfn> link next to the field name on the <dfn><a href="#add_edit_custom_fields">Add/edit Custom Fields</a></dfn> screen.</p>
+
+
+	<img src="custom_weblog_fields_edit_field.gif" width="557" height="697" alt="Edit Field screen" title="Edit Field screen" />
+
+	<h3>Field Name</h3>
+
+		<p>This is the internal or "short name" for the field.  This is a <strong>required</strong> field and must be a single word with no spaces or punctuation.  The field name must be unique within the system, which means that you cannot have two field groups each containing a field with the field name of "body".</p>
+
+
+	<h3>Field Label</h3>
+
+		<p>This is the descriptive name for the field.  This is a <strong>required</strong> field and it may contain spaces or punctuation.  Unlike the Field Name, the label does not need to be unique within the system, so you can use the same descriptive label on multiple fields in different field groups.  The label is what will actually be displayed next to the field on the entry form for the weblog.</p>
+
+
+	<h3>Field Type</h3>
+
+		<p>You may choose what type of field this is.  There are three choices:</p>
+
+		<ol>
+			<li><b>Text Input</b>: This is a single input line for text.  It is the type of field you might use for a title, name, or other short information.</li>
+			<li><b>Textarea</b>: This is a standard text entry box with multiple lines (you set the number of lines later).  This is what you would use for a main entry body.</li>
+			<li><b>Drop-down List</b>: This creates a standard HTML &lt;select> drop-down list.  Users will be able to select one choice from among a list.  The options are defined later.</li>
+		</ol>
+
+
+	<h3>Is this a required field?</h3>
+
+		<p>You may determine whether this field will be required in order to submit an entry.  If the field is required and the user leaves it blank upon submitting the entry, they will receive a message and must entry information in the field before the entry can be submitted.  If you select "No" then the entry may be submitted without content in this field.</p>
+
+
+	<h3>Field Formatting</h3>
+
+		<p>This option only applies if you have selected the "Textarea" option for Field Type.  It determines the default formatting selection for this field.  (The formatting option can be changed on a per-entry basis when creating new entries if needed.)  There are three possible choices:</p>
+
+		<ol>
+			<li><b>None</b>: No automatic formatting is done; the comment is left as-is.  This could be useful if you want people to be able to use full HTML in this field.</li>
+			<li><b>xhtml</b>: The field content will be formatted as valid XHTML.  Text blocks with double line breaks will be turned into paragraphs, line breaks will be replaced by <samp>&lt;br /></samp> tags, special characters will be formatted as character entities, etc.</li>
+			<li><b>Auto &lt;br /></b>: All line breaks in the field content will be converted into <samp>&lt;br /></samp> tags.  This includes any line breaks that may occur inside HTML code, which could cause unexpected displays.</li>
+		</ol>
+
+
+	<h3>Maxlength</h3>
+
+		<p>This option is only applicable if you have selected the "Text Input" option for the Field Type.  It sets the maximum number of characters that will be accepted as input for this field.  This will allow you to limit the amount of data that someone submits.  For instance, if you wanted to have a field where the user input an age, then you might want to limit it to only 2 (or 3) characters.</p>
+
+
+	<h3>Textarea Rows</h3>
+
+		<p>This option only applies if you have selected the "Textarea" option for Field Type.  It sets the number of text rows to display for the text entry area.  If you are inputting a shipping address then you may want to display 4-6 rows, whereas if it is a main content field then you may want a large entry area of 10 or more rows.</p>
+
+		<p><b>Note</b>: This does not limit the maximum amount of data that can be submitted, it just determines the actual size of the &lt;textarea> input box on the screen.  Content will still scroll within the box to allow for greater data entry.</p>
+
+
+	<h3>Select Options</h3>
+
+		<p>This option only applies if you have selected the "Drop-down List" option for Field Type.  This is where you will list all of the possible options for your drop-down list.  Simply place each option on a separate line.</p>
+
+
+	<h3>Field Display Order</h3>
+
+		<p>You can determine the order in which the fields appear on your weblog entry screen.  If you decide that the fourth field you created should really be displayed first then you simply need to define the order as such.  If you want to more easily rearrange the order of multiple fields then it would be better to use the <dfn><a href="#edit_field_order">edit field order</a></dfn> screen.</p>
+
+
+
+	<h2><a name="delete_field">Delete Field</a></h2>
+
+	<p>The <dfn>Delete</dfn> link on the main <dfn><a href="#add_edit_custom_fields">Add/edit Custom Fields</a></dfn> page allows you to delete the custom field. When a custom field is deleted, data from that field is removed from all associated weblog entries. Custom field deletion is permanent and irreversible, so <strong>be very careful before deleting a custom field</strong>.</p>
+
+	<img src="custom_weblog_fields_delete_field.gif" width="580" height="182" alt="Delete Field screen" title="Delete Field screen" />
+
+	<p>You will be prompted to confirm your decision before you can delete the custom field.</p>
+
+
+
+
+	<h2><a name="edit_field_order">Edit Field Order</a></h2>
+
+	<p>A link off of the main <dfn><a href="#add_edit_custom_fields">Add/edit Custom Fields</a></dfn> page brings up this screen.  On this screen you can easily rearrange the display order for all of the fields within the field group.</p>
+
+	<img src="custom_weblog_fields_edit_field_order.gif" width="576" height="275" alt="Edit Field Order screen" title="Edit Field Order screen" />
+
+	<p>Determine the desired display order for your fields by putting the correct number next to each field.  "1" will be the first field displayed, "2" will be the second, and so on.</p>
+
+
+
+	<h2><a name="edit_field_group">Edit Field Group</a></h2>
+
+	<p>The <dfn>Edit Field Group</dfn> link in the main <dfn>Custom Weblog Fields</dfn> table allows you to edit the name of an existing field group.</p>
+
+
+	<img src="custom_weblog_fields_edit_field_group.gif" width="577" height="157" alt="Edit Field Group screen" title="Edit Field Group screen" />
+
+	<p>The only field on this screen is to input the name of the field group.  The name must be unique, but spaces are allowed.</p>
+
+
+
+	<h2><a name="delete_field_group">Delete Field Group</a></h2>
+
+	<p>The <dfn>Delete Field Group</dfn> link in the main <dfn>Custom Weblog Fields</dfn> table allows you to delete the field group.  Field group deletion is permanent and irreversible, so <strong>be very careful before deleting a field group</strong>.</p>
+
+	<img src="custom_weblog_fields_delete_field_group.gif" width="577" height="181" alt="Delete Field Group screen" title="Delete Field Group screen" />
+
+	<div class="important">
+		<p><b>Note:</b><br />
+			When you delete a field group that is already assigned to a weblog, the weblog entries themselves will not disappear.  However, <strong>any content</strong> that was stored in those fields <strong>will be removed</strong>.  basic entry data such as the title, entry date, and other "base" data will remain, but the data in the custom fields will be lost.</p>
+	</div>
+
+	<p>You will be prompted to confirm your decision before you can delete the field group.</p>
+
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
