@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Get List</title>
+<link rel="stylesheet" href="{style_dir}/style.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF">
+<!-- BEGIN init_block -->
+<table  cellpadding="5" cellspacing="2" align="center" width="479" border="0" bordercolor="#2b1c6f">
+  <tr >
+		
+    <td align ="center" class="tabla_system_info" bordercolor="#FFFFFF"> <span class="top_link"> You 
+      can now download the list of NewsGroups available. Moreover, It will be 
+      saved as a text file at '{home_dir}upload/lists/'. This operation may take 
+      several minutes to perform.... </span> </td>  
+	</tr>
+	<tr>
+	<td align="center" class="table_header"> 
+    <form name="form" action="get_list.php" method="post">
+	<input type="submit" name="get_list" value="Get List!" class="form_admin">&nbsp;
+	<input type="hidden" name="action" value="get_list">
+	<input type="hidden" name="server" value="{server}">
+    </form>
+	</td>
+	</tr>
+</table>
+<!-- END init_block -->
+
+<!-- BEGIN success_block -->
+<table cellpadding="5" cellspacing="2" align="center" width="479" border="0" bordercolor="#2b1c6f">
+  <tr > 
+    <td class="tabla_system_info" bordercolor="#FFFFFF"> <div align="center"><span class="top_link"> 
+        The file <span class="top_link_act">'{list_file}'</span> has been saved at <span class="top_link_act">'{home_dir}upload/lists'</span>. 
+        <br>It will 
+        be used by the System in order to add new NewsGroups to the system. <br><br> This 
+        is the information gathered by MyNewsGroups :) :<br>
+        <br>
+        The server <span class="myng_bottom">{server}</span> has <span class="myng_bottom">{num_groups}</span> NewsGroups available. The list of newsgroups 
+        has been stored as the file <span class="myng_bottom">{list_file}</span> and its size is <span class="myng_bottom">{list_file_size}</span>
+        KBytes.</span><br>
+        <br>
+        <a class="top_link" href="javascript:close();">Close this window!</a></div></td>
+  </tr>
+</table>
+<!-- END success_block -->
+<p>&nbsp; </p>
+</body>
+</html>
