@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Search Results Tag &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Search Results Tag</h1>
+
+	<p>The Search Results tag controls how you display results from your searches.  Example:</p>
+
+	<code>&lt;table border="0" cellpadding="6" cellspacing="1" width="100%"><br />
+&lt;tr><br />
+&lt;th>{lang:title}&lt;/th><br />
+&lt;th>{lang:excerpt}&lt;/th><br />
+&lt;th>{lang:author}&lt;/th><br />
+&lt;th>{lang:date}&lt;/th><br />
+&lt;th>{lang:total_comments}&lt;/th><br />
+&lt;th>{lang:recent_comments}&lt;/th><br />
+&lt;/tr><br />
+<br />
+{exp:search:search_results switch="resultRowOne|resultRowTwo"}<br />
+<br />
+&lt;tr class="{switch}"><br />
+&lt;td width="30%" valign="top">&lt;b>&lt;a href="{path}">{title}&lt;/a>&lt;/b>&lt;/td><br />
+&lt;td width="30%" valign="top">{excerpt}&lt;/td><br />
+&lt;td width="10%" valign="top">&lt;a href="{member_path=member/index}">{author}&lt;/a>&lt;/td><br />
+&lt;td width="10%" valign="top">{entry_date format="%m/%d/%y"}&lt;/td><br />
+&lt;td width="10%" valign="top">{comment_total}&lt;/td><br />
+&lt;td width="10%" valign="top">{recent_comment_date format="%m/%d/%y"}&lt;/td><br />
+&lt;/tr><br />
+<br />
+{/exp:search:search_results}<br />
+<br />
+&lt;/table><br />
+<br />
+{if paginate}<br />
+<br />
+&lt;div class='paginate'><br />
+<br />
+&lt;span class='pagecount'>{page_count}&lt;/span>&amp;nbsp; {paginate}<br />
+<br />
+&lt;/div><br />
+<br />
+{/if}<br /></code>
+
+
+
+	<h2>Parameters</h2>
+
+	<ul class="minitoc">
+		<li><a href="#par_switch">switch="option_one|option_two"</a></li>
+	</ul>
+
+
+	<h3><a name="par_switch">switch=</a></h3>
+
+		<code>switch="option_one|option_two"</code>
+
+		<p>This parameter allows you to set two values that will alternate between the result rows.  This is commonly used to have alternating colored backgrounds for the result rows.  This parameter works in conjunction with the <samp><a href="#var_switch">{switch}</a></samp> variable.</p>
+
+
+
+	<h2>Variables</h2>
+
+	<ul class="minitoc">
+		<li><a href="#var_author">{author}</a></li>
+		<li><a href="#var_comment_total">{comment_total}</a></li>
+		<li><a href="#var_entry_date">{entry_date format="%m/%d/%Y"}</a></li>
+		<li><a href="#var_excerpt">{excerpt}</a></li>
+		<li><a href="#var_member_path">{member_path=member/index}</a></li>
+		<li><a href="#var_path">{path}</a></li>
+		<li><a href="#var_recent_comment_date">{recent_comment_date format="%m/%d/%Y"}</a></li>
+		<li><a href="#var_switch">{switch}</a></li>
+		<li><a href="#var_title">{title}</a></li>
+		<li><a href="#var_weblog">{weblog}</a></li>
+	</ul>
+
+
+	<h3><a name="var_author">author</a></h3>
+
+		<code>{author}</code>
+
+		<p>The author of the entry</p>
+
+
+	<h3><a name="var_comment_total">comment_total</a></h3>
+
+		<code>{comment_total}</code>
+
+		<p>The total number of comments for a particular entry</p>
+
+
+	<h3>dates</h3>
+
+		<p>Several date variables are available for use.  As with other date variables, these require the "format" parameter in order to define how the date should be displayed.  See the <a href="../../templates/date_variable_formatting.html">date variable formatting</a> page for more information.</p>
+
+
+	<h3><a name="var_entry_date">entry_date</a></h3>
+
+		<code>{entry_date format="%Y %m %d"}</code>
+
+		<p>The date the entry was submitted</p>
+
+
+	<h3><a name="var_recent_comment_date">recent_comment_date</a></h3>
+
+		<code>{recent_comment_date format="%Y %m %d"}</code>
+
+		<p>The date of the most recent comment associated with the entry</p>
+
+
+	<h3><a name="var_excerpt">excerpt</a></h3>
+
+		<code>{excerpt}</code>
+
+		<p>An excerpt from the entry.  The excerpt consists of the first 50 words from the field specified for search excerpting in your <dfn><a href="../../cp/admin/weblog_administration/weblog_management.html">Weblog Management</a></dfn> settings for your weblogs.</p>
+
+
+	<h3><a name="var_member_path">member_path</a></h3>
+
+		<code>{member_path=member/index}</code>
+
+		<p>The Template_Group/Template with which to display the member profile of the author of the entry.  Typically, this variable will be specified as <samp>{member_path=member/index}</samp>.</p>
+
+
+	<h3><a name="var_path">path</a></h3>
+
+		<code>{path}</code>
+
+		<p>This parameter is replaced with the URL to the entry.  Unlike the <samp><a href="../../templates/global_variables.html#var_path">{path=}</a></samp> Global Variable, this variable does not require the Template_Group/Template to be specified.  Instead, the path will automatically be determined by the Weblog URL setting for the weblog in <dfn><a href="../../cp/admin/weblog_administration/weblog_management.html">Weblog Management</a></dfn>.</p>
+
+
+	<h3><a name="var_switch">switch</a></h3>
+
+		<code>{switch}</code>
+
+		<p>This variable is dynamically replaced by the appropriate value specified in the <samp><a href="#par_switch">switch=</a></samp> parameter.  This variable is commonly used to set a CSS class or a background color.</p>
+
+
+	<h3><a name="var_title">title</a></h3>
+
+		<code>{title}</code>
+
+		<p>The title of the entry</p>
+
+
+	<h3><a name="var_weblog">weblog</a></h3>
+
+		<code>{weblog}</code>
+
+		<p>The name of the weblog to which the result is assigned</p>
+
+
+
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
