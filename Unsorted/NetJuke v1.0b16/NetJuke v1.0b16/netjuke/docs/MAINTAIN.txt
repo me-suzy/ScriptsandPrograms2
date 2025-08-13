@@ -1,0 +1,307 @@
+
+------------------------------------------------------------------------
+                   NETJUKE MAINTENANCE DOCUMENTATION
+------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------
++  INCREASED SECURITY
+------------------------------------------------------------------------
+
+   FOR INCREASED SECURITY, remove the "netjuke/installer/" directory
+   when you are done generating your preference file with the installer.
+   
+   The netjuke installer contains a script that allows you to get some
+   info on your server. You might not want this info to stay available
+   to others after installing. The similar script available in the admin
+   section makes sure you are logged in as an admin to display the info.
+   
+   Also if you do not want remote users to know which version of the
+   netjuke you are running, make sure to remove the "netjuke/VERSION.txt"
+   file, but only once this install process is completed, as the installer
+   needs it.
+
+------------------------------------------------------------------------
++  SECURITY MODE FEATURE AND DEFAULT SETTINGS
+------------------------------------------------------------------------
+
+   If you start creating users, make sure to go to the "Preference File"
+   screen in the admin section, and switch to the appropriate SECURITY
+   MODE.
+
+   Experienced users can also obviously edit the preference file with
+   any text editor. Its structure has been kept pretty evident to make
+   it easy for users to change the values manually.
+
+
+------------------------------------------------------------------------
++  MUSIC IMPORT, SAMPLE DEMO DATA AND INFO EDITING
+------------------------------------------------------------------------
+
+   If you would like to try this software on your server without
+   involving your actual audio collection, a sample data demo file
+   is provided in the import backup directory located within the
+   Netjuke directory ( */netjuke/var/data/backup/DEMO_DATA.txt )
+
+   Simply move this file from backup/ to import/, and proceed with
+   the import utility provided in the admin section of the Netjuke
+   (you need to be logged in as a Netjuke administrator).
+
+   If you then decide to go with the netjuke to handle your own music,
+   just use the Music Database Maintenance tools in the Admin section
+   to delete all the music data, while preserving the user records
+   (users, prefs and sessions). You can then start importing your files
+   using the Recursive Audio File Finder.
+   
+   Use the Recursive Audio File Finder (in Admin) to scan for music on
+   your local system, or any mounted fileserver. Make sure to setup
+   permissions appropriately, as explained in the INSTALL.txts file.
+   
+   When you have a lot of files, it is strongly advised to limit the
+   search requirements of the recursive tool by entering subdirectories
+   of your Music Directory, or the query could last a while, though
+   should run successfully in the end, unless maybe if you run PHP in
+   safe mode.
+   
+   Personally, I split my MP3 collection by backup CD. I just create folders
+   named like MP3001, and load them with files until they hit the 650 MB
+   maximum size. I then burn a backup, and just start a new MP3002 directory.
+   
+   Please note that the netjuke does not attempt to write back to your
+   media files when you change any information in the web interface.
+   
+   If you want to edit the data that is displayed in the netjuke only (not
+   the actual tags), you will need to be logged in as an administrator or
+   an editor. If so, just click on the music note icon next to any track
+   in the listings (search, playlists, etc), and once the new window will
+   be opened, you will be able to switch to "Edit Mode".
+   
+   You can change all of the track's detailed info through this tools, or
+   by using the batch editing tools displayed in these same listings.
+   You can also add and delete new genres, artists and albums, as well as
+   associate the record(s) with images (see customization paragraph below).
+
+
+------------------------------------------------------------------------
++  AUTOMATED LOGIN AND TASK SCHEDULING FEATURES
+------------------------------------------------------------------------
+
+   Please see netjuke/docs/GLOBAL_LOGIN.txt to see how you can login
+   to the netjuke without passing by the login page, schedule automated
+   music imports and/or database maintenance tasks, as well as access
+   these features from other scripting/programming languages.
+
+
+------------------------------------------------------------------------
++  MUSIC SERVER SETTINGS AND VARIATIONS
+------------------------------------------------------------------------
+
+   The Stream Server (STREAM_SRVR) and Music Directory (MUSIC_DIR)
+   must ultimately point to the same location if you use http or
+   rtsp streaming.
+   
+   The Stream Server is the web url to the netjuke music directory,
+   and the Music Directory is the filesystem path from root to your
+   music. If a protocol separator (://) is not found in the Stream
+   Server value, the web url to the root of the netjuke is assumed.
+   
+   If you use symbolic links (unix equivalent of aliases, shortcuts)
+   to link your music directory and replace the netjuke/var/music
+   directory, make sure your http server has the proper security
+   options enabled (FollowSymLinks). Otherwise, you will most likely
+   get a 403 error (access refused/denied).
+   
+   On Mac OS X, and if you have the netjuke within a specific user's
+   "Sites" directory instead of at the apache root located at
+   /Library/WebServer/Documents, you will have to make sure that
+   the appropriate apache include config file for this user has the
+   FollowSymLinks option turned on as well (/etc/httpd/users/*.conf).
+   
+   Also for OSX users, if you decide to point to a user's "Music"
+   directory (see in your home dir., iTune Music Library), you will
+   have to make sure to enable read privileges on this directory, as
+   Apple sets it to only be readable for the very user it is owned
+   by (drwx------).
+   
+   Unix symbolic link are not supported (or complicated) on Windows,
+   so users are advised to use a virtual directory in IIS/PWS, or
+   a <Directory> block with apache.
+   
+   You can also use virtual hosts for the streaming server.
+   
+   A neat feature of the netjuke is that the location field of any
+   track can be set to a local file (relative to the defined music
+   directory), or a full url to a radio stream (http://the.host:8002),
+   or remote file streamed using http:// or rtsp:// (see "net radio"
+   genre in the demo data file).
+   
+   Given these features, the netjuke can therefore be used to only list
+   internet radio streams. The best way to do this is to use the genres
+   just like with a music collection, but cleverly modify the language
+   packs to more appropriate display values (eg: in the track listings,
+   change "track name" to "show name", "album" to "station", "artists"
+   to "DJ", etc). Running in anonymous mode, it can be used to emulate
+   sites like http://www.spinner.com/, but without the marketing stuff
+   (except if you also use the branding options explained below).
+
+
+------------------------------------------------------------------------
++  JUKEBOX FEATURE: SERVER-SIDE PLAYBACK INTEGRATION
+------------------------------------------------------------------------
+
+   The jukebox feature of the netjuke allows for the generation and playback
+   of playlists on the server-side (the computer running the netjuke). This
+   option is meant for people who want to play the music on another machine
+   than the one they are accessing the netjuke from. The featureset is at
+   this time quite limited because of the cross-platform goals of the netjuke.
+   If you want more control over the remote player, and better features, join
+   us and help out integrating new players or upgrade the code, or you can
+   also check out one the other apps that specialize on this very task, as the
+   netjuke principal focus is streaming.
+   
+   - Currently supports mpg123, mpg321, ogg123 and winamp.
+
+   - Mac OSX: you can get mpg123 from the following sites:
+     http://macosx.forked.net/ or http://www.osxgnu.org/.
+   
+   - *nix: Except on OSX, people wanting to use this on *nix will have to
+     make sure that the webserver can run the player, and has write access
+     to their audio device (/dev/dsp, /dev/audio, etc). Linux (and others?)
+     have a tendancy to have the audio device owned and only readable by
+     root. Sometimes, X windows will also change these permissions upon 
+     startup, usually to the user X is starting as. This makes it quite a
+     challenge to keep access to the audio device... Some users switch the
+     sticky bit as root on their players (chmod a+s), some use shell scripts
+     to verify the permissions at startup (if no X on server), others just
+     choose to run apache as the same user running X Windows on the server,
+     etc.
+   
+     Basic permissions shell startup script example:
+      #!/bin/sh
+      chmod 666 '/dev/dsp'
+      echo "Changing dsp perms for netjuke: "
+      echo
+      exit 0   
+
+   - *nix: If you must specify another device for output than the one
+     defined to be the default for your player, check the command line
+     options for your player (/path/to/player --help), and add the
+     proper value to the netjuke/admin/jukebox-edit.php script, in the
+     appropriate function for your player. Or better yet, try to change
+     your player defaults.
+   
+   - See KNOWN_ISSUES.txt if using Windows as the server OS.
+
+
+------------------------------------------------------------------------
++  INTERNET RADIO STREAM SERVER INTEGRATION
+------------------------------------------------------------------------
+
+   The netjuke can interact with an increasing choice of streaming server,
+   to emulate an internet radio station, such as the Quicktime/Darwin
+   Streaming Server, ModMP3, shoutcast, icecast, etc.
+   
+   To be able to support multiple radio server types, the netjuke does not
+   attempt to completely administer the stream server itself. The netjuke
+   will only format and save the tracks you select to a playlist you will
+   already have created to satisfy your server requirements, and you will
+   need to (re)start your stream server using whatever administration
+   interface provided by the developers of the server you selected
+   (Hint: The QT/Darwin SS4 has an excellent free web-based admin tool ;o)
+   
+   There has been upgrade made to the Quicktime/darwin SS4 support so that
+   users do not have to restart the stream server when making modifications.
+   The QTSS4 should instead pickup on their changes at the next song, but
+   this feature is quite new in the QTSS4 itself, so the feature in netjuke
+   is only as stable as its provider.
+   
+   When using the netjuke with ModMP3, setting your software up with their
+   MP3ReloadRequest parameter should enable you not to have to restart apache
+   every time you make changes.
+   
+   If there are such features for iceS (used w/ shoutcast/icecast), I am not
+   aware of them, and any interested party should just point me to the exact
+   documentation to enable them, or contribute some code to do so (best).
+   
+   For people who would rather use a player-based solution to stream (WinAmp,
+   Soundjam, etc), you can just point the Radio Playlist to a dummy list, and
+   open this file in your player to start streaming. This takes for granted
+   that your player as access to the same directory structure for your music
+   than your netjuke, and that it understands "/" as a directory spearator
+   for local paths. Otherwise, it's as easy as modifying the list in any text
+   editor, using a global "find & replace" feature to match your player's
+   or OS's needs.
+   
+   If you want to manage more than one Radio stream from the netjuke, just
+   point to a dummy playlist somewhere, and move it manually in the appropriate
+   location after editing it through the netjuke (I would not use the Radio
+   link in this context as you can only link to one stream from it).
+   
+
+------------------------------------------------------------------------
++  TRACK, ARTIST AND ALBUM IMAGES
+------------------------------------------------------------------------
+   
+   Music-related images must be stored in netjuke/var/artwork/.
+   
+   You van use any format supported by the HTML IMG tag (jpg, png, etc.).
+   
+   When entering the path to an image in the netjuke track edit or batch
+   edit windows, make sure to only enter the path from the root of the 
+   netjuke's imahe directory.
+   
+   EG: if the image is in "/path/to/netjuke/var/artwork/mydir/myimage.jpg",
+   simply enter "mydir/myimage.jpg" in the netjuke's form fields.
+   
+
+------------------------------------------------------------------------
++  CUSTOMIZING / BRANDING THE NETJUKE INTERFACE
+------------------------------------------------------------------------
+
+   In addition to the netjuke's built-in color and font management tools,
+   users with Web design and/OR scripting skills can also very easily
+   customize the rest of the interface. When editing the preference
+   file, either manually or from the admin section, you will note the
+   HTML Header and Footer values. These are both optional, and can be
+   set to point to any local, or remote text-based files (text, html...).
+   
+   You can therefore create your own custom surrounding interface, and
+   build a completely branded public site (bands, recording houses, 
+   schools, etc), even optionally using more dynamic components via http
+   if you are familiar with such tools as php, perl, asp, jsp, etc.
+   Do make sure you use full path in your html if the interface is not
+   accessed on the local host, as it can get very confusing! ;o)
+   
+   Finally, remember to check out the language pack option. Feel free
+   to volunteer, and submit a translated copy of the */etc/locale/en/
+   directory. Same goes for people interested in translating the docs
+   and/or site.
+   
+   The icons used in the netjuke are also part of the language pack,
+   so you can modify/replace them for both language or look & feel.
+   
+
+------------------------------------------------------------------------
+
+
+If you need help with using or installing this software, please refer
+to the web site(s) listed above to get in touch with the related user
+and developer communities directly, through the provided public forums
+and mailing lists. These are the best ways to get quick technical
+support, or to get involved with the development of the Netjuke and
+its related custom components.
+
+For critical operations, we advise to get commercial support or
+integration services from people actually involved in the development
+of this software application (TekArtists, or other individuals and
+organizations officially listed in the provided credits document).
+
+
+Thank you for trying and/or using the Netjuke.
+
+We hope you will enjoy this software as much as we do!
+
+
+------------------------------------------------------------------------
+
+
