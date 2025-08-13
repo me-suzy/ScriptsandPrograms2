@@ -1,0 +1,747 @@
+<head>
+<title>MyNewsGroups :) Documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.normal {  font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12px}
+.normal_bold {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	text-decoration: none;
+}
+a.normal_bold {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	text-decoration: none;
+}
+.small {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 7pt}
+.menu {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8px; font-weight: bold; color: #FFFFFF; background-color: #336699}
+.error {  font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #CC0000;}
+.bold {  font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12pt; font-weight: bold;}
+a{color:black;   }
+a.link_menu{color:black;}
+a.red{text-decoration:underline; color:red;font-weight: bold  }
+a.white{text-decoration:underline; color:white;font-weight: bold  }
+a.link_menu:hover{ color:black ;background:#ffffff; font-weight: bold}
+a.text:hover{ color:black ;background:#ffcc00;}
+.big_error {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 28px; font-weight: bold; color: #CC0000;}
+.print {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt}
+
+
+a.link {  font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #2b1c6f; text-decoration: none; font-weight: bold}
+a.link:hover{  color: #d4686a; text-decoration: none; font-weight: bold}
+a.link_act {  font-family: Arial, Helvetica, sans-serif; background-color:#FFC31E; font-size: 11px; color: #333333; text-decoration: none; font-weight: bold}
+a.link_act:hover{  color: #666666; text-decoration: none; font-weight: bold ; background-color:#FFC31E}
+
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<p><img src="./mynewsgroups.gif" width="180" height="50"> <br>
+    <br>
+    <span class="big_error">Documentation</span><br>
+    <span class="small">| 2002 - 10 - 24| First revision | </span><br>
+    <br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_1">1. </a></span><span class="bold"><a class="normal_bold" href="#section_1">Introduction</a></span> 
+    <br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_2">2. License</a></span><br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_3">3. Features</a></span><br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_4">4. Installation</a></span><br>
+    <span class="normal_bold">&nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_4_1">4.1 
+    - <font color="#CC0000">Installation Requirements</font></a></span><br>
+    <span class="normal_bold">&nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_4_2">4.2 
+    - <b><font color="#CC0000">Installation Process</font></b></a></span><br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_4_3">&nbsp;&nbsp;&nbsp;4.2 
+    - <b><font color="#CC0000">Problems? Manual Installation</font></b></a></span><br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_5">5. </a></span><span class="bold"><a class="normal_bold" href="#section_5">User's 
+    Guide</a></span><span class="normal_bold"><br>
+    &nbsp;&nbsp;<a class="normal_bold" href="#section_5_1"> 5.1 - <font color="#CC0000">Login 
+    System</font></a><br>
+    &nbsp;&nbsp; <a class="normal_bold" href="#section_5_2">5.2 - <font color="#CC0000">Browsing 
+    Articles</font></a><br>
+    &nbsp;&nbsp; <a class="normal_bold" href="#section_5_3">5.3 - <font color="#CC0000">Stats</font> 
+    </a><br>
+    &nbsp;&nbsp; <a class="normal_bold" href="#section_5_4">5.4 - <font color="#CC0000">Search 
+    Engine</font></a><br>
+    &nbsp;&nbsp; <a class="normal_bold" href="#section_5_5">5.5 - <font color="#CC0000">Article 
+    Posting</font></a><br>
+    &nbsp;&nbsp;<a class="normal_bold" href="#section_5_6"> 5.6 - <font color="#CC0000">MyBox</font></a><br>
+    <a class="normal_bold" href="#section_6">6. Administrator's Guide</a></span><br>
+    <span class="normal"><b>&nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_6_1"> 
+    6.1 - <font color="#CC0000">System</font></a></b></span><br>
+    <span class="normal"><b>&nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_6_2"> 
+    6.2 - <font color="#CC0000">Server</font></a><font color="#CC0000"><br>
+    </font></b></span><span class="normal"><b>&nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_6_3"> 
+    6.3 - <font color="#CC0000">Newsgroups</font></a></b></span><br>
+    <span class="normal"><b> &nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_6_4">&nbsp;6.4 
+    - <font color="#CC0000">Users</font></a></b></span><br>
+    <span class="normal"><b>&nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_6_5">&nbsp;6.5 
+    - <font color="#CC0000">Cron Jobs</font></a></b></span><br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_7">7. i18n</a></span><a class="normal_bold" href="#section_7"> 
+    </a><br>
+    <span class="normal"><b>&nbsp;&nbsp;&nbsp; <a class="normal_bold" href="#section_7_1">7.1 
+    - <font color="#CC0000">How to Change MyNewsGroups :) language</font></a></b></span> 
+    <br>
+    <span class="normal"><b>&nbsp;&nbsp;&nbsp; <a class="normal_bold" href="#section_7_2">7.2 
+    - <font color="#CC0000">How to add more languages to MyNewsGroups :)</font></a></b></span> 
+    <br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_8">8. Themes</a></span><br>
+    <span class="normal"><b>&nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_8_1"> 
+    8.1 - <font color="#CC0000">Change the current theme </font></a></b></span> 
+    <br>
+    <span class="normal"><b>&nbsp;&nbsp;&nbsp;<a class="normal_bold" href="#section_8_2"> 
+    8.2 - <font color="#CC0000">How to add new themes</font></a></b></span> <br>
+    <span class="normal_bold"><a class="normal_bold" href="#section_9">9. Contact</a></span><br>
+    <span class="normal_bold"><a class="normal_bold" href=" #section_10">10. Authors</a></span> 
+    <br>
+    <br>
+    <span class="normal"><br>
+    </span><span class="normal_bold"><a name="section_1"></a></span><span class="bold">1. 
+    Introduction</span><span class="normal"><br>
+    <br>
+    MyNewsGroups :) is a USENET news client, based totally on a web interface, 
+    written in PHP4. It's back ended with a database, which allows us to develop 
+    useful tools such as search engines, SPAM filters, subscriptions, stats, etc. 
+    <br>
+    <br>
+    The web interface of MyNewsGroups :) is very easy to use, and has all the 
+    advantages of the modern webmail like systems: You can search through any 
+    news group anywhere in the world without the need of setting up any program.<br>
+    <br>
+    <br>
+    MyNewsGroups :) is based on the great work of<b> Florian Amrhein</b>, the 
+    developer of NewsPortal. (<a href="http://www.florian-amrhein.de/newsportal">http://www.florian-amrhein.de/newsportal</a>). 
+    I simply took his code, GPL licensed, and modified it to add the power of 
+    a MySQL database for the storing of the articles posted in the news groups. 
+    With the use of MySQL and the complete library of Floh to query the News Server, 
+    MyNewsGroups :) can store all the articles in the news groups querying the 
+    news server only ONCE for each article.<br>
+    <br>
+    MyNewsGroups :) purpose is actually to mirror public newsgroups so that you 
+    don't need a newsreader - just your internet browser. MyNewsGroups :) copies 
+    all messages from subscribed public newsgroups into a database and adds extra 
+    features such as: saving article per user, statistics on users, search functions 
+    and so on.<br>
+    <br>
+    MyNewsGroups :) is aiming to people that have a website from where they want 
+    people to have access to newsgroups of same subject. </span> </p>
+<p><span class="normal_bold"><a name="section_2"></a></span><span class="bold">2. 
+    License </span><span class="normal"><br>
+    <br>
+    MyNewsGroups :) is released under the GPL License. You can get a copy of this 
+    license at the 'doc' folder or at <a href="http://www.gnu.org">http://www.gnu.org</a>.</span></p>
+<p><span class="normal_bold"><a name="section_3"></a></span><span class="bold">3. 
+    Features</span><br>
+    <br>
+    <span class="normal">- Multiple news servers support.<br>
+    - Database backend. (PHPLib's database abstraction class).<br>
+    - Login System (Optional).<br>
+    - Search Engine.<br>
+    - Article compression with Zlib.(Optional).<br>
+    - Stats<br>
+    - Installation Wizard.<br>
+    - Web based Administration Interface.<br>
+    - Subscription System.<br>
+    - Save, print or send by email your favorite articles.<br>
+    - New and unread messages highlighting.<br>
+    - i18n. Multi Language system.<br>
+    - Themeable.<br>
+    - Cron Job Support.<br>
+    - 'register_globals = off' compatibility.<br>
+    - Optimized article downloading and indexing system.<br>
+    </span> <span class="normal"><br>
+    </span><span class="normal_bold"><a name="section_4"></a></span><span class="bold">4. 
+    Installation </span> <span class="normal"><br>
+    <br>
+    </span><span class="normal_bold"><a name="section_4_1"></a>4.1 - <font color="#CC0000">Installation 
+    Requirements</font></span><span class="normal"><br>
+    <br>
+    - </span><span class="normal_bold">PHP 4.1.0 or above. </span><span class="normal"><br>
+    MyNewsGroups :) use the latest security improvements of PHP4, so we recommend 
+    the upgrade to the latest stable PHP.<br>
+    - </span><span class="normal_bold">register_globals = off</span><span class="normal">.<br>
+    MyNewsGroups :) has been totally redesigned and fixed to work with the newest 
+    security advices of the PHP group. Therefore, putting register_globals off 
+    in your php.ini is compulsory if you want to keep your server secure while 
+    using MyNewsGroups :).<br>
+    - </span><span class="normal_bold">Database</span><span class="normal">.<br>
+    MyNewsGroups :) works with a database for the backend. It has been tested 
+    with MySQL, but since it works with the PHPLib's database abstraction class, 
+    any database supported by this class should be valid. If you don't use MySQL, 
+    please read the PHPLib's Documentation at <a href="http://phplib.sourceforge.net">http://phplib.sourceforge.net</a>. 
+    <br>
+    - </span><span class="normal_bold">ZLib Module for PHP4 (Optional)</span><span class="normal"><br>
+    MyNewsGroups :) supports the compression of the articles if PHP4 compiled 
+    with Zlib.<br>
+    &nbsp;&nbsp;<br>
+    </span><span class="normal_bold"><a name="section_4_2"></a>4.2 - <b><font color="#CC0000">Installation 
+    Process</font></b></span><span class="normal"><br>
+    <br>
+    The process is quite easy: <br>
+    <br>
+    1. Upload to your server and extract the MyNewsGroups-x.x.zip:<br>
+    <br>
+    2. Copy the complete folder 'MyNewsGroups' to the required path in your web 
+    server. Point your browser to the following location: </span><span class="normal_bold">http://www.mydomain.com/MyNewsGroups/install.php</span><span class="normal"> 
+    (Replace this with your own information) and the installation wizard should 
+    appear. <br>
+    <br>
+    3. The first installation form is divided into three main sections:<br>
+    <br>
+    - Basic Configuration<br>
+    <br>
+    At this section you'll find the '<b>Web Server Host</b>' and the '<b>Script 
+    Path</b>' fields filled, just check that the information is correct and choose 
+    the language of the MyNewsGroups :) system and if you want ZLib Compression 
+    support. (Zlib library installed is required, if your PHP installation doesn't 
+    support it, you won't be able to use the article compression feature.) <br>
+    <br>
+    - Database Configuration<br>
+    <br>
+    Fill the required fields with your database information: Host, database name, 
+    username and password. If you have any doubt, contact with your system administrator 
+    or your Hosting Company technical support. BEWARE! The database <b>must</b> 
+    <b>exist</b>. You must create it first!<br>
+    <br>
+    - Admin Configuration<br>
+    <br>
+    At this section the Administrator of MyNewsGroups :) should fill all the required 
+    information in order to gain access to the Administration Interface or the 
+    Control Panel of MyNewsGroups :).<br>
+    <br>
+    4. Once you have filled this information and sent the form, a new page tells 
+    you to click on the 'Download' button to get the required<b> config.php</b> 
+    file that you must upload to your server in order to get MyNewsGroups :) running 
+    correctly. The page will tell you the path you have to upload the file to. 
+    Done this, clink on the 'Finish' button to finish the installation.<br>
+    <br>
+    5. If everything has been correct, you can now go to the administration interface 
+    to configure further your new MyNewsGroups :) installation. You can find more 
+    details about the Administration interface at section 6: Administrator's guide.<br>
+    <br>
+    Pretty Simple, isn't it? <br>
+    <br>
+    </span><span class="normal_bold"><a name="section_4_3" id="section_4_3"></a>4.2 
+    - <b><font color="#CC0000">Problems? Manual Installation</font></b></span><span class="normal"><br>
+    <br>
+    We have made our best to keep this script easy to follow and to make it run 
+    properly in all kind of environments, but nobody knows, and maybe this installation 
+    script does not work correctly for your system. Don't worry becuase you can 
+    perform the following steps in order to make MyNewsGroups :) run like at the 
+    old releases.<br>
+    <br>
+    1. Go to the <b>'/install/emergency/'</b> folder fo the distribution. There 
+    you have 2 files: <b>config.php</b> and<b> myng.sql</b>.<br>
+    2. Copy the config.php file to the root of the MyNewsGroups :) installation. 
+    (where nearly all of the other PHP scripts are).<br>
+    3. Open the config.php file and change the default settings according to your 
+    configuration.<br>
+    4. Import the myng.sql file to your MySQL database in order to create all 
+    the tables and populate the config table with<br>
+    &nbsp;&nbsp;&nbsp;the </span><span class="normal">default configurationl. 
+    Change those values to the ones required using your MySQL preferred interface. 
+    (phpmyadmin, &nbsp;&nbsp;&nbsp;MyCC...).<br>
+    5. You should now go to the Administration interface without any problem to 
+    make further configurations of the system.<br>
+    &nbsp;&nbsp;&nbsp;It should be at this URL: <br>
+    <br>
+    <b>http://your-server.com/myng_path/admin/index.php </b><br>
+    <br>
+    <br>
+    </span><span class="normal_bold"><a name="section_5"></a></span><span class="bold">5. 
+    User's Guide</span><span class="normal_bold"><br>
+    <br>
+    </span><span class="normal">This section introduces the different pages of 
+    the web application and gives instructions about how to use the system. The 
+    user interface of the application is divided into four main sections: The 
+    header, the left column, the footer, and the main area. The header has the 
+    logo, the links to the principal pages of the application and the system info 
+    box, where important messages about the system status are shown. The left 
+    column shows the login form is the user is not in a session, and the user 
+    menu if the user has logged into the system. The main area is where each page 
+    offers its information: NewsGroups, articles, stats, etc. Finally, the footer 
+    shows some information and links about the project MyNewsGroups :) project.</span><span class="normal_bold"><br>
+    <br>
+    <a name="section_5_1" id="section_5_1"></a>5.1 - <font color="#CC0000">Login 
+    System</font><br>
+    <br>
+    </span><span class="normal">The login system of MyNewsGroups :) provides the 
+    users with a wide range of features that are not functional when it's desactivated. 
+    <br>
+    <br>
+    The first step should be the registration of a new user. Click on the 'Register' 
+    link below the login form and you'll be redirected to the registration page. 
+    Once you provide to the system the correct information, a new user will be 
+    created and you'll be shown your Home page directly. Your session has begun. 
+    <br>
+    <br>
+    If you log out and want to come back again to your Home page, you must login. 
+    Introduce your login and password in the login form and press 'Ok!'. <br>
+    <br>
+    Notice that the Login System and the Registration of MyNewsGroups :) is quite 
+    secure without the use of SSL encryption protocols, because the password is 
+    not sent to the server in a readable format. A MD5 hash is applied and a Challenge 
+    - Response technique protects all the process. </span><span class="normal_bold"><br>
+    <br>
+    <a name="section_5_2" id="section_5_2"></a>5.2 - <font color="#CC0000">Browsing 
+    Articles</font><br>
+    <br>
+    </span><span class="normal">Well, that's what MyNewsGroups :) web application 
+    is for: Browse and read the articles posted to the UseNet. The article browsing 
+    begins clicking on the 'Newsgroups' link. It sends us to the page that shows 
+    the list of newsgroups registered in the system. We can get information about 
+    the number of articles, the group name and the description of each group. 
+    If any of the groups is clicked on, the main page for that group appears.<br>
+    <br>
+    There, the newest list of articles is shown, with the date and the author 
+    of the post. We can see also if the articles have any replies and with the 
+    page system and the calendar we have an easy access to all the articles posted 
+    to that group. Some interesting statistics about that group are shown, such 
+    as the hottest articles or the most active users. <br>
+    <br>
+    If we have found an interestign subject among all the articles, we can click 
+    on it to go to the article, page where the complete thread ant the text of 
+    the article are shown. <br>
+    <br>
+    Note that with the login system On, some new features appear while browsing 
+    the articles. We can know wich articles we have read and which of them we 
+    havent. Moreover, we can mark as read a whole thread or the total amount of 
+    articles of a newsgroup. <br>
+    <br>
+    If our user is registered to some groups, we can know which are the latest 
+    downloaded articles because they'll be highlighted with a yellow color. Moreover, 
+    if a thread is coloured green, that tells you that you have new answers to 
+    that article.</span><span class="normal_bold"> <br>
+    <br>
+    <a name="section_5_3" id="section_5_3"></a>5.3 - <font color="#CC0000">Stats</font> 
+    <br>
+    <br>
+    </span><span class="normal">One of the most interesting sections of MyNewsGroups 
+    :) is the Stats page, where you can find information related to the newsgroups, 
+    to the articles and to the Authors of the articles. You will know which are 
+    the most popular and the most crowded newsgroups, the hottest articles and 
+    the most readed, the most active users, etc. Now you can click on any of them 
+    to go directly to the related element.<br>
+    </span><span class="normal_bold"><br>
+    <a name="section_5_4" id="section_5_4"></a>5.4 - <font color="#CC0000">Search 
+    Engine</font><br>
+    <br>
+    </span><span class="normal">MyNewsGroups :) comes with a powerful search engine 
+    to help the users find the information they want in a quick manner. You can 
+    search in a group in particular, or in all the groups registered in the system. 
+    Click on the search link at the header section, or go to any newsgroup page 
+    to find articles in that particular group.<br>
+    </span><span class="normal_bold"><br>
+    <a name="section_5_5" id="section_5_5"></a>5.5 - <font color="#CC0000">Article 
+    Posting</font><br>
+    <br>
+    </span><span class="normal">Not only can you read and browse the different 
+    newsgroups. You can post new articles to any group with Post permissions. 
+    Post permissions are defined by the Administrator of the system. <br>
+    <br>
+    You can post new articles that will start a new thread of discussion, or you 
+    can reply to existing articles in order to help or collaborate with others 
+    users of the UseNet. Notice that actually, you only can post if you are a 
+    registered user and the login system is activated. If the login system is 
+    desactivated any anonymous user can post to any group. If you are in a session, 
+    your email will NOT be shown clearly when the article is posted to avoid spam 
+    bots to fetch it. It will be transformed by this way: <br>
+    <br>
+    yourname@yourdomain.com = yourname_at_your_domain_dot_com@foo.com<br>
+    <br>
+    [ Currently MyNewsGroups :) doesn't support binary attachments, but as it's 
+    a requested feature, we're working on it. ]</span><span class="normal_bold"><br>
+    <br>
+    <a name="section_5_6" id="section_5_6"></a>5.6 - <font color="#CC0000">MyBox</font><br>
+    <br>
+    </span><span class="normal">The MyBox menu has the following sections: MyHome, 
+    MyGroups, MyArticles and Log Out. The first one is a direct link to the home 
+    page of the user registered in MyNewsGroups :). The last one logs the users 
+    out of the system. MyGroups manages the list of the user's favorite groups. 
+    He can add or delete new groups to his list and take notice of the new and 
+    unread articles of each group. It's a kind of newsgroups subscription system. 
+    Finally, MyArticles sections let the users store their favorite articles in 
+    a personal article box, in order to print them, email them to a friend or 
+    just to try to not forget about them. </span><span class="normal_bold"><br>
+    <br>
+    <a name="section_6" id="section_6"></a></span><span class="bold">6 . Administrator's 
+    Guide</span><br>
+    <br>
+    <span class="normal">The first page of the Administration interface is the 
+    Login Form. Fill this form with the username and password specified in the 
+    installation wizard to begin the administrator's session. <br>
+    <br>
+    [ Since MyNewsGroups :) 0.5, the administrator has a special profile in the 
+    system, and has different privileges than the normal users registered at the 
+    MyNewsGroups :) site. It has exclusive access to the Administrator interface, 
+    and won't have access to a normal MyNewsGroups :) session. It can not login 
+    into the MyNewsGroups :) system to read or post articles new articles.]<br>
+    <br>
+    The main page of the administrator interface shows us a welcome message and 
+    the principal administration menu on the left side. This menu is divided into 
+    the following sections: System, server, newsgroups and users. The administrator's 
+    interface follows the <b>design pattern</b> known as <b>'Master - Detail</b>' 
+    administrations. Each section is divided into a master part and a detail part. 
+    The master is a list of elements and the detail shows information about each 
+    of those elements.<br>
+    <br>
+    <b> </b></span><span class="normal_bold"><a name="section_6_1" id="section_6_1"></a></span><span class="normal"><b>6.1 
+    - <font color="#CC0000">System</font></b></span><br>
+    <br>
+    <span class="normal">The master part shows us the current configuration schemes 
+    of the system. At the beginning, just after the installation, the 'Default' 
+    Configuration should appear. Here you can click on the one configuration to 
+    modify or delete it, or you can add new configurations. You can only have 
+    one active configuration at a time. <br>
+    <br>
+    Any change made to this section of the Administration interface can be seen 
+    automatically at the MyNewsGroups :) application without restarting the browser. 
+    <br>
+    <br>
+    The detail part is quite big, and it's also divided in four main sections: 
+    <b>System, Download, Old Articles Clean Up, Visualization and Security</b>. 
+    <br>
+    <br>
+    The first fields are for the own configuration: you can change it's name or 
+    label, the description and if that configuration is the active one or not. 
+    With this approach, you can have more than one configuration available and 
+    you can switch between them in order to react quickly upon external influences 
+    to the system. (You can have one configuration with a login system and another 
+    without login required; or you can have one configuration to run with the 
+    Online Indexing and downloading system or with the cron job.). <br>
+    <br>
+    The </span><span class="error"><b>System</b></span><span class="normal"> part 
+    deals with the principal configuration parameters of MyNewsgroups :): The 
+    '<b>Prefix</b>' is the path from the local root of your web server to the 
+    installation of MyNewsgroups, and the '<b>Root</b>' shows the complete installation 
+    path of MyNewsGroups :). These two values have been automatically filled from 
+    the installation wizard and shouldn't be changed if you haven't changed the 
+    location of the MyNewsGroups :) installation. The '<b>Language</b>' combo 
+    box changes the current language of MyNewsGroups :) and the following three 
+    radio buttons change important flags: The <b>Debug</b> flag shows a debug 
+    window if we roll over the 'debug' link at the footer of the MyNewsGroups 
+    :) interface. It should be yes if we're testing the system. The <b>Login</b> 
+    flag activates the login system. Important: If the login system is desactivated 
+    any user can post to any group. As the system administrator, <b>you should 
+    restrict the access to some groups to anonymous users</b>. If the login flag 
+    is on, only the registered users will be able to post new articles. The <b>Work 
+    Online</b> flag activates the new Downloading and Indexing system. This flag 
+    must be <b>On</b> if we want to download the new articles while the users 
+    navigate through the system. If we are downloading the new articles with the 
+    Cron Job support, this flag should be off in order to speed up the system.<br>
+    <br>
+    The </span><span class="error"><b>Download</b></span><span class="normal"> 
+    part tunes the <b>new article downloading and indexing system</b>. This is 
+    a quite complex algorithm that downloads the articles while the users are 
+    reading their favorite groups. The power of the new system comes with a 'windowing 
+    technique' that benefits the most active newsgroups and allow the retrieval 
+    of the articles of the less crowded newsgroups. This system must be configured 
+    for working online <b>and</b> for working offline (with cron job support).<br>
+    <br>
+    This algorithm has been introduced due to the hang of MyNewsGroups :) when 
+    trying to download and index into the search engine large numbers of articles. 
+    The solution to this problem is trivial: Instead of download 100 articles 
+    while waiting to view the newsgroups page at MyNewsGroups :), the system will 
+    download a small number of articles of a small number of groups every time 
+    a new php page is called at the web server or each time the cron job is activated.. 
+    <br>
+    <br>
+    The system introduces a new <b>Activity Index </b> for each group to benefit 
+    the most active newsgroups. The system builds a list of N groups where ALL 
+    the groups registered in the system appear, but some groups appear more than 
+    others. This way we can download more articles from the most active groups. 
+    The more visits get your site running MyNewsGroups :), more up to date you'll 
+    have your groups because more articles will have been downloaded. If you work 
+    offline with cron job support, doesn't matter the number of visits you have, 
+    you'll always have your groups up to date.<br>
+    <br>
+    In order to adjust the behavior of this algorithm, four parameters can be 
+    changed: '<b>Days of Activity Index</b>' is the number of days the Activity 
+    Index is calculated for. If it's 10 days, the days before won't be evaluated 
+    in order to calculate it. [ BEWARE!! In a fresh install, if you have chosen 
+    in some groups to download 'All' articles, be sure to put a high figure for 
+    the days. Maybe you'll have hundreds of articles at the server, and the system 
+    will not update the activity index of the groups untill there some articles 
+    belonging to the last configured days.] '<b>Items in list</b>' specifies the 
+    number of items of the newsgroups list that we can fill. This number must 
+    be greater than the number of registered groups. for example, if you have 
+    20 groups registered, this number should be between 50 and 100. '<b>Number 
+    of NewsGroups</b>' tells the system how many newsgroups will ask for new articles. 
+    The higher the number, the slower the system will run if 'Work Online' is 
+    set to Yes.. '<b>Number of Articles</b>' counts the number of articles that 
+    will be downloaded for each of the groups asked each time the algorithm is 
+    running. <br>
+    <br>
+    The </span><span class="error">Old Article Clean Up</span><span class="normal"> 
+    part provides the system with the ability of automatically clean up the database 
+    and delete the old articles posted to the system. After several weeks of MyNewsGroups 
+    :) running without manually deleting any article, the overall speed of the 
+    system can be dramatically reduced, (This is no Google Groups!) so this feature 
+    helps the administrator with the task of deleting old articles. We can configure 
+    a maximum number of days or a maximum number of articles to save. We can apply 
+    this two methods to all the newsgroups at the system configuration, and with 
+    each of the newsgroups separately at the NewsGroups section of the Administration 
+    interface. You can apply manually the deleting of articles or you can setup 
+    a cron job to do it automatically for yourself. Go to the Cron Jobs section 
+    of this manual for further details about this.<br>
+    <br>
+    The </span><span class="error">Visualization</span><span class="normal"> part 
+    deals with the visual interface of MyNewsGroups :). One of the most important 
+    parameters that can be changed here is the '<b>Theme</b>' because it changes 
+    all the interface of MyNewsGroups :). The '<b>Number to Flames</b>' parameter 
+    controls the number of articles required to change the folder icon of the 
+    newsgroups.php page into a burning one. '<b>Navigation bar items</b>' counts 
+    the number of items that appear in the 'master' section of the administration 
+    interface and the number of articles shown at 'tree.php'. '<b>Navigation bar 
+    pages</b>' counts the number of pages between the symbols &lt;&lt;&nbsp; &lt; 
+    and &gt; &gt;&gt;. '<b>Time to highlight new</b>' controls the time that should 
+    last the highlight of new articles. You can set hte number of hours to remain 
+    highlighted. <br>
+    <br>
+    The </span><span class="error">Security</span><span class="normal"> part deals 
+    with some security checks that MyNewsGroups :) performs. The '<b>Protect Email</b>' 
+    help users to fight SPAM. When this flag is set to On, the email address of 
+    the user gets transformed to protect it from SPAM robots. However, some news 
+    server only allow real email addresses of registered users to post new articles, 
+    show you can turn it Off if this is your case. If the flag '<b>Send Poster 
+    Host</b>' is true means that a header-line named &quot;X-HTTP-Posting-Host:&quot; 
+    will be attached to every posted article, set to the hostname of the user 
+    who wrote the article. If '<b>Test Group</b>' is true, each time that a operation 
+    is performed with a newsgroup the system checks if the group is registered 
+    in the system, in order to avoid cross posting and other security flaws. If 
+    the '<b>Validate Email</b>' flag is true, apart from the typical sintax check, 
+    an MX or A record is checked for the domain-name of the e-mail address. MyNewsGroups 
+    :) performs a hostname lookup. [Beware! The 'Validate Email' flag must be 
+    <b>false</b> in <b>Windows servers</b>.] Finally, the '<b>Secret String</b>' 
+    is used to generate a proper challenge required for the secure login system. 
+    It must be changed before putting the system in production.</span><br>
+    <br>
+    <span class="normal"><b> </b></span><span class="normal_bold"><a name="section_6_2" id="section_6_2"></a></span><span class="normal"><b>6.2 
+    - <font color="#CC0000">Server<br>
+    <br>
+    </font></b>MyNewsGroups :) support the use of several news servers to work 
+    with. At his sections, you can add new servers, modify existing ones and delete 
+    oldest ones. The master part of this section contains a list of the registered 
+    news servers, and the detail part shows a form with all the required fields 
+    to register a new server into the system: The '<b>Host</b>', the '<b>Port</b>', 
+    the'<b>Login</b>' and the '<b>Password</b>' if authentication is required. 
+    The last field, the '<b>NewsGroups list</b>' is not filled just after a new 
+    installation, and is automatically filled if we click on the 'Get Newsgroups 
+    list!' button. This button opens a Pop Up window where the system tell us 
+    that the list of available newsgroups will be downloaded to the system. This 
+    process may take several minutes to perform, so be patient. When it finishes, 
+    a file with the name of the server and the .list extension will have been 
+    saved at '/upload/lists/'. [Beware! This folder will probably need the following 
+    permissions in order to get the new file saved there: <b>777</b>. Remember 
+    that the system is creating and writing a new file there.] This file helps 
+    the system to build a menu to choose the newsgroup from at the NewsGroups 
+    section.<b><br>
+    <br>
+    </b></span><span class="normal_bold"><a name="section_6_3" id="section_6_3"></a></span><span class="normal"><b>6.3 
+    - <font color="#CC0000">Newsgroups</font></b></span><br>
+    <br>
+    <span class="normal">At this section we can manage the newsgroups registered 
+    into the system. Just after the installation, there are any groups registered 
+    so some new groups should be added. To do this, just click on the 'Add a new 
+    NewsGroup' button and the detail form should appear. There you can choose 
+    the server from the newsgroup articles will be downloaded and the newsgroups 
+    itself from the Menu built with the file downloaded at the server section. 
+    Click on the 'Choose a Newsgroup!' button and the Menu will appear on a Pop 
+    Up. This Menu normally takes several time to fill with the newsgroups names, 
+    so be patient. You can also type directly the name of the group you want to 
+    register. <br>
+    <br>
+    Once the newsgroup name has been filled, you must choose if the new newsgroup 
+    should be writable or not. If you allow posting to that group, any user of 
+    MyNewsGroups :) could post new articles to that group. [<b>Beware! Use this 
+    feature responsibly. You are granting writable access to a public newsgroup</b>]. 
+    <br>
+    <br>
+    The '<b>Articles to Import</b>' filed is quite important. You can specify 
+    there the number of old articles that you want to import directly to the newsgroup. 
+    If you set this to '0', it will begin with the new articles posted to it. 
+    You can click 'All!' to let MyNewsGroups :) <b>import all the articles available 
+    at the newsgroup</b>.<b> [Beware! Those old articles will not be ready just 
+    after adding the group!. They will be downloaded step by step by the new Article 
+    downloading and indexing system].</b><br>
+    <br>
+    If we have several groups registered already, we can modify some parameters 
+    of them. Click on any group at the master part of this section and a bit different 
+    detail part will be shown. There, we can change the description of the newsgroup, 
+    change the writable state of it, and apply one of the most requested features 
+    of MyNewsGroups :) - You can now <b>delete the old articles</b> from the database 
+    clicking on the <b>'--'</b> button and then clicking on the 'Modify' button. 
+    Just that simple.The old articles will be gone from the&nbsp; system. <br>
+    <br>
+    If you prefer, you can configure each of the newsgroups to <b>automatically</b> 
+    <b>delete</b> the <b>old articles </b>selecting any of the following options: 
+    Maximum number of days to remain at the database or maximum number of articles.</span> 
+    <span class="normal">You can apply manually the deleting of articles or you 
+    can setup a cron job to do it automatically for yourself. Go to the Cron Jobs 
+    section of this manual for further details about this.</span> <br>
+    <br>
+    <span class="normal"><b> </b></span><span class="normal_bold"><a name="section_6_4" id="section_6_4"></a></span><span class="normal"><b>6.4 
+    - <font color="#CC0000">Users</font></b></span><br>
+    <span class="normal_bold"></span><span class="normal"><br>
+    The last section of the Administration Interface deals with the users registered 
+    in MyNewsGroups :). <br>
+    <b>[ To Be Defined ]</b> <br>
+    </span><br>
+    <span class="normal_bold"><a name="section_6_5" id="section_6_5"></a></span><span class="normal"><b>6.5 
+    - <font color="#CC0000">Cron Jobs<br>
+    <br>
+    </font></b></span><span class="normal">Since version 0.5, MyNewsGroups :) 
+    supports Cron jobs directed to the new '<b>cron.php</b>' script, located at 
+    the 'cron' folder. You can setup a cron job in your server to let it do the 
+    task of downloading and indexing the new articles. If you do so, you can now 
+    turn off the 'Work Online' option of the System configuration section in order 
+    to let the pages dowload quicker and not disturb your users. For example, 
+    the you can setup a cron job to run<b> each 5 minutes</b> the following command: 
+    <br>
+    <br>
+    <b>GET http://yourserver.com/MyNewsGroups_Path/cron/cron_download.php &gt; 
+    /dev/null</b><br>
+    <br>
+    Remember that you must configure the indexing and downloading system as explained 
+    before even if you work Offline. The cron.php script uses the same algorithm 
+    than the other php scripts of MyNewsGroups :) to download the articles. <br>
+    <br>
+    Another useful cron script can be used to automatically delete old articles 
+    at the database, if we have configured this properly at the Administration 
+    Interface. This script is the 'cron_cleanup.php', and it cleans the newsgroups 
+    configured at the newsgroups section of the Administration interface, or all 
+    the newsgroups registered, if we have defined it at the System administration. 
+    You can run <b>each day</b> the following command to get it done:<br>
+    <br>
+    <b>GET http://yourserver.com/MyNewsGroups_Path/cron/cron_cleanup.php &gt; 
+    /dev/null</b> <br>
+    </span><br>
+    <span class="normal_bold"><a name="section_7" id="section_7"></a></span><span class="bold">7. 
+    i18n </span><br>
+    <span class="normal"><br>
+    Since the 0.4 release, MyNewsGroups :) supports a multi-language system. With 
+    the use of this system, you can view the GUI of MyNewsGroups :) in your mother 
+    tongue, if defined.<br>
+    <b><br>
+    </b><br>
+    </span><span class="normal_bold"><a name="section_7_1" id="section_7_1"></a></span><span class="normal"><b>7.1 
+    - <font color="#CC0000">How to Change MyNewsGroups :) language</font></b><br>
+    <br>
+    Just point you browser to the Administration Interface, go to the System section 
+    and in the system part you'll find a combo box called 'Language'. Just change 
+    it and the MyNewsGroups :) system will change the language of the user interface.<br>
+    <br>
+    </span><span class="normal_bold"><a name="section_7_2" id="section_7_2"></a></span><span class="normal"><b>7.2 
+    - <font color="#CC0000">How to add more languages to MyNewsGroups :)</font></b><br>
+    <br>
+    You know any of the supported languages and also your mother tongue? Is not 
+    your mother tongue currently supported? Please support us translating the 
+    files under the '/lang/&lt;language you know&gt;' and create the new 'lang/&lt;your 
+    mother tongue&gt;'. The MyNewsgroups :) team and all the community will appreciate 
+    very much that time you spent. Thankx in advance. There're also a few comments 
+    in the language files, please be careful with them and try not to make any 
+    PHP syntax mistakes.<br>
+    </span> <br>
+    <br>
+    <span class="normal_bold"><a name="section_8" id="section_8"></a></span><span class="bold">8. 
+    Themes</span><br>
+    <span class="normal"><br>
+    MyNewsGroups :), since the 0.4 release supports the use of several themes 
+    that allow a total change in his GUI. This is done using the PHPLib's template 
+    class, that allow the themes designers to avoid changing system code (PHP4 
+    and SQL) and to concentrate at the HTML and graphics designing.<br>
+    <br>
+    </span><span class="normal_bold"><a name="section_8_1" id="section_8_1"></a></span><span class="normal"><b>8.1 
+    - <font color="#CC0000">Change the current theme </font></b><br>
+    <br>
+    Below the 'themes' directory, you have all the themes that come with MyNewsGroups 
+    :) official release. The default theme is the 'standard'. You can change the 
+    current theme pointing your browser to the Administration Interface, System 
+    section and Visualization part. There you'll find a combo box called 'Theme' 
+    that shows the current available themes. Choose the favorite theme, click 
+    on the 'Modify' button and that's it!, the GUI of MyNewsGroups :) will have 
+    changed. <br>
+    <br>
+    </span><span class="normal_bold"><a name="section_8_2" id="section_8_2"></a></span><span class="normal"><b>8.2 
+    - <font color="#CC0000">How to add new themes</font></b><br>
+    <br>
+    Are you a graphic designer and want to add a new theme to the MyNewsGroups 
+    :) official release ? It's quite easy. Just follow the 'standard' theme's 
+    characteristics: All the official themes must have the same directory structure: 
+    '/themes/new_theme/styles' and '/themes/new_theme/templates'. The first one 
+    has the CSS style sheet and the templates has all the HTML files. You can 
+    change or create whatever you want in the new theme, but BEWARE!! The links 
+    showed in the *.htm files must remain the same, ALL the brackets {} expressions 
+    can NOT be touched, and all that you find between the tags like &lt;!-- BEGIN 
+    ....&gt; and &lt;!END-- ...&gt; must remain likely the same structure of information. 
+    You can visit the PHPLIb's Template class tutorials to learn a little about 
+    template generation. <b><br>
+    <br>
+    Feel free to join us and support us creating new themes to MyNewsGroups :) 
+    ! </b><br>
+    </span><br>
+    <span class="normal_bold"><a name="section_9" id="section_9"></a></span><span class="bold">9. 
+    Contact</span><span class="normal"><br>
+    <br>
+    It is pretty easy to get in contact with the developers if you need help or 
+    if you find bugs that need to be reported. The best way to contact us would 
+    be through our mailing list which is actively monitored. Just send an email 
+    to:<br>
+    <br>
+    <b>mynewsgroups-list@lists.sourceforge.net</b><br>
+    <br>
+    <br>
+    </span><span class="normal_bold"><a name="section_10" id="section_10"></a></span><span class="bold">10. 
+    Authors</span><span class="normal_bold"><br>
+    <br>
+    </span><span class="normal">The email addresses of the authors must <b>NOT</b> 
+    be used <b>to ask for support or help</b>. Please send your support questions 
+    to the MyNewsGroups :) mailing list, and your question can be answered not 
+    only by the authors but also by the MyNewsGroups :) community. <b>Any email 
+    regarding support or help topics received at the following addresses will 
+    be redirected to the mailing list.</b></span><span class="normal_bold"><br>
+    <br>
+    </span><span class="normal"><b>MyNewsGroups :) Active Developers</b><br>
+    <br>
+    Carlos S&aacute;nchez Valle - Txarly :) txarly@users.sf.net<br>
+    Eckhard Zemp - wikinger@users.sf.net<br>
+    </span></p>
+<p><span class="normal"><b>Contributions</b></span><br>
+    <br>
+    <span class="normal">Peter Kronfuss &lt;dreamfire@gmx.at&gt; - Feature Request 
+    #665249 <br>
+    Jason Strautman &lt;jstrautman@uhs-hints.com&gt; - Overall Script Optimization</span></p>
+<p><span class="normal"><br>
+    <b>MyNewsGroups :) Demo (http://mynewsgroups.ods.org)</b><br>
+    <br>
+    Administrator &amp; Beta tester<br>
+    Jeff <br>
+    <br>
+    <b>NewsPortal 0.23 (Core of MyNewsGroups)</b><br>
+    Coded by Florian Amrhein - http://florian-amrhein.de <br>
+    </span> </p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="normal"><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </span> <br>
+    <br>
+</p>
+</body>
+</html>
+
+
