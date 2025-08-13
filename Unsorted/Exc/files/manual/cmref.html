@@ -1,0 +1,329 @@
+<html>
+<head>
+<title>ExcelExplorer - Manual</title>
+<style>
+<!--
+p {padding-left: 20px}
+pre {border: 1px solid #808080; background-color: #c0c0c0; padding: 10px;}
+td {font-size: 11px; font-family: Verdana, Arial, Tahoma, MS sans serif, Helvetica, sans-serif}
+a {color:#000000}
+.lnk {color:#3030f0}
+.head1 {color: #000000; font-size: 18px; font-weight: bold; font-family: Verdana, Arial, Tahoma, MS sans serif, Helvetica, sans-serif}
+.btxt19283 {color: #000000; font-size: 11px; font-family: Verdana, Arial, Tahoma, MS sans serif, Helvetica, sans-serif}
+.btxt12 {color: #000000; font-size: 12px; font-family: Verdana, Arial, Tahoma, MS sans serif, Helvetica, sans-serif}
+.code {color: #000000; font-size: 11px; font-style: none; font-family: Verdana, Arial, Tahoma, MS sans serif, Helvetica, sans-serif}
+.api {background-color: #f0f0f0; font-size: 11px; font-family: Verdana, Arial, Tahoma, MS sans serif, Helvetica, sans-serif}
+.title {background-color: #c8c8d8; font-size: 13px; font-weight: bold; font-family: Verdana, Arial, Tahoma, MS sans serif, Helvetica, sans-serif}
+-->
+</style>
+</head>
+<body bgcolor="#ffffff" topmargin=10 leftmargin=10 marginwidth=10 marginheight=10>
+
+<table border=0 cellspacing=5 cellpadding=0 width="100%" height="100%">
+<tr>
+ <td valign=top><nobr>
+
+
+<a href="index.html">Preface</a><br>
+
+
+<br>
+
+I.
+<a href="getstart.html">Getting Started</a><br>
+
+
+&nbsp;&nbsp;1. <a href="getstart.intro.html">Introduction</a><br>
+
+
+&nbsp;&nbsp;2. <a href="getstart.init.html">Initialization</a><br>
+
+
+&nbsp;&nbsp;3. <a href="getstart.extdata.html">Extracting Data</a><br>
+
+
+&nbsp;&nbsp;4. <a href="getstart.workdata.html">Working with readed data</a><br>
+
+
+<br>
+
+II.
+<a href="def.html">Definitions</a><br>
+
+
+&nbsp;&nbsp;1. <a href="def.types.html">Types</a><br>
+
+
+&nbsp;&nbsp;2. <a href="def.color.html">Color</a><br>
+
+
+&nbsp;&nbsp;3. <a href="def.link.html">Link</a><br>
+
+
+&nbsp;&nbsp;4. <a href="def.font.html">Font</a><br>
+
+
+&nbsp;&nbsp;5. <a href="def.align.html">Alignment</a><br>
+
+
+&nbsp;&nbsp;6. <a href="def.borders.html">Borders</a><br>
+
+
+&nbsp;&nbsp;7. <a href="def.style.html">Style</a><br>
+
+
+&nbsp;&nbsp;8. <a href="def.merged.html">Merged cells</a><br>
+
+
+<br>
+
+III.
+<b>Class Methods Reference</b><br>
+
+
+&nbsp;&nbsp;1. <a href="cmref.dataconv.html">Data Convertion Methods</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;1.1. <a href="function.isunicode.html">IsUnicode</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;1.2. <a href="function.asis.html">AsIs</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;1.3. <a href="function.asplain.html">AsPlain</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;1.4. <a href="function.ashtml.html">AsHTML</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;1.5. <a href="function.asdate.html">AsDate</a><br>
+
+
+&nbsp;&nbsp;2. <a href="cmref.worksheets.html">Worksheets</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;2.1. <a href="function.exploreworksheet.html">ExploreWorksheet</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;2.2. <a href="function.getworksheetsnum.html">GetWorksheetsNum</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;2.3. <a href="function.getworksheettype.html">GetWorksheetType</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;2.4. <a href="function.getworksheettitle.html">GetWorksheetTitle</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;2.5. <a href="function.isemptyworksheet.html">IsEmptyWorksheet</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;2.6. <a href="function.ishiddenworksheet.html">IsHiddenWorksheet</a><br>
+
+
+&nbsp;&nbsp;3. <a href="cmref.columns.html">Columns</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;3.1. <a href="function.getlastcolumnindex.html">GetLastColumnIndex</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;3.2. <a href="function.getcolumnlevel.html">GetColumnLevel</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;3.3. <a href="function.isemptycolumn.html">IsEmptyColumn</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;3.4. <a href="function.ishiddencolumn.html">IsHiddenColumn</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;3.5. <a href="function.getcolumnwidth.html">GetColumnWidth</a><br>
+
+
+&nbsp;&nbsp;4. <a href="cmref.rows.html">Rows</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;4.1. <a href="function.getlastrowindex.html">GetLastRowIndex</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;4.2. <a href="function.getrowlevel.html">GetRowLevel</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;4.3. <a href="function.isemptyrow.html">IsEmptyRow</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;4.4. <a href="function.ishiddenrow.html">IsHiddenRow</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;4.5. <a href="function.getrowheight.html">GetRowHeight</a><br>
+
+
+&nbsp;&nbsp;5. <a href="cmref.cells.html">Cells</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.1. <a href="function.getcelllink.html">GetCellLink</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.2. <a href="function.getcelltype.html">GetCellType</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.3. <a href="function.getcelldata.html">GetCellData</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.4. <a href="function.getcellfont.html">GetCellFont</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.5. <a href="function.getcellformat.html">GetCellFormat</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.6. <a href="function.getcellbgcolor.html">GetCellBgcolor</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.7. <a href="function.getcellalign.html">GetCellAlign</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.8. <a href="function.getcellborders.html">GetCellBorders</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;5.9. <a href="function.getcellstyle.html">GetCellStyle</a><br>
+
+
+&nbsp;&nbsp;6. <a href="cmref.mergedcells.html">Merged Cells</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;6.1. <a href="function.getmergedcolumnsnum.html">GetMergedColumnsNum</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;6.2. <a href="function.getmergedrowsnum.html">GetMergedRowsNum</a><br>
+
+
+&nbsp;&nbsp;7. <a href="cmref.misc.html">Miscellaneous</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;7.1. <a href="function.serializedata.html">SerializeData</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;7.2. <a href="function.unserializedata.html">UnserializeData</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;7.3. <a href="function.getfontslist.html">GetFontsList</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;7.4. <a href="function.getformatslist.html">GetFormatsList</a><br>
+
+
+<br>
+
+Appendix A.
+<a href="changes.html">Changes history</a><br>
+
+
+<br>
+</nobr>
+</td>
+ <td bgcolor="#a0a0a0"><img src="images/null.gif" width=2 height=1></td>
+ <td valign=top width="100%" class=btxt12><div class=head1>Class Methods Reference</div><br><br><p>Converting readed data to applicable format:</p>
+
+<table border=0 cellspacing=1 cellpadding=5 bgcolor="#909090">
+ <tr>
+  <td class=api><b><a class=lnk href="function.isunicode.html">IsUnicode</a></b></td>
+  <td class=api>Check if the data has 8-bits per character or 16-bits per character (Unicode) format</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.asis.html">AsIs</a></b></td>
+  <td class=api>Returns data in their native format</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.asplain.html">AsPlain</a></b></td>
+  <td class=api>Returns data in their native format and force convertion of 16-bits per character strings to the 8-bits per character format</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.ashtml.html">AsHTML</a></b></td>
+  <td class=api>Returns data ready to print out on the HTML page</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.asdate.html">AsDate</a></b></td>
+  <td class=api>Convert numeric data to the <a class=lnk href="def.types.html#date">date</a> array</td>
+ </tr>
+</table>
+
+<p><br>Getting information about worksheets stored in the Excel file:</p>
+
+<table border=0 cellspacing=1 cellpadding=5 bgcolor="#909090">
+ <tr>
+  <td class=api><b><a class=lnk href="function.exploreworksheet.html">ExploreWorksheet</a></b></td>
+  <td class=api>Read data from the specified worksheet</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getworksheetsnum.html">GetWorksheetsNum</a></b></td>
+  <td class=api>Get number of worksheets in an Excel file</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getworksheettype.html">GetWorksheetType</a></b></td>
+  <td class=api>Get worksheet type</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getworksheettitle.html">GetWorksheetTitle</a></b></td>
+  <td class=api>Get worksheet name</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.isemptyworksheet.html">IsEmptyWorksheet</a></b></td>
+  <td class=api>Check for empty worksheet</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.ishiddenworksheet.html">IsHiddenWorksheet</a></b></td>
+  <td class=api>Check for hidden worksheet</td>
+ </tr>
+</table>
+
+<p><br>Getting information about columns - last defined column index, column visibility, etc:</p>
+
+<table border=0 cellspacing=1 cellpadding=5 bgcolor="#909090">
+ <tr>
+  <td class=api><b><a class=lnk href="function.getlastcolumnindex.html">GetLastColumnIndex</a></b></td>
+  <td class=api>Returns the zero-based index of last column in worksheet</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcolumnlevel.html">GetColumnLevel</a></b></td>
+  <td class=api>Returns the grouping level of column</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.isemptycolumn.html">IsEmptyColumn</a></b></td>
+  <td class=api>Returns flag indicating is column has any defined cells</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.ishiddencolumn.html">IsHiddenColumn</a></b></td>
+  <td class=api>Returns flag indicating is column hidden or not</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcolumnwidth.html">GetColumnWidth</a></b></td>
+  <td class=api>Returns column width</td>
+ </tr>
+</table>
+
+<p><br>Getting information about rows - last defined row index, row visibility, etc:</p>
+
+<table border=0 cellspacing=1 cellpadding=5 bgcolor="#909090">
+ <tr>
+  <td class=api><b><a class=lnk href="function.getlastrowindex.html">GetLastRowIndex</a></b></td>
+  <td class=api>Returns the zero-based index of last row in worksheet</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getrowlevel.html">GetRowLevel</a></b></td>
+  <td class=api>Returns the grouping level of row</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.isemptyrow.html">IsEmptyRow</a></b></td>
+  <td class=api>Returns flag indicating is row has any defined cells</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.ishiddenrow.html">IsHiddenRow</a></b></td>
+  <td class=api>Returns flag indicating is row hidden or not</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getrowheight.html">GetRowHeight</a></b></td>
+  <td class=api>Returns row height</td>
+ </tr>
+</table>
+
+<p><br>Reading data from the cells and getting cells attributes:</p>
+
+<table border=0 cellspacing=1 cellpadding=5 bgcolor="#909090">
+ <tr>
+  <td class=api><b><a class=lnk href="function.getcelllink.html">GetCellLink</a></b></td>
+  <td class=api>Returns the hyperlink information assigned to the cell</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcelltype.html">GetCellType</a></b></td>
+  <td class=api>Returns the cell <a class=lnk href="def.types.html">type</a></td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcelldata.html">GetCellData</a></b></td>
+  <td class=api>Returns the cell data according to the cell <a class=lnk href="def.types.html">type</a></td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcellfont.html">GetCellFont</a></b></td>
+  <td class=api>Returns the <a class=lnk href="def.font.html">font</a> assigned to the cell</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcellformat.html">GetCellFormat</a></b></td>
+  <td class=api>Returns the format assigned to the cell</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcellbgcolor.html">GetCellBgcolor</a></b></td>
+  <td class=api>Returns the cell background color</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcellalign.html">GetCellAlign</a></b></td>
+  <td class=api>Returns the cell data alignment</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcellborders.html">GetCellBorders</a></b></td>
+  <td class=api>Returns the cell borders</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getcellstyle.html">GetCellStyle</a></b></td>
+  <td class=api>Returns the cell style attributes</td>
+ </tr>
+</table>
+
+<p><br>Miscellaneous functions:</p>
+
+<table border=0 cellspacing=1 cellpadding=5 bgcolor="#909090">
+ <tr>
+  <td class=api><b><a class=lnk href="function.serializedata.html">SerializeData</a></b></td>
+  <td class=api>Unserialize readed data</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.unserializedata.html">UnserializeData</a></b></td>
+  <td class=api>Unserialize stored data</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getfontslist.html">GetFontsList</a></b></td>
+  <td class=api>Returns list of fonts used in the Excel file</td>
+ </tr><tr>
+  <td class=api><b><a class=lnk href="function.getformatslist.html">GetFormatsList</a></b></td>
+  <td class=api>Returns list of string formats used in the Excel file</td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+
+</body>
+</html>
