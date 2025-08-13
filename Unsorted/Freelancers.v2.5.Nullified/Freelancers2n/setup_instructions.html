@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<title>Freelancers Setup</title>
+</head>
+
+<body>
+
+<p align="center"><big><strong>Freelancers (v2.5) Setup Instructions</strong></big>
+<br>
+<small><a href="#upgrade">Skip to bottom for upgrading instructions...</a></small>
+</p>
+
+<strong>Setup:</strong> 
+
+<ol>
+<li>If you want to accept credit card or paypal deposits, read the R3N3 Payment Gateway script instructions first (<a href="#r3n3pg">here</a>).</li>
+  <li>Unless your path to Perl is <b>/usr/bin/perl</b>, change it at the top of all CGI files, by opening them in a text editor like Wordpad.</li>
+  <li>Open <b>vars.cgi</b> and follow the instructions inside to set 2 simple variables.</li>
+  <li>Open <b>cron.cgi</b>, <b>cron_notify.cgi</b> and <b>cron_freeze.cgi</b> and specify the full path to the script near the top.</li>
+  <li>Create a directory in your cgi-bin (the one you specified in vars.cgi) for this script. Such as "/cgi-bin/free".</li>
+  <li>Upload all files with a .cgi extension to that directory, in ASCii mode. Upload the "html" and "data" folders with their contents too.</li>
+  <li>Set the permissions of all CGI files to CHMOD 755.</li>
+  <li>Set the permissions of the "html" ("/cgi-bin/free/html") and "data" ("/cgi-bin/free/data") directories to CHMOD 777, do the same with all files inside those 2 sub-directories.</li>
+  <li>Create the following sub-directories inside "/cgi-bin/free": "freelancers", "buyers", "projects", and "forum". Change the permissions of these directories to CHMOD 777.</li>
+  <li>Create a directory outside your cgi-bin for graphics (such as "/graphics"). Change the permission of this directory to CHMOD 777. Then upload all graphics into that directory, in Binary mode</li>
+  <li>If you want to allow people to attach files to a project, create a directory outside your cgi-bin for them (such as "/files"). Change the permission of this directory to CHMOD 777</li>
+  <li>If you want project pages to be saved as HTML files (takes up less system resources), create a directory outside your cgi-bin for them (such as "/projects"). Change the permission of this directory to CHMOD 777</li>
+  <li>Now run admin.cgi in your browser, and you will finish setting up the script.</li>
+  <li>Setup Cron to run the file <b>cron.cgi</b> once a day. Run it under root, if you have access to it. If your server doesn't have Cron, either do it manually every day, or check out our free www.smarterscripts.com/cron Fake Cron" CGI. For best results you should only run it once a day.</li>
+</ol>
+
+<p>
+
+<strong>How to use:</strong> 
+
+<ul>
+<li>You can change the settings of the script and edit the html templates anytime you want from the admin, just click on the "customize" button.</li>
+<li>You can find examples in /html/header.html on how to link to parts of the script (signing up, creating projects, etc...)</li>
+<li>If you want to use your own graphics, just make sure the filenames are the same, and upload them to the directory you put graphics in for this script.</li>
+<li>If you want to clean your database of expired projects more than once a day, you can run cron_freeze.cgi with Cron. Run it every few minutes or every hour.</li>
+<li>If you have many freelancers, you should run cron_notify.cgi with Cron every few minutes. Make sure to turn this feature on in the Misc section of admin settings.</li>
+<li>You can display information using SSI or Javascript tags.<p>
+<i>SSI Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_top.cgi&quot; --&gt;<p>
+Javascript Example: &lt;script src=&quot;http://www.mysite.com/d_top.cgi?show=5&java=1&quot;&gt;&lt;/script&gt;</i>
+<p>
+<small>Note: You must add <i>&java=1</i> to the URL when using the Javascript tag.</small><p>
+
+	<ul>
+		<li>d_top.cgi displays freelancers in order of highest rating to lowest. Give a value to the variable "show" to specify how many freelancers should be displayed. If you want to show "special" users first, put s=1.<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_top.cgi?show=10&s=1&quot; --&gt;</i>
+		</li>
+		<li>d_count.cgi displays the total number of freelancers, buyers, or open projects. Add b=1 to get the buyer count, f=1 for freelancers, and p=1 for the number of projects.<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_count.cgi?b=1&quot; --&gt;</i>
+		</li>
+		<li>d_projects.cgi displays projects, from newest to oldest. Give a value to the variable "show" to specify how many projects should be displayed. To display only featured projects, add f=1<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_projects.cgi?show=20&f=1&quot; --&gt;</i>
+		</li>
+		<li>d_topprojects.cgi displays projects, from the highest average bid to the lowest. Give a value to the variable "show" to specify how many projects should be displayed.<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_topprojects.cgi?show=20&quot; --&gt;</i>
+		</li>
+		<li>If you want make the title of projects displayed by d_projects.cgi or d_topprojects.cgi look nicer, add text=1. This will convert the title to lowercase letters, except for the first letter of each word, which will be made uppercase.<br>
+		<i>Example: &lt;!--#include virtual=&quot;/path/to/cgi/d_projects.cgi?show=20&text=1&quot; --&gt;</i>
+		</li>
+	</ul>
+</li>
+<li>Affiliates can display your projects with the d_projects.cgi file too. They just need to add &r=USERNAME to the URL (and replace USERNAME with their username).<br>
+<i>Example: &lt;script src=&quot;http://www.yourdomain.com/d_projects.cgi?show=20&java=1&r=USERNAME&quot;&gt;&lt;/script&gt;</i><br><br>
+</li>
+<li>Affiliates can get a database text-only print out of the projects by adding db=1: <i>http://www.yourdomain.com/d_projects.cgi?show=20&r=USERNAME&db=1</i>. This prints out the projects 1 per line, with each data field seperated by a tab space. The following project data is printed, in order: title, url, number of bids, start time (in epoch seconds), end time, categories (seperated by pipelines: | ), and the word "featured" if the project is featured. It's not a problem if you don't understand this, any affiliate who chooses to use this feature will be a programmer and will understand it.
+</ul>
+<p>
+
+
+<p><a name="r3n3pg"></a><strong>R3N3 Payment Gateway:</strong></p>
+To accept credit card and paypal payments with Freelancers, you will need to have our Payment Gateway script installed on your server. This script is free to customers and comes with your download of Freelancers, in the same Zip file. If you already installed it once, you can use that one for Freelancers too. Otherwise, open the Zip file with the filename "PaymentGateway" and read its setup_instructions.html file to install and setup that script. Install it before you continue to setup Freelancers.
+
+
+<p><strong><a name="upgrade"></a>Upgrade Instructions:</strong></p>
+Upgrading from version 2.1: (previously NULLED BY WST)<br>
+<ol>
+<li>Replace/Upload ALL files in the main folder that have a .cgi extension. Make sure the path to perl is correct at the top of each. Reset the two variables required in vars.cgi and the one in the Cron files (cron.cgi, cron_notify.cgi and cron_freeze.cgi). Set all CGI file permissions to CHMOD 755.</li>
+<li>If you want to save project pages as HTML files, create a directory outside of your cgi-bin (such as "/projects") and set the permissions to CHMOD 777.</li>
+<li>There are a few new variables to define in the "paths" and "new" section of the admin setup area.</li>
+</ol>
+<p>
+
+Upgrading from version 2.0:<br>
+<ol>
+<li>Replace/Upload ALL files in the main folder that have a .cgi extension. Make sure the path to perl is correct at the top of each. Reset the two variables required in vars.cgi and the one in the Cron files (cron.cgi, cron_notify.cgi and cron_freeze.cgi). Set all CGI file permissions to CHMOD 755.</li>
+<li>Upload the "graphics/arrow.gif" image into the directory your other Freelancers graphics are in.</li>
+<li>If you want to clean your database of expired projects more than once a day, you can run cron_freeze.cgi with Cron. Run it every few minutes or every hour.</li>
+<li>If you have many freelancers, you should run cron_notify.cgi with Cron every few minutes. This sends out new project notifications e-mails. Make sure to turn this feature on in the Misc section of admin settings.</li>
+</ol>
+<p>
+
+
+Upgrading from versions 1.0-1.1:<br>
+<ol>
+<li>If you want to accept credit card or paypal deposits, read the R3N3 Payment Gateway script instructions first (<a href="#r3n3pg">above</a>).</li>
+<li>Replace/Upload ALL files in the main folder that have a .cgi extension. Make sure the path to perl is correct at the top of each. Reset the two variables required in vars.cgi and the one in cron.cgi too. Set all CGI file permissions to CHMOD 755.</li>
+<li>Upload ONLY the new file <b>vars_new.cgi</b> into the "data" subdirectory, leave the other files from that folder alone. Set the permissions of <b>vars_new.cgi</b> to CHMOD 777.</li>
+<li>Upload the "graphics/flag.gif" and "graphics/arrow.gif" images into the directory your other Freelancers graphics are in.</li>
+<li>Login to the admin, go to the setup area (click on the "Custmize Script" button), and define the new variables. There is one new variable in the "Admin/Site Info" group called "from_email", and a whole new group labeled "New". Also, the "Paths" group has changed, make sure to look at it, especially if you are using the <a href="#r3n3pg">R3N3 Payment Gateway script</a>.</li>
+<li>The account management template ("html/manage.html") has a new tag: [escrow]. Insert that tag in the template if you want to allow members to pay with escrow accounts.</li>
+</ol>
+<p>
+
+
+<br>
+<p><strong>Special Notice to Resellers:</strong></p>
+You can use this script on any site of yours, but if you sell one
+of these sites, you are required to FIRST purchase a license for
+the website. If you don't, it's considered copyright infringement
+and we will prosecute any offenders.
+Thanks
+
+Nulled by WST [Warez Script Team]
+<br>
+</body>
+</html>
