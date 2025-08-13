@@ -1,0 +1,23 @@
+###
+# @Mail! Logout Perl + HTML Source
+# Modify to suite your sites design
+###
+
+sub logout
+{
+
+$cgi->delete_all();
+my $newlogin = $cgi->self_url;
+
+print<<_EOF;
+<html><head><title>Logged Out</title></head>
+<body bgcolor="#FFFFFF">
+<img border=0 height=46 width=297 src="imgs/banner.gif" alt="\@mail!"
+<BR>
+<center>Successfully <b>Logged Off!</b>
+<BR>
+Click <a href="$newlogin">here</a> to login as a new user.<BR></center>
+
+_EOF
+exit;
+}
