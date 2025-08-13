@@ -1,0 +1,70 @@
+<html><head><title>\$HOMENAME Adding Item</title>
+</head>
+
+<h2>Quick entry form</h2>
+
+If you're not sure what to put in the fields on this form, please use our
+<a href=\${HTMLPATH}add-new-item.html>expanded entry form</a>.
+<br>
+
+Please be familiar with our <a href=\${HTMLPATH}rules.html>\$HOMENAME General Information</a> before listing
+any items! By listing an item, you indicate your acceptance of these rules.
+<p>
+
+<form method=post action="\${CGIPATH}verify-new-item.cgi">
+
+<pre>
+Your \$LOGINPROMPT:                  <input type=text name=email size=45>
+Your <a href=\${HTMLPATH}reqpass.html>password</a>:                <input type=password name=pass size=45>
+
+Title of the item:            <input type=text name=title size=45>  (no HTML)
+
+Boldface title?               <input type=checkbox name=bold>  ($2.00 charge) <img height=11 width=28 alt="[NEW!]" src="\${IMAGEPAGE}new.gif">
+
+Location of the item:         <input type=text name=location size=45>
+
+<a href=\${HTMLPATH}rules.html#private>Private auction?</a>              <a href=add-new-item.html>(use long form)</a>
+
+Restrict to registered users? <input type=checkbox name=restrict checked>
+
+Description:                  <textarea name=desc cols=56 rows=8></textarea>  (HTML ok, no quotes)
+
+Picture URL   (optional):     <input type=text size=60 name=picurl value="http://">
+
+<a href=\${HTMLPATH}rules.html#reserve>Reserve price</a> (if any):       <input type=text name=reserve>  (optional; type numbers only)
+<a href=\${HTMLPATH}rules.html#min>Minimum bid</a>:                  <input type=text name=startprice>  (per item; required; type numbers only)
+<a href=\${HTMLPATH}rules.html#dutch>Quantity (Dutch auctions)</a>:    <input type=text name=quant>  (optional; type numbers only)
+
+Duration (days):              <select name=duration>
+<option value=3>3
+<option value=7 selected>7
+<option value=14>14
+</select>
+
+Category of the item:         <strong>please choose the most appropriate category</strong>
+</pre>
+
+\$CATEGORIESFORINPUT
+
+<p>
+<font size=+0>
+
+<h3>Registration is required</h3>
+Becoming a <a href="\$CGIPATH}eBayISAPI.dll?RegisterShow">registered user</a>, which is
+<strong>free,</strong> is now required for all sellers. Please register before placing your listing.
+<p>
+
+<h3>Fees</h3>
+You will be advised of all fees due before you place your listing. Press the &quot;review&quot; button below to see what fees are due immediately and what fees may be due if your item sells. You will not incur any fees until you accept the terms disclosed
+ in the next screen.
+<p>
+
+<strong>Press this button to review and place your listing:</strong>
+<blockquote><input type=submit value="review"></blockquote>
+<p>
+
+Press this button to clear the form if you made a mistake:
+<blockquote><input type=reset value="clear form"></blockquote>
+
+</form>
+
