@@ -1,0 +1,32 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+// PHP Layers Menu 2.3.5 (C) 2001-2003 Marco Pratesi (marco at telug dot it)
+
+DOM = (document.getElementById) ? 1 : 0;
+NS4 = (document.layers) ? 1 : 0;
+// We need to explicitly detect Konqueror
+// because Konqueror 3 sets IE = 1 ... AAAAAAAAAARGHHH!!!
+Konqueror = (navigator.userAgent.indexOf("Konqueror") > -1) ? 1 : 0;
+// We need to detect Konqueror 2.1 and 2.2 as they do not handle the window.onresize event
+Konqueror21 = (navigator.userAgent.indexOf("Konqueror 2.1") > -1 || navigator.userAgent.indexOf("Konqueror/2.1") > -1) ? 1 : 0;
+Konqueror22 = (navigator.userAgent.indexOf("Konqueror 2.2") > -1 || navigator.userAgent.indexOf("Konqueror/2.2") > -1) ? 1 : 0;
+Konqueror2 = Konqueror21 || Konqueror22;
+Opera = (navigator.userAgent.indexOf("Opera") > -1) ? 1 : 0;
+Opera5 = (navigator.userAgent.indexOf("Opera 5") > -1 || navigator.userAgent.indexOf("Opera/5") > -1) ? 1 : 0;
+Opera6 = (navigator.userAgent.indexOf("Opera 6") > -1 || navigator.userAgent.indexOf("Opera/6") > -1) ? 1 : 0;
+Opera56 = Opera5 || Opera6;
+IE = (document.all) ? 1 : 0;
+IE4 = IE && !DOM;
+
+// -->
+</script>
+<script language="JavaScript" type="text/javascript" src="lib/tree/layerstreemenu-cookies.js"></script>
+<link rel="stylesheet" href="{style_dir}layersmenu.css" type="text/css"></link>
+<link rel="stylesheet" href="{style_dir}layerstreemenu.css" type="text/css">
+<link rel="stylesheet" href="{style_dir}{file_style}" type="text/css">
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="left" valign="top">{menu}</td>
+	</tr>
+</table>
