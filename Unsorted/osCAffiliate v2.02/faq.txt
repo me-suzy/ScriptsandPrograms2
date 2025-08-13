@@ -1,0 +1,90 @@
+$Id: faq.txt,v 2.00 2003/10/12
+
+Q: Does the tier system in the affiliate system work?
+A: Yes it should but its under current development and as such isnt supported yet. (next release should fix this)
+
+
+
+Q: Does the Affiliate Pay Per Sale rate work?
+A: No currently this is a placeholder for further development. (next release should fix this)
+
+
+
+Q: Does the Affiliate Pay Per Click rate work?
+A: No currently this is a placeholder for further development. (next release should fix this)
+
+
+
+Q: Why aren't the BannerImpressions not counted?
+A: Look in catalog/includes/affiliate_configure.php at the Setting of:  AFFILIATE_KIND_OF_BANNERS
+
+
+
+Q: Banner: Links to banners work. Images don't display
+A: - In the affiliate_configure.php you can activate a debug modus for affiliate_show_banners.
+   - Try changing define ('AFFILIATE_KIND_OF_BANNERS','2');to 1 in catalog/includes/affiliate_configuration.php.
+     Then you should see where it tries to get the images from.
+
+
+
+Q: Having sold something to a customer via the affiliate link - the sales do show up properly in the affiliates page. 
+   But i can not Bill it. I set the threshold down to $3 but I can not get any bill having set. Whenever I press the "Start Billing"-Button it says "Your Affiliates have been sucessfully billed" - but nothing had been billed. 
+   Do I do something wrong? 
+A: - Have you set the status of the order to delivered?
+   - Have a look at: admin/includes/afiliate_configure.php:
+	define ('AFFILIATE_BILLING_TIME','30'); // Orders billed must be at leat '30' days old. 
+ 						// needed if a order is refunded
+     Set this to -1 to bill at once
+
+
+
+Q: The Build A Link Feature is to complicated
+A: You can insert a link for the affiliate in the product_info.php:
+   Example:
+	       <?php
+		if (tep_session_is_registered('affiliate_id')) {
+			?>
+	       		<a href="<? echo tep_href_link(FILENAME_AFFILIATE_BANNERS,"individual_banner_id=".$product_info_values['products_id']); ?>"><img src="buildalink.gif"></a>
+			<?php
+		}
+	       ?>
+   I sugest:
+
+       <td><br><table border="0" width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+	  <td>
+	       <?php
+		if (tep_session_is_registered('affiliate_id')) {
+			?>
+	       		<a href="<? echo tep_href_link(FILENAME_AFFILIATE_BANNERS,"individual_banner_id=".$product_info_values['products_id']); ?>"><img src="buildalink.gif"></a>
+			<?php
+		}
+	       ?>
+            </td>
+	    <td class="main"><a href="<?php echo tep_href_link(FILENAME_PRODUCT_REVIEWS, substr(tep_get_all_get_params(), 0, -1)); ?>"><?php echo tep_image_button('button_reviews.gif', IMAGE_BUTTON_REVIEWS); ?></a></td>
+            <td align="right" class="main"><input type="hidden" name="products_id" value="<?php echo $product_info_values['products_id']; ?>"><?php echo tep_image_submit('button_in_cart.gif', IMAGE_BUTTON_IN_CART); ?></td>
+          </tr>
+        </table></td>
+
+
+
+Q:Affiliate Payment - Having trouble understanding the "START BILLING" function
+A:	What does this function do:
+	It checks which affiliate has earned enough to get money since last billing.
+	Only orders with status 3 (delivered) or higher are considered.(Admin->Configuration->affiliate->Order Min Status) 
+	and the Orders must be Billing Time days old (and not have been billed before).(Admin->Configuration->affiliate->Billing Time) 
+	Then you can get a list with affiliates who get money from you (-> invoices are possible; if you pay them you can change the status to paid)
+
+
+
+Q: Whats individual affiliate percentage?
+A:	If you activate this you cab give each affiliate his own provission (via affiliate details).
+	If it's higher then the global provision, it's used. If it is set lower than the global provision then its ignored.
+
+
+
+Q: Warning: Missing argument 7 for tep_mail() in /home/virtual/site6/fst/var/www/html/test/mgr/includes/functions/general.php on line 1087
+A:	Adjust your tep_mail functioncall in admin/includes/functions/general.php:
+	function tep_mail($to_name, $to_email_address, $email_subject, $email_text, $from_email_name, $from_email_address, $email_background='') {
+
+
