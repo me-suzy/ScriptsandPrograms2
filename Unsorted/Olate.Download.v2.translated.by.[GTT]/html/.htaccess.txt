@@ -1,0 +1,20 @@
+#Lets turn on Rewrite engine :) // Âêëþ÷àåì ÐåâðàéòÈíãàéí :)
+RewriteEngine on
+
+#Only for downloads // Òîëüêî íà ñêà÷êó
+RewriteRule file-([1-9][0-9]*).* download.php?id=$1
+
+#Search // Ïîèñê
+RewriteRule search search.php
+
+#Top // Òîï
+RewriteRule top index.php?category=top
+
+#All files // Âñå ôàéëû
+RewriteRule all index.php?category=all
+
+#Details // Äîï. èíôà íà ôàéëû
+RewriteRule info-([1-9][0-9]*).* details.php?id=$1
+
+#Category // Êàòåãîðèè
+RewriteRule cat-([1-9][0-9]*).* index.php?category=$1
