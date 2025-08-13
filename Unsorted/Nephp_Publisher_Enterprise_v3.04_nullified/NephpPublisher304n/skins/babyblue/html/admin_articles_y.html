@@ -1,0 +1,141 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style>
+body, p, td {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; 
+scrollbar-face-color: #dadada; 
+                scrollbar-shadow-color: #000000; 
+                scrollbar-highlight-color: #FFFFFF; 
+                scrollbar-3dlight-color: #000000; 
+                scrollbar-darkshadow-color: #dadada; 
+                scrollbar-track-color: #FFFFFF; 
+                scrollbar-arrow-color: #000000;
+                background-repeat: no-repeat;
+                 }
+                 </style>
+<title>admin_articles_y.html</title>
+</head>
+
+<body>
+<br><br>
+<div align="left">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="685" id="AutoNumber1">
+    <tr>
+      <td valign="top" width="685">
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber2">
+          <tr>
+            <td width="100%" valign="top">
+            <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_rbot_title.gif" width="138" height="10"></td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber3">
+              <tr>
+                <td width="50%" valign="top" bgcolor="#DFDFDF">
+                <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_ltop.gif" width="10" height="10"></td>
+                <td width="50%" valign="top" bgcolor="#DFDFDF">
+                <p align="right">
+                <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_rtop.gif" width="10" height="10"></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" bgcolor="#DFDFDF">
+            <div align="center">
+              <center>
+              <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber5">
+                <tr>
+                  <td width="100%" valign="top">
+                  <!------------------------------- EDITOR STARTS HERE ---------------------------------->
+                  <form method="POST" name="webeditor" action="admin.php" onsubmit="return check()" enctype="multipart/form-data">
+<input type=hidden name=mod value="articles">
+<input type=hidden name=opt value="add_proceed">
+<input type=hidden name=proceed value="true">
+<p>
+  <font size="1">Document name<br>
+  <input type="text" name="nnet_title" size="31" style="border: 1px inset #000000; background-color: #CCCCFF">
+  <select size="1" name="nnet_cid" style="border: 1px inset #000000; background-color: #CCCCFF; font-size:8pt; font-family:Verdana">
+  <option selected value="">Select Your Category</option>
+                                   {%catdisplay%}  </select><br>
+  Document description<br>
+  <textarea rows="4" name="nnet_desc" cols="69" style="border: 1px inset #000000; background-color: #CCCCFF; width:100%"></textarea><br>
+  Upload Thumb-nail Image<br>
+  <input type="file" name="nnet_icon" size="54" maxlength="80" /><br>
+  Upload Full-Size Image<br>
+  <input type="file" name="nnet_pic" size="54" maxlength="80" /></font></p>
+<p align="right">
+  <font size="1">
+  <input type="submit" value=">> CLICK HERE TO SUBMIT" name="B1" style="font-family: Verdana; color: #000000; font-size:8pt; font-weight:bold">&nbsp;
+  </font> </p>
+<p>
+  <font size="1">Paste / Insert HTML code here. <br>
+  </font>
+  <textarea rows="22" name="nnet_data" cols="69" style="border: 1px inset #000000; background-color: #CCCCFF; width:100%"></textarea><br>
+&nbsp; </p>
+<script>
+function check()
+{
+    if(document.webeditor.nnet_data.value=="")
+        {
+                alert("Document is empty.");
+                return false;
+        }
+	     if(document.webeditor.nnet_title.value=="")
+        {
+                alert("Please fill-in the name for this Document.");
+                return false;
+        }
+        if(document.webeditor.nnet_cid.value=="")
+        {
+                alert("Please specify its category.");
+                return false;
+        }
+        else
+        {
+                return true;
+        }
+}
+</script>
+</form>
+                  
+                  <!------------------------------- EDITOR ENDS HERE   ---------------------------------->
+                  
+                  
+                  </td>
+                </tr>
+              </table>
+              </center>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber4">
+              <tr>
+                <td width="50%" valign="top" bgcolor="#DFDFDF">
+                <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_lbot.gif" width="10" height="10"></td>
+                <td width="50%" valign="top" bgcolor="#DFDFDF">
+                <p align="right">
+                <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_rbot.gif" width="10" height="10"></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+        </center>
+      </div>
+      </td>
+    </tr>
+    </table>
+</div>
+<p align="center">&nbsp;</p>
+
+</body>
+
+</html>
