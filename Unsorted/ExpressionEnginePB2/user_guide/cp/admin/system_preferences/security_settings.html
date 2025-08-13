@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Security Settings &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Security Settings</h1>
+
+	<p>This section of the Control Panel allows you to define the basic security-related settings for your website.  These are security settings that apply throughout the website/system.</p>
+
+
+
+	<h2><a name="main_screen">Main Screen</a></h2>
+
+	<p>The main <dfn>Security Settings</dfn> screen shows a table of the preferences.  All the security setting preferences are set via this screen.</p>
+
+	<p>All preferences in this area of the Control Panel are <strong>required</strong> fields unless otherwise indicated.</p>
+
+
+	<img src="security_settings_main_screen_1.gif" width="576" height="618" alt="Security Settings main screen, Part 1" title="Security Settings main screen, Part 1" />
+
+	<h3>Control Panel Session Type</h3>
+
+		<p>This determines how sessions are handled for the Control Panel.  You may use cookies, session IDs, or a combination.  The available options are:</p>
+
+		<ol>
+			<li><b>Cookies and session ID</b>: Both cookies and URL session ID parameters are used to track the admin user.  This is the default setting.</li>
+			<li><b>Cookies only</b>: Only cookies are used to track the admin user.</li>
+			<li><b>Session ID only</b>: Only URL session IDs are used to track the admin user.</li>
+		</ol>
+
+
+	<h3>User Session Type</h3>
+
+		<p>This determines how sessions for regular users on your website are handled.  You may use cookies, session IDs, or a combination.  The available options are:</p>
+
+		<ol>
+			<li><b>Cookies and session ID</b>: Both cookies and URL session ID parameters are used to track the user throughout their visit.</li>
+			<li><b>Cookies only</b>: Only cookies are used to track the user throughout their visit.  This is the default setting.</li>
+			<li><b>Session ID only</b>: Only URL session IDs are used to track the user throughout their visit.</li>
+		</ol>
+
+
+		<h3>Process Form Data in Secure Mode?</h3>
+
+			<p>This setting determines how form data is processed.  When this preference is set to "Yes", forms are processed in <a href="../../../general/spam_protection.html">Secure Mode</a>.  This setting is designed to deter automated spam attacks as well as multiple accidental submissions.  Enabling this feature does add one additional database query for each form submission.</p>
+
+
+		<h3>Allow members to change their username?</h3>
+
+			<p>As the name suggests, this setting determines whether or not members are allowed to change their "username" after they register.  Members will always be able to change their "screen name" if they choose to use one.</p>
+
+
+		<h3>Allow Multiple Accounts Using the Same Email Address?</h3>
+
+			<p>You can choose whether or not you want to allow members to use the same email address to register more than one account.  If this preference is set to "No" then a unique email address will be required for every account.</p>
+
+
+		<h3>Allow Multiple Log-ins From a Single Account?</h3>
+
+			<p>This setting determines whether more than one person can simultaneously access the system using the same user account.  i.e. Can the same member account be used simultaneously by more than one person.  <b>Note:</b> If the Session Type above is set to "Cookies Only" this feature will not work.</p>
+
+
+		<h3>Require IP Address and User Agent for Login?</h3>
+
+			<p>If this preference is set to "Yes", then users will not be able to log in unless their browser (or other access device) correctly supplies their IP address and User Agent information.  Having this set to "Yes" can help prevent hackers from logging in using direct socket connections.</p>
+
+
+	<img src="security_settings_main_screen_2.gif" width="576" height="563" alt="Security Settings main screen, Part 2" title="Security Settings main screen, Part 2" />
+
+	<h3>Enable Password Lockout?</h3>
+
+		<p>When this preference is set to "Yes", the system will lock a member account if more than four invalid login attempts are made within a specified time period (see next setting).  This preference is designed to deter hackers from using collision attacks to guess poorly chosen passwords.  The account remains locked for the duration of the time period.  Once the period expires it becomes unlocked.</p>
+
+
+	<h3>Time Interval for Lockout</h3>
+
+		<p>This setting is used together with the previous preference.  Here you can determine, in minutes, the time interval over which more than four invalid login attempts will trigger a lockout.  You may use decimals to indicate fractions of a minute: e.g. 1.5 equals one and a half minutes.</p>
+
+
+	<h3>Require Secure Passwords?</h3>
+
+		<p>If this preference is set to "Yes", then users will be required to choose a minimally "secure" password.  In this case, a password containing at least one uppercase character, one lowercase character, and one numeric character.  Passwords that follow this basic formula are much more difficult to guess.</p>
+
+
+	<h3>Allow Dictionary Words as Passwords?</h3>
+
+		<p>Setting this preference to "Yes" will prevent users from being able to use words and names that are contained within a specified dictionary file as their password.  This will make "dictionary attacks" by hackers much more difficult.  <b>Note:</b> In order to be able to use this setting you must have a dictionary file installed for the system.</p>
+
+
+	<h3>Name of Dictionary File</h3>
+
+		<p>This is the filename of the dictionary file used for the previous preference.</p>
+
+
+	<h3>Minimum Username Length</h3>
+
+		<p>You may specify the minimum length required for a member username during new member registration.  Specify the minimum number of characters required.</p>
+
+
+	<h3>Minimum Password Length</h3>
+
+		<p>You may specify the minimum length required for a member password during new member registration.  Specify the minimum number of characters required.  It is common practice to require passwords at least eight (8) characters long.</p>
+
+
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
