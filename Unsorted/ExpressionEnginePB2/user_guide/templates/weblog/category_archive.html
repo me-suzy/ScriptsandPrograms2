@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Weblog Category Archive Listing &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Weblog Category Archive Listing</h1>
+
+	<p>This tag is designed to let you list all of your weblog entries and have them organized by category.</p>
+
+	<code>{exp:weblog:category_archive weblog="weblog1"}<br />
+<br />
+{categories}<br />
+&lt;h3>{category_name}&lt;/h3><br />
+{/categories}<br />
+<br />
+{entry_titles}<br />
+&lt;a href="{path=SITE_INDEX}">{title}&lt;/a>&lt;br /><br />
+{/entry_titles}<br />
+<br />
+{/exp:weblog:category_archive}</code>
+
+	<p>This tag allows you to show your entry titles organized by category in a master archive that looks like this:</p>
+
+	<code>&lt;h3>Category one&lt;/h3><br />
+  &lt;a href="www.mysite.com/1/">title one&lt;/a><br />
+  &lt;a href="www.mysite.com/2/">title two&lt;/a><br />
+  &lt;a href="www.mysite.com/3/">title three&lt;/a><br />
+  &lt;a href="www.mysite.com/4/">title four&lt;/a><br />
+  &lt;a href="www.mysite.com/5/">title five&lt;/a><br />
+&lt;h3>Category two&lt;/h3><br />
+  &lt;a href="www.mysite.com/6/">title one&lt;/a><br />
+  &lt;a href="www.mysite.com/7/">title two&lt;/a><br />
+  &lt;a href="www.mysite.com/8/">title three&lt;/a><br />
+  &lt;a href="www.mysite.com/9/">title four&lt;/a><br />
+  &lt;a href="www.mysite.com/10/">title five&lt;/a><br />
+etc...</code>
+
+	<p>It shows the name of each category, and the weblog entry titles assigned to them.  <b>Note:</b>  Once you have hundreds of weblog entries, it might become cumbersome to use this tag on your page.</p>
+
+
+	<h2>Parameters</h2>
+
+	<ul class="minitoc">
+		<li><a href="#par_backspace">backspace="6"</a></li>
+		<li><a href="#par_orderby">orderby="date"</a></li>
+		<li><a href="#par_sort">sort="asc"</a></li>
+		<li><a href="#par_status">status="open"</a></li>
+		<li><a href="#par_style">style="nested"</a></li>
+		<li><a href="#par_weblog">weblog="news"</a></li>
+	</ul>
+
+
+	<h3><a name="par_backspace">backspace=</a></h3>
+
+		<code>backspace="6"</code>
+
+		<p>Backspacing removes characters from the last iteration of the loop.  For example, if you put a <samp>&lt;br /></samp> tag after each listed entry you'll have this layout:</p>
+
+		<code>Category one<br />
+  &lt;a href="www.mysite.com/1/">title one&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/2/">title two&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/3/">title three&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/4/">title four&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/5/">title five&lt;/a>&lt;br /><br />
+Category two<br />
+  &lt;a href="www.mysite.com/6/">title one&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/7/">title two&lt;/a>&lt;br /><br /></code>
+
+		<p>You might, however, not want the <samp>&lt;br /></samp> tag after the final item in each set.  By adding backspacing you can remove it.  Simply count the number of characters and spaces in the item you want to remove and add it to the tag.  A <samp>&lt;br /></samp> tag has 6 characters, so you would do this:</p>
+
+		<code>{exp:weblog:category_archive weblog="weblog1" backspace="6"}<br />
+<br />
+{categories}<br />
+&lt;h3>{category_name}&lt;/h3><br />
+{/categories}<br />
+<br />
+{entry_titles}<br />
+&lt;a href="{path=SITE_INDEX}">{title}&lt;/a>&lt;br /><br />
+{/entry_titles}<br />
+<br />
+{/exp:weblog:category_archive}</code>
+
+		<p>That will produce code like this:</p>
+
+		<code>&lt;h3>Category one&lt;/h3><br />
+  &lt;a href="www.mysite.com/1/">title one&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/2/">title two&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/3/">title three&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/4/">title four&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/5/">title five&lt;/a><br />
+&lt;h3>Category two&lt;/h3><br />
+  &lt;a href="www.mysite.com/6/">title one&lt;/a>&lt;br /><br />
+  &lt;a href="www.mysite.com/7/">title two&lt;/a><br /></code>
+
+		<p>The "backspace" parameter is only allowed if you are using the "linear" style.  It is not applicable if you use the "nested" style for the display of the list.
+
+
+	<h3><a name="par_orderby">orderby=</a></h3>
+
+		<code>orderby="date"</code>
+
+		<p>The "order" parameter sets the display order of the entries.  Setting options for this parameter include:</p>
+
+		<ul>
+			<li>orderby="date"</li>
+			<li>orderby="title"</li>
+			<li>orderby="comment"</li>
+			<li>orderby="most_recent_comment"</li>
+		</ul>
+
+		<p>If this parameter is not set, it will default to ordering by the title.</p>
+
+
+	<h3><a name="par_sort">sort=</a></h3>
+
+		<code>sort="asc"</code>
+
+		<code>sort="desc"</code>
+
+		<p>The sort order can be "asc" (ascending order or "oldest item first") or "desc" (descending order or "newest item first").  If you do not use a sort order the default is desc.</p>
+
+		<p><b>Note</b>: The order of the categories will always be alphabetical.  The only things the <samp>sort</samp> parameter changes is the order of the <em>entries</em> within each category.</p>
+
+
+	<h3><a name="par_status">status=</a></h3>
+
+		<code>status="open"</code>
+
+		<p>The weblog <a href="../cp/admin/weblog_administration/custom_entry_statuses.html">status</a> to which you would like to restrict display.  You can choose multiple statuses using a pipe:</p>
+
+		<code>status="draft|reviewed|published"</code>
+
+		<p>Or exclude statuses using "not"</p>
+
+		<code>status="not submitted|processing|closed"</code>
+
+
+	<h3><a name="par_style">style=</a></h3>
+
+		<code>style="nested"</code>
+
+		<p>There are two list "styles" for your categories:  "nested" and "linear".</p>
+
+		<p>By default, the category list is shown in a linear fashion.  However, the list can optionally be shown fully nested to show the parent/child hierarchy between the categories.  It will display the categories as nested "unordered lists" and will automatically enclose the contents in <samp>&lt;li></samp> tags and nest them correctly to show the hierarchy.</p>
+
+		<p>For more information about how this option works see the parameter description on the <a href="categories.html">Weblog Categories</a> page.</p>
+
+
+	<h3><a name="par_weblog">weblog=</a></h3>
+
+		<code>weblog="weblog"</code>
+
+		<p>This indicates the name of the weblog to which the categories are assigned.  Only a single weblog may be specified since this is a category list for a specific weblog.  The weblog parameter is <strong>required</strong> unless you only have a single weblog.</p>
+
+
+
+	<h2>Variables</h2>
+
+	<ul class="minitoc">
+		<li><a href="#var_categories">{categories}</a></li>
+		<li><a href="#var_entry_titles">{entry_titles}</a></li>
+	</ul>
+
+
+	<p>There are two variable pairs to delineate where the category markup starts/ends and where the title markup starts/ends.</p>
+
+	<h3><a name="var_categories">categories</a></h3>
+
+		<code>{categories}<br />
+&lt;h3>{category_name}&lt;/h3><br />
+{/categories}</code>
+
+		<p>The <samp>{categories}</samp> tag pair is the same as the one used in the regular <a href="variables.html">weblog tag</a>.  See that page for specific information.</p>
+
+
+	<h3><a name="var_entry_titles">entry_titles</a></h3>
+
+		<code>{entry_titles}<br />
+&lt;a href="{path=news/entry}">{title}&lt;/a><br />
+{/entry_titles}</code>
+
+		<p>The <samp>{entry_titles}</samp> tag pair allows you to list the entries within a category.  There are two variables available for use within the tag pair:</p>
+
+		<p><samp>{title}</samp></p>
+
+		<p>This variable is replaced by the title of the entry.</p>
+
+		<p><samp>{path=template_group/template}</samp></p>
+
+		<p>The path (template_group/template) where you want to show the entries.  This is typically used within a standard HTML link tag:</p>
+
+		<code>&lt;a href="{path=weblog/index}">{title}&lt;/a></code>
+
+		<p>You can also use <samp>SITE_INDEX</samp> in your path to point to your main site index page.  If you show your blog on your home page, using <samp>SITE_INDEX</samp> is preferable since it will make the URL cleaner.</p>
+
+		<code>&lt;a href="{path=SITE_INDEX}">{title}&lt;/a></code>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
