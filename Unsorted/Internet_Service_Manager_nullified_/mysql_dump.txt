@@ -1,0 +1,363 @@
+CREATE TABLE admins (
+   id int(11) NOT NULL auto_increment,
+   firstname text NOT NULL,
+   lastname text NOT NULL,
+   email text NOT NULL,
+   title text NOT NULL,
+   signature text NOT NULL,
+   phone text NOT NULL,
+   username text NOT NULL,
+   password text NOT NULL,
+   privelages text NOT NULL,
+   online int(11) DEFAULT '0' NOT NULL,
+   mail_server text NOT NULL,
+   mail_username text NOT NULL,
+   mail_password text NOT NULL,
+   last_check int(11) DEFAULT '0' NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'attatchments'
+#
+
+CREATE TABLE attatchments (
+   id int(11) NOT NULL auto_increment,
+   type text NOT NULL,
+   filename text NOT NULL,
+   data longblob NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'chats'
+#
+
+CREATE TABLE chats (
+   id int(11) NOT NULL auto_increment,
+   lastdate int(11) DEFAULT '0' NOT NULL,
+   admin_id int(11) DEFAULT '0' NOT NULL,
+   data longblob NOT NULL,
+   client_name text NOT NULL,
+   client_last int(11) DEFAULT '0' NOT NULL,
+   admin_last int(11) DEFAULT '0' NOT NULL,
+   requested int(11) DEFAULT '0' NOT NULL,
+   client_ip text NOT NULL,
+   extrainfo text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'clients'
+#
+
+CREATE TABLE clients (
+   id int(11) NOT NULL auto_increment,
+   primary_contact int(11) DEFAULT '0' NOT NULL,
+   name text NOT NULL,
+   date_added int(11) DEFAULT '0' NOT NULL,
+   comments text NOT NULL,
+   billing_method text NOT NULL,
+   bill_to_contact int(11) DEFAULT '0' NOT NULL,
+   account_balance text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'contacts'
+#
+
+CREATE TABLE contacts (
+   id int(11) NOT NULL auto_increment,
+   client_id int(11) DEFAULT '0' NOT NULL,
+   firstname text NOT NULL,
+   lastname text NOT NULL,
+   email text NOT NULL,
+   phone text NOT NULL,
+   phone2 text NOT NULL,
+   address text NOT NULL,
+   username text NOT NULL,
+   password text NOT NULL,
+   comments text NOT NULL,
+   title text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'email_folders'
+#
+
+CREATE TABLE email_folders (
+   id int(11) NOT NULL auto_increment,
+   admin_id int(11) DEFAULT '0' NOT NULL,
+   folder_name text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'emails'
+#
+
+CREATE TABLE emails (
+   id int(11) NOT NULL auto_increment,
+   to_id int(11) DEFAULT '0' NOT NULL,
+   to_email text NOT NULL,
+   from_email text NOT NULL,
+   from_name text NOT NULL,
+   to_name text NOT NULL,
+   folder int(11) DEFAULT '0' NOT NULL,
+   subject text NOT NULL,
+   message text NOT NULL,
+   priority text NOT NULL,
+   type tinyint(4) DEFAULT '0' NOT NULL,
+   handled tinyint(4) DEFAULT '0' NOT NULL,
+   client_id int(11) DEFAULT '0' NOT NULL,
+   date int(11) DEFAULT '0' NOT NULL,
+   attatchments text NOT NULL,
+   message_type text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'files'
+#
+
+CREATE TABLE files (
+   id int(11) NOT NULL auto_increment,
+   name text NOT NULL,
+   client_id int(11) DEFAULT '0' NOT NULL,
+   folder int(11) DEFAULT '0' NOT NULL,
+   uploaded_by text NOT NULL,
+   comments text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'folders'
+#
+
+CREATE TABLE folders (
+   id int(11) NOT NULL auto_increment,
+   client_id int(11) DEFAULT '0' NOT NULL,
+   name text NOT NULL,
+   parent int(11) DEFAULT '0' NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'invoices'
+#
+
+CREATE TABLE invoices (
+   id int(11) NOT NULL auto_increment,
+   to_client int(11) DEFAULT '0' NOT NULL,
+   project_id int(11) DEFAULT '0' NOT NULL,
+   stage_id text NOT NULL,
+   amount text NOT NULL,
+   sales_tax text NOT NULL,
+   admin_id int(11) DEFAULT '0' NOT NULL,
+   date int(11) DEFAULT '0' NOT NULL,
+   due_date int(11) DEFAULT '0' NOT NULL,
+   date_paid int(11) DEFAULT '0' NOT NULL,
+   paid tinyint(4) DEFAULT '0' NOT NULL,
+   sent_type text NOT NULL,
+   sent_to int(11) DEFAULT '0' NOT NULL,
+   data text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'money_received'
+#
+
+CREATE TABLE money_received (
+   id int(11) NOT NULL auto_increment,
+   amount text NOT NULL,
+   client_id int(11) DEFAULT '0' NOT NULL,
+   invoice int(11) DEFAULT '0' NOT NULL,
+   comments text NOT NULL,
+   date int(11) DEFAULT '0' NOT NULL,
+   method text NOT NULL,
+   method_identifier text NOT NULL,
+   admin_id int(11) DEFAULT '0' NOT NULL,
+   receipt text NOT NULL,
+   authkey text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'project_stages'
+#
+
+CREATE TABLE project_stages (
+   id int(11) NOT NULL auto_increment,
+   project_id int(11) DEFAULT '0' NOT NULL,
+   stage_name text NOT NULL,
+   description text NOT NULL,
+   details text NOT NULL,
+   start_date int(11) DEFAULT '0' NOT NULL,
+   finish_date int(11) DEFAULT '0' NOT NULL,
+   completed int(11) DEFAULT '0' NOT NULL,
+   comments text NOT NULL,
+   cost text NOT NULL,
+   billed tinyint(4) DEFAULT '0' NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id),
+   KEY project_id (project_id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'projects'
+#
+
+CREATE TABLE projects (
+   id int(11) NOT NULL auto_increment,
+   client_id int(11) DEFAULT '0' NOT NULL,
+   project_name text NOT NULL,
+   start_date int(11) DEFAULT '0' NOT NULL,
+   finish_date int(11) DEFAULT '0' NOT NULL,
+   status tinyint(4) DEFAULT '0' NOT NULL,
+   description text NOT NULL,
+   project_manager int(11) DEFAULT '0' NOT NULL,
+   admins text NOT NULL,
+   comments text NOT NULL,
+   bill_in tinyint(4) DEFAULT '0' NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'quick_msg'
+#
+
+CREATE TABLE quick_msg (
+   id int(11) NOT NULL auto_increment,
+   admin_id int(11) DEFAULT '0' NOT NULL,
+   subject text NOT NULL,
+   message text NOT NULL,
+   date int(11) DEFAULT '0' NOT NULL,
+   handled tinyint(4) DEFAULT '0' NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'statements'
+#
+
+CREATE TABLE statements (
+   id int(11) NOT NULL auto_increment,
+   to_client text NOT NULL,
+   date int(11) DEFAULT '0' NOT NULL,
+   sent_as text NOT NULL,
+   sent_to int(11) DEFAULT '0' NOT NULL,
+   data text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'support_email_addresses'
+#
+
+CREATE TABLE support_email_addresses (
+   id int(11) NOT NULL auto_increment,
+   title text NOT NULL,
+   mail_server text NOT NULL,
+   mail_username text NOT NULL,
+   mail_password text NOT NULL,
+   email_address text NOT NULL,
+   master tinyint(4) DEFAULT '0' NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'support_tickets'
+#
+
+CREATE TABLE support_tickets (
+   id int(11) NOT NULL auto_increment,
+   email text NOT NULL,
+   contact_id int(11) DEFAULT '0' NOT NULL,
+   name text NOT NULL,
+   subject text NOT NULL,
+   department int(11) DEFAULT '0' NOT NULL,
+   details text NOT NULL,
+   date int(11) DEFAULT '0' NOT NULL,
+   was_email tinyint(4) DEFAULT '0' NOT NULL,
+   allocated int(11) DEFAULT '0' NOT NULL,
+   completed int(11) DEFAULT '0' NOT NULL,
+   parent int(11) DEFAULT '0' NOT NULL,
+   priority int(11) DEFAULT '0' NOT NULL,
+   reply text NOT NULL,
+   reply_time int(11) DEFAULT '0' NOT NULL,
+   reply_admin int(11) DEFAULT '0' NOT NULL,
+   randkey text NOT NULL,
+   attatchments text NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+
+# --------------------------------------------------------
+#
+# Table structure for table 'todo'
+#
+
+CREATE TABLE todo (
+   id int(11) NOT NULL auto_increment,
+   admin_id int(11) DEFAULT '0' NOT NULL,
+   title text NOT NULL,
+   details text NOT NULL,
+   date int(11) DEFAULT '0' NOT NULL,
+   completed int(11) DEFAULT '0' NOT NULL,
+   PRIMARY KEY (id),
+   UNIQUE id (id)
+);
+
+INSERT INTO admins VALUES ('', '', '', '', '', '', '', 'admin', 'admin', ',billing,editclients,support,editprojects,developer,export,management,nullification,', '', '', '', '', '');
+
