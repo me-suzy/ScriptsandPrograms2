@@ -1,0 +1,2 @@
+<?PHP
+  function HelpLink($szHelpQuery, $szHelpSize='2') { global $LOCALE; global $Username; global $Lang; $szHelpLink = "<FONT SIZE='$szHelpSize'><A HREF='#' TITLE='$LOCALE[COMMON_HelpClick]' ALT='$LOCALE[COMMON_HelpClick]'  OnClick=\"window.open('help.php?Lang=$Lang&Query=$szHelpQuery', 'HELP$Username', 'width=400,height=400,scrollbars,resizable=no');\">$LOCALE[COMMON_Help]</A></FONT SIZE>"; return($szHelpLink); } ?>
