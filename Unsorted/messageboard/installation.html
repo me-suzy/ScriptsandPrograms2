@@ -1,0 +1,185 @@
+<pre>Installation Documentation
+
+<h2>ScareCrow Message Board Installation Documentation</h2>
+
+Welcome!  This document is meant to help guide you through the installation
+of the ScareCrow Message Board Software.
+
+Before you begin, you need to download a version of ScareCrow.  Head to
+<a
+href="http://scarecrow.sourceforge.net/downloads.php" class="normal"><font
+color="#770000">http://scarecrow.sourceforge.net/downloads.php</font></a>
+and select the version that best suits your needs.  Once the download has
+completed, you need to uncompress the archive.
+
+<h4>Uncompressing</h4>
+
+<b>Windows - Self Extracting</b>
+
+To extract the file if you downloaded the self-extracting version, simply
+browse to the folder you saved it in and double-click.
+
+<b>Windows - Zip</b>
+
+To extract the zip file, you have two options.  If you have <a
+href="http://www.winzip.com" class="normal"><font
+color="#770000">WinZip</font></a> or a similar Windows archiving
+utility, you can simply browse to where you downloaded the file, right-click
+it and choose "Extract".
+
+Alternately, if you have pkunzip for DOS, simply drop to a DOS shell, and execute the
+following commands:
+
+<i>cd\path\to\archive</i><br>
+<i>pkunzip archive_filename.zip</i>
+
+<b>*Nix - Tar.gz</b>
+
+<i>cd /path/to/archive</i><br>
+<i>tar xzvf archive_filename.tar.gz</i>
+
+Where <font color="red">path\to\archive</font> is the full system path to
+the directory in which the archive resides, and <font
+color="red">archive_filename.zip</font> is the name of the archive you
+downloaded, for instance "scarecrow200-beta.zip".
+
+
+Once you have extracted the files, you are ready to begin with the
+installation.  If you do not have an FTP client, you will need one.  You can
+find many good freeware or shareware FTP clients at <a
+href="http://www.tucows.com" class="normal"><font
+color="#770000">http://www.tucows.com</font></a>.  Make sure that the
+FTP client you get is capable of performing the CHMOD operation.  CuteFTP is
+a good client to use.  This tutorial will provide instructions for
+performing commands within CuteFTP.  Other FTP clients should perform
+similarly.
+
+Open up your FTP client and connect to your FTP site with your usual
+username and password.  Locate the <b>cgi-bin</b> directory.  This directory
+is sometimes located underneath your web root (the htdocs, html, or
+public_html directory) or sometimes right within it.  If it does not exist, create it
+in your web root and do a <font color="navy">CHMOD 755 cgi-bin</font>.  In
+CuteFTP, you can do that by right-clicking the directory, choosing CHMOD,
+and typing 755 in the box at the bottom.  If your FTP client does not allow
+you to specify a string such as 755, the permissions should be <font
+color="green">user: read, write, execute.  group: read, execute.  world:
+read, execute</font>.
+
+Next, you will want to create the rest of your directories.  If your cgi-bin
+was not in your web root, change the directory into your web root now.
+Create a directory called <i>scarecrow</i> and enter that directory.  Next,
+create four directories within the <i>scarecrow</i> directory:
+<i>images</i>, <i>avatars</i>, <i>emoticons</i> and <i>uploads</i>.  Perform
+the <font color="navy">CHMOD 777</font> (<font color="green">user: read,
+write, execute.  group: read, write, execute.  world: read, write,
+execute</font>) operation on each of the four directories as outlined above.
+
+Enter your cgi-bin directory once again.  Here you should create a subdirectory.  This
+tutorial will assume you have named it <i>scarecrow</i>, but you may name it
+as you please.  Perform the <font color="navy">CHMOD 755</font> operation on
+the new directory.
+
+In your FTP client, browse to the directory where you uncompressed the
+ScareCrow archive.  There should be two directories and an assortment of
+files.  Enter the <i>cgi-bin</i> directory and upload all files in that
+directory to your cgi-bin.  <font color="navy">CHMOD 755</font> all of the
+newly uploaded files.  Also create three directories: <i>data</i>,
+<i>help</i>, and <i>templates</i>.  Upload the contents of each respective
+directory on your drive into the corresponding directory on your server:
+data files to data, help files into help, and template files into templates.
+
+Go back to the <i>scarecrow</i> directory you created in your web root
+earlier.  In your FTP client, leave the cgi-bin directory and enter the
+noncgi directory on your harddrive, where you extracted the ScareCrow
+archive.  Upload each of the directories under noncgi into the corresponding
+directory on your FTP server: All of the files in images to images, the
+files in emoticons into emoticons, etc.  When the uploads are complete,
+perform a <font color="navy">CHMOD 644</font> on every file you have uploaded.
+
+Are you still with us?  <b>Congratulations!</b>  You're half way through the
+installation process.
+
+<h4>Installer.cgi Script</h4>
+
+The next step in the installation process is to point your web browser to
+the installer.cgi script, <font
+color="red">http://yoursite.com/cgi-bin/scarecrow/installer.cgi</font>,
+where <i>yoursite.com</i> is the name of your website (and <i>scarecrow</i>
+is the name of the directory you created within your cgi-bin, if you did not
+follow the tutorial's example).
+
+The first screen you will encounter is the most crucial.  The fields it
+expects, and their explanations, are as follows:
+
+<b>Message Board Name</b> - What you want to name your message board.  This
+can be any string you wish.
+
+<b>Website Name</b> - The name of the website on which the board resides.
+
+<b>Default Table Width (pixels or %)</b> - The size of the table.  If you
+have ever done any web design work, you know precisely what this is.  If
+not, use a percent.  The percent (60%, for example), refers to how much of
+the screen, horizontally, will be used.  The default is a fairly attractive
+option.
+
+<b>Default User Group</b> - The group that users are assigned to by default.
+Be careful!  Users get their permissions from the groups they are assigned
+to.  If you supply a faulty group, users will not be able to read or post on
+the message board!  This may be any group name, but we recommend "Users".
+<b>Remember to create the group you specify here in the group manager in the
+setup step!</b>
+
+<b>CGI Path</b> - This is by far the most important variable you will set.
+If you set it improperly, your board will not function at all (in which case
+you will need to re-run the installer.cgi script and change the value until
+you have the correct value entered).  This variable specifies the <i>full
+system path</i> to the directory you placed the ScareCrow CGI files in.  If
+you are unsure of the full system path, simply accept the best-guess default
+provided by the script.
+
+<b>Non-CGI Path</b> - This is the <i>full system path</i> to the directory
+in which you uploaded your images, emoticons and avatars.  It should be
+similar to the CGI Path, except that instead of entering
+<i>cgi-bin/scarecrow</i>, it should be <i>scarecrow/</i> (again, this
+assumes you used the default names).  If you are unsure, try the best-guess
+default.
+
+<b>Board URL</b> - The URL to your ScareCrow CGI directory.  This should be
+the URL into your cgi-bin/scarecrow directory, created earlier.  If you are
+unsure, try the best-guess default.
+
+<b>Website URL</b> - The URL to your website.
+
+<b>Non-CGI URL</b> - The URL to your ScareCrow non-CGI directory.  This
+should be the URL into your <i>webroot</i>/scarecrow directory (containing
+the images, emoticons, avatars and uploads directories), created earlier.
+If you are unsure, try the best-guess default.
+
+<b>Cookie Domain</b> - The domain to send cookies from.  If you are unsure,
+first try the best-guess default.  If you are having problems with cookies,
+try changing that to remove the leading period in the Administrator Control
+Panel.
+
+Once you have completed the configuration options outlined above, click the
+"Submit Configuration Changes" button.
+
+The next screen will display a bit of data about which variables have been
+saved, and with what values.  You can ignore that list.  The next set of
+boxes is where you create the first Administrator account on the message
+board.  It is with this account that you will be able to set-up and fully
+control your message board, so choose the username and password carefully.
+When you are satisfied with the results, submit the form.
+
+The next screen should be a confirmation screen.  It outlines the rest of
+the setup process for you.  Simply follow the guide there (and common
+sense!) as you point your browser to the admincenter.cgi script (links are
+provided for you on the confirmation screen) and set up your board options.
+If you would like to make sure the configuration you have set up appears
+valid before you continue, there is a link provided for a configuraiton
+self-check as well.  It will tell you if it discovers any problems (and
+attempt to fix those it can).  If there are any fatal errors, it will alert
+you of that as well.
+
+<b>Congratulations!!</b>  You have successfully installed your ScareCrow Message Board.
+Just a few set up options to deal with and you're done.  Enjoy!</pre>
+
