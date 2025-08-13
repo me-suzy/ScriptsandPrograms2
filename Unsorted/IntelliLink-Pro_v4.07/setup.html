@@ -1,0 +1,380 @@
+<html>
+
+<head>
+<title>IntelliLink Version 4.07 Setup</title>
+</head>
+
+<body>
+
+<p align="center"><u><big>IntelliLink Pro (v4.07) Setup Instructions</big></u></p>
+
+<p align="center"><a href="#upgrade"><small>Skip to bottom if you are upgrading</small></a></p>
+
+<table border="0">
+  <tr>
+    <td valign="top"></td>
+    <td valign="top" bgcolor="#FFFFFF" align="center" colspan="4"><u><strong>Files Included...</strong></u></td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Location:</strong></td>
+    <td valign="top" bgcolor="#C0C0C0" align="center">intellilink/ (main)</td>
+    <td valign="top" align="center" bgcolor="#E1E1E1">intellilink/ (main)</td>
+    <td valign="top" bgcolor="#C0C0C0" align="center">intellilink/html/</td>
+    <td valign="top" align="center" bgcolor="#E1E1E1">(you decide)</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Files:</strong></td>
+    <td valign="top" bgcolor="#C0C0C0"><ul>
+      <li>addlink.cgi</li>
+      <li>addlink_lwp.cgi</li>
+      <li>admin.cgi</li>
+      <li>cron_reset.cgi</li>
+      <li>cron_update.cgi</li>
+      <li>intellilink.cgi</li>
+      <li>in.cgi</li>
+      <li>inauto.cgi</li>
+      <li>out.cgi</li>
+      <li>random.cgi</li>
+      <li>variables.cgi</li>
+    </ul>
+    </td>
+    <td valign="top" bgcolor="#E1E1E1"><ul>
+      <li>data.txt</li>
+      <li>data(backup).txt</li>
+      <li>logs.txt</li>
+      <li>reset.txt</li>
+      <li>update.txt</li>
+      <li>iplog.txt</li>
+    </ul>
+    </td>
+    <td valign="top" bgcolor="#C0C0C0"><ul>
+      <li>linkadded.html</li>
+      <li>addlink_head.html</li>
+      <li>addlink_foot.html</li>
+      <li>edit_head.html</li>
+      <li>edit_foot.html</li>
+      <li>gateway.html</li>
+      <li>welcome.txt</li>
+    </ul>
+    </td>
+    <td valign="top" bgcolor="#E1E1E1"><ul>
+      <li>admin_1.gif</li>
+      <li>admin_2.gif</li>
+      <li>admin_3.gif</li>
+    </ul>
+    </td>
+  </tr>
+</table>
+
+<p><u>Setup</u> 
+
+<ol>
+  <li>Open variables.cgi and follow instructions to set some info the CGI needs.</li>
+  <li>Upload the 3 graphics (<strong>admin_1.gif</strong>,<strong> admin_2.gif </strong>&amp;<strong>
+    admin_3.gif</strong>) to the directory you specified in variables.cgi.</li>
+  <li>Customize the header/footer of the signup and edit pages by changing the following
+    files: <strong>addlink_head.html</strong>, <strong>addlink_foot.html</strong>, <strong>edit_head.html</strong>,
+    and <strong>edit_foot.html</strong>.</li>
+  <li>Customize the page people see after signing up (<strong>linkadded.html</strong>) and the
+    welcome e-mail (<strong>welcome.txt</strong>). Optionally use the unique info tags (<a
+    href="#tags">more about this further down this page</a>).</li>
+  <li>Set the path to perl at the top of each CGI file (except <strong>variables.cgi</strong>),
+    the default is #!/usr/bin/perl</li>
+  <li>IF you have Cron and want to use it for IntelliLink, then make sure to specify the path
+    to your IntelliLink directory at the top of <strong>cron_reset.cgi</strong> AND <strong>cron_update.cgi</strong>.</li>
+  <li>Create a directory in your cgi-bin (&quot;cgi-bin/intellilink&quot;) and upload all
+    files (except the ones in the &quot;html&quot; folder) in ASCII mode.</li>
+  <li>Create a sub-directory called &quot;html&quot; (&quot;cgi-bin/intellilink/html&quot;)
+    and upload all files that are in your &quot;html&quot; folder.</li>
+  <li>Create a sub-directory called &quot;members&quot;
+    (&quot;cgi-bin/intellilink/members&quot;) and change its permissions to CHMOD 777.</li>
+  <li>Set the file permissions of all CGI files to CHMOD 755, and for the TXT files change
+    them to CHMOD 777.</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<p><u>How to use IntelliLink</u> 
+
+<ul>
+  <li>Link to the addlink.cgi file to let webmasters sign up. Link to edit.cgi to let them
+    access their accounts.</li>
+  <li>Run admin.cgi to login to your admin page. You can change the amount of hits a specific
+    site starts with each day (to give a boost), change link priorities, and more.</li>
+  <li>Link to out.cgi (without an ID specified) to send visitors to a random site.</li>
+  <li>If you want the hit count to reset at a certain time, upload an empty reset.txt file and
+    then go click on one of your links (which runs out.cgi). The time you do this at will be
+    when the count will always reset at in the future.</li>
+  <li>You can display the links with SSI or Javascript. The advantages of using SSI are that
+    it's faster and all browsers will support it (unlike Javascript, which might be supported
+    by only 95% of your visitors).</li>
+  <li>If you want IntelliLink to insert links directly onto your html pages (rather than use
+    SSI or Javascript), <a href="#htmltags">skip this part and read the section on &quot;html
+    tags&quot;</a>.</li>
+</ul>
+
+<ul>
+  <li>Executing intellilnk.cgi from your <strong>SSI</strong> (.shtml) pages (If you're not
+    familiar with it, go <a
+    href="http://dir.yahoo.com/Computers_and_Internet/Software/Internet/World_Wide_Web/Servers/Server_Side_Scripting/Server_Side_Includes__SSI_/">here</a>
+    to find SSI tutorials):</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&lt;!--#include
+virtual=&quot;/path/to/cgi/intellilink.cgi&quot; --&gt; </strong>
+
+<ul>
+  <li>Executing intellilink.cgi with <strong>javascript</strong> code:</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp; &lt;script
+src=&quot;http://domain.com/intellilink.cgi?java=1&quot;&gt;&lt;/script&gt;</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It's important to put <strong>java=1</strong>
+to let Intellilink know you are displaying the links with Javascript. 
+
+<ul>
+  <li>There are many values you can assign to these tags to get different results.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Format (SSI):</strong> &lt;!--#include
+  virtual=&quot;/path/to/cgi/intellilink.cgi?VALUE&quot; --&gt; </p>
+  <p><strong>Format (Java):</strong> &lt;script
+  src=&quot;http://domain.com/intellilink.cgi?java=1&amp;VALUE&quot;&gt;&lt;/script&gt;</p>
+  <p>The following table describes each value you can assign to intellilink.cgi. Seperate
+  values with an ampersand sign (&amp;).</p>
+  <table border="1">
+    <tr>
+      <td width="24%" height="19"><strong>Value (N is a number)</strong></td>
+      <td width="42%" height="19"><strong>Description</strong></td>
+      <td width="34%" height="19"><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td width="24%" height="30">start=N</td>
+      <td width="42%" height="30"><small>Rank number to start at.</small></td>
+      <td width="34%" height="30"><small>start=10 (Displays links starting at rank #10)</small></td>
+    </tr>
+    <tr>
+      <td width="24%" height="19">end=N</td>
+      <td width="42%" height="19"><small>Rank number to end at.</small></td>
+      <td width="34%" height="19"><small>end=30 (Displays up to rank #30)</small></td>
+    </tr>
+    <tr>
+      <td width="24%" height="30">columns=N</td>
+      <td width="42%" height="30"><small>Display links in a table with N amount of columns.</small></td>
+      <td width="34%" height="30"><small>columns=2 (Seperates links into 2 columns of a table)</small></td>
+    </tr>
+    <tr>
+      <td width="24%" height="19">desc=show</td>
+      <td width="42%" height="19"><small>Display site description beside link.</small></td>
+      <td width="34%" height="19"></td>
+    </tr>
+    <tr>
+      <td width="24%" height="21">fsize=N</td>
+      <td width="42%" height="21"><small>Size of the font for the links.</small></td>
+      <td width="34%" height="21"><small>fsize=4 (makes text </small><font size="4">this size</font><small>)</small></td>
+    </tr>
+    <tr>
+      <td width="24%" height="20">tmax=N</td>
+      <td width="42%" height="20"><small>Limit the length of each link (in characters).</small></td>
+      <td width="34%" height="20"><small>tmax=20 (link is cut off at 20 characters)</small></td>
+    </tr>
+    <tr>
+      <td width="24%" height="20">cat=CATEGORY</td>
+      <td width="42%" height="20"><small>Display only links in a specific CATEGORY.</small></td>
+      <td width="34%" height="20"><small>cat=Music (would display Music sites only)</small></td>
+    </tr>
+  </table>
+</blockquote>
+
+<blockquote>
+  <p><strong>(There is a page on Smart CGIs that will help you put together your SSI and
+  Java tags for Intellilink, <a href="http://www.smartcgis.com/intellilink/taghelp.shtml">click
+  here</a> to go there.)</strong></p>
+</blockquote>
+
+<ul>
+  <li>To display a random site, which has sent you more hits than you have sent them (In count
+    is bigger than Out count), execute random.cgi. This link would be used to try to send more
+    hits to these sites.</li>
+</ul>
+
+<ul>
+  <p>SSI eg. <strong>&lt;!--#include virtual=&quot;/path/to/cgi/random.cgi&quot; --&gt;</strong></p>
+  <p>Java eg. <strong>&lt;script
+  src=&quot;http://domain.com/random.cgi?java=1&quot;&gt;&lt;/script&gt;</strong></p>
+  <li>You can display random links from only a specific category by adding
+    &quot;cat=CATEGORY&quot; to your tag. Examples:</li>
+</ul>
+
+<blockquote>
+  <p>&lt;!--#include virtual=&quot;/path/to/cgi/random.cgi<strong>?cat=Music</strong>&quot;
+  --&gt;</p>
+  <p>&lt;script src=&quot;http://domain.com/random.cgi?java=1<strong>&amp;cat=Music</strong>&quot;&gt;&lt;/script&gt;</p>
+</blockquote>
+
+<p>&nbsp;</p>
+
+<p><u>The &quot;No Linking Code&quot; Option</u></p>
+
+<p>Instead of using the long link code (to track hits) you can have people link to your
+main page (or any page you want) by loading the inauto.cgi file on it.</p>
+
+<p><strong>With SSI: &lt;!--#include virtual=&quot;/path/to/cgi/inauto.cgi&quot; --&gt; </strong></p>
+
+<p><strong>With Java: &lt;script
+src=&quot;http://domain.com/inauto.cgi&quot;&gt;&lt;/script&gt;</strong></p>
+
+<p>(Doing this with a Javascript tag is not recommended, because problems have been
+reported with the tracking of incoming hits.)</p>
+
+<p>The way this feature works is it finds out the referring page and then compares that to
+the submitted URLs in the data file. If it finds a match it counts a hit for that member.
+It will even recognize the correct referrer if the submitted URL is <a
+href="http://www.smartcgis.com">http://www.smartcgis.com</a> and the link to your site is
+on <a href="http://www.smartcgis.com/links.html">http://www.smartcgis.com/links.html</a>,
+but if the link is on another domain (www.anothersite.com/links.html) it won't work. You
+will have to tell your members to use the (long) link code assigned to them if this is the
+case with them.</p>
+
+<p><u>Tags</u> 
+
+<ul>
+  <li>The files <strong>welcome.txt</strong> and <strong>linkadded.html</strong> can be
+    customized and they use special tags that are replaced by their unique values for each
+    member. A tag is a keyword inside square brackets, the following table describes each tag
+    you can use.</li>
+</ul>
+
+<blockquote>
+  <table border="0">
+    <tr>
+      <td width="22%"><strong>Tag to use </strong></td>
+      <td width="78%"><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td width="22%">[id]</td>
+      <td width="78%">Replaced by the member's ID number.</td>
+    </tr>
+    <tr>
+      <td width="22%">[title]</td>
+      <td width="78%">Title of the member's site.</td>
+    </tr>
+    <tr>
+      <td width="22%">[url]</td>
+      <td width="78%">URL of their site.</td>
+    </tr>
+    <tr>
+      <td width="22%">[description]</td>
+      <td width="78%">Description of their site.</td>
+    </tr>
+    <tr>
+      <td width="22%">[email]</td>
+      <td width="78%">The member's e-mail address.</td>
+    </tr>
+    <tr>
+      <td width="22%">[password]</td>
+      <td width="78%">The password the member chose for their acocunt.</td>
+    </tr>
+  </table>
+</blockquote>
+
+<ul>
+  <li><strong>gateway.html</strong> uses only the [url] tag, which is replaced by the link
+    visitors need to click on to continue to your site (anti-cheat gatway). If you don't have
+    the full protection gateway activated (in <strong>variables.cgi</strong>) you can ignore
+    this file</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><a name="htmltags"></a><u>IntelliLink &quot;HTML Tags&quot;</u> 
+
+<ul>
+  <li>Using SSI and especially Javascript tags can be slow and put a load on your server,
+    &quot;HTML Tags&quot; allows you to have links placed directly on your site's pages each
+    time the CGI updates the stats. Go to your admin page and click on the &quot;HTML
+    Tags&quot; button to setup these pages, you will be given the special tag to copy and
+    paste onto your pages (those tags will tell the CGI where your links should go).</li>
+  <li>You can also place random link tags on your pages, but you need to tell IntelliLink
+    which pages these are on. You will find this in <strong>variables.cgi</strong>. Note that
+    if you put multiple random link tags on one page the same link will be used for each one
+    (this might be improved in a future version). Here is the tag you need to place on those
+    pages wherever you want random links to appear: <font color="#808080"><em>&lt;!--start
+    intellilink random--&gt;.&lt;!--end intellilink random--&gt;</em></font></li>
+  <li><font color="#000000">Unless your server doesn't allow IntelliLink to edit files outside
+    of your cgi-bin, you will be able to use this feature. Changing the permission of the
+    pages to CHMOD 777 might help if it doesn't work. It is highly recommended that you use
+    &quot;HTML Tags&quot;, it will greatly improve the speed and efficiency of IntelliLink.</font></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><u>Layout Tips</u> 
+
+<ul>
+  <li>Display your top referrers (eg. #1 to #10) in your BEST spot (probably at top of main
+    page or in a frame that is always shown to visitors), this is important to keep the sites
+    who send you the most visitors satisfied.</li>
+  <li>Display the second best referrers (eg. #11 to #30) in your second best spot (that makes
+    sense, right?).</li>
+  <li>If you are not sending everyone atleast the same amount of hits that they are sending
+    your site, you should display the random site (execute random.cgi) in a very good spot.
+    Maybe even in several spots, you will have to find out what's best for your site. The
+    random site will be displayed as long as there are sites not receiving enough hits from
+    you.</li>
+  <li>You can display all your links on a links page (#1 to #1000 should cover it). This way
+    any links not displayed on your other pages will always be somewhere on your site (good
+    for getting small sites to link to you too).</li>
+  <li>If you don't mind sending &quot;blind hits&quot; to your link exchanges, you can just
+    put noticeable text on your pages and link them to <strong>out.cgi</strong>. Anyone who
+    clicks on that link will be sent to a random site. Example html: <p><font color="#808080"><em>&lt;a
+    href=&quot;http://yoursite.com/out.cgi&quot;&gt;Check out this cool site!&lt;/a&gt;</em></font></p>
+    <p><font color="#000000">If you want to send a &quot;blind hit&quot; to a specific
+    category only, you would link to &quot;out.cgi?cat=CATEGORY&quot;. Example html: </font></p>
+    <p><font color="#808080"><em>&lt;a href=&quot;http://yoursite.com/out.cgi<strong>?cat=Music</strong>&quot;&gt;Check
+    out this Music site!&lt;/a&gt;</em></font></p>
+  </li>
+</ul>
+
+<p>&nbsp;<a name="upgrade"></a></p>
+
+<p><u>Upgrading to Version 4.07 (from v4.06):</u> 
+
+<ul>
+  <li>Replace variables.cgi, cron_reset.cgi and admin.cgi. The only changes to variables.cgi appear below line #277 (The "do not edit here" area at the bottom of the file). So if you feel you know enough not to screw things up, you can just copy that section and leave all your settings (variables) in the top half of that file the same.</li>
+</ul>
+
+
+<p><u>Upgrading to Version 4.07 (from v4.04):</u> 
+
+<ul>
+  <li>Replace variables.cgi, cron_reset.cgi, edit.cgi, and admin.cgi. The only changes to variables.cgi appear below line #277 (The "do not edit here" area at the bottom of the file). So if you feel you know enough not to screw things up, you can just copy that section and leave all your settings (variables) in the top half of that file the same.</li>
+</ul>
+
+
+<p><u>Upgrading to Version 4.07 (from v4.03):</u> 
+
+<ul>
+  <li>Replace <strong>variables.cgi</strong>, cron_reset.cgi, cron_update.cgi, edit.cgi, and <strong>admin.cgi</strong>. The only changes to variables.cgi appear below line #277 (The "do not edit here" area at the bottom of the file). So if you feel you know enough not to screw things up, you can just copy that section and leave all your settings (variables) in the top half of that file the same.</li>
+</ul>
+
+
+<p><u>Upgrading to Version 4.07 (from any other version):</u> 
+
+<ul>
+  <li>Replace all CGI files (including variables.cgi), and upload the new <strong>cron_reset.cgi</strong>
+    and <strong>cron_update.cgi</strong>. Change all file permissions to CHMOD 755.</li>
+  <li>After you customize them, upload all files from the &quot;html&quot; folder into a
+    sub-directory called &quot;html&quot; (&quot;cgi-bin/intellilink/html&quot;).</li>
+  <li>Upload the new <strong>update.txt</strong> file to the same directory as the CGI files
+    and change its permissions to CHMOD 777.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p align="center"><a href="http://www.smartcgis.com">You might find more help at
+SmartCGIs.com</a></p>
+</body>
+</html>
