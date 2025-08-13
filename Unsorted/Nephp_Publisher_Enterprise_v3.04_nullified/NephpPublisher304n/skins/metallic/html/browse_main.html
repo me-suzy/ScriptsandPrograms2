@@ -1,0 +1,249 @@
+<html>
+<head>
+<script>
+if (!document.layers&&!document.all&&!document.getElementById)
+event="test"
+function showtip(current,e,text){
+
+if (document.all||document.getElementById){
+thetitle=text.split('<br>')
+if (thetitle.length>1){
+thetitles=''
+for (i=0;i<thetitle.length;i++)
+thetitles+=thetitle[i]
+current.title=thetitles
+}
+else
+current.title=text
+}
+
+else if (document.layers){
+document.tooltip.document.write('<layer bgColor="white" style="border:1px solid black;font-size:12px;">'+text+'</layer>')
+document.tooltip.document.close()
+document.tooltip.left=e.pageX+5
+document.tooltip.top=e.pageY+5
+document.tooltip.visibility="show"
+}
+}
+function hidetip(){
+if (document.layers)
+document.tooltip.visibility="hidden"
+}
+
+</script>
+<style>
+body, p, td {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; 
+scrollbar-face-color: #dadada; 
+                scrollbar-shadow-color: #000000; 
+                scrollbar-highlight-color: #FFFFFF; 
+                scrollbar-3dlight-color: #000000; 
+                scrollbar-darkshadow-color: #dadada; 
+                scrollbar-track-color: #FFFFFF; 
+                scrollbar-arrow-color: #000000; }
+    </style>
+ </head>          
+ <body topmargin="0" leftmargin="0" link="#000080" vlink="#000080" alink="#000080" bgcolor="#FFFFFF">
+
+           <div align="center">
+             <center>
+             <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber17">
+               <tr>
+                 <td width="100%" valign="top" bgcolor="#D4D2DF">
+                 <div align="left">
+                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber18" width="760">
+                     <tr>
+                       <td valign="top" width="293" bgcolor="#D4D2DF">
+                       <img border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_logo.gif" width="293" height="230"></td>
+                       <td valign="top" width="467" bgcolor="#D4D2DF">
+                       <div align="center">
+                         <center>
+                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber19">
+                           <tr>
+                             <td width="50%" valign="top">&nbsp; </td>
+                           </tr>
+                           <tr>
+                             <td width="50%" valign="top">
+                             <img border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_current_feature.gif" width="143" height="13"></td>
+                           </tr>
+                           <tr>
+                             <td width="50%" valign="top">{%var_features%}</td>
+                           </tr>
+                           <tr>
+                             <td width="50%" valign="top">
+                             <p align="right">
+                             <img border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_credit_logo.gif" width="118" height="22"></td>
+                           </tr>
+                         </table>
+                         </center>
+                       </div>
+                       </td>
+                     </tr>
+                   </table>
+                 </div>
+                 </td>
+               </tr>
+               <tr>
+                 <td width="100%" valign="top" background="{%tpl_template_url%}/gfx/cnet/nnet2002_toolbar_bg.gif">
+                 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber20" width="760">
+                   <tr>
+                     <td valign="top" width="1">
+                     <map name="FPMap0">
+                     <area href="{%url_php%}/browse.php" onMouseover="showtip(this,event,'Return home');" onMouseout="hidetip()" shape="rect" coords="39, 3, 63, 27">
+                     <area href="{%url_php%}/browse.php?mod=signup" onMouseover="showtip(this,event,'New Member Sign-up');" onMouseout="hidetip()" shape="rect" coords="65, 2, 90, 27">
+                     <area href="{%url_php%}/browse.php?mod=archive" onMouseover="showtip(this,event,'Latest Article Submission');" onMouseout="hidetip()" shape="rect" coords="93, 3, 124, 27">
+                     <area href="{%url_php%}/browse.php?mod=submit" onMouseover="showtip(this,event,'Submit your article');" onMouseout="hidetip()" shape="rect" coords="121, 3, 152, 27">
+                     <area href="{%url_php%}/browse.php?mod=members" onMouseover="showtip(this,event,'NePHP Member List');" onMouseout="hidetip()" shape="rect" coords="155, 3, 179, 27">
+                     <area href="{%url_php%}/browse.php?mod=profile" onMouseover="showtip(this,event,'My Profile');" onMouseout="hidetip()" shape="rect" coords="185, 2, 210, 27">
+                     <area href="{%url_php%}/help.html" shape="rect" onMouseover="showtip(this,event,'Click here for additional help');" onMouseout="hidetip()" coords="260, 3, 277, 20">
+                     </map>
+                     <img border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_toolbar.gif" width="360" height="78" usemap="#FPMap0"></td>
+                     <td valign="top">
+                     <form method="POST" action="browse.php">
+                     <input type=hidden name=mod value="find">
+					<div align="right">
+                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber21">
+                           <tr>
+                             <td valign="top">
+                             <img border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_toolbar_quiksearch.gif" width="84" height="36">&nbsp;&nbsp;
+                             </td>
+                             <td><input type="text" name="keywords" size="20"></td>
+                             <td valign="top">
+                             <input border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_toolbar_go.gif" name="I1" width="27" height="36" type="image"></td>
+                           </tr>
+                         </table>
+                       </div>
+                     </form>
+                     <p>&nbsp;</td>
+                   </tr>
+                 </table>
+                 </td>
+               </tr>
+               <tr>
+                 <td width="100%" valign="top">
+                 <div align="left">
+                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="760" id="AutoNumber22">
+                     <tr>
+                       <td valign="top" width="1"><img border="0" src="{%tpl_template_url%}/gfx/trans.gif" width="177" height="1"></td>
+                       <td valign="top"><img border="0" src="{%tpl_template_url%}/gfx/trans.gif" width="208" height="1"></td>
+                       <td valign="top" width="1">
+                       <img border="0" src="{%tpl_template_url%}/gfx/trans.gif" width="177" height="1"></td>
+                     </tr>
+                     <tr>
+                       <td valign="top">&nbsp;</td>
+                       <td valign="top">&nbsp;</td>
+                       <td valign="top">&nbsp;</td>
+                     </tr>
+                     <tr>
+                       <td valign="top">&nbsp;<b>News Category</b></td>
+                       <td valign="top" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: dotted; border-bottom-width: 1">
+                       <b>Today's latest articles:</b></td>
+                       <td valign="top">
+                       <div align="right">
+                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber24">
+                           <tr>
+                             <td width="100%"><b>&nbsp;Top Rated Articles</b></td>
+                           </tr>
+                         </table>
+                       </div>
+                       </td>
+                     </tr>
+                     <tr>
+                       <td valign="top">
+                       <div align="center">
+                         <center>
+                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="94%" id="AutoNumber25">
+                          {%column_one%}
+                          {%column_two%}
+                           </table>
+                         </center>
+                       </div>
+                       </td>
+                       <td valign="top" bgcolor="#F1F2F6">
+                       <div align="center">
+                         <center>
+                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber26">
+                           <tr>
+                             <td width="100%">&nbsp;<br>
+&nbsp;</td>
+                           </tr>
+                           <tr>
+                             <td width="100%">
+                             <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber27">
+                               <tr>
+                                 <td width="50%" valign="top">{%var_news02%}</td>
+                                 <td width="50%" valign="top">{%var_news01%}</td>
+                               </tr>
+                             </table>
+                             </td>
+                           </tr>
+                         </table>
+                         </center>
+                       </div>
+                       </td>
+                       <td valign="top">&nbsp;<div align="right">
+                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber23">
+                           <tr>
+                             <td width="100%" valign="top">{%var_toprate%}</td>
+                           </tr>
+                           <tr>
+                  <td width="100%" bgcolor="#FFFFFF" height="37">
+                  <font face="Verdana" size="2">&nbsp;&nbsp;<br>
+                  <img border="0" src="{%tpl_template_url%}/gfx/AcctInfo.gif" width="20" height="18"> 
+                  Member Login</font></td>
+                </tr>
+                <tr>
+                  <td width="100%" bgcolor="#FFFFFF" height="61">
+                  User:
+                  <input type="text" name="username" size="19" style="font-size: 8pt; font-family: Verdana"><br>
+                  Pass:
+                  <input type="password" name="password" size="10" style="font-size: 8pt; font-family: Verdana">&nbsp;
+                  <input type="button" value="Login" name="B1" style="font-size: 8pt; font-family: Verdana" onclick="loginbox()"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <img border="0" src="{%tpl_template_url%}/gfx/cnet/_active.gif" width="6" height="6">
+                  <a href="{%25url_php%25}/browse.php?mod=lostpwd">Lost Password</a></td>
+                </tr>
+
+                           <tr>
+                             <td width="100%" valign="top">&nbsp;</td>
+                           </tr>
+                           <tr>
+                             <td width="100%" valign="top">
+                  <img border="0" src="{%tpl_template_url%}/gfx/front/main_anet_affiliates.gif" width="166" height="20"></td>
+                           </tr>
+                           <tr>
+                             <td width="100%" valign="top" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1">
+                  <img border="0" src="{%tpl_template_url%}/gfx/banners/linuxmaxll.gif" width="140" height="33"></td>
+                           </tr>
+                           <tr>
+                             <td width="100%" valign="top" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1">
+                  <img border="0" src="{%tpl_template_url%}/gfx/banners/techiest.gif" width="140" height="79"></td>
+                           </tr>
+                           <tr>
+                             <td width="100%" valign="top">
+                  <img border="0" src="{%tpl_template_url%}/gfx/banners/foxservll.gif" width="140" height="91"></td>
+                           </tr>
+                           <tr>
+                             <td width="100%" valign="top">&nbsp;</td>
+                           </tr>
+                           <tr>
+                             <td width="100%" valign="top">Copyrighted by 
+                             Nelogic Tech.<br>
+                             <font color="#808080">Designed by Kenny Ngo</font></td>
+                           </tr>
+                         </table>
+                       </div>
+                       </td>
+                     </tr>
+                   </table>
+                 </div>
+                 </td>
+               </tr>
+               </table>
+             </center>
+           </div>
+      <script>
+      function loginbox(){document.location='index.php?action=login&username='+document.all.username.value+'&opt=o0o&password='+document.all.password.value;}
+           </script>
+
+      </body>
+      </html>
