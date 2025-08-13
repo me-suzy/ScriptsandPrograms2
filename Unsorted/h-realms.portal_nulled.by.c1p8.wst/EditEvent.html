@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>SVEC - Edit Event</title>
+<meta name="GENERATOR" content="YesSoftware CodeCharge v.1.1.18 / Templates.ccp build 3/2/2001">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0"> 
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+</head>
+<body style="background-color: #FFFFFF; color: #000000; font-family: Arial, Tahoma, Verdana, Helveticabackground-color: #FFFFFF; color: #000000; font-family: Arial, Tahoma, Verdana, Helvetica">
+{Header}
+ <table>
+  <tr>
+   <td valign="top">
+   <!--BeginFormEditEvent-->
+   <form method="POST" action="{FileName}" name="EditEvent">
+    <table style="style="border-style: outset; border-width: 2"">
+     <tr>
+      <td style="background-color: #990000; text-align: Center; border-style: outset; border-width: 1" colspan="2"><font style="font-size: 12pt; color: #FFFFFF; font-weight: bold">Edit Event</font></td>
+     </tr>
+     <!--BeginEditEventError-->
+     <tr>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1" colspan="2"><font style="font-size: 10pt; color: #000000">{sEditEventErr}<font></td>
+     </tr>
+     <!--EndEditEventError-->
+    
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Date</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><input type="text" name="date_start" maxlength="20" value="{date_start}" size="20"></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Title</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><textarea name="event_name" cols="70" rows="2">{event_name}</textarea></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Description</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><textarea name="event_desc" cols="70" rows="8">{event_desc}</textarea></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Location</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><textarea name="location" cols="70" rows="2">{location}</textarea></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Presenter</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><input type="text" name="presenter" maxlength="50" value="{presenter}" size="50"></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">User Added</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><select name="user_added"><!--BeginLBuser_added--><option value="{ID}" {Selected}>{Value}</option><!--EndLBuser_added--></select></td>
+     </tr>
+     
+     <tr>
+      <td colspan="2" align="right">
+
+      <!-- ***   Buttons   *** -->
+      
+      <!--BeginEditEventInsert-->
+      <input type="hidden" value="insert" name="FormAction">
+      <input type="submit" value="Insert" onclick="document.EditEvent.FormAction.value = 'insert';">
+      <!--EndEditEventInsert-->
+      
+      <!--BeginEditEventEdit-->
+      <input type="hidden" value="update" name="FormAction"/>
+      
+      <!--BeginEditEventUpdate-->
+      <input type="submit" value="Update" onclick="document.EditEvent.FormAction.value = 'update';"/>
+      <!--EndEditEventUpdate-->
+      
+      <!--EndEditEventDelete-->
+      <input type="submit" value="Delete" onclick="document.EditEvent.FormAction.value = 'delete';"/>
+      <!--EndEditEventDelete-->
+      
+      <!--EndEditEventEdit-->
+      
+      <input type="hidden" name="FormName" value="EditEvent"/>
+      
+      <input type="hidden" name="PK_event_id" value="{PK_event_id}"/>
+      <input type="hidden" name="event_id" value="{event_id}"/>
+     </td>
+    </tr>
+   </table>
+  </form>
+<!--EndFormEditEvent-->
+   <SCRIPT Language="JavaScript">
+if (document.forms["EditEvent"])
+document.EditEvent.onsubmit=delconf;
+function delconf() {
+if (document.EditEvent.FormAction.value == 'delete')
+  return confirm('Delete record?');
+}
+</SCRIPT>
+   </td>
+  </tr>
+ </table>
+
+
+{Footer}
+
+</body>
+</html>
