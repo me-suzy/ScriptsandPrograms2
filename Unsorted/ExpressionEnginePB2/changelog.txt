@@ -1,0 +1,175 @@
+
+Version: Public Beta 2
+Build: 20040426
+Release Date: Mar 26, 2004
+**************************
+NEW FEATURES AND ENHANCEMENTS
+- Search module, with simple and advanced search forms
+- Email module with general contact form and tell-a-friend form
+- Pagination is now available for weblog entries and comments, 
+  either as simple "next/previous" links or full pagination.
+- Pagination between fields is now supported.
+- PHP can now be parsed either before or after the template is
+  rendered.
+- Related Entries tag.
+- Nested conditionals are now allowed.
+- Ping pMachine feature added.
+- Added File Browser to image upload pop-up page
+- Improved referrer module with blacklisting.
+- Comment moderation added.
+- Improved DB caching so that even dynamic queries will now
+  be cached.
+- Comments and trackbacks can be combined on the same page
+- You can now choose between dashes and underscores for URL title
+- Email encoding tag for templates
+- You can now have multiple entries with the same title.  URL title,
+  however, must be unique
+
+BUG FIXES
+- Slashes were not being removed from the homepage name in the member
+  area.
+- Added redirect to preview links in the template editing page
+- Made the "view rendered template" link use the CSS URL where appropriate
+- The recent comment date was not being updated in CP home page stats when
+  you delete a comment
+- Changed default character encoding for emails
+- When we reorganized the language file location we lost the module
+  descriptions
+- CP login form only allowed 16 characters
+- Backspace parameter was not working correctly in the category tag of
+  the weblog tag
+- Fixed a couple menu bugs in the EDIT page pull-down menus
+- Duplicate template names were being allowed.
+- Fixed a bug in the word censoring feature that caused a problem if there was
+  a space after the last item.
+- Fixed a query syntax error that happens when you save your homepage with
+  no value
+- Fixed an emoticon bug that occures with these two:  >:-( and >:) 
+  due to the bracket being converted to an entity
+- Added more parameters to the RSS tag
+- Added example in Textile plugin.
+- Fixed a commenting bug that happens if users remove the location field
+
+
+Version Public Beta 1
+Build: 20040304
+Release Date: Mar 04, 2004
+**************************
+NEW FEATURES AND ENHANCEMENTS
+ - Added Movable Type Import Utility
+
+BUG FIXES
+- Screen name was not being created automatically when omitted during
+  registration.
+- Comments were defaulting to being sorted in descending order rather
+  than ascending
+- Typography bug when weblog entries had words with quote and no spaces.
+- Placing EE plugin tag examples in entries caused a problem if the plugin
+  was not installed.
+- Using session AND cookies was not working correctly with browsers that 
+  had cookies disabled
+
+Version Public Beta 1
+Build: 20040301
+Release Date: Mar 01, 2004
+**************************
+NEW FEATURES AND ENHANCEMENTS
+- Improved the email encoding tag so that it creates the link for you. 
+- Changed the behavior of the weblog tag when displaying entries by day 
+  or month. Previously, if you did not keep your entries current, the 
+  page would be blank. It will now always show information.
+- Consolidated language files in the main language folder (rather than
+  in the modules folder) to make maintenance easier.
+- Made some security and XSS related improvements in the typography engine
+  to filter certain tags even if you allow HTML in comments. It also now
+  filters JavaScript from within images in comments (if you permit images).
+- Added the Finnish language files.
+
+BUG FIXES
+- Image upload page was only permitting super-admins to upload
+- URL title now works on the comment page. The form and other page elements
+  are rendered correctly when the URL title is present.
+- Fixed theme number 1 to render correctly in Internet Explorer Mac
+- Fixed a typography bug that happens when you place EE tag examples in 
+  your entries.
+- pMcode was not being converted in RSS feeds
+- The "sort" parameter was not being set correctly with certain combinations
+  of other parameters in the weblog tag.
+- Fixed a trackback sending bug that prevented pings from being sent if you
+  summated a new entry within a few seconds of loading the "publish" page.
+- Changed the syntax of the email encoding feature so that it validates as
+  xhtml strict.
+- Fixed an SQL query syntax error when deleting custom field groups
+
+Version Public Beta 1
+Build: 20040223
+Release Date: Feb 23, 2004
+**************************
+NEW FEATURES AND ENHANCEMENTS
+- Added the {weblog} variable in the {exp:weblod:entries tag}. It shows the
+  name of the weblog.
+- Added 'parent_only' parameter to the {exp:weblog:categories}
+- Added 'allow_comments' and 'allow_trackbacks' conditional variables to the
+  {exp:weblog:entries} tag
+- Added email encoding variable for templates. It encodes an email address
+  with spam protection.
+- Textile plugin has been updated to version 2.0
+- New language packs added: Italian, Dutch, and Spanish
+
+BUG FIXES
+- PHP was not being parsed in comment previews
+- Weblog tag was not allowing ordering by custom field
+- Thumbnail prefix was not changing if you specify a different one
+- The status menu was showing "open" and "closed" twice on the EDIT page
+- Unable to install/de-install stats module without an error
+- Category_archive tag was showing closed entries
+- When running multiple weblogs, the publish page was inaccessible unless a user
+  was assigned to all weblogs
+- CP home page was showing weblog entry titles from all authors instead of only
+  the logged in one.
+- Trackback URL was still being displayed even when disabled
+- Trackback were being sent with closed entries
+- Stats were counting closed and expired entries
+- Link conversion bug when URLs are submitted in entries without the
+  "http://" prefix.
+- XML reserved characters were not being replaced properly in RSS files
+- The default state when no order is specified was changed to descending
+- Trackback variables are misnamed in some templates.
+
+Version Public Beta 1
+Build: 20040217
+Release Date: Feb 17, 2004
+**************************
+- Custom email templates were not being ignored when disabled.
+- Multiple authors were not appearing in the author pull-down menu when super
+  admins were logged in.
+- An error occurred if a user had a different language chosen when files were
+  missing.
+- Trackback ip address not being added to database correctly
+- Trackback auto-discovery was not working when entries contained certain
+  characters.
+- MySQL syntax error when displaying multiple weblogs combined in one tag.
+- Added an "auto category selection" feature, that will automatically select
+  the parent category when a sub-template is selected.
+
+
+Version Public Beta 1
+Build: 20040213
+Release Date: Feb 13, 2004
+**************************
+- IP Banning Form was not allowing the removal of data.
+- The CP home page had a query syntax error
+- When multiple embedded sub-templates were used, some were not being rendered
+  properly when page caching was enabled.
+- HTML formatting buttons did not work when the item they contained had quotes
+- The statistics on the Control Panel home page were not correct after importing
+  pMachine data.
+- In Control Panel Member View page the last visit date was not being shown
+- Categories were not displayed correctly when the category tag was used multiple
+  times in weblog entries.
+- Image tags were not being removed properly when Safe HTML was enabled.
+- Comment previews were only being shown on the weblog/comment template even if
+  a different template was specified.
+- Elapsed time not showing up when debugging was turned off.
+- Data submitted in custom member fields assigned to member registration page was not being stored.
+- Removed the restriction that categories can only use low ASCII values.
