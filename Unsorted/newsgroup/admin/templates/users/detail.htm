@@ -1,0 +1,130 @@
+{header_menu_template}
+
+<link rel="stylesheet" href="/gestion/includes/admin.css" type="text/css">
+<!-- Include the Admin JavaScript Library -->
+<script language="JavaScript" src="{home_dir}admin/includes/admin.js"></script>
+<script language="JavaScript">
+	function minus(){
+	
+		if(document.form.downloaded_articles.value >= 10){
+			document.form.downloaded_articles.value -= 10;
+		}
+		
+	}	
+</script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+<div id="Layer1" style="position:absolute; left:125px; top:79px; width:488px; height:111px; z-index:1">
+<table width="500" border="0" cellspacing="0" cellpadding="0" class="menu_table">    <tr> 
+      <td> <table width="500" border="0" cellspacing="0" cellpadding="0" align="left">
+          <tr> 
+            <td class="code"> <div align="center"><span class="title">&nbsp;&nbsp;Users 
+                </span></div></td>
+          </tr>
+        </table>
+        <br><br>
+		<form name="form" method="post" action="detail.php">          
+		<table width="500" border="0" cellspacing="0" cellpadding="3" align="center">
+            <!-- Name -->
+            <tr>               
+            <td align="right" class="top_link">User Name:&nbsp;</td>
+              <td width="298"> <input type="text" length="20" name="usr_name" value="{usr_name}" class="form_admin" {is_usr_name_readonly}></td>
+            </tr>
+            <!-- Password -->
+            <!-- BEGIN block_password -->
+            <tr>               
+            <td align="right" class="top_link">Password:&nbsp;</td>
+              <td> <input type="password" length="20" name="usr_passwd" value="{usr_passwd}" class="form_admin" ></td>
+            </tr>
+            <tr>               
+            <td align="right" class="top_link">Password (Again):&nbsp;</td>
+              <td> <input type="password" length="20" name="usr_passwd_2" value="{usr_passwd_2}" class="form_admin" ></td>
+            </tr>
+            <!-- END block_password -->
+            
+            
+            <!-- Email -->
+            <tr> 
+              <td align="right" class="top_link">Email:&nbsp;</td>
+             <td class="top_link"><input type="text" size="20" maxlength="100" name="usr_email" value="{usr_email}" class="form_admin" ></td>
+            </tr>
+            <!-- Email Visible Y/N -->
+            <tr> 
+              <td align="right" class="top_link">Email Visible Y/N:&nbsp;</td>
+            	<td class="top_link"> Yes 
+                <input type="radio" name="usr_email_visible_yn" value="Y" {usr_email_visible_yes}>
+                No 
+                <input type="radio" name="usr_email_visible_yn" value="N" {usr_email_visible_no}> 
+              </td>
+            </tr>
+			<!-- First Name -->
+            <tr> 
+              <td align="right" class="top_link">First Name:&nbsp;</td>
+             <td class="top_link"><input type="text" length="20" name="usr_fst_name" value="{usr_fst_name}" class="form_admin" ></td>
+            </tr>
+            <!-- Last Name -->
+            <tr> 
+              <td align="right" class="top_link">Last Name:&nbsp;</td>
+             <td class="top_link"><input type="text" length="20" name="usr_lst_name" value="{usr_lst_name}" class="form_admin" ></td>
+            </tr>            
+            <!-- User ICQ -->
+            <tr>
+              <td align="right" class="top_link">ICQ:&nbsp;</td>
+             <td class="top_link"><input type="text" length="20" name="usr_icq" value="{usr_icq}" class="form_admin" ></td>
+            </tr>            
+            <!-- Theme -->
+            <tr> 
+              <td width="190" align="right" class="top_link">User Theme:&nbsp;</td>              
+              <td>
+              <select name="usr_theme" class="form_admin">
+              <!-- BEGIN theme_block -->
+              <option value="{theme}" {theme_is_selected}>{theme}</option>              
+              <!-- END theme_block -->
+              </select> 
+              </td>
+            </tr>
+          <!-- Description -->
+            <tr>              
+            <td align="right" class="top_link">User Text :&nbsp;</td>
+              <td> <textarea name="usr_text" cols="30" rows="3" class="form_admin" length="20">{usr_text}</textarea> 
+              </td>
+            </tr>            
+            
+          </table>
+          <br>                 
+          <input type="hidden" name="usr_id" value="{usr_id}">          
+          <input type="hidden" name="action">
+          <br>
+                    <table width="0%" border="0" cellspacing="0" cellpadding="2" align="center">
+                        <tr> 
+                            <td> 
+                                <!-- BEGIN add_block -->
+                                <input type="button" onClick="{add_link}" value="Add" class="button"> 
+                                <!-- END add_block -->
+                            </td>
+                            <td> 
+                                <!-- BEGIN modify_block -->
+                                <input type="button" onClick="{modify_link}" value="Modify" class="button"> 
+                                <!-- END modify_block -->
+                            </td>
+                            <td> 
+                                <!-- BEGIN del_block -->
+                                <input type="button" onClick="{del_link}" value="Delete" class="button"> 
+                                <!-- END del_block -->
+                            </td>
+                        </tr>
+                    </table>
+                </form></td>
+    </tr>
+  </table>
+</div>
+
