@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Run as Subdomains or Multiple Entry Pages &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="./index.html" />
+  <style type="text/css" media="screen,print">@import url(./docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="./index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Run as Subdomains or Multiple Entry Pages</h1>
+
+	<p>It is possible to run ExpressionEngine so that content can be accessed from more than one location.  This is often desired if you want to put different content on different subdomains or simply otherwise want to access your content through more than one location.</p>
+
+	<p>In order to allow this, you simply need to follow a few steps:</p>
+
+
+
+	<h2>Copy <var>index.php</var> and <var>path.php</var></h2>
+
+	<p>You must place a copy of the main site <var>path.php</var> and <var>index.php</var> (the one from your main directory, <strong>not</strong> from the <kbd>system</kbd> directory) files into the directory from which you wish to access ExpressionEngine.</p>
+
+	<p>If you want, you may rename the <var>index.php</var> file as described at the bottom of the <a href="general/urls.html">URLs</a> page.</p>
+
+
+
+	<h2>Edit <var>path.php</var></h2>
+
+	<p>Once you've copied the files, you must open <var>path.php</var> to edit it.</p>
+
+
+	<h3>$system_path</h3>
+
+		<p>First, you must ensure that the <samp>$system_path</samp> variable is set correctly within the file.  The variable should contain a <strong>relative path</strong> from the current directory (in which the <var>path.php</var> file resides) to your site's <kbd>system</kbd> directory.  For instance:</p>
+
+		<code>$system_path = "../system/";</code>
+
+
+
+	<h3>Add New Variables</h3>
+
+		<p>Second, you must add several new variables to the file:</p>
+
+		<code>$template_group = "template_group_name";<br />
+$template = "template_name";<br />
+$site_url = "http://www.yoursite.com/subdirectory/";<br />
+$site_index = "index.php";</code>
+
+		<p>The variables are:</p>
+
+		<ul>
+			<li><b>$template_group</b> The name of the Template Group to which the Template you want to be shown by default belongs.</li>
+			<li><b>$template</b> The name of the Template that you want to be shown by default.</li>
+			<li><b>$site_url</b> The full URL to the current directory in which this <var>path.php</var> file resides.</li>
+			<li><b>$site_index</b> This is an optional variable that will let you indicate the name of the index file if you change the name of <var>index.php</var> to something else.</li>
+		</ul>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
