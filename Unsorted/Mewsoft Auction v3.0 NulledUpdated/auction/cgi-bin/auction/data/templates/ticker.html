@@ -1,0 +1,207 @@
+<HTML>
+
+<HEAD>
+<TITLE>Mewsoft Auction - Mewsoft.com</TITLE>
+<META NAME="Author" CONTENT="Ahmed A. Elsheshtawy">
+<META NAME="Keywords" CONTENT="Auction, Auction Software, Online Auction, Free Auction, Free, Free Software">
+<META NAME="Description" CONTENT>
+<STYLE>
+<!--
+a:hover      { color: #ff3300 }
+//-->
+</STYLE>
+<STYLE TYPE="text/css">
+<!--
+.lwr a:link  { color: white }
+.lwr a:visited { color: white }
+.lwr a:active { color: #80FF80 }
+.lwr a:hover { color: red; background-color: yellow }
+.lwr a       { text-decoration: none }
+.lbr a:link  { color: blue }
+.lbr a:visited { color: blue }
+.lbr a:active { color: #FF33FF }
+.lbr a:hover { color: red; background-color: yellow }
+.lbr a       { text-decoration: none }
+.lbx a:link  { color: blue }
+.lbx a:visited { color: blue }
+.lbx a:active { color: #FF33FF }
+.lbx a:hover { color: red }
+.lbx a       { text-decoration: none }
+-->
+</STYLE>
+<SCRIPT>
+<!-- hide script from old browsers
+
+var server_time=<!--SERVER_TIME-->;
+var local_time=new Date();
+var offset=local_time.getTime() - server_time;
+var local_offset=local_time.getTime() - <!--LOCAL_TIME-->;
+ function toSt(n)
+ {
+ s=""
+  if(n<10) s+="0"
+  return s+n.toString();
+ }
+ 
+ function countdown()
+ {
+cl=document.clock;
+var d=new Date();
+var t=d.getTime() -(offset);
+count=Math.floor(( (  <!--End_Time-->) - t )/1000);
+
+  if(count<=0)
+    {cl.days.value ="----";
+     cl.hours.value="----";
+     cl.mins.value="----";
+     cl.secs.value="----";
+     return;
+    }
+  cl.secs.value='  '+toSt(count%60);
+  count=Math.floor(count/60);
+  cl.mins.value='  '+toSt(count%60);
+  count=Math.floor(count/60);
+  cl.hours.value='  '+toSt(count%24);
+  count=Math.floor(count/24);
+  cl.days.value=toSt(count) ;    
+  
+  setTimeout("countdown()",1000);
+ }
+// end script -->
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Begin
+function showMilitaryTime() {
+if (document.form_clock.showMilitary[0].checked) {
+return true;
+}
+return false;
+}
+function showTheHours(theHour) {
+if (showMilitaryTime() || (theHour > 0 && theHour < 13)) {
+if (theHour == "0") theHour = 12;
+return (theHour);
+}
+if (theHour == 0) {
+return (12);
+}
+return (theHour-12);
+}
+function showZeroFilled(inValue) {
+if (inValue > 9) {
+return "" + inValue;
+}
+return "0" + inValue;
+}
+function showAmPm() {
+if (showMilitaryTime()) {
+return ("");
+}
+if (now.getHours() < 12) {
+return (" AM");
+}
+return (" PM");
+}
+function showTheTime() {
+now = new Date;
+
+d=new Date();
+	//document.form_clock.showTime.value = " "+showTheHours(now.getHours()) + ":" + showZeroFilled(now.getMinutes()) + ":" + showZeroFilled(now.getSeconds()) + showAmPm()
+	ticks=Math.floor(( d.getTime() + (<!--GMT_OFFSET_SECONDS-->) ));
+	ticks=Math.floor((ticks - (local_offset))/1000);
+	secs=ticks % 60;
+	ticks=Math.floor(ticks/60);
+	mins=ticks % 60;
+	ticks=Math.floor(ticks/60);
+	hours=ticks % 24;
+	document.form_clock.showTime.value = " "+showTheHours(hours) + ":" + showZeroFilled(mins) + ":" + showZeroFilled(secs) + showAmPm()
+	setTimeout("showTheTime()",1000)
+}
+// End -->
+</script>
+<TITLE></TITLE>
+</HEAD>
+
+<BODY ONLOAD="countdown(); showTheTime();">
+
+<DIV ALIGN="center">
+  <CENTER>
+  <TABLE CELLSPACING="0" CELLPADDING="0">
+    <TR>
+      <TD VALIGN="middle" ALIGN="center" WIDTH="100%"><FONT SIZE="3" COLOR="red">
+
+        <!--Item_Tile-->
+
+        </FONT></TD>
+    </TR>
+    <TR>
+      <TD VALIGN="middle" ALIGN="center" WIDTH="100%"><FONT SIZE="3" COLOR="red"><B><<item_id_label>><!--Item_ID-->
+        </B></FONT></TD>
+    </TR>
+  </TABLE>
+  </DIV>
+
+  <DIV ALIGN="center">
+    <CENTER>
+    <TABLE BORDER="0" WIDTH="320" CELLSPACING="0" CELLPADDING="0">
+      <TR>
+        <TD VALIGN="middle" ALIGN="center" WIDTH="100%">
+          <TABLE BORDER="0" WIDTH="100%" CELLSPACING="0" CELLPADDING="5" BGCOLOR="#FF4040">
+            <TR>
+             <FORM NAME="clock">
+			  <TD VALIGN="middle" ALIGN="center">
+                  <CENTER>
+                  <DIV ALIGN="center">
+                    <CENTER>
+                    <TABLE BORDER="0" CELLPADDING="2" WIDTH="100%" CELLSPACING="1" BGCOLOR="#A5CE80">
+                      <TR>
+                        <TD ALIGN="CENTER" WIDTH="100%" COLSPAN="4" ><B><FONT COLOR="green" SIZE="3"><<ticker_title>></FONT></B></TD>
+                      </TR>
+                      <TR>
+                        <TD ALIGN="CENTER" WIDTH="25%" ><FONT SIZE="2" FACE="Times, Tahoma, Arial" COLOR="blue"><<ticker_days>></FONT></TD>
+                        <TD ALIGN="CENTER" WIDTH="25%" ><FONT SIZE="2" FACE="Times, Tahoma, Arial" COLOR="blue"><<ticker_hours>></FONT></TD>
+                        <TD ALIGN="CENTER" WIDTH="25%" ><FONT SIZE="2" FACE="Times, Tahoma, Arial" COLOR="blue"><<ticker_minutes>></FONT></TD>
+                        <TD ALIGN="CENTER" WIDTH="25%" ><FONT SIZE="2" FACE="Times, Tahoma, Arial" COLOR="blue"><<ticker_secconds>></FONT></TD>
+                      </TR>
+                      <TR>
+                        <TD ALIGN="CENTER" WIDTH="25%" ><INPUT NAME="days" SIZE="4"></TD>
+                        <TD ALIGN="CENTER" WIDTH="25%" ><INPUT NAME="hours" SIZE="4"></TD>
+                        <TD ALIGN="CENTER" WIDTH="25%" ><INPUT NAME="mins" SIZE="4"></TD>
+                        <TD ALIGN="CENTER" WIDTH="25%" ><INPUT NAME="secs" SIZE="4"></TD>
+                      </TR>
+                      <TR>
+                        <TD COLSPAN="4" ALIGN="center" VALIGN="middle" WIDTH="301"><CENTER><FONT SIZE="2" FACE="Times,Arial" COLOR="#800000"><BR>
+                          <B><<ticker_ends>> <!--End_Time_Translated-->
+                          </B></FONT></CENTER></TD>
+                      </TR>
+                    </TABLE>
+                    </CENTER>
+                  </DIV>
+                  </CENTER>
+              </TD>
+                </FORM>
+            </TR>
+
+            <TR>
+             <FORM NAME="form_clock">
+			  <TD VALIGN="middle" ALIGN="center" WIDTH="295"><CENTER>
+                  <FONT FACE="Times,Arial" SIZE="2"><<ticker_time_now>> <INPUT TYPE="text" NAME="showTime" SIZE="11">
+                  <<ticker_mode>> <INPUT TYPE="radio" NAME="showMilitary">24
+                  <INPUT TYPE="radio" NAME="showMilitary" CHECKED>12</FONT>
+                </CENTER></TD>
+				</FORM>
+            </TR>
+
+		  </TABLE>
+        </TD>
+      </TR>
+    </TABLE>
+    </CENTER>
+  </DIV>
+</CENTER>
+<P ALIGN="CENTER"><<close_this_windows>></P>
+</BODY>
+
+</HTML>
