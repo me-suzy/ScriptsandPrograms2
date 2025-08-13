@@ -1,0 +1,371 @@
+<! Llamamos a la función que calcula el hash del password>
+<script language="javascript" src="lib/md5.js"></script>
+
+<! Encriptamos el password antes de mandarlo>
+ <script language="javascript">
+  <!--
+  function doAddUser() {
+     //The "foo" form is the used for the password, and it's not sent
+     document.registro.hashpasswd.value = MD5(document.foo2.passwd.value);
+     document.registro.hashpasswd2.value = MD5(document.foo2.passwd2.value);
+     //alert(document.registro.hashpasswd2.value);
+     document.foo2.passwd.value=''
+     document.foo2.passwd2.value=''
+     document.registro.submit();
+  }
+  // -->
+</script>
+
+<table width="642" border="0" cellspacing="0" cellpadding="0" height="188">
+  <tr>
+    <td align="left" valign="top" class="normal" bgcolor="#F3F3F3">
+      <div align="left" class="normal">
+        <p><font color="#000000"><b>&nbsp;MyNewsGroups :)</b></font> <b><font color="#CC0000">Profile</font></b> 
+          <br />
+          <br />
+          &nbsp;Edit your user information:<br />
+          &nbsp;<span class="error">{error}</span>
+        <table width="400" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="left" valign="top" height="59">
+
+                <form name="registro" method="post" action="register.php" onSubmit="doAddUser(); return false;">
+
+                <table width="250" border="0" cellspacing="0" cellpadding="0" >
+                  <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/icon19.gif" width="15" height="15">&nbsp;User
+                      Name: {id_user}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/email.gif" width="16" height="14">&nbsp;Email:
+                      <input type="text" class="normal" name="email" size="20" maxlength="40" value="{email}">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/env.gif" width="16" height="15">
+                      Visible: Yes
+                      <input type="radio" name="visible" value="yes" checked>
+                      No
+                      <input type="radio" name="visible" value="no">
+                      <img src="{images_dir}/icon41.gif" width="15" height="15">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="normal">&nbsp;<img src="{images_dir}/icon30.gif" width="16" height="16">
+                      Country:
+                      &nbsp;<select name="country" class="normal">
+          <option value=USA selected>USA</option>
+          <option value=Canada>Canada</option>
+          <option value=United Kingdom>United Kingdom</option>
+          <option value=Spain>Spain</option>
+          <option value=Afghanistan>Afghanistan</option>
+          <option value=Albania>Albania</option>
+          <option value=Algeria>Algeria</option>
+          <option value=Andorra>Andorra</option>
+          <option value=Angola>Angola</option>
+          <option value=Anguilla>Anguilla</option>
+          <option value=Antarctica>Antarctica</option>
+          <option value=Antigua and Barbuda>Antigua and Barbuda</option>
+          <option value=Argentina>Argentina</option>
+          <option value=Armenia>Armenia</option>
+          <option value=Aruba>Aruba</option>
+          <option value=Australia>Australia</option>
+          <option value=Austria>Austria</option>
+          <option value=14>Azerbaijan</option>
+          <option value=15>Bahamas</option>
+          <option value=16>Bahrain</option>
+          <option value=17>Bangaldesh</option>
+          <option value=18>Barbados</option>
+          <option value=Belgium>Belgium</option>
+          <option value=20>Belize</option>
+          <option value=21>Belarus</option>
+          <option value=22>Benin</option>
+          <option value=23>Bermuda</option>
+          <option value=24>Bhutan</option>
+          <option value=25>Bolivia</option>
+          <option value=26>Bosnia and Herzegovina</option>
+          <option value=27>Botswana</option>
+          <option value=223>Bouvet Island</option>
+          <option value=Brazil>Brazil</option>
+          <option value=224>British Indian Ocean Territory</option>
+          <option value=241>British Virgin Islands</option>
+          <option value=29>Brunei</option>
+          <option value=Bulgaria>Bulgaria</option>
+          <option value=31>Burkina Faso</option>
+          <option value=32>Burundi</option>
+          <option value=33>Cambodia</option>
+          <option value=34>Cameroon</option>
+          <option value=Canada>Canada</option>
+          <option value=36>Cape Verde</option>
+          <option value=37>Cayman Islands</option>
+          <option value=38>Central African Republic</option>
+          <option value=225>Chad</option>
+          <option value=Chile>Chile</option>
+          <option value=40>People's Rep. of China</option>
+          <option value=41>Christmas Island</option>
+          <option value=226>Cocos Keeling Islands</option>
+          <option value=Colombia>Colombia</option>
+          <option value=43>Comoros</option>
+          <option value=44>Congo</option>
+          <option value=45>Democratic Republic of the Congo</option>
+          <option value=46>Cook Islands</option>
+          <option value=Costa Rica>Costa Rica</option>
+          <option value=48>Cote D'Ivoire</option>
+          <option value=Croatia>Croatia</option>
+          <option value=Cuba>Cuba</option>
+          <option value=51>Cyprus</option>
+          <option value=Czech Republic>Czech Republic</option>
+          <option value=53>Denmark</option>
+          <option value=54>Djibouti</option>
+          <option value=55>Dominica</option>
+          <option value=56>Dominican Republic</option>
+          <option value=57>Ecuador</option>
+          <option value=227>East Timor</option>
+          <option value=Egypt>Egypt</option>
+          <option value=59>El Salvador</option>
+          <option value=60>Equitorial Guinea</option>
+          <option value=61>Eritrea</option>
+          <option value=62>Estonia</option>
+          <option value=63>Ethiopia</option>
+          <option value=64>Falkland Islands</option>
+          <option value=228>Faroe Islands</option>
+          <option value=65>Fiji</option>
+          <option value=66>Finland</option>
+          <option value=France>France</option>
+          <option value=68>French Guiana</option>
+          <option value=69>French Polynesia</option>
+          <option value=70>Gabon</option>
+          <option value=71>Gambia</option>
+          <option value=Germany>Germany</option>
+          <option value=73>Georgia</option>
+          <option value=74>S. Georgia and the S. Sandwich Is.</option>
+          <option value=75>Ghana</option>
+          <option value=230>Gibraltar</option>
+          <option value=Greece>Greece</option>
+          <option value=77>Greenland</option>
+          <option value=78>Grenada</option>
+          <option value=79>Guadaloupe</option>
+          <option value=80>Guam</option>
+          <option value=Guatemala>Guatemala</option>
+          <option value=82>Guinea</option>
+          <option value=83>Guinea-Bissau</option>
+          <option value=84>Guyana</option>
+          <option value=85>Haiti</option>
+          <option value=231>Heard and McDonald Islands</option>
+          <option value=86>Honduras</option>
+          <option value=Hong Kong>Hong Kong</option>
+          <option value=88>Hungary</option>
+          <option value=89>Iceland</option>
+          <option value=90>India</option>
+          <option value=91>Indonesia</option>
+          <option value=92>Iran</option>
+          <option value=93>Iraq</option>
+          <option value=94>Ireland</option>
+          <option value=95>Israel</option>
+          <option value=Italy>Italy</option>
+          <option value=97>Jamaica</option>
+          <option value=Japan>Japan</option>
+          <option value=99>Jordan</option>
+          <option value=100>Kazakhstan</option>
+          <option value=101>Kenya</option>
+          <option value=102>Kiribati</option>
+          <option value=103>Kitts and Nevis</option>
+          <option value=North Korea>North Korea</option>
+          <option value=South Korea>South Korea</option>
+          <option value=106>Kyrgyzstan</option>
+          <option value=107>Kuwait</option>
+          <option value=108>Laos</option>
+          <option value=109>Latvia</option>
+          <option value=110>Lebanon</option>
+          <option value=111>Lesotho</option>
+          <option value=112>Liberia</option>
+          <option value=113>Libya</option>
+          <option value=114>Liechtenstein</option>
+          <option value=115>Lithuania</option>
+          <option value=Luxembourg>Luxembourg</option>
+          <option value=117>Macau</option>
+          <option value=118>Macedonia</option>
+          <option value=119>Madagascar</option>
+          <option value=120>Malaysia</option>
+          <option value=121>Maldives</option>
+          <option value=122>Mali</option>
+          <option value=123>Marshall Islands</option>
+          <option value=124>Malta</option>
+          <option value=125>Northern Mariana Islands</option>
+          <option value=126>Malawi</option>
+          <option value=127>Martinique</option>
+          <option value=128>Mauritania</option>
+          <option value=129>Mauritius</option>
+          <option value=130>Mayotte</option>
+          <option value=Mexico>Mexico</option>
+          <option value=132>Micronesia</option>
+          <option value=133>Moldova</option>
+          <option value=Monaco>Monaco</option>
+          <option value=134>Mongolia</option>
+          <option value=135>Montserrat</option>
+          <option value=Morocco>Morocco</option>
+          <option value=137>Mozambique</option>
+          <option value=138>Myanmar</option>
+          <option value=139>Namibia</option>
+          <option value=140>Nauru</option>
+          <option value=141>Nepal</option>
+          <option value=Netherlands>Netherlands</option>
+          <option value=143>Netherlands Antilles</option>
+          <option value=144>New Caledonia</option>
+          <option value=145>New Zealand</option>
+          <option value=Nicaragua>Nicaragua</option>
+          <option value=147>Niger</option>
+          <option value=148>Nigeria</option>
+          <option value=149>Niue</option>
+          <option value=233>Norfolk Island</option>
+          <option value=Norway>Norway</option>
+          <option value=151>Oman</option>
+          <option value=152>Pakistan</option>
+          <option value=153>Palau</option>
+          <option value=Panama>Panama</option>
+          <option value=155>Papua New Guinea</option>
+          <option value=Paraguay>Paraguay</option>
+          <option value=Peru>Peru</option>
+          <option value=158>Philippines</option>
+          <option value=159>Pitcairn Island</option>
+          <option value=Poland>Poland</option>
+          <option value=Portugal>Portugal</option>
+          <option value=Puerto Rico>Puerto Rico</option>
+          <option value=163>Qatar</option>
+          <option value=164>Reunion</option>
+          <option value=165>Romania</option>
+          <option value=Russia>Russia</option>
+          <option value=167>Rwanda</option>
+          <option value=234>Saint Helena</option>
+          <option value=168>Saint Lucia</option>
+          <option value=235>Saint Pierre and Miquelon</option>
+          <option value=169>Saint Vincent and the Grenadines</option>
+          <option value=170>Samoa-American</option>
+          <option value=171>Samoa-Western</option>
+          <option value=172>San Marino</option>
+          <option value=173>Sao Tome and Principe</option>
+          <option value=174>Saudi Arabia</option>
+          <option value=175>Senegal</option>
+          <option value=176>Seychelles</option>
+          <option value=177>Sierra Leone</option>
+          <option value=178>Singapore</option>
+          <option value=179>Slovakie</option>
+          <option value=180>Slovenia</option>
+          <option value=181>Solomon Islands</option>
+          <option value=182>Somalia</option>
+          <option value=183>South Africa</option>
+          <option value=Spain>Spain</option>
+          <option value=185>Sri Lanka</option>
+          <option value=186>Sudan</option>
+          <option value=187>Suriname</option>
+          <option value=236>Svalbard and Jan Mayen Islands</option>
+          <option value=188>Swaziland</option>
+          <option value=Sweden>Sweden</option>
+          <option value=Switzerland>Switzerland</option>
+          <option value=191>Syria</option>
+          <option value=192>Taiwan</option>
+          <option value=193>Tajikistan</option>
+          <option value=194>Tanzania</option>
+          <option value=195>Thailand</option>
+          <option value=196>Togo</option>
+          <option value=237>Tokelau</option>
+          <option value=197>Tonga</option>
+          <option value=198>Trinidad and Tobago</option>
+          <option value=199>Tunisia</option>
+          <option value=Turkey>Turkey</option>
+          <option value=201>Turkmenistan</option>
+          <option value=238>Turks and Caicos Islands</option>
+          <option value=202>Tuvalu</option>
+          <option value=203>Uganda</option>
+          <option value=204>Ukraine</option>
+          <option value=205>United Arab Emirates</option>
+          <option value=United Kingdom>United Kingdom</option>
+          <option value=USA>USA</option>
+          <option value=239>United States Minor Outlying Islands</option>
+          <option value=Uruguay>Uruguay</option>
+          <option value=209>Uzbekistan</option>
+          <option value=210>Vanuatu</option>
+          <option value=211>Vatican City</option>
+          <option value=Venezuela>Venezuela</option>
+          <option value=213>Virgin Islands</option>
+          <option value=Vietnam>Vietnam</option>
+          <option value=240>Wallis and Futuna</option>
+          <option value=215>Western Sahara</option>
+          <option value=216>Yemen</option>
+          <option value=Yugoslavia>Yugoslavia</option>
+          <option value=218>Zambia</option>
+          <option value=219>Zimbabwe</option>
+          <option value=220>APO</option>
+          <option value=221>FPO</option>
+          <option value=222>Other</option>
+          </select></td>
+                  </tr>
+                  <tr>
+                    <td class="normal">
+<input type="hidden" name="registro_usuario" value="ok">
+                    <input type="hidden" name="hashpasswd" value="">
+                    <input type="hidden" name="hashpasswd2" value="">
+
+                      &nbsp;<input type="submit" class="normal" name="Submit" value="Update">
+                      I'm sure.<input type="checkbox" class="normal" name="sure" value="yes">
+                    </td>
+                  </tr>
+                </table>
+        </form>
+            </td>
+            <td align="left" valign="top" height="59">
+
+              <table border="0" width="250" cellspacing="0" cellpadding="0">
+                <tr><form name="foo2">
+                    <td class="normal">&nbsp;<img src="{images_dir}/security.gif" width="15" height="16">&nbsp;Old 
+                      password: 
+                      <input type="password" class="normal" name="passwd" size="10" maxlength="15">
+
+                      <img src="{images_dir}/icon41.gif" width="15" height="15"><img src="{images_dir}/icon41.gif" width="15" height="15">
+                    </td>
+                </form></tr>
+				<tr><form name="foo2">
+                    <td class="normal">&nbsp;<img src="{images_dir}/security.gif" width="15" height="16">&nbsp;New 
+                      password: 
+                      <input type="password" class="normal" name="passwd" size="10" maxlength="15">
+
+                      <img src="{images_dir}/icon41.gif" width="15" height="15"><img src="{images_dir}/icon41.gif" width="15" height="15">
+                    </td>
+                </form></tr>
+                <tr>
+                    
+                  <td class="normal">&nbsp;<img src="{images_dir}/security.gif" width="15" height="16"> 
+                    New password again: 
+                    <input type="password" class="normal" name="passwd2" size="10" maxlength="15">
+
+                    </td>
+                
+                </tr>
+                <tr>
+                  <td class="normal"></td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+
+
+        <br />
+        &nbsp;<span class="small"><img src="{images_dir}/icon41.gif" width="15" height="15">
+        Please insert a valid email address, it will be <b>validated</b>. <br />
+        &nbsp;&nbsp;Your email shall be visible to others, but it'll be <b>SPAM</b>
+        bots <b>protected</b>,<br />
+        &nbsp;&nbsp;even when you post new articles.</span><br />
+        &nbsp;<span class="small"><img src="{images_dir}/icon41.gif" width="15" height="15"><img src="{images_dir}/icon41.gif" width="15" height="15">
+        Your password will <b>not</b> be transferred to the Internet.<br />
+        &nbsp;&nbsp;Our login system is <b><font color="#CC0000">secure</font></b>,
+        only a <b>MD5</b> <b>hash</b> will be visible to others.</span><br />
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+
