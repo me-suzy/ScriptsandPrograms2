@@ -1,0 +1,765 @@
+<HTML><!-- #BeginTemplate "/Templates/template.dwt" -->
+<HEAD>
+<!-- #BeginEditable "doctitle" --> 
+<TITLE>In-Link 2.0.4 SQL Directory Engine Documentation</TITLE>
+<!-- #EndEditable -->
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" href="style.css" type="text/css">
+<SCRIPT language="javascript">
+<!--
+function arc_flipflop(myID) {
+  	if (eval("document.all."+myID+".style.display")=='none') {
+		eval("document.all."+myID+".style.display='block'");
+	} else {
+	eval("document.all."+myID+".style.display='none'");
+	}
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFFFFF" text="#000000">
+
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+  <TR> 
+    <TD rowspan="2" width="0"><IMG src="images/icon1-.gif" width="32" height="32"></TD>
+    <TD class="title" width="100%">Help </TD>
+    <TD rowspan="2" width="0" align="right"><A href="manual.pdf"><IMG src="images/doc.gif" width="18" height="18" border="0"></A></TD>
+  </TR>
+  <TR> 
+    <TD width="100%"><IMG src="file:///G|/admin/images/line.gif" width="354" height="2"></TD>
+  </TR>
+</TABLE>
+
+<!-- #BeginEditable "body" --> 
+
+<h1><a name="_Toc519847390"></a><a name="_Toc519894166"></a><a
+name="_Toc521148101"></a><a name="_Toc10270501">7<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Integration
+and Customization</a></h1>
+
+<h2><a name="_Toc519847391"></a><a name="_Toc519894167"></a><a
+name="_Toc521148102"></a><a name="_Toc10270502">7.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Introduction</a></h2>
+
+<p class=MsoNormal>One of the strongest features of In-link is that it is
+completely template-based, meaning that the entire engine's look and its output
+for the front-end users can be modified, customized and integrated into any web
+site. In simple words, you can take In-link and in less than one hour you could
+easily make it look like a part of your web site. In-link has built-in template
+editors that allow you to modify any visual element of the engine. In fact,
+In-link templates are so flexible that you can create your own template files,
+have nested templates, declare your own tags, i.e. customize the output in any
+way or form. In-link template engine goes even beyond standard headers and
+footers functionality; In-link themes even support Macromedia Dreamweaver
+templates. Customizing a program's output has never been any easier.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In-link's templates even support PHP in them, along with
+JavaScript and any HTML tags. The parsing engine features caching that
+significantly improves the performance of the entire system. In-link's new
+template parsing engine has earned a wide recognition as a revolutionary
+solution for web-based products.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name="_Toc519847392"></a><a name="_Toc519894168"></a><a
+name="_Toc521148103"></a><a name="_Toc10270503">7.2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Theme
+System</a></h2>
+
+<p class=MsoNormal>In-link's front-end consists of a set of templates (located
+in <span style='font-size:10.0pt;font-family:"Courier New";'>themes/ </span>on your server in the
+In-links directory) called a theme. The themes are stored in sub directories
+of the theme folder. The name of the folder a particular theme is stored in is
+the name In-link will use in addressing the theme in the system. With the use
+of themes, the Administrator may easily change the front-end look, feel, and
+functionality by specifying the theme in the admin interface.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Themes are sets of template files and a cascading style
+sheet file that can all be edited in any text editor or by using the In-links
+built-in editor. The themes are located in <span style='font-size:10.0pt;font-family:"Courier New";'>&quot;themes\&quot;</span>
+directory in your In-link directory. You can download new themes from our web
+site or add and modify your own. Just place them in their own directory under <span
+style='font-size:10.0pt;font-family:"Courier New";'>&quot;themes\&quot;</span> and use the
+Administration Panel to switch between them.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Templates can be nested within each other and In-link does a
+recursion check to eliminate a possibility of crashing your system.  Also, In-link caches frequently used
+templates for increased performance.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name="_Toc519847393"></a><a name="_Toc519894169"></a><a
+name="_Toc521148104"></a><a name="_Toc10270504"></a><a
+name="_Working_with_In-tags"></a>7.3<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Working
+with In-tags</h2>
+
+<h3><a name="_Toc519894170"></a><a name="_Toc10270505">Syntax Overview</a></h3>
+
+<p class=MsoNormal>In-links In-tags are special tags that are located in
+template files and represent where the insertion of In-links dynamic output
+will take place.  In another words,
+In-link parses the theme templates consisting of regular HTML and In-tags and
+replaces In-tags with dynamically generated values.  The output represented by an In-tag could be anything from a link
+name, navigation menu, a page header or even an entire nested template inserted
+into the template in place of the In-tag.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In-tags consist of special single-endedmarkup tags, similar to HTML tags, except in the
+format: <span style='font-size:10.0pt;font-family:
+"Courier New";'>&lt;%In-tag%&gt;</span>.
+The tags are organized into sets (e.g. links <span style='font-size:10.0pt;font-family:"Courier New";'>&lt;%link_*%&gt;</span>,
+categories <span style='font-size:10.0pt;font-family:
+"Courier New";'>&lt;%cat_*%&gt;</span>,
+navigation <span style='font-size:10.0pt;font-family:
+"Courier New";'>&lt;%nav_*%&gt;</span>,
+etc., where <span style='font-size:10.0pt;font-family:
+"Courier New";'>*</span> represents a
+logical element or a value of a link, category, etc. In-tag sets serve only as
+a mnemonic device; the set an In-tag belongs to does not effect how In-link
+handles the tag.  In-tags come in one of
+two formats: Static In-tags and Variable In-tags.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>See also: Appendixes | In-tag Dictionary</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3><a name="_Toc519847394"></a><a name="_Toc519894171"></a><a
+name="_Toc10270506">Static In-tags</a></h3>
+
+<p class=MsoNormal><b>Format: </b><b><span style='font-size:10.0pt;font-family:"Courier New";'>&lt;%tag_name%&gt;</span></b></p>
+
+<h4>Overview</h4>
+
+<p class=MsoNormal>Static In-tags are predefined in the In-link system or in a
+module. Static In-tags usually insert a simple text block into the page (e.g. <span
+style='font-size:10.0pt;font-family:"Courier New";'>&lt;%stats_hits%&gt;</span> will
+display the total number of link hits in the system)however, some static
+In-tags will execute and insert more advanced output (e.g. <span
+style='font-size:10.0pt;font-family:"Courier New";'>&lt;%insert_links%&gt;</span> will
+insert a block consisting of numerous links matching the link results for that
+page).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Some static In-tags are customizable in the admin utility.
+More advanced tags such as <span style='font-size:10.0pt;font-family:"Courier New";'>&lt;%insert_links%&gt;</span>
+allow for greater customization. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>See also: <a href="#_In-tag_Dictionary"><span
+style='color:windowtext;text-decoration:none;'> See also: Appendixes | In-tag Dictionary </span></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3><a name="_Toc519847395"></a><a name="_Toc519894172"></a><a
+name="_Toc10270507">Variable In-tags</a></h3>
+
+<p class=MsoNormal><b>Format: </b><b><span style='font-size:10.0pt;font-family:"Courier New";'>&lt;%tag_type:parameter%&gt;</span></b></p>
+
+<h4>Overview</h4>
+
+<p class=MsoNormal>Variable In-tags are not predefined in the systemonly the
+tag type is predefined. (e.g. <span style='font-size:10.0pt;font-family:"Courier New";'>&lt;%include:%&gt;</span>
+is defined in the system, however, the tag type with its parameter is not <span
+style='font-size:10.0pt;font-family:"Courier New";'>&lt;%include:search%&gt;</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Variable In-tags are completely customizable. You have the
+ability create the content for the variable In-tag so you have absolute control
+over the functionality of the tag. The parameter sent to an In-tag varies with
+what tag type you are calling.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h4>Usage</h4>
+
+<h5>&lt;%include:%&gt;</h5>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal>Includes
+     the code from the parameter in place of the tag</li>
+ <li class=MsoNormal>Parameter
+     is the name of the file to include without its extension</li>
+ <li class=MsoNormal>The
+     files for this tag type must be in <span style='font-size:10.0pt;font-family:"Courier New";'>themes/<i>currently_selected_theme</i></span> </li>
+ <li class=MsoNormal>Example:
+     to include <span style='font-size:10.0pt;
+     font-family:"Courier New";'>search.tpl</span>
+     into an other file, the tag <span style='font-size:10.0pt;font-family:"Courier New";'>&lt;%include:search%&gt;</span>
+     should be used</li>
+</ul>
+
+<h5>&lt;%language:%&gt;</h5>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal>Displays
+     the contents of a desired language variable. The text displayed to the
+     user depends on the current language pack selected.</li>
+ <li class=MsoNormal>Parameter
+     is a PHP variable name from the language files</li>
+ <li class=MsoNormal>Example:
+     to insert the message contained in <span style='font-size:10.0pt;font-family:"Courier New";'>$lu_error_404</span>, 
+     the In-tag <span style='font-size:10.0pt;
+     font-family:"Courier New";'>&lt;%language:lu_error_404%&gt;</span>
+     is used. If the Bulgarian language pack is currently selected, <span
+     style='font-size:10.0pt;font-family:"Courier New";'>&lt;%language:lu_error_404%&gt;</span>
+     would display Stranicata ne moge da bade otvorena.</li>
+</ul>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>See also: <a href="#_Working_with_Language"><span
+style='color:windowtext;text-decoration:none;'> See also: Appendixes | In-tag Dictionary </span></a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name="_Toc519847396"></a><a name="_Toc519894173"></a><a
+name="_Toc521148105"></a><a name="_Toc10270508"></a><a
+name="_Working_with_Themes"></a>7.4<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Working
+with Themes</h2>
+
+<h3><a name="_Toc519894174"></a><a name="_Toc10270509">Overview</a></h3>
+
+<p class=MsoNormal>In-link's entire front-end is controllable via themes.
+Themes are located in <span style='font-size:10.0pt;
+font-family:"Courier New";'>themes/<i>currently_selected_theme</i></span>.
+The files in the directory are called templates and end with the <span
+style='font-size:10.0pt;font-family:"Courier New";'>.tpl</span> extension. The contents of
+the template files vary with the type of theme you implementwith either theme
+style however the core structure is HTML. Templates may contain HTML,
+JavaScript, In-tags, or PHP source. </p>
+
+<h3><a name="_Toc519847397"></a><a name="_Toc519894175"></a><a
+name="_Toc10270510">In-link Themes:</a></h3>
+
+<p class=MsoNormal>In-link ships with two themes: default and
+Dreamweaver.  Both themes are just
+examples of how a theme system can be structured in In-link in order to meet
+all requirements for a site maintenance. Even though, there is no coded-in
+division for the type of themes, nor there are any limitations of what one
+theme type can do versus the other, we prefer to divide all the themes into two
+categories distinguishing different logic in their structures. One of the
+themes (default) is most likely to be preferred by a system administrator who
+is more comfortable working from a telnet session and a notepad, who
+appreciates the power of updating one header in a template and having
+dynamically updated layouts in the entire system.  The second theme Dreamweaver is more likely to be preferred by
+someone who is more familiar with WYSIWYG editors such as Dreamweaver, who
+would prefer using Dreamweaver libraries and templates and would allow
+Dreamweaver do the job of updating multiple files.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h4>Default</h4>
+
+<p class=MsoNormal>This is a theme where all the templates are structured using
+the include tags for headers, footers and other elements that can be nested.
+The default theme is structured around a base template for each of the pages (<span
+style='font-size:10.0pt;font-family:"Courier New";'>index.tpl, add_cat.tpl, mod_link.tpl</span>,
+etc.) and then includes for common code segments (<span style='font-size:10.0pt;font-family:"Courier New";'>search.tpl,
+user_menu.tpl, login.tpl</span>, etc.). This theme </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>This theme has the advantage that the Administrator may use
+the template editor in the admin utility to make a change to a template that
+will affect any page that includes ithowever, if the admin wants to design a
+theme in this style using a WYSIWYG editor, the page must be broken into
+multiple template files and will no longer be visually editable.</p>
+
+<h4>Dreamweaver</h4>
+
+<p class=MsoNormal>This is a template set structured for use in a WYSIWYG editor
+and utilizing Dreamweaver templates and libraries. The Dreamweaver theme is
+designed for editing in Macromedia Dreamweaver 4. All pages are structured
+around a Dreamweaver Template (See Dreamweavers documentation for more on
+Dreamweaver Templates, Library Items) with internal HTML for each pages unique
+content and included Library Items for reused elements. Templates in this
+format have the advantage of being fully editable within a WYSIWYG editor 
+however, if a reused element such as the search box needs to be changed, the
+templates must either be taken local and edited using Dreamweavers Libraries,
+or each page that uses that element must be changed in the template editor.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h4>Simple</h4>
+
+<p class=MsoNormal>This is an alternative template set containing minimum
+number of features and layouts.  This
+theme is probably the best theme for learning In-link or for putting together a
+small In-link driven site quickly. 
+Although, some of the more advanced interfaces and functionality is not
+included in this theme, it can always be added later, when you are more
+accustomed to working with In-link themes.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name="_Toc519847398"></a><a name="_Toc519894176"></a><a
+name="_Toc521148106"></a><a name="_Toc10270511"></a><a
+name="_Working_with_Language"></a>7.5<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Working
+with Language Sets</h2>
+
+<h3><a name="_Toc519894177"></a><a name="_Toc10270512">Overview</a></h3>
+
+<p class=MsoNormal>Language sets are contained in the <span style='font-size:
+10.0pt;font-family:"Courier New";'>&quot;languages\&quot;</span> directory of the In-link
+installation.  The entire system output
+is located in centralized language files and can be easily edited in any simple
+text editor or built-in In-link language file editor. You can easily modify any
+system messages in the sets or even create your own language sets. You can even
+change the browser language encoding for the entire system. Additional language
+sets are available for download on the In-link site.</p>
+
+<h2><a name="_Toc519847399"></a><a name="_Toc519894178"></a><a
+name="_Toc521148107"></a><a name="_Toc10270513"></a><a name="_Working_with_Mods"></a>7.6<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Working
+with Modules</h2>
+
+<h3><a name="_Toc519894179"></a><a name="_Toc10270514">Overview</a></h3>
+
+<p class=MsoNormal>Modules allow for the easy addition of new functionality to
+In-link. Modules can extend the functionality of your entire In-link system my
+allowing you to use custom tags in the templates. Adding this extra feature
+that your web site needs can be now done without having to modify any of the
+existing code. Just upload a new module to the modules\ directory in your
+In-link directory and it will be automatically configured for the use with the
+system.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div style='border:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+background:#FFFFD9'>
+
+<p class=warning>USE EXTREME CAUTION WHEN USING MODULES AND PLEASE USE THEM AT
+YOUR WN RISK.  MODULES HAVE ACCESS TO
+THE ENITRE IN-LINK SYSTME VARIABLES AND ROUTINES AND THE MUST BE WRITTEN IN A
+COMPATIBLE AND COMPLIANT FORMAT IN ORDER TO WORK PROPERLY WITH YOUR IN-LINK
+SYSTEM.  DO NOT DOWNLOAD AND ISNTALL
+MODULES FROM AN UNTRUSTED SOURCE AS THEY CAN POTENTIALLY REPRESENT A HAZARDOUS
+SECURITY RISK FOR YOUR SITE. ALL THE MODULES DISTRIBUTED BY INTECHNIC
+CORPORATION WILL UNDERGO TESTS AND SECURITY CHECKS.</p>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2><a name="_Toc519847400"></a><a name="_Toc519894180"></a><a
+name="_Toc521148108"></a><a name="_Toc10270515"></a><a name="_In-tag_Dictionary"></a>7.7<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Working
+with Macromedia Dreamweaver</h2>
+
+<h3><a name="_Toc519894181"></a><a name="_Toc10270516">Overview</a></h3>
+
+<p class=MsoNormal>In-link supports full integration into Macromedia
+Dreamweaver 4.  Using Dreamweaver
+In-link Templates (tpl) differs from the standard In-link Templates in many
+ways.  The most distinct difference is
+that all tpls are fully compiled and are fully editable in a WYSIWYG method
+(the only exception is the insert In-tag, these do not display as compiled
+code, but instead as an ASP tag).</p>
+
+<p class=MsoNormal>Dreamweaver tpls have the benefits of easy modification
+within the Dreamweaver environment, reduction on server load, and remain
+updateable in a fashion similar to the standard tpls.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3><a name="_Toc10270517">Configuring Macromedia Dreamweaver for first use</a></h3>
+
+<p class=MsoNormal>In order to use Macromedia Dreamweaver 4s ability to update
+links automatically, library items, and templates, the user must first
+configure the Extensions.txt file.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>1.         Locate
+Dreamweavers configuration directory. 
+This is in <span style='font-size:10.0pt;
+font-family:"Courier New";'>c:\Program
+Files\Macromedia\Dreamweaver 4\Configuration</span> on Microsoft Windows by
+defaulthowever, your mileage may very.</p>
+
+<p class=MsoNormal>2.         Open
+Extensions.txt in the configuration directory.</p>
+
+<p class=MsoNormal>3.         You will see
+a file similar to this:</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>HTM,HTML,SHTM,SHTML,STM,SSI,JS,XML,LBI,DWT,ASP,CFM,CFML,TXT,PHP,PHP3,PHP4,LASSO,JSP:All
+Documents</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>HTM,HTML:HTML Documents</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>SHTM,SHTML,STM,SSI:Server-Side Includes</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>JS:JavaScript Documents</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>XML:XML Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>LBI:Library Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>DWT:Template Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>CSS:Style Sheets</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>ASP:Active Server Pages</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>CFM,CFML:Cold Fusion Templates</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>TXT:Text Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>PHP,PHP3,PHP4:PHP Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>LASSO:Lasso Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>JSP:Java Server Pages </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>4.         <span
+style='font-size:10.0pt;font-family:"Courier New";'>,TPL</span> must be added to the
+first line and the end of the list of extensionsbut before <span
+style='font-size:10.0pt;font-family:"Courier New";'>:All Documents</span></p>
+
+<p class=MsoNormal>5.         Your line
+should now look like this:</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>HTM,HTML,SHTM,SHTML,STM,SSI,JS,XML,LBI,DWT,ASP,CFM,CFML,TXT,PHP,PHP3,PHP4,LASSO,JSP,TPL:All
+Documents</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>6.         TPL:In-link
+Template File must be added on a new line at the end of the file.</p>
+
+<p class=MsoNormal>7.         Your
+completed Extensions.txt file should now look like this:</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>HTM,HTML,SHTM,SHTML,STM,SSI,JS,XML,LBI,DWT,ASP,CFM,CFML,TXT,PHP,PHP3,PHP4,LASSO,JSP,TPL:All
+Documents</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>HTM,HTML:HTML Documents</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>SHTM,SHTML,STM,SSI:Server-Side Includes</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>JS:JavaScript Documents</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>XML:XML Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>LBI:Library Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>DWT:Template Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>CSS:Style Sheets</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>ASP:Active Server Pages</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>CFM,CFML:Cold Fusion Templates</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>TXT:Text Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>PHP,PHP3,PHP4:PHP Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>LASSO:Lasso Files</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>JSP:Java Server Pages</p>
+
+<p class=codeChar style='margin-left:.3in;text-indent:0in;'>TPL:In-Link Template File</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>8.         Save and
+close <span style='font-size:10.0pt;font-family:"Courier New";'>Extensions.txt</span></p>
+
+<p class=MsoNormal>9.         If
+Dreamweaver is open, it must be restarted.</p>
+
+<p class=MsoNormal>10.       Note that
+these steps do not require the addition of <span style='font-size:10.0pt;font-family:"Courier New";'>.tpl</span>
+to the extensions list under File Types/Editors in the Preferences.  Merely adding the extension in preferences
+will not allow link updating in Dreamweaver 4.</p>
+
+<p class=MsoNormal style='margin-left:36.3pt;text-indent:-36.3pt;'>11.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>It is highly recommended that <span style='font-size:10.0pt;font-family:"Courier New";'>.tpl</span>
+be added to the list of extensions to not be rewritten under Code Rewriting in
+the Preferences.<img border=0 width=549 height=417
+src="./manual_files/image003.gif"></p>
+
+<p class=MsoNormal style='margin-left:.25in'>&nbsp;</p>
+
+<h3><a name="_Toc10270518">Macromedia Dreamweaver Templates v. Intechnic
+In-link Templates</a></h3>
+
+<p class=MsoNormal>It is important to make a distinction between the templates
+supported within Dreamweaver and the templates used by In-link.  Dreamweaver Templates are files that end
+with a .dwt extension and are used by Dreamweaver to allow multiple web pages
+to use an identical design but contain different content and allow design
+changes to be applied to all pages that use the dwt.  In-link Templates are files that end in a .tpl extension and are
+used be In-link to format the information from the In-link engine for
+presentation to a user.  Throughout the
+Dreamweaver integration chapter, Dreamweaver Templates will be referred to as
+dwts and In-link Templates will be referred to as tpls to avoid confusion.</p>
+
+<h4>&nbsp;</h4>
+
+<h3><a name="_Toc10270519">Understanding Dreamweaver Templates</a></h3>
+
+<p class=MsoNormal>This section is meant only as a brief introduction to the
+dwt file formatif further information is required, please consult the
+Dreamweaver help file.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Dreamweavers template system consists on standard HTML with
+special HTML comments that Dreamweaver recognizes as editable sections in the
+format of <span class=codeCharChar><span style='font-family:"Courier New";'>&lt;!-- #BeginEditable &quot;<i>templateName</i>&quot; --&gt;</span></span>
+and <span class=codeCharChar><span style='font-family:"Courier New";'>&lt;!-- #EndEditable --&gt;.</span></span>  When edited within Dreamweaver, the only
+section of the page that is editable is the text/code between the editable
+opening and closing tags.  When a change
+is made to a dwt that other HTML files use, that change is applied to those
+HTML files as well.  It is important to
+emphasize that the full code is present the HTML fileit is not linked to the
+dwt in any way other than the editable section tags.</p>
+
+<h3><a name="_Toc10270520">Understanding Macromedia Dreamweaver Library Items</a></h3>
+
+<p class=MsoNormal>This section is meant only as a brief introduction to the
+lbi file formatif further information is required, please consult the
+Dreamweaver help file.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The limitation to Dreamweavers template system is that all
+pages look the same sans the content. 
+If a developer wanted to add an element (e.g. a navbar, a login box,
+copyright information) to some of the pages that use a certain dwt, but not all
+of the pages that use that dwt, he/she would have to add this information
+manually.  If the developer then needed
+to make a change to that element, he/she would have to change each element
+manually.  To overcome this limitation,
+Macromedia introduced Library Items (.lbi). 
+Library Items contain a code segment that may be inserted into an HTML
+page (regardless if the page is based off a dwt or not) and remains easily
+updateable via Dreamweavers update engine. 
+Library items contain only a code segment, when applied in a web page,
+they contain that code segment surrounded by <span class=codeCharChar><span
+style='font-family:"Courier New";'>&lt;!--
+#BeginLibraryItem &quot;/path/to/library/folder/libraryFileName.lbi --&gt;</span></span>and<span class=codeCharChar><span
+style='font-family:"Courier New";'>&lt;!--
+#EndLibraryItem --&gt;</span></span>. 
+When an lbi is edited within Dreamweaver, all pages using that lbi are
+updated to reflect the changes made to the lbi.</p>
+
+<h3><a name="_Toc10270521">Throwing tpls Into the dwt lbi Mix</a></h3>
+
+<p class=MsoNormal>When creating Dreamweaver-based tpls, though you are still
+creating tpl filesthe content is wholly based on dwts and lbis.  Rather than having a header and footer to
+establish a similar look to all your pages, you now use one (or more, if
+multiple page styles are needed) dwt to set the style of the pages.  Rather than having a tpl file for elements
+that are not integrated into the dwt, you now have lbis that are integrated
+into you tpls and/or dwts.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div style='border:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+background:#FFFFD9'>
+
+<p class=warning>Using a lbi in a dwt can have undesired effects and is only
+recommended for advanced users.</p>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3><a name="_Toc10270522">Dreamweaver tpl Creation/Utilization Walkthrough</a></h3>
+
+<p class=MsoNormal>Youve configured the Extensions.txt file, and now you want
+to start your first Dreamweaver tpl theme setso now what?</p>
+
+<h4>Creating a new Dreamweaver Site</h4>
+
+<h5>Start by creating a new site within Dreamweaver that will contain only the
+tpls and other connected files (css, js, gif, jpg, etc.).</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Open the Site window if it is not already open.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Select <b>Site-&gt;New
+Site</b> from the menu.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Under Local Info, Select a Site Name, the Local Root Folder
+that will contain your tpls, and the HTTP Address that the theme will be
+running on.  All other settings are up
+to the developers preferences. <img border=0 width=503 height=425
+src="./manual_files/image004.gif"></h5>
+
+<h5>&nbsp;</h5>
+
+<h4>Creating the main dwt</h4>
+
+<h5>We want one standard design for our theme, thus we will only create one
+dwthowever, the developer may choose to use as many dwts as he/she sees fit.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Select <b>File-&gt;New Window</b> from the menu on the Site
+window.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Create the desired design for your theme (including any
+In-tags you want displayed on all pages that use the dwt) in the new
+window.  In most cases if you are
+changing from standard tpls to Dreamweaver tpls, the dwt you just created will
+simply be the summation of the header and footer with the addition of a few
+editable regions.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Save your file as a dwt by selecting <b>File-&gt;Save as
+Template</b> from the menu.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Add desired editable regions to the dwt by selecting <b>Modify-&gt;Templates-&gt;New
+Editable Region</b> from the menu.  Name
+your new region (it is suggested that you only use alphanumeric characters for
+the region name for easier code editing).</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>In addition to the editable regions you specified, one
+additional editable region must be placed as the very first visible element in
+the design window.  The editable region
+may be named anything you desire, but must contain the <span
+class=codeCharChar><span style='font-family:"Courier New";'>&lt;%preserve_order%&gt;</span></span> In-tag.  This tag allows for link/category sorting
+and will be deleted from all tpls that do not contain links. <img border=0 width=576 height=471
+src="./manual_files/image006.gif"></h5>
+
+<h5>&nbsp;</h5>
+
+<h4>Creating lbi items</h4>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Open a new Dreamweaver window.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Create any object you need as a reusable element (e.g.  in your theme.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Select the object you want to add as a lbi</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Select <b>Modify-&gt;Library-&gt;Add Object to Library</b>.  Select a name for the lbi in the Assets
+pallet (use the same naming conventions as for dwts). </h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Create lbis for all elements that are needed for the theme. <img border=0 width=576 height=207
+src="./manual_files/image008.gif"></h5>
+
+<h5>&nbsp;</h5>
+
+<h4>Creating tpls</h4>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>From the Site menu, select <b>File-&gt;New from Template</b></h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Select the desired template if more than one exists for the
+theme.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'><span class=codeCharChar>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Insert all desired html, lbis, and In-tags into
+the editable region.  If the tpl will
+not have sorting ability, remove the <span class=codeCharChar><span
+style='font-family:"Courier New";'>&lt;%preserve_order%&gt;</span></span>
+In-tag.</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Save the file as an In-link Template File (*.tpl).</h5>
+
+<h5 style='margin-left:.5in;text-indent:-.25in;'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Create tpls for all required pages. <img border=0 width=575 height=454
+src="./manual_files/image010.gif"></h5>
+
+<h5>&nbsp;</h5>
+
+<h4>Additional Files</h4>
+
+<p class=MsoNormal>A few special tpls are required for the insert In-tags. The
+following tpls are required:</p>
+
+<p class=MsoNormal>list_links.tpl</p>
+
+<p class=MsoNormal>top_links.tpl</p>
+
+<p class=MsoNormal>pop_links.tpl</p>
+
+<p class=MsoNormal>new_links.tpl</p>
+
+<p class=MsoNormal>pick_links.tpl</p>
+
+<p class=MsoNormal>search_links.tpl</p>
+
+<p class=MsoNormal>mod_links.tpl</p>
+
+<p class=MsoNormal>link_count.tpl</p>
+
+<h5>&nbsp;</h5>
+
+<h4>Final Notes</h4>
+
+<p class=MsoNormal>Once tpls have been created, do not edit the tpls in any
+other method than through Dreamweaver (including the admin utility).  Aside from this, your new Dreamweaver tpls
+may be used in the same methods as standard In-link tpls.  Further information on Macromedia
+Dreamweaver 4 may be obtained from <a href="http://www.dreamweaver.com/">http://www.dreamweaver.com</a>.</p>
+
+<h4>&nbsp;</h4>
+
+<h2><a name="_Toc519847402"></a><a name="_Toc519894183"></a><a
+name="_Toc521148109"></a><a name="_Toc10270523"></a><a
+name="_Working_with_In-link"></a>7.8<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Working
+with In-link PHP</h2>
+
+<p class=MsoNormal>Any templates may contain regular PHP code and even entire
+programs that will be parsed and executed by In-link.  This also gives the ability to enhance the functionality of
+In-link directly from the template files. 
+For more information on PHP, please refer to the official PHP documentation
+(<a href="http://www.php.net/">http://www.php.net</a>)</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div style='border:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+background:#FFFFD9'>
+
+<p class=warning>By using PHP in your templates, similar to modules, you can
+access any system variables and routine which can be potentially dangerous.
+Please, use caution when including PHP in In-link templates.</p>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+<!-- #EndEditable -->
+<CENTER>
+<P><IMG src="images/inlinksmall.gif" width="75" height="27"></P>
+<P class="footer">Intechnic Corporation, 2001. All Rights Reserved.</P>
+</CENTER>
+</BODY>
+<!-- #EndTemplate --></HTML>
