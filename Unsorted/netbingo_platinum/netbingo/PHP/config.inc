@@ -1,0 +1,29 @@
+<?
+$game_URL="http://www.netbingo.net"; //URL to the game - used in password reminder email
+$php_dir="/home/www/netbingo/PHP/"; //Directory for main PHP files - trailing slash
+$game_dir="/home/www/netbingo/cgi-bin/multiplay/game/"; //Game file directory - trailing slash
+$response_dir="/home/www/netbingo/PHP/response/"; //Directory in which html for game responses is stored - trailing slash
+$schedule_game_URL="http://www.netbingo.net/PHP/schedule_game.php3"; //URL for the schedule_game.php3 file
+$bingoserver_URL="http://www.netbingo.net/PHP/bingoserver.php3"; //URL for the bingoserver.php3 file
+$images_URL="http://www.netbingo.net/PHP/images"; //URL for images directory - no trailing slash
+$cgi_URL="http://www.netbingo.net/cgi-bin/multiplay"; //URL for cgi-bin directory containing bingochecker.cgi and cards.cgi
+$cgi_path="/home/www/netbingo/cgi-bin/multiplay/"; //Path to cgi-bin directory containing bingochecker.cgi and cards.cgi - trailing slash
+$invitation="To join the next game,<br>draw your bingo cards."; //Message to display inviting players to draw cards
+$claim_page_path="/home/www/netbingo/PHP/claim_page.php3"; //Path for the claim page
+$chat_path="/home/www/netbingo/chat/"; //Path to chat directory - trailing slash
+$host="localhost"; //Host for your sql database
+$dbusername="netbingo"; //Username for access to sql database
+$dbpassword="net2kbingo"; //Password for access to sql database
+$dbname="netbingodb"; //SQL database name
+$from_address="webmaster@netbingo.net"; //email address to put in "From" field when reminding user's of their password
+$retain=800; //Retention time for game files in seconds - must be greater than possible game length (75 * delay)
+$strike_limit=2; //No. of times cry wolf is allowed
+$winner_limit=3; //No. of allowed winners on same ball. 0 is unlimited.
+$delay=1; //Delay between bingo numbers being called
+$session_expire=90; //Session expiry time - users logged out after this no of seconds if browser closed
+$top_no=10; //Top winners to display
+$winners_for_week="yes"; //Show winners for current week [yes,no]
+$cards_per_row=5; //No. of cards to display per row
+$numcards=5; //Total number of cards to display
+$user_game_choice="yes"; //User can choose game. [yes,no] If no, games are played in sequence defined in game_sequence.
+?>
