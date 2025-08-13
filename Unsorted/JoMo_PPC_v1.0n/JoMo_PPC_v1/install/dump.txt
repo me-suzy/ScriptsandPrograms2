@@ -1,0 +1,780 @@
+# phpMyAdmin MySQL-Dump
+# version 2.3.0-rc2
+# http://phpwizard.net/phpMyAdmin/
+# http://www.phpmyadmin.net/ (download page)
+#
+# Host: localhost
+# Generation Time: Oct 29, 2002 at 04:40 PM
+# Server version: 3.23.47
+# PHP Version: 4.2.1
+# Database : `ppc`
+# --------------------------------------------------------
+
+#
+# Table structure for table `adminoptions`
+#
+
+DROP TABLE IF EXISTS adminoptions;
+CREATE TABLE adminoptions (
+  optionName varchar(250) NOT NULL default '',
+  value varchar(250) NOT NULL default '',
+  description mediumtext NOT NULL,
+  optionCategory varchar(250) NOT NULL default 'general',
+  PRIMARY KEY  (optionName)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `adminoptions`
+#
+
+INSERT INTO adminoptions VALUES ('minBidValue', '0.01', 'minimum bid value for listing                  \r\n            \r\n            ', 'account');
+INSERT INTO adminoptions VALUES ('minBalance', '20', 'minimum balance on member\'s account                                              \r\n            \r\n            \r\n            \r\n            \r\n            \r\n            ', 'account');
+INSERT INTO adminoptions VALUES ('isGoogleSearch', '0', 'google search', 'search');
+INSERT INTO adminoptions VALUES ('approveListing', '1', 'option of approving listings.\r\n0- lisitings will automatically be listed without approval.\r\n1- admin must approve(enable,activate) listing before they go live.', 'listing');
+INSERT INTO adminoptions VALUES ('openLinkInNewWindow', '1', 'open link in a new window', 'search');
+INSERT INTO adminoptions VALUES ('LinksPerPage', '10', 'number of displayed items per one page', 'general');
+INSERT INTO adminoptions VALUES ('publicStatistics', '1', 'option of allowing (or not allowing) the public to see statistics on home page', 'general');
+INSERT INTO adminoptions VALUES ('showBanners', '1', 'show banners in search results', 'search');
+INSERT INTO adminoptions VALUES ('publicTopKeywords', '1', 'option of allowing (or not allowing) the public to see the top 10 searched keywords by visitors on the homepage', 'general');
+INSERT INTO adminoptions VALUES ('bannerPerImpression', '1', 'show impression banners in search results', 'listing');
+INSERT INTO adminoptions VALUES ('bannerImpressionBid', '0.05', 'price of banners, that per impression', 'listing');
+INSERT INTO adminoptions VALUES ('minSearchCount', '40', 'minimum amount of links displayed.\r\nIf found less then this amount then  search from other sites will be used.', 'search');
+INSERT INTO adminoptions VALUES ('maxGoogleSearchCount', '5', 'maximum number of links, returned from Google', 'search');
+INSERT INTO adminoptions VALUES ('affiliatePercent', '20', 'affiliate percent', 'affiliate');
+INSERT INTO adminoptions VALUES ('lowMoney', '10', 'notify, when below this amount, $', 'account');
+INSERT INTO adminoptions VALUES ('SearchFeed', '1', 'pull search results from SearchFeed', 'search');
+INSERT INTO adminoptions VALUES ('paypalAccount', 'your@email.com', 'your paypal account', 'payment');
+INSERT INTO adminoptions VALUES ('minAffiliateBalance', '10', 'minimum balance on affiliate\'s account to request money', 'account');
+INSERT INTO adminoptions VALUES ('SearchFeedAccount', '0', 'Searchfeed member code number', 'search');
+INSERT INTO adminoptions VALUES ('siteTitle', 'JoMo PPC Search Engine', 'title of the site', 'general');
+INSERT INTO adminoptions VALUES ('notificationName', 'JoMo Media Group', 'name, used in "from" to email to members', 'general');
+INSERT INTO adminoptions VALUES ('notificationEmail', 'your@email.com', 'address, used in "from" to email to members', 'general');
+INSERT INTO adminoptions VALUES ('paypalFee', '1', 'Who pay paypal transaction fee:\r\n0 - site pays fee to paypal;\r\n1 - member must pay transaction fee;', 'payment');
+INSERT INTO adminoptions VALUES ('UniqueWord', 'secret', 'unique secret word for 2checkout', 'payment');
+INSERT INTO adminoptions VALUES ('UnigueNumber', '0', 'Unigue Number for 2checkout account owner', 'payment');
+INSERT INTO adminoptions VALUES ('DemoMode', '0', 'Is Demo Mode for 2checkout(1 - Yes, 0 - no)', 'payment');
+INSERT INTO adminoptions VALUES ('nTopListings', '3', 'the number of top listings to show on the homepage.\r\n', 'general');
+INSERT INTO adminoptions VALUES ('adminEmail', 'your@email.com', 'admin email', 'general');
+INSERT INTO adminoptions VALUES ('searchAltavista', '1', 'altavista search', 'search');
+INSERT INTO adminoptions VALUES ('maxAltavistaCount', '15', 'max links from altavista', 'search');
+# --------------------------------------------------------
+
+#
+# Table structure for table `affcolors`
+#
+
+DROP TABLE IF EXISTS affcolors;
+CREATE TABLE affcolors (
+  colorID varchar(20) NOT NULL default '',
+  colorName varchar(200) NOT NULL default '',
+  description mediumtext NOT NULL
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `affcolors`
+#
+
+INSERT INTO affcolors VALUES ('backgroundcolor', 'background color', '');
+INSERT INTO affcolors VALUES ('textcolor', 'text color', '');
+INSERT INTO affcolors VALUES ('evenbackcolor', 'even background color', '');
+INSERT INTO affcolors VALUES ('oddbackcolor', 'odd background color', '');
+INSERT INTO affcolors VALUES ('formcolor', 'form color', '');
+INSERT INTO affcolors VALUES ('linkcolor', 'link color', '');
+INSERT INTO affcolors VALUES ('vlinkcolor', 'visited link color', '');
+INSERT INTO affcolors VALUES ('backgroundcolor', 'background color', '');
+INSERT INTO affcolors VALUES ('textcolor', 'text color', '');
+INSERT INTO affcolors VALUES ('evenbackcolor', 'even background color', '');
+INSERT INTO affcolors VALUES ('oddbackcolor', 'odd background color', '');
+INSERT INTO affcolors VALUES ('formcolor', 'form color', '');
+INSERT INTO affcolors VALUES ('linkcolor', 'link color', '');
+INSERT INTO affcolors VALUES ('vlinkcolor', 'visited link color', '');
+INSERT INTO affcolors VALUES ('backgroundcolor', 'background color', '');
+INSERT INTO affcolors VALUES ('textcolor', 'text color', '');
+INSERT INTO affcolors VALUES ('evenbackcolor', 'even background color', '');
+INSERT INTO affcolors VALUES ('oddbackcolor', 'odd background color', '');
+INSERT INTO affcolors VALUES ('formcolor', 'form color', '');
+INSERT INTO affcolors VALUES ('linkcolor', 'link color', '');
+INSERT INTO affcolors VALUES ('vlinkcolor', 'visited link color', '');
+INSERT INTO affcolors VALUES ('backgroundcolor', 'background color', '');
+INSERT INTO affcolors VALUES ('textcolor', 'text color', '');
+INSERT INTO affcolors VALUES ('evenbackcolor', 'even background color', '');
+INSERT INTO affcolors VALUES ('oddbackcolor', 'odd background color', '');
+INSERT INTO affcolors VALUES ('formcolor', 'form color', '');
+INSERT INTO affcolors VALUES ('linkcolor', 'link color', '');
+INSERT INTO affcolors VALUES ('vlinkcolor', 'visited link color', '');
+INSERT INTO affcolors VALUES ('backgroundcolor', 'background color', '');
+INSERT INTO affcolors VALUES ('textcolor', 'text color', '');
+INSERT INTO affcolors VALUES ('evenbackcolor', 'even background color', '');
+INSERT INTO affcolors VALUES ('oddbackcolor', 'odd background color', '');
+INSERT INTO affcolors VALUES ('formcolor', 'form color', '');
+INSERT INTO affcolors VALUES ('linkcolor', 'link color', '');
+INSERT INTO affcolors VALUES ('vlinkcolor', 'visited link color', '');
+# --------------------------------------------------------
+
+#
+# Table structure for table `affcustoms`
+#
+
+DROP TABLE IF EXISTS affcustoms;
+CREATE TABLE affcustoms (
+  affiliateID int(11) NOT NULL default '0',
+  header mediumtext NOT NULL,
+  footer mediumtext NOT NULL,
+  backgroundcolor varchar(20) NOT NULL default '',
+  textcolor varchar(20) NOT NULL default '',
+  evenbackcolor varchar(20) NOT NULL default '',
+  oddbackcolor varchar(20) NOT NULL default '',
+  formcolor varchar(20) NOT NULL default '',
+  linkcolor varchar(20) NOT NULL default '',
+  vlinkcolor varchar(20) NOT NULL default '',
+  showURL int(11) NOT NULL default '1',
+  showBid int(11) NOT NULL default '1',
+  openLinkInNewWindow int(11) NOT NULL default '1',
+  PRIMARY KEY  (affiliateID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `affcustoms`
+#
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `affiliateaccounts`
+#
+
+DROP TABLE IF EXISTS affiliateaccounts;
+CREATE TABLE affiliateaccounts (
+  affiliateID int(11) NOT NULL default '0',
+  balance decimal(10,4) NOT NULL default '0.0000',
+  isActive int(11) NOT NULL default '1',
+  PRIMARY KEY  (affiliateID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `affiliateaccounts`
+#
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `affiliates`
+#
+
+DROP TABLE IF EXISTS affiliates;
+CREATE TABLE affiliates (
+  affiliateID int(11) NOT NULL auto_increment,
+  login varchar(250) NOT NULL default '',
+  password varchar(250) NOT NULL default '',
+  firstName varchar(250) NOT NULL default '',
+  lastName varchar(250) NOT NULL default '',
+  companyName varchar(250) default NULL,
+  address varchar(250) NOT NULL default '',
+  city varchar(100) default '',
+  country varchar(100) NOT NULL default '',
+  state varchar(100) default '',
+  zip varchar(20) NOT NULL default '',
+  phone varchar(40) default NULL,
+  fax varchar(100) default NULL,
+  email varchar(250) NOT NULL default '',
+  creationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  modificationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  foundus mediumtext,
+  PRIMARY KEY  (affiliateID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `affiliates`
+#
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `affrequests`
+#
+
+DROP TABLE IF EXISTS affrequests;
+CREATE TABLE affrequests (
+  affiliateID int(11) NOT NULL default '0',
+  lastRequestDate datetime NOT NULL default '0000-00-00 00:00:00',
+  paymentType varchar(250) NOT NULL default '',
+  comments mediumtext NOT NULL,
+  PRIMARY KEY  (affiliateID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `affrequests`
+#
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `affsearchboxes`
+#
+
+DROP TABLE IF EXISTS affsearchboxes;
+CREATE TABLE affsearchboxes (
+  searchBoxID int(11) NOT NULL auto_increment,
+  searchBoxName varchar(250) NOT NULL default '',
+  htmlCode mediumtext NOT NULL,
+  isActive int(11) NOT NULL default '1',
+  PRIMARY KEY  (searchBoxID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `affsearchboxes`
+#
+
+INSERT INTO affsearchboxes VALUES (1, 'simple search box from eclick', '<input size="24" name="str"> \r\n<input type="submit" value="Search the Web" name="submit">', 1);
+INSERT INTO affsearchboxes VALUES (2, 'another search box from eclickz', '<table border="0" width="300" bgcolor="#000000" cellspacing="1" cellpadding="0">\r\n<tr><td width="100%" bgcolor="#F5F5F5">\r\n<table border=0 cellpadding=0 cellspacing=0 width=100%>\r\n<tr><td bgcolor="#FFFFFF" width="130">\r\n<a href="#">\r\n<font face="arial,sans-serif"><img border="0" src="logo.gif" width="130" height="60" alt="ppc"></font></a></td>\r\n<td bgcolor="#FFFFFF" align=center>\r\n<table cellSpacing="0" cellPadding="0" border="0">\r\n\r\n<tr><td><font face="arial,sans-serif"> </font></td></tr>\r\n\r\n<tr>\r\n<td><font face="arial,sans-serif"><b><font color="#000000" size="2">Search the Web:</font></b><br><input size="11" name="str"> <input type="submit" value="Search" name="submit"></font></td></tr></table>\r\n</td></tr>\r\n</table>\r\n</td></tr>\r\n</table>', 1);
+# --------------------------------------------------------
+
+#
+# Table structure for table `banners`
+#
+
+DROP TABLE IF EXISTS banners;
+CREATE TABLE banners (
+  bannerID int(11) NOT NULL auto_increment,
+  url varchar(250) NOT NULL default '',
+  memberID int(11) NOT NULL default '0',
+  bid decimal(10,2) NOT NULL default '0.00',
+  keywords mediumtext NOT NULL,
+  isCatchAll int(11) NOT NULL default '0',
+  isPerImpression int(11) NOT NULL default '0',
+  path mediumtext NOT NULL,
+  status int(11) NOT NULL default '0',
+  adminStatus int(11) NOT NULL default '0',
+  accountStatus int(11) NOT NULL default '0',
+  creationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  modificationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (bannerID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `banners`
+#
+
+
+#
+# Table structure for table `cats`
+#
+
+DROP TABLE IF EXISTS cats;
+CREATE TABLE cats (
+  categoryID int(11) NOT NULL auto_increment,
+  categoryName varchar(250) NOT NULL default '',
+  description mediumtext NOT NULL,
+  PRIMARY KEY  (categoryID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `cats`
+#
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `country`
+#
+
+DROP TABLE IF EXISTS country;
+CREATE TABLE country (
+  country_id int(11) NOT NULL auto_increment,
+  code varchar(255) NOT NULL default '',
+  name varchar(255) NOT NULL default '',
+  PRIMARY KEY  (country_id)
+) TYPE=ISAM PACK_KEYS=1;
+
+#
+# Dumping data for table `country`
+#
+
+INSERT INTO country VALUES (1, 'af', 'Afghanistan');
+INSERT INTO country VALUES (2, 'al', 'Albania');
+INSERT INTO country VALUES (3, 'dz', 'Algeria');
+INSERT INTO country VALUES (4, 'as', 'American Samoa');
+INSERT INTO country VALUES (5, 'ad', 'Andorra');
+INSERT INTO country VALUES (6, 'ao', 'Angola');
+INSERT INTO country VALUES (7, 'ai', 'Anguilla');
+INSERT INTO country VALUES (8, 'aq', 'Antarctica');
+INSERT INTO country VALUES (9, 'ag', 'Antigua And Barbuda');
+INSERT INTO country VALUES (10, 'ar', 'Argentina');
+INSERT INTO country VALUES (11, 'am', 'Armenia');
+INSERT INTO country VALUES (12, 'aw', 'Aruba');
+INSERT INTO country VALUES (13, 'au', 'Australia');
+INSERT INTO country VALUES (14, 'at', 'Austria');
+INSERT INTO country VALUES (15, 'az', 'Azerbaijan');
+INSERT INTO country VALUES (16, 'bs', 'Bahamas');
+INSERT INTO country VALUES (17, 'bh', 'Bahrain');
+INSERT INTO country VALUES (18, 'bd', 'Bangladesh');
+INSERT INTO country VALUES (19, 'bb', 'Barbados');
+INSERT INTO country VALUES (20, 'by', 'Belarus');
+INSERT INTO country VALUES (21, 'be', 'Belgium');
+INSERT INTO country VALUES (22, 'bz', 'Belize');
+INSERT INTO country VALUES (23, 'bj', 'Benin');
+INSERT INTO country VALUES (24, 'bm', 'Bermuda');
+INSERT INTO country VALUES (25, 'bt', 'Bhutan');
+INSERT INTO country VALUES (26, 'bo', 'Bolivia');
+INSERT INTO country VALUES (27, 'ba', 'Bosnia And Herzegowina');
+INSERT INTO country VALUES (28, 'bw', 'Botswana');
+INSERT INTO country VALUES (29, 'bv', 'Bouvet Island');
+INSERT INTO country VALUES (30, 'br', 'Brazil');
+INSERT INTO country VALUES (31, 'io', 'British Indian Ocean Territory');
+INSERT INTO country VALUES (32, 'bn', 'Brunei Darussalam');
+INSERT INTO country VALUES (33, 'bg', 'Bulgaria');
+INSERT INTO country VALUES (34, 'bf', 'Burkina Faso');
+INSERT INTO country VALUES (35, 'bi', 'Burundi');
+INSERT INTO country VALUES (36, 'kh', 'Cambodia');
+INSERT INTO country VALUES (37, 'cm', 'Cameroon');
+INSERT INTO country VALUES (38, 'ca', 'Canada');
+INSERT INTO country VALUES (39, 'cv', 'Cape Verde');
+INSERT INTO country VALUES (40, 'ky', 'Cayman Islands');
+INSERT INTO country VALUES (41, 'cf', 'Central African Republic');
+INSERT INTO country VALUES (42, 'td', 'Chad');
+INSERT INTO country VALUES (43, 'cl', 'Chile');
+INSERT INTO country VALUES (44, 'cn', 'China');
+INSERT INTO country VALUES (45, 'cx', 'Christmas Island');
+INSERT INTO country VALUES (46, 'cc', 'Cocos (Keeling) Islands');
+INSERT INTO country VALUES (47, 'co', 'Colombia');
+INSERT INTO country VALUES (48, 'km', 'Comoros');
+INSERT INTO country VALUES (49, 'cg', 'Congo');
+INSERT INTO country VALUES (50, 'ck', 'Cook Islands');
+INSERT INTO country VALUES (51, 'cr', 'Costa Rica');
+INSERT INTO country VALUES (52, 'ci', 'Cote D\'Ivoire');
+INSERT INTO country VALUES (53, 'hr', 'Croatia');
+INSERT INTO country VALUES (54, 'cu', 'Cuba');
+INSERT INTO country VALUES (55, 'cy', 'Cyprus');
+INSERT INTO country VALUES (56, 'cz', 'Czech Republic');
+INSERT INTO country VALUES (57, 'dk', 'Denmark');
+INSERT INTO country VALUES (58, 'dj', 'Djibouti');
+INSERT INTO country VALUES (59, 'dm', 'Dominica');
+INSERT INTO country VALUES (60, 'do', 'Dominican Republic');
+INSERT INTO country VALUES (61, 'tp', 'East Timor');
+INSERT INTO country VALUES (62, 'ec', 'Ecuador');
+INSERT INTO country VALUES (63, 'eg', 'Egypt');
+INSERT INTO country VALUES (64, 'sv', 'El Salvador');
+INSERT INTO country VALUES (65, 'gq', 'Equatorial Guinea');
+INSERT INTO country VALUES (66, 'er', 'Eritrea');
+INSERT INTO country VALUES (67, 'ee', 'Estonia');
+INSERT INTO country VALUES (68, 'et', 'Ethiopia');
+INSERT INTO country VALUES (69, 'fk', 'Falkland Islands');
+INSERT INTO country VALUES (70, 'fo', 'Faroe Islands');
+INSERT INTO country VALUES (71, 'fj', 'Fiji');
+INSERT INTO country VALUES (72, 'fi', 'Finland');
+INSERT INTO country VALUES (73, 'fr', 'France');
+INSERT INTO country VALUES (74, 'fx', 'France, Metropolitan');
+INSERT INTO country VALUES (75, 'gf', 'French Guiana');
+INSERT INTO country VALUES (76, 'pf', 'French Polynesia');
+INSERT INTO country VALUES (77, 'tf', 'French Southern Territories');
+INSERT INTO country VALUES (78, 'ga', 'Gabon');
+INSERT INTO country VALUES (79, 'gm', 'Gambia');
+INSERT INTO country VALUES (80, 'ge', 'Georgia');
+INSERT INTO country VALUES (81, 'de', 'Germany');
+INSERT INTO country VALUES (82, 'gh', 'Ghana');
+INSERT INTO country VALUES (83, 'gi', 'Gibraltar');
+INSERT INTO country VALUES (84, 'gr', 'Greece');
+INSERT INTO country VALUES (85, 'gl', 'Greenland');
+INSERT INTO country VALUES (86, 'gd', 'Grenada');
+INSERT INTO country VALUES (87, 'gp', 'Guadeloupe');
+INSERT INTO country VALUES (88, 'gu', 'Guam');
+INSERT INTO country VALUES (89, 'gt', 'Guatemala');
+INSERT INTO country VALUES (90, 'gn', 'Guinea');
+INSERT INTO country VALUES (91, 'gw', 'Guinea-Bissau');
+INSERT INTO country VALUES (92, 'gy', 'Guyana');
+INSERT INTO country VALUES (93, 'ht', 'Haiti');
+INSERT INTO country VALUES (94, 'hm', 'Heard And Mc Donald Islands');
+INSERT INTO country VALUES (95, 'hn', 'Honduras');
+INSERT INTO country VALUES (96, 'hk', 'Hong Kong');
+INSERT INTO country VALUES (97, 'hu', 'Hungary');
+INSERT INTO country VALUES (98, 'is', 'Iceland');
+INSERT INTO country VALUES (99, 'in', 'India');
+INSERT INTO country VALUES (100, 'id', 'Indonesia');
+INSERT INTO country VALUES (101, 'en', 'International');
+INSERT INTO country VALUES (102, 'ir', 'Iran');
+INSERT INTO country VALUES (103, 'iq', 'Iraq');
+INSERT INTO country VALUES (104, 'ie', 'Ireland');
+INSERT INTO country VALUES (105, 'il', 'Israel');
+INSERT INTO country VALUES (106, 'it', 'Italy');
+INSERT INTO country VALUES (107, 'jm', 'Jamaica');
+INSERT INTO country VALUES (108, 'jp', 'Japan');
+INSERT INTO country VALUES (109, 'jo', 'Jordan');
+INSERT INTO country VALUES (110, 'kz', 'Kazakhstan');
+INSERT INTO country VALUES (111, 'ke', 'Kenya');
+INSERT INTO country VALUES (112, 'ki', 'Kiribati');
+INSERT INTO country VALUES (113, 'kw', 'Kuwait');
+INSERT INTO country VALUES (114, 'kg', 'Kyrgyzstan');
+INSERT INTO country VALUES (115, 'la', 'Lao People\'s Republic');
+INSERT INTO country VALUES (116, 'lv', 'Latvia');
+INSERT INTO country VALUES (117, 'lb', 'Lebanon');
+INSERT INTO country VALUES (118, 'ls', 'Lesotho');
+INSERT INTO country VALUES (119, 'lr', 'Liberia');
+INSERT INTO country VALUES (120, 'ly', 'Libyan Arab Jamahiriya');
+INSERT INTO country VALUES (121, 'li', 'Liechtenstein');
+INSERT INTO country VALUES (122, 'lt', 'Lithuania');
+INSERT INTO country VALUES (123, 'lu', 'Luxembourg');
+INSERT INTO country VALUES (124, 'mo', 'Macau');
+INSERT INTO country VALUES (125, 'mk', 'Macedonia');
+INSERT INTO country VALUES (126, 'mg', 'Madagascar');
+INSERT INTO country VALUES (127, 'mw', 'Malawi');
+INSERT INTO country VALUES (128, 'my', 'Malaysia');
+INSERT INTO country VALUES (129, 'mv', 'Maldives');
+INSERT INTO country VALUES (130, 'ml', 'Mali');
+INSERT INTO country VALUES (131, 'mt', 'Malta');
+INSERT INTO country VALUES (132, 'mh', 'Marshall Islands');
+INSERT INTO country VALUES (133, 'mq', 'Martinique');
+INSERT INTO country VALUES (134, 'mr', 'Mauritania');
+INSERT INTO country VALUES (135, 'mu', 'Mauritius');
+INSERT INTO country VALUES (136, 'yt', 'Mayotte');
+INSERT INTO country VALUES (137, 'mx', 'Mexico');
+INSERT INTO country VALUES (138, 'fm', 'Micronesia');
+INSERT INTO country VALUES (139, 'md', 'Moldova');
+INSERT INTO country VALUES (140, 'mc', 'Monaco');
+INSERT INTO country VALUES (141, 'mn', 'Mongolia');
+INSERT INTO country VALUES (142, 'ms', 'Montserrat');
+INSERT INTO country VALUES (143, 'ma', 'Morocco');
+INSERT INTO country VALUES (144, 'mz', 'Mozambique');
+INSERT INTO country VALUES (145, 'mm', 'Myanmar');
+INSERT INTO country VALUES (146, 'na', 'Namibia');
+INSERT INTO country VALUES (147, 'nr', 'Nauru');
+INSERT INTO country VALUES (148, 'np', 'Nepal');
+INSERT INTO country VALUES (149, 'nl', 'Netherlands');
+INSERT INTO country VALUES (150, 'an', 'Netherlands Antilles');
+INSERT INTO country VALUES (151, 'nc', 'New Caledonia');
+INSERT INTO country VALUES (152, 'nz', 'New Zealand');
+INSERT INTO country VALUES (153, 'ni', 'Nicaragua');
+INSERT INTO country VALUES (154, 'ne', 'Niger');
+INSERT INTO country VALUES (155, 'ng', 'Nigeria');
+INSERT INTO country VALUES (156, 'nu', 'Niue');
+INSERT INTO country VALUES (157, 'nf', 'Norfolk Island');
+INSERT INTO country VALUES (158, 'kp', 'North Korea');
+INSERT INTO country VALUES (159, 'mp', 'Northern Mariana Islands');
+INSERT INTO country VALUES (160, 'no', 'Norway');
+INSERT INTO country VALUES (161, 'om', 'Oman');
+INSERT INTO country VALUES (162, 'pk', 'Pakistan');
+INSERT INTO country VALUES (163, 'pw', 'Palau');
+INSERT INTO country VALUES (164, 'pa', 'Panama');
+INSERT INTO country VALUES (165, 'pg', 'Papua New Guinea');
+INSERT INTO country VALUES (166, 'py', 'Paraguay');
+INSERT INTO country VALUES (167, 'pe', 'Peru');
+INSERT INTO country VALUES (168, 'ph', 'Philippines');
+INSERT INTO country VALUES (169, 'pn', 'Pitcairn');
+INSERT INTO country VALUES (170, 'pl', 'Poland');
+INSERT INTO country VALUES (171, 'pt', 'Portugal');
+INSERT INTO country VALUES (172, 'pr', 'Puerto Rico');
+INSERT INTO country VALUES (173, 'qa', 'Qatar');
+INSERT INTO country VALUES (174, 're', 'Reunion');
+INSERT INTO country VALUES (175, 'ro', 'Romania');
+INSERT INTO country VALUES (176, 'ru', 'Russian Federation');
+INSERT INTO country VALUES (177, 'rw', 'Rwanda');
+INSERT INTO country VALUES (178, 'kn', 'Saint Kitts And Nevis');
+INSERT INTO country VALUES (179, 'lc', 'Saint Lucia');
+INSERT INTO country VALUES (180, 'vc', 'Saint Vincent And The Grenadin');
+INSERT INTO country VALUES (181, 'ws', 'Samoa');
+INSERT INTO country VALUES (182, 'sm', 'San Marino');
+INSERT INTO country VALUES (183, 'st', 'Sao Tome And Principe');
+INSERT INTO country VALUES (184, 'sa', 'Saudi Arabia');
+INSERT INTO country VALUES (185, 'sn', 'Senegal');
+INSERT INTO country VALUES (186, 'sc', 'Seychelles');
+INSERT INTO country VALUES (187, 'sl', 'Sierra Leone');
+INSERT INTO country VALUES (188, 'sg', 'Singapore');
+INSERT INTO country VALUES (189, 'sk', 'Slovakia');
+INSERT INTO country VALUES (190, 'si', 'Slovenia');
+INSERT INTO country VALUES (191, 'sb', 'Solomon Islands');
+INSERT INTO country VALUES (192, 'so', 'Somalia');
+INSERT INTO country VALUES (193, 'za', 'South Africa');
+INSERT INTO country VALUES (194, 'gs', 'South Georgia And The South Sa');
+INSERT INTO country VALUES (195, 'kr', 'South Korea');
+INSERT INTO country VALUES (196, 'es', 'Spain');
+INSERT INTO country VALUES (197, 'lk', 'Sri Lanka');
+INSERT INTO country VALUES (198, 'sh', 'St Helena');
+INSERT INTO country VALUES (199, 'pm', 'St Pierre and Miquelon');
+INSERT INTO country VALUES (200, 'sd', 'Sudan');
+INSERT INTO country VALUES (201, 'sr', 'Suriname');
+INSERT INTO country VALUES (202, 'sj', 'Svalbard And Jan Mayen Islands');
+INSERT INTO country VALUES (203, 'sz', 'Swaziland');
+INSERT INTO country VALUES (204, 'se', 'Sweden');
+INSERT INTO country VALUES (205, 'ch', 'Switzerland');
+INSERT INTO country VALUES (206, 'sy', 'Syrian Arab Republic');
+INSERT INTO country VALUES (207, 'tw', 'Taiwan');
+INSERT INTO country VALUES (208, 'tj', 'Tajikistan');
+INSERT INTO country VALUES (209, 'tz', 'Tanzania');
+INSERT INTO country VALUES (210, 'th', 'Thailand');
+INSERT INTO country VALUES (211, 'tg', 'Togo');
+INSERT INTO country VALUES (212, 'tk', 'Tokelau');
+INSERT INTO country VALUES (213, 'to', 'Tonga');
+INSERT INTO country VALUES (214, 'tt', 'Trinidad And Tobago');
+INSERT INTO country VALUES (215, 'tn', 'Tunisia');
+INSERT INTO country VALUES (216, 'tr', 'Turkey');
+INSERT INTO country VALUES (217, 'tm', 'Turkmenistan');
+INSERT INTO country VALUES (218, 'tc', 'Turks And Caicos Islands');
+INSERT INTO country VALUES (219, 'tv', 'Tuvalu');
+INSERT INTO country VALUES (220, 'ug', 'Uganda');
+INSERT INTO country VALUES (221, 'ua', 'Ukraine');
+INSERT INTO country VALUES (222, 'ae', 'United Arab Emirates');
+INSERT INTO country VALUES (223, 'gb', 'United Kingdom');
+INSERT INTO country VALUES (224, 'us', 'United States');
+INSERT INTO country VALUES (225, 'um', 'United States Minor Outlying I');
+INSERT INTO country VALUES (226, 'uy', 'Uruguay');
+INSERT INTO country VALUES (227, 'uz', 'Uzbekistan');
+INSERT INTO country VALUES (228, 'vu', 'Vanuatu');
+INSERT INTO country VALUES (229, 'va', 'Vatican City State');
+INSERT INTO country VALUES (230, 've', 'Venezuela');
+INSERT INTO country VALUES (231, 'vn', 'Viet Nam');
+INSERT INTO country VALUES (232, 'vg', 'Virgin Islands (British)');
+INSERT INTO country VALUES (233, 'vi', 'Virgin Islands (U.S.)');
+INSERT INTO country VALUES (234, 'wf', 'Wallis And Futuna Islands');
+INSERT INTO country VALUES (235, 'eh', 'Western Sahara');
+INSERT INTO country VALUES (236, 'ye', 'Yemen');
+INSERT INTO country VALUES (237, 'zr', 'Zaire');
+INSERT INTO country VALUES (238, 'zm', 'Zambia');
+INSERT INTO country VALUES (239, 'zw', 'Zimbabwe');
+# --------------------------------------------------------
+
+#
+# Table structure for table `faq`
+#
+
+DROP TABLE IF EXISTS faq;
+CREATE TABLE faq (
+  questionID int(11) NOT NULL auto_increment,
+  question text NOT NULL,
+  answer text NOT NULL,
+  category varchar(250) NOT NULL default '',
+  PRIMARY KEY  (questionID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `faq`
+#
+
+INSERT INTO faq VALUES (1, 'How to pay money?', 'see this url ...', 'member');
+# --------------------------------------------------------
+
+#
+# Table structure for table `keywords`
+#
+
+DROP TABLE IF EXISTS keywords;
+CREATE TABLE keywords (
+  keywordID int(11) NOT NULL auto_increment,
+  keywordName varchar(250) NOT NULL default '',
+  categoryID int(11) NOT NULL default '0',
+  PRIMARY KEY  (keywordID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `keywords`
+#
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `links`
+#
+
+DROP TABLE IF EXISTS links;
+CREATE TABLE links (
+  linkID int(11) NOT NULL auto_increment,
+  urlID int(11) NOT NULL default '0',
+  keywordID int(11) NOT NULL default '0',
+  bid decimal(10,2) NOT NULL default '0.00',
+  status int(11) NOT NULL default '0',
+  adminStatus int(11) NOT NULL default '0',
+  accountStatus int(11) NOT NULL default '0',
+  title varchar(250) NOT NULL default '',
+  description mediumtext NOT NULL,
+  creationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  modificationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (linkID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `links`
+#
+
+
+#
+# Table structure for table `logKeywords`
+#
+
+DROP TABLE IF EXISTS logKeywords;
+CREATE TABLE logKeywords (
+  logID int(11) NOT NULL auto_increment,
+  keyword varchar(250) NOT NULL default '',
+  searchDate datetime NOT NULL default '0000-00-00 00:00:00',
+  nSearches int(11) NOT NULL default '0',
+  PRIMARY KEY  (logID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `logKeywords`
+#
+
+
+#
+# Table structure for table `logclicks`
+#
+
+DROP TABLE IF EXISTS logclicks;
+CREATE TABLE logclicks (
+  logID int(11) NOT NULL auto_increment,
+  listingID int(11) NOT NULL default '0',
+  affiliateID int(11) NOT NULL default '0',
+  logType varchar(40) NOT NULL default 'link',
+  userID varchar(100) NOT NULL default '0',
+  logDate datetime NOT NULL default '0000-00-00 00:00:00',
+  logCount int(11) NOT NULL default '0',
+  cost decimal(10,4) NOT NULL default '0.0000',
+  lastPosition int(11) NOT NULL default '1',
+  PRIMARY KEY  (logID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `logclicks`
+#
+
+
+#
+# Table structure for table `memberaccounts`
+#
+
+DROP TABLE IF EXISTS memberaccounts;
+CREATE TABLE memberaccounts (
+  memberID int(11) NOT NULL default '0',
+  balance decimal(10,2) NOT NULL default '0.00',
+  isActive int(11) NOT NULL default '0',
+  PRIMARY KEY  (memberID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `memberaccounts`
+#
+
+
+#
+# Table structure for table `members`
+#
+
+DROP TABLE IF EXISTS members;
+CREATE TABLE members (
+  memberID int(11) NOT NULL auto_increment,
+  login varchar(250) NOT NULL default '',
+  password varchar(250) NOT NULL default '',
+  firstName varchar(250) NOT NULL default '',
+  lastName varchar(250) NOT NULL default '',
+  companyName varchar(250) default NULL,
+  address varchar(250) NOT NULL default '',
+  city varchar(100) default '',
+  country varchar(100) NOT NULL default '',
+  state varchar(100) default '',
+  zip varchar(20) NOT NULL default '',
+  phone varchar(40) default NULL,
+  fax varchar(100) default NULL,
+  email varchar(250) NOT NULL default '',
+  creationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  modificationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  foundus mediumtext,
+  PRIMARY KEY  (memberID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `members`
+#
+
+
+#
+# Table structure for table `notifications`
+#
+
+DROP TABLE IF EXISTS notifications;
+CREATE TABLE notifications (
+  notifyName varchar(250) NOT NULL default '',
+  description mediumtext NOT NULL,
+  isEnable int(11) NOT NULL default '0',
+  notifyType varchar(250) NOT NULL default 'once',
+  freq int(11) NOT NULL default '1',
+  expireDate datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (notifyName)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `notifications`
+#
+
+INSERT INTO notifications VALUES ('Welcome', 'new advertiser welcome with username/password', 1, 'once', 0, '2002-08-10 16:44:21');
+INSERT INTO notifications VALUES ('LowMoney', 'email when below a certain amount\r\n(see options page)', 1, 'remind', 1, '2002-08-10 16:44:54');
+INSERT INTO notifications VALUES ('OutMoney', 'email once when out of funds', 1, 'once', 0, '2002-08-10 17:02:41');
+INSERT INTO notifications VALUES ('NotActiveAccount', 'reminder that account is inactive', 1, 'remind', 7, '2002-08-10 17:03:12');
+INSERT INTO notifications VALUES ('Payment', 'notification of payments cleared and amount added to account', 1, 'once', 0, '2002-08-10 17:03:52');
+# --------------------------------------------------------
+
+#
+# Table structure for table `notifytasks`
+#
+
+DROP TABLE IF EXISTS notifytasks;
+CREATE TABLE notifytasks (
+  taskID int(11) NOT NULL auto_increment,
+  notifyName varchar(30) NOT NULL default '0',
+  memberID int(11) NOT NULL default '0',
+  memberType varchar(20) NOT NULL default 'member',
+  taskDate datetime NOT NULL default '0000-00-00 00:00:00',
+  isDone int(11) NOT NULL default '0',
+  PRIMARY KEY  (taskID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `notifytasks`
+#
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `transactions`
+#
+
+DROP TABLE IF EXISTS transactions;
+CREATE TABLE transactions (
+  transactionID int(11) NOT NULL auto_increment,
+  accountID int(11) NOT NULL default '0',
+  accountType varchar(100) NOT NULL default 'member',
+  value decimal(10,2) NOT NULL default '0.00',
+  transactionDate datetime NOT NULL default '0000-00-00 00:00:00',
+  transactionType varchar(250) NOT NULL default 'deposit',
+  PRIMARY KEY  (transactionID)
+) TYPE=MyISAM;
+
+#
+# Dumping data for table `transactions`
+#
+
+
+#
+# Table structure for table `urls`
+#
+
+DROP TABLE IF EXISTS urls;
+CREATE TABLE urls (
+  urlID int(11) NOT NULL auto_increment,
+  url varchar(250) NOT NULL default '',
+  title varchar(250) NOT NULL default '',
+  memberID int(11) NOT NULL default '0',
+  description mediumtext,
+  creationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  modificationDate datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (urlID)
+) TYPE=MyISAM;
+
+
+#
+# Table structure for table `visitors`
+#
+
+DROP TABLE IF EXISTS visitors;
+CREATE TABLE visitors (
+  sessionID varchar(250) NOT NULL default '',
+  lastVisit datetime NOT NULL default '0000-00-00 00:00:00',
+  PRIMARY KEY  (sessionID)
+) TYPE=MyISAM;
+
