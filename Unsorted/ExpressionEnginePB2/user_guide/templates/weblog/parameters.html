@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Weblog Entries Tag Parameters &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Weblog Entries Tag Parameters</h1>
+
+	<p>Weblog entries are shown using this basic tag pair:</p>
+
+	<code>{exp:weblog:entries}<br />
+<br />
+weblog content<br />
+<br />
+{/exp:weblog:entries}</code>
+
+
+
+	<h2>Parameters</h2>
+
+	<p>A variety of parameters can be added to affect what is displayed by the weblog tag.  Here is a simple example of the weblog tag with a couple of parameters:</p>
+
+	<code>{exp:weblog:entries weblog="news" limit="15"}<br />
+<br />
+weblog content<br />
+<br />
+{/exp:weblog:entries}</code>
+
+	<ul class="minitoc">
+		<li><a href="#par_cache">cache="yes" refresh="60"</a></li>
+		<li><a href="#par_cat_limit">cat_limit="30"</a></li>
+		<li><a href="#par_category">category="1"</a></li>
+		<li><a href="#par_display_by">display_by="month"</a></li>
+		<li><a href="#par_dynamic">dynamic="off"</a></li>
+		<li><a href="#par_entry_id">entry_id="147"</a></li>
+		<li><a href="#par_group_id">group_id="4"</a></li>
+		<li><a href="#par_limit">limit="10"</a></li>
+		<li><a href="#par_offset">offset="3"</a></li>
+		<li><a href="#par_orderby">orderby="date"</a></li>
+		<li><a href="#par_paginate_type">paginate_type="field"</a></li>
+		<li><a href="#par_rdf">rdf="off"</a></li>
+		<li><a href="#par_sort">sort="asc"</a></li>
+		<li><a href="#par_status">status="open"</a></li>
+		<li><a href="#par_sticky">sticky="off"</a></li>
+		<li><a href="#par_username">username="petunia"</a></li>
+		<li><a href="#par_weblog">weblog="news"</a></li>
+		<li><a href="#par_year">year="2003" month="12" day="23"</a></li>
+	</ul>
+
+
+	<h3><a name="par_cache">cache=, refresh=</a></h3>
+
+		<code>cache="yes" refresh="60"</code>
+
+		<p>This parameter enables tag caching.  Refresh is the number of minutes between cache refreshes.</p>
+
+
+	<h3><a name="par_cat_limit">cat_limit=</a></h3>
+
+		<code>cat_limit="30"</code>
+
+		<p>This parameter lets you set a different limit for the category display than the regular display.  For example, let's say you normally only want 10 entries on your main weblog page, but you want 100 entries shown when viewing a specific category.  For that, you could do this:</p>
+
+	<code>{exp:weblog:entries limit="10" cat_limit="100"}</code>
+
+
+	<h3><a name="par_category">category=</a></h3>
+
+		<code>category="2"</code>
+
+		<p>Categories are specified by ID number (the ID number of each <a href="../cp/admin/weblog_administration/category_management.html">category</a> is displayed in the Control Panel).  The reason we use the ID is because categories can be called anything (with spaces, quotes, etc.), and also renamed.  It would be much more difficult to have to update the tag parameters every time you updated a category name.</p>
+
+		<p>And as with some of the other parameters, you can stack categories:</p>
+
+		<code>category="2|45|4|9"</code>
+
+		<p>Or use "not" to exclude categories</p>
+
+		<code>category="not 4|5|7"</code>
+
+
+	<h3><a name="par_display_by">display_by=</a></h3>
+
+		<code>display_by="month"</code>
+
+		<code>display_by="day"</code>
+
+		<p>There are two optional "display types" that let you limit the display of your entries.  If you <strong>do not</strong> use these parameters the default grouping is by
+	"number".</p>
+
+		<p>These parameters interact with the "limit" parameter to tailor the number of entries per page.  For example, if you want to show only the current month you'll do this:</p>
+
+		<code>display_by="month" limit="1"</code>
+
+		<p>At 12 AM on the first day of the month the previous month will no longer be visible.  If you want to show three months you'll do this:</p>
+
+		<code>display_by="month" limit="3"</code>
+
+		<p>If you want to show only the current day you'll do this:</p>
+
+		<code>display_by="day" limit="1"</code>
+
+		<p>If you want to show 14 days you'll do this:</p>
+
+		<code>display_by="day" limit="14"</code>
+
+		<p>These are all optional.  If you do not use this parameter your entries will be  limited by number.  In other words:</p>
+
+		<code>limit="20"</code>
+
+		<p>Will show 20 entries.</p>
+
+
+	<h3><a name="par_dynamic">dynamic=</a></h3>
+
+		<code>dynamic="off"</code>
+
+		<p>The weblog display engine sets some parameters dynamically, based on what is in the URL.  There are times, however, where you do not want the parameters affected by what the URL contains.  To override the dynamic nature of the weblog tag, use dynamic="off".
+
+
+	<h3><a name="par_entry_id">entry_id=</a></h3>
+
+		<code>entry_id="147"</code>
+
+		<p>You can hard code the weblog tag to show a specific weblog entry.</p>
+
+
+	<h3><a name="par_group_id">group_id=</a></h3>
+
+		<code>group_id="4"</code>
+
+		<p><a href="../cp/admin/members_and_groups/member_groups.html">Member Group</a> ID number.  You can choose multiple member groups using a pipe:</p>
+
+		<code>group_id="2|3|4"</code>
+
+		<p>Or exclude groups using "not"</p>
+
+		<code>group_id="not 2|3|4"</code>
+
+
+	<h3><a name="par_limit">limit=</a></h3>
+
+		<code>limit="12"</code>
+
+		<p>This parameter limits the number of entries on any given page.</p>
+
+
+	<h3><a name="par_offset">offset=</a></h3>
+
+		<code>offset="1"</code>
+
+		<p>This parameter offsets the display by X number of entries.  For example, if you want to show all entries except the three latest ones, you would do this:</p>
+
+		<code>offset="3"</code>
+
+
+	<h3><a name="par_orderby">orderby=</a></h3>
+
+		<code>orderby="date"</code>
+
+		<p>The "order" parameter sets the display order of the entries.  Setting options for this parameter include:</p>
+
+		<ul>
+			<li>orderby="date"</li>
+			<li>orderby="title"</li>
+			<li>orderby="username"</li>
+			<li>orderby="screen_name"</li>
+			<li>orderby="comment_total"</li>
+			<li>orderby="most_recent_comment"</li>
+			<li>orderby="random"</li>
+		</ul>
+
+		<p>In addition you can order by a <a href="../../cp/admin/weblog_administration/custom_weblog_fields.html">custom field</a>.  Use the "short_name" of the field:</p>
+
+		<code>orderby="name_of_field"</code>
+
+
+	<h3><a name="par_paginate_type">paginate_type=</a></h3>
+
+		<code>paginate_type="field"</code>
+
+		<p>This tells ExpressionEngine to function in "pagination" mode for your weblog entry fields so that you can automatically have an entry span multiple pages.  See the <a href="../pagination/spanning.html">Spanning a Weblog Entry Across Multiple Pages</a> page.</p>
+
+
+	<h3><a name="par_rdf">rdf=</a></h3>
+
+		<code>rdf="off"</code>
+
+		<code>rdf="on"</code>
+
+		<p>The Trackback Autodiscovery RDF code can be manually set for any particular weblog entry listing.  This is useful when used on the RSS pages if the "global" setting in <dfn><a href="../../cp/admin/weblog_administration/weblog_management.html">Weblog Management</a></dfn> is turned on.</p>
+
+
+	<h3><a name="par_sort">sort=</a></h3>
+
+		<code>sort="asc"</code>
+
+		<code>sort="desc"</code>
+
+		<p>The sort order can be ascending or descending.</p>
+
+
+	<h3><a name="par_status">status=</a></h3>
+
+		<code>status="open"</code>
+
+		<p>The weblog <a href="../cp/admin/weblog_administration/custom_entry_statuses.html">status</a> to which you would like to restrict display.  You can choose multiple statuses using a pipe:</p>
+
+		<code>status="draft|reviewed|published"</code>
+
+		<p>Or exclude statuses using "not"</p>
+
+		<code>status="not submitted|processing|closed"</code>
+
+
+	<h3><a name="par_sticky">sticky=</a></h3>
+
+		<code>sticky="off"</code>
+
+		<p>By default, sticky topics always remain at the top of the page.  You can manually turn off stickies by using the above parameter.</p>
+
+
+	<h3><a name="par_username">username=</a></h3>
+
+		<code>username="petunia"</code>
+
+		<p>This parameter limits the query by username. You can use the pipe character to query by multiple usernames:</p>
+
+		<code>username="tom|dick|harry"</code>
+
+		<p>Or you can add "not" to exclude usernames:</p>
+
+		<code>username="not tom|dick|harry|fred"</code>
+
+		You can also use the constant "CURRENT_USER" to show entries from only the currently logged in user.</p>
+
+		<code>username="CURRENT_USER"</code>
+
+		<p>This allow each logged-in user to get only their entries.  Users who are not logged in won't see anything.  Alternatively, you can use the constant "NOT_CURRENT_USER" to show entries <strong>except</strong> from the currently logged in user.</p>
+
+		<code>username="NOT_CURRENT_USER"</code>
+
+
+	<h3><a name="par_weblog">weblog=</a></h3>
+
+		<code>weblog="which"</code>
+
+		<p>From which <a href="../cp/admin/weblog_administration/weblog_management.html">weblog</a> to show the entries (will show all weblogs if no weblog is specified).  Additionally, you can use the pipe character to separate multiple weblogs:</p>
+
+		<code>weblog="weblog1|weblog2|weblog3"</code>
+
+		<p>Or you can add the word "not" (with a space after it) to exclude weblogs:</p>
+
+		<code>weblog="not weblog1|weblog2|weblog3"</code>
+
+
+	<h3><a name="par_year">year=, month=, day=</a></h3>
+
+		<code>year="2003"</code>
+
+		<code>month="12"</code>
+
+		<code>day="23"</code>
+
+		<p>You can limit queries by year, month, or day.  For example, to show all of year 2002 you'll use only:</p>
+
+		<code>year="2002"</code>
+
+		<p>To show only the month of December in 2003 you'll do this:</p>
+
+		<code>year="2003" month="12"</code>
+
+		<p><b>Note:</b> Don't combine these parameters with the "display_by" parameter discussed previously, as these take precedence over that parameter.</p>
+
+
+
+	<h2>Examples</h2>
+
+	<p>Here are a few examples of the weblog tag using multiple parameters at the same time.</p>
+
+	<code>{exp:weblog:entries weblog="news|sports" limit="15"}<br />
+<br />
+weblog content<br />
+<br />
+{/exp:weblog:entries}</code>
+
+	<p>The above tag would display the first 15 entries from the "news" and "sports" weblogs.</p>
+
+
+	<code>{exp:weblog:entries limit="10" orderby="most_recent_comment" sort="desc"}<br />
+<br />
+weblog content<br />
+<br />
+{/exp:weblog:entries}</code>
+
+	<p>The above tag would display the 10 entries with the most recent comments.</p>
+
+
+	<code>{exp:weblog:entries group_id="not 3|5" year="2003" weblog="politics" category="17"}<br />
+<br />
+weblog content<br />
+<br />
+{/exp:weblog:entries}</code>
+
+	<p>The above tag would display entries from 2003 for the "politics" weblog if they belong to the category with the ID "17".  The entries will display for all members that are <strong>not</strong> part of member groups 3 or 5.</p>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
