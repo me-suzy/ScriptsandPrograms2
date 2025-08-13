@@ -1,0 +1,13 @@
+/* script to undo effects of privacy */
+/* step 1: set userids back to emails */
+
+update ebay_users a
+set userid = (select email
+from ebay_user_info b
+where b.id = a.id)
+where userid != (select email
+from ebay_user_info c
+where c.id = a.id);
+
+/* step 2: run reverse past_aliases script */
+
