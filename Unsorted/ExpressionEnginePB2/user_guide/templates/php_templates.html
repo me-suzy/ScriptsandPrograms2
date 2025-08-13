@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>PHP in Templates &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>PHP in Templates</h1>
+
+	<p>ExpressionEngine allows you to place <a href="http://www.php.net/">PHP</a> code within your Templates so that it can be executed.  This allows you to do all sorts of things dynamically with your content.  If you've come from pMachine Free or Pro this is a big change and should add a great deal of flexibility to what you're accustomed to being able to do.</p>
+
+	<p>PHP preferences can be set for each Template individually, which means that you can decide which of your Templates, if any, will be able to parse PHP code inside it.  You can access the settings for this under the <dfn>Prefs</dfn> link for any Template in the <dfn>Templates</dfn> section.</p>
+
+	<p>PHP settings for each Template are honored on a per-Template basis, which means that you can embed a Template that has PHP enabled into another Template which does <strong>not</strong> have PHP enabled.</p>
+
+	<img src="php.jpg" width="365" height="180" alt="Template Preferences: PHP screen" title="Template Preferences: PHP screen" />
+
+
+	<h3>Allow PHP in this Template?</h3>
+
+		<p>Setting this preference to "Yes" will allow you to have PHP code parsed within your Template.</p>
+
+		<div class="important">
+			<p>Be aware that there could be security consequences to allowing PHP code to be parsed.  If you allow PHP code to be parsed, then it would be possible for you to include code which might do something such as alter your database content.  Make sure that anyone who has access to a Template with PHP enabled knows what they are doing.</p>
+		</div>
+
+
+	<h3>Stage at which PHP should be parsed</h3>
+
+		<p>There are two options for when PHP gets parsed:</p>
+
+		<ol>
+			<li><p><b>Input</b>: PHP parsed at the "input" stage will be parsed before ExpressionEngine Tags get parsed.  This setting allows you to affect the Template before it is interpreted.  That will allow you to do things such as:</p>
+
+				<code>{exp:weblog:entries limit="&lt;?php echo $limit; ?>"}</code>
+
+				<p>or</p>
+
+				<code>&lt;?php<br />
+if ($size == "big")<br />
+{<br />
+	echo "{exp:weblog:entries limit='50'}";<br />
+}<br />
+else<br />
+{<br />
+	echo "{exp:weblog:entries limit='2'}";<br />
+}<br />
+?></code></li>
+
+			<li><b>Output</b>: PHP parsed at the "output" stage will be the last thing done, which means it will be parsed <em>after</em> the ExpressionEngine tags are interpreted.  This will allow you to use PHP to affect the "rendered Template".</li>
+		</ol>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
