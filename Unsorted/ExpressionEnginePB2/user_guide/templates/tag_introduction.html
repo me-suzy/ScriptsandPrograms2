@@ -1,0 +1,107 @@
+`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Tag Introduction &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Tag Introduction</h1>
+
+	<p>This page is designed to be a general introduction to the concept of "Tags", "Variables", and "Parameters" as they are used within ExpressionEngine.  You'll also want to make sure you read the <a href="template_introduction.html">Template Introduction</a>.</p>
+
+
+
+	<h2><a name="tags">Tags</a></h2>
+
+	<p>A typical ExpressionEngine tag looks like this:</p>
+
+	<code>{exp:weblog:weblog_name}</code>
+
+	<p>The first part of the tag, <samp>exp:</samp>, tells ExpressionEngine that this is a tag.  The second part, <samp>weblog</samp>, is the module that the tag belongs to, in this case the "weblog" module.  The third part (which not every tag will have) is the specific function from within the module that you're calling; in this case the function to display the "weblog_name".</p>
+
+	<p>There are two kinds of tags:  single tags and tag pairs.  A single tag does not have a closing tag:</p>
+
+	<code>{exp:weblog:weblog_name}</code>
+
+	<p>Single tags are designed to return a single value or a single piece of unformatted data.</p>
+
+	<p>Tag pairs look like this:</p>
+
+	<code>{exp:weblog:entries}<br />
+<br />
+Entry content<br />
+<br />
+{/exp:weblog:entries}</code>
+
+	<p>Tag pairs can contain information between the opening and closing pair: HTML, variables, etc.</p>
+
+
+
+	<h2><a name="variables">Variables</a></h2>
+
+	<p>Tag pairs usually contain variables between the tags.  Variables look like this:</p>
+
+	<code>{title}</code>
+
+	<p>This variable, for instance,  might show the title of a weblog entry.  Variables are used like this within tags:</p>
+
+	<code>{exp:weblog:entries}<br />
+<br />
+&lt;h1>{title}&lt;/h1><br />
+<br />
+&lt;p>{body}&lt;/p><br />
+<br />
+&lt;div class="author">Posted by {author}&lt;/div><br />
+<br />
+{/exp:weblog:entries}</code>
+
+
+
+	<h2><a name="parameters">Parameters</a></h2>
+
+	<p>Most tags can have parameters.  Parameters modify the behavior of a tag.  Parameters are placed inside the opening tag:</p>
+
+	<code>{exp:weblog:entries parameter="value"}</code>
+
+	<p>A typical tag with parameters might look like this:</p>
+
+	<code>{exp:weblog:entries weblog="news" username='rick' order="desc" limit='10' offset="1"}</code>
+
+	<p>The above tag will show 10 weblog entries (but not the very latest entry: <samp>offset="1"</samp>) written by the author with the username "rick" in the "news" weblog.  They will be displayed in descending order.</p>
+
+	<p><b>Note:</b> You can use either single quotes (<samp>username='rick'</samp>) or double quotes (<samp>order="desc"</samp>) when specifying parameters.</p>
+
+	<p>Parameters give you the flexibility to tailor the output of tags in a multitude of ways.  Instead of setting master preferences in the Control Panel, you'll set preferences in each tag through the use of parameters.</p>
+
+	<p>A single tag can have almost infinite flexibility.  No longer will you have to choose from several ready-made tags that do slight variations of a similar function.  You can use the same tag in a variety of different ways simply by altering the parameters.</p>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
