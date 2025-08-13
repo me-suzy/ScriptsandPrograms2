@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+
+<head>
+<title><%site_title%>: Modify a Resource</title>
+<link rel=stylesheet href="<%css%>" type="text/css" title="style sheet">
+</head>
+<body>
+
+<h1><%site_title%>: Modify a Resource</h1>
+	
+<p><small class="menu">|
+	<a class="menulink" href="<%build_root_url%>">Home</a> |
+        <a class="menulink" href="<%db_cgi_url%>/advertiser.cgi">PPR login</a> |
+        <a class="menulink" href="<%db_cgi_url%>/advertiser.cgi?signup=1">PPR signup</a> |
+	<a class="menulink" href="<%db_cgi_url%>/add.cgi">Add a Resource</a> |
+	<a class="menulink" href="<%db_cgi_url%>/modify.cgi">Modify a Resource</a> |
+	<a class="menulink" href="<%build_root_url%>/New">What's New</a> |
+	<a class="menulink" href="<%build_root_url%>/Cool">What's Cool</a> |
+	<a class="menulink" href="<%build_root_url%>/Ratings">Top Rated</a> |
+	<a class="menulink" href="<%db_cgi_url%>/subscribe.cgi">Email Updates</a> |	
+	<a class="menulink" href="<%db_cgi_url%>/jump.cgi?ID=random">Random Link</a> |
+	<a class="menulink" href="<%db_cgi_url%>/search.cgi">Search</a> |
+</small></p>
+
+	<form action="<%db_cgi_url%>/modify.cgi" method="POST">
+		<p>Please enter the URL of the link you wish to update. Make sure it is identical to the one already in the database:</p>
+		<div class="margin"><input name="Current URL" size="30"></div>
+		<div class="margin">
+			<table border="0" cellspacing="0" cellpadding="0">
+
+
+          <p><font size="2" face="Arial, Helvetica, sans-serif">Now enter the 
+
+            new information (all of it, not just the changes) below:</font></p>
+
+          <div class="margin"> 
+
+            <table border="0" cellspacing="0" cellpadding="0">
+
+              <tr> 
+
+                <td align="right" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Title:</font></td>
+
+                <td> 
+
+                  <input name="Title" value="" size="35" maxlength="50">
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                <td align="right" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">URL:</font></td>
+
+                <td> 
+
+                  <input name="URL" value="http://" size="35" maxlength="50">
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                <td align="right" valign="top">Category:</td>
+
+                <td><%Category%></td>
+
+              </tr>
+
+              <tr> 
+
+                <td align="right" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Description</font>:</td>
+
+                <td> 
+
+                  <textarea wrap="virtual" name="Description" value="" rows="3" cols="35"></textarea>
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                      <td align="right" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Secure 
+
+                        Server:</font></td>
+
+                      <td> 
+
+                        <select name="isSecure"  size=1>
+
+                          <option>--- 
+
+                          <option>Yes 
+
+                          <option selected>No 
+
+                        </select>
+
+                      </td>
+
+                    </tr>
+
+
+
+	      <tr> 
+
+                <td align="right" valign="top"><font size="2" face="Arial, Helvetica, sans-serif">Contact 
+
+                  Name</font>:</td>
+
+                <td> 
+
+                  <input name="Contact Name" value="" size="35" maxlength="50">
+
+                </td>
+
+              </tr>
+
+              <tr> 
+
+                <td align="right" valign="top"><font size="2" face="Arial, Helvetica, sans-serif">Contact 
+
+                  Email</font>:</td>
+
+                <td> 
+
+                  <input name="Contact Email" value="" size="35" maxlength="50">
+
+                </td>
+
+              </tr>
+<tr><td align="right" valign="top"><br><font face="Arial, Helvetica, sans-serif" size="2">Country:</font></td>
+<td><%Country%>
+</td></tr>
+
+<tr><td align="right" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Zip:</font></td>
+<td><input name="Zip" value="<%Zip%>" size="35" maxlength="50"></td></tr>
+
+<tr><td align="right" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">City:</font></td>
+<td><input name="City" value="<%City%>" size="35" maxlength="50"></td></tr>
+
+<tr><td align="right" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">State:</font></td>
+<td><input name="State" value="<%State%>" size="3" maxlength="50"></td></tr>
+<tr><td align="right" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Phone:</font></td>
+<td><input name="Phone" value="<%Phone%>" size="35" maxlength="50"></td></tr>
+
+
+              <tr> 
+
+                <td></td>
+
+                <td> 
+
+                  <input type="SUBMIT" value="Modify Resource" name="SUBMIT">
+
+                </td>
+
+              </tr>
+
+			</table>
+		</div>
+		</form>
+	
+	<form action="<%db_cgi_url%>/search.cgi" method="GET">
+		<h2>Search</h2>
+			<div class="margin">
+				<table border="0" cellspacing="0" cellpadding="0">
+				<tr><td><strong class="search">Looking for something in particular?</strong></td></tr>
+				<tr><td><input type="text" size=15 name="query"> <input type=submit value="Search!"></td></tr>
+				<tr><td><small class="more"><a href="<%db_cgi_url%>/search.cgi">More search options</a></small></td></tr>
+				</table>
+		</div>
+	</form>
+
+		<p><small class="update">Pages Updated On: <%date%> - <%time%><br>
+		Links Engine Powered By: <a href="http://www.gossamer-threads.com/">Gossamer Threads Inc.</a></small></p>
+
+<p align="center"><font face="Verdana" size="1">(c) - 2000,2001 PPR Extensions by <a href="http://www.mycgiscripts.com">www.MyCgiScripts.com</a></font></p>
+</body>
+</html>
