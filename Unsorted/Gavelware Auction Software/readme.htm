@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Installation of Gavelware Auction Software Ver 1</title>
+</head>
+
+<body bgcolor="#FDF4E8">
+
+<table border="5" cellspacing="0" width="100%" id="AutoNumber1" cellpadding="0" bgcolor="#F0F0E1" bordercolor="#000080">
+  <tr>
+    <td width="100%">
+    <p align="center">&nbsp;</p>
+    <p align="center"><font face="Verdana" color="#008000"><b>Installation 
+    of Gavelware Auction Software Ver 1.43 on Unix server<font size="4"> </font></b></font></p>
+    <p align="center">&nbsp;</td>
+  </tr>
+</table>
+<ul>
+  <li>Using an ftp program such as 
+  <a target="_blank" href="http://globalscape.com">Cuteftp</a> or 
+  <a target="_blank" href="http://wsftp.com">wsftp</a>, make a folder in your cgi-bin called auction. chmod 755</li>
+  <li>Upload all the cgi files to that auction folder and chmod to 755</li>
+  <li>Open auction.cgi with a text editor such as Cutehtml with line or word 
+  wrap turned <b><font color="#FF0000">OFF</font></b>.<br>
+  Set your configuration.<hr>
+  </li>
+  <li><b><font color="#800000" size="4">Basepath:</font></b></li>
+</ul>
+<p>No need to create the folder manually or chmod. the script creates all 
+necessary folders for you.<br>
+This is not a url!!<br>
+This a folder path to your data folder!!<br>
+&nbsp;Just like windows c:\path\to\folder but with unix there is no drive letter 
+(c:) and they use forward slashes rather&nbsp;than 
+backslashes.<br>
+A typical unix path would be something like /home/username/Auction_Data/.<br>
+You can ask your host for the filepath to your web folder.<br>
+Will be something like /home/username/www OR /home/username/public_html OR 
+/home/sites/username/www OR /home/sites/username/web etc..<br>
+We want the data folder to be <b><font color="#FF0000">NON WEB ACCESSIBLE</font></b>. So if your host allows it the 
+best place to have the folder is <font color="#FF0000"><b>BEFORE</b></font> www or public_html folder.<br>
+So you <b><font color="#FF0000">DONT</font></b> want it like this /home/username/www/Auction_Data as that would be 
+accessible to the web!!<br>
+You <font color="#FF0000"><b>DO</b></font> want /home/username/Auction_Data<br>
+<br>
+So a good basepath looks like this: (<font color="#FF0000">May be different on 
+your server but same idea</font>)<br>
+<b><font color="#000080">$config{'basepatha'} = '/home/username/Auction_Data'; # 
+without trailing slash<br>
+$config{'basepath'} = '/home/username/Auction_Data/'; # with trailing slash</font></b><br>
+<font color="#000080"><b><br>
+&nbsp;</b></font></p>
+<p>If your host does NOT allow you to use folders before the web folder, then I 
+suggest a new host.<br>
+If a new host is not possible then make the folder inside the auction folder you 
+made in the cgi-bin.<br>
+Directories there will not be able to be browsed.<br>
+Now use a unique folder name for your data folder like Data527For75mY9AuCtion 
+and again for reg and account folders<br>
+So something like this:<br>
+<font color="#000080"><b>$config{'basepath'} = '/home/username/www/cgi-bin/Data527For75mY9AuCtion/';<br>
+$config{'regdir'} = 'R36dRegistration6eT';<br>
+$config{'closedir'} = 'Y53T65closed7fOlder';<br>
+$config{'accounts'} = 'Htv425user76accounts2see';<br>
+$config{'favorites'} = 'jR42favorites88FolDer6';<br>
+$config{'user_list_name'} = 'My73Yt9user_list777File';</b></font><br>
+<br>
+This way people wont be able to guess the folder names and go straight to a 
+users reg file or their acct file.<br>
+This IS NOT the best method but will due if you just can't get non web 
+accessible access.</p>
+<hr>
+<ul>
+  <li><b><font size="4" color="#800000">Mail Server setting:</font></b><br>
+  <br>
+  Unix servers use a sendmail program to send mail from scripts.<br>
+  Just define the PATH to the sendmail program.<br>
+  You can ask the host for the path.<br>
+  <br>
+  Most common settings are:(try these first)<br>
+  <b><font color="#000080">$config{'mailprog'} = '/usr/sbin/sendmail -t';<br>
+  $config{'mailprog'} = '/usr/lib/sendmail -t';<br>
+  $config{'mailprog'} = '/usr/bin/sendmail -t';</font></b><br>
+  <br>
+&nbsp;</li>
+  <li>Now set your categories, colors, and preferences.<br>
+  Run the install utility in browser:<br>
+  http://yoursite.com/cgi-bin/auction/auction.cgi?action=install&amp;install_id=YOURADMINPASSWORD<br>
+  You will need to run this again every time you add new categories in order to 
+  create the folders.</li>
+  <li>Your auction should now be ready to go at http://yoursite.com/cgi-bin/auction/auction.cgi.</li>
+</ul>
+
+</body>
+
+</html>
