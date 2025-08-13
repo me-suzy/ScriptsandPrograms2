@@ -1,0 +1,90 @@
+Links PPR 
+
+based on Links 2.0 by Gossamer Threads, Inc.
+
+This script allow you organize web directory, where webmasters can have free
+and paid links. Also script allow search directory (paid links will be
+shown in top of search results if phrase or keywords contained at
+link title/description).
+
+1. About script
+
+Links PPR is fully based on Links 2.0 (G-T) and distributed from permission of 
+Gossamer Threads Inc. It included all standard features of Links 2.0 original and
+have additional PPR extensions.
+
+But - this script extension is commercial and it can be distributed only by
+next scheme:
+
+Purchasing of full version ($350).
+If you not purchased Links 2.0 original, you must buy full version of
+Links PPR. It contained licence fee for Links 2.0 original.
+
+Upgrade of Links 2.0 original ($200)
+If you already purchased Links 2.0 original on G-T website, and have
+registration number, you can upgrade to Links PPR.
+
+2. Script usage (installation).
+
+For paid installation of script goto
+http://www.mycgiscripts.com/order.htm?sum=100
+and purchase installation. (Cost $100 only for UNIX servers, for NT - get
+instant quote on our website).
+
+
+2.1 Open all files with cgi and pl extensions and set in first string location
+to perl interpreter in your system.
+2.2 Open links.cfg (/cgi-bin/admin/links.cfg) and
+configure all variables.
+2.3 Upload all files except /templates and /pages directory in ASCII mode.
+2.4 Upload /templates directory in BINARY mode
+2.5 Upload files from /pages directory in BINARY mode to root of
+builded directory.
+2.6 CHMOD
+
+*.* - mean all files in this directory
+*.cgi - mean all cgi files in this directory 
+
+/pages (CHMOD 777)
+/cgi-bin/*.cgi (CHMOD 755)
+/cgi-bin/admin/*.cgi (CHMOD 755)
+
+/cgi-bin/admin/backup (CHMOD 777)
+
+/cgi-bin/admin/data (CHMOD 777)
+/cgi-bin/admin/data/*.* (CHMOD 666)
+/cgi-bin/admin/data/rates (CHMOD 777)
+/cgi-bin/admin/data/rates/*.* (CHMOD 666)
+
+/cgi-bin/admin/data/hits (CHMOD 777)
+/cgi-bin/admin/templates (CHMOD 777)
+/cgi-bin/admin/templates/*.* (CHMOD 666)
+
+2.7 For automatic updating of links directory and bids - need cron usage.
+you must have telnet/ssh access to your site for this.
+In other case - you must manually perform all updates (run nph-build.cgi).
+All directory/bids/etc autoupdate functions is located in nph-build.cgi
+
+From cron usage:
+you need to edit cron file (located in same directory where this readme file)
+open it in text editor and change path to location of nph-build.cgi in your system.
+
+If you have many advertisers - will be better if you change updating period
+to half of hour.
+
+After editing, upload cron file in /admin directory and from shell 
+enter to this directory and enter
+crontab cron
+
+it all.
+
+If you will be have questions or will be need add automatic payment 
+mechanism to script, etc - contact us at support@mycgiscripts.com
+
+By all questions regarding Links PPR contect us. Gossamer Threads not offer
+any support or services for this script.
+
+(c)-2000 MyCgiScripts.com
+Last revision : 23.07.2001
+
+Additional info : Links PPR SQL is coming soon. 
