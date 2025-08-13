@@ -1,0 +1,489 @@
+<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>%%%SITE_TITLE%%% : Checkout</title>
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<SCRIPT LANGUAGE="JavaScript"><!--
+submitted = false;
+submitcal = false;
+%%%SHOW_CC_FORM%%%
+%%%SHIPERROR%%%
+valid = true;
+recal = false;
+function main_form_pop(){
+   check_cc = 1;
+   billing_check = 1;
+   submitCheck();
+   if (valid) {
+      return true;
+   }
+   else {
+      return false;
+   }
+}
+function process_main_form() {
+   window.document.coform.submit();
+}
+function submitCheck(){
+   if (submitcal) {
+      alert("We are recalulating shipping and taxes. Please wait....");
+      valid = false;
+      recal = true;
+   }
+   else if (submitted) {
+      alert("You have already submitted this form. Please wait....");
+      valid = false;
+   }
+   else if (shiperror) {
+      alert("You can not submit this forum unles you resolve the shipping error.");
+      valid = false;
+   }
+   else {
+      checkInput();
+   }
+}
+function setColor(el, bg) {
+  if (el.style) el.style.backgroundColor = bg;
+}
+function checkInput() {
+  var bgBad = "#FFFF99";
+  var bgGood = "white";
+  valid = true;
+  if (window.document.coform.firstname.value == "") {
+    valid = false;
+    setColor(window.document.coform.firstname, bgBad);
+  } else {
+    setColor(window.document.coform.firstname, bgGood);
+  }
+  if (window.document.coform.lastname.value == "") {
+    valid = false;
+    setColor(window.document.coform.lastname, bgBad);
+  } else {
+    setColor(window.document.coform.lastname, bgGood);
+  }
+  if (window.document.coform.street_one.value == "") {
+    valid = false;
+    setColor(window.document.coform.street_one, bgBad);
+  } else {
+    setColor(window.document.coform.street_one, bgGood);
+  }
+  if (window.document.coform.city.value == "") {
+    valid = false;
+    setColor(window.document.coform.city, bgBad);
+  } else {
+    setColor(window.document.coform.city, bgGood);
+  }
+  if (window.document.coform.state.value == "") {
+    valid = false;
+    setColor(window.document.coform.state, bgBad);
+  } else {
+    setColor(window.document.coform.state, bgGood);
+  }
+  if (window.document.coform.zip.value == "") {
+    valid = false;
+    setColor(window.document.coform.zip, bgBad);
+  } else {
+    setColor(window.document.coform.zip, bgGood);
+  }
+  if (window.document.coform.phone.value == "") {
+    valid = false;
+    setColor(window.document.coform.phone, bgBad);
+  } else {
+    setColor(window.document.coform.phone, bgGood);
+  }
+  if (billing_check == 1) {
+      if (window.document.coform.billphone.value == "") {
+         valid = false;
+         setColor(window.document.coform.billphone, bgBad);
+      } else {
+         setColor(window.document.coform.billphone, bgGood);
+      }
+      if (window.document.coform.billfirstname.value == "") {
+         valid = false;
+         setColor(window.document.coform.billfirstname, bgBad);
+      } else {
+         setColor(window.document.coform.billfirstname, bgGood);
+      }
+      if (window.document.coform.billlastname.value == "") {
+         valid = false;
+         setColor(window.document.coform.billlastname, bgBad);
+      } else {
+         setColor(window.document.coform.billlastname, bgGood);
+      }
+      if (window.document.coform.billaddress.value == "") {
+         valid = false;
+         setColor(window.document.coform.billaddress, bgBad);
+      } else {
+         setColor(window.document.coform.billaddress, bgGood);
+      }
+      if (window.document.coform.billcity.value == "") {
+         valid = false;
+         setColor(window.document.coform.billcity, bgBad);
+      } else {
+         setColor(window.document.coform.billcity, bgGood);
+      }
+      if (window.document.coform.billstate.value == "") {
+         valid = false;
+         setColor(window.document.coform.billstate, bgBad);
+      } else {
+         setColor(window.document.coform.billstate, bgGood);
+      }
+      if (window.document.coform.billzip.value == "") {
+         valid = false;
+         setColor(window.document.coform.billzip, bgBad);
+      } else {
+         setColor(window.document.coform.billzip, bgGood);
+      }
+  }
+  else {
+      setColor(window.document.coform.billfirstname, bgGood);
+      setColor(window.document.coform.billlastname, bgGood);
+      setColor(window.document.coform.billaddress, bgGood);
+      setColor(window.document.coform.billcity, bgGood);
+      setColor(window.document.coform.billstate, bgGood);
+      setColor(window.document.coform.billzip, bgGood);
+   }
+  if (show_cc_form == 1 && check_cc == 1) {
+      cardholderData();
+      if (window.document.coform.cardholder.value == " ") {
+         valid = false;
+         setColor(window.document.coform.cardholderdisplay, bgBad);
+      } else {
+         setColor(window.document.coform.cardholderdisplay, bgGood);
+      }
+      if (window.document.coform.cardtype.value == "") {
+         valid = false;
+         setColor(window.document.coform.cardtype, bgBad);
+      } else {
+         setColor(window.document.coform.cardtype, bgGood);
+      }
+      if (window.document.coform.cardnumber.value == "") {
+         valid = false;
+         setColor(window.document.coform.cardnumber, bgBad);
+      } else {
+         setColor(window.document.coform.cardnumber, bgGood);
+      }
+      if (window.document.coform.expiremonth.value.length < 2) {
+         valid = false;
+         setColor(window.document.coform.expiremonth, bgBad);
+      } else {
+         setColor(window.document.coform.expiremonth, bgGood);
+      }
+      if (window.document.coform.expireyear.value.length < 2) {
+         valid = false;
+         setColor(window.document.coform.expireyear, bgBad);
+      } else {
+         setColor(window.document.coform.expireyear, bgGood);
+      }
+  }
+  else if (show_cc_form == 1) {
+      cardholderData();
+      setColor(window.document.coform.cardholderdisplay, bgGood);
+      setColor(window.document.coform.cardtype, bgGood);
+      setColor(window.document.coform.cardnumber, bgGood);
+      setColor(window.document.coform.expiremonth, bgGood);
+      setColor(window.document.coform.expireyear, bgGood);
+  }
+  if (!valid) {
+      alert("Please fill out the entire form.");
+  }
+  else {
+      var ship = true;
+      if (window.document.coform.ship_form_select){
+         var ship = false;
+         for (var i=0;i<window.document.coform.ship_form_select.length; i++) {
+            if (window.document.coform.ship_form_select[i].checked) {
+               var ship = true;
+            }
+         }
+      }
+      if (!ship) {
+         valid = false;
+         alert("Please choose a shipping option.");
+      }
+      else {
+         submitted = true;
+      }
+   }
+}
+function precalculate(){
+   if (submitcal) {
+      alert("We are recalulating shipping and taxes. Please wait....");
+      calculateform();
+   }
+   else {
+      submitcal = true;
+      calculateform();
+   }
+}
+function copyaddress() {
+   if (submitcal) {
+      alert("We are recalulating shipping and taxes. Please wait....");
+      calculateform();
+   }
+   else {
+      temp_country = window.document.coform.billcountry.value;
+      window.document.coform.billfirstname.value=window.document.coform.firstname.value;
+      window.document.coform.billlastname.value=window.document.coform.lastname.value;
+      window.document.coform.billcompany.value=window.document.coform.company.value;
+      window.document.coform.billaddress.value=window.document.coform.street_one.value;
+      window.document.coform.billaddress2.value=window.document.coform.street_two.value;
+      window.document.coform.billcity.value=window.document.coform.city.value;
+      window.document.coform.billstate.value=window.document.coform.state.value;
+      window.document.coform.billzip.value=window.document.coform.zip.value;
+      window.document.coform.billcountry.value=window.document.coform.country.value;
+      window.document.coform.billemail.value=window.document.coform.email.value;
+      window.document.coform.billphone.value=window.document.coform.phone.value;
+      if (show_cc_form == 1) {
+         cardholderData();
+      }
+      if (temp_country != window.document.coform.country.value) {
+         submitcal = true;
+         calculateform();
+      }
+   }
+}
+function cardholderData() {
+   window.document.coform.cardholder.value=window.document.coform.billfirstname.value+" "+window.document.coform.billlastname.value;
+   window.document.coform.cardholderdisplay.value=window.document.coform.billfirstname.value+" "+window.document.coform.billlastname.value;
+}
+function cardholderMessage() {
+   window.document.coform.cardholderdisplay.value='Please edit your billing name';
+   setTimeout('cardholderData()',3000);
+}
+function calculateform() {
+if (show_cc_form == 1) {
+   window.document.recalculate.cardtype.value = window.document.coform.cardtype.value;
+//   window.document.recalculate.cardnumber.value = window.document.coform.cardnumber.value;
+   window.document.recalculate.expiremonth.value = window.document.coform.expiremonth.value;
+   window.document.recalculate.expireyear.value = window.document.coform.expireyear.value;
+   window.document.recalculate.cardholder.value = window.document.coform.cardholder.value;
+}
+window.document.recalculate.billfirstname.value = window.document.coform.billfirstname.value;
+window.document.recalculate.billlastname.value = window.document.coform.billlastname.value;
+window.document.recalculate.billcompany.value = window.document.coform.billcompany.value;
+window.document.recalculate.billaddress.value = window.document.coform.billaddress.value;
+window.document.recalculate.billaddress2.value = window.document.coform.billaddress2.value;
+window.document.recalculate.billcity.value = window.document.coform.billcity.value;
+window.document.recalculate.billstate.value = window.document.coform.billstate.value;
+window.document.recalculate.billzip.value = window.document.coform.billzip.value;
+window.document.recalculate.billcountry.value = window.document.coform.billcountry.value;
+window.document.recalculate.billemail.value = window.document.coform.billemail.value;
+window.document.recalculate.billphone.value = window.document.coform.billphone.value;
+window.document.recalculate.firstname.value = window.document.coform.firstname.value;
+window.document.recalculate.lastname.value = window.document.coform.lastname.value;
+window.document.recalculate.company.value = window.document.coform.company.value;
+window.document.recalculate.street_one.value = window.document.coform.street_one.value;
+window.document.recalculate.street_two.value = window.document.coform.street_two.value;
+window.document.recalculate.city.value = window.document.coform.city.value;
+window.document.recalculate.state.value = window.document.coform.state.value;
+window.document.recalculate.zip.value = window.document.coform.zip.value;
+window.document.recalculate.country.value = window.document.coform.country.value;
+window.document.recalculate.phone.value = window.document.coform.phone.value;
+window.document.recalculate.special_instructions.value = window.document.coform.special_instructions.value;
+if (window.document.coform.ship_form_select){
+    for (var i=0;i<window.document.coform.ship_form_select.length; i++) {
+        if (window.document.coform.ship_form_select[i].checked) {
+            window.document.recalculate.ship_form_select.value = window.document.coform.ship_form_select[i].value;
+        }
+    }
+}
+window.document.recalculate.submit();
+}
+%%%GATEWAY_JS%%%
+// --></SCRIPT>
+</head>
+
+<body bgcolor="#FFFFFF" marginwidth=0 marginheight=0 topmargin=0 bottommargin=0 rightmargin=0 leftmargin=0>
+
+<center>
+
+<table border=0 cellspacing=0 cellpadding=4 width="100%">
+            <tr bgcolor="%%%HEADING_COLOR%%%">
+                    <td align=center> <font face="Verdana,Arial,Helvetica" size="2" color="#ffffff"><b>%%%SITE_TITLE%%% 
+                      Checkout</b></font></td></tr></table>
+
+
+                <table border=0 cellspacing=0 cellpadding=10 width="100%">
+
+            <tr bgcolor="%%%BACKGROUND_COLOR%%%"> 
+              <td align=center><font face="Verdana,Arial,Helvetica" size="2" color="#ffffff">Please 
+                fill out the form below and process 
+                your order to finalyze your purchase.<br>An order confirmation will be send to %%%EMAIL%%%<br>The IP Address <b>%%%IP%%%</b> has been recorded for your 
+                safety and ours.</font></td>
+            </tr></table><br><br>
+<a href="%%%CART_URL%%%?target=reviewcart"><img src="%%%IFIMAGES%%%/your_cart.gif" border=0 alt="Back to your shopping cart"></a>
+
+
+%%%ERROR_MESSAGE%%%
+
+                </center><form name="coform" method=post action="%%%CGI_URL%%%"><center>
+                  <input type=hidden name=target value="purchase">
+                  <input type=hidden name=orderid value="%%%ORDERID%%%">
+                  <input type=hidden name=cust_id value="%%%CUSTID%%%">
+                  <input type=hidden name=cust_ip value="%%%IP%%%">
+                  <input type=hidden name=email value="%%%EMAIL%%%">
+                  <input type=hidden name=subtotal value="%%%FORMSUBTOTAL%%%">
+                  <input type=hidden name=shipping value="%%%FORMSHIPPING%%%">
+                  <input type=hidden name=tax value="%%%FORMTAX%%%">
+                  <input type=hidden name=total value="%%%FORMTOTAL%%%">
+                  <input type=hidden name=payment_gateway value="ImageFolio">
+                  <input type=hidden name=status value="Pending">
+    <input type=hidden name="billfirstname" value="">
+    <input type=hidden name="billlastname" value="">
+    <input type=hidden name="billcompany" value="">
+    <input type=hidden name="billaddress" value="">
+    <input type=hidden name="billaddress2" value="">
+    <input type=hidden name="billcity" value="">
+    <input type=hidden name="billstate" value="">
+    <input type=hidden name="billzip" value="">
+    <input type=hidden name="billcountry" value="">
+    <input type=hidden name="billemail" value="">
+    <input type=hidden name="billphone" value="">
+    <table border=0 cellspacing=12 cellpadding=0 width="450">
+      <tr bgcolor="#cccccc">
+        <td valign=top width="50%"> 
+          <table border=0 cellspacing=0 cellpadding=3 width="100%">
+            <tr bgcolor="%%%HEADING_COLOR%%%"> 
+              <td align=center colspan=2><font size="1" face="Verdana,Arial,Helvetica" color="#ffffff">CONTACT/SHIPPING 
+                INFORMATION</font></td>
+            </tr>
+            <tr> 
+              <td width="30%" align=right><font size=1 face="Verdana,Arial,Helvetica">First 
+                Name:</font></td>
+              <td width="70%"> 
+                <input type=text name="firstname" value="%%%FIRSTNAME%%%" size=20 maxlength=75>
+              </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">Last 
+                Name:</font></td>
+              <td> 
+                <input type=text name="lastname" value="%%%LASTNAME%%%" size=20 maxlength=75>
+              </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">Company:</font></td>
+              <td> 
+                <input type=text name="company" value="%%%COMPANY%%%" size=25 maxlength=75>
+              </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">Street 
+                1:</font></td>
+              <td> 
+                <input type=text name="street_one" value="%%%STREET1%%%" size=30 maxlength=256>
+              </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">Street 
+                2:</font></td>
+              <td> 
+                <input type=text name="street_two" value="%%%STREET2%%%" size=30 maxlength=75>
+              </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">City:</font></td>
+              <td> 
+                <input type=text name="city" value="%%%CITY%%%" size=20 maxlength=75>
+              </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">State/Province:</font></td>
+              <td> %%%STATEFORM%%% </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">Zip 
+                Code:</font></td>
+              <td> 
+                <input type=text name="zip" value="%%%ZIP%%%" size=15 maxlength=30%%%ONCHANGE%%%>
+              </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">Country:</font></td>
+              <td> %%%COUNTRY_FORM%%% </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">Email:</font></td>
+              <td>
+                <table border=0 cellspacing=0 cellpadding=4>
+                  <tr>
+                    <td><font size=2 face="Verdana,Arial,Helvetica">%%%EMAIL%%%</font></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr> 
+              <td align=right><font size=1 face="Verdana,Arial,Helvetica">Phone:</font></td>
+              <td> 
+                <input type=text name="phone" value="%%%PHONE%%%" size=15 maxlength=75>
+              </td>
+            </tr>
+          </table>
+        </td>
+ 
+      </tr>
+      <tr bgcolor="#cccccc"> 
+        <td valign="top"> 
+          <table border=0 cellspacing=0 cellpadding=3 width="100%">
+            <tr bgcolor="%%%HEADING_COLOR%%%"> 
+              <td align=center><font size="1" face="Verdana,Arial,Helvetica" color="#ffffff">SPECIAL 
+                INSTRUCTIONS OR COMMENTS</font></td>
+            </tr>
+            <tr> 
+              <td align=center valign="middle"> 
+                <textarea name="special_instructions" rows="3" cols="50" wrap="virtual">%%%SPECINC%%%</textarea>
+              </td>
+            </tr>
+          </table>
+        </td>
+
+      </tr>
+      %%%SHIPPING_START%%% 
+      <tr bgcolor="#cccccc">
+        <td> 
+          <table border=0 cellspacing=0 cellpadding=3 width="100%">
+            <tr bgcolor="%%%HEADING_COLOR%%%"> 
+              <td align=center><font size="1" face="Verdana,Arial,Helvetica" color="#ffffff">SHIPPING 
+                OPTIONS</font></td>
+            </tr>
+          </table>
+          <center>
+            <table border=0 cellspacing=0 cellpadding=3 width="100%">
+              <tr> 
+                <td align=left width="50%">%%%SHIPTABLE%%%</td>
+                <td width="50%"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">These 
+                  shipping prices are based on:<br>
+                  <font color="#FF0000">%%%SHIPZIPCOUNTRYWEIHGT%%%</font></font></td>
+              </tr>
+            </table>
+          </center>
+        </td>
+      </tr>
+      %%%SHIPPING_END%%% 
+      <tr bgcolor="#cccccc">
+        <td> 
+          <table border=0 cellspacing=0 cellpadding=3 width="100%">
+            <tr bgcolor="%%%HEADING_COLOR%%%"> 
+              <td align=center><font size="1" face="Verdana,Arial,Helvetica" color="#ffffff"> 
+                TOTAL CHARGES %%%RECALCULATE%%%</font></td>
+            </tr>
+            <tr> 
+              <td align=center>%%%TOTAL%%%</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2> %%%PROCESS_BUTTON%%% </td>
+      </tr>
+    </table>
+  </center>
+</form>
+%%%HIDDED_RECALCULATE_FORM%%%
+%%%GATEWAY_FORM%%%
+<br>
+</body>
+</html>
