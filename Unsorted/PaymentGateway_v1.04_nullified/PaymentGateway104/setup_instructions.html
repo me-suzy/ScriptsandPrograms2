@@ -1,0 +1,205 @@
+<html>
+
+<head>
+<title>R3N3 Payment Gateway Setup</title>
+</head>
+
+<body>
+
+<p align="center"><u><strong>R3N3 Payment Gateway (v1.04) Setup Instructions</strong></u></p>
+
+The R3N3 Payment Gateway is designed to give R3N3 scripts a uniform method
+of accessing payment processors. It can also be used to provide payment options
+for your own scripts. The Payment Gateway passes information by directly
+including a part of the calling script, which means that a user cannot simply
+discover a "success URL" that tricks the system into thinking a payment has
+been made. While this method gives greater security, it requires that both the
+Payment Gateway and the script requesting payment information know how to
+access each other. So, to prevent problems with the R3N3 Payment Gateway, make sure
+that you always properly register other scripts with the gateway, which tells
+the gateway where to find the required files.
+
+If you're upgrading from a previous version, follow <a href="#from1">these instructions</a>.
+
+<p><strong><u><b>Setup for a New Installation</b></u></strong>
+
+<p><strong>With Remote Shell (Telnet) Access:</strong></p>
+
+<ol>
+  <li>Upload setup.pl and setup.dat to your server (ASCII mode) in the
+   directory where you want to install Payment Gateway
+  <li>Open a Telnet (or other remote shell) connection to your server
+  <li>Change to the directory which contains setup.pl and setup.dat
+  <li>Type "which perl" and hit enter - this will tell you where Perl is located on your
+   server.  You will need to give setup.cgi this information.
+  <li>Run "perl setup.pl"
+  <li>Type in the server path to Perl and hit enter.
+  <li>Confirm that you've entered the proper path
+  <li>setup.pl will create all necessary directories and files with the
+   appropriate file permissions, and will automatically write the path to Perl
+   that you've entered in CGI files that need it
+  <li>Change the following lines at the top of functions.cgi (you can either
+   edit the file remotely or download it, edit it, and then upload
+   it back to your server):
+  <p>$payment_adminuser = 'admin';<br>
+     $payment_password = 'admin';</p>
+  <p>to your desired admin log-in and password</p>
+  <li>Also in functions.cgi change the line that reads
+  <p>$payment_encryptkey = 'mykey';</p>
+  <p>to set $payment_encryptkey to a string (recommended length 5-8 characters)
+   containing only letters or numbers.</p>
+  <li>You can now close Telnet
+  <li><a href="#complete">Complete</a> your installation
+</ol>
+
+<p><strong>Without Remote Shell Access:</strong></p>
+
+<ol>
+  <li>On all .cgi files (admin.cgi, functions.cgi, include.cgi, notify_2checkout.cgi,
+   notify_clickbank.cgi, notify_authnet.cgi), put the path to Perl on your
+   server at the top of the file, using your favorite text editor.  On most
+   servers the path is either
+   /usr/bin/perl or /usr/local/bin/perl - the line at the top needs to have
+   a #! before the server path, so if your directory is /usr/bin/perl, the
+   line you need to put at the top of the .cgi files is #!/usr/bin/perl.
+  <li>Open functions.cgi in your editor.  The first few lines will look like:
+  <p>
+    $payment_data_dir = 'data';<br><br>
+    $payment_adminuser = 'admin';<br>
+    $payment_password = 'admin';<br>
+    $payment_encryptkey = 'mykey';
+  </p>
+  <p>Let me explain.  Those who are familiar with the Payment Gateway directory
+   structure could open your data directory in their browsers and open the
+   file containing your admin password and attempt to crack it. To avoid this,
+   you can (and should) create random directories for 'data' and
+   at the same time you should set a new value for $payment_encryptkey (this is used for
+   some encryption on your site).  To do this, change the the value of
+   $payment_data_dir to
+   a random value of the form 'data-eriuas' in place of data (use whatever random string you want).
+   Make sure you remember the value you gave to $payment_data_dir,
+   as you will later have to create a directory with this name. For $payment_encryptkey,
+   use a 5-8 character string containing only letters or numbers.</p>
+  <p>You also need to set an administrator username and password by changing
+   the values of $payment_adminuser and $payment_password.
+  <p>For those unfamiliar with Perl, make sure that when you change these
+   values that the new value is inside two quotes and that there is a semi-colon
+   after the second quote.
+  <p>Do not change anything else in functions.cgi. Save your changes now and
+   exit your text editor.</p>
+  <li>Upload all files except for setup.pl and setup.dat to your server in the appropriate directory. When
+   uploading files, recreate the directory structure on your server. Many FTP
+   programs can do this easily - simply select all R3N3 Payment Gateway files and
+   directories and select upload (ASCII mode).
+  <li>Rename the data directory to whatever you placed in functions.cgi
+   earlier.
+  <li>Now for the file permissions. For the following instructions,
+   if your program uses checkboxes, use the following:
+   <p>
+   <table>
+   <tr><td>
+     <table>
+       <tr><td colspan=4 align="center">Permission setting: <b>755</b></td></tr>
+       <tr><td></td><td align="center">Owner</td><td align="center">Group</td><td align="center">Other</td></tr>
+       <tr><td>Read</td><td align="center">X</td><td align="center">X</td><td align="center">X</td></tr>
+       <tr><td>Write</td><td align="center">X</td><td align="center"></td><td align="center"></td></tr>
+       <tr><td>Execute</td><td align="center">X</td><td align="center">X</td><td align="center">X</td></tr>
+     </table>
+   </td>
+   <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>
+   <td>
+   <table>
+       <tr><td colspan=4 align="center">Permission setting: <b>777</b></td></tr>
+       <tr><td></td><td align="center">Owner</td><td align="center">Group</td><td align="center">Other</td></tr>
+       <tr><td>Read</td><td align="center">X</td><td align="center">X</td><td align="center">X</td></tr>
+       <tr><td>Write</td><td align="center">X</td><td align="center">X</td><td align="center">X</td></tr>
+       <tr><td>Execute</td><td align="center">X</td><td align="center">X</td><td align="center">X</td></tr>
+     </table>
+   </td></tr>
+   </table>
+   </p>
+  <li>CHMOD directory data (which has a random name now) to 777
+  <li>CHMOD all .cgi files to 755
+  <li>CHMOD the following two data files to 777:
+  <p>
+   <ul>
+   <li>DATADIR(whatever you named the data directory)/payment.log
+   <li>DATADIR/settings.data
+   </ul>
+  </p>
+  <li>Complete your installation
+</ol>
+
+<a name="complete"></a>
+<p><strong>Complete the Installation</strong></p>
+<ul>
+  <li>Open <strong>admin.cgi</strong> in your browser and log-in using
+   the name and password you set in functions.cgi
+  <li>If you used a remote shell such as Telnet to run setup.pl on your server,
+   now you can remove the files setup.pl and setup.dat. Install.log is created
+   by setup.pl. Install.log is useful for
+   verifying that the setup was successful, but it should not be left on your
+   server
+  <li>Set up the information for your desired payment processor(s)</li>
+  <li>You are done!
+</ul>
+
+<p><strong>What setup.pl Does:</strong></p>
+<ul>
+  <li>Sets up the Payment Gateway directory structure and copies files to their
+   appropriate locations with the correct file permissions
+  <li>Assigns the data directory a partially random name.
+   This is to prevent people who are familiar with how the Payment Gateway stores data
+   from accessing your information directly from a browser.
+  <li>Stores the values of the random directories so that the script knows
+   where to store data
+  <li>Puts the path to Perl at the top of every CGI file that needs it
+</ul>
+
+<u><b><p><a name="from1">Upgrading from v1.03</a></u></b></p>
+<ul>
+  <li>
+    Unless the path to Perl on your server is "/usr/bin/perl", you will need to change the top line
+    of admin.cgi to correspond to where Perl is located on your server.
+  </li>
+  <li>
+  	Using ASCII mode, transfer admin.cgi to your server,
+  	overwriting the existing script, and set its file permission to 755.
+  </li>
+  <li>
+    Upload strings.txt to the "translations" directory (again, ASCII mode).
+  </li>
+</ul>
+
+<u><b><p>Upgrading from v1.02</u></b></p>
+<ul>
+  <li>
+    Unless the path to Perl on your server is "/usr/bin/perl", you will need to change the top line
+    of admin.cgi, include.cgi and notify_clickbank.cgi to correspond to where Perl is located on your server.
+  </li>
+  <li>
+  	Using ASCII mode, transfer those three files (admin.cgi, include.cgi and notify_clickbank.cgi) to your server,
+  	overwriting the existing scripts, and set their file permissions to 755.
+  </li>
+  <li>
+    Upload strings.txt to the "translations" directory (again, ASCII mode).
+  </li>
+</ul>
+
+<p><b><u>Upgrading from v1.0 or v1.01</a></u></b></p>
+<ul>
+  <li>
+    Unless the path to Perl on your server is "/usr/bin/perl", you will need to change the top line
+    of every .cgi file to correspond to where Perl is located on your server.
+  </li>
+  <li>
+    Upload all .cgi files to your server in ASCII mode, overwriting the existing files.  Make
+    sure that these files have permission 755
+  </li>
+  <li>
+    If upgrading from v1.0, in your "translations" directory, delete options.dat and strings.dat and upload options.txt
+    and strings.txt in their place (make sure to use ASCII mode).
+  </li>
+</ul>
+</body>
+</html>
