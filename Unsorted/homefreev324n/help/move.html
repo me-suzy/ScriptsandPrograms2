@@ -1,0 +1,183 @@
+ 
+<HTML>
+     <HEAD>
+         <TITLE>Moving DBM (database) files</TITLE>
+
+<script language="JavaScript">
+<!-- 
+ function goHist(a) 
+ {
+ history.go(a);
+ }
+// -->
+</script>
+
+<style type="text/css">
+//<!--
+body { font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+th { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: bold; background-color: #FFFFFF;}
+td { font-family: Arial, Helvetica, sans-serif; font-size: 10pt;}
+form { font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+h1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14pt; font-weight: bold}
+A:link { text-decoration: none; color: blue}
+A:visited { text-decoration: none; color: Navy}
+A:hover { text-decoration: underline; color: red}
+A:link.nav { color: #000000}
+A:visited.nav { color: #000000}
+A:hover.nav { color: red;}
+.nav { font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000}
+.std { font-family: Arial, Helvetica, sans-serif; font-size: 8pt;}
+.sml {font-family: Arial, Helvetica, sans-serif; font-size: 1pt;}
+//-->
+</style>
+    </HEAD>
+
+     <BODY LEFTMARGIN="5" RIGHTMARGIN="5" TOPMARGIN="5" bgcolor="#666699" TEXT="#000000" LINK="blue" VLINK="navy" ALINK="blue">
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+        <!-- HEADER -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD BGCOLOR="#333399" ALIGN="left" VALIGN="middle"></TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD BGCOLOR="LightSteelBlue" align=left>
+                    <TABLE border="0" cellpadding=2 cellspacing=0 bgcolor="LightSteelBlue" width="100%">
+                        <TR>
+                            <TD NOWRAP>&nbsp; <B>:: <A HREF="install.html">Installing</A> :: <A HREF="upgrade.html">Upgrading</A> :: <A HREF="move.html">Moving Installed Version</A> :: <A HREF="manual.html">User Manual</A> :: <A HREF="tt.html">Tricks &amp; Tips</A> :: <A HREF="readme.txt">Readme.txt</A> :: </b></td>
+                            <TD valign=center align=right><font class="sml"><FORM METHOD="post"><INPUT TYPE="button" VALUE="Back" onClick="goHist(-1)"></form></font></td>
+                        </TR>
+                    </TABLE>
+                     </TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <TABLE cellpadding=5 cellspacing=0 border=0 bgcolor="#000000" width="100%">
+            <TR>
+                <TD>
+                    <TABLE cellpadding=0 cellspacing=0 border=0 width="100%">
+                        <TR>
+                            <!-- START MENU TABLE -->
+                            <TD bgcolor="LightSteelBlue" valign=top width=130> <img src="/images/solutions/black.gif" width=130 height="5" border="0"><BR>
+                                 <BR>
+                                 <FORM ACTION="notta" method=post>
+                                <TABLE width="95%" bgcolor="#333399" cellpadding=1 border="0" cellspacing=0 align=center>
+                                    <TR>
+                                        <TD>
+                                            <TABLE width="100%" bgcolor="LightSteelBlue" cellpadding=3 cellspacing=0 border="0">
+                                                <TR>
+                                                    <TD bgcolor="#333399" align=center></TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD align=center> <INPUT TYPE=TEXT NAME="address" value="HomeFree v3.24n" size=8> <FONT CLASS=std>hacked by:<br>
+                                                         <b>Nearly Null (-NnN-)</b><br>
+                                                         </FONT> </TD>
+                                                </TR>
+                                            </TABLE>
+                                             </TD>
+                                    </TR>
+                                </TABLE>
+                                 </FORM> </TD>
+                            <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                            <TD bgcolor=white width="100%" valign=top>
+                                <TABLE cellpadding=6 width="100%">
+                                    <TR>
+                                        <TD width="100%">
+                                            <!-- START CONTENT -->
+                                             <font size=+1> Moving DBM (database) files </FONT> <BR>
+                                             <FONT CLASS=std>Posted on: March 29, 2000, 3:21 p.m. </FONT> <BR>
+                                             <BR>
+                                             <B>Please Read before attempting to move Home Free to a another server.</B> <BR>
+                                             <BR>
+                                             Only for those using the dbm database format (database format is indicated on admin.cgi login screen. DBM users will see [dbm] while text based users will see [text] <BR>
+                                             <BR>
+                                             Home Free uses a module called Any_DBM which as you might assume uses any dbm, or the first database management system it finds. This solves incompatablitly problems between servers when installing Home Free, but then causes problems when a user tries to use one dbm file from server a on server b, since they may be using different DBM formats. Thus the old accounts will not show up on the new server, because the dbm file is not correctly read. <BR>
+                                             <BR>
+                                             To solve this problem we have developed 2 simple cgi scripts that will allow the transfer of data from server A to server B. First on server A we will break down the original dbm file to a simple text file.... Transport that text file to server B and build a new dbm file from the text file. Follow these simple steps below and you should have no problem moving your Home Free database from one server to another. <BR>
+                                             <BR>
+                                             <B>Step 1</B> <BR>
+                                             Download and unzip <A HREF="dump_rebuild.zip"><b>dump_rebuild.zip</b></A> (This file is <b>2kb</b>, and is included with your help folder files so that if you ever need to move your installed version of Home Free v3.24n, this file will be easily accessable (-NnN-) :-)! <BR>
+                                             <BR>
+                                             <B>Step 2</B> <BR>
+                                             Upload <font color=red>data_dump.cgi</FONT> to server A, the server that contains the working Home Free database. Upload this cgi file to the same dir that contains the rest of your Home Free cgi files. <BR>
+                                             <BR>
+                                             <B>Step 3</B> <BR>
+                                             Call <font color=red>data_dump.cgi</FONT> using the format: <BR>
+                                             <font color=red>data_dump.cgi?db=DATABASE_NAME&out=OUTPUT_FILE</FONT> <BR>
+                                             Where DATABASE_NAME is the name of the database you want dumped to the text file, and OUTPUT_FILE is the name of the text file you want created with the dumbed data. The new text file will be created in your Home Free data dir, the same one that contains the database files. All accounts not in a category in Home Free are stored in a database named accounts, and accounts in a category are stored in a database of the category name. Also all category information is stored in a database named category. <BR>
+                                             <BR>
+                                             For Example a Home Free with users in the base directory and 2 categories, one named sports and the other named arts, would have to run the data_dump file 4 times.... as shown below:<BR>
+                                             <BR>
+                                             <font color=red> data_dump.cgi?db=accounts&out=accounts_backup.txt <BR>
+                                             data_dump.cgi?db=sports&out=sports_backup.txt <BR>
+                                             data_dump.cgi?db=arts&out=arts_backup.txt <BR>
+                                             data_dump.cgi?db=category&out=category_backup.txt <BR>
+                                             </FONT> <BR>
+                                             You now have all the db information in text format. <BR>
+                                             <BR>
+                                             <B>Step 4</B> <BR>
+                                             Copy the newly created text files from the data dir of Home Free in server A to the data dir of Home Free on server B. <BR>
+                                             <BR>
+                                             <B>Step 5</B> <BR>
+                                             Upload the file <font color=red>data_restore.cgi</FONT> to the cgi directory of Home Free on server B. Now call <font color=red>data_restore.cgi</FONT> using the format:<BR>
+                                             <font color=red>data_restore.cgi?db=DATABASE_NAME&in=INPUT_FILE</FONT> <BR>
+                                             Where DATABASE_NAME and INPUT_FILE is the same as you used to make a backup. data_restore will use the INPUT_FILE to build a new db (DATABASE_NAME) What we had backedup before should look like this to rebuild: <BR>
+                                             <BR>
+                                             <font color=red> data_restore.cgi?db=accounts&in=accounts_backup.txt <BR>
+                                             data_restore.cgi?db=sports&in=sports_backup.txt <BR>
+                                             data_restore.cgi?db=arts&in=arts_backup.txt <BR>
+                                             data_restore.cgi?db=category&in=category_backup.txt <BR>
+                                             </FONT> <BR>
+                                             <BR>
+                                             <B>Step 6</B> <BR>
+                                             That should be it. Log into admin.cgi on Server B and see all the accounts transfered from Server A. If everything went smoothly, be sure to erase the <font color=red>data_dump.cgi</FONT> and <font color=red>data_restore.cgi</FONT> from their respective servers as they are security hazards. <BR>
+                                             <BR>
+                                             <BR>
+                                             <BR>
+                                             </TD>
+                                    </TR>
+                                </TABLE>
+                                 </TD>
+                        </TR>
+                    </TABLE>
+                     </TD>
+            </TR>
+        </TABLE>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD bgcolor="#333399" align=right width="100%">
+                    <table border="0" cellpadding=0 cellspacing=0 width="100%">
+                        <TR>
+                            <TD CLASS="STD"><font color="LightSteelBlue"> </FONT></TD>
+                            <TD align=right CLASS="STD"><font color="#FFFFFF">Copyright &copy; 1997-2000 Solution Scripts.&nbsp;&nbsp;&nbsp;&nbsp;</FONT></TD>
+                        </TR>
+                    </TABLE>
+                     </TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+    </BODY>
+</HTML>
+ 
