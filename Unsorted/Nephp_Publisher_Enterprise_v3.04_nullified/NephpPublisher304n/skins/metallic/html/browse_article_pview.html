@@ -1,0 +1,624 @@
+<html>
+<head>
+<script>
+if (!document.layers&&!document.all&&!document.getElementById)
+event="test"
+function showtip(current,e,text){
+
+if (document.all||document.getElementById){
+thetitle=text.split('<br>')
+if (thetitle.length>1){
+thetitles=''
+for (i=0;i<thetitle.length;i++)
+thetitles+=thetitle[i]
+current.title=thetitles
+}
+else
+current.title=text
+}
+
+else if (document.layers){
+document.tooltip.document.write('<layer bgColor="white" style="border:1px solid black;font-size:12px;">'+text+'</layer>')
+document.tooltip.document.close()
+document.tooltip.left=e.pageX+5
+document.tooltip.top=e.pageY+5
+document.tooltip.visibility="show"
+}
+}
+function hidetip(){
+if (document.layers)
+document.tooltip.visibility="hidden"
+}
+
+</script>
+<style>
+body, p, td {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; 
+scrollbar-face-color: #dadada; 
+                scrollbar-shadow-color: #000000; 
+                scrollbar-highlight-color: #FFFFFF; 
+                scrollbar-3dlight-color: #000000; 
+                scrollbar-darkshadow-color: #dadada; 
+                scrollbar-track-color: #FFFFFF; 
+                scrollbar-arrow-color: #000000; }
+    </style>
+ </head>          
+ <body topmargin="0" leftmargin="0" link="#000080" vlink="#000080" alink="#000080" bgcolor="#FFFFFF">
+
+           <div align="center">
+             <center>
+             <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber17">
+               <tr>
+                 <td width="100%" valign="top" bgcolor="#D4D2DF">
+                 &nbsp;<br>
+&nbsp;</td>
+               </tr>
+               <tr>
+                 <td width="100%" valign="top" background="{%tpl_template_url%}/gfx/cnet/nnet2002_toolbar_bg.gif">
+                 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber20" width="760">
+                   <tr>
+                     <td valign="top" width="1">
+                     <map name="FPMap0">
+                     <area href="{%url_php%}/browse.php" onMouseover="showtip(this,event,'Return home');" onMouseout="hidetip()" shape="rect" coords="39, 3, 63, 27">
+                     <area href="{%url_php%}/browse.php?mod=signup" onMouseover="showtip(this,event,'New Member Sign-up');" onMouseout="hidetip()" shape="rect" coords="65, 2, 90, 27">
+                     <area href="{%url_php%}/browse.php?mod=archive" onMouseover="showtip(this,event,'Latest Article Submission');" onMouseout="hidetip()" shape="rect" coords="93, 3, 124, 27">
+                     <area href="{%url_php%}/browse.php?mod=submit" onMouseover="showtip(this,event,'Submit your article');" onMouseout="hidetip()" shape="rect" coords="121, 3, 152, 27">
+                     <area href="{%url_php%}/browse.php?mod=members" onMouseover="showtip(this,event,'NePHP Member List');" onMouseout="hidetip()" shape="rect" coords="155, 3, 179, 27">
+                     <area href="{%url_php%}/browse.php?mod=profile" onMouseover="showtip(this,event,'My Profile');" onMouseout="hidetip()" shape="rect" coords="185, 2, 210, 27">
+                     <area href="{%url_php%}/help.html" shape="rect" onMouseover="showtip(this,event,'Click here for additional help');" onMouseout="hidetip()" coords="260, 3, 277, 20">
+                     </map>
+                     <img border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_toolbar.gif" width="360" height="78" usemap="#FPMap0"></td>
+                     <td valign="top">
+                     <form method="POST" action="browse.php">
+                     <input type=hidden name=mod value="find">
+					<div align="right">
+                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" id="AutoNumber21">
+                           <tr>
+                             <td valign="top">
+                             <img border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_toolbar_quiksearch.gif" width="84" height="36">&nbsp;&nbsp;
+                             </td>
+                             <td><input type="text" name="keywords" size="20"></td>
+                             <td valign="top">
+                             <input border="0" src="{%tpl_template_url%}/gfx/cnet/nnet2002_toolbar_go.gif" name="I1" width="27" height="36" type="image"></td>
+                           </tr>
+                         </table>
+                       </div>
+                     </form>
+                     <p>&nbsp;</td>
+                   </tr>
+                 </table>
+                 </td>
+               </tr>
+               <tr>
+                 <td width="100%" valign="top">
+                 <div align="left">
+                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="760" id="AutoNumber22">
+                     <tr>
+                       <td valign="top" width="1"><img border="0" src="{%tpl_template_url%}/gfx/trans.gif" width="177" height="1"></td>
+                       <td valign="top"><img border="0" src="{%tpl_template_url%}/gfx/trans.gif" width="208" height="1"></td>
+                       <td valign="top" width="1">
+                       <img border="0" src="{%tpl_template_url%}/gfx/trans.gif" width="177" height="1"></td>
+                     </tr>
+                     <tr>
+                       <td valign="top">&nbsp;</td>
+                       <td valign="top">&nbsp;</td>
+                       <td valign="top">&nbsp;</td>
+                     </tr>
+                     <tr>
+                       <td valign="top" colspan="3">
+                       <div align="center">
+                         <center>
+                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber23">
+                           <tr>
+      <td valign="top">
+      <SCRIPT LANGUAGE="JavaScript">
+<!-- Begin
+function Check(x,y) {
+for(i=1;i<=4;i++) {
+z = "option" + i ;
+document.all[z].src = "{%tpl_template_url%}/gfx/off.gif" ;
+}
+document.all[x].src = "{%tpl_template_url%}/gfx/on.gif"
+document.all.choice.value = y
+}
+//  End -->
+      </script>
+<input type=hidden name=choice value=''>
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber13">
+                <tr>
+                  <td width="167" valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber12">
+                <tr>
+                  <td width="100%" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000">
+                  <img border="0" src="{%tpl_template_url%}/gfx/front/main_anet_question.gif" width="166" height="20"></td>
+                </tr>
+                               <tr>
+                  <td width="100%" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000; border-left-width:1; border-right-width:1; border-top-style:solid; border-top-width:1; border-bottom-width:1" bgcolor="#EFEEEE">
+                  <!-- Scrolling Marquee -->
+
+                  <div align="center">
+                    <center>
+                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber28">
+                      <tr>
+                        <td width="100%">
+
+                  <b>
+
+                  <font color="#000080">{%nnet_ques%}</font></b></td>
+                      </tr>
+                    </table>
+                    </center>
+                  </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="100%" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000">
+                  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber18">
+                    <tr>
+                      <td width="13%" bgcolor="#EFEEEE">&nbsp;</td>
+                      <td width="87%" bgcolor="#EFEEEE">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td width="13%" align="center" bgcolor="#EFEEEE">
+                        <a href="#">
+                        <img border="0" src="{%tpl_template_url%}/gfx/off.gif" name=option1 onclick=Check(this.name,"1") width="11" height="11"></a>
+</td>
+                      <td width="87%" bgcolor="#EFEEEE"><font face="Verdana" size="2"><b>
+                        1</b>. {%nnet_ans1%}</font></td>
+                    </tr>
+                    <tr>
+                      <td width="13%" align="center" bgcolor="#EFEEEE">
+                        <a href="#">
+                        <img border="0" src="{%tpl_template_url%}/gfx/off.gif" name=option2 onclick=Check(this.name,"2") width="11" height="11"></a></td>
+                      <td width="87%" bgcolor="#EFEEEE"><b><font face="Verdana" size="2">2</font></b><font face="Verdana" size="2">. 
+                      {%nnet_ans2%}</font></td>
+                    </tr>
+                    <tr>
+                      <td width="13%" align="center" bgcolor="#EFEEEE">
+                        <a href="#">
+                        <img border="0" src="{%tpl_template_url%}/gfx/off.gif" name=option3 onclick=Check(this.name,"3") width="11" height="11"></a></td>
+                      <td width="87%" bgcolor="#EFEEEE"><b><font face="Verdana" size="2">3</font></b><font face="Verdana" size="2">. 
+                      {%nnet_ans3%}</font></td>
+                    </tr>
+                    <tr>
+                      <td width="13%" align="center" bgcolor="#EFEEEE">
+                        <a href="#">
+                        <img border="0" src="{%tpl_template_url%}/gfx/off.gif" name=option4 onclick=Check(this.name,"4") width="11" height="11"></a></td>
+                      <td width="87%" bgcolor="#EFEEEE"><b><font face="Verdana" size="2">4</font></b><font face="Verdana" size="2">. 
+                      {%nnet_ans4%}</font></td>
+                    </tr>
+                    <tr>
+                      <td width="13%" align="center" bgcolor="#EFEEEE">&nbsp;</td>
+                      <td width="87%" bgcolor="#EFEEEE">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td width="100%" align="center" colspan="2" bgcolor="#EFEEEE">
+                  <input type="button" value="submit your poll" name="B1ff1" style="font-size: 8pt; font-family: Verdana" onclick="pollbox();"></td>
+                    </tr>
+                    <tr>
+                      <td width="13%" bgcolor="#EFEEEE">&nbsp;</td>
+                      <td width="87%" bgcolor="#EFEEEE">&nbsp;</td>
+                    </tr>
+                  </table>
+                  </td>
+                </tr>                <tr>
+                  <td width="100%" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000" bgcolor="#EFEEEE">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width="100%" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000" bgcolor="#EFEEEE">
+                  <img border="0" src="{%tpl_template_url%}/gfx/front/main_anet.gif" width="166" height="20"></td>
+                </tr>
+                 <tr>
+                  <td width="100%" bgcolor="#CCCCFF" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000; border-left-width:1; border-right-width:1; border-top-style:solid; border-top-width:1; border-bottom-width:1">
+                                    <table style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="1" cellPadding="2" width="100%" border="0">
+  <tr>
+    <td width="100%" bgcolor="#CCCCFF">
+    <p>&nbsp;<b>Results Display</b></p>
+    </td>
+  </tr>
+  <tr>
+    <td align="right" width="100%" height="3" bgcolor="#CCCCFF">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p align="left"></p>
+    <p align="left"></p>
+    <p align="left"></td>
+  </tr>
+  <tr>
+    <td width="100%" valign="top" bgcolor="#CCCCFF">
+    <div align="center">
+      <center>
+      <table id="AutoNumber27" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" border="0" background="{%tpl_template_url%}/gfx/poll/bg.gif" cellpadding="3">
+        <tr>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+        </tr>
+        <tr>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          <div align="center">
+            <center>
+            <table id="AutoNumber4" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" border="0">
+              <tr>
+                <td>
+                <img src="{%tpl_template_url%}/gfx/poll/top3.gif" border="0" width="11" height="2"></td>
+              </tr>
+              <tr>
+                <td>
+                <img height="{%numbg1%}" src="{%tpl_template_url%}/gfx/poll/v3.gif" width="11" border="0"></td>
+              </tr>
+              <tr>
+                <td>
+                <img src="{%tpl_template_url%}/gfx/poll/bot3.gif" border="0" width="11" height="2"></td>
+              </tr>
+            </table>
+            </center>
+          </div>
+          </td>
+          <td vAlign="bottom" align="middle">
+          <table id="AutoNumber4" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" border="0">
+            <tr>
+              <td>
+              <img src="{%tpl_template_url%}/gfx/poll/top2.gif" border="0" width="11" height="2"></td>
+            </tr>
+            <tr>
+              <td>
+              <img height="{%numbg2%}" src="{%tpl_template_url%}/gfx/poll/v2.gif" width="11" border="0"></td>
+            </tr>
+            <tr>
+              <td>
+              <img src="{%tpl_template_url%}/gfx/poll/bot2.gif" border="0" width="11" height="2"></td>
+            </tr>
+          </table>
+          </td>
+          <td vAlign="bottom" align="middle">
+          <table id="AutoNumber4" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" border="0">
+            <tr>
+              <td>
+              <img src="{%tpl_template_url%}/gfx/poll/top1.gif" border="0" width="11" height="2"></td>
+            </tr>
+            <tr>
+              <td>
+              <img height="{%numbg3%}" src="{%tpl_template_url%}/gfx/poll/v1.gif" width="11" border="0"></td>
+            </tr>
+            <tr>
+              <td>
+              <img src="{%tpl_template_url%}/gfx/poll/bot1.gif" border="0" width="11" height="2"></td>
+            </tr>
+          </table>
+          </td>
+          <td vAlign="bottom" align="middle">
+          <table id="AutoNumber4" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" border="0">
+            <tr>
+              <td>
+              <img src="{%tpl_template_url%}/gfx/poll/top.gif" border="0" width="11" height="2"></td>
+            </tr>
+            <tr>
+              <td>
+              <img height="{%numbg4%}" src="{%tpl_template_url%}/gfx/poll/v.gif" width="11" border="0"></td>
+            </tr>
+            <tr>
+              <td>
+              <img src="{%tpl_template_url%}/gfx/poll/bot.gif" border="0" width="11" height="2"></td>
+            </tr>
+          </table>
+          </td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;</td>
+          <td vAlign="bottom" align="middle">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+        </tr>
+        <tr>
+          <td align="middle">
+          <img height="2" src="{%tpl_template_url%}/gfx/spacer.gif" width="1" border="0"></td>
+          <td align="middle">
+          <img height="2" src="{%tpl_template_url%}/gfx/spacer.gif" width="1" border="0"></td>
+          <td align="middle">
+          1</td>
+          <td align="middle">
+          2</td>
+          <td align="middle">
+          3</td>
+          <td align="middle">
+          4</td>
+          <td align="middle">
+          <img height="2" src="{%tpl_template_url%}/gfx/spacer.gif" width="1" border="0"></td>
+          <td align="middle">
+          <img height="2" src="{%tpl_template_url%}/gfx/spacer.gif" width="1" border="0"></td>
+        </tr>
+        <tr>
+          <td align="middle" colspan="8" bgcolor="#000000" height=1></td>
+        </tr>
+      </table>
+      </center>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td align="right" width="100%" bgcolor="#CCCCFF">
+    <p align="left"><font face="Verdana" size="2">&nbsp; <br>
+    &nbsp;
+        Poll Reviews:</font></td>
+  </tr>
+  <tr>
+    <td align="right" width="100%" bgcolor="#CCCCFF">
+    &nbsp;<div align="center">
+      <center>
+    <table id="AutoNumber3" style="BORDER-COLLAPSE: collapse" borderColor="#111111" cellSpacing="0" cellPadding="0" width="100%" border="0">
+      <tr>
+        <td>&nbsp;&nbsp;
+        <img src="{%tpl_template_url%}/gfx/poll/left3.gif" border="0" width="2" height="11"><font face="Verdana" size="2"><img height="11" src="{%tpl_template_url%}/gfx/poll/mid3.gif" width="10" border="0"><img src="{%tpl_template_url%}/gfx/poll/right3.gif" border="0" width="2" height="11">&nbsp;({%numbr1%}%)</font></td>
+        <td rowspan="4" valign="top">
+        <div align="center">
+          <center>
+        <table border="0" cellpadding="3" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber17">
+          <tr>
+            <td width="100%"><font face="Verdana" size="2">
+            <b>{%nnet_nans1%}</b> Votes</font></td>
+          </tr>
+          <tr>
+            <td width="100%"><font face="Verdana" size="2">
+            <b>{%nnet_nans2%}</b> Votes</font></td>
+          </tr>
+          <tr>
+            <td width="100%"><font face="Verdana" size="2">
+            <b>{%nnet_nans3%}</b> Votes</font></td>
+          </tr>
+          <tr>
+            <td width="100%"><font face="Verdana" size="2">
+            <b>{%nnet_nans4%}</b> Votes</font></td>
+          </tr>
+        </table>
+          </center>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;
+        <img src="{%tpl_template_url%}/gfx/poll/left2.gif" border="0" width="2" height="11"><font face="Verdana" size="2"><img height="11" src="{%tpl_template_url%}/gfx/poll/mid2.gif" width="10" border="0"><img src="{%tpl_template_url%}/gfx/poll/right2.gif" border="0" width="2" height="11">&nbsp;({%numbr2%}%)</font></td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;
+        <img src="{%tpl_template_url%}/gfx/poll/left1.gif" border="0" width="2" height="11"><font face="Verdana" size="2"><img height="11" src="{%tpl_template_url%}/gfx/poll/mid1.gif" width="10" border="0"><img src="{%tpl_template_url%}/gfx/poll/right1.gif" border="0" width="2" height="11"> 
+        ({%numbr3%}%)</font></td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;
+        <img src="{%tpl_template_url%}/gfx/poll/left.gif" border="0" width="2" height="11"><font face="Verdana" size="2"><img height="11" src="{%tpl_template_url%}/gfx/poll/mid.gif" width="10" border="0"><img src="{%tpl_template_url%}/gfx/poll/right.gif" border="0" width="2" height="11"> 
+        ({%numbr4%}%)</font></td>
+      </tr>
+      </table>
+      </center>
+    </div>
+    </td>
+  </tr>
+  
+</table>
+                  
+                  
+                  </td>
+                </tr>
+                <tr>
+                  <td width="100%" bgcolor="#CCCCFF" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000">
+                  &nbsp;</td>
+                </tr>
+                <tr>
+                  <td width="100%" bgcolor="#CCCCFF" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000">
+                  <img border="0" src="{%tpl_template_url%}/gfx/front/main_anet_affiliates.gif" width="166" height="20"></td>
+                </tr>
+                <tr>
+                  <td width="100%" bgcolor="#FFFFFF" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width="100%" bgcolor="#FFFFFF" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:8pt; color:#000000; scrollbar-face-color:#dadada; scrollbar-shadow-color:#000000; scrollbar-highlight-color:#FFFFFF; scrollbar-3dlight-color:#000000; scrollbar-darkshadow-color:#dadada; scrollbar-track-color:#FFFFFF; scrollbar-arrow-color:#000000">
+                  <img border="0" src="{%tpl_template_url%}/gfx/banners/linuxmaxll.gif" width="140" height="33"></td>
+                </tr>
+                <tr>
+                  <td width="100%" bgcolor="#FFFFFF" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; border-bottom-style: solid; border-bottom-width: 1; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:8pt; color:#000000; scrollbar-face-color:#dadada; scrollbar-shadow-color:#000000; scrollbar-highlight-color:#FFFFFF; scrollbar-3dlight-color:#000000; scrollbar-darkshadow-color:#dadada; scrollbar-track-color:#FFFFFF; scrollbar-arrow-color:#000000">
+                  <img border="0" src="{%tpl_template_url%}/gfx/banners/techiest.gif" width="140" height="79"></td>
+                </tr>
+                <tr>
+                  <td width="100%" bgcolor="#FFFFFF" style="border-left-width: 1; border-right-width: 1; border-top-width: 1; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:8pt; color:#000000; scrollbar-face-color:#dadada; scrollbar-shadow-color:#000000; scrollbar-highlight-color:#FFFFFF; scrollbar-3dlight-color:#000000; scrollbar-darkshadow-color:#dadada; scrollbar-track-color:#FFFFFF; scrollbar-arrow-color:#000000">
+                  <img border="0" src="{%tpl_template_url%}/gfx/banners/foxservll.gif" width="140" height="91"></td>
+                </tr>
+              </table>
+                  </td>
+                  <td width="100%" valign="top" style="border-right-width: 1; border-top-width: 1; border-bottom-width: 1">
+                   <div align="center">
+                     <center><table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber6" height="37">
+          <tr>
+            <td width="72%" valign="top" height="18" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000">
+            <div align="center">
+              <center>
+              <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber11">
+                <tr>
+                  <td width="100%" valign="top" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000" colspan="2">
+                  <b>
+                  <a style="color: #0000FF" href="{%url_php_home%}">Home</a>  {%tpl_nav%}</b></td>
+                </tr>
+                <tr>
+                  <td width="50%" valign="top" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000" bgcolor="#EFEEEE">&nbsp;</td>
+                  <td width="50%" valign="top" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000" bgcolor="#EFEEEE">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width="100%" valign="top" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000" colspan="2">
+                  <div align="center">
+                    <center>
+                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber14" height="243">
+                      <tr>
+                        <td width="100%" valign="bottom" height="29"><b>
+                        <font size="2">{%nnet_titlez%}</font></b></td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top" height="1"></td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top" bgcolor="#808080" height=6 background="{%tpl_template_url%}/gfx/cnet/line.gif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top" height="13">&nbsp;&nbsp;&nbsp; </td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top" height="112">
+                        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber15">
+                          <tr>
+                            <td width="50%">
+                            <p align="center">
+                            <img src="{%var_fpic%}">{%var_enlarge%}</td>
+                            <td width="50%">
+                            <form method="POST" action="{%url_php%}/browse.php">
+                            <input type=hidden name=mod value="article">
+                            <input type=hidden name=opt value="rate">
+                            <input type=hidden name=id value="{%nnet_aid%}">
+			<p align="left">
+                            <img alt="User Opinions" src="/skins/uotxt.gif" width="81" height="15"><br>
+                            <br>
+
+                              <b>{%var_up%}% </b><font size="2" face="Verdana">
+                            <img border="0" src="{%tpl_template_url%}/gfx/good.gif" width="13" height="8"></font>&nbsp;<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            {%var_down%}</b><b class="g5">% </b>
+                            <font size="2" face="Verdana">
+                <img border="0" src="{%tpl_template_url%}/gfx/bad.gif" width="13" height="8"></font><br>
+                              <br>
+                          <i><font size="2">Posted by: <b>{%nnet_author%}</b><br>
+                              </font>
+                              </i>Posted on: {%nnet_time%}<b><font face="Arial" size="2"><br>
+                          Rate:</font> </b><font size="2">
+                          <img src="{%tpl_template_url%}/gfx/stars/{%nnet_rrate%}.gif"> 
+                          (</font><b><font size="4"> </font>
+                          <font face="Arial" size="2">{%nnet_rrate%}</font></b><font size="2"> 
+                          out of 10 )<br>
+                              </font><select size="1" name="rate_name">
+                          <option selected>10</option>
+                          <option>9</option>
+                          <option>8</option>
+                          <option>7</option>
+                          <option>6</option>
+                          <option>5</option>
+                          <option>4</option>
+                          <option>3</option>
+                          <option>2</option>
+                          <option>1</option>
+                          </select>
+                          <input type="image" src="{%tpl_template_url%}/gfx/browse_rate.gif" border="0" name="I5" width="33" height="19"></p>
+                            </form>
+&nbsp;</td>
+                          </tr>
+                        </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top" height="13">
+                        &nbsp; </td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top" height="24" bgcolor="#F5F4F4">
+                        <map name="FPMap1">
+                        <area href="#comments" shape="rect" coords="426, 3, 507, 20">
+                        <area coords="167, 0, 234, 21" shape="rect" href="{%url_php%}/browse.php?mod=article&opt=printable&id={%id%}">
+                        <area href="{%url_php%}/browse.php?mod=edit&id={%nnet_aid%}" shape="rect" coords="232, 0, 288, 21">
+                        <area href="{%url_php%}/browse.php?mod=del&id={%nnet_aid%}" shape="rect" coords="292, 1, 358, 21">
+                        <area href="{%url_php%}/browse.php?mod=email&id={%nnet_aid%}" shape="rect" coords="362, 1, 425, 21">
+                        </map>
+                        <img border="0" src="{%tpl_template_url%}/gfx/front/main_tool_bar.gif" width="509" height="22" usemap="#FPMap1"></td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top" height="46">
+                        <table border="0" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber16" height="87">
+                          <tr>
+                            <td width="100%" background="{%tpl_template_url%}/gfx/front/main_zoom_grid.gif" height="54">
+                            {%nnet_desc%}</td>
+                          </tr>
+                          <tr>
+                            <td width="100%" valign="top" height="13">
+                            <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber29">
+                              <tr>
+                                <td width="50%"><b>
+                                <a href="{%url_php%}/browse.php?mod=reviews&opt=write&id={%nnet_aid%}&catid={%nnet_cid%}">
+                                Write Reviews</a></b></td>
+                                <td width="50%">
+                                <p align="right"><b>
+                            <a href="{%url_article_details%}">Read Full Article</a></b></td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top">
+                        <b>&nbsp;REVIEWS:</b>&nbsp; {%var_span%}</td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top">
+                        &nbsp; </td>
+                      </tr>
+                      <tr>
+                        <td width="100%" valign="top">
+                        {%review_tables%}</td>
+                      </tr>
+                    </table>
+                    </center>
+                  </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="100%" valign="top" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; scrollbar-face-color: #dadada; scrollbar-shadow-color: #000000; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #000000; scrollbar-darkshadow-color: #dadada; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #000000" colspan="2">
+                  
+ 
+                  
+                  </td>
+                </tr>
+              </table>
+              </center>
+            </div>
+            </td>
+          </tr>
+          </table>
+                                   
+                     </center>
+                   </div>
+                  
+                  </td>
+                </tr>
+              </table>
+
+      </td>
+                           </tr>
+                           </table>
+                         </center>
+                       </div>
+                       </td>
+                     </tr>
+                     </table>
+                 </div>
+                 </td>
+               </tr>
+               </table>
+             </center>
+           </div>
+      <script>
+      function loginbox(){document.location='index.php?action=login&username='+document.all.username.value+'&opt=o0o&password='+document.all.password.value;}
+function pollbox(){if(document.all.choice.value==''){alert("Please pick your choice");}else{document.location='browse.php?mod=article&opt=polls&id={%nnet_aid%}&choice='+document.all.choice.value;}}
+           </script>
+
+      </body>
+      </html>
