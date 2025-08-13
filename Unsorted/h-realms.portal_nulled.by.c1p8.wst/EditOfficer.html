@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>SVEC - Edit Officer</title>
+<meta name="GENERATOR" content="YesSoftware CodeCharge v.1.1.18 / Templates.ccp build 3/2/2001">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0"> 
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+</head>
+<body style="background-color: #FFFFFF; color: #000000; font-family: Arial, Tahoma, Verdana, Helveticabackground-color: #FFFFFF; color: #000000; font-family: Arial, Tahoma, Verdana, Helvetica">
+{Header}
+ <table>
+  <tr>
+   <td valign="top">
+   <!--BeginFormEditOfficer-->
+   <form method="POST" action="{FileName}" name="EditOfficer">
+    <table style="style="border-style: outset; border-width: 2"">
+     <tr>
+      <td style="background-color: #990000; text-align: Center; border-style: outset; border-width: 1" colspan="2"><font style="font-size: 12pt; color: #FFFFFF; font-weight: bold">SVEC - Edit Officer</font></td>
+     </tr>
+     <!--BeginEditOfficerError-->
+     <tr>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1" colspan="2"><font style="font-size: 10pt; color: #000000">{sEditOfficerErr}<font></td>
+     </tr>
+     <!--EndEditOfficerError-->
+    
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Name</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><input type="text" name="officer_name" maxlength="40" value="{officer_name}" size="40"></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Position</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><input type="text" name="officer_position" maxlength="40" value="{officer_position}" size="40"></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Email</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><input type="text" name="officer_email" maxlength="20" value="{officer_email}" size="20"></td>
+     </tr>
+     
+     <tr>
+      <td colspan="2" align="right">
+
+      <!-- ***   Buttons   *** -->
+      
+      <!--BeginEditOfficerInsert-->
+      <input type="hidden" value="insert" name="FormAction">
+      <input type="submit" value="Insert" onclick="document.EditOfficer.FormAction.value = 'insert';">
+      <!--EndEditOfficerInsert-->
+      
+      <!--BeginEditOfficerEdit-->
+      <input type="hidden" value="update" name="FormAction"/>
+      
+      <!--BeginEditOfficerUpdate-->
+      <input type="submit" value="Update" onclick="document.EditOfficer.FormAction.value = 'update';"/>
+      <!--EndEditOfficerUpdate-->
+      
+      <!--EndEditOfficerDelete-->
+      <input type="submit" value="Delete" onclick="document.EditOfficer.FormAction.value = 'delete';"/>
+      <!--EndEditOfficerDelete-->
+      
+      <!--EndEditOfficerEdit-->
+      
+      <input type="hidden" name="FormName" value="EditOfficer"/>
+      
+      <input type="hidden" name="PK_officer_id" value="{PK_officer_id}"/>
+      <input type="hidden" name="officer_id" value="{officer_id}"/>
+     </td>
+    </tr>
+   </table>
+  </form>
+<!--EndFormEditOfficer-->
+   <SCRIPT Language="JavaScript">
+if (document.forms["EditOfficer"])
+document.EditOfficer.onsubmit=delconf;
+function delconf() {
+if (document.EditOfficer.FormAction.value == 'delete')
+  return confirm('Delete record?');
+}
+</SCRIPT>
+   </td>
+  </tr>
+ </table>
+
+
+{Footer}
+
+</body>
+</html>
