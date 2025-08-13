@@ -1,0 +1,150 @@
+
+------------------------------------------------------------------------
+  NETJUKE 1.x TO DO LIST: Keeps track of upcoming feature improvements
+------------------------------------------------------------------------
+
+
+NOTE: More research and feedback are required before achieving the
+following features. Join us on the mailing list(s) to contribute either.
+
+
+------------------------------------------------------------------------
+
+
+V 1.0 TARGETS (still growing, more or less listed by priority):
+
+
+X.  Fix whatever issues are in the docs/KNOWN_ISSUES.txt file
+    and/or show up through support request and user feedback.
+    
+    + This is the top priority before we can contemplate
+      moving on with the following list. Strong software
+      needs a stable codebase, right? ;o)
+
+
+X.  Windows PHP runtime support should be completed by 1.0 final.
+
+    + Some progress have been made, and we now have users successfully
+      installing the netjuke with no modifications on windows. It is advised
+      to use the binary version published on php.net, or make sure to select
+      to only displays errors (no warnings, etc) in the installer process.
+    
+    + Hopes to support Win Apache, IIS, PWS, etc.
+    
+    + Additionally, database support should increase to also
+      include Access, MSSQL, Oracle, Sybase, etc.
+
+
+X.  Get more supported languages (see netjuke/etc/locale/*)
+    
+    + Need to go through all the files to try to consolidate
+      as many of the redundant values as possible in the file
+      related to /lib/inc-common.php. This will hopefully
+      make things even easier for translators.
+    
+    + Need to make a translation doc to make it easier
+      for developers.
+    
+    + Potential for a small parser script that can edit and
+      generate locale files from a web form (w/ built-in
+      character translation). This should be added to the
+      netjuke-toolbox package.
+
+
+X.  Get the Netjuke SQL ported to more database systems, to
+    be accessed natively, or through ODBC, from php (thanks
+    to the ADODB 3rd-party library).
+    
+    Looking for Oracle (same as Postgresql, in theory), Sybase,
+    MSSQL, MS Access, etc.
+    
+    See the netjuke-toolkit if you are interested in porting
+    the SQL to your db, or the mailing list if you are willing
+    to dedicate a db account to someone else who could do so.
+
+
+X.  Implement more audio/video formats using the getid3 library.
+
+
+X.  Write-Back Functions.
+
+    getid3.php now has write-back fucntions for id3v1, v2, ogg, etc.
+    They are quite stable. let's use them.
+
+
+X.  Upgrade the Music Database Maintenance tool to also check
+    the files found in the netjuke db for updates in their ID3
+    tags or Ogg comments.
+
+
+X.  Additional Playback Options to complement the m3u playlists
+    and the radio feature (server-play, etc).
+
+    + This has long been a "head-banger" for many people as we
+      struggle to find a viable cross-platform solution. Please
+      join us on the lists or forums to help out if you think you
+      can help. 
+
+
+X.  Built-in online help system based on adding one single extra
+    constant to each language pack include file.
+    
+    + Should support limited HTML
+    
+    + Must make sure to display the default english docs if the
+      help file is not available in the selected language pack.
+
+    + Add HELP link in the primary navigation bar for each page
+
+    + Make a small "Help" and potentially "Language Pack"
+      editor (script) available in the netjuke-toolkit.
+
+
+X.  Make more informaton about users and their playlists available
+    to the administrator(s). Add logging features.
+
+
+X.  Upgrade backup tool to support selective exports (code will
+    be based on play.php: playlists)
+
+
+X.  Upgrade admin/editors special tools module where available
+
+    + save for server play (append/replace?)
+    + batch export
+    + more?
+
+
+------------------------------------------------------------------------
+
+
+LONG TERM TARGETS PREVIEW (V2 AND UP):
+
+
+X.  The most challenging feature of V2 will be to take V1, and to
+    abstract the html interface from the data retrieval and processing
+    core of the application.
+    
+    + The logic component will instead serve XML that any application
+      will be able to access, which the then provided html component
+      will do itself as to complement the delivered product.
+    
+    + This done, other developers will be able to also start building
+      upon this XML layer through other programming languages: a Flash
+      interface, a Java interface, C++, etc.
+    
+    The Beta phase's prime purpose is to pinpoint an appropriate feature
+    set that will satisfy the current market needs and wishes of the time.
+    We are now approaching 1.0 fast. The development of Version 2 should
+    start as a new development branch when V1.0 final is released (end of beta).
+    
+    With this said, anyone is welcome to come up with a better implementation
+    of their own faster than I (we?) can. We might even access it instead!
+
+
+X.  V2 (and up) will then grow into much more than just an audio repository.
+    Current hopes are to also achieve Video meta data and presentation of
+    video, smil, flash, images, etc.
+
+
+------------------------------------------------------------------------
