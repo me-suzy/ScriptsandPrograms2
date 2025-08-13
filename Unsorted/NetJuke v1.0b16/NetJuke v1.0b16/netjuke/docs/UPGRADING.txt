@@ -1,0 +1,87 @@
+
+------------------------------------------------------------------------
+                    NETJUKE: Software Upgrade Notes
+------------------------------------------------------------------------
+                   IMPORTANT NOTE TO EXISTING USERS
+------------------------------------------------------------------------
+
+
+- Upgrading to 1.0b16 (from 1.0b12 through 1.0b15.2)
+
+This upgrade procedure is compatible with versions 1.0b12 to 1.0b15.2.
+
+This version is only compatible with PHP 4.1 or over, and this since 1.0b15.
+
+MOVING FROM 1.0b12 THROUGH b15.2 to B16:  Existing users running these
+versions MUST RUN THE UPGRADE PROCESS of the installer to move to 1.0b16.
+
+MOVING FROM 1.0b11 TO b16: Users of 1.0b11 should use the 1.0b12.2
+package, and upgrade process, prior to moving to 1.0b16, or go for a fresh
+install of 1.0b16 if they are having problems with the b12.2 releases.
+
+
+NETJUKE UPGRADE PROCEDURE:
+
+
+1. RENAME YOUR CURRENT INSTALL TO netjuke-old. You will need to move
+   the existing preference file and other variable content to the new
+   release in the next steps.
+
+
+2. Unpack the new version in a web accessible directory, in place of
+   the previous copy (It is important that the new release matches the
+   path that are in your current preference file moved below).
+
+
+3. Copy or move your existing preference file to the new version
+   of the application you just unpacked.
+
+
+4. Move the content of your previous netjuke/var/ directory to the
+   new release (music, symbolic links, data backups, images, etc).
+   
+   + Note: if you replace the files in var/html/* by the ones you
+     had in the previous version, your netjuke might display a wrong
+     version number at the top-right of the screen, but it still was
+     upgraded successfully. These are optional & modifiable files
+     that you might not want to overwrite if you customized them.
+   
+   + Note that 1.0b16 brings a new "jukebox" directory in netjuke/var/data.
+     that needs to be writable by the web server, or everybody.
+
+
+5. Make sure the following resources are writable by the web
+   server user (eg: nobody, www, apache) or world writable
+   in the NEW copy:
+
+   + netjuke/etc/inc-prefs.php
+   + netjuke/var/data (and everything within)
+   
+   + if you use symbolic links anywhere, make sure the targeted
+     original targeted directory is readable, and that apache is
+     setup to follow symbolic links (FollowSymLinks).
+
+
+6. Go to http://.../netjuke/installer/installer.php and proceed with
+   the UPGRADE PROCESS of the installer (license + docs + web form).
+
+
+7. OPTIONAL: After trying to login to the new release to be safe, you
+   can now delete your old copy (renamed as netjuke-old in step 1)
+
+
+If you forget to backup you preference file, you will need to run the
+installer to generate a new one. You will also need to manually drop
+the database, or use the db-drop_*.sql scripts provided with the
+netjuke-toolkit, as the installer will not overwrite them for security
+purposes (avoids remote attacks on live copies).
+
+
+Finally, do check out the updated docs to keep track of what's new
+and what's coming soon.
+
+
+Enjoy the new release! :o)
+
+
+------------------------------------------------------------------------
