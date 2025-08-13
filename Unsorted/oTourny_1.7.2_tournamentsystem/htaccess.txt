@@ -1,0 +1,83 @@
+#stop directory listing
+
+IndexIgnore *
+
+
+
+#error override
+
+ErrorDocument 400 /index.php
+
+ErrorDocument 401 /index.php
+
+ErrorDocument 403 /index.php
+
+ErrorDocument 404 /index.php
+
+ErrorDocument 405 /index.php
+
+ErrorDocument 406 /index.php
+
+ErrorDocument 500 /index.php
+
+
+
+#protect files
+
+<Files .htaccess>
+
+order allow,deny
+
+deny from all
+
+</Files>
+
+
+
+<Files *.inc.php>
+
+order allow,deny
+
+deny from all
+
+</Files>
+
+
+
+<Files *.bak>
+
+order allow,deny
+
+deny from all
+
+</Files>
+
+
+
+<Files *.tpl>
+
+order allow,deny
+
+deny from all
+
+</Files>
+
+
+
+#php overrides
+
+php_value display_errors 1
+
+php_value magic_quotes_gpc 0
+
+php_value magic_quotes_runtime 0
+
+php_value magic_quotes_sybase 0
+
+php_value upload_max_filesize 10M
+
+php_value short_open_tag 1
+
+php_value register_argc_argv 1
+
+                        
