@@ -1,0 +1,292 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>FirstProductions Human Test Documentation</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2 align="center"><font face="Verdana">FirstProductions Human
+Test 1.0 Documentation</font></h2>
+
+<h3><font face="Verdana">Overview</font></h3>
+
+<p><font size="2" face="Verdana">FirstProductions Human Test, a
+CGI script written in the Perl language, is based on the ideas of
+</font><a href="http://www.captcha.net"><font size="2"
+face="Verdana">The CAPTCHA Project</font></a><font size="2"
+face="Verdana">. It generates distored text that most humans can
+read, but computers cannot to prevent automated robots from
+submitting forms. Software similar to this is starting to become
+widely used throughout the Internet, and is currently in place on
+major websites such as Yahoo! to prevent automated sign-ups.</font></p>
+
+<h3><font face="Verdana">License and Copyright</font></h3>
+
+<p><font size="2" face="Verdana">FirstProductions Human Test<br>
+Copyright © 2003, First Productions, Inc.</font></p>
+
+<p><font size="2" face="Verdana">This program is free software;
+you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option)
+any later version.</font></p>
+
+<p><font size="2" face="Verdana">This program is distributed in
+the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.</font></p>
+
+<p><font size="2" face="Verdana">You should have received a copy
+of the GNU General Public License along with this program; if
+not, write to the Free Software Foundation, Inc., 59 Temple Place
+- Suite 330, Boston, MA 02111-1307, USA.</font></p>
+
+<p><font size="2" face="Verdana">Visit our website at: </font><a
+href="http://www.firstproductions.com/cgi/human/"><font size="2"
+face="Verdana">http://www.firstproductions.com/cgi/human/</font></a></p>
+
+<p><font size="2" face="Verdana">Email us at: </font><a
+href="mailto:cgi@firstproductions.com"><font size="2"
+face="Verdana">cgi@firstproductions.com</font></a></p>
+
+<h3><font face="Verdana">Requirements</font></h3>
+
+<p><font size="2" face="Verdana">Before you can use
+FirstProductions Human Test, be sure that your web site passes
+the minimum requirements:</font></p>
+
+<ul>
+    <li><font size="2" face="Verdana"><strong>Web Server</strong>:
+        You must have web space to store web pages on a Unix
+        server (script not tested on Windows NT). If not,
+        consider getting web space from </font><a
+        href="http://www.firstproductions.com/hosting"
+        target="_new"><font size="2" face="Verdana">FirstProductions
+        Web Hosting</font></a><font size="2" face="Verdana">, our
+        web hosting service. FirstProductions Web Hosting fully
+        supports the requirements of this script.</font></li>
+    <li><font size="2" face="Verdana"><strong>CGI-BIN</strong>:
+        You must be able to run custom CGI scripts on your web
+        server, such as in a CGI-BIN. Note that most free web
+        hosting services do not allow this (such as GeoCities,
+        Tripod, and America Online).</font></li>
+    <li><font size="2" face="Verdana"><strong>Perl</strong>: Perl
+        5.004 or later must be installed on the web server. We
+        suggest </font><a href="http://www.activestate.com/"
+        target="_new"><font size="2" face="Verdana">ActiveState
+        Perl</font></a><font size="2" face="Verdana"> for Windows
+        servers.</font></li>
+    <li><font size="2" face="Verdana"><strong>GD.pm</strong>:
+        GD.pm 2.01 or later (with PNG support) to interface with
+        GD Graphics Library</font></li>
+    <li><font size="2" face="Verdana"><strong>Digest::MD5</strong>:
+        Used for encryption. The script can easily be recoded to
+        use a different encryption algorithm to avoid using this
+        library, should you so desire.</font></li>
+    <li><font size="2" face="Verdana"><strong>CGI.pm</strong>:
+        Not required for the Human Test library, only for the
+        example script.</font></li>
+    <li><font size="2" face="Verdana"><strong>File Permissions</strong>:
+        For Unix servers, you will need the ability to set and
+        change file permissions, either through FTP or Telnet.
+        This is also known as CHMOD.</font></li>
+    <li><font size="2" face="Verdana"><strong>FTP Access</strong>:
+        You will need to have FTP access to the web directories
+        on your server. FrontPage access only is not sufficient.</font></li>
+</ul>
+
+<h3><font face="Verdana">Installation: Step 1: Uncompress the
+Package</font></h3>
+
+<p><font size="2" face="Verdana">First, you will need to
+uncompress the software package using WinZip or similar unzipping
+software. You should have a directory tree similar to this:</font></p>
+
+<p><font size="2" face="Verdana">CGI (directory)<br>
+&nbsp;&nbsp;&nbsp;|__captcha.pl<br>
+&nbsp;&nbsp;&nbsp;|__captchatest.cgi<br>
+DATA (directory)<br>
+&nbsp;&nbsp;&nbsp;|__codes.txt<br>
+&nbsp;&nbsp;&nbsp;|__images (directory)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__(various PNG files)</font></p>
+
+<h3><font face="Verdana">Installation: Step 2: Configure the
+Script</font></h3>
+
+<p><font size="2" face="Verdana">First open <em>captchatest.cgi</em>
+(the example script) in main CGI directory. Be sure that the
+first line of the script matches the path to Perl for your
+server. The path to Perl is usually similar to: /usr/bin/perl or
+/usr/local/bin/perl. Be sure not to remove the #! before the path
+to Perl. If you are unsure of the path to Perl, contact your
+server administrator.</font></p>
+
+<p><font size="2" face="Verdana">Next, open <em>captcha.pl</em>
+in a text editor. This is the Human Test library used by the
+example script. You can also use this library in your own scripts
+for easy access to the Human Test functions (generateCode and
+checkCode). Here is a guide to configuring the options in the
+Settings section:</font></p>
+
+<ul>
+    <li><font size="2" face="Verdana"><strong>captcha_datafolder</strong>
+        should not be accessible by the web. It will be used to
+        store the image files used by the script, as well as the
+        database. Do not include a trailing slash.</font></li>
+    <li><font size="2" face="Verdana"><strong>captcha_database</strong>
+        should not need to be modified unless you move or rename
+        the <em>codes.txt</em> file.</font></li>
+    <li><font size="2" face="Verdana"><strong>captcha_imagesfolder</strong>
+        should not need to be modified unless you move or rename
+        the <em>images</em> folder in the DATA directory.</font></li>
+    <li><font size="2" face="Verdana"><strong>captcha_outputfolder</strong>
+        will be used to store the outputted images from the
+        script, and should be accessible from the web. This
+        setting is the path to the folder on your web server. Do
+        not include a trailing slash.</font></li>
+    <li><font size="2" face="Verdana"><strong>captcha_webfolder</strong>
+        is the URL to the folder specified in the <em>captcha_outputfolder</em>
+        setting. Do not include a trailing slash.</font></li>
+</ul>
+
+<h3><font face="Verdana">Installation: Step 3: Upload Files to
+Server</font></h3>
+
+<p><font size="2" face="Verdana">After configuring the script,
+create a folder in your &quot;cgi-bin&quot; for the files in the
+CGI directory. Upload the files in the CGI directory to your new
+folder on your web server in ASCII mode. Make the <em>captchatest.cgi</em>
+file executable by CHMODing it as 755. Next, create the
+web-accessible folder you configured <strong>captcha_webfolder</strong>,
+and give it appropriate permissions so the script will be able to
+write files to it. Then, create the <strong>captcha_datafolder</strong>
+you specified in the configuration section outside of your
+web-accessible folders. Give it write permissions and upload the
+files in the DATA directory to this folder. Give the <em>codes.txt</em>
+database write permissions.</font></p>
+
+<h3><font face="Verdana">Installation: Step 4: Testing the Script</font></h3>
+
+<p><font size="2" face="Verdana">Now that you have uploaded the
+files, it is time to see if it worked. In a web browser, navigate
+to the URL of the example script (<em>captchatest.cgi</em>). If
+there is an error, see the troubleshooting section of the
+documentation. If it works, go on to the Usage section.</font></p>
+
+<h3><font face="Verdana">Usage</font></h3>
+
+<p><font size="2" face="Verdana">There are two functions that you
+can call in <em>captcha.pl</em> - generateCode and checkCode. The
+example script demonstrates how to use these two functions. Here
+is an explanation of the functions.</font></p>
+
+<blockquote>
+    <p><font size="2" face="Verdana"><strong>generateCode($length)</strong>
+    will generate a random sequence of letters and numbers of the
+    specified length. It will then encrypt the sequence using
+    md5. The md5 crypt is what the function returns. The function
+    also outputs a PNG image of the code sequence to the output
+    folder. The md5 crypt is the filename without the .png
+    suffix. The function will add the md5 crypt to the database
+    in the data folder with a timestamp, and expire old codes
+    from the database. If a crypt is not returned, then a file
+    error occured.</font></p>
+    <p><font size="2" face="Verdana"><strong>checkCode($code,$crypt)</strong>
+    will check a code against the md5 crypt and code database.
+    There are several possible values that can be returned:</font></p>
+    <blockquote>
+        <p><font size="2" face="Verdana"><strong>1</strong> :
+        Passed - the entered sequence is correct and the crypt is
+        valid and was found in the database.<br>
+        <strong>0</strong> : Code not checked - a file error
+        occured.<br>
+        <strong>-1</strong> : Failed: code expired - the code was
+        found in the database but it was expired.<br>
+        <strong>-2</strong> : Failed: invalid code (not in
+        database) - the code was not found in the database either
+        because it expired, was already used, or it is invalid.<br>
+        <strong>-3</strong> : Failed: invalid code (code does not
+        match crypt) - the entered sequence is incorrect and the
+        crypt has been removed from the database.</font></p>
+    </blockquote>
+</blockquote>
+
+<p><font size="2" face="Verdana">For more information about using
+these functions, please refer to the example script included with
+this package.</font></p>
+
+<p><font size="2" face="Verdana">Updated - we have just released an extensive tutorial
+showing how to integrate the Human Test library into an existing script. To read it,
+please go to the <A HREF="http://www.firstproductions.com/cgi/human/formmail/">FormMail Example</A> on our website.</font></p>
+
+<h3><font face="Verdana">Troubleshooting Guide</font></h3>
+
+<p><font size="2" face="Verdana"><strong>500 Internal Server
+Error</strong><br>
+Possible causes of a 500 Internal Server Error:<br>
+&#149; The path to Perl in line one of the <em>captchatest.cgi</em>
+file is incorrect. Contact your server administrator on consult
+your server's documentation to find out your path to Perl.<br>
+&#149; Files were not uploaded in ASCII mode. Transfer the files
+to your server again in ASCII mode.<br>
+&#149; The permissions of <em>captchatest.cgi</em> were not set
+to executable. Set the permissions of <em>captchatest.cgi</em> to
+executable (CHMOD 755).<br>
+&#149; The <em>captcha.pl</em> file was not found. If you renamed
+captcha.pl, name it back to <em>captcha.pl</em>.</font></p>
+
+<p><font size="2" face="Verdana"><strong>404 File Not Found</strong><br>
+Check the URL that you used to access <em>captchatest.cgi</em>
+and try again.</font></p>
+
+<p><font size="2" face="Verdana"><strong>403 Forbidden</strong><br>
+The permissions for <em>captchatest.cgi</em> were not set to
+executable (CHMOD 755).</font></p>
+
+<p><font size="2" face="Verdana"><strong>Broken Image</strong><br>
+If the example script displays a broken image, check the <strong>captcha_outputfolder</strong>
+and <strong>captcha_webfolder</strong> settings in the
+configuration section.</font></p>
+
+<p><font size="2" face="Verdana"><strong>&quot;Code not
+checked/generated (file error)&quot;</strong><br>
+Check the settings in the configuration section to be sure that
+they point to the correct folders, files, and paths.</font></p>
+
+<h3><font face="Verdana">Release Changes and History</font></h3>
+
+<p><font size="2" face="Verdana"><strong>FormMail Example (Released
+6/29/2003):</strong></font></p>
+
+<ul>
+    <li><font size="2" face="Verdana">Extensive tutorial showing how to integrate the Human Test library into an existing script</font></li>
+</ul>
+
+<p><font size="2" face="Verdana"><strong>Version 1.0 (Released
+6/19/2003):</strong></font></p>
+
+<ul>
+    <li><font size="2" face="Verdana">Original release</font></li>
+</ul>
+
+<h3><font face="Verdana">Future Plans</font></h3>
+
+<p><font size="2" face="Verdana">Check our web site: </font><a
+href="http://www.firstproductions.com/cgi/human/"><font size="2"
+face="Verdana">http://www.firstproductions.com/cgi/human/</font></a><font
+size="2" face="Verdana"> for the latest information. Post ideas
+for new features and changes to our </font><a
+href="http://www.firstproductions.com/cgi-bin/cgi/bbs/YaBB.cgi"><font
+size="2" face="Verdana">Support Forum</font></a><font size="2"
+face="Verdana">. Current plans for future versions include
+additional distortion and image generation methods.</font></p>
+
+<p align="center"><font size="1" face="Verdana">Copyright 2003,
+First Productions, Inc.</font></p>
+</body>
+</html>
