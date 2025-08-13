@@ -1,0 +1,89 @@
+Upgrading from RC1 to RC2
+-------------------------
+
+UPGRADE SCRIPT
+--------------
+
+Upload the script 'upgade3.php' to your root IBF installation (the same directory that index.php is in).
+Run it via your web browser by typing the URL to the script in the address bar.
+When the script has completed, remove it from your server.
+
+
+Files to update
+----------------
+
+index.php
+admin.php
+
+skin/s1/skin_global.php
+skin/s1/skin_online.php
+skin/s1/skin_ucp.php
+skin/s1/skin_msg.php
+
+lang/en/email_content.php
+lang/en/lang_mod.php
+lang/en/lang_msg.php
+lang/en/lang_search.php
+lang/en/lang_ucp.php
+
+sources/Admin/ad_forums.php
+sources/Admin/ad_groups.php
+sources/Admin/ad_languages.php
+sources/Admin/ad_settings.php
+sources/Admin/ad_skin_import.php
+sources/Admin/admin_skin.php
+sources/Admin/admin_functions.php
+
+sources/lib/emailer.php
+sources/lib/usercp_functions.php
+sources/lib/post_parser.php
+sources/lib/post_poll.php
+
+sources/Boards.php
+sources/functions.php
+sources/Memberlist.php
+sources/Messenger.php
+sources/Online.php
+sources/Post.php
+sources/Search.php
+sources/Topics.php
+sources/Usercp.php
+
+
+Bugs Fixed
+----------
+
+Moderator viewing IP addresses bug fix (credit: Josh)
+ACP:User Groups: List users in group error on guests and validating groups fix
+Post uploads register_globals off bug fix (PHP 4.2+ fix)
+Avatar uploads register_globals off bug fix (PHP 4.2+ fix)
+ASCII code in emails removed
+Next newest/oldest links picking moved topics bug fix
+UserCP email address change email subject empty bug fix
+Editing poll "no new replies" language fix
+Fix to stop silly people removing all language packs
+"bad arguments to implode" when importing skin packs on old PHP versions fix
+Ability to set number of replies to be "hot" bug fix
+Page numbers "missing" from online page at the bottom fix
+Changed: Move topics with attachments show attachment regardless of forum settings
+Changed: Date generation accounts for Daylight Savings Time
+Messenger: Sent items entries show wrong profile when clicking on sent to name
+Banned members receive blank page w/error bug fix
+Messenger: Bugs in archiving messages fixed
+Single quote in redirect screen title escaped bug fix
+Unable to use FTP:// in an image tag fix
+Redirect screens not centered bug fix
+Correct sub cat new post icon used in boards view
+Correct last post date used with sub categories
+Using three spaces to create a blank post bug fix
+Topic Tracker post icon bug fix
+Search: Highlighted words fixer upper
+Rouge spaces when editing post with quotes fix
+
+
+
+DB changes (upgrade3.php will do these changes for you, shown here
+for those who want to manually update, etc)
+
+ALTER TABLE ibf_topics CHANGE forum_id forum_id SMALLINT (5) DEFAULT '0' NOT NULL
+ALTER TABLE ibf_members ADD dst_in_use TINYINT (1) DEFAULT '0'
