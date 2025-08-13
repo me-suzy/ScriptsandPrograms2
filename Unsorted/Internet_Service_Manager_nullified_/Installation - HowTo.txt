@@ -1,0 +1,18 @@
+Below are instructions for installing Internet Service Manager on your server.
+
+1. Create a database named something appropriate, ie ism
+2. Dump the contents of mysql_dump.txt into this database.
+3. Upload all of the files in the software dir, apart from this file, the further_customisation.txt file and mysql_dump.txt to a directory on your webserver. If the directory uploads is not created create it, it is in the main directory.
+4. Open the file edit_this.php you will need to edit the first two variables with the directory and url of the folder that you have uploaded all of the files to. You will also need to edit the mysql connection parameters.
+5. Go to the url http://www.mydomain.com/installdir/admin and login with the username admin password admin.
+6. Scroll to the bottom of the left menu and click "Admins", select the blank entry from the dropdown menu and then enter the details for the master admin.
+8. We advice that you follow the steps below, they are not neccesary but are advised for smooth running of Internet Service Manager.
+9. Set the privelages of the files in clients/templates and admin/templates to 655. Set the privelages of uploads to 777
+10. The system is now fully functioning and you can create clients, etc.
+
+
+We advice that you..
+- Create a file in the main ISM dir called index.htm, or whatever the default page is on your server. This may be default.htm or something like index.php...if you are unsure what this is contact your host. In this directory you may wish to place links to the clients section and admin section. This will ensure that no one gets access to the raw directory structure.
+- You may wish to edit conf.php and the templates. Conf.php is fully commented out, if you have trouble understanding what a particular variable does contact support.
+- When editing templates ensure that all %tags% remain in the templates, this is what tells the scripts where to insert what info.
+
