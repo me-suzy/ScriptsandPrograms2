@@ -1,0 +1,63 @@
+#####################################################
+# myAgenda Pro v.2.0								#
+# =============										#
+# Copyright (C) 2003  Mesut Tunga - mesut@tunga.com	#
+# http://php.tunga.com								#
+#####################################################
+
+SYSTEM REQUIREMENTS
+-----------------------------------------------------
+* MySQL 3.23 or later version
+* PHP 4.0 or later, compiled with MySQL support
+* Linux Cron access or similar schedule program
+
+INSTALL
+-----------------------------------------------------
+* On this manual, we assume some variables as:
+  MySQL Host = localhost
+  MySQL User = myAgenda
+  MySQL Password = myAgenda
+  myAgenda Admin User = myAgenda
+  myAgenda Admin Password = myAgenda
+  myAgenda Cron User = myAgenda
+  myAgenda Cron Password = myAgenda
+
+* Create or choose a database to use myAgenda.
+  For creating a new db, firstly login to MySQL server:
+$mysql -uYourMySQLUser -pYourMySQLPassword
+
+  on your MySql shell type:
+mysql> create database myAgenda;
+
+* Then you need to configure the MySQL server to grant access priveleges on myAgenda database.
+  Choose a username and a password and type the commands below.
+
+mysql> GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER
+       ON myAgenda.*
+       TO myAgenda@localhost
+       IDENTIFIED BY 'myAgenda';
+       exit;
+
+   If you do not have root or create access to MySql server then use the db you already have.
+
+* Upload all the scripts to your web directory. If you have shell access to your server, 
+  login your shell and change the directory to myAgenda Pro installation dir. Then type:
+
+chmod a+w includes/config.php
+	   
+* Go to http://yourdomain.com/path/to/myAgenda/install.
+  follow the installation steps on your browser.
+  !!!THIS IS VERY IMPORTANT!!!
+  If everything is OK, remove the install folder. 
+
+* !!!THIS IS VERY IMPORTANT!!!
+  After instalation was successfull then type the command below on the shell:
+chmod a-w includes/config.php
+  
+* To send reminders regularly, add a cron entry like below. This will check every hour 
+  if there is a reminder; then sr.php will do the work. One more point is the user/pass
+  we set while installation. Write these variables values to your cron entry also. 
+  text.txt is a null value. Never mind it.
+0 * * * * root /usr/bin/lynx -auth=myAgenda:myAgenda -dump http://yourdomain.com/path/to/myAgenda/admin/maintenance.php > text.txt
+  For more info about Linux Cron:
+  http://www.redhat.com/support/resources/tips/cron/cron.html
