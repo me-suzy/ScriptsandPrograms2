@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Sub-Templates &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Sub-Templates</h1>
+
+	<p>Any template can be embedded within another template using the "embed" variable:</p>
+
+	<code>{embed="template_group/template"}</code>
+
+	<p>Where "template_group" is the name of the group and "template" is the name of the template.  For example:</p>
+
+	<code>{embed="weblog/header"}</code>
+
+
+	<p>You can even nest templates in an unlimited way, putting templates within templates, within templates, etc.  Please read the notes for guidelines.</p>
+
+	<h2>Notes</h2>
+
+	<ul>
+		<li>You <strong>must</strong> include both the template group and the template name in the embed tag.</li>
+
+		<li>You cannot add parameters within the variable (remember, it's not a tag,
+it's a global variable)</li>
+
+		<li>If you allow PHP in your templates, the outermost (or top-level) template's PHP settings will override all embedded templates.  You cannot allow PHP in some and not others.</li>
+
+		<li>You can nest embedded templates as deeply as you want.  In other words, you can put a template within another template, within yet another one, etc.  <strong>However</strong>:</li>
+
+		<li>You <strong>cannot</strong> put a template within itself or you'll cause a run-away loop. You also cannot put an "upstream" template inside of a "downstream" one. For example:</li>
+
+		<blockquote>
+			<p>You have two templates:  "outer" and "content".  You put "content" inside of "outer".  You therefore can not put "outer" inside of "content".</p>
+		</blockquote>
+	</ul>
+
+	<p>We've built in some safeties to prevent run-away loops, but it's still possible to cause a loop.</p>
+
+	<p><b>Be careful when nesting templates!</b></p>
+
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
