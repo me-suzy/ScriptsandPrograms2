@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>FlatFileDriver.pm Docs</title>
+</head>
+<body bgcolor="#cccccc">
+<a name="top"></a>
+<div align="center">
+<h2>FlatFileDriver.pm documentation</h2>
+<a href="#usage">- How to use</a><br>
+<a href="#subs">- Subroutines</a>
+
+<a name="usage"></a><h3>How to use</h3>
+At first, we need a flatfiledriver object variable:<br>
+<table align="center" border="1"><tr><td>
+<i>#!/usr/bin/perl<br>
+use FlatFileDriver;<br>
+$useFileLocking = 1;<br>
+$flatfiledriver = FlatFileDriver->new("filename",$useFileLocking);<br></i>
+</td></tr></table>
+<br>
+The first line tells perl that we want to use the modul. It has to be in the same directory as the script itself.<br>
+Then we need a FlatFileDriver object which is created the way the second line shows.<br>
+The constructor new takes 2 parameters:<br>
+filename points to the file in which the data will be stored.<br>
+If the file doesn't exists it will be created.
+$useFileLocking: if this parameter has the value 1 filelocking will be used. Recommended.<br><br>
+<table align="center" border="1"><tr><td>
+<i>@idlist = $flatfiledriver->getIdList(1,1,2);<br>
+foreach $curent (@idlist) {<br>
+@tmp = $flatfiledriver->getEntry($curent);<br>
+print @tmp;<br>
+}<br></i>
+</td></tr></table>
+<br>
+Now let's print ALL entries. We can get an array with one field per element with getEntry. But
+this subroutine needs an argument, the Id of entry. But we have a subroutine called getIdList with
+a few arguments. The first number is the field by which the entries will be sorted. The second
+one tells the modul in which direction it has to sort the entries. 1 means ascending, 2 means
+ascending. The third sets the sortmode. 1 means nummeric, 2 means by alphabetic. With this
+array we can easily get every entry in the database in a specific order.
+<br>
+<br>
+Now we can show our data, but how do we add, delete and edit the data?<br>
+Let's start with adding data.<br>
+Assuming we have 3 fields, $name, $email and $homepage and want to store them in this order:<br>
+<table align="center" border="1"><tr><td>
+<i>@data=($name,$email,$homepage);<br>
+if ($flatfiledriver->addEntry(@data) == 0) {<br>
+print "Entry successfully added!";<br>
+}<br></i>
+</td></tr></table>
+That's all.<br>
+Now let's delete an entry. The one with the id 3:<br>
+<table align="center" border="1"><tr><td>
+<i>if ($flatfiledriver->deleteEntry(3) == 0 {<br>
+print "Successfully deleted!"<br>
+} else {<br>
+print "Could not find an entry with this id!";<br>
+}<br></i>
+</td></tr></table>
+And last: Let's edit the entry with the id 2:<br>
+<table align="center" border="1"><tr><td>
+<i>@newdata = ($newname,$newemail,$newhomepage);<br>
+if ($flatfiledriver->edit(2,@data) {<br>
+print "Successfully edited!";<br>
+} else {<br>
+print "Could not find an entry with this id!";<br>
+}<br></i>
+</td></tr></table>
+
+That's all, not very hard to use.<br>
+<br>
+<a href="#top">Top</a>
+<hr>
+<a name="subs"></a><h3>Subroutines</h3>
+- $ffd = FlatFileDriver->new(filename,useflock);<br>
+This must be called first to initialize everything.<br>
+Filename is the file (and path) to the file where the data will be stored (ex.: data.cgi).<br>
+If the file doesn't exist it will be created.<br>
+useflock tells the script whether to use filelocking or not. If it is 1, filelocking will be used. Recommended!<br>
+<br>
+-@array = $ffd->getIdList(sortfield,sortorder,sortmode);<br>
+sortfield is the field by which the entries will be sorted. Ex.: 1. Now the second field will be used (The counter starts with 0!). Field 0 is the id of the entry.<br>
+sortorder gives the sortdirecton. 1 means ascending and 2 means descending.<br>
+sortmode sets the sortstyle. 1 means nummeric and 2 means alphabetical.<br>
+<br>
+- @array = $ffd->getEntry($id);<br>
+Returns the entry with the id $id. One field per arrayfield. The first field $array[0] is the id of the entry<br>
+<br>
+- $integer = $ffd->addEntry(@data);<br>
+@data contains the fields of the new entry.<br>
+The subroutine returns 0 if successfull<br>
+<br>
+- $integer = $ffd->deleteEntry($id);<br>
+The entry with the id $id will be deleted.<br>
+Returns 0 if successfull and 1 if the id was not found.<br>
+<br>
+- $integer = $ffd->editEntry($id,@data);<br>
+The entry with the id $id will now have the data of @data.<br>
+<br>
+<a href="#top">Top</a>
+</div>
+</body>
+</html>
