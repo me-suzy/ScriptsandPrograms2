@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Date Localization &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Date Localization</h1>
+
+	<p>ExpressionEngine stores all dates and times in UTC (Universal Coordinated Time), formerly known as  GMT (Greenwich Mean Time).  The benefit of doing so is that each member of your site can choose their own time zone and date localization settings.  This permits entries and other information containing dates/times to appear in each member's local time.  All dates are offset in real time for each user viewing your site.</p>
+
+	<p>If people browsing your site are not members, or if they have not set a time zone preferences in their personal profile, the times will instead be shown according to your master system localization settings found in the <dfn><a href="../cp/admin/index.html">Admin</a></dfn> area of your Control Panel.</p>
+
+	<p>A note must be made regarding Daylight Saving Time (DST).</p>
+
+	<p>Since dates/times will adjust themselves automatically to your local time, an issue can arise if you view or edit weblog entries with dates that fall outside your current Daylight Saving Time setting.  These dates will appear wrong when they are actually stored correctly in the database.  This is because each date and time that is displayed is always offset by your current localization settings.</p>
+
+	<p>Here is an example to illustrate this:</p>
+
+	<blockquote>
+		<p>Let's say your current time is 8 PM in the month of June.  You are observing Daylight Saving Time.</p>
+
+		<p>If you view an entry you posted in December at 8 PM it will appear to you as 9 PM.  This is because Daylight Saving Time is not in effect in December, yet your localization settings are set to DST.  Remember you currently are in June but the entry you are viewing is not. In order for the time to appear correctly your DST setting will have to match whatever date you are viewing.</p>
+	</blockquote>
+
+<p>You might ask why we don't compensate for this behavior.  The problem is that each local community may or may not observe DST, and the date on which DST goes into effect can vary slightly from area to area.  Furthermore, the server hosting your site may be in a different time zone that has different DST settings than you do.  In order to compensate for this would pose a big challenge and use additional server resources, making the display engine less efficient.  We've opted to instead apply a simple offset based on your DST setting.</p>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
