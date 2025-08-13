@@ -1,0 +1,215 @@
+ 
+<HTML>
+     <HEAD>
+         <TITLE>Program Documentation :: Home Free :: Tips and Tricks :: Using and creating language files</TITLE>
+         <META NAME="Description" CONTENT="">
+         <META NAME="Keywords" CONTENT="">
+
+<script language="JavaScript">
+<!-- 
+ function goHist(a) 
+ {
+ history.go(a);
+ }
+// -->
+</script>
+
+<style type="text/css">
+//<!--
+body { font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+th { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: bold; background-color: #FFFFFF;}
+td { font-family: Arial, Helvetica, sans-serif; font-size: 10pt;}
+form { font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+h1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14pt; font-weight: bold}
+A:link { text-decoration: none; color: blue}
+A:visited { text-decoration: none; color: Navy}
+A:hover { text-decoration: underline; color: red}
+A:link.nav { color: #000000}
+A:visited.nav { color: #000000}
+A:hover.nav { color: red;}
+.nav { font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000}
+.std { font-family: Arial, Helvetica, sans-serif; font-size: 8pt;}
+.sml {font-family: Arial, Helvetica, sans-serif; font-size: 1pt;}
+//-->
+</style>
+    </HEAD>
+
+     <BODY LEFTMARGIN="5" RIGHTMARGIN="5" TOPMARGIN="5" bgcolor="#666699" TEXT="#000000" LINK="blue" VLINK="navy" ALINK="blue">
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+        <!-- HEADER -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD BGCOLOR="#333399" ALIGN="left" VALIGN="middle"> </TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD BGCOLOR="LightSteelBlue" align=left>
+                    <TABLE border="0" cellpadding=2 cellspacing=0 bgcolor="LightSteelBlue" width="100%">
+                        <TR>
+                            <TD NOWRAP>&nbsp; <B>:: <A HREF="install.html">Installing</A> :: <A HREF="upgrade.html">Upgrading</A> :: <A HREF="move.html">Moving Installed Version</A> :: <A HREF="manual.html">User Manual</A> :: <A HREF="tt.html">Tricks &amp; Tips</A> :: <A HREF="readme.txt">Readme.txt</A> :: </b></td>
+                            <TD valign=center align=right><font class="sml"><FORM METHOD="post"><INPUT TYPE="button" VALUE="Back" onClick="goHist(-1)"></form></font></td>
+                        </TR>
+                    </TABLE>
+                     </TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <TABLE cellpadding=5 cellspacing=0 border=0 bgcolor="#000000" width="100%">
+            <TR>
+                <TD>
+                    <TABLE cellpadding=0 cellspacing=0 border=0 width="100%">
+                        <TR>
+                            <!-- START MENU TABLE -->
+                            <TD bgcolor="LightSteelBlue" valign=top width=130> <img src="/images/solutions/black.gif" width=130 height="5" border="0"><BR>
+                                 <BR>
+                                 <FORM ACTION="notta" method=post>
+                                <TABLE width="95%" bgcolor="#333399" cellpadding=1 border="0" cellspacing=0 align=center>
+                                    <TR>
+                                        <TD>
+                                            <TABLE width="100%" bgcolor="LightSteelBlue" cellpadding=3 cellspacing=0 border="0">
+                                                <TR>
+                                                    <TD bgcolor="#333399" align=center></TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD align=center> <INPUT TYPE=TEXT NAME="address" value="HomeFree v3.24n" size=8> <FONT CLASS=std>hacked by:<br>
+                                                         <b>Nearly Null (-NnN-)</b><br>
+                                                         </FONT> </TD>
+                                                </TR>
+                                            </TABLE>
+                                             </TD>
+                                    </TR>
+                                </TABLE>
+                                 </FORM> </TD>
+                            <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                            <TD bgcolor=white width="100%" valign=top>
+                                <TABLE cellpadding=6 width="100%">
+                                    <TR>
+                                        <TD width="100%">
+                                            <!-- START CONTENT -->
+                                             <BR>
+                                             <font size=+1> Using and creating language files </FONT> <BR>
+                                             <FONT CLASS=std>Posted on: March 24, 2000, 11:39 p.m. </FONT> <BR>
+                                            <BR>
+                                             <B>Home Free supports an unlimited number of different languages using just one instance of the cgi program running and one backend database. All text has been removed from the perl program itself to one library file for easy translation into another language.</B> <BR>
+                                            <BR>
+                                             Currently English is the only language supported by Solution Scripts and the only language file contained in the download. Others have been nice enough to let Solution Scripts redistribute their translated language files. Current languages available are:<BR>
+                                            <BR>
+                                             <UL>
+                                                <LI> Spanish
+                                                <LI> German
+                                            </UL>
+                                             <BR>
+                                            <BR>
+                                             The language files themselves can be downloaded in one large package in the download area of the mebers area. <BR>
+                                            <BR>
+                                             Language files themselves should be named for the language the represent and followed with a <I>.lang</I> so English is <I>english.lang</I> and Spanish would be <I>spanish.lang</I> and so on. <BR>
+                                            <BR>
+                                             To use these language files simply place them into the same directory as the rest of your Home Free cgi files. Then to direct a person to the correct language signup or manager form, simply add the language name to the end of the url like you would another folder. For example to view the spanish version of the signup form (new.cgi) you would like or send your members to: <BR>
+                                            <BR>
+                                             <I>http://www.domain.com/cgi-bin/new.cgi/spanish</I> <BR>
+                                            <BR>
+                                             Home Free will know to use the spanish language file and all the output will be in spanish. The same setup goes for manager.cgi as well as search.cgi, simply add <I>/language</I> at the end of the url. The user will be shown the specified language throughout the session. (English is the default so nothing needs to be added) <BR>
+                                            <BR>
+                                             <B>Translating a lang file to a new language</B> <BR>
+                                            <BR>
+                                             Creating a new language for Home Free to use is rather simple. First make a copy of the english.lang file and name it with the language you will be translating to. <BR>
+                                            <BR>
+                                             For example: english.lang -> german.lang<BR>
+                                             if you are translating it into German. <BR>
+                                            <BR>
+                                             Now open up the new language file and begin translating<BR>
+                                            <BR>
+                                             The lang files are in the format of: <BR>
+                                            <BR>
+                                             $um1 = '<font color=red>File Manager</FONT>';<BR>
+                                             $um2 = '<font color=red>Are you sure you want to delete this directory</FONT>';<BR>
+                                             $um3 = '<font color=red>Are you sure you want to delete these files</FONT>';<BR>
+                                             $um4 = '<font color=red>Account Name:</FONT>';<BR>
+                                             $um5 = '<font color=red>Current Directory:</FONT>';<BR>
+                                             $um6 = '<font color=red>Select a directory:</FONT>';<BR>
+                                             $um7 = '<font color=red>Jump to selected dir.</FONT>';<BR>
+                                             <BR>
+                                             Where the areas in red are what need to be translated. Be sure to keep the all translation within the single quotes. <BR>
+                                            <BR>
+                                            So if the above was translated into German you would have: <BR>
+                                            <BR>
+                                             $um1 = '<font color=red>Datei- Manager</FONT>';<BR>
+                                             $um2 = '<font color=red>Sind Sie sicher, dass Sie dieses Verzeichnis löschen wollen</FONT>';<BR>
+                                             $um3 = '<font color=red>Sind Sie sicher, dass Sie diese Datei löschen wollen</FONT>';<BR>
+                                             $um4 = '<font color=red>Accountname:</FONT>';<BR>
+                                             $um5 = '<font color=red>Aktuelles Verzeichnis:</FONT>';<BR>
+                                             $um6 = '<font color=red>Wählen Sie ein Verzeichnis:</FONT>';<BR>
+                                             $um7 = '<font color=red>Zum ausgewählten Verzeichnis springen</FONT>'; <BR>
+                                            <BR>
+                                             Once the translation is complete, upload the new lang file to your Home Free cgi directory and test via methods shown above for using multiple language files. <BR>
+                                            <BR>
+                                             <B>Changing Default Language</B> <BR>
+                                            <BR>
+                                             The default language comes hard coded as english. If you wish to switch this, simple open acc_auth.pl and change "english" in the following lines to the language you desire: <BR>
+                                            <BR>
+                                             <font color=red> $thelang = $pathinfo if $pathinfo;<BR>
+                                             $thelang = "english" unless $pathinfo;<BR>
+                                             <BR>
+                                             if (-e "$thelang.lang") {<BR>
+                                             &nbsp; &nbsp; require "$thelang.lang";<BR>
+                                             }<BR>
+                                             else {<BR>
+                                             &nbsp; &nbsp; require "english.lang" || print "$!"; <BR>
+                                             }<BR>
+                                             <BR>
+                                            </FONT> Upload the edited acc_auth.pl and the default language will be changed. <BR>
+                                            <BR>
+                                            <BR>
+                                             Please note: The admin section of Home Free does not use language files and is hard coded in english. End users will never need to see the admin section.<BR>
+                                            <BR>
+                                             <BR>
+                                            <BR>
+                                             <BR>
+                                            <BR>
+                                             </TD>
+                                    </TR>
+                                </TABLE>
+                                 </TD>
+                        </TR>
+                    </TABLE>
+                     </TD>
+            </TR>
+        </TABLE>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD bgcolor="#333399" align=right width="100%">
+                    <table border="0" cellpadding=0 cellspacing=0 width="100%">
+                        <TR>
+                            <TD CLASS="STD"><font color="LightSteelBlue"> </FONT></TD>
+                            <TD align=right CLASS="STD"><font color="#FFFFFF">Copyright &copy; 1997- 2000 Solution Scripts.&nbsp;&nbsp;&nbsp;&nbsp;</FONT></TD>
+                        </TR>
+                    </TABLE>
+                    </TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+    </BODY>
+</HTML>
+ 
