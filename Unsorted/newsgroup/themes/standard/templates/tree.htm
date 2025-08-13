@@ -1,0 +1,113 @@
+<script>
+function sendForm(form){
+	//alert(form.grp_id.value);
+	form.submit();
+}
+</script>
+<table border="0" cellspacing="0" cellpadding="2"  width=642>
+    <!--DWLayoutTable-->
+    <tr align="left"> 
+        <td align="left" valign="top" bordercolor="#FFC31E" class="normal"> &nbsp;<span class="header">{group_name}</span> 
+            <br>
+            &nbsp;{num_downloaded} {_myngstats_articles}- {ratio}%<br>
+			<!-- BEGIN unread_block -->
+			&nbsp;{unread_messages_ingroup} {_myngstats_articles} unread- {unread_ratio}%
+			<!-- END unread_block -->
+			<br>
+            <br>
+		
+            <!-- BEGIN hot_articles_TOP_block -->
+            &nbsp;<img src="{images_dir}/icon26.gif" width="15" height="15"> {_mynghot_articles}<a name="hot_articles"></a><br /> 
+            <table border="0" cellspacing="0" cellpadding="0">
+                <!-- BEGIN hot_articles_block -->
+                <tr> 
+                    <td class="normal" width="4" height="1" bgcolor="#F3F3F3">&nbsp;</td>
+                    <td class="normal" height="1" bgcolor="#BECCE7"><b>&nbsp;<a class="text" href="article.php?id_article={id_article}&grp_id={grp_id}&push=1">{subject}</a>&nbsp;</b> 
+                    </td>
+                    <td class="normal" height="1" bgcolor="#FFFFFF"> <b>&nbsp;{num_articles}</b> 
+                        {_myngstats_articles}&nbsp;</td>
+                    <td class="normal" height="1" ><img src="{images_dir}/leftbar.gif" width="7" height="14"><img src="{images_dir}/mainbar.gif" width="{width}" height="14"><img src="{images_dir}/rightbar.gif" width="7" height="14"> 
+                    </td>
+                </tr>
+                <!-- END hot_articles_block -->
+            </table>
+            <!-- END hot_articles_TOP_block -->
+            <!-- BEGIN active_user_TOP_block -->
+            &nbsp;<img src="{images_dir}/editicon.gif" width="19" height="17"> 
+            {_myngactive_user}<a name="active_user"></a><br /> <table  border="0" cellspacing="0" cellpadding="0">
+                <!-- BEGIN active_user_block -->
+                <tr> 
+                    <td class="normal" width="4" height="1" bgcolor="#F3F3F3">&nbsp;</td>
+                    <td class="normal" height="1" bgcolor="#BECCE7"><b>&nbsp;<a class="text" href="mailto:{from_header}">{username}</a>&nbsp;</b> 
+                    </td>
+                    <td class="normal" height="1" bgcolor="#FFFFFF"><b>&nbsp;{num_posts}</b> 
+                        {_myngpostings}&nbsp;</td>
+                    <td class="normal" height="1"><img src="{images_dir}/leftbar.gif" width="7" height="14"><img src="{images_dir}/mainbar.gif" width="{width}" height="14"><img src="{images_dir}/rightbar.gif" width="7" height="14"> 
+                    </td>
+                </tr>
+                <!-- END active_user_block -->
+            </table>
+            <!-- END active_user_TOP_block -->
+        </td>
+        <td align="left" valign="top" bordercolor="#FFC31E" class="normal">&nbsp;{_myngsearch_one_group}:
+		 <form action="search.php" method="post">             
+                <input type="text" class="normal" name="words" size="20" maxlength="30">
+                <input type="submit" class="normal" name="submit_1" value="{_mynggo}">
+                <input type=hidden name="action" value="search_group">
+                <input type=hidden name="group" value="{group_name}">
+            </form>
+		</td>
+        <td width="204" colspan="4" valign="top" class="normal"><div align="right"> 
+                <table width="25%"  border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                        <td>{calendar}</td>
+                    </tr>
+                </table>
+                <br>
+                {_myngpost_article}: <a href={post_url}><img src="{images_dir}/editicon.gif" alt="{_myngpost_article}" border=0 width="19" height="17"></a><br>
+                {_myngsubscribe_group}: <a href="#"><img onClick="javascript:sendForm(document.add_group)" src="{images_dir}/icon38.gif" border="0" alt="{_myngsubscribe_group}"></a></div></td>
+    </tr>
+    <tr align="left"> 
+        <td colspan="6" align="left" valign="bottom" bordercolor="#FFC31E"><a class="link" href="tree.php?grp_id={grp_id}&page={num_page_grupo_ant}&date={calendar_day}">{flecha_doble_izq}</a> 
+            <a class="link" href="tree.php?grp_id={grp_id}&page={num_page_ant}&date={calendar_day}">{flecha_izq}</a> 
+            <!-- BEGIN nav_block -->
+            <a href="tree.php?grp_id={grp_id}&page={num_page}&date={calendar_day}" class="{class}">&nbsp;{num_page}&nbsp;</a> 
+            <!-- END nav_block -->
+            <a class="link" href="tree.php?grp_id={grp_id}&page={num_page_sig}&date={calendar_day}">{flecha_der}</a> 
+            <a class="link" href="tree.php?grp_id={grp_id}&page={num_page_grupo_sig}&date={calendar_day}">{flecha_doble_der}</a> 
+            <!-- BEGIN mark_all_read_block -->
+            &nbsp;&nbsp; <a class="link_2" href="actions.php?action=mark_all_read">{_myngmark_all_read}</a></td>
+        <!-- END mark_all_read_block -->
+    </tr>
+</table>
+<table  border="0" cellspacing="0" cellpadding="2"  width=642>
+    <tr class="tabla_menu"> 
+        <td  height="23" valign="top" class="normal_bold"><!--DWLayoutEmptyCell-->&nbsp;</td>
+        <td class="normal_bold">{_myngdate}</td>
+        <td colspan="2" class="normal_bold">{_myngsubject}</td>
+        <td class="normal_bold">{_myngauthor}</td>
+        <td class="normal_bold">{_myngarticles}</td>
+    </tr>
+    <!-- BEGIN thread_block -->
+    <tr bgcolor="{bg_color}" onmouseover="javascript:style.backgroundColor='#ccccff'" onmouseout="javascript:style.backgroundColor='{bg_color}'"> 
+        <td>{image}</td>
+        <td class="normal">{date}</td>
+        <td colspan="2" class="{class}"><a class="text" href={article_url}>{subject}</a></td>
+        <td class="normal">&nbsp;{sender_name}</td>
+        <td class="normal">{number}</td>
+       
+    </tr>
+    <!-- END thread_block -->
+    <tr class="tabla_menu"> 
+        <td rowspan="5" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
+        <td rowspan="4" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
+        <td colspan="2" rowspan="3" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
+        <td rowspan="2" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>
+        <td height="22" valign="top"><!--DWLayoutEmptyCell-->&nbsp;</td>      
+    </tr>    
+</table>
+<form name="add_group" action="mygroups.php" method="post">                	
+    <input type="hidden" name="grp_id" value="{grp_id}">
+    <input type="hidden" name="add_group" value="yes">
+    <input type="hidden" name="sure" value="yes">
+</form>
