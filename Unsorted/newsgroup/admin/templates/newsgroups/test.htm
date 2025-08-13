@@ -1,0 +1,77 @@
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+var supported = (window.Option) ? 1 : 0;
+
+if (supported) {
+  var active;
+  var ar = new Array();
+<!-- BEGIN outter_block -->
+  ar[{num_server}] = new Array();
+  <!-- BEGIN inner_block -->
+  ar[{num_server}][{num_group}] = new makeOption("{group_id}", "{group_name}");
+  <!-- END inner_block -->
+  /*
+  ar[0][1] = new makeOption("sdfsaf", "sadfas");
+  ar[0][2] = new makeOption("sdfas", "sadfas");
+  */
+<!-- END outter_block -->
+
+/*
+  ar[1] = new Array();
+  ar[1][0] = new makeOption("sdfas", "sdfas");
+  ar[1][1] = new makeOption("sdfas", "sdfasf");
+  ar[1][2] = new makeOption("sdfas", "sadfas");
+  ar[1][3] = new makeOption("dsfaf", "sdfaf");
+  */
+}
+
+
+function makeOption(text, url) {
+  this.text = text;
+  this.url = url;
+}
+
+function relate(form) {
+  if (!supported) {
+    load(form, "topics");
+    return;
+  }
+  var options = form.list.options;
+  for (var i = options.length - 1; i > 0; i--) {
+    options[i] = null;
+  }
+  var curAr = ar[form.topics.selectedIndex];
+  for (var j = 0; j < curAr.length; j++) {
+    options[j] = new Option(curAr[j].text, curAr[j].url);
+  }
+  options[0].selected = true;
+}
+
+function load(form, name) {
+  var url = form[name].options[form[name].selectedIndex].value;
+  if (url != "") location.href = url;
+  return false;
+}
+
+// -->
+</SCRIPT>
+
+
+
+<FORM NAME="menu">
+
+<SELECT NAME="topics" onChange="relate(this.form)">
+<OPTION VALUE="dfgds" SELECTED>dfgsdfgs
+<OPTION VALUE="dsfgsd">dfgsd
+</SELECT>
+
+<SELECT NAME="list" onChange="load(this.form, 'list')">
+<OPTION VALUE="sdfasf" SELECTED>fgsds
+<OPTION VALUE="sadfas">sdfsaf
+<OPTION VALUE="sadfas">sdfas
+</SELECT>
+
+</FORM>
+
+
