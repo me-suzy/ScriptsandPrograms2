@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>SVEC - Edit Article</title>
+<meta name="GENERATOR" content="YesSoftware CodeCharge v.1.1.18 / Templates.ccp build 3/2/2001">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0"> 
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+</head>
+<body style="background-color: #FFFFFF; color: #000000; font-family: Arial, Tahoma, Verdana, Helveticabackground-color: #FFFFFF; color: #000000; font-family: Arial, Tahoma, Verdana, Helvetica">
+{Header}
+ <table>
+  <tr>
+   <td valign="top">
+   <!--BeginFormEditArticle-->
+   <form method="POST" action="{FileName}" name="EditArticle">
+    <table style="style="border-style: outset; border-width: 2"">
+     <tr>
+      <td style="background-color: #990000; text-align: Center; border-style: outset; border-width: 1" colspan="2"><font style="font-size: 12pt; color: #FFFFFF; font-weight: bold">SVEC - Edit Article</font></td>
+     </tr>
+     <!--BeginEditArticleError-->
+     <tr>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1" colspan="2"><font style="font-size: 10pt; color: #000000">{sEditArticleErr}<font></td>
+     </tr>
+     <!--EndEditArticleError-->
+    
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Title</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><textarea name="article_title" cols="70" rows="2">{article_title}</textarea></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Category</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><select name="category_id"><!--BeginLBcategory_id--><option value="{ID}" {Selected}>{Value}</option><!--EndLBcategory_id--></select></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Description</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><textarea name="article_desc" cols="70" rows="8">{article_desc}</textarea></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Date Posted</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><input type="text" name="date_posted" maxlength="20" value="{date_posted}" size="20"></td>
+     </tr>
+     
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">Expiration Date</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><input type="text" name="date_expire" maxlength="20" value="{date_expire}" size="20"></td>
+     </tr>
+     
+     <tr>
+      <td colspan="2" align="right">
+
+      <!-- ***   Buttons   *** -->
+      
+      <!--BeginEditArticleInsert-->
+      <input type="hidden" value="insert" name="FormAction">
+      <input type="submit" value="Insert" onclick="document.EditArticle.FormAction.value = 'insert';">
+      <!--EndEditArticleInsert-->
+      
+      <!--BeginEditArticleEdit-->
+      <input type="hidden" value="update" name="FormAction"/>
+      
+      <!--BeginEditArticleUpdate-->
+      <input type="submit" value="Update" onclick="document.EditArticle.FormAction.value = 'update';"/>
+      <!--EndEditArticleUpdate-->
+      
+      <!--EndEditArticleDelete-->
+      <input type="submit" value="Delete" onclick="document.EditArticle.FormAction.value = 'delete';"/>
+      <!--EndEditArticleDelete-->
+      
+      <!--EndEditArticleEdit-->
+      
+      <input type="hidden" name="FormName" value="EditArticle"/>
+      
+      <input type="hidden" name="PK_article_id" value="{PK_article_id}"/>
+      <input type="hidden" name="article_id" value="{article_id}"/>
+     </td>
+    </tr>
+   </table>
+  </form>
+<!--EndFormEditArticle-->
+   <SCRIPT Language="JavaScript">
+if (document.forms["EditArticle"])
+document.EditArticle.onsubmit=delconf;
+function delconf() {
+if (document.EditArticle.FormAction.value == 'delete')
+  return confirm('Delete record?');
+}
+</SCRIPT>
+   </td>
+  </tr>
+ </table>
+
+
+{Footer}
+
+</body>
+</html>
