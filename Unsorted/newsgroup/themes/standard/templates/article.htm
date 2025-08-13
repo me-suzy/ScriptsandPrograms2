@@ -1,0 +1,89 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+// PHP Layers Menu 2.3.5 (C) 2001-2003 Marco Pratesi (marco at telug dot it)
+
+DOM = (document.getElementById) ? 1 : 0;
+NS4 = (document.layers) ? 1 : 0;
+// We need to explicitly detect Konqueror
+// because Konqueror 3 sets IE = 1 ... AAAAAAAAAARGHHH!!!
+Konqueror = (navigator.userAgent.indexOf("Konqueror") > -1) ? 1 : 0;
+// We need to detect Konqueror 2.1 and 2.2 as they do not handle the window.onresize event
+Konqueror21 = (navigator.userAgent.indexOf("Konqueror 2.1") > -1 || navigator.userAgent.indexOf("Konqueror/2.1") > -1) ? 1 : 0;
+Konqueror22 = (navigator.userAgent.indexOf("Konqueror 2.2") > -1 || navigator.userAgent.indexOf("Konqueror/2.2") > -1) ? 1 : 0;
+Konqueror2 = Konqueror21 || Konqueror22;
+Opera = (navigator.userAgent.indexOf("Opera") > -1) ? 1 : 0;
+Opera5 = (navigator.userAgent.indexOf("Opera 5") > -1 || navigator.userAgent.indexOf("Opera/5") > -1) ? 1 : 0;
+Opera6 = (navigator.userAgent.indexOf("Opera 6") > -1 || navigator.userAgent.indexOf("Opera/6") > -1) ? 1 : 0;
+Opera56 = Opera5 || Opera6;
+IE = (document.all) ? 1 : 0;
+IE4 = IE && !DOM;
+
+// -->
+</script>
+
+<!--<script src="./TreeMenu.js" language="JavaScript" type="text/javascript"></script>-->
+<!--<script language="JavaScript" type="text/javascript" src="lib/layersmenu-browser_detection.js"></script>-->
+<!--script language="JavaScript" type="text/javascript" src="lib/tree/layerstreemenu-cookies.js"></script>-->
+
+<link rel="stylesheet" href="layersmenu.css" type="text/css"></link>
+<style type="text/css">
+<!--
+@import url("layerstreemenu.css");
+//-->
+</style>
+
+
+<table border="0" cellspacing="0" cellpadding="2" width=642>
+    <tr > 
+        <td>&nbsp;<a class="bold" href=tree.php?grp_id={grp_id}>{group_name}</a><a href={post_url}>&nbsp;&nbsp;<img src="{images_dir}/editicon.gif" alt="{_myngpost_article}" border=0 height="17"></a>&nbsp;&nbsp;
+          <!-- BEGIN mark_all_read_block -->
+		<a class="link_2" href="actions.php?action=mark_thread_read&art_id={art_id}">{_myngmark_thread_read}</a>
+		<!-- END mark_all_read_block -->
+		</td>
+    </tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="3" width=642>
+    <tr class="tabla_menu"> 
+        <td class="normal_bold">{_myngsubject}</td>
+        <td align="right" class="normal_bold">{_myngauthor}</td>
+        <td align="right" class="normal_bold">{_myngdate}</td>
+    </tr>
+    <tr> 
+        <td class="bold" ><img src="{images_dir}/li1r.gif" width="5" height="5">{p_subject}</td>
+        <td align="right" class="bold" >{p_name}</td>
+        <td align="right" class="bold" >{p_date}</td>
+    </tr>
+    <!-- BEGIN tree_block -->
+    <tr> 
+        <td colspan="3" align="left" class="normal" >
+			<iframe src="iframe.php?id_article={id_article}&grp_id={grp_id}" width="635" height="150" align="top" scrolling="yes" frameborder="0"></iframe>
+        </td>
+    </tr>
+    <!-- END tree_block -->
+</table>
+<table border="0" cellspacing="0" cellpadding="3" width=642>
+    <tr class="tabla_menu"> 
+        <td class="bold"><img src="{images_dir}/li1r.gif" width="5" height="5">&nbsp;{a_subject}</td>
+        <td class="bold" >{a_name}</td>
+        <td class="normal"> <a href={a_reply_url}><img src="{images_dir}/quote.gif" alt="{_myngreply}" border=0 width="19" height="17"></a> 
+            <a href={friend_url}><img src="{images_dir}/message.gif" alt="{_myngsend_friend}" border=0 ></a> 
+            &nbsp;&nbsp;<a href={print_url}><img src="{images_dir}/print.gif" alt="{_myngprint}" border=0 ></a> 
+        </td>
+        <td class="normal"> <form name="add_article" action="myarticles.php" method="post">
+                <input type="image" src="{images_dir}/icon38.gif" border="0" alt="{_myngsave_article}">
+                <input type="hidden" name="id_article" value="{id_article}">
+                <input type="hidden" name="grp_id" value="{grp_id}">
+                <input type="hidden" name="add_article" value="yes">
+                <input type="hidden" name="sure" value="yes">
+            </form></td>
+        <td class="normal">&nbsp;</td>
+    </tr>
+    <tr> 
+        <td class="article_body" colspan="5"><span class="normal"> 
+            <pre>{a_body}</pre>
+            </span> <br> 			
+			</td>
+    </tr>
+</table>
+
+
