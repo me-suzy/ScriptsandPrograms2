@@ -1,0 +1,245 @@
+// CVS on unix
+ssh -f -L 2401:cvs.corp.ebay.com:2401 rajesh@cvs.corp.ebay.com sleep 3600
+cvs -d :pserver:rajesh@localhost:/home/src login
+cvs -d :pserver:rajesh@localhost:/home/src checkout -dE113_prod -rE113_prod ebay
+
+// IF NOT ON ALGEBRA
+// cvs -d algebra:/export/home/src checkout -dE106_search  -rE106_search ebay
+// IF ON ALGEBRA.. no algebra:
+// cvs -d /export/home/src checkout -dE110_prod -rE110_prod ebay
+
+// Thunderstone DB update example
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select count(*) from active where Title\EbayTags like 'ebayGift'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "update active set ItemType=1 where ItemID=xxx"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "update active set ItemType=1 where Title\EbayTags like 'ebayGift'"
+
+
+// rsh examples
+
+rsh milksnake.ebay.com "/export/home/resonate/bin/DispatchCommand milksnake 99cvs3 disable_server candoia.ebay.com"
+rsh milksnake.ebay.com "/export/home/resonate/bin/DispatchCommand milksnake 99cvs3 enable_server candoia.ebay.com"
+
+// Unix tail and head
+tail -50 "filename"
+head -50 "filename"
+
+/usr/local/bin/sudo -u thunder csh
+/usr/local/bin/sudo -u root csh
+/usr/local/bin/sudo -u www csh
+
+
+cd /catalogs/index/complete/ebaydb2
+cd /catalogs/data/complete/ebaydb2
+
+/usr/local/bin/sudo -u thunder csh
+cd /usr/local/morph3/common
+ftp alligator.ebay.com
+
+/usr/local/bin/sudo -u thunder csh
+/usr/local/bin/sudo -u rajesh csh
+/usr/local/bin/sudo -u search csh
+get ebaytest
+
+// Changing permissions
+chmod +x makelive
+chmod g+w x
+
+/usr/local/bin/sudo -u thunder csh
+cd /usr/local/morph3/common
+cd /usr/local/etc/httpd/htdocs
+ftp alligator.ebay.com
+
+// Running daily complete
+screen ...
+sudo as Thunder
+/usr/local/morph3/common/daily-complete  '1998-10-19'
+// Importing data
+
+makelive-complete /catalogs/data/complete/ebaydb1 '1998-09-07 '
+makelive-active /catalogs/index/active/ebaydb2 '1998-09-10 12:21:35'
+
+// Checking the processes
+/usr/ucb/ps auxww | grep thunder | more
+ /usr/ucb/ps auxww | grep active
+/usr/ucb/ps auxww | grep complete | more
+ /usr/ucb/ps auxww | grep thunder | grep complete > x
+
+ps -ef|grep process|wc -l
+
+// Copy the database
+./copydb-active "'1998-10-16 13:24:09'"
+
+// Seeing all the indexes for the database
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select FNAME from SYSINDEX";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select * from SYSINDEX";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select * from SYSINDEX";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/complete/ebaydb1 "select * from SYSINDEX";
+
+// generating a text file from complete.tbl
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d  `cat /usr/local/morph3/common/current-complete.txt` -c "select * from complete" | gzip -9 > bigfile.txt.gz
+
+
+// DROPPING INDEXES
+
+// Index for Title on Active
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "DROP INDEX xmmacttit";
+
+// Index for Title\description on Active
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "DROP INDEX xmmactdesc";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/active/ebaydb2 "DROP INDEX xmmactdesc";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/active/ebaydb2 "DROP INDEX xmmacttit";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "DROP INDEX xprice";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "DROP INDEX xukey";
+
+// Index for Title on Completed
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "DROP INDEX xmmcomtit";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/complete/ebaydb2 "DROP INDEX xmmcomtit";
+
+// Index for Title\description on Completed
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "DROP INDEX xmmcomdesc";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/complete/ebaydb2 "DROP INDEX xmmcomdesc";
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+// Used after Creating the new columns for active
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xmmacttit";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xmmactdesc";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xactcat0";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xactcat1";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xactcat2";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xactcat3";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xendtime";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xukey";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xvend";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xvenddesc";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xvprice";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP INDEX xvpricedesc";
+
+cd /catalogs/data/active/ebaydb1
+cp activenew.tbl active.tbl
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d  /catalogs/data/active/ebaydb1 "DROP TABLE activenew";
+
+// Create the index on the new database
+mkindex-active /catalogs/data/active/ebaydb1 /catalogs/index/active/ebaydb1
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/complete/ebaydb2 "DROP INDEX xmmcomdesc1";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/complete/ebaydb2 "DROP INDEX xmmcomdesc";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/complete/ebaydb2 "DROP INDEX xmmcomtit";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/complete/ebaydb1 "DROP INDEX  xvenddesc353";
+
+// Dropping a table
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/complete/ebaydb2 "DROP TABLE complete";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/complete/ebaydb2 "DROP TABLE completenew";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/complete/ebaydb1 "DROP TABLE complete300";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP TABLE toprocess";
+
+// Creating an Index
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql -d /catalogs/data/complete/ebaydb1 "set indexspace='/catalogs/index/complete/ebaydb1'; create unique index xukey on complete(ItemID);"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql -d /catalogs/data/complete/ebaydb1 "set indexspace='/catalogs/index/complete/ebaydb1'; create index xendtime on complete(EndTime);"
+
+// Creating a table with a new  column
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "create table activenew as select ItemID, RowID, ChangeTime, StartTime, EndTime, CurrentPrice, Bids, Title, Description, PictureURL, Category0, Category1, Category2, Category3, EbayTags as '', ItemType as 0 from active";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "create table activenew as select ItemID, 0 as ItemType from active";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/data/active/ebaydb1 "DROP TABLE activenew";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d  /catalogs/data/active/ebaydb1 "select Title, ItemType, EbayTags from activenew"
+
+// Importing (First time or adding data to an existing table) data into thunderstone database. 
+// If the row already exists (ItemID is unique) it will generate duplicate warnings (an will not import that particular row) and continue.
+/usr/local/morph3/bin/timport -database `cat /usr/local/morph3/common/current-complete.txt` -table complete -s /usr/local/morph3/common/new-ebay.sch -file /usr/local/morph3/common/CompletedSearchItems.txt
+
+// TSQL command
+1. /usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt`
+2. select Title from active where Title like 'Drive Scsi';
+
+// delete from database
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "delete from active where ItemID=36857381"
+
+OR Like the following
+__________________
+
+Searching on Oracle database using SQL:
+
+desc ebay_items;
+SQL> select title,to_char(last_modified, 'yy-dd-mm hh24:mi:ss') from ebay_items where marketplace=0 and id=43911765;
+
+// TSQL
+// writing TSQL output to a file
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select ItemID from active where Title\EbayTags like 'ebayGift' and ItemType = 0" > nologo.txt
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select ItemID from active where Title\EbayTags like 'ebayGift'" > ebaygift.txt
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select count(*) from active where Title\EbayTags like 'Drive'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "update active set ItemType=1 where ItemID=xxx"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "update active set ItemType=1 where Title\EbayTags like 'EbayTags'"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select count(*) from SYSPERMS";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select * from SYSPERMS";
+
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "update active set Bids=102, CurrentPrice=12600100 where ItemID=46469655"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select ItemID, EbayTags, ItemType from active where ItemID=62604038"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select * from complete where ItemID=43811600"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, Category0 from active where Category0=353"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where CurrentPrice > 500000 and  CurrentPrice < 9999999"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select ItemID from active where Title\EbayTags like 'ebayGift'"; // Phrase it is like "ebayGift"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select count(*) from active where Title\EbayTags like 'ebayGift'" > x
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select ItemID from active where Title\EbayTags like 'ebayGift'"; // Phrase it is like "ebayGift"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title from active where Title\EbayTags like 'The-Who'"; // Phrase it is like "The Who"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title,EndTime from active where Title\EbayTags like 'drive scsi' and EndTime > 'now'";
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title from active where ItemID=53298095"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title from active where Title like 'Windows /3.1 new'";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title from active where Title like 'Drive'";
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where ItemID=36400620"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Category3 from active where ItemID=25465808"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select EndTime from active where ItemID=28313011"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select ItemID, Title, CurrentPrice, Bids, StartTime, EndTime, PictureURL, Category0, Category1, Category2, Category3 from active where ItemID=26054345"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title from complete where ItemID=21777912"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title from active where Title like 'Drive'"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select ItemID, Title, StartTime, Bids, PictureURL, CurrentPrice, EndTime from complete where Title like 'Drive'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d /catalogs/index/complete/ebaydb2 "select Title, Description from completenew"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Category0 from complete where ItemID=21777487"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d  /catalogs/data/active/ebaydb1 "select Title from active where ItemID=46469655"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title, EndTime from complete where Title like 'Drive'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title from active where Title like 'Drive' and Category0=160"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title from active where Category0=160 and Title like 'Drive'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Drive' and  CurrentPrice > 0 and  CurrentPrice < 9999999"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Drive' and  CurrentPrice > 100 and  CurrentPrice < 200"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Drive' and  CurrentPrice > 10000 and  CurrentPrice < 600000"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Drive' and  CurrentPrice > 10000 and  CurrentPrice < 99999999"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where CurrentPrice > 100 and  CurrentPrice < 500 and Title like 'Drive'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-current-complete.txt` "select Title, EndTime from complete where Title like 'Drive'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, EndTime from active where Title like 'Drive'"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Drive'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Drive' and  CurrentPrice >= 1000 and  CurrentPrice <= 50000"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title,  CurrentPrice from complete where Title like 'Drive'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title,  CurrentPrice from complete where Title like 'Drive' and  CurrentPrice >= 1000 and  CurrentPrice <= 50000"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Glass'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Glass' and CurrentPrice >= 100 and  CurrentPrice <= 500"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-active.txt` "select Title, CurrentPrice from active where Title like 'Black' and Category0 = 266"
+
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title,  CurrentPrice from complete where Title like 'Black'"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title,  CurrentPrice from complete where Title like 'Black' and CurrentPrice >= 100 and  CurrentPrice <= 150"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title,  CurrentPrice from complete where Title like 'Black' and CurrentPrice >= 100 and  CurrentPrice <= 200"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title,  CurrentPrice from complete where Title like 'Black' and CurrentPrice >= 100 and  CurrentPrice <= 100"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title,  CurrentPrice from complete where Title like 'Black' and Category0 = 266"
+/usr/local/bin/sudo -u thunder /usr/local/morph3/bin/tsql  -d `cat /usr/local/morph3/common/current-complete.txt` "select Title,  CurrentPrice from complete where Title like 'Black' and Category0 >= 266 and Category0 <= 266"
