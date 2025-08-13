@@ -1,0 +1,346 @@
+{header_menu_template}
+
+
+<!-- Include the Admin JavaScript Library -->
+<script language="JavaScript" src="{home_dir}admin/includes/admin.js"></script>
+<script language="JavaScript">
+	function minus(){
+	
+		if(document.form.downloaded_articles.value >= 10){
+			document.form.downloaded_articles.value -= 10;
+		}
+		
+	}	
+	function reset_cleanup(){
+		document.form.conf_clean_MAX_days.value = 0;
+		document.form.conf_clean_MAX_articles.value = 0;			
+	}	
+	function apply_cleanup(){
+		if (confirm("Are you sure you want to delete old articles?")){
+			//document.form.action.value="Modify";
+			document.form2.submit();
+		}			
+	}
+
+</script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+<body>
+<div id="Layer1" style="position:absolute; left:125px; top:79px; width:603px; height:111px; z-index:1">
+<form name="form" method="post" action="detail.php">
+        <table width="400" border="0" cellspacing="0" cellpadding="0" class="menu_table">
+            <tr align="center"> 
+                <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr> 
+                            <td width="581" class="code"> <div align="center"><span class="title">&nbsp;&nbsp;Configuration 
+                                    </span></div></td>
+                        </tr>
+                        <tr> 
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table></td>
+            </tr>
+            <tr> 
+                <td align="left"><table width="303" border="0" cellspacing="0" cellpadding="3" align="center">
+                        <!-- Name -->
+                        <tr> 
+                            <td width="273" align="right" class="top_link">Name:&nbsp;</td>
+                            <td width="315"> <input type="text" length="20" name="conf_name" value="{conf_name}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- Description -->
+                        <tr> 
+                            <td align="right" class="top_link">Description:&nbsp;</td>
+                            <td> <textarea name="conf_description" cols="30" rows="3" class="form_admin" length="20">{conf_description}</textarea> 
+                            </td>
+                        </tr>
+                        <!-- Active YN -->
+                        <tr> 
+                            <td align="right" class="top_link">Active:&nbsp;</td>
+                            <td class="top_link"> Yes 
+                                <input type="radio" name="conf_active_yn" value="Y" {conf_active_yes}>
+                                No 
+                                <input type="radio" name="conf_active_yn" value="N" {conf_active_no}> 
+                            </td>
+                        </tr>
+                    </table>
+                    <br> <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+                        <tr> 
+                            <td class="table_header"><div align="center"><span class="top_link">System</span></div></td>
+                        </tr>
+                    </table>
+                    <br> <table width="299" border="0" cellspacing="0" cellpadding="3" align="center">
+                        <!-- System Prefix -->
+                        <tr> 
+                            <td width="272" align="right" class="top_link">Prefix:&nbsp;</td>
+                            <td width="316"> <input type="text" size ="30" length="20" name="conf_system_prefix" value="{conf_system_prefix}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- System Root -->
+                        <tr> 
+                            <td align="right" class="top_link">Root:&nbsp;</td>
+                            <td> <input type="text" size ="30" length="20" name="conf_system_root" value="{conf_system_root}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- System Language -->
+                        <tr> 
+                            <td align="right" class="top_link">Language:&nbsp;</td>
+                            <td> <select name="conf_system_language" class="form_admin">
+                                    <!-- BEGIN language_block -->
+                                    <option value="{language}" {language_is_selected}>{language}</option>
+                                    <!-- END language_block -->
+                                </select> </td>
+                        </tr>
+                        <!-- System Debug YN -->
+                        <tr> 
+                            <td align="right" class="top_link">Debug:&nbsp;</td>
+                            <td class="top_link"> Yes 
+                                <input type="radio" name="conf_system_debug_yn" value="Y" {conf_system_debug_yes}>
+                                No 
+                                <input type="radio" name="conf_system_debug_yn" value="N" {conf_system_debug_no}> 
+                            </td>
+                        </tr>
+                        <!-- System ZLib YN -->
+                        <!-- Zlib Support cant be switched yet!
+            <tr> 
+              <td align="right" class="top_link">Zlib Support:&nbsp;</td>
+              <td class="top_link"> Yes 
+                <input type="radio" name="conf_system_zlib_yn" value="Y" {conf_system_zlib_yes}>
+                No 
+                <input type="radio" name="conf_system_zlib_yn" value="N" {conf_system_zlib_no}> 
+              </td>
+            </tr>
+            -->
+                        <!-- System Login YN -->
+                        <tr> 
+                            <td align="right" class="top_link">Login:&nbsp;</td>
+                            <td class="top_link"> Yes 
+                                <input type="radio" name="conf_system_login_yn" value="Y" {conf_system_login_yes}>
+                                No 
+                                <input type="radio" name="conf_system_login_yn" value="N" {conf_system_login_no}> 
+                            </td>
+                        </tr>
+                        <!-- System Online YN -->
+                        <tr> 
+                            <td align="right" class="top_link">Work Online:&nbsp;</td>
+                            <td class="top_link"> Yes 
+                                <input type="radio" name="conf_system_online_yn" value="Y" {conf_system_online_yes}>
+                                No 
+                                <input type="radio" name="conf_system_online_yn" value="N" {conf_system_online_no}> 
+                            </td>
+                        </tr>
+                    </table>
+                    <br> <br> <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+                        <tr> 
+                            <td class="table_header"><div align="center"><span class="top_link">Visualization</span></div></td>
+                        </tr>
+                    </table>
+                    <br> <table width="250" border="0" cellspacing="0" cellpadding="3" align="center">
+                        <!-- Theme -->
+                        <tr> 
+                            <td width="319" align="right" class="top_link">Theme:&nbsp;</td>
+                            <td> <select name="conf_vis_theme" class="form_admin">
+                                    <!-- BEGIN theme_block -->
+                                    <option value="{theme}" {theme_is_selected}>{theme}</option>
+                                    <!-- END theme_block -->
+                                </select> </td>
+                        </tr>
+                        <!-- Number to Flames -->
+                        <tr> 
+                            <td align="right" class="top_link">Number to Flames:&nbsp;</td>
+                            <td> <input type="text" size="3" length="3" name="conf_vis_num_2_flames" value="{conf_vis_num_2_flames}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- Articles per page -->
+                        <!--
+            <tr> 
+              <td align="right" class="top_link">Articles per Page:&nbsp;</td>
+              <td> <input type="text" size="3" length="3" name="conf_vis_articles_x_page" value="{conf_vis_articles_x_page}" class="form_admin" > </td>
+            </tr>
+            -->
+                        <!-- Navigation Bar Items -->
+                        <tr> 
+                            <td align="right" class="top_link">Navigation Bar 
+                                Items:&nbsp;</td>
+                            <td> <input type="text" size="3" length="3" name="conf_vis_nav_bar_items" value="{conf_vis_nav_bar_items}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- Navigation Bar Pages -->
+                        <tr> 
+                            <td align="right" class="top_link">Navigation Bar 
+                                Pages:&nbsp;</td>
+                            <td> <input type="text" size="3" length="3" name="conf_vis_nav_bar_pages" value="{conf_vis_nav_bar_pages}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- Time to HighLight New -->
+                        <tr> 
+                            <td align="right" class="top_link">Time to HighLight 
+                                New:&nbsp;</td>
+                            <td> <input type="text" size="3" length="3" name="conf_vis_time_highlight_new" value="{conf_vis_time_highlight_new}" class="form_admin" > 
+                                <span class="top_link">Hours</span></td>
+                        </tr>
+                    </table>
+                    <br> <br> <input type="hidden" name="conf_id" value="{conf_id}"> 
+                    <input type="hidden" name="downloaded_articles_old" value="{downloaded_articles}"> 
+                    <input type="hidden" name="action"> <br> </td>
+                <td align="left" valign="top">&nbsp; <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+                        <tr> 
+                            <td class="table_header"><div align="center"><span class="top_link">Download</span></div></td>
+                        </tr>
+                    </table>
+                    <br> <table width="246" border="0" cellspacing="0" cellpadding="3" align="center">
+                        <!-- Days of Activity Index -->
+                        <tr> 
+                            <td width="176" align="right" class="top_link">Days 
+                                of Activity Index:&nbsp;</td>
+                            <td width="58"> <input type="text" size="3" length="3" name="conf_down_days" value="{conf_down_days}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- Items in List -->
+                        <tr> 
+                            <td align="right" class="top_link">Items in List:&nbsp;</td>
+                            <td> <input type="text" size="3" length="3" name="conf_down_list_items" value="{conf_down_list_items}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- Number of NewsGroups -->
+                        <tr> 
+                            <td align="right" class="top_link">Number of NewsGroups:&nbsp;</td>
+                            <td> <input type="text" size="3" length="3" name="conf_down_num_groups" value="{conf_down_num_groups}" class="form_admin" > 
+                            </td>
+                        </tr>
+                        <!-- Number of Articles -->
+                        <tr> 
+                            <td align="right" class="top_link">Number of Articles:&nbsp;</td>
+                            <td> <input type="text" size="3" length="3" name="conf_down_num_articles" value="{conf_down_num_articles}" class="form_admin" > 
+                            </td>
+                        </tr>
+                    </table>
+                    <br> <br> <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+                        <tr> 
+                            <td class="table_header"><div align="center"><span class="top_link">Old 
+                                    Articles Clean Up (All NewsGroups)</span></div></td>
+                        </tr>
+                    </table>
+                    <br> <table width="355" border="0" cellspacing="0" cellpadding="3" align="center">
+                        <!-- Days of Activity Index -->
+                        <tr> 
+                            <td width="121" align="right" class="top_link">MAX. 
+                                Days:&nbsp;</td>
+                            <td width="222"> <input type="radio" name="clean_up" value="days" {clean_days_yes}> 
+                                <input type="text" size="6" length="6" name="conf_clean_MAX_days" value="{conf_clean_MAX_days}" class="form_admin" > 
+                                <!-- BEGIN apply_days_block -->
+                                &nbsp;&nbsp;<a class="top_link" href="javascript:apply_cleanup();">Apply! 
+                                ({conf_clean_MAX_days} days)</a> 
+                                <!-- END apply_days_block -->
+                            </td>
+                        </tr>
+                        <!-- Items in List -->
+                        <tr> 
+                            <td align="right" class="top_link">MAX. Number :&nbsp;</td>
+                            <td> <input type="radio" name="clean_up" value="articles" {clean_articles_yes}> 
+                                <input type="text" size="6" length="6" name="conf_clean_MAX_articles" value="{conf_clean_MAX_articles}" class="form_admin" > 
+                                <!-- BEGIN apply_articles_block -->
+                                &nbsp;&nbsp;<a class="top_link" href="javascript:apply_cleanup();">Apply! 
+                                ({conf_clean_MAX_articles} articles)</a> 
+                                <!-- END apply_articles_block -->
+                            </td>
+                        </tr>
+                        <!-- Number of NewsGroups -->
+                        <tr> 
+                            <td align="right" class="top_link">No Clean Up:&nbsp;</td>
+                            <td><input type="radio" name="clean_up" value="no" onClick="reset_cleanup()" {clean_no}> 
+                            </td>
+                        </tr>
+                        <!-- Number of Articles -->
+                    </table>
+                    <br> <br> <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+                        <tr> 
+                            <td class="table_header"><div align="center"><span class="top_link">Security</span></div></td>
+                        </tr>
+                    </table>
+                    <br> <table width="354" border="0" cellspacing="0" cellpadding="3" align="center">
+                        <!-- Send Poster Host -->
+                        <tr> 
+                            <td align="right" class="top_link">Protect User's 
+                                Email Address:&nbsp;</td>
+                            <td class="top_link"> Yes 
+                                <input type="radio" name="conf_sec_protect_email_yn" value="Y" {conf_sec_protect_email_yes}>
+                                No 
+                                <input type="radio" name="conf_sec_protect_email_yn" value="N" {conf_sec_protect_email_no}> 
+                            </td>
+                        </tr>
+                        <tr> 
+                            <td width="191" align="right" class="top_link">Send 
+                                Poster Host:&nbsp;</td>
+                            <td width="151" class="top_link"> Yes 
+                                <input type="radio" name="conf_sec_send_poster_host_yn" value="Y" {conf_sec_send_poster_host_yes}>
+                                No 
+                                <input type="radio" name="conf_sec_send_poster_host_yn" value="N" {conf_sec_send_poster_host_no}> 
+                            </td>
+                        </tr>
+                        <!-- Test Group -->
+                        <tr> 
+                            <td align="right" class="top_link">Test Group:&nbsp;</td>
+                            <td class="top_link"> Yes 
+                                <input type="radio" name="conf_sec_test_group_yn" value="Y" {conf_sec_test_group_yes}>
+                                No 
+                                <input type="radio" name="conf_sec_test_group_yn" value="N" {conf_sec_test_group_no}> 
+                            </td>
+                        </tr>
+                        <!-- Validate Email -->
+                        <tr> 
+                            <td align="right" class="top_link">Validate Email:&nbsp;</td>
+                            <td class="top_link"> Yes 
+                                <input type="radio" name="conf_sec_validate_email_yn" value="Y" {conf_sec_validate_email_yes}>
+                                No 
+                                <input type="radio" name="conf_sec_validate_email_yn" value="N" {conf_sec_validate_email_no}> 
+                            </td>
+                        </tr>
+                        <!-- Secret String -->
+                        <tr> 
+                            <td align="right" class="top_link">Secret String:&nbsp;</td>
+                            <td> <input type="text" size="20" length="30" name="conf_sec_secret_string" value="{conf_sec_secret_string}" class="form_admin" > 
+                            </td>
+                        </tr>
+                    </table></td>
+            </tr>
+            <tr> 
+                <td colspan="2" align="left"><table width="0%" border="0" cellspacing="0" cellpadding="2" align="center">
+                        <tr> 
+                            <td> 
+                                <!-- BEGIN add_block -->
+                                <input type="button" onClick="{add_link}" value="Add" class="button"> 
+                                <!-- END add_block -->
+                            </td>
+                            <td> 
+                                <!-- BEGIN modify_block -->
+                                <input type="button" onClick="{modify_link}" value="Modify" class="button"> 
+                                <!-- END modify_block -->
+                            </td>
+                            <td> 
+                                <!-- BEGIN del_block -->
+                                <input type="button" onClick="{del_link}" value="Delete" class="button"> 
+                                <!-- END del_block -->
+                            </td>
+                        </tr>
+                    </table></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="left">&nbsp;</td>
+            </tr>
+        </table>
+   </form>
+   <form name="form2" action="../../cron/cron_cleanup.php" method ="POST">
+<input type="hidden" name="apply_cleanup" value="yes">
+<input type="hidden" name="return_page" value="{return_page}">
+</form>	
+</div>
+<p>&nbsp;</p>
