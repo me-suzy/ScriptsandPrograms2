@@ -1,0 +1,292 @@
+<HTML><!-- #BeginTemplate "/Templates/template.dwt" -->
+<HEAD>
+<!-- #BeginEditable "doctitle" --> 
+<TITLE>In-Link 2.0.4 SQL Directory Engine Documentation</TITLE>
+<!-- #EndEditable -->
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" href="style.css" type="text/css">
+<SCRIPT language="javascript">
+<!--
+function arc_flipflop(myID) {
+  	if (eval("document.all."+myID+".style.display")=='none') {
+		eval("document.all."+myID+".style.display='block'");
+	} else {
+	eval("document.all."+myID+".style.display='none'");
+	}
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFFFFF" text="#000000">
+
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+  <TR> 
+    <TD rowspan="2" width="0"><IMG src="images/icon1-.gif" width="32" height="32"></TD>
+    <TD class="title" width="100%">Help </TD>
+    <TD rowspan="2" width="0" align="right"><A href="manual.pdf"><IMG src="images/doc.gif" width="18" height="18" border="0"></A></TD>
+  </TR>
+  <TR> 
+    <TD width="100%"><IMG src="file:///G|/admin/images/line.gif" width="354" height="2"></TD>
+  </TR>
+</TABLE>
+
+<!-- #BeginEditable "body" --> 
+<h1><a name="install">5<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Installation</a></h1>
+<h2><a name="5.1">5.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Introduction</a></h2>
+<p class=MsoNormal>Installing In-link has never been any easier!  It comes with 
+  a web-based fully automated installation program that will do most of the installation 
+  and configuration work for you.  Unfortunately, due to platform differences 
+  and incompatibilities there is no way to guarantee a flawless installation so 
+  we strongly recommend that you monitor the installation very carefully as you 
+  might have to complete some of steps manually.  The installation program will 
+  guide you through the entire process and will give you concise and detailed 
+  instructions throughout the installation.  Installation program contains five 
+  easy steps and if at any point it safely determines that some of the steps do 
+  not apply to your server, it may even skip them!</p>
+<h2><a name="5.2">5.2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span>Installation Process</a></h2>
+<h3><a name="5.2.1"></a>Overview</h3>
+<p class=MsoNormal>Below is the quick installation procedure to follow.  We described 
+  all the steps in detail; however, please only follow the instructions applicable 
+  to your server in order to simplify the installation process:</p>
+<h3><a name="5.2.2"></a>Download</h3>
+<p class=MsoNormal>Before you can run the install script, you need to know the 
+  following: In-link comes in a zip file called  <span style='font-size:10.0pt;font-family:
+"Courier New";'>in-link</span> and followed by the version number.  Example: 
+  <span style='font-size:10.0pt;
+font-family:"Courier New";'>in-link2_0_3.zip</span> is a compressed file containing 
+  In-link version 2.0.3.  In order to retrieve the files from the zip file, you 
+  need to uncompress it by using a utility such as WinZip (<a
+href="http://www.winzip.com/">www.winzip.com</a>).<br>
+  <br>
+</p>
+<p class=MsoNormal>Download In-Link and unpack all the individual files. Make 
+  sure that all the files are present. (A list of all files that come with In-Link 
+  is in the Appendix.)</p>
+<h3><a name="5.2.3"></a>Upload</h3>
+<p class=MsoNormal>After you uncompress (unzip) the distribution you should see 
+  a number of files and directories that make up In-link. Upload all the files 
+  to your web server using your FTP software (such as WS_FTP, CuteFTP or FTP Voyager).  
+  Please, upload the files to a location on your web server where you would like 
+  In-link to be installed.  For example, we recommend creating a separate directory 
+  called <span style='font-size:10.0pt;font-family:"Courier New";'>inlink</span> 
+  or <span style='font-size:10.0pt;font-family:"Courier New";'>directory</span>, 
+  but it can be anywhere on your web server, including the home directory (root) 
+  where you can place web files. Please, make sure that you upload all the PHP 
+  files (such as <span
+style='font-size:10.0pt;font-family:"Courier New";'>index.php</span>) in ASCII 
+  mode and all the images in templates in the BINARY mode.  Generally, your FTP 
+  software such as CuteFTP (<a
+href="http://www.cuteftp.com/">www.cuteftp.com</a>) can correctly determine if 
+  the files should be uploaded in ASCII or BINARY mode; but please do check to 
+  make sure that the transfer mode is set correct. You can check the settings 
+  in the configuration screen of your software or some software may prompt you 
+  for certain file types.<span style='font-size:14.0pt;'> <br>
+  <br>
+  </span></p>
+<div style='border:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+background:#FFFFD9'> 
+  <p class=warning>! Make sure all the PHP files are transferred in ASCII mode!!<br>
+    <br>
+  </p>
+</div>
+<h3><a name="5.2.4"></a>Database Setup</h3>
+<p class=MsoNormal>Set up a database for use with In-link.  For security purposes, 
+  we recommend that the user of the database is other than root and that there 
+  is a password set for that user.  Then, please write down the database name, 
+  database server (normally <span style='font-size:10.0pt;font-family:"Courier New";'>localhost</span>), 
+  database user and the user password.  You will need this information later. 
+  Also, make sure to give permission to the database user to DELETE, INSERT, SELECT, 
+  and UPDATE. </p>
+<h3><a name="5.2.5"></a>Installation Program</h3>
+<h4>Running</h4>
+<p class=MsoNormal>You can now run the installation script.  The installation 
+  script is called <span
+style='font-size:10.0pt;font-family:"Courier New";'>install.php</span> and it 
+  is located in the <span style='font-size:10.0pt;font-family:
+"Courier New";'>admin/</span> directory of your In-link copy. It should be run 
+  in your web browser (such as Microsoft Internet Explorer or Netscape Navigator).  
+  After you made sure that the database is setup and that all of the files are 
+  uploaded, proceed to open the installation script <span style='font-size:
+10.0pt;font-family:"Courier New";'>../admin/install.php</span> in your web browser 
+  by specifying its location on the web server.  For example, if you installed 
+  In-link on <a
+href="http://www.yourserver.com/">www.yourserver.com</a> in the directory <span
+style='font-size:10.0pt;font-family:"Courier New";'>inlink/</span>, then in 
+  your browser address/URL field just type in<br>
+  <a href="http://www.yourserver.com/inlink/admin/install.php">http://www.yourserver.com/inlink/admin/install.php</a>.  
+  This should load the installation program that will guide you through the installation 
+  process.</p>
+<h4>Step 1  License</h4>
+<p class=MsoNormal>Please enter your first name, last name and your In-link registration 
+  number.  This is the information that was e-mailed to you when you purchased 
+  In-link and it is included on your purchase receipt.  If you lost you registration 
+  receipt you can have it e-mailed to you at the same e-mail address that you 
+  used when you purchased In-link.  <i>Note</i>: you cannot proceed installing 
+  without this information.  If you dont have the registration number, please, 
+  contact Intechnic Corporation sales or customer service department in order 
+  to obtain the registration number.  After you enter the information, press Next 
+  Step.</p>
+<h4>Step 2  Program Location</h4>
+<p class=MsoNormal>In this step the installation program will attempt to determine 
+  the location of In-link on your server. In-link needs to know its exact location 
+  in order to function properly.  In most cases, In-link successfully determines 
+  the information it needs. However, it is a good idea to always check to make 
+  sure that the determined path matches the correct location of the script on 
+  your server. <br>
+  <br>
+  There are two paths that you need to specify:  The Server path is the actual 
+  path to the files on your server. This is the path you would see when navigating 
+  to the In-link files on your server ( Ex.: <span style='font-size:10.0pt;font-family:"Courier New";'>/home/user/public_html/inlink/</span> 
+  ). On Unix/Linux you can see what this path is by typing in the command <span
+style='font-size:10.0pt;font-family:"Courier New";'>&quot;pwd&quot;</span> in 
+  your shell session window (Telnet) while located in the same directory where 
+  In-link is. The URL path is the path that you would see in your browser address 
+  field; it is usually the URL path following your domain. (Ex.: for <a
+href="http://www.yourserver.com/inlink">http://www.yourserver.com/inlink</a> the 
+  URL path would be <span style='font-size:10.0pt;
+font-family:"Courier New";'>/inlink/</span>). After you entered and verified 
+  the information, press Next Step.<br>
+  <br>
+</p>
+<p class=MsoNormal>&nbsp;</p>
+<div style='border:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+background:#FFFFD9'> 
+  <p class=warning>! Please, include the trailing slashes (&quot;/&quot;) after 
+    both paths.<span style='color:maroon'><br>
+    <br>
+    </span></p>
+  <p class=warning>! On some Windows NT/2000 servers the path cannot be determined 
+    accurately, please pay extra attention to the system paths if you are using 
+    a Microsoft server.<br>
+    <br>
+  </p>
+</div>
+<h4>Step 3  File Permissions</h4>
+<p class=MsoNormal>In order for In-link to function properly, you need to have 
+  certain file permissions to set correctly.  In some cases, In-link will attempt 
+  to set file permissions automatically. Unfortunately, most configurations will 
+  not allow that, in which case you either set the file permissions manually or 
+  use the batch script that is included with the installation. The install script 
+  will check the following files/directories:<br>
+  <br>
+</p>
+<p class=codeChar style='margin-left:1.05in;'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></span><span style='font-family:Courier;'>config.php</span> <span style='font-size:12.0pt;font-family:Garamond'> 
+  file used to store your database settings and other system information.</span><br>
+  <br>
+</p>
+<p class=MsoNormal style='margin-left:1.05in;text-indent:-.25in;'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></span><span style='font-size:10.0pt;
+font-family:"Courier New";'>themes</span>  directory containing themes or template 
+  sets that are used by the system to format the output.<br>
+  <br>
+</p>
+<p class=MsoNormal style='margin-left:1.05in;text-indent:-.25in;'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></span><span style='font-size:10.0pt;
+font-family:"Courier New";'>languages</span>  directory containing the language 
+  files.<br>
+  <br>
+</p>
+<p class=MsoNormal style='margin-left:1.05in;text-indent:-.25in;'><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></span><span style='font-size:10.0pt;
+font-family:"Courier New";'>backup</span>  directory for the database backup 
+  files.<br>
+  <br>
+</p>
+<p class=MsoBodyTextIndent2 style='margin-left:0in'>The install program will tell 
+  you if all of the permissions are set correctly and you will be able to safely 
+  proceed to the next step. If this is the case, you can skip reading the remaining 
+  portion of this section.<br>
+  <br>
+  In most cases In-link installation program will show you the following message:<br>
+  <span style='font-size:10.0pt;font-family:Arial;color:red'>In-link could not 
+  set file permissions automatically due to the server configuration. Please set 
+  the above permissions manually or use the batch script to do that</span>.  
+  This means that the script failed to set permissions automatically and you will 
+  have to do it manually.  </p>
+<p class=MsoBodyTextIndent2 style='margin-left:0in'>&nbsp;</p>
+<p class=MsoBodyTextIndent2 style='margin-left:0in'>In order to set the file permissions 
+  you can use a shell script <span style='font-size:10.0pt;font-family:"Courier New";'>permissions.sh</span> 
+  that was included in the installation package to automate the process for you.  
+  In order to run this script you need to telnet to the server, proceed to the 
+  admin directory and run the script in your shell session window (<span style='font-size:10.0pt;font-family:"Courier New";'>../admin/permissions.sh)</span>.  
+  If the scrtip runs successfully you can skip the remaining part of this section.</p>
+<p class=MsoBodyTextIndent2 style='margin-left:0in'>&nbsp;</p>
+<p class=MsoBodyTextIndent2 style='margin-left:0in'>If the script does not run 
+  correctly, you can either telnet to a shell on the server and enter the command 
+  &quot;<span style='font-size:10.0pt;font-family:"Courier New";'>chmod 777 &lt;filename&gt;&quot;</span> 
+  or use a ftp client to set the permission to world readable and writeable.<br>
+  <br>
+</p>
+<p class=MsoNormal>If you are on a Unix server, set the file permission of the 
+  configuration file (<span style='font-size:10.0pt;
+font-family:"Courier New";'>includes/config.php</span>) to <span style='font-size:10.0pt;font-family:"Courier New";'>777(drwxrwxrwx)</span> 
+  so the installation script can modify it.  On a Windows server, please make 
+  sure that the file is writeable.  (On some Windows servers you might have to 
+  modify <span style='font-size:10.0pt;font-family:
+"Courier New";'>config.php</span> manually).</p>
+<ul style='margin-top:0in' type=disc>
+  <li class=MsoNormal>Set the permissions on all the template files and directories 
+    (<span
+     style='font-size:10.0pt;font-family:"Courier New";'>themes/)</span> to 777 
+    or wireteable.</li>
+  <li class=MsoNormal>Set the permissions on all the language files and directories 
+    (<span
+     style='font-size:10.0pt;font-family:"Courier New";'>languages</span>/) to 
+    777 or wireteable.</li>
+  <li class=MsoNormal>Set the permissions on the backup directory (<span style='font-size:10.0pt;font-family:"Courier New";'>backup/</span>) 
+    to 777 or wireteable.</li>
+</ul>
+<p class=MsoNormal style='margin-left:.55in'>&nbsp;</p>
+<div style='border:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+background:#FFFFD9'> 
+  <p class=warning>On some systems the files cannot be written by PHP and you 
+    will have to modify config.php manually with the database information.  Open 
+    config.php and insert the database information.</p>
+</div>
+<p class=MsoNormal style='margin-left:.55in'><span style='color:#3399FF'>&nbsp;</span></p>
+<h4>Step 4  Database Configuration</h4>
+<p class=MsoNormal>In order for In-link to operate at all, it needs access to 
+  a database already setup and running on the server.  Unfortunately, installation 
+  program cannot setup the database for you and it is often a manual process.</p>
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>Prior to proceeding to the next step make sure that you have 
+  a database set up on your server. The database user must have full access to 
+  the database. Also, make sure to give permission to the MySQL user to DELETE, 
+  INSERT, SELECT, and UPDATE.  After you entered and verified the information, 
+  press Next Step.</p>
+<h4>Step 5  Security</h4>
+<p class=MsoNormal>In order to access In-link administration utility you need 
+  to set up a root administrative user.  This user can never be deleted and overrides 
+  all the other users.  The root user overrides all of the Administrators in the 
+  system and cannot be deleted. Please, exercise caution when setting the root 
+  password. In many cases your data cannot be recovered if the password is lost. 
+  After you entered a new root password, press Next Step.</p>
+<h3><a name="5.2.6"></a>Administration Utility</h3>
+<p class=MsoNormal>After completing the installation script you will be asked 
+  to proceed to the administration utility in order to customize the rest of In-Link.  
+  In order to access the administration utility you will be asked to log in with 
+  your root username and password.  Thats it: In-link is ready to run!</p>
+<p class=MsoNormal>&nbsp;</p>
+<div style='border:solid windowtext .5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+background:#FFFFD9'> 
+  <p class=warning>After the installation it is a good idea to remove install.php 
+    from your live server. Theoretically, anybody who has your registration number 
+    could modify your system settings.</p>
+  <p class=warning>For increased security it might be also a good idea to password-protect 
+    the entire admin directory.</p>
+</div>
+<!-- #EndEditable --> 
+<CENTER>
+<P><IMG src="images/inlinksmall.gif" width="75" height="27"></P>
+<P class="footer">Intechnic Corporation, 2001. All Rights Reserved.</P>
+</CENTER>
+</BODY>
+<!-- #EndTemplate --></HTML>
