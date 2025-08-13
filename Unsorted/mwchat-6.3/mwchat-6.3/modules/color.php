@@ -1,0 +1,2 @@
+<?PHP
+  if (strlen($rgMatches[3]) == "7" and substr($rgMatches[3], 0, 1) == "#") { $rgMatches[3] = strtoupper($rgMatches[3]); $rgMatches[3] = Clean_Variable($rgMatches[3], "html"); $rgLobby_UPDATE = db_query("UPDATE chat_lobby SET text_color='$rgMatches[3]' WHERE username='$Username'", $CONN); $STATUS[TextColor] = $rgMatches[3]; Post_System("<I>$LOCALE[DIALOG_Colors] - ($STATUS[TextColor])</I>", "syntax", $Room); } else { Post_System("<B>$LOCALE[DIALOG_Syntax_Error]</B> - /$rgMatches[1] { #000000 }", "syntax", $Room); } ?>
