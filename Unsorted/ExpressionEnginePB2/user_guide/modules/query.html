@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Query Module Tags &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Query Module Tags</h1>
+
+	<p>ExpressionEngine includes a special tag that allows you to easily query and return results from your database without having to script it with PHP.  The general syntax for the tag is:</p>
+
+	<code>{exp:query sql="SELECT screen_name FROM exp_members WHERE group_id = '1' LIMIT 4"}<br />
+<br />
+{screen_name}<br />
+<br />
+{/exp:query}</code>
+
+	<p>This tag works a little bit differently than most of the other ExpressionEngine tags, so it needs to be explained.  First, you may only use <samp>SELECT</samp> statements in the query; it will not process <samp>UPDATE</samp> or <samp>DELETE</samp> queries.  You may use any standard query you want and the syntax used is identical to a regular SQL query.</p>
+
+
+
+	<h2>Selecting Fields and Variables</h2>
+
+	<p>Each of the columns or fields you include as part of your SELECT statement will be available inside the tag pair as a {variable} with the same name as the field.  So, in the above example the "screen_name" field was selected and thus the <samp>{screen_name}</samp> variable is available inside the tag.</p>
+
+	<code>{exp:query sql="SELECT screen_name, email, location FROM exp_members WHERE group_id = '1'"}<br />
+<br />
+{screen_name}<br />
+{email}<br />
+{location}<br />
+<br />
+{/exp:query}</code>
+
+	<p>This query would make three variables from the "exp_members" table available.</p>
+
+	<p>You may also have it select all available columns/fields automatically by using the asterisk character:</p>
+
+	<code>{exp:query sql="SELECT * FROM exp_members WHERE group_id = '1'"}<br />
+<br />
+{username}<br />
+{screen_name}<br />
+{password}<br />
+{email}<br />
+{location}<br />
+<br />
+{/exp:query}</code>
+
+
+
+	<h2>Returning Multiple Rows</h2>
+
+	<p>Unless you specifically craft your query to only return a single result, most queries will return multiple "rows" of results.  In order to deal with these multiple rows of results, ExpressionEngine will automatically loop through your query tag as many times as necessary to display all the rows of returned data.  Suppose you want to list all the members of one of your particular groups.  You might use something like this:</p>
+
+	<code>{exp:query sql="SELECT screen_name FROM exp_members WHERE group_id = '6'"}<br />
+<br />
+{screen_name}&lt;br /><br />
+<br />
+{/exp:query}</code>
+
+	<p>On your page, you might get actual results such as:</p>
+
+	<code>Michael Jordan<br />
+Wayne Gretzky<br />
+Joe Montana<br />
+Roger Clemens<br />
+David Beckham</code>
+
+	<p>This tag will allow you to easily create many results that might otherwise require plugins or special custom-coding in other applications.</p>
+
+
+
+	<h2>Notes</h2>
+
+	<p>While this tag gives you a great amount of power and flexibility, it can sometimes be difficult to construct a query.  ExpressionEngine abstracts its database design quite a bit, which means that related data is not always stored together in the same table.  For instance, the data for weblog entries are stored in two tables: the titles and basic meta data like the date are stored in one table, while the body fields are in another.</p>
+
+	<p>So, if you wanted to try and recreate a regular weblog query which returned
+	data that was stored across several tables, you would need to use SQL JOINS
+	and other advanced syntax.  To take full advantage of this tag's power you
+	will need to have a good understanding of SQL querying.</p>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
