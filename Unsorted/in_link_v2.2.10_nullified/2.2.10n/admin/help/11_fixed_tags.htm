@@ -1,0 +1,902 @@
+<HTML><!-- #BeginTemplate "/Templates/template.dwt" -->
+<HEAD>
+<!-- #BeginEditable "doctitle" --> 
+<TITLE>In-Link 2.0.4 SQL Directory Engine Documentation</TITLE>
+<!-- #EndEditable -->
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" href="style.css" type="text/css">
+<SCRIPT language="javascript">
+<!--
+function arc_flipflop(myID) {
+  	if (eval("document.all."+myID+".style.display")=='none') {
+		eval("document.all."+myID+".style.display='block'");
+	} else {
+	eval("document.all."+myID+".style.display='none'");
+	}
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFFFFF" text="#000000">
+
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+  <TR> 
+    <TD rowspan="2" width="0"><IMG src="images/icon1-.gif" width="32" height="32"></TD>
+    <TD class="title" width="100%">Help </TD>
+    <TD rowspan="2" width="0" align="right"><A href="manual.pdf"><IMG src="images/doc.gif" width="18" height="18" border="0"></A></TD>
+  </TR>
+  <TR> 
+    <TD width="100%"><IMG src="file:///G|/admin/images/line.gif" width="354" height="2"></TD>
+  </TR>
+</TABLE>
+
+<!-- #BeginEditable "body" --> <h3><a name="fixedtags"></a>Fixed Tags</h3>
+
+<p class=MsoNormal>Format:            &lt;%[tag_name]
+%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Fixed tags make up the majority of system
+tags. They have to be spelled exactly in order to work.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%insert_list_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Inserts all links in the current category
+or in Home. This tag will include a template list_links.tpl for every link
+to be displayed, or list_pick_links.tpl if the appropriate option is checked.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Should be used within main
+top-level templates, where a category is defined. Will produce unpredictable
+results if used within form templates such as add_review, register, etc.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Displays all appropriate links</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Long  depends on the # of links</p>
+
+<p class=MsoNormal>Example:         &lt;UL&gt;&lt;%insert_list_links%&gt;&lt;/UL&gt;
+will display an HTML list of links</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%insert_top_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays all links marked top. Top is a
+value calculated based on the visitor ratings and is controlled by the admin.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as
+&lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;UL&gt;&lt;%insert_top_links
+%&gt;&lt;/UL&gt; will display an HTML list of top links</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%insert_pop_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays all links marked pop. Pop is a
+criterion based on the number of hits (or clicks) and is controlled by the
+admin.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as
+&lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;UL&lt;%insert_pop_links%&gt;&lt;/UL&gt;
+will display an HTML list of pop links</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%insert_new_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays all links marked new. New is a
+criterion based on date the link was created and is controlled by the admin.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as
+&lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;UL&lt;%insert_new_links%&gt;&lt;/UL&gt;
+will display an HTML list of new links</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%insert_pick_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays all links marked pick. Pick is a
+criterion based on flag editors pick and is controlled by the admin.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as
+&lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;UL&lt;% insert_pick_links
+%&gt;&lt;/UL&gt; will display an HTML list of picked links</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%insert_search_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays all links resulting from a search,
+either basic or advanced.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as
+&lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;UL&lt;% insert_search_links
+%&gt;&lt;/UL&gt; will display an HTML list of resulting links from the previous
+search</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%insert_mod_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays all links belonging to the
+currently logged in user. Will use list_mod_links.tpl to display each
+individual link. If user is not logged in, will produce an empty list.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as
+&lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;UL&gt;&lt;% insert_mod_links
+%&gt;&lt;/UL&gt; will display an HTML list of user links</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%insert_fav_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays all favorite links belonging to
+the currently logged in user. Will use list_fav_links.tpl to display each
+individual link. If user is not logged in, will produce an empty list.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as
+&lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Same as &lt;%insert_list_links%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;UL&gt;&lt;% insert_fav_links
+%&gt;&lt;/UL&gt; will display an HTML list of users favorite links</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%insert_link_count%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the number of links displayed by
+one of the &lt;%insert_xxx_links%&gt; tags.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as
+&lt;%insert_list_links%&gt;, however is does not have to be used in the
+top-level templates.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Number</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         (&lt;%insert_link_count%&gt;) will
+display (N) where N is the number of links</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%stats_links%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the total number of links in the
+system. Please note, that it will display the number of physical links and may
+not be equal to the sum of links in all categories due to the fact that one
+link can be in multiple categories.</p>
+
+<p class=MsoNormal>Scope:              Anywhere
+in the system</p>
+
+<p class=MsoNormal>Result:             Number</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SPAN
+class=&quot;stats_small&quot;&gt;&lt;%stats_hits%&gt;&lt;/SPAN&gt; will display
+N, where N is the # of links in the database.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_link%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the link reference from the URL
+field of the link record, to be used in HTML &lt;a&gt; tag, href option.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Any template that is related to a
+single link (versus templates that display a list of links, where it will not
+be applicable)</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             a reference to system script
+action.php that will record the hit and redirect the browser to the
+destination, specified in the URL field of the link record.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;A class=&quot;link&quot;
+href=&quot;&lt;%link_link%&gt;&quot;&gt;Click here&lt;/A&gt; will display a
+Click here link to the destination, specified in the URL field of each link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_url%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the link reference from the URL
+field of the link record.  This tag
+displays the actual URL of the link, as opposed to &lt;%link_link%&gt;, which
+sends the user through the In-Link redirector.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Any template that is related to a
+single link (versus templates that display a list of links, where it will not
+be applicable)</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             a reference to system script
+action.php that will record the hit and redirect the browser to the destination,
+specified in the URL field of the link record.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_link%&gt; will display the
+URL of the link.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_desc%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the description of the link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Displays the contents of the
+Description field of each link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SPAN
+class=&quot;link_desc&quot;&gt; - &lt;%link_desc%&gt;&lt;/SPAN&gt; will display
+- N where N is the description of the link</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%link_image%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the images associated with each link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Displays the contents of the
+Graphic field of the link. If the field is blank, will display the Default
+value specified by admin to avoid broken image in the browser</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;IMG SRC=&lt;%link_image%&gt;
+ALT=image&gt; will display the image associated with the link or default.
+Always returns a value unless disabled by admin.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%link_date%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the date of link creation (can be
+modified by admin) formatted in accordance to the system date format specified
+by the admin</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Date
+field contents of each link, formatted</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_date%&gt; will display
+mm/dd/yyyy where mm is month, dd is day and yyyy is year if admin specifies the
+m/d/Y format</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_hits%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the number of hits of each link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Number</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_hits%&gt; will display N,
+where N is the hits of each link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_rating_txt%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the rating of each link in numeric format (0.00)</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Number
+in the format N.MM (min 0, max 5)</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal>Example:         &lt;%link_rating_txt%&gt;
+will display 1.23 if the rating of the link is 1.23</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%link_rating_img%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays an image corresponding to the each
+links rating. The tag will look for 11 image files in directory rating under
+the current theme. The file names have to be 0.gif, 0_half.gif, 1.gif,
+1_half.gif  5.gif</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Relative path to the image. Does
+not check for file presence</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         If links rating is 3.6, will &lt;IMG
+src=&quot;&lt;%link_rating_img%&gt;&quot;&gt; will produce &lt;IMG
+src=&quot;rating/3_half.gif&quot;&gt; and the browser should display the
+appropriate image, if the file is found.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_votes%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the number of votes of each link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Number</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_votes%&gt; will display N,
+where N is the number of times somebody voted for (rated) that specific link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_reviews%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the number of reviews of each link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             Number</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_reviews%&gt; will display N,
+where N is the number of reviews (not including pending) of that specific link</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_review_link%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays a link reference to be used in
+HTML &lt;a&gt; tag, href option to the reviews.tpl that will display the
+reviews for that link.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             relative path (link) that will
+display appropriate template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;A
+href=&quot;&lt;%link_review_link%&gt;&quot;&gt; Click here &lt;/A&gt; will
+produce a link Click here to the review page of that link.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_rate_link%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays a link reference to be used in
+HTML &lt;a&gt; tag, href option to the rate.tpl that will display the rating
+screen for that link.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              Same as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             relative path (link) that will
+display appropriate template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_top%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the top marker for each top link</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Text,
+content of the language variable lu_link_top or blank</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         Name&lt;span
+class=small&gt;&lt;%link_top%&gt;&lt;/span&gt; will display top or nothing,
+where top is the value of the language variable.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_pop%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the pop marker for each pop link</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Text,
+content of the language variable lu_link_pop or blank</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         Name&lt;span
+class=small&gt;&lt;%link_ pop %&gt;&lt;/span&gt; will display pop or
+nothing, where pop is the value of the language variable.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%link_new%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the new marker for each new link</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Text,
+content of the language variable lu_link_new or blank</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoBodyTextIndent style='margin-left:1.0in;text-indent:-1.0in'>Example:         Name&lt;span class=small&gt;&lt;%link_
+new%&gt;&lt;/span&gt; will display new or nothing, where new is the value
+of the language variable.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>&lt;%link_id%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the internal database id of each
+link. Has no meaning to the end user.</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Unique
+number</p>
+
+<p class=MsoNormal>Processing:      Short </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_id%&gt; will display 5647,
+where 5647 is the unique identifier of that specific link.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_remove_fav%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the URL for delete a link from the favorites list</p>
+
+<p class=MsoNormal>Scope:              Only
+used in list_fav_links.tpl</p>
+
+<p class=MsoNormal>Result:             URL</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoBodyTextIndent style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;A
+href=&quot;&lt;%link_remove_fav%&gt;&quot;&gt; Remove &lt;/A&gt;.</p>
+
+<p class=MsoBodyTextIndent style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_add_fav%&gt;</h5>
+
+<p class=MsoNormal>Description:     Displays
+the URL for adding  a link to the
+favorites list</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             URL</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoBodyTextIndent style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;A href=&quot;&lt;% link_add_fav
+%&gt;&quot;&gt; Remove &lt;/A&gt;.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_name%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by name choice in the
+link sort drop down. Used to allow (by including) or disallow (by removing)
+sorting by name for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;name&lt;/option&gt; tag, where name is the value of language
+variable lu_drop_name </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_name%&gt;&lt;/SELECT&gt;
+will produce the drop down with the choice name.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_date%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by date choice in the
+link sort drop down. Used to allow (by including) or disallow (by removing)
+sorting by date for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx selected&gt;
+date &lt;/option&gt; tag, where date is the value of language variable
+lu_drop_date</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_date
+%&gt;&lt;/SELECT&gt; will produce the drop down with the choice date.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_description%&gt;</h5>
+
+<p class=MsoBodyTextIndent style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by description choice
+in the link sort drop down. Used to allow (by including) or disallow (by
+removing) sorting by description for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;description&lt;/option&gt; tag, where description is the value of
+language variable lu_drop_description </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_description
+%&gt;&lt;/SELECT&gt; will produce the drop down with the choice description.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_user%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by link owner choice
+in the link sort drop down. Used to allow (by including) or disallow (by
+removing) sorting by link owners for end-users. Note that it will not sort by
+link owner name, but by link owner internal id (due to performance-related
+system restrictions). It can be used to display links grouped by their owners,
+rather than sorted.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;user&lt;/option&gt; tag, where user is the value of language
+variable lu_drop_user </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_user%&gt;&lt;/SELECT&gt;
+will produce the drop down with the choice user.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_editors_pick%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by editors pick
+choice in the link sort drop down. Used to allow (by including) or disallow (by
+removing) sorting by editors pick for end-users. Note that if the forcing of
+editors pick is enabled by the admin, the picked links will be displayed at
+the top overriding any sorting option. In that case this option becomes mute.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;pick&lt;/option&gt; tag, where pick is the value of language
+variable lu_drop_pick </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_editors_pick%&gt;&lt;/SELECT&gt;
+will produce the drop down with the choice pick.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_image%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by image choice in the
+link sort drop down. Used to allow (by including) or disallow (by removing)
+sorting by image for end-users. If links graphic file name has any meaning,
+sorting by it could provide additional value to the end user.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;image&lt;/option&gt; tag, where image is the value of language
+variable lu_drop_image </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_image%&gt;&lt;/SELECT&gt;
+will produce the drop down with the choice image.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_url%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by URL choice in the
+link sort drop down. Used to allow (by including) or disallow (by removing)
+sorting by URL for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx selected&gt;
+URL &lt;/option&gt; tag, where URL is the value of language variable lu_drop_url
+</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_url%&gt;&lt;/SELECT&gt;
+will produce the drop down with the choice URL.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_rating%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by rating choice in
+the link sort drop down. Used to allow (by including) or disallow (by removing)
+sorting by rating for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx selected&gt;
+rating &lt;/option&gt; tag, where rating is the value of language variable
+lu_drop_ rating </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_rating
+%&gt;&lt;/SELECT&gt; will produce the drop down with the choice rating.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_votes%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by the number of votes
+choice in the link sort drop down. Used to allow (by including) or disallow (by
+removing) sorting by votes for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;votes&lt;/option&gt; tag, where votes is the value of language
+variable lu_drop_votes </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_votes%&gt;&lt;/SELECT&gt;
+will produce the drop down with the choice votes.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_hits%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting by hits choice in the
+link sort drop down. Used to allow (by including) or disallow (by removing)
+sorting by hits for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;hits&lt;/option&gt; tag, where hits is the value of language
+variable lu_drop_hits </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_hits%&gt;&lt;/SELECT&gt;
+will produce the drop down with the choice hits.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_ascending%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting type option in a
+separate drop down. Will sort any option selected in the Sort drop down
+ascending. Used to allow (by including) or disallow (by removing) ascending
+sorting for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;Asc&lt;/option&gt; tag, where Asc is the value of language variable
+lu_drop_ascending </p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_ascending%&gt;&lt;/SELECT&gt;
+will produce the drop down with the choice Asc.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_drop_descending%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the sorting type option in a
+separate drop down. Will sort any option selected in the Sort drop down
+descending. Used to allow (by including) or disallow (by removing) descending
+sorting for end-users.</p>
+
+<p class=MsoNormal>Scope:              &lt;SELECT&gt;
+statement in sort_links.tpl or similar template</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             &lt;option valuexx
+selected&gt;Desc&lt;/option&gt; tag, where Desc is the value of language
+variable lu_drop_ descending.</p>
+
+<p class=MsoNormal>Processing:      Short</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;SELECT&gt;&lt;%link_drop_
+descending%&gt;&lt;/SELECT&gt; will produce the drop down with the choice
+Desc.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_id%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the internal database id of each
+link. Has no meaning to the end user.</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Unique
+number</p>
+
+<p class=MsoNormal>Processing:      Short </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_id%&gt; will display 5647,
+where 5647 is the unique identifier of that specific link.</p>
+
+<h5>&lt;%link_path%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the hierarchy path to the link. </p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Text</p>
+
+<p class=MsoNormal>Processing:      Short </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_path%&gt; will display
+Computers &gt; Internet if link is in Internet category.</p>
+
+<h5>&lt;%link_custX%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the custom link field X, where X
+is a number 1-6.</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Text</p>
+
+<p class=MsoNormal>Processing:      Short </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;%link_cust3%&gt; will display the
+data from the third custom field of that link.</p>
+
+<h5>&lt;%report_dead_link %&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Outputs the url for reporting dead
+link.  When clicked, will send email to
+all admin reporting the dead link.</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             URL</p>
+
+<p class=MsoNormal>Processing:      Short </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;a
+href=&lt;%report_dead_link%&gt;&gt;Report This Link&lt;/a&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;% link_user_name %&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the Name of the user who owns the
+link.</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Text</p>
+
+<p class=MsoNormal>Processing:      Short </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;a href=mailto:&lt;%
+link_user_email %&gt;&gt;&lt;%link_user_name %&gt;&lt;/a&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>&lt;%link_user_email%&gt;</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     Displays the email for the user who owns
+the link.</p>
+
+<p class=MsoNormal>Scope:              Same
+as &lt;%link_link%&gt;</p>
+
+<p class=MsoNormal>Result:             Text</p>
+
+<p class=MsoNormal>Processing:      Short </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         &lt;a href=mailto:&lt;% link_user_email
+%&gt;&gt;&lt;%link_user_name %&gt;&lt;/a&gt;</p>
+
+  <p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<!-- #EndEditable -->
+<CENTER>
+<P><IMG src="images/inlinksmall.gif" width="75" height="27"></P>
+<P class="footer">Intechnic Corporation, 2001. All Rights Reserved.</P>
+</CENTER>
+</BODY>
+<!-- #EndTemplate --></HTML>
