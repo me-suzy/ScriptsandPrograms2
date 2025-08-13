@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+
+<head>
+<title><%site_title%>: <%category_name%></title>
+
+<%if meta_name%>
+    <meta name="description" content="<%meta_name%>">
+<%endif%>
+<if meta_keywords%>
+    <meta name="keywords" content="<%meta_keywords%>">
+<%endif%>
+</head>
+<body bgcolor="##2D4253" link="#000000" alink="#000000" vlink="#000000">
+
+<p><strong class="title"> <%title_linked%> </strong></p>
+
+<h1><%site_title%>: <%category_clean%><small class="menu"> </small></h1>
+<br><%topx%><br>
+    <!-- Links in this category. -->
+    <%if links%>
+        <h2>Links: </h2>
+        <%links%>
+    <%endif%>          
+
+    <!-- Next/Previous links if spanning pages. -->
+    <p align=center>
+    <%if prev%>
+        <small><a href="<%prev%>">Prev <%build_links_per_page%></a></small>
+    <%endif%>
+    <%if next%>
+        <small><a href="<%next%>">Next <%build_links_per_page%></a></small>
+    <%endif%>   
+    </p>
+        
+<h2><!-- Search Bar --> </h2>
+        <form action="<%db_cgi_url%>/search.cgi" method="GET">
+        <h2>Search</h2>
+            <div class="margin">
+                <table border="0" cellspacing="0" cellpadding="0">
+                <tr><td><strong class="search">Looking for something in particular?</strong></td></tr>
+                <tr><td><input type="text" size=15 name="query"> <input type=submit value="Search!"></td></tr>
+                <tr><td><small class="more"><a href="<%db_cgi_url%>/search.cgi">More search options</a></small></td></tr>
+                </table>
+        </div>
+    </form>
+
+    
+<p><small class="update">Pages Updated On: <%date%> - <%time%> </small></p>       
+    
+</body>
+</html>
