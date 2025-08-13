@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>%%%SITE_TITLE%%% : Sign-In</title>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="%%%IFIMAGES%%%/cookie.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+function loadCookie() {
+ var cookie=document.cookie;
+ Email=getCookieValue(cookie,"Ecom_Email");
+ Email=decode(Email);
+if (Email){
+ document.login.saveall[0].checked = true;
+ }
+ else {
+ Email="";
+ document.login.saveall[1].checked = true;
+}
+ document.login.email.value=Email;
+
+ Password=getCookieValue(cookie,"Ecom_Password");
+ Password=decode(Password);
+ document.login.password.value=Password;
+}
+
+function saveCookie() {
+ Email=window.document.login.email.value;
+ Email=encode(Email);
+ var newCookie = "Ecom_Email="+Email+"; expires="
+ newCookie += "Tuesday, 09-Nov-10 23:12:40 GMT";
+ document.cookie=newCookie;
+
+ Password=window.document.login.password.value;
+ Password=encode(Password);
+ var newCookie = "Ecom_Password="+Password+"; expires="
+ newCookie += "Tuesday, 09-Nov-10 23:12:40 GMT";
+ document.cookie=newCookie;
+}
+
+function removeallCookies() {
+document.cookie="Ecom_Email=;";
+document.cookie="Ecom_Password=;";
+}
+
+function encode(s) {
+t=""
+for(var i=0;i<s.length;++i) {
+ch=s.charAt(i)
+if(ch=="/") t += "//"
+else if(ch==" ") t += "/b"
+else if(ch==",") t += "/."
+else if(ch==";") t += "/:"
+else if(ch=="\n") t += "/n"
+else if(ch=="\r") t += "/r"
+else if(ch=="\t") t += "/t"
+else if(ch=="\b") t += "/b"
+else t += ch
+}
+return t
+}
+function decode(s) {
+t=""
+if(s==null) return t
+for(var i=0;i<s.length;++i) {
+var ch=s.charAt(i)
+if(ch=="/") {
+++i
+if(i<s.length){
+ch=s.charAt(i)
+if(ch=="/") t += ch
+else if(ch==".") t += ","
+else if(ch==":") t += ";"
+else if(ch=="n") t += "\n"
+else if(ch=="r") t += "\r"
+else if(ch=="t") t += "\t"
+else if(ch=="b") t += " "
+}
+}else t += ch
+}
+return t
+}
+// --></SCRIPT>
+
+
+<!--#include file="%%%TEMPLATES_DIR%%%/header.html"-->
+
+      <table border=0 cellspacing=0 cellpadding=5 width="95%">
+        <tr bgcolor="%%%HEADING_COLOR%%%"> 
+          <td align=center> <font face="Verdana,Arial,Helvetica" size=1 color="#ffffff">SIGN-IN</font></td>
+        </tr>
+        <tr bgcolor="#ffffff"> 
+          <td> 
+
+
+<form name=login method=get action="%%%IF_URL%%%">
+
+<input type=hidden name=login value=2>
+
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%" bgcolor="#333333"><tr><td>
+<table border=0 cellspacing=1 cellpadding=15 width="100%"><tr bgcolor="#ffffff"><td>
+
+%%%COMMENT%%%
+
+<font size=2 face="Verdana,Arial,Helvetica" color="%%%HEADING_COLOR%%%"><b>What is your Email Address?</b></font>
+
+
+<blockquote><table border=0 cellspacing=0 cellpadding=2><tr><td><input type=text name="email" value="" size=35 maxlength=30></td></tr></table></blockquote>
+
+<font size=2 face="Verdana,Arial,Helvetica" color="%%%HEADING_COLOR%%%"><b>Do you have a Password?</b></font>
+
+<blockquote><table border=0 cellspacing=0 cellpadding=2>
+
+<tr><td><input type=radio name=usingpassword value="New"></td><td colspan=2><font size=1 face="Verdana,Arial,Helvetica">No, I am a New Customer.</font></td></tr>
+
+
+<tr><td><input type=radio name=usingpassword value="Yes" checked></td>
+<td><font size=1 face="Verdana,Arial,Helvetica">Yes, my Password is</font></td><td><input type=password name="password" value="" size=12 maxlength=30></td></tr>
+
+<tr><td><input type=radio name=usingpassword value="Forgot"></td><td colspan=2><font size=1 face="Verdana,Arial,Helvetica">Yes, but I forgot my Password.</font></td></tr>
+
+</table></blockquote>
+
+<table border=0 cellspacing=0 cellpadding=2>
+<tr><td><input type="radio" name=saveall value=1 onClick="saveCookie()"></td><td><font size=1 face="Verdana,Arial,Helvetica">Please remember my login information</font></td></tr>
+<tr><td><input type="radio" name=saveall value=2 onClick="removeallCookies()"></td><td><font size=1 face="Verdana,Arial,Helvetica">Don't remember my login information</font></td></tr>
+</table>
+
+          </td>
+        </tr>
+      </table>
+               </td>
+        </tr>
+      </table><br>
+
+<center><input type=image src="%%%IFIMAGES%%%/sign-in.gif" border=0 alt="Sign-In" width=137 height=30></center>
+
+ 
+
+
+</form>
+
+          </td>
+        </tr>
+      </table>
+
+<SCRIPT LANGUAGE="JavaScript"><!--
+ loadCookie()
+// --></SCRIPT>
+
+<!--#include file="%%%TEMPLATES_DIR%%%/footer.html"-->
+
+</body>
+</html>
