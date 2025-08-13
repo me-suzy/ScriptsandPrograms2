@@ -1,0 +1,26 @@
+<ul>
+<li>
+<font face="Verdana" size="2" color="black"><b>
+
+<%if ID < 1 %>
+<a href="<%URL%>" target=new><%Title%></a></b></font>
+<%endif%>
+
+<%if ID > 0 %>
+<a href="<%db_cgi_url%>/jump.cgi?ID=<%ID%>" target=new><%Title%></a></b></font>
+<%endif%>
+
+<br>
+<font face="Verdana" size=-1><%Description%>
+<%if ID > 0 %>
+<br>
+<font face="Verdana" size=-2>(Added: <%Date%> Hits: <%Hits%> Rating: <%Rating%> <a href="<%db_cgi_url%>/rate.cgi?ID=<%ID%>">Rate It</a> ) 
+<%endif%>
+</font>
+<%if Bid > 0 %>
+<br>
+<font face="Verdana" size=-2>
+<b>[Bid&nbsp;$<a href="<%db_cgi_url%>/advertiser.cgi"><%Bid%></a>&nbsp;]</b>
+</font>
+<%endif%>
+</ul>
