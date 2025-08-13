@@ -1,0 +1,47 @@
+<script language="javascript" src="lib/md5.js"></script>
+<script language="javascript">
+<!--
+  function doChallengeResponse() {
+    str = document.login.id_user.value + ":" +
+          MD5(document.foo.passwd.value) + ":" +
+          document.login.challenge.value;
+    document.login.response.value = MD5(str);
+    document.foo.passwd.value = "";
+    document.login.submit();
+  }
+// -->
+function checkIntro() {
+	
+}
+</script>
+
+<table class="tabla_" width="95" border="0" cellpadding="0" cellspacing="0">
+  <form name="login" method="POST" action="login.php" onSubmit="doChallengeResponse(); return false;">
+  <tr>
+    <td class="tabla_myng" width="119" height="17" valign="top" bgcolor="#BECCE7"><span class="myng_bottom"><img src="{images_dir}/cuadrito.gif" width="14" height="14">&nbsp;{_mynglogin}</span></td>
+  </tr>
+  <tr>
+    <td valign="top" height="18" bgcolor="#f3f3f3">
+      <input name="id_user" type="text" class="top_link" tabindex="1" size="7" maxlength="15">
+      <input name="user_login" type="submit" class="small"   value="Ok!">
+      <input type="hidden" name="login" value="ok">
+      <input type="hidden" name="response" value="">
+      <input type="hidden" name="challenge" value="{secret_challenge}">
+    </td>
+  </tr>
+  <tr>
+    <td class="tabla_myng" height="17" valign="top" bgcolor="#BECCE7"><span class="myng_bottom"><img src="{images_dir}/cuadrito.gif" width="14" height="14">&nbsp;{_myngpassword}</span></td>
+  </tr>
+   </form>
+   <form name='foo'>
+  <tr>
+    <td height="18" valign="top" bgcolor="#f3f3f3">
+      <input name="passwd" type="password" class="top_link" tabindex="2" onKeyUp="checkIntro(); return false;" size="7" maxlength="15"> <img src="{images_dir}/security.gif" border="0">
+    </td>
+  </tr>
+  </form>
+  <tr>
+    <td height="19" valign="top" bgcolor="#BECCE7"><span class="normal_bold"><img src="{images_dir}/cuadrito.gif" width="14" height="14">&nbsp;<a class="link_bottom" href="register.php">{_myngregister}</a></span></td>
+  </tr>
+</table>
+
