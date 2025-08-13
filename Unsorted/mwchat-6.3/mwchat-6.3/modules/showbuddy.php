@@ -1,0 +1,2 @@
+<?PHP
+  if ($STATUS[Registered] == "yes") { Post_System("<U><B>$LOCALE[DIALOG_Available_Buddies]:</B></U>", "syntax", $Room); $rgBuddy_SELECT = db_query(Validate(1000), $CONN); while($rgBuddyLists = db_fetch($rgBuddy_SELECT)) { $szPrinted = "yes"; Post_System("<I>$rgBuddyLists[buddy] $LOCALE[DIALOG_On_Buddy]</I>", "syntax", $Room); } if ($szPrinted != "yes") { Post_System("<I>$LOCALE[DIALOG_No_Buddies]</I>", "syntax", $Room); } } else { Post_System("<B>$LOCALE[DIALOG_Syntax_Error]</B> - /$rgMatches[1] $LOCALE[COMMON_Registered_Only]", "syntax", $Room); } ?>
