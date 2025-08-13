@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>Message anzeigen</title>
+<style>
+<!--
+a:link     { text-decoration: none      }
+a:hover    { text-decoration: underline }
+a:active   { text-decoration: none      }
+a:visited  { text-decoration: none      }
+
+a.newmsg:link     { color: #ff0000; text-decoration: none      }
+a.newmsg:hover    { color: #ff0000; text-decoration: underline }
+a.newmsg:active   { color: #ff0000; text-decoration: none      }
+a.newmsg:visited  { color: #ff0000; text-decoration: none      }
+
+a.oldmsg:link     { color: #000000; text-decoration: none      }
+a.oldmsg:hover    { color: #000000; text-decoration: underline }
+a.oldmsg:active   { color: #000000; text-decoration: none      }
+a.oldmsg:visited  { color: #000000; text-decoration: none      }
+
+a.dl:link     { color: #ffffff; text-decoration: none      }
+a.dl:hover    { color: #ffffff; text-decoration: underline }
+a.dl:active   { color: #ffffff; text-decoration: none      }
+a.dl:visited  { color: #ffffff; text-decoration: none      }
+-->
+</style>
+
+<SCRIPT language=javascript>
+<!--
+
+function LmOver(elem, clr)
+{elem.style.backgroundColor = clr;}
+
+function LmOut(elem, clr)
+{elem.style.backgroundColor = clr;}
+
+function LmDown(elem, clr)
+{elem.style.backgroundColor = clr;}
+
+
+ function Selector(toccbcc)
+   {
+      var url = "selectaddr.php?feld=" + toccbcc;
+      
+      if (toccbcc == "an")
+         url += "&preexisting=" + escape (document.smail.an.value);
+      else if (toccbcc == "cc")
+         url += "&preexisting=" + escape (document.smail.cc.value);
+      else if (toccbcc == "bcc")
+         url += "&preexisting=" + escape (document.smail.bcc.value);   
+   
+      var hWnd = window.open(url,"adresseb","width=300,height=360,resizable=yes,scrollbars=yes");
+      if ((document.window != null) && (!hWnd.opener))
+         hWnd.opener = document.window;
+   }
+//-->
+</SCRIPT>
+
+</head>
+<body background="templates/standard/bkg.gif">
+<center>
+<script language="javascript" src="brotator.php"></script>
+<br>
+<br>
+<form name="smail" method="post" action="icqsend.php">
+<table width="80%" cellspacing="1" bgcolor="#000000">
+<tr>
+ <td background="templates/standard/table.gif"><font face="arial" size="2" color="#ffffff">&nbsp;<b>Compose ICQ-Message</b></font></td>
+</tr>
+<tr>
+ <td bgcolor="#336699"><font face="arial" size="2"><br>
+<center>
+<table width="80%" bgcolor="#003366" cellspacing="1">
+<tr>
+<td align="left" bgcolor="#1f487f"><font face="arial" size="2" color="#ffffff"><b>From:</b></font></td>
+<td align="left" bgcolor="#336699">&nbsp;<font face="arial" size="2" color="#ffffff">%VON%<input type="hidden" name="from" value="%VON%"></font></td>
+</tr>
+
+<tr>
+<td align="left" bgcolor="#1f487f"><font face="arial" size="2" color="#ffffff"><b>Date:</b></font></td>
+<td align="left" bgcolor="#336699">&nbsp;<font face="arial" size="2" color="#ffffff">%DATUM%</font></td>
+</tr>
+
+<tr>
+<td align="left" bgcolor="#1f487f"><font face="arial" size="2" color="#ffffff"><b>To (ICQ UIN):</b></font></td>
+<td align="left" bgcolor="#336699">&nbsp;<font face="arial" size="2" color="#ffffff"><input type="text" name="an" style="width:95%"></font></td>
+</tr>
+
+
+<tr>
+<td align="left" bgcolor="#1f487f"><font face="arial" size="2" color="#ffffff"><b>Subject:</b></font></td>
+<td align="left" bgcolor="#336699">&nbsp;<font face="arial" size="2" color="#ffffff"><input type="text" name="betreff" style="width:95%"></font></td>
+</tr>
+
+<tr>
+<td align="left" bgcolor="#336699" colspan="2" height="240"><font face="arial" size="2" color="#ffffff">
+<textarea name="text" style="width:100%; height:100%"></textarea>
+</font></td>
+</tr>
+</table><br>
+<table width="80%" bgcolor="#003366" cellspacing="1">
+<tr>
+<td width="50%" bgcolor="#1f487f" onMouseover="LmOver(this, '#336699')" onMouseout="LmOut(this, '#1f487f')" onMouseDown="LmDown(this, '#336699')" align="center"><font face="arial" size="2" color="#ffffff"><b><a class="dl" href="javascript:document.forms['smail'].reset();">Reset</a></b></font></td>
+
+<td width="50%" bgcolor="#1f487f" onMouseover="LmOver(this, '#336699')" onMouseout="LmOut(this, '#1f487f')" onMouseDown="LmDown(this, '#336699')" align="center"><font face="arial" size="2" color="#ffffff"><b><a class="dl" href="javascript:document.forms['smail'].submit();">Submit</a></b></font></td>
+</tr>
+</table>
+</center><br>
+</font></td>
+</tr>
+</table>
+</form>
+<br>
+<font face="tahoma" size="1">%COPYRIGHT%</font>
+</center>
+</body>
+</html>
