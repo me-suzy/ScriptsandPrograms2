@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Template Introduction &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Template Introduction</h1>
+
+	<p>In ExpressionEngine, a "Template" effectively takes the place of a physical page on your site.  So, if you have a "main page" and a "comments" page, then you'll have two Templates.  Each of the Templates represents an entire page, so you do not have to worry about some of your code being on a physical page and some being in a template setting in the Control Panel; instead everything is together in one place now.  If you previously used pMachine Free or Pro, please note that the term "Template" no longer means quite the same thing, though it is similar.</p>
+
+	<p>With this new approach to Templates, individual physical pages on your site are eliminated completely.  Instead, ExpressionEngine takes care of turning your Templates into real pages when someone visits your site.  That means everything you need to do with your site can be done within the Control Panel, from changing settings to editing one of your Templates.</p>
+
+
+	<h2>What's in a Template</h2>
+
+	<p>Each of your Templates represents one entire page.  That means it will contain all the HTML for your page.  Here is an example of part of a Template:</p>
+
+	<img src="template_example.gif" width="584" height="465" alt="Example of a Template" title="Example of a Template" />
+
+	<p>You can see that for the most part it looks very much like a regular HTML page.  What sets the contents of a Template apart from a standard HTML page is that a Template can contain <a href="tag_introduction.html#tags">Tags</a>, which effectively represent dynamic data within your page.  Inside of a Tag you can also have <a href="tag_introduction.html#variables">Variables</a> (which affect what data gets displayed) and <a href="tag_introduction.html#parameters">Parameters</a> (which affect how the data is displayed).</p>
+
+	<p>You can even place PHP code within your Templates, which can allow you to do all sorts of things dynamically with your content.  If you've come from pMachine Free or Pro this is a big change and should add a great deal of flexibility to what you're accustomed to being able to do.</p>
+
+	<p>The combination of regular HTML, PHP, Tags, Variables, and Parameters allows you to create a page that can do an amazing variety of things.  If you can dream it up, chances are good that ExpressionEngine can make it happen.</p>
+
+	<h3>Nesting Templates</h3>
+
+		<p>You can even put a Template within another Template.  This ability to "nest" Templates will make it simple to do things such as have one Template with your page header, which you then place inside all your other Templates.  In that way if you change the single page header Template those changes will immediately take place throughout all your pages.</p>
+
+
+	<h2>Template Groups</h2>
+
+	<p>Your Templates will be clustered into groups called Template Groups.  For instance, you might want to create a specific weblog for your site that contained several pages.  You might make a "weblog" Template Group and then create "index", "comments", and "archives" Templates within that Group.  This allows you to easily organize the pages of your site.</p>
+
+
+	<h2>Viewing your Site</h2>
+
+	<p>Because you don't actually have physical pages on your site, the URL you use will determine what you see on your site.  At its simplest, you access pages on your site using this URL formula:</p>
+
+	<code>http://www.yoursite.com/index.php/{template_group}/{template}/</code>
+
+	<p>So, let's say that you've created the "weblog" Template Group mentioned above as well as the three Templates within the Group.  If you wanted to view the comments page you would simply use:</p>
+
+	<code>http://www.yoursite.com/index.php/weblog/comments/</code>
+
+	<p>ExpressionEngine would then show you the contents of the "comments" Template that you requested.  As far as a visitor to your site is concerned, it works just like a physical page would.  Now, let's say you want to see the "archives" page of that weblog.  Simply use:</p>
+
+	<code>http://www.yoursite.com/index.php/weblog/archives/</code>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
