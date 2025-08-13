@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Hotlink Protector - Protect Your Bandwidth From Hotlinkers</TITLE>
+</HEAD>
+<BODY vLink=#0000f0 aLink=#00f000 bgColor=#e5e5e5><DIV align=center>
+<CENTER>
+    <TABLE cellSpacing=1 cellPadding=0 width=748 bgColor=#000000 border=0>
+      <span class="other"></span> 
+      <TR> 
+        <TD bgColor=#ffffff> <span class="other"> </span> 
+          <DIV align=center> 
+            <CENTER>
+              <table width="100%" border="0">
+                <tr> 
+                  <td width="100%" height="49" valign="top"> 
+                    <table style="BORDER-RIGHT: #90a0b0 1px solid; BORDER-TOP: #90a0b0 1px solid; BORDER-LEFT: #90a0b0 1px solid; BORDER-BOTTOM: #90a0b0 1px solid" cellspacing=0 cellpadding=3 width="100%" bgcolor=#dfe4ee background=newshead_bg.gif border=0>
+                      <tbody> 
+                      <tr> 
+                        <td width="100%" height="2" bgcolor="#990000"><b><font face="arial" color="#FFFFFF">Installation 
+                          Instructions </font></b></td>
+                      </tr>
+                      </tbody> 
+                    </table>
+                    <blockquote> 
+                      <p><font face="arial" size="2">Thank you for purchasing 
+                        Hotlink Protector!<br>
+                        <br>
+                        Follow these simple instructions to install the script, 
+                        if you require assistance or need us to install for you, 
+                        contact us at <a href="mailto:help@hotlinkprotector.com">help@hotlinkprotector.com</a></font><b><font face="arial" size="2"><br>
+                        <br>
+                        <font size="3" color="#0000FF">Customization</font> <br>
+                        </font></b><font face="arial" size="2">First, open up 
+                        the .htaccess file with notepad. You will notice lines 
+                        like <br>
+                        <b>RewriteRule ^(.*)\.jpg$ r.php?a=$1.jpg [L]<br>
+                        </b>To protect a file type (that is not already included 
+                        in the file), insert the line </font><b><font face="arial" size="2"><br>
+                        RewriteRule ^(.*)\.XXX$ r.php?a=$1.XXX [L]<br>
+                        </font></b><font face="arial" size="2">where XXX is the 
+                        file type you would like to protect from hotlinking. To 
+                        remove a filetype, simply delete the line containing the 
+                        file type from the file.<br>
+                        Upload the file to your server in the directory you would 
+                        like to protect. To protect all directory trees, place 
+                        the htaccess file in the root directory.<br>
+                        <br>
+                        Next, open up r.php in notepad. There are several variables 
+                        that you may need to set. $domain contains &quot;safe&quot; 
+                        domains - users downloading from these domains will be 
+                        able to download their requested file. <b>Make sure your 
+                        domain is added to the list.</b> To add a safe domain, 
+                        use the syntax <b>$domain[X] = &quot;domain.com&quot;; 
+                        </b>on each line. X refers to an integer. For example, 
+                        to add a third domain to the list, use:<br>
+                        $domain[0] = &quot;domain1.com&quot;;<br>
+                        $domain[1] = &quot;domain2.com&quot;; </font><b><font face="arial" size="2"><a href="http://www.angelmovies.net/test.mpg"><br>
+                        </a></font></b><font face="arial" size="2">$domain[2] 
+                        = &quot;domain3.com&quot;; </font><b><font face="arial" size="2"><a href="http://www.angelmovies.net/test.mpg"><br>
+                        <br>
+                        </a></font></b><font face="arial" size="2">$logging is 
+                        the option on whether to log statistics or not. Set this 
+                        value to 1 to enable logging, 0 to disable it. <br>
+                        $password is the password needed to view the statistics. 
+                        Set this to whatever you like. MySQL is required for statistics. 
+                        $mini_log saves the data to a text file. Generally, if 
+                        you need to reduce server load turn this on - normally 
+                        this should be off.<br>
+                        <br>
+                        $sessions is the option on whether to enable sessions 
+                        or not. Sessions refers to the algorithm that makes sure 
+                        that users must visit your site in order to download a 
+                        file. This is used to allow people from downloading from 
+                        download accellerators, media player, etc without allowing 
+                        empty referrers to download your content. Once a user 
+                        visits your page, they may download files off your server 
+                        in any way they like for a timelimit set in $session_timeout. 
+                        This feature requires MySQL.<br>
+                        <br>
+                        $visitonly refers to whether users can download files 
+                        ONLY if they have visited your website. 1 to enable this, 
+                        0 to disable it. We have coded it so you can specify which 
+                        filetypes to incorporate $visitonly for. See below to 
+                        $v documentation for help on how to work with this. MySQL 
+                        and sessions are required for this to work.<br>
+                        <br>
+                        $redirect is the option on whether you would like to redirect 
+                        users to another file if they are hotlinking. Set this 
+                        to 1 to enable it, 0 to disable. Additional infomation 
+                        on how to edit the files sent to hotlinkers is below.<br>
+                        <br>
+                        $send_headers is used if you want the user to be redirected 
+                        to a similar filetype. It helps the browser determine 
+                        what is being sent to them. If youre redirecting to a 
+                        website or something, turn this off.<br>
+                        <br>
+                        $country_redirect allows you to redirect users from a 
+                        specific country to another page. $redirect_url is the 
+                        url to redirect them. When installing the script, the 
+                        country table may take a while to be created, since it 
+                        contains 15000+ records. Download the latest database 
+                        from http://www.hotlinkprotector.com/ip-to-country.csv, 
+                        and upload it to your webserver. To set the countries, 
+                        edit the $cr variables. Youll need the exact country name. 
+                        To get them, simply view the csv file with excel.<br>
+                        <br>
+                        $addiptosite automatically adds users ips to the database 
+                        if they visit one of your webpages. Edit $pagetypes to 
+                        set the extensions of your website. Be sure to edit your 
+                        .htaccess file and add the filetypes to there so the script 
+                        can catch requests to those filetypes.</font></p>
+                      <p><font face="arial" size="2">Additional headers are not 
+                        neccessary, but help a lot in helping the browser determine 
+                        what type of file is being sent, as well as its filesize 
+                        and type. They follow the syntax $m[<b>a</b>][<b>b</b>] 
+                        where <b>a</b> is the group, and <b>b</b> is the data. 
+                        When b is 0, it refers to the filetype for which the following 
+                        headers are sent for. When b &gt; 0, the script will send 
+                        the headers from 1 to infinity. Most common filetypes 
+                        are already accounted for, and you will likely not have 
+                        to edit this. $ma[x] are headers sent for ALL filetypes. 
+                        Headers are very powerful. You can add cache information 
+                        in headers or redirect to external servers.<br>
+                        <br>
+                        $r[<b>x</b>] refers to the files to send to users that 
+                        hotlink files. <b>x</b> is the group number for the files. 
+                        If you want to redirect users that hotlink a gif from 
+                        you to another image, look up gif in the table of $m[<b>a</b>][0], 
+                        and youll find it in the line $m[5][0] = &quot;gif&quot;;. 
+                        Insert the line $r[5] = &quot;file.gif&quot;; to redirect 
+                        hotlinkers that request *.gif to file.gif. <br>
+                        </font><b><font face="arial" size="2"><font face="arial" size="2"><br>
+                        </font></font></b><font face="arial" size="2"><font face="arial" size="2">$v</font></font><b><font face="arial" size="2"><font face="arial" size="2">[<b>x</b>] 
+                        </font></font></b><font face="arial" size="2"><font face="arial" size="2">follows 
+                        the same principle as <font face="arial" size="2">$r</font></font></font><b><font face="arial" size="2"><b><font face="arial" size="2"><font face="arial" size="2">[<b>x</b>]</font></font></b></font></b><font face="arial" size="2">. 
+                        <b>x</b> again is the group number of the files. If you 
+                        want to enable make sure visitors can only download a 
+                        file if they have visited your page, set $v[<b>x</b>] 
+                        = &quot;1&quot;;. This is best used for large files, such 
+                        as movies only. This will only work if a users IP has 
+                        been added to the MySQL table. The IP is automatically 
+                        added to legit users that download a filetype where $v[x] 
+                        is not 1, such as an image on your website that you have 
+                        not set the filetype to 1. <br>
+                        </font><b><font face="arial" size="2"><font size="3" color="#0000FF"><br>
+                        Installation<br>
+                        </font></font></b><font face="arial" size="2">After configuring 
+                        the r.php, upload it to your webserver in the directory 
+                        of htaccess. Open up the file r.php in a webbrowser to 
+                        install the script (specifically the mysql tables). Visit 
+                        r.php?p=PASSWORD (the password you set in the file) to 
+                        view statistics and to make sure that the script was installed 
+                        correctly. That should be it, your script is all setup!<br>
+                        <br>
+                        <b><font face="arial" size="2"><font size="3" color="#0000FF">Commands 
+                        for r.php?<br>
+                        </font><b><font face="arial" size="2">p=PASSWORD</font></b>:</font></b><font face="arial" size="2"> 
+                        This</font> loads up the stats log<br>
+                        <b><font face="arial" size="2">p=PASSWORD&amp;c=fluship: 
+                        </font></b><font face="arial" size="2">This clears the 
+                        ip table. Used for debugging<br>
+                        </font><b><font face="arial" size="2">p=PASSWORD&amp;c=flushall: 
+                        </font></b><font face="arial" size="2">This clears all 
+                        tables. Used for debugging</font><br>
+                        <b><font face="arial" size="2">p=PASSWORD&amp;a=FILENAME&amp;ref=REFERRER: 
+                        </font></b><font face="arial" size="2">This manually sets 
+                        a specific filename, and referrer to the script. Used 
+                        for debugging</font> <br>
+                        <br>
+                        Feel free to contact me if you have any other questions. 
+                        help@hotlinkprotector.com or ICQ 146423631</font></p>
+                    </blockquote>
+                  </td>
+                </tr>
+              </table>
+            </CENTER>
+          </DIV>
+        </TD>
+      </TR>
+    </TABLE>
+  </CENTER></DIV>
+
+</BODY></HTML>
