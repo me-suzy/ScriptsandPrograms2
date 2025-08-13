@@ -1,0 +1,106 @@
+{header_menu_template}
+
+<link rel="stylesheet" href="{style_dir}admin.css" type="text/css">
+<!-- Include the Admin JavaScript Library -->
+<script language="JavaScript" src="{home_dir}admin/includes/admin.js"></script>
+
+<div id="Layer1" style="position:absolute; left:125px; top:79px; width:488px; height:111px; z-index:1">
+<table width="400" border="0" cellspacing="0" cellpadding="0" class="menu_table">
+  <tr>
+    <td>
+      <table width="500" border="0" cellspacing="0" cellpadding="0" align="left">
+        <tr>
+          <td class="code"> <div align="center"><span class="title">&nbsp;News Servers </span></div></td>
+        </tr>
+      </table>
+      <br>
+      <form name="form" method="post" action="detail.php">
+        <br>
+        <table width="479" border="0" cellspacing="0" cellpadding="3" align="center">
+          <!-- Server Host-->
+          <tr>
+            <td width="172" align="right" class="top_link">Host:&nbsp;</td>
+            <td width="307">
+              <input type="text" name="serv_host" value="{serv_host}" class="form_admin">
+            </td>
+          </tr>
+
+          <!--
+          <tr>
+            <td width="172" align="right" class="texto_azulnegr" valign="top">Foto:&nbsp;</td>
+            <td width="307"> <img src="{foto}" border="0"><br>
+              <!input type="text" name="foto" value="{nombre_foto}" class="campos_gestion">
+              <input name="fichero" value="{nombre_foto}" class="campo_ficha">
+              <a href="javascript:onclick=ftp(document.formulario.fichero)" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('adjun','','/gestion/images/botones/adjuntar2.gif',1)"><img name="adjun" border="0" src="/gestion/images/botones/adjuntar1.gif" width="70" height="16"></a><br>
+            </td>
+          </tr>
+          -->
+          
+
+          <!-- Server Port -->
+          <tr>
+            <td width="172" align="right" class="top_link">Port:&nbsp;</td>
+            <td width="307">
+              <input type="text" name="serv_port" value="{serv_port}" class="form_admin">
+            </td>
+          </tr>
+
+          <!-- Server Login -->
+          <tr>
+            <td width="172" align="right" class="top_link">Login:&nbsp;</td>
+            <td width="307">
+              <input type="text" name="serv_login" value="{serv_login}" class="form_admin">
+            </td>
+          </tr>
+
+          <!-- Server Password -->
+          <tr>
+            <td width="172" align="right" class="top_link">Password:&nbsp;</td>
+            <td width="307">
+              <input type="password" name="serv_passwd" value="{serv_passwd}" class="form_admin" >
+            </td>
+          </tr>
+
+          <!-- NewsGroups list -->
+           <!-- BEGIN group_list_block -->
+          <tr>
+            <td width="172" align="right" class="top_link" valign="top">NewsGroups List:&nbsp;</td>            
+            <td width="307">
+              <input type="text" name="file" value="{file_name}" class="form_admin">
+              <a class="top_link" href="javascript:onclick=get_list(document.form.file,'{serv_host}')">Get NewsGroups List! </a><br>
+            </td>
+          </tr>
+           <!-- END group_list_block -->
+          
+          <tr>
+            <td colspan="2"><table width="0%" border="0" cellspacing="0" cellpadding="2" align="center">
+                                    <tr> 
+                                        <td> 
+                                            <!-- BEGIN add_block -->
+                                            <input type="button" onClick="{add_link}" value="Add" class="button"> 
+                                            <!-- END add_block -->
+                                        </td>
+                                        <td> 
+                                            <!-- BEGIN modify_block -->
+                                            <input type="button" onClick="{modify_link}" value="Modify" class="button"> 
+                                            <!-- END modify_block -->
+                                        </td>
+                                        <td> 
+                                            <!-- BEGIN del_block -->
+                                            <input type="button" onClick="{del_link}" value="Delete" class="button"> 
+                                            <!-- END del_block -->
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div align="center"></div>
+            </td>
+          </tr>
+        </table>
+        <br>
+            <input type="hidden" name="serv_id" value="{serv_id}">
+            <input type="hidden" name="action">
+      </form>
+    </td>
+  </tr>
+</table>
+</div>
