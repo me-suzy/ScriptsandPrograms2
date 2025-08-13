@@ -1,0 +1,81 @@
+#########################################################
+#                   PC NameCheck                        #
+#########################################################
+#                                                       #
+#                                                       #
+# This script was created by:                           #
+#                                                       #
+# PerlCoders Web Specialties PTY.                       #
+# http://www.perlcoders.com                             #
+#                                                       #
+# This script and all included modules, lists or        #
+# images, documentation are copyright only to           #
+# PerlCoders PTY (http://perlcoders.com).               #
+#                                                       #
+# Purchasers are granted rights to use this script      #
+# on any site they own. There is no individual site     #
+# license needed per site.                              #
+#                                                       #
+# Any copying, distribution, modification with          #
+# intent to distribute as new code will result          #
+# in immediate loss of your rights to use this          #
+# program as well as possible legal action.             #
+#                                                       #
+# This and many other fine scripts are available at     #
+# the above website or by emailing the authors at       #
+# staff@perlcoders.com or info@perlcoders.com           #
+#                                                       #
+#########################################################
+
+PURPOSE / FUNCTIONS
+ - In today's world of the web, having the name is just as important - maybe
+   even moreso - as having the content. A memorable domain name
+   ("www.yoursite.com") can increase the number of visitors to your site
+   exponentially; as well as repeat hits from clients remembering your
+   URL, a lot of people will also instinctively try addresses such as
+   "download.com", "freestuff.com", "hotchicks.com"...
+ - So get the name you want! If you know that a domain name is owned by
+   someone who doesn't use or want it, or that is due to expire soon, simply
+   run NameCheck regularly and you will be notified AS SOON AS the name is
+   dropped!
+ - Scorching speed; forking allows many names to be checked simultaneously.
+   In tests, a list of 150 names (.com, .net, .org, .uk) were checked in 
+   just 18s, on a 56k connection!
+ - Returns the results you ask for - in-depth process summaries, a simple
+   list of names, the domains that *are* taken; whatever you want!
+ 
+
+USAGE
+ - To run the script, execute the following commands:
+	$ chmod +x namecheck
+	$ ./namecheck -h
+ - A help dialog should now be displayed. If an error message similar
+   to "No such file or directory" is returned, the path to the perl binary
+   is incorrect - edit the top line ("#!/usr/bin/perl") to point to the right
+   location.
+ - For basic usage, just use:
+	 ./namecheck <domain_name_listfile>
+   Add the -f flag for much faster performance. Increase the number of
+   child processes spawned with "-m <n>" - increasing n above 50 is not
+   recommended.
+ - It is recommended that, if you wish to know if a name has been dropped,
+   that the script is set up in crontab to run at least once a day. Some
+   domain databases update even more frequently than once an hour!
+   
+   To run the script every night at midnight, add the line:
+   
+0 0 * * * root (cd /path/to/name/check && ./namecheck freedomains)
+
+   to your crontab.
+   
+   If you'd prefer it runs more often - every 6 hrs in this example -
+   and print those domains *not* taken, in short form, use:
+
+0 0,6,12,18 * * * root (cd /path/to/name/check && ./namecheck -iq freedomains)
+
+
+	-
+
+   http://www.adultdesignz.com
+   http://www.perlcoders.com
+
