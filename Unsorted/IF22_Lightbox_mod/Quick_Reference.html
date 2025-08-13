@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Lighbox readme</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+     
+      
+<h1 align="CENTER">Quick Reference: Upgrading<Br>
+  IF 2.2 Basic/Pro<Br>
+  to<Br>
+  IF 2.2 Basic/Pro + Lightbox</h1>
+      <hr size=1 noshade>
+      
+<p align="center">For full documentation, please visit: <a href="http://www.imagefolio.com/users">http://www.imagefolio.com/users</a></p>
+<p>This document covers the lightbox installation of BizDesign ImageFolio 2.2 
+  &quot;lightbox ready&quot; Edition on Unix and Windows systems. You should have 
+  IF 2.2 Basic/Pro working before continuing. Also make sure you have the &quot;lightbox 
+  ready&quot; version installed of the IF 2.2 scripts. You can find out if you 
+  are using a &quot;lightbox ready&quot; version by opening any IF 2.2 script 
+  in a text editor. Somewhere at the top it should say &quot;lightbox ready&quot;.</p>
+      <h2>Lightbox Installation</h2>
+<center>      
+  <table width="90%" border="0" cellspacing="0" cellpadding="5">
+    <tr> 
+      <td bgcolor="#CCCCCC"> 
+        <p><b>CREATE</b> ON SERVER <b>OUTSIDE</b> CGI DIRECTORY:<br>
+          <code>imagefolio/lightbox</code> directory (UNIX chmod 777)<br>
+          <code>imagefolio/lightbox/emailed</code> directory (UNIX chmod 777)<br>
+          <code>imagefolio/lightbox/zipped</code> directory (UNIX chmod 777) 
+      </td>
+    </tr>
+    <tr> 
+      <td><b>ADD</b> TO SERVER: (ASCII upload)<br>
+        <code>imagefolio/lightbox/lb.js</code><br>
+        <code>imagefolio/lightbox/bb.js</code><br>
+        <code>imagefolio/lightbox/ss.js</code><br>
+        <code>imagefolio/lightbox/slideshow.html</code><br>
+        <code>imagefolio/lightbox/index.html</code><br>
+        <code>imagefolio/lightbox/emailed/index.html</code><br>
+        <code>imagefolio/lightbox/zipped/index.html</code> </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC"><b>CREATE</b> ON SERVER <b>INSIDE</b> CGI DIRECTORY:<br>
+        <code>imagefolio/cgi-bin/if_lightbox</code> directory (UNIX chmod 755) 
+      </td>
+    </tr>
+    <tr> 
+      <td><b>ADD</b> TO SERVER: (upload in ASCII)<br>
+        <code>imagefolio/cgi-bin/if_lightbox/lightbox.pl</code><br>
+        <code>imagefolio/cgi-bin/if_lightbox/lightbox_build.cgi</code> (UNIX chmod 
+        755, check path to perl)<br>
+        <code>imagefolio/cgi-bin/if_lightbox/lightbox_config.pl</code><br>
+        <code>imagefolio/cgi-bin/if_lightbox/lightbox_send.cgi</code> (UNIX chmod 
+        755, check path to perl)<br>
+        <code>imagefolio/cgi-bin/if_lightbox/lightbox_zip.cgi</code> (UNIX chmod 
+        755, check path to perl)</td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC"><b>EDIT</b> <code>lightbox_config.pl</code><br>
+        Open <code>lightbox_config.pl</code> in a text editor and follow directions.</td>
+    </tr>
+    <tr bgcolor="#FF9999"> 
+      <td><b>RUN</b> <code>lightbox_build.cgi</code> <font size="4"><b>!!!</b></font><br>
+        Open your Web browser and type in the URL to <code>lightbox_build.cgi</code>. 
+        Whenever you make a change to <code>config.pl</code> or <code>lightbox_config.pl</code> 
+        you need to run <code>lightbox_build.cgi</code> in your browser. This 
+        will create the file <code>config.js</code> in your <code>lightbox</code> 
+        directory. This is a JavaScript Source file with all the settings that 
+        the lightbox needs in order to function. Just remember: <b>always</b> 
+        run <code>lightbox_build.cgi</code> as the last step<b>!</b> ImageFolio 
+        2.2 Pro owners can run <code>lightbox_build.cgi</code> from within the 
+        admin area (only after you set <code>"$display_lightbox=1;"</code> in 
+        your <code>config.pl</code>) </td>
+    </tr>
+    <tr bgcolor="#CCCCCC"> 
+      <td><b>DONE</b><br>
+        Now you only have to set <code>"$display_lightbox=1;"</code> in your <code>config.pl</code> 
+        and you are ready. Open your Web browser and type in the URL to <code>imageFolio.cgi</code>. 
+        If everything was installed correctly, you will see that your gallery 
+        has been updated to include the lightbox. Click on the any category to 
+        verify that everything is working properly. If things do not look correct, 
+        check your paths and settings in <code>lightbox_config.pl</code> and run 
+        <code>lightbox_build.cgi</code> again. </td>
+    </tr>
+  </table> 
+      <hr size=1 noshade>
+    <table width="90%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+      <td><b><font color="#666666">Note for Unix/Linux users...</font></b><font color="#666666"><br>
+        Most text editors are set up to save files with Windows line endings. 
+        If you experience server errors when executing a script, you may need 
+        to change/set the preferences in your text editor to save files with UNIX 
+        line endings.</font></td>
+    </tr>
+  </table>
+</center>
+</body>
+</html>
