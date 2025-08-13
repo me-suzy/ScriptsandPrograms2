@@ -1,0 +1,20 @@
+/*	$Id: ebay_EOA_state.sql,v 1.2 1999/05/19 02:35:06 josh Exp $	*/
+/* 	create objects needed by parallel EOA */
+
+CREATE SEQUENCE EBAYQA.EBAY_EAO_SEQUENCE 
+START WITH 1 
+INCREMENT BY 1 
+MINVALUE 1 
+MAXVALUE 100
+NOCACHE  
+CYCLE ;
+
+
+CREATE TABLE EBAY_EOA_STATE ( 
+  SEQID      NUMBER( 38 ), 
+  STARTED    DATE, 
+  PID        VARCHAR2(10), 
+  FROM_TIME  DATE, 
+  END_TIME   DATE); 
+
+
