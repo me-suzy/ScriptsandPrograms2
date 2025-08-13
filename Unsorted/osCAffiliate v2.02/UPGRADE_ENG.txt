@@ -1,0 +1,198 @@
+/*
+  $Id: UPGRADE_ENG.txt,v 2.00 2003/10/12
+
+  OSC-Affiliate
+
+  Contribution based on:
+
+  osCommerce, Open Source E-Commerce Solutions
+  http://www.oscommerce.com
+
+  Copyright (c) 2002 - 2003 osCommerce
+
+  Released under the GNU General Public License
+*/
+
+NOTE: This is a loaded release version of the osCAffiliate module for osCommerce.
+
+This release is based on the development version of osCAffiliate which can be found at
+http://sourceforge.net/projects/oscaffiliate
+
+PLEASE NOTE. THIS IS A LOADED VERSION BASED ON THE CVS DEVELOPMENT VERSION.
+
+The module has been designed to be intergrated into osCommerce. 
+While the module is based on the release version of osCommerce 2.2 Milestone 2.
+
+It may be possible to intergrate this module with CVS versions of osCommerce 2.2 but no support is given, 
+due to the constantly changing code base of the CVS
+
+Unlike some other mods this module has been designed in such a way as to have 
+minimal impact on the osC core files, which allows for easy upgrades as newer 
+versions of the module are released.
+
+
+For details on the official development version of this module go to:
+http://sourceforge.net/projects/oscaffiliate
+
+
+********  TO INSTALL **********
+
+UPGRADE INSTALLATIONS ONLY (FOR NEW INSTALLS SEE THE INCLUDED FILE NAMED INSTALL_ENG.txt)
+
+
+Upload all files to corresponding folders of your osCommerce site.
+
+You must also perform a few manual alterations to your osCommerce files:
+
+THERE ARE affiliate_configure.php files in the catalog/includes and admin/includes folders -> look at them !!!
+
+Read the FAQ
+
+
+********  IT IS STRONGLY SUGGESTED TO MAKE A BACK-UP OF THESE FILES FIRST **********
+
+
+MySQL ALTERATIONS
+
+Insert the new tables found in the SQL_chanelog.txt file into your osCommerce catalog database.
+
+
+CATALOG ALTERATIONS
+
+
+ - NO ALTERATIONS REQUIRE :)
+
+
+##################################################################################################################
+
+You have a choice of 2 options in the admin when upgrading. You can choose to delete your admin/index.php file 
+and use the included file called:
+
+  index.ALT.php 
+
+Just simply delete your current index file and replace it with the included one, 
+making sure to rename the new one back to index.php or you can do the following edits to your code:
+
+
+ADMIN ALTERATIONS
+
+In index.php in the admin directory find line 13 approx
+
+  require('includes/application_top.php');
+
+and on a new line add the following code after it:
+
+  require(DIR_WS_CLASSES . 'currencies.php');
+  $currencies = new currencies();
+
+
+In index.php in the admin directory find line 106 approx
+
+                <td width="140" valign="top"><table border="0" width="140" height="390" cellspacing="0" cellpadding="2">
+
+
+and replace that line with the following code :
+
+                <td width="160" valign="top"><table border="0" width="160" height="390" cellspacing="0" cellpadding="2">
+
+
+
+In index.php in the admin directory find lines 167 to 173 approx
+
+  $contents[] = array('params' => 'class="infoBox"',
+                      'text'  => BOX_ENTRY_CUSTOMERS . ' ' . $customers['count'] . '<br>' .
+                                 BOX_ENTRY_PRODUCTS . ' ' . $products['count'] . '<br>' .
+                                 BOX_ENTRY_REVIEWS . ' ' . $reviews['count']);
+
+  $box = new box;
+  echo $box->menuBox($heading, $contents);
+
+  echo '<br>';
+
+and on a new line add the following code after it:
+
+
+$affiliate_sales_raw = "select count(*) as count, sum(affiliate_value) as total, sum(affiliate_payment) as payment from " . TABLE_AFFILIATE_SALES . " ";
+$affiliate_sales_query= tep_db_query($affiliate_sales_raw);
+$affiliate_sales= tep_db_fetch_array($affiliate_sales_query);
+
+$affiliate_clickthroughs_raw = "select count(*) as count from " . TABLE_AFFILIATE_CLICKTHROUGHS . " ";
+$affiliate_clickthroughs_query=tep_db_query($affiliate_clickthroughs_raw);
+$affiliate_clickthroughs= tep_db_fetch_array($affiliate_clickthroughs_query);
+$affiliate_clickthroughs=$affiliate_clickthroughs['count'];
+
+$affiliate_transactions=$affiliate_sales['count'];
+if ($affiliate_transactions>0) {
+	$affiliate_conversions = tep_round($affiliate_transactions/$affiliate_clickthroughs,6)."%";
+}
+else $affiliate_conversions="n/a";
+
+$affiliate_amount=$affiliate_sales['total'];
+if ($affiliate_transactions>0) {
+	$affiliate_average=tep_round($affiliate_amount/$affiliate_transactions,2);
+}
+else {
+	$affiliate_average="n/a";
+}
+$affiliate_commission=$affiliate_sales['payment'];
+
+$affiliates_raw = "select count(*) as count from " . TABLE_AFFILIATE . "";
+$affiliates_raw_query=tep_db_query($affiliates_raw);
+$affiliates_raw = tep_db_fetch_array($affiliates_raw_query);
+$affiliate_number= $affiliates_raw['count'];
+
+
+  $heading = array();
+  $contents = array();
+
+  $heading[] = array('params' => 'class="menuBoxHeading"',
+                     'text'  => BOX_TITLE_AFFILIATES);
+
+  $contents[] = array('params' => 'class="infoBox"',
+                      'text'  => BOX_ENTRY_AFFILIATES . ' ' . $affiliate_number . '<br>' .
+                                 BOX_ENTRY_CONVERSION . ' ' . $affiliate_conversions . '<br>' .
+                                 BOX_ENTRY_COMMISSION . ' ' . $currencies->display_price($affiliate_commission, ''));
+
+  $box = new box;
+  echo $box->menuBox($heading, $contents);
+
+  echo '<br>';
+
+
+********  TO USE THIS MODULE **********
+
+All you will need to do is go into your stores admin and select the store configuration section. 
+You will find a tab under this section called Affiliate Configuration. Select this tab and and 
+set up your basic info such as affiliate rate percent, contact email etc.
+
+Then move into the Affiliate Section of your store's admin and setup Banners, Links etc.
+
+Taxes:
+It's possible to use taxes on the affiliate provision. At the moment you can adjust the settings in the
+affiliate_configure.php file located in the admin/includes/ folder.
+
+Please tell us, if you handle the taxes for provisions in an other way at your country.
+
+
+********  IT IS STRONGLY SUGGESTED TO MAKE A BACK-UP OF THESE FILES FIRST **********
+
+
+
+********  BUGS **********
+
+If you find any bugs please report them at http://sourceforge.net/projects/oscaffiliate or at the osCommerce Support Site
+ 
+
+********  DEVELOPERS **********
+
+Henri Schmidhuber IN-Solution   	http://www.in-solution.de	(Developer, Project Manager)
+	Donate via paypal:  		https://www.paypal.com/xclick/business=henri%40in-solution.de
+	Amazon.de Wishlist: 		http://www.amazon.de/exec/obidos/wishlist/EQKIUJPZ63E2
+
+Steve Kemp   Snowtech Services  	http://www.snowtech.com.au	(Developer)
+	Donate via paypal:  		https://www.paypal.com/xclick/business=info%40alpinehosting.net
+
+
+********  CREDITS **********
+
+Credit to everyone that has inspired us in the development of this evolving module for osCommerce.
