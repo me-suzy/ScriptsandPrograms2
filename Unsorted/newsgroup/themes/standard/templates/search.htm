@@ -1,0 +1,84 @@
+<table width="642" border="0" cellspacing="0" cellpadding="0" height="188">
+  <tr> 
+    <td colspan="2" align="left" valign="top" bgcolor="#F3F3F3" class="normal"> 
+      <div align="left" class="normal"> <font color="#000000"><b>&nbsp;<font color="#CC0000"><img src="{images_dir}/search.gif" width="34" height="32"></font><br />
+        &nbsp;MyNewsGroups :)</b></font> <b><font color="#CC0000">{_myngsearch_engine}</font></b> 
+        <br />
+        &nbsp;<span class="error">{error}</span> <br>
+        <br>
+      </div></td>
+  </tr>
+  <tr> 
+    <td width="235" align="left" valign="top" bgcolor="#F3F3F3" class="normal">&nbsp;&nbsp;&nbsp;{_myngsearch_one_group}:<br /> 
+      <br /> <form action="search.php" method="post">
+        <input type=hidden name="action" value="search_group">
+        &nbsp;&nbsp; 
+        <select name="group" class="normal">
+          <!-- BEGIN group_block -->
+          <option value="{group}">{group}</option>
+          <!-- END group_block -->
+        </select>
+        <br />
+        &nbsp;&nbsp; 
+        <input type="text" class="normal" name="words" size="20" maxlength="30">
+        <input type="submit" class="normal" name="submit_1" value="{_mynggo}">
+      </form>
+      &nbsp;</td>
+    <td width="415" align="left" valign="top" bgcolor="#F3F3F3" class="normal">&nbsp;&nbsp;{_myngsearch_all_groups}:<br /> 
+      <br /> <form action="search.php" method="post">
+        <input type=hidden name="action" value="search_all">
+        &nbsp; 
+        <input type="text" class="normal" name="words" size="20" maxlength="30">
+        <input type="submit" class="normal" name="submit" value="{_mynggo}">
+      </form></td>
+  </tr>
+  <tr> 
+    <td colspan="2" align="left" valign="top" bgcolor="#F3F3F3" class="normal"><br> 
+    <!-- BEGIN result_table_block -->
+      <table border="0" align="left" cellpadding="3" cellspacing="0">
+        <tr bgcolor="#BECCE7"> 
+          <td class="normal_bold" colspan="7"><span class="normal"><font color="#003399">&nbsp;<img src="{images_dir}/search2.gif" width="20" height="20">{_myngsearch_results} 
+            </font></span></td>
+        </tr>
+        <tr bgcolor="#336699"> 
+          <td class="normal_bold">&nbsp;</td>
+          <td class="normal_bold"><font color="#FFFFFF">{_myngdate}</font></td>
+          <td class="normal_bold"><font color="#FFFFFF">{_myngsubject}</font></td>
+          <td class="normal_bold"><font color="#FFFFFF">{_myngauthor}</font></td>
+          <td class="normal_bold" bgcolor="#336699"><font color="#FFCC00">{_mynggroup}</font></td>
+          <td class="normal_bold"><font color="#FFCC00">{_myngreadings}</font></td>
+          <td class="normal_bold">&nbsp;</td>
+        </tr>
+        <!-- BEGIN result_block -->
+        <tr bgcolor="#336699"> 
+          <td><a href={group_url}><img src="{images_dir}/posticon.gif" border=0 width="14" alt={message} height="11"></a></td>
+          <td class="normal" bgcolor="#E2ECF5">{date}</td>
+          <td class="normal" bgcolor="#E2ECF5"><a class="text" href={article_url}>{subject}</a></td>
+          <td class="normal" bgcolor="#E2ECF5">{sender}</td>
+          <td class="normal" bgcolor="#E2ECF5"><a class="text" href="tree.php?grp_id={grp_id}">{group}</a></td>
+          <td class="normal" bgcolor="#E2ECF5">{readings}</td>
+          <td class="normal" bgcolor="#336699">&nbsp;</td>
+        </tr>
+        <!-- END result_block -->
+        <tr bgcolor="#336699"> 
+          <td>&nbsp;</td>
+          <td class="normal" bgcolor="#336699">&nbsp;</td>
+          <td class="normal" bgcolor="#336699">&nbsp;</td>
+          <td class="normal" bgcolor="#336699">&nbsp;</td>
+          <td class="normal" bgcolor="#336699">&nbsp;</td>
+          <td class="normal" bgcolor="#336699">&nbsp;</td>
+          <td class="normal" bgcolor="#336699">&nbsp;</td>
+        </tr>
+      </table>
+	  <!-- END result_table_block -->
+      <div align="center"></div></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="top" bgcolor="#F3F3F3" class="normal"><br />
+      &nbsp;<span class="small"><img src="{images_dir}/icon41.gif" width="15" height="15"> 
+      {_myngand_operation} <br />
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      <br>
+      </span></td>
+  </tr>
+</table>
