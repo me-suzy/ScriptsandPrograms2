@@ -1,0 +1,268 @@
++----------------------------------------------------------------------+
+| ModernBill [TM] .:. Client Billing System                            |
++----------------------------------------------------------------------+
+| Copyright (c) 2001-2002 ModernGigabyte, LLC                          |
++----------------------------------------------------------------------+
+| This source file is subject to the ModernBill End User License       |
+| Agreement (EULA), that is bundled with this package in the file      |
+| LICENSE, and is available at through the world-wide-web at           |
+| http://www.modernbill.com/extranet/LICENSE.txt                       |
+| If you did not receive a copy of the ModernBill license and are      |
+| unable to obtain it through the world-wide-web, please send a note   |
+| to license@modernbill.com so we can email you a copy immediately.    |
++----------------------------------------------------------------------+
+| Authors: ModernGigabyte, LLC <info@moderngigabyte.com>               |
+| Support: http://www.modernsupport.com/modernbill/                    |
++----------------------------------------------------------------------+
+| ModernGigabyte and ModernBill are trademarks of ModernGigabyte, LLC. |
++----------------------------------------------------------------------+
+
+------------------------------------------------
+* Version           3.1.1 Stable               *
+* Date:             2002/06/13                 *
+* DB Changes?       Yes                        *
+* Files Changed?    YES (16)                   *
+* NOTES: 2checkout, not complete.              *
+------------------------------------------------
+
+CREATE TABLE sessions (
+       id varchar(50) NOT NULL default '',
+       data mediumtext NOT NULL,
+       t_stamp timestamp(14) NOT NULL,
+       PRIMARY KEY (id),
+       KEY t_stamp (t_stamp)
+) TYPE=MyISAM;
+
+ALTER TABLE config
+       ADD config_51 VARCHAR(255),
+       ADD config_52 VARCHAR(255),
+       ADD config_53 VARCHAR(255),
+       ADD config_54 VARCHAR(255),
+       ADD config_55 VARCHAR(255),
+       ADD config_56 VARCHAR(255),
+       ADD config_57 VARCHAR(255),
+       ADD config_58 VARCHAR(255),
+       ADD config_59 VARCHAR(255),
+       ADD config_60 VARCHAR(255);
+
+[v2 package display]   order/index.php
+[feature name sql err] order/compare.php
+[v2 package display]   order/config.php
+[v2 package display]   order/include/cases/step_package_select.case.inc.php
+[mysql sessions]       include/functions.php
+[fix 9 order limit]    include/config/config.selects.php
+[revised client dtls]  include/html/client_details.inc.php
+[revised client dtls]  include/html/client_package.inc.php
+[revised client dtls]  include/html/cases/admin.package.case.inc.php
+[mysql sessions]       include/misc/auth.inc.php
+[new vortech config]   include/misc/db_select_menus.inc.php
+[revised client dtls]  include/misc/db_sql_select_menus.inc.php
+[mysql sessions]       include/misc/session_functions.inc.php
+[v2 package display]   include/misc/vortech_functions.inc.php
+[new config settings]  include/db_tables/config.table.php
+[correct display]      include/db_tables/client_info.table.php
+[new vortech config]   include/db_tables/cases/vortech.case.php
+
+
+------------------------------------------------
+* Version           3.1.0 Stable               *
+* Date:             2002/06/05                 *
+* DB Changes?       NO                         *
+* Files Changed?    YES (8)                    *
+* NOTES: 2checkout, not complete.              *
+------------------------------------------------
+
+[fix client error]     include/misc/db_sql_select_menus.inc.php
+[fix client error]     include/db_tables/account_details.table.inc.php
+[fix client error]     order/include/signup_email.inc.php
+[fix client error]     order/include/insert.inc.php
+[update version]       include/functions.inc.php
+[updated]              include/translations/english.trans.inc.php
+[updated]              include/translations/italiano.trans.inc.php
+[updated]              include/translations/turkish.trans.inc.php
+
+------------------------------------------------
+* Version           3.0.9                      *
+* Date:             2002/06/01                 *
+* DB Changes?       NO                         *
+* Files Changed?    YES (35)                   *
+* NOTES: 2checkout, not complete.              *
+------------------------------------------------
+
+[security update]      include/functions.inc.php
+[security update]      include/db_attributes.inc.php
+[security update]      include/scripts/generate_invoices.inc.php
+[security update]      include/scripts/generate_invoices_daily.inc.php
+[security update]      include/config/config.selects.php
+[security update]      include/config/themes/newleft/theme.config.php
+[security update]      include/config/themes/newtop/theme.config.php
+[security update]      order/include/authnet.inc.php
+[security update]      order/include/echo.inc.php
+[security update]      order/include/insert.inc.php
+[security update]      order/include/signup_error_checking.inc.php
+[security update]      order/include/2checkout.inc.php
+[domainonly,Pay,addons]include/misc/vortech_functions.inc.php
+[login looping]        index.php
+[delete permissions]   admin.php
+[suppress register]    order/index.php
+[suppress register]    order/config.php
+[add price to compare] order/compare.php
+[domainonly email]     order/include/signup_email.inc.php
+[split display logic]  order/include/cases/*
+[delete permissions]   include/cases/admin.delete_response.case.inc.php
+[html for packfeatures]include/cases/admin.form_response.case.inc.php
+[custom [?] whois]     include/config/config.main.php
+[set max higher]       include/db_tables/client_info.table.inc.php
+[suppress register]    include/db_tables/cases/vortech.case.php
+[delete permissions]   include/html/admin_menu.inc.php
+[resend email - user]  include/html/client_invoice.inc.php
+[suppress register]    include/misc/vortech_functions.inc.php
+[register sort]        include/misc/db_functions.inc.php
+[none option for affl] include/misc/db_sql_select_menus.inc.php
+[custom [?] whois]     include/misc/db_core_logic.inc.php
+[new strings]          include/translations/english.trans.inc.php
+[fix client error]     include/misc/db_sql_select_menus.inc.php
+[fix client error]     include/db_tables/account_details.table.inc.php
+[fix client error]     order/include/signup_email.inc.php
+[fix client error]     order/include/insert.inc.php
+
+
+------------------------------------------------
+* Version           3.0.8                      *
+* Date:             2002/05/20                 *
+* DB Changes?       YES                        *
+* Files Changed?    YES (62)                   *
+* NOTES: 2checkout started, not complete.      *
+------------------------------------------------
+
+[updated admin_level]  admin.php
+[updated admin_level]  index.php
+[updated admin_level]  user.php
+
+[domain transfer form] order/index.php
+[suppressed compare $] order/compare.php
+[suppressed compare $] order/config.php
+[Files for 2checkout]  order/include/2chouckout.inc.php
+[Files For Affiliates] order/include/insert.inc.php
+[Files For Affiliates] order/include/signup_email.inc.php
+[corrected style]      order/template/index.css
+[added hints]          order/template/header.html
+[added hints]          order/template/footer.html
+
+[new sql type]         include/db_attributes.inc.php
+[session variables]    include/functions.inc.php
+
+[updated admin_level]  include/cases/admin.delete_response.case.inc.php
+[allow html in faq]    include/cases/admin.form_response.case.inc.php
+[updated admin_level]  include/cases/admin.exp_batch.case.inc.php
+[updated admin_level]  include/cases/admin.exp_data.case.inc.php
+[updated admin_level]  include/cases/admin.view_cc.case.inc.php
+[updated admin_level]  include/cases/admin.view_cc_response.case.inc.php
+[corrected price disp] include/cases/user.details.case.inc.php
+[corrected price disp] include/cases/user.view.case.inc.php
+
+[correct date format]  include/html/admin_menu.inc.php
+[Files for ClientNews] include/html/user_menu.inc.php
+[updated shortcuts]    include/html/email_shortcuts.inc.php
+
+[Files For Affiliates] include/html/cases/admin.affiliate.case.inc.php
+[updated admin_level]  include/html/cases/admin.billing.case.inc.php
+[correct table]        include/html/cases/admin.mbsupport.case.inc.php
+[Files for ClientNews] include/html/cases/admin.news.case.inc.php
+[correct date format]  include/html/cases/admin.server.case.inc.php
+[added link]           include/html/cases/nettools.popup.php
+[Files for ClientNews] include/html/cases/user.mynews.case.inc.php
+[correct date format]  include/html/cases/user.mysupport.case.inc.php
+[corrected price disp] include/html/cases/user.mypackages.case.inc.php
+[corrected price disp] include/html/cases/user.myinfo.case.inc.php
+
+[prorate start_date]   include/scripts/generate_invoices.inc.php
+[Files For Affiliates] include/scripts/generate_invoices_daily.inc.php
+
+[Files for 2checkout]  include/config/config.payments.php
+[Files For Affiliates] include/config/config.selects.php
+
+[language selection]   include/config/themes/newleft/theme.config.php
+[language selection]   include/config/themes/newtop/theme.config.php
+
+[update admin_levels]  include/db_tables/admin.table.inc.php
+[Files For Affiliates] include/db_tables/affiliate_config.table.php
+[raw pass admin only]  include/db_tables/client_info.table.inc.php
+[Files For Affiliates] include/db_tables/client_package.table.php
+[Files for Client News]include/db_tables/client_info.table.inc.php
+[correct string]       include/db_tables/coupon_codes.table.inc.php
+[corrected defailts]   include/db_tables/tld_config.table.inc.php
+
+[new config variables] include/db_tables/cases/main.case.php
+[new config variables] include/db_tables/cases/payments.case.php
+
+[Files for 2checkout]  include/misc/2checkout.php
+[added password]       include/misc/authnet.php
+[Files For Affiliates] include/misc/db_sql_select_menus.inc.php
+[Files For Affiliates] include/misc/db_select_menus.inc.php
+[Files For Affiliates] include/misc/db_core_logic.inc.php
+[Files For Affiliates] include/misc/db_functions.inc.php
+[Files For Affiliates] include/misc/email_functions.inc.php
+[added paypal ipn]     include/misc/paypal_return.inc.php
+[fixed displaycart]    include/misc/vortech_functions.inc.php
+
+[updated]              include/translations/english.trans.inc.php
+[updated]              include/translations/dutch.trans.inc.php
+[add norwegian trans]  include/translations/norwegian.trans.inc.php
+
+[CRONJOB SYNTAX]
+----------------
+php -q -f generate_invoices.inc.php /home/virtual/modernbill/home/httpd/html/mb-tier2-3.0.7-src/ cron 0 0
+
+[DB CHANGES FOR AFFILIATATE]
+----------------------------
+ALTER TABLE client_package ADD aff_code VARCHAR(255)
+ALTER TABLE affiliate_config ADD aff_pay_time INT(5) NOT NULL AFTER aff_count
+ALTER TABLE affiliate_config ADD aff_pay_amount DECIMAL(10,2) NOT NULL AFTER aff_pay_time
+ALTER TABLE affiliate_config ADD aff_pay_cycle INT(11) NOT NULL AFTER aff_pay_type
+ALTER TABLE client_package ADD aff_last_paid INT(11)
+
+[DB CHANGES FROM CLIENT NEWS]
+-----------------------------
+CREATE TABLE client_news (
+  ID bigint(255) NOT NULL default '0',
+  Subject text NOT NULL,
+  Post_user text NOT NULL,
+  Post_email text NOT NULL,
+  Date text NOT NULL,
+  Time text NOT NULL,
+  Headline_date text NOT NULL,
+  Date_time text NOT NULL,
+  Text text NOT NULL,
+  Modify_date text NOT NULL,
+  Modify_user text NOT NULL,
+  mainpage enum('N','Y') NOT NULL default 'N',
+  mainid int(255) NOT NULL default '0'
+) TYPE=MyISAM;
+
+------------------------------------------------
+* Version           3.0.7                      *
+* Date:             2002/05/04                 *
+* DB Changes?       NO                         *
+* Files Changed?    YES (20)                   *
+------------------------------------------------
+include/functions.inc.php
+include/config/config.main.php
+include/config/themes/newleft/theme.config.php
+include/config/themes/newtop/theme.config.php
+include/db_tables/client_credit.table.php
+include/db_tables/account_details.table.php
+include/db_tables/cases/theme.case.php
+include/db_tables/cases/vortech.case.php
+include/html/cases/admin.billing.case.inc.php
+include/misc/db_functions.inc.php
+include/misc/email_functions.inc.php
+include/misc/vortech_functions.inc.php
+include/scripts/generate_invoices.inc.php
+include/scripts/generate_invoices_daily.inc.php
+include/translations/english.trans.inc.php
+include/translations/spansish.trans.inc.php
+include/translations/swedish.trans.inc.php
+order/config.php
+order/index.php
+order/include/insert.inc.php
