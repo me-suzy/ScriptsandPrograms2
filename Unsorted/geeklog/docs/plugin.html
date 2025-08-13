@@ -1,0 +1,668 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Geeklog Documentation - Plugin Development</title>
+  <link rel="stylesheet" type="text/css" href="docstyle.css" title="Dev Stylesheet">
+</head>
+
+<body>
+<table cellpadding="2" cellspacing="2" border="0" width="100%">
+<tr>
+  <td valign="top"><img src="images/newlogo.gif" alt="Geeklog Documentation" width="235" height="90" border="0"></td>
+</tr>
+<tr>
+  <td valign="top" class="menu"><a href="index.html">Geeklog Documentation</a> - Plugin Development</td>
+</tr>
+</table>
+
+<h1>Plugin Development</h1>
+
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#Functions_for_writing">Functions for writing Plugins</a>
+    <ul>
+      <li><a href="#mod_functions">Moderation Functions</a></li>
+      <li><a href="#admin_user_functions">Admin and User Menu Functions</a></li>
+      <li><a href="#Search_Functions">Search Functions</a></li>
+      <li><a href="#Comment_Functions">Comment Functions</a></li>
+      <li><a href="#Stats_Function">Stats Function</a></li>
+      <li><a href="#Uninstall_Function">Uninstall Function</a></li>
+      <li><a href="#User_Functions">User Functions</a></li>
+      <li><a href="#Profile_Functions">Profile Functions</a></li>
+      <li><a href="#Misc_Functions">Misc. Functions</a></li>
+    </ul></li>
+  <li><a href="#Implementing_your_Admin_Interface">Implementing your Admin Interface</a></li>
+  <li><a href="#Preparing_your_Geeklog_Plugin">Preparing your Geeklog Plugin Distribution</a></li>
+  <li><a href="#How_Geeklog_Installs_Plugins">How To Install A Geeklog Plugin</a></li>
+  <li><a href="#Deliver_Your_Plugin">Deliver Your Plugin!</a></li>
+  <li><a href="#Desc_of_api">Description of the Geeklog Plugin API</a>
+    <ul>
+      <li><a href="#Moderation_Functions_desc">Moderation Functions</a></li>
+      <li><a href="#adminuser_Functions_desc">Admin and User Functions</a></li>
+      <li><a href="#searching_Functions_desc">Search Functions</a></li>
+      <li><a href="#stats_Functions_desc">Stats Functions</a></li>
+    </ul></li>
+</ul>
+
+<h2><a name="overview">Overview</a></h2>
+
+<p>Geeklog is becoming more and more popular each day and   we,   the   
+Geeklog developers,  are amazed at some of the great  hacks   people   have   
+made to extend   their Geeklog  installation to fit their   own 
+needs.&nbsp;     At the  same time,   the Geeklog development  team is   
+continually adding   new  features  that make   Geeklog even better. We 
+have realized the   need  for Geeklog  to support   two threads of 
+development:  core geeklog  code and  plugin-code. By building  in the 
+infrastructure   needed to  extend Geeklog's  functionality  through 
+plugins  we can make  a clean seperation    between the  Geeklog codebase  
+and plugin code  so that we can concentrate    on making Geeklog's  core 
+code  better while others     can develop plugins   so that Geeklog fits 
+their needs. With that    said,  Geeklog now has   a Plugin application 
+program interface (API).
+
+<p>At the highest level, the Geeklog Plugin API is generic     code   that   
+is  called   in strategic places in the Geeklog codebase  that   allow   function    
+of plugins to be called. This will allow your plugin the following features:
+
+<ul>
+  <li>Ability for your plugin to be submission-based so that users can submit 
+    objects to your plug-in.&nbsp; You can then visit the command and
+    control center in Geeklog to moderate the submissions for your plugin.</li>
+  <li>Allow your plugin to show up in the Admin block and User block on each 
+    Geeklog page.</li>
+  <li>Allow your plugin to be searched via the Geeklog search page.</li>
+  <li>Allow stats for your plugin to show up on the site statistics page.</li>
+  <li> Allow your plugin the ability to use Geeklog's comment engine.</li>
+  <li>Allow you to use the power of Geeklog's code library (lib-common.php) in 
+    your own plugin code.</li>
+  <li>Allow you full flexibility on what your plugin does. Geeklog does not 
+    dictate your plugins power.</li>
+</ul>
+
+<h2><a name="Functions_for_writing">Functions for writing plugins</a></h2>
+
+<p>The below functions are what you need to write your own plugin including      
+any extra parameters that you need to pass in. Towards the end of the  
+page,    there is also a Description of the API, just incase you need it to 
+help  understand  in the plugin process.
+
+<p>
+<strong>Note about &lt;plugin name&gt;:</strong> You will see references to  
+&lt;plugin name&gt; in all the functions below.&nbsp; The &lt;plugin 
+name&gt; values will come from you the name of your plugin tarfile. All plugin 
+tarfiles have a strict naming convention that they <em>must</em> follow and it is:
+
+<blockquote>
+  &lt;plugin name&gt;_&lt;plugin version&gt;_&lt;geeklog version&gt;.tar.gz<br>
+  e.g. <tt>photos_1.0_1.3.tar.gz</tt>
+</blockquote>
+
+<h2><a name="mod_functions">Moderation functions</a></h2>
+
+<p>First note that there are limitations in the current Geeklog codebase that 
+will force you to name your plugin tables used  for submission in a 
+specific manner.&nbsp; All moderated Geeklog items such  as stories and 
+links are comprised of two tables.&nbsp; The first is a main  table where 
+all visible items are stored.&nbsp; The second is a submission table where 
+submitted user items sit until an administrator approves them.&nbsp; When 
+approved the item is moved from the submission table to the main 
+table.&nbsp;    So for example, if you are writing a book review plugin 
+that  allows users    to submit book reviews then we will pick bookreviews 
+for your main table   (this MUST also be your plugin name you pick) and 
+then your submission table   MUST be named bookreviewssubmission.&nbsp; Why 
+force the names? Because in  the geeklog code the submission table for all 
+stories is coded as &lt;main   name&gt;submission.&nbsp; So since we picked 
+bookreviews for our main table   (and plugin name) the submission table 
+must be named&nbsp; bookreviewssubmission.
+
+<p>If you want your plugin to be moderated like Geeklog stories 
+and links then you must implement these functions.</p>
+
+<table cellpadding="2" cellspacing="2" border="1" width="90%" align="center">
+<caption align="bottom">Table 1. Moderation functions<br></caption>
+<tr>
+  <th valign="top">Function</th>
+  <th valign="top">Description of Function</th></tr>
+<tr>
+  <td valign="top" class="codeheader">plugin_submit_&lt;plugin name&gt;</td>
+  <td valign="top" class="code">Shows the submission form for your plugin.</td>
+  </tr>
+<tr>
+  <td valign="top" class="codeheader">plugin_itemlist_&lt;plugin name&gt;</td>
+  <td valign="top" class="code">Shows any items needing moderation for your plugin on moderation.php</td>
+  </tr>
+<tr>
+  <td valign="top" class="codeheader">plugin_savesubmission_&lt;plugin name&gt;</td>
+  <td valign="top" class="code">Saves submitted item from a user in &lt;plugin name&gt;submission table</td>
+  </tr>
+<tr>
+  <td valign="top" class="codeheader">plugin_moderationdelete_&lt;plugin name&gt;</td>
+  <td valign="top" class="code">Takes an ID into &lt;plugin name&gt;submission table and deletes it</td>
+  </tr>
+<tr>
+  <td valign="top" class="codeheader">plugin_moderationapprove_&lt;plugin name&gt;</td>
+  <td valign="top" class="code">Takes an ID into &lt;plugin name&gt;submission and moves it to the main table called &lt;plugin name&gt;</td>
+  </tr>
+<tr>
+  <td valign="top" class="codeheader">plugin_moderationvalues_&lt;plugin name&gt;</td>
+  <td valign="top" class="code">Returns the primary key column name, the main 
+    table name (called &lt;plugin name&gt;) and the list of fields from that 
+    table that you'd like to have show up on the moderation page.</td>
+  </tr>
+</table>
+
+<h2><a name="admin_user_functions">Admin and User Menu functions</a></h2>
+
+<p>If you want your plugin to effect the Admin and User Function blocks    
+that show up on every Geeklog page then you must implement these 
+functions.</p>
+
+      <table cellpadding="2" cellspacing="2" border="1" width="90%" align="Center">
+        <caption align="bottom">Table 2. Admin and User functions</caption>
+          <tr>
+            <th valign="top">Function</th>
+            <th valign="top">Description of Function</th>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_adminoptions_&lt;plugin name&gt;</td>
+            <td valign="top" class="code">Will show options under the Admin
+      Functions block for your plugin</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_getuseroption_&lt;plugin
+      name&gt;</td>
+            <td valign="top" class="code">Will show options under the User
+      Functions block for your plugin</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_adminedit_&lt;plugin
+      name&gt;</td>
+            <td valign="top" class="code">Shows the links at the top of admin/plugins/&lt;plugin
+     name&gt;.php for New and Admin Home. This is for consistency sake only</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_submissioncount_&lt;plugin
+      name&gt;</td>
+            <td valign="top" class="code">Shows the number of submissions
+      pending for you plugin.&nbsp; This is usually just "dbcount(&lt;plugin
+   name&gt;submission);"</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_cclabel_&lt;plugin
+      name&gt;</td>
+            <td valign="top" class="code">Returns array of your plugin image
+      and a label for your plugin.&nbsp; This is called to show your plugin
+  in   the command and control block on moderation.php</td>
+          </tr>
+      </table>
+
+<h2><a name="Search_Functions">Search Functions</a></h2>
+
+<p>If you want your plugin to be searchable, implement these functions.</p>
+
+      <table cellpadding="2" cellspacing="2" border="1" width="90%" align="Center">
+        <caption align="bottom">Table 3. Search functions</caption>
+          <tr>
+            <th valign="top">Function</th>
+            <th valign="top">Description of Function</th>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_getsearchtypes_&lt;plugin 
+     name&gt;</td>
+            <td valign="top" class="code">You will probably want to add a
+     new type in the Type drop down on search.php.&nbsp; This function prints
+    the option tags needed. make sure that the value tag is &lt;plugin name&gt;</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_dopluginsearch_&lt;plugin 
+     name&gt;</td>
+            <td valign="top" class="code">Takes the search criteria and lets
+     you build search results for your plugin.&nbsp; This returns a string
+ array    of table rows, one row for each record returned by your search.</td>
+          </tr>
+      </table>
+
+<h2><a name="Comment_Functions">Comment Function</a></h2>
+
+<p>If you want your plugin to support comments and use the Geeklog comment
+engine, then you need to implement these functions in your plugin
+functions.inc file:</p>
+
+<table cellpadding="2" cellspacing="2" border="1" width="90%" align="Center">
+<caption align="bottom">Table 4. Comment functions</caption>
+  <tr>
+    <th valign="top">Function</th>
+    <th valign="top">Description of Function</th>
+  </tr>
+  <tr>
+    <td valign="top" class="codeheader">plugin_commentsupport_&lt;plugin name&gt;</td>
+    <td valign="top" class="code">
+    This function does not take any parameters but simply returns true if this plugin supports comments. This call is made in Geeklog code (example: article.php) to determine if it should redirect handling to the plugin.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeheader">plugin_handlecomment_&lt;plugin name&gt;</td>
+    <td valign="top" class="code">
+    This function expects the comment id (primary index in the comment table) and and type of operation (either 'save' or 'delete') to perform on the comment. It will update the plugin record with the total number of comments for this plugin item. It then handles the refresh or redirection of the user back to the plugin instead of the main site page.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeheader">plugin_commentform_&lt;plugin name&gt;</td>
+    <td valign="top" class="code">
+    This function expects a number of parameters and is called from Geeklog article.php and comment.php. Parameters are: comment_id (primary key), comment_mode (nested, flat, threaded, none, order (Ascending or Descending) and reply (Was the reply submit button used on the comment bar).<br>
+    Only comment_id is mandatory.</td>
+  </tr>
+  <tr>
+    <td valign="top" class="codeheader">plugin_commentparent_&lt;plugin name&gt;</td>
+    <td valign="top" class="code">
+    Optional function which can be called from your plugin_commentform function to also display the plugin parent above the comments. This is how Geeklog articles are displayed with the story and then the comment bar and associated comments.</td>
+  </tr>
+</table>
+
+
+<h2><a name="Stats_Function">Stats Function</a></h2>
+
+<p>If you want your plugin to show up on the stats page then you must 
+implement this function.</p>
+
+      <table cellpadding="2" cellspacing="2" border="1" width="90%" align="Center">
+        <caption align="bottom">Table 5. Stats function</caption>
+          <tr>
+            <th valign="top">Function</th>
+            <th valign="top">Description of Function</th>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_showstats_&lt;plugin 
+     name&gt;</td>
+            <td valign="top" class="code">This function takes a showsitestats 
+     flag.&nbsp; If set to 1, this function shows the overall stats for your 
+   plugin  in the site statistics box.&nbsp; If it is set to 2 it shows the 
+  statistic  blocks for you plugin (similar to Top Ten Viewed Stories and 
+Top  Ten Commented  Stories).</td>
+          </tr>
+      </table>
+
+<h2><a name="Uninstall_Function">Uninstall Function</a></h2>
+
+<p>If you want to give your plugin the ability to uninstall itself then you must implement this function.</p>
+
+      <table cellpadding="2" cellspacing="2" border="1" width="90%" align="Center">
+        <caption align="bottom">Table 6. Uninstall function</caption>
+          <tr>
+            <th valign="top">Function</th>
+            <th valign="top">Description of Function</th>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">plugin_uninstall_&lt;plugin 
+     name&gt;</td>
+            <td valign="top" class="code">This function does not take any parameters. The plugin should try and uninstall itself, especially removing all its tables and data structures from the database.<br>
+The function should return <code>true</code> if the uninstall succeeded and <code>false</code> if it failed.</td>
+          </tr>
+      </table>
+
+<h2><a name="User_Functions">User Functions</a></h2>
+
+<p>For some plugins, it may be necessary to track creation and deletion of user accounts.</p>
+
+  <table cellpadding="2" cellspacing="2" border="1" width="90%" align="Center">
+    <caption align="bottom">Table 7. User functions</caption>
+      <tr>
+        <th valign="top">Function</th>
+        <th valign="top">Description of Function</th>
+      </tr>
+      <tr>
+        <td valign="top" class="codeheader">plugin_user_create_&lt;plugin name&gt;</td>
+        <td valign="top" class="code">This function is called when a new user account has been created. The only parameter passed is the user id.<br>
+This function does not have a return value.</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeheader">plugin_user_delete_&lt;plugin name&gt;</td>
+        <td valign="top" class="code">This function is called when a user account has been deleted. The only parameter passed is the user id.<br>
+This function does not have a return value.</td>
+      </tr>
+  </table>
+
+<h2><a name="Profile_Functions">Profile Functions</a></h2>
+
+<p>Plugins can add blocks or individual items to the user profile.</p>
+
+  <table cellpadding="2" cellspacing="2" border="1" width="90%" align="center">
+    <caption align="bottom">Table 9. Misc. functions</caption>
+      <tr>
+        <th valign="top">Function</th>
+        <th valign="top">Description of Function</th>
+      </tr>
+      <tr>
+        <td valign="top" class="codeheader">plugin_profilevariablesedit_&lt;plugin name&gt;</td>
+        <td valign="top" class="code">This function is called when Geeklog is about to display the edit form for a user's profile. The plugin is given the user id and a reference to the template of the edit form. It can now add its own variables and input fields to the form.<br>
+This function does not return anything. The plugin should use the template functions (<code>set_var</code> etc.) to add things to the template.</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeheader">plugin_profileblocksedit_&lt;plugin name&gt;</td>
+        <td valign="top" class="code">This function is called when Geeklog is about to display the edit form for a user's profile. The user id is passed as a parameter to this function. The plugin can return the HTML for a block (including block header and footer) that it wants to be displayed on the profile edit form. When a plugin asks for several items, it may make more sense to group the items this way. Otherwise, you may want to use <code>plugin_profilevariablesedit_&lt;plugin name&gt;</code> (see above) instead.<br>
+The function is expected to return the HTML for a block or an empty string.</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeheader">plugin_profilevariablesdisplay_&lt;plugin name&gt;</td>
+        <td valign="top" class="code">This function is called when Geeklog is about to display a user's profile. The plugin is given the user id and a reference to the template of the profile. It can now add its own variables to the profile.<br>
+This function does not return anything. The plugin should use the template functions (<code>set_var</code> etc.) to add things to the template.</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeheader">plugin_profileblocksdisplay_&lt;plugin name&gt;</td>
+        <td valign="top" class="code">This function is called when Geeklog is about to display a user's profile. The plugin is given the user id and can now return the HTML for any additional blocks that it wants to be displayed on the profile page.<br>
+The function is expected to return the HTML for a block or an empty string.</td>
+      </tr>
+    </table>
+
+<h2><a name="Misc_Functions">Misc. Functions</a></h2>
+
+<p>The following is a list of (optional) functions for misc. purposes.</p>
+
+  <table cellpadding="2" cellspacing="2" border="1" width="90%" align="center">
+    <caption align="bottom">Table 9. Misc. functions</caption>
+      <tr>
+        <th valign="top">Function</th>
+        <th valign="top">Description of Function</th>
+      </tr>
+      <tr>
+        <td valign="top" class="codeheader">plugin_centerblock_&lt;plugin name&gt;</td>
+        <td valign="top" class="code">Plugins can display a block in the site's center area, i.e. among the stories. This function is called several times during rendering of the site's index page. The parameters will tell the plugin where on the index page the block would appear.<br>
+Parameters are <code>where</code> (1 = top of page, 2 = after the featured story, 3 = bottom of page), <code>page number</code> and the <code>topic id</code>. <code>where</code> can also be 0 which means that the plugin can take over the entire page if it wants to (in this case, it will have to return the HTML for the <em>entire page</em>, i.e. including site header and footer).<br>
+The function should return the complete HTML for the block (including header and footer) or an empty string.</td>
+      </tr>
+      <tr>
+        <td valign="top" class="codeheader">plugin_getheadercode_&lt;plugin 
+     name&gt;</td>
+        <td valign="top" class="code">Plugins may add additional lines to the site's <code>&lt;head&gt;</code> tag by implementing this function, e.g. Javascript functions or additional Meta tags.<br>
+The function should return a concatenated string of all its extra header code.</td>
+      </tr>
+  </table>
+
+
+<h2><a name="Implementing_your_Admin_Interface">Implementing your Admin Interface</a></h2>
+
+<p>The Geeklog Plugin API is just that an API.&nbsp; You obviously have   to  
+write all your plugin code yourself.&nbsp; We have put stubs in place   to 
+link to you Admin Interface.&nbsp; You admin page(s) will be in 
+http://yourgeeklogdomain/admin/plugins/&lt;plugin name&gt;/
+
+<p>The first page of your administration interface must be named &lt;plugin 
+name&gt;.php and it must be in the above directory.&nbsp; Whether or not 
+you use more that one page for you Admin interface is completely up to you.
+
+<p>Please note that the location of your admin page isn't optional.&nbsp; For  
+organizational purposes it is important that you follow the standards 
+outlined  in this document.
+
+<h2><a name="Preparing_your_Geeklog_Plugin">Preparing your Geeklog Plugin Distribution</a></h2>
+
+<h3>The plugin tarfile</h3>
+
+<p>All Geeklog plugin tarfiles <em>must</em> use the following naming convention:
+
+<blockquote>
+&lt;plugin name&gt;_&lt;plugin version&gt;_&lt;geeklog version&gt;.tar.gz
+</blockquote>
+
+<h3>Descriptions</h3>
+<dl>
+<dt>&lt;plugin name&gt;:</dt><dd>this is one of the single most important
+   values you  will choose for your plugin as it dictates the following:
+      <ul>
+        <li>The exact API function names that the Geeklog code will try to
+   call for your plugin</li>
+        <li>The exact directory within the webtree to put all your plugin
+    code</li>
+        <li>The exact directory within the admin directory to put your admin
+    code</li>
+        <li>If using moderation, the exact table name main table being moderated</li>
+        <li>If using moderation, the submission table will be &lt;plugin
+ name&gt;submission</li>
+      </ul></dd>
+
+<dt>&lt;plugin version&gt;:</dt><dd>used during the installation process
+   to determine  if you are attempting to upgrade a plugin or do a new installation.
+   It is  also check to verify that you aren't trying to install and old
+version    of  the plugin when a new installation already exists.</dd>
+<dt>&lt;geeklog version&gt;:</dt><dd>this is the geeklog version the plugin
+  works under.</dd>
+</dl>
+
+<p>The organization of your tarfile is standardized as well.&nbsp; For each   
+directory and file a description is given.&nbsp; Your base plugin directory   
+when you create the tarfile should be &lt;plugin name&gt;.&nbsp; Under 
+there   you will have the following:
+
+<dl>
+<dt>config.php:</dt><dd>configuration page for your plugin.&nbsp; We'd
+   prefer you to  data-drive most the values if possible but using config.php
+   is fine.&nbsp;  This file can be called whatever you want...you are not
+ restricted.</dd>
+<dt>functions.inc:</dt><dd>this is the file where you implement the Geeklog
+   API and where your plugin code should reside.&nbsp; It MUST be named this
+   because we automatically include all enabled plugins function.inc files
+ at  the bottom of common.php.&nbsp; Note that this means you have access
+to all  the functions in common.php in your plugin code.</dd>
+<dt>lang.php:</dt><dd>the language file for your plugin.&nbsp; You should
+   include this  file in your functions.inc.</dd>
+<dt>table.sql</dt><dd>the DDL needed to modify the Geeklog database so that 
+  your plugin  will work.<br>
+  <strong>Note:</strong> you must provide an entry in the plugin table in your 
+  database. Without it, Geeklog will not know your plugin exists.<br>
+  <strong>Example:</strong><br>
+  <code>REPLACE INTO plugins (pi_name, pi_version, pi_gl_version, pi_homepage,
+   pi_enabled)  VALUES ('photos', '0.1', '1.2.2', 'http://www.tonybibbs.com',
+   1);</code></dd>
+<dt>data.sql</dt><dd>sample data for your plugin</dd>
+<dt>README</dt><dd>standard readme for software</dd>
+<dt>/docs:</dt><dd>includes any documentation you may want to provide 
+  for your plugin  such as history, to-do, etc</dd>
+<dt>/admin:</dt><dd>includes only your admininstation pages</dd>
+<dt>/public_html:</dt><dd>include your regular web pages</dd>
+<dt>/updates:</dt><dd>includes all update sql and scripts.&nbsp; if you
+  are writing  an update SQL script be sure that you name it update_&lt;previous 
+  version&gt;.sql.&nbsp;  The way this work is if you have version 0.1 installed 
+  for a plugin and you  are installing version 0.2 the code will look for 
+the  update script for the  currently isntalled version (0.1) and if it finds 
+ it, in this case update_0.1.sql  then it will execute it automatically.</dd>
+</dl>
+
+<h2><a name="How_Geeklog_Installs_Plugins">How To Install A Geeklog Plugin</a></h2>
+
+<p><strong>Note:</strong> Up until Geeklog version 1.3.4, there was an 
+automatic install procedure for plugins. This, however, caused too many 
+problems and support issues and has been removed from later versions. The 
+manual install as outlined below is now the recommended way to install a 
+plugin and should work for both old and new versions of Geeklog.
+
+<p>For details, you should always refer to the README that comes with the 
+plugin. In general, however, a plugin will be installed like this:
+
+<ol>
+<li>Depending on your setup and server access, you should either upload 
+  the tarball and unpack it remotely or unpack the tarball locally and 
+  upload the extracted files and folders afterwards.</li>
+<li>The public_html directory in the tarfile is copied to the webtree 
+  under &lt;plugin name&gt;. e.g. if my geeklog web is in /path/to/geeklog/public_html/ 
+  then the public_html from the tarfile is copied to /path/to/geeklog/public_html/&lt;plugin 
+  name&gt;</li>
+<li>The admin directory in the tarfile is copied to the admin webtree.&nbsp; 
+  e.g. if my geeklog admin webtree is in /path/to/geeklog/public_html/admin/ 
+  then the admin directory from the tarfile is copied to /path/to/geeklog/public_html/admin/plugins/&lt;plugin 
+  name&gt;&nbsp; </li>
+<li>Call the plugins install script at 
+http://yourgeeklogsite/admin/plugins/&lt;plugin name&gt;/install.php
+  <ul>
+  <li>If this is a new install (plugin doesn't exist in plugins table) 
+    then table.sql is executed and then data.sql is executed</li>
+  <li>If this is an upgrade that the necessary upgrade_&lt;version&gt;.sql 
+    script is searched for and, if found, executed.</li>
+  </ul></li>
+<li>That's it!</li>
+</ol>
+
+<h2><a name="Deliver_Your_Plugin">Deliver Your Plugin!</a></h2>
+
+<p>Because Geeklog Plugins can affect a Geeklog installation and the users 
+filesystem, our policy is we will not endorse third party plugins unless 
+they have been tested by the Geeklog Development team.&nbsp; Why?&nbsp; We  
+will make sure that your plugin installs successfully and doesn't have any  
+adverse behavior.&nbsp; Assuming your plugin checks out, we will put your  
+tarfile on our site where it can be downloaded by Geeklog users.&nbsp; You  
+can sumbit your plugin to our site at http://www.geeklog.net
+
+<h2><a name="Desc_of_api">Description of the Geeklog Plugin API</a></h2>
+
+<p>This is the function reference for the Geeklog Plugin API,   as  contained  
+in the plugins.php file.&nbsp; This   is provided strictly    for  
+reference sake. You, as a Geeklog Plugin Developer,     will not need    to 
+modify these functions nor make calls to them as that  has already been    
+handled in the Geeklog codebase. We do, however, encourage suggestions    
+on how you think we can make this API better.
+  
+  
+<h2><a name="Moderation_Functions_desc">Moderation Functions</a></h2>
+
+<p>These are the functions used to allow your plugin 
+to  access    the   moderation   system.</p>
+
+      <table cellpadding="2" cellspacing="2" border="1" width="80%" align="Center">
+        <caption align="bottom">Table 1. Moderation Functions</caption>
+          <tr>
+            <th valign="top">Function</th>
+            <th valign="top">Description of Function</th>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">SubmitPlugin</td>
+            <td valign="top" class="code">This function loops through all 
+          enabled plugins and calls the  plugins plugin_submit_&lt;plugin 
+name&gt;         method so that a plugins submission  form is shown to the 
+user.</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">GetPluginModerationValues</td>
+            <td valign="top" class="code">Responsible for calling the plugin_moderationvalue_&lt;plugin
+            name&gt; method so that the plugin specific values can be set
+so   that     moderation    can occur.</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">ShowPluginModerationLists</td>
+            <td valign="top" class="code">Loops through all enabled plugins 
+          and call itemlist() so that  all items needing moderation for the 
+  plugin       shows up in moderation.php</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">ShowPluginModerationOptions</td>
+            <td valign="top" class="code">Loops through all enabled plugins 
+          and calls the plugin_cclabel_&lt;plugin  name&gt; method so the 
+plugin       shows   in the command and control center.</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">SavePluginSubmission</td>
+            <td valign="top" class="code">Loops through all enabled plugins 
+          and calls the plugin_savesubmission_&lt;plugin  name&gt; method 
+so   that     the  plugin submission for a specified plugin gets  saved.</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">DoPluginModerationDelete</td>
+            <td valign="top" class="code">Calls the plugin_moderationdelete_&lt;plugin 
+          name&gt; method  of a specifid plugin so that a submission is deleted</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">DoPluginModerationApprove</td>
+            <td valign="top" class="code">Calls the plugin_moderationapprove_&lt;plugin 
+          name&gt; method  of a specified plugin so that the submission is 
+ approved.</td>
+          </tr>
+</table>
+
+<h2><a name="adminuser_Functions_desc">Admin and User options functions</a></h2>
+
+<p>These are the functions used to allow your plugin 
+to  access    the   admin   and user system</p>
+
+      <table cellpadding="2" cellspacing="2" border="1" width="80%" align="Center">
+        <caption align="bottom">Table 2.&nbsp;Admin and User options functions</caption>
+          <tr>
+            <th valign="top">Function</th>
+            <th valign="top">Description of Function</th>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">ShowPluginAdminOptions</td>
+            <td valign="top" class="code">Loops through all enabled plugins 
+        and calls their plugin_showadminoption_&lt;plugin name&gt; so that 
+ the    plugin   shows any option(s) they need under the Admin block.</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">ShowPluginUserOptions</td>
+            <td valign="top" class="code">Loops through all enabled plugins 
+        and calls their plugin_showuseroptions_&lt;plugin name&gt; so that 
+ the    plugin   shows any option(s) users need in their User Functions block</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">HandlePluginAdminEdit</td>
+            <td valign="top" class="code">Calls the plugin_adminedit_&lt;plugin 
+        name&gt; method so that the "new &lt;plugin name&gt; | Admin Home" 
+ links      show up at the top of admin/plugins/&lt;plugin name&gt;.php.&nbsp; 
+ This    is  implemented strictly for consistency of the UI</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">GetPluginSubmissionCounts</td>
+            <td valign="top" class="code">Loops through all enabled plugins 
+        and calls their plugin_submissioncount_&lt;plugin name&gt; method 
+so   that     the number of submissions for plugins gets displayed</td>
+          </tr>
+      </table>
+
+<h2><a name="searching_Functions_desc">Search functions</a></h2>
+
+<p>These are the functions used to allow your plugin 
+to  access    the   search system</p>
+
+<table cellpadding="2" cellspacing="2" border="1" width="80%" align="Center">
+        <caption align="bottom">Table 3. Search functions</caption>
+          <tr>
+            <th valign="top">Function</th>
+            <th valign="top">Description of Function</th>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">GetPluginSearchTypes</td>
+            <td valign="top" class="code">Loops through all enabled plugins
+        and calls their plugin_getsearchtypes_&lt;plugin name&gt; method
+to   get    any  plugin specific values that need to show up in the Type
+drop  down on   search.php</td>
+          </tr>
+          <tr>
+            <td valign="top" class="codeheader">DoPluginSearches</td>
+            <td valign="top" class="code">Loops through all enabled plugins
+        and submits the search criteria to the plugin_dopluginsearch_&lt;pluginname&gt;
+        method so that the plugin can perform it's own search</td>
+          </tr>
+      </table>
+
+<h2><a name="stats_Functions_desc">Stats functions</a></h2>
+
+<p>These are the functions used to allow your plugin to access the stats 
+system:</p>
+
+<table cellpadding="2" cellspacing="2" border="1" width="80%" align="Center">
+<caption align="bottom">Table 4. Stats functions</caption>
+<tr>
+  <th valign="top">Function</th>
+  <th valign="top">Description of Function</th>
+</tr>
+<tr>
+  <td valign="top" class="codeheader">Show Plugin Stats</td>
+  <td valign="top" class="code">Loops through all enabled plugins 
+     and calls the plugin's plugin_showstats_&lt;plugin name&gt; method 
+     so that statistics can be reported for the plugin</td>
+</tr>
+</table>
+
+<table border="0" width="100%" class="footer">
+<tr valign="top">
+  <td colspan="2"><a href="http://www.geeklog.net">The Geeklog Documentation Project</a><br>
+    All trademarks and copyrights on this page are owned by their respective owners. GeekLog is copyleft.</td>
+</tr>
+</table>
+
+</body>
+</html>
