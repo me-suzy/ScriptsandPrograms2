@@ -1,0 +1,48 @@
+&nbsp;<span class="error">{error_message}</span><br />
+<form action="friend.php" method="post">
+&nbsp;<span class="bold" >{_mynginsert_friend_info}.</span><br />
+&nbsp;<span class="small" >{_myngmail_mustbe_real}
+</span><br />
+<table>
+<tr>
+        <td class="normal" align="left"><b>{_myngemail}:</b></td>
+        <td><input type="text" class="normal" name="email" value="" size="20" maxlength="100" /></td>
+</tr>
+<tr>
+        <td class="normal" align="left"><b>{_myngname}:</b></td>
+        <td align="left"><input class="normal" type="text" name="friend_name" value="" size="10" maxlength="30" /></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td><br /><span class="bold" >{_myngemail_look}:</span><br /></td>
+</tr>
+</table>
+
+<table>
+<tr>
+        <td class="normal" align="left"><b>{_myngsubject}:</b></td>
+        <td><input type="text" readonly class="normal" name="subject" value="{subject}" size="40" maxlength="80"></td>
+</tr>
+
+</table>
+
+
+
+<table>
+
+<tr>
+<td>&nbsp;<textarea readonly class="normal" name="body_to_send" rows="20" cols="60" wrap="physical">
+{body}
+</textarea></td>
+<td></td>
+</tr>
+<tr>
+<td><input class="normal" type="submit" value="{_myngemail_it}" />&nbsp;<img src="{images_dir}/bouncing_mail.gif"  border=0 ></td>
+<td></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="send_email">
+<input type="hidden" name="id_article" value="{id_article}">
+</form>
