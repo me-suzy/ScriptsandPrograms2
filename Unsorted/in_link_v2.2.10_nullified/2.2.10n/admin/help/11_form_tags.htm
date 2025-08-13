@@ -1,0 +1,915 @@
+<HTML><!-- #BeginTemplate "/Templates/template.dwt" -->
+<HEAD>
+<!-- #BeginEditable "doctitle" --> 
+<TITLE>In-Link 2.0.4 SQL Directory Engine Documentation</TITLE>
+<!-- #EndEditable -->
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" href="style.css" type="text/css">
+<SCRIPT language="javascript">
+<!--
+function arc_flipflop(myID) {
+  	if (eval("document.all."+myID+".style.display")=='none') {
+		eval("document.all."+myID+".style.display='block'");
+	} else {
+	eval("document.all."+myID+".style.display='none'");
+	}
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFFFFF" text="#000000">
+
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+  <TR> 
+    <TD rowspan="2" width="0"><IMG src="images/icon1-.gif" width="32" height="32"></TD>
+    <TD class="title" width="100%">Help </TD>
+    <TD rowspan="2" width="0" align="right"><A href="manual.pdf"><IMG src="images/doc.gif" width="18" height="18" border="0"></A></TD>
+  </TR>
+  <TR> 
+    <TD width="100%"><IMG src="file:///G|/admin/images/line.gif" width="354" height="2"></TD>
+  </TR>
+</TABLE>
+
+<!-- #BeginEditable "body" --> 
+<h4>Tags Used in Forms</h4>
+
+<p class=MsoNormal>Please note, that method option in all front-end forms
+should be post: &lt;FORM ACTION=&lt;%form_action_tag_goes_here%&gt;
+METHOD=post&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>All tags used in forms have the following format:</p>
+
+<p class=MsoNormal>&lt;%form_[type]_[tpl name]_[item name]%&gt;</p>
+
+<p class=MsoNormal>Examples:</p>
+
+<p class=MsoNormal>&lt;%form_button_add_link_selcat%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_select_add_link_cat%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_action_search_advanced%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>These tags are required to be present in the name options
+of each processed &lt;input&gt; item, &lt;form&gt; tag and &lt;select&gt; tag.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>For time-saving purposes we recommend to preserve the
+templates that are delivered with the system and making necessary changes to
+their HTML portions.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Add Link Form</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>The following
+tags are required in order for the form to function properly:</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoHeader>&lt;%form_action_add_link%&gt;- main form tag</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_button_add_link_selcat%&gt;
+- button that selects sub categories</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_button_add_link_addcat%&gt;
+- button that adds selected category</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_button_add_link_addlink%&gt;
+- button that submits the form</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_button_add_link_reset%&gt;
+- button that resets the form</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_button_add_link_cancel%&gt;
+- button that returns to the previous screen</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal>Following are tags that control each &lt;input&gt; tag. They
+should be used in the following format:</p>
+
+<p class=MsoNormal>&lt;INPUT type=&quot;text&quot;
+name=&quot;&lt;%form_input_add_link_name%&gt;&quot;
+value=&quot;&lt;%val_link_name%&gt;&quot;&gt;</p>
+
+<p class=MsoNormal>&lt;%err_link_name%&gt; can be used anywhere on the form and
+will display an error in case of wrong entry</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Text field
+names:</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_name%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_url%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_desc%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_image%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust1%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust2%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust3%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust4%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust5%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust6%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Error output:</p>
+
+<p class=MsoNormal>&lt;%err_link_name%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Text field values: </p>
+
+<p class=MsoNormal>(required to pre-fill the values when an error occurs)</p>
+
+<p class=MsoNormal>&lt;%val_link_name%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_link_url%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_link_desc%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_link_image%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_link_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Custom field labels:</p>
+
+<p class=MsoNormal>(will substitute the actual field names as specified by
+admin, or if empty will use the labels defined in the current language file)</p>
+
+<p class=MsoNormal>&lt;%name_link_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>*- all custom fields are optional on the form and can be
+removed.</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Special tags:</p>
+
+<p class=MsoBodyTextIndent2>The tags be     low
+are used to facilitate the cross-reference functionality. Each link can be
+added to multiple categories (with permissions specified by admin)</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-3.0in'>&lt;%add_link_cat_name%&gt;
+-                           must be
+inserted in add_link_cats.tpl and displays the name of each selected category</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-3.0in'>&lt;%form_button_add_link_cats_delcat%&gt;-   must be inserted in add_link_cat.tpl . It is
+the name of the button that deletes each category from the link reference list
+in case of a user mistake.</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-3.0in'>&lt;%insert_add_link_cats%&gt;
+-                         Tag inserts the
+add_link_cats.tpl, specifies the location of the output of add_link_cat.tpl</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-3.0in'>&lt;%form_select_add_link_cat%&gt;
+-                 Name of the drop down
+that selects additional categories</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-3.0in'>&lt;%insert_drop_add_link_cat%&gt;
+-                 This tag produces the
+drop down that shows all available categories</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-3.0in'>Example of
+implementation:</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-3.0in'>&lt;TABLE&gt;</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-2.5in'>&lt;FORM
+action=&quot;&lt;%form_action_add_link%&gt;&quot; method=&quot;post&quot;&gt;</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-2.5in'>&lt;%insert_add_link_cats%&gt;</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-2.5in'>&lt;TR&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.25in;text-indent:-.75in'>&lt;TD&gt;Additional
+Categories: &lt;/TD&gt;</p>
+
+<p class=MsoNormal style='text-indent:.5in'>&lt;TD&gt;&lt;SELECT name=&quot;&lt;%form_select_add_link_cat%&gt;&quot;&gt;</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'>&lt;%insert_drop_add_link_cat%&gt;</p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'>&lt;/SELECT&gt;</p>
+
+<p class=MsoNormal style='text-indent:.5in'>&lt;/TD&gt;</p>
+
+<p class=MsoNormal style='text-indent:.5in'>&lt;TD&gt; &lt;INPUT
+type=&quot;submit&quot; name=&quot;&lt;%form_button_add_link_selcat%&gt;&quot;
+value=&quot;&lt;%language:lu_select%&gt;&quot;&gt;</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-2.0in'>&lt;INPUT
+type=&quot;submit&quot; name=&quot;&lt;%form_button_add_link_addcat%&gt;&quot;
+value=&quot;&lt;%language:lu_add_cat%&gt;&quot;&gt;</p>
+
+<p class=MsoNormal style='text-indent:.5in'>&lt;/TD&gt;</p>
+
+<p class=MsoNormal style='margin-left:3.0in;text-indent:-2.5in'>&lt;/TR&gt;</p>
+
+<p class=MsoNormal>&lt;/TABLE&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<h5>Login Form</h5>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>The following
+tags are required for the login form to work properly:</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_login%&gt; - form name</p>
+
+<p class=MsoNormal>&lt;%form_input_login_username%&gt; - user name text field
+name</p>
+
+<p class=MsoNormal>&lt;%form_input_login_password%&gt; - password text field
+name</p>
+
+<p class=MsoNormal>&lt;%form_button_login_login%&gt; - form submit button, logs
+the user in</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Suggest Site Form</h5>
+
+<p class=MsoNormal>This form will generate a custom email from the language
+template. The email can be used for any purpose, but primarily it is designed
+to suggest your site to a friend of the visitor. The following fields are required
+for this form to work:</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_suggestsite%&gt; - form name</p>
+
+<p class=MsoNormal>&lt;%form_button_suggest_send%&gt; - submit button that
+generates the email</p>
+
+<p class=MsoNormal>&lt;%form_input_suggest_email%&gt; - input text field that
+accepts the email address</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Registration Form</h5>
+
+<p class=MsoNormal>This form allows a visitor to register as a site user. The
+user is registered directly or as pending user, depending on admin permissions.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_registration%&gt; - form name</p>
+
+<p class=MsoNormal>&lt;%form_action_registration_no_password%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%val_form_button_registration_submit%&gt; - submit button</p>
+
+<p class=MsoNormal>&lt;%val_form_button_registration_reset%&gt; - reset button</p>
+
+<p class=MsoNormal>&lt;%val_form_button_registration_cancel%&gt; - cancel
+button</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Text field names:</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_user_name%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_user_pass%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_re_pass%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_first%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_last%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_email%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Validation Errors:</p>
+
+<p class=MsoNormal>(can be placed anywhere on the form)</p>
+
+<p class=MsoNormal>&lt;%error_username%&gt;</p>
+
+<p class=MsoNormal>&lt;%error_password%&gt;</p>
+
+<p class=MsoNormal>&lt;%error_first%&gt;</p>
+
+<p class=MsoNormal>&lt;%error_last%&gt;</p>
+
+<p class=MsoNormal>&lt;%error_re_pass%&gt;</p>
+
+<p class=MsoNormal>&lt;%username_used%&gt;</p>
+
+<p class=MsoNormal>&lt;%email_used%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Text field values:</p>
+
+<p class=MsoNormal>&lt;%val_user_name%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_first%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_last%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_email%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_user_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Custom field labels:</p>
+
+<p class=MsoNormal>&lt;%user_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>* - all custom fields are optional</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>User Profile Form:</h5>
+
+<p class=MsoNormal>This form allows logged in user to modify their profile
+information.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_profile%&gt; - form name</p>
+
+<p class=MsoNormal>&lt;%val_form_button_registration_submit%&gt; - submit
+button</p>
+
+<p class=MsoNormal>&lt;%val_form_button_registration_reset%&gt; - reset button</p>
+
+<p class=MsoNormal>&lt;%val_form_button_registration_cancel%&gt; - cancel
+button</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Text field names:</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_user_name%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_user_pass%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_re_pass%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_first%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_last%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_email%&gt;</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%form_input_registration_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Sort Categories Form</h5>
+
+<p class=MsoNormal>This form changes the way categories are sorted. It has two
+drop-downs, Sort and Sort Type. See sections above for description of the drop
+value tags.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_sort_cats%&gt; - form name</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Sort Links and # of results Form</h5>
+
+<p class=MsoNormal>This form changes the way links are sorted and the number of
+links displayed per page. It has three drop-downs, Num of Results, Sort and
+Sort Type. See sections above for description of the drop value tags.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_sort_links%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Validation Errors:</p>
+
+<p class=MsoNormal>(can be placed anywhere on the form)</p>
+
+<p class=MsoNormal>&lt;%error_username%&gt;</p>
+
+<p class=MsoNormal>&lt;%error_password%&gt;</p>
+
+<p class=MsoNormal>&lt;%error_first%&gt;</p>
+
+<p class=MsoNormal>&lt;%error_last%&gt;</p>
+
+<p class=MsoNormal>&lt;%error_re_pass%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Text field values:</p>
+
+<p class=MsoNormal>&lt;%val_user_name%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_first%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_last%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_email%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_user_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_user_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Custom field labels:</p>
+
+<p class=MsoNormal>&lt;%user_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%user_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>* - all custom fields are optional</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Rate Form</h5>
+
+<p class=MsoNormal>This form is used to rate a link.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_rate%&gt; - form name</p>
+
+<p class=MsoNormal>&lt;%form_rate_radio_vote%&gt; - input radio button with
+rating values 1-5</p>
+
+<p class=MsoNormal>&lt;%form_rate_button_rate%&gt; - submit button that rates</p>
+
+<p class=MsoNormal>&lt;%form_rate_button_cancel%&gt; - canel button</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Simple Search Form</h5>
+
+<p class=MsoNormal>This form is used to perform a simple search</p>
+
+<p class=MsoNormal>&lt;%form_action_search%&gt; - form name</p>
+
+<p class=MsoNormal>&lt;%form_input_search_keyword%&gt; - input text name for
+keyword</p>
+
+<p class=MsoNormal>&lt;%form_button_search_submit%&gt; - submit button to
+execute the search</p>
+
+<p class=MsoNormal>&lt;%select_links%&gt; - returns option to search for links from
+the current language file</p>
+
+<p class=MsoNormal>&lt;%select_cats%&gt; - returns option to search for
+categories from the current language file</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Advanced Search Form:</h5>
+
+<p class=MsoNormal>This form is used to perform advanced search in the system.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_search_advanced%&gt; form name - required</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>All of these fields are not required and can be removed in
+order to limit the user:</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_name%&gt; - category name search</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_desc%&gt; - category description
+search</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_fmonth%&gt; - month from (all
+date fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_fday%&gt; - day from (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_fyear%&gt; - year from (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_lmonth%&gt; - month to (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_lday%&gt; - day to (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_lyear%&gt; - year to (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_radio_search_cat_pick%&gt; - category editors
+pick</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_ccust1%&gt; - category custom
+field 1</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_ccust2%&gt; - category custom
+field 2</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_ccust3%&gt; - category custom
+field 3</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_ccust4%&gt; - category custom
+field 4</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_ccust5%&gt; - category custom
+field 5</p>
+
+<p class=MsoNormal>&lt;%form_input_search_cat_ccust6%&gt; - category custom
+field 6</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_name%&gt; - link name</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_desc%&gt; - link description</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_rating_f%&gt; - rating from </p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_rating_l%&gt; - rating to</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_votes_f%&gt; - number of votes
+from </p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_votes_l%&gt; - number of votes
+to</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_hits_f%&gt; - number of hits
+from</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_hits_l%&gt; - number of hits to</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_fmonth%&gt;  - month from (all date fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_fday%&gt; - day from (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_fyear%&gt; - year from (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lmonth%&gt;- month to (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lday%&gt;- day to (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lyear%&gt;- year to (all date
+fields are one block)</p>
+
+<p class=MsoNormal>&lt;%form_radio_search_link_pick%&gt; - link editors pick</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lcust1%&gt; - link custom field
+1</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lcust2%&gt; - link custom field
+2</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lcust3%&gt; - link custom field
+3</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lcust4%&gt; - link custom field
+4</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lcust5%&gt; - link custom field
+5</p>
+
+<p class=MsoNormal>&lt;%form_input_search_link_lcust6%&gt; - link custom field
+6</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%link_cust1%&gt; - link custom field 1 label</p>
+
+<p class=MsoNormal>&lt;%link_cust2%&gt; - link custom field 2 label</p>
+
+<p class=MsoNormal>&lt;%link_cust3%&gt; - link custom field 3 label</p>
+
+<p class=MsoNormal>&lt;%link_cust4%&gt; - link custom field 4 label</p>
+
+<p class=MsoNormal>&lt;%link_cust5%&gt; - link custom field 5 label</p>
+
+<p class=MsoNormal>&lt;%link_cust6%&gt; - link custom field 6 label</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%cat_cust1%&gt; - category custom field 1 label</p>
+
+<p class=MsoNormal>&lt;%cat_cust2%&gt; - category custom field 2 label</p>
+
+<p class=MsoNormal>&lt;%cat_cust3%&gt; - category custom field 3 label</p>
+
+<p class=MsoNormal>&lt;%cat_cust4%&gt; - category custom field 4 label</p>
+
+<p class=MsoNormal>&lt;%cat_cust5%&gt; - category custom field 5 label</p>
+
+<p class=MsoNormal>&lt;%cat_cust6%&gt; - category custom field 6 label</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Search separator type, valid values are AND or OR. At
+least one of these options should be present in order for search to work
+correctly.</p>
+
+<p class=MsoNormal>&lt;%form_input_search_sep%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Number of results displayed: is redundant, since the user
+can later select how many results to display from the result screen</p>
+
+<p class=MsoNormal>&lt;%form_input_search_num_result%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_button_search%&gt; - search submit button</p>
+
+<p class=MsoNormal>&lt;%form_button_search_reset%&gt; - reset button</p>
+
+<p class=MsoNormal>&lt;%form_button_search_cancel%&gt; - cancel button</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Add Review Form</h5>
+
+<p class=MsoNormal>This form lets a visitor to submit a review (in accordance
+with the permissions set by admin)</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_add_review%&gt; - form name</p>
+
+<p class=MsoNormal>&lt;%form_input_add_review_text%&gt; - review text to be
+placed in the text area</p>
+
+<p class=MsoNormal>&lt;%form_button_add_review_add%&gt; - submit button to add
+the review</p>
+
+<p class=MsoNormal>&lt;%form_button_add_review_reset%&gt; - reset button</p>
+
+<p class=MsoNormal>&lt;%form_button_add_review_cancel%&gt; - cancel button</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Subscribe Form</h5>
+
+<p class=MsoNormal>Subscribe form consists of one button that changes its value
+between Subscribe and Unsubscribe.</p>
+
+<p class=MsoNormal>&lt;%form_action_subscribe%&gt; - form name</p>
+
+<p class=MsoNormal>&lt;%form_button_name_subscribed%&gt; - submit button name 
+subscribes or un-subscribes</p>
+
+<p class=MsoNormal>&lt;%form_button_subscribed%&gt; - button value (Subscribe
+or Unsubscribe). The actual text comes from the current language file.</p>
+
+<p class=MsoNormal>&lt;%user_status%&gt; - tag that displays user status:
+(Subscribed or Unsubscribed). The actual text comes from the current
+language file.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h5>Modify Link Form</h5>
+
+<p class=MsoNormal>This form is similar to the Add Link form. The difference is
+that the end user cannot change the categories that the link belongs to,
+therefore there are no tags that control that portion of the form.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&lt;%form_action_modify_link%&gt; - form name</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_button_add_link_addlink%&gt;
+- button that submits the form</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_button_add_link_reset%&gt;
+- button that resets the form</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_button_add_link_cancel%&gt;
+- button that returns to the previous screen</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal>Following are tags that control each &lt;input&gt; tag. They
+should be used in the following format:</p>
+
+<p class=MsoNormal>&lt;INPUT type=&quot;text&quot;
+name=&quot;&lt;%form_input_add_link_name%&gt;&quot;
+value=&quot;&lt;%val_link_name%&gt;&quot;&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%err_link_    name%&gt; can be used anywhere on the form
+and will display an error in case of wrong entry</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>                        </p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Text field
+names:</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_name%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_url%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_desc%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_image%&gt;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust1%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust2%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust3%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust4%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust5%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&lt;%form_input_add_link_cust6%&gt;*</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Error output:</p>
+
+<p class=MsoNormal>&lt;%err_link_name%&gt;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Text field values: </p>
+
+<p class=MsoNormal>(required to pre-fill the values when an error occurs)</p>
+
+<p class=MsoNormal>&lt;%val_link_name%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_link_url%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_link_desc%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_link_image%&gt;</p>
+
+<p class=MsoNormal>&lt;%val_link_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%val_link_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Custom field labels:</p>
+
+<p class=MsoNormal>(will substitute the actual field names as specified by
+admin, or if empty will use the labels defined in the current language file)</p>
+
+<p class=MsoNormal>&lt;%name_link_cust1%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust2%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust3%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust4%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust5%&gt;*</p>
+
+<p class=MsoNormal>&lt;%name_link_cust6%&gt;*</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>*- all custom fields are optional on the form and can be
+removed.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+<!-- #EndEditable -->
+<CENTER>
+<P><IMG src="images/inlinksmall.gif" width="75" height="27"></P>
+<P class="footer">Intechnic Corporation, 2001. All Rights Reserved.</P>
+</CENTER>
+</BODY>
+<!-- #EndTemplate --></HTML>
