@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Weblog Entry Linking &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Weblog Entry Linking</h1>
+
+	<p>The Next and Previous entry links allow you to automatically generate links to the next or previous entry.  They are often used when displaying a single entry to provide navigation to other entries.</p>
+
+	<p>These tags work as tag pairs so that they will conditionally show the content between the pair if their is a next (or previous) entry.</p>
+
+	<code>{exp:weblog:next_entry}<br />
+<br />
+&lt;p>Next entry: &lt;a href="{path="weblog/comments"}">{title}&lt;/a>&lt;/p><br />
+<br />
+{/exp:weblog:next_entry}</code>
+
+	<code>{exp:weblog:prev_entry}<br />
+<br />
+&lt;p>Previous entry: &lt;a href="{path="weblog/comments"}">{title}&lt;/a>&lt;/p><br />
+<br />
+{/exp:weblog:prev_entry}</code>
+
+	<p>These tags must go on a page designed to show a single entry, such as a comments page.</p>
+
+	<p><b>Note:</b> If you are viewing the most recent entry in your weblog, then the "next_entry" tag's contents will not be shown (since there is no "next entry").  Likewise, when you are viewing the oldest/first entry in the weblog the "previous_entry" content will not be shown.</p>
+
+	<div class="important">
+		<p>The contents of these tags will only appear in a Template if you are viewing a "single-entry" type page (comments, permalink, etc.).  The tag contents will not appear for viewers in other cases.</p>
+	</div>
+
+
+
+	<h2>Parameters</h2>
+
+	<ul class="minitoc">
+		<li><a href="#par_weblog">weblog="news"</a></li>
+	</ul>
+
+
+	<h3><a name="par_weblog">weblog=</a></h3>
+
+		<code>weblog="news"</code>
+
+		<p>You can restrict the cycle to a specific weblog.  You may also specify multiple weblogs by using the pipe character:</p>
+
+		<code>weblog="weblog1|weblog2|weblog3"</code>
+
+		<p>Or you can exclude weblogs by including the word "not" followed by a space:</p>
+
+		<code>weblog="not weblog4|weblog5"</code>
+
+
+
+	<h2>Variables</h2>
+
+	<ul class="minitoc">
+		<li><a href="#var_path">{path=weblog/index}</a></li>
+		<li><a href="#var_title">{title}</a></li>
+	</ul>
+
+
+	<h3><a name="var_path">path=</a></h3>
+
+		<code>{path=template_group/template}</code>
+
+		<p>The path (template_group/template) where you want to show the entry.  This is typically used within a standard HTML link tag:</p>
+
+		<code>&lt;a href="{path=weblog/index}">{title}&lt;/a></code>
+
+		<p>You can also use <samp>SITE_INDEX</samp> in your path to point to your main site index page.  If you show your blog on your home page, using <samp>SITE_INDEX</samp> is preferable since it will make the URL cleaner.</p>
+
+		<code>&lt;a href="{path=SITE_INDEX}">{title}&lt;/a></code>
+
+
+	<h3><a name="var_title">title</a></h3>
+
+		<code>{title}</code>
+
+		<p>This variable simply displays the title of the entry.</p>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
