@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Emoticon Module Tags &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../index.html" />
+  <style type="text/css" media="screen,print">@import url(../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Emoticon Module Tag</h1>
+
+
+	<p><b>Note:</b> The Emoticon Module is included with ExpressionEngine by default.</p>
+
+	<p>In order to show a pop-up window containing smilies next to your comment
+form you must do several things:</p>
+
+	<p><b>1.</b> You must create a template called "smilies" (or whatever you like).</p>
+
+
+	<p><b>2.</b> In the template containing your comment form, add a link similar to this:</p>
+
+		<code>&lt;a href="#" onclick="window.open('{path=weblog/smileys}', '_blank',
+'width=300,height=400')">Smilies&lt;/a></code>
+
+	<p>Note the "path" variable.</p>
+
+
+	<p><b>3.</b> In your new smiley template, add the following Javascript in your html
+head:</p>
+
+	<code>&lt;script language="javascript"><br />
+&lt;!--<br />
+<br />
+function add_smiley(smiley)<br />
+{<br />
+    opener.document.comment_form.comment.value += " " + smiley + " ";<br />
+    window.close();<br />
+    opener.window.document.comment_form.comment.focus();<br />
+}<br />
+//--><br />
+&lt;/script></code>
+
+
+  <p>Then, use the following code to create a table containing the smileys:</p>
+
+	<code>&lt;table border="0" width="100%" cellpadding="6" cellspacing="1"><br />
+<br />
+{exp:emoticon columns="4"}<br />
+  &lt;tr class="row"><br />
+    &lt;td class="red">&lt;div>{smiley}&lt;/div>&lt;/td><br />
+  &lt;/tr><br />
+{/exp:emoticon}<br />
+<br />
+&lt;/table></code>
+
+	<p>Note the "column" parameter in the emoticon tag.  It allows you to specify how many columns of smilies the table will show.</p>
+
+	<p>ExpressionEngine will then automatically populate the table with all of the smiley images that you have in whatever directory you have specified as your "smilies" directory in the <dfn>Admin > Emoticon Preferences</dfn> section of the Control Panel.</p>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
