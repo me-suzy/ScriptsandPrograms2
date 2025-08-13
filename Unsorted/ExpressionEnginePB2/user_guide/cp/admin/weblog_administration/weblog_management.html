@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Weblog Management &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Weblog Management</h1>
+
+	<p>This section of the Control Panel is for the management of weblogs.  It is where weblogs are created, deleted, and preferences are set.</p>
+
+
+	<h2><a name="main_screen">Main Screen</a></h2>
+
+	<p>The main <dfn>Weblog Management</dfn> screen shows a table of all the existing weblogs.  It lists the weblog's full name and provides links to edit the preferences.</p>
+
+	<img src="weblog_management_main_screen.gif" width="577" height="150" alt="Weblog Management main screen" title="Weblog Management main screen" />
+
+	<ul>
+		<li><a href="#edit_preferences">Edit Preferences</a>: Edit all the preferences for the weblog.</li>
+		<li><a href="#edit_groups">Edit Groups</a>: Assign the category group, status group, and field group to use with that weblog.</li>
+		<li><a href="#delete">Delete</a>: Delete the weblog.</li>
+	</ul>
+
+	<p>The <dfn><a href="#create_a_new_weblog">Create a New Weblog</a></dfn> link takes you to a screen allowing you to create a new weblog.</p>
+
+
+
+	<h2><a name="create_a_new_weblog">Create a New Weblog</a></h2>
+
+	<p>A link off of the main <dfn>Weblog Management</dfn> page brings up this screen.  On this screen you define the new weblog.</p>
+
+	<img src="weblog_management_create_a_new_weblog.gif" width="588" height="254" alt="Create a New Weblog screen" title="Create a New Weblog screen" />
+
+	<h3>Short Name</h3>
+
+		<p>The "short name" for the weblog is the name used internally within the program.  It is also used when specifying a weblog in variables of parameters in your <dfn><a href="../../templates/index.html">Templates</a></dfn>.  It is not normally shown to visitors or otherwise exposed outside of your weblog "setup".</p>
+
+		<p>The weblog's short name is a required field.  It must be a single word with no spaces.  The underscore character is allowed.  For example, the weblog's "short name" might be <samp>joe_blog</samp>.</p>
+
+
+	<h3>Full Weblog Name</h3>
+
+		<p>The "full weblog name" is the descriptive name for the weblog.  This is the name of your weblog that you will show to visitors and display on your site.</p>
+
+		<p>The full weblog name is a required field.  Spaces, punctuation, and other special characters are allowed.  For example, the weblog's descriptive name might be <samp>Joe's Personal Weblog</samp>.</p>
+
+
+
+	<h2><a name="edit_preferences">Edit Preferences</a></h2>
+
+	<p>This screen allows you to edit the preferences and settings associated with the weblog.  They include General, Administrative, Weblog Posting, and Comment Posting settings.</p>
+
+
+	<img src="weblog_management_general_weblog_settings.gif" width="562" height="448" alt="Edit Preferences screen: General Weblog Settings" title="Edit Preferences screen: General Weblog Settings" />
+
+	<h3>Short Name</h3>
+
+		<p>The "short name" for the weblog is the name used internally within the program.  It is also used when specifying a weblog in variables of parameters in your <dfn><a href="../../templates/index.html">Templates</a></dfn>.  It is not normally shown to visitors or otherwise exposed outside of your weblog "setup".</p>
+
+		<p>The weblog's short name is a required field.  It must be a single word with no spaces.  The underscore character is allowed.  For example, the weblog's "short name" might be <samp>joe_blog</samp>.</p>
+
+
+	<h3>Full Weblog Name</h3>
+
+		<p>The "full weblog name" is the descriptive name for the weblog.  This is the name of your weblog that you will show to visitors and display on your site.</p>
+
+		<p>The full weblog name is a required field.  Spaces, punctuation, and other special characters are allowed.  For example, the weblog's descriptive name might be <samp>Joe's Personal Weblog</samp>.</p>
+
+
+	<h3>Weblog URL</h3>
+
+		<p>The absolute URL to the main page for this weblog.  If you have multiple weblogs, then you should include the Template Group and Template portion of the URL to point to this weblog's main page.  For example, if your site URL is <samp>http://www.example.com/index.php</samp> and the default/main Template for your weblog is "weblog/index", then you might use this setting:</p>
+
+		<code>http://www.example.com/index.php/weblog/index/</code>
+
+
+	<h3>Weblog Description</h3>
+
+		<p>A short description of the weblog.  Spaces, punctuation, and other special characters are allowed.  This is used, for example, in RSS feeds.</p>
+
+
+	<h3>XML Language</h3>
+
+		<p>This preference determines the XML language setting that you can use for your weblog pages.  This information is available as a variable for use in the weblog Templates.  A drop-down list is available for selection.</p>
+
+
+	<h3>XML Character Encoding</h3>
+
+		<p>The character encoding used for the weblog.  Most weblogs will use "utf-8" or "iso-8859-1", but other encodings can be specified.  This information is available as a variable for use in the weblog Templates.  A drop-down list is available for selection.</p>
+
+
+
+	<img src="weblog_management_administrative_settings.gif" width="560" height="360" alt="Edit Preferences screen: Administrative Settings" title="Edit Preferences screen: Administrative Settings" />
+
+	<h3>Default Status</h3>
+
+		<p>The default status for new weblog entries.  The available options depend on what <a href="#edit_groups">Status Group</a> the weblog is assigned to use and which statuses are defined for that group.</p>
+
+
+	<h3>Default Category</h3>
+
+		<p>The default category for new weblog entries.  The available options depend on what <a href="#edit_groups">Category Group</a> the weblog is assigned to use and which categories are defined for that group.  In addition to the categories from that group, the "None" option is also available, in which case no category will be selected by default.</p>
+
+
+	<h3>Check "Allow Comments" button in Publish page by default?</h3>
+
+		<p>This lets you determine whether or not the "Allow Comments" checkbox on the new weblog entry page will be checked by default.  If you do not intend to allow, or infrequently allow, commenting on entries in this weblog then the option can be set to "No".</p>
+
+
+	<h3>Check "Allow Trackbacks" button in Publish page by default?</h3>
+
+		<p>This lets you determine whether or not the "Allow Trackbacks" checkbox on the new weblog entry page will be checked by default.  If you do not intend to allow, or infrequently allow, trackbacks on entries in this weblog then the option can be set to "No".</p>
+
+
+	<h3>Add Trackback Auto-discovery code to your pages?</h3>
+
+		<p>This lets you choose whether or not to automatically include standard <a href="http://www.movabletype.org/docs/mttrackback.html#autodiscovery%20of%20trackback%20ping%20urls">trackback auto-discovery</a> code with each weblog entry.  Doing so will more easily allow other people linking to, or commenting on, your entries to correctly send a Trackback to your site.</p>
+
+
+	<h3>Maximum number of allowed trackback pings per hour</h3>
+
+		<p>This sets the maximum number of trackback pings to process in any given hour.  This setting can help alleviate server stress during particularly heavy traffic periods if you are receiving a lot of trackback pings.</p>
+
+
+	<h3>Which field should be used for Trackbacks excerpt?</h3>
+
+		<p>You can specif which field from your entries to use in Trackback excerpts.  The list is dynamically populated depending on which <a href="#edit_groups">Field Group</a> the weblog is assigned to use and which fields are defined for that group.</p>
+
+
+	<img src="weblog_management_weblog_posting_preferences.gif" width="560" height="185" alt="Edit Preferences screen: Weblog Posting Preferences" title="Edit Preferences screen: Weblog Posting Preferences" />
+
+	<h3>Default HTML formatting in weblog entries</h3>
+
+		<p>This setting determines how raw HTML code within entries is handled.  There are three options:</p>
+
+		<ol>
+			<li><b>Convert HTML into character entities</b>: This will convert the HTML tags so that they will display as plain text on a page when viewed.  This would be useful if you want to display example code often.</li>
+			<li><b>Allow only safe HTML</b>: This will allow "safe" HTML (&lt;b>, &lt;i>, &lt;u>, &lt;em>, &lt;strike>, &lt;strong>, &lt;pre>, &lt;code>, &lt;blockquote>) to be kept so that they are interpreted by the browser when the entry is viewed.  All other HTML is converted to character entities and the raw code will be seen upon viewing.</li>
+			<li><b>Allow ALL HTML</b>: This leaves the HTML code as written and the code will then be interpreted by the browser when the entry is viewed.</li>
+		</ol>
+
+
+	<h3>Allow image URLs in weblog entries?</h3>
+
+		<p>You can determine whether or not you want people to be able to display external images within your entries simply by using the URL for the image.  If "Yes" is selected for this option, people can display external images as inline content in your weblog.  If the setting is "No" then images that are external to your server will not be allowed.</p>
+
+
+	<h3>Automatically turn URLs and email addresses into links?</h3>
+
+		<p>When this option is set to "Yes", any full URLs or email addresses will be automatically formatted as a valid HTML link to the address.  If the option is "No" then the URL or email address will simply be treated and displayed as plain text.</p>
+
+
+	<img src="weblog_management_comment_posting_preferences.gif" width="562" height="650" alt="Edit Preferences screen: Comment Posting Preferences" title="Edit Preferences screen: Comment Posting Preferences" />
+
+	<h3>Allow comments in this weblog?</h3>
+
+		<p>Determines whether or not comments are allowed in this weblog.</p>
+
+
+	<h3>Require membership in order to post comments?</h3>
+
+		<p>Determines whether visitors to the website must be members in order to post.  If this preferences is set to "Yes" and an unregistered visitor attempts to post a comment the comment will not be accepted and the visitor will receive a message.</p>
+
+
+	<h3>Require email address to post comments?</h3>
+
+		<p>You can optionally require that anyone posting comments must list an email address.  You can determine in your <dfn><a href="../../templates/index.html">Template</a></dfn> whether or not the address is shown publicly, but requiring an email address in order to post comments can help reduce the number of "spam" comments you receive since the visitor must submit a valid email address.</p>
+
+
+	<h3>Maximum number of characters allowed in comments</h3>
+
+		<p>You may set a maximum number of characters allowed in any comment.  Setting this preference to 0 (zero) will not place a restriction on the number of characters allowed.</p>
+
+
+	<h3>Time interval between comment posting</h3>
+
+		<p>This is the optional number of seconds that must lapse after a comment is posted before that same user can post another comment.  This setting can help reduce comment "spam".  The preference can be left blank or set to 0 (zero) if you do not want to impose a limit.</p>
+
+
+	<h3>Comment Text Formatting</h3>
+
+		<p>This setting determines how comments are formatted by the system.  There are three possible choices:</p>
+
+		<ol>
+			<li><b>None</b>: No automatic formatting is done; the comment is left as-is.  This could be useful if you want people to be able to use full HTML in their comments.</li>
+			<li><b>xhtml</b>: Comments will be formatted as valid XHTML.  Text blocks with double line breaks will be turned into paragraphs, line breaks will be replaced by <samp>&lt;br /></samp> tags, special characters will be formatted as character entities, etc.</li>
+			<li><b>Auto &lt;br /></b>: All line breaks in the comment will be converted into <samp>&lt;br /></samp> tags.  This includes any line breaks that may occur inside HTML code, which could cause unexpected displays.</li>
+		</ol>
+
+
+	<h3>Comment HTML Formatting</h3>
+
+		<p>Like the weblog setting, this preference determines how raw HTML code within comments is handled.  There are three options:</p>
+
+		<ol>
+			<li><b>Convert HTML into character entities</b>: This will convert the HTML tags so that they will display as plain text on a page when viewed.  This would be useful if you want to display example code often.</li>
+			<li><b>Allow only safe HTML</b>: This will allow "safe" HTML (&lt;b>, &lt;i>, &lt;u>, &lt;em>, &lt;strike>, &lt;strong>, &lt;pre>, &lt;code>, &lt;blockquote>) to be kept so that they are interpreted by the browser when the entry is viewed.  All other HTML is converted to character entities and the raw code will be seen upon viewing.</li>
+			<li><b>Allow all HTML (not recommended)</b>: This leaves the HTML code as written and the code will then be interpreted by the browser when the entry is viewed.  This is generally not recommended since visitors would be able to submit HTML code which could drastically alter the display of your webpage.</li>
+		</ol>
+
+
+	<h3>Allow image URLs in comments?</h3>
+
+		<p>You can determine whether or not you want people to be able to display images within comments simply by using the URL for the image.</p>
+
+
+	<h3>Automatically turn URLs and email addresses into links?</h3>
+
+		<p>When this option is set to "Yes", any full URLs or email addresses will be automatically formatted as a valid HTML link to the address.  If the option is "No" then the URL or email address will simply be treated and displayed as plain text.</p>
+
+
+	<h3>Notify admin of comments and Trackbacks?</h3>
+
+		<p>Whenever new comments are posted or Trackbacks received, the system can optionally send an email alerting the recipient of the new comment/Trackback.  Recipients are defined in the following setting.</p>
+
+
+	<h3>Email address of recipient</h3>
+
+		<p>If the previous setting is set to "Yes", then these are the recipients of the email alert.  You may define a single email address or list multiple addresses by separating them with a comma.  Ex: "<samp>admin@example.com, joe@example.com</samp>"</p>
+
+
+
+	<h2><a name="edit_groups">Edit Groups</a></h2>
+
+	<p>This screen allows you to edit the groups associated with the weblog.</p>
+
+
+	<img src="weblog_management_edit_group_preferences.gif" width="584" height="320" alt="Edit Group Preferences screen" title="Edit Group Preferences screen" />
+
+	<h3>Category Group</h3>
+
+		<p>Choose which <a href="category_management.html">category group</a> is assigned to the weblog.  This determines what categories are associated with the weblog.  The list is dynamically populated with all the existing groups as well as "None".</p>
+
+
+	<h3>Status Group</h3>
+
+		<p>Choose which <a href="custom_entry_statuses.html">status group</a> is assigned to the weblog.  This determines what custom statuses are associated with the weblog.  The list is dynamically populated with all the existing groups as well as "None".</p>
+
+
+	<h3>Field Group</h3>
+
+		<p>Choose which <a href="custom_weblog_fields.html">field group</a> is assigned to the weblog.  This determines which weblog fields are associated with the weblog.  The list is dynamically populated with all the existing groups as well as "None".</p>
+
+
+
+	<h2><a name="delete">Delete Weblog</a></h2>
+
+		<p>The <dfn>Delete</dfn> link in the main <dfn>Weblog Management</dfn> table allows you to delete the weblog.  When a weblog is deleted, all entries and comments associated with it are also removed.  Weblog deletion is permanent and irreversible, so <strong>be very careful before deleting a weblog</strong>.</p>
+
+	<img src="weblog_management_delete_weblog.gif" width="581" height="184" alt="Delete Weblog confirmation screen" title="Delete Weblog confirmation screen" />
+
+	<p>You will be prompted to confirm your decision before you can delete the weblog.</p>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
