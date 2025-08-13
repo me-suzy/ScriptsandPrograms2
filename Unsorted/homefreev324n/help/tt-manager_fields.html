@@ -1,0 +1,160 @@
+ 
+<HTML>
+     <HEAD>
+         <TITLE>Program Documentation :: Home Free :: Tips and Tricks :: Adding extra columns/entries in manager.cgi</TITLE>
+         <META NAME="Description" CONTENT="">
+         <META NAME="Keywords" CONTENT="">
+
+<script language="JavaScript">
+<!-- 
+ function goHist(a) 
+ {
+ history.go(a);
+ }
+// -->
+</script>
+
+<style type="text/css">
+//<!--
+body { font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+th { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: bold; background-color: #FFFFFF;}
+td { font-family: Arial, Helvetica, sans-serif; font-size: 10pt;}
+form { font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+h1 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14pt; font-weight: bold}
+A:link { text-decoration: none; color: blue}
+A:visited { text-decoration: none; color: Navy}
+A:hover { text-decoration: underline; color: red}
+A:link.nav { color: #000000}
+A:visited.nav { color: #000000}
+A:hover.nav { color: red;}
+.nav { font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000}
+.std { font-family: Arial, Helvetica, sans-serif; font-size: 8pt;}
+.sml {font-family: Arial, Helvetica, sans-serif; font-size: 1pt;}
+//-->
+</style>
+    </HEAD>
+
+     <BODY LEFTMARGIN="5" RIGHTMARGIN="5" TOPMARGIN="5" bgcolor="#666699" TEXT="#000000" LINK="blue" VLINK="navy" ALINK="blue">
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+        <!-- HEADER -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD BGCOLOR="#333399" ALIGN="left" VALIGN="middle"></TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD BGCOLOR="LightSteelBlue" align=left>
+                    <TABLE border="0" cellpadding=2 cellspacing=0 bgcolor="LightSteelBlue" width="100%">
+                        <TR>
+                            <TD NOWRAP>&nbsp; <B>:: <A HREF="install.html">Installing</A> :: <A HREF="upgrade.html">Upgrading</A> :: <A HREF="move.html">Moving Installed Version</A> :: <A HREF="manual.html">User Manual</A> :: <A HREF="tt.html">Tricks &amp; Tips</A> :: <A HREF="readme.txt">Readme.txt</A> :: </b></td>
+                            <TD valign=center align=right><font class="sml"><FORM METHOD="post"><INPUT TYPE="button" VALUE="Back" onClick="goHist(-1)"></form></font></td>
+                        </TR>
+                    </TABLE>
+                     </TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="1" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <TABLE cellpadding=5 cellspacing=0 border=0 bgcolor="#000000" width="100%">
+            <TR>
+                <TD>
+                    <TABLE cellpadding=0 cellspacing=0 border=0 width="100%">
+                        <TR>
+                            <!-- START MENU TABLE -->
+                            <TD bgcolor="LightSteelBlue" valign=top width=130> <img src="/images/solutions/black.gif" width=130 height="5" border="0"><BR>
+                                 <BR>
+                                 <FORM ACTION="notta" method=post>
+                                <TABLE width="95%" bgcolor="#333399" cellpadding=1 border="0" cellspacing=0 align=center>
+                                    <TR>
+                                        <TD>
+                                            <TABLE width="100%" bgcolor="LightSteelBlue" cellpadding=3 cellspacing=0 border="0">
+                                                <TR>
+                                                    <TD bgcolor="#333399" align=center></TD>
+                                                </TR>
+                                                <TR>
+                                                    <TD align=center> <INPUT TYPE=TEXT NAME="address" value="HomeFree v3.24n" size=8> <FONT CLASS=std>hacked by:<br>
+                                                         <b>Nearly Null (-NnN-)</b><br>
+                                                         </FONT> </TD>
+                                                </TR>
+                                            </TABLE>
+                                             </TD>
+                                    </TR>
+                                </TABLE>
+                                 </FORM> </TD>
+                            <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                            <TD bgcolor=white width="100%" valign=top>
+                                <TABLE cellpadding=6 width="100%">
+                                    <TR>
+                                        <TD width="100%">
+                                            <!-- START CONTENT -->
+                                             <BR>
+                                             <font size=+1> Adding extra columns/entries in manager.cgi </FONT> <BR>
+                                             <FONT CLASS=std>Posted on: February 28, 2000, 1:47 a.m. </FONT> <BR>
+                                             <BR>
+                                             <B>By uploading text files to your server you can add as many extra fields to the main page of manager.cgi, the page shown directly after they log in and whenever they press the "home" link.</B> <BR>
+                                             <BR>
+                                             The new field will be automatically formatted like the fields that are already there by default. <BR>
+                                             <BR>
+                                             To do this simply create a new directory inside your current Home Free data directory and name this dir <I>manager</I> No chmoding should be nessecary. <BR>
+                                             <BR>
+                                             Next create a text file that will hold the html to place in the box. Name this new file manager_1.dat. If you want more than one, name your second file manager_2.dat then manager_3.dat and so on... <BR>
+                                             <BR>
+                                             The actually html for the table is not needed, this will be added by Home Free during the output. The first line of the text file should be what you want for the header. This should not be more than a few words long. Everything else from line 2 on will be the body.. You may include html and links. <BR>
+                                             <BR>
+                                             You also may want include specifics about the user in your text or links (like linking to another part of your website) Just add these tags in your mamager_X.dat file and they will be replaced with the user info. <BR>
+                                             <BR>
+                                             %%ACCOUNT%% - Account name <BR>
+                                             %%CATEGORY%% - Users Category<BR>
+                                             %%EMAIL%% - Users email<BR>
+                                             %%NAME%% - Users name <BR>
+                                             %%PASSWORD%% - Users Password<BR>
+                                             %%CATACC%% - Users account|Category<BR>
+                                             %%URL%% - Users url<BR>
+                                             <BR>
+                                             <BR>
+                                             </TD>
+                                    </TR>
+                                </TABLE>
+                                 </TD>
+                        </TR>
+                    </TABLE>
+                     </TD>
+            </TR>
+        </TABLE>
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+                <TD bgcolor="#333399" align=right width="100%">
+                    <table border="0" cellpadding=0 cellspacing=0 width="100%">
+                        <TR>
+                            <TD CLASS="STD"><font color="LightSteelBlue"> </FONT></TD>
+                            <TD align=right CLASS="STD"><font color="#FFFFFF">Copyright &copy; 1997- 2000 Solution Scripts.&nbsp;&nbsp;&nbsp;&nbsp;</FONT></TD>
+                        </TR>
+                    </TABLE>
+                     </TD>
+                <TD BGCOLOR="#000000" WIDTH="5"><IMG SRC="/images/solutions/black.gif" WIDTH="5" HEIGHT="1" ALT="" BORDER="0" HSPACE="0" VSPACE="0"></TD>
+            </TR>
+        </TABLE>
+        <!-- SPACER BAR -->
+        <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#000000" WIDTH="100%">
+            <TR>
+                <TD HEIGHT="5"><IMG SRC="/images/solutions/black.gif" WIDTH="590" HEIGHT="5" BORDER="0" ALT="*"></TD>
+            </TR>
+        </TABLE>
+    </BODY>
+</HTML>
+ 
