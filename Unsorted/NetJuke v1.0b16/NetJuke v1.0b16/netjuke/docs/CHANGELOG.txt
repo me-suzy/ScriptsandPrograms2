@@ -1,0 +1,1532 @@
+
+------------------------------------------------------------------------
+     NETJUKE 1.0 BETA CHANGE LOG: Keeps track of the changes made
+------------------------------------------------------------------------
+
+
+VERSION 1.0b16: 2002-11-03 (EST: Montreal, PQ, Canada)
+
+
+1.  THIS VERSION IS ONLY COMPATIBLE WITH PHP 4.1 AND ABOVE.
+
+    This new version brings the first incarnation of the long-awaited
+    jukebox feature (server-play), adds RealAudio support to the Recursive
+    Audio File Finder, uses md5 encryption for user passwords in the database,
+    removes the cookie requirement for clients not accepting or supporting
+    them, now supports apache 2, fixes some problems with the app and the
+    installer, and more. See below for install/upgrade instructions, and to
+    see what's new and fixed.
+
+
+2.  UPGRADING FROM 1.0b14, b15, b15.1 or b15.2:
+      
+      You MUST RUN THE UPGRADE PROCESS of the installer to add the new
+      database columns required by this version, and/or convert the
+      existing user passwords to the new md5 format.    
+    
+    + CLEAN INSTALL as second install:
+      
+      If you already have a copy of the netjuke running, but want to
+      start fresh, remember to drop the existing netjuke database.
+      You can also use the delete scripts delivered in the netjuke-toolkit
+      if you cannot drop and create databases.
+      
+      You can also create a new database to be accessed by this version,
+      if you want to keep your old version running as well, and simply
+      test this one.
+      
+      After that, see netjuke/docs/INSTALL.txt and MAINTAIN.txt for details.
+
+
+3.  Added first incarnation of the jukebox feature (server-play).
+    
+    See associated paragraphs in netjuke/docs/MAINTAIN.txt for
+    full details.
+
+    Currently supports mpg123, mpg321, ogg123 and winamp.
+    
+    Mac OSX users can get mpg123 from http://macosx.forked.net
+    or http://www.osxgnu.org. It works great on my Mac. :o)
+
+
+4.  Now using md5 one-way encryption for user passwords in the database.
+
+
+5.  The netjuke can also support non-cookie-enabled browsers/tools, but the
+    cookie-less sessions are less secure than the ones with cookie.
+
+
+6.  Improvements and fixes for recursive functions of the Audio File Finder.
+
+
+7.  Revised code that was generating 404 errors in the http server's log
+    It was "normal", but I found another way to do what I needed.
+
+
+8.  New documentation file at docs/MAINTAIN.txt, extracted from the
+    docs/ INSTALL.txt file.
+
+
+9.  Now using SCRIPT_NAME or PHP_SELF, and SCRIPT_FILENAME or
+    PATH_TRANSLATED in case one is not available, in both the
+    netjuke and its installer.
+
+
+10. Upgraded to getid3 1.5.4.
+
+    See http://getid3.sourceforge.net/getid3.changelog.txt for more info.
+
+
+11. Added support for RealAudio format scanning in the recursive audio
+    file finder, thanks to getid3 1.5.2 and up.
+    
+    People ripping their music using the RealPlayer will now be able to
+    add their music automatically.
+
+
+12. Added master-inc-prefs.php and obfuscate-db-passwd.php to netjuke-toolkit
+
+    These tools will help users and developers to install a copy of the
+    netjuke without using the web based installer. See these tools and
+    the sql scripts delivered with the netjuke-toolkit package.
+
+
+13. Changed windows detection scheme in recursive audio file finder
+
+
+14. Changed all "<?=" for "<?php echo " and "<?" for "<?php" for
+    increased portability.
+
+
+15. Updated code to help with international characters (Russian, etc.).
+
+    - Changed character encoding for display.
+    
+    - Created a new language preference file (inc-langprefs.php) in each
+      locale sub-directory to hold the charset and alphabet values.
+    
+    - The alphabet tables on the Browse page (etc.) are now dynamically
+      generated to be able to handle more characters, or replace them.
+
+
+16. Fixed a problem with IIS when saving playlists. The server was being
+    shutdown for no apparent reason. This should now not be the case.
+
+
+17. Upgraded to ADODB 2.43.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b15.2: 2002-09-21 (EST: Montreal, PQ, Canada)
+
+
+1.  THIS VERSION IS ONLY COMPATIBLE WITH PHP 4.1 AND ABOVE.
+
+    This updated package fixes a lot of problems that people
+    were experiencing with 1.0b15 or b15.1, depending on their
+    platform, and brings 2 important new features (see points 9 and
+    11 below). Thanks to the bug fixes, I was able to install and/or
+    configure 2 windows hosts to date, both running Win2k, IIS, PHP,
+    and MySQL, and this without any modifications. First steps toward
+    official Windows support (not tested with apache on windows or
+    other windows distributions yet).
+
+
+2.  There are 3 ways to install/upgrade the application. Pick
+    the one that is appropriate to your context.
+    
+    + UPGRADING FROM 1.0b15 or 1.0b15.1:
+      
+      You DO NOT HAVE TO RUN THE UPGRADE PROCESS of the installer.
+      You will only have to replace the files.
+    
+      See netjuke/docs/UPGRADING.txt for details.
+    
+    + UPGRADING FROM 1.0b12 through 1.0b14:
+      
+      You MUST RUN THE UPGRADE PROCESS of the installer to add the new
+      database columns required by this version.    
+      
+      See netjuke/docs/UPGRADING.txt and notes on 1.0b15 in CHANGELOG.txt.
+    
+    + CLEAN INSTALL of 1.0b15.2:
+      
+      If you already have an install of the netjuke, but want to start
+      fresh, remember to drop the existing netjuke database, or create
+      a new one to be accessed by this version. You can also use the 
+      delete scripts delivered in the netjuke-toolkit if you cannot
+      drop and create databases.
+      
+      After that, see netjuke/docs/INSTALL.txt for details.
+
+
+3.  Real-time path generation bug fixes for windows hosts (IIS/apache)
+    at install time and when running the netjuke. This update will also
+    help on systems where the SCRIPT_FILENAME and/or SCRIPT_NAME php
+    predefined variables were somehow not available.
+    
+    Users wanting to run the netjuke on a windows server instead of *nix
+    should now be able to do so. More testing (and possibly updates) is
+    definitely needed, but this should be a good start. It is advised to
+    run the binary version available on the php site rather than the
+    installer-based one, or choose "Advanced" in the installer, and select
+    "Display all errors" when prompted (last option).
+
+
+4.  Bug fixes for systems where the "find" command line tool cannot be
+    accessed (windows). There is still the potential for updates on
+    non-windows systems where php cannot process shell commands such
+    as "find" or "whereis" (safe_mode?).
+
+
+5.  Bug fix for web servers using a custom page for "404, file not found"
+    errors. In this context, most server redirect to the custom page, and
+    do return an official 404 error. This was creating problems with the
+    real-time generation of the web path to the root of the netjuke.
+
+
+6.  Removed obsolete version checking code and version file in installer.
+
+
+7.  Global stylesheet and javascript inclusion is now done on the
+    server-side in php, instead of on the client-side by relying
+    on the server. This can speed up the application on some systems,
+    and helps with cross-browser compatibility.
+
+
+8.  Checks if data directory is both existing (new) and writable
+    (previous), and only if necessary (ie: not in case of direct
+    db import in the Recursive Audio File Finder).
+
+
+9.  Enabled automated login and scheduling features
+
+    Please see netjuke/docs/GLOBAL_LOGIN.txt to see how you can now login
+    to the netjuke without passing by the login page, schedule automated
+    music imports and/or database maintenance tasks, as well as access
+    these features from other scripting/programming languages.
+
+
+10. Upgraded to getid3 1.5.1.
+
+    See http://getid3.sourceforge.net/getid3.changelog.txt for more info.
+
+
+11. Added support for WMA (MS Windows Media Audio) format scanning
+    in the recursive audio file finder, thanks to getid3 1.5.1.
+    
+    People ripping their music using the Windows Media Player
+    will now be able to add their music automatically.
+    
+    Also added supported file formats to the page header in the Recursive
+    Audio File Finder in Admin.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b15.1: 2002-09-09 (EST: Montreal, PQ, Canada)
+
+
+1.  THIS VERSION IS ONLY COMPATIBLE WITH PHP 4.1 AND ABOVE.
+
+
+2.  Bug fix for people running the netjuke at the web root of host
+    (ie: not in subdirectory such as /netjuke/).
+    
+
+See http://sf.net/tracker/index.php?func=detail&aid=607117&group_id=42076&atid=432052
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b15: 2002-09-07 (EST: Montreal, PQ, Canada)
+
+
+1.  THIS VERSION IS ONLY COMPATIBLE WITH PHP 4.1 AND ABOVE.
+
+
+2.  You must run the upgrade process of the installer to add the new
+    database columns required by this version.
+    
+    + See netjuke/docs/UPGRADING.txt for details.
+
+
+3.  Greatly improved recursive file finder
+    
+    + Can now import directly (no tab-delimited files)
+
+    + Also, the tool is now much faster to scan for files that have
+      been added to your music library, and need to be imported.
+
+
+4.  Virtual-host and port-forwarding/firewall friendly
+
+    + The netjuke doesn't need a hardcoded web_path or filesystem
+      path anymore. You can now connect to the same install of the
+      netjuke using any ip or hostname associated with the server.
+    
+    + This primarily helps people using port forwarding behind a
+      firewall who need to connect with a different ip/hostname and
+      port depending on if they are connecting from inside or outside
+      their network.
+    
+    + These values, which are still required by the applications
+      for some features, are now compiled on the fly.
+
+
+5.  Advanced Search (see main toolbar)
+
+
+6.  Full comments and lyrics support.
+
+    + To take full advantage of this feature, you will need to
+      delete all music related data and rescan your music library.
+      To do so, go to ADMIN -> MUSIC DATABASE MAINTENANCE -> Clear All
+      Music-Related Data. Then, just rescan your music library using
+      the Recursive Audio File Finder.
+    
+    + The above is only required if you want to have access to the
+      lyrics of the tracks that you had already imported.
+
+
+7.  List of Artists featured on an Album, and of Albums featuring
+    an Artist (click on the question mark next to the artist or
+    album name).
+
+
+8.  The Random tool is now presented in a new Window
+
+
+9.  New languages available
+
+    In order of submission:
+   
+    + Catalan, thanks to Eduard Serra and Neus Gonzalez.
+   
+    + German, thanks to Heiko Whrle.
+   
+    + Spanish, thanks to Oscar Yesid Romero A., Juan Pablo Cardona N.,
+      and Luis Marcial Bertel P. from the University of Manizales. 
+
+
+10. New "View Radio Playlist" option on special edit toolbar.
+
+
+11. Toolbar, when not logged in and in private mode, now links to login.php
+
+
+12. Fixed a bug where filtered search results could not be sorted properly
+
+
+13. Upgraded to ADODB 2.30
+
+
+14. And more code optimization.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b14: 2002-06-20 (PST: Vancouver, BC, Canada)
+
+
+1.  MAKE SURE TO DOWNLOAD THE APPROPRIATE PACKAGE FOR YOUR PHP VERSION.
+    
+    - netjuke-1.0b14-php4.1+.tar.gz for users with php 4.1 and above
+
+    - netjuke-1.0b14-php4.0.6.tar.gz for users with php 4.0.6
+    
+    See http://www.php.net/release_4_2_1.php for details on the
+    differences (see the External Variables paragraph at the bottom).
+    
+    I know I had said that the netjuke wouldn't support versions
+    prior to php 4.1 anymore, but I just couldn't bare to boot so
+    many users out of the new versions. ;o)  I can't confirm how
+    long I'll be able to maintain both versions, but I'll do it
+    if and when I can.
+    
+    NOTE: The next version (b15) is most likely quite a while away,
+    as I'm preparing for my big move from the West Coast (Vancouver)
+    to the East Coast (Montreal) of Canada on June 27th. After that,
+    I'll be looking for a job there, and probably won't have too much
+    time for the netjuke until I find one.
+    
+    Last version released from Vancouver, BC, Canada.
+
+
+2.  Fixed a bug where a new artist, album or genre was being deleted
+    when created through the track edit window (admin/tr-edit.php).
+
+
+3.  Fixed a bug with the recursive file finder that was stopping it
+    from working in interactive mode in the 1.0b14-php4.1+ version.
+
+
+4.  Added a music note icon/link in many places to be able to start
+    playing all the tracks by an artist, in an album, or in a genre
+    in a single click.
+
+
+5.  Updated the backup and import scripts to process the artwork
+    fields for tracks, artists and albums.
+
+
+6.  Made sure to increment the login count by 1 when a new user
+    registers if in security mode 0.0 or 1.0.
+
+
+7.  Changed the playlist title to accept 100 characters instead of
+    just 30. This will only work for new installs, or if you
+    re-install.
+
+
+8.  Made sure to delete tracks from user playlists when they are
+    deleted by the database maintenance utility.
+
+
+9.  Made the random page "more random" by limiting the default
+    recordset to 10000 tracks instead of only 1500. It's slightly
+    slower, but the selections are now much better.
+
+
+10. Upgraded the getid3 3rd-party library to 1.4.1b5.
+
+    See url below for more info:
+    http://getid3.sourceforge.net/getid3.changelog.txt
+
+
+11. Upgraded the ADODB 3rd-party library to 2.12.
+
+    See url below for details:
+    http://php.weblogs.com/ADOdb/    
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b13: 2002-05-28 (PST: Vancouver, BC, Canada)
+
+
+1.  The 1.0b13 upgrade is being released primarily to make the
+    netjuke compatible with PHP 4.2 and up. This is a major upgrade
+    code-wise, as every single script needed to be seriously
+    modified at once. 
+    
+    NOTE! THE REGULAR 1.0b13 RELEASE IS ONLY COMPATIBLE WITH PHP
+    4.1 AND ABOVE. PHP 4.0 USERS MUST GET THE RELEASE LABELED AS
+    1.0b13-PHP4.0.
+    
+    WARNING! AS OF THE NEXT VERSION, THE NETJUKE WILL NOT BE
+    COMPATIBLE WITH PHP 4.0.X ANYMORE, DUE TO SOME MAJOR CHANGES
+    IN PHP AND THE WAY EXTERNAL VARIABLES ARE HANDLED.
+    
+    See http://www.php.net/release_4_2_1.php for details (see the
+    External Variables paragraph at the bottom).
+
+
+2.  If you are running b12.2, there is no need to run the upgrade
+    process of the installer to move from to b13, because this
+    version does not bring any database changes (had enough to do
+    for one upgrade). If you are not running b12.2, either install
+    b13 from scratch, or go through the the previous upgrades if
+    you can (there were some problems with postgres 7.2.1, so you
+    might not be able to).
+
+
+3.  Fixed a date format problem in the Recursive Audio File Finder
+    that created problem in Mysql. Thanks to Dan Sully!
+
+
+4.  Changed the new Postgres sql scripts to use the timestamp data
+    type instead of datetime, as postgres 7.2.1 and up do not support
+    it any longer. Thanks to Guillermo Schimmel for the heads-up!
+    
+    This is valid for a fresh install only, which would most likely be
+    required for someone moving from postgres 7.1 to 7.2 or 7.3 anyway.
+
+
+5.  Added 2 new fields in the Random page. Users can now enter a minimum
+    and maximum number of seconds that each selected track in the
+    generated playlist should be less or greater than.
+
+
+6.  Added an extra feature to the time search (see quick search).
+
+    Users can still enter a number of seconds (as usual), but can now
+    also enter a string starting with > or < followed by a number of
+    seconds to find tracks that a greater than or less than the amount
+    entered.
+    
+    Examples:
+    - 120 will find tracks equal to 2 minutes, +/- 5 seconds.
+    - >120 will find tracks greater than 2 minutes.
+    - <120 will find tracks less than 2 minutes.
+
+
+7.  Added a secure "PHP Info" script in the admin section so that users
+    can easily get access to information about their host when they are
+    asking for help or troubleshooting.
+
+
+8.  Upgraded the getid3 3rd-party library to 1.4.1b4.
+
+    See url below for more info:
+    http://getid3.sourceforge.net/getid3.changelog.txt
+
+
+9.  Upgraded the ADODB 3rd-party library to 2.0.
+
+    See url below for details:
+    http://php.weblogs.com/ADOdb/    
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b12.2: 2002-04-07 (PST: Vancouver, BC, Canada)
+
+
+1.  This b12.2 update brings countless enhancements to the Admin section
+    (over b12.1) in the form of tweaks and fixes that hope to help with
+    the performance decrease of the music import in b12 over b11.
+    
+    These changes primarily affect the recursive file finder and the
+    file import tool. Tremendous work has also been done at the bundled
+    3rd-party getid3 library level. Now bundling 1.4b9.
+
+    + EXISTING 1.0b12.1 USERS only need to download the smaller
+      "netjuke-1.0b12.2-update.tar.gz" package, which only has the
+      updated files. You do not need to run the upgrader for this
+      process.
+    
+    + IF YOU ARE RUNNING THE ORIGINAL b12 from an update to b11 (not a
+      new users), you should proceed with the simple b12.1 update. You
+      do not need to run the upgrader for this process.
+    
+    + IF YOU ARE RUNNING b11, just get the b12.2 release directly,
+      and run the upgrade process of the installer (see UPGRADING.txt).
+    
+    If you were having problems streaming some files in prior versions
+    (file not found), you should probably take the time to run the
+    Database Maintenance script (see Admin) to delete any tracks that
+    can't be found because their respective paths might had been saved
+    improperly before (truncated, extra or missing characters). Once
+    this is done, and only if the tool did find some missing tracks,
+    just run the Recursive Audio File Finder to re-import the faulty
+    tracks, so they can be imported properly.
+
+
+2.  Introduces the concept of a Security Key in inc-prefs.php.
+
+    This value is used to provide secure random seeding to the
+    function that generates the session ids used by the netjuke,
+    based on some valuable feedback from a security expert,
+    Pasi Eronen, who has clued me in on some valuable ideas to
+    generate more secure session ids for each user.
+    
+    It is automatically generated at first and re-generated when you
+    save your netjuke system preferences and for each session.
+    
+    For optimal security, you must change this value at least once,
+    and from time to time, with any string of more than 30 characters
+    you want. You can do so from the Preference File screen of the
+    Admin section (underneath the Security Mode option).
+
+
+3.  Now importing proper time and bit rate for Ogg Vorbis files. The
+    Sample rate is still missing though. Ogg users will need to drop
+    their music data throuhg the admin section and re-import for these
+    values to be added to the db properly though... Sorry. :o(
+
+
+4.  Misc. code performance tweaks throughout.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b12.1: 2002-03-25 (PST: Vancouver, BC, Canada)
+
+
+1.  This update brings a fix to the filesize issue found in 1.0b12,
+    and a few other changes to the recursive audio file finder. It
+    also brings an even less predictable way of generating session ids.
+
+    Existing 1.0b12 users only need to download the smaller
+    "netjuke-1.0b12.1-update.tar.gz" package, which only has the updated
+    files. The older 1.0b12 package is now actually a litteral copy of
+    the new 1.0b12.1 archive to make sure that users getting the netjuke
+    from sites still pointing to the original release still get the
+    updated copy right away.
+    
+    To actually fix the filesize issue, and update any faulty data brought
+    by it, just go to the admin section, and run the "Maintain Music
+    Database" option found in the "MUSIC DATABASE MAINTENANCE" tool.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b12: 2002-03-23 (PST: Vancouver, BC, Canada)
+
+
+1.  You MUST run the installer to UPGRADE TO or INSTALL 1.0b12
+
+    + See netjuke/docs/UPGRADING.txt or INSTALL.txt for details
+    
+    + Upgrade process is required for existing users as to upgrade
+      the netjuke database backend to 1.0b12, which brings quite a
+      few database-level changes.
+      
+      This will be done automatically and will not affect your
+      existing data in any way.
+    
+    + FOR INCREASED SECURITY, remove the netjuke/installer/ directory
+      once you are up and running. You won't need it any longer, and
+      the module is fully independent.
+
+
+2.  Added greatly improved recursive file finder upgraded by Steve,
+    Marc-Oliver, Alexander and me (hourray for team development! :o).
+
+
+3.  The "display track count" feature has been greatly improved to
+    not use tremendous system resources anymore, thanks to
+    modifications inspired by a caching patch submited by
+    Marc-Oliver & Alexander.
+    
+    Since the feature was only optional because of the temporary way
+    it was enabled, this is not the case any longer, and this should
+    not decrease performance too much (if at all, on recent systems).
+    
+    The track counts are now diplayed at all time in the "Browse"
+    page, as well as in the alphabetical listings. Incidentally,
+    the 'N/A' value will now only show up if there are tracks
+    actually using the value.
+
+
+4.  Added "play" button in the playlist edit window to start playing
+    all the tracks at once.
+    
+    This isn't available in the search.php yet, as there could be way
+    too many tracks in a listing for the feature to be usable, but
+    we'll look for a realistic way to make it happen in future versions.
+
+
+5.  Changed database field that holds the track's location/path from
+    "varchar(255)" to "text" to avoid problems with tracks with
+    extremely long filenames or paths.
+    
+    The same modification has been done to all the columns that hold
+    image paths for tracks, artists, (etc) to avoid similar problems.
+
+    
+6.  Now incrementing and displaying (admin) a login count value for
+    each users.
+
+
+7.  Modified play.php to only output the extra M3U-related song info
+    when accessed from windows, to fix a bug that stopped Galeon and
+    Konqueror under Linux from effectively launching the playback.
+
+
+8.  Modified play.php to only let users with an active session play
+    the audio files when the "Protect Media" feature is turned on.
+    
+    This way, we make sure that users need to visit the site before
+    they can start playing audio. It makes sure than if you cancel
+    someone's access, they cannot actually keep on playing music
+    though playlists they had saved before, or are being given by
+    other active users.
+    
+    Ogg users: you still cannot use the "Protect Media" option...
+    The files are found, start buffering, but never actually start
+    playing. There are no errors in any logs that can help with
+    troubleshooting this issue. Open challenge, everyone...
+
+
+9.  Upgraded the bundled getid3.php library to 1.4b2, which fixes
+    some genre lookup issues, and will also enable us to start
+    coding some write-back functions for id3 tags in FUTURE releases.
+    
+    I/we haven't started w/ the write-back stuff yet because of the
+    beta status of the library, as we do not want to risk corrupting
+    your audio files. Ultimately, I'd like to also see write-back
+    functions for ogg before we can add such features to the
+    official release.
+
+    
+10. Started importing the comment tag from mp3s to the db. The
+    comment tag is not displayed anywhere yet, but will be soon.
+
+
+11. Misc. code tweaks and bug fixes in the netjuke and the
+    installer/upgrader.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b11: 2002-02-27 (PST: Vancouver, BC, Canada)
+
+
+1.  Existing users currently running 1.0b9 or 1.0b10 DO NOT NEED to
+    run the upgrade process of the installer to upgrade to 1.0b11.
+
+    + If you haven't upgraded in a while, now is probably a good
+      time, because a major modification has been implemented in b11
+      (See #2 below for more info).
+    
+    + See the available UPGRADING.txt documentation to upgrade.
+    
+    + See the available INSTALL.txt documentation to install.
+    
+    + 1.0b8 users see the same UPGRADING.txt to upgrade
+    
+    + User still running version 1.b0b7 (or prior) must upgrade to
+      1.0b8 first. See the download section of the netjuke's homepage. 
+
+
+2.  MAJOR CHANGE AND FEATURE ENHANCEMENT! DATA DISPLAY FIX.
+    
+    + The netjuke does not store its data in uppercase any more.
+      This is probably the most important modification ever made
+      to the netjuke since its release on Jan. 3rd 2002.
+    
+    + Many users mentioned or asked about the fact that the data
+      dislayed in the pages wasn not "CaSeD" as they wanted. This
+      was due to the netjuke storing its data in UPPERcase to ease
+      the requirements for case insensitive searches.
+    
+    + GOOD NEWS: The data will be displayed correctly forever.
+    
+    + BAD NEWS: The music-related data that you currently have
+      in your netjuke will be displayed in uppercase until you
+      clear this data and re-import it.
+    
+    + To do so, go to Admin -> Music Database Maintenance -> Delete
+      Music Data, and proceed with this step.
+    
+    + You can thereafter re-import your data as usual, and the data
+      will be displayed exactly as stored in your audio files, or as
+      you choose to further edit it through the netjuke's admin and
+      editors tools.
+
+
+3.  Updated the interface of the "System Preference File" editor/tool
+    in Admin to separate the different ooptions by groups.
+
+
+4.  Fixed a bug with the radio feature. The file path saved to the
+    playlist are not url encoded any longer. This was also previously
+    available through the 1.0b10.1 listed on the netjuke's homepage.
+
+
+5.  Found and fixed one of the most elusive media "file not found"
+    bug in the netjuke, thanks to a meticulous user on the mailing
+    list. (Thanks Jim! :o)
+    
+    + I'm hoping that this will fix all the potential "404" errors
+      some users are experiencing, but Windows users might still
+      have them (waiting for your reports on the list :o).
+    
+    + I didn't know about Jim's version (problem w/ file download),
+      but the bug involved some system-wide functions that will have
+      hopefully fixed the other few similar bugs we're having so much
+      trouble finding (See KNOWN_ISSUES.txt). 
+
+
+6.  Fixed a bug that stopped the netjuke from running on SunOS, by
+    crashing upon generation of the mandatory user session id.
+    
+    + SunOS had never been tested with. I guess we can add this one
+      to the long list of supported platforms!
+
+
+7.  Misc. code tweaks.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b10: 2002-02-22 (PST: Vancouver, BC, Canada)
+
+
+1.  Existing users currently running 1.0b9 DO NOT NEED to run the
+    upgrade process of the installer to upgrade to 1.0b10.
+
+    + See the available UPGRADING.txt documentation to upgrade.
+    
+    + See the available INSTALL.txt documentation to install.
+
+
+2.  Added "List All" feature for artists and albums, based on
+    Charles Brian Hill's patches).
+    
+    + Modified Brian's addition to lower the space requirements
+      of the added option in the screen, and to make them available
+      in the common header seen in the Browse, Random and Community
+      screens.
+
+
+3.  Added "total time and size" in as many places as I could
+
+    + In the Content Summary seen in the Browse, Random and
+      Community pages
+      
+    + In the Search Results / Track Listing header
+    
+    + In the Private & Shared Playlist header
+    
+    + In the Community & Favorite Playlist header
+    
+    + Also modified the function used to format the times to
+      display hours, minutes and seconds (as appropriate) instead
+      of just minutes and seconds.
+
+
+4.  Added a "Delete" button next to the Artist, Album and Genre
+    lists displayed in the screen used to edit a track's info.
+    
+    + Just select any of the respective lists' option, and click the
+      "Delete" button to delete the entry, and assign all the tracks
+      that still used it to the appropriate "N/A" value.
+
+
+5.  Updated the Quicktime/Darwin SS4 support for the "Radio" features
+    so that users do not have to restart the radio stream playlist from
+    the QTSS4 web-based admin tool everytime they make modifications
+    to the playlist using the special "Add To" & "Replace" tools.
+    
+    + Make sure the directory in which your QTSS4 playlist resides
+      is writable by the application. For more security, make sure
+      that the QTSS4 *.config file remains only readable/writeable
+      by root, as it seems to contain a clear text stream password.
+      This has nothing to do w/ the netjuke though.
+    
+    + You still need to create the emapty playlist manually at first,
+      and start it when you start your server, but modifications will
+      be picked up on, thanks to information researched by and provided
+      to me by Cleve Posey, an enthousiastic netjuke user, and John
+      Anderson from Apple. Thans guys! :o)
+
+
+6.  Increased the "randomness" of the playlists with a better track
+    selection scheme.
+
+
+7.  Fixed a sad bug with the random playlists when using ogg vorbis
+
+    + Ogg Vorbis users, to my great surprise, weren't able to use
+      the random page if they only use ogg files.
+
+
+8.  Added Brian's patch to stop the recursive audio file finder from
+    getting an error when scanning an empty directory.
+
+
+9.  Consolidated some repetitive code bits everywhere by moving them
+    into smarter functions (hence performance improvements).
+
+
+10.  Misc. code tweaks.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b9: 2002-02-18 (PST: Vancouver, BC, Canada)
+
+
+1.  Existing users running beta 8 should run the upgrade process of
+    the installer to upgrade to 1.0b9.
+
+    + See the available UPGRADING.txt documentation to upgrade.
+    
+    + See the available INSTALL.txt documentation to install.
+
+
+2.  Started enabling the Radio feature (QTSS4, mod_mp3, etc.)
+
+    + See in Admin -> Pref. File to setup the appropriate values.
+    
+    + This first incarnation of the feature only enables for
+      adminstrators and editors to edit an existing "Radio
+      Playlist" text file. To be able to support multiple radio
+      server types, the netjuke does not attempt to completely
+      administer the stream server itself.
+    
+    + The netjuke will only format and save the tracks you select to
+      a playlist you will already have created to satisfy your server
+      requirements, and you will need to (re)start your stream server
+      using whatever administration interface provided by the
+      developers of the server you selected (Hint: The QT/Darwin SS4
+      has an excellent free web-based admin tool ;o)
+    
+    + Other developers are more than welcomed to come up with and
+      contribute custom add-ons for the admin section that would enable
+      full administration of the available radio server types. I'll
+      be glad to integrate them as they come, but I cant afford to
+      focus on such tasks by myself, especially if I want to be able
+      to support multiple stream server types.
+    
+    + To downsample the mp3 files to satisfy users on low bandwidth,
+      please see the documentation of the server type you are using.
+
+
+3.  Added optional "RADIO" link in the primary navigation toolbar.
+    
+    + Only shows up if there is a value in the new "radio url" field
+      in Admin -> Pref. File. This value is otional, in case you
+      somehow choose not to have a direct link from the netjuke, yet
+      still want to manage a radio playlist.
+
+
+4.  Created a new extra toolbar for administrators and editors that
+    shows up in the search results and all of the different screen
+    used to deal with playlists (private, shared, etc.)
+
+    + Batch Track Edit
+    
+    + Batch Track Delete
+    
+    + Add To Radio Playlist
+    
+    + Replace Radio Playlist
+
+
+5.  Integrated and adapted the "count" patches submitted by Timothy
+    M. Crider. Administrators can now define if they want the "Browse"
+    page and Alphabetical Listings to display a detailed Track Count
+    for each associated value (Artist, Album, Genre).
+    
+    + Please note that this feature is optional, and defaults to OFF,
+      because it currently requires a tremendous amount of connections
+      to the database, and can bring your netjuke server to a crawl
+      if you aren't running an insanely fast and dedicated host.
+    
+    + Future plans potentially include caching these values to a
+      text/xml file to limit the database requirement, therefore
+      lowering the feature's system requirements.
+
+
+6.  Added some javascript to make sure that the "Protect Media" feature
+    is auto-selected when an admin chooses to limit playback to the
+    "Real Player" software.
+
+
+7.  Tried to fix as many issues that came up on the mailing list and
+    support requests as possible (keep in mind I'm still alone to
+    develop and support the whole solution).
+    
+    + See KNOWN_ISSUES.txt for what I know still doesn't work.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b8: 2002-02-01 (PST: Vancouver, BC, Canada)
+
+
+1.  You MUST run the installer to UPGRADE or INSTALL to netjuke 1.0b8
+
+    + See netjuke/docs/UPGRADING.txt or INSTALL.txt for details
+    
+    + Installer is now within the netjuke directory structure.
+      - No more double downloads for an install or upgrade.
+      - No more filesystem or web path to enter during install.
+    
+    + The only things left to enter for an upgrade are the database
+      type, and an existing administrator's email and password.
+    
+    + The only things left to enter for an install are the database
+      related info, and the credentials for the default administrator.
+    
+    + FOR INCREASED SECURITY, remove the netjuke/installer/ directory
+      once you are up and running. You won't need it any longer, and
+      the module is fully independent.
+    
+    + Upgrade process is required as to automatically upgrade the
+      netjuke database backend to 1.0b8. 
+
+
+2.  Database backend upgrades to accomodate new data, modify some
+    column names, and set some default values.
+    
+    + Some extra columns that have been added are not used yet, but
+      have been set now to consolidate the most db changes in one
+      upgrade, as these db modifications are what requires to run
+      through the upgrade process (for users not familiar with SQL).
+    
+    + As an alternative, people who download the netjuke-toolkit can
+      also updrade the database by running the SQL scripts found in
+      netjuke-toolkit/SQL/sql-orig/upgrade/1.0b8/. If you chose to do
+      this, you're on your own for support though, and it assumes you
+      know what you're doing.
+
+
+3.  Added new Nickname, date created and date updated fields for users.
+
+    + The Nickname is the caption that is displayed in the community
+      section and shared playlists to describe the authors instead
+      of their respective email addresses. If the nickname is left
+      blank by the user, and he/she needs to be showcased publically,
+      the mandatory real name will be used instead.
+    
+    + The nickname, although optional, is also required to be unique
+      if the user choose to set a value.
+    
+    + The new user-related date fields are displayed in the user
+      maintenance section for administrators.
+    
+    + This will also be used in future features when we need to
+      publically identify a user.
+
+
+4.  Images for Track, Artist and Album MUST now be in var/artwork/.
+
+    +  Remote images were simply unrealistic, because of the time
+       it takes to check if a remote image exists, depending on
+       the performance and availabilty of the "image server"
+       (especially in loops like search results).
+    
+    + This will bring a tremendous performance improvement to people
+      using images extensively.
+    
+    + Keep in mind that to set an image in the netjuke, you only
+      need to enter its address from the top of the var/artwork/
+      directory. So an image "/path/to/netjuke/var/artwork/01.jpg"
+      would be entered as "01.jpg" in the netjuke screens. You
+      can have as many sub-directories as you want within the
+      "artwork" folder itself, just like for your audio files in
+      the "music" dir.
+    
+    + Also fixed a bug in the track edit window that stopped anyone
+      from clearing an image once set.
+
+
+5.  Increased security, especially when running in Public modes (0.x).
+
+    + Wasn't required, but aims at lowering future code requirements.
+
+
+6.  Full url to Music Server is now required in the preferences.
+
+    + Existing users need not to worry. If they have theirs set to
+      a relative path, it will be automatically updated the next time
+      they modify the system preferences through the admin section.
+    
+    + The Music Server is still protocol independedent (http, rtsp, *)
+    
+    + Started to code some key functions for the upcoming Playback
+      Types feature (m3u, stream, server play). The netjuke will
+      start using them in the NEXT release to allow for saving
+      playlists to a mod_mp3 type streamer to allow for an admin
+      controlled Radio Mode.
+
+
+7.  Other Administration Section Upgrade
+
+    + Confirms the genre string bug fixed delivered with the 1.0b7.1
+      patch which was bundling a beta release of getid3.php
+
+    + Users are now prompted with an error (where appropriate )if
+      the netjuke/var/data/ directory has not been made writable
+      by the web application.
+    
+    + Users are now prompted to confirm before deleting the content
+      of the music database or running the dn maintenance tool. I
+      had not heard any horror stories yet, but preferred to play
+      it on the safe side.
+
+    + Brought the tab-delimited file upload utility back from the
+      grave within the admin section. The netjuke does not (yet)
+      allow for audio file uploads because posting large files
+      from a web page can be extremely unreliable. Feel free to
+      submit a module for the admin to do so though. :o)
+
+
+8.  Upgraded custom session handling to avoid having one session
+    created for each track launched when running the netjuke with
+    the "Protect Media" option ON.
+    
+    + Also, the logout function will delete any session that
+      have not been updated in the last 12 hours from the
+      time it is being called. This hopes to keep the number
+      of unused sessions low when users do not take the time
+      to log out.
+
+
+9. Fixed a sort order issue with playlist when launched from
+    the playlist or community screens. The issue was first thought
+    to be related to the random feature, which explains the numerous
+    problems with finding it.
+
+
+10. Fixed some issues with single quotes (') with the user name's
+    (and now nickname) in the acount editing pages, as well as with
+    the search queries by track, artist, etc.
+
+
+11. Misc. upgrade to the documentation and language packs
+
+
+12. Bundled Libraries Upgrade
+
+    + Upgraded getid3.php to version 1.2.5.
+
+    + Upgraded ADODB to version 1.71.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b7: 2002-01-26 (PST: Vancouver, BC, Canada)
+
+
+1.  No need to use the installer to UPGRADE to 1.0b7 from 1.0b3 through
+    b6 as the database backend did not change since these releases.
+
+    + See the available UPGRADING.txt documentation to upgrade.
+    
+    + See the available INSTALL.txt documentation to install.
+
+
+2.  All the patches for 1.0b6 are of course included in beta 7
+
+    + IMPORTANT: 1.0b7 (and the previous 1.0b6.2 patch) fixes a
+      security hole in the netjuke that could let remote attackers
+      run commands as the web server user. WE URGE YOU TO UPGRADE
+      YOUR EXISTING INSTALL. Peter Vreugdenhil, who searched for,
+      discovered and reported the security hole didn't find any
+      other at this time. :o)
+    
+    + The 1.0b6.2 didn't make it in there, as I chose to rewrite the
+      security fix instead. Result: hole is still gone, bugs created
+      by the b6.2 patch are gone as well.
+    
+    + This should fix problems users have been having with the
+      community section, as well as random playlists. Please
+      let me know through the site's Support option or mailing
+      list if you are still these having problems with b7.
+    
+    + FRIENDLY REMINDER TO ALL DEVELOPERS: Make sure to never
+      use user-defined variables in your eval() calls. Any web
+      application developer should make sure they thoroughly
+      read the following publication, as it applies to many
+      other languages than just PHP:
+      
+      - http://www.securereality.com.au/studyinscarlet.txt
+
+
+3.  Yet another major upgrade to the Recursive Audio File Finder
+
+    + Dropped class.id3.php, which was only ID3v1.x compliant anyway.
+    
+    + Upgraded to getid3-1.2.4b which is the best PHP library for ID3
+      tags out there.
+    
+    + Misc tweaks for the MP3 ID3 tag support: All genre tagging
+      formats are supported in our tests. Please let us know if
+      your are still having genre problems with MP3 files. 
+    
+    + Ogg support by getid3: 1.2.4b Brings experimental (but stable
+      in tests) support for Ogg Vorbis comment tags, based on files
+      submitted by existing Ogg users, and the great skills of James,
+      the getid3 developer. Thanks James! :o)
+    
+    + The OGG files that we have been provided with did not seem to
+      have a genre or track number entry. Genre and Track Number
+      imports are therefore still experimental. OGG users: Let us know.
+
+
+4.  Fixed a bug in the upgrade process of the installer, which is not
+    used at this time as the database hasn't changed since 1.0b3.
+    
+    + Remaining users of beta 1 and 2 should run the 1.0b3 upgrade
+      available in the site's "Download" section before upgrading
+      to 1.0b7. Or run a database backup from the admin section,
+      re-install from scratch using the installer, and re-import
+      the music data into 1.0b7.
+
+
+5.  Added support for favicons (bookmark/favorite icons) for browsers
+    that support it (MSIE for mac doesn't seem to).
+    
+    + See netjuke/var/artwork/favicon.ico to replace the default icon
+      with your own artwork.
+    
+    + See http://www.favicon.com/ for more info on favicons, the
+      browsers that support them and how to create your own to
+      replace the default one.
+
+
+6.  Misc. code enhancements and bug fixes throughout.
+
+
+7.  Upgraded the whole documentation with new information based on
+    the user feedback and the support requests.
+
+
+8.  Upgraded the toolbox: cleaner structure, more tools.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b6: 2002-01-20 (PST: Vancouver, BC, Canada)
+
+
+1.  No need to use the installer to upgrade from 1.0b3, b4 and b5 as the
+    database backend did not change since these releases.
+
+
+2.  THAT'S IT! The Recursive Audio File Finder seems to please everybody,
+    on all supported platform, and all types of ID3 tagging for MP3 files!
+    
+    + This is all thanks to a lot of valuable feedback from the
+      netjuke-users mailing list, and the great updates made by
+      Silisoftware to their getid3.php library.
+    
+    + The same limitations still apply to OGG files (No time, bitrate
+      or sample rate are imported. Can still be modified manually).
+
+
+3.  Generated M3U playlists now conform to the official standard, and
+    include the supported tracks information tags (title, artist, album)
+    
+    + This helps some players with displaying appropriate values.
+      Winamp especially, but the track name will be displayed as soon
+      as the track starts playing.
+    
+    + iTunes (potentially others) still only display the track's filename
+      as the player only support part of the M3U standard. The tags are
+      simply ignored at this time, and the player will still play the
+      listed tracks without problems.
+
+
+4.  Upgraded the tab-delimited file import tool to not create records for
+    audio files that are found to be duplicates of existing tracks in the
+    database.
+    
+    + The lookup is done using the file's location, so that users can still
+      have 2 copies of a song with the same info, but a different location
+      (eg: different artist, album, etc).
+
+
+5.  Upgraded the admin section with new maintenance features
+
+    + Removed tabfile-upload.php as it was useless now that the best way
+      to import music is to use the Recursive File Finder.
+    
+    + Renamed tabfile-backup.php to db-maintain.php and updated the admin
+      index appropriately.
+    
+    + The new Music Database Maintenance tool includes the old backup
+      function, and has two new features:
+      
+      - Maintain Music Database: scans the entire music database, and
+        deletes the records if their related local file cannot be found.
+        Files with a full URL (http://, rtsp://. etc.) will remain
+        untouched. If an artist, album or genre is subsequently left
+        without tracks, it will be deleted as well.
+      
+      - Clear All Music-Related Data: Deletes all the music-related data
+        (tracks, artists, etc.). The users, their preferences and session
+        data remains untouched. Playlists are also deleted.
+
+
+6.  New browser check for the installer to prompt users of netscape 4.x
+    or lower to upgrade to mozilla, netscape 6, etc because of some
+    nasty javascript incompatibilities. Mozilla 0.9x being so good on
+    every platform, this will hopefully not be a problem to users.
+
+
+7.  Major code enhancements and bug fixes throughout.
+
+
+8.  Upgraded the bundled getid3.php library to version 1.22.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b5: 2002-01-15 (PST: Vancouver, BC, Canada)
+
+
+1.  No need to use the installer to upgrade from 1.0b3 and 4, as the
+    database backend did not change in this release.
+
+
+2.  Major code enhancements and bug fixes, especially for Mac users, and
+    users with enormous music collections (memory footprint during scans).
+
+
+3.  Major performance enhancements throughout (php, database connect, etc).
+
+
+4.  Better help in the installer for new users, and docs for everyone
+    (even more is on the way).
+
+
+5.  Had to lower the time limit in some script from 5 minutes to 30
+    seconds, but only for users running php in SAFE MODE. Please let me
+    know if this creates more problems when scanning huge collections,
+    or when using the backup or import features in admin.
+
+
+6.  Bundled a custom modified getid3.php library until the version
+    1.20 is out (very soon I've been told, so it'll be in beta 6).
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b4: 2002-01-12 (PST: Vancouver, BC, Canada)
+
+
+1.  Minor code tweaking and bug fixes, mainly to the new upgrade
+    process of the installer.
+
+
+2.  Replaces 1.0b3 which somehow got corrupted on the sourceforge.net
+    download site.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b3: 2002-01-11 (PST: Vancouver, BC, Canada)
+
+
+1.  INSTALLER: The installer now also handles upgrades from
+    any previous version to the latest release.
+
+    + IMPORTANT: You now MUST run the installer/updater
+      to upgrade to the 1.0b3 version (or see the toolkit).
+    
+    + ALSO: some directories as found in beta 1 and 2 have
+      been moved: see the directory structure note below,
+      and/or the provided docs/UPGRADING.txt.
+    
+    + The installation process involves a smaller form
+      than the one used with b1 & b2.
+
+
+2.  NEW FEATURE: ID3v2 Tags Support in File Finder tool.
+
+    Thanks to Remco Voorderhake (aka Fozzie-Bear), who pointed
+    out the great php library which enabled this feature.
+    library: getid3.php as found at http://www.silisoftware.com/
+    
+    The previous class.id3.php library is still used when
+    getid3.php fails to locate valid tags. If still nothing
+    is found, the user is prompted to add the tracks manually
+    using a web form (limited to 30 items to avoid huge pages).
+    
+    + ALSO: Upgraded the recursive finder so that an infinite
+      number of audio formats can be supported in the future.
+
+
+3.  NEW FEATURE: Ogg Vorbis Tags Support in File Finder tool.
+
+    + Scans for track title, artist name, album name, genre
+      name, and filesize. We cannot import the track's duration,
+      bit rate and sample rate as of yet. Defaults to empty, can
+      be set manually through track edit popup window or the 
+      generated import file.
+    
+    + IMPORTANT: Your audio player must support the Ogg Vorbis
+      format, which in itself has nothing to do with us.
+    
+    + This is still very experimental, just like the format
+      itself, so just like with players, your mileage may vary
+      depending on your platform, player, encoder, etc.
+    
+    + If nothing is found, the user is prompted to add the tracks
+      manually using a web form (limited to 30 items to avoid
+      huge pages).
+
+
+4.  NEW FEATURE: Now supports pictures for each track, album
+    and artist database records.
+    
+    + Picture are stored in netjuke/var/artwork
+    
+    + A new icon shows up wherever tracks, albums and artists are
+      listed, if an image is located for the displayed value. Icon
+      can be clicked to open a new window for the full-size view
+      of the associated image.
+    
+    + Clickable thumbnails are also shown in the Track Info popup
+      window.
+    
+    + Pictures locations can be added from the Track Edit window
+      when logged in as an administrator or an editor. Location
+      can be relative to the netjuke/var/artwork/ directory, or
+      be a remote url (http).
+
+
+5.  NEW FEATURE: Media dispatcher s now optional (defaults to OFF)
+    
+    + The built-in "media proxy" used to obfuscate the urls
+      displayed in the audio player (and which tries to limit
+      unwanted non-streaming downloads) is now optional.
+    
+    + This feature MUST NOT be activated when using Ogg Vorbis
+      audio files. Even though the mp3 files will play fine,
+      the Ogg files cannot be accessed by the player (???).
+      It seems that they do not like the redirection process.
+
+
+6.  IMPORTANT: Added a new subdirectory structure to handle
+    all the user modifiable files that make the content of the
+    site. The netjuke/var/ directory now holds by default:
+    
+    + var/music/*  (new dir.)
+      DOES NOT need to be writable by the application.
+      Default location to store your local audio files of any
+      format. The netjuke's audio directory is optional, and
+      can be anywhere on the drive (or mounted). Audio files
+      can also be hosted remotely (http, rtsp). Tracks in formats
+      not supported by the recursive file finder (RealAudio,
+      internet radio streams, etc.) can still be added manually
+      at any time from the admin section or the track edit view.
+    
+    + var/artwork/*  (new dir.)
+      DOES NOT need to be writable by the application.
+      Local directory structure to store local images for
+      artists, albums, and tracks respectively. Images
+      can also be hosted remotely (http).
+    
+    + var/html/*  (html files previously in etc/*)
+      DOES NOT need to be writable by the application.
+      Default interface header & footer html files. These can
+      be anywhere, locally or remotely (http)
+    
+    + var/data/*  (import and backup dir previously in admin/*)
+      MUST be writable by the application.
+      Location used by the netjuke to store the [generated]
+      music import and backup text files.
+    
+    Make sure to give the proper privileges to the web server
+    (or world read/write) to the content of the var/directory.
+
+
+7.  HELPFUL: New user-friendly error for users who forgot to cleanup
+    any white spaces before and after the php <?php and ?> tags in the
+    generated php preference file (as documented).
+
+
+8.  HELPFUL: New user-friendly (and appropriate) error when the
+    installer of the netjuke cannot connect to the targeted database
+    (Use to give a misleading error re: persistent connection).
+
+
+9.  HELPFUL: Major upgrade to the provided documentation's content
+    based on the new features, but also on all current user feedback
+    and support requests. We're getting closer to start the actual
+    FAQ file.
+    
+    + Added new TODO.txt and KNOWN_ISSUES.txt 
+    
+    + See */docs/ directory for details.
+
+
+10. TOOLKIT: New tools added to the netjuke-toolkit.
+
+    + Now includes the original sql for the database generation
+      in hope that people will help porting the netjuke to other
+      database systems than Postgres and MySQL. The SQL was
+      previously only accessible in the installers php scripts.
+    
+    + Also included the sql used by the installer for people who
+      are daring enough to update the netjuke manually! Simply
+      run the sql scripts to add the new required columns to the
+      previous version of the database.
+
+
+11. BACKEND: Updated provided ADODB library to version 1.65
+
+
+12. BACKEND: Many other code tweaking and improvements.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b2: 2001-01-05 (PST: Vancouver, BC, Canada)
+
+
+1.  NEW FEATURE: Added a new RANDOM section that enables users to get
+    playlists without having to choose the music themselves. The user
+    can optionally choose to limit the random playlist to one or more
+    genres, and must define a specific number of tracks (limits the
+    load on the web server).
+
+    + If the user is logged in, a random music selection is generated and
+      saved as a private playlist, which can then be treated as any other.
+
+    + If the user is in anonymous mode, the music starts playing immediately,
+      as playlist creation is (currently) reserved to registered users.
+
+
+2.  NEW FEATURE: Added a new "Download" button/icon next to the tracks
+    in the listings (search, playlists, community, etc.) so that users
+    can download the actual file in addition to streaming it.
+    
+    + The feature can be toggled ON and OFF site-wide by administrators
+      so that each site can decide if they want to allow downloads or not.
+    
+    + The feature is set to OFF by default (ie: no download allowed).
+
+    + See "File Download" checkbox in the system preference screen.
+
+
+3.  BUG FIX: in inc-common.php in regards to persistent vs. non-persistent
+    database connections. This bug only affected users who specifically
+    specified for PHP not to use persistent connections in their php.ini
+    file, or at compile time.
+
+
+4.  HELPFUL: New user-friendly error screen when the netjuke cannot accessed
+    its required preference file at */etc/inc-prefs.php. The users are now
+    prompted to download the installer or use an existing copy of the
+    preference file instead of receiving a php error.    
+
+
+5.  BACKEND: The version checking scheme between the netjuke installer
+    and application has been updated to now use a text file at the root
+    of the netjuke. One of the plus to users is simply that it's now
+    obvious to find out which version is currently installed before
+    and update or upgrade. 
+
+
+6.  MINOR: Changed the word ADMINISTRATION to ADMIN in the top toolbar
+    to leave room for the new RANDOM feature. ;o)
+
+
+7.  BACKEND: Updated English & French language packs to match the new features.
+
+
+8.  HELPFUL: Updated all the provided documentation files.
+
+
+------------------------------------------------------------------------
+
+
+VERSION 1.0b1: 2001-01-03 (PST: Vancouver, BC, Canada)
+
+
+1.  First public release. Enjoy, and please submit some feedback by
+    using the mailing lists available on our Sourceforge.net project
+    page located at http://netjuke.sourceforge.net. Thank you!
+
+
+------------------------------------------------------------------------
+
+
