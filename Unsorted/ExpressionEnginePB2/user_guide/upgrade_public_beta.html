@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Upgrading to ExpressionEngine Public Beta 2 &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="./index.html" />
+  <style type="text/css" media="screen,print">@import url(./docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="./index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Upgrading to ExpressionEngine Public Beta 2</h1>
+
+	<p>Upgrading from the Public Beta 1 version of ExpressionEngine to the Public Beta 2 version of ExpressionEngine is very simple.</p>
+
+
+	<h2>Running the Update</h2>
+
+	<h3>Step 1</h3>
+
+		<p>The first step is simply to download the release candidate version of the ExpressionEngine software once you purchase it.  Unzip the software to your local computer.</p>
+
+
+	<h3>Step 2</h3>
+
+		<p>You now need to replace a few of the existing directories on your server with the new files you just downloaded.  Replace the server contents of the following directories with your newly downloaded files:</p>
+
+		<ul>
+			<li><kbd>system/core/</kbd></li>
+			<li><kbd>system/cp/</kbd></li>
+			<li><kbd>system/db/</kbd></li>
+			<li><kbd>system/language/</kbd></li>
+			<li><kbd>system/lib/</kbd></li>
+			<li><kbd>system/modules/</kbd></li>
+		</ul>
+
+		<p>Be sure that you upload all non-image files in ASCII format, which is sometimes called "text" format.</p>
+
+
+	<h3>Step 3</h3>
+
+		<p>Replace the site <var>index.php</var> file (the one in your main directory, <strong>not</strong> the one in the <kbd>system</kbd> directory) with the version from the newly downloaded files.</p>
+
+
+	<h3>Step 4</h3>
+
+		<p>Upload the following new file and directory:</p>
+
+		<ul>
+			<li><var>system/update.php</var></li>
+			<li><kbd>system/updates/</kbd></li>
+		</ul>
+
+
+	<h3>Step 5</h3>
+
+		<div class="important">
+			<p><b>Warning</b>: In order to perform the update you cannot have an existing Template Group named "search" since the ExpressionEngine search Module uses that name.</p>
+		</div>
+
+		<p>Point your browser to the <var>system/update.php</var> file on your server. This file will update you to the new version of ExpressionEngine.  Be sure that you're accessing the file through your webserver and not just loading the file into your web browser locally.  Access the file as you would a regular webpage, using an address similar to <samp>http://www.yourdomain.com/system/update.php</samp>.</p>
+
+		<p><b>Delete the <kbd>system/updates/</kbd> directory and <var>system/update.php</var> file from your server when you are finished with the update.</b></p>
+
+
+
+	<h2>Updating your Settings</h2>
+
+	<p>Log in to your Control Panel and go to the <dfn><a href="cp/admin/weblog_administration/weblog_management.html">Weblog Management</a></dfn> section.  In that section you'll need to do two things for each of your weblogs:</p>
+
+	<ol>
+		<li>Choose the search excerpt field.  This is the field from which ExpressionEngine will pull any excerpted text in your search results.</li>
+
+		<li><p>If you are running multiple weblogs, then you will want to add the Template Group/Template name to the <dfn>Weblog URL</dfn> setting.  For example, if your site URL is <samp>http://www.example.com/index.php</samp> and the default/main Template for your weblog is "weblog/index", then you might use this setting:</p>
+
+		<code>http://www.example.com/index.php/weblog/index/</code></li>
+
+	</ol>
+
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
