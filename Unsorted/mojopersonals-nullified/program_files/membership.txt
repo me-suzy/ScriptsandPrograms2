@@ -1,0 +1,58 @@
+############################################################
+# @order 
+# You can change the description as you need, but please be careful and do not change anything
+# beyond the `qq|` and `|`
+#For example
+# "ad_browse"          => qq|Allow to browse ads.|,
+# Here you do not change "ad_browse" as changing it will cause errors
+# only change `Allow to browse ads.' to whatever you need
+############################################################
+sub AccountDef{
+### This is the order the values are displayed
+	@order = ("ad_browse","ad_post","ad_post_pix","ad_reply","ad_save","ad_search","ad_search_advanced","ad_view",
+	"photo_upload","photo_view","photo_gallery",
+	"cupid_search",
+	"mail_notify","mail_send","mail_signature","auto_reply",
+	"member_search","member_search_advanced","member_view",
+	"ad_allowed","media_allowed","mailbox_size");
+### language references
+	$features= qq|Features|;
+	$order=    qq|Click to order|;
+###table display
+	$table_attributes =qq|width="100%" border="1" cellspacing="0" cellpadding="2" bordercolor="#EBEBEB"|;
+	$key_row_attributes =qq||;
+	$value_row_attributes =qq|bgcolor="#CCCCCC"|;
+	$header_row__attributes =qq|align="center"|;
+	$footer_row_attributes =qq|align="center"|;
+
+### To the left of the arrow (=>) are values to be displayed. Change as needed but only within the bars (|)	
+	return (
+	"ad_browse"          => qq|Allow to browse ads.|,
+	"ad_post"            => qq|Allow to post ads.|,
+	"ad_post_pix"        => qq|Allow to post ad with pictures.|,
+	"ad_reply"           => qq|Allow to reply to ads.|,
+	"ad_save"            => qq|Allow to save ads into hotlist.|,
+	"ad_search"          => qq|Allow to search for ads.|,
+	"ad_search_advanced" => qq|Allow to use the advanced search ad options.|,
+	"ad_view"            => qq|Allow to view ads.|,
+	"photo_upload"       => qq|Allow to upload photos.|,
+	"photo_view"         => qq|Allow to view fullsize photos of other members.|,
+	"photo_gallery"      => qq|Allow to view photo gallery of other members.|,
+	"cupid_search"       => qq|Allow to use the cupid search.|,
+	"mail_notify"        => qq|Allow to set the email notification.|,
+	"mail_send"          => qq|Allow to send and reply to private emails.|,
+	"mail_signature"     => qq|Allow to set email signature.|,
+	"auto_reply"			=> qq|Ability to set auto reply for all incoming mails.|,	
+	"member_search"		=> qq|Search members by username.|,
+	"member_search_advanced"=>qq|Advanced member search options|,
+	"member_view"        => qq|Allow to view profiles of other member.|,
+	"ad_allowed"         => qq|Number of Ads allowed to be posted.|,
+	"media_allowed"      => qq|Number of photos allowed to uploaded.|,
+	"mailbox_size"       => qq|Private message mailbox size.|
+	);
+}
+#	"ad_post_audio", "ad_post_video",
+#	"photo_comment",
+#	 "mail_new_ad",
+############################################################	
+return 1;
