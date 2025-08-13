@@ -1,0 +1,301 @@
+version 2.7: (Released: 09-30-03)
+----------------
+  - The javascript that controls the floating menus in the user
+    chats was missing some js files. The files have been added.
+  - auto invite based on visits was inviting reguardless of
+    how many pages the visitor visited. This has been corrected
+    so that it invites correctly.
+  - Added Refresh and Clear options to the floating navigation
+  - made chat frame bigger in the admin side and added no break 
+    for the usernames in the tabs.
+
+version 2.6: (Released: 09-29-03)
+----------------
+  - Added Modules feature. Administrators can now add other programs
+    to work with CSLH such as their own contact form, support 
+    ticket program, etc.. Vars from Live Help are passed to the module
+    in the query string for the other program to use. I will post some
+    modules in the Updates page (http://www.craftysyntax.com/CSLH/updates.php)    
+  - Lowered Bandwidth Usage by NOT having the program refresh every 3 seconds
+    while No operators are online. This cut my bandwidth down by about 85%
+    but depends on how often you are online..     
+  - Added Auto invite feature to allow operators to have the system 
+    invite visiting users automatically. The system now allows operators 
+    to create monitors to auto invite visitors based on either what referer 
+    they came from, and/or how many pages they have viewed, and/or
+    what page they are looking at, and/or What department they are in.
+    A very big time saver.   
+  - Added javascript floating menu in users chat window that has options
+    to Maximize the window, Print the current chat session, or Exit.   
+  - fixed connection graphic to not have text on it (for multi-language)
+  - Added Referer, Department name, and identity to the leave a message
+    messages that are e-mailed to the operators when offline.      
+  - Fix bug with e-mails of departments always going to default department. 
+  - Fixed issue with visitor stat data not being recorded when no users online 
+    
+
+version 2.5: (Released: 08-03-03)
+----------------
+  - Added better support for the continous mode of the program by
+    adding the functions "ob_flush()" 
+    Next to every instance of flush() this will support PHP 4.2.3+ and Windows users 
+    running php as a cgi so that you can run
+    the program in continous mode.    
+  - Added ability to see only one chat at a time while 
+    still having the ability to see any new messages  
+    from other active chats with the new "view" Icon in the chat tabs.
+  - Added ability for operator to quickly change alert settings 
+    from live help tab page.     
+  - Added onmouseover user detail javascript to quickly show the 
+    details of the visitors online. 
+  - Added the department information to details.  
+  - Added ability for Operators to talk to one another as now
+    the Operators appear as Chatters with the option to chat or not
+    to chat with another operator.  
+  - Added ability to Conference operators to one User so that multiple
+    operators can talk to one user or multiple operators can talk to eachother.
+  - Fixed BUG with when added an operator the operator is not added to 
+    any departments even though the departments are checked and 
+    when a operator was deleted there permissions were not removed.     
+  - Fixed BUG with operator not in default department having vistors not
+    able to see them as online. 
+  - Fixed BUG with negative visit count when clearing data from the data tab.
+  - Fixed BUG with details of the visitor it showing the server time rather then 
+    the server time + offset for correct time.           
+  - Added Manual Install directions for thoes who can not run the setup.php 
+    online installation.
+  
+  
+version 2.4: (Released: 07-20-03)
+----------------
+  - Added more language files 
+  - Fixed issue with rining sound always playing when someone 
+    enters the site even if you have alert visitors turned off.
+    It will now only ring when you have "alert of visitors" set to Yes.
+  - Needed to change the way that the name of the program was
+    written. It is now shortened to CSLH or written all out
+    as Crafty Syntax Live Help. There is another program called
+    cs-live that exists on the internet and I want to have 
+    nothing to do with them and do not want to be confused 
+    with their company.. 
+    
+
+version 2.3: (Released: 07-18-03)
+----------------
+ - Added a modified version of txt-db-api version 0.2.1-beta-01
+   for text based database support. This GPL api program is
+   detailed at : http://www.c-worker.ch/txtdbapi/index_eng.php
+   I modified database.php a bit to support alter quries and 
+   match mysql_options.php. It is recommended that you use
+   Mysql. I just added this for thoes who can not figure
+   out mysql and need this as a last resort.
+ 
+ - Fixed refresh bug issue with refresh mode and not having
+   enough time to enter in name.
+   
+ - Fixed Departments vanishing bug with operators not being 
+   able to be assigned to multiple different departments on 
+   some servers due to the departments array checkboxes not being seen
+   as an arrray. I changed it to a variable.. 
+ 
+ - Fixed issue with department e-mail being sent to the 
+   defualt department when multiple departments are setup.
+   
+ - Fixed security hole with users being able to log into admin
+   by using their ip address as the log in. 
+ 
+ - Added number of users online message back in.   
+
+ * Added multi-language support files to allow program to be 
+   translated into multiple different languages. however..
+   neeed someone to translate it into other languages..
+ * = note you need to make the language file .. it is called
+     language-lang.php   
+
+version 2.2: (Released: 06-15-03)
+----------------
+ - Added ablility to provide a simple link to the live help system
+   as an alternative to the javascript icon HTML code.
+ - Added ablility to track and monitor pages with a new 
+   INVISIBLE Tracking HTML: if you want to monitor and track 
+   a page but do not want to have an icon on that page or 
+   link to live help use this HTML. You can invite and monitor 
+   pages with this code but the visitors will not be able 
+   to see the live help icon.
+
+ - Added ability to track referers and also track traffic 
+   to the site in the data tab.. Bar graphs for visitors
+   and referers are now logged every 7 minutes.. 
+ - Added Q & A system to allow visitors to leave questions
+   or see a catigory tree of questions and answers.
+ - Made the refresh in the "refresh mode" twice as fast.. it now 
+    refreshes every 3 seconds rather then 6. 
+-  offline messages now must have a valid email address 
+- removed old javascript focus window input box (extra field at the 
+  very bottom left of the screen with a 1 in it) 
+
+
+version 2.1: (Released: 06-08-03)
+----------------
+ - Fix issue with being logged out if visiting admin in multiple  
+   windows with same user. 
+ - Fix javascript error on bottom frame when answering call and 
+    comments is not defined yet. 
+ - invite message is now removed after being sent to the user.
+ - Added option to not have "User is typing..." 
+ - Fixed issue with not being able to talk to users with 
+    changing IP address. AOL users IP address change with
+    every GET.. WTF!?! 
+ - Fix issue with multiple users on same network with same
+    OS and browser not getting a unique ID.
+ - Added EMBED option to user sound options to allow sound for
+    thoes using a browser that does not support cross frame javascript.
+    (Like windows XP IE 6.0 ) 
+ - Fixed the style sheet and made the users chat a little easier to read.
+ - Fixed bug where if you open a live chat and then click contact
+   tab and then back to live help it shows no on online.. 
+ - Added Buffer overflow lines for Windows IE users where 
+   the browser locally saves the buffer before showing anything.. 
+
+version 2.0: (Released: 06-01-03)
+----------------
+ - Added more details to the details link for incoming vistors.
+ - Fixed Issue with netscape refresh on user end of chat.
+ - Added a more advanced "Push URL" system to allow operator to 
+   have the window of the url actually pop-up on the users end.
+ - Added a more intuative interface for the quick messages.
+ - Added ability to Push Images.
+ - Visitors are now tracked by both session vars and host ip address
+ - Added ability to create multiple different departments and have
+   operators monitor the different departments. 
+ - Added settings screen for departments to allow users to 
+   set their own images for online and offline.
+ - Made all of the fields in the leave a messages section of the program 
+   required.
+ - new tab inerface to hop beteen users in the admin to avoid confusion
+   on who you are talking to.
+ - Added option for operator to be notified by a sound when a visitor 
+   visits website by Either Javascript or the plugin x-wav 
+ - Added transcripts and data recording.
+ - Added Help and index of site.
+  
+ 
+
+version 1.7: (Released: 05-10-03)
+----------------
+ - In netscape on the client side the text box was refreshing because the 
+   onkeypress was not being recorded. Fixed this.
+ - Needed to add more close database connections thoughout the code to 
+   ensure that the connections is being closed some users were getting 
+   max connection errors.. 
+ - Added an "EXIT chat" link on the user end so that the user can close the 
+   chat session. 
+ - added a shorter timout for the admin user so that if the admin operator
+   closes their admin without logging out their status will turn to offline
+   2 minutes later.. 
+ - Added error codes to the log in screen so that if the wrong username 
+   or password is entered it tells you you entered the wrong username/password
+ - added a forgot your password screen for thoes who forget their password.
+ - added code that refreshes the admin chat after 30 seconds of inactivity
+   to avoid script timeout errors.. 
+ - Added a display so that the operators can tell is another operator
+   is online.
+ - reversed the way the messages are shown in the refresh mode to match
+   the way it is shown in continous mode.
+ 
+version 1.6: (Released: 05-02-03)
+----------------
+ - Added some extra javascript code to the users list frame to make
+   sure that it keeps reloading.. for some reason it stops after
+   an hour or so. The javascript is a double check..
+ - Added the txt-db-api database option for the type of database.
+ - added a css style sheet and date and time to the user list frame.
+ - added close database connections in the image display script to 
+   try to avoid max connections errors..     $mydatabase->close_connect();
+
+version 1.5: (Released: 05-02-03)
+----------------
+ - Added Manual installation directions and sql dump of initial 
+   database for users who have a hard time running the setup.
+ - changed livehelp.js to use a global webpath var that is easily changed at the 
+   top of the file.
+ - Fixed the issue with the text area not getting selected if 
+   the window focus is called. 
+ - Fixed issue with color staying Red for the users rather then 
+   alternating to a new color.
+ - Had to remove the txt-db-api database option until I have a chance
+   to fully de-bug it.
+ - did a little bit of general code cleaning    
+
+version 1.4: (Released: 05-01-03)
+----------------
+ - Auto focus to textarea box after submitting message
+ - Auto select last person who was sent a message for send to:
+ - Auto Submit send when Return is pressed. 
+ - Auto focus chat window when they type something. This way you 
+   can minmize the window and so something else while they type.
+ - fixed issue with user end chat not scrolling to absolute bottom of page.
+ - Added a Clear button to clear out the chat screen.
+ - fixed version field type (should be float) in config also fixed upgrade script.
+ 
+
+version 1.3: (Released: 04-30-03)
+----------------
+ - combined chatting users and current visitors frames into one frame.
+   Tried to use DHTML to now have to re-load the users frame but as it
+   turns out IE does not like to load two frames infinitly at the same
+   time.. WTF.. I have the code there but commented out.  
+ - added a field to `livehelp_config` ADD `use_flush ` VARCHAR( 10 ) DEFAULT 'YES' NOT NULL ;
+ - fixed upgrade in setup.php so that older version users can upgrade to new version.
+ - added support for non-flush() servers. Servers that insist on buffering the output
+   until the entire page is loaded...
+ - When you click on log out it marks your status now as offline.. 
+ - 
+
+---------------- ---------------- ---------------- ----------------  
+version 1.2: (Released: 04-28-03)
+----------------
+ - As it turns out The HTTP Authentication hooks in PHP are only available 
+   when it is running as an Apache module and is hence not available in 
+   the CGI version which was causing internal server error on a few peoples
+   installations. I re-programmed user_access.php to use a cookie login. 
+ - get_magic_quotes_gpc is now used instead of get_ini to see if the user
+   has magic quotes on or off and a new extraction is used in config.php 
+   to extract the global vars and add slashes. (I like magic quotes) 
+ - Added a LOG OUT button to allow operators to close the admin.
+ - took out javascript alert for new user in chat and replaced with 
+   java sound wav.
+ - added referer to the details of the user.. I will make it look better in 
+   a later version...
+ - Fixed issue with leave a messsage window always poping up if the user 
+   was requested for a chat then went away and then came back again when 
+   the operator was not around.. 
+ - added additional check in setup to make sure users with txt-db-api can 
+   write to their text database.
+
+---------------- ---------------- ---------------- ---------------- 
+version 1.1: (Released: 04-27-03)
+----------------
+ - Added installation directions and change log txt files.
+ - Added support for new $_POST $_GET and $_COOKIE that 
+   replace the $HTTP_*_VARS in newer versions of php.
+ - Created a new field in livehelp_operator_channels table
+   called "bgcolor" of type varchar (10). This field allows
+   me to color code the users to allow it to be easier to 
+   separate the chatting users.. 
+ - Fixed bug with the leave a message script where the 
+   e-mail from address was not being sent.
+ - Fixed bug with users entering in the same username or name as
+   an already exisiting user.
+ - Fixed issue with the "new user in chat"
+   prompt showing before the user enters their name if 
+   ask for name option is selected.
+ - magic quotes for words with apostrophes
+ - If user selects not to have the leave the message option on
+   and no one is online the credit line remained. Took that image
+   out if leave a message is not enabled.
+
+---------------- ---------------- ---------------- ---------------- 
+version 1.0: (Released: 04-21-03)
+---------------- 
+- This was the first release of the program everything was new :-) 
