@@ -1,0 +1,63 @@
+Upgrading from e_Match 2.0
+
+1.) e_Match 3.0+ stores user files in a directory outside of your web space, if the appropriate path 
+	is set.  This is to eliminate the possibility of a hacker finding the user.log, and thereby 
+	finding a user's personal files.  This isn't very likely to occur with 2.0, but 3.0 makes it 
+	even less likely.  However, if you have too many user files and you don't want to relocate them, 
+	just leave them where they are, and set $datapath and $htmlpath equal to the old $datapath.  This 
+	is not as secure as the new setup, although I've receive no reports of any problems with the old 
+	setup.
+
+Upgrading from e_Match 3.0
+
+2.) The simplest thing to do is to install the new .cgi files in a new directory, and transfer your 
+	setup data from setup.cgi to setup35.cgi. (However if your version of index.cgi is heavily modified,
+	see *).  You don't need to replace your data files or your public_html files.  Run 35_upgrade.cgi to
+	update your data structures, and you all set.  Change your links to point to the new index35.cgi,
+	and you're done.
+	
+
+###########NOTE: To try the operation below you need to know how to use your text editor effectively!
+
+	
+* If you want to try modifying your current index.cgi rather than replacing it, you can try this:
+
+1.) In index35.cgi you'll find markers indicating which sections of code have been changed.  The marker  
+at the beginning of a block of new code is:
+
+	##start changes##
+	##start changes##
+	
+and at the end of the block of new code:
+
+	##end changes##
+	##end changes##
+	
+	
+2.) For each of these blocks, note the lines of code just before the first marker(##start...), and just 
+after the second(##end...).  Now find these two sets of lines in your index.cgi.  All the code between 
+the two sets of code you just found need to be replaced by the corresponding section of code in index35.cgi.  
+
+For example, in index35.cgi, a new code section will be in the form:
+
+	[code lines A]
+	
+	##start changes##
+	##start changes##
+	
+	[new code]
+	
+	##end changes##
+	##end changes##
+	
+	[code lines B]
+	
+
+In order to properly insert [new code] into your index.cgi, you need to find [code lines A] and [code
+lines B], and replace all lines between these lines with [new code] from index35.cgi.  There are six
+sections of new code in index35.cgi, and they vary in length.
+
+When you're done, rename index.cgi to index35.cgi.  All other cgi files should to be replaced by the new
+versions.
+
+Mike
