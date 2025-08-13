@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+
+<head>
+<title><%site_title%>: Top 10 Rated</title>
+</head>
+
+<body bgcolor="##2D4253" link="#000000" alink="#000000" vlink="#000000">
+
+<h1><%site_title%>: Top 10 Rated<small class="menu"> </small></h1>
+
+<p><strong>Top 10 Resources (by Rating) -- with at least 10 votes</strong></p>
+
+    <div class=margin>
+        <table border=0>
+            <tr><th><strong>Rating</strong></th><th><strong># Votes</strong></th><th align=left><strong>Resource</strong></th></tr>
+            <%top_rated%>
+        </table>
+    </div>
+
+    <p><strong>Top 10 Resources (by Votes) -- with at least 10 votes</strong></p>
+    <div class=margin>
+        <table border=0>
+            <tr><th><strong>Rating</strong></th><th><strong># Votes</strong></th><th align=left><strong>Resource</strong></th></tr>
+            <%top_votes%>
+        </table>
+    </div>
+
+    <form action="<%db_cgi_url%>/search.cgi" method="GET">
+        <h2>Search</h2>
+            <div class="margin">
+                <table border="0" cellspacing="0" cellpadding="0">
+                <tr><td><strong class="search">Looking for something in particular?</strong></td></tr>
+                <tr><td><input type="text" size=15 name="query"> <input type=submit value="Search!"></td></tr>
+                <tr><td><small class="more"><a href="<%db_cgi_url%>/search.cgi">More search options</a></small></td></tr>
+                </table>
+        </div>
+    </form>
+    
+    
+<p><small class="update">Pages Updated On: <%date%> - <%time%> </small></p>       
+
+</body>
+</html>
