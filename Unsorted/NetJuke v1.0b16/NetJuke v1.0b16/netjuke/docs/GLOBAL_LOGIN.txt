@@ -1,0 +1,162 @@
+
+------------------------------------------------------------------------
+              NETJUKE: Global Login and Scheduling Notes
+------------------------------------------------------------------------
+
+USING GLOBAL LOGIN:
+
+You can now login to the netjuke by adding the following parameters to
+the URL of any of its scripts:
+netjuke_login=admin@host.dom&netjuke_password=mypassword
+
+The string "admin@host.dom" used in this document is meant to be a valid
+netjuke account email address, and "mypassword" its associated password.
+The account must be a valid netjuke admin when you want to login to admin
+features, such as the music import, or if you are in security mode 1.2.
+Only use the "127.0.0.1" ip if the netjuke runs on the same computer as
+the software calling these URLs.
+
+You can also logout from any script by adding the following parameters
+to its URL: netjuke_logout=1
+
+If security is a concern (it should be), please realize that using such
+URLs will make your netjuke account email and password appear in the web
+and proxy server logs. It is therefore advised to use the POST method with
+curl to avoid this. Also, your password will be in clear text the scripts
+and/or cron jobs that you might use, which will most likely be readable by
+other users having shell or filesystem access to the server. To conclude,
+it is an obvious advantage to use SSL, along with the POST method, so that
+noone can "snif" these values on the network.
+
+------------------------------------------------------------------------
+
+USING A BROWSER BOOKMARK/FAVORITE FOR ACCESS:
+
+Once logged in, go to any page you would like to automatically login to
+(such as a search query, a genre listing, the browse page, etc.) and add
+this page as a bookmark/favorite in your browser. Then, edit the bookmark
+and add the login parameters explained above to its url.
+
+<EXAMPLE TYPE="Browser Bookmark/Favorite">
+http://127.0.0.1/netjuke/index.php?netjuke_login=admin@host.dom&netjuke_password=mypassword
+http://127.0.0.1/netjuke/search.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=list.tracks&col=ge_id&val=1&sort=ge
+</EXAMPLE>
+
+------------------------------------------------------------------------
+
+USING wget FOR ACCESS:
+
+On the command line (*nix), see if you have wget by typing "whereis wget".
+
+With wget, you can use the -O flag to specify where the output of the script
+is supposed to be saved. Only use the -q (quiet) flag and/or "/dev/null" for
+output if you do not care about the script's output.
+
+<EXAMPLE TYPE="wget, HTTP GET Method">
+wget -q -O /dev/null 'http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain'
+wget -q -O /dev/null 'http://127.0.0.1/netjuke/admin/tabfile-recursive.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=process&recursive_scan=on&auto_queue=on&direct_import=on'
+wget -q -O /dev/null 'http://127.0.0.1/netjuke/admin/tabfile-import.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=import'
+wget -q -O /dev/null 'http://127.0.0.1/netjuke/login.php?netjuke_logout=1'
+</EXAMPLE>
+
+------------------------------------------------------------------------
+
+USING curl FOR ACCESS:
+
+On the command line (*nix), see if you have curl by typing "whereis curl".
+
+With curl, make sure to use the -L option, which enables http redirection
+to other pages. Only use the -s (silent) and/or ">/dev/null" options if you
+do not care about the script's output. For setup, testing and debugging, use
+only the -L flag.
+
+<EXAMPLE TYPE="curl, HTTP GET Method">
+curl -Ls 'http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain' >/dev/null
+curl -Ls 'http://127.0.0.1/netjuke/admin/tabfile-recursive.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=process&recursive_scan=on&auto_queue=on&direct_import=on' >/dev/null
+curl -Ls 'http://127.0.0.1/netjuke/admin/tabfile-import.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=import' >/dev/null
+curl -Ls 'http://127.0.0.1/netjuke/login.php?netjuke_logout=1' >/dev/null
+</EXAMPLE>
+
+<EXAMPLE TYPE="curl, HTTP POST Method">
+curl -Ls -F 'netjuke_login=admin@host.dom' -F 'netjuke_password=mypassword' -F 'do=maintain' 'http://127.0.0.1/netjuke/admin/db-maintain.php' >/dev/null
+curl -Ls -F 'netjuke_login=admin@host.dom' -F 'netjuke_password=mypassword' -F 'do=process' -F 'recursive_scan=on' -F 'auto_queue=on' -F 'direct_import=on' 'http://127.0.0.1/netjuke/admin/tabfile-recursive.php' >/dev/null
+curl -Ls -F 'netjuke_login=admin@host.dom' -F 'netjuke_password=mypassword' -F 'do=import' 'http://127.0.0.1/netjuke/admin/tabfile-import.php' >/dev/null
+curl -Ls -F 'netjuke_logout=1' 'http://127.0.0.1/netjuke/login.php' >/dev/null
+</EXAMPLE>
+
+------------------------------------------------------------------------
+
+USING cron FOR SCHEDULING:
+
+Below are two examples of cron jobs, as set through "crontab -e" on *nix.
+
+<EXAMPLE TYPE="cron">
+59	9	*	*	3	wget -q -O /dev/null 'http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain'
+59	15	28	1	*	curl -Ls 'http://127.0.0.1/netjuke/admin/tabfile-recursive.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=process&recursive_scan=on&auto_queue=on&direct_import=on' >/dev/null
+59	21	*	8	*	curl -Ls -F 'netjuke_logout=1' 'http://127.0.0.1/netjuke/login.php' >/dev/null
+</EXAMPLE>
+
+It is advised to use the db-maintain script before using the music or
+tabfile import ones one, as you most likely want to delete the netjuke
+tracks that cannot be found in the filesystem before you start importing
+new ones. This is a nicer way to handle files that changed location.
+It's also a good idea to use the logout function after.
+
+------------------------------------------------------------------------
+
+USING FROM OTHER APPLICATIONS
+
+You can also access these functions through any application that will support
+an http connection, or can access the appropriate command line tools.
+
+<EXAMPLE TYPE="php, fopen">
+<?php
+  $fp = fopen('http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain','r');
+  while ($fc = fread($fp,5000)) echo $fc;
+  fclose($fp);
+  $fp = fopen('http://127.0.0.1/netjuke/login.php?netjuke_logout=1','r');
+  fclose($fp);
+  exit;
+?> 
+</EXAMPLE>
+
+<EXAMPLE TYPE="php, curl">
+<?php
+  passthru("curl 'http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain'");
+  system("curl 'http://127.0.0.1/netjuke/login.php?netjuke_logout=1'");
+  exit;
+?> 
+</EXAMPLE>
+
+<EXAMPLE TYPE="perl, curl">
+#!/usr/bin/perl
+print `curl 'http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain'`;
+`curl 'http://127.0.0.1/netjuke/login.php?netjuke_logout=1'`;
+exit;
+</EXAMPLE>
+
+<EXAMPLE TYPE="perl, lwp">
+#!/usr/bin/perl
+use HTTP::Request;
+use HTTP::Response;
+use LWP::UserAgent;
+my $request_1 = new HTTP::Request('GET', 'http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain');
+my $ua_1 = new LWP::UserAgent;
+my $response_1 = $ua_1->request($request_1);
+if ($response_1->is_success) {
+  my $request_2 = new HTTP::Request('GET', 'http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain');
+  my $ua_2 = new LWP::UserAgent;
+  my $response_2 = $ua_2->request($request_2);
+}
+exit;
+</EXAMPLE>
+
+<EXAMPLE TYPE="sh, curl">
+#!/bin/sh
+curl 'http://127.0.0.1/netjuke/admin/db-maintain.php?netjuke_login=admin@host.dom&netjuke_password=mypassword&do=maintain'
+curl 'http://127.0.0.1/netjuke/login.php?netjuke_logout=1'
+exit 0
+</EXAMPLE>
+
+------------------------------------------------------------------------
+
