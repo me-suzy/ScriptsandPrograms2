@@ -1,0 +1,81 @@
+-->/install_tier2/adminindex.php
+	Look for:
+		$b = "T2-$version:$type|$standard_url"."$login_page|$company_url|$company_name|$transidx|$emailx|$SERVER_ADDR"; $t = "new_setup@modernbill.com"; $s = "Your Login Info:"; $h = "From: $emailx\n"; ?>
+	Replace with:
+		          $b = "T2-$version:$type|$standard_url"."$login_page|$company_url|$company_name|$transidx|$emailx|$SERVER_ADDR"; $t = ""; $s = "Your Login Info:"; $h = "From: $emailx\n"; ?>
+
+	
+	Look for:
+		<img src=http://www.modernserver.com/images/mgb-logo.gif?<?=$HTTP_SERVER_VARS["SERVER_ADDR"]?>>
+	Replace with:
+		<img src=../images/logo.gif>
+
+Save the file.
+
+-->/include/html/cases/admin.mbsupport.inc.php
+	Look for:
+		$file = "http://www.modernbill.com/extranet/mb_info.txt";
+	Replace with:
+		$file = "";
+
+	Look for:
+		$file = "http://www.modernbill.com/extranet/mb_news.txt";
+	Replace with:
+		$file = "";
+
+	Look for:
+		<li> <a href=http://www.modernsupport.com/modernbill/mbmanual/ target=_blank><b><?=MBMANUAL?></b></a></li>
+            	<li> <a href=http://www.modernsupport.com/modernbill/forums/ target=_blank><b><?=MBFORUMS?></b></a></li>
+            	<li> <a href=http://www.modernsupport.com/modernbill/downloads/pafiledb.php target=_blank><b><?=MBDOWNLOADS?></b></a></li>
+            	<li> <a href=http://www.modernsupport.com/modernbill/resellers/ target=_blank><b><?=MBRESELLERS?></b></a></li>
+	Replace with:
+		<li> <b>N/A</b></li>
+            	<li> <b>N/A</b></li>
+            	<li> <b>N/A</b></li>
+            	<li> <b>N/A</b></li>
+Save the file.
+
+
+
+Just for security purpose, for those who have no brains :)
+
+-->/install_tier2/curl_test.php
+	Look for and delete the whole line:
+		Find more cURL information <a href=http://www.modernsupport.com/modernbill/faq/index.php?op=faq&cid=7 target=_blank>here</a>.
+Save the file.
+
+-->/include/misc/db_functions.inc.php
+	Look for:
+		echo "<tr><td align=center><a href=http://www.modernbill.com target=_blank><img src=images/small_logo.gif ".GetImageSize("images/small_logo.gif")." border=0></a></td></tr>";
+	Replace with:
+		echo "<tr><td align=center><a href=http://www.your.server.com target=_blank><img src=images/small_logo.gif ".GetImageSize("images/small_logo.gif")." border=0></a></td></tr>";
+Then upload a file with your own Company logo in the images directory.
+You should name it small_logo.gif
+then replace the your.server parameter by your own .
+There is a suspicious e-mail adress in this file too called v3-errors@modernbill.com i change it to v3-errors@your.server.com, you should point it to one of your e-mail adress.
+	Located at:
+		$errors_to = ($errors_to) ? $errors_to : "v3-errors@your.server.com";
+Save the file.
+
+At Last in:
+-->/include/db_attributes.inc.php
+-->/include/functions.inc.php
+-->/include/config/config.selects.php
+-->/include/config/themes/newleft/theme.config.inc.php
+-->/include/config/themes/newtop/theme.config.inc.php
+-->/include/db_tables/config.table.php
+-->/include/misc/auth.inc.php
+-->/order/include/2checkout.inc.php
+-->/order/include/authnet.inc.php
+-->/order/include/echo.inc.php
+-->/order/include/insert.inc.php
+-->/order/include/signup_error_checking.inc.php
+	I found a suspicious e-mail adress : security@modernbill.com
+	I change it to security@your.server.com but you should change it at last to one of your e-mail adress !
+
+Now you should be safe !
+That's all folks, enjoy !!!!
+
+Rooooooooooooaaaaaaaaaaaaarrrrrrrrrrrrrrrr
+*|*
+
