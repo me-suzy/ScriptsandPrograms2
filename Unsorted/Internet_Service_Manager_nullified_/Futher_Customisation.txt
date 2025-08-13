@@ -1,0 +1,67 @@
+Internet Service Manager can be customised beyond what is explained in the installation instructions. Below are some pointers to get you on the right track with customising ISM.
+
+
+#############################################################
+1) Adding filemanager icons.
+-------------------------------------------------------------
+Adding icons for filetypes in the filemanager can be done as followed. 
+	- Create the image that you wish to use for the filetype.
+	- Name it filetype.gif.
+	- Place it in the images/icons dir
+	- Thats all there is to it.
+
+
+#############################################################
+2) Online/offline images...
+-------------------------------------------------------------
+Anywhere on your site, or the net for that matter, you can place offline/online images for the chat system.
+To do this you will need to place the following code..
+<img src="http://www.yourdomain.com/pathtoclientsdir/chat_status.php"> this will display the standard offline image if there are no admins available for chat or the standard online image if there are. The default images are found at images/offline.gif and images/online.gif, you can edit these freely. 
+You can also add different images, maybe for different pages of your site, the default setup of the system has one extra set of images setup they are called images/offline_client_area.gif and images/online_client_area.gif, offline/online images respectively. To use this set instead of the default ones insert the code..
+<img src="http://www.yourdomain.com/pathtoclientsdir/chat_status.php?_client_area">
+You will see that you just add the name of the image (apart from the offline/online bit) after the filename and a question  mark. ISM supports as many sets of these images as you wish to have.
+
+
+#############################################################
+3) Adding your logo to the admin section. 
+-------------------------------------------------------------
+You can add your companies logo to the admin area by replacing the file admin/admin_logo.gif with your company logo. This file can be of any dimensions, the script doesnt care :) 
+
+
+#############################################################
+4) Changing the colours, font and even login type of the admin section
+-------------------------------------------------------------
+While you cannot modify the layout of the admin section you can use your company colours if you like. Some of the text will display black, and is not changable away from black although alot of the text can be changed in colour.
+To make these changes open up conf.php in notepad, or another editor of your choice and find the block that looks like this... (it will start at line 35 if the file has not been modified)
+
+  //admin variables...
+  $admin_color="#006699";  //hex code for the colour of all the bars in the admin area..
+  $admin_color_2="#efefef"; //hex code of the secondary colour for admin!
+  $admin_logo="admin_logo.gif";  //url location of the logo you wish to use in the admin pages.
+  $admin_font="verdana,arial"; //font to use in the admin pages.
+  $admin_font_color="black";
+  $admin_font_color_2="white";
+  $admin_auth_type="ht"; //admin login type, choose between ht, se (sessions), co (cookies)
+  $image_url=$main_url."/images";
+  $image_dir=$main_dir."/software/images";
+  $admin_news_page=""; 
+  $admin_update_check=""; //dont change this, unless you dont want to be notified of future updates to the software.
+  $thisversion=1; //dont change this!
+
+The variables are explained below..you can edit all of them although it is advisable that you do not edit some of them as it will cause the system to act "funny".
+
+admin_color: This is the primary colour of the admin, by default it is a navy blue.
+admin_color_2: secondary admin colour, by default grey.
+admin_logo: If you want to use a version of your company logo already on your server, enter the full URL of it here. This is alternative to replacing the logo as outlined in number 3.
+admin_font: The font to be used throughout the admin.
+admin_font_color: The main font colour, this is not changable for most pages.
+admin_font_color_2: The colour of the font to appear ontop of bars that are in admin_color.
+admin_auth_type: This is commented next to the variable, you can select a login type that suits you.
+image_url: Generally no need to edit this, its just the url to the images.
+image_dir: As with image_url, only this is the directory path to the url above.
+admin_news_page: This controls what is displayed on the right hand side of the admin main page, by default the ISM news page although you can enter the url of any page. The raw output of this page is simply printed on the right hand side, you can use this for company news, etc.
+admin_update_check: Dont change this or the software will not check for updates, and depending on the setup of your server, may display errors.
+thisversion: The version of ISM currently installed, DONT CHANGE THIS!
+
+
+ 
