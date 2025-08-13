@@ -1,0 +1,2 @@
+<?PHP
+  function Profanity_Check($szString, $szType) { global $CONFIG; global $LOCALE; if ($CONFIG[Chat_Profanity] == "false") { reset($CONFIG[Chat_Profanity_Words]); while(list($szNull, $szWord) = each($CONFIG[Chat_Profanity_Words])) { if (eregi($szWord, $szString)) { ChatLog($LOCALE[ERROR_Profanity]); if ($szType == "clean") { $szString = eregi_replace($szWord, ":frustrated:", $szString); } else { Error("ERROR_Profanity"); } } } } return($szString); } ?>
