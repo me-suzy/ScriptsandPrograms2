@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Related Entries &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Related Entries</h1>
+
+	<p>The Related Entries tag allow you to show a list of other entries that belong to the same category as the currently viewed entry.</p>
+
+	<code>{exp:weblog:related_entries limit="10" backspace="6"}<br />
+<br />
+&lt;a href="{comment_path=weblog/index}">{title}&lt;/a>&lt;br /><br />
+<br />
+{/exp:weblog:related_entries}</code>
+
+
+	<p>These tags must go on a page designed to show a single entry, such as a comments page.</p>
+
+
+
+
+	<h2>Parameters</h2>
+
+	<ul class="minitoc">
+		<li><a href="#par_category">category="1"</a></li>
+		<li><a href="#par_limit">limit="10"</a></li>
+		<li><a href="#par_orderby">orderby="date"</a></li>
+		<li><a href="#par_sort">sort="asc"</a></li>
+		<li><a href="#par_status">status="open"</a></li>
+		<li><a href="#par_username">username="petunia"</a></li>
+		<li><a href="#par_weblog">weblog="news"</a></li>
+	</ul>
+
+
+	<h3><a name="par_category">category=</a></h3>
+
+		<code>category="1"</code>
+
+		<p>The category parameter allows you to <b>add</b> or <b>subtract</b> to the related categories.  <strong>This is different than how the category tag normally works</strong> for the weblog tag.   If you don't specify a category the query will show all entries in the same category as the one being viewed.  When you add category numbers to the category parameter they will be included or excluded.</p>
+
+		<p>You may specify multiple categories by using the pipe character:</p>
+
+		<code>category="1|4|66"</code>
+
+		<p>Or you can exclude categories by including the word "not" followed by a space:</p>
+
+		<code>category="not 1|4"</code>
+
+
+	<h3><a name="par_limit">limit=</a></h3>
+
+		<code>limit="12"</code>
+
+		<p>This parameter limits the number of entries on any given page.</p>
+
+
+	<h3><a name="par_orderby">orderby=</a></h3>
+
+		<code>orderby="date"</code>
+
+		<p>The "order" parameter sets the display order of the entries.  Setting options for this parameter include:</p>
+
+		<ul>
+			<li>orderby="date"</li>
+			<li>orderby="title"</li>
+			<li>orderby="username"</li>
+			<li>orderby="screen_name"</li>
+			<li>orderby="comment_total"</li>
+			<li>orderby="most_recent_comment"</li>
+			<li>orderby="random"</li>
+		</ul>
+
+		<p>In addition you can order by a <a href="../../cp/admin/weblog_administration/custom_weblog_fields.html">custom field</a>.  Use the "short_name" of the field:</p>
+
+		<code>orderby="name_of_field"</code>
+
+
+	<h3><a name="par_sort">sort=</a></h3>
+
+		<code>sort="asc"</code>
+
+		<code>sort="desc"</code>
+
+		<p>The sort order can be ascending or descending.</p>
+
+
+	<h3><a name="par_status">status=</a></h3>
+
+		<code>status="open"</code>
+
+		<p>The weblog <a href="../cp/admin/weblog_administration/custom_entry_statuses.html">status</a> to which you would like to restrict display.  You can choose multiple statuses using a pipe:</p>
+
+		<code>status="draft|reviewed|published"</code>
+
+		<p>Or exclude statuses using "not"</p>
+
+		<code>status="not submitted|processing|closed"</code>
+
+
+	<h3><a name="par_username">username=</a></h3>
+
+		<code>username="petunia"</code>
+
+		<p>This parameter limits the query by username. You can use the pipe character to query by multiple usernames:</p>
+
+		<code>username="tom|dick|harry"</code>
+
+		<p>Or you can add "not" to exclude usernames:</p>
+
+		<code>username="not tom|dick|harry|fred"</code>
+
+		You can also use the constant "CURRENT_USER" to show entries from only the currently logged in user.</p>
+
+		<code>username="CURRENT_USER"</code>
+
+		<p>This allow each logged-in user to get only their entries.  Users who are not logged in won't see anything.  Alternatively, you can use the constant "NOT_CURRENT_USER" to show entries <strong>except</strong> from the currently logged in user.</p>
+
+		<code>username="NOT_CURRENT_USER"</code>
+
+
+	<h3><a name="par_weblog">weblog=</a></h3>
+
+		<code>weblog="which"</code>
+
+		<p>From which <a href="../cp/admin/weblog_administration/weblog_management.html">weblog</a> to show the entries.  Additionally, you can use the pipe character to separate multiple weblogs:</p>
+
+		<code>weblog="weblog1|weblog2|weblog3"</code>
+
+		<p>Or you can add the word "not" (with a space after it) to exclude weblogs:</p>
+
+		<code>weblog="not weblog1|weblog2|weblog3"</code>
+
+
+
+
+
+
+	<h2>Variables</h2>
+
+	<ul class="minitoc">
+		<li><a href="#var_author">{author}</a></li>
+		<li><a href="#var_comment_path">{comment_path=weblog/comments}</a></li>
+		<li><a href="#var_comment_total">{comment_total}</a></li>
+		<li><a href="#var_entry_date">{entry_date format="%Y %m %d"}</a></li>
+		<li><a href="#var_recent_comment_date">{recent_comment_date format="%Y %m %d"}</a></li>
+		<li><a href="#var_permalink">{permalink}</a></li>
+		<li><a href="#var_title">{title}</a></li>
+		<li><a href="#var_title_permalink">{title_permalink}</a></li>
+		<li><a href="#var_trackback_path">{trackback_path}</a></li>
+	</ul>
+
+
+	<h3><a name="var_author">author</a></h3>
+
+		<code>{author}</code>
+
+		<p>The author's screen name, if it exists; otherwise, this variable will display the username.</p>
+
+
+	<h3><a name="var_comment_path">comment_path</a></h3>
+
+		<code>{comment_path=weblog/comments}</code>
+
+		<p>The URL to the specified template.  The ID number of the entry will be automatically added.  For example, this:</p>
+
+		<code>&lt;a href="{comment_path=weblog/comments}">comments&lt;/a></code>
+
+		<p>Would be rendered like this:</p>
+
+		<code>&lt;a href="http://www.yoursite.com/index.php/weblog/comments/234/">comments&lt;/a></code>
+
+
+	<h3><a name="var_comment_total">comment_total</a></h3>
+
+		<code>{comment_total}</code>
+
+		<p>The total number of comments for a particular entry</p>
+
+
+	<h3>dates</h3>
+
+		<p>Several date variables are available for use.  As with other date variables, these require the "format" parameter in order to define how the date should be displayed.  See the <a href="../date_variable_formatting.html">date variable formatting</a> page for more information.</p>
+
+
+	<h3><a name="var_entry_date">entry_date</a></h3>
+
+		<code>{entry_date format="%Y %m %d"}</code>
+
+		<p>The date the entry was submitted</p>
+
+
+	<h3><a name="var_recent_comment_date">recent_comment_date</a></h3>
+
+		<code>{recent_comment_date format="%Y %m %d"}</code>
+
+		<p>The date of the most recent comment associated with the entry</p>
+
+
+	<h3><a name="var_permalink">permalink</a></h3>
+
+		<code>{permalink}</code>
+
+		<p>This variable defaults to site index with entry ID number:</p>
+
+		<code>http://www.yoursite.com/235/</code>
+
+		<p>In addition, you can specify a template group/template and the entry ID will automatically be added:</p>
+
+		<code>{permalink="weblog/archive"}</code>
+
+		<p>Will render as:</p>
+
+		<code>http://www.yoursite.com/weblog/archive/235/</code>
+
+
+	<h3><a name="var_title">title</a></h3>
+
+		<code>{title}</code>
+
+		<p>The title of the entry</p>
+
+
+	<h3><a name="var_title_permalink">title_permalink</a></h3>
+
+		<code>{title_permalink}</code>
+
+		<p>This variable uses the "url title" as the link.  It defaults to the site index with the "url title":</p>
+
+		<code>http://www.yoursite.com/my_ugly_boyfriend/</code>
+
+		<p>In addition, you can specify a specific template group/template and the "url title" will automatically be added:</p>
+
+		<code>{title_permalink="weblog/archive"}</code>
+
+		<p>Will render as:</p>
+
+		<code>http://www.yoursite.com/weblog/archive/my_ugly_boyfriend/</code>
+
+		<p><b>Note:</b> When creating a new entry, if you don't supply the "url title" then it will be automatically created from the actual entry title. Spaces are turned into underscores and quotes are removed.  For example, "Joe's night out" becomes "joes_night_out".</p>
+
+
+	<h3><a name="var_trackback_path">trackback_path</a></h3>
+
+		<code>{trackback_path=weblog/comments}</code>
+
+		<p>The URL to the specified template.  The ID number of the entry will be automatically added.  Use in a link:</p>
+
+		<code>&lt;a href="{trackback_path=weblog/comments}">trackback&lt;/a></code>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
