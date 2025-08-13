@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>S l i d e   S h o w</title>
+<SCRIPT SRC="config.js"></SCRIPT>
+<SCRIPT SRC="bb.js"></SCRIPT>
+<SCRIPT SRC="ss.js"></SCRIPT>
+<!-- This is a Javascript Image Protection routine
+You may delete it if you do not have a need to proect images -->
+<SCRIPT language="JavaScript">
+<!--
+function right(e) {
+if (navigator.appName == 'Netscape' && (e.which == 2 || e.which == 3)) {
+alert('This image is copyright protected');
+return false;
+}
+else if (navigator.appName == 'Microsoft Internet Explorer' && (event.button==2 || event.button == 3)) {
+alert('This image is copyright protected');
+return false;
+}
+return true;
+}
+document.onmousedown=right;
+if (document.layers) window.captureEvents(Event.MOUSEDOWN);
+window.onmousedown=right;
+// -->
+</SCRIPT>
+<!-- end of Javascript Image Protection -->
+</head>
+<body bgcolor="#ffffff" link="navy" alink="navy" vlink="navy" marginwidth=0 marginheight=0 topmargin=0 leftmargin=0 rightmargin=0">
+<center>
+<SCRIPT LANGUAGE="JavaScript">
+var agt=navigator.userAgent.toLowerCase();
+var is_win   = ( (agt.indexOf("win")!=-1) || (agt.indexOf("16bit")!=-1) );
+var is_mac    = (agt.indexOf("mac")!=-1);
+if (document.all && is_win){ 
+winW = document.body.offsetWidth-4;
+lposition=winW-222;
+var layerblack = '<STYLE TYPE="text/css">#black {position:absolute; left:'+lposition+'; top:49; width:100; height:10; z-index:1; clip:rect(0,100,10,0); border: 0px none #000000; background-color:black; layer-background-color:black;}</STYLE>';
+document.write(layerblack);
+var layerblue = '<STYLE TYPE="text/css">#blue {position:absolute; left:'+lposition+'; top:49; width:100; height:10; z-index:1; clip:rect(0,0,10,0); border: 0px none #000000; background-color:blue; layer-background-color:blue;}</STYLE>';
+document.write(layerblue);
+var strblack = '<DIV ID="black"></DIV>';
+var strblue = '<DIV ID="blue"></DIV>';
+document.write(strblack);
+document.write(strblue);}
+</SCRIPT>
+
+
+
+        <table border="0" width="100%" cellspacing=0 cellpadding=0 bgcolor="#000000">
+          <tr> 
+            <td><table border="0" width="100%" cellspacing="1" cellpadding=0><SCRIPT LANGUAGE="JavaScript">
+	showtopifimage();
+</SCRIPT>
+                <tr bgcolor="#000000"> 
+                  <td> 
+                    <table border="0" width="100%" cellspacing=0 cellpadding=4>
+                      <tr> 
+                        <td><font face="Arial,Helvetica" color="#FFCC00" size=+1><b>Slide Show</b></font></td>
+                        <script language="JavaScript">
+	showcloseButton();
+</script>
+                         
+                        <td align=right width="43%"><font face="Verdana,Arial,Helvetica" size="1" color="white">
+                          <script language="JavaScript">
+	showCount();
+</script>
+                          <script language="JavaScript">
+	showcurrent();
+</script>
+                          </font></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr bgcolor="#eeeeee"> 
+                  <td> 
+                    <table border=0 cellpadding=3 cellspacing=0 width="100%">
+                      <tr> 
+                        <td><font face="Verdana,Arial,Helvetica" color="#000000" size=1><b>This slide show is brought to you by:<br>
+                          <script language="JavaScript">
+          document.write('<a href="'+homelink+'" target="_blank">'+site_title+'</a>');
+</script>
+                          </b></font></td><td align=right><font face="Verdana,Arial,Helvetica" color="#000000" size=1><SCRIPT LANGUAGE="JavaScript">
+	showprevnext();
+</SCRIPT></font></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <SCRIPT LANGUAGE="JavaScript">
+	showSlideShow();
+</SCRIPT>
+                
+                <SCRIPT LANGUAGE="JavaScript">
+	showbottomifimage();
+</SCRIPT>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+</body>
+</html>
