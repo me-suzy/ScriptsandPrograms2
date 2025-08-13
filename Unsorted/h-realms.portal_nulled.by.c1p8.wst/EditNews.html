@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>SVEC - Edit News</title>
+<meta name="GENERATOR" content="YesSoftware CodeCharge v.1.1.18 / Templates.ccp build 3/2/2001">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0"> 
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+</head>
+<body style="background-color: #FFFFFF; color: #000000; font-family: Arial, Tahoma, Verdana, Helveticabackground-color: #FFFFFF; color: #000000; font-family: Arial, Tahoma, Verdana, Helvetica">
+{Header}
+ <table>
+  <tr>
+   <td valign="top">
+   <!--BeginFormEditNews-->
+   <form method="POST" action="{FileName}" name="EditNews">
+    <table style="style="border-style: outset; border-width: 2"">
+     <tr>
+      <td style="background-color: #990000; text-align: Center; border-style: outset; border-width: 1" colspan="2"><font style="font-size: 12pt; color: #FFFFFF; font-weight: bold">SVEC - Edit News</font></td>
+     </tr>
+     <!--BeginEditNewsError-->
+     <tr>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1" colspan="2"><font style="font-size: 10pt; color: #000000">{sEditNewsErr}<font></td>
+     </tr>
+     <!--EndEditNewsError-->
+    
+     <tr>
+      <td style="background-color: #FFCC66; border-style: inset; border-width: 1"><font style="font-size: 10pt; color: #000000">News</font></td>
+      <td style="background-color: #FFFFEE; border-style: inset; border-width: 1"><textarea name="news_html" cols="80" rows="16">{news_html}</textarea></td>
+     </tr>
+     
+     <tr>
+      <td colspan="2" align="right">
+
+      <!-- ***   Buttons   *** -->
+      
+      <!--BeginEditNewsInsert-->
+      <input type="hidden" value="insert" name="FormAction">
+      <input type="submit" value="Insert" onclick="document.EditNews.FormAction.value = 'insert';">
+      <!--EndEditNewsInsert-->
+      
+      <!--BeginEditNewsEdit-->
+      <input type="hidden" value="update" name="FormAction"/>
+      
+      <!--BeginEditNewsUpdate-->
+      <input type="submit" value="Update" onclick="document.EditNews.FormAction.value = 'update';"/>
+      <!--EndEditNewsUpdate-->
+      
+      <!--EndEditNewsDelete-->
+      <input type="submit" value="Delete" onclick="document.EditNews.FormAction.value = 'delete';"/>
+      <!--EndEditNewsDelete-->
+      
+      <!--EndEditNewsEdit-->
+      
+      <input type="hidden" name="FormName" value="EditNews"/>
+      
+      <input type="hidden" name="PK_news_id" value="{PK_news_id}"/>
+      <input type="hidden" name="news_id" value="{news_id}"/>
+     </td>
+    </tr>
+   </table>
+  </form>
+<!--EndFormEditNews-->
+   <SCRIPT Language="JavaScript">
+if (document.forms["EditNews"])
+document.EditNews.onsubmit=delconf;
+function delconf() {
+if (document.EditNews.FormAction.value == 'delete')
+  return confirm('Delete record?');
+}
+</SCRIPT>
+   </td>
+  </tr>
+ </table>
+
+
+{Footer}
+
+</body>
+</html>
