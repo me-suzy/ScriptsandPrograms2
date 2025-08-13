@@ -1,0 +1,101 @@
+
+How to install File2You CGI....
+You should have included in this ZIP file:
+1. file2you.cgi
+1. free2you.cgi #If you wand to provide FREEDOWNLOADS service
+2. e_file.cfg
+3. e_lang.cfg
+4. mimtypes.cfg
+5. copyright.html
+6. install.txt
+7. features.txt
+ 
+-----------------
+1.
+open file e_file.cfg and edit following by using your wordpad or other text editor...
+###############################################################################################################
+$mailprog = "/usr/sbin/sendmail"; #location of sendmail porgram on your server
+$emailuser="1"; #if value is 1 sends e-mail confirmation to user
+$emailadmin="1"; #if value is 1 sends e-mail to administration
+$attachment="1"; #if value is 1 sends e-mail with attachment
+
+#the list of domains You allow to use your script,replace them with your domain name
+@domain = ("216.147.101.241","vision.to","www.vision.to","line.nu","localhost");
+
+# here you have to change and put your domain name or IP
+#Directory where You put only files supposed for sending by e-mail...
+
+$file_directory = '/home/xxx/xxx/download/'; #path of files which you want to come up automatically on dropdown menu
+
+
+################################################################################################################
+2. open file e_lang.cfg and edit customize all information by using your wordpad or other text editor...
+################################################################################################################
+3. file file2you.cgi #needs to be modified only if you want to put more free e-mail services in ban list
+#then edit :
+ 
+if($email=~ s/freeemail|freeemail|freeemail/$noname/gi)
+{&display_errors($error_report="$email <br>$errortext[9]");}
+ 
+to ex
+if($email=~ s/freeemail2|freeemai3l|free4email/$noname/gi)
+{&display_errors($error_report="$email <br>$errortext[9]");}
+ 
+
+set desired time if differnet from your localtime , find this on   file2you.cgi  file 
+########################################################
+#              TIME IN DESIRED FORMAT
+########################################################
+
+sub get_date
+{
+
+   $timediff= '0';  #if localtime of the server is not the same as yours put timedifference in hours...
+
+
+
+ 
+After You have customized your script 
+make a drawer in your cgi-bin directory and name it as you wish
+
+use FTP program to send files in to your server....
+use mode ASCII when you uploading
+upload this files
+After upload use CHMOD in your FTP to set permissions
+
+1. file2you.cgi #CHMOD 755 /same for free2you.cgi #CHMOD 755
+2. e_file.cfg #CHMOD 666 or 777
+3. e_lang.cfg #CHMOD 666 or 777
+4. mimtypes.cfg #CHMOD 666 or 777
+
+Remember all this files have to reside in the same directory
+
+After you have done this
+call the CGI by writing right address in your browser ex.
+
+http://yourdomain.com/cgi-bin/yourdrawer/file2you.cgi 
+or
+http://yourdomain.com/cgi-bin/yourdrawer/free2you.cgi
+
+The script should work....
+else check again instructions if not send an e-mail
+to 
+vision@vision.to 
+we will give a support on your questions
+ 
+For uploading your attachment files to DOWNLOAD DRAWER use 
+BINARY mode on your FTP...
+Note all uploaded files will became visible in Your dropdown menu
+there is no need to modify the script for this....
+
+Good Luck!
+
+Best Regards
+Vision.To Design
+Femi Hasani
+vision@vision.to
+SWEDEN
+ICQ: 127773331 
+
+
+ 
