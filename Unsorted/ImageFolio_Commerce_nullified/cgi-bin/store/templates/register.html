@@ -1,0 +1,157 @@
+<html>
+<head>
+<title>%%%SITE_TITLE%%% : Register</title>
+<SCRIPT LANGUAGE="JavaScript"><!--
+submitcal = false;
+function precalculate(){
+   if (submitcal) {
+      alert("We are reloading this page. Please wait....");
+      calculateform();
+   }
+   else {
+      submitcal = true;
+      calculateform();
+   }
+}
+function calculateform() {
+window.document.recalculate.email.value = window.document.coform.email.value;
+window.document.recalculate.firstname.value = window.document.coform.firstname.value;
+window.document.recalculate.lastname.value = window.document.coform.lastname.value;
+window.document.recalculate.company.value = window.document.coform.company.value;
+window.document.recalculate.street_one.value = window.document.coform.street_one.value;
+window.document.recalculate.street_two.value = window.document.coform.street_two.value;
+window.document.recalculate.city.value = window.document.coform.city.value;
+window.document.recalculate.state.value = window.document.coform.state.value;
+window.document.recalculate.zip.value = window.document.coform.zip.value;
+window.document.recalculate.country.value = window.document.coform.country.value;
+window.document.recalculate.phone.value = window.document.coform.phone.value;
+window.document.recalculate.submit();
+}
+// --></SCRIPT>
+
+<!--#include file="%%%TEMPLATES_DIR%%%/header.html"-->
+
+      <table border=0 cellspacing=0 cellpadding=5 width="95%">
+        <tr bgcolor="%%%HEADING_COLOR%%%"> 
+          <td align=center> <font face="Verdana,Arial,Helvetica" size="1" color="#ffffff">REGISTER</font></td>
+        </tr>
+        <tr bgcolor="#ffffff"> 
+          <td>
+
+<form name=coform method=post action="%%%IF_URL%%%">
+<input type=hidden name=login value=3>
+<input type=hidden name="cust_id" value="%%%CUSTID_FORM%%%">
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%" bgcolor="#333333"><tr><td>
+<table border=0 cellspacing=1 cellpadding=15 width="100%"><tr bgcolor="#ffffff"><td>
+
+%%%COMMENT%%%
+
+<font size=2 face="Verdana,Arial,Helvetica">Register as a New Customer to make your checkouts fast and simple.  Upon subsequent visits to our store, simply Sign-In!  When you checkout, we'll ask you to verify your shipping information, and provide billing information, for your purchase.</font></b><br><br>
+
+<font size=2 face="Verdana,Arial,Helvetica"><b><font color="%%%HEADING_COLOR%%%">Enter your contact information and shipping address.</font></b><br>
+Enter the name and address where you'd like us to ship your orders.</font><br><br>
+
+&nbsp;&nbsp;<font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Indicates Required Field</font><br><br>
+
+
+<table border=0 cellspacing=1 cellpadding=2 width="100%">
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Email Address:</font></td>
+<td><input type=text name="email" value="%%%EMAIL%%%" size=30 maxlength=100></td>
+<td><font face="Arial,Helvetica" size=1>(msmith@domain.com)</font></td></tr>
+
+<tr><td width="25%" align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> First Name:</font></td>
+<td><input type=text name="firstname" value="%%%FIRSTNAME%%%" size=30 maxlength=50></td>
+<td  width="70%"><font face="Arial,Helvetica" size=1>(Michael)</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Last Name:</font></td>
+<td><input type=text name="lastname" value="%%%LASTNAME%%%" size=30 maxlength=50></td>
+<td><font face="Arial,Helvetica" size=1>(Smith)</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica">Company:</font></td>
+<td><input type=text name="company" value="%%%COMPANY%%%" size=30 maxlength=75></td>
+<td><font face="Arial,Helvetica" size=1>(My Business, Inc.)</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Street 1:</font></td>
+<td><input type=text name="street_one" value="%%%STREET1%%%" size=30 maxlength=256></td>
+<td><font face="Arial,Helvetica" size=1>(610 West 15th Street)</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica">Street 2:</font></td>
+<td><input type=text name="street_two" value="%%%STREET2%%%" size=30 maxlength=256></td>
+<td><font face="Arial,Helvetica" size=1>(First Floor, Suite 158)</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> City:</font></td>
+<td><input type=text name="city" value="%%%CITY%%%" size=30 maxlength=50></td>
+<td><font face="Arial,Helvetica" size=1>(Los Angeles)</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> State/Province:</font></td>
+<td>%%%STATE_FORM%%%</td>
+<td><font face="Arial,Helvetica" size=1>&nbsp;</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Zip/Postal:</font></td>
+<td><input type=text name="zip" value="%%%ZIP%%%" size=30 maxlength=30></td>
+<td><font face="Arial,Helvetica" size=1>(90014)</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Country:</font></td>
+<td>%%%COUNTRY_FORM%%%</td>
+<td><font face="Arial,Helvetica" size=1>&nbsp;</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Phone:</font></td>
+<td><input type=text name="phone" value="%%%PHONE%%%" size=30 maxlength=50></td>
+<td><font face="Arial,Helvetica" size=1>(213-555-1263)</font></td></tr>
+
+<tr><td colspan=3></td>
+<td></td></tr>
+
+<tr><td colspan=3><font size=2 face="Verdana,Arial,Helvetica"><b><font color="%%%HEADING_COLOR%%%">Choose a Password.</font></b><br>A password is required
+to login to your account. To make your account more secure, please enter a mixed case combination of at
+least 5 letters and numbers in the text box marked &quot;Password&quot; below.   When you're done, click the &quot;Register&quot; button at the bottom of this page.</font></td></tr>
+
+<tr><td colspan=3>&nbsp;</td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Password:</font></td>
+<td><input type=password name="password" value="%%%PASSWORD%%%" size=20 maxlength=30></td>
+<td><font face="Arial,Helvetica" size=1>(TaK3s12kN0w1)</font></td></tr>
+
+<tr><td align=right><font size=1 face="Verdana,Arial,Helvetica"><font color=red>*</font> Verify Password:</font></td>
+<td><input type=password name="password2" value="%%%PASSWORD%%%" size=20 maxlength=30></td>
+<td><font face="Arial,Helvetica" size=1>(TaK3s12kN0w1)</font></td></tr>
+
+<tr><td colspan=3>&nbsp;</td></tr>
+
+</table>
+          </td>
+        </tr>
+      </table>
+               </td>
+        </tr>
+      </table>
+
+<br><center><input type=image src="%%%IFIMAGES%%%/register.gif" border=0 alt="Register" width=137 height=30></center>
+
+</form>
+<form name="recalculate" method=post action="%%%IF_URL%%%">
+<input type=hidden name=login value=3>
+<input type="hidden" name=redostate value=1>
+<input type="hidden" name="email" value="">
+<input type="hidden" name="firstname" value="">
+<input type="hidden" name="lastname" value="">
+<input type="hidden" name="company" value="">
+<input type="hidden" name="street_one" value="">
+<input type="hidden" name="street_two" value="">
+<input type="hidden" name="city" value="">
+<input type="hidden" name="state" value="">
+<input type="hidden" name="zip" value="">
+<input type="hidden" name="country" value="">
+<input type="hidden" name="phone" value="">
+</form>
+
+          </td>
+        </tr>
+      </table>
+
+<!--#include file="%%%TEMPLATES_DIR%%%/footer.html"-->
+
+</body>
+</html>
