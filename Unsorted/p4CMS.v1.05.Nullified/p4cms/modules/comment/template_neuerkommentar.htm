@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Kommentare schreiben</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<link href="../../../media/style_norm.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="../../../media/common.js" type="text/javascript"></script>
+
+<script language="javascript" type="text/javascript">
+<!--
+function checkform()
+{
+if(document.newc.name.value==""){
+alert("Bitte Name angeben");
+document.newc.name.focus();
+return false;}
+
+if(document.newc.titel.value==""){
+alert("Bitte Kommentar-Titel angeben");
+document.newc.titel.focus();
+return false;}
+
+if(document.newc.text.value==""){
+alert("Bitte Kommentar eintragen");
+document.newc.text.focus();
+return false;}
+
+if(document.newc.text.value.length>"{anzahl}"){
+alert("Ihr Kommentar ist zu lange. Bitte verwenden Sie nicht mehr als {anzahl} Zeichen ");
+document.newc.text.focus();
+return false;}
+}
+
+var formfeld="";
+var maxlang="{anzahl}";				
+function zaehle()
+ 	{ 
+if (window.document.newc.text.value.length>"{anzahl}")	
+	{
+window.document.newc.text.value=formfeld;
+return;
+	}
+else 
+	{
+formfeld=window.document.newc.text.value;
+window.document.newc.zeichen.value=maxlang-window.document.newc.text.value.length;
+	}
+}
+//-->
+</script>
+</head>
+
+<body>
+
+<input onClick="javascript:history.go(-1);" type="button" class="button" value="<< zur&uuml;ck">
+<input onClick="javascript:window.close();" type="button" class="button" value="Fenster schliessen">
+<hr size="1" noshade>
+<!-- START KOMMENTAR SCHREIBEN -->
+
+<form style="display:inline" name="newc" method="post" action="newcomment.php" onSubmit="return checkform();">
+  <table width="100%" border="0" cellspacing="1" cellpadding="2">
+    <tr>
+      <td width="10%" nowrap>Ihr Name</td>
+      <td><input style="width:90%" name="name" type="text" class="feld" id="name" maxlength="100"></td>
+    </tr>
+    <tr>
+      <td nowrap>Ihre E-Mail </td>
+      <td><input style="width:90%" name="email" type="text" class="feld" id="email" maxlength="100"></td>
+    </tr>
+    <tr>
+      <td nowrap>Titel</td>
+      <td><input style="width:90%" name="titel" type="text" class="feld" id="titel" maxlength="100"></td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top" nowrap>Ihr Kommentar*</td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top" nowrap><textarea onkeyup="javascript:zaehle()" style="width:100%" name="text"  rows="6" class="feld" id="text"></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top" nowrap>
+	  <input name="send" type="hidden" id="send" value="1">
+	  <input name="cid" type="hidden" id="cid" value="{cid}">
+	  <input name="Submit" type="submit" class="button" value="eintragen">
+	  <input name="zeichen" type="text" class="feld" value="{anzahl}" size="4">
+Zeichen &uuml;brig 
+<hr size="1" noshade></td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top" nowrap>*{anzahl} Zeichen maximal <br>
+        <!--
+		Sie k&ouml;nnen folgenden Formatierungverwenden<br>
+        [b]<b>fetter Text</b>[/b]<br>
+        [i]<i>kursiver Text</i>[/i] <br>-->
+        Url's werden automatisch umgewandelt
+		</td>
+    </tr>
+  </table>
+</form>
+<!--ENDE KOMMENTAR SCHREIBEN -->
+</body>
+</html>
