@@ -1,0 +1,81 @@
+EZAUCTGN - easy auction site generator, by manny juan 11/5/2000
+
+EZAUCTGN INSTALLATION INSTRUCTIONS
+----------------------------------
+
+ASSUMPTIONS
+        your home base directory is
+                path=   /home/htdocs/your.isp.com/website
+                URL=    http://www.isp.com/website
+
+        your cgi url is:
+                URL=    http://www.isp.com/website/cgi-bin
+
+        you want to store your auction sites in a subdirectory called 'auction'.
+        note: each auction site will be a subdirectory beneath 'auction'.
+
+then you should do the following:
+
+SETUP
+        1. create the subdirectory 'auction' under the home base directory and chmod to 777
+        2. unzip ezauctgn.zip to the 'auction' directory
+        3. move all the perl scripts (*.pl) to the cgi-bin directory and chmod them to 755
+
+INDEX.HTML
+        1. supply correct URL for the logo 
+                (ie. IMG SRC=http://www.isp.com/website/auction/mjmall.jpg)
+        2. supply correct URL for the cgi script.  for example:
+                <form action="http://www.isp.com/website/cgi-bin/ezauctgn.pl" method="POST">
+        3. do above two more times for the 'edit page' and 'delete page' buttons.
+        4. keep the <!--begin--> line in the page. DO NOT REMOVE!
+        5. chmod to 777
+
+DATA.TXT (list of users) 
+        1. (initially empty)
+        2. chmod to 777
+
+CATLIST.TXT (list of categories) 
+        1. make changes as desired
+        2. chmod to 777
+
+EZAUCTGN.PL (auction site generator script)
+        (you might have to change the extension to .cgi depending on your server)
+        1. make sure first line of script points to location of perl program
+                #!/usr/bin/perl
+        2. where will the auction sites be created? (path)
+                $base_dir = "/home/htdocs/your.isp.com/website/auction";
+        3. what is the URL of the cgi-bin directory?
+                $cgiurl = "http://www.isp.com/website/cgi-bin";
+        4. what is the URL of the auction site directory?
+                $baseurl = "http://www.isp.com/website/auction";
+        5. what is the complete path to the index page? (path)
+                $indexpage = "/home/htdocs/your.isp.com/website/auction/index.html";
+        6. where is your email program
+                $catlist = "/home/htdocs/your.isp.com/website/auction/catlist.txt";
+        7. where is your email program
+                $sendmail = '/usr/sbin/sendmail';
+        8. your email  (use apostrophe not quote)
+                $myemail = 'email@isp.com';
+
+EZAUCT.PL (auction site engine - modified EveryAuction)
+        (you might have to change the extension to .cgi depending on your server)
+        1. make sure first line of script points to location of perl program
+                #!/usr/bin/perl
+        2. path where the current auction is located (keep '$sitedir' - do not replace)
+                $config{'basepath'} = "/home/htdocs/your.isp.com/website/auction/$sitedir/";
+        3. how do you invoke your email program (note: only sendmail has been tested)
+                $config{'mailprog'} = '/usr/sbin/sendmail -t';
+        4. enter the email id of the administrator of this site
+                $config{'admin_address'} = 'email@isp.com';
+        5. where is cgi-bin directory where scripts are located?
+                $config{'scripturl'} = 'http://www.isp.com/website/cgi-bin';
+
+NOTE: the auction site script used in EZAUCTGN originated as the freeware version of the
+EveryAuction from www.everysoft.com.  i've modified everytauction to work with EZAUCTGN
+but it retains the code, design and behavior of the original everysoft script from 
+www.everysoft.com.  Please respect the copyright and license.
+
+----------
+manny@jps.net
+http://www.inet-images.com/manny
+11/5/2000
