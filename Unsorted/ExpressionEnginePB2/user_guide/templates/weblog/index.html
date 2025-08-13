@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Weblog Module Tags &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Weblog Module Tags</h1>
+
+	<p>The Weblog Module of ExpressionEngine has several individual tags available for use.  Each of the tags is explained in a separate section.</p>
+
+
+
+	<h2>Entries</h2>
+
+	<p>ExpressionEngine uses a single weblog tag to display both multi-entry and single-entry content.  Further, this same tag is used to show entries from specific categories, monthly archives, permalinks, and more.  This is a departure from what was used in pMachine Free and Pro if you are migrating from one of those programs.  Example:</p>
+
+	<code>{exp:weblog:entries weblog="news" limit="15"}<br />
+<br />
+&lt;h3>{title}&lt;/h3><br />
+<br />
+{body}<br />
+<br />
+&lt;div>Last updated on {edit_date format='%M %d, %Y'}
+  at {edit_date format='%h:%i %A'}&lt;br /><br />
+<br />
+Category: <br />
+{categories}<br />
+&lt;a href="{path=archives}">{category_name}&lt;/a> &nbsp;<br />
+{/categories}<br />
+&lt;/div><br />
+<br />
+{/exp:weblog:entries}</code>
+
+	<p>The weblog entries tag has a variety of <a href="parameters.html">parameters</a> that can be added to affect what entry or entries are show as well as how they are displayed.</p>
+
+
+	<p>Further, inside of the tag you can use a number of <a href="variables.html">variables</a> to display different information such as entry title, date, body, etc.</p>
+
+
+
+	<h2>Archive Month Links</h2>
+
+	<p>The <a href="archive_month_links.html">archive month links</a> tag is used to display a list of months in which an entry was made in a weblog.  Links allow you to view all the entries from the requested month. Example:</p>
+
+	<code>{exp:weblog:month_links weblog="news" limit="50"}<br />
+<br />
+&lt;a href="{path=weblog/index}">{month}, {year}&lt;/a>&lt;br /><br />
+<br />
+{/exp:weblog:month_links}</code>
+
+
+
+	<h2>Categories</h2>
+
+	<p>Lists of weblog categories can be displayed using the <a href="categories.html">weblog categories</a> tag.  Example:</p>
+
+	<code>{exp:weblog:categories}<br />
+<br />
+&lt;a href="{path=weblog/index}">{category_name}&lt;/a><br />
+<br />
+{/exp:weblog:categories}</code>
+
+
+
+	<h2>Category Archive Listing</h2>
+
+	<p>The <a href="category_archive.html">category archive</a> tag is designed to let you list all of your weblog entries and have them organized by category.  Example:</p>
+
+	<code>{exp:weblog:category_archive weblog="news" backspace="6"}<br />
+<br />
+{categories}<br />
+&lt;h3>{category_name}&lt;/h3><br />
+{/categories}<br />
+<br />
+{entry_titles}<br />
+&lt;a href="{path=SITE_INDEX}">{title}&lt;/a>&lt;br /><br />
+{/entry_titles}<br />
+<br />
+{/exp:weblog:category_archive}</code>
+
+
+
+	<h2>Category Heading</h2>
+
+	<p>The purpose of the <a href="category_heading.html">category heading</a> tag is to show the currently viewed category as a heading.  This tag is generally used on your main entries page where your Category Archive List tag points.  Example:</p>
+
+	<code>{exp:weblog:category_heading}<br />
+<br />
+&lt;h2>{category_name}&lt;/h2><br />
+<br />
+{/exp:weblog:category_heading}</code>
+
+
+
+	<h2>Next/Prev Entry Linking</h2>
+
+	<p>The Next and Previous <a href="entry_linking.html">entry links</a> tag allow you to automatically generate links to the next or previous entry.  They are often used when displaying a single entry to provide navigation to other entries.  Example:</p>
+
+	<code>&lt;p><br />
+{exp:weblog:prev_entry}<br />
+Previous entry: &lt;a href="{path="weblog/comments"}">{title}&lt;/a><br />
+{/exp:weblog:prev_entry}<br />
+<br />
+| Navigation |<br />
+<br />
+{exp:weblog:next_entry}<br />
+Next entry: &lt;a href="{path="weblog/comments"}">{title}&lt;/a><br />
+{/exp:weblog:next_entry}<br />
+&lt;/p></code>
+
+
+
+	<h2>Related Entries</h2>
+
+	<p>The <a href="related_entries.html">related entries</a> tag allow you to show a list of other entries that belong to the same category as the currently viewed entry.  Example:</p>
+
+	<code>{exp:weblog:related_entries limit="10" backspace="6"}<br />
+<br />
+&lt;a href="{comment_path=weblog/index}">{title}&lt;/a>&lt;br /><br />
+<br />
+{/exp:weblog:related_entries}</code>
+
+
+
+	<h2>Weblog Name</h2>
+
+	<p>The name of a weblog can be displayed using the <a href="name.html">weblog name</a> tag.  Example:</p>
+
+	<code>{exp:weblog:weblog_name weblog="news"}</code>
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
