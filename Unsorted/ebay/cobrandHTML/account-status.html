@@ -1,0 +1,30 @@
+<!--page type 2-->
+<html><head><title>\$HOMENAME Account Status</title>
+</head>
+<!--header-->
+<h2>Account Status</h2>
+
+Use this form to get information about your \$HOMENAME account, including
+all credits, debits, and current balance.
+<p>
+
+For your protection, you need a password in order to view this information. If
+you haven't selected a personal password, or if you've forgotten your password,
+please <a href=\${HTMLPATH}reqpass.html>request a new temporary password</a> before proceeding.
+<p>
+
+<form method=post action="\${CGIPATH}eBayISAPI.dll">
+<INPUT TYPE=HIDDEN NAME="MfcISAPICommand" VALUE="ViewAccount">
+<pre>
+Your <a href=\$CGIPATH}eBayISAPI.dll?RegisterShow>registered</a> \$LOGINPROMPT:          <input type=text name=userid size=30>
+Your password:                    <input type=password name=pass size=30>
+Show entire account history?      <input type=radio name=entire value=1>entire account   <input type=radio name=entire value=0 checked>last 2 months only
+</pre>
+
+<strong>Press this button to view your account status:</strong>
+<p>
+<blockquote><input type=submit value="view account"></blockquote>
+<p>
+</form>
+
+<!--footer-->
