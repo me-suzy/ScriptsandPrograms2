@@ -1,0 +1,84 @@
+Readme for e-Classifieds Photo Edition
+
+This file contains important installation, configuration, and maintenance instructions.
+
+__________________________________________________________________________________
+
+Congratulations on your purchase of the e-Classifieds Photo Edition.  We believe that e-Classifieds is the most powerful and versatile suite of classified ads software programs for web sites available, and we hope that you will enjoy the many precision-engineered features of this product.  By following the instructions below, you should enjoy this low-maintenance, yet feature-packed program for a long time.  You may want to print this file for future reference.  If you haven't already done so, we also ask that you carefully read the license for this product, which is contained in the license.txt file.  Specifically, please note that in order to protect our intellectual property rights, trademark rights, and other legal rights, the license specifically forbids removal of the tiny copyright notice at the bottom of the pages, as well as removal of the e-Classifieds logo from the product.  The only logo that we are referring to here is the small "Powered by" logo that appears in the toolbar, so please feel free to remove the large e-Classifieds logo that appears at the top of the pages if you want to.  The small "Powered by" logo is only 2k in size and also is quite small and unobtrusive, so it should not harm or interfere with the loading of the pages in any way.  Thank you for your cooperation.
+
+IMPORTANT NOTICE:  Please do not remove the copyright notice that is contained in the footer.  If you remove it or even change one character in it, the program will NOT OPERATE and will self-destruct.  Thus, it is extremely important that this copyright notice be left completely intact and unaltered.  If you alter it and cause a program malfunction, we will charge you for any repairs, and even then, we may not be able to repair your program.  Therefore, please do not alter this copyright notice under any circumstances.
+
+Installing the Program
+--------------------------
+
+Please consult the detailed instructions in the install.txt file in order to install the program on your server.  Once you have successfully installed the program, you may want to consult the sections below for modifying and maintaining your classifieds section.
+
+Managing your classifieds section
+---------------------------------
+
+When you first installed the program, you should have set the $admin_password variable in the USER.CFG file to the special administrative password that you will use to control various aspects of the program.  As the admin, you have the ability to control many aspects of the program through the administrative Control Panel.  The Control Panel allows you to modify any ad posted by any user, delete any ad posted by any user, run the Keyword Notify program, purge old Keyword Notify profiles that have expired, send out expiration notices by e-mail to users whose ads are about to expire, purge old ads, preview new ads, view your mailing list, clear your mailing list, and send a mass e-mail to users who have signed up for your newsletter by clicking the checkbox on the "Post an Ad" form.  You will need your administrative password to access any of these functions.
+
+You can access the Control Panel by clicking on the "Admin" link contained in the navigation bar along the left hand side of the pages.  If you would prefer not to have this link visible to your viewers, you can remove it by editing the HTML contained in the "sub pagesetup" section of the classifieds.cfg file.  If you do so, you will then need to go to the following special URL to access the Control Panel:
+
+http://www.yourdomain.com/cgi-bin/classifieds/classifieds.cgi?admin_button=on
+
+Of course, you would adjust the URL above to point to the actual location of the classifieds.cgi file on your server. 
+
+Modifying the HTML
+------------------
+
+To modify the HTML that defines the appearance of all pages within the program, all you have to do is to modify certain variables contained in the USER.CFG file.  You can also edit the HTML that appears at the top and the bottom of all pages by editing the $header and $footer variables.  If you do so, please be sure to "comment out" and quotation marks or @ symbols that you use in your HTML by placing the backslash symbol (the \ symbol) in front of them.  Failure to do so will cause a syntax error that will cause the program not to run.  There are also a number of variables in the USER.CFG file that allow you to customize the appearance of the ads, such as the width of the ads tables, their background color, and various text font and color options.
+
+If you have some CGI experience and would like to modify the HTML that defines the appearance of all pages within the program, including the toolbar along the left hand side of the pages, you can do so by opening up the CLASSIFIEDS.CFG file in a text editor and modifying the HTML contained within the "sub pagesetup" and "sub pageclose" sections of that file.  If you do so, please be sure to modify only the text that appears in between the "print qq~" and the "~;" phrases.  If you modify text outside of these phrases, you could cause a syntax error that would cause the program not to run.
+
+If you are feeling really adventurous, you can also modify the HTML for many of the forms that constitute the "guts" of the program by modifying the various subroutines contained in the MAIN-HTML.PL file within the "html" subdirectory.  You can also edit the text of the various e-mail messages that are sent out by the program.  Please be advised, however, that due to the extremely high likelihood of creating syntax errors and breaking the program, we strongly advise against editing any files other than the USER.CFG file.  You should not even attempt to edit the other files unless you are an expert in Perl and CGI programming.  Moreover, since these files are not designed to be modified by end users, editing these files will void your warranty.  If you edit these files and then run into problems, we will charge you for any technical support in trying to fix these problems, and even then, we may not be able to help you.  In other words, please proceed with extreme caution!
+
+Windows e-mailing
+-----------------
+
+If you are running Windows and want to be able to take advantage of the program's optional e-mail routines, you will need to either have access to the SMTP mail server on the same server that your web site is located on, or to have installed either Blat or Windmail on your server.  If you are unfamiliar with these programs, Blat is a freeware e-mail program that runs on Windows servers and performs a similar function to the UNIX sendmail program.  It is available from the popular FTP sites.  More information is available at the Blat WWW home page, which is located at "http://gepasi.dbs.aber.ac.uk/softw/Blat.html".  Windmail is a commercial e-mail program that runs on Windows servers and performs a similar function to the Unix Sendmail program.  Windmail is made by GeoCel, and more information is available at "http://www.geocel.com/".  Please note that getting Blat or Windmail to work properly can be tricky.  If you are using NT and either do not have a mail program or cannot get Blat, Windmail, or SMTP to work properly with this program, you may need to turn off all e-mailing from the program.  You can do so setting the $disable_email variable equal to "on".
+
+Requiring Administrative Approval for New Ads
+---------------------------------------------
+
+By default, this program is shipped with the "factory" settings for certain variables.  One of these is the $require_admin_approval variable, which by default is set to "" (turned off).  If you turn this feature on by setting this variable equal to "on", new ads that are posted will not show up on searches until the administrator has approved them.  If you use this feature, then you will need to periodically approve the new ads, or they will never show up to your viewers.  To do so, you should click on the "Admin" link in the navigation bar along the left hand side of the pages.
+
+Clicking on this link will bring up your administrative Control Panel.  One of the choices there is called Preview New Ads.  If you choose this option and then click on the "Do it!" button, you will be prompted for your administrative password.  Once you have entered your password and clicked on the "Display New Ads" button, you will see a page displaying all of the new ads awaiting your approval.  For each ad, you will have the option of approving, modifying, or deleting the ad, as well as viewing it.  You can always defer action on a particular ad simply by taking no action for that ad.  If you do so, it will remain in the "temp" status, will not be viewable by your viewers, and will be displayed again the next time that you enter this special administrative approval mode.
+
+If you do not wish to use this feature and want new ads to be displayed immediately, you should leave this feature turned off.  
+
+Program Maintenance
+-------------------
+
+This program has the ability to automatically purge old ads, to automatically send out e-mail notices to users whose ads are about to expire, to automatically run the Keyword Notify feature that sends out e-mail notices to subscribers of new ads that match their pre-defined keywords, and to automatically purge old Keyword Notify profiles that have expired.  There are several different ways that you can activate these features.
+
+The best way is to run the separate autonotify.pl, autonotify.purge.pl, warn.pl, and purge.pl files as Unix "cron" jobs.  All of these files are located in the "cron" directory.  Cron is a feature of Unix servers that can be set to automatically run certain programs at specific times.  Cron is somewhat complex and may not be available on your server, so you will need to consult your web site administrator or web hosting company to find out whether you have access to cron on your server, and, if so, how to set these files to run as cron jobs.  Unfortunately, Windows does not have this feature, so Windows users will have to use one of the other methods outlined below.
+
+If you don't have access to cron jobs on your server, you can manually run these routines periodically from your web browser by clicking on the "Admin" link in the navigation bar along the left hand side of the pages.  All of these options will be listed in the Control Panel.  If you use this method, you don't have to worry about the separate files discussed above, as this method does not even use those files.  Instead, it uses internal routines built into the main classifieds.cgi file.
+
+If you do not have access to cron jobs, or if you do not want to manually run the programs from the Control Panel, the third option is to let the classifieds program automatically run its own built-in warn, purge, Keyword Notify, and Keyword Notify purge routines at periodic intervals.  While this may seem easy, it is also the least advantageous method, because it will slow down the program's response to users at certain times when it runs these automated routines.  Since it is dependent upon user actions to activate the program and these routines, it also may not run these routines at regular intervals, so certain users may not receive the warning notices before their ads expire.  This will be especially true if your classifieds site does not get much traffic and the classifieds program is not run at least once every day.  Nonetheless, if you want to use these builtin routines, then you need to set the $use_builtin_warn, $use_builtin_purge, $use_builtin_autonotify, and $use_builtin_autonotify_purge variables in the user.cfg file equal to "on".
+
+Data Integrity
+--------------
+
+As you operate your classifieds section over time, you may build up a database of hundreds or even thousands of ads.  Unfortunately, your ads database is vulnerable to being wiped out by server problems.  Servers go down, drop hits, or suffer other "hiccups" much more often than most web hosting companies would care to admit (or do admit, for that matter), and if this happens during a time when the classifieds program is writing to your ads database, it can wipe out your entire ads database.  Therefore, as with any other computer program that you use, it is very important that you backup your data periodically (at least once a week, and more often if your system is quite busy).  For the classifieds program, the important files that you should backup are contained in the "data" subdirectory and include the following files:
+
+ads.counter
+ads.data
+ads.log
+maillist.txt
+notify.counter
+notify.data
+
+You may see other files in the "data" subdirectory from time to time, but these are placeholder files that do not need to be backed up.
+
+If you wish to save your users' uploaded multimedia files, you would need to backup the files contained in the special "upload" directory that you created for storing those files.
+
+If your server does have a problem and your ads database gets wiped out, all may not be lost.  Assuming that you have turned logging on in the user.cfg file, the system maintains a log of all user activity on the system, including posting, modifying, and deleting of ads.  This log is contained in the ads.log file, and since it is not written to at the exact same time as the ads.data file, it's possible that the ads.log file may still be intact even if your ads.data file was wiped out.  You can download the ads.log file, open it up in a text editor, and turn off word-wrapping.  You will then see a separate line for each action, with data fields separated by the pipe symbol (the "|" symbol).  The line will begin with ADD, MODIFY, or DELETE, followed by the user's IP address.  The next field is the person's name, and this is the first field of the actual ad.  By stripping out the first two fields in the ADD lines (the ADD field and the IP address field), you can restore these ads by placing them back into your ads.data file.  The last field of each line contains the unique ad number for that ad, so when you are finished, you will want to also make sure that the number in the ads.counter file is higher than any of the ad numbers contained in your restored ads.data file.  Once you have placed all of the ADD lines back into the ads.data file, if you want to be even more thorough, you can do so by replacing ads that have been modified.  To do so, you would look for the lines in the ads.log file that begin with MODIFY and place those ads (stripping out the MODIFY and IP address fields again) into the ads.data file, overwriting the ads that have the same ad numbers.  You could also look for ads that have been deleted (those ads in the ads.log file that begin with DELETE) and remove them from the ads.data file.
+
+Ongoing Support and/or Customizations
+-------------------------------------
+
+This program does not come with any personalized support, nor does Hagen Software guarantee the availability of any technical support.  However, it has generally been our policy to provide free technical support via our online Technical Support Request form for thirty (30) days after the date of purchase.  During this time, we may, at our option, attempt to assist you in installing the standard version of the program by answering any questions that you may have.  Please note that "support" means e-mail advice on getting the program running on your server in its default format.  "Support" does not include assistance in customizing or modifying the program.  An example of the latter would be problems that you encounter if you create a new category, or any other problems that arise if you have modified *any* of the program files.  Due to extremely high demand and the fact that our time and personnel resources are extremely limited, we are unable to provide unlimited ongoing support.  If you require ongoing support after the initial 30 day period, or if you would like to customize your copy of the program, we may, at our option, be able to provide these services on an hourly basis.  Our current rates are $75 to $125 per hour, depending on the type of services provided, with general support currently being billed at $75 per hour, and customized programming currently billed at $125 per hour.  All rates are subject to change at any time and without notice.  Due to extremely high demand, we cannot guarantee our availability either for ongoing support after the initial 30 day period or for customizations.
+
+Again, thank you very much for your business, and enjoy your new classified ads program!
