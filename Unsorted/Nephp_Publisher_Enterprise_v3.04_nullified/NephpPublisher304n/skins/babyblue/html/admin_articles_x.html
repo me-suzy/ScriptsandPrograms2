@@ -1,0 +1,1170 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style>
+body, p, td {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; color: #000000; 
+scrollbar-face-color: #dadada; 
+                scrollbar-shadow-color: #000000; 
+                scrollbar-highlight-color: #FFFFFF; 
+                scrollbar-3dlight-color: #000000; 
+                scrollbar-darkshadow-color: #dadada; 
+                scrollbar-track-color: #FFFFFF; 
+                scrollbar-arrow-color: #000000;
+                background-repeat: no-repeat;
+                 }
+                 </style>
+<title>admin_articles_x.html</title>
+</head>
+
+<body>
+<br><br>
+<div align="left">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="685" id="AutoNumber1">
+    <tr>
+      <td valign="top" width="685">
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber2">
+          <tr>
+            <td width="100%" valign="top">
+            <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_rbot_title.gif" width="138" height="10"></td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber3">
+              <tr>
+                <td width="50%" valign="top" bgcolor="#DFDFDF">
+                <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_ltop.gif" width="10" height="10"></td>
+                <td width="50%" valign="top" bgcolor="#DFDFDF">
+                <p align="right">
+                <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_rtop.gif" width="10" height="10"></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" bgcolor="#DFDFDF">
+            <div align="center">
+              <center>
+              <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="96%" id="AutoNumber5">
+                <tr>
+                  <td width="100%" valign="top">
+                  <!------------------------------- EDITOR STARTS HERE ---------------------------------->
+                  <form method="POST" name="webeditor" action="admin.php" onsubmit="return check()" enctype="multipart/form-data">
+<input type=hidden name=mod value="articles">
+<input type=hidden name=opt value="add_proceed">
+<input type=hidden name=proceed value="true">
+<p>
+  <font size="1">Document name<br>
+  <input type="text" name="nnet_title" size="31" style="border: 1px inset #000000; background-color: #CCCCFF">
+  <select size="1" name="nnet_cid" style="border: 1px inset #000000; background-color: #CCCCFF; font-size:8pt; font-family:Verdana">
+  <option selected value="">Select Your Category</option>
+                                                 {%catdisplay%}  </select><br>
+  Document description<br>
+  <textarea rows="4" name="nnet_desc" cols="69" style="border: 1px inset #000000; background-color: #CCCCFF; width:100%"></textarea><br>
+  Upload Thumb-nail Image<br>
+  <input type="file" name="nnet_icon" size="54" maxlength="80" /><br>
+  Upload Full-Size Image<br>
+  <input type="file" name="nnet_pic" size="54" maxlength="80" /></font></p>
+<p align="right">
+  <input type=hidden name="nnet_data" value="">
+  <font size="1">
+  <input type="submit" value=">> CLICK HERE TO SUBMIT" name="B1" style="font-family: Verdana; color: #000000; font-size:8pt; font-weight:bold"></font> </p>
+<script>
+function check()
+{
+    	tbCE_guardar();
+    	if(document.webeditor.nnet_data.value=="")
+        {
+                alert("Document is empty.");
+                return false;
+        }
+	     if(document.webeditor.nnet_title.value=="")
+        {
+                alert("Please fill-in the name for this Document.");
+                return false;
+        }
+        if(document.webeditor.nnet_cid.value=="")
+        {
+                alert("Please specify its category.");
+                return false;
+        }
+        else
+        {
+                return true;
+        }
+}
+</script>
+</form>
+<SCRIPT language=javascript>
+ // Esta informació® £orresponde al archivo Dhtmled.js
+ // DHTML Editing Component Constants for JavaScript
+ //
+ // Command IDs
+ //
+ DECMD_BOLD =                      5000
+ DECMD_COPY =                      5002
+ DECMD_CUT =                       5003
+ DECMD_DELETE =                    5004
+ DECMD_DELETECELLS =               5005
+ DECMD_DELETECOLS =                5006
+ DECMD_DELETEROWS =                5007
+ DECMD_FINDTEXT =                  5008
+ DECMD_FONT =                      5009
+ DECMD_GETBACKCOLOR =              5010
+ DECMD_GETBLOCKFMT =               5011
+ DECMD_GETBLOCKFMTNAMES =          5012
+ DECMD_GETFONTNAME =               5013
+ DECMD_GETFONTSIZE =               5014
+ DECMD_GETFORECOLOR =              5015
+ DECMD_HYPERLINK =                 5016
+ DECMD_IMAGE =                     5017
+ DECMD_INDENT =                    5018
+ DECMD_INSERTCELL =                5019
+ DECMD_INSERTCOL =                 5020
+ DECMD_INSERTROW =                 5021
+ DECMD_INSERTTABLE =               5022
+ DECMD_ITALIC =                    5023
+ DECMD_JUSTIFYCENTER =             5024
+ DECMD_JUSTIFYLEFT =               5025
+ DECMD_JUSTIFYRIGHT =              5026
+ DECMD_LOCK_ELEMENT =              5027
+ DECMD_MAKE_ABSOLUTE =             5028
+ DECMD_MERGECELLS =                5029
+ DECMD_ORDERLIST =                 5030
+ DECMD_OUTDENT =                   5031
+ DECMD_PASTE =                     5032
+ DECMD_REDO =                      5033
+ DECMD_REMOVEFORMAT =              5034
+ DECMD_SELECTALL =                 5035
+ DECMD_SEND_BACKWARD =             5036
+ DECMD_BRING_FORWARD =             5037
+ DECMD_SEND_BELOW_TEXT =           5038
+ DECMD_BRING_ABOVE_TEXT =          5039
+ DECMD_SEND_TO_BACK =              5040
+ DECMD_BRING_TO_FRONT =            5041
+ DECMD_SETBACKCOLOR =              5042
+ DECMD_SETBLOCKFMT =               5043
+ DECMD_SETFONTNAME =               5044
+ DECMD_SETFONTSIZE =               5045
+ DECMD_SETFORECOLOR =              5046
+ DECMD_SPLITCELL =                 5047
+ DECMD_UNDERLINE =                 5048
+ DECMD_UNDO =                      5049
+ DECMD_UNLINK =                    5050
+ DECMD_UNORDERLIST =               5051
+ DECMD_PROPERTIES =                5052
+
+ //
+ // Enums
+ //
+
+ // OLECMDEXECOPT
+ OLECMDEXECOPT_DODEFAULT =         0
+ OLECMDEXECOPT_PROMPTUSER =        1
+ OLECMDEXECOPT_DONTPROMPTUSER =    2
+
+ // DHTMLEDITCMDF
+ DECMDF_NOTSUPPORTED =             0
+ DECMDF_DISABLED =                 1
+ DECMDF_ENABLED =                  3
+ DECMDF_LATCHED =                  7
+ DECMDF_NINCHED =                  11
+
+ // DHTMLEDITAPPEARANCE
+ DEAPPEARANCE_FLAT =               0
+ DEAPPEARANCE_3D =                 1
+
+ // OLE_TRISTATE
+ OLE_TRISTATE_UNCHECKED =          0
+ OLE_TRISTATE_CHECKED =            1
+ OLE_TRISTATE_GRAY =               2
+ var obj_editor = 0 ;
+ // Per canvis de gifs a la barra d'icones:
+ function canvi_imatge(nom_img,graf){
+ document.images[nom_img].src = graf;
+ return true;
+ }
+
+ // Utilitats auxiliars per paletes de colors:
+
+ function MakeArray(n)
+ {
+ this.length=n
+ for(var j=1; j<=n; j++){
+ this[n]=0
+ }
+ return this
+ }
+ colors= new MakeArray(140);
+ colors[0]='aliceblue'
+ colors[1]='antiquewhite'
+ colors[2]='aqua'
+ colors[3]='aquamarine'
+ colors[4]='azure'
+ colors[5]='beige'
+ colors[6]='bisque'
+ colors[7]='black'
+ colors[8]='blanchedalmond'
+ colors[9]='blue'
+ colors[10]='blueviolet'
+ colors[11]='brown'
+ colors[12]='burlywood'
+ colors[13]='cadetblue'
+ colors[14]='chartreuse'
+ colors[15]='chocolate'
+ colors[16]='coral'
+ colors[17]='cornflower'
+ colors[18]='cornsilk'
+ colors[19]='crimson'
+ colors[20]='cyan'
+ colors[21]='darkblue'
+ colors[22]='darkcyan'
+ colors[23]='darkgoldenrod'
+ colors[24]='darkgray'
+ colors[25]='darkgreen'
+ colors[26]='darkkhaki'
+ colors[27]='darkmagenta'
+ colors[28]='darkolivegreen'
+ colors[29]='darkorange'
+ colors[30]='darkorchid'
+ colors[31]='darkred'
+ colors[32]='darksalmon'
+ colors[33]='darkseagreen'
+ colors[34]='darkslateblue'
+ colors[35]='darkslategray'
+ colors[36]='darkturquoise'
+ colors[37]='darkviolet'
+ colors[38]='deeppink'
+ colors[39]='deepskyblue'
+ colors[40]='dimgray'
+ colors[41]='dodgerblue'
+ colors[42]='firebrick'
+ colors[43]='floralwhite'
+ colors[44]='forestgreen'
+ colors[45]='fuchia'
+ colors[46]='gainsboro'
+ colors[47]='ghostwhite'
+ colors[48]='gold'
+ colors[49]='goldenrod'
+ colors[50]='gray'
+ colors[51]='green'
+ colors[52]='greenyellow'
+ colors[53]='honeydew'
+ colors[54]='hotpink'
+ colors[55]='indianred'
+ colors[56]='indigo'
+ colors[57]='ivory'
+ colors[58]='khaki'
+ colors[59]='lavender'
+ colors[60]='lavenderblush'
+ colors[61]='lawngreen'
+ colors[62]='lemonchiffon'
+ colors[63]='lightblue'
+ colors[64]='lightcoral'
+ colors[65]='lightcyan'
+ colors[66]='lightgoldenrodyellow'
+ colors[67]='lightgreen'
+ colors[68]='lightgrey'
+ colors[69]='lightpink'
+ colors[70]='lightsalmon'
+ colors[71]='lightseagreen'
+ colors[72]='lightskyblue'
+ colors[73]='lightslategray'
+ colors[74]='lightsteelblue'
+ colors[75]='lightyellow'
+ colors[76]='lime'
+ colors[77]='limegreen'
+ colors[78]='linen'
+ colors[79]='magenta'
+ colors[80]='maroon'
+ colors[81]='mediumaquamarine'
+ colors[82]='mediumblue'
+ colors[83]='mediumorchid'
+ colors[84]='mediumpurple'
+ colors[85]='mediumseagreen'
+ colors[86]='mediumslateblue'
+ colors[87]='mediumspringgreen'
+ colors[88]='mediumturquoise'
+ colors[89]='mediumvioletred'
+ colors[90]='midnightblue'
+ colors[91]='mintcream'
+ colors[92]='mistyrose'
+ colors[93]='moccasin'
+ colors[94]='navajowhite'
+ colors[95]='navy'
+ colors[96]='oldlace'
+ colors[97]='olive'
+ colors[98]='olivedrab'
+ colors[99]='orange'
+ colors[100]='orangered'
+ colors[101]='orchid'
+ colors[102]='palegoldenrod'
+ colors[103]='palegreen'
+ colors[104]='paleturquoise'
+ colors[105]='palevioletred'
+ colors[106]='papayawhip'
+ colors[107]='peachpuff'
+ colors[108]='peru'
+ colors[109]='pink'
+ colors[110]='plum'
+ colors[111]='powderblue'
+ colors[112]='purple'
+ colors[113]='red'
+ colors[114]='rosybrown'
+ colors[115]='royalblue'
+ colors[116]='saddlebrown'
+ colors[117]='salmon'
+ colors[118]='sandybrown'
+ colors[119]='seagreen'
+ colors[120]='seashell'
+ colors[121]='sienna'
+ colors[122]='silver'
+ colors[123]='skyblue'
+ colors[124]='slateblue'
+ colors[125]='slategray'
+ colors[126]='snow'
+ colors[127]='springgreen'
+ colors[128]='steelblue'
+ colors[129]='tan'
+ colors[130]='teal'
+ colors[131]='thistle'
+ colors[132]='tomato'
+ colors[133]='turquoise'
+ colors[134]='violet'
+ colors[135]='wheat'
+ colors[136]='white'
+ colors[137]='whitesmoke'
+ colors[138]='yellow'
+ colors[139]='yellowgreen'
+         function taula_colors(){
+ var t=0,taco
+ taco='<center><br><br><table border=1 cellspacing=0 cellpadding=0>';
+ while(t<140){
+ if(t%16==0){
+ if(t!=0){
+ taco+='</tr>'
+ }
+ taco+='<tr>'
+ }
+ taco+='<td bgcolor="'+colors[t]+'" ><a href=javascript:canvi("'+colors[t]+'"); ><img src="{%tpl_template_url%}/gfx/trans.gif" border=0 width=18 height=18 alt="'+colors[t]+'"></a></td>';
+ t++
+ }
+ taco+='</tr></table></center>'
+ return taco
+ }
+ function paleta_colors(ruta_funct){
+ var pal_col, k, tc
+ pal_col=window.open("","paleta_colors","screenX=80,screenY=80,width=360,height=250")
+ pal_col.document.open()
+ k=pal_col.document;
+ k.writeln("<html><head><style> td,body { font-family:Arial; font-size:8pt; } </style> <script> function canvi(hexa) { "+ruta_funct+"(hexa); window.close(); }</"+"script></head><body bgcolor=white ><center>")
+ k.writeln("<font color=black face=arial size=-1 ><b> Fes click a sobre del color escollit:</b></font>")
+ tc=taula_colors()
+ k.writeln(tc)
+ k.writeln("</center></body></html>")
+ k.close()
+ pal_col.focus()
+ }
+ function contingut_html(nom_editor) {
+ var obj_ed = eval("document." + nom_editor);
+ var cont = obj_ed.DocumentHTML;
+ var texto = "" + cont
+ var complet = eval(nom_editor + '_doc_complet');
+ if(!complet){
+        texto = strip_body(texto);
+ }
+ return texto
+ }
+ function posa_contingut_html(nom_editor,contingut) {
+ var obj_ed = eval("document." + nom_editor);
+ obj_ed.DocumentHTML = contingut;
+ }
+ function strip_body(cont) {
+ var  ini_cos = cont.search(/<BODY/i);
+ if( ini_cos == -1 ){
+         return cont;
+ }
+ var  lon = cont.length
+ var  fi = false
+ var prob = false
+ var  i = ini_cos + 5
+ while( !fi ){
+ car = cont.charAt(i);
+ if( car == '>' ){
+ ini_cos = i + 1
+ fi = true
+ }
+ if( car == '"' || car == "'" ){
+ fi_com = false
+ i++
+ if( i >= lon ){
+ fi = true;
+ prob = true;
+ fi_com = true;
+ }
+ while( !fi_com ){
+ car_aux = cont.charAt(i);
+ if( car_aux == car ){
+ fi_com = true
+ }
+ else
+ {
+ i++;
+ }
+ if( i >= lon ){
+ fi = true;
+ prob = true;
+ fi_com = true;
+ }
+ }
+ }
+ i++;
+ if( i >= lon ){
+ fi = true;
+ prob = true;
+ }
+ }
+ if( prob == true ){
+ alert('Due to problems with the HTML code of the page it is not possible to execute this action.');
+ }
+ else
+ {
+ var fi_cos = cont.search(/<\/BODY/i);
+ var aux = cont.substring(ini_cos,fi_cos)
+ cont = aux
+ }
+ return cont;
+ }
+ function nou_doc(){
+ if( confirm('If you open a new blank document you will loose the unsaved changes of the current document.\nAre you sure you want to continue?') && confirm('Are you sure you want to open a blank document and loose the unsaved changes of the current document?') ){
+ obj_editor.NewDocument();
+ }
+ }
+ function cortar() {
+ obj_editor.ExecCommand(DECMD_CUT,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function copiar() {
+ obj_editor.ExecCommand(DECMD_COPY,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function pegar(){
+ obj_editor.ExecCommand(DECMD_PASTE,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function desfer() {
+ obj_editor.ExecCommand(DECMD_UNDO,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function refer() {
+ obj_editor.ExecCommand(DECMD_REDO,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function cercar() {
+ obj_editor.ExecCommand(DECMD_FINDTEXT,OLECMDEXECOPT_PROMPTUSER);
+ //obj_editor.focus();
+ }
+ function fer_link() {
+ obj_editor.ExecCommand(DECMD_HYPERLINK,OLECMDEXECOPT_PROMPTUSER);
+ //obj_editor.focus();
+ }
+ function ins_img() {
+ obj_editor.ExecCommand(DECMD_IMAGE,OLECMDEXECOPT_PROMPTUSER);
+ //obj_editor.focus();
+ }
+ function mostra_pal_doc_bgcolor(){
+ paleta_colors('opener.doc_bgcolor_posa')
+ return true;
+ }
+ function doc_bgcolor_posa(hexa_color) {
+ var content = obj_editor.DocumentHTML;
+ var codi, noucodi, lon, loc, k, car, car_aux, a, codi_result
+ codi = new String(content);
+ lon = codi.length
+ loc = codi.search(/<BODY/i);
+ fi = false;
+ prob = false;
+ i = loc + 5;
+ loc_bg = i
+ loc_bg_fi = i
+ while( !fi ){
+ car = codi.charAt(i);
+ if( car == '>' ){
+ loc_bg = i
+ loc_bg_fi = i
+ fi = true
+ }
+ if( codi.substr(i,8) == 'BGCOLOR=' ){
+ loc_bg = i + 8;
+ // Cal trobar el fi del valor de l'atribut
+ while( codi.charAt(i) != ' ' ){
+ i++;
+ }
+ loc_bg_fi = i;
+ fi = true;
+ }
+ if( codi.substr(i,8) == 'bgcolor=' ){
+ loc_bg = i + 8;
+ fi = true;
+ }
+ if( car == '"' || car == "'" ){
+ fi_com = false
+ i++
+ if( i >= lon ){
+ fi = true;
+ prob = true;
+ fi_com = true;
+ }
+ while( !fi_com ){
+ car_aux = codi.charAt(i);
+ if( car_aux == car ){
+ fi_com = true
+ }
+ else
+ {
+ i++;
+ }
+ if( i >= lon ){
+ fi = true;
+ prob = true;
+ fi_com = true;
+ }
+ }
+ }
+ i++;
+ if( i >= lon ){
+ fi = true;
+ prob = true;
+ }
+ }
+ if( prob == true ){
+ alert('Due to problems with the HTML code of the page it is not possible to execute this action.');
+ }
+ else
+ {
+ codi_result = "" + codi.substring(0,loc_bg)
+ if( loc_bg == loc_bg_fi ){
+ codi_result += ' BGCOLOR="' + hexa_color + '" '
+ }
+ else
+ {
+ codi_result += '"' + hexa_color + '" '
+ }
+ codi_result += codi.substring(loc_bg_fi,lon);
+ //alert(codi_result);
+ obj_editor.DocumentHTML = codi_result;
+ }
+ return true;
+ }
+ function mostra_insert_table() {
+ var pVar = document.ObjTableInfo;
+ var NR = pVar.NumRows;
+ var NC = pVar.NumCols;
+ var TA = pVar.TableAttrs;
+ var CA = pVar.CellAttrs;
+ var funct = 'opener.inserta_table'
+ var par_tab, k, tc
+ par_tab=window.open("","param_tables","screenX=80,screenY=80,width=400,height=215")
+ par_tab.document.open()
+ k=par_tab.document
+ k.writeln('<HTML><HEAD><TITLE>Definició ¤¥ Taula</TITLE>')
+ k.writeln('<STYLE TYPE="text/css">')
+ k.writeln(" td,body { font-family:Arial; font-size:9pt; font-weight:bold; } ")
+ k.writeln('</STYLE>')
+ k.writeln("<script> function comprova_valors() { ")
+ k.writeln("           var nf, nc, at, ac, tit, nerr=0 , avis")
+ k.writeln("           avis = '\\nTable can´t be created due to:' ")
+ k.writeln("           nf = document.info_table.NumRows.value")
+ k.writeln("           nc = document.info_table.NumCols.value")
+ k.writeln("           at = document.info_table.TableAttrs.value")
+ k.writeln("           ac = document.info_table.CellAttrs.value")
+ k.writeln("           tit = document.info_table.Caption.value")
+ k.writeln("           if( nf != parseInt(nf) || nf < 0 ){ ")
+ k.writeln("               nerr++")
+ k.writeln("               avis += '\\n\\n-The number of rows must be a positive integer.'")
+ k.writeln("           }")
+ k.writeln("           if( nc != parseInt(nc) || nc < 0 ){ ")
+ k.writeln("               nerr++")
+ k.writeln("               avis += '\\n\\n-The number of columns must be a positive integer.'")
+ k.writeln("           }")
+ k.writeln("           if( nerr == 0){ ")
+ k.writeln("               "+funct+"(nf,nc,at,ac,tit) ")
+ k.writeln("               window.close(); ")
+ k.writeln("           }")
+ k.writeln("           else")
+ k.writeln("           {")
+ k.writeln("             alert(avis)")
+ k.writeln("           }")
+ k.writeln("           return true ")
+ k.writeln("         }</"+"script>")
+ k.writeln('</HEAD><BODY bgcolor=white ><center>')
+ k.writeln('<form name=info_table onsubmit="comprova_valors();" >');
+ k.writeln("<font color=black face=arial size=-1 ><b> Give values for the parameters and press OK:</b></font>")
+ k.writeln('<TABLE CELLSPACING=10><TR><TD valign=absmiddle >Files:   <INPUT TYPE=TEXT SIZE=3  maxlength=2 NAME=NumRows value='+NR+' ></TD>')
+ k.writeln('<TD valign=absmiddle >Columnes:   <INPUT TYPE=TEXT SIZE=3 maxlength=2 NAME=NumCols value='+NC+'></TD></TR>')
+ k.writeln('<TR><TD>Atributs de la taula:</TD><TD valign=absmiddle ><INPUT TYPE=TEXT SIZE=20 NAME=TableAttrs maxlength=120 value='+TA+'></TD></TR>')
+ k.writeln('<TR><TD>Atributs cel·la:</TD><TD><INPUT TYPE=TEXT SIZE=20 NAME=CellAttrs value='+CA+'></TD></TR>')
+ k.writeln('<TR><TD>Tí´¯l de la taula:</TD><TD><INPUT TYPE=TEXT SIZE=20 NAME=Caption ></TD></TR></TABLE>')
+ k.writeln('<TR><TD valign=absmiddle colspan=2 align=center ><INPUT TYPE=BUTTON NAME=OK VALUE=OK onclick="comprova_valors()" ></TD></TR></TABLE></form>')
+ k.writeln('</center></BODY></HTML>')
+ k.close()
+ par_tab.focus()
+ return true
+ }
+ function inserta_table(nf,nc,at,ac,tit) {
+ var pVar = document.ObjTableInfo;
+ pVar.NumRows = nf;
+ pVar.NumCols = nc;
+ pVar.TableAttrs = at;
+ pVar.CellAttrs = ac;
+ obj_editor.ExecCommand(DECMD_INSERTTABLE,OLECMDEXECOPT_DODEFAULT, pVar);
+ return true;
+ }
+ function insert_fila_table() {
+ obj_editor.ExecCommand(DECMD_INSERTROW,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function elim_fila_table() {
+ obj_editor.ExecCommand(DECMD_DELETEROWS,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function insert_col_table() {
+ obj_editor.ExecCommand(DECMD_INSERTCOL,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function elim_col_table() {
+ obj_editor.ExecCommand(DECMD_DELETECOLS,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function insert_celda_table() {
+ obj_editor.ExecCommand(DECMD_INSERTCELL,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function elim_celda_table() {
+ obj_editor.ExecCommand(DECMD_DELETECELLS,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function combinar_celdas_table() {
+ obj_editor.ExecCommand(DECMD_MERGECELLS,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function split_celdas_table() {
+ obj_editor.ExecCommand(DECMD_SPLITCELL,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function FontName_onchange(sel_obj) {
+ var ty = sel_obj.options[sel_obj.selectedIndex].value;
+ if( ty != 0 ){
+ obj_editor.ExecCommand(DECMD_SETFONTNAME, OLECMDEXECOPT_DODEFAULT, ty);
+ //obj_editor.SetFocus();
+ }
+ sel_obj.options[0].selected = true
+ }
+ function FontSize_onchange(sel_obj) {
+ var sz = sel_obj.options[sel_obj.selectedIndex].value;
+ if( sz != 0 ){
+ obj_editor.ExecCommand(DECMD_SETFONTSIZE, OLECMDEXECOPT_DODEFAULT, sz);
+ //obj_editor.focus();
+ }
+ sel_obj.options[0].selected = true
+ }
+ function negreta(){
+ obj_editor.ExecCommand(DECMD_BOLD,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ return false;
+ }
+ function cursiva() {
+ obj_editor.ExecCommand(DECMD_ITALIC,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.SetFocus();
+ }
+ function subry() {
+ obj_editor.ExecCommand(DECMD_UNDERLINE,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function mostra_pal_fg_color(){
+ paleta_colors('opener.fg_color_posa')
+ return true;
+ }
+ function fg_color_posa(arr) {
+ if (arr != null) {
+ obj_editor.ExecCommand(DECMD_SETFORECOLOR,OLECMDEXECOPT_DODEFAULT, arr);
+ }
+ }
+ function mostra_pal_bg_color(){
+ paleta_colors('opener.bg_color_posa')
+ return true;
+ }
+ function bg_color_posa(arr) {
+ if (arr != null) {
+ obj_editor.ExecCommand(DECMD_SETBACKCOLOR,OLECMDEXECOPT_DODEFAULT, arr);
+ }
+ }
+ function alin_dreta() {
+ obj_editor.ExecCommand(DECMD_JUSTIFYRIGHT,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function centrat() {
+ obj_editor.ExecCommand(DECMD_JUSTIFYCENTER,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function alin_esq() {
+ obj_editor.ExecCommand(DECMD_JUSTIFYLEFT,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function llista_numerada() {
+ obj_editor.ExecCommand(DECMD_ORDERLIST,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function llista_no_num() {
+ obj_editor.ExecCommand(DECMD_UNORDERLIST,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function indentat() {
+ obj_editor.ExecCommand(DECMD_INDENT,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+ function deindentat() {
+ obj_editor.ExecCommand(DECMD_OUTDENT,OLECMDEXECOPT_DODEFAULT);
+ //obj_editor.focus();
+ }
+                                                </SCRIPT>
+<SCRIPT language=javascript>
+ var tbCE_doc_complet = 1;
+ function tbCE_guardar() {
+ var cont = contingut_html('tbCE');
+ document.tbCE_doc_html.tbCE_contingut_html.value = cont;
+ salvar_html(cont);
+ } </SCRIPT>
+<TABLE bgColor=#DFDFDF border=0 cellPadding=0 cellSpacing=0 width="100%" style="border-collapse: collapse" bordercolor="#111111" height="437">
+  <TBODY>
+  <TR>
+    <TD valign=top width="100%" height="437">
+      <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber5">
+        <tr>
+          <td width="100%">&nbsp;<div align="center">
+            <center>
+            <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber6">
+              <tr>
+                <td width="1%"></td>
+                <td width="98%"bgcolor="#C0C0C0">
+                <div align="left">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 hspace="3" style="border-collapse: collapse" bordercolor="#111111" width="100%">
+        <TBODY>
+        <TR>
+          <TD vAlign=top bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_nou','{%tpl_template_url%}/gfx/newdoc.gif'); nou_doc(); return false;"
+            onmouseout="canvi_imatge('tbCE_nou','{%tpl_template_url%}/gfx/newdoc.gif')"
+            onmouseover="canvi_imatge('tbCE_nou','{%tpl_template_url%}/gfx/newdoc_focus.gif');">
+          <IMG
+            align=absMiddle alt="New document" border=0 name=tbCE_nou
+            src="{%tpl_template_url%}/gfx/newdoc.gif" width="22" height="23"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_guard','{%tpl_template_url%}/gfx/save.gif'); tbCE_guardar(); return false;"
+            onmouseout="canvi_imatge('tbCE_guard','{%tpl_template_url%}/gfx/save.gif')"
+            onmouseover="canvi_imatge('tbCE_guard','{%tpl_template_url%}/gfx/save_focus.gif');">
+          <IMG
+            align=absMiddle alt=Save border=0 name=tbCE_guard
+            src="{%tpl_template_url%}/gfx/save.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; cortar(); return false;"
+            onmouseout="canvi_imatge('tbCE_cort','{%tpl_template_url%}/gfx/cut.gif')"
+            onmouseover="canvi_imatge('tbCE_cort','{%tpl_template_url%}/gfx/cut_focus.gif');">
+          <IMG
+            align=absMiddle alt=Cut border=0 name=tbCE_cort
+            src="{%tpl_template_url%}/gfx/cut.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; copiar(); return false;"
+            onmouseout="canvi_imatge('tbCE_cop','{%tpl_template_url%}/gfx/copy.gif')"
+            onmouseover="canvi_imatge('tbCE_cop','{%tpl_template_url%}/gfx/copy_focus.gif');">
+          <IMG
+            align=absMiddle alt=Copy border=0 name=tbCE_cop
+            src="{%tpl_template_url%}/gfx/copy.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; pegar(); return false;"
+            onmouseout="canvi_imatge('tbCE_paster','{%tpl_template_url%}/gfx/paste.gif')"
+            onmouseover="canvi_imatge('tbCE_paster','{%tpl_template_url%}/gfx/paste_focus.gif');">
+          <IMG
+            align=absMiddle alt=Paste border=0 name=tbCE_paster
+            src="{%tpl_template_url%}/gfx/paste.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; desfer(); return false;"
+            onmouseout="canvi_imatge('tbCE_ud','{%tpl_template_url%}/gfx/undo.gif')"
+            onmouseover="canvi_imatge('tbCE_ud','{%tpl_template_url%}/gfx/undo_focus.gif');">
+          <IMG
+            align=absMiddle alt=Undo border=0 name=tbCE_ud
+            src="{%tpl_template_url%}/gfx/undo.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; refer(); return false;"
+            onmouseout="canvi_imatge('tbCE_rd','{%tpl_template_url%}/gfx/redo.gif')"
+            onmouseover="canvi_imatge('tbCE_rd','{%tpl_template_url%}/gfx/redo_focus.gif');">
+          <IMG
+            align=absMiddle alt=Redo border=0 name=tbCE_rd
+            src="{%tpl_template_url%}/gfx/redo.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_fi','{%tpl_template_url%}/gfx/find.gif'); cercar(); return false;"
+            onmouseout="canvi_imatge('tbCE_fi','{%tpl_template_url%}/gfx/find.gif')"
+            onmouseover="canvi_imatge('tbCE_fi','{%tpl_template_url%}/gfx/find_focus.gif');">
+          <IMG
+            align=absMiddle alt=Find border=0 name=tbCE_fi
+            src="{%tpl_template_url%}/gfx/find.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_lnk','{%tpl_template_url%}/gfx/link.gif'); fer_link(); return false;"
+            onmouseout="canvi_imatge('tbCE_lnk','{%tpl_template_url%}/gfx/link.gif')"
+            onmouseover="canvi_imatge('tbCE_lnk','{%tpl_template_url%}/gfx/link_focus.gif');">
+          <IMG
+            align=absMiddle alt="Insert link" border=0 name=tbCE_lnk
+            src="{%tpl_template_url%}/gfx/link.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_image','{%tpl_template_url%}/gfx/image.gif'); ins_img(); return false;"
+            onmouseout="canvi_imatge('tbCE_image','{%tpl_template_url%}/gfx/image.gif')"
+            onmouseover="canvi_imatge('tbCE_image','{%tpl_template_url%}/gfx/image_focus.gif');">
+          <IMG
+            align=absMiddle alt="Insert image" border=0 name=tbCE_image
+            src="{%tpl_template_url%}/gfx/image.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_dbgc','{%tpl_template_url%}/gfx/doc_bgcolor.gif');  mostra_pal_doc_bgcolor(); return false;"
+            onmouseout="canvi_imatge('tbCE_dbgc','{%tpl_template_url%}/gfx/doc_bgcolor.gif')"
+            onmouseover="canvi_imatge('tbCE_dbgc','{%tpl_template_url%}/gfx/doc_bgcolor_focus.gif');">
+          <IMG
+            align=absMiddle alt="Document background´s colour" border=0
+            name=tbCE_dbgc
+            src="{%tpl_template_url%}/gfx/doc_bgcolor.gif" width="22" height="23"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_table','{%tpl_template_url%}/gfx/instable.gif');  mostra_insert_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_table','{%tpl_template_url%}/gfx/instable.gif')"
+            onmouseover="canvi_imatge('tbCE_table','{%tpl_template_url%}/gfx/instable_focus.gif');">
+          <IMG
+            align=absMiddle alt="Insert table" border=0 name=tbCE_table
+            src="{%tpl_template_url%}/gfx/instable.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; insert_fila_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_ir','{%tpl_template_url%}/gfx/insrow.gif')"
+            onmouseover="canvi_imatge('tbCE_ir','{%tpl_template_url%}/gfx/insrow_focus.gif');">
+          <IMG
+            align=absMiddle alt="Insert row" border=0 name=tbCE_ir
+            src="{%tpl_template_url%}/gfx/insrow.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; elim_fila_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_dr','{%tpl_template_url%}/gfx/delrow.gif')"
+            onmouseover="canvi_imatge('tbCE_dr','{%tpl_template_url%}/gfx/delrow_focus.gif');">
+          <IMG
+            align=absMiddle alt="Delete row" border=0 name=tbCE_dr
+            src="{%tpl_template_url%}/gfx/delrow.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; insert_col_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_ic','{%tpl_template_url%}/gfx/inscol.gif')"
+            onmouseover="canvi_imatge('tbCE_ic','{%tpl_template_url%}/gfx/inscol_focus.gif');">
+          <IMG
+            align=absMiddle alt="Insert column" border=0 name=tbCE_ic
+            src="{%tpl_template_url%}/gfx/inscol.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; elim_col_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_dc','{%tpl_template_url%}/gfx/delcol.gif')"
+            onmouseover="canvi_imatge('tbCE_dc','{%tpl_template_url%}/gfx/delcol_focus.gif');">
+          <IMG
+            align=absMiddle alt="Delete column" border=0 name=tbCE_dc
+            src="{%tpl_template_url%}/gfx/delcol.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; insert_celda_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_ice','{%tpl_template_url%}/gfx/inscell.gif')"
+            onmouseover="canvi_imatge('tbCE_ice','{%tpl_template_url%}/gfx/inscell_focus.gif');">
+          <IMG
+            align=absMiddle alt="Inser cell" border=0 name=tbCE_ice
+            src="{%tpl_template_url%}/gfx/inscell.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; elim_celda_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_dce','{%tpl_template_url%}/gfx/delcell.gif')"
+            onmouseover="canvi_imatge('tbCE_dce','{%tpl_template_url%}/gfx/delcell_focus.gif');">
+          <IMG
+            align=absMiddle alt="Delete cell" border=0 name=tbCE_dce
+            src="{%tpl_template_url%}/gfx/delcell.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; combinar_celdas_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_cc','{%tpl_template_url%}/gfx/mrgcell.gif')"
+            onmouseover="canvi_imatge('tbCE_cc','{%tpl_template_url%}/gfx/mrgcell_focus.gif');">
+          <IMG
+            align=absMiddle alt="Merge cells" border=0 name=tbCE_cc
+            src="{%tpl_template_url%}/gfx/mrgcell.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; split_celdas_table(); return false;"
+            onmouseout="canvi_imatge('tbCE_sc','{%tpl_template_url%}/gfx/spltcell.gif')"
+            onmouseover="canvi_imatge('tbCE_sc','{%tpl_template_url%}/gfx/spltcell_focus.gif');">
+          <IMG
+            align=absMiddle alt="Split cells" border=0 name=tbCE_sc
+            src="{%tpl_template_url%}/gfx/spltcell.gif" width="23" height="22"></A>
+        </TD></TR></TBODY></TABLE>
+        </div>
+                </td>
+                <td width="1%" background="{%tpl_template_url%}/gfx/toolbar_bg.gif">
+                <p align="right">
+                &nbsp;</td>
+              </tr>
+            </table>
+            </center>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td width="100%" bgcolor="#DFDFDF"><div align="center">
+            <center>
+            <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="98%" id="AutoNumber6">
+              <tr>
+                <td width="98%" bgcolor="#DFDFDF">
+                <div align="left">
+      <TABLE border=0 cellPadding=0 cellSpacing=0 style="border-collapse: collapse" bordercolor="#111111">
+        <TBODY>
+        <TR>
+          <TD width="5" bgcolor="#DFDFDF"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <SELECT language=javascript name=tbCE_FontName
+            onchange="obj_editor=tbCE; return FontName_onchange(this)"
+            style="WIDTH: 140px; font-family:Verdana; font-size:8pt" title="Font Name"> <OPTION selected
+              value=0>Sel. Font type<OPTION value=Verdana>Verdana<OPTION
+              value=Arial>Arial<OPTION value=Tahoma>Tahoma<OPTION
+              value="Courier New">Courier New<OPTION
+              value="Times New Roman">Times New Roman<OPTION
+              value=Wingdings>Wingdings</OPTION></SELECT> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <SELECT language=javascript name=tbCE_FontSize
+            onchange="obj_editor = tbCE; return FontSize_onchange(this)"
+            style="WIDTH: 98; font-family:Verdana; font-size:8pt; height:98" title="Font Size"> <OPTION selected
+              value=0>Sel. Font size<OPTION value=1>1<OPTION value=2>2<OPTION
+              value=3>3<OPTION value=4>4<OPTION value=5>5<OPTION
+              value=6>6<OPTION value=7>7</OPTION></SELECT> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; negreta(); return false;"
+            onmouseout="canvi_imatge('tbCE_negr','{%tpl_template_url%}/gfx/bold.gif')"
+            onmouseover="canvi_imatge('tbCE_negr','{%tpl_template_url%}/gfx/bold_focus.gif');">
+          <IMG
+            align=absMiddle alt=Bold border=0 name=tbCE_negr
+            src="{%tpl_template_url%}/gfx/bold.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; cursiva(); return false;"
+            onmouseout="canvi_imatge('tbCE_curs','{%tpl_template_url%}/gfx/italic.gif')"
+            onmouseover="canvi_imatge('tbCE_curs','{%tpl_template_url%}/gfx/italic_focus.gif');">
+          <IMG
+            align=absMiddle alt=Italic border=0 name=tbCE_curs
+            src="{%tpl_template_url%}/gfx/italic.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; subry(); return false;"
+            onmouseout="canvi_imatge('tbCE_subr','{%tpl_template_url%}/gfx/under.gif')"
+            onmouseover="canvi_imatge('tbCE_subr','{%tpl_template_url%}/gfx//under_focus.gif');">
+          <IMG
+            align=absMiddle alt=Underline border=0 name=tbCE_subr
+            src="{%tpl_template_url%}/gfx/under.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_fg','{%tpl_template_url%}/gfx/fgcolor.gif'); mostra_pal_fg_color(); return false;"
+            onmouseout="canvi_imatge('tbCE_fg','{%tpl_template_url%}/gfx/fgcolor.gif')"
+            onmouseover="canvi_imatge('tbCE_fg','{%tpl_template_url%}/gfx/fgcolor_focus.gif');">
+          <IMG
+            align=absMiddle alt="Font colour" border=0 name=tbCE_fg
+            src="{%tpl_template_url%}/gfx/fgcolor.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; canvi_imatge('tbCE_bg','{%tpl_template_url%}/gfx/bgcolor.gif'); mostra_pal_bg_color(); return false;"
+            onmouseout="canvi_imatge('tbCE_bg','{%tpl_template_url%}/gfx/bgcolor.gif')"
+            onmouseover="canvi_imatge('tbCE_bg','{%tpl_template_url%}/gfx/bgcolor_focus.gif');">
+          <IMG
+            align=absMiddle alt="Text background" border=0 name=tbCE_bg
+            src="{%tpl_template_url%}/gfx/bgcolor.gif" colour?
+            s width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; alin_esq(); return false;"
+            onmouseout="canvi_imatge('tbCE_ae','{%tpl_template_url%}/gfx/left.gif')"
+            onmouseover="canvi_imatge('tbCE_ae','{%tpl_template_url%}/gfx/left_focus.gif');">
+          <IMG
+            align=absMiddle alt="Align to left" border=0 name=tbCE_ae
+            src="{%tpl_template_url%}/gfx/left.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; centrat(); return false;"
+            onmouseout="canvi_imatge('tbCE_center','{%tpl_template_url%}/gfx/center.gif')"
+            onmouseover="canvi_imatge('tbCE_center','{%tpl_template_url%}/gfx/center_focus.gif');">
+          <IMG
+            align=absMiddle alt=Center border=0 name=tbCE_center
+            src="{%tpl_template_url%}/gfx/center.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; alin_dreta(); return false;"
+            onmouseout="canvi_imatge('tbCE_ad','{%tpl_template_url%}/gfx/right.gif')"
+            onmouseover="canvi_imatge('tbCE_ad','{%tpl_template_url%}/gfx/right_focus.gif');">
+          <IMG
+            align=absMiddle alt="Align to right" border=0 name=tbCE_ad
+            src="{%tpl_template_url%}/gfx/right.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; llista_numerada(); return false;"
+            onmouseout="canvi_imatge('tbCE_nl','{%tpl_template_url%}/gfx/numlist.gif')"
+            onmouseover="canvi_imatge('tbCE_nl','{%tpl_template_url%}/gfx/numlist_focus.gif');">
+          <IMG
+            align=absMiddle alt="Numbered list" border=0 name=tbCE_nl
+            src="{%tpl_template_url%}/gfx/numlist.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; llista_no_num(); return false;"
+            onmouseout="canvi_imatge('tbCE_ul','{%tpl_template_url%}/gfx/bullist.gif')"
+            onmouseover="canvi_imatge('tbCE_ul','{%tpl_template_url%}/gfx/bullist_focus.gif');">
+          <IMG
+            align=absMiddle alt="Bulleted list" border=0 name=tbCE_ul
+            src="{%tpl_template_url%}/gfx/bullist.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF">
+          <IMG align=absMiddle border=0
+            src="{%tpl_template_url%}/gfx/trans.gif" width="6" height="22"> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; deindentat(); return false;"
+            onmouseout="canvi_imatge('tbCE_deind','{%tpl_template_url%}/gfx/deindent.gif')"
+            onmouseover="canvi_imatge('tbCE_deind','{%tpl_template_url%}/gfx/deindent_focus.gif');">
+          <IMG
+            align=absMiddle alt=Deindent border=0 name=tbCE_deind
+            src="{%tpl_template_url%}/gfx/deindent.gif" width="23" height="22"></A> </TD>
+          <TD vAlign=center bgcolor="#DFDFDF"><A
+            href="#"
+            onclick="obj_editor=tbCE; indentat(); return false;"
+            onmouseout="canvi_imatge('tbCE_ind','{%tpl_template_url%}/gfx/inindent.gif')"
+            onmouseover="canvi_imatge('tbCE_ind','{%tpl_template_url%}/gfx/inindent_focus.gif');">
+          <IMG
+            align=absMiddle alt=Indent border=0 name=tbCE_ind
+            src="{%tpl_template_url%}/gfx/inindent.gif" width="23" height="22"></A> </TD>
+          <TD bgcolor="#DFDFDF"><!-- DEInsertTableParam Object -->
+            <OBJECT classid=clsid:47B0DFC7-B7A3-11D1-ADC5-006008A5848C height=2
+            id=ObjTableInfo width=2 VIEWASTEXT></OBJECT></TD></TR></TBODY></TABLE>
+        </div>
+                </td>
+                <td width="1%" bgcolor="#DFDFDF">
+                <p align="right">
+                &nbsp;</td>
+              </tr>
+            </table>
+            </center>
+          </div>
+          </td>
+        </tr>
+        </table>
+      <FORM action="" method=post name=tbCE_doc_html><INPUT
+      name=tbCE_contingut_html type=hidden>
+        <p align="center">
+      <OBJECT classid=clsid:2D360201-FFF5-11D1-8D03-00A0C959BC0A height="75%"
+      id=tbCE width="98%"><PARAM NAME="Scrollbars" VALUE="-1">
+        <param name="ActivateApplets" value="0">
+        <param name="ActivateActiveXControls" value="0">
+        <param name="ActivateDTCs" value="-1">
+        <param name="ShowDetails" value="0">
+        <param name="ShowBorders" value="0">
+        <param name="Appearance" value="1">
+        <param name="ScrollbarAppearance" value="1">
+        <param name="SourceCodePreservation" value="-1">
+        <param name="AbsoluteDropMode" value="0">
+        <param name="SnapToGrid" value="0">
+        <param name="SnapToGridX" value="50">
+        <param name="SnapToGridY" value="50">
+        <param name="UseDivOnCarriageReturn" value="0"></OBJECT></p>
+    </TD></TR></TBODY></TABLE></FORM>
+<SCRIPT language=javascript>
+ tbCE_timerID=setInterval("tbCE_inicial()",100);
+ function tbCE_inicial(){
+ if( document["tbCE"]){
+ obj_editor = document.tbCE;
+ document.tbCE.DocumentHTML = ""
+ clearInterval(tbCE_timerID);
+ }
+ return true;
+ }
+ function salvar_html(codi){
+ document.webeditor.nnet_data.value=codi;
+ return true
+ }
+                                                </SCRIPT>    <Br>              <!------------------------------- EDITOR ENDS HERE   ---------------------------------->
+                  
+                  
+                  </td>
+                </tr>
+              </table>
+              </center>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top">
+            <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber4">
+              <tr>
+                <td width="50%" valign="top" bgcolor="#DFDFDF">
+                <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_lbot.gif" width="10" height="10"></td>
+                <td width="50%" valign="top" bgcolor="#DFDFDF">
+                <p align="right">
+                <img border="0" src="{%tpl_template_url%}/gfx/nephp_articles_rbot.gif" width="10" height="10"></td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+        </center>
+      </div>
+      </td>
+    </tr>
+    </table>
+</div>
+<p align="center">&nbsp;</p>
+
+</body>
+
+</html>
