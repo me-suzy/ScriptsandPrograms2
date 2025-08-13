@@ -1,0 +1,468 @@
+FreeLove 3 Administration Menu
+http://www.yourdomain.com/cgi-bin/freelove3/fl3.cgi?admin
+
+Admin zone is protected with a password:
+Please enter a correct password to access it.
+The admin menu contains the following sections: 
+
+
+1. Work with users.
+In this section you will be able to see:
+· Total number of users and you will be able to search for a particular user by entering his/her username. 
+Once the user is found you will have an admin function to enter his profile and make all the necessary changes, 
+send an email, edit/delete the profile with all the files/images related to that profile.
+· Entering the * sign will give you the list of all users in alphabetical order.
+· Send email to all users: (require sendmail) Users without email will get a message in the personal mail boxes.
+================================= 
+2. Level incomplete profiles
+· The profile is valid when completed not less than (%) Input the percentage of the profiles that will be accepted into your database. 
+If profile is incomplete or someone is messing around you have the power not to accept their profiles automatically. 
+Incomplete profiles will not be available for search and they will not spoil a nice look of your database. 
+================================= 
+3. Database clean up.
+Shows you the following information: 
+Profiles in system :
+Fields in profile :  Total number of questions in profile. You can set them up from Admin menu - Languages Support Editing - Edit forms of the language version.
+
+It contains a unique feature that allows you to do the following: 
+· Find user profiles where the users have not entered the system for more than -xxx- days and profiles which have been completed with less than 5% of required information 
+(These incomplete profiles are not available for search)
+· The result: Found 22 profiles give you an immediate option to delete them from the system with all their related files.
+=================================  
+4. Remove old messages
+It will show you the total number of messages in system:
+You can then Find messages older than xxx days. And you can remove them.
+=================================
+5. Picture directory
+· In this section you have to write a path to the directory where you will store all your images for the program and where users will be downloading their pictures. On many servers you cannot do this in cgi-bin directory so you have to create a folder outside of cgi-bin.
+Here you will also see some of the paths on your server: Like in example below
+Example only: can vary from server to server:
+$home_dir = /home/websites/www.yourdomain.com 
+$root_d = /home/websites/www. yourdomain.com /cgi-bin/fl 
+$pic_d=/home/websites/www. yourdomain.com /fl-pic-dir/pic 
+Picture directory test -->
+If after picture directory test you will see a Russian London button image it means that  a path to your picture directory is set correctly and everything is all right. 
+=================================
+6. Directory Testing.
+This is the first area you have to access from your Admin Zone after program installation.
+It will immediately test the presence of all required directories and will try to write in them
+(it will test the right permissions (chmod) required for them)
+If you can see YES for every EXIST column and YES for WRITE TEST then it is ok. If you see no somewhere
+please create that directory or set a right chmod for it.
+=================================
+
+7. Server Name.
+· Enter your server name and modify it at any time.
+================================= 
+8.  Title string.
+· Here is the title for your service that will be displayed on all the pages. 
+You can modify it there at any time. Example: Free Match Making service from RussianLondon.com
+================================= 
+9. Include files
+At your HTML pages you can call via ssi (server side included) the values from your database
+Please use the following files: 
+/rlwww/a-all.htm - Total number of profils
+/rlwww/a-wom.htm - Total number of woman profiles
+/rlwww/a-man.htm - Total number of male profiles
+
+Please note: 
+1. Your server has to support ssi INCLUDE VIRTUAL 
+2.  This information is updated 1 time a day.
+Here is an example from RussianLondon.com
+<!--#include virtual="/rlwww/a-all.htm" -->
+<!--#include virtual="/rlwww/a-wom.htm" -->
+<!--#include virtual="/rlwww/a-man.htm" -->
+================================= 
+10. Sendmail path.
+· The program has a variety of very useful sendmail features and messages that are sent by the system automatically once a user has registered, lost his password, etc
+In this section you have to write the path to the sendmail on your server
+Example:/usr/sbin/sendmail
+Path to sendmail program (not remove "|" and "-t" if they are there)
+If the path doesn't work try variations. Test it by registering a user with your email. You should get a registration email straight on.
+================================= 
+11. Admin email
+· Enter and modify the admin email at any time.
+It will be displayed for users at the appropriate sections.
+You will get various system messages to this email.
+When you send Newsletters or other messages to your users that will be a return email.
+================================= 
+THIS FEATURE IS VALID FOR FREELOVE 2,5 ONLY. IT HAS BEEN SUBSTITUTED BY HTML TEMPLATES IN FREELOVE 3
+12. First page background colors.
+· Select and modify the first page background colors as you wish.
+You can change the color in: Banner area, Title area, Main area and Info area.
+Select background colors (color name HEX format) made easy with visual information in pop up windows.
+================================= 
+THIS FEATURE IS VALID FOR FREELOVE 2,5 ONLY. IT HAS BEEN SUBSTITUTED BY HTML TEMPLATES IN FREELOVE 3
+13.  Background colors in search results tables
+· Select and modify the background colors in search results tables as you wish.
+You can change the color in: First string and second string.
+Select background colors (color name HEX format) made easy with visual information in pop up windows.
+================================= 
+14. Banners code:
+With this convenient online banner settings you can participate in unlimited number of affiliate, commissioning, and partnership programs. 
+Modify/Add/Delete any banners
+· Examples:
+Simple code where you just have a banner and link to it:
+================================= 
+Banner rotation script: Examples are below
+
+<a HREF="http://www.russianlondon.com/cgi-bin/ads/ads.pl?banner=NonSSI;setdest=ozon;page=69503"><font face="Arial"><img SRC="http://www.russianlondon.com/cgi-bin/ads/ads.pl?setdest=ozon;page=69503" WIDTH="468" HEIGHT="60" ALT="Ozon.ru" border="1"></font></a>
+
+Affiliate/Commissioning  program: Examples are below
+
+<!-- BEGIN BANNER CODE --> 
+<p align="center"> 
+<a href="http://associmage.match.com/redirect/redirect.htm?AssociateID=59013&MID=86426"><img src="http://associmage.match.com/banners/assocbanner.gif?AssociateID=59013&GID=1004&MID=86426" alt="Introduce yourself to the millions of singles that are searching the web."border="0"></a> 
+</p> 
+<!-- END BANNER CODE -->
+================================= 
+15. Enable main .css file
+· If you have a cascading sheet file on your server already or you want all your pages to look similar with the font styles, sizes, colours, etc you might want to enable this .css file on FreeLove 3. Default .css file is provided you can use it or not to use it, from admin zone you can enable or disable it at any time. You can also can change .css at any time to select your own style.
+Admin zone will be asking you and showing the path to the .css file at the same time; Enable www.yourdomain.com/main.css file
+================================= 
+16. Enable automatic translation
+Enable automatic translation from English. If you set this to yes you will get 6 flags at the front page with different languages.
+The automatic translation is provided by http://babelfish.altavista.com/. And consists of Altavista heading and your page designe translated into on the languages.
+Set this to no, and you will not have the flags and any links to this dynamic translation facility.
+=================================
+17. Allow photo galleries.
+This feature lets you to allow users to have more than 1 photo in their profiles.
+Allow photo galleries. Set this to yes or no. If no they will have only 1 image allowed.
+If photo galleries are allowed for the users, please allocate maximum allowed number of photos per user. 
+You can set this to anything from 2 to 1000. Please note that images take a lot of web space.
+=================================
+18. Enable send photo by email 
+· If due to any reason the user cannot upload his image through the browser or www you can help him by allowing to send that image to your admin email. If you select enable send photo by email the message prompting the user to do so will appear in his profile just below the section where he can download his image.
+If you don't want to bother with uploading user's images by yourself set this option to no. 
+================================= 
+19. Maximum allowed image size for user to upload
+Here you can set the maximum images size for users to upload in kb.
+If they try to upload the image of bigger size it will not let them do so but inform that they can upload image not more than xxx kb
+=================================
+20. Show search results before search form
+Set this to yes and your search results will appear before the search fields.
+By seting this to no, they will appear the other way around.
+=================================
+21. Storage duration for messages in the system
+The messages will be stored in the system xxx (in days) 
+Set this to any number of days and the messages will be automatically deleted after that number of days.
+It might save you the valuable space and automate this function.
+=================================
+22. Search function settings for registered users only.
+· In this section you have an option to allow searching and viewing search results to all users and visitors regardless whether they are registered users in your system or not. 
+Or you can select the option where prior to searching the user has to register himself and only then be allowed to see the profiles of other users.
+If you set this option to "yes"  the interface of the front page will be changed, there will be no more search button there, 
+and users will have to log into their profiles and only from there they would be able to access the profiles and information of other users.
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+================================= 
+23. Search function only for validated users
+Setting this setting to yes will allow searching only for users you have validated and approved. 
+Another useful feature for commercial minded users who wish to show their customers what to expect from the program.
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+================================= 
+24.Show email and other contact details only for registered users
+Set this to yes and all contact details will be available for everyone.
+Set this to no, and people will have to register to gain access to contact information of other users.
+At the same time they will see information and photos without contact details.
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+SET THIS TO YES. MAKE PEOPLE REGISTER TO CONTACT OTHERS. SET VALIDATION OF NEW MEMBERS TO MANUAL.
+CHARGE PER REGISTRATION. APPROVE ONLY THOSE WHO MADE A PAYMENT SO THEY BECOME REGISTERED AND APPROVED MEMBERS.
+================================
+25. Registration and profile filling information are shown on one page.
+If you set this to yes, then the user will be presented with a page where he has to enter his login, email, pass and then fill in all other questions.
+If you set this to no, then the user will be presented with a page where he has to enter his login, email and pass only.
+After that he will be redirected to the section where he has to answer all the questions.
+================================
+26. Show banner function for all users
+Some people don't like banners, and they are adamant not to show them on their sites.This one is for them. 
+You can switch any banner advertising at any time.
+Show advertising  banner for all users. Yes or no.
+================================= 
+27. Show banner function for registered users
+If you run a commercial program and take money from your clients you may wish to switch off the advertising banner display for them at any time. We think it is fair enough and registered clients will be happy with that.
+================================= 
+28. Select sex, icq, email fields.
+If you want to have these fields displayed by small icons in the search result form then you have to set it in line with the quesions.
+Example: E Mail field - set it to the question where you ask about user email- 0155 email.
+If you want to have a direct hyperlinks from the above mentioned fields in the users forms switch it to yes.
+================================
+29. Show user photo in search results
+Yes or no settings. If you want your serch results to show whether user has a photo or not then set it to yes.
+================================
+30. Show advanced statistical fields in search results.
+Your search results can look even cooler witht this goodies.
+Show last time when user accessed his account: Yes/No
+Show number of times user profiles has been viewed : Yes/No
+Show number of messages that have been left for the user : Yes/No
+Show current VF-Rating of this user : Yes/No
+The last feature is only valid if you have FreeVF script as well.
+================================
+31. Number of fields in the search results table
+You can easy set the number of fields you want to be displayed as a serch results.
+Default is 50, though some preffer to be no more than 20 per page, up to you.
+================================
+32.Manual moderation/validation of new members
+Useful feature for commercial program or for the program with a moderator. 
+If you don't want the profile to be available for other users before you
+approve it, set this to yes. Once a new profile is posted you get the email
+informing you about it, and you will have to go to the admin zone to validate
+or reject the member. This feature keeps you totally in control
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+================================= 
+33. Information about new members
+It will ask you whether you want the information about new members to be send
+to your email address or not.
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+================================= 
+34.Information about new members with expired accounts
+It will ask you whether you want to receive information about members with expired
+accounts to to your email address or not.
+Helps you to keep a good track of those in arreas or those who has to pay.
+Good reminder for commercial program
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+================================= 
+35. Default trial period for new members.
+Here you can set a default trial period for new members.
+If you want to show them what they miss set it to several days only
+Another great commercial based feature.
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+================================= 
+36. Set trial period for all registered users
+Self explained.
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+================================
+37.ALLOW THE USE OF DISCLAIMER FRONT PAGE
+Yes or NO. Important feature if you have an adult site. The page is hmtl template. Can be easily edited.
+You can include any information there. You can also set a URL destination for LEAVE button
+================================
+38. Anonymous Mode
+YES/NO setting
+Anonimous mode (users do not see contact details of other users,
+message exchange available through the system email facility only)
+The message box is under every profile. This is the only way to send a message to other users.
+Once the message is send it is delivered to the email address of the user (which is stored on the system only
+and invisible to everyone) and it is writen on server for user to log into his account and read his messages.
+================================
+39. Show user information in pop up windows.
+Show user information in pop up windows. YES or No setting.
+Set it to yes and new profiles, photos will be opened in new windows.
+Set it to no and you will always have only one page open
+================================
+SPECIAL SECTIONS:
+-----------------
+40. Photo Search results Options/Gallery Settings
+
+Set photo gallery search results option as a default. Yes or No.
+Show on one page. Number of columns xxx and number of rows xxx. You can set that to any figure.
+Though try to keep it simple and neat. Some images might take longer time to download.
+Resized photos should be aligned by the height xxx or width xxx. Set this to any number.
+All pictures will be automatically resized.
+Do not show images more than xxx(size in bites). Set this if you don't want to show huge images.
+Show information under the photo. You can show any fields from your questions. Easily edited or deleted.
+
+=================================
+41.Languages Support Editing
+VERY IMPORTANT ADMINISTRATION SECTION.
+A LOT OF VERY USEFUL SETTINGS ARE INSIDE.
+
+Origianal language for additions/editing.
+Please select the language you will be working with first.
+Let's make it English: eng
+
+And new language version
+Enter 3 letters into box, tick off the radio button and you can add any language to the program
+Example: fre -French, ger- German, spa- Spanish, etc
+Then you will have to translate into that language and you will have a complete ANY FOREIGH version you want.
+You can always download already translated versions from our TRANSLATION ZONE:
+http://www.russianlondon.com/cgi-bin/transl/transl.cgi?mode=download&program=freelove
+
+
+Edit another language messages: Select the newly created language for example.
+THIS IS THE AREA WHERE YOU DO TRANSLATION ONLINE. Make sure that you are translating eng-fre for example.
+Show all texts. You will show all texts to translate.
+Show all texts that have not been translated. If you started to do translation saved your results you can no continue with it.
+
+-----------------------------------
+Edit another language version files.
+Here you can translate some minor files, like welcome email during registration, etc.
+>From your first page you migh have links to Advertising, Chat, Forum, FAQ,Other lins
+this is the place to translate them.
+welcome-email.txt
+ 
+They will be displayed at the front page the way they are shown in readme file
+ 
+EXAMPLE:
+HTML Chat~chat.txt
+Java CHAT~jchat.txt
+FAQ~faq.txt
+Advertising~adv.txt
+
+Don't forget to select the appropriate language
+
+Edit forms of the language version
+-----------------------------------
+NOTE: THIS IS WHERE YOU CAN ADD/DELETE/EDIT ANY OF YOUR QUESTIONS OR PREPARED ANSWERS.
+Each question has a form. We will show you an example.
+You can always see how to do it from examples there it is not difficult
+If you want to create a new question that is what you should do:
+You want to ask What is there favourite film
+
+File name: 0100-name. 0220-film. give it a unique number and name
+Note: Number gives the question the order among the other questions
+If you want this questions to be in a particular place among the other questions give it an appropriate number.
+0220 means it will stand after 0200 (example) but before 0250 
+
+Form name: Film
+
+Form type: You can have: Menu, Radio, String, Area. It means: drop down menu, radio button, string or area.
+If you want to have preselected answers select menu, etc
+Preselected answers will be shown in drop down menu. They should be set like this:
+permanent relationship~010 
+
+Make sure you have set the below mentioned.
+
+This field will be accessible for everyone: YES or NO
+This field will be available for searching : YES or NO
+Available for initial search (not extended search) : YES or NO
+Show field in search result table: YES or NO
+
+At the bottom of every form you will see:
+Example: That is how it will look
+· You can insert html code in form name: Example: <u>Personal Info</u><br>Please enter any personal info that you think other<br>members might like to know about you. For example,<br>
+Please follow examples on the forms above.
+Create new files, new questions online. 
+
+NOTE: YOU HAVE TO MODIFY EVERY FORM ONE BY ONE.
+ALL THESE SETTINGS WILL BE SUPERSEDED BY COMMERCIAL FEATURES SETTTINGS EXPLAINED ABOVE.
+---------------------------------
+Default language.
+Here you can set default language of your program
+
+Attach language versions to the program main page
+Please set language version that can be used by your FreeLove 3 program.
+Every line of this file describes a link to another language version of the program
+The line consists of 4 parameters which are separated by this symbol ~ 
+language code ~ file name to show the flag ~ alternative text ~ text link
+2nd and 4th parameters are not obligatory
+You can place links on the left and (or) on the right
+Example: rus~rus.gif~Russian Version
+
+
+You can use the following images and file names
+Please download the missing ones into the catalogue /full path to your server/images/flags 
+
+Delete language version
+Here you can delete any language version.
+================================= 
+SPECIAL FEATURE.
+42. TEMPLATE EDITING
+Please note: You can always keep the default template, you don't have to change anything if you don't want to.
+You can use all images and all html templates. If you mess up with html templates or desing no support will be provided.
+You have to have an advanced html knowledge to edit them. If you are not confident then don't try.
+
+You can always edit it in online of offline mode.
+View. Here you can see the result.
+(Please note, that some fragments of html code can be shown incorectly outside of the page,
+and some templates cannot be edited corectly online.
+Please also note that tag is shown as )
+
+Please note that you have to incert into your html templates the following tags without changes. (shown below)
+If you want to change them please change html code of the pages they consit of.
+For example to change $$sub_hot_keys$$ you have to change _hot_keys.htm
+
+$$sub_banner('_top_first_ruslon.htm')$$ This is the graphics and images on the first page only.
+$$sub_banner('_banner.htm')$$ This is the banner code. Enter your banner code here. You don't have to show our banner.
+$$sub_auto_trans$$ Automatic translation section
+$$sub_print_readme_file$$ 
+$$sub_hot_keys$$ Hot keys on the page.
+$register_screen$ Shows registration section
+$$sub_banner('_search_on_first.htm')$$
+$$sub_menu_show_tops$$ Shows the search of the top profiles.
+$$sub_statistika_main$$ Shows total statistics
+$$sub_entry_for_registered_users$$ Shows entry section for registered users.
+$$sub_register$$ Shows registration section
+$$sub_online_user$$ Shows who is online
+$$sub_banner('bottom_info.htm')$$ Information at the bottom of the page.
+$$sub_bookmark("<img src=/fl3pic/img/icns/favourites.gif border=0 alt='bookmark'>",'FreeLove - Main page')$$
+$$sub_start_page("<img src=/fl3pic/img/icns/startpage.gif border=0 alt='startpage'>")$$ 
+
+
+Do not change anything that starts with $$
+You can also see:
+ALL TEMPLATES IN SYSTEM
+Will show you all templates
+=========================================
+43.Letters Editing
+Here you can edit all your system messages.
+
+welcome-email.txt. Email that confirms registration
+sending_end.txt. Email that is send with a NEWSLETTER
+mess_for_anonim.txt. Email send to a user who has received a message in anonimous mode.
+
+In your custom messages you can use the following values:
+
+PLEASE NOTE: First line is Subject of letter
+
+$name - user name
+$login - user login
+$password - user password
+$messages - number of messages for the user
+$viewed - number of times the user's profile has been
+$regdate - user registration date
+$regdatedays - number of days since user has registered
+$lastdate - date when the user last accessed his account
+$lastdatedays - number of days since the user last accessed his account
+$profiles - total number of registered users and profiles in the system
+$address - URL address of your FreeLove 3 program
+$program - URL address of your FreeLove 3 program
+
+==================================
+
+
+44. Integration with FreeVF
+You only have to set this settings if you have a FreeVF program as well.
+Please do not fill in the following fields if you don't have FreeVF installed or in case you don't want FreeLove 3 and FreeVF to work together.
+Please see the examples and enter the following:
+full path to the main directory of FreeVF program
+full path to the data directory of FreeVF program
+full path to www directory of FreeVF program
+
+================================= 
+45. Change admin password
+You have to enter:
+Old password:
+New password:
+Confirm new password:
+================================= 
+46. EXIT
+In other words log off.
+================================= 
+
+-----------------------------------
+IMPORTANT: 
+IF YOU WANT TO HAVE A COMMERCIAL USE OF THE SCRIPT THEN YOU WILL NEED TO SET RIGHT THE FEATURES MARKED WITH:
+PLEASE NOTE: SETTINGS OF THIS FEATURE CAN BE USED FOR COMMERCIAL USE OF FREELOVE 3 PROGRAM.
+-----------------------------------
+
+HELP. INFORMATION. ASSISTANCE
+This section contains links to the following areas
+ADMIN HELP
+FAQ
+FREELOVE SUPPORT FORUM
+UPGRADE INFORMATION
+PURCHASE LICENSE
+PURCHASE MULTIPLE LICENSE
+FREELOVE NEWS
+FREELOVE FREE DEMO VERSION
+TRANSLATION ZONE
+CONTACT US OFFICE@RUSSIANLONDON.COM
+
+Please note: 
+Some of the useful features you have requested in FreeLove 3 has not been included 
+in this update due to the different reasons. 
+But we want to assure you that we are constantly working on improving and upgrading
+our program for the benefit of our customers. 
+All your comments and ideas about the unique features of the program are welcome
+and will be greatly appreciated. 
+
+
