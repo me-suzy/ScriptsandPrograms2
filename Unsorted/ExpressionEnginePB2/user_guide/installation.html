@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Installation Instructions &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="./index.html" />
+  <style type="text/css" media="screen,print">@import url(./docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="./index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Installation Instructions</h1>
+
+
+	<h2>Installation</h2>
+
+	<p>ExpressionEngine is installed in five steps.</p>
+
+	<div class="important">
+		<p><b>Please Note:</b><br />
+			We can perform the installation if you would prefer to not do it yourself. For more information please visit <a href="http://www.pmachineservices.com/">pMachine Services</a>.</p>
+
+		<p>Running the installation script will overwrite any existing ExpressionEngine information you may have in your database, including entries, Template changes, and settings.  It will effectively "reset" your installation.</p>
+
+		<p>Do <strong>not</strong> run this installation routine if you need to <em>update</em> your copy of ExpressionEngine.  Instead, use one of the sets of upgrade instructions:</p>
+
+		<ul>
+			<li><a href="upgrade_from_trial.html">Upgrading from ExpressionEngine Trial to Full Version</a></li>
+			<li><a href="upgrade_public_beta.html">Upgrading to ExpressionEngine Public Beta 2</a></li>
+		</ul>			
+	</div>
+
+
+
+	<h3>Step 1</h3>
+
+		<p><b>Get Your Settings</b></p>
+
+		<p>In order to install ExpressionEngine you will need to know 4 pieces of information.  If you do not know what they are, please contact your hosting provider and ask them.</p>
+
+		<ol>
+			<li><b>MySQL Database Name</b></li>
+			<li><b>MySQL Server Address</b> (often "localhost" or the server IP address)</li>
+			<li><b>MySQL Username</b></li>
+			<li><b>MySQL Password</b></li>
+		</ol>
+
+	<div class="important">
+		<p><b>Note</b>: You will need to create your database before running the ExpressionEngine installation.  This can usually be done either using something such as phpMyAdmin or through your web hosting account control panel.</p>
+	</div>
+
+
+
+	<h3>Step 2</h3>
+
+		<p><b>Rename the "system" folder</b></p>
+
+		<p>This is an <strong>optional, but recommended</strong> step that increases security by keeping the directory containing your ExpressionEngine backend files hidden from public access.</p>
+
+		<p><b>To perform this step</b>: Rename the directory called <kbd>system</kbd>.  Choose a name that is not easily guessed.</p>
+
+
+	<h3>Step 3</h3>
+
+		<p><b>Upload the Files</b></p>
+	
+		<p>Using an FTP program such as WS_FTP, Transmit, Fetch, etc. upload the ExpressionEngine files to your server.  Image files should be uploaded in Binary format and all other files should be uploaded in ASCII (sometimes called "text") format.</p>
+
+		<div class="important">
+			<p>Do <strong>not</strong> upload the following file and directory; they are only used for people performing an update from a previous version:</p>
+
+			<ul>
+				<li><var>system/update.php</var></li>
+				<li><kbd>system/updates/</kbd></li>
+			</ul>
+		</div>
+
+
+	<h3>Step 4</h3>
+
+		<p><b>Set File Permissions</b></p>
+
+		<div class="important">
+			<p>If you are hosted on a Windows server, skip this step.</p>
+		</div>
+
+		<p>If you are using a Unix server you must set the following files to <samp>666</samp></p>
+
+		<ul>
+			<li><var>path.php</var></li>
+			<li><var>system/config.php</var></li>
+			<li><var>system/config_bak.php</var></li>
+		</ul>
+
+		<p>You must set the following two directories to <samp>777</samp></p>
+
+		<ul>
+			<li><kbd>images/uploads/</kbd></li>
+			<li><kbd>system/cache/</kbd></li>
+		</ul>
+
+
+	<h3>Step 5</h3>
+
+		<p><b>Choose the Look of Your Weblog</b></p>
+
+		<p>Browse our template library and choose your favorite one.  Make a note of the ID number.  You will need it in Step 6.</p>
+	
+		<p>Browse the ExpressionEngine Template Library</p>
+
+
+
+	<h3>Step 6</h3>
+
+		<p><b>Run the Installation Wizard</b></p>
+
+		<p>If you have performed the above steps and you are ready to install ExpressionEngine, point your browser the file called <var>install.php</var>, which resides in your main ExpressionEngine directory.</p>
+
+
+
+	<h2>Troubleshooting</h2>
+
+
+	<h3>"No Input File Specified"</h3>
+
+		<p>If you are hosted on a Windows server and you get the following message while trying to navigate your site:</p>
+
+		<p><samp>No Input File Specified</samp></p>
+
+		<p>You will need to go to <dfn><a href="cp/admin/system_preferences/general_configuration.html">General Configuration</a></dfn> within the Control Panel and set the "Force Query String" preference to "yes".</p>
+
+
+
+	<h2>Running PHP as CGI</h2>
+
+	<p>People using servers that run PHP as a CGI process tend to encounter more difficulties than those with servers running PHP as a web server module.  Here are some additional things you can try.</p>
+
+		<div class="important">
+			<p>Typically, these tips will <strong>not</strong> apply to people on servers running PHP as a web server module.  Usually, they only apply to people on servers running PHP as a CGI process and even then not every user will need to do any of these.</p>
+		</div>
+
+
+	<h3>Add "shebangs"</h3>
+
+		<div class="important">
+			<p>This tip will only apply to <strong>some</strong> people on web servers running PHP as a CGI process.  Please consult your Host or server admin to determine if you will need to perform this.</p>
+		</div>
+
+		<p>On some servers, you will need to add a "shebang" line to two files in order to have ExpressionEngine work.  <strong>The actual syntax of the line can vary from server to server</strong>, so be sure to consult your Host or server admin for the correct syntax.</p>
+
+		<p>In the following two files:</p>
+
+		<ol>
+			<li><var>index.php</var></li>
+			<li><var>system/index.php</var></li>
+		</ol
+
+		<p>You will need to add the following "shebang" line immediately before the opening PHP code.  The top of your files will look like:</p>
+
+		<code>#!/usr/bin/php<br />
+&lt;?php</code>
+
+
+	<h3>File Permissions</h3>
+
+		<p>Some "PHP as CGI" servers automatically set uploaded files so that they do not have permission to "execute", which can cause problems with ExpressionEngine.  Make sure that all of your <var>.php</var> files are set to 755 (except those that are specifically mentioned as having other permissions in the instructions above).</p>
+
+
+	<h3>HTTP Headers</h3>
+
+		<p>Some "PHP as CGI" servers also do not like it if ExpressionEngine explicitly sends its own HTTP Headers.  Try going into <dfn><a href="cp/admin/system_preferences/general_configuration.html">General Configuration</a></dfn> and turn the "Generate HTTP Page Headers?" setting to "No".</p>
+
+		<p>If you cannot log into the Control Panel, then you will need to manually change the setting inside your <var>system/config.php</var> file:</p>
+
+		<code>$conf['send_headers'] = "n";</code>
+
+
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
