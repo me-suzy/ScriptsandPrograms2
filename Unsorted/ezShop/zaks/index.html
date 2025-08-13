@@ -1,0 +1,169 @@
+<script language="php">
+include("head.php3");
+</script>
+
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Zaks Wine On-Line Catalog</title>
+
+
+<meta name="Microsoft Theme" content="none, default"><meta name="Microsoft Border" content="none, default"></head>
+
+<body>
+<div align="center"><center>
+
+<table border="0" width="600">
+  <tr>
+    <td valign="top"><table border="0" cellpadding="0" cellspacing="0">
+<!-- FIRST ROW CURVE ON LEFT CURVE ON RIGHT -->
+      <tr valign="top">
+        <td width="120" bgcolor="#CCCC99" align="left" height="12"><img src="../../images/top.lt.crv.gif" alt border="0" WIDTH="10" HEIGHT="10"></td>
+        <td valign="top" bgcolor="#CCCC99" width="477" align="right" height="12"><img src="../../images/top.rt.crv.gif" alt border="0" WIDTH="10" HEIGHT="10"></td>
+      </tr>
+<!-- SECOND ROW LOGO AND AD -->
+      <tr>
+        <td width="120" bgcolor="#CCCC99" align="center" valign="middle" height="73"><img src="../../images/logo1.gif" alt="logo1.gif (1037 bytes)" border="0" WIDTH="120" HEIGHT="71"></td>
+        <td bgcolor="#CCCC99" width="477" align="center" valign="top" height="73"><a href="http://www.valuepage.com/"><img src="../../images/46518_valupage0721_valupage_fs_27s.gif" alt="Valuepage" border="0" WIDTH="468" HEIGHT="60"></a></td>
+      </tr>
+<!-- THIRD ROW SPACER ON LEFT CURVE ON RIGHT -->
+      <tr>
+        <td width="120" bgcolor="#CCCC99" height="12"><img src="../../images/clear1.gif" width="120" height="1" alt border="0"></td>
+        <td bgcolor="#CCCC99" align="right" width="477" valign="bottom" height="12"><img src="../../images/bot.rt.crv.gif" alt border="0" WIDTH="10" HEIGHT="10"></td>
+      </tr>
+<!-- FOURTH ROW BACKGROUND ON LEFT WITH INVERSE CURVE IN CENTER -->
+      <tr>
+        <td width="120" bgcolor="#CCCC99" valign="top" height="10"><img src="../../images/clear1.gif" width="120" height="1" alt border="0"></td>
+        <td width="477" valign="top" height="10"><img src="../../images/top.lt.inv.crv.jpg" alt border="0" WIDTH="10" HEIGHT="10"></td>
+      </tr>
+      <tr>
+        <td width="120" bgcolor="#CCCC99" valign="top" height="10"><ul>
+          <li><font face="Arial" size="2" color="#004000">Current Deals</font></li>
+          <li><font face="Arial" size="2" color="#004000">About the<br>
+            Timesaver<br>
+            Market</font></li>
+          <li><font face="Arial" size="2" color="#004000">Corporate Order Desk</font></li>
+          <li><font face="Arial" size="2" color="#004000">Customer Service</font></li>
+          <li><font face="Arial" size="2" color="#004000">Package Deals</font></li>
+          <li><font face="Arial" size="2" color="#004000">FAQ's</font></li>
+          <li><font face="Arial" size="2" color="#004000">Register</font></li>
+          <li><font face="Arial" size="2" color="#004000">Express Club</font></li>
+        </ul>
+        </td>
+        <td width="477" valign="top" height="10"><div align="center"><center><table border="0" cellpadding="0" cellspacing="0" width="470">
+          <tr>
+            <td colspan="2" align="center" width="470"><big><big>Zak's Wine Store</big></big></td>
+          </tr>
+          <tr>
+            <td width="10"><img src="../../images/clear1.gif" alt="clear1.gif (807 bytes)" WIDTH="1" HEIGHT="1"></td>
+            <td width="460" align="center"><script language="php">include("main.php3");</script></td>
+          </tr>
+        </table>
+        </center></div><p>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="120" bgcolor="#CCCC99" valign="top" height="10"><img src="../../images/toolb.lwrcap.gif" alt border="0" WIDTH="120" HEIGHT="10"></td>
+        <td width="477" valign="top" height="10"><img src="../../images/clear1.gif" alt="clear1.gif (807 bytes)" WIDTH="1" HEIGHT="1"></td>
+      </tr>
+<!-- END TOP -->
+    </table>
+    </td>
+  </tr>
+</table>
+</center></div><div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0" width="600" height="100">
+  <tr>
+    <td width="600" valign="top" height="5" colspan="3"><img src="../../images/clear1.gif" alt="clear1.gif (807 bytes)" WIDTH="1" HEIGHT="1"></td>
+  </tr>
+  <tr>
+    <td width="10" valign="top" height="10" bgcolor="#8080FF"><img src="../../images/topleft.gif" alt border="0" WIDTH="10" HEIGHT="10"></td>
+    <td width="580" valign="top" height="10" bgcolor="#8080FF"><img src="../../images/clear1.gif" alt="clear1.gif (807 bytes)" WIDTH="1" HEIGHT="1"></td>
+    <td width="10" valign="top" height="10" bgcolor="#8080FF"><p align="right"><img src="../../images/top.rt.crv.gif" alt border="0" WIDTH="10" HEIGHT="10"></td>
+  </tr>
+  <tr>
+    <td width="10" height="80" bgcolor="#8080FF"><img src="../../images/clear1.gif" alt="clear1.gif (807 bytes)" WIDTH="1" HEIGHT="1"></td>
+    <td width="580" bgcolor="#FFFFCC" height="80"><p align="center"><script language="php">// Here we will query the database and add up the
+// total # of items in thier basket, and thier value.
+
+$query = "Select item_id,quantity from cart where merchant_id = $merchant_id and session = '$session'";
+$select = mysql($database,$query);
+$row=0;
+$rows=mysql_numrows($select);
+$cart_items = 0;
+$total = 0.00;
+while($row<$rows){
+	$cart_item_id = mysql_result($select,$row,"item_id");
+	$cart_quantity = mysql_result($select,$row,"quantity");
+	// Get value for item
+	$query = "Select price from $table where $item_label = $cart_item_id";
+	$select2 = mysql($database,$query);
+	echo mysql_error();
+	$cart_items += $cart_quantity;
+	$whsl_price = mysql_result($select2,"0","price");
+	$price = 25+$whsl_price;
+	$total += $price * $cart_quantity;
+	$row++;
+}
+?>
+<center>
+<?
+// check to see if $items is present
+// if so, display basket & checkout buttons
+if(isset($cart_items)){
+?>
+You have <? echo $cart_items; ?> items in your basket with a value of $<? echo $total ?>.<br>
+<?
+  }else{
+	print("Your Basket is currently Empty.<br>\n");
+  }
+?>
+
+<?
+$query = "SELECT DISTINCT session FROM cart";
+$select = mysql($database,$query);
+$sessions = mysql_numrows($select) - 1;
+if($sessions > 0){
+echo "There are $sessions other shoppers On-Line at this time!<br>";
+}
+?>
+  <small>
+   <font color="#800000">
+    <p>Powered by EasyShop<br>
+    Session: <? echo $session;?><br>
+    <? if(isset($PHP_AUTH_USER)){ echo "User: $PHP_AUTH_USER<br>";}
+    ?>
+   </font></small>
+</center>
+<?
+if(isset($debug) && $debug == "On"){
+echo "Debug is $debug<br>";
+echo $message;
+echo " - Message<br>";
+echo $upass;
+echo " - upass from database<br>";
+echo $PHP_AUTH_USER;
+echo " - php auth user<br>";
+echo $PHP_AUTH_PW;
+echo " - php auth pw<br>";
+error_reporting(111);
+echo "Values submitted via POST method:<br>";
+while ( list( $key, $val ) = each($HTTP_POST_VARS) ) {
+   echo "$key => $val<br>";
+}
+}
+</script></td>
+    <td width="10" height="80" bgcolor="#8080FF"><img src="../../images/clear1.gif" alt="clear1.gif (807 bytes)" WIDTH="1" HEIGHT="1"></td>
+  </tr>
+  <tr>
+    <td width="10" valign="bottom" height="10" bgcolor="#8080FF"><img src="../../images/botleft.gif" alt border="0" WIDTH="10" HEIGHT="10"></td>
+    <td width="580" valign="bottom" height="10" bgcolor="#8080FF"><img src="../../images/clear1.gif" alt="clear1.gif (807 bytes)" WIDTH="1" HEIGHT="1"></td>
+    <td width="10" valign="bottom" height="10" bgcolor="#8080FF"><p align="right"><img src="../../images/bot.rt.crv.gif" alt border="0" WIDTH="10" HEIGHT="10"></td>
+  </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+</body>
+</html>
