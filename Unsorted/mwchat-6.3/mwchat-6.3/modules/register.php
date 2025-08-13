@@ -1,0 +1,2 @@
+<?PHP
+  if ($CONFIG[Chat_Register_Allow] == "true") { if ($STATUS[Registered] != "yes") { $rgProcess_INSERT = db_query(Validate(1007), $CONN); } else { Post_System("<B>$LOCALE[DIALOG_Syntax_Error]</B> - /$rgMatches[1] $LOCALE[COMMON_Unregistered_Only]", "syntax", $Room); } } else { Post_System("<B>$LOCALE[DIALOG_Syntax_Error]</B> - /$rgMatches[1] $LOCALE[COMMON_Function_Invalid]", "syntax", $Room); } ?>
