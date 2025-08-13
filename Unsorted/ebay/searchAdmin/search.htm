@@ -1,0 +1,401 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN" "html.dtd">
+<HTML>
+<HEAD>
+    <TITLE>Index Server Search Form</TITLE>
+
+    <!--
+         Specify various properties of this HTML page, so that they can be queried. The
+         properties are:
+
+            Description:    abstract of this page
+            Author:         author
+            Keywords:       keywords
+            Subject:        subject
+            Ms.category:    category
+            Ms.locale:      locale or language of this HTML page (US English)
+            Content-type:   charset identifier of this HTML page (1252)
+
+         If a description meta tag is present in an HTML page, then it is used as the abstract or summary
+         of the HTML page. If a description tag is not present then the Index Server will automatically
+         generate an abstract using the text in the title tag, heading tags and so on. To query for a meta
+         tag property, the property must be specified in the idq file. The GUID for the meta property
+         is D1B5D3F0-C0B3-11CF-9A92-00A0C908DBF1 and the property name is specified by the name field. In
+         the case of the description property the name is "description. Hence to query for the description
+         property, add the following to the Names section of the idq file
+
+              [Names]
+              MetaDescription(DBTYPE_WSTR) = D1B5D3F0-C0B3-11CF-9A92-00A0C908DBF1 description
+
+         Then the query
+
+              @MetaDescription Microsoft Index Server
+
+         will return this page in the result set. The GUID for meta property is a registry parameter
+         located at  HKEY_LOCAL_MACHINE
+                    \System\CurrentControlSet
+                     \Control\HtmlFilter
+                      \MetaTagClsid
+
+         Author, Keywords and Subject properties in a meta tag are treated differently. These properties
+         have the friendly names DocAuthor, DocKeywords and DocSubject respectively, and they
+         correspond to the Author, Keywords and Subject properties of the Microsoft Summary Information
+         property set. Hence, the query
+
+             @DocAuthor Index Server Team
+
+         will return this page in the result set.
+
+         The MS.CATEGORY property is also treated differently. The MS.CATEGORY property is mapped to
+         the category property in the Microsoft Document Summary Information property set. The GUID
+         for the Document Summary Information property set is d5cdd502-2e9c-101b-9397-08002b2cf9ae,
+         and the property id for category in that property set is 2. So, to query for the MS.CATEGORY
+         property, add the following to the Names section of the idq file
+
+              [Names]
+              DocCategory(DBTYPE_WSTR) = d5cdd502-2e9c-101b-9397-08002b2cf9ae 2
+
+         Then the query
+
+              @DocCategory Internet
+
+         will return this page in the result set.
+
+         The MS.LOCALE property specifies the locale or language of this page. The locale property
+         allows the Index Server to use the appropriate locale specific resources when processing the
+         HTML page. It is very useful to specify the locale property when the HTML pages being indexed are in
+         different locales. If all the HTML pages being indexed are in the same locale and it's
+         the same as the locale of the server computer on which Index Server is running, then the
+         MS.LOCALE property can be omitted without any loss of fidelity. The MS.LOCALE property can also be
+         queried just like any other generic meta tag property. To query for the MS.LOCALE property, add the
+         following to the Names section of the idq file
+
+              [Names]
+              Locale(DBTYPE_WSTR) = D1B5D3F0-C0B3-11CF-9A92-00A0C908DBF1 ms.locale
+
+         Then the query
+
+              @Locale US
+
+         will return this page in the result set.
+
+         The charset meta tag specifies the character set of the HTML page. This information
+         is used by the Index Server when converting the text in the HTML page to Unicode. The following
+         charset IDs are recognized:
+
+                 Base_Charset (Display Name): Charset IDs
+                 ----------------------------------------
+
+                 1252 (Western) : us-ascii, iso8859-1, ascii, iso_8859-1, iso-8859-1, ANSI_X3.4-1968, iso-ir-6,
+                       ANSI_X3.4-1986, ISO_646.irv:1991, ISO646-US, us, IBM367, cp367, csASCII, latin1,
+                       iso_8859-1:1987, iso-ir-100, ibm819, cp819, Windows-1252
+        
+                 28592 (Central European (ISO)): iso8859-2, iso-8859-2, iso_8859-2, latin2, iso_8859-2:1987,
+                       iso-ir-101, l2, csISOLatin2
+        
+                 1250 (Central European (Windows)): windows-1250, x-cp1250
+        
+                 1251 (Cyrillic (Windows)): windows-1251, x-cp1251
+        
+                 1253 (Greek (Windows)): windows-1253
+        
+                 1254 (Turkish (Windows)):windows-1254
+        
+                 932 (Shift-JIS) :  shift_jis, x-sjis, ms_Kanji, csShiftJIS
+        
+                 EUC-JP (EUC) : Extended_UNIX_Code_Packed_Format_for_Japanese, csEUCPkdFmtJapanese, x-euc-jp
+        
+                 JIS (JIS) : csISO2022JP, iso-2022-jp
+        
+                 1257 : windows-1257
+        
+                 950 (Traditional Chinese (BIG5)) : big5, csbig5, x-x-big5
+        
+                 936 (Simplified Chinese): GB_2312-80, iso-ir-58, chinese, csISO58GB231280, csGB2312, gb2312
+        
+                 20866 (Cyrillic (KOI8-R)): csKOI8R, koi8-r
+        
+                 949 (Korean): ks_c_5601, ks_c_5601-1987, korean, csKSC56011987
+        
+                 1255 (Hebrew): ISO_8859-8:1988, iso-ir-138, ISO_8859-8, ISO-8859-8, hebrew, csISOLatinHebrew
+        
+                 1256 (Arabic): Windows-1256
+        
+                 874 (Thai): Windows-874
+        
+                 1258 (Vietnamese): Windows-1258
+    --!>
+
+    <META NAME="DESCRIPTION" CONTENT="Sample author query form for Microsoft Index Server">
+    <META NAME="AUTHOR"      CONTENT="Index Server Team">
+    <META NAME="KEYWORDS"    CONTENT="author, restriction">
+    <META NAME="SUBJECT"     CONTENT="sample form">
+    <META NAME="MS.CATEGORY" CONTENT="Internet">
+    <META NAME="MS.LOCALE"   CONTENT="EN-US">
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=Windows-1252">
+</HEAD>
+
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#000066" VLINK="#808080" ALINK="#FF0000" TOPMARGIN=0>
+
+<a href=\${HTMLPATH}aw/><img height=23 width=605 border=0 src=/images/aw.gif></a>
+<p><center>
+<strong><font size="3"><a href="http://cayman.ebay2.com/aw">Home</a>&nbsp;
+<a href=\${HTMLPATH}aw/list.html>Listings</a>&nbsp
+<a href=\${HTMLPATH}aw/ps.html>Buyers</a>&nbsp
+<a href=\${HTMLPATH}aw/seller-services.html>Sellers</a>&nbsp
+<a href=\${HTMLPATH}aw/search.html>Search</a>&nbsp
+<a href=\${HTMLPATH}aw/contact.html>Contact/Help</a>&nbsp
+<a href=\${HTMLPATH}aw/sitemap.html>Site Map</a>&nbsp
+</strong></center>
+
+<!-- Begin query form header -->
+
+<TABLE>
+    <TR><TD><IMG SRC ="/samples/search/book08.jpg" ALIGN=Middle></TD>
+	<TD VALIGN=MIDDLE><H1>Index Server</h1><BR><H2>eBay Query</H2><BR></TD></TR>
+</TABLE>
+
+<!-- End query form header -->
+
+<!-- Begin eBay query form header -->
+
+<h2>Search eBay</h2>
+
+<FORM ACTION="http://209.1.128.184/scripts/ebaySearch/search.idq" METHOD="GET"> 
+<!-- <FORM ACTION="http://localhost/scripts/ebaySearch/ebayRedir.asp" METHOD="GET"> -->
+<!-- <FORM ACTION="http://209.1.128.184/scripts/ebaySearch/searchISAPI.dll" METHOD="GET"> -->
+<BR>
+    <TABLE>
+        <TR>
+            <TD> Search for title: <INPUT TYPE="TEXT" NAME="TextRestriction" SIZE="30" MAXLENGTH="100" VALUE=""></TD>
+        </TR>
+
+    </TABLE>
+
+      <TABLE>
+              <TR>
+        <TD>Sort by: <SELECT NAME="SortProperty">
+                <OPTION SELECTED VALUE="MetaEndSort">Ending Date
+  <!--              <OPTION VALUE="MetaSeller">Seller -->
+                <OPTION VALUE="MetaCurrentPriceSort">Bid Price
+				<option value="MetaBidCountSort">#Bids 
+                <OPTION VALUE="rank">Search ranking
+        </SELECT></TD>
+            <TD><INPUT TYPE="SUBMIT" VALUE="Go!"></TD>
+           <TD ALIGN=right>
+                    <A HREF="http://206.79.255.83/scripts/ebaySearch/tips.htm">Tips</A>
+                    </TD>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+           </TABLE>
+<input selected type=radio name="whichIndex" value="current" checked> Current
+<input type=radio name="whichIndex" value="completed"> Completed
+
+<TD><INPUT TYPE="hidden" NAME="CiTemplateChoice1" VALUE="search.htx"></TD>
+<TD><INPUT TYPE="checkbox" NAME="CiTemplateChoice1" VALUE="search_lynx.htx" >Text only</TD>
+<!--
+        <TD>Items per page: <SELECT NAME="maxRecordsPerPage">
+                <OPTION VALUE="25">25
+                <OPTION VALUE="50">50
+                <OPTION SELECTED VALUE="75">75
+                <OPTION VALUE="100">100
+        </SELECT></TD>
+
+<TABLE>
+<tr>
+        <TD>Maximum number of items to return: <SELECT NAME="maxRecordsReturned">
+                <OPTION VALUE="250">250
+                <OPTION SELECTED VALUE="500">500
+                <OPTION VALUE="1000">1000
+                <OPTION VALUE="2500">2500
+        </SELECT></TD>
+        </TR>
+</TABLE>
+-->
+   <INPUT TYPE="hidden" NAME="CategoryID" VALUE="">
+   <input type=checkbox name="CategoryID" value="77"> include category<br>
+   <INPUT TYPE="hidden" NAME="SortOrder" VALUE="[a]">
+   
+	
+<!--   <INPUT TYPE="hidden" NAME="IDQFile" VALUE="http://209.1.128.184/scripts/ebaySearch/search.idq"> --> 
+   
+<!--
+   <INPUT TYPE="hidden" NAME="CategoryID" VALUE="">
+    <INPUT TYPE="HIDDEN" NAME="CategoryRestriction" VALUE="@MetaCategory 77">
+    <INPUT TYPE="HIDDEN" NAME="HTMLQueryForm" VALUE="/scripts/ebaySearch/search.htm">
+    <INPUT TYPE="HIDDEN" NAME="CiTemplateChoice" VALUE="4">
+    <INPUT TYPE="hidden" NAME="whichIndex" VALUE="current"> 
+    <INPUT TYPE="hidden" NAME="CiOldColumns" VALUE="filename,size,characterization,vpath,DocTitle,write,rank,MetaItem,MetaLocation,MetaSeller,MetaCurrentPrice,MetaEndDate,MetaEndTime,MetaBidCount,MetaBidCountSort,MetaStartSort,MetaEndSort,MetaStartPriceSort,MetaCurrentPriceSort">
+    <INPUT TYPE="hidden" NAME="CiBetaColumns" VALUE="filename,size,characterization,vpath,DocTitle,write,rank,MetaItem,MetaLocation,MetaSeller,MetaCurrentPrice,MetaStartPrice,MetaEndDate,MetaEndTime,MetaBidCount,MetaBidCountSort,MetaStartSort,MetaEndSort,MetaStartPriceSort,MetaCurrentPriceSort,MetaFeatured, MetaSuperFeatured, MetaBoldTitle, MetaPrivateSale, MetaRegisteredOnly, MetaPictureURL, MetaCategory1, MetaCategory2, MetaCategory3,MetaCategory4">
+ -->
+    <INPUT TYPE="hidden" NAME="maxRecordsPerPage" VALUE="100">
+    <INPUT TYPE="hidden" NAME="maxRecordsReturned" VALUE="300">
+</form>
+
+<!-- End eBay query form header -->
+
+
+AUCTIONWEB SEARCH
+<br>
+<br>
+<h2>Search eBay's AuctionWeb</h2>
+
+<form method=get action="http://209.24.1.223/search-aw/nph-search.cgi">
+<font size=-1>Note: new items may not appear in search results until as much as
+one hour after they have been added.</font>
+<p>
+
+<img height=11 width=28 alt="[NEW!]" src="http://206.184.213.45/aw/pics/new.gif">
+Search for <a href=#item><b>item numbers,</b></a> <a
+href=#title><b>title,</b></a> <a href=#seller><b>seller,</b></a> or <a
+href=#bidder><b>bidder.</b></a>
+<p>
+
+
+<table border=1 width=101%>
+<tr>
+<td width=25%><a name=title><b>Title search:</b></a></td><td width=50%><input type=text name=s
+size=50></td><td width=24% rowspan=2><input type=submit value="search"></td>
+</tr>
+<tr>
+<td>Past auctions too?</td><td><input type=radio name=comp value=yes>yes   
+<input selected type=radio name=comp value=no checked>no</td>
+</tr>
+</table>
+</form>
+<br>
+<br>
+
+
+
+
+
+
+
+OLD SEARCH
+
+
+
+<!-- Begin basic query restriction section -->
+
+<FORM ACTION="/scripts/ebaySearch/search.idq" METHOD="GET">
+Try the beta version of our new search!<BR>
+    <TABLE>
+        <TR>
+            <TD> <INPUT TYPE="TEXT" NAME="TextRestriction" SIZE="30" MAXLENGTH="100" VALUE=""></TD>
+<!--            <TD><INPUT TYPE="RESET" VALUE="Clear"></TD>
+
+-->        </TR>
+
+    </TABLE>
+
+      <TABLE>
+	        <TR>
+        <TD><SELECT NAME="SortProperty">
+                <OPTION SELECTED VALUE="MetaEndSort">Ending Date
+                <OPTION VALUE="MetaSeller">Seller
+                <OPTION VALUE="MetaCurrentPriceSort">Bid Price
+                <OPTION VALUE="rank">Search ranking
+                <OPTION VALUE="None">None
+        </SELECT></TD>
+            <TD><INPUT TYPE="SUBMIT" VALUE="Go!"></TD>
+           <TD ALIGN=right>
+<!--                <A HREF="/samples/search/tipshelp.htm">Tips</A>-->
+            	<A HREF="http://206.79.255.83/scripts/ebaySearch/tips.htm">Tips</A>
+			</TD>
+        </TR>
+	   </TABLE>
+
+		
+		<TABLE>
+    <TR>
+        <TD><INPUT TYPE="Radio" NAME="whichIndex" VALUE="current" CHECKED>Current</TD>
+        <TD><INPUT TYPE="Radio" NAME="whichIndex" VALUE="completed">Completed</TD>
+    </TR>
+</TABLE>
+
+    <INPUT TYPE="HIDDEN" NAME="HTMLQueryForm" VALUE="/scripts/ebaySearch/search.htm">
+<!--    <INPUT TYPE="HIDDEN" NAME="CiTemplateChoice" VALUE="4">-->
+	<INPUT TYPE="hidden" NAME="SortOrder" VALUE="[d]">
+ 	<INPUT TYPE="HIDDEN" NAME="maxRecordsPerPage" VALUE="100">
+	<INPUT TYPE="hidden" NAME="maxRecordsReturned" VALUE="300">
+
+	<!--    Where the seller is &nbsp;
+        <INPUT TYPE="TEXT" NAME="SellerRestriction" SIZE="40" MAXLENGTH="100" VALUE="">
+-->
+
+<!--    <BR>
+	Where the current price is less than:
+        <INPUT TYPE="TEXT" NAME="LowPriceRestriction" SIZE="10" MAXLENGTH="100" VALUE="">
+
+
+--><!-- End basic query restriction section -->
+
+<p>
+<HR WIDTH=80% ALIGN=center SIZE=3>
+<p>
+
+<!-- Begin query parameters section -->
+
+<!--<TABLE>
+    <TR>
+        <TD ALIGN=Right>Additional Sort by:</TD>
+        <TD><SELECT NAME="SortProperty2">
+                <OPTION SELECTED VALUE="MetaSeller">Seller
+                <OPTION VALUE="MetaCurrentPriceSort">Current Price
+                <OPTION VALUE="MetaEndSort">Ending Date
+                <OPTION VALUE="None">None
+        </SELECT></TD>
+        <TD><INPUT TYPE="Radio" NAME="SortOrder2" VALUE="[a]" CHECKED>Ascending</TD>
+        <TD><INPUT TYPE="Radio" NAME="SortOrder2" VALUE="[d]">Descending</TD>
+    </TR>
+</TABLE>
+-->
+
+<!-- End query parameters section -->
+
+</FORM>
+
+<P>
+
+
+<p>
+
+<HR WIDTH=80% ALIGN=center SIZE=3>
+
+<CENTER>
+<TABLE WIDTH=600 HEIGHT=50>
+<TR>
+<TD ALIGN=CENTER VALIGN=MIDDLE WIDTH=200>
+<font face="Arial, Helvetica" size="1">
+<b>
+Best experienced with
+<br>
+<a href="http://www.microsoft.com/ie/ie.htm"><img src="/samples/search/bestwith.gif" width="88" height="31" border="0" alt="Microsoft Internet Explorer" vspace="7"></a>
+<br>
+Click here to start.
+</b>
+</font>
+</TD>
+<TD ALIGN=CENTER VALIGN=MIDDLE WIDTH=200>
+<A HREF="http://www.microsoft.com/default.htm"><IMG WIDTH=175 HEIGHT=45 BORDER=0 SRC="/samples/search/home.gif"></A>
+</TD>
+<TD ALIGN=CENTER VALIGN=MIDDLE WIDTH=200>
+<A HREF="http://www.microsoft.com/Powered/"><IMG BORDER=0 SRC="/samples/search/powrbybo.gif" WIDTH=114 HEIGHT=43></A>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+
+<CENTER><I><FONT SIZE=-1>&copy;1996 Microsoft Corporation</FONT></I></CENTER>
+<BR>
+
+<CENTER>
+    <I><A HREF="/samples/search/disclaim.htm">Disclaimer</A></I>
+</CENTER>
+
+</BODY>
+</HTML>
