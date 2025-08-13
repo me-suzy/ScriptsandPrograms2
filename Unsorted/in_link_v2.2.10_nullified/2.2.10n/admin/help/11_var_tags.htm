@@ -1,0 +1,132 @@
+<HTML><!-- #BeginTemplate "/Templates/template.dwt" -->
+<HEAD>
+<!-- #BeginEditable "doctitle" --> 
+<TITLE>In-Link 2.0.4 SQL Directory Engine Documentation</TITLE>
+<!-- #EndEditable -->
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" href="style.css" type="text/css">
+<SCRIPT language="javascript">
+<!--
+function arc_flipflop(myID) {
+  	if (eval("document.all."+myID+".style.display")=='none') {
+		eval("document.all."+myID+".style.display='block'");
+	} else {
+	eval("document.all."+myID+".style.display='none'");
+	}
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY bgcolor="#FFFFFF" text="#000000">
+
+<TABLE width="100%" border="0" cellspacing="0" cellpadding="0">
+  <TR> 
+    <TD rowspan="2" width="0"><IMG src="images/icon1-.gif" width="32" height="32"></TD>
+    <TD class="title" width="100%">Help </TD>
+    <TD rowspan="2" width="0" align="right"><A href="manual.pdf"><IMG src="images/doc.gif" width="18" height="18" border="0"></A></TD>
+  </TR>
+  <TR> 
+    <TD width="100%"><IMG src="file:///G|/admin/images/line.gif" width="354" height="2"></TD>
+  </TR>
+</TABLE>
+
+<!-- #BeginEditable "body" --> 
+<h1>11<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span>Appendixes</h1>
+<h2><a name="11.1"></a>11.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>In-tag Dictionary</h2>
+<h3><a name="vartags"></a>Variable Tags</h3>
+<p class=MsoNormal>Format:            &lt;%[tag_name]:[tag_value]%&gt;</p>
+<p class=MsoNormal>Description:     Variable tags will accept any value after 
+  the : and try to process it.</p>
+<p class=MsoNormal>&nbsp;</p>
+<h5>&lt;%language: %&gt;</h5>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     
+  Prints any language variable to the screen. If the variable is not defined, 
+  prints a blank. The tag will read language variables from language.php in the 
+  current language set.</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Valid values:    
+  Tag_value can be any variable (without the $) from language.php in the current 
+  language set. Invalid value will not affect the system.</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              
+  Anywhere in the system</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             
+  language text or blank</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      
+  Short</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         
+  &lt;%language:lu_welcome%&gt; Will display Welcome, if the default English 
+  language set is used.</p>
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
+<h5>&lt;%include: %&gt;</h5>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     
+  Includes a template file. The file will be included as is and in all cases  
+  no conditions are available for this tag. It has built-in prevention from getting 
+  into a never-ending loop if you include the template itself.</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Valid values:    
+  Any template in the current theme. Use the exact file name without .tpl extension. 
+  Invalid value will display error message file not found [file name] from the 
+  current language file.</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              
+  Anywhere, but keep in mind that it will insert resulting HTML from the target 
+  template and account for it.</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             
+  processed template or text error</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      
+  Short </p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         
+  &lt;%include:header%&gt; Will include the HTML code from header.tpl</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>&nbsp;</p>
+<h5>&lt;%drop_results: %&gt;</h5>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     
+  Displays a choice of the number of results to display. Should be used to restrict 
+  the visitor on the number of links displayed per page. Useful on slow servers 
+  to avoid long download time.</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Valid value:     
+  Tag_value can be any positive integer (Arabic) or all to display all results. 
+  Note that invalid value will cause system errors.</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Scope:              
+  Within the HTML &lt;Select&gt; tag in sort_cats.tpl and sort_links.tpl</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Result:             
+  Extra choice in the drop down for each tag. System errors if wrong value.</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Processing:      
+  Short</p>
+<p class=MsoNormal>Example:         &lt;%drop_results:5%&gt; Will display 5 in 
+  the drop down menu.</p>
+<p class=MsoNormal>&nbsp;</p>
+<h5>&lt;%nav: %&gt;</h5>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Description:     
+  By default, it will provide a link to the template specified in the tag_value. 
+  Similar to &lt;%include: %&gt;, however it will not process the template. There 
+  are special cases. Returns </p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Valid value:     
+  Any template from the current theme set. Use the exact file name without .tpl 
+  extension. There are special values that will still load the appropriate templates, 
+  but they will also do some required processing:</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>                                    
+  add_link </p>
+<p class=MsoNormal>                                    link</p>
+<p class=MsoNormal>                                    registration</p>
+<p class=MsoNormal>                                    add_review</p>
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'>            review</p>
+<p class=MsoNormal style='margin-left:.5in;text-indent:.5in'>These templates and 
+  several others cannot be renamed.</p>
+<p class=MsoNormal>Scope:              Anywhere in the system.</p>
+<p class=MsoNormal>Result:             relative URL to be used within HTML &lt;a&gt; 
+  tag</p>
+<p class=MsoNormal>Processing:      Short/Medium</p>
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-1.0in'>Example:         
+  &lt;A href=&quot;&lt;%nav:registration%&gt;&quot;&gt; Click here to register 
+  &lt;/a&gt; Will display a proper link to the registration page</p>
+<p class=MsoNormal>&nbsp;</p>
+<p class=MsoNormal>&nbsp;</p>
+<!-- #EndEditable --> 
+<CENTER>
+<P><IMG src="images/inlinksmall.gif" width="75" height="27"></P>
+<P class="footer">Intechnic Corporation, 2001. All Rights Reserved.</P>
+</CENTER>
+</BODY>
+<!-- #EndTemplate --></HTML>
