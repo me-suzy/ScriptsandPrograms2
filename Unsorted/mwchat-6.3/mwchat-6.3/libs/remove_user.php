@@ -1,0 +1,2 @@
+<?PHP
+  function Remove_User($Username) { global $CONN; global $CONFIG; require_once("./$CONFIG[MWCHAT_Libs]/db_open.php"); if (isset($Username)) { $rgProcess_DELETE = db_query(Validate(24, "Username", $Username), $CONN); $rgText_DELETE = db_query(Validate(25, "Username", $Username), $CONN); $rgUsers_DELETE = db_query(Validate(26, "Username", $Username), $CONN); $rgLobby_DELETE = db_query(Validate(28, "Username", $Username), $CONN); } } ?>
