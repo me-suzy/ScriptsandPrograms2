@@ -1,0 +1,820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+
+  <title>Weblog Tag Variables &#8211; ExpressionEngine Documentation</title>
+
+  <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+  <link rel="contents" href="../../index.html" />
+  <style type="text/css" media="screen,print">@import url(../../docs.css);</style>
+</head>
+
+<body>
+
+<div id="header">
+	<h1>ExpressionEngine Documentation</h1>
+</div>
+
+
+<div id="navlinks">
+	<p><a href="../../index.html">Table of Contents</a></p>
+</div>
+
+
+<div id="content">
+
+	<h1>Weblog Tag Variables</h1>
+
+	<p>Weblog entries are shown using this basic tag pair.  The pair may contain variables and HTML within them.</p>
+
+	<code>{exp:weblog:entries}<br />
+<br />
+weblog content<br />
+<br />
+{/exp:weblog:entries}</code>
+
+
+	<h2>Basics</h2>
+
+	<p>There are three general types of variables:</p>
+
+	<ol>
+		<li><a href="#single_variables">Single Variables</a></li>
+		<li><a href="#variable_pairs">Variable Pairs</a></li>
+		<li><a href="#conditional_variables">Conditional Variables</a></li>
+	</ol>
+
+
+	<h3>Single Variables</h3>
+
+		<p>A single variable is one in which the variable represents a single piece of data.  Examples:</p>
+
+		<ul>
+			<li>{title}</li>
+			<li>{body}</li>
+			<li>{username}</li>
+			<li>{screen_name}</li>
+		</ul>
+
+	<p>Single variables are the most common type.</p>
+
+
+	<h3>Variable Pairs</h3>
+
+		<p>Variable pairs are ones that have an opening and closing tag.  Examples:</p>
+
+		<code>{date_heading}<br />
+<br />
+&lt;h1>{entry_date format="%Y %m %d"}&lt;/h1><br />
+<br />
+{/date_heading}</code>
+
+		<p>or</p>
+
+		<code>{categories}<br />
+<br />
+&lt;a href="{path=SITE_INDEX}">{category_name}&lt;/a>&lt;br /><br />
+<br />
+{/categories}</code>
+
+		<p>The reason variable pairs have an opening and closing pair is because the information between the pairs can be shown or not shown if the criteria for each tag is met.</p>
+
+		<p>In the case of the "date_heading" pair, for example, it only appears at a certain interval that you set (hourly, daily, weekly, monthly, etc.).  By using a pair of variables you can put HTML formating between them that only gets shown when the interval is met.  Otherwise, the chunk is not displayed.</p>
+
+
+	<h3>Conditional Variables</h3>
+
+		<p>Conditional variables allow you to add scripting to your variables. Example:</p>
+
+		<code>{if username="joe"}<br />
+<br />
+&lt;h4>Hi Joe!&lt;/h4><br />
+<br />
+{/if}</code>
+
+		<p>This will be explained more below.</p>
+
+
+
+	<h2><a name="single_variables">Single Variables</a></h2>
+
+	<ul class="minitoc">
+		<li><a href="#var_aol_im">{aol_im}</a></li>
+		<li><a href="#var_author">{author}</a></li>
+		<li><a href="#var_author_id">{author_id}</a></li>
+		<li><a href="#var_comment_path">{comment_path=weblog/comments}</a></li>
+		<li><a href="#var_comment_tb_total">{comment_tb_total}</a></li>
+		<li><a href="#var_comment_total">{comment_total}</a></li>
+		<li><a href="#var_entry_date">{entry_date format="%Y %m %d"}</a></li>
+		<li><a href="#var_expiration_date">{expiration_date format="%Y %m %d"}</a></li>
+		<li><a href="#var_edit_date">{edit_date format="%Y %m %d"}</a></li>
+		<li><a href="#var_recent_comment_date">{recent_comment_date format="%Y %m %d"}</a></li>
+		<li><a href="#var_email">{email}</a></li>
+		<li><a href="#var_entry_id">{entry_id}</a></li>
+		<li><a href="#var_entry_id_path">{entry_id_path=weblog/archives}</a></li>
+		<li><a href="#var_icq">{icq}</a></li>
+		<li><a href="#var_interests">{interests}</a></li>
+		<li><a href="#var_ip_address">{ip_address}</a></li>
+		<li><a href="#var_location">{location}</a></li>
+		<li><a href="#var_msn_im">{msn_im}</a></li>
+		<li><a href="#var_occupation">{occupation}</a></li>
+		<li><a href="#var_permalink">{permalink=weblog/archives}</a></li>
+		<li><a href="#var_profile_path">{profile_path=member/profile}</a></li>
+		<li><a href="#var_relative_date">{relative_date}</a></li>
+		<li><a href="#var_screen_name">{screen_name}</a></li>
+		<li><a href="#var_status">{status}</a></li>
+		<li><a href="#var_switch">{switch="option_one|option_two"}</a></li>
+		<li><a href="#var_title">{title}</a></li>
+		<li><a href="#var_title_permalink">{title_permalink=weblog/archives}</a></li>
+		<li><a href="#var_trackback_path">{trackback_path=weblog/trackbacks}</a></li>
+		<li><a href="#var_trackback_total">{trackback_total}</a></li>
+		<li><a href="#var_url">{url}</a></li>
+		<li><a href="#var_url_or_email">{url_or_email}</a></li>
+		<li><a href="#var_url_or_email_as_author">{url_or_email_as_author}</a></li>
+		<li><a href="#var_url_or_email_as_link">{url_or_email_as_link}</a></li>
+		<li><a href="#var_url_title">{url_title}</a></li>
+		<li><a href="#var_url_title_path">{url_title_path=weblog/archives}</a></li>
+		<li><a href="#var_username">{username}</a></li>
+		<li><a href="#var_weblog">{weblog}</a></li>
+		<li><a href="#var_weblog_id">{weblog_id}</a></li>
+		<li><a href="#var_yahoo_im">{yahoo_im}</a></li>
+		<li><a href="#var_custom_entry_fields">Custom Entry Fields</a></li>
+		<li><a href="#var_custom_member_fields">Custom Member Fields</a></li>
+	</ul>
+
+
+	<h3><a name="var_aol_im">aol_im</a></h3>
+
+		<code>{aol_im}</code>
+
+		<p>The author's AOL IM account name</p>
+
+
+	<h3><a name="var_author">author</a></h3>
+
+		<code>{author}</code>
+
+		<p>The author's screen name, if it exists; otherwise, this variable will display the username.</p>
+
+
+	<h3><a name="var_author_id">author_id</a></h3>
+
+		<code>{author_id}</code>
+
+		<p>The member ID number of the author</p>
+
+
+	<h3><a name="var_comment_path">comment_path</a></h3>
+
+		<code>{comment_path=weblog/comments}</code>
+
+		<p>The URL to the specified template.  The ID number of the entry will be automatically added.  For example, this:</p>
+
+		<code>&lt;a href="{comment_path=weblog/comments}">comments&lt;/a></code>
+
+		<p>Would be rendered like this:</p>
+
+		<code>&lt;a href="http://www.example.com/index.php/weblog/comments/234/">comments&lt;/a></code>
+
+
+	<h3><a name="var_comment_tb_total">comment_tb_total</a></h3>
+
+		<code>{comment_tb_total}</code>
+
+		<p>The combined total number of both comments and trackbacks for a particular entry</p>
+
+
+	<h3><a name="var_comment_total">comment_total</a></h3>
+
+		<code>{comment_total}</code>
+
+		<p>The total number of comments for a particular entry</p>
+
+
+	<h3>dates</h3>
+
+		<p>Several date variables are available for use.  As with other date variables, these require the "format" parameter in order to define how the date should be displayed.  See the <a href="../date_variable_formatting.html">date variable formatting</a> page for more information.</p>
+
+
+	<h3><a name="var_entry_date">entry_date</a></h3>
+
+		<code>{entry_date format="%Y %m %d"}</code>
+
+		<p>The date the entry was submitted</p>
+
+
+	<h3><a name="var_expiration_date">expiration_date</a></h3>
+
+		<code>{expiration_date format="%Y %m %d"}</code>
+
+		<p>The expiration date of the entry</p>
+
+
+	<h3><a name="var_edit_date">edit_date</a></h3>
+
+		<code>{edit_date format="%Y %m %d"}</code>
+
+		<p>The date on which the entry was last edited</p>
+
+
+	<h3><a name="var_recent_comment_date">recent_comment_date</a></h3>
+
+		<code>{recent_comment_date format="%Y %m %d"}</code>
+
+		<p>The date of the most recent comment associated with the entry</p>
+
+
+	<h3><a name="var_email">email</a></h3>
+
+		<code>{email}</code>
+
+		<p>The author's raw email address</p>
+
+
+	<h3><a name="var_entry_id">entry_id</a></h3>
+
+		<code>{entry_id}</code>
+
+		<p>The ID number of the weblog entry</p>
+
+
+	<h3><a name="var_entry_id_path">entry_id_path</a></h3>
+
+		<code>{entry_id_path=weblog/archives}</code>
+
+		<p>The URL to the specified template.  The ID number of the entry will be automatically added.  For example, this:</p>
+
+		<code>&lt;a href="{entry_id_path=weblog/archives}">my entry&lt;/a></code>
+
+		<p>Would be rendered like this:</p>
+
+		<code>&lt;a href="http://www.example.com/index.php/weblog/archives/234/">my entry&lt;/a></code>
+
+
+	<h3><a name="var_icq">icq</a></h3>
+
+		<code>{icq}</code>
+
+		<p>The author's ICQ IM user identification number</p>
+
+
+	<h3><a name="var_interests">interests</a></h3>
+
+		<code>{interests}</code>
+
+		<p>The author's "interests" as entered in their profile</p>
+
+
+	<h3><a name="var_ip_address">ip_address</a></h3>
+
+		<code>{ip_address}</code>
+
+		<p>The IP address of the author when they posted the entry</p>
+
+
+	<h3><a name="var_location">location</a></h3>
+
+		<code>{location}</code>
+
+		<p>The author's location as entered in their profile</p>
+
+
+	<h3><a name="var_msn_im">msn_im</a></h3>
+
+		<code>{msn_im}</code>
+
+		<p>The author's MSN IM account name</p>
+
+
+	<h3><a name="var_occupation">occupation</a></h3>
+
+		<code>{occupation}</code>
+
+		<p>The author's occupation as entered in their profile</p>
+
+
+	<h3><a name="var_permalink">permalink</a></h3>
+
+		<code>{permalink}</code>
+
+		<p>This variable defaults to site index with entry ID number:</p>
+
+		<code>http://www.example.com/235/</code>
+
+		<p>In addition, you can specify a template group/template and the entry ID will automatically be added:</p>
+
+		<code>{permalink="weblog/archives"}</code>
+
+		<p>Will render as:</p>
+
+		<code>http://www.example.com/weblog/archives/235/</code>
+
+
+	<h3><a name="var_profile_path">profile_path</a></h3>
+
+		<code>{profile_path=member/profile}</code>
+
+		<p>The URL to the author of the current entry.  The ID number of the author will be automatically added.  Use in a link:</p>
+
+		<code>&lt;a href="{profile_path=member/profile}">{author}&lt;/a></code>
+
+
+	<h3><a name="var_relative_date">relative_date</a></h3>
+
+		<code>{relative_date}</code>
+
+		<p>The amount of time that has passed between when the entry was submitted and the current time.  The output is diaplyed in the format <samp>1 day, 3 hours, 45 minutes</samp>.  This variable is useful for displaying something such as "This entry was posted 1 day, 3 hours, 45 minutes ago."</p>
+
+
+	<h3><a name="var_screen_name">screen_name</a></h3>
+
+		<code>{screen_name}</code>
+
+		<p>The author's screen name, if it exists.  This variable will not return anything if the author does not have a screen name defined.</p>
+
+
+	<h3><a name="var_status">status</a></h3>
+
+		<code>{status}</code>
+
+		<p>The status of the entry (open, closed, etc.)</p>
+
+
+	<h3><a name="var_switch">switch=</a></h3>
+
+		<code>{switch="option_one|option_two"}</code>
+
+		<p>This variable permits you to alternate between any two values as the entries are displayed.  The first entry will use "option_one", the second will use "option_two", the third "option_one", and so on.</p>
+
+		<p>The most straightforward use for this would be to alternate colors.  It could be used like so:</p>
+
+		<code>{exp:weblog:entries}<br />
+&lt;div class="{switch="one|two"}"><br />
+&lt;h1>{title}&lt;/h1><br />
+{body}<br />
+&lt;/div><br />
+{/exp:weblog:entries}</code>
+
+		<p>The entries would then alternate between <samp>&lt;div class="one"></samp> and <samp>&lt;div class="two"></samp>.</p>
+
+		<p>Multiple instances of the <samp>{switch=}</samp> tag may be used and the system will intelligently keep track of each one.</p>
+
+
+	<h3><a name="var_title">title</a></h3>
+
+		<code>{title}</code>
+
+		<p>The title of the entry</p>
+
+
+	<h3><a name="var_title_permalink">title_permalink</a></h3>
+
+		<code>{title_permalink}</code>
+
+		<p>This variable uses the "url title" as the link.  It defaults to the site index with the "url title":</p>
+
+		<code>http://www.example.com/my_ugly_boyfriend/</code>
+
+		<p>In addition, you can specify a specific template group/template and the "url title" will automatically be added:</p>
+
+		<code>{title_permalink="weblog/archives"}</code>
+
+		<p>Will render as:</p>
+
+		<code>http://www.example.com/weblog/archives/my_ugly_boyfriend/</code>
+
+		<p><b>Note:</b> When creating a new entry, if you don't supply the "url title" then it will be automatically created from the actual entry title. Spaces are turned into underscores and quotes are removed.  For example, "Joe's night out" becomes "joes_night_out".</p>
+
+
+	<h3><a name="var_trackback_path">trackback_path</a></h3>
+
+		<code>{trackback_path=weblog/comments}</code>
+
+		<p>The URL to the specified template.  The ID number of the entry will be automatically added.  Use in a link:</p>
+
+		<code>&lt;a href="{trackback_path=weblog/comments}">trackback&lt;/a></code>
+
+
+	<h3><a name="var_trackback_total">trackback_total</a></h3>
+
+		<code>{trackback_total}</code>
+
+		<p>The total number of trackbacks for a particular entry</p>
+
+
+	<h3><a name="var_url">url</a></h3>
+
+		<code>{url}</code>
+
+		<p>The author's raw URL, if it exists</p>
+
+
+	<h3><a name="var_url_or_email">url_or_email</a></h3>
+
+		<code>{url_or_email}</code>
+
+		<p>The author's URL if it exists, otherwise the raw email address</p>
+
+
+	<h3><a name="var_url_or_email_as_author">url_or_email_as_author</a></h3>
+
+		<code>{url_or_email_as_author}</code>
+
+		<p>A hyperlink to the author's URL if it exists, otherwise it will be an email link for the author's email address.  The text of the link will be the author's screenname if it exists, otherwise it will be the username.</p>
+
+
+	<h3><a name="var_url_or_email_as_link">url_or_email_as_link</a></h3>
+
+		<code>{url_or_email_as_link}</code>
+
+		<p>This is similar to the above variable.  The difference is that the text for the link will be either the URL or the email address.</p>
+
+
+	<h3><a name="var_url_title">url_title</a></h3>
+
+		<code>{url_title}</code>
+
+		<p>The human readable title used in the URL as a permalink</p>
+
+
+	<h3><a name="var_url_title_path">url_title_path</a></h3>
+
+		<code>{url_title_path=weblog/archives}</code>
+
+		<p>The URL to the specified template.  The "url title" of the entry will be automatically added.  For example, this:</p>
+
+		<code>&lt;a href="{url_title_path=weblog/archives}">permalink&lt;/a></code>
+
+		<p>Would be rendered like this:</p>
+
+		<code>&lt;a href="http://www.example.com/index.php/weblog/archives/ice_cream/">permalink&lt;/a></code>
+
+
+	<h3><a name="var_username">username</a></h3>
+
+		<code>{username}</code>
+
+		<p>The author's username</p>
+
+
+	<h3><a name="var_weblog">weblog</a></h3>
+
+		<code>{weblog}</code>
+
+		<p>The name of the weblog to which the currently displayed entry is assigned</p>
+
+
+	<h3><a name="var_weblog_id">weblog_id</a></h3>
+
+		<code>{weblog_id}</code>
+
+		<p>The ID number of the actual weblog (not the <em>entry</em>)</p>
+
+
+	<h3><a name="var_yahoo_im">yahoo_im</a></h3>
+
+		<code>{yahoo_im}</code>
+
+		<p>The author's Yahoo IM account name</p>
+
+
+	<h3><a name="var_custom_entry_fields">Custom Entry Fields</a></h3>
+
+		<p>All custom fields assigned to a weblog can be accessed using the "short name" of the field:</p>
+
+		<code>{body}<br />
+{summary}<br />
+{extended}<br />
+etc..</code>
+
+		<p>These are totally dynamic in that any field you create for your weblog will automatically be available by its "short name" as a variable.</p>
+
+
+	<h3><a name="var_custom_member_fields">Custom Member Fields</a></h3>
+
+		<p>All custom member profile fields can be accessed using the "short name" of the field:</p>
+
+		<code>{age}<br />
+{gender}<br />
+{zodiac}<br />
+etc..</code>
+
+		<p>These are totally dynamic in that any profile field you create for your members will automatically be available by its "short name" as a variable.</p>
+
+
+
+
+	<h2>Single Conditionals</h2>
+
+	<p>Single variables can be "stacked" in order to show a variable that is not empty.  To do this, separate the variables by pipe characters:</p>
+
+	<code>{body|more}</code>
+
+	<p>In this variable, the body field is shown if it contains information.  If the body is empty, the more field is shown.  You can stack as many variables as you want:</p>
+
+	<code>{summary|body|extended|custom}</code>
+
+
+
+
+	<h2><a name="variable_pairs">Variable Pairs</a></h2>
+
+	<ul class="minitoc">
+		<li><a href="#var_date_heading">{date_heading}</a></li>
+		<li><a href="#var_categories">{categories}</a></li>
+	</ul>
+
+
+	<h3><a name="var_date_heading">date_heading</a></h2>
+
+		<p>The date heading can be used to show a heading at certain intervals.  The interval can be set to show hourly, daily, weekly, monthly, and yearly.</p>
+
+		<code>{date_heading}<br />
+<br />
+&lt;h1>{entry_date format="%Y %m %d"}&lt;/h1><br />
+<br />
+{/date_heading}</code>
+
+		<p>The opening {date_heading} tag has an optional "display" parameter used to set the display interval:</p>
+
+		<code>{date_heading display="daily"}</code>
+
+		<p>Choices for the "display" parameter are:</p>
+
+		<ul>
+			<li>{date_heading display="hourly"}</li>
+			<li>{date_heading display="daily"}</li>
+			<li>{date_heading display="weekly"}</li>
+			<li>{date_heading display="monthly"}</li>
+			<li>{date_heading display="yearly"}</li>
+		</ul>
+
+		<p>If no parameter is specified it will default to "daily".</p>
+
+		<p><b>Cool Feature:</b> You can use as many date_headers as you want in the same tag. There is a bit of a performance hit, however, since date parsing is the most processor intensive.  Read the caching section.</p>
+
+
+	<h3><a name="var_categories">categories</a></h3>
+
+		<p>Categories are unique in that they are a "looping pair".  Since you can have multiple categories per entry, we need a mechanism to show as many categories as exist for each entry.  Here's the base syntax:</p>
+
+		<code>{categories}<br />
+<br />
+&lt;a href="{path=weblog/categories}">{category_name}&lt;/a><br />
+<br />
+{/categories}</code>
+
+		<p>The entire chunk within the tag pair is repeated for as many categories as you have for each entry.  For that reason you may need to add HTML formatting between the tags.  For example:</p>
+
+		<code>{categories}<br />
+<br />
+{category_name}&lt;br /><br />
+<br />
+{/categories}</code>
+
+		<p>If your entry has three categories &#8212;  News, Sports, and Politics &#8212; the above code will render this output:</p>
+
+		<code>News&lt;br /><br />
+Sports&lt;br /><br />
+Politics&lt;br /></code>
+
+		<p>Whatever is between the opening and closing variables gets looped for as many categories as you have assigned to your entry.  If you want to put a space between the categories  you'll do this:</p>
+
+		<code>{categories}<br />
+<br />
+{category_name}&amp;nbsp;<br />
+<br />
+{/categories}</code>
+
+		<p>By default, the category is shown as pure text.  If you want it to be a link you'll use the <samp>{path=template_group/template}</samp> variable in the {categories} variable pair, like this:</p>
+
+		<code>{categories}<br />
+<br />
+&lt;a href="{path=weblog/categories}">{category_name}&lt;/a><br />
+<br />
+{/categories}</code>
+
+		<p>If you want the category links to point to your site index instead of a particular template group/template you can use <samp>SITE_INDEX<?samp> instead:</p>
+
+		<code>{categories}<br />
+<br />
+&lt;a href="{path=SITE_INDEX}">{category_name}&lt;/a><br />
+<br />
+{/categories}</code>
+
+		<p><b>Note:</b> "weblog/categories" indicates to which template group/template you want the link to point.  It is not a special command in and of itself.</p>
+
+		<p>A second optional parameter allows "backspacing":</p>
+
+		<code>{categories backspace="4"}</code>
+
+		<p>Backspacing removes characters from the last iteration of the loop.  For example, if you put a <samp>&lt;br /></samp> tag between each category you'll have this layout:</p>
+
+		<code>News&lt;br /><br />
+Sports&lt;br /><br />
+Politics&lt;br /></code>
+
+		<p>You might, however, not want the <samp>&lt;br /></samp> tag after the final item.  By adding backspacing you can remove it.  Simply count the number of characters and spaces in the item you want to remove and add it to the tag.  A <samp>&lt;br /></samp> tag has 6 characters, so you would do this:</p>
+
+		<code>{categories backspace="6"}<br />
+<br />
+{category_name}&lt;br /><br />
+<br />
+{/categories}</code>
+
+		<p>Finally, you may use the <samp>{category_image}</samp> variable to display the contents of the Category Image field in the Control Panel category setup.  For instance:</p>
+
+		<code>{categories backspace="6"}<br />
+<br />
+&lt;img src="{category_image}" width="25" height="15" alt="" /> &lt;a href="{path=SITE_INDEX}">{category_name}&lt;/a>&lt;br /><br />
+<br />
+{/categories}</code>
+
+
+
+
+	<h2><a name="conditional_variables">Conditional Variables</a></h2>
+
+	<p>Conditional variables allow you to add scripting to your regular Single Variables (see above) in order to show data if certain criteria that you define are met.  Conditional variables have this prototype:</p>
+
+	<code>{if variable operator condition}<br />
+<br />
+Data between the tags that gets shown if the condition(s) are met.<br />
+<br />
+{/if}</code>
+
+	<p>You can use any of the following operators:</p>
+
+	<ul>
+		<li><b>==</b> "equal to"</li>
+		<li><b>!=</b> "not equal to"</li>
+		<li><b>&lt;</b> "less than"</li>
+		<li><b>&lt;=</b> "less than or equal to"</li>
+		<li><b>&gt;</b> "greater than"</li>
+		<li><b>&gt;=</b> "greater than or equal to"</li>
+		<li><b>&lt;&gt;</b> "not equal to"</li>
+	</ul>
+
+	<p>A conditional variable will look like this:</p>
+
+	<code>{if username == "joe"}<br />
+<br />
+&lt;h1>Hi Joe!&lt;/h1><br />
+<br />
+{/if}</code>
+
+	<p><b>Note:</b>  The left side of the condition <strong>must</strong> always be the name of a field (title, body, summary, username, screen_name, entry_date, etc.).  The right side must be the condition you are testing for.</p>
+
+	<p>For example, to test for the "summary field" being not empty, you would do this:</p>
+
+	<code>{if summary != ""}<br />
+<br />
+The summary is not empty!<br />
+<br />
+{/if}</code>
+
+	<p>An alternate, shorthand syntax can accomplish the same thing:</p>
+
+	<code>{if summary}<br />
+<br />
+The summary is not empty!<br />
+<br />
+{/if}<br />
+
+	<p>If only the variable name is in the conditional statement it tests for "not empty".</p>
+
+
+	<h3>allow_comments</h3>
+
+		<code>{if allow_comments}<br />
+content<br />
+{/if}</code>
+
+		<p>This special conditional lets you conditionally display content if the current entry is set to allow comments.</p>
+
+		<code>{if allow_comments}<br />
+<br />
+({comment_total}) &lt;a href="{comment_path="weblog/comments"}">Comments&lt;/a> &#8226;<br />
+<br />
+{/if}</code>
+
+
+	<h3>allow_trackbacks</h3>
+
+		<code>{if allow_trackbacks}<br />
+content<br />
+{/if}</code>
+
+		<p>This special conditional lets you conditionally display content if the current entry is set to allow trackbacks.</p>
+
+		<code>{if allow_trackbacks}<br />
+<br />
+({trackback_total}) &lt;a href="{trackback_path="weblog/trackbacks"}">Trackbacks&lt;/a> &#8226;<br />
+<br />
+{/if}</code>
+
+
+	<h3>Examples:</h3>
+
+		<p>To test for the member group being "4":</p>
+
+		<code>{if group_id == "4"}<br />
+<br />
+Hey {username}, you are in group 4<br />
+<br />
+{/if}</code>
+
+		<p>To test for 10 or more comments:</p>
+
+		<code>{if comment_total >= "10"}<br />
+<br />
+Lookout!  Hot topic!!<br />
+<br />
+{/if}</code>
+
+		<p>You can use any available variable as part of a conditional.</p>
+
+
+
+	<h2>Multiple Conditions</h2>
+
+	<p>You can test for multiple conditions by separating the conditional statements with either the "and" statement (&amp;&amp;) or the "or" statement (||).</p>
+
+	<code>{if summary != "" && username =="fred"}<br />
+<br />
+Hey Fred!  Look at this summary.<br />
+<br />
+{/if}</code>
+
+	<p>or</p>
+
+	<code>{if username == "joe" || username == "bill"}<br />
+<br />
+Hey guys, check this out: {private}<br />
+<br />
+{/if}</code>
+
+	<p><b>Note:</b> You <strong>cannot</strong> use the shorthand syntax if you have multiple conditions.</p>
+
+	<p>Please note that we use the PHP convention of double equals signs:</p>
+
+	<code>{if comment_total == 10}</code>
+
+	<p>Doing the following is <strong>not</strong> allowed: <samp>{if comment_total = 10}</samp></p>
+
+
+	<h3>Correct Use of "and" and "or"</h3>
+
+		<p>In programming, "and" and "or" do not work exactly as a non-programmer might initially expect.  Be careful with using them.  Here's the rule:  If you are testing for both conditions, use "and".  If you are testing for either condition, use "or".</p>
+
+		<p>For example, this code:</p>
+
+		<code>{if comment_total == 0 && trackback_total == 0}<br />
+<br />
+No one has posted yet!  Come on guys!<br />
+<br />
+{/if}</code>
+
+		<p>Would show the message only if there are zero comment <strong>and</strong> trackback totals.  While this:</p>
+
+
+		<code>{if comment_total == 0 || trackback_total == 0}<br />
+<br />
+No one has posted yet!  Come on guys!<br />
+<br />
+{/if}</code>
+
+		<p>Would show the message if either the comment_total <strong>or</strong> the trackback_total are zero.</p>
+
+
+
+	<h2>Special Conditionals</h2>
+
+	<p>If you want to show something <strong>only</strong> to users who are logged in:</p>
+
+	<code>{if LOGGED_IN}<br />
+<br />
+stuff...<br />
+<br />
+{/if}</code>
+
+	<p>Or <strong>not</strong> logged in:</p>
+
+	<code>{if NOT_LOGGED_IN}<br />
+<br />
+stuff...<br />
+<br />
+{/if}</code>
+
+
+</div>
+
+
+<div id="footer">
+  <address>ExpressionEngine &#8211; Copyright &#169; 2003-2004 &#8211; pMachine, Inc.</address><div class="validation"><a href="http://validator.w3.org/check/referer" title="Validate XHTML">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="Validate CSS">CSS</a></div>
+</div>
+
+</body>
+</html>
